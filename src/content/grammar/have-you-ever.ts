@@ -101,10 +101,10 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever tried</strong> Haitian food in Boston?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Yes, I <strong>have</strong>! There is a restaurant on Maverick Square. It is so good.", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever taken</strong> the Blue Line to the airport?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven't</strong>. I always take the bus.", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever cooked</strong> a big meal for your family?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "No! What is that? A big dinner in November. my kids learn about it at school.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏽", text: "I’ve seen that place. <strong>Have</strong> you <strong>ever eaten</strong> there with a big group?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>. Are you planning something?", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏽", text: "A family dinner. <strong>Have</strong> you <strong>ever cooked</strong> for twenty people? I’m not sure I can manage it.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>! Let’s call the restaurant and ask if they have room.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -229,8 +229,8 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ${sceneCard("sceneClassroom", "After class, Eastie Community Learning Center. Two students talk before leaving.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Diego", avatar: "🧑🏽", text: "<strong>Did</strong> you <strong>go</strong> to the festival on Saturday?", side: "left", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "No, I worked that day. <strong>Have</strong> you <strong>ever been</strong> to a Somali restaurant?", side: "right", tone: "sage" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "<strong>Did</strong> you <strong>try</strong> the Somali food at the festival on Saturday?", side: "left", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "No, I worked that day. Was it good? <strong>Have</strong> you <strong>ever been</strong> to a Somali restaurant?", side: "right", tone: "sage" },
           { speaker: "Diego", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. Is there one near here?", side: "left", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏾", text: "Yes! My cousin <strong>went</strong> there last Friday and loved it.", side: "right", tone: "sage" },
         ])}

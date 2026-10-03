@@ -89,7 +89,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
           { speaker: "Marisol", avatar: "👩🏽", text: "I'm so <strong>tired of waiting</strong> for this late bus.", side: "right", tone: "terracotta" },
           { speaker: "Thiago", avatar: "👨🏽", text: "Me too. I'm <strong>sick of switching</strong> lines in the dark.", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "And I'm not great <strong>at reading</strong> the new schedule app yet.", side: "right", tone: "terracotta" },
-          { speaker: "Thiago", avatar: "👨🏽", text: "Same. But I'm <strong>interested in learning</strong> it. I have to.", side: "left", tone: "sage" },
+          { speaker: "Thiago", avatar: "👨🏽", text: "Let’s check it together. I’m <strong>interested in learning</strong> how to see when the next bus is coming.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -178,7 +178,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
           { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>need to call</strong> Mark about the rent increase.", side: "right", tone: "terracotta" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>hope to find</strong> a cheaper place, but I <strong>plan to stay</strong> until fall if I can.", side: "right", tone: "terracotta" },
           { speaker: "Cousin", avatar: "👩🏾", text: "You'd <strong>like to ask</strong> about a month-to-month lease, right?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>want to change</strong> jobs in the fall anyway.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>want to change</strong> jobs in the fall, so I don’t want to sign another full-year lease.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -214,7 +214,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Marisol has a goal for the new year. Which sentence is correct?",
+              label: "Marisol has a goal for the coming months. Which sentence is correct?",
               options: [
                 { value: "a", label: "I plan taking a computer class in January." },
                 { value: "b", label: "I plan to take a computer class in January." },
@@ -269,8 +269,8 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Brian", avatar: "🧑🏼", text: "Who can stay an extra hour tonight?", side: "left", tone: "blue" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I can. I <strong>keep working</strong> overtime to save for a deposit.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>avoid missing</strong> my kid's pickup, but I don't <strong>mind staying</strong> one hour.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I can. I’m saving for a deposit.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I don’t <strong>mind staying</strong> an extra hour tonight. My sister is picking up my kid.", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏼", text: "OK. <strong>Finish scanning</strong> those pallets first.", side: "left", tone: "blue" },
         ])}
 
@@ -358,9 +358,9 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏾", text: "Marisol, you <strong>need to stop forgetting</strong> your refills. This is the second time.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I know. I <strong>stopped to read</strong> the label on the bus. Then I forgot the time.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Remember to pick up</strong> before the weekend. <strong>Try setting</strong> a phone alarm.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "OK. Last month you told me to <strong>stop taking</strong> the old pills. Different meaning, I know.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I know. I <strong>stopped to read</strong> your text on the bus, but by the time I got here, you were closed.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Try setting</strong> a phone alarm next time. And <strong>remember to pick up</strong> your refill before the weekend.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I’ll set one now. What time do you close on Friday?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -464,14 +464,14 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Marisol tells classmate <strong>Djamila</strong> about her week. Monday is a holiday. She <strong>plans to visit</strong> her cousin's grave and <strong>hopes</strong> the construction site is closed so she can <strong>stop working</strong> that day.</p>
+        <p>Marisol tells classmate <strong>Djamila</strong> about her week. She is juggling extra shifts and an apartment search. Djamila offers to help her look at listings on Monday.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Long week?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I'm <strong>tired of commuting</strong>. I <strong>need to call</strong> Mark about rent.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>keep working</strong> overtime. I <strong>need to stop forgetting</strong> my refills.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "And I <strong>plan to change</strong> jobs in the fall. Monday I <strong>plan to visit</strong> my cousin's grave.", side: "right", tone: "terracotta" },
-          { speaker: "Djamila", avatar: "👩🏾", text: "Monday's a holiday. I hope your site is closed.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I’m <strong>tired of commuting</strong>, and now my rent is going up. I <strong>need to call</strong> Mark about it.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I don’t <strong>mind working</strong> extra hours to save for a deposit, but I barely have time to look at apartments.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>plan to change</strong> jobs in the fall. Maybe I can find something closer to home.", side: "right", tone: "terracotta" },
+          { speaker: "Djamila", avatar: "👩🏾", text: "I hope so. Do you have Monday off? We could look at some listings together.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -539,7 +539,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "A new goal for the new year.",
+              label: "A new goal for the coming months.",
               options: [
                 { value: "a", label: "I plan applying for the day shift." },
                 { value: "b", label: "I plan to apply for the day shift." },

@@ -332,7 +332,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Yolanda", avatar: "👩🏽", text: "Excuse me. <strong>Should</strong> I take ibuprofen or just rest?" },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "You can take ibuprofen every six hours. Not more than that." },
-          { speaker: "Rami", avatar: "👨🏽", text: "Hey Yolanda. <strong>What should</strong> you ask about the physical therapy?" },
+          { speaker: "Rami", avatar: "👨🏽", text: "Before we go, <strong>should</strong> we ask about physical therapy?" },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Good idea. Excuse me, <strong>should</strong> I see a physical therapist too?" },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Yes. You <strong>ought to</strong> call this number. They take MassHealth." },
         ])}

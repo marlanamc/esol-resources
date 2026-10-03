@@ -86,8 +86,8 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests, but I hate how my back feels by 4 PM.", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏿", text: "I know. I've been <strong>avoiding lifting</strong> the heavy carts for weeks. My shoulder can't take it.", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>keep thinking</strong> about leaving, but I haven't said anything yet.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Are you going to <strong>finish working</strong> here through spring?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "Probably. I can't quit yet. But I <strong>don't mind looking</strong> around.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Are you going to stay through spring?", side: "left", tone: "sage" },
+          { speaker: "Elena", avatar: "👩🏽", text: "Probably. I can’t quit yet, but I <strong>want to look</strong> for something else.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -552,10 +552,10 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests. And I <strong>like working</strong> early shifts. But I'm tired of the back pain. I <strong>avoid lifting</strong> as much as I can.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "What are you planning for the spring?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>decided to stay</strong> through May. Then I <strong>plan to apply</strong> somewhere new. My cousin said he can help.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "That sounds like a real plan. You should write that down and practice saying it at an interview.", side: "left", tone: "sage" },
+          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "That sounds like a plan. Let’s work on how you can describe your experience in an interview.", side: "left", tone: "sage" },
         ])}
 
-        <p style="margin: 0.75rem 0 0.5rem 0; font-size: 0.95rem; font-style: italic">After class, a coworker from the hotel texted Elena a photo from the Holi festival happening near the park. She invited Elena to come try the food after Saturday's shift.</p>
+        <p style="margin: 0.75rem 0 0.5rem 0; font-size: 0.95rem; font-style: italic">After class, a coworker from the hotel texted Elena a photo of a new café near the park. She invited Elena to have lunch after Saturday's shift.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0 0.75rem 0">
           <p style="margin: 0 0 0.4rem 0; font-size: 1.05rem"><strong>The short version to remember:</strong></p>

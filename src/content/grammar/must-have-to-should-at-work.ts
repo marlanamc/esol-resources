@@ -190,7 +190,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Marta", avatar: "👩🏾", text: "You <strong>have to</strong> clock in before your shift, not after. The manager checks the system every day.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "What if I'm running late?", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "You <strong>have to</strong> text him before you're late. And you <strong>have to</strong> wear your uniform. No apron, no line.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏾", text: "You <strong>have to</strong> text him if you’re going to be late. Do you have his number?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "Got it. Clock in, text if I'm late, uniform always.", side: "right", tone: "terracotta" },
         ])}
 
@@ -288,7 +288,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>should</strong> tell your supervisor before you leave the floor, even on your break. She notices when people just disappear.", side: "left", tone: "amber" },
           { speaker: "Linh", avatar: "👩🏻", text: "Is that the rule?", side: "right", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "It's not written down, but you <strong>should</strong> do it. And you <strong>shouldn't</strong> swap rooms with someone else without asking her first. That's how you get a write-up.", side: "left", tone: "amber" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "It’s not written down, but you <strong>should</strong> let her know so she can arrange coverage. You <strong>shouldn’t</strong> leave her guessing.", side: "left", tone: "amber" },
           { speaker: "Linh", avatar: "👩🏻", text: "I didn't know that. Thanks for telling me.", side: "right", tone: "sage" },
         ])}
 
@@ -379,14 +379,14 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneTextMessage", "Sunday night. Rosa gets a text from her manager, Jennifer, about Monday's shift.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Presidents Day is Monday. Some construction sites close, but the restaurant is open. Jennifer sends Rosa three messages.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The restaurant has an inspection on Monday, and a coworker has called out sick. Jennifer texts Rosa about the busy day ahead.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "Hey Rosa. A few things for tomorrow.", side: "left", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏽", text: "OK, what's up?", side: "right", tone: "sage" },
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "First, you <strong>must</strong> be here by 10. Health inspection is at 10:30. No exceptions.", side: "left", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Second, you <strong>have to</strong> cover the lunch shift too. Marcus called out sick.", side: "left", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Third, you <strong>should</strong> bring your food handler card. New hire starts Monday and you can show her yours.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "🧑‍💼", text: "You also <strong>have to</strong> cover lunch because Marcus called out sick. I’m arranging someone to help you.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "🧑‍💼", text: "And you <strong>should</strong> bring something to eat. It’ll be a long day.", side: "left", tone: "terracotta" },
         ])}
 
         <p style="margin: 1rem 0; line-height: 1.6">Three messages. Three different words. Here's why:</p>
@@ -401,7 +401,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
             <p style="margin: 0; font-size: 0.95rem; line-height: 1.5">A scheduling decision from the manager. Required, but not a law. <strong>Have to</strong> fits.</p>
           </div>
           <div style="padding: 0.75rem 1rem; background: rgba(233,196,106,0.1); border-radius: 0.5rem; border-left: 3px solid rgba(233,196,106,0.5)">
-            <div style="font-weight: 700; margin-bottom: 0.3rem">${labelPill("should", "amber")} Bring the food handler card</div>
+            <div style="font-weight: 700; margin-bottom: 0.3rem">${labelPill("should", "amber")} Bring something to eat</div>
             <p style="margin: 0; font-size: 0.95rem; line-height: 1.5">Jennifer's suggestion. Helpful, but nothing bad happens if Rosa forgets it. <strong>Should</strong> is right.</p>
           </div>
         </div>

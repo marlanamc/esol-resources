@@ -87,16 +87,16 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. A neighborhood parade closes Cambridge Street by 9.", "terracotta")}
+        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Cambridge Street by 9.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives. The parade means traffic is already backing up.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives. The roadwork means traffic is already backing up.</p>
 
         ${dialogue([
           { speaker: "Kevin", avatar: "🧑🏻", text: "You look tired, man.", side: "left", tone: "terracotta" },
           { speaker: "Hector", avatar: "👨🏽", text: "I <strong>have been working</strong> six days a week since January. No breaks.", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Same. I <strong>have been driving</strong> extra shifts because of the parade traffic. It kills my commute.", side: "left", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "That’s rough. I <strong>have been driving</strong> extra shifts too. We’re short of drivers this month.", side: "left", tone: "terracotta" },
           { speaker: "Hector", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been doing</strong> that?", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Three weeks. Starts in March every year.", side: "left", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Three weeks. I’m hoping things slow down soon.", side: "left", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -385,7 +385,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏽", text: "I <strong>have applied</strong> to three companies today. I'm done.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "I <strong>have been standing</strong> in this line for an hour. I haven't even talked to anyone yet.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "One recruiter asked how long I <strong>have been working</strong> in construction.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I <strong>have been working</strong> in construction.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "What did you say?", side: "left", tone: "sage" },
           { speaker: "Diego", avatar: "👨🏽", text: "Four years. She said that's good experience.", side: "right", tone: "terracotta" },
         ])}

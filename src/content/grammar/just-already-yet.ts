@@ -257,7 +257,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           { speaker: "Neighbor", avatar: "👨🏽", text: "Hey Carlos, coming back from the pharmacy?", side: "left", tone: "amber" },
           { speaker: "Carlos", avatar: "🧑🏽", text: "Yeah, I <strong>have just picked</strong> up my prescription. The line was crazy.", side: "right", tone: "terracotta" },
           { speaker: "Neighbor", avatar: "👨🏽", text: "I know. I\'ve <strong>just gotten</strong> back from there too. Did they have everything?", side: "left", tone: "amber" },
-          { speaker: "Carlos", avatar: "🧑🏽", text: "Yes, they <strong>have just restocked</strong>. Good timing.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "🧑🏽", text: "Yes, thankfully. They <strong>have just restocked</strong> my medicine, so I didn’t have to come back.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -417,8 +417,8 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Linh's son", avatar: "👦🏻", text: "Mom, have you called the landlord <strong>yet</strong>?", side: "left", tone: "blue" },
           { speaker: "Linh", avatar: "👩🏻", text: "No, I <strong>haven't called</strong> him <strong>yet</strong>. I will do it tomorrow.", side: "right", tone: "terracotta" },
-          { speaker: "Linh's son", avatar: "👦🏻", text: "Have you paid the electric bill <strong>yet</strong>?", side: "left", tone: "blue" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Not <strong>yet</strong>. I <strong>haven't had</strong> time <strong>yet</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Linh's son", avatar: "👦🏻", text: "OK. Have you paid the electric bill <strong>yet</strong>? It’s due tomorrow.", side: "left", tone: "blue" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Not <strong>yet</strong>. Let me do that now, before I forget.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -731,7 +731,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           { speaker: "Amara", avatar: "👩🏿", text: "Bruno, have you signed up for the food pantry <strong>yet</strong>?", side: "left", tone: "sage" },
           { speaker: "Bruno", avatar: "👨🏽", text: "Yes, I <strong>have already registered</strong>. I did it online last week.", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏿", text: "Oh nice. I <strong>have just found out</strong> about it. I'll do it tonight.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Do it soon. The deadline <strong>has just passed</strong> for this month, I think.", side: "right", tone: "terracotta" },
+          { speaker: "Bruno", avatar: "👨🏽", text: "Check the dates first. This month’s deadline <strong>has just passed</strong>, I think. You might need to wait until next month.", side: "right", tone: "terracotta" },
         ])}
 
         <p style="margin: 1rem 0 0.6rem; font-weight: 700; font-size: 0.9rem">Quick summary before the quiz:</p>

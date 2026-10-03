@@ -103,9 +103,9 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "You <strong>started</strong> this class in September. You <strong>have been studying</strong> all year. What <strong>will</strong> you do next?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>work</strong> lunch shifts, do hotel laundry on Saturdays, and <strong>take</strong> this class twice a week.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Right now I <strong>am tired</strong>, but I <strong>will enroll</strong> in Level 4 in September.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "Same. By August I <strong>will have finished</strong> Level 3.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my lunch shifts.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I already <strong>work</strong> Saturdays at the hotel, too. Two evenings a week is about all I can manage.", side: "right", tone: "terracotta" },
+          { speaker: "David", avatar: "👨🏻", text: "Me too. By August I <strong>will have finished</strong> Level 3. I hope we can stay in the same class.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -184,10 +184,10 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <p>Rosa works lunch shifts at a restaurant on Meridian Street. Hotel laundry on Saturdays. ESOL class on Tuesday and Thursday evenings. Supervisor <strong>Jennifer</strong> covers the register when Rosa leaves at 3.</p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏼", text: "You <strong>leave</strong> at three today, right?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. My daughter <strong>has</strong> a field trip tomorrow. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "OK. I <strong>cover</strong> the register when you <strong>go</strong>. You <strong>always</strong> do that on Wednesdays.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Thanks. I <strong>am running</strong> late today, but I usually <strong>leave</strong> on time.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼", text: "You usually <strong>leave</strong> at three, right? Do you need to go early today?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, if that’s OK. My daughter <strong>has</strong> a field trip tomorrow, and I need to pick up a few things. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the register for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Two thirty, please. Thanks. I know we <strong>are running</strong> behind today.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -271,13 +271,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneApartmentKitchen", "Rosa's apartment, Orient Heights. January 14, 11:45 PM.", "blue")}
 
-        <p>Rosa tells her landlord what happened in January. She also remembers February, when she applied for warehouse work.</p>
+        <p>Rosa tells her landlord what happened in January: what she was doing, what happened next, and what she had already done before calling.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>was cooking</strong> when water <strong>came</strong> through the ceiling.", side: "right", tone: "terracotta" },
-          { speaker: "Landlord", avatar: "🧑🏾", text: "You <strong>called</strong> me at midnight?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. In February I <strong>applied</strong> for warehouse work. I <strong>had already</strong> saved for the bus pass.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>had worked</strong> in housekeeping for two years by then.", side: "right", tone: "terracotta" },
+          { speaker: "Landlord", avatar: "🧑🏾", text: "That was when you <strong>called</strong> me, just before midnight?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>had already put</strong> a bucket under the leak, but it filled up fast.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Then I <strong>turned off</strong> the stove and <strong>moved</strong> everything away from the water.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -363,13 +363,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneVideoCall", "Hotel laundry room after a double shift. Wednesday, 9:30 PM.", "sage")}
 
-        <p>Rosa video-calls her sister <strong>Teresa</strong> after folding sheets for six hours.</p>
+        <p>Rosa calls her sister <strong>Teresa</strong> after a long restaurant shift. Teresa is at home waiting for her.</p>
 
         ${dialogue([
-          { speaker: "Teresa", avatar: "👩🏽", text: "Still at work?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have lived</strong> here since 2021. I <strong>have worked</strong> at the restaurant for three years.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Since March I <strong>have been taking</strong> two buses. The car broke down.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏽", text: "You <strong>have learned</strong> a lot this year.", side: "left", tone: "sage" },
+          { speaker: "Teresa", avatar: "👩🏽", text: "Still at work? I haven’t seen you all week.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have worked</strong> here for three years, and this has been my busiest week yet.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>have been taking</strong> two buses since the car broke down in March. It takes forever to get home.", side: "right", tone: "terracotta" },
+          { speaker: "Teresa", avatar: "👩🏽", text: "That sounds exhausting. I <strong>have made</strong> dinner, so you won’t need to cook tonight.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -453,13 +453,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBusHome", "121 bus toward Maverick Square. Thursday, 9:15 PM.", "amber")}
 
-        <p>After the last class, Rosa texts classmate <strong>David</strong> on the 121. Pride flags hang on lampposts at Maverick Square. <strong>Milagros</strong> from the restaurant <strong>will bring</strong> empanadas to the end-of-year potluck Friday.</p>
+        <p>Before the last class, Rosa and classmate <strong>David</strong> talk on the 121 bus about finishing Level 3 and their plans for September.</p>
 
         ${dialogue([
           { speaker: "David", avatar: "👨🏻", text: "Level 4 in the fall?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>will enroll</strong> in September. In September I <strong>will be taking</strong> class twice a week while I still work lunch shifts.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> Level 3. By tonight I <strong>will have been studying</strong> in evening ESOL for a full year.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "Same. Milagros <strong>will bring</strong> empanadas Friday. Potluck at work.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>will be taking</strong> evening classes while I keep working lunch shifts.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> Level 3. It feels good to be moving on.", side: "right", tone: "terracotta" },
+          { speaker: "David", avatar: "👨🏻", text: "It does. By September I <strong>will have been studying</strong> here for a full year. I <strong>will ask</strong> Ms. Tran about the Level 4 schedule tonight.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

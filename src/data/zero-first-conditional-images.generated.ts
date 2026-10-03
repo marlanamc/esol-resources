@@ -24,13 +24,13 @@ export const zeroFirstConditionalImages: Record<string, {
   },
   sceneChristmasEve: {
     url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1200&q=80&auto=format&fit=crop",
-    alt: "Restaurant dining room busy during a holiday evening shift.",
+    alt: "Restaurant dining room busy during an evening shift.",
     unsplashId: "W3SEyZODn8U",
     credit: { name: "Priscilla Du Preez 🇨🇦", url: "https://unsplash.com/@priscilladupreez" },
   },
   sceneMixedPractice: {
     url: "https://images.unsplash.com/photo-1680416124510-5eae1beca412?w=1200&q=80&auto=format&fit=crop",
-    alt: "Small apartment living room where two friends talk over bills and holiday schedules.",
+    alt: "Small apartment living room where two friends talk over bills and work schedules.",
     unsplashId: "DS9Xc7AWmwQ",
     credit: { name: "Christian", url: "https://unsplash.com/@axcreativeagency" },
   },

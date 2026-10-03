@@ -75,13 +75,13 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         <p>Catch up with Carlos and Fernanda. Read for the message first.</p>
         ${dialogue([
           { speaker: "Fernanda", avatar: "👩🏾", text: "You brought dinner! What’s in the bag?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "A fork. I <strong>work</strong> mornings, so I packed my bag before breakfast. The food’s still in the fridge!", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Oh no! Can your sister bring it?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "She <strong>works</strong> evenings. She’s <strong>working</strong> now. I <strong>worked</strong> late yesterday, too. It’s been a long week.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "I’ve <strong>worked</strong> that shift. Let’s get something at the café after class.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Just a fork. I left the food in the fridge!", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Oh no! Can your sister Sarah bring it?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "No, she’s <strong>working</strong> right now. She usually <strong>works</strong> evenings.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "That’s too bad. Let’s get something at the café after class.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Good plan. At least I’m ready if they run out of forks!", side: "right", tone: "terracotta" },
         ])}
-        <p>Carlos’s plans change, and so does the form of <strong>work</strong>.</p>
+        <p>Carlos explains why Sarah cannot bring his dinner. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
           <p><strong>Five labels, one verb.</strong> The labels help you find and check a form.</p>
           <ul style="padding-left:1.25rem; line-height:1.7">
@@ -160,7 +160,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Guess where my dinner is? Still in our fridge.", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏻", text: "Again? You <strong>pack</strong> a lunch every day. You just don’t always take it!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I’m <strong>learning</strong>! Fernanda <strong>finishes</strong> class at eight. We’re going to the café. Can you come?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I know! Fernanda and I are going to the café when class <strong>finishes</strong> at eight. Want to join us?", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏻", text: "I’m <strong>serving</strong> dinner right now. I finish at eight, too. Save me a seat!", side: "left", tone: "blue" },
         ])}
         <p>Sarah talks about Carlos’s usual routine and what she’s doing now. What do you sometimes forget when you leave home?</p>
@@ -218,12 +218,12 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneCafe", "After class, at the café. Sarah arrives, and Carlos finally gets dinner.", "amber")}
         ${dialogue([
-          { speaker: "Sarah", avatar: "👩🏻", text: "You’ve already got a sandwich? That was fast!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>finished</strong> it already. I <strong>worked</strong> until nine yesterday and missed dinner then, too.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "I’ve <strong>worked</strong> at the clinic nearby for two years. This café has saved my dinner more than once!", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "You’ve already <strong>finished</strong> your sandwich? That was fast!", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I was starving. I <strong>worked</strong> until nine yesterday and missed dinner then, too.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Two nights in a row? I’ve <strong>done</strong> that before. Let’s get you something for tomorrow, too.", side: "left", tone: "sage" },
           { speaker: "Sarah", avatar: "👩🏻", text: "Next time, text me before you leave home. I’ll send one word: LUNCH.", side: "right", tone: "blue" },
         ])}
-        <p>Carlos tells what happened yesterday. Fernanda talks about a job that started in the past and continues now.</p>
+        <p>Carlos tells what happened yesterday. Fernanda recognizes the problem from her own experience. The reference examples below show how V2 and V3 work with the same verb.</p>
         <p><strong>Quick form check:</strong> “I worked yesterday” uses <strong>V2</strong>. “I have worked nearby for two years” uses <strong>have + V3</strong>. <strong>I’ve</strong> means <strong>I have</strong>.</p>
         <p>For regular verbs, V2 and V3 both end in <strong>-ed</strong>. They look the same; the words around them help you understand the meaning.</p>
         <p><strong>Try it:</strong> Tell a partner one thing you did yesterday. Check the verb and tell it again. You can invent details.</p>
@@ -280,7 +280,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("scenePhone", "Wednesday evening. Five minutes of English in the class group chat.", "sage")}
         ${dialogue([
           { speaker: "Fernanda", avatar: "👩🏾", text: "Everyone home? I <strong>am</strong> ready for five minutes of practice.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>was</strong> hungry in class yesterday. Today I <strong>have</strong> my dinner right here.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong>! And this time I <strong>have</strong> my dinner right here.", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏻", text: "He <strong>has</strong> a sandwich, an apple, AND his fork. I checked!", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> forgetful this week. But I’ve <strong>had</strong> plenty of help!", side: "right", tone: "terracotta" },
         ])}

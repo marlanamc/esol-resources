@@ -157,7 +157,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             explanation: "✓ Ongoing future time period",
                         },
                         {
-                            sentence: "They <span style=\"color: #06b6d4; font-weight: 600;\">will be traveling</span> during the holidays.",
+                            sentence: "They <span style=\"color: #06b6d4; font-weight: 600;\">will be traveling</span> during their vacation.",
                             explanation: "✓ Future duration of action",
                         },
                     ],
@@ -1005,7 +1005,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             examples: [
                 "I'll be sleeping when you arrive at midnight.",
                 "She will be working from 9 to 5 tomorrow.",
-                "They will be traveling during the holidays.",
+                "They will be traveling during their vacation.",
                 "He will be waiting for us at the airport.",
             ],
             tipBox: {
@@ -1055,7 +1055,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "I ___ (not work) right now - I'm on break. (present negative)", expectedAnswer: "am not working" },
                         { type: "text", label: "She ___ (study) when the power went out. (past positive)", expectedAnswer: "was studying" },
                         { type: "text", label: "_________ (you/sleep) when I call tonight? (future question)", expectedAnswer: "Will you be sleeping" },
-                        { type: "text", label: "They ___ (not travel) during the holidays this year. (future negative)", expectedAnswer: "won't be traveling" },
+                        { type: "text", label: "They ___ (not travel) during their vacation this year. (future negative)", expectedAnswer: "won't be traveling" },
                         { type: "text", label: "He ___ (cook) dinner when I arrived home. (past positive)", expectedAnswer: "was cooking" },
                         { type: "text", label: "We ___ (watch) a movie right now. (present positive)", expectedAnswer: "are watching" },
                     ],
@@ -1289,9 +1289,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "A: Hey! What __________ (you/do) right now?", expectedAnswer: "are you doing" },
                         { type: "text", label: "B: I ___ (cook) dinner. What about you?", expectedAnswer: "am cooking" },
-                        { type: "text", label: "A: I ___ (drive) home from work. _________ (you/make) pasta?", expectedAnswer: "am driving" },
-                        { type: "text", label: "B: No, I ___ (try) a new recipe for chicken.", expectedAnswer: "am trying" },
-                        { type: "text", label: "A: Great! I ___ (join) you for dinner tomorrow?", expectedAnswer: "will be joining" },
+                        { type: "text", label: "A: I ___ (drive) home from work. Are you making pasta?", expectedAnswer: "am driving" },
+                        { type: "text", label: "B: No, I ___ (try) a new chicken recipe for our dinner tomorrow.", expectedAnswer: "am trying" },
+                        { type: "text", label: "A: Sounds good. I ___ (join) you at six tomorrow, as we planned.", expectedAnswer: "will be joining" },
                     ],
                 },
                 {

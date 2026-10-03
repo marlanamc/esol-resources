@@ -92,7 +92,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "I'm nervous. I've never applied to a warehouse before.", side: "right", tone: "terracotta" },
           { speaker: "Receptionist", avatar: "🧑🏻", text: "Don't worry. The manager said you already have good experience.", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "By the time I walked in, I <strong>had already worked</strong> two years in housekeeping. And I <strong>had saved</strong> enough for the bus pass.", side: "right", tone: "terracotta" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "That’s true. Before I applied, I <strong>had worked</strong> in housekeeping for two years. I just hope that’s enough.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -502,8 +502,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Same. By the time I found this job, I <strong>had already saved</strong> enough to move closer to the bus.", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Exactly. The restaurant <strong>hadn't paid</strong> overtime either, not once.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "That sounds exhausting. By the time I found this job, I <strong>had already saved</strong> enough to move closer. The shorter trip helps.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "It really does. And the pay is better here. The restaurant <strong>hadn’t paid</strong> overtime, not once.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

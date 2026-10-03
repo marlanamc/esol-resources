@@ -178,7 +178,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           { speaker: "Priya", avatar: "👩🏽", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
           { speaker: "Angelo", avatar: "👨🏻", text: "Me too. I moved here in August.", side: "left", tone: "sage" },
           { speaker: "Priya", avatar: "👩🏽", text: "I'm also <strong>not used to switching</strong> buses in the dark. Back home I walked to work.", side: "right", tone: "terracotta" },
-          { speaker: "Angelo", avatar: "👨🏻", text: "Give it time. I <strong>used to walk</strong> everywhere too. That was the past.", side: "left", tone: "blue" },
+          { speaker: "Angelo", avatar: "👨🏻", text: "Me too. I <strong>used to walk</strong> everywhere. Let’s wait inside until the bus is closer.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -271,12 +271,12 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneSchoolPhone", "Bus stop after a double shift. Thursday, 6:45 PM.", "sage")}
 
-        <p><strong>Fabienne</strong> packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids' school sent a flyer about Haitian Heritage Month, and she is still learning the English notices.</p>
+        <p><strong>Fabienne</strong> packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English.</p>
 
         ${dialogue([
           { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>getting used to reading</strong> school emails in English.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "But I'm <strong>not used to</strong> all the medical words in appointment reminders.", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Same. It gets easier.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "I still have to read some of them twice, especially the ones about school health forms.", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Same here. I’m <strong>getting used to</strong> the vocabulary, but I still ask the teacher when I’m not sure.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -367,12 +367,12 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneChurch", "Haitian church, East Boston. Sunday, 9 AM.", "amber")}
 
-        <p><strong>Jean</strong> sits with his cousin <strong>Claudette</strong> after service. May is Haitian Heritage Month, and the choir sang Creole hymns Jean did not grow up with.</p>
+        <p><strong>Jean</strong> sits with his cousin <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
 
         ${dialogue([
-          { speaker: "Jean", avatar: "👨🏾", text: "I'm <strong>getting used to</strong> the Creole hymns at this parish.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I'm <strong>used to working</strong> two jobs. You know my schedule.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏾", text: "I <strong>used to work</strong> only days. <strong>But now I</strong> work nights too.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> late on Saturdays, so getting up is the hard part.", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏾", text: "I know what you mean. I <strong>used to work</strong> only days. Now I work nights too. We could go to a later service.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -483,7 +483,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           { speaker: "Fabienne", avatar: "👩🏾", text: "Hi Jennifer. Can I take Friday off? Parent-teacher meeting at 10.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏼", text: "Let me check the schedule. How are you holding up?", side: "left", tone: "sage" },
           { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>used to working</strong> overtime, but I'm <strong>not used to</strong> reading every school email in English yet.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>getting used to</strong> the night shift. I <strong>used to work</strong> only days back home.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "And I’m still <strong>getting used to</strong> the night shift. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏼", text: "OK. I'll try to cover Friday.", side: "left", tone: "sage" },
         ])}
       `,

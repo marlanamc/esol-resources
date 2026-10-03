@@ -33,7 +33,7 @@ export const howLongForSinceImages: Record<
   },
   sceneHolidayDinner: {
     url: "https://images.unsplash.com/photo-1576866209830-589e1bfbaa4d?w=1200&q=80&auto=format&fit=crop",
-    alt: "Family gathered around a table for a holiday dinner, sharing food and conversation.",
+    alt: "Family gathered around a table for dinner, sharing food and conversation.",
     unsplashId: "photo-1576866209830-589e1bfbaa4d",
     credit: { name: "Nicole Michalou", url: "https://unsplash.com/@nicolemichalou" },
   },

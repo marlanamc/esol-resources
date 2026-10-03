@@ -95,7 +95,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         ${dialogue([
           { speaker: "Ms. Patel", avatar: "👩🏽", text: "How long has your knee been hurting?", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "About three weeks. I know I waited too long.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had come</strong> sooner, it <strong>wouldn't hurt</strong> this much.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had come</strong> sooner, maybe I <strong>wouldn’t have missed</strong> so much work.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Patel", avatar: "👩🏽", text: "Let's take a look. You're here now. That's what matters.", side: "left", tone: "sage" },
         ])}
 
@@ -371,10 +371,10 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         ${sceneCard("sceneBreakRoomTalk", "Warehouse break room. Tuesday lunch.", "amber")}
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏻", text: "If I <strong>called</strong> the clinic right now, they <strong>would help</strong> me figure out the bill.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "That's second conditional. Imaginary, but possible.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "But if I <strong>had called</strong> <em>last month</em>, I <strong>would have saved</strong> three shifts. That's third. The past is done.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "Right. <strong>Would</strong> = now or future. <strong>Would have</strong> = a different past.", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "If you <strong>called</strong> the clinic now, they <strong>would help</strong> you figure out the bill.", side: "left", tone: "sage" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "Do you think so? I’ve been putting it off.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> last month, I <strong>would have saved</strong> myself a lot of worry.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "You can still call today. I can sit with you while you do it.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

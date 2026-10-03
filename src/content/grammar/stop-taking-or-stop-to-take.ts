@@ -94,11 +94,11 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         <p>Marisol texts her daughter on the bus home.</p>
 
         ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, I got new pills. Tell your father to <strong>stop taking</strong> the white ones in the cabinet. The doctor changed mine.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, I got my new prescription. Please tell your father I need to <strong>stop taking</strong> the old white pills. I’ll put them aside when I get home.", side: "right", tone: "terracotta" },
           { speaker: "Daughter", avatar: "👧🏽", text: "OK Mamá. I'll tell him when he gets home.", side: "left", tone: "amber" },
         ])}
 
-        <p>In both messages, Marisol uses <strong>stop taking</strong>. That means: she <em>was</em> taking the pills before, and now she needs to end that habit.</p>
+        <p>In both messages, <strong>stop taking</strong> refers to Marisol’s old pills. That means: she <em>was</em> taking the pills before, and now she needs to end that habit.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>stop + -ing</strong> = end an ongoing action. You were doing it. Now you stop.</p>
@@ -185,16 +185,16 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneLabel", "Break room at the warehouse, Friday lunchtime.", "sage")}
 
-        <p>The next day at work, Marisol's coworker Kevin sees her new medication on the table. He picks up the bottle and reads the label out loud.</p>
+        <p>The next day at work, Kevin checks whether Marisol is ready to return from break. She explains why she paused and clears up a misunderstanding about her new prescription.</p>
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "👨🏻", text: "It says: 'Stop what you are doing to take this medicine with food.' What does that mean exactly?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "It means: when it's time for my pill, I have to <strong>stop</strong> what I'm doing <strong>to take</strong> it, and I need to eat first. I can't take it on an empty stomach.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "👨🏻", text: "Ahh. So it doesn't mean stop taking it forever?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "No, no. That's a different meaning. <strong>Stop taking</strong> means end something. <strong>Stop to take</strong> means pause and do something else.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "👨🏻", text: "Are you coming back to the floor? Our break is nearly over.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "In a minute. I <strong>stopped to take</strong> my new pill. The label says to take it with food.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "👨🏻", text: "Oh, I thought the doctor told you to stop taking your pills.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Just the old ones. I <strong>stopped taking</strong> those yesterday. This is the new prescription.", side: "right", tone: "terracotta" },
         ])}
 
-        <p>Kevin learned something important. <strong>Stop + to + verb</strong> means you pause your current activity in order to do a new one. Two different actions.</p>
+        <p>Kevin learns why Marisol paused. <strong>Stop + to + verb</strong> means you pause your current activity in order to do a new one. Two different actions.</p>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>stop + to + verb</strong> = pause what you're doing in order to do something else. Two actions.</p>
@@ -538,15 +538,15 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneNeighbors", "Marisol's kitchen, Sunday afternoon. Her neighbor Fatuma comes over.", "sage")}
 
-        <p>Marisol's neighbor Fatuma just got her own prescription from the clinic. She's confused by the instructions on the label. Marisol helps her read it.</p>
+        <p>Marisol’s neighbor Fatuma has questions about her new prescription and remembering her pills. They read the instructions and decide to call the pharmacist.</p>
 
         ${dialogue([
           { speaker: "Fatuma", avatar: "👩🏿", text: "It says: 'Stop taking ibuprofen while on this medication.' What does that mean?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "<strong>Stop taking</strong> means end it. No more ibuprofen at all while you're on this.", side: "right", tone: "terracotta" },
-          { speaker: "Fatuma", avatar: "👩🏿", text: "And this part: 'Stop to take with a full glass of water.' Does that mean stop the medicine?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "No, no. <strong>Stop to take</strong> means pause. Stop what you're doing and drink a full glass when you take it.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "That's a suggestion. <strong>Try taking</strong> it at the same time. And <strong>remember to take</strong> it with food every day.", side: "right", tone: "terracotta" },
-          { speaker: "Fatuma", avatar: "👩🏿", text: "Got it. Stop the ibuprofen, pause to drink water, try the same time, and don't forget food.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "It means you need to <strong>stop taking</strong> the ibuprofen while you’re on this medicine. Do you want to call the pharmacist to check?", side: "right", tone: "terracotta" },
+          { speaker: "Fatuma", avatar: "👩🏿", text: "Yes, please. I also keep forgetting my pills when I’m busy.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I used to forget too. Now I <strong>stop to take</strong> mine when my phone alarm goes off.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "<strong>Try setting</strong> an alarm. It helps me <strong>remember to take</strong> them.", side: "right", tone: "terracotta" },
+          { speaker: "Fatuma", avatar: "👩🏿", text: "I’ll do that. First, let’s call and check the instructions.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

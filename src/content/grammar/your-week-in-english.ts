@@ -88,7 +88,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           { speaker: "Fatima", avatar: "🧕", text: "Rosa, how <strong>often</strong> do you take the bus to class?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>always</strong> take the 111. Every week.", side: "right", tone: "terracotta" },
           { speaker: "Fatima", avatar: "🧕", text: "Me too. I <strong>usually</strong> leave at 5:30. But I'm <strong>sometimes</strong> late.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>never</strong> miss class. It's too important!", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "That bus is unpredictable. I <strong>never</strong> leave home without checking the arrival times now.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -532,12 +532,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday evening.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, you\'re always so busy. My kids go trick-or-treating tonight. Do yours?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "Yes! I <strong>never</strong> work Saturday night when my kids are home. I\'m always there with them.", side: "right", tone: "terracotta" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic. I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "And English class?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "I go <strong>twice a week</strong>, on Tuesday and Thursday evenings. This week I <strong>have already gone</strong> once. I go again Thursday.", side: "right", tone: "terracotta" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>sometimes</strong> walk <strong>in the morning</strong> before work. It helps.", side: "right", tone: "terracotta" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, do you ever have a free evening? We’d love to have you and the kids over.", side: "left", tone: "sage" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday would be good. I’m <strong>always</strong> home with them that evening.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic, but I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "What about English class? Is that on the weekend?", side: "left", tone: "sage" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "No, it’s <strong>twice a week</strong>, on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday works for us. I’ll check with the kids and text you.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

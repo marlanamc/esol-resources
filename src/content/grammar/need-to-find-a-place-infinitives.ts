@@ -186,7 +186,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>want to stay</strong> on the Blue Line. Two buses to work is too much.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "I get it. Do you <strong>want to see</strong> that listing on Bremen Street? My cousin said it's good.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "I'll ask her. You definitely <strong>don't want to miss</strong> this one.", side: "left", tone: "blue" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "I’ll ask her before we arrange a visit. I <strong>want to make</strong> sure it’s in your budget.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

@@ -98,7 +98,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. Since 2022.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. It was my first job in Boston.", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been</strong> in Boston?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have been</strong> here <strong>since</strong> 2020. You?", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "I <strong>have lived</strong> in East Boston <strong>for</strong> three years.", side: "left", tone: "sage" },
@@ -499,7 +499,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           { speaker: "Javier", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "blue" },
           { speaker: "Beatriz", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. You?", side: "right", tone: "terracotta" },
           { speaker: "Javier", avatar: "👨🏽", text: "I <strong>have been</strong> here <strong>since</strong> the restaurant opened.", side: "left", tone: "blue" },
-          { speaker: "Beatriz", avatar: "👩🏾", text: "When did you last take a day off?", side: "right", tone: "terracotta" },
+          { speaker: "Beatriz", avatar: "👩🏾", text: "That’s a long time! When did you last take a day off?", side: "right", tone: "terracotta" },
           { speaker: "Javier", avatar: "👨🏽", text: "I <strong>took</strong> a day off last month. Just one day.", side: "left", tone: "blue" },
         ])}
 
@@ -612,22 +612,22 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 5. Real Practice: Lease, Job, and Holiday Season
+    // SECTION 5. Real Practice: Lease, Job, and Family
     // =========================================================================
     {
       id: "real-practice-lease-job-holiday",
       stepNumber: 5,
-      title: "Real Practice: Lease, Job, and the Holidays",
+      title: "Real Practice: Lease, Job, and Family",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneHolidayDinner", "Rosa's apartment, East Boston. The family is together before Nochebuena.", "terracotta")}
+        ${sceneCard("sceneHolidayDinner", "Rosa's apartment, East Boston. The family is discussing their lease over dinner.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "Mami, how long <strong>have</strong> we <strong>lived</strong> in this apartment?", side: "right", tone: "terracotta" },
           { speaker: "Teresa", avatar: "👩🏾", text: "We <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> before your brother was born.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "The lease ends in March. And how long <strong>have</strong> the kids <strong>gone</strong> to that school?", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And now the lease ends in March. How long <strong>have</strong> the kids <strong>gone</strong> to that school?", side: "right", tone: "terracotta" },
           { speaker: "Teresa", avatar: "👩🏾", text: "Four years. I do not want to change their school.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "My manager just posted the holiday hours. I <strong>have worked</strong> Christmas Eve <strong>for</strong> three years. I need a raise.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks. Everything costs more.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(176,87,64,0.06); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
@@ -658,7 +658,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "She has worked Christmas Eve ___ three years.",
+              label: "She has worked evening shifts ___ three years.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -729,7 +729,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Rosa ___ (work) Christmas Eve for three years.",
+              label: "Rosa ___ (work) evening shifts for three years.",
               expectedAnswers: ["has worked"],
             },
             {

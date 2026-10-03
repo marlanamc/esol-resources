@@ -671,7 +671,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> I'm almost done. I just need to <strong>look over</strong> the final numbers.</p>
                     <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Great. When do you think you can <strong>turn it in</strong>?</p>
                     <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> I should be able to <strong>wrap it up</strong> by 3:00.</p>
-                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Perfect. Oh, and there was an issue with a vendor. Can you <strong>deal with</strong> that after?</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Thanks. One vendor says the delivery count is wrong. Can you <strong>deal with</strong> that before you send me the report?</p>
                     <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> Sure, I can <strong>take that on</strong>. Should I <strong>get back to you</strong> when it's resolved?</p>
                     <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Yes, please. Thanks, Nina!</p>
                 </div>

@@ -189,7 +189,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           { speaker: "Claudette", avatar: "👩🏿", text: "<strong>How many</strong> people are coming?", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "🧑🏻", text: "About twelve. Do you have enough food?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏿", text: "<strong>How much</strong> rice do I need for twelve people?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "🧑🏻", text: "Two big bags, at least. And don't forget the cooking oil.", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "🧑🏻", text: "Let’s check the serving size on the bag. We’ll need cooking oil, too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -284,7 +284,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           { speaker: "Diego", avatar: "👨🏽", text: "I got <strong>a lot of</strong> rice. Should last the week.", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "👨🏻", text: "Nice. Do you have vegetables?", side: "left", tone: "sage" },
           { speaker: "Diego", avatar: "👨🏽", text: "Just <strong>a few</strong> onions. And <strong>a little</strong> oil.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "👨🏻", text: "That's enough. Don't spend more money today.", side: "left", tone: "sage" },
+          { speaker: "Kevin", avatar: "👨🏻", text: "We can make rice and onions tonight. I have some beans we can add.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -378,9 +378,9 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
         ${sceneCard("sceneNutritionLabel", "Market Basket cereal aisle. Ana reads the nutrition label, looking for something affordable for her kids.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Ana", avatar: "👩🏾", text: "This one is cheap, but is there <strong>much</strong> sugar?", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏾", text: "There isn't <strong>much</strong> protein, either. Only 2 grams.", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏾", text: "There aren't <strong>many</strong> ingredients I can't read. OK, I'll get this one.", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "This one is cheaper. Let me check how <strong>much</strong> sugar it has.", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "That’s a lot of sugar, and there isn’t <strong>much</strong> protein. Only 2 grams.", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "There aren’t <strong>many</strong> other kinds at this price. I’ll check the store brand, too.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -475,9 +475,9 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Beatriz", avatar: "👩🏾", text: "I bought <strong>too many</strong> bags of rice. We can't eat all this.", side: "right", tone: "terracotta" },
-          { speaker: "Luisa", avatar: "👩🏽", text: "Give some to your neighbor. They're making dinner for their family.", side: "left", tone: "sage" },
-          { speaker: "Beatriz", avatar: "👩🏾", text: "Good idea. But I don't have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
-          { speaker: "Luisa", avatar: "👩🏽", text: "There's <strong>too much</strong> food and not enough plates. That's a good problem!", side: "left", tone: "sage" },
+          { speaker: "Luisa", avatar: "👩🏽", text: "Could you use some for the family dinner on Sunday?", side: "left", tone: "sage" },
+          { speaker: "Beatriz", avatar: "👩🏾", text: "Good idea. But I don’t have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
+          { speaker: "Luisa", avatar: "👩🏽", text: "I can bring plates. Just don’t cook <strong>too much</strong> rice. We’ll have other food, too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

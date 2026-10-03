@@ -396,13 +396,13 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneScheduleChange", "Break room at the hotel, Thursday afternoon.", "amber")}
 
-        <p>It's Holy Week. Gloria's family goes to church on Good Friday. But on Thursday she sees something on the break room wall: the schedule was changed. She texts her coworker Jennifer.</p>
+        <p>Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her coworker Jennifer.</p>
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "Did you see this? My Saturday shift <strong>was changed</strong> to Friday. I <strong>wasn't told</strong> anything.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏿", text: "I know. We <strong>were moved</strong> without any notice. It's not right.", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "The supervisor said time off <strong>is required</strong> to be requested two weeks early. But nobody told me that in the beginning.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏿", text: "Talk to HR. You have the right to ask. That rule <strong>is posted</strong> in the handbook.", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏿", text: "I know. Several shifts <strong>were moved</strong> without any notice. Can you work Friday?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "No. My time off <strong>was approved</strong> two weeks ago. I have the email.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏿", text: "Send it to HR and ask them to check. The procedure <strong>is posted</strong> in the handbook.", side: "left", tone: "sage" },
         ])}
 
         <p>Passive voice comes up a lot in workplace problems. When something happens without explanation, workers often describe it passively: <em>My schedule was changed. I wasn't told. We were moved.</em></p>
@@ -528,7 +528,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "The handbook says 'Overtime <strong>is calculated</strong> after 40 hours.' But I worked 43 and my check <strong>was short</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏿", text: "That happens. You have to say it clearly: 'I <strong>was not paid</strong> for three hours of overtime.'", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏿", text: "You should ask payroll to check. Tell them, “I worked 43 hours, but I <strong>was not paid</strong> for three hours of overtime.”", side: "left", tone: "sage" },
         ])}
       `,
       exercises: [

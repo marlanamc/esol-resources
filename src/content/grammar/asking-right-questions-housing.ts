@@ -86,7 +86,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Where</strong> is the apartment?", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏻", text: "It's on Leyden Street, third floor.", side: "left", tone: "sage" },
+          { speaker: "Brian", avatar: "🧑🏻", text: "It's on Leyden Street, near the bus stop.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>How many</strong> bedrooms does it have?", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏻", text: "Two bedrooms.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>What</strong> floor is it on?", side: "right", tone: "terracotta" },
@@ -521,8 +521,8 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           { speaker: "Rosa", avatar: "👩🏽", text: "Did you ask about children? I forgot.", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether children are allowed?</em> He said yes.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Good. <strong>How long</strong> is the lease?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "One year. And <strong>do you know when</strong> you can see it?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Monday's a holiday. No work. I finally have time to call listings.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "One year. He has appointments on Monday. <strong>Do you know when</strong> you can go?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Monday morning works. I have the day off. I’ll call him now.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(59,130,246,0.06); border-left: 3px solid #3b82f6; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">

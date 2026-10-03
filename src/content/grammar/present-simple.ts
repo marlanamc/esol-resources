@@ -596,7 +596,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             It <span class="gc-text-purple" style="font-weight: 600">doesn't matter</span> if you send it today or tomorrow.
                         </div>
                         <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            We <span class="gc-text-purple" style="font-weight: 600">don't get</span> overtime pay on holidays.
+                            We <span class="gc-text-purple" style="font-weight: 600">don't get</span> overtime pay on weekends.
                         </div>
                         <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
                             They <span class="gc-text-purple" style="font-weight: 600">don't allow</span> cell phones on the factory floor.
@@ -847,7 +847,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "We ___ (not celebrate) Halloween because of our religious beliefs. (negative)",
+                            label: "We ___ (not celebrate) birthdays at the office. (negative)",
                             expectedAnswer: "don't celebrate",
                         },
                         {

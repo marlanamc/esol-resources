@@ -96,7 +96,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           { speaker: "Brian", avatar: "🧑🏼", text: "Before you lift again, remember the rules. <strong>If you lift</strong> with your back, <strong>you hurt</strong> yourself.", side: "left", tone: "blue" },
           { speaker: "Yemi", avatar: "👩🏿", text: "I know. I learned that the hard way.", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏼", text: "<strong>If you bend</strong> at the waist, <strong>you risk</strong> injury. Use your legs.", side: "left", tone: "blue" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "OK. <strong>If I lift</strong> wrong, my back <strong>hurts</strong>. That's always true.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "OK. <strong>If I lift</strong> wrong, my back <strong>hurts</strong>. Can you watch me try again?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -282,11 +282,11 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBreakRoomNight", "Warehouse break room. Sunday night, 11:30 PM.", "blue")}
 
-        <p>After close, Yemi and coworker <strong>Rachel</strong> compare schedules. Yemi works nights and misses her kids' bedtime. Rachel leaves early Fridays for Shabbat.</p>
+        <p>After close, Yemi and coworker <strong>Rachel</strong> compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.</p>
 
         ${dialogue([
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
-          { speaker: "Rachel", avatar: "👩🏻", text: "I leave early Fridays for Shabbat. <strong>If my schedule were</strong> different, I <strong>wouldn't miss</strong> bedtime either.", side: "left", tone: "sage" },
+          { speaker: "Rachel", avatar: "👩🏻", text: "I know. <strong>If my schedule were</strong> different, I <strong>wouldn’t miss</strong> bedtime with my kids. Are you thinking about changing shifts?", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "Night shifts pay more, but I'm always tired.", side: "right", tone: "terracotta" },
         ])}
 
@@ -382,7 +382,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had called</strong> last week, I <strong>wouldn't have missed</strong> three shifts.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Patel", avatar: "👩🏽", text: "You're here now. That's what matters.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had gone</strong> sooner, I <strong>would have paid</strong> less in lost wages.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "I’m just worried about the money. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have lost</strong> so much in wages.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -465,14 +465,14 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week — a back injury, a clinic trip, and a billing mistake.</p>
+        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week — a back injury, a clinic trip, and missed shifts.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Rough week?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I lift</strong> wrong, my back <strong>hurts</strong>. Brian reminded me Monday.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Saturday: <strong>If the clinic opens</strong> at 8, <strong>I'll go</strong>. I did.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Sunday night: <strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "At billing: <strong>If I had gone</strong> sooner, I <strong>would have paid</strong> less.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "Yeah. <strong>If I lift</strong> wrong, my back <strong>hurts</strong>. This time I had to miss work.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "I finally went to the clinic Saturday. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have missed</strong> three shifts.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "The night shifts don’t help. <strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "For now, <strong>if my back still hurts</strong> tomorrow, <strong>I’ll call</strong> the clinic again.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

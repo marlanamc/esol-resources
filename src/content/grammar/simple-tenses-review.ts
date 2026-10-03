@@ -741,7 +741,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "1a. \"What time ___ (you/start) work?\"", expectedAnswer: "do you start" },
                         { type: "text", label: "1b. \"I ___ (start) at 8 AM every day.\"", expectedAnswer: "start" },
                         { type: "text", label: "2a. \"___ (you/see) the new movie?\"", expectedAnswer: "Did you see" },
-                        { type: "text", label: "2b. \"No, I ___ (not see) it yet.\"", expectedAnswer: "didn't see" },
+                        { type: "text", label: "2b. \"No, I ___ (not see) it. I stayed home.\"", expectedAnswer: "didn't see" },
                         { type: "text", label: "3a. \"___ (they/come) to the party?\"", expectedAnswer: "Will they come" },
                         { type: "text", label: "3b. \"Yes, they ___ (bring) dessert.\"", expectedAnswer: "will bring" },
                         { type: "text", label: "4a. \"Why ___ (she/look) so tired?\"", expectedAnswer: "does she look" },

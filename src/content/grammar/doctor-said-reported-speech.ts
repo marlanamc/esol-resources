@@ -181,10 +181,10 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         <p>Marco is wiping down the prep station when Amara texts him. He reads it between orders.</p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Kelly <strong>said that</strong> the inhaler <strong>was</strong> almost empty.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Was? It's empty now?", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "She <strong>said that</strong> they <strong>could</strong> refill it today if I go before 6.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "OK. I'll try to leave early. She <strong>said</strong> anything else?", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Kelly <strong>said that</strong> we <strong>could</strong> get the inhaler refilled today.", side: "left", tone: "sage" },
+          { speaker: "Marco", avatar: "👨🏽", text: "Good. Is there enough left for now?", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "A little, but it’s almost empty. She <strong>said that</strong> we <strong>had</strong> to get there before 6.", side: "left", tone: "sage" },
+          { speaker: "Marco", avatar: "👨🏽", text: "OK. I’ll try to leave early. Did she <strong>say</strong> anything else?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -300,7 +300,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p>Marco's grandmother Lucia called from Guatemala last week. She said the doctor <strong>told her to</strong> fast before her blood work. Orthodox Easter was coming, and she wanted to know if she could still eat. Reported speech helps her explain the doctor's rules to the family.</p>
+        <p>Marco's grandmother Lucia called from Guatemala last week. She said the doctor <strong>told her to</strong> fast before her blood work. She wanted to know when she needed to stop eating before the appointment. Reported speech helps her explain the doctor's rules to the family.</p>
       `,
       exercises: [
         {
@@ -468,8 +468,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           { speaker: "Marco", avatar: "👨🏽", text: "Mamá, the nurse <strong>said that</strong> Amina's inhaler <strong>was</strong> almost empty.", side: "right", tone: "terracotta" },
           { speaker: "Lucia", avatar: "👵🏽", text: "Ay, mijo. And the doctor?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "He <strong>told me to</strong> keep it warm. He <strong>told us not to</strong> use the old machine.", side: "right", tone: "terracotta" },
-          { speaker: "Lucia", avatar: "👵🏽", text: "Like my doctor! He <strong>told me to</strong> fast before my blood work for Easter.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Sarah <strong>asked when</strong> we <strong>could</strong> come back. I <strong>said that</strong> maybe Saturday.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👵🏽", text: "OK. I’ll put the old machine away. When is Amina’s next appointment?", side: "left", tone: "sage" },
+          { speaker: "Marco", avatar: "👨🏽", text: "Sarah <strong>asked when</strong> we <strong>could</strong> come back. I <strong>said that</strong> Saturday might work. We’re waiting to hear.", side: "right", tone: "terracotta" },
         ])}
 
         <p>Statements, commands, and questions. All three patterns in one real phone call.</p>

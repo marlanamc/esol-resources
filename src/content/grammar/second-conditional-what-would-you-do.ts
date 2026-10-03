@@ -91,9 +91,9 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Carmen", avatar: "👩🏽", text: "My manager just told me I'm working Sundays now. Every Sunday.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "That's bad. What would you do if you could say no?", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏾", text: "Every Sunday? What <strong>would</strong> you <strong>do</strong> if you <strong>could choose</strong> your own schedule?", side: "left", tone: "sage" },
           { speaker: "Carmen", avatar: "👩🏽", text: "If I <strong>had</strong> more options, I <strong>would look</strong> for a different job. But right now I need this one.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "I know. If the pay <strong>were</strong> better, I <strong>wouldn't work</strong> two jobs either.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏾", text: "I understand. If my pay <strong>were</strong> better, I <strong>wouldn’t need</strong> two jobs. It’s hard to make a change.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -460,7 +460,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           { speaker: "Milagros", avatar: "👩🏾", text: "If they <strong>promoted</strong> me to team lead, I <strong>would train</strong> the new people better.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "What else would you change if you were in charge?", side: "left", tone: "sage" },
           { speaker: "Milagros", avatar: "👩🏾", text: "If we <strong>had</strong> the same schedule every week, people <strong>wouldn't quit</strong> so fast.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "I hear that. If they <strong>paid</strong> everyone the same for the same work, I <strong>wouldn't need</strong> two jobs.", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "Exactly. And if they <strong>paid</strong> us more, I <strong>wouldn’t need</strong> a second job. I could be more flexible here.", side: "left", tone: "sage" },
         ])}
 
         <p style="margin: 0.75rem 0">Women's History Month: in March, workers across the country talk about equal pay. Jennifer's line above is something many workers think about.</p>

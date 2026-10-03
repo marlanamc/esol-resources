@@ -276,7 +276,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("when", "terracotta")}
-            <span><em>Diego <strong>was telling</strong> a story about Independence Day back home <strong>when</strong> his neighbor <strong>asked</strong> how long he had lived in Boston.</em></span>
+            <span><em>Diego <strong>was telling</strong> a story about his first job back home <strong>when</strong> his neighbor <strong>asked</strong> how long he had lived in Boston.</em></span>
           </div>
         </div>
         <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">Quick tip: the continuous action (line) is the background. The simple action (dot) is the event that happened inside it or interrupted it.</p>
@@ -342,7 +342,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>were working</strong> AND you <strong>picked</strong> him up that fast? You are a superhero.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "Ten minutes? I’m glad you <strong>got</strong> there so quickly. Did someone cover for you at work?", side: "left", tone: "sage" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>
       `,

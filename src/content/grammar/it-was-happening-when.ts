@@ -90,7 +90,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneApartment", "East Boston apartment, third floor. Tuesday night, 11:45 PM.", "terracotta")}
         ${dialogue([
-          { speaker: "Lucia", avatar: "👩🏽", text: "Something <strong>woke</strong> me up last night. I <strong>heard</strong> a noise from the ceiling. I <strong>got up</strong> and <strong>turned on</strong> the light.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>heard</strong> a noise from the ceiling last night. I <strong>looked</strong> up and <strong>saw</strong> a crack.", side: "right", tone: "terracotta" },
           { speaker: "Landlord", avatar: "🧑‍💼", text: "What did you see?", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "Water. It <strong>came</strong> through the ceiling above the kitchen. I <strong>grabbed</strong> a bucket and I <strong>called</strong> you right away.", side: "right", tone: "terracotta" },
         ])}
@@ -174,10 +174,10 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneKitchen", "Lucia's apartment kitchen. Same night, before the pipe burst.", "blue")}
         ${dialogue([
-          { speaker: "Landlord", avatar: "🧑‍💼", text: "Was anyone else awake? What was happening in the apartment?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "My kids <strong>were sleeping</strong> in the back room. The rice cooker <strong>was still running</strong> from dinner. I <strong>was mopping</strong> the floor when the water <strong>started</strong> coming through.", side: "right", tone: "blue" },
-          { speaker: "Landlord", avatar: "🧑‍💼", text: "And the red envelopes on the table?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Yes, we <strong>were getting</strong> ready for Lunar New Year. My daughter <strong>was writing</strong> names on them when everything <strong>happened</strong>.", side: "right", tone: "blue" },
+          { speaker: "Landlord", avatar: "🧑‍💼", text: "Was anyone else awake when it happened?", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "My younger kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen when the water <strong>started</strong> coming through.", side: "right", tone: "blue" },
+          { speaker: "Landlord", avatar: "🧑‍💼", text: "Was your older daughter in the kitchen too?", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. We <strong>were getting</strong> ready for a family dinner. She <strong>was writing</strong> place cards at the table.", side: "right", tone: "blue" },
         ])}
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Continuous</strong> = an action already in progress at a moment in the past. It was running in the background. Form: <strong>was / were + verb-ing</strong>.</p>
@@ -257,7 +257,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           { speaker: "Amina", avatar: "👩🏿", text: "Lucia, what happened last night? I heard noise from upstairs.", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>was mopping</strong> the kitchen <strong>when</strong> the pipe <strong>burst</strong>. Water came everywhere.", side: "right", tone: "terracotta" },
           { speaker: "Amina", avatar: "👩🏿", text: "<strong>While</strong> you <strong>were calling</strong> the landlord, I heard you on the phone. I almost knocked.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "I know. The kids <strong>woke up while</strong> I <strong>was moving</strong> furniture away from the water.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "I wish you had! The kids <strong>woke up while</strong> I <strong>was moving</strong> furniture away from the water.", side: "right", tone: "terracotta" },
         ])}
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>when</strong> + past simple for the interruption. Use <strong>while</strong> + past continuous for the action that was in progress.</p>

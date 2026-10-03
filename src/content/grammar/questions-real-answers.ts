@@ -81,17 +81,17 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneFirstDay", "East Boston Adult Education Center. First night of class.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The first week of class is full of questions. Sarah asks about teachers on the first night. Questions help you learn names, find out where people are from, and start a real conversation.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The first week of class is full of questions. Rosa meets someone in her class on the first night. Questions help you learn names, find out where people are from, and start a real conversation.</p>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Six question words. Each one asks for a different kind of information.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏾", text: "<strong>Who</strong> is your teacher this semester?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Ms. Tran. <strong>What</strong> class are you in?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Level 3. <strong>Where</strong> are you from originally?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Honduras. <strong>When</strong> did you start here?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Last September. <strong>Why</strong> did you choose this program?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "For work. <strong>How</strong> do you come to class?", side: "left", tone: "sage" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Ms. Tran. I’m Sarah, by the way. <strong>What</strong> class are you in?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Level 3, with Ms. Tran too! <strong>Where</strong> is her classroom?", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Upstairs, I think. Is this your first day?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "No, I started last September. Come on, I’ll show you where to go.", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Thanks! I wasn’t sure I was in the right building.", side: "left", tone: "sage" },
         ])}
 
         <div style="display: grid; gap: 0.45rem; margin: 1.25rem 0">
@@ -178,9 +178,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "<strong>Who</strong> is your landlord? Mine never answers the phone.", side: "left", tone: "sage" },
           { speaker: "Neighbor", avatar: "🧑🏽", text: "Mr. Costa. He\'s on the second floor. <strong>What</strong> is your apartment number?", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "3B. <strong>Where</strong> do you work?", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "I\'m at the fish market on Meridian. <strong>What</strong> do you do?", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "I work at the school cafeteria. <strong>Where</strong> are your kids in school?", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "3B. The kitchen light is broken. <strong>Where</strong> can I leave him a message?", side: "left", tone: "sage" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "There’s a box outside his office. <strong>What</strong> happened to the light?", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏿", text: "It went out yesterday. I changed the bulb, but it still doesn’t work.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -290,8 +290,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           { speaker: "Jean", avatar: "🧑🏿", text: "About two years ago. In March 2022.", side: "right", tone: "amber" },
           { speaker: "Coordinator", avatar: "👩‍💼", text: "<strong>How</strong> do you get to class?", side: "left", tone: "blue" },
           { speaker: "Jean", avatar: "🧑🏿", text: "By bus, usually the 114. <strong>How long</strong> is the program?", side: "right", tone: "amber" },
-          { speaker: "Coordinator", avatar: "👩‍💼", text: "One year. <strong>How often</strong> do classes meet?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "Twice a week, right? Tuesdays and Thursdays?", side: "right", tone: "amber" },
+          { speaker: "Coordinator", avatar: "👩‍💼", text: "One year. Classes meet twice a week. Does that fit your schedule?", side: "left", tone: "blue" },
+          { speaker: "Jean", avatar: "🧑🏿", text: "I think so. <strong>When</strong> do they meet? Tuesdays and Thursdays?", side: "right", tone: "amber" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -486,20 +486,20 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "all-six-together",
       stepNumber: 4,
-      title: "All six in a real conversation",
+      title: "Getting to know a neighbor",
       icon: "🤝",
       explanation: `
         ${sceneCard("sceneNeighborsMeet", "Meridian Street, East Boston. Mid-September, Sunday afternoon.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Many families on this block celebrate <strong>Central American Independence Day</strong> on September 15. so <strong>when</strong> questions come up a lot this time of year.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Diego meets his new neighbor Fernanda. They introduce themselves and talk about the building and the neighborhood.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "🧑🏽", text: "Hey, are you new to the building? <strong>What</strong> is your name?", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "Diego. <strong>Where</strong> are you from?", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Brazil. Sao Paulo. <strong>Who</strong> is the super for this building?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "Mr. Alves. He is on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Last week. <strong>Why</strong> did you choose East Boston?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "It is close to work. <strong>How</strong> do you get around? Do you have a car?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Hi! Are you new to the building? I’m Diego.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "I live upstairs. Let me know if you need help finding anything.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "Thanks, I’m Fernanda. <strong>Who</strong> is the super? I need another key.", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Mr. Alves, on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "Last week. I’m still unpacking! <strong>Why</strong> did you choose East Boston?", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "It’s close to work. I can walk there. <strong>Where</strong> do you work?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">

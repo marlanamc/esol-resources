@@ -283,7 +283,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           { speaker: "Diego", avatar: "👨🏽", text: "<strong>Could we</strong> split the shift? I can do the first two hours if someone else covers the rest.", side: "left", tone: "sage" },
           { speaker: "Brian", avatar: "🧑🏽", text: "<strong>Should we</strong> call Luis? He asked about extra hours last week.", side: "right", tone: "blue" },
           { speaker: "Diego", avatar: "👨🏽", text: "Yes. Or <strong>why don't we</strong> post it in the group chat? Someone might want the hours.", side: "left", tone: "sage" },
-          { speaker: "Brian", avatar: "🧑🏽", text: "Good thinking. <strong>Why don't we</strong> do both. I'll call Luis and you post the chat.", side: "right", tone: "blue" },
+          { speaker: "Brian", avatar: "🧑🏽", text: "Good thinking. <strong>Why don’t we</strong> do both? I’ll call Luis. Can you post in the chat?", side: "right", tone: "blue" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

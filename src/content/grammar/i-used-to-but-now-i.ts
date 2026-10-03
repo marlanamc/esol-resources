@@ -95,7 +95,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Mai", avatar: "👩🏻", text: "How are the kids?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "They're good. Busy with school.", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to have</strong> family nearby. Now I only see you on the phone.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "They miss you. I <strong>used to have</strong> family nearby to help. Now we only see you on the phone.", side: "right", tone: "terracotta" },
           { speaker: "Mai", avatar: "👩🏻", text: "I know. It's hard.", side: "left", tone: "sage" },
         ])}
 
@@ -174,8 +174,8 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Michelle", avatar: "👩🏼", text: "Did you always work mornings?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "No. I <strong>didn't use to</strong> wake up at 4. Back home I <strong>used to</strong> start work at 8.", side: "right", tone: "terracotta" },
-          { speaker: "Michelle", avatar: "👩🏼", text: "And dinner? Do you cook late?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>didn't use to</strong> cook dinner at 11 pm. Now I meal-prep on Sunday.", side: "right", tone: "terracotta" },
+          { speaker: "Michelle", avatar: "👩🏼", text: "That’s early! How do you find time to cook?", side: "left", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>didn’t use to</strong> plan meals ahead. Now I cook on Sunday so I can get to bed early during the week.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -362,12 +362,12 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneKitchenLunch", "Linh's kitchen. Wednesday, 6:30 AM.", "terracotta")}
 
-        <p>School morning rush. Linh packs lunch for her two kids. May is Asian American and Pacific Islander Heritage Month at their school.</p>
+        <p>School morning rush. Linh packs lunch for her two kids. Her son asks for a different lunch today.</p>
 
         ${dialogue([
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to pack</strong> rice in their lunchboxes every day.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to pack</strong> rice for you every day. Do you want some today?", side: "right", tone: "terracotta" },
           { speaker: "Son", avatar: "👦🏻", text: "Can I have PB&amp;J today?", side: "left", tone: "amber" },
-          { speaker: "Linh", avatar: "👩🏻", text: "OK. <strong>Now I pack</strong> PB&amp;J most days. Your sister is <strong>getting used to</strong> it too.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Sure. You <strong>used to ask</strong> for rice, but <strong>now you prefer</strong> sandwiches. I’m still <strong>getting used to</strong> that!", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -462,8 +462,8 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Linh, tell us one thing that changed.", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to have</strong> family nearby. <strong>But now I</strong> only see them on video calls.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>didn't use to</strong> take the bus. I <strong>used to</strong> drive. <strong>But now I</strong> take two buses to work.", side: "left", tone: "blue" },
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "<strong>Did you use to</strong> cook late at night, Linh?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I miss my family too. And getting around is different. I <strong>used to</strong> drive, but now I take two buses to work.", side: "left", tone: "blue" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That’s a long day. <strong>Did you use to</strong> cook late at night too, Linh?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}
       `,

@@ -197,7 +197,7 @@ export const canShouldMustContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}
-            <span><em>You <strong>shouldn't</strong> click on links in unknown text messages, especially around federal holidays, when scammers send fake "verify your benefits" texts while banks are closed.</em></span>
+            <span><em>You <strong>shouldn't</strong> click on links in unknown text messages, even if the message says you need to "verify your benefits" right away.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}
@@ -376,10 +376,10 @@ export const canShouldMustContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Ana", avatar: "👩🏾", text: "Bruno, look at this text. It says I won a prize and I <em>must</em> click this link right now.", side: "right", tone: "terracotta" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "That looks like a scam. You <strong>should</strong> not click that link.", side: "left", tone: "blue" },
+          { speaker: "Bruno", avatar: "👨🏽", text: "That looks like a scam. You <strong>shouldn’t</strong> click that link.", side: "left", tone: "blue" },
           { speaker: "Ana", avatar: "👩🏾", text: "It says it's from my bank. <strong>Can</strong> my bank really send messages like this?", side: "right", tone: "terracotta" },
           { speaker: "Bruno", avatar: "👨🏽", text: "Real banks <strong>can</strong> send texts, but they never ask for your password or PIN. You <strong>must not</strong> reply with any personal information.", side: "left", tone: "blue" },
-          { speaker: "Ana", avatar: "👩🏾", text: "OK. I <strong>should</strong> call the bank directly to check?", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "So <strong>should</strong> I call the bank directly to check?", side: "right", tone: "terracotta" },
           { speaker: "Bruno", avatar: "👨🏽", text: "Exactly. Use the number on the back of your card. That's always safe.", side: "left", tone: "blue" },
         ])}
 

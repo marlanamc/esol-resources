@@ -201,13 +201,13 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneJobTalk", "East Boston, Friday afternoon. Marta and Bruno meet outside a temp agency.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">A flyer on the door says November is <strong>Native American Heritage Month</strong>. a Native-led food drive needs volunteers Saturday.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">A flyer on the door asks for volunteers at a neighborhood food drive on Saturday.</p>
 
         ${dialogue([
           { speaker: "Marta", avatar: "👩🏾", text: "How did it go? Are you <strong>excited about</strong> getting the housecleaning job?", side: "left", tone: "sage" },
           { speaker: "Bruno", avatar: "👨🏽", text: "A little. But I'm <strong>nervous about</strong> working alone in someone's house.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "I know. I was the same. Now I'm just <strong>tired of</strong> looking for work.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Me too. But I'm <strong>proud of</strong> trying every day.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "That makes sense. I’m <strong>tired of</strong> looking for work, but I’d be nervous about that too.", side: "left", tone: "sage" },
+          { speaker: "Bruno", avatar: "👨🏽", text: "At least they’ll train me first. I’m <strong>proud of</strong> getting through the interview.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -322,7 +322,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Thank you <strong>for coming</strong> in today, Hector. Let's talk about how to explain your skills.", side: "left", tone: "blue" },
-          { speaker: "Hector", avatar: "👨🏽", text: "OK. I got my last job <strong>by showing</strong> up early every day. My boss liked that.", side: "right", tone: "terracotta" },
+          { speaker: "Hector", avatar: "👨🏽", text: "OK. I kept my last job <strong>by showing</strong> up on time and helping out when we were busy.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Good. And don't leave today <strong>without asking</strong> me for the job list. I have new openings.", side: "left", tone: "blue" },
           { speaker: "Hector", avatar: "👨🏽", text: "I won't. I also want to ask <strong>about getting</strong> a construction certificate.", side: "right", tone: "terracotta" },
         ])}

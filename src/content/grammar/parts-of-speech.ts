@@ -88,9 +88,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "James", avatar: "🙋🏼", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "My name is Amara. I live on Meridian <strong>Street</strong>, near the <strong>hospital</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Amara Yusuf. My <strong>address</strong> is 24 Meridian <strong>Street</strong>, near the <strong>hospital</strong>.", side: "right", tone: "terracotta" },
           { speaker: "James", avatar: "🙋🏼", text: "Great. The <strong>classroom</strong> is on the second <strong>floor</strong>. You will need a <strong>pencil</strong> and a <strong>notebook</strong>.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Thank you. I already have a <strong>bag</strong> with my <strong>supplies</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Thank you. I have a <strong>notebook</strong> in my bag. Could I borrow a <strong>pencil</strong>?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -264,10 +264,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara is filling out the form. Carlos, a volunteer, stops by to help. Their conversation uses two very different kinds of verbs.</p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Do you <strong>need</strong> help? I <strong>speak</strong> Spanish and a little Haitian Creole from working in the neighborhood.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Really? I <strong>know</strong> you from the neighborhood! You <strong>work</strong> at the corner store, right?", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>work</strong> there on weekends. Right now I <strong>volunteer</strong> here. I <strong>help</strong> new students <strong>find</strong> the right class.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "I <strong>understand</strong>. I <strong>want</strong> the Tuesday evening class. I <strong>remember</strong> seeing the flyer.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. I <strong>know</strong> you from the neighborhood! You <strong>work</strong> at the corner store, right?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "That’s right, on weekends. I also <strong>volunteer</strong> here. Which class do you <strong>want</strong> to take?", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "The Tuesday evening class. I <strong>remember</strong> seeing it on the flyer, but I can’t <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -447,9 +447,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza is helping Amara with the "About You" section. Nouns alone are not enough. Amara needs to <strong>describe</strong> things.</p>
 
         ${dialogue([
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "It says 'describe your schedule.' What do you write?", side: "left", tone: "amber" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "This part asks us to describe our lives. What are you writing?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "I have a <strong>full-time</strong> job. I work <strong>long</strong> hours. I have <strong>two</strong> children.", side: "right", tone: "terracotta" },
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "Good. I wrote '<strong>small</strong> apartment' and '<strong>busy</strong> schedule' for mine.", side: "left", tone: "amber" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "My schedule is <strong>busy</strong> too. Did you write anything about where you live?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "I live in a <strong>new</strong> building but it is a <strong>small</strong> space for four people.", side: "right", tone: "terracotta" },
         ])}
 
@@ -608,9 +608,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Coordinator", avatar: "📋", text: "How often can you volunteer, Carlos?", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I come <strong>every Tuesday</strong>. I work <strong>quickly</strong> and I finish <strong>early</strong>, so I can help here <strong>after my shift</strong>.", side: "right", tone: "sage" },
-          { speaker: "Coordinator", avatar: "📋", text: "Do you speak English well?", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I speak it <strong>pretty well</strong> now. I practiced <strong>hard</strong> last year.", side: "right", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I can come <strong>every Tuesday</strong>. My shift finishes <strong>early</strong>, so I can be here by four.", side: "right", tone: "sage" },
+          { speaker: "Coordinator", avatar: "📋", text: "Great. Are you comfortable helping students fill out forms in English?", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Yes. I speak English <strong>pretty well</strong> now. If someone speaks <strong>too quickly</strong>, I just ask them to slow down.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

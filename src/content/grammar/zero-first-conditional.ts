@@ -95,7 +95,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Scott", avatar: "🧑‍💼", text: "OK, listen up. <strong>If you clock in</strong> more than five minutes late, <strong>I write you up</strong>. No exceptions.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "What about traffic? The 111 bus is always late.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "🧑‍💼", text: "I know. But that\'s how it works here. <strong>If the kitchen is short-staffed</strong>, <strong>everyone stays</strong> until close. That includes you.", side: "left", tone: "blue" },
+          { speaker: "Scott", avatar: "🧑‍💼", text: "Leave extra time if you can. <strong>If you’re running late</strong>, <strong>you call</strong> me before your shift starts.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And <strong>if I need</strong> a day off?", side: "right", tone: "terracotta" },
           { speaker: "Scott", avatar: "🧑‍💼", text: "<strong>If you need</strong> a day off, <strong>you ask</strong> me two weeks early. Always.", side: "left", tone: "blue" },
         ])}
@@ -194,11 +194,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("scenePaycheck", "Carlos's kitchen, East Boston. Thursday night after his shift.", "amber")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos is on the phone with his wife, Ana. The electric bill is due Friday. He has a chance to pick up an extra shift Saturday morning.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos is on the phone with his wife, Ana. The electric bill is due next Friday. He has a chance to pick up an extra shift Saturday morning.</em></p>
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "<strong>If I pick up</strong> the Saturday shift, <strong>I'll pay</strong> the electric bill on time.", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏾", text: "And if you don't? The cutoff is Friday at noon.", side: "left", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Will you get paid before the bill is due next Friday?", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "<strong>If I don't work</strong> Saturday, <strong>we won't have</strong> enough. Not after rent.", side: "right", tone: "terracotta" },
           { speaker: "Ana", avatar: "👩🏾", text: "OK. <strong>If the manager calls</strong> tonight, <strong>tell him</strong> yes. We need the money.", side: "left", tone: "sage" },
         ])}
@@ -290,15 +290,15 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       title: "Unless, When, and As Soon As",
       icon: "📱",
       explanation: `
-        ${sceneCard("scenePhoneTexting", "Break room, East Boston. The holiday schedule just went up on the wall.", "sage")}
+        ${sceneCard("scenePhoneTexting", "Break room, East Boston. The weekend schedule just went up on the wall.", "sage")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Claudette and her coworker Jennifer are texting about the Christmas Eve schedule. Jennifer put in for two days off for Hanukkah last week.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Claudette and her coworker Jennifer are texting about the Saturday night schedule. Jennifer requested two days off for a family visit last week.</em></p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏻", text: "Did you see the schedule? They need someone for Christmas Eve. I can't do it. I <strong>won't be available unless</strong> my days off get changed back.", side: "left", tone: "blue" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "Did you see the schedule? They put me down for Saturday night, but I requested it off. I <strong>won’t be able to</strong> visit my family <strong>unless</strong> someone covers for me.", side: "left", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏿", text: "I saw. <strong>As soon as</strong> Miguel <strong>gets</strong> here, I'll ask him if he can cover.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "That would be great. <strong>When the bonus comes in</strong>, I'll treat you to lunch. I promise.", side: "left", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Ha. OK. But listen, I <strong>won't ask</strong> him <strong>unless</strong> you talk to Scott first. He needs to know.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Deal. But I <strong>won’t confirm</strong> anything with him <strong>unless</strong> Scott approves it. Can you talk to Scott first?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -389,14 +389,14 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       title: "Zero vs. First: Which One Fits?",
       icon: "🤔",
       explanation: `
-        ${sceneCard("sceneChristmasEve", "La Palma Restaurant kitchen. December 23. Manager is posting Christmas Eve hours.", "terracotta")}
+        ${sceneCard("sceneChristmasEve", "La Palma Restaurant kitchen. The manager is posting the weekend hours.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Marco is talking to his supervisor about the Christmas Eve shift and whether to take it.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Marco is talking to his supervisor about the Saturday night shift and whether to take it.</em></p>
 
         ${dialogue([
-          { speaker: "Marco", avatar: "👨🏾", text: "So Christmas Eve pays double, right?", side: "right", tone: "terracotta" },
-          { speaker: "Supervisor", avatar: "🧑‍💼", text: "Yes. <strong>If you work Christmas Eve, you earn double.</strong> That\'s the policy. It\'s been that way for years.", side: "left", tone: "blue" },
-          { speaker: "Marco", avatar: "👨🏾", text: "OK. Then <strong>if I work Christmas Eve, I will pay the rent on Friday</strong> before I go to my sister's.", side: "right", tone: "terracotta" },
+          { speaker: "Marco", avatar: "👨🏾", text: "So Saturday nights pay double, right?", side: "right", tone: "terracotta" },
+          { speaker: "Supervisor", avatar: "🧑‍💼", text: "Yes. <strong>If you work Saturday nights, you earn double.</strong> That\'s the policy. It\'s been that way for years.", side: "left", tone: "blue" },
+          { speaker: "Marco", avatar: "👨🏾", text: "OK. Then <strong>if I work this Saturday night, I will pay the rent on Friday</strong> before I go to my sister's.", side: "right", tone: "terracotta" },
           { speaker: "Supervisor", avatar: "🧑‍💼", text: "Good. And just so you know, <strong>if someone calls in sick, the whole shift stays</strong>. That\'s policy too.", side: "left", tone: "blue" },
           { speaker: "Marco", avatar: "👨🏾", text: "I understand. <strong>If I don't hear from you by 6 PM, I will call to confirm</strong>.", side: "right", tone: "terracotta" },
         ])}
@@ -418,13 +418,13 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
                 <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #b05740">Zero</td>
                 <td style="padding: 0.6rem 0.75rem">If + present, present</td>
                 <td style="padding: 0.6rem 0.75rem">always true, a rule</td>
-                <td style="padding: 0.6rem 0.75rem"><em>If you work Christmas Eve, you <strong>earn</strong> double.</em></td>
+                <td style="padding: 0.6rem 0.75rem"><em>If you work Saturday nights, you <strong>earn</strong> double.</em></td>
               </tr>
               <tr>
                 <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #e9c46a; text-shadow: 0 0 1px rgba(0,0,0,0.3)">First</td>
                 <td style="padding: 0.6rem 0.75rem">If + present, will + base</td>
                 <td style="padding: 0.6rem 0.75rem">real future plan</td>
-                <td style="padding: 0.6rem 0.75rem"><em>If I work Christmas Eve, I <strong>will pay</strong> rent Friday.</em></td>
+                <td style="padding: 0.6rem 0.75rem"><em>If I work this Saturday night, I <strong>will pay</strong> rent Friday.</em></td>
               </tr>
             </tbody>
           </table>
@@ -432,7 +432,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 0.75rem 1rem; border-radius: 0.5rem">
           <p style="margin: 0; font-size: 0.95rem"><strong>The key question:</strong> Is this always true (Zero) or is this Marco's specific plan right now (First)?<br>
-          <em>"You earn double on Christmas Eve"</em> = always true. Zero.<br>
+          <em>"You earn double on Saturday nights"</em> = always true. Zero.<br>
           <em>"I will pay rent on Friday"</em> = Marco's plan for this week. First.</p>
         </div>
       `,
@@ -474,7 +474,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Fill in: If you ___ (work) Christmas Eve, you earn double. (Zero Conditional)",
+              label: "Fill in: If you ___ (work) Saturday nights, you earn double. (Zero Conditional)",
               expectedAnswers: ["work"],
             },
           ],
@@ -496,19 +496,19 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 5. Putting It Together: Work, Money, Holidays
+    // SECTION 5. Putting It Together: Work, Money, Childcare
     // =========================================================================
     {
       id: "putting-it-together",
-      title: "Putting It Together: Work, Money, Holidays",
+      title: "Putting It Together: Work, Money, Childcare",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneMixedPractice", "Linh's apartment, East Boston. One week before Christmas.", "amber")}
+        ${sceneCard("sceneMixedPractice", "Linh's apartment, East Boston. Planning for next week.", "amber")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Linh is talking to her cousin Beatriz. She is trying to figure out the week before Christmas: overtime, childcare, and a bill that needs to be paid.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Linh is talking to her cousin Beatriz. She is trying to figure out next week: overtime, childcare, and a bill that needs to be paid.</em></p>
 
         ${dialogue([
-          { speaker: "Beatriz", avatar: "👩🏽", text: "So are you working Christmas week or not?", side: "left", tone: "sage" },
+          { speaker: "Beatriz", avatar: "👩🏽", text: "So are you working next week or not?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "<strong>If they offer overtime, I'll take it.</strong> The electric bill is due the 26th.", side: "right", tone: "terracotta" },
           { speaker: "Beatriz", avatar: "👩🏽", text: "And the kids? School is closed all week.", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "<strong>If my mother-in-law comes, I can work.</strong> She comes every year around this time. That's just what she does.", side: "right", tone: "terracotta" },
@@ -658,7 +658,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     },
     {
       id: "zero-first-conditional-q7",
-      question: "The supervisor says: 'If you work Christmas Eve, you earn double.' Marco says: 'If I work Christmas Eve, I will pay rent Friday.' What is the difference?",
+      question: "The supervisor says: 'If you work Saturday nights, you earn double.' Marco says: 'If I work this Saturday night, I will pay rent Friday.' What is the difference?",
       options: [
         { value: "a", label: "Both are Zero Conditional. They are the same." },
         { value: "b", label: "The supervisor states a policy (Zero). Marco states his plan (First)." },

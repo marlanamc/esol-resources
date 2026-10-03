@@ -605,7 +605,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         { type: "text", label: "I think it ___ (rain) later tonight.", expectedAnswer: "will rain" },
                         { type: "text", label: "The team ___ (not win) without their star player.", expectedAnswer: "won't win" },
                         { type: "text", label: "___ the price of gas ___ (go) up next month?", expectedAnswer: "Will the price of gas go" },
-                        { type: "text", label: "My parents ___ (visit) us during the holidays.", expectedAnswer: "will visit" },
+                        { type: "text", label: "My parents ___ (visit) us during their vacation.", expectedAnswer: "will visit" },
                         { type: "text", label: "I'm sure you ___ (love) this restaurant!", expectedAnswer: "will love" },
                     ],
                 },

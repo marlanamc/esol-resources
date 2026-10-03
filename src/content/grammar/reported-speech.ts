@@ -98,7 +98,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     {
                         speaker: "Partner",
                         avatar: "💬",
-                        text: "So what did she say — <em>exactly</em>?",
+                        text: "Then let’s cancel our plans tonight. I can make dinner.",
                         side: "right",
                         tone: "blue",
                     },
@@ -182,13 +182,15 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         tone: "terracotta",
                     },
                     {
-                        speaker: "Mina (thinking)",
+                        speaker: "Mina",
                         avatar: "🙂",
-                        text: "Later, to my sister: <strong>Dr. Chen said I was doing better and they would watch my sugar that month.</strong>",
+                        text: "That’s a relief. When should I make my next appointment?",
                         side: "right",
                         tone: "sage",
                     },
                 ])}
+
+                <p>Later, Mina tells her sister: <strong>Dr. Chen said I was doing better and they would watch my sugar that month.</strong></p>
 
                 <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; border-radius: 0.5rem">
                     <h4 class="gc-text-sage">Direct speech</h4>

@@ -32,7 +32,7 @@
 
 Complete with future perfect:
 
-1. By the end of this year, I ______ (save) $500 for holiday gifts.
+1. By the end of this year, I ______ (save) $500 for a new refrigerator.
 2. Before my next payday, I ______ (spend) my grocery budget carefully.
 3. By this time tomorrow, I ______ (compare) all the insurance options.
 4. Before the sale ends, I ______ (decide) whether to buy the new TV.

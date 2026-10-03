@@ -402,9 +402,9 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         ${sceneCard("sceneHROffice", "HR office. Jennifer reviews two applications before the final interview.", "blue")}
 
         ${dialogue([
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "First candidate: 'I worked at the Marriott for two years.' She left that job.", side: "left", tone: "sage" },
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Second candidate: 'I have worked at the Marriott for two years.' She is still there.", side: "left", tone: "sage" },
-          { speaker: "Mark (Manager)", avatar: "👨🏻", text: "The second one is still employed there? That's a good sign.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "The first candidate wrote, “I <strong>worked</strong> at the Marriott for two years.” She’s available to start Monday.", side: "left", tone: "sage" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "The second wrote, “I <strong>have worked</strong> at the Marriott for two years.” She would need to give notice.", side: "left", tone: "sage" },
+          { speaker: "Mark (Manager)", avatar: "👨🏻", text: "So the second candidate still works there. Let’s ask when she could start.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

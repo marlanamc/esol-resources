@@ -367,7 +367,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           { speaker: "Fernanda", avatar: "👩🏽", text: "This one on Bremen Street has <strong>more</strong> rooms but <strong>fewer</strong> closets.", side: "left", tone: "sage" },
           { speaker: "Diego", avatar: "👨🏾", text: "The one on Maverick has <strong>less</strong> noise. It is not on the main street.", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏽", text: "But it costs <strong>more</strong>. $200 <strong>more</strong> a month.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "We need <strong>fewer</strong> problems with the landlord too. Remember last time.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏾", text: "Before we decide, let’s ask about the landlord. I want <strong>fewer</strong> problems than we had last time.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -499,7 +499,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           { speaker: "Vendor", avatar: "🧑🏾", text: "Yes, but these are <strong>the freshest</strong> on the street. Look at the color.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "The shop on Sumner has <strong>the lowest</strong> price. But it is <strong>farther</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Vendor", avatar: "🧑🏾", text: "Buy here and save the bus fare. It is <strong>the better</strong> deal today.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Fine. I\'ll take two bundles. The smallest two-bedroom apartment is on the list, but the cheapest one is near the 111 bus.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "All right. I’ll take two bundles, please.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

@@ -713,7 +713,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "At 9 PM tonight, I ___ (watch) my favorite show.", expectedAnswer: "will be watching" },
                         { type: "text", label: "This time tomorrow, she ___ (fly) to Paris.", expectedAnswer: "will be flying" },
-                        { type: "text", label: "They ___ (not work) during the holidays.", expectedAnswer: "won't be working" },
+                        { type: "text", label: "They ___ (not work) during their vacation.", expectedAnswer: "won't be working" },
                     ],
                 },
                 {
