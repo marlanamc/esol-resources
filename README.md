@@ -161,14 +161,14 @@ Run these locally and ensure they all pass:
 ```bash
 npm run typecheck
 npm run lint
-npm run test:critical
-npm run test:vitest
-npm run check:generated
+npm test
 npm run check:repo-hygiene
 npm run build
 ```
 
-`npm run build` is verification-only and should not rewrite tracked generated files. If the gerund/infinitive generated dataset is stale, update it explicitly with `npm run generate:content`.
+`npm test` runs Vitest (including generated-content, vocabulary-duplicate, mini-guide, and answer-position checks) followed by the Node test suites. For a quick content-only check, run `npm run test:content`. The content checks also run in CI through `npm run test:coverage`; each failure includes its standalone command and audit output. Review duplicate vocabulary intentionally rather than updating baselines just to make a test pass.
+
+`npm run build` should not rewrite tracked generated files, but it does run database migrations and seed course-map data. Use an isolated development/test database for local build verification. If the gerund/infinitive generated dataset is stale, update it explicitly with `npm run generate:content`.
 
 ### Operations Shortcuts
 

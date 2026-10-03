@@ -5,8 +5,7 @@
 ## Verification
 - [ ] `npm run typecheck`
 - [ ] `npm run lint`
-- [ ] `npm run test:vitest`
-- [ ] `npm run check:generated`
+- [ ] `npm test` (unit, Node, and content checks)
 - [ ] `npm run build`
 
 ## Content And Data

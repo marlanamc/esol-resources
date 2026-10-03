@@ -1287,7 +1287,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Review: All Verb Tenses Overview"
+            "title": "All Verb Tenses Overview"
           },
           {
             "id": "catch-up-path-december",
