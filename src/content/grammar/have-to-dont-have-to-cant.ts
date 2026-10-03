@@ -426,7 +426,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p style="font-size: 0.85rem; color: rgba(0,0,0,0.55); margin: 0.5rem 0 1.25rem 0">Black History Month: Boston's Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.</p>
+        <p style="font-size: 0.85rem; color: rgba(0,0,0,0.55); margin: 0.5rem 0 1.25rem 0">Black History Month: The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.</p>
       `,
       exercises: [
         {

@@ -509,7 +509,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "You ___ drive after taking this medicine. It causes serious drowsiness.",
+              label: "A different bottle says: CAUSES SERIOUS DROWSINESS. You ___ drive after taking that medicine.",
               options: [
                 { value: "shouldnt", label: "shouldn't" },
                 { value: "must-not", label: "must not" },

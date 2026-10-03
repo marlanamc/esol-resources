@@ -80,7 +80,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
 
         <div class="gc-grad-terracotta" style="padding: 1.25rem 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem">
           <p style="font-size: 1.1rem; margin: 0"><strong>You:</strong> <em>"My head is pounding and I can't keep food down."</em></p>
-          <p style="font-size: 1.1rem; margin: 0.5rem 0 0"><strong>Nurse:</strong> <em>"Please sit down. You should fill out this form. You must not leave until the doctor sees you."</em></p>
+          <p style="font-size: 1.1rem; margin: 0.5rem 0 0"><strong>Nurse:</strong> <em>"Please sit down. You should fill out this form. You must wear this wristband the whole time you are here."</em></p>
           <p style="margin: 0.75rem 0 0; font-weight: 600">Three small sentences. Three different kinds of grammar. That's today's guide.</p>
         </div>
 

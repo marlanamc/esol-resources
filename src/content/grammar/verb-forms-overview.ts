@@ -75,11 +75,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneLunch", "Tuesday, class break. Carlos opens his lunch bag and finds a surprise.", "terracotta")}
         <p>Catch up with Carlos and Fernanda. Read for the message first.</p>
         ${dialogue([
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Break time! What did you bring for dinner tonight?", side: "left", tone: "sage" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Break time. What did you bring for dinner tonight?", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "A sandwich. Wait, this isn’t my bag. There’s no food, just a little box.", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "Is that a ring box? Whose bag is that?", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I took it from the staff fridge at the restaurant. Mark, the line cook, <strong>works</strong> there with my sister.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Call your sister now! Maybe Mark is looking for it.", side: "left", tone: "sage" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Call your sister. Maybe Mark is looking for it.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I can’t. Sarah’s <strong>working</strong> right now. She’s a server, so I’ll text her.", side: "right", tone: "terracotta" },
         ])}
         <p>Carlos washes dishes at the restaurant in the mornings, so he uses the staff fridge too. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
@@ -160,9 +160,9 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneWorkShift", "Still on break, Carlos texts his sister Sarah at the restaurant.", "blue")}
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Emergency! I took the wrong lunch bag from the fridge. There’s a ring inside. Is it Mark’s?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "Yes! Mark <strong>brings</strong> that blue bag every day. Tonight he wants to ask Lisa to marry him!", side: "left", tone: "blue" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Yes. Mark <strong>brings</strong> that blue bag every day. And tonight he wants to ask Lisa to marry him.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Oh no. Class <strong>finishes</strong> at eight. Where is he now?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "He’s <strong>looking</strong> everywhere in the kitchen. I’m <strong>serving</strong> tables, so I can’t leave. Meet us at the café at eight!", side: "left", tone: "blue" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "He’s <strong>looking</strong> everywhere in the kitchen. I’m <strong>serving</strong> tables, so I can’t leave. Meet us at the café at eight.", side: "left", tone: "blue" },
         ])}
         <p>Sarah talks about Mark’s usual routine and what is happening right now. Have you ever taken the wrong bag, coat, or phone?</p>
         <p><strong>Quick form check:</strong> I/you/we/they <strong>bring</strong>; he/she/it <strong>brings</strong>. For an action in progress, use <strong>am/is/are + V-ing</strong>: “He’s looking everywhere.”</p>
@@ -220,8 +220,8 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneCafe", "8:05 at the café. Mark runs in, out of breath.", "amber")}
         ${dialogue([
           { speaker: "Mark", avatar: "👨🏿", text: "Carlos! I’ve <strong>looked</strong> everywhere for that bag!", side: "left", tone: "amber" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Sorry! I <strong>grabbed</strong> the wrong one this morning. I <strong>opened</strong> it at break. Here’s your ring.", side: "right", tone: "terracotta" },
-          { speaker: "Mark", avatar: "👨🏿", text: "Thank you! Now I have to tell you something. I ate your sandwich at lunch.", side: "left", tone: "amber" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Sorry. I <strong>grabbed</strong> the wrong one this morning. I <strong>opened</strong> it at break. Here’s your ring.", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "👨🏿", text: "Thank you. Now I have to tell you something. I ate your sandwich at lunch.", side: "left", tone: "amber" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "So Carlos has <strong>missed</strong> dinner, but he saved your big night. Go, Mark! You have twenty minutes.", side: "left", tone: "sage" },
         ])}
         <p>Carlos tells what happened this morning. Mark and Fernanda connect the past to right now. The examples below show how V2 and V3 work with the same verb.</p>
@@ -278,12 +278,12 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       title: "She said yes! · Be and have",
       icon: "⚡",
       explanation: `
-        ${sceneCard("scenePhone", "Later that night, Carlos checks the class group chat.", "sage")}
+        ${sceneCard("scenePhone", "Later that night, Sarah starts a group chat with everyone from the café.", "sage")}
         ${dialogue([
-          { speaker: "Sarah", avatar: "👩🏻", text: "Big news! Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry!", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Big news. Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you tomorrow. Thank you, Carlos!", side: "left", tone: "amber" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow!", side: "left", tone: "sage" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> careful all night. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
         ])}
         <p><strong>Be</strong> and <strong>have</strong> change in special ways. Don’t add <em>-ed</em>.</p>
@@ -299,7 +299,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         {
           id: "vfo-be-have-1",
           title: "be and have on the quiz",
-          instructions: "Help the classmates finish their messages. Type only the missing word.",
+          instructions: "Help everyone finish their messages. Type only the missing word.",
           items: [
             {
               type: "radio",

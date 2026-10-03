@@ -371,7 +371,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           { speaker: "Scott", avatar: "🧑🏽", text: "Sure. The two-bedroom apartment is $1,350 a month.", side: "left", tone: "blue" },
           { speaker: "Nadine", avatar: "👩🏾", text: "<strong>Do you know</strong> if heat is included?", side: "right", tone: "sage" },
           { speaker: "Scott", avatar: "🧑🏽", text: "Yes, heat and hot water are both included.", side: "left", tone: "blue" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "<strong>Can you tell me</strong> whether children are allowed?", side: "right", tone: "sage" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "<strong>Can you tell me</strong> whether parking spots are included?", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -410,7 +410,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("indirect", "sage")}
-            <span><em>Can you tell me <strong>whether children are allowed</strong>?</em></span>
+            <span><em>Can you tell me <strong>whether parking spots are included</strong>?</em></span>
           </div>
         </div>
       `,
@@ -498,7 +498,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Do you know ___ children are allowed?",
+              label: "Do you know ___ parking spots are included?",
               expectedAnswers: ["if", "whether"],
             },
           ],
@@ -518,8 +518,8 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
         ${sceneCard("sceneAfterWork", "Outside the hotel, East Boston. Rosa and Nadine compare calls after the evening shift.", "blue")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "Did you ask about children? I forgot.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether children are allowed?</em> He said yes.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Did you ask about parking? I forgot.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether parking spots are included?</em> He said yes.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Good. <strong>How long</strong> is the lease?", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "One year. He has appointments on Monday. <strong>Do you know when</strong> you can go?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Monday morning works. I have the day off. I’ll call him now.", side: "right", tone: "terracotta" },
@@ -530,7 +530,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.93rem">
             <li><strong>How much</strong> is the rent? / <em>Can you tell me how much the rent is?</em></li>
             <li><strong>Is</strong> heat included? / <em>Do you know if heat is included?</em></li>
-            <li><strong>Are</strong> children allowed? / <em>Can you tell me whether children are allowed?</em></li>
+            <li><strong>Are</strong> parking spots included? / <em>Can you tell me whether parking spots are included?</em></li>
             <li><strong>How long</strong> is the lease?</li>
             <li><strong>When</strong> can I see it? / <em>Do you know when I can see it?</em></li>
             <li><strong>Is</strong> there laundry in the building?</li>
@@ -575,11 +575,11 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Direct: \"Are children allowed?\" Indirect version:",
+              label: "Direct: \"Are parking spots included?\" Indirect version:",
               options: [
-                { value: "a", label: "Can you tell me if are children allowed?" },
-                { value: "b", label: "Can you tell me if children are allowed?" },
-                { value: "c", label: "Do you know children are allowed?" },
+                { value: "a", label: "Can you tell me if are parking spots included?" },
+                { value: "b", label: "Can you tell me if parking spots are included?" },
+                { value: "c", label: "Do you know parking spots are included?" },
               ],
               expectedAnswer: "b",
             },
@@ -704,7 +704,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       options: [
         { value: "a", label: "Do you know if heat is included?" },
         { value: "b", label: "Can you tell me when is it available?" },
-        { value: "c", label: "Can you tell me whether children are allowed?" },
+        { value: "c", label: "Can you tell me whether parking spots are included?" },
       ],
       correctAnswer: "b",
       explanation: "After 'Can you tell me,' use statement order. The correct version is: 'Can you tell me when it is available?' not 'when is it.'",

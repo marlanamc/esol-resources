@@ -10,13 +10,13 @@ These matter more than a dull story, because students copy the answer key.
 
 | Guide | Problem | Status |
 |---|---|---|
-| [Reported Speech](packets/reported-speech.md) | The mini quiz asks students to report "We are at capacity now" as "They said ___". The keyed answer is "we were at capacity then", so the pronoun is wrong and no option is correct. Section 8 keys "Dr. Chen said **we** were short-staffed" for a patient reporting it. | Quiz item confirmed in source |
-| [Reported Speech](packets/reported-speech.md) | "said to me that…" and "to not skip doses" are marked as errors. They're grammatical, just less common. | Reviewer finding |
-| [Just, Already, Yet](packets/just-already-yet.md) | The key wants "I have **already** paid the rent. I did it on Monday." Present perfect with a finished time is the classic error. | Reviewer finding |
-| [Medical Instructions](packets/medical-instructions-complete.md) | The ER nurse says "You **must not** leave until the doctor sees you." Patients can legally leave, so this teaches the wrong meaning of *must*. | Reviewer finding |
-| [Have to, Don't Have to, Can't](packets/have-to-dont-have-to-cant.md) | The caption calls it "Boston's Fair Housing Act of 1968". That act is federal. | Reviewer finding |
-| [Asking the Right Questions About Housing](packets/asking-right-questions-housing.md) | The model question is "Can you tell me whether children are allowed?" Refusing renters with children is illegal in Massachusetts, which Week 17 itself teaches. | Reviewer finding |
-| [Should / Shouldn't: Health Advice](packets/should-shouldnt-health-advice.md) | An exercise says her medicine "causes serious drowsiness", but the story's medicine is ibuprofen. | Reviewer finding |
+| [Reported Speech](packets/reported-speech.md) | The mini quiz asks students to report "We are at capacity now" as "They said ___". The keyed answer is "we were at capacity then", so the pronoun is wrong and no option is correct. Section 8 keys "Dr. Chen said **we** were short-staffed" for a patient reporting it. | ✅ Fixed: both keys now use *they* |
+| [Reported Speech](packets/reported-speech.md) | "said to me that…" and "to not skip doses" are marked as errors. They're grammatical, just less common. | ✅ "to not skip" swapped for a real error. ⏸ "said to me that" left as a teaching choice for Marlana |
+| [Just, Already, Yet](packets/just-already-yet.md) | The key wants "I have **already** paid the rent. I did it on Monday." Present perfect with a finished time is the classic error. | ❌ Not an error: the time is in a separate past-simple sentence, which is correct. No change. |
+| [Medical Instructions](packets/medical-instructions-complete.md) | The ER nurse says "You **must not** leave until the doctor sees you." Patients can legally leave, so this teaches the wrong meaning of *must*. | ✅ Fixed: "You must wear this wristband the whole time you are here." |
+| [Have to, Don't Have to, Can't](packets/have-to-dont-have-to-cant.md) | The caption calls it "Boston's Fair Housing Act of 1968". That act is federal. | ✅ Fixed: "The federal Fair Housing Act" |
+| [Asking the Right Questions About Housing](packets/asking-right-questions-housing.md) | The model question is "Can you tell me whether children are allowed?" Refusing renters with children is illegal in Massachusetts, which Week 17 itself teaches. | ✅ Fixed: the question is now "whether parking spots are included" |
+| [Should / Shouldn't: Health Advice](packets/should-shouldnt-health-advice.md) | An exercise says her medicine "causes serious drowsiness", but the story's medicine is ibuprofen. | ✅ Fixed: the item now refers to a different bottle |
 
 ## Patterns across the guides
 
