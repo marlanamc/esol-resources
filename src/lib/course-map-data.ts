@@ -1248,12 +1248,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Economy Words: Flash Cards"
           },
           {
-            "id": "econ-news-headlines-practice",
+            "id": "reading-econ-news",
+            "href": "/grammar-reader/reading-econ-news",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
-            "activityType": "speaking",
-            "title": "Reading the News: Prices and Jobs"
+            "activityType": "guide",
+            "title": "Understanding the News for Econ: Headlines + Charts"
           },
           {
             "id": "vocab-dec-w3-matching",
@@ -1276,12 +1277,12 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Economy Words: Fill in the Blank"
           },
           {
-            "id": "econ-news-comprehension-check",
-            "slot": "required",
+            "id": "econ-news-headlines-practice",
+            "slot": "extra",
             "order": 4,
             "wrappedGame": false,
-            "activityType": "review",
-            "title": "Econ Vocabulary Check"
+            "activityType": "speaking",
+            "title": "Bring Your Own Headline: Discussion"
           },
           {
             "id": "econ-news-short-writing",

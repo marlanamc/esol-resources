@@ -167,6 +167,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/questions-real-answers.ts",
         loader: () => import("@/content/grammar/questions-real-answers"),
     },
+    "reading-econ-news": {
+        sourceFile: "src/content/grammar/reading-econ-news.ts",
+        loader: () => import("@/content/grammar/reading-econ-news"),
+    },
     "welcome-back-tenses-review": {
         sourceFile: "src/content/grammar/welcome-back-tenses-review.ts",
         loader: () => import("@/content/grammar/welcome-back-tenses-review"),

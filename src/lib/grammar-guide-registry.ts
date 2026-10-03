@@ -431,6 +431,13 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
         loadContent: () =>
             import("@/content/grammar/questions-real-answers").then((m) => m.questionsRealAnswersContent),
     },
+    "reading-econ-news": {
+        activityTitle: "Understanding the News for Econ: Headlines + Charts",
+        metaTitle: "Understanding the News for Econ - Interactive Guide | ESOL Teacher Resources",
+        metaDescription: "Learn to read simple economy news: headlines, bar charts, and price tables about prices, wages, and jobs.",
+        loadContent: () =>
+            import("@/content/grammar/reading-econ-news").then((m) => m.readingEconNewsContent),
+    },
     "reported-speech": {
         activityTitle: "Reported Speech Guide",
         metaTitle: "Reported Speech - Interactive Grammar Guide | ESOL Teacher Resources",
