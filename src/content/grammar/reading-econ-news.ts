@@ -97,6 +97,7 @@ export const readingEconNewsContent: InteractiveGuideContent = {
       title: "Reading a news headline",
       icon: "📰",
       explanation: `
+        <p>Sarah notices that her grocery bill is higher this week. She opens the news to understand why.</p>
         <p>You don't need to understand every word in the news to get the main idea. Most economy headlines answer one simple question: <strong>are things getting better or worse for workers and families?</strong></p>
 
         ${fakeHeadlineCard({

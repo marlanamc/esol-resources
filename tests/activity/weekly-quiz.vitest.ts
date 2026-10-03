@@ -8,12 +8,20 @@ const bank = quizzes as Record<string, WeeklyQuizContent>;
 describe('weekly quiz content and grading', () => {
   for (const [id, quiz] of Object.entries(bank)) {
     it(`${id} is short, aligned, and has a valid answer key`, () => {
-      expect(quiz.questions.length).toBeGreaterThanOrEqual(10);
-      expect(quiz.questions.length).toBeLessThanOrEqual(11);
+      // Quiz 8 is the deliberately shorter Fall Review + Class Party recap.
+      if (id === 'verb-quiz-8') {
+        expect(quiz.questions).toHaveLength(5);
+        expect(quiz.questions.every(q => q.section === 'vocabulary')).toBe(true);
+        expect(quiz.questions.every(q => q.options?.length === 3)).toBe(true);
+      } else {
+        expect(quiz.questions.length).toBeGreaterThanOrEqual(10);
+        expect(quiz.questions.length).toBeLessThanOrEqual(11);
+        for (const section of ['apply', 'vocabulary', 'grammar']) expect(quiz.questions.filter(q => q.section === section)).toHaveLength(2);
+      }
       expect(new Set(quiz.questions.map(q => q.id)).size).toBe(quiz.questions.length);
       const week = COURSE_MAP_UNITS.flatMap(u => u.weeks).find(w => w.items.some(i => i.activityId === id));
       expect(quiz.weekNumber).toBe(week?.number);
-      for (const section of ['apply', 'vocabulary', 'grammar']) expect(quiz.questions.filter(q => q.section === section)).toHaveLength(2);
+      expect(week).toBeDefined();
       for (const q of quiz.questions) {
         expect(q.answers.length).toBeGreaterThan(0);
         if (q.options) {

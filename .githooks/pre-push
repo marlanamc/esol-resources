@@ -1,0 +1,4 @@
+#!/bin/sh
+# Match the database-free CI quality gates before publishing commits.
+set -eu
+npm run check:push

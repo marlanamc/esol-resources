@@ -114,8 +114,8 @@ describe('Short Parts of Speech review', () => {
 
 
 describe('Weekly Parts of Speech curriculum', () => {
-  it('schedules a light first pass through Weeks 3–7 with two familiar questions after Week 3', () => {
-    expect(WEEKLY_REVIEW_LESSONS.map(({ week }) => week)).toEqual([3, 4, 5, 6, 7]);
+  it('schedules the first pass around civic Week 7 with two familiar review questions', () => {
+    expect(WEEKLY_REVIEW_LESSONS.map(({ week }) => week)).toEqual([3, 4, 5, 6, 8]);
     for (const { id, week } of WEEKLY_REVIEW_LESSONS) {
       const lesson = REVIEW_LESSONS[id];
       expect(lesson.examples).toHaveLength(2);

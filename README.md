@@ -275,3 +275,9 @@ These can be migrated into the new activity system using the import scripts in `
 ## License
 
 Free for educational use. Created by teachers, for teachers.
+
+### Before pushing
+
+Run `npm run check:push` to check types, lint, the full test suite with coverage, and Node tests. The suite includes the generated-content and curriculum audits. These checks do not migrate or seed a database.
+
+Run `npm run hooks:install` once per checkout to enable the tracked pre-push hook. It runs this same gate so a passing type check alone cannot publish known test failures. GitHub additionally checks dependencies, builds the application, and runs browser tests.

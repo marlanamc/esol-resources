@@ -600,7 +600,7 @@ export const WEEKLY_REVIEW_LESSONS = [
   { id: 'week-4-describing', week: 4, phase: 'Phases 1 & 3 · Describing things' },
   { id: 'week-5-subjects', week: 5, phase: 'Phase 2 · Building sentences' },
   { id: 'week-6-objects', week: 6, phase: 'Phase 2 · Building sentences' },
-  { id: 'week-7-adverbs', week: 7, phase: 'Phase 3 · Adding detail' },
+  { id: 'week-7-adverbs', week: 8, phase: 'Phase 3 · Adding detail' },
 ] as const;
 export const REVIEW_PHASES: { title: string; description: string; core: ReviewLessonId[]; extra: ReviewLessonId[]; checkIn: ReviewLessonId }[] = [
   { title: 'Phase 1: Foundation', description: 'Notice nouns, verbs, basic pronouns, and a, an, the. Revisit these whenever you need to.', core: ['nouns-verbs', 'pronouns', 'week-4-describing'], extra: ['determiners', 'foundation-review'], checkIn: 'foundation-check-in' },

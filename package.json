@@ -18,6 +18,8 @@
     "test:critical": "vitest run tests/gamification tests/activity tests/classes tests/auth tests/games/sanitize-security.vitest.ts && npm run test:node",
     "test:vitest": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "check:push": "npm run typecheck && npm run lint && npm run test:coverage && npm run test:node",
+    "hooks:install": "git config core.hooksPath .githooks",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts",
     "test:e2e:smoke": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts",

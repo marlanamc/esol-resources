@@ -202,7 +202,7 @@ it('keeps weekly results from multiple progress rows without replacing newer les
     expect(buildCourseMapProgressState([...rows].reverse())).toEqual(buildCourseMapProgressState(rows));
 });
 
-it('routes Weeks 3–7 to their own review and checks each completion independently', () => {
+it('routes scheduled weeks to their own review and checks each completion independently', () => {
     const weeks = COURSE_MAP_UNITS.flatMap(unit => unit.weeks);
     for (const { week, id } of WEEKLY_REVIEW_LESSONS) {
         const item = weeks.find(w => w.number === week)?.items.find(item => item.href === `/activity/parts-of-speech-game?lesson=${id}`);

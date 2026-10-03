@@ -37,7 +37,17 @@ describe('current-week quiz recognition', () => {
   it('recognizes completed quizzes even when other weekly work is unfinished', async () => {
     setWeek([quiz, { ...quiz, id: 'guide', activityId: 'guide', activityType: 'guide' }]);
     expect(await getCurrentWeekCompletion({ id: 'student' })).toEqual({
-      weekComplete: false, weeklyQuizComplete: true,
+      weekComplete: false, weeklyQuizComplete: true, completedWeeksCount: 0,
+    });
+  });
+
+  it('counts completed weeks while keeping the current week marker separate', async () => {
+    mocks.progress.mockResolvedValue({
+      old: { status: 'completed', categoryData: null },
+      quiz: { status: 'in_progress', categoryData: null },
+    });
+    expect(await getCurrentWeekCompletion({ id: 'student' })).toEqual({
+      weekComplete: false, weeklyQuizComplete: false, completedWeeksCount: 1,
     });
   });
 
@@ -67,7 +77,7 @@ describe('current-week quiz recognition', () => {
   it('returns no markers when no week is visible', async () => {
     mocks.visibleMap.mockResolvedValue({ units: [] });
     expect(await getCurrentWeekCompletion({ id: 'student' })).toEqual({
-      weekComplete: false, weeklyQuizComplete: false,
+      weekComplete: false, weeklyQuizComplete: false, completedWeeksCount: 0,
     });
   });
 });

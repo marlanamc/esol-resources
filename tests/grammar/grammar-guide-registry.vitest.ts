@@ -2,8 +2,11 @@ import { describe, it, expect } from "vitest";
 import { grammarGuides, grammarGuideSlugs, getGrammarGuide } from "@/lib/grammar-guide-registry";
 
 describe("grammar guide registry", () => {
-  it("has the expected number of guides", () => {
-    expect(grammarGuideSlugs.length).toBe(73);
+  it("includes the core guides and the new economy-news guide without duplicate slugs", () => {
+    expect(grammarGuideSlugs).toEqual(expect.arrayContaining([
+      "parts-of-speech", "verb-forms-overview", "welcome-back-tenses-review", "reading-econ-news",
+    ]));
+    expect(new Set(grammarGuideSlugs).size).toBe(grammarGuideSlugs.length);
   });
 
   it("returns null for unknown slugs", () => {
