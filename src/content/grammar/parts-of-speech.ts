@@ -269,8 +269,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           { speaker: "Samuel", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. Wait, I <strong>know</strong> you. You <strong>work</strong> in my building, right?", side: "right", tone: "terracotta" },
           { speaker: "Samuel", avatar: "👨🏽", text: "That's right, I'm Samuel. I fix things there. I <strong>help</strong> here on Tuesdays. Which class do you <strong>want</strong>?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "The Tuesday evening class. I <strong>remember</strong> it from a flyer, but I can't <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
-          { speaker: "Samuel", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "The evening class on Tuesday and Thursday. I <strong>remember</strong> it from a flyer, but I can't <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday and Thursday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
         ])}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">The words in bold are <strong>verbs</strong>. But they are not all the same kind. Some are things you do. Some are things that are true about you.</p>
@@ -299,7 +299,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
-            <span><em>She <strong>wants</strong> the Tuesday class. She <strong>understands</strong> why it is a good fit.</em></span>
+            <span><em>She <strong>wants</strong> the evening class. She <strong>understands</strong> why it is a good fit.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
@@ -389,7 +389,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"She is wanting the Tuesday evening class.\"",
+              label: "\"She is wanting the evening class.\"",
               options: [
                 { value: "correct", label: "Correct: this verb can use the -ing form." },
                 { value: "incorrect", label: "Not correct: this verb cannot use the -ing form." },
@@ -405,7 +405,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Amara ___ the Tuesday evening class. (want)",
+              label: "Amara ___ the evening class. (want)",
               expectedAnswers: ["wants"],
             },
             {
@@ -455,9 +455,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           { speaker: "Dilnoza", avatar: "👩🏻", text: "This part asks us to describe our lives. What are you writing?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "I have a <strong>full-time</strong> job. I work <strong>long</strong> hours. I have <strong>two</strong> children.", side: "right", tone: "terracotta" },
           { speaker: "Dilnoza", avatar: "👩🏻", text: "My schedule is <strong>busy</strong> too. What did you write about your home?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "It's a <strong>new</strong> building, but it's a <strong>small</strong> space for four people.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "It's a <strong>new</strong> building, but it's a <strong>small</strong> space for three people.", side: "right", tone: "terracotta" },
           { speaker: "Dilnoza", avatar: "👩🏻", text: "I live with my sister in a <strong>small</strong> apartment. We fight about the bathroom every morning.", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Ha! Four people, one bathroom. I win.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Ha! Three people, one bathroom. I win.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -711,7 +711,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Her pronunciation is ___. Her teacher is happy with her progress. (good / well)",
+              label: "Her pronunciation is ___. People understand her easily. (good / well)",
               options: [
                 { value: "good", label: "good (adjective)" },
                 { value: "well", label: "well (adverb)" },
@@ -754,7 +754,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Samuel told them about.</p>
 
         ${dialogue([
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "Here it is. \"Classes meet every Tuesday evening in the <strong>large</strong> room.\" Which one is the large room?", side: "left", tone: "amber" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "Here it is. \"Classes meet every Tuesday and Thursday evening in the <strong>large</strong> room.\" Which one is the large room?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "Not the first door. That's the supply closet. I already tried it.", side: "right", tone: "terracotta" },
           { speaker: "Dilnoza", avatar: "👩🏻", text: "It also says, \"Bring a pencil and a <strong>small</strong> notebook.\"", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "Small? Mine is huge. It's my son's old school notebook.", side: "right", tone: "terracotta" },
@@ -766,7 +766,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         <div style="padding: 1.1rem 1.25rem; border-radius: 0.5rem; background: rgba(106,141,115,0.08); border: 1px solid rgba(106,141,115,0.2); margin: 1.25rem 0">
           <p style="margin: 0 0 0.75rem 0; font-weight: 600; font-size: 0.95rem">The notice on the bulletin board:</p>
-          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span style="color:#b05740;font-weight:700">English</span> classes <span style="color:#268a82;font-weight:700">start</span> in September. Classes <span style="color:#268a82;font-weight:700">meet</span> every Tuesday evening in the <span style="color:#b56e1a;font-weight:700">large</span> room. <span style="color:#268a82;font-weight:700">Bring</span> a pencil and a <span style="color:#b56e1a;font-weight:700">small</span> notebook.</em></p>
+          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span style="color:#b05740;font-weight:700">English</span> classes <span style="color:#268a82;font-weight:700">start</span> in September. Classes <span style="color:#268a82;font-weight:700">meet</span> every Tuesday and Thursday evening in the <span style="color:#b56e1a;font-weight:700">large</span> room. <span style="color:#268a82;font-weight:700">Bring</span> a pencil and a <span style="color:#b56e1a;font-weight:700">small</span> notebook.</em></p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem">
             ${labelPill("nouns", "terracotta")}
             <span style="font-size: 0.88rem; align-self: center">English, classes, September, room, pencil, notebook</span>
@@ -781,7 +781,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem">
             ${labelPill("adverb", "blue")}
-            <span style="font-size: 0.88rem; align-self: center">every Tuesday evening (a group of words that tells us when)</span>
+            <span style="font-size: 0.88rem; align-self: center">every Tuesday and Thursday evening (a group of words that tells us when)</span>
           </div>
         </div>
 
@@ -906,8 +906,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Free", "classes", "start", "every", "Tuesday", "evening"],
-              correctAnswer: "Free classes start every Tuesday evening",
+              words: ["Amara's", "class", "meets", "on", "Tuesday", "and", "Thursday", "evenings"],
+              correctAnswer: "Amara's class meets on Tuesday and Thursday evenings",
             },
           ],
         },
@@ -982,7 +982,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     {
       id: "pos-qws1",
       type: "word-scramble" as const,
-      question: "Dilnoza tells Amara about her sister's work schedule. Put the words in order.",
+      question: "Dilnoza tells Amara about her sister. Put the words in order.",
       words: ["Her", "sister", "has", "a", "part-time", "job"],
       correctAnswer: "Her sister has a part-time job",
       hint: "Adjectives go before the noun",

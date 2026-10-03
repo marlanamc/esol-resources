@@ -128,7 +128,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         </div>
 
         <p style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6a8d73">Where does ALREADY go?</p>
-        <p style="margin: 0 0 0.5rem; font-size: 0.95rem">ALREADY sits between <strong>have / has</strong> and the <strong>past participle (V3)</strong>. It never moves to the end.</p>
+        <p style="margin: 0 0 0.5rem; font-size: 0.95rem">ALREADY sits between <strong>have / has</strong> and the <strong>past participle (V3)</strong>. This is the usual place. (You will also hear it at the end: <em>I did it already.</em> That is OK too.)</p>
 
         ${placementDiagram([
           { text: "She" },
@@ -163,8 +163,8 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
 
         <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
           <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Common mistake</p>
-          <p style="margin: 0; font-size: 0.95rem">✗ &nbsp;<em>She has signed up <strong>already</strong>.</em> &nbsp; (already at the end. not the standard position)</p>
-          <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✓ &nbsp;<em>She <strong>has already signed</strong> up.</em></p>
+          <p style="margin: 0; font-size: 0.95rem">✗ &nbsp;<em>She has signed <strong>already</strong> the form.</em> &nbsp; (already between the verb and the object = wrong)</p>
+          <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✓ &nbsp;<em>She <strong>has already signed</strong> the form.</em></p>
         </div>
       `,
       exercises: [
@@ -177,7 +177,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is correct?",
               options: [
-                { value: "a", label: "Nadine already has renewed her bus pass." },
+                { value: "a", label: "Nadine has already renew her bus pass." },
                 { value: "b", label: "Nadine has already renewed her bus pass." },
                 { value: "c", label: "Nadine has renewed already her bus pass." },
               ],
@@ -188,7 +188,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
               label: "Which sentence is correct?",
               options: [
                 { value: "a", label: "I have texted already my sister." },
-                { value: "b", label: "Already I have texted my sister." },
+                { value: "b", label: "I have already text my sister." },
                 { value: "c", label: "I have already texted my sister." },
               ],
               expectedAnswer: "c",
@@ -198,8 +198,8 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
               label: "The staff member says: \"Someone ___ you.\" (help. use already)",
               options: [
                 { value: "a", label: "has already helped" },
-                { value: "b", label: "already has helped" },
-                { value: "c", label: "has helped already" },
+                { value: "b", label: "has already help" },
+                { value: "c", label: "has helped yet" },
               ],
               expectedAnswer: "a",
             },
@@ -426,7 +426,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         </div>
 
         <p style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; color: #268a82">Where does YET go?</p>
-        <p style="margin: 0 0 0.5rem; font-size: 0.95rem">YET always goes at the <strong>end</strong> of the sentence. It never sits between <em>have</em> and V3.</p>
+        <p style="margin: 0 0 0.5rem; font-size: 0.95rem">YET usually goes at the <strong>end</strong> of the sentence, after the object. Do not put it between <em>have</em> and V3.</p>
 
         ${placementDiagram([
           { text: "She" },
@@ -559,7 +559,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       ],
       tipBox: {
         title: "YET = end of the line",
-        content: "YET always rides at the end of the sentence. If you see YET in the middle, something is wrong.",
+        content: "YET rides at the end of the sentence. In everyday English, if you see YET between have and V3, something is wrong.",
       },
     },
 
@@ -572,13 +572,13 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       title: "Reading a To-Do List: All Three Together",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneToDoList", "Rosa's kitchen, Friday morning.", "terracotta")}
+        ${sceneCard("sceneToDoList", "Rosa's kitchen, Thursday, 4 PM.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏾", text: "OK, let me check my list before I leave for class.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already taken</strong> the kids to the clinic. They had Monday off, so we went then.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "OK, let me check my list before I leave for class tonight.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already taken</strong> my daughter to the clinic. We went Monday after my shift.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already paid</strong> the rent. Done.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have just called</strong> the school about my daughter. They'll call me back.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have just called</strong> the school about her checkup form. They'll call me back.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏾", text: "But I <strong>haven't picked up</strong> the groceries <strong>yet</strong>. That one has to wait.", side: "right", tone: "terracotta" },
         ])}
 
@@ -681,7 +681,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "\"I have ___ paid the rent. I did it on Monday.\" (done before now)",
+              label: "\"I have ___ paid the rent. The receipt is on the fridge.\" (done before now)",
               expectedAnswers: ["already"],
             },
           ],
@@ -689,7 +689,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         {
           id: "jay-all-2",
           title: "Build Rosa's sentences",
-          instructions: "Unscramble Rosa's updates about her evening.",
+          instructions: "Unscramble Rosa's updates about her day.",
           items: [
             {
               type: "word-scramble",
@@ -805,10 +805,10 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Already I have registered for the food pantry.\"",
+              label: "\"I have filled out already the food pantry form.\"",
               options: [
                 { value: "correct", label: "Correct. no problem" },
-                { value: "incorrect", label: "Not correct. ALREADY goes between have and V3: I have already registered for the food pantry." },
+                { value: "incorrect", label: "Not correct. ALREADY goes between have and V3: I have already filled out the food pantry form." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -908,12 +908,12 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       id: "jay-q4",
       question: "Which sentence has ALREADY in the correct position?",
       options: [
-        { value: "a", label: "Already she has registered for the program." },
-        { value: "b", label: "She has registered already for the program." },
-        { value: "c", label: "She has already registered for the program." },
+        { value: "a", label: "Already has she paid the bill." },
+        { value: "b", label: "She has paid already the bill." },
+        { value: "c", label: "She has already paid the bill." },
       ],
       correctAnswer: "c",
-      explanation: "ALREADY goes between have/has and the past participle: has + ALREADY + registered.",
+      explanation: "ALREADY goes between have/has and the past participle: has + ALREADY + paid. Do not put it between the verb and the object.",
       topic: "already",
       skill: "error-detection",
       skillTag: "placement-already-between-have-v3",

@@ -26,7 +26,7 @@
 
 - **Jennifer (supervisor):** OK Gabriela, clock in first, then come find me. I need you to fill out this new-hire form before your shift starts.
 - **Gabriela:** Clock in? Fill out? Sorry, where do I do that?
-- **Jennifer (supervisor):** You clock in at the machine by the door. Then fill out the form here at this desk. I can help if you have questions.
+- **Jennifer (supervisor):** You clock in at the machine by the door. Then fill out the form at this desk. I can help.
 - **Gabriela:** Thanks. I’ll clock in first, then come back here.
 
 Phrasal verb = a verb plus a small word (in, out, up, for...). The meaning is new. You can't guess it from the separate words.
@@ -45,10 +45,10 @@ Gabriela knows the words clock, fill, and call. But clock in, fill out, and call
 > 🖼 **Scene:** Diego's phone. Tuesday morning, 5:45 AM.  
 > _Photo shows: Person looking at a text message on a phone screen._
 
-- **Diego:** Ana, I can't come in today. My kid's fever is 103. I have to call in sick. Can you cover for me?
-- **Ana:** Yeah, I can do it. I'll show up early and let Kevin know. You just call the manager before 6.
+- **Diego:** Ana, I can't come in today. My son's fever is 103. I have to call in sick. Can you cover for me?
+- **Ana:** Yeah, I can do it. I'll show up early. You just call Kevin before 6. He's the manager today.
 - **Diego:** Thank you. I'll pick up one of your shifts next week, I promise.
-- **Ana:** Don't worry. Go take care of your kid.
+- **Ana:** Don't worry. Go take care of your son.
 
 These four phrasal verbs come up every week at almost every job.
 
@@ -67,7 +67,7 @@ These four phrasal verbs come up every week at almost every job.
 - **Mark (manager):** Fatima, you need to hand in your timesheet today. Payroll closes at 3.
 - **Fatima:** I have it, but there's an error on Tuesday. Do I need to fill out a new one?
 - **Mark (manager):** Yeah, grab a correction form, fill it out, and turn it in to me. I'll sign off on it before 3.
-- **Fatima:** OK. I'll be right back.
+- **Fatima:** OK. I worked those hours, so I want to get paid for them. I'll be right back.
 
 Hand in and turn in mean the same thing: give a completed document to the person who asked for it. Sign off on = officially approve something by signing.
 
@@ -95,23 +95,23 @@ The same rule applies to hand in it (wrong) vs. hand it in (correct), and turn i
 - "I need to hand in it to my manager." _(options: Correct / Not correct. Should be: I need to hand it in.)_
 
 **Exercise: Fill in the blank**
-- Fatima has the timesheet. She needs to ___ ___ in before 3 PM. (fill + pronoun)
+- Fatima has the timesheet. She needs to ___ ___ in before 3 PM. (hand or turn + pronoun)
 
 ## 5. End of Shift
 
 > 🖼 **Scene:** Warehouse loading dock, East Boston. Thursday, 4:55 PM.  
 > _Photo shows: Warehouse workers at the end of a shift near a time clock._
 
-- **Hector:** Hey Omar, I need to ask you something. Can you cover for me Thursday? I have a clinic appointment I can't move.
-- **Omar:** Thursday I can do it. What time do you clock in?
-- **Hector:** 7 AM. I'll fill out the shift-swap form tonight and hand it in to Kevin tomorrow morning.
+- **Hector:** Hey Omar, can you cover for me next Thursday? I have a clinic appointment I can't move.
+- **Omar:** Next Thursday I can do it. What time do you clock in?
+- **Hector:** 7 AM. I'll fill out the shift-swap form tonight and hand it in to Scott tomorrow morning.
 - **Omar:** Good. Make sure he signs off on it before the end of his shift or it won't go through.
 - **Hector:** I will. And I can pick up your Friday shift if you want. Should I put that on the form too?
 
 Look at how many phrasal verbs Hector and Omar used in one short conversation. This is normal at work. Knowing these verbs means you can handle a real shift-swap without any confusion.
 
 **Exercise: Choose the right word**
-- Hector can't work Thursday. He needs someone to ___ for him. _(options: cover / clock / sign)_
+- Hector can't work next Thursday. He needs someone to ___ for him. _(options: cover / clock / sign)_
 - After the swap, the manager needs to ___ off on the form. _(options: hand / sign / fill)_
 
 **Exercise: Unscramble**
@@ -124,7 +124,7 @@ Look at how many phrasal verbs Hector and Omar used in one short conversation. T
 
 - Gabriela's manager says, "Make sure you clock in before 8 AM." What should Gabriela do? _(options: Buy a clock for the break room / Use the machine to record when her shift starts / Call her manager at 8 AM)_
 - Diego can't go to work because his child is sick. What does he do? _(options: He shows up late / He calls in sick / He picks up a shift)_
-- Fill in the blank: "Ana ___ Diego because he was sick." (Two words: she did his shift for him.)
+- Fill in the blank: "Ana ___ Diego because his son was sick." (Two words: she did his shift for him.)
 - Which sentence is NOT correct? _(options: She filled out the form at the front desk. / She filled the form out at the front desk. / She filled out it at the front desk.)_
-- Claudette filled out a form at the front desk. Put the words in order. (The pronoun must go in the middle.)
+- Gabriela filled out the new-hire form at the desk. Put the words in order. (The pronoun must go in the middle.)
 

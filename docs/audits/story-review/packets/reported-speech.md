@@ -163,7 +163,7 @@ You must name the listener: ❌ He told that…
 - **Mina:** But I took the whole morning off for this.
 - **Jordan:** I know. I can get you in tomorrow at 7:30 AM. You must fast tonight. Water is okay.
 - **Mina:** My shift starts at 8. My boss is going to love this.
-- **Jordan:** The test only takes about an hour. I'll call you tonight to confirm the time.
+- **Jordan:** The test is quick, but the lab is busy. With the wait, it takes about an hour. I'll call you tonight.
 
 Tonight, Jordan's words are already in the past. When Mina reports them, English often moves the verbs "one step back" in time: Jordan said I had to fast that night.
 
@@ -190,7 +190,7 @@ now → then
 > 🖼 **Scene:** 10:15 AM. Old bottles line the shelves at the pharmacy next to the clinic while Mina waits for Sam.  
 > _Photo shows: Shelves lined with many glass and plastic bottles in a historic pharmacy._
 
-- **Sam:** Dr. Chen added a new cholesterol pill. Take it at night. And don't drink grapefruit juice with it.
+- **Sam:** Dr. Chen added a new cholesterol pill. Start it after the test. Take it at night. Don't drink grapefruit juice with it.
 - **Mina:** Grapefruit? Is that a joke?
 - **Sam:** No joke. Grapefruit can make this pill too strong. Please read this warning before you go.
 - **Mina:** Okay. No grapefruit. That's easy. I never buy it.

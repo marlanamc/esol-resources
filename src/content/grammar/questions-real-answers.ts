@@ -283,15 +283,15 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "When and How: time and details",
       icon: "🕐",
       explanation: `
-        ${sceneCard("sceneIntakeDesk", "A community center in East Boston. Jean asks for help saving his photos.", "blue")}
+        ${sceneCard("sceneIntakeDesk", "A community center in East Boston. Nadine asks a tech helper how to save her photos.", "blue")}
 
         ${dialogue([
           { speaker: "Tech helper", avatar: "👩‍💼", text: "<strong>When</strong> did you last save a copy of your photos on another device?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "I haven\'t done that. <strong>How</strong> do I copy them to my laptop?", side: "right", tone: "amber" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "I haven\'t done that. <strong>How</strong> do I copy them to my laptop?", side: "right", tone: "amber" },
           { speaker: "Tech helper", avatar: "👩‍💼", text: "You can connect your phone with a USB cable. Do you have yours?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "Yes, right here. <strong>How long</strong> does it take?", side: "right", tone: "amber" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Yes, right here. <strong>How long</strong> does it take?", side: "right", tone: "amber" },
           { speaker: "Tech helper", avatar: "👩‍💼", text: "It depends on how many photos you have. Let\'s try a few first.", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "Thanks. I don\'t want to lose my family photos if my phone breaks.", side: "right", tone: "amber" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Thanks. I don\'t want to lose my family photos if my phone breaks.", side: "right", tone: "amber" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -591,7 +591,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "qra-q2",
-      question: "The computer class moved to a new room this month. You want to know which room. Which question do you ask?",
+      question: "You want to find the room for the computer class. Which question do you ask?",
       options: [
         { value: "a", label: "Who is the computer class?" },
         { value: "b", label: "When is the computer class?" },

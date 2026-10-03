@@ -13,7 +13,7 @@ _None._
 - If I Lift Wrong, My Knee Hurts: Brian, Yemi
 - If the Clinic Opens at 8, I'll Go: Yemi, Rachel
 - If I Had Day Shifts, I Would Sleep More: Yemi, Rachel
-- If I Had Gone Sooner, I Would Have Paid Less: Yemi, Ms. Patel
+- If I Had Gone Sooner, I Would Have Paid Less: Yemi, Lisa
 - One Bad Week: All Four Together: Djamila, Yemi
 
 ---
@@ -23,7 +23,7 @@ _None._
 > 🖼 **Scene:** Warehouse loading dock, Chelsea. Monday, 10 PM.  
 > _Photo shows: A warehouse worker on a loading dock handling freight with safety gear._
 
-Yemi works nights as a packer at a warehouse in Chelsea. Her knee got worse last month, and she missed three shifts. Tonight is her first shift back, so supervisor Brian reviews lifting rules before she returns to pallets.
+Yemi is a packer at a warehouse in Chelsea. Last month she hurt her knee and missed three shifts. Now she is moving to nights, because they pay more. Tonight is her first night shift, so supervisor Brian reviews lifting rules before she goes back to pallets.
 
 - **Brian:** Before you lift again, remember the rules. If you lift with your back, you hurt yourself.
 - **Yemi:** I know. I learned that the hard way.
@@ -47,7 +47,7 @@ Zero conditional = a fact or rule that is always true. Both verbs are present si
 > 🖼 **Scene:** Yemi's kitchen, Chelsea. Saturday, 6:30 AM.  
 > _Photo shows: A person in a kitchen early in the morning checking their phone before leaving for work._
 
-Two days before her first shift back, Yemi needs a follow-up visit for her knee. She texts her coworker Rachel, who goes to the same clinic.
+Two days before her first night shift, Yemi needs a follow-up visit for her knee. She texts her coworker Rachel, who goes to the same clinic.
 
 - **Yemi:** If the clinic opens at 8, I'll go first thing.
 - **Yemi:** If the line is short, I'll be back by noon.
@@ -75,7 +75,7 @@ On their break, Yemi and Rachel compare schedules. Yemi works nights and misses 
 
 - **Yemi:** If I had day shifts, I would sleep more.
 - **Rachel:** I know. If my schedule were different, I wouldn’t miss bedtime with my kids. Are you thinking about changing shifts?
-- **Yemi:** Night shifts pay more, but I'm always tired.
+- **Yemi:** Night shifts pay more, but I'm already so tired.
 
 Second conditional = an imaginary situation now. The verb after if looks like past tense, but it is not about the real past. If + past simple, would + base verb.
 
@@ -94,10 +94,10 @@ Second conditional = an imaginary situation now. The verb after if looks like pa
 > 🖼 **Scene:** Clinic billing desk, East Boston. Saturday, 10 AM.  
 > _Photo shows: A clinic reception desk with paperwork and a patient reviewing a bill._
 
-After her follow-up visit, Yemi sees the copay and thinks about the shifts she missed by waiting too long. Ms. Patel at the front desk helps her with the bill.
+After her follow-up visit, Yemi sees the copay and thinks about the shifts she missed by waiting too long. Lisa at the front desk helps her with the bill.
 
-- **Yemi:** If I had called last week, I wouldn't have missed three shifts.
-- **Ms. Patel:** I can set up a payment plan for the copay.
+- **Yemi:** If I had called the clinic right away, I wouldn't have missed three shifts.
+- **Lisa:** I can set up a payment plan for the copay.
 - **Yemi:** Thanks. I’m just worried about the money. If I had gone sooner, I wouldn’t have lost so much in wages.
 
 Third conditional = a past choice and a different past result that did not happen. You cannot change it now. If + past perfect, would have + V3.
@@ -117,13 +117,14 @@ Third conditional = a past choice and a different past result that did not happe
 > 🖼 **Scene:** Evening ESOL class, East Boston. Thursday, 7 PM.  
 > _Photo shows: Adults seated at desks in an evening classroom sharing their week._
 
-Yemi tells classmate Djamila about her bad week: a knee injury, a clinic trip, and missed shifts.
+Yemi tells classmate Djamila about her hard week: a sore knee, a clinic visit, and her first night shifts.
 
-- **Djamila:** Rough week?
-- **Yemi:** Yeah. If I lift wrong, my knee hurts. This time I had to miss work.
-- **Yemi:** I went back to the clinic Saturday. If I had gone sooner, I wouldn’t have missed three shifts.
-- **Yemi:** The night shifts don’t help. If I had day shifts, I would sleep more.
-- **Yemi:** For now, if my knee still hurts tomorrow, I’ll call the clinic again.
+- **Djamila:** Rough week? How’s your knee?
+- **Yemi:** Better. But if I lift wrong, my knee hurts. So I use my legs now.
+- **Djamila:** Did you go back to the clinic?
+- **Yemi:** Yes, on Saturday. If I had gone sooner, I wouldn’t have missed three shifts last month.
+- **Djamila:** And the night shifts?
+- **Yemi:** I’m tired. If I had day shifts, I would sleep more. If my knee hurts again, I’ll call the nurse line first.
 
 Zero = always true | First = real future | Second = imaginary now | Third = imaginary past
 

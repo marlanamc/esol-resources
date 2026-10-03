@@ -255,7 +255,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       explanation: `
         ${dialogue([
           { speaker: "Amina", avatar: "👩🏿", text: "Lucia, what happened last night? I heard noise from upstairs.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>was mopping</strong> the kitchen <strong>when</strong> the pipe <strong>burst</strong>. Water came everywhere.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>was mopping</strong> the kitchen <strong>when</strong> the pipe <strong>burst</strong>. Water went everywhere.", side: "right", tone: "terracotta" },
           { speaker: "Amina", avatar: "👩🏿", text: "<strong>While</strong> you <strong>were calling</strong> the landlord, I heard you on the phone. I almost knocked.", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "I wish you had! The kids <strong>woke up while</strong> I <strong>was moving</strong> furniture away from the water.", side: "right", tone: "terracotta" },
         ])}
@@ -341,7 +341,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
         ${sceneCard("scenePhone", "Lucia's apartment. Wednesday, 11:00 AM. Her renter's insurance company calls.", "amber")}
         ${dialogue([
           { speaker: "Sarah", avatar: "👩🏼", text: "Lucia, this is Sarah from your renter's insurance. Can you walk me through what happened?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. It <strong>was</strong> almost midnight. The kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen <strong>when</strong> I <strong>heard</strong> a crack above me.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. It <strong>was</strong> almost midnight. My younger kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen <strong>when</strong> I <strong>heard</strong> a crack above me.", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏼", text: "And then?", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "Water <strong>came</strong> down fast. I <strong>grabbed</strong> a bucket. <strong>While</strong> I <strong>was holding</strong> the bucket, I <strong>called</strong> the landlord with my other hand.", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏼", text: "Okay, I have enough to file the claim. Thank you.", side: "left", tone: "sage" },

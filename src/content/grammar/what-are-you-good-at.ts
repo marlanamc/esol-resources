@@ -145,7 +145,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Sarah is interested ___ helping at the meeting.",
+              label: "Diego is interested ___ getting a traffic light.",
               options: [
                 { value: "at", label: "at" },
                 { value: "in", label: "in" },
@@ -181,8 +181,8 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Sarah is good at ___ (clean) tables quickly.",
-              expectedAnswers: ["cleaning"],
+              label: "Sarah is good at ___ (chop) onions quickly.",
+              expectedAnswers: ["chopping"],
             },
             {
               type: "text",
@@ -323,7 +323,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       title: "Suggestions for the City",
       icon: "🗣️",
       explanation: `
-        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Ms. Patel writes down Diego's suggestions for the city.", "blue")}
+        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Diego sits at Ms. Patel's desk while she writes down his suggestions for the city.", "blue")}
 
         <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.</p>
 

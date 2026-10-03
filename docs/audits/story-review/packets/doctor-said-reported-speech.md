@@ -32,7 +32,7 @@ Luz is at home with her daughter Amina, who has asthma. Marco is still at the re
 
 Reported speech means you tell someone else what another person said. You are not repeating the exact words. You change the form: present becomes past, can becomes could, will becomes would.
 
-Luz needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.
+Luz needs to tell Marco everything. She won't use Kelly's exact words. She will report what Kelly said.
 
 **Exercise: Direct or Reported?**
 - Kelly spoke to Luz on the phone. Which sentence is reported speech? _(options: Kelly said, "The pharmacy can refill it today." / Kelly said that the pharmacy could refill it today. / Can the pharmacy refill it today?)_
@@ -58,8 +58,8 @@ Marco is wiping down the prep station when Luz texts him. He reads it between or
 When you report a statement, the verb often moves back one step: is → was, can → could, will → would. Use said that + subject + verb.
 
 **Exercise: Change to Reported Speech**
-- Kelly said: "The pharmacy is closed today." How does Luz report this? _(options: Kelly said that the pharmacy is closed today. / Kelly said that the pharmacy was closed today. / Kelly said that the pharmacy will be closed today.)_
-- Kelly said: "We can refill it today." How does Luz report this? _(options: Kelly said that they can refill it today. / Kelly said that they could refill it today. / Kelly said that they will refill it today.)_
+- Kelly said: "The pharmacy closes at 6." How does Luz report this? _(options: Kelly said that the pharmacy closing at 6. / Kelly said that the pharmacy closed at 6. / Kelly said that does the pharmacy close at 6.)_
+- Kelly said: "We can refill it today." How does Luz report this? _(options: Kelly said that they could to refill it today. / Kelly said that they could refill it today. / Kelly said that can they refill it today.)_
 
 **Exercise: Fill in the Blank**
 - Direct: "The doctor will call tomorrow." Reported: Luz said the doctor ___ call tomorrow.
@@ -86,7 +86,7 @@ Tonight Marco will call his mother Lucia in Guatemala. She worries about Amina, 
 
 **Exercise: Choose the Reported Command**
 - The pharmacist said: "Shake the inhaler before each use." How does Marco report this? _(options: The pharmacist told me shaking the inhaler before each use. / The pharmacist told me to shake the inhaler before each use. / The pharmacist told me shake the inhaler before each use.)_
-- The pharmacist said: "Don't use the old nebulizer." How does Marco report this? _(options: The pharmacist told us not to use the old nebulizer. / The pharmacist told us don't use the old nebulizer. / The pharmacist told us to not use the old nebulizer.)_
+- The pharmacist said: "Don't use the old nebulizer." How does Marco report this? _(options: The pharmacist told us not to use the old nebulizer. / The pharmacist told us don't use the old nebulizer. / The pharmacist told us not use the old nebulizer.)_
 
 **Exercise: Fill in the Blank**
 - Direct: "Call if her breathing gets worse." Reported: He asked us ___ call if her breathing got worse.
@@ -96,7 +96,7 @@ Tonight Marco will call his mother Lucia in Guatemala. She worries about Amina, 
 
 ## 4. She Asked If…
 
-> 🖼 **Scene:** Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.  
+> 🖼 **Scene:** Amina's doctor's office. Sarah at the front desk calls about the follow-up. Wednesday, 2 PM.  
 > _Photo shows: A doctor in a white coat talking with a patient in an exam room._
 
 Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.
@@ -105,13 +105,13 @@ Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answer
 - **Luz:** What else?
 - **Marco:** She asked when we could come for the follow-up.
 - **Luz:** Did she ask about the insurance card?
-- **Marco:** Yes. She asked if we had brought the new card last time. They don't have a copy.
+- **Marco:** Yes. She asked if we had brought the new card last time. They can't find a copy.
 
 Yes/no questions become asked if + statement (no question word order). Wh-questions keep the question word: asked when / what / where + statement.
 
 **Exercise: Report the Question**
 - Sarah asked: "Is Amina feeling better?" How does Marco report this? _(options: Sarah asked if is Amina feeling better. / Sarah asked if Amina was feeling better. / Sarah asked if Amina is feeling better?)_
-- Sarah asked: "Where do you live?" How does Marco report this? _(options: Sarah asked where do we live. / Sarah asked where we lived. / Sarah asked where we live?)_
+- Sarah asked: "What time does Amina finish school?" How does Marco report this? _(options: Sarah asked what time does Amina finish school. / Sarah asked what time Amina finished school. / Sarah asked what time Amina finishes school?)_
 
 **Exercise: Fill in the Blank**
 - Direct: "Did you bring the insurance card?" Reported: She asked ___ we had brought the insurance card.
@@ -124,7 +124,7 @@ Yes/no questions become asked if + statement (no question word order). Wh-questi
 > 🖼 **Scene:** Marco's break room. Wednesday, 9 PM.  
 > _Photo shows: A quiet workplace break room with tables and chairs at the end of an evening shift._
 
-Marco calls his mother Lucia in Guatemala on his break. She speaks limited English, so Marco uses simple reported speech to explain everything.
+Marco calls his mother Lucia in Guatemala on his break. He has to explain, in his own words, what three different people told him.
 
 - **Marco:** Mamá, the nurse said that Amina's inhaler was almost empty.
 - **Lucia:** Ay, mijo. And the pharmacy?
@@ -149,9 +149,9 @@ Statements, commands, and questions. All three patterns in one real phone call.
 
 ## Mini quiz
 
-- Kelly said: "The new inhaler is ready." How does Luz report this to Marco? _(options: Kelly said that the new inhaler is ready. / Kelly said that the new inhaler was ready. / Kelly told me to the new inhaler was ready.)_
-- Kelly said: "Bring the inhaler to the follow-up." How does Luz tell Marco? _(options: Kelly told me to bring the inhaler to the follow-up. / Kelly said that bring the inhaler to the follow-up. / Kelly asked me bring the inhaler to the follow-up.)_
+- Kelly said: "The new inhaler is ready." How does Luz report this to Marco? _(options: Kelly said that the new inhaler ready. / Kelly said that the new inhaler was ready. / Kelly told me to the new inhaler was ready.)_
+- Sarah said: "Bring the new insurance card to the follow-up." How does Marco tell Luz? _(options: Sarah told me to bring the new insurance card to the follow-up. / Sarah said that bring the new insurance card to the follow-up. / Sarah asked me bring the new insurance card to the follow-up.)_
 - Fill in the blank: "Kelly said: 'We can refill it today.' → Kelly said that they ___ refill it today." (can back-shifts in reported speech)
-- Find the error: "Kelly said that the pharmacy will refill it today." _(options: No error. / Error: will should be would. / Error: said should be told.)_
+- Find the error. Luz is talking about last week: "Kelly said that the pharmacy will refill it the next day." _(options: No error. / Error: will should be would. / Error: said should be told.)_
 - Marco reports what the pharmacist said about Amina's inhaler. Put the words in order.
 

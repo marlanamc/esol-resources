@@ -276,10 +276,10 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       id: "advice-at-work",
       title: "What Would You Do? Advice at Work",
       explanation: `
-        ${sceneCard("sceneAgency", "Home health agency, East Boston. Monday afternoon.", "blue")}
+        ${sceneCard("sceneAgency", "Home health agency office, East Boston. Monday afternoon. Beatriz calls Nadine from a client's home.", "blue")}
 
         ${dialogue([
-          { speaker: "Beatriz", avatar: "👩🏻", text: "My coworker didn't show up again. The client is alone. What would you do?", side: "right", tone: "terracotta" },
+          { speaker: "Beatriz", avatar: "👩🏻", text: "My coworker didn't show up for Mrs. Lopez again. She's alone right now. What would you do?", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏿", text: "If I <strong>were</strong> you, I <strong>would call</strong> the agency right now, not wait.", side: "left", tone: "sage" },
           { speaker: "Beatriz", avatar: "👩🏻", text: "And if they <strong>cut</strong> my hours because I called?", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏿", text: "If they <strong>did</strong> that, I <strong>would talk</strong> to the supervisor and write it down.", side: "left", tone: "sage" },
@@ -365,11 +365,11 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneHotel", "Hotel housekeeping, East Boston. Saturday morning.", "amber")}
+        ${sceneCard("sceneHotel", "Hotel housekeeping, East Boston. Friday morning.", "amber")}
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "👨🏽", text: "If there's overtime on Saturday, I'll take it. I need the money.", side: "right", tone: "terracotta" },
-          { speaker: "Sofia", avatar: "👩🏼", text: "I wish I could. If I <strong>didn't have</strong> my son's birthday, I <strong>would take</strong> it too.", side: "left", tone: "sage" },
+          { speaker: "Kevin", avatar: "👨🏽", text: "If there's overtime tomorrow, I'll take it. I need the money.", side: "right", tone: "terracotta" },
+          { speaker: "Sofia", avatar: "👩🏼", text: "I wish I could. If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", side: "left", tone: "sage" },
           { speaker: "Kevin", avatar: "👨🏽", text: "If they <strong>offered</strong> Sunday instead, <strong>would</strong> you <strong>do</strong> it?", side: "right", tone: "terracotta" },
           { speaker: "Sofia", avatar: "👩🏼", text: "Maybe. If the pay <strong>were</strong> double, I definitely <strong>would</strong>.", side: "left", tone: "sage" },
         ])}
@@ -462,8 +462,6 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           { speaker: "Milagros", avatar: "👩🏾", text: "If we <strong>had</strong> the same schedule every week, people <strong>wouldn't quit</strong> so fast.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "Exactly. And if they <strong>paid</strong> us more, I <strong>wouldn’t need</strong> a second job. I could be more flexible here.", side: "left", tone: "sage" },
         ])}
-
-        <p style="margin: 0.75rem 0">Women's History Month: in March, workers across the country talk about equal pay. Jennifer's line above is something many workers think about.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use longer if-clauses to talk about bigger changes: <em>If the whole system were different...</em> Use the second conditional any time you imagine a situation that is not real right now.</p>
@@ -602,7 +600,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     {
       id: "sc-qws1",
       type: "word-scramble" as const,
-      question: "Yemi imagines what she would do if she had more free time. Put the words in order.",
+      question: "Sofia can't take the Saturday shift because of her son's birthday. Put the words in order.",
       words: ["She", "would", "say", "yes", "if", "she", "could"],
       correctAnswer: "She would say yes if she could",
       hint: "would + base verb … if + past simple",

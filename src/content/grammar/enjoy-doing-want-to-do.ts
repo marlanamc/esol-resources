@@ -84,9 +84,9 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests, but I hate how my back feels by 4 PM.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "I know. I've been <strong>avoiding lifting</strong> the heavy carts for weeks. My shoulder can't take it.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I know. I've been <strong>avoiding lifting</strong> the heavy carts since I started. My shoulder can't take it.", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>keep thinking</strong> about leaving, but I haven't said anything yet.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Are you going to stay through spring?", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Are you going to stay through May?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "Probably. I can’t quit yet, but I <strong>want to look</strong> for something else.", side: "right", tone: "terracotta" },
         ])}
 
@@ -109,7 +109,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finish", "terracotta")}
-            <span><em>She plans to <strong>finish working</strong> through spring.</em></span>
+            <span><em>She plans to <strong>finish working</strong> through May.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("don't mind", "terracotta")}
@@ -131,7 +131,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Elena <strong>enjoys</strong> ___ to the guests every morning.",
+              label: "Elena <strong>enjoys</strong> ___ to the guests every day.",
               options: [
                 { value: "a", label: "to talk" },
                 { value: "b", label: "talking" },
@@ -211,7 +211,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           { speaker: "Bruno", avatar: "👨🏽", text: "So are you really thinking about leaving housekeeping?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "Yeah. I <strong>want to try</strong> warehouse work. You said the pay is better.", side: "right", tone: "terracotta" },
           { speaker: "Bruno", avatar: "👨🏽", text: "It is. But you <strong>need to save</strong> a little first. Boots, gear. It adds up.", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "I know. I <strong>decided to stay</strong> through spring. Then I'm going to look.", side: "right", tone: "terracotta" },
+          { speaker: "Elena", avatar: "👩🏽", text: "I know. I <strong>decided to stay</strong> through May. Then I'm going to look.", side: "right", tone: "terracotta" },
           { speaker: "Bruno", avatar: "👨🏽", text: "Smart. I can <strong>help you find</strong> a contact at my place.", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>would like to talk</strong> to someone there. That would really help.", side: "right", tone: "terracotta" },
         ])}
@@ -231,11 +231,11 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("decide", "sage")}
-            <span><em>She <strong>decided to stay</strong> through spring.</em></span>
+            <span><em>She <strong>decided to stay</strong> through May.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("plan", "sage")}
-            <span><em>She <strong>plans to look</strong> for a new job after spring.</em></span>
+            <span><em>She <strong>plans to look</strong> for a new job after May.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("would like", "sage")}
@@ -257,7 +257,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Elena <strong>wants</strong> ___ warehouse work after spring.",
+              label: "Elena <strong>wants</strong> ___ warehouse work after May.",
               options: [
                 { value: "a", label: "trying" },
                 { value: "b", label: "to try" },
@@ -288,7 +288,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
               options: [
                 { value: "a", label: "She needs to save money before she quits." },
                 { value: "b", label: "She needs saving money before she quits." },
-                { value: "c", label: "She plans to look for warehouse work in the spring." },
+                { value: "c", label: "She plans to look for warehouse work in June." },
               ],
               expectedAnswer: "b",
             },
@@ -301,7 +301,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Elena plans ___ (look) for a new job after spring.",
+              label: "Elena plans ___ (look) for a new job after May.",
               expectedAnswers: ["to look"],
             },
             {
@@ -359,7 +359,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
         <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(0,0,0,0.03)">
           <p style="margin: 0 0 0.4rem 0; font-weight: 600">From Elena's form:</p>
           <p style="margin: 0.25rem 0"><em>"I <strong>enjoy talking</strong> to guests and <strong>avoid lifting</strong> heavy equipment."</em></p>
-          <p style="margin: 0.25rem 0"><em>"I <strong>want to try</strong> warehouse work and <strong>plan to apply</strong> in the spring."</em></p>
+          <p style="margin: 0.25rem 0"><em>"I <strong>want to try</strong> warehouse work and <strong>plan to apply</strong> in June."</em></p>
         </div>
       `,
       exercises: [
@@ -422,7 +422,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "I plan ___ (apply) for warehouse work in the spring.",
+              label: "I plan ___ (apply) for warehouse work in June.",
               expectedAnswers: ["to apply"],
             },
           ],
@@ -526,7 +526,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "She started ___ (look) for new jobs last month. (write the to + verb form)",
+              label: "She plans ___ (look) for new jobs in June. (write the to + verb form)",
               expectedAnswers: ["to look"],
             },
           ],
@@ -549,13 +549,14 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Elena, you look distracted tonight. Everything okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "Sorry. I <strong>keep thinking</strong> about changing jobs. I <strong>want to try</strong> warehouse work, but I'm not ready to quit yet.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "What do you enjoy about your current job?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests. And I <strong>like working</strong> early shifts. But I'm tired of the back pain. I <strong>avoid lifting</strong> as much as I can.", side: "right", tone: "terracotta" },
+          { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests, and I <strong>like working</strong> early shifts. But I <strong>avoid lifting</strong> as much as I can.", side: "right", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "What are you planning for the spring?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>decided to stay</strong> through May. Then I <strong>plan to apply</strong> somewhere new. My cousin said he can help.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That sounds like a plan. Let’s work on how you can describe your experience in an interview.", side: "left", tone: "sage" },
         ])}
 
-        <p style="margin: 0.75rem 0 0.5rem 0; font-size: 0.95rem; font-style: italic">After class, a coworker from the hotel texted Elena a photo of a new café near the park. She invited Elena to have lunch after Saturday's shift.</p>
+        <p style="margin: 0.75rem 0 0.5rem 0">Ms. Tran says it sounds like a good plan. They practice how Elena can describe her experience in an interview.</p>
+
+        <p style="margin: 0.75rem 0 0.5rem 0; font-size: 0.95rem; font-style: italic">The next day, Amara decided to ask Kevin for lighter carts until her shoulder heals. He agreed to pair her with a coworker for the heavy ones.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0 0.75rem 0">
           <p style="margin: 0 0 0.4rem 0; font-size: 1.05rem"><strong>The short version to remember:</strong></p>
@@ -596,7 +597,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "I <strong>plan</strong> ___ for warehouse jobs in the spring.",
+              label: "I <strong>plan</strong> ___ for warehouse jobs in June.",
               options: [
                 { value: "a", label: "applying" },
                 { value: "b", label: "to apply" },
@@ -614,8 +615,8 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "plan", "to", "apply", "for", "warehouse", "work", "in", "the", "spring"],
-              correctAnswer: "I plan to apply for warehouse work in the spring",
+              words: ["I", "plan", "to", "apply", "for", "warehouse", "work", "in", "June"],
+              correctAnswer: "I plan to apply for warehouse work in June",
             },
           ],
         },
@@ -631,7 +632,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "I want ___ (try) warehouse work after spring.",
+              label: "I want ___ (try) warehouse work after May.",
               expectedAnswers: ["to try"],
             },
           ],
@@ -675,7 +676,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "edw-q4",
       question: "Which sentence has a mistake?",
       options: [
-        { value: "a", label: "She plans to apply in the spring." },
+        { value: "a", label: "She plans to apply in June." },
         { value: "b", label: "She needs to save money first." },
         { value: "c", label: "She decided leaving after May." },
       ],

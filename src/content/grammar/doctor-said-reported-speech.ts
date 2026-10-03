@@ -114,7 +114,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p>Luz needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.</p>
+        <p>Luz needs to tell Marco everything. She won't use Kelly's exact words. She will report what Kelly said.</p>
       `,
       exercises: [
         {
@@ -214,11 +214,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kelly said: \"The pharmacy is closed today.\" How does Luz report this?",
+              label: "Kelly said: \"The pharmacy closes at 6.\" How does Luz report this?",
               options: [
-                { value: "a", label: "Kelly said that the pharmacy is closed today." },
-                { value: "b", label: "Kelly said that the pharmacy was closed today." },
-                { value: "c", label: "Kelly said that the pharmacy will be closed today." },
+                { value: "a", label: "Kelly said that the pharmacy closing at 6." },
+                { value: "b", label: "Kelly said that the pharmacy closed at 6." },
+                { value: "c", label: "Kelly said that does the pharmacy close at 6." },
               ],
               expectedAnswer: "b",
             },
@@ -226,9 +226,9 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Kelly said: \"We can refill it today.\" How does Luz report this?",
               options: [
-                { value: "a", label: "Kelly said that they can refill it today." },
+                { value: "a", label: "Kelly said that they could to refill it today." },
                 { value: "b", label: "Kelly said that they could refill it today." },
-                { value: "c", label: "Kelly said that they will refill it today." },
+                { value: "c", label: "Kelly said that can they refill it today." },
               ],
               expectedAnswer: "b",
             },
@@ -324,7 +324,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
               options: [
                 { value: "a", label: "The pharmacist told us not to use the old nebulizer." },
                 { value: "b", label: "The pharmacist told us don't use the old nebulizer." },
-                { value: "c", label: "The pharmacist told us to not use the old nebulizer." },
+                { value: "c", label: "The pharmacist told us not use the old nebulizer." },
               ],
               expectedAnswer: "a",
             },
@@ -365,7 +365,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "She Asked If…",
       icon: "❓",
       explanation: `
-        ${sceneCard("sceneTextingMarco", "Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.", "sage")}
+        ${sceneCard("sceneTextingMarco", "Amina's doctor's office. Sarah at the front desk calls about the follow-up. Wednesday, 2 PM.", "sage")}
 
         <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.</p>
 
@@ -374,7 +374,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           { speaker: "Luz", avatar: "👩🏿", text: "What else?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "She <strong>asked when</strong> we <strong>could</strong> come for the follow-up.", side: "right", tone: "terracotta" },
           { speaker: "Luz", avatar: "👩🏿", text: "Did she ask about the insurance card?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought the new card last time. They don't have a copy.", side: "right", tone: "terracotta" },
+          { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought the new card last time. They can't find a copy.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -410,11 +410,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Sarah asked: \"Where do you live?\" How does Marco report this?",
+              label: "Sarah asked: \"What time does Amina finish school?\" How does Marco report this?",
               options: [
-                { value: "a", label: "Sarah asked where do we live." },
-                { value: "b", label: "Sarah asked where we lived." },
-                { value: "c", label: "Sarah asked where we live?" },
+                { value: "a", label: "Sarah asked what time does Amina finish school." },
+                { value: "b", label: "Sarah asked what time Amina finished school." },
+                { value: "c", label: "Sarah asked what time Amina finishes school?" },
               ],
               expectedAnswer: "b",
             },
@@ -462,7 +462,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneCallingLucia", "Marco's break room. Wednesday, 9 PM.", "amber")}
 
-        <p>Marco calls his mother Lucia in Guatemala on his break. She speaks limited English, so Marco uses simple reported speech to explain everything.</p>
+        <p>Marco calls his mother Lucia in Guatemala on his break. He has to explain, in his own words, what three different people told him.</p>
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "Mamá, the nurse <strong>said that</strong> Amina's inhaler <strong>was</strong> almost empty.", side: "right", tone: "terracotta" },
@@ -555,7 +555,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       id: "doctor-said-q1",
       question: "Kelly said: \"The new inhaler is ready.\" How does Luz report this to Marco?",
       options: [
-        { value: "a", label: "Kelly said that the new inhaler is ready." },
+        { value: "a", label: "Kelly said that the new inhaler ready." },
         { value: "b", label: "Kelly said that the new inhaler was ready." },
         { value: "c", label: "Kelly told me to the new inhaler was ready." },
       ],
@@ -568,11 +568,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "doctor-said-q3",
-      question: "Kelly said: \"Bring the inhaler to the follow-up.\" How does Luz tell Marco?",
+      question: "Sarah said: \"Bring the new insurance card to the follow-up.\" How does Marco tell Luz?",
       options: [
-        { value: "a", label: "Kelly told me to bring the inhaler to the follow-up." },
-        { value: "b", label: "Kelly said that bring the inhaler to the follow-up." },
-        { value: "c", label: "Kelly asked me bring the inhaler to the follow-up." },
+        { value: "a", label: "Sarah told me to bring the new insurance card to the follow-up." },
+        { value: "b", label: "Sarah said that bring the new insurance card to the follow-up." },
+        { value: "c", label: "Sarah asked me bring the new insurance card to the follow-up." },
       ],
       correctAnswer: "a",
       explanation: "Commands use told + person + to + base verb.",
@@ -594,14 +594,14 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "doctor-said-q7",
-      question: "Find the error: \"Kelly said that the pharmacy will refill it today.\"",
+      question: "Find the error. Luz is talking about last week: \"Kelly said that the pharmacy will refill it the next day.\"",
       options: [
         { value: "a", label: "No error." },
         { value: "b", label: "Error: will should be would." },
         { value: "c", label: "Error: said should be told." },
       ],
       correctAnswer: "b",
-      explanation: "Will back-shifts to would in reported speech: Kelly said the pharmacy would refill it.",
+      explanation: "Kelly spoke in the past about a time that is now past, so will back-shifts to would: Kelly said the pharmacy would refill it the next day.",
       topic: "reported-speech",
       skill: "error-detection",
       skillTag: "error-detection-will-would",

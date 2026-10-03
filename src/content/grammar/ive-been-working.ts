@@ -87,9 +87,9 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Saratoga Street by 9.", "terracotta")}
+        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives. The roadwork means traffic is already backing up.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives.</p>
 
         ${dialogue([
           { speaker: "Kevin", avatar: "🧑🏻", text: "You look tired, man.", side: "left", tone: "terracotta" },
@@ -269,8 +269,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Kevin has been driving extra shifts ___ March. (one word)",
-              expectedAnswers: ["since"],
+              label: "Kevin has been driving extra shifts ___ three weeks. (one word)",
+              expectedAnswers: ["for"],
             },
           ],
         },
@@ -285,15 +285,15 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       title: "How long have you been working here?",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneHotel", "Hotel laundry department, third floor. Jennifer from HR runs orientation for new hires.", "amber")}
+        ${sceneCard("sceneHotel", "Hotel hallway, third floor. Jennifer from HR runs orientation for new hires.", "amber")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara starts her first day at the hotel. Jennifer asks about her background before the walkthrough.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "How long <strong>have</strong> you <strong>been working</strong> in housekeeping?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been cleaning</strong> offices and hotels for three years, since I came to Boston from Somalia.", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Your application says you work weekends at a laundry. <strong>Have</strong> you <strong>been using</strong> the big machines there?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. Every Saturday and Sunday since last year.", side: "right", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been cleaning</strong> patient rooms at the hospital for almost three years.", side: "right", tone: "sage" },
+          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Good. <strong>Have</strong> you <strong>been using</strong> the big floor machines there?", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. I've been using them since my first month.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -385,9 +385,10 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Osmin", avatar: "👨🏽", text: "I <strong>have applied</strong> to three companies today. I'm done.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "I <strong>have been standing</strong> in this line for an hour. I haven't even talked to anyone yet.", side: "left", tone: "sage" },
-          { speaker: "Osmin", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I <strong>have been working</strong> in construction.", side: "right", tone: "terracotta" },
+          { speaker: "Osmin", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked me, “How long <strong>have</strong> you <strong>been working</strong> in construction?”", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "What did you say?", side: "left", tone: "sage" },
           { speaker: "Osmin", avatar: "👨🏽", text: "Four years. She said that's good experience.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "OK, I'm switching lines. I've been doing site cleanup for two years.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -501,9 +502,9 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       id: "ive-been-working-q3",
       question: "Jennifer asks Amara a question about her experience. Which question is correct?",
       options: [
-        { value: "a", label: "How long you have been folding laundry?" },
-        { value: "b", label: "How long have you been folding laundry?" },
-        { value: "c", label: "How long have you been fold laundry?" },
+        { value: "a", label: "How long you have been working the day shift?" },
+        { value: "b", label: "How long have you been working the day shift?" },
+        { value: "c", label: "How long have you been work the day shift?" },
       ],
       correctAnswer: "b",
       explanation: "In PPC questions, the word order is: How long + have/has + subject + been + verb-ing.",
@@ -542,8 +543,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       id: "ive-been-working-qws1",
       type: "word-scramble" as const,
       question: "Jennifer asks Amara about her cleaning experience. Put the words in order.",
-      words: ["How", "long", "have", "you", "been", "cleaning", "hotel", "rooms"],
-      correctAnswer: "How long have you been cleaning hotel rooms",
+      words: ["How", "long", "have", "you", "been", "cleaning", "patient", "rooms"],
+      correctAnswer: "How long have you been cleaning patient rooms",
       hint: "How long + have/has + subject + been + verb-ing",
       explanation: "PPC questions follow: How long + have/has + subject + been + verb-ing?",
       topic: "present-perfect-continuous",

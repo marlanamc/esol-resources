@@ -43,10 +43,10 @@ Be used to + gerund = something feels familiar or normal now. Not the same as us
 
 ## 2. I'm Not Used to the Cold Yet
 
-> 🖼 **Scene:** Bus stop near Maverick Square. Wednesday, 5:30 AM.  
+> 🖼 **Scene:** Bus stop near Maverick Square. A Wednesday in January, 5:30 AM.  
 > _Photo shows: A city bus on a cold winter street with commuters waiting at the curb._
 
-Priya is a home health aide. She waits with her classmate Angelo for her first transfer. It is January, and the wind is sharp.
+Priya is a home health aide. She waits with her classmate Angelo for her first transfer. It is Priya's first winter in Boston, and the wind is sharp.
 
 - **Priya:** I'm not used to waiting outside this long. My hands are freezing.
 - **Angelo:** Same. I moved here in August. This is my first winter.
@@ -96,15 +96,15 @@ Get used to + gerund = the process of adapting. It is getting easier, but you ar
 Jean sits with his cousin Claudette after service. They are figuring out which service fits around their work schedules.
 
 - **Jean:** I’m getting used to the early service here. Can you come next Sunday?
-- **Claudette:** I’ll try. I’m used to working late on Saturdays, so getting up is the hard part.
+- **Claudette:** I’ll try. I’m used to working two jobs, but Saturday nights end late. Getting up is hard.
 - **Jean:** I know. I used to work only days. Now I work nights too. We could try a later service.
 
 used to + verb = past habit, not true now. be used to + -ing = familiar now. get used to + -ing = still adapting.
 
 **Exercise: Pick the right pattern**
-- Jean had free weekends before. Not anymore. _(options: I used to have weekends free. / I'm used to have weekends free. / I'm getting used to have weekends free.)_
+- Jean worked only days before, so his nights were free. Not anymore. _(options: I used to have my nights free. / I'm used to have my nights free. / I'm getting used to have my nights free.)_
 - Claudette has two jobs. That feels normal to her. _(options: She used to working two jobs. / She is used to working two jobs. / She is getting used to work two jobs.)_
-- Jean is learning the hymns at his new parish. _(options: He is used to the Creole hymns already. / He is getting used to the Creole hymns. / He used to the Creole hymns.)_
+- Jean is new to the early service. He is still learning the hymns. _(options: He is used to the Creole hymns already. / He is getting used to the Creole hymns. / He used to the Creole hymns.)_
 
 **Exercise: Spot the error**
 - "She is used to work two jobs." What is wrong? _(options: No error. / Error: should be "used to working" (-ing after be used to). / Error: should be "used to work" (past habit).)_
@@ -117,13 +117,13 @@ used to + verb = past habit, not true now. be used to + -ing = familiar now. get
 > 🖼 **Scene:** Warehouse break room. Wednesday, 2 PM.  
 > _Photo shows: Two coworkers talking in a break room before a shift change._
 
-It has been a hard week for Fabienne: double shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor Mark.
+It has been a hard week for Fabienne: double shifts, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor Mark.
 
 - **Fabienne:** Hi Mark. Can I take Friday off? I have a parent-teacher meeting at 10.
 - **Mark:** Let me check the schedule. How are you holding up?
-- **Fabienne:** I'm used to working overtime, but I'm not used to reading every school email in English yet.
-- **Fabienne:** And I’m still getting used to the double shifts. Could I make up the hours on Saturday?
-- **Mark:** OK. I'll try to cover Friday.
+- **Fabienne:** Tired. I’m still getting used to the double shifts. Could I make up the hours on Saturday?
+- **Mark:** OK, Friday's yours. Can you do Saturday, 6 to 2?
+- **Fabienne:** Yes. I'm used to getting up early. Thank you, Mark!
 
 **Exercise: Pick the right pattern**
 - Before she moved, Fabienne always slept before midnight. Not now. _(options: I used to sleep before midnight. / I'm used to sleeping before midnight. / I'm getting used to sleeping before midnight.)_
@@ -135,7 +135,7 @@ It has been a hard week for Fabienne: double shifts, a cold commute, English sch
 - I'm ___ used to the double shifts. (still adapting)
 
 **Exercise: Unscramble**
-- Build Priya's sentence about winter chores:
+- Build Fabienne's sentence about Saturday:
 
 **Exercise: Spot the error**
 - "I'm used to wake up at 4 for the bus." What is wrong? _(options: No error. / Error: should be "used to waking up" (-ing after be used to). / Error: should be "used to wake" (past habit).)_

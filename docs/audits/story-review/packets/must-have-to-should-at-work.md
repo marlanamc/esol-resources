@@ -11,8 +11,8 @@
 ## Cast by section
 
 - Must. No exceptions on this site: Kevin, Josué
-- Have to. Your employer's rules: Marta, Amara
-- Should. What good workers do: Claudette, Linh
+- Have to. Your employer's rules: Marta, Sagal
+- Should. What good workers do: Claudette, Hoa
 - Must, have to, or should?: Jennifer, Paola
 - Putting it all together: _no named speakers_
 
@@ -49,12 +49,14 @@ Form: must + base verb (no -s, no -ing, no to) He must wear boots. She must not 
 > 🖼 **Scene:** Restaurant kitchen, Friday evening. Dinner rush starts in 30 minutes.  
 > _Photo shows: Restaurant kitchen worker in uniform preparing food during a busy service._
 
-Marta has worked the line for three years. Amara started this week. Before service, Marta explains how the restaurant runs.
+Marta has worked the line for three years. Sagal started this week. Before service, Marta explains how the restaurant runs.
 
 - **Marta:** You have to clock in before your shift, not after. The manager checks the system every day.
-- **Amara:** What if I'm running late?
+- **Sagal:** What if I'm running late?
 - **Marta:** You have to text him if you’re going to be late. Do you have his number?
-- **Amara:** Got it. Clock in, text if I'm late, uniform always.
+- **Sagal:** Yes, I have it. What else?
+- **Marta:** You have to wear the full uniform on the line. He checks that too.
+- **Sagal:** Got it. Clock in, text if I'm late, uniform always.
 
 Have to / Has to = required by your employer's rules or procedures. Not optional, but less formal than a law.
 
@@ -62,7 +64,7 @@ I / You / We / They have to + base verb He / She / It has to + base verb
 
 **Exercise: Choose the correct form**
 - "She ___ wear her uniform on the line." What is the correct form for she? _(options: have to / has to / must to)_
-- Amara is new. Which sentence is correct? _(options: She has to clocks in before her shift. / She has to clock in before her shift. / She has clock in before her shift.)_
+- Sagal is new. Which sentence is correct? _(options: She has to clocks in before her shift. / She has to clock in before her shift. / She has clock in before her shift.)_
 
 **Exercise: Unscramble**
 - Unscramble:
@@ -75,17 +77,17 @@ I / You / We / They have to + base verb He / She / It has to + base verb
 > 🖼 **Scene:** Hotel housekeeping, third-floor break room. Tuesday afternoon.  
 > _Photo shows: Two coworkers talking during a break at work._
 
-Claudette has been at the hotel for four years. Linh started two weeks ago. Claudette pulls her aside during a break.
+Claudette has been at the hotel for four years. Hoa started two weeks ago. Claudette pulls her aside during a break.
 
 - **Claudette:** You should tell your supervisor before you leave the floor, even on your break. She notices when people just disappear.
-- **Linh:** Is that the rule?
+- **Hoa:** Is that the rule?
 - **Claudette:** It’s not written down, but you should let her know so she can arrange coverage. You shouldn’t leave her guessing.
-- **Linh:** I didn't know that. Thanks for telling me.
+- **Hoa:** I didn't know that. Thanks for telling me.
 
 Should / Shouldn't = strong advice. It's not a written rule, but problems happen if you ignore it.
 
 **Exercise: Choose the right answer**
-- Linh wants to leave her floor early. Which sentence gives the best advice? _(options: She must tell her supervisor. / She should tell her supervisor. / She has to tells her supervisor.)_
+- Hoa wants to leave her floor early. Which sentence gives the best advice? _(options: She must tell her supervisor. / She should tell her supervisor. / She has to tells her supervisor.)_
 - "She shouldn't leaves the floor without checking in." Is this correct? _(options: Correct / Not correct. Should be 'shouldn't leave' (base verb, no -s))_
 
 **Exercise: Unscramble the advice**
@@ -99,17 +101,17 @@ Should / Shouldn't = strong advice. It's not a written rule, but problems happen
 > 🖼 **Scene:** Sunday night. Paola gets a text from her manager, Jennifer, about Monday's shift.  
 > _Photo shows: Person reading a work text message on their phone the night before a shift._
 
-The restaurant has an inspection on Monday, and a coworker has called out sick. Jennifer texts Paola about the busy day ahead.
+The restaurant has a health re-inspection on Monday, and a coworker has called out sick. Jennifer texts Paola about the busy day ahead.
 
 - **Jennifer:** Hey Paola. A few things for tomorrow.
 - **Paola:** OK, what's up?
-- **Jennifer:** First, you must be here by 10. Health inspection is at 10:30. No exceptions.
+- **Jennifer:** First, you must be here by 10. The health inspector is coming back at 10:30. No exceptions.
 - **Jennifer:** You also have to cover lunch because Marcus called out sick. I’m arranging someone to help you.
 - **Jennifer:** And you should bring something to eat. It’ll be a long day.
 
 Three messages. Three different words. Here's why:
 
-A city inspection. Official, non-negotiable, serious consequences. Must is correct.
+A city re-inspection. Official, non-negotiable, serious consequences. Must is correct.
 
 A scheduling decision from the manager. Required, but not a law. Have to fits.
 
@@ -143,9 +145,9 @@ You have seen all three modals at work. Here is a quick reference before the qui
 
 ## Mini quiz
 
-- Claudette tells Linh: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits? _(options: must / have to / should)_
+- Claudette tells Hoa: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits? _(options: must / have to / should)_
 - Which sentence has a grammar error? _(options: He must wear a hard hat on the site. / She has to clocks in before her shift. / You should ask before swapping shifts.)_
 - The sign on the door says: 'Workers ___ enter without a safety pass.' Which word makes this a prohibition? _(options: must not / don't have to / should not always)_
 - Fill in the blank: "She ___ tell her supervisor before she leaves." (Strong advice, not a written rule.)
-- The safety sign at the warehouse is non-negotiable. Put the words in order.
+- The safety sign at the construction site is non-negotiable. Put the words in order.
 

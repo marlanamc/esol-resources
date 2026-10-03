@@ -34,18 +34,18 @@ ALREADY = done before now, sooner than expected, or to confirm something is fini
 
 Where does ALREADY go?
 
-ALREADY sits between have / has and the past participle (V3). It never moves to the end.
+ALREADY sits between have / has and the past participle (V3). This is the usual place. (You will also hear it at the end: I did it already. That is OK too.)
 
 Common mistake
 
-✗ She has signed up already. (already at the end. not the standard position)
+✗ She has signed already the form. (already between the verb and the object = wrong)
 
-✓ She has already signed up.
+✓ She has already signed the form.
 
 **Exercise: Where does ALREADY go?**
-- Which sentence is correct? _(options: Nadine already has renewed her bus pass. / Nadine has already renewed her bus pass. / Nadine has renewed already her bus pass.)_
-- Which sentence is correct? _(options: I have texted already my sister. / Already I have texted my sister. / I have already texted my sister.)_
-- The staff member says: "Someone ___ you." (help. use already) _(options: has already helped / already has helped / has helped already)_
+- Which sentence is correct? _(options: Nadine has already renew her bus pass. / Nadine has already renewed her bus pass. / Nadine has renewed already her bus pass.)_
+- Which sentence is correct? _(options: I have texted already my sister. / I have already text my sister. / I have already texted my sister.)_
+- The staff member says: "Someone ___ you." (help. use already) _(options: has already helped / has already help / has helped yet)_
 - Nadine ___ already signed up for the food pantry.
 
 **Exercise: Build the sentence**
@@ -103,7 +103,7 @@ YET = something expected or planned, but not done so far. Used in questions and 
 
 Where does YET go?
 
-YET always goes at the end of the sentence. It never sits between have and V3.
+YET usually goes at the end of the sentence, after the object. Do not put it between have and V3.
 
 YET appears in two patterns only:
 
@@ -136,13 +136,13 @@ Common mistakes
 
 ## 4. Reading a To-Do List: All Three Together
 
-> 🖼 **Scene:** Rosa's kitchen, Friday morning.  
+> 🖼 **Scene:** Rosa's kitchen, Thursday, 4 PM.  
 > _Photo shows: a kitchen counter with a napkin and a pen on it_
 
-- **Rosa:** OK, let me check my list before I leave for class.
-- **Rosa:** I have already taken the kids to the clinic. They had Monday off, so we went then.
+- **Rosa:** OK, let me check my list before I leave for class tonight.
+- **Rosa:** I have already taken my daughter to the clinic. We went Monday after my shift.
 - **Rosa:** I have already paid the rent. Done.
-- **Rosa:** I have just called the school about my daughter. They'll call me back.
+- **Rosa:** I have just called the school about her checkup form. They'll call me back.
 - **Rosa:** But I haven't picked up the groceries yet. That one has to wait.
 
 Rosa's to-do list:
@@ -154,7 +154,7 @@ The placement cheat sheet:
 - "I have ___ gotten off the bus. I'm still at the stop." _(options: just. moments ago / already. done before / yet. not done)_
 - "I haven't called the landlord ___. I'll do it tonight." _(options: just / already / yet)_
 - "Have you picked up your prescription ___?" (asking if it's done) _(options: just / already / yet)_
-- "I have ___ paid the rent. I did it on Monday." (done before now)
+- "I have ___ paid the rent. The receipt is on the fridge." (done before now)
 
 **Exercise: Build Rosa's sentences**
 - Unscramble:
@@ -182,7 +182,7 @@ Quick summary before the quiz:
 
 **Exercise: Spot the mistake**
 - "I have called the landlord yet." _(options: Correct. no problem / Not correct. YET is only for negatives and questions. Should be: I have already called the landlord.)_
-- "Already I have registered for the food pantry." _(options: Correct. no problem / Not correct. ALREADY goes between have and V3: I have already registered for the food pantry.)_
+- "I have filled out already the food pantry form." _(options: Correct. no problem / Not correct. ALREADY goes between have and V3: I have already filled out the food pantry form.)_
 - "The deadline has just passed." _(options: Correct. no problem / Not correct)_
 - "Have you signed up for the food pantry ___?"
 
@@ -195,5 +195,5 @@ Quick summary before the quiz:
 - Carlos walked in the door 30 seconds ago. His neighbor asks where he's been. He says: _(options: I have already gotten back from the pharmacy. / I have just gotten back from the pharmacy. / I haven't gotten back from the pharmacy yet.)_
 - Fill in the blank: "Linh hasn't paid the electric bill ___." (It's expected but not done.)
 - Nadine registered for the food pantry last week. Put the words in order.
-- Which sentence has ALREADY in the correct position? _(options: Already she has registered for the program. / She has registered already for the program. / She has already registered for the program.)_
+- Which sentence has ALREADY in the correct position? _(options: Already has she paid the bill. / She has paid already the bill. / She has already paid the bill.)_
 

@@ -24,7 +24,7 @@
 > _Photo shows: Industrial laundry room with neatly folded linens and rolling carts in a hotel._
 
 - **Marco:** How long have you worked here?
-- **Claudette:** I have worked here for two years. It was my first job in Boston.
+- **Claudette:** I have worked here for two years. Before that, I cleaned offices downtown.
 - **Marco:** How long have you been in Boston?
 - **Claudette:** I have been here since 2020. You?
 - **Marco:** I have lived in East Boston for three years.
@@ -88,7 +88,7 @@ How long + have/has + subject + V3? How long have you had this plan? How long ha
 
 **Exercise: Choose the correct answer**
 - "How long have you had your winter jacket?" _(options: I had this jacket for two winters ago. / I have had this jacket for two winters. / I have had this jacket two winters ago.)_
-- "How long has Yesenia lived in East Boston?" _(options: She has lived there since five years. / She lived there for 2019. / She has lived there since 2019.)_
+- "How long has Yesenia lived in East Boston?" _(options: She has lived there since five years. / She lived there for 2021. / She has lived there since 2021.)_
 
 **Exercise: Build the question**
 - Unscramble:
@@ -129,9 +129,9 @@ Key question to ask yourself: Is this situation still true NOW? Use present perf
 > _Photo shows: Family gathered around a table for dinner, sharing food and conversation._
 
 - **Yesenia:** Mami, this rental application asks how long we have lived here. Five years, right?
-- **Teresa:** Yes, we have lived here for five years. Since before your brother was born.
+- **Teresa:** Yes, we have lived here for five years. Since your brother was in kindergarten.
 - **Yesenia:** Our lease ends in March, and everything nearby costs more.
-- **Teresa:** The kids have gone to that school for four years. I don't want to change their school.
+- **Teresa:** Your brother has gone to that school since kindergarten. I don't want to change his school.
 - **Yesenia:** Neither do I. I have been looking at apartments nearby for weeks.
 
 Common real-life situations that use for and since:
@@ -149,7 +149,7 @@ How long has it been since you saw your family?
 **Exercise: For or Since?**
 - Yesenia's family has lived in the apartment ___ five years. _(options: for / since)_
 - She has worked evening shifts ___ three years. _(options: for / since)_
-- The children have gone to the same school ___ kindergarten. _(options: for / since)_
+- Yesenia's brother has gone to the same school ___ kindergarten. _(options: for / since)_
 
 **Exercise: Build the sentence**
 - Unscramble:

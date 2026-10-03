@@ -10,26 +10,24 @@
 
 ## Cast by section
 
-- Catching Up on the Phone: Jean, Claudette
+- Catching Up on the Phone: Claudette, Jean
 - Did you go? vs. Have you been?: Diego, Amara
 - Yes, I have. No, I haven't.: Fatima, Omar
-- Real Practice: Your Community: Coordinator, Minh
+- Real Practice: Your Community: Jennifer, Minh
 
 ---
 
 ## 1. Catching Up on the Phone
 
-> 🖼 **Scene:** East Boston, Tuesday evening. Claudette calls her cousin Jean in Montreal.  
+> 🖼 **Scene:** East Boston, Tuesday evening. Claudette texts her cousin Jean in Montreal.  
 > _Photo shows: Person reading a text message on a phone at home in the evening._
 
-Emily from work called earlier, but tonight Claudette wants to catch up with family.
-
-- **Jean:** Have you ever tried Haitian food in Boston?
-- **Claudette:** Yes, I have! There is a restaurant on Maverick Square. It is so good.
-- **Jean:** I’ve seen that place. Have you ever eaten there with a big group?
-- **Claudette:** No, I haven’t. Are you planning something?
-- **Jean:** A family dinner. Have you ever cooked for twenty people? I’m not sure I can manage it.
-- **Claudette:** No, I haven’t! Let’s call the restaurant and ask if they have room.
+- **Claudette:** You’re visiting next month, right? Have you ever helped at a food pantry?
+- **Jean:** Yes, I have. I packed boxes at my church in Montreal last winter. Why?
+- **Claudette:** The pantry near Maverick Square needs help that Saturday. A lot of the families there speak Creole.
+- **Jean:** Good, we can translate. Have you ever volunteered there?
+- **Claudette:** No, I haven’t. But I picked up food there when I first came. They were kind to me.
+- **Jean:** Then sign us both up. Send me the time and the address.
 
 Have you ever...? = Did this happen at any time in your life? We do not say when. We just want to know: yes or no, has this experience happened to you?
 
@@ -59,13 +57,15 @@ The form: Have + subject + ever + V3 (past participle) Example: Have you ever ea
 
 Key rule: If the question includes a specific time (last Saturday, yesterday, in 2020), use Past Simple. If there is no time, or you say "ever," use Have you...?
 
+You will also hear "Did you ever...?" for life experience, especially in American English. It is OK. In this lesson, practice "Have you ever...?"
+
 **Exercise: Which question fits?**
 - You want to know if your classmate went to a cultural event at any point in her life. _(options: Did you go to a cultural event last year? / Have you ever been to a cultural event?)_
 - You know there was a free legal clinic last Thursday. You want to know if your neighbor went. _(options: Did you go to the legal clinic last Thursday? / Have you ever been to a legal clinic?)_
 - You want to know if your coworker has experience donating blood at any point in his life. _(options: Did you donate blood last summer? / Have you ever donated blood?)_
 
 **Exercise: Correct or not correct?**
-- Situation: You want to know about any experience in your friend's life. Question: "Did you ever try Guatemalan food?" _(options: Correct / Not correct. Should be 'Have you ever tried Guatemalan food?')_
+- Situation: You are asking about last weekend specifically. Question: "Have you tried Guatemalan food last weekend?" _(options: Correct / Not correct. Should be 'Did you try Guatemalan food last weekend?')_
 - Situation: You are asking about last week specifically. Question: "Did you go to the community meeting last Tuesday?" _(options: Correct / Not correct. Should use Have you ever.)_
 
 **Exercise: Fill in the blank**
@@ -74,13 +74,13 @@ Key rule: If the question includes a specific time (last Saturday, yesterday, in
 
 ## 3. Yes, I have. No, I haven't.
 
-> 🖼 **Scene:** East Boston Community Center, Saturday morning. Volunteers arrive for orientation.  
+> 🖼 **Scene:** East Boston Community Center, Wednesday, 6 PM. New volunteers come for orientation after work.  
 > _Photo shows: Welcoming community center hallway with people gathered near a front desk._
 
 - **Fatima:** Have you ever volunteered with youth programs before?
 - **Omar:** Yes, I have. I worked with kids at a summer camp in 2021.
 - **Fatima:** Have you ever done any food distribution work?
-- **Omar:** No, I haven't. But I am excited to learn.
+- **Omar:** No, I haven't. But my family used a food pantry when we first came. I want to help back.
 
 Short answers: Always use have or haven't in your reply. Do not just say "yes" or "no."
 
@@ -104,10 +104,10 @@ After "Yes, I have" use Past Simple for the details:
 > 🖼 **Scene:** East Boston Community Center, volunteer orientation sign-in table.  
 > _Photo shows: Volunteers signing in at a table before a community event._
 
-- **Coordinator:** Have you ever attended a neighborhood meeting?
+- **Jennifer:** Have you ever attended a neighborhood meeting?
 - **Minh:** Yes, I have. I went to one about the new bus route last spring.
-- **Coordinator:** Have you ever done translation work for your community?
-- **Minh:** No, I haven't. But I speak Vietnamese and English, so I would love to help.
+- **Jennifer:** Have you ever done translation work for your community?
+- **Minh:** No, I haven't. But I speak Vietnamese and English, and my neighbor needs help at her housing meeting.
 
 Common East Boston community questions:
 
@@ -125,11 +125,11 @@ Have you ever called 311 to report a problem?
 
 **Exercise: Error correction**
 - "Have you ever went to a community meeting?" _(options: Correct as is. / Have you ever gone to a community meeting? (V3 = gone, not went) / Did you ever gone to a community meeting?)_
-- "Did she ever volunteer at the library?" _(options: Correct as is. Past Simple is fine for a general experience question too. / Not correct. Should be: Has she ever volunteered at the library? / Not correct. Should be: Did she ever volunteering at the library?)_
+- "Has she ever volunteer at the library?" _(options: Correct as is. / Not correct. Should be: Has she ever volunteered at the library? (V3 after has) / Not correct. Should be: Has she ever volunteering at the library?)_
 
 **Exercise: Past Simple or Present Perfect?**
 - Minh ___ a citizenship class two years ago. _(options: took (past simple. specific time: two years ago) / has taken (present perfect))_
-- ___ you ever ___ the East Boston Greenway? (Use the correct form.) _(options: Did you ever walk. Past Simple / Have you ever walked. Present Perfect)_
+- ___ you ever ___ the East Boston Greenway? (Use the correct form.) _(options: Did you ever walked. (two past forms: did + walked) / Have you ever walked. Present Perfect)_
 
 **Exercise: Build a question**
 - Unscramble:

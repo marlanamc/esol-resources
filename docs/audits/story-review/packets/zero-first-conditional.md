@@ -26,7 +26,7 @@ _None._
 Carlos is a prep cook at La Palma. He became a U.S. citizen in June, and this November is his first election. Election Day is Tuesday, November 3.
 
 - **Carlos:** Scott, can I come in at 11 on Election Day? It's my first time voting.
-- **Scott:** Congratulations. If you need a day off, you ask two weeks early. A morning is easier.
+- **Scott:** Congratulations. If you need a day off, you ask two weeks ahead. A morning is easier.
 - **Carlos:** Just the morning. The polls open at 7. I'll be here by 11.
 - **Scott:** Write it on the request sheet. My wife votes at 7 every year. If you go early, the line is short.
 - **Carlos:** And if the line is long and I'm late?
@@ -37,7 +37,7 @@ Zero Conditional = a fact that is always true. A rule, a policy, a natural conse
 The comma rule: If + condition first, then result. You can also flip it: You get to vote if you are in line by 8 PM. (No comma when the result comes first.)
 
 **Exercise: Is it a rule or a fact?**
-- Scott says this is always true at the restaurant. Which sentence fits the Zero Conditional? _(options: If you need a day off, you will ask two weeks early. / If you need a day off, you ask two weeks early. / If you need a day off, you asked two weeks early.)_
+- Scott says this is always true at the restaurant. Which sentence fits the Zero Conditional? _(options: If you need a day off, you will ask two weeks ahead. / If you need a day off, you ask two weeks ahead. / If you need a day off, you asked two weeks ahead.)_
 - Which sentence is the Zero Conditional? _(options: If Carlos goes at 7, he will be at work by 11. / If Carlos went at 7, he would be at work by 11. / If you go early, the line is short.)_
 - Fill in the blank with the correct form: If your name ___ (be) on the voter list, you get a ballot.
 
@@ -81,7 +81,7 @@ Carlos is registered now. But Scott never saw the request sheet. Jennifer is a s
 - **Jennifer:** Or you can vote early. The library has early voting on weekends. You don't need a reason.
 - **Carlos:** I didn't know that. As soon as my registration goes through, I'll look up the times.
 - **Jennifer:** I'll still ask Miguel about Tuesday. When he gets here, I'll ask him.
-- **Carlos:** Thanks. But I won't say yes to him unless Scott agrees.
+- **Carlos:** Thanks. But I won't switch unless Scott agrees.
 
 Unless = if not. Same tense rules as the First Conditional. When = at that moment in the future (more certain than if). As soon as = immediately when something happens.
 
@@ -105,7 +105,7 @@ Miguel can't switch. He has his kids on Tuesday. Carlos finds Scott between tabl
 - **Carlos:** Scott, Miguel can't switch with me. So I'm voting early, Saturday morning at the library.
 - **Scott:** Sorry about the schedule. Saturday morning's fine. Can you take Saturday night, too? We're short.
 - **Carlos:** Saturday nights pay double, right?
-- **Scott:** Yes. If you work Saturday nights, you earn double. Everybody wants those shifts.
+- **Scott:** Yes. If you work Saturday nights, you earn double. But nobody wants to close.
 - **Carlos:** Then if I vote Saturday morning, I'll still make the night shift. That covers the electric bill and helps with rent.
 - **Scott:** Deal. If I don't see you by 5, I'll call you.
 

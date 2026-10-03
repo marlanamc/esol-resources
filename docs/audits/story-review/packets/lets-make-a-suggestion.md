@@ -22,7 +22,7 @@
 > 🖼 **Scene:** Apartment building hallway, East Boston. Tuesday evening. No heat for two days.  
 > _Photo shows: Interior hallway of an apartment building with tiled floors and numbered doors._
 
-Gloria, Jean, and Marta are texting in a group chat. The building has no heat.
+Gloria, Jean, and Marta meet in the hallway. The building has no heat.
 
 - **Gloria:** Let's call the landlord right now. It's freezing in here.
 - **Jean:** I tried yesterday. He didn't answer. We could leave a message and also text him.
@@ -34,7 +34,7 @@ Let's = a suggestion for the group to do together. You are included. It is direc
 Form: Let's + base verb. We could + base verb. Let's call him. We could text him. Never: Let's to call We could calling
 
 **Exercise: Let's or We Could?**
-- Gloria wants everyone in the group to act now. Which sentence fits best? _(options: We could take photos of the leak tonight. / Let's take photos of the leak tonight. / Let's to take photos of the leak tonight.)_
+- Gloria wants everyone in the group to act now. Which sentence fits best? _(options: We could check the temperature in every apartment tonight. / Let's check the temperature in every apartment tonight. / Let's to check the temperature in every apartment tonight.)_
 - Jean is giving a gentle option, not a command. Which sentence fits? _(options: Let's talk to the neighbors upstairs. / We could talks to the neighbors upstairs. / We could talk to the neighbors upstairs.)_
 - Fill in: ___ write down the date. We need a record. (Let's / We could)
 
@@ -43,7 +43,7 @@ Form: Let's + base verb. We could + base verb. Let's call him. We could text him
 
 ## 2. You Should and You Could. Suggesting to One Person
 
-> 🖼 **Scene:** Outside the apartment building. Marta talks to Kevin, the building manager's assistant.  
+> 🖼 **Scene:** Outside the apartment building. Marta talks to Kevin, a neighbor who has lived here for twenty years.  
 > _Photo shows: Exterior of a residential apartment building on a quiet street._
 
 - **Marta:** Kevin, the heat has been off for two days. What do we do?
@@ -51,7 +51,7 @@ Form: Let's + base verb. We could + base verb. Let's call him. We could text him
 - **Marta:** And if he doesn't answer?
 - **Kevin:** You could call Inspectional Services. It's the city. They can force him to fix it.
 - **Marta:** He must fix it by law, right?
-- **Kevin:** Yes. He must keep the heat at 68 degrees during the day. That's the law.
+- **Kevin:** Yes. He must keep apartments at 68 degrees or warmer during the day. That's the law.
 
 You should = stronger advice. The speaker thinks this is the right thing to do. You could = softer. You are giving an option. It is the person's choice.
 
@@ -60,17 +60,17 @@ Should vs. Must: Kevin says the landlord must keep the heat on. That's the law. 
 **Exercise: Stronger advice or softer option?**
 - Kevin thinks saving every letter is the right and necessary step. Which fits? _(options: You could keep copies of every letter. / You should keep copies of every letter. / You should to keep copies of every letter.)_
 - Kevin is giving Marta one extra option she can choose. Which fits? _(options: You should visit the housing office downtown. / You could visits the housing office downtown. / You could visit the housing office downtown.)_
-- Fill in with should or could: The landlord ___ fix the heat. It is the law.
+- Fill in: The landlord ___ fix the heat. It is the law, not just advice. (should / must)
 
 **Exercise: Build the sentence**
 - Unscramble:
 
 ## 3. Could We and Should We. Suggestions as Questions
 
-> 🖼 **Scene:** Restaurant break room, East Boston. Friday night. The Saturday morning shift has no coverage.  
+> 🖼 **Scene:** Restaurant kitchen, East Boston. Friday night. The Saturday morning shift has no coverage.  
 > _Photo shows: Restaurant kitchen with workers preparing food under warm overhead lights._
 
-Halima's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.
+Halima's childcare fell through. She can't work Saturday morning. Her coworkers Diego and Brian need to figure out the shift.
 
 - **Halima:** I'm so sorry. My babysitter canceled. I can't come in Saturday morning.
 - **Diego:** Could we split the shift? I can do the first two hours if someone else covers the rest.
@@ -92,23 +92,25 @@ Form: Could we + base verb? Should we + base verb? Why don't we + base verb? Cou
 
 ## 4. Putting It Together. Which Suggestion Fits?
 
-> 🖼 **Scene:** Two coworkers review options together before making a decision.  
+> 🖼 **Scene:** Later that night. Neighbors Gloria and Jean look at Jean's phone and make a plan.  
 > _Photo shows: Two people looking at a phone together, having a conversation._
 
 - **Gloria:** OK so the heat is still off. Let's decide what to do tonight.
 - **Jean:** We could call the city, or we could wait one more day.
 - **Gloria:** No more waiting. You should call tonight and I'll send the written complaint.
-- **Jean:** Could we also get a letter from all three tenants? More names looks better.
+- **Jean:** Could we also get a letter signed by all the tenants? More names look better.
 - **Gloria:** Yes. Why don't we knock on Marta's door right now?
+
+The next morning, Jean texts the group: "I called the city. An inspector is coming Thursday."
 
 All four suggestion forms side by side:
 
 All suggestion forms use base verb with no changes. Let's call. We could text. You should send. Why don't we knock. Never: Let's to call We could calling You should sends
 
 **Exercise: Which suggestion fits?**
-- Marta wants the whole group to decide together right now. Which fits best? _(options: You could make a plan together. / Let's make a plan together. / Why don't you make a plan?)_
+- Gloria wants the whole group to decide together right now. Which fits best? _(options: You could make a plan together. / Let's make a plan together. / Why don't you make a plan?)_
 - Which sentence has an error? _(options: We could wait one more day. / Why don't we calls the city? / Let's knock on Marta's door.)_
-- Diego gives a polite option to his manager Brian. Which fits? _(options: Let's share the Saturday hours. / You must share the Saturday hours. / Could we share the Saturday hours?)_
+- Diego gives a polite option to his coworker Brian. Which fits? _(options: Let's share the Saturday hours. / You must share the Saturday hours. / Could we share the Saturday hours?)_
 - Fill in: ___ don't we ask the other tenants to sign the letter? (Why / We / Let's)
 
 **Exercise: Build the sentence**
@@ -119,6 +121,6 @@ All suggestion forms use base verb with no changes. Let's call. We could text. Y
 - Gloria wants the whole group to act together. Which sentence fits? _(options: Let's meet in the lobby at six. / Let's to meet in the lobby at six. / Let's meeting in the lobby at six.)_
 - Kevin tells Marta that saving the repair receipts is the right and necessary step. Which fits? _(options: You could save the repair receipts. / You should save the repair receipts. / Let's save the repair receipts.)_
 - Fill in the blank: "We ___ split the shift between two people." (Which word gives a soft suggestion, not a command?)
-- Rosa and her neighbor agree on a plan for the building issue. Put the words in order.
+- Gloria and Jean agree on a plan for the heat problem. Put the words in order.
 - Which sentence has an error? _(options: Why don't we post the shift in the group chat? / Could we split the hours? / Why don't we calls the landlord?)_
 

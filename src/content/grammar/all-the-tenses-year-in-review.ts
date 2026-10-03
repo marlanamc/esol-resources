@@ -104,8 +104,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "It's our last night together. What <strong>will</strong> you do in the fall?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my work schedule.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>work</strong> at the hotel all day, too. Two evenings a week is about all I can manage.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "Me too. We're both taking the free online summer course. By August we <strong>will have finished</strong> it.", side: "left", tone: "blue" },
+          { speaker: "David", avatar: "👨🏻", text: "Same here. I <strong>work</strong> construction all day. Two evenings a week is all I can do.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And we're both taking the free online summer course. By August we <strong>will have finished</strong> it.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -179,13 +179,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantShift", "Hotel lobby on Meridian Street. Wednesday, 1:30 PM.", "terracotta")}
+        ${sceneCard("sceneRestaurantShift", "The hotel restaurant on Meridian Street at lunch. Wednesday, 1:30 PM.", "terracotta")}
 
         <p>Rosa is a housekeeper at a hotel on Meridian Street, Monday to Friday, 7 to 3. ESOL class on Tuesday and Thursday evenings. Supervisor <strong>Jennifer</strong> covers the late checkouts when Rosa leaves at 3.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏼", text: "You usually <strong>leave</strong> at three, right? Do you need to go early today?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, if that’s OK. My daughter <strong>has</strong> a field trip tomorrow. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, please. The sitter <strong>has</strong> a doctor's appointment, so I need to pick up my daughter. I <strong>am texting</strong> her now.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the late checkouts for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Two thirty, please. Thanks. I know we <strong>are running</strong> behind today.", side: "right", tone: "terracotta" },
         ])}
@@ -201,7 +201,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("right now", "blue")}
-            <span><em>I <strong>am texting</strong> the sitter about tomorrow.</em></span>
+            <span><em>I <strong>am texting</strong> the sitter about the pickup.</em></span>
           </div>
         </div>
       `,
@@ -245,8 +245,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Rosa", "is", "texting", "the", "sitter", "about", "the", "field", "trip"],
-              correctAnswer: "Rosa is texting the sitter about the field trip",
+              words: ["Rosa", "is", "texting", "the", "sitter", "about", "the", "pickup"],
+              correctAnswer: "Rosa is texting the sitter about the pickup",
             },
           ],
         },
@@ -269,15 +269,16 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartmentKitchen", "Rosa's old kitchen, East Boston. The leak happened here on January 14.", "blue")}
+        ${sceneCard("sceneApartmentKitchen", "Rosa's old kitchen, East Boston. The heat stopped here on January 14.", "blue")}
 
-        <p>In June, the landlord sends Rosa a bill for the ceiling damage. She calls him to explain what happened in January: what she was doing, what happened next, and what she had already done before calling.</p>
+        <p>Rosa moved out in February, but in June her old landlord still hasn't returned her security deposit. He thinks she broke the heater in January. She calls him to explain what happened: what she was doing, what happened next, and what she had already done before calling.</p>
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>was cooking</strong> when water <strong>came</strong> through the ceiling.", side: "right", tone: "terracotta" },
-          { speaker: "Landlord", avatar: "🧑🏾", text: "That was when you <strong>called</strong> me, just before midnight?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>had already put</strong> a bucket under the leak, but it filled up fast.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Then I <strong>turned off</strong> the stove and <strong>moved</strong> everything away from the water.", side: "right", tone: "terracotta" },
+          { speaker: "Landlord", avatar: "🧑🏾", text: "I’m still holding your deposit. What happened with the heater in January?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>was cooking</strong> dinner when the heat <strong>stopped</strong>. I <strong>called</strong> you that night.", side: "right", tone: "terracotta" },
+          { speaker: "Landlord", avatar: "🧑🏾", text: "Didn’t you check the thermostat first?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>had already checked</strong> it before I called. The heater was old. I didn't break it.", side: "right", tone: "terracotta" },
+          { speaker: "Landlord", avatar: "🧑🏾", text: "OK, that's fair. I'll mail your deposit this week.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -287,7 +288,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("in progress", "blue")}
-            <span><em>I <strong>was cooking</strong> when the pipe burst.</em></span>
+            <span><em>I <strong>was cooking</strong> when the heat stopped.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("before that", "sage")}
@@ -302,17 +303,17 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Water ___ through the ceiling while Rosa was cooking. (come)",
+              label: "Rosa was cooking when the heat ___. (stop)",
               options: [
-                { value: "came", label: "came" },
-                { value: "was coming", label: "was coming" },
-                { value: "had come", label: "had come" },
+                { value: "came", label: "stopped" },
+                { value: "was coming", label: "was stopping" },
+                { value: "had come", label: "has stopped" },
               ],
               expectedAnswer: "came",
             },
             {
               type: "radio",
-              label: "Rosa ___ dinner when the pipe burst. (cook)",
+              label: "Rosa ___ dinner when the heat stopped. (cook)",
               options: [
                 { value: "cooked", label: "cooked" },
                 { value: "was cooking", label: "was cooking" },
@@ -333,11 +334,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"I was cooking when water <strong>was coming</strong> through the ceiling.\"",
+              label: "\"I was cooking when the heat <strong>has stopped</strong>.\"",
               options: [
                 { value: "correct", label: "Correct as written" },
-                { value: "came", label: "Should be 'came' (past simple for the burst)" },
-                { value: "had come", label: "Should be 'had come' (past perfect)" },
+                { value: "came", label: "Should be 'stopped' (past simple for the sudden event)" },
+                { value: "had come", label: "Should be 'is stopping' (present continuous)" },
               ],
               expectedAnswer: "came",
             },
@@ -369,7 +370,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           { speaker: "Teresa", avatar: "👩🏽", text: "Still at work? I haven’t seen you all week.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have worked</strong> in housekeeping for three years, and this has been my busiest week yet.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>have been taking</strong> extra shifts since I started here in March. I'm so tired.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏽", text: "That sounds exhausting. I <strong>have made</strong> dinner, so you won’t need to cook tonight.", side: "left", tone: "sage" },
+          { speaker: "Teresa", avatar: "👩🏽", text: "That sounds exhausting. I <strong>made</strong> dinner, so you won’t need to cook tonight.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -397,7 +398,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               label: "Rosa ___ in East Boston since 2021. (live)",
               options: [
                 { value: "has lived", label: "has lived" },
-                { value: "has been living", label: "has been living" },
+                { value: "is living", label: "is living" },
                 { value: "lived", label: "lived" },
               ],
               expectedAnswer: "has lived",
@@ -406,7 +407,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "Since March she ___ extra shifts every week. (take)",
               options: [
-                { value: "has taken", label: "has taken" },
+                { value: "is taking", label: "is taking" },
                 { value: "has been taking", label: "has been taking" },
                 { value: "takes", label: "takes" },
               ],
@@ -499,7 +500,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               label: "Rosa's plan: she ___ in Level 4 in September. (enroll)",
               options: [
                 { value: "will enroll", label: "will enroll" },
-                { value: "will be enrolling", label: "will be enrolling" },
+                { value: "has enrolled", label: "has enrolled" },
                 { value: "will have enrolled", label: "will have enrolled" },
               ],
               expectedAnswer: "will enroll",
@@ -508,7 +509,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "In September she ___ class twice a week while she still works. (take)",
               options: [
-                { value: "will take", label: "will take" },
+                { value: "has taken", label: "has taken" },
                 { value: "will be taking", label: "will be taking" },
                 { value: "will have taken", label: "will have taken" },
               ],
@@ -548,7 +549,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"By August I <strong>will finish</strong> the summer course.\" Time word: <strong>By August</strong>.",
+              label: "\"By August I <strong>will have finish</strong> the summer course.\" Time word: <strong>By August</strong>.",
               options: [
                 { value: "correct", label: "Correct as written" },
                 { value: "will have finished", label: "Should be 'will have finished'" },
@@ -565,11 +566,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "atyr-q2",
-      question: "Rosa is texting the sitter in the lobby right now. Which sentence fits?",
+      question: "Rosa is texting the sitter at work right now. Which sentence fits?",
       options: [
-        { value: "a", label: "She texts the sitter in the lobby." },
-        { value: "b", label: "She is texting the sitter in the lobby." },
-        { value: "c", label: "She has texted the sitter in the lobby." },
+        { value: "a", label: "She texts the sitter at work." },
+        { value: "b", label: "She is texting the sitter at work." },
+        { value: "c", label: "She has texted the sitter at work." },
       ],
       correctAnswer: "b",
       explanation: "Present continuous for an action in progress right now.",

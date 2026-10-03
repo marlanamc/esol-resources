@@ -82,7 +82,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "What's the Place Like?",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneApartmentListing", "Meridian Street, East Boston. Rosa's break. She sees a listing taped to the laundromat window.", "terracotta")}
+        ${sceneCard("sceneApartmentListing", "Meridian Street, East Boston, after work. Rosa sees a listing in the laundromat window and calls Brian, the landlord.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Where</strong> is the apartment?", side: "right", tone: "terracotta" },
@@ -210,14 +210,14 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "How Much Is the Rent?",
       icon: "💵",
       explanation: `
-        ${sceneCard("scenePhoneCall", "Rosa outside the laundromat. Brian picks up. She has five minutes before her shift starts.", "amber")}
+        ${sceneCard("scenePhoneCall", "Rosa outside the laundromat, still on the phone with Brian.", "amber")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>How much</strong> is the rent?", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏻", text: "Fourteen hundred a month.", side: "left", tone: "amber" },
           { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Is</strong> heat included?", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏻", text: "Heat and hot water are included. Electricity is extra.", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Is</strong> there a laundry in the building?", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Is</strong> there laundry in the building?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -342,7 +342,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "___ laundry included in the building?",
+              label: "___ there laundry in the building?",
               expectedAnswers: ["Is"],
             },
             {
@@ -364,7 +364,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "Can You Tell Me If...?",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneOfficeDesk", "Chelsea Street property management office. Nadine calls from her break at the hotel.", "sage")}
+        ${sceneCard("sceneOfficeDesk", "The next day. Rosa's coworker Nadine needs a new place too. On her break, she calls a property management office on Chelsea Street.", "sage")}
 
         ${dialogue([
           { speaker: "Nadine", avatar: "👩🏾", text: "Hello. <strong>Can you tell me</strong> what the monthly rent is?", side: "right", tone: "sage" },
@@ -518,11 +518,12 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
         ${sceneCard("sceneAfterWork", "Outside the hotel, East Boston. Rosa and Nadine compare calls after their shift.", "blue")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "Did you ask about parking? I forgot.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether parking spots are included?</em> He said yes.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Good. <strong>How long</strong> is the lease?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "One year. He has appointments on Saturday. <strong>Do you know when</strong> you can go?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Saturday morning works. I don't work weekends. I’ll call him now.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "Scott's apartment is $1,350, with heat and parking. How was Brian's place on Leyden Street?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "It's $1,400, but it's near my bus stop. I forgot to ask about the lease.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "Call him back and ask: <em>Can you tell me <strong>when</strong> the lease starts?</em>", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Good idea. I want to see it on Saturday. I don't work weekends.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "Then ask him: <em><strong>Do you know when</strong> I can see it?</em> I'll go with you.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Thanks. I'll call him now.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(59,130,246,0.06); border-left: 3px solid #3b82f6; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">

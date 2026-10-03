@@ -165,11 +165,12 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       title: "You're at the pharmacy",
       icon: "🛒",
       explanation: `
-        ${sceneCard("pillBottleClose", "Your child's medicine — but what does it say?", "terracotta")}
+        ${sceneCard("pillBottleClose", "Shopping for medicine at the pharmacy. What does the label say?", "terracotta")}
 
         <div class="gc-grad-terracotta" style="padding: 1.25rem 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem">
-          <p style="font-size: 1.05rem; margin: 0 0 0.5rem 0"><strong>The pharmacist hands you a small orange bottle.</strong></p>
-          <p style="font-size: 1rem; margin: 0; line-height: 1.6"><em>"Take 2 tablets every 4–6 hours. Do not exceed 5 doses in 24 hours. Do not use if your child is under 6 years old. May cause drowsiness. Keep out of reach of children."</em></p>
+          <p style="font-size: 1.05rem; margin: 0 0 0.5rem 0"><strong>You pick up a bottle of children's pain reliever. The label says:</strong></p>
+          <p style="font-size: 1rem; margin: 0; line-height: 1.6"><em>"Children 6–11 years: take 10 mL every 6 to 8 hours. Do not exceed 3 doses in 24 hours. Children under 6 years: ask a doctor. May cause stomach upset. Keep out of reach of children."</em></p>
+          <p style="margin: 0.5rem 0 0; font-size: 0.9rem">This is a practice label. On real bottles, children's doses depend on weight and age, so always read the label on your own bottle.</p>
           <p style="margin: 0.75rem 0 0; font-weight: 600">That is a lot of English. But every word matters. This guide will help you read and understand it all.</p>
         </div>
 
@@ -193,11 +194,11 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.875rem; margin: 1.25rem 0">
           <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
             <h4 class="gc-text-terracotta" style="margin: 0 0 0.25rem 0">🗯️ Imperatives — commands</h4>
-            <p style="margin: 0">"<strong>Take</strong> 2 tablets." &nbsp;·&nbsp; "<strong>Do not</strong> exceed 5 doses." &nbsp;·&nbsp; "<strong>Keep</strong> out of reach of children."</p>
+            <p style="margin: 0">"<strong>Take</strong> with food." &nbsp;·&nbsp; "<strong>Do not</strong> exceed 3 doses." &nbsp;·&nbsp; "<strong>Keep</strong> out of reach of children."</p>
           </div>
           <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
             <h4 class="gc-text-sage" style="margin: 0 0 0.25rem 0">💬 Declaratives — statements</h4>
-            <p style="margin: 0">"The dose <strong>is</strong> 2 tablets." &nbsp;·&nbsp; "You <strong>should not</strong> give this to children under 6."</p>
+            <p style="margin: 0">"The dose <strong>is</strong> 10 mL." &nbsp;·&nbsp; "You <strong>should not</strong> give this to children under 6."</p>
           </div>
           <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
             <h4 class="gc-text-blue" style="margin: 0 0 0.25rem 0">🔑 Modals — meaning-changers</h4>
@@ -217,7 +218,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"<strong>Take</strong> 2 tablets every 4–6 hours.\"",
+              label: "\"<strong>Take</strong> 10 mL every 6 to 8 hours.\"",
               options: [
                 { value: "imperative", label: "Imperative — a command (no subject)" },
                 { value: "declarative", label: "Declarative — a statement (has a subject)" },
@@ -226,7 +227,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"<strong>May cause</strong> drowsiness.\"",
+              label: "\"<strong>May cause</strong> stomach upset.\"",
               options: [
                 { value: "imperative", label: "Imperative — a command" },
                 { value: "declarative", label: "Declarative — a statement with a modal" },
@@ -256,7 +257,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       title: "Anatomy of the label",
       icon: "🏷️",
       explanation: `
-        ${sceneCard("parentChild", "Reading every section carefully at home", "sage")}
+        ${sceneCard("parentChild", "Before you take any pills, read every section of the label", "sage")}
 
         <p>A medicine label in the USA is organized into <strong>standard sections</strong>. The government requires these sections to appear in a specific order — so once you know the pattern, you can read <em>any</em> label.</p>
 
@@ -264,7 +265,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <p class="gc-text-muted" style="font-size: 0.88rem; margin-top: -0.5rem">Study each section. The exercises will test you on it.</p>
 
         ${fakeMedicineLabel({
-          drugName: "PediaCare Children's Pain Reliever",
+          drugName: "Children's Pain Reliever (ibuprofen)",
           genericName: "Ibuprofen",
           activeIngredient: "Ibuprofen 100 mg per 5 mL",
           purpose: "Pain reliever / Fever reducer",
@@ -277,7 +278,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           warnings: [
             "Do not use if child has had an allergic reaction to ibuprofen or any other pain reliever/fever reducer.",
             "Ask a doctor before use if the child has stomach bleeding problems.",
-            "Stop use and ask a doctor if symptoms do not improve in 10 days.",
+            "Stop use and ask a doctor if fever gets worse or lasts more than 3 days.",
             "May cause stomach upset. Take with food or milk.",
             "Keep out of reach of children.",
           ],
@@ -292,7 +293,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <h3>Label section map</h3>
         <div style="display: grid; gap: 0.6rem; margin: 1rem 0">
           ${[
-            ["Drug Name", "The name on the front of the bottle. Example: PediaCare Children's Pain Reliever.", "terracotta"],
+            ["Drug Name", "The name on the front of the bottle. Example: Children's Pain Reliever (ibuprofen).", "terracotta"],
             ["Generic Name", "The scientific/chemical name. Ibuprofen is the generic name. Generic medicines often cost less than brand-name medicines.", "sage"],
             ["Active Ingredient", "The chemical that actually treats your symptom. Every medicine has at least one.", "blue"],
             ["Purpose", "What the medicine does: pain reliever, fever reducer, antihistamine, etc.", "green"],
@@ -688,7 +689,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             ["every 4–6 hours", "Take one dose, then wait at least 4 hours. You can wait up to 6 hours. Then take the next dose."],
             ["every 6 to 8 hours", "Same idea — wait between 6 and 8 hours between doses."],
             ["not more than 4 times in 24 hours", "You can take a maximum of 4 doses total per day. Spread them out."],
-            ["for no more than 10 days", "Do not take this medicine longer than 10 days in a row without calling a doctor."],
+            ["for no more than 10 days", "Adult pain relievers often say this. Do not take the medicine longer than 10 days in a row without calling a doctor."],
             ["as needed", "Only take it when you feel the symptom. You do not have to take it on a schedule."],
           ]
             .map(
@@ -771,11 +772,11 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Stop use and ask a doctor if symptoms do not improve in 10 days.\" — When should you call a doctor?",
+              label: "\"Stop use and ask a doctor if fever gets worse or lasts more than 3 days.\" When should you call a doctor?",
               options: [
-                { value: "a", label: "After taking 10 doses" },
-                { value: "b", label: "If you still feel sick after 10 days of taking the medicine" },
-                { value: "c", label: "Every 10 hours while taking the medicine" },
+                { value: "a", label: "After giving 3 doses" },
+                { value: "b", label: "If the fever gets worse, or if your child still has a fever after 3 days" },
+                { value: "c", label: "Every 3 hours while giving the medicine" },
               ],
               expectedAnswer: "b",
             },
@@ -895,17 +896,17 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       title: "Label reading role-play",
       icon: "🎭",
       explanation: `
-        ${sceneCard("pharmacyAisle", "You can find OTC medicines on the shelf — no prescription needed", "terracotta")}
+        ${sceneCard("pharmacyAisle", "Ana bought this medicine off the shelf. No prescription needed.", "terracotta")}
 
-        <p>You are at home. Your son Pedro (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.</p>
+        <p>Your neighbor Ana's son Pedro (age 7) has a fever. Ana has a bottle of children's pain reliever, the label from Section 2. She asks you to explain it.</p>
 
         ${dialogue([
           { speaker: "Ana", avatar: "👩🏽", text: "What does this medicine do? I can't read all the English.", side: "left", tone: "amber" },
-          { speaker: "You", avatar: "🧑", text: "It's ibuprofen. It's a pain reliever and fever reducer. The active ingredient is ibuprofen — 100 mg per 5 mL.", side: "right", tone: "sage" },
-          { speaker: "Ana", avatar: "👩🏽", text: "How much do I give my son? He's 7.", side: "left", tone: "amber" },
-          { speaker: "You", avatar: "🧑", text: "He's between 6 and 11, so you give him 200 mg — that's 10 mL. You can give it every 6 to 8 hours, but not more than 3 times a day.", side: "right", tone: "sage" },
+          { speaker: "You", avatar: "🧑", text: "It's ibuprofen. It's a pain reliever and fever reducer. There are 100 mg in every 5 mL.", side: "right", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏽", text: "How much do I give Pedro? He's 7.", side: "left", tone: "amber" },
+          { speaker: "You", avatar: "🧑", text: "He's between 6 and 11, so give him 10 mL. Wait 6 to 8 hours between doses. No more than 3 doses a day.", side: "right", tone: "sage" },
           { speaker: "Ana", avatar: "👩🏽", text: "And the warnings? What do I need to watch out for?", side: "left", tone: "amber" },
-          { speaker: "You", avatar: "🧑", text: "It may cause stomach upset — so give it with food. And do not give it if he's allergic to ibuprofen. If he doesn't feel better in 10 days, call the doctor.", side: "right", tone: "sage" },
+          { speaker: "You", avatar: "🧑", text: "Give it with food. If his fever gets worse or lasts more than 3 days, stop and call the doctor.", side: "right", tone: "sage" },
         ])}
 
         <p class="gc-text-muted" style="font-size: 0.88rem; margin-top: 0.5rem">Use the label from Section 2 to answer the exercises below. You can scroll up if you need to look at it again.</p>
@@ -922,7 +923,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Pedro is 9 years old. What is the correct dose for him?",
+              label: "Pedro is 7 years old. What is the correct dose for him?",
               options: [
                 { value: "a", label: "400 mg (20 mL)" },
                 { value: "b", label: "200 mg (10 mL)" },
@@ -972,10 +973,10 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "\"Stop use and ask a doctor if symptoms do not improve in 10 days.\" — Explain this in simple English:",
+              label: "\"Stop use and ask a doctor if fever gets worse or lasts more than 3 days.\" Explain this in simple English:",
               expectedAnswers: [
-                "If your child is still sick after 10 days, stop giving the medicine and call a doctor.",
-                "After 10 days, if the fever or pain doesn't get better, stop and call your doctor.",
+                "If the fever gets worse or your child still has a fever after 3 days, stop giving the medicine and call a doctor.",
+                "If the fever doesn't go away in 3 days, or it gets worse, stop and call your doctor.",
               ],
             },
           ],
@@ -1308,13 +1309,13 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
 
           <div class="gc-bg-terracotta-alpha" style="padding: 1rem 1.25rem; border-radius: 0.65rem; border-left: 4px solid #b05740">
             <div style="font-weight: 700; font-size: 0.95rem; color: #b05740; margin-bottom: 0.3rem">🛒 Marketplace / ACA Plans (Obamacare)</div>
-            <div style="font-size: 0.85rem; line-height: 1.65">If your job doesn't offer insurance or you are self-employed, you can shop for a plan at <strong>healthcare.gov</strong>. Based on your income, you <em>may</em> qualify for a subsidy (financial help) to lower the cost. Open enrollment is usually November through mid-January, but exact dates can vary by state.</div>
-            <div class="gc-text-muted" style="font-size: 0.78rem; margin-top: 0.4rem"><strong>Grammar:</strong> "If I earn under $X, I <em>may qualify</em> for lower premiums." / "<em>You can apply</em> at healthcare.gov."</div>
+            <div style="font-size: 0.85rem; line-height: 1.65">If your job doesn't offer insurance or you are self-employed, you can shop for a plan. In Massachusetts, you apply at the <strong>Massachusetts Health Connector</strong> (mahealthconnector.org). Based on your income, you <em>may</em> qualify for a subsidy (financial help) to lower the cost. Open enrollment is usually November through January.</div>
+            <div class="gc-text-muted" style="font-size: 0.78rem; margin-top: 0.4rem"><strong>Grammar:</strong> "If I earn under $X, I <em>may qualify</em> for lower premiums." / "<em>You can apply</em> at the Health Connector."</div>
           </div>
 
           <div class="gc-bg-sage-alpha" style="padding: 1rem 1.25rem; border-radius: 0.65rem; border-left: 4px solid #6a8d73">
             <div style="font-weight: 700; font-size: 0.95rem; color: #6a8d73; margin-bottom: 0.3rem">🌿 Medicaid</div>
-            <div style="font-size: 0.85rem; line-height: 1.65">Free or very low-cost insurance for people with low incomes. Each state runs its own Medicaid program with different names (e.g., Medi-Cal in California, TennCare in Tennessee). Covers doctor visits, hospital, prescriptions, mental health, and more. <strong>You can apply any time of year.</strong></div>
+            <div style="font-size: 0.85rem; line-height: 1.65">Free or very low-cost insurance for people with low incomes. Each state runs its own Medicaid program. In Massachusetts, Medicaid and CHIP are called <strong>MassHealth</strong>. Covers doctor visits, hospital, prescriptions, mental health, and more. <strong>You can apply any time of year.</strong></div>
             <div class="gc-text-muted" style="font-size: 0.78rem; margin-top: 0.4rem"><strong>Grammar:</strong> "If you <em>earn</em> under the income limit, you <em>may qualify</em> for Medicaid." / "Medicaid <em>covers</em> most services at no cost."</div>
           </div>
 
@@ -1347,8 +1348,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.875rem 1rem; border-radius: 0.5rem; margin-top: 0.5rem">
           <div class="gc-text-blue" style="font-weight: 700; margin-bottom: 0.35rem">How to check if you qualify</div>
           <ul style="margin: 0 0 0 1rem; line-height: 1.8; font-size: 0.85rem">
-            <li>For <strong>Medicaid and CHIP</strong>: go to your state's Medicaid website or call 1-877-543-7669</li>
-            <li>For <strong>Marketplace plans</strong>: go to healthcare.gov or call 1-800-318-2596</li>
+            <li>For <strong>MassHealth</strong> (Medicaid and CHIP in Massachusetts) and <strong>Health Connector plans</strong>: go to mahealthconnector.org</li>
             <li>For <strong>Medicare</strong>: go to medicare.gov or call 1-800-633-4227</li>
             <li>For <strong>Community Health Centers</strong>: findahealthcenter.hrsa.gov</li>
           </ul>
@@ -1377,7 +1377,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Pedro is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid.",
+              label: "Daniel is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid.",
               options: [
                 { value: "chip", label: "CHIP — Children's Health Insurance Program" },
                 { value: "medicare", label: "Medicare" },
@@ -1388,7 +1388,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Ana has a low income and no job with benefits. She needs coverage for herself.",
+              label: "Gladys has a low income and no job with benefits. She needs coverage for herself.",
               options: [
                 { value: "medicare", label: "Medicare" },
                 { value: "medicaid", label: "Medicaid" },
@@ -1403,7 +1403,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
               options: [
                 { value: "chip", label: "CHIP" },
                 { value: "medicaid", label: "Medicaid" },
-                { value: "aca", label: "ACA Marketplace plan (healthcare.gov)" },
+                { value: "aca", label: "Marketplace plan (MA Health Connector)" },
                 { value: "medicare", label: "Medicare" },
               ],
               expectedAnswer: "aca",
@@ -1527,7 +1527,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Ana's insurance card shows her plan is BlueStar. She wants to see a doctor. Which doctor should she choose to pay LESS?",
+              label: "Sofía's insurance card shows her plan is BlueStar. She wants to see a doctor. Which doctor should she choose to pay LESS?",
               options: [
                 { value: "a", label: "Any doctor she finds on Google" },
                 { value: "b", label: "A BlueStar in-network doctor" },
@@ -1790,11 +1790,11 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             .join("")}
         </div>
 
-        <h3>Story 1: Rosa needs care but has no insurance</h3>
+        <h3>Story 1: Marisol needs care but has no insurance</h3>
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩", text: "I do not have insurance. I am afraid to go to the clinic because I cannot pay.", side: "right", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩", text: "I do not have insurance. I am afraid to go to the clinic because I cannot pay.", side: "right", tone: "sage" },
           { speaker: "Clinic worker", avatar: "💁", text: "You can still ask for help. Are you a Massachusetts resident? We can help you apply for MassHealth Limited or Health Safety Net if you qualify.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩", text: "What should I bring?", side: "right", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩", text: "What should I bring?", side: "right", tone: "sage" },
           { speaker: "Clinic worker", avatar: "💁", text: "Bring proof of who you are, proof that you live in Massachusetts, and income information if you have it. If something is missing, ask what else you can use.", side: "left", tone: "blue" },
         ])}
 
@@ -1811,12 +1811,12 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           </ol>
         </div>
 
-        <h3>Story 3: Ana is afraid to report a work injury</h3>
-        <p>Ana hurt her back lifting boxes at work. She is at a community clinic asking for help. She is afraid her boss will get angry, fire her, or ask about her immigration status if she says the injury happened at work.</p>
+        <h3>Story 3: Fatima is afraid to report a work injury</h3>
+        <p>Fatima hurt her back lifting boxes at work. She is at a community clinic asking for help. She is afraid her boss will get angry, fire her, or ask about her immigration status if she says the injury happened at work.</p>
         ${dialogue([
-          { speaker: "Ana", avatar: "👩🏽", text: "I got hurt at work, but I am scared to report it. Can my boss ask about my immigration status?", side: "right", tone: "amber" },
+          { speaker: "Fatima", avatar: "👩🏽", text: "I got hurt at work, but I am scared to report it. Can my boss ask about my immigration status?", side: "right", tone: "amber" },
           { speaker: "Worker advocate", avatar: "🧑‍💼", text: "The Massachusetts Attorney General says their office serves all workers regardless of immigration status. Workers have rights to safe workplaces and protection from retaliation.", side: "left", tone: "blue" },
-          { speaker: "Ana", avatar: "👩🏽", text: "What should I say at the clinic?", side: "right", tone: "amber" },
+          { speaker: "Fatima", avatar: "👩🏽", text: "What should I say at the clinic?", side: "right", tone: "amber" },
           { speaker: "Worker advocate", avatar: "🧑‍💼", text: "Say: \"I was injured at work. I need medical care, and I need the worker's compensation insurance information. I would like everything in writing.\"", side: "left", tone: "blue" },
         ])}
 
@@ -2112,11 +2112,11 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
     },
     {
       id: "mq-label-conditional",
-      question: "\"Stop use and ask a doctor if symptoms do not improve in 10 days.\" When should you call the doctor?",
+      question: "\"Stop use and ask a doctor if fever gets worse or lasts more than 3 days.\" When should you call the doctor?",
       options: [
-        { value: "a", label: "After taking 10 doses" },
-        { value: "b", label: "If the illness is still there after 10 days on the medicine" },
-        { value: "c", label: "Every 10 hours while taking the medicine" },
+        { value: "a", label: "After giving 3 doses" },
+        { value: "b", label: "If the fever gets worse, or it is still there after 3 days" },
+        { value: "c", label: "Every 3 hours while giving the medicine" },
       ],
       correctAnswer: "b",
       skillTag: "label-conditional-reading",
@@ -2355,7 +2355,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
   - If label-conditional-reading is weak →
     Return to Section 5. Practice "if" sentence structures:
     If [condition] → [action]. Have students underline the condition and circle the action.
-    Focus on "if symptoms don't improve in X days" as the most common label pattern.
+    Focus on "if fever gets worse or lasts more than X days" as the most common label pattern.
 
   - If pharmacist-question tags are weak →
     Return to Section 6. Model the register shift: label uses imperatives (commands),

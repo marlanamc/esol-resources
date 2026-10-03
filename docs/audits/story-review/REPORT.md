@@ -11,6 +11,8 @@ This review comes after a day of fixes: continuity fixes, rewrites of 7 guides, 
 
 The "Makes sense" scores improved the most: 18 guides scored 1 in round 1, and 8 do now.
 
+> **Status:** fix round 2 is done. Every item below was checked against the source and fixed, along with the cast slips and most of the polish. Can, Should, Must was rewritten as one family story about a "Hi Mom, new number" scam. Changes that would mean restructuring a guide were left alone, such as guides built as separate scenes (Second Conditional, Be Used To) and the shift-swap section in Let's Make a Suggestion. Scores below are from before this round.
+
 ### Fix first: safety, law and answer keys
 
 These are reviewer findings that haven't been checked against the source yet. Check each one before changing anything.

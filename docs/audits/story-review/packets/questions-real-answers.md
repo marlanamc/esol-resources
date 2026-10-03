@@ -12,7 +12,7 @@
 
 - Questions for smarter digital habits: Rosa, Sarah
 - Who, What, Where: the basics: Amara, Sarah
-- When and How: time and details: Tech helper, Jean
+- When and How: time and details: Tech helper, Nadine
 - Why: giving and asking for reasons: Linh
 - Checking a suspicious message: Diego, Fernanda
 
@@ -86,15 +86,15 @@ Common mistake to avoid:
 
 ## 3. When and How: time and details
 
-> 🖼 **Scene:** A community center in East Boston. Jean asks for help saving his photos.  
+> 🖼 **Scene:** A community center in East Boston. Nadine asks a tech helper how to save her photos.  
 > _Photo shows: Two women talking in a modern office setting._
 
 - **Tech helper:** When did you last save a copy of your photos on another device?
-- **Jean:** I haven't done that. How do I copy them to my laptop?
+- **Nadine:** I haven't done that. How do I copy them to my laptop?
 - **Tech helper:** You can connect your phone with a USB cable. Do you have yours?
-- **Jean:** Yes, right here. How long does it take?
+- **Nadine:** Yes, right here. How long does it take?
 - **Tech helper:** It depends on how many photos you have. Let's try a few first.
-- **Jean:** Thanks. I don't want to lose my family photos if my phone breaks.
+- **Nadine:** Thanks. I don't want to lose my family photos if my phone breaks.
 
 When asks about a time. How asks about a method or a detail.
 
@@ -191,7 +191,7 @@ Wrong word order (subject before helper)
 
 ## Mini quiz
 
-- The computer class moved to a new room this month. You want to know which room. Which question do you ask? _(options: Who is the computer class? / When is the computer class? / Where is the computer class?)_
+- You want to find the room for the computer class. Which question do you ask? _(options: Who is the computer class? / When is the computer class? / Where is the computer class?)_
 - Fill in the blank: "___ is the online meeting? On Monday and Wednesday evenings." (Which question word asks about time?)
 - Linh wants to join a video call. Which question is correctly formed? _(options: What time does the call starts? / What time does the call start? / What time the call starts?)_
 - A classmate asks about an online meeting. Put the words in order to make the question.

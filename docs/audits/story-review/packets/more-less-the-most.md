@@ -19,7 +19,7 @@
 
 ## 1. Which One Is Cheaper?
 
-> 🖼 **Scene:** Market Basket, Chelsea Street. After a double shift, Rosa and Amara stop to compare prices.  
+> 🖼 **Scene:** Market Basket, Chelsea Street. After work, Rosa and Amara stop to compare prices.  
 > _Photo shows: Grocery store produce aisle with colorful fruits and vegetables on display._
 
 - **Rosa:** Beans are cheaper here than at the dollar store.
@@ -34,7 +34,7 @@ Irregular comparatives
 good better | bad worse | far farther / further
 
 **Exercise: Comparative or not?**
-- Market Basket is ___ than the dollar store for rice. (cheap) _(options: more cheap / cheaper / cheapest)_
+- Market Basket is ___ than the dollar store for beans. (cheap) _(options: more cheap / cheaper / cheapest)_
 - The cooking oil at the dollar store is ___ than here. (affordable) _(options: affordabler / more affordabler / more affordable)_
 - The walk to Market Basket is ___ than the bus ride. (short) _(options: more short / shorter / shortest)_
 - The quality of this bread is ___ than the other brand. (good) _(options: gooder / more good / better)_
@@ -44,7 +44,7 @@ good better | bad worse | far farther / further
 - Unscramble:
 
 **Exercise: Write the comparative**
-- The dollar store is ___ (close) to my apartment than Market Basket.
+- The dollar store is ___ (far) from my apartment than Market Basket.
 - The bus is ___ (slow) than walking from the stop.
 
 ## 2. The Cheapest Plan I Could Find
@@ -57,6 +57,7 @@ good better | bad worse | far farther / further
 - **Kevin:** Plan C. It is the least expensive at $35 a month.
 - **Rosa:** And which one has the most data?
 - **Kevin:** Plan B. But Plan C is the best value for the price.
+- **Rosa:** Then Plan C. I don’t need the most data. I need the cheapest bill.
 
 Superlatives compare three or more things and name the one at the top (or bottom). Always use the before a superlative.
 
@@ -83,8 +84,8 @@ good the best | bad the worst | far the farthest / furthest
 > _Photo shows: Person sitting at a table looking at apartment listings on a laptop and phone._
 
 - **Fernanda:** This one on Bremen Street has more rooms but fewer closets.
-- **Diego:** The one on Maverick has less noise. It is not on the main street.
-- **Fernanda:** But it costs more. $200 more a month.
+- **Diego:** And it costs more. $200 more a month than the one on Maverick.
+- **Fernanda:** The Maverick one is smaller, but it has less noise. It’s not on the main street.
 - **Diego:** Before we decide, let’s ask about the landlord. I want fewer problems than we had last time.
 
 Use more for both countable and uncountable things. Use less for uncountable things. Use fewer for countable things you can count one by one.
@@ -108,7 +109,7 @@ Use more for both countable and uncountable things. Use less for uncountable thi
 > 🖼 **Scene:** Flower stall near St. Mary's, East Boston. Saturday morning.  
 > _Photo shows: Outdoor flower stall with marigolds and colorful bouquets for sale._
 
-- **Rosa:** The marigolds here are more expensive than last year.
+- **Rosa:** I need marigolds for my window box. They’re more expensive than last year.
 - **Vendor:** Yes, but these are the freshest on the street. Look at the color.
 - **Rosa:** The shop on Sumner has the lowest price. But it is farther.
 - **Vendor:** Buy here and save the bus fare. It is the better deal today.
@@ -128,12 +129,12 @@ more + noun / less + uncountable / fewer + countable
 
 **Exercise: Reading real comparisons**
 - "The flowers here are the freshest on the street." _(options: The flowers are fresher than one other shop. / The flowers are fresher than all other shops on the street. / The flowers were fresh yesterday.)_
-- "This apartment is the cheapest 2BR near the 111 bus." _(options: This apartment is cheaper than one other apartment. / This apartment costs less than all other 2BRs near the 111 bus. / This apartment was cheap last year.)_
+- "This apartment is the cheapest 2BR near the 116 bus." _(options: This apartment is cheaper than one other apartment. / This apartment costs less than all other 2BRs near the 116 bus. / This apartment was cheap last year.)_
 
 **Exercise: Comparative or superlative?**
 - Of all the flower stalls on the street, this one has ___ prices. (low) _(options: lower (comparative. 2 things) / the lowest (superlative. all stalls))_
 - The Sumner shop is ___ than this stall. (far) _(options: the farthest (superlative) / farther (comparative. 2 locations))_
-- Rosa found ___ 2-bedroom on the list, but also ___ one near the bus. (small, cheap) _(options: the smallest / the cheapest / smaller / cheaper / the most small / cheapest)_
+- Fernanda found ___ 2-bedroom on the list, but also ___ one near the bus. (small, cheap) _(options: the smallest / the cheapest / smaller / cheaper / the most small / cheapest)_
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -146,8 +147,8 @@ more + noun / less + uncountable / fewer + countable
 ## Mini quiz
 
 - Rosa says: "Market Basket is cheaper than the dollar store for beans." What is she doing? _(options: Comparing two stores. / Saying Market Basket is the cheapest store in the city. / Saying prices at both stores are the same.)_
-- Kevin compares three ways to get to work. Which sentence is correct? _(options: The Blue Line is the most fastest. / The Blue Line is fastest. / The Blue Line is the fastest.)_
-- Fill in the blank: "Plan B is ___ expensive than Plan A." (Long adjective comparative: don't add -er.)
-- Carlos compares the markets near his house. Put the words in order.
+- Fernanda compares three ways to get to work. Which sentence is correct? _(options: The Blue Line is the most fastest. / The Blue Line is fastest. / The Blue Line is the fastest.)_
+- Fill in the blank: "Plan B is ___ expensive than Plan C." (Long adjective comparative: don't add -er.)
+- Amara compares the markets near her apartment. Put the words in order.
 - Diego says: "We need fewer problems with the landlord." Why is 'fewer' correct here? _(options: Because problems are uncountable. / Because problems are countable. You can count one problem, two problems. / Because 'less' only works with adjectives.)_
 

@@ -94,7 +94,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Scott, can I come in at 11 on Election Day? It's my first time voting.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Congratulations. <strong>If you need</strong> a day off, <strong>you ask</strong> two weeks early. A morning is easier.", side: "left", tone: "blue" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Congratulations. <strong>If you need</strong> a day off, <strong>you ask</strong> two weeks ahead. A morning is easier.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Just the morning. The polls open at 7. I'll be here by 11.", side: "right", tone: "terracotta" },
           { speaker: "Scott", avatar: "👨🏼‍💼", text: "Write it on the request sheet. My wife votes at 7 every year. <strong>If you go</strong> early, the line <strong>is</strong> short.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "And if the line is long and I'm late?", side: "right", tone: "terracotta" },
@@ -139,9 +139,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Scott says this is always true at the restaurant. Which sentence fits the Zero Conditional?",
               options: [
-                { value: "a", label: "If you need a day off, you will ask two weeks early." },
-                { value: "b", label: "If you need a day off, you ask two weeks early." },
-                { value: "c", label: "If you need a day off, you asked two weeks early." },
+                { value: "a", label: "If you need a day off, you will ask two weeks ahead." },
+                { value: "b", label: "If you need a day off, you ask two weeks ahead." },
+                { value: "c", label: "If you need a day off, you asked two weeks ahead." },
               ],
               expectedAnswer: "b",
             },
@@ -170,8 +170,8 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "you", "need", "a", "day", "off", "you", "ask", "two", "weeks", "early"],
-              correctAnswer: "If you need a day off you ask two weeks early",
+              words: ["If", "you", "need", "a", "day", "off", "you", "ask", "two", "weeks", "ahead"],
+              correctAnswer: "If you need a day off you ask two weeks ahead",
             },
           ],
         },
@@ -302,7 +302,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           { speaker: "Jennifer", avatar: "👩🏻", text: "Or you can vote early. The library has early voting on weekends. You don't need a reason.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I didn't know that. <strong>As soon as</strong> my registration <strong>goes</strong> through, I'll look up the times.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "I'll still ask Miguel about Tuesday. <strong>When</strong> he <strong>gets</strong> here, I'll ask him.", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Thanks. But I <strong>won't</strong> say yes to him <strong>unless</strong> Scott <strong>agrees</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Thanks. But I <strong>won't</strong> switch <strong>unless</strong> Scott <strong>agrees</strong>.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -318,7 +318,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("unless = if not", "sage")}
-            <span><em>I <strong>won't</strong> say yes <strong>unless</strong> Scott <strong>agrees</strong>.</em></span>
+            <span><em>I <strong>won't</strong> switch <strong>unless</strong> Scott <strong>agrees</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("when = certain future", "blue")}
@@ -401,7 +401,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           { speaker: "Carlos", avatar: "👨🏽", text: "Scott, Miguel can't switch with me. So I'm voting early, Saturday morning at the library.", side: "right", tone: "terracotta" },
           { speaker: "Scott", avatar: "👨🏼‍💼", text: "Sorry about the schedule. Saturday morning's fine. Can you take Saturday night, too? We're short.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Saturday nights pay double, right?", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Yes. <strong>If you work Saturday nights, you earn double.</strong> Everybody wants those shifts.", side: "left", tone: "blue" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Yes. <strong>If you work Saturday nights, you earn double.</strong> But nobody wants to close.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Then <strong>if I vote Saturday morning, I'll still make the night shift</strong>. That covers the electric bill and helps with rent.", side: "right", tone: "terracotta" },
           { speaker: "Scott", avatar: "👨🏼‍💼", text: "Deal. <strong>If I don't see you by 5, I'll call you</strong>.", side: "left", tone: "blue" },
         ])}

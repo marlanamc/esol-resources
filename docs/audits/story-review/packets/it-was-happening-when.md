@@ -58,7 +58,7 @@ On the timeline, past continuous is a line. The pipe burst (past simple) is the 
 ## 3. When and While
 
 - **Amina:** Lucia, what happened last night? I heard noise from upstairs.
-- **Lucia:** I was mopping the kitchen when the pipe burst. Water came everywhere.
+- **Lucia:** I was mopping the kitchen when the pipe burst. Water went everywhere.
 - **Amina:** While you were calling the landlord, I heard you on the phone. I almost knocked.
 - **Lucia:** I wish you had! The kids woke up while I was moving furniture away from the water.
 
@@ -79,7 +79,7 @@ Quick tip: the continuous action is the background (line). The simple action is 
 > _Photo shows: A woman looking at her smartphone on a couch._
 
 - **Sarah:** Lucia, this is Sarah from your renter's insurance. Can you walk me through what happened?
-- **Lucia:** Yes. It was almost midnight. The kids were sleeping. I was mopping the kitchen when I heard a crack above me.
+- **Lucia:** Yes. It was almost midnight. My younger kids were sleeping. I was mopping the kitchen when I heard a crack above me.
 - **Sarah:** And then?
 - **Lucia:** Water came down fast. I grabbed a bucket. While I was holding the bucket, I called the landlord with my other hand.
 - **Sarah:** Okay, I have enough to file the claim. Thank you.

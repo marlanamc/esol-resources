@@ -94,17 +94,15 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePhone", "East Boston, Tuesday evening. Claudette calls her cousin Jean in Montreal.", "sage")}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Emily from work called earlier, but tonight Claudette wants to catch up with family.</p>
+        ${sceneCard("scenePhone", "East Boston, Tuesday evening. Claudette texts her cousin Jean in Montreal.", "sage")}
 
         ${dialogue([
-          { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever tried</strong> Haitian food in Boston?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "Yes, I <strong>have</strong>! There is a restaurant on Maverick Square. It is so good.", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "👨🏽", text: "I’ve seen that place. <strong>Have</strong> you <strong>ever eaten</strong> there with a big group?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>. Are you planning something?", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "👨🏽", text: "A family dinner. <strong>Have</strong> you <strong>ever cooked</strong> for twenty people? I’m not sure I can manage it.", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>! Let’s call the restaurant and ask if they have room.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "You’re visiting next month, right? <strong>Have</strong> you <strong>ever helped</strong> at a food pantry?", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have</strong>. I <strong>packed</strong> boxes at my church in Montreal last winter. Why?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "The pantry near Maverick Square needs help that Saturday. A lot of the families there speak Creole.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Good, we can translate. <strong>Have</strong> you <strong>ever volunteered</strong> there?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>. But I picked up food there when I first came. They were kind to me.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Then sign us both up. Send me the time and the address.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -269,6 +267,7 @@ export const haveYouEverContent: InteractiveGuideContent = {
 
         <div style="padding: 0.85rem 1rem; background: rgba(176,87,64,0.06); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
           <p style="margin: 0; font-size: 0.93rem"><strong>Key rule:</strong> If the question includes a specific time (last Saturday, yesterday, in 2020), use <strong>Past Simple</strong>. If there is no time, or you say "ever," use <strong>Have you...?</strong></p>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.88rem; opacity: 0.85">You will also hear "Did you ever...?" for life experience, especially in American English. It is OK. In this lesson, practice "Have you ever...?"</p>
         </div>
       `,
       exercises: [
@@ -313,10 +312,10 @@ export const haveYouEverContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Situation: You want to know about any experience in your friend's life. Question: \"<strong>Did you ever try Guatemalan food?</strong>\"",
+              label: "Situation: You are asking about last weekend specifically. Question: \"<strong>Have you tried Guatemalan food last weekend?</strong>\"",
               options: [
                 { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'Have you ever tried Guatemalan food?'" },
+                { value: "incorrect", label: "Not correct. Should be 'Did you try Guatemalan food last weekend?'" },
               ],
               expectedAnswer: "incorrect",
             },
@@ -360,13 +359,13 @@ export const haveYouEverContent: InteractiveGuideContent = {
       title: "Yes, I have. No, I haven't.",
       icon: "✋",
       explanation: `
-        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, Saturday morning. Volunteers arrive for orientation.", "amber")}
+        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, Wednesday, 6 PM. New volunteers come for orientation after work.", "amber")}
 
         ${dialogue([
           { speaker: "Fatima", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>volunteered</strong> with youth programs before?", side: "left", tone: "amber" },
           { speaker: "Omar", avatar: "🧑🏽", text: "Yes, I <strong>have</strong>. I <strong>worked</strong> with kids at a summer camp in 2021.", side: "right", tone: "sage" },
           { speaker: "Fatima", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>done</strong> any food distribution work?", side: "left", tone: "amber" },
-          { speaker: "Omar", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But I am excited to learn.", side: "right", tone: "sage" },
+          { speaker: "Omar", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But my family used a food pantry when we first came. I want to help back.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -473,10 +472,10 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ${sceneCard("sceneVolunteering", "East Boston Community Center, volunteer orientation sign-in table.", "sage")}
 
         ${dialogue([
-          { speaker: "Coordinator", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>attended</strong> a neighborhood meeting?", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>attended</strong> a neighborhood meeting?", side: "left", tone: "sage" },
           { speaker: "Minh", avatar: "🧑🏽", text: "Yes, I <strong>have</strong>. I <strong>went</strong> to one about the new bus route last spring.", side: "right", tone: "terracotta" },
-          { speaker: "Coordinator", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>done</strong> translation work for your community?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But I speak Vietnamese and English, so I would love to help.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>done</strong> translation work for your community?", side: "left", tone: "sage" },
+          { speaker: "Minh", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But I speak Vietnamese and English, and my neighbor needs help at her housing meeting.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(106,141,115,0.08); border-left: 3px solid #6a8d73; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
@@ -509,11 +508,11 @@ export const haveYouEverContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Did she ever volunteer at the library?\"",
+              label: "\"Has she ever volunteer at the library?\"",
               options: [
-                { value: "a", label: "Correct as is. Past Simple is fine for a general experience question too." },
-                { value: "b", label: "Not correct. Should be: Has she ever volunteered at the library?" },
-                { value: "c", label: "Not correct. Should be: Did she ever volunteering at the library?" },
+                { value: "a", label: "Correct as is." },
+                { value: "b", label: "Not correct. Should be: Has she ever volunteered at the library? (V3 after has)" },
+                { value: "c", label: "Not correct. Should be: Has she ever volunteering at the library?" },
               ],
               expectedAnswer: "b",
             },
@@ -537,7 +536,7 @@ export const haveYouEverContent: InteractiveGuideContent = {
               type: "radio",
               label: "___ you ever ___ the East Boston Greenway? (Use the correct form.)",
               options: [
-                { value: "a", label: "Did you ever walk. Past Simple" },
+                { value: "a", label: "Did you ever walked. (two past forms: did + walked)" },
                 { value: "b", label: "Have you ever walked. Present Perfect" },
               ],
               expectedAnswer: "b",

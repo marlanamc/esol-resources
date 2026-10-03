@@ -94,8 +94,8 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         <p>Marisol texts her daughter on the bus home.</p>
 
         ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, I got my new prescription. Tell your father I need to <strong>stop taking</strong> the old white pills.", side: "right", tone: "terracotta" },
-          { speaker: "Daughter", avatar: "👧🏽", text: "OK Mamá. I'll tell him when he gets home.", side: "left", tone: "amber" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, the doctor changed my pills because of the dizziness. I need to <strong>stop taking</strong> the old white ones.", side: "right", tone: "terracotta" },
+          { speaker: "Daughter", avatar: "👧🏽", text: "OK Mamá. I hope you feel better soon.", side: "left", tone: "amber" },
         ])}
 
         <p>In both messages, <strong>stop taking</strong> refers to Marisol’s old pills. That means: she <em>was</em> taking the pills before, and now she needs to end that habit.</p>
@@ -276,8 +276,8 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "She stopped ___ her lunch to answer the pharmacist's call. (she paused eating, use 'eating'... or write 'to take' if she paused [something] to take the pill)",
-              expectedAnswers: ["to take", "taking"],
+              label: "At noon, Marisol stopped ___ her pill with her sandwich. (She paused her work.)",
+              expectedAnswers: ["to take"],
             },
           ],
         },
@@ -292,18 +292,18 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       title: "Try Taking the Generic / Try to Get Covered",
       icon: "🔄",
       explanation: `
-        ${sceneCard("sceneTryGeneric", "Pharmacy aisle, Friday evening. Marisol compares two medicine boxes.", "blue")}
+        ${sceneCard("sceneTryGeneric", "Pharmacy aisle, Friday evening. Marisol looks at the name-brand and generic medicine.", "blue")}
 
-        <p>Marisol's insurance doesn't cover the name-brand medication. Jennifer the pharmacist suggests an option, and Marisol also decides to call the insurance company herself.</p>
+        <p>After work on Friday, Marisol stops at the pharmacy again. Her receipt from last night says "generic," and she wants to know why. Jennifer explains.</p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏾", text: "The name brand isn't covered. But <strong>try taking</strong> the generic. It's the same medicine, just cheaper. Most people do fine with it.", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "Your insurance doesn't cover the name brand, so I gave you the generic. <strong>Try taking</strong> it. It's the same medicine.", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "OK. I'll <strong>try taking</strong> it for a month and see.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "You can also <strong>try to get</strong> the name brand covered. Call the insurance line and ask for a prior authorization.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I'll <strong>try to call</strong> them tomorrow, but those calls are hard. You're on hold for an hour.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "You can also <strong>try to get</strong> the name brand covered. Ask your doctor's office to request a prior authorization.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I'll <strong>try to call</strong> them on Monday, but those calls are hard. You're on hold for an hour.", side: "right", tone: "terracotta" },
         ])}
 
-        <p>Notice the two different uses: <strong>try taking</strong> (try the generic, it's an experiment, easy to do) and <strong>try to call</strong> (try to reach the insurance, it's difficult, may not succeed).</p>
+        <p>Notice the two different uses: <strong>try taking</strong> (try the generic, it's an experiment, easy to do) and <strong>try to call</strong> (try to reach the doctor's office, it's difficult, may not succeed).</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem; font-size: 1.05rem"><strong>try + -ing</strong> = experiment with something to see if it works. Low effort, worth trying.</p>
@@ -320,12 +320,12 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
             <span><em>She tried <strong>to get</strong> the name brand covered, but the insurance said no.</em> (effort, difficult)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
-            ${labelPill("earth day", "sage")}
+            ${labelPill("try + -ing", "blue")}
             <span><em>Try <strong>walking</strong> to the bus stop.</em> (experiment, you might like it)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
-            ${labelPill("earth day", "sage")}
-            <span><em>Try <strong>to reduce</strong> your carbon footprint.</em> (a goal, may be hard)</span>
+            ${labelPill("try + to", "sage")}
+            <span><em>Try <strong>to get</strong> eight hours of sleep.</em> (a goal, may be hard)</span>
           </div>
         </div>
       `,
@@ -420,7 +420,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Julio", avatar: "👨🏽", text: "Did you take your pill this morning?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>remember taking</strong> it at seven. I had it with my coffee.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>remember taking</strong> it at seven. I had it with my breakfast.", side: "right", tone: "terracotta" },
           { speaker: "Julio", avatar: "👨🏽", text: "Good. And tomorrow, <strong>remember to take</strong> it before you leave. You have the early shift.", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I know. The alarm is set. Don't worry. I always <strong>remember to take</strong> it now.", side: "right", tone: "terracotta" },
         ])}
@@ -639,10 +639,10 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"I tried getting the refill on Friday, but the pharmacy was closed.\" (She made an effort)",
+              label: "\"I tried to get the refill on Friday, but the pharmacy was closed.\" (She made an effort)",
               options: [
-                { value: "correct", label: "Correct, 'tried getting' can work here" },
-                { value: "incorrect", label: "Not correct, must use 'tried to get'" },
+                { value: "correct", label: "Correct. She made an effort, so 'tried to get' fits." },
+                { value: "incorrect", label: "Not correct, must use 'tried getting'" },
               ],
               expectedAnswer: "correct",
             },
@@ -694,7 +694,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     },
     {
       id: "sti-q2",
-      question: "Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.)",
+      question: "Marisol was working on the warehouse floor. At noon, she stopped ___ her pill. (She paused her work to take the pill.)",
       options: [
         { value: "a", label: "to take" },
         { value: "b", label: "taking" },

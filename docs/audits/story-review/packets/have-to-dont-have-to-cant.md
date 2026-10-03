@@ -27,7 +27,7 @@ Lisa at the hotline answers calls like Rosa's every winter.
 - **Rosa:** My heat stopped working on Monday. It's freezing in my apartment. What can I do?
 - **Lisa:** The landlord has to provide heat. It's the law in Massachusetts.
 - **Rosa:** And if he doesn't fix it?
-- **Lisa:** He has to fix it within 24 hours in winter. You don't have to wait. Call the city inspector.
+- **Lisa:** He has to fix it fast. You don't have to wait. Call the city inspector.
 
 Have to / Has to = something is required. Someone is obligated to do it. It is not a choice.
 
@@ -61,7 +61,7 @@ Important: Don't have to is NOT the same as can't. "You don't have to sign" = yo
 
 **Exercise: Don't have to or Can't?**
 - "You don't have to pay a pet fee if you don't have a pet." What does this mean? _(options: It is not allowed to pay a pet fee. / It is not necessary to pay a pet fee. / You must not have a pet.)_
-- The landlord ___ come into your apartment without notice. (it is not allowed) _(options: doesn't have to / can't / don't have to)_
+- The landlord ___ come into your apartment without notice unless it's an emergency. (it is not allowed) _(options: doesn't have to / can't / don't have to)_
 - "You don't have to renew your lease" means you ___ renew if you don't want to. _(options: must / can't / can choose not to)_
 
 **Exercise: Unscramble the sentence**
@@ -69,25 +69,25 @@ Important: Don't have to is NOT the same as can't. "You don't have to sign" = yo
 
 **Exercise: Fill in the blank**
 - The tenant ___ repaint the walls if it's normal wear.
-- We ___ give 30 days notice if the landlord breaks the lease first.
+- We ___ give a reason when we move out at the end of the lease.
 
 ## 3. Can't. This is not allowed
 
 > 🖼 **Scene:** Apartment building hallway. Rosa's neighbor Amara stops her at the door.  
 > _Photo shows: Apartment building entrance with mailboxes and numbered doors._
 
-- **Amara:** Rosa, the landlord called me too. He says he wants to show the apartment next week.
-- **Rosa:** But I didn't say I'm leaving. Can he just do that?
-- **Amara:** He can't show it without your permission while you still live there. And he can't come in without 24 hours notice.
+- **Amara:** Rosa, the landlord left a note. He wants to show your apartment next week.
+- **Rosa:** I know. My lease ends in February. But can he just walk in?
+- **Amara:** No, he can't just walk in. Our leases say he has to give 24 hours' notice first.
 - **Rosa:** And that extra fee on my bill? The one for 'building costs'?
 - **Amara:** He can't charge fees that aren't in your lease. That's illegal.
 
 Can't = it is not allowed. It is against the rules or the law. It is prohibited.
 
 **Exercise: Spot the error**
-- "The landlord don't have to enter without notice." Is this correct? _(options: Yes, correct. / No, should be 'can't'. entering without notice is not allowed.)_
+- "The landlord don't have to enter without notice." Is this correct? _(options: Yes, correct. / No, should be 'can't'. Entering without notice is not allowed.)_
 - Which sentence means it is against the law? _(options: You don't have to pay that fee. / You can't be evicted without a court order. / You have to sign the lease.)_
-- The landlord called. He wants to come in tomorrow morning with no warning. What do you say? _(options: You don't have to give notice. / You can't come in without 24 hours notice. / You have to come in tomorrow.)_
+- The landlord called. He wants to come in tomorrow morning with no warning. What do you say? _(options: You don't have to give notice. / You can't come in without notice. My lease says 24 hours. / You have to come in tomorrow.)_
 
 **Exercise: Fill in the blank**
 - The landlord ___ turn off the heat in January.
@@ -98,18 +98,18 @@ Can't = it is not allowed. It is against the rules or the law. It is prohibited.
 Rosa got a tenant rights flyer at the health center. Her neighbor Diego is helping her read it on the front steps.
 
 - **Diego:** Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.
-- **Rosa:** OK. It says landlords have to keep the heat above 68 degrees from September to June.
+- **Rosa:** OK. It says landlords have to keep the heat at 68 degrees or more during the day.
 - **Diego:** So he has no choice. And this one: 'Tenants don't have to pay for repairs caused by normal use.'
 - **Rosa:** And this: 'Landlords can't retaliate if you file a complaint.' Good. Then I'm calling the inspector today.
 
 Quick reference
 
-Black History Month: The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.
+The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.
 
 **Exercise: Read the flyer**
 - "The landlord must provide hot water at all times." _(options: have to. it is required / don't have to. it is not required / can't. it is not allowed)_
 - "Tenants are not required to repaint walls when they leave." _(options: have to. it is required / don't have to. it is not required / can't. it is not allowed)_
-- "Landlords are prohibited from entering without 24 hours notice." _(options: have to / don't have to / can't)_
+- "Landlords are prohibited from punishing tenants who file a complaint." _(options: have to / don't have to / can't)_
 - "You are not obligated to accept a rent increase mid-lease." _(options: have to. it is required / don't have to. it is not required / can't. it is not allowed)_
 
 **Exercise: Unscramble the tenant rights sentence**
@@ -123,7 +123,7 @@ Black History Month: The federal Fair Housing Act of 1968 made it illegal to dis
 
 - Your cousin asks if he has to come to the lease signing. He is not on the lease. Which answer is correct? _(options: Yes, he has to come. / No, he can't come. / No, he doesn't have to come.)_
 - "You don't have to pay that fee" means the same as "You can't pay that fee." _(options: True. Both mean you are not allowed to pay the fee. / False. Don't have to = not required. Can't = not allowed. They are different. / True. Don't have to and can't both mean the fee is optional.)_
-- Fill in the blank: "You ___ repaint the walls. That's the landlord's job." (Two words: not required.)
+- Fill in the blank: "You ___ repaint the walls. That's the landlord's job." (Three words: not required.)
 - The lease explains what the landlord must do before entering. Put the words in order.
-- Which sentence is NOT correct? _(options: The landlord has to keep the heat above 68 degrees. / She doesn't have to pay for normal wear. / Tenants can't to call the inspector.)_
+- Which sentence is NOT correct? _(options: The landlord has to keep the heat at 68 degrees or more. / She doesn't have to pay for normal wear. / Tenants can't to call the inspector.)_
 

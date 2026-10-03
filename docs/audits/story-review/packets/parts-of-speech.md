@@ -80,8 +80,8 @@ Amara gets stuck on the form. A man at the next desk offers to help. She knows h
 - **Samuel:** Do you need help with the form?
 - **Amara:** Yes, thanks. Wait, I know you. You work in my building, right?
 - **Samuel:** That's right, I'm Samuel. I fix things there. I help here on Tuesdays. Which class do you want?
-- **Amara:** The Tuesday evening class. I remember it from a flyer, but I can't find it on this form.
-- **Samuel:** They added it late. Write "Tuesday evening" at the bottom. The room is on the board by the door.
+- **Amara:** The evening class on Tuesday and Thursday. I remember it from a flyer, but I can't find it on this form.
+- **Samuel:** They added it late. Write "Tuesday and Thursday evening" at the bottom. The room is on the board by the door.
 
 The words in bold are verbs. But they are not all the same kind. Some are things you do. Some are things that are true about you.
 
@@ -110,10 +110,10 @@ Common state verbs: know, want, need, understand, remember, believe, like, love,
 **Exercise: Correct or not?**
 - "I am knowing all the students in my class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
 - "Samuel is helping a student right now." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
-- "She is wanting the Tuesday evening class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
+- "She is wanting the evening class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
 
 **Exercise: Fill in the verb**
-- Amara ___ the Tuesday evening class. (want)
+- Amara ___ the evening class. (want)
 - Samuel ___ new students find the right class. (help)
 
 **Exercise: Build the sentence**
@@ -130,9 +130,9 @@ Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is s
 - **Dilnoza:** This part asks us to describe our lives. What are you writing?
 - **Amara:** I have a full-time job. I work long hours. I have two children.
 - **Dilnoza:** My schedule is busy too. What did you write about your home?
-- **Amara:** It's a new building, but it's a small space for four people.
+- **Amara:** It's a new building, but it's a small space for three people.
 - **Dilnoza:** I live with my sister in a small apartment. We fight about the bathroom every morning.
-- **Amara:** Ha! Four people, one bathroom. I win.
+- **Amara:** Ha! Three people, one bathroom. I win.
 
 Adjectives describe nouns. They answer what kind? or how many? Adjectives usually come right before the noun they describe.
 
@@ -191,7 +191,7 @@ Adding -ly does not always make the adverb. Hardly is a different word with a di
 - Samuel is a ___ worker. He fixes most things the same day. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - He finishes his work very ___. He is always done before noon. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - Dilnoza speaks English ___. She practices every day. (good / well) _(options: good (adjective) / well (adverb))_
-- Her pronunciation is ___. Her teacher is happy with her progress. (good / well) _(options: good (adjective) / well (adverb))_
+- Her pronunciation is ___. People understand her easily. (good / well) _(options: good (adjective) / well (adverb))_
 
 **Exercise: Fill in the adverb**
 - Samuel explains the form ___. Everyone understands. (clear)
@@ -204,7 +204,7 @@ Adding -ly does not always make the adverb. Hardly is a different word with a di
 
 It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Samuel told them about.
 
-- **Dilnoza:** Here it is. "Classes meet every Tuesday evening in the large room." Which one is the large room?
+- **Dilnoza:** Here it is. "Classes meet every Tuesday and Thursday evening in the large room." Which one is the large room?
 - **Amara:** Not the first door. That's the supply closet. I already tried it.
 - **Dilnoza:** It also says, "Bring a pencil and a small notebook."
 - **Amara:** Small? Mine is huge. It's my son's old school notebook.
@@ -215,7 +215,7 @@ Now read the whole notice. Every word has a job. Some words name things, some sh
 
 The notice on the bulletin board:
 
-Free English classes start in September. Classes meet every Tuesday evening in the large room. Bring a pencil and a small notebook.
+Free English classes start in September. Classes meet every Tuesday and Thursday evening in the large room. Bring a pencil and a small notebook.
 
 Quick guide:
 
@@ -252,6 +252,6 @@ Adverb: describes a verb. Ask: how? when? how often?
 - Amara picks up a pencil at the registration desk. Which word is a noun? _(options: picks / pencil / at)_
 - Amara is talking about the class schedule. Which sentence is correct? _(options: "I am understanding the schedule." / "I understand the schedule." / "I understanding the schedule.")_
 - "Samuel is a helpful neighbor in Amara's building." Which word is the adjective? _(options: Samuel / helpful / building)_
-- Dilnoza tells Amara about her sister's work schedule. Put the words in order.
+- Dilnoza tells Amara about her sister. Put the words in order.
 - Three people describe themselves at the community center. Which sentence has an error? _(options: "I have two young children." / "I work hardly every day." / "I live in a small apartment.")_
 

@@ -88,11 +88,11 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneStreet", "Meridian Street, East Boston. Tuesday, 7:40 AM. The 111 just left.", "terracotta")}
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Fred missed the 111 bus again. At break, he tells his classmate Amara what happened.</p>
+        ${sceneCard("sceneStreet", "Meridian Street, East Boston. Tuesday, 7:40 AM. The 116 just left.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Fred missed the 116 bus this morning. At class that evening, he tells his classmate Amara what happened.</p>
         ${dialogue([
-          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>missed</strong> the 111 bus this morning. I <strong>walked</strong> to the Blue Line. I <strong>arrived</strong> late.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Oh no! What happened?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>missed</strong> the 116 this morning! I <strong>walked</strong> to the Blue Line and <strong>arrived</strong> at work twenty minutes late.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Oh no! How did you miss it?", side: "left", tone: "sage" },
           { speaker: "Fred", avatar: "👨🏽", text: "The bus <strong>left</strong> one minute early. I <strong>ran</strong> to the corner but it was already gone.", side: "right", tone: "terracotta" },
         ])}
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -109,7 +109,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
-            <span><em>He <strong>arrived</strong> late to class.</em></span>
+            <span><em>He <strong>arrived</strong> late to work.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("signal words", "amber")}
@@ -126,7 +126,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fred ___ the 111 bus this morning. Which form fits?",
+              label: "Fred ___ the 116 bus this morning. Which form fits?",
               options: [
                 { value: "misses", label: "misses" },
                 { value: "missed", label: "missed" },
@@ -172,10 +172,10 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneTrain", "Blue Line station, East Boston. Fred walked here after he missed the bus.", "blue")}
+        ${sceneCard("sceneTrain", "This morning, Blue Line station. Fred walked here after he missed the bus.", "blue")}
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏾", text: "So what were you doing when the bus left?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was listening</strong> to music. I <strong>was thinking</strong> about class. I didn't hear it coming.", side: "right", tone: "blue" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was crossing</strong> Meridian. I <strong>was listening</strong> to an English podcast and <strong>thinking</strong> about work. I didn't hear it.", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏾", text: "Did you try to run after it?", side: "left", tone: "sage" },
           { speaker: "Fred", avatar: "👨🏽", text: "I tried! But I <strong>was carrying</strong> a hot coffee. I couldn't run fast.", side: "right", tone: "blue" },
         ])}
@@ -186,7 +186,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("in progress", "blue")}
-            <span><em>He <strong>was listening</strong> to music.</em></span>
+            <span><em>He <strong>was listening</strong> to an English podcast.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("in progress", "blue")}
@@ -194,7 +194,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("in progress", "blue")}
-            <span><em>He <strong>was thinking</strong> about class.</em></span>
+            <span><em>He <strong>was thinking</strong> about work.</em></span>
           </div>
         </div>
         <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">On the timeline, past continuous is a line, not a dot. It was already going when the moment arrived.</p>
@@ -207,7 +207,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fred ___ to music when the bus left. Which form fits?",
+              label: "Fred ___ to an English podcast when the bus left. Which form fits?",
               options: [
                 { value: "listened", label: "listened (past simple)" },
                 { value: "was listening", label: "was listening (past continuous)" },
@@ -232,7 +232,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "He ___ (think) about class when the bus came.",
+              label: "He ___ (think) about work when the bus came.",
               expectedAnswers: ["was thinking"],
             },
           ],
@@ -268,7 +268,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("when", "terracotta")}
-            <span><em>Fred <strong>was listening</strong> to music <strong>when</strong> the bus <strong>came</strong>.</em></span>
+            <span><em>Fred <strong>was listening</strong> to an English podcast <strong>when</strong> the bus <strong>came</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("while", "blue")}
@@ -289,7 +289,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fred ___ to music when the bus came. Which form fits in the blank?",
+              label: "Fred ___ to an English podcast when the bus came. Which form fits in the blank?",
               options: [
                 { value: "listened", label: "listened" },
                 { value: "was listening", label: "was listening" },
@@ -342,7 +342,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "Ten minutes in the rain? Wow. Did someone cover for you at work?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "In the rain? Were the roads okay? Did someone cover for you at work?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "My manager did. First time ever!", side: "right", tone: "terracotta" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>
@@ -382,7 +382,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"While Claudette was waiting, Elena <strong>was arrived</strong>.\" Is this correct?",
+              label: "\"While her son was waiting at school, Elena <strong>was arrived</strong>.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. 'arrived' is past simple, not 'was arrived'" },
@@ -444,7 +444,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     {
       id: "pspc-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"While Fred ___ to music, the bus left.\" (listen + was/were)",
+      question: "Fill in the blank: \"While Fred ___ to an English podcast, the bus left.\" (listen + was/were)",
       correctAnswer: "was listening",
       acceptedAnswers: ["Was listening"],
       explanation: "While + past continuous: was/were + verb-ing. The listening was in progress when the interruption happened.",

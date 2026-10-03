@@ -19,10 +19,10 @@
 
 ## 1. Six days a week
 
-> 🖼 **Scene:** East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Saratoga Street by 9.  
+> 🖼 **Scene:** East Boston construction site, Wednesday morning, 6:45 AM.  
 > _Photo shows: Two construction workers in hard hats and safety vests talking at a job site in the early morning._
 
-Hector and Kevin grab coffee before the crew arrives. The roadwork means traffic is already backing up.
+Hector and Kevin grab coffee before the crew arrives.
 
 - **Kevin:** You look tired, man.
 - **Hector:** I have been working six days a week since January. No breaks.
@@ -66,19 +66,19 @@ Use for with a length of time. Use since with a starting point.
 - Unscramble:
 
 **Exercise: Fill in the blank**
-- Kevin has been driving extra shifts ___ March. (one word)
+- Kevin has been driving extra shifts ___ three weeks. (one word)
 
 ## 3. How long have you been working here?
 
-> 🖼 **Scene:** Hotel laundry department, third floor. Jennifer from HR runs orientation for new hires.  
+> 🖼 **Scene:** Hotel hallway, third floor. Jennifer from HR runs orientation for new hires.  
 > _Photo shows: Hotel corridor with a housekeeping cart and open room doors._
 
 Amara starts her first day at the hotel. Jennifer asks about her background before the walkthrough.
 
 - **Jennifer:** How long have you been working in housekeeping?
-- **Amara:** I have been cleaning offices and hotels for three years, since I came to Boston from Somalia.
-- **Jennifer:** Your application says you work weekends at a laundry. Have you been using the big machines there?
-- **Amara:** Yes, I have. Every Saturday and Sunday since last year.
+- **Amara:** I have been cleaning patient rooms at the hospital for almost three years.
+- **Jennifer:** Good. Have you been using the big floor machines there?
+- **Amara:** Yes, I have. I've been using them since my first month.
 
 Question form: How long + have / has + subject + been + verb-ing?
 
@@ -101,9 +101,10 @@ Osmin just finished talking to a recruiter and finds Marta still standing in lin
 
 - **Osmin:** I have applied to three companies today. I'm done.
 - **Marta:** I have been standing in this line for an hour. I haven't even talked to anyone yet.
-- **Osmin:** That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I have been working in construction.
+- **Osmin:** That’s frustrating. The construction company’s line is shorter. Their recruiter asked me, “How long have you been working in construction?”
 - **Marta:** What did you say?
 - **Osmin:** Four years. She said that's good experience.
+- **Marta:** OK, I'm switching lines. I've been doing site cleanup for two years.
 
 Present Perfect (have + V3) = the action is finished. You care about the result. Present Perfect Continuous (have been + verb-ing) = the action is still happening. You care about how long.
 
@@ -121,7 +122,7 @@ Present Perfect (have + V3) = the action is finished. You care about the result.
 ## Mini quiz
 
 - Hector works six days a week and is still working that schedule now. Which sentence is correct? _(options: He has worked six days a week since January. / He has been working six days a week since January. / He is working six days a week since January.)_
-- Jennifer asks Amara a question about her experience. Which question is correct? _(options: How long you have been folding laundry? / How long have you been folding laundry? / How long have you been fold laundry?)_
+- Jennifer asks Amara a question about her experience. Which question is correct? _(options: How long you have been working the day shift? / How long have you been working the day shift? / How long have you been work the day shift?)_
 - Fill in the blank: "She has been ___ money for months." (Present Perfect Continuous: verb-ing after 'has been'.)
 - Which sentence has a grammar error? _(options: She has been working at the hotel for two years. / How long have you been waiting for the bus? / He have been saving money since January.)_
 - Jennifer asks Amara about her cleaning experience. Put the words in order.

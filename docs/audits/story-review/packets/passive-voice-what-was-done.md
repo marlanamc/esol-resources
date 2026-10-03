@@ -27,7 +27,7 @@ Gloria got a new job. Her cousin Marcos works at the same hotel and put in a goo
 
 - **Gloria:** I was hired! Marcos talked to his supervisor and I was called the same day.
 - **Linh:** That's great! What did they say?
-- **Gloria:** I was told to come in Monday with my ID. The paperwork is already done.
+- **Gloria:** I was told to come in Monday with my ID. Most of the paperwork was done online.
 - **Linh:** So you start next week? That was fast.
 
 Notice what Gloria says: I was hired. I was called. I was told. She doesn't say who hired her or who called her. In these situations, the action matters more than the person who did it.
@@ -61,7 +61,7 @@ A uniform is included.
 
 References are expected.
 
-Transportation near the Blue Line is recommended.
+The hotel is located near the Blue Line.
 
 All of these are present passive. The company doesn't say "We require experience" or "We provide training" because the company isn't the point. The job conditions are the point.
 
@@ -135,7 +135,7 @@ I wasn't told. We weren't given any notice. She was not paid for Friday.
 - "We were moved to a different floor." _(options: We moved ourselves to a different floor. / Someone moved us to a different floor. / We are going to move to a different floor.)_
 
 **Exercise: Correct the error**
-- "My check were not paid on time." _(options: Correct / Not correct. Should be 'was not paid' (singular subject: my check))_
+- "My check were not deposited on time." _(options: Correct / Not correct. Should be 'was not deposited' (singular subject: my check))_
 
 **Exercise: Fill in the blank**
 - Gloria ___ ___ about the schedule change. (negative: was not told)
@@ -152,6 +152,8 @@ Use active when the doer is important or clear.
 Use passive when the doer is unknown, obvious, or not the point.
 
 - **Gloria:** The handbook says 'Overtime is calculated after 40 hours.' But I worked 43 and my check was short.
+- **Jennifer:** Can I see your pay stub?
+- **Gloria:** Here. Look, overtime is listed as zero hours.
 - **Jennifer:** You should ask payroll to check. Tell them, “I worked 43 hours, but I was not paid for three hours of overtime.”
 
 **Exercise: Active or passive? Choose the better sentence.**

@@ -82,13 +82,13 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Need to Move",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneLeaseEnding", "East Boston apartment. Wednesday, 11 PM, after a double shift.", "terracotta")}
+        ${sceneCard("sceneLeaseEnding", "Rosa's kitchen, East Boston. Wednesday night. Her cousin Javier stopped by after dinner.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "My lease ends in six weeks. I <strong>need to find</strong> something fast.", side: "right", tone: "terracotta" },
-          { speaker: "Cousin", avatar: "👨🏾", text: "I know. You <strong>need to call</strong> those listings tonight before they\'re gone.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "My lease ends at the end of February. I <strong>need to find</strong> something fast.", side: "right", tone: "terracotta" },
+          { speaker: "Javier", avatar: "👨🏽", text: "I know. You <strong>need to call</strong> those listings tomorrow before they\'re gone.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>need to get</strong> the deposit together. I don't have it yet.", side: "right", tone: "terracotta" },
-          { speaker: "Cousin", avatar: "👨🏾", text: "You\'ll <strong>need to talk</strong> to your manager about the extra shifts.", side: "left", tone: "sage" },
+          { speaker: "Javier", avatar: "👨🏽", text: "You\'ll <strong>need to talk</strong> to your manager about the extra shifts.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -124,7 +124,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa <strong>need to find</strong> an apartment before February. Is this correct?",
+              label: "Rosa <strong>need to find</strong> an apartment before March. Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'needs to find' (she = needs)" },
@@ -278,12 +278,12 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Hope to Find Something Before Rent Goes Up",
       icon: "📋",
       explanation: `
-        ${sceneCard("scenePhoneCall", "Amara's kitchen. Saturday morning, scrolling listings.", "sage")}
+        ${sceneCard("scenePhoneCall", "Halima's kitchen. Saturday morning. She and her sister Nadine are both looking for apartments.", "sage")}
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>hope to find</strong> something before February. If we wait, the prices go up.", side: "right", tone: "terracotta" },
+          { speaker: "Halima", avatar: "👩🏿", text: "I <strong>hope to find</strong> something before spring. If we wait, the prices go up.", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "I <strong>plan to call</strong> that place on Maverick Street today. Three bedrooms, laundry inside.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Good. I <strong>plan to ask</strong> about the heat. Last place, we paid for everything.", side: "right", tone: "terracotta" },
+          { speaker: "Halima", avatar: "👩🏿", text: "Good. I <strong>plan to ask</strong> about the heat. In our place now, it breaks every winter.", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "Me too. I <strong>hope to hear</strong> back from them by tonight.", side: "left", tone: "sage" },
         ])}
 
@@ -318,7 +318,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Amara is not 100% sure she will find an apartment this week. Which sentence fits?",
+              label: "Halima is not 100% sure she will find an apartment this week. Which sentence fits?",
               options: [
                 { value: "a", label: "She plans to find one this week." },
                 { value: "b", label: "She hopes to find one this week." },
@@ -378,7 +378,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Hello, this is Brian. Can I help you?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Hi. I <strong>would like to see</strong> the apartment on Bremen Street. Is it still available?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏽", text: "Hi. I <strong>would like to see</strong> the apartment on Lexington Street. Is it still available?", side: "right", tone: "terracotta" },
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Yes, it is. When would you like to come?", side: "left", tone: "blue" },
           { speaker: "Diego", avatar: "👨🏽", text: "I <strong>would like to come</strong> on Saturday morning, if that works.", side: "right", tone: "terracotta" },
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Saturday at 10 is fine. See you then.", side: "left", tone: "blue" },
@@ -610,7 +610,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
     {
       id: "infinitives-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She ___ to find one before February.\" (She is trying but not certain she will.)",
+      question: "Fill in the blank: \"She ___ to find one before March.\" (She is trying but not certain she will.)",
       correctAnswer: "hopes",
       explanation: "'Hope to' means you want something but are not sure it will happen. 'Plans to' would mean she has already decided.",
       topic: "infinitives",

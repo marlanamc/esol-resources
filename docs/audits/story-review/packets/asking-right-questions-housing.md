@@ -13,13 +13,13 @@ _None._
 - What's the Place Like?: Rosa, Brian
 - How Much Is the Rent?: Rosa, Brian
 - Can You Tell Me If...?: Nadine, Scott
-- Questions to Ask Before You Waste a Trip: Rosa, Nadine
+- Questions to Ask Before You Waste a Trip: Nadine, Rosa
 
 ---
 
 ## 1. What's the Place Like?
 
-> 🖼 **Scene:** Meridian Street, East Boston. Rosa's break. She sees a listing taped to the laundromat window.  
+> 🖼 **Scene:** Meridian Street, East Boston, after work. Rosa sees a listing in the laundromat window and calls Brian, the landlord.  
 > _Photo shows: Laundromat storefront with a rental flyer posted in the window._
 
 - **Rosa:** Where is the apartment?
@@ -49,14 +49,14 @@ Question word + do/does/is/are + subject + verb? Where is the apartment? How man
 
 ## 2. How Much Is the Rent?
 
-> 🖼 **Scene:** Rosa outside the laundromat. Brian picks up. She has five minutes before her shift starts.  
+> 🖼 **Scene:** Rosa outside the laundromat, still on the phone with Brian.  
 > _Photo shows: Woman on the phone outside a storefront window during a short work break._
 
 - **Rosa:** How much is the rent?
 - **Brian:** Fourteen hundred a month.
 - **Rosa:** Is heat included?
 - **Brian:** Heat and hot water are included. Electricity is extra.
-- **Rosa:** Is there a laundry in the building?
+- **Rosa:** Is there laundry in the building?
 
 How much asks about price or an uncountable amount. How many asks about a countable number. Both follow the same inversion rule: verb before subject.
 
@@ -74,12 +74,12 @@ How much asks about price or an uncountable amount. How many asks about a counta
 - Unscramble:
 
 **Exercise: Write the missing word**
-- ___ laundry included in the building?
+- ___ there laundry in the building?
 - How ___ is the rent?
 
 ## 3. Can You Tell Me If...?
 
-> 🖼 **Scene:** Chelsea Street property management office. Nadine calls from her break at the hotel.  
+> 🖼 **Scene:** The next day. Rosa's coworker Nadine needs a new place too. On her break, she calls a property management office on Chelsea Street.  
 > _Photo shows: Property management office reception desk with a staff member ready to assist._
 
 - **Nadine:** Hello. Can you tell me what the monthly rent is?
@@ -115,11 +115,12 @@ Can you tell me + what/where/when/how much + [subject + verb]? Do you know + if/
 > 🖼 **Scene:** Outside the hotel, East Boston. Rosa and Nadine compare calls after their shift.  
 > _Photo shows: Two women talking outside on a city sidewalk in the evening after their work shift._
 
-- **Rosa:** Did you ask about parking? I forgot.
-- **Nadine:** I said: Can you tell me whether parking spots are included? He said yes.
-- **Rosa:** Good. How long is the lease?
-- **Nadine:** One year. He has appointments on Saturday. Do you know when you can go?
-- **Rosa:** Saturday morning works. I don't work weekends. I’ll call him now.
+- **Nadine:** Scott's apartment is $1,350, with heat and parking. How was Brian's place on Leyden Street?
+- **Rosa:** It's $1,400, but it's near my bus stop. I forgot to ask about the lease.
+- **Nadine:** Call him back and ask: Can you tell me when the lease starts?
+- **Rosa:** Good idea. I want to see it on Saturday. I don't work weekends.
+- **Nadine:** Then ask him: Do you know when I can see it? I'll go with you.
+- **Rosa:** Thanks. I'll call him now.
 
 Questions every renter should ask, direct and indirect:
 

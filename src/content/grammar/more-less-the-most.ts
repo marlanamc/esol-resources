@@ -82,7 +82,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
       title: "Which One Is Cheaper?",
       icon: "🛒",
       explanation: `
-        ${sceneCard("sceneGroceryStore", "Market Basket, Chelsea Street. After a double shift, Rosa and Amara stop to compare prices.", "terracotta")}
+        ${sceneCard("sceneGroceryStore", "Market Basket, Chelsea Street. After work, Rosa and Amara stop to compare prices.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "Beans are <strong>cheaper</strong> here than at the dollar store.", side: "right", tone: "terracotta" },
@@ -134,7 +134,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Market Basket is ___ than the dollar store for rice. (cheap)",
+              label: "Market Basket is ___ than the dollar store for beans. (cheap)",
               options: [
                 { value: "more cheap", label: "more cheap" },
                 { value: "cheaper", label: "cheaper" },
@@ -200,8 +200,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The dollar store is ___ (close) to my apartment than Market Basket.",
-              expectedAnswers: ["closer"],
+              label: "The dollar store is ___ (far) from my apartment than Market Basket.",
+              expectedAnswers: ["farther", "further"],
             },
             {
               type: "text",
@@ -230,6 +230,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           { speaker: "Kevin", avatar: "🧑🏻", text: "Plan C. It is <strong>the least expensive</strong> at $35 a month.", side: "left", tone: "amber" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And which one has <strong>the most</strong> data?", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "🧑🏻", text: "Plan B. But Plan C is <strong>the best</strong> value for the price.", side: "left", tone: "amber" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Then Plan C. I don’t need <strong>the most</strong> data. I need <strong>the cheapest</strong> bill.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -365,8 +366,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Fernanda", avatar: "👩🏽", text: "This one on Bremen Street has <strong>more</strong> rooms but <strong>fewer</strong> closets.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "The one on Maverick has <strong>less</strong> noise. It is not on the main street.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "But it costs <strong>more</strong>. $200 <strong>more</strong> a month.", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏾", text: "And it costs <strong>more</strong>. $200 <strong>more</strong> a month than the one on Maverick.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "The Maverick one is <strong>smaller</strong>, but it has <strong>less</strong> noise. It’s not on the main street.", side: "left", tone: "sage" },
           { speaker: "Diego", avatar: "👨🏾", text: "Before we decide, let’s ask about the landlord. I want <strong>fewer</strong> problems than we had last time.", side: "right", tone: "terracotta" },
         ])}
 
@@ -495,7 +496,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
         ${sceneCard("sceneFlowerMarket", "Flower stall near St. Mary's, East Boston. Saturday morning.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "The marigolds here are <strong>more expensive</strong> than last year.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I need marigolds for my window box. They’re <strong>more expensive</strong> than last year.", side: "right", tone: "terracotta" },
           { speaker: "Vendor", avatar: "🧑🏾", text: "Yes, but these are <strong>the freshest</strong> on the street. Look at the color.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "The shop on Sumner has <strong>the lowest</strong> price. But it is <strong>farther</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Vendor", avatar: "🧑🏾", text: "Buy here and save the bus fare. It is <strong>the better</strong> deal today.", side: "left", tone: "sage" },
@@ -523,7 +524,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("listing", "sage")}
-            <span><em>"<strong>The cheapest</strong> 2BR apartment near the 111 bus. <strong>More</strong> space, <strong>less</strong> rent."</em></span>
+            <span><em>"<strong>The cheapest</strong> 2BR apartment near the 116 bus. <strong>More</strong> space, <strong>less</strong> rent."</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.07); border-radius: 0.4rem">
             ${labelPill("conversation", "amber")}
@@ -549,10 +550,10 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"This apartment is the cheapest 2BR near the 111 bus.\"",
+              label: "\"This apartment is the cheapest 2BR near the 116 bus.\"",
               options: [
                 { value: "a", label: "This apartment is cheaper than one other apartment." },
-                { value: "b", label: "This apartment costs less than all other 2BRs near the 111 bus." },
+                { value: "b", label: "This apartment costs less than all other 2BRs near the 116 bus." },
                 { value: "c", label: "This apartment was cheap last year." },
               ],
               expectedAnswer: "b",
@@ -584,7 +585,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa found ___ 2-bedroom on the list, but also ___ one near the bus. (small, cheap)",
+              label: "Fernanda found ___ 2-bedroom on the list, but also ___ one near the bus. (small, cheap)",
               options: [
                 { value: "a", label: "the smallest / the cheapest" },
                 { value: "b", label: "smaller / cheaper" },
@@ -659,7 +660,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     },
     {
       id: "mlm-q2",
-      question: "Kevin compares three ways to get to work. Which sentence is correct?",
+      question: "Fernanda compares three ways to get to work. Which sentence is correct?",
       options: [
         { value: "a", label: "The Blue Line is the most fastest." },
         { value: "b", label: "The Blue Line is fastest." },
@@ -675,7 +676,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "mlm-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Plan B is ___ expensive than Plan A.\" (Long adjective comparative: don't add -er.)",
+      question: "Fill in the blank: \"Plan B is ___ expensive than Plan C.\" (Long adjective comparative: don't add -er.)",
       correctAnswer: "more",
       explanation: "Long adjectives use 'more' for comparatives. Never add -er to a long adjective like 'expensive'.",
       topic: "comparative-form-long-adjective",
@@ -686,9 +687,9 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "mlm-qws1",
       type: "word-scramble" as const,
-      question: "Carlos compares the markets near his house. Put the words in order.",
-      words: ["This", "market", "is", "the", "closest", "to", "my", "house"],
-      correctAnswer: "This market is the closest to my house",
+      question: "Amara compares the markets near her apartment. Put the words in order.",
+      words: ["This", "market", "is", "the", "closest", "to", "my", "apartment"],
+      correctAnswer: "This market is the closest to my apartment",
       hint: "superlatives need 'the'",
       explanation: "Superlatives always need 'the' before them. 'The closest' ranks it above all others in the group.",
       topic: "superlative-form",

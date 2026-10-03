@@ -88,9 +88,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusCommute", "On the 114 bus after her shift. Tuesday, 1:15 PM.", "sage")}
+        ${sceneCard("sceneBusCommute", "On the bus to work. Tuesday, 4:30 AM.", "sage")}
 
-        <p>Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. After work, she video-calls her sister Mai on the 114 bus.</p>
+        <p>Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. On the bus to work, she video-calls her sister Mai. It is afternoon in Vietnam.</p>
 
         ${dialogue([
           { speaker: "Mai", avatar: "👩🏻", text: "How are the kids?", side: "left", tone: "sage" },
@@ -273,7 +273,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Edwin", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> share a two-bedroom apartment with my cousin.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> live on Meridian Street with my two kids.", side: "right", tone: "terracotta" },
           { speaker: "Edwin", avatar: "👨🏽", text: "How did you get to work back home?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to walk</strong> to work. <strong>But now I</strong> take two buses.", side: "right", tone: "terracotta" },
         ])}
@@ -332,7 +332,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I used to ___ (live) with my parents, but now I share an apartment.",
+              label: "I used to ___ (live) with my parents, but now I live with my kids.",
               expectedAnswers: ["live"],
             },
           ],
@@ -365,9 +365,10 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         <p>School morning rush. Linh packs lunch for her two kids. Her son asks for a different lunch today.</p>
 
         ${dialogue([
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to pack</strong> rice for you every day. Do you want some today?", side: "right", tone: "terracotta" },
-          { speaker: "Son", avatar: "👦🏻", text: "Can I have PB&amp;J today?", side: "left", tone: "amber" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Sure. You <strong>used to ask</strong> for rice, but <strong>now you prefer</strong> sandwiches. I’m still <strong>getting used to</strong> that!", side: "right", tone: "terracotta" },
+          { speaker: "Son", avatar: "👦🏻", text: "Mom, can I have PB&amp;J today?", side: "left", tone: "amber" },
+          { speaker: "Linh", avatar: "👩🏻", text: "PB&amp;J? I <strong>used to pack</strong> rice for you every day. You loved it!", side: "right", tone: "terracotta" },
+          { speaker: "Son", avatar: "👦🏻", text: "I <strong>used to like</strong> rice. Now everyone at school eats sandwiches.", side: "left", tone: "amber" },
+          { speaker: "Linh", avatar: "👩🏻", text: "OK, PB&amp;J it is. I’m still <strong>getting used to</strong> that!", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -464,7 +465,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to have</strong> family nearby. <strong>But now I</strong> only see them on video calls.", side: "right", tone: "terracotta" },
           { speaker: "Edwin", avatar: "👨🏽", text: "I miss my family too. And my job changed. I <strong>used to</strong> work outside, but now I work in a freezer.", side: "left", tone: "blue" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That’s a big change. Linh, <strong>did you use to</strong> stay up late?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> work long restaurant shifts and cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}
       `,
       tipBox: {

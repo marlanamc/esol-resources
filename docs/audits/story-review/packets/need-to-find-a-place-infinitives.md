@@ -10,9 +10,9 @@
 
 ## Cast by section
 
-- I Need to Move: Rosa, Cousin
+- I Need to Move: Rosa, Javier
 - I Want to Stay Near the Bus: Wilson, Jennifer
-- I Hope to Find Something Before Rent Goes Up: Amara, Nadine
+- I Hope to Find Something Before Rent Goes Up: Halima, Nadine
 - I Would Like to See the Apartment: Brian (landlord), Diego
 - Mini Review + Building the Sentence: _no named speakers_
 
@@ -20,18 +20,18 @@
 
 ## 1. I Need to Move
 
-> 🖼 **Scene:** East Boston apartment. Wednesday, 11 PM, after a double shift.  
+> 🖼 **Scene:** Rosa's kitchen, East Boston. Wednesday night. Her cousin Javier stopped by after dinner.  
 > _Photo shows: Person looking at apartment listing on phone while sitting in a kitchen late at night._
 
-- **Rosa:** My lease ends in six weeks. I need to find something fast.
-- **Cousin:** I know. You need to call those listings tonight before they're gone.
+- **Rosa:** My lease ends at the end of February. I need to find something fast.
+- **Javier:** I know. You need to call those listings tomorrow before they're gone.
 - **Rosa:** And I need to get the deposit together. I don't have it yet.
-- **Cousin:** You'll need to talk to your manager about the extra shifts.
+- **Javier:** You'll need to talk to your manager about the extra shifts.
 
 need to + base verb = something you have to do. It is necessary.
 
 **Exercise: Correct or not?**
-- Rosa need to find an apartment before February. Is this correct? _(options: Correct / Not correct. Should be 'needs to find' (she = needs))_
+- Rosa need to find an apartment before March. Is this correct? _(options: Correct / Not correct. Should be 'needs to find' (she = needs))_
 - Which sentence uses need to correctly? _(options: She needs finding a new place. / She needs to find a new place. / She need find a new place.)_
 
 **Exercise: Fill in the blank**
@@ -64,18 +64,18 @@ want to + base verb = a desire or preference. Something you would like to do.
 
 ## 3. I Hope to Find Something Before Rent Goes Up
 
-> 🖼 **Scene:** Amara's kitchen. Saturday morning, scrolling listings.  
+> 🖼 **Scene:** Halima's kitchen. Saturday morning. She and her sister Nadine are both looking for apartments.  
 > _Photo shows: Person in a kitchen scrolling apartment listings on a phone on Saturday morning._
 
-- **Amara:** I hope to find something before February. If we wait, the prices go up.
+- **Halima:** I hope to find something before spring. If we wait, the prices go up.
 - **Nadine:** I plan to call that place on Maverick Street today. Three bedrooms, laundry inside.
-- **Amara:** Good. I plan to ask about the heat. Last place, we paid for everything.
+- **Halima:** Good. I plan to ask about the heat. In our place now, it breaks every winter.
 - **Nadine:** Me too. I hope to hear back from them by tonight.
 
 hope to = you want it, but you are not sure it will happen. plan to = you have decided to do it. It is your intention.
 
 **Exercise: Hope to or plan to?**
-- Amara is not 100% sure she will find an apartment this week. Which sentence fits? _(options: She plans to find one this week. / She hopes to find one this week. / She needs to find one this week.)_
+- Halima is not 100% sure she will find an apartment this week. Which sentence fits? _(options: She plans to find one this week. / She hopes to find one this week. / She needs to find one this week.)_
 - Nadine has already decided to call the landlord at 5 PM. Which sentence fits? _(options: She hopes to call at 5 PM. / She plans to call at 5 PM.)_
 
 **Exercise: Fill in the blank**
@@ -90,7 +90,7 @@ hope to = you want it, but you are not sure it will happen. plan to = you have d
 > _Photo shows: Exterior of a residential building with a for-rent sign on a city street._
 
 - **Brian (landlord):** Hello, this is Brian. Can I help you?
-- **Diego:** Hi. I would like to see the apartment on Bremen Street. Is it still available?
+- **Diego:** Hi. I would like to see the apartment on Lexington Street. Is it still available?
 - **Brian (landlord):** Yes, it is. When would you like to come?
 - **Diego:** I would like to come on Saturday morning, if that works.
 - **Brian (landlord):** Saturday at 10 is fine. See you then.
@@ -139,7 +139,7 @@ I would like to pay less than $1,500 a month.
 
 - Which sentence is correct? _(options: I want finding an apartment near the bus. / I want to finding an apartment near the bus. / I want to find an apartment near the bus.)_
 - Diego is calling a landlord for the first time. Which sounds most polite and appropriate? _(options: I want to look at the lease. / I would like to look at the lease. / I need to look at the lease.)_
-- Fill in the blank: "She ___ to find one before February." (She is trying but not certain she will.)
+- Fill in the blank: "She ___ to find one before March." (She is trying but not certain she will.)
 - "She needs finding a bigger apartment." What is wrong? _(options: Nothing is wrong. / 'finding' should be 'to find'. Use needs to + base verb. / 'bigger' should be 'more big'.)_
 - Wilson calls about an apartment on Bremen Street. Put the words in order.
 

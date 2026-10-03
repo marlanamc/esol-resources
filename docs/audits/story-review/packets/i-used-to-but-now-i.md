@@ -13,17 +13,17 @@ _None._
 - Life Was Different Back Home: Mai, Linh
 - I Didn't Use To...: Michelle, Linh
 - Before Boston, After Boston: Edwin, Linh
-- Don't Mix Them Up: Linh, Son
+- Don't Mix Them Up: Son, Linh
 - Tell Your Story: One Whole Conversation: Ms. Tran, Linh, Edwin
 
 ---
 
 ## 1. Life Was Different Back Home
 
-> 🖼 **Scene:** On the 114 bus after her shift. Tuesday, 1:15 PM.  
+> 🖼 **Scene:** On the bus to work. Tuesday, 4:30 AM.  
 > _Photo shows: A commuter on a city bus looking out the window during the morning commute._
 
-Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. After work, she video-calls her sister Mai on the 114 bus.
+Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. On the bus to work, she video-calls her sister Mai. It is afternoon in Vietnam.
 
 - **Mai:** How are the kids?
 - **Linh:** They're good. Busy with school.
@@ -73,7 +73,7 @@ Negative: didn't use to + base verb. No -d on use. Question: Did you use to + ba
 Linh runs into her classmate Edwin outside her building. They talk about life before and after Boston.
 
 - **Edwin:** Where did you live before you came here?
-- **Linh:** I used to live with my parents. But now I share a two-bedroom apartment with my cousin.
+- **Linh:** I used to live with my parents. But now I live on Meridian Street with my two kids.
 - **Edwin:** How did you get to work back home?
 - **Linh:** I used to walk to work. But now I take two buses.
 
@@ -84,7 +84,7 @@ Used to works for past states (live, have, be) and actions (walk, cook, work). P
 - Linh slept more back home. Which full sentence is correct? _(options: I used to sleep eight hours, but now I sleep six. / I used to sleeping eight hours, but now I sleep six. / I am used to sleep eight hours, but now I sleep six.)_
 
 **Exercise: Fill in the blank**
-- I used to ___ (live) with my parents, but now I share an apartment.
+- I used to ___ (live) with my parents, but now I live with my kids.
 
 **Exercise: Unscramble**
 - Unscramble:
@@ -96,9 +96,10 @@ Used to works for past states (live, have, be) and actions (walk, cook, work). P
 
 School morning rush. Linh packs lunch for her two kids. Her son asks for a different lunch today.
 
-- **Linh:** I used to pack rice for you every day. Do you want some today?
-- **Son:** Can I have PB&J today?
-- **Linh:** Sure. You used to ask for rice, but now you prefer sandwiches. I’m still getting used to that!
+- **Son:** Mom, can I have PB&J today?
+- **Linh:** PB&J? I used to pack rice for you every day. You loved it!
+- **Son:** I used to like rice. Now everyone at school eats sandwiches.
+- **Linh:** OK, PB&J it is. I’m still getting used to that!
 
 Used to + verb = past habit, not true now. Am used to + -ing = accustomed now (different grammar). You will learn be/get used to next week.
 
@@ -123,7 +124,7 @@ Ms. Tran asks students to share how life changed since they moved to Boston.
 - **Linh:** I used to have family nearby. But now I only see them on video calls.
 - **Edwin:** I miss my family too. And my job changed. I used to work outside, but now I work in a freezer.
 - **Ms. Tran:** That’s a big change. Linh, did you use to stay up late?
-- **Linh:** Yes. I used to cook at 11 pm. But now I meal-prep on Sunday.
+- **Linh:** Yes. I used to work long restaurant shifts and cook at 11 pm. But now I meal-prep on Sunday.
 
 **Exercise: Pick the right pattern**
 - Linh had a garden before Boston. _(options: I used to have a garden. / I didn't use to have a garden. / Did you use to have a garden?)_

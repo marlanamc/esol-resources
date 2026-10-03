@@ -49,12 +49,12 @@ worried about + -ing
 
 **Exercise: Exercise 1: Choose the correct preposition**
 - Diego is good ___ cooking fast. _(options: at / in / of)_
-- Sarah is interested ___ helping at the meeting. _(options: at / in / of)_
+- Diego is interested ___ getting a traffic light. _(options: at / in / of)_
 - Diego is afraid ___ letting his son cross alone. _(options: at / in / of)_
 - "I am good at cook." Is this sentence correct? _(options: Correct / Not correct. Should be 'good at cooking')_
 
 **Exercise: Exercise 2: Complete the sentence**
-- Sarah is good at ___ (clean) tables quickly.
+- Sarah is good at ___ (chop) onions quickly.
 - Diego is interested in ___ (learn) who to call at City Hall.
 
 ## 2. Outside the Meeting
@@ -87,7 +87,7 @@ More adjective + preposition pairs. They all follow the same rule: add -ing afte
 
 ## 3. Suggestions for the City
 
-> 🖼 **Scene:** Thursday, 7:30 PM, Room B. Ms. Patel writes down Diego's suggestions for the city.  
+> 🖼 **Scene:** Thursday, 7:30 PM, Room B. Diego sits at Ms. Patel's desk while she writes down his suggestions for the city.  
 > _Photo shows: A counselor and job seeker sitting across a desk reviewing paperwork._
 
 Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.

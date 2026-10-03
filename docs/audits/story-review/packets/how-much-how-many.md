@@ -12,8 +12,8 @@
 
 - Eggs and Milk: Countable vs. Uncountable: Marta, Jorge
 - How Many or How Much?: Claudette, Sarah
-- A Lot Of, A Few, A Little: Diego, Kevin
-- Reading the Label: Ana
+- A Lot Of, A Few, A Little: Diego, Fernanda
+- Reading the Label: Ana's son, Ana
 - Enough and Too Much / Too Many: Beatriz, Luisa
 
 ---
@@ -42,13 +42,14 @@ Tip: Uncountable nouns are always singular. Say The rice is cheap, not The rice 
 
 ## 2. How Many or How Much?
 
-> 🖼 **Scene:** Market Basket, Revere Beach Parkway. Claudette shops before her sister's family arrives.  
+> 🖼 **Scene:** Market Basket, Revere Beach Parkway. Claudette calls her sister Sarah before Sarah's family visits on Saturday.  
 > _Photo shows: Busy grocery store produce section with fresh vegetables and shoppers._
 
-- **Claudette:** How many people are coming?
-- **Sarah:** About twelve. Do you have enough food?
-- **Claudette:** How much rice do I need for twelve people?
-- **Sarah:** Let’s check the serving size on the bag. We’ll need cooking oil, too.
+- **Claudette:** How many people are coming on Saturday?
+- **Sarah:** We’re twelve with the kids. Do you have enough food?
+- **Claudette:** Not yet. How much rice do I need for twelve people?
+- **Sarah:** Check the serving size on the bag. I’ll bring the cooking oil.
+- **Claudette:** Thanks. I only have $40 until Friday, so I’m getting the store brand.
 
 Use How many with countable nouns. Use How much with uncountable nouns.
 
@@ -64,19 +65,19 @@ Use How many with countable nouns. Use How much with uncountable nouns.
 
 ## 3. A Lot Of, A Few, A Little
 
-> 🖼 **Scene:** Shaw's Supermarket, Broadway. Diego shops after a double restaurant shift. His coworker Kevin texts.  
+> 🖼 **Scene:** Shaw's Supermarket, Broadway. Diego shops after a double restaurant shift. His partner Fernanda texts.  
 > _Photo shows: Man looking at grocery items in a store, holding a bag of rice._
 
 - **Diego:** I got a lot of rice. Should last the week.
-- **Kevin:** Nice. Do you have vegetables?
+- **Fernanda:** Nice. Did you get vegetables?
 - **Diego:** Just a few onions. And a little oil.
-- **Kevin:** We can make rice and onions tonight. I have some beans we can add.
+- **Fernanda:** OK. We can make rice and onions tonight. There are some beans at home, too.
 
 A lot of works with both countable and uncountable nouns. A few is for countable nouns only. A little is for uncountable nouns only.
 
 **Exercise: A few or a little?**
 - Diego has some money left. Which is correct? _(options: He has a few money. / He has a little money. / He has a little moneys.)_
-- Kevin bought some apples. Which is correct? _(options: He bought a little apples. / He bought a few apples. / He bought a few apple.)_
+- Fernanda bought some apples. Which is correct? _(options: She bought a little apples. / She bought a few apples. / She bought a few apple.)_
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -89,15 +90,18 @@ A lot of works with both countable and uncountable nouns. A few is for countable
 > 🖼 **Scene:** Market Basket cereal aisle. Ana reads the nutrition label, looking for something affordable for her kids.  
 > _Photo shows: Close-up of a nutrition facts label on a food package in a grocery store._
 
-- **Ana:** This one is cheaper. Let me check how much sugar it has.
-- **Ana:** That’s a lot of sugar, and there isn’t much protein. Only 2 grams.
-- **Ana:** There aren’t many other kinds at this price. I’ll check the store brand, too.
+- **Ana's son:** Mom, can we get this one?
+- **Ana:** It’s cheaper, but let me check how much sugar it has.
+- **Ana's son:** Is it a lot?
+- **Ana:** Yes. And there isn’t much protein. Only 2 grams.
+- **Ana's son:** What about the other ones?
+- **Ana:** There aren’t many at this price. Let’s check the store brand.
 
 In negative sentences and questions, use much with uncountable nouns and many with countable nouns.
 
 **Exercise: Much or many?**
 - The box has very little salt. Which sentence is correct? _(options: There isn't many salt. / There isn't much salt. / There are not much salt.)_
-- Ana only sees a few onions left in the bag. Which is correct? _(options: There aren't many onions. / There isn't many onions. / There aren't much onions.)_
+- At home, Ana checks the bag of onions. Only two are left. Which is correct? _(options: There aren't many onions. / There isn't many onions. / There aren't much onions.)_
 
 **Exercise: Build the question**
 - Unscramble:
@@ -107,18 +111,18 @@ In negative sentences and questions, use much with uncountable nouns and many wi
 
 ## 5. Enough and Too Much / Too Many
 
-> 🖼 **Scene:** Beatriz's kitchen, Thursday evening. She's cooking for a group. Her neighbor across the hall is cooking too.  
+> 🖼 **Scene:** Beatriz's kitchen, Thursday evening. Her neighbor Luisa stops by.  
 > _Photo shows: Kitchen counter with pots, ingredients, and food being prepared for a meal._
 
-- **Beatriz:** I bought too many bags of rice. We can't eat all this.
+- **Beatriz:** I bought too many cans of beans. They were on sale, but we can't eat all this.
 - **Luisa:** Could you use some for the family dinner on Sunday?
 - **Beatriz:** Good idea. But I don’t have enough plates for everyone.
-- **Luisa:** I can bring plates. Just don’t cook too much rice. We’ll have other food, too.
+- **Luisa:** I can bring plates. Just don’t cook too much food. Everyone brings something.
 
 Enough = the right amount. Too many = more than you need (countable). Too much = more than you need (uncountable).
 
 **Exercise: Too many, too much, or enough?**
-- Beatriz has ten bags of rice but only needs three. Which is correct? _(options: She has too much bags. / She has too many bags. / She has enough bags.)_
+- Beatriz has ten cans of beans but only needs three. Which is correct? _(options: She has too much cans. / She has too many cans. / She has enough cans.)_
 - The soup is very salty. Which is correct? _(options: There are too many salt. / There is too much salt. / There is too many salt.)_
 - "I have six plates for six people." Which word fits best? _(options: I have enough plates. / I have too many plates. / I have too much plates.)_
 
@@ -126,13 +130,13 @@ Enough = the right amount. Too many = more than you need (countable). Too much =
 - Unscramble:
 
 **Exercise: Write your answer**
-- Beatriz bought ten bags of rice but only needed three. She has ___ bags.
+- Beatriz bought ten cans of beans but only needed three. She has ___ cans.
 - I have six plates for six guests. I have ___ plates.
 
 ## Mini quiz
 
 - Marta is at the store. She wants to know the number of eggs at home. What does she ask? _(options: How much eggs do we have? / How many eggs do we have? / How many egg do we have?)_
-- Diego needs to buy rice. What does he ask the cashier? _(options: How many rice do you have? / How much rice do you have? / How many rices do you have?)_
+- Diego is at the store. He texts Fernanda to ask about the cooking oil at home. What does he write? _(options: How many oil do we have? / How much oil do we have? / How many oils do we have?)_
 - Fill in the blank: "She bought ___ rice for dinner." (Rice is uncountable: use a little or a few?)
 - Rosa checks the fridge before grocery shopping. Put the words in order.
 - Which sentence has an error? _(options: There is too much oil in the pan. / I have a lot of eggs at home. / She bought a few rice for dinner.)_

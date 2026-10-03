@@ -437,7 +437,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneFriday", "The hotel break room, Friday afternoon. Rosa and her coworker Jean finish their shift.", "amber")}
 
         ${dialogue([
-          { speaker: "Jean", avatar: "👨🏿", text: "Rosa, you were here at 7 today. What happened?", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏿", text: "Rosa, you made it at 7 today, with the detour? How?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I have the bus app now. Good thing, because this week I <strong>have already been</strong> late twice.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "👨🏿", text: "Only twice? I <strong>have already worked</strong> three ten-hour shifts. I don't even know what day it is.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "It's Friday, Jean. Go home and sleep.", side: "right", tone: "terracotta" },

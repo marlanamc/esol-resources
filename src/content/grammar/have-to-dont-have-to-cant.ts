@@ -89,7 +89,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           { speaker: "Rosa", avatar: "👩🏽", text: "My heat stopped working on Monday. It's freezing in my apartment. What can I do?", side: "right", tone: "terracotta" },
           { speaker: "Lisa", avatar: "👩🏾", text: "The landlord <strong>has to</strong> provide heat. It's the law in Massachusetts.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And if he doesn't fix it?", side: "right", tone: "terracotta" },
-          { speaker: "Lisa", avatar: "👩🏾", text: "He <strong>has to</strong> fix it within 24 hours in winter. You don't <strong>have to</strong> wait. Call the city inspector.", side: "left", tone: "sage" },
+          { speaker: "Lisa", avatar: "👩🏾", text: "He <strong>has to</strong> fix it fast. You don't <strong>have to</strong> wait. Call the city inspector.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -103,7 +103,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("landlord's duty", "sage")}
-            <span><em>He <strong>has to</strong> give 24 hours notice before entering.</em></span>
+            <span><em>Rosa's lease says he <strong>has to</strong> give 24 hours' notice before entering.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("tenant's duty", "terracotta")}
@@ -181,8 +181,8 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "landlord", "has", "to", "fix", "the", "heat", "in", "24", "hours"],
-              correctAnswer: "The landlord has to fix the heat in 24 hours",
+              words: ["The", "landlord", "has", "to", "fix", "the", "heat", "right", "away"],
+              correctAnswer: "The landlord has to fix the heat right away",
             },
           ],
         },
@@ -247,7 +247,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The landlord ___ come into your apartment without notice. (it is not allowed)",
+              label: "The landlord ___ come into your apartment without notice unless it's an emergency. (it is not allowed)",
               options: [
                 { value: "a", label: "doesn't have to" },
                 { value: "b", label: "can't" },
@@ -292,7 +292,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "We ___ give 30 days notice if the landlord breaks the lease first.",
+              label: "We ___ give a reason when we move out at the end of the lease.",
               expectedAnswers: ["don't have to"],
             },
           ],
@@ -311,9 +311,9 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         ${sceneCard("sceneDoor", "Apartment building hallway. Rosa's neighbor Amara stops her at the door.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Rosa, the landlord called me too. He says he wants to show the apartment next week.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "But I didn't say I'm leaving. <strong>Can</strong> he just do that?", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "He <strong>can't</strong> show it without your permission while you still live there. And he <strong>can't</strong> come in without 24 hours notice.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Rosa, the landlord left a note. He wants to show your apartment next week.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I know. My lease ends in February. But <strong>can</strong> he just walk in?", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "No, he <strong>can't</strong> just walk in. Our leases say he has to give 24 hours' notice first.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And that extra fee on my bill? The one for 'building costs'?", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏿", text: "He <strong>can't</strong> charge fees that aren't in your lease. That's illegal.", side: "left", tone: "sage" },
         ])}
@@ -325,7 +325,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
-            <span><em>The landlord <strong>can't</strong> enter without 24 hours notice.</em></span>
+            <span><em>The landlord <strong>can't</strong> enter without notice, except in an emergency.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
@@ -352,7 +352,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
               label: "\"The landlord <strong>don't have to</strong> enter without notice.\" Is this correct?",
               options: [
                 { value: "correct", label: "Yes, correct." },
-                { value: "incorrect", label: "No, should be 'can't'. entering without notice is not allowed." },
+                { value: "incorrect", label: "No, should be 'can't'. Entering without notice is not allowed." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -371,7 +371,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
               label: "The landlord called. He wants to come in tomorrow morning with no warning. What do you say?",
               options: [
                 { value: "a", label: "You don't have to give notice." },
-                { value: "b", label: "You can't come in without 24 hours notice." },
+                { value: "b", label: "You can't come in without notice. My lease says 24 hours." },
                 { value: "c", label: "You have to come in tomorrow." },
               ],
               expectedAnswer: "b",
@@ -412,7 +412,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏾", text: "Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says landlords <strong>have to</strong> keep the heat above 68 degrees from September to June.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says landlords <strong>have to</strong> keep the heat at 68 degrees or more during the day.", side: "right", tone: "terracotta" },
           { speaker: "Diego", avatar: "👨🏾", text: "So he has no choice. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.'", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> retaliate if you file a complaint.' Good. Then I'm calling the inspector today.", side: "right", tone: "terracotta" },
         ])}
@@ -426,7 +426,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p style="font-size: 0.85rem; color: rgba(0,0,0,0.55); margin: 0.5rem 0 1.25rem 0">Black History Month: The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.</p>
+        <p style="font-size: 0.85rem; color: rgba(0,0,0,0.55); margin: 0.5rem 0 1.25rem 0">The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.</p>
       `,
       exercises: [
         {
@@ -456,7 +456,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Landlords are prohibited from entering without 24 hours notice.\"",
+              label: "\"Landlords are prohibited from punishing tenants who file a complaint.\"",
               options: [
                 { value: "a", label: "have to" },
                 { value: "b", label: "don't have to" },
@@ -548,7 +548,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
     {
       id: "have-to-dont-have-to-cant-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Two words: not required.)",
+      question: "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Three words: not required.)",
       correctAnswer: "don't have to",
       explanation: "'Don't have to' means it is not your responsibility. 'Can't' would mean it is forbidden, which is different.",
       topic: "dont-have-to",
@@ -563,7 +563,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       words: ["The", "landlord", "has", "to", "give", "notice"],
       correctAnswer: "The landlord has to give notice",
       hint: "has to = required",
-      explanation: "'Has to' shows the landlord is legally required to give notice before entering.",
+      explanation: "'Has to' shows the lease requires the landlord to give notice before entering.",
       topic: "have-to",
       skill: "usage",
       skillTag: "obligation-tenant-rights",
@@ -573,7 +573,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       id: "have-to-dont-have-to-cant-q8",
       question: "Which sentence is NOT correct?",
       options: [
-        { value: "a", label: "The landlord has to keep the heat above 68 degrees." },
+        { value: "a", label: "The landlord has to keep the heat at 68 degrees or more." },
         { value: "b", label: "She doesn't have to pay for normal wear." },
         { value: "c", label: "Tenants can't to call the inspector." },
       ],

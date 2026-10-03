@@ -71,7 +71,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
       title: "Four tenses, one bus ride",
       icon: "🚌",
       explanation: `
-        ${sceneCard("sceneBusStop", "Tuesday evening, 5:45 PM. Rosa heads to the 121 bus after work.", "terracotta")}
+        ${sceneCard("sceneBusStop", "Tuesday, 5:15 PM. Rosa waits for the 116 to class.", "terracotta")}
         <p>Welcome back! Catch up with Rosa and David. Read for the message first.</p>
         ${dialogue([
           { speaker: "David", avatar: "🧑🏽", text: "Hey, Rosa! Ready to be back?", side: "left", tone: "sage" },
@@ -79,14 +79,14 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
           { speaker: "David", avatar: "🧑🏽", text: "First-day chaos?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Totally! We <strong>leave</strong> everything by the door on school nights. But last night? One shoe was still under the couch.", side: "right", tone: "terracotta" },
           { speaker: "David", avatar: "🧑🏽", text: "That sounds like my house. How’s today going?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Better. My sister <strong>is helping</strong> with the kids this week. Now I just need to find MY notebook!", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Better. My sister <strong>is helping</strong> with my daughter this week. Now I just need to find MY notebook!", side: "right", tone: "terracotta" },
         ])}
         <p><strong>Time words give clues. Think about the situation.</strong></p>
         <div class="gc-callout-sage" style="padding: 1rem; border-radius: 0.5rem; background: rgba(106,141,115,0.12)">
           <p>These names help us talk about corrections. You don’t need to name the tense before speaking.</p>
           <ul style="padding-left: 1.25rem; line-height: 1.7">
             <li><strong>Present simple:</strong> a routine or stable fact. “We leave everything by the door on school nights.”</li>
-            <li><strong>Present continuous:</strong> happening now or temporarily. “My sister is helping with the kids this week.”</li>
+            <li><strong>Present continuous:</strong> happening now or temporarily. “My sister is helping with my daughter this week.”</li>
             <li><strong>Past simple:</strong> a completed past event. “My daughter asked about her gym shoes.”</li>
             <li><strong>Past continuous:</strong> in progress at a past moment. “I was doing the dishes.”</li>
           </ul>
@@ -101,7 +101,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
             type: "radio", label: "Why is today easier for Rosa?",
             options: [
               { value: "usual", label: "The children don’t have school." },
-              { value: "temporary", label: "Her sister is helping with the kids this week." },
+              { value: "temporary", label: "Her sister is helping with her daughter this week." },
               { value: "finished", label: "She found her notebook." },
             ], expectedAnswer: "temporary",
           },
@@ -129,10 +129,10 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighborhood", "East Boston. Tuesday evening after work.", "sage")}
 
         ${dialogue([
-          { speaker: "Classmate", avatar: "🧑🏽", text: "You always have snacks in that bag!", side: "left", tone: "sage" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "You always have food in that bag!", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Of course. My daughter <strong>gets</strong> hungry the minute we leave the house.", side: "right", tone: "terracotta" },
           { speaker: "Classmate", avatar: "🧑🏽", text: "Same with my son. He <strong>says</strong>, ‘I’m not hungry.’ Then he <strong>eats</strong> my sandwich.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Exactly! I <strong>pack</strong> two now. One for her and one for me.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Exactly! I <strong>pack</strong> two sandwiches now. One for her and one for me.", side: "right", tone: "terracotta" },
         ])}
 
         <p>Rosa and her classmate know this routine well. What do you always carry in your bag?</p>
@@ -144,11 +144,11 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         instructions: "Choose or type the form that fits. For a blank, type only the missing word.",
         items: [
           {
-            type: "radio", label: "Rosa says, “I pack a snack every day. My daughter eat it on the bus.” Fix the second sentence.",
+            type: "radio", label: "Rosa says, “I pack two sandwiches every day. My daughter eat one on the bus.” Fix the second sentence.",
             options: [
-              { value: "eat", label: "My daughter eat it on the bus." },
-              { value: "eating", label: "My daughter eating it on the bus." },
-              { value: "eats", label: "My daughter eats it on the bus." },
+              { value: "eat", label: "My daughter eat one on the bus." },
+              { value: "eating", label: "My daughter eating one on the bus." },
+              { value: "eats", label: "My daughter eats one on the bus." },
             ], expectedAnswer: "eats",
           },
           { type: "text", label: "“My son always ___ for a snack as soon as we get on the bus.” (ask)", expectedAnswers: ["asks"] },
@@ -166,12 +166,12 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         elements: [{ id: "pc-line", type: "solid-line", zone: "present", position: 50 }],
       },
       explanation: `
-        ${sceneCard("scenePhone", "Before class, Rosa gets a message from her sister.", "blue")}
+        ${sceneCard("scenePhone", "Before class, Rosa gets a message from her sister Teresa.", "blue")}
 
         ${dialogue([
-          { speaker: "Rosa's sister", avatar: "👩‍👧", text: "Quick question. Where’s the rice?", side: "left", tone: "blue" },
+          { speaker: "Teresa", avatar: "👩‍👧", text: "Quick question. Where’s the rice?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Top shelf, next to the pasta. What <strong>are</strong> you <strong>making</strong>?", side: "right", tone: "terracotta" },
-          { speaker: "Rosa's sister", avatar: "👩‍👧", text: "I<strong>’m making</strong> dinner. Your daughter <strong>is helping</strong> me. Well, she<strong>’s eating</strong> some pineapple.", side: "left", tone: "blue" },
+          { speaker: "Teresa", avatar: "👩‍👧", text: "I<strong>’m making</strong> dinner. Your daughter <strong>is helping</strong> me. Well, she<strong>’s eating</strong> some pineapple.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Ha! Save some for me. I’m hungry already.", side: "right", tone: "terracotta" },
         ])}
 
@@ -187,9 +187,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
           {
             type: "radio", label: "Rosa’s sister usually works evenings. This week she’s off. Which message tells Rosa about her help just for this week?",
             options: [
-              { value: "routine", label: "I make dinner for your kids every week." },
-              { value: "temporary", label: "I’m making dinner for your kids this week." },
-              { value: "past", label: "I made dinner for your kids last week." },
+              { value: "routine", label: "I make dinner for your daughter every week." },
+              { value: "temporary", label: "I’m making dinner for your daughter this week." },
+              { value: "past", label: "I made dinner for your daughter last week." },
             ], expectedAnswer: "temporary",
           },
           { type: "text", label: "Her sister texts: “We’re in the kitchen. We ___ dinner now. Come hungry!” (make)", expectedAnswers: ["are making"] },
@@ -209,27 +209,29 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneClassroom", "First morning back. Two different shoes.", "amber")}
+        ${sceneCard("sceneClassroom", "First day of school. Two different shoes.", "amber")}
 
         ${dialogue([
-          { speaker: "Teacher", avatar: "👩‍🏫", text: "How was the first morning back? Everyone on time?", side: "left", tone: "amber" },
-          { speaker: "Student", avatar: "🙋", text: "Almost. We <strong>were waiting</strong> for the bus when my son <strong>looked</strong> down at his feet. Two different shoes.", side: "right", tone: "sage" },
-          { speaker: "Teacher", avatar: "👩‍🏫", text: "Oh no! What did you do?", side: "left", tone: "amber" },
-          { speaker: "Student", avatar: "🙋", text: "We <strong>ran</strong> home. I <strong>found</strong> his other shoe under the sofa. He <strong>made</strong> the bus!", side: "right", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "How was the first day of school for your kids? Everyone on time?", side: "left", tone: "amber" },
+          { speaker: "Hector", avatar: "🙋🏽‍♂️", text: "Almost. We <strong>were waiting</strong> for the bus when my son <strong>looked</strong> down at his feet.", side: "right", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Uh-oh. What was wrong?", side: "left", tone: "amber" },
+          { speaker: "Hector", avatar: "🙋🏽‍♂️", text: "One red sneaker, one yellow sneaker! He <strong>was putting</strong> them on in the dark when I <strong>called</strong> him.", side: "right", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Oh no! Did you go back home?", side: "left", tone: "amber" },
+          { speaker: "Hector", avatar: "🙋🏽‍♂️", text: "No time. The bus <strong>came</strong>. After school, I <strong>found</strong> his other red one in the dog’s bed!", side: "right", tone: "sage" },
         ])}
 
-        <p>They were already waiting for the bus when the boy noticed his shoes. Then they ran home.</p>
+        <p>They were already waiting for the bus when the boy noticed his shoes. There was no time to go home, so he wore them to school.</p>
         <p><strong>Quick form check:</strong> past simple uses a past form, such as <strong>looked</strong> or <strong>found</strong>. Past continuous uses <strong>was/were + verb-ing</strong>.</p>
         <p>“Yesterday” can go with either tense: “Yesterday I cooked dinner.” “Yesterday at six, I was cooking dinner.” The speaker’s meaning matters.</p>
       `,
       exercises: [{
         id: "wbtr-past-1",
-        title: "Two different shoes",
+        title: "Two different sneakers",
         instructions: "Complete the story. Type only the missing words.",
         items: [
           { type: "text", label: "The bus wasn’t there yet. “We ___ at the stop when my son noticed his shoes.” (wait)", expectedAnswers: ["were waiting"] },
-          { type: "text", label: "“We ran home. I ___ the other shoe under the sofa and gave it to him.” (find)", expectedAnswers: ["found"] },
-          { type: "text", label: "“My son was still getting ready when the bus arrived. He ___ on his shoe.” (put)", expectedAnswers: ["was putting"] },
+          { type: "text", label: "“After school, I ___ his other red sneaker in the dog’s bed.” (find)", expectedAnswers: ["found"] },
+          { type: "text", label: "“It was still dark this morning. My son ___ on his sneakers when I called him.” (put)", expectedAnswers: ["was putting"] },
         ],
       }],
     },
@@ -280,13 +282,13 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     },
     {
       id: "wbtr-past-event",
-      question: "“We couldn’t find her shoes. Then my daughter ___ under the sofa and found them.” (look)",
+      question: "“We couldn’t find her gym shoe. Then my daughter ___ under the couch and found it.” (look)",
       options: [
         { value: "a", label: "looked" },
         { value: "b", label: "look" },
         { value: "c", label: "looking" },
       ], correctAnswer: "a",
-      explanation: "Past simple tells what happened next: ‘My daughter looked under the sofa.’",
+      explanation: "Past simple tells what happened next: ‘My daughter looked under the couch.’",
       topic: "past-simple", skill: "usage", skillTag: "form-past-simple", difficulty: "easy",
     },
     {

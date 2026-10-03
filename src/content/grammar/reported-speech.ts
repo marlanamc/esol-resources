@@ -486,7 +486,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     {
                         speaker: "Jordan",
                         avatar: "👩🏿‍⚕️",
-                        text: "The test only takes about an hour. I'll call you tonight to confirm the time.",
+                        text: "The test is quick, but the lab is busy. With the wait, it takes about an hour. I'll call you tonight.",
                         side: "left",
                         tone: "purple",
                     },
@@ -623,7 +623,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     {
                         speaker: "Sam",
                         avatar: "👨🏾‍⚕️",
-                        text: "Dr. Chen added a new cholesterol pill. Take it at night. And don't drink grapefruit juice with it.",
+                        text: "Dr. Chen added a new cholesterol pill. Start it after the test. Take it at night. Don't drink grapefruit juice with it.",
                         side: "left",
                         tone: "amber",
                     },

@@ -6,117 +6,130 @@
 
 ## Automatic signals
 
-- No named character appears in more than one section: this may be separate vignettes rather than one story.
+_None._
 
 ## Cast by section
 
-- Can. What You Are Able to Do Online: Ryan, Claudette
-- Should. Advice for Staying Safe: Miguel, Librarian
-- Must and Must Not. Rules That Protect You: Fatima
-- Putting It Together. Which Modal Fits?: Ana, Bruno
+- Can. What Your New Phone Can Do: Ryan, Claudette
+- Should. Advice From a Neighbor: Claudette, Bruno
+- Must and Must Not. Rules That Protect You: Claudette, Jessica
+- Putting It Together. Which Modal Fits?: Ms. Tran, Claudette
 
 ---
 
-## 1. Can. What You Are Able to Do Online
+## 1. Can. What Your New Phone Can Do
 
-> 🖼 **Scene:** East Boston Branch Library, Tech Help Table. Saturday morning.  
+> 🖼 **Scene:** East Boston Branch Library, tech help table. Tuesday, 4:30 PM, after work.  
 > _Photo shows: Two people sitting together at a table looking at a smartphone at a library._
 
-Ryan at the tech table helps Claudette set up her new phone.
+Claudette's old phone broke last week. Her daughter Nadège lives in Haiti, and they talk every Sunday. Ryan at the library's tech help table sets up her new phone.
 
-- **Ryan:** OK, Claudette, your new phone is set up. You can make calls, send texts, and use the internet now.
-- **Claudette:** What about my bank account? Can someone see it if they use my wifi?
-- **Ryan:** On public wifi, yes, sometimes they can. But on your home wifi with a password, they can't.
-- **Claudette:** Good. I can use the library wifi for looking things up, but not for my bank. Got it.
+- **Ryan:** Done. Your new phone is ready. You can call, text, and video-chat now.
+- **Claudette:** Can I video-call my daughter in Haiti? My old phone was too slow.
+- **Ryan:** Yes, you can. With WhatsApp and wifi, the call is free.
+- **Claudette:** I can't read these little letters. Can you make them bigger?
+- **Ryan:** Sure. And look, I saved Nadège's number. You can call her with one touch.
+- **Claudette:** Perfect. Now I can see her face every Sunday.
 
 Can = ability or possibility. Something is possible, or a person is able to do it. Can't = it is not possible, or not able.
 
-Form: can + base verb (no -s, no -ing, no "to") She can see your screen. Not: she can sees Not: she can to see
+Form: can + base verb (no -s, no -ing, no "to") She can call her daughter. Not: she can calls Not: she can to call
 
 **Exercise: Use can correctly**
-- Claudette wants to check her bank account. Which sentence is correct? _(options: She can checks her balance on the app. / She can check her balance on the app. / She can to check her balance on the app.)_
-- On public wifi, a scammer ___ sometimes see what you are doing. _(options: can / can't / must)_
-- Fill in: You ___ (can / can't) share your password with anyone, not even a friend.
+- Claudette wants to call her daughter. Which sentence is correct? _(options: She can calls Nadège on WhatsApp. / She can call Nadège on WhatsApp. / She can to call Nadège on WhatsApp.)_
+- With wifi, Claudette ___ video-call Haiti for free. _(options: can / can't / must)_
+- Fill in: Claudette ___ (can / can't) read the small letters, so Ryan makes them bigger.
 
 **Exercise: Build the sentence**
 - Unscramble:
 
-## 2. Should. Advice for Staying Safe
+## 2. Should. Advice From a Neighbor
 
-> 🖼 **Scene:** East Boston Branch Library, bulletin board. Digital Safety Week flyer.  
-> _Photo shows: A person reading a paper notice or flyer posted on a community bulletin board._
+> 🖼 **Scene:** Wednesday, 10:40 PM. Claudette reads a text from a number she doesn't know.  
+> _Photo shows: A person looking at a smartphone with a concerned expression._
 
-- **Miguel:** This flyer says you should use a different password for every website.
-- **Librarian:** Exactly. And you shouldn't use your birthday or your name. Those are easy to guess.
-- **Miguel:** What about public wifi? The flyer says I should be careful.
-- **Librarian:** Yes. You shouldn't log into your bank on public wifi. Use your phone's data instead.
+The next night, a text comes from a new number:
+
+"Hi Mom, it's me. I dropped my phone, so this is my new number. I need $200 for a new phone. Can you send it tonight?"
+
+Claudette calls her neighbor Bruno.
+
+- **Claudette:** Bruno, sorry it's late. Nadège says she has a new number. She needs $200 tonight.
+- **Bruno:** Wait. You shouldn't send anything yet. Scammers send texts like this all the time.
+- **Claudette:** But what if it's really her? What should I do?
+- **Bruno:** You should call her old number first. The one Ryan saved for you.
+- **Claudette:** I tried. No answer. Maybe she's sleeping.
+- **Bruno:** Then you should text the new number a question only Nadège knows. Ask the name of your old dog.
 
 Should = advice or a recommendation. It is a good idea. Shouldn't = advice against something. It is not a good idea.
 
-Should is softer than must. It gives advice, not a rule. A friend, a doctor, or a flyer might say should. A law or a company policy says must.
+Should is softer than must. It gives advice, not a rule. A friend, a neighbor, or a doctor might say should. A law or a bank's rule says must.
 
 **Exercise: Good idea or bad idea?**
-- The digital safety flyer says: "___ use the same password on every website." _(options: You should / You shouldn't / You must)_
-- Miguel wants to protect his email. Which advice is correct? _(options: He should using two-step login. / He should use two-step login. / He should to use two-step login.)_
-- Fill in: You ___ (should / shouldn't) click on links from numbers you don't know.
+- Bruno says: "___ send money before you call Nadège." _(options: You should / You shouldn't / You must)_
+- Claudette wants to check the text. Which advice is correct? _(options: She should calling Nadège's old number. / She should call Nadège's old number. / She should to call Nadège's old number.)_
+- Fill in: If the new number sends a link, Claudette ___ (should / shouldn't) click on it.
 
 **Exercise: Build the sentence**
 - Unscramble:
 
 ## 3. Must and Must Not. Rules That Protect You
 
-> 🖼 **Scene:** East Boston Community Center, digital safety workshop. Wednesday evening.  
-> _Photo shows: An instructor standing at the front of a community classroom speaking to seated adults._
+> 🖼 **Scene:** Claudette's bank, Thursday, 8:10 AM, before work. She reads a fraud notice in the lobby.  
+> _Photo shows: A person reading a paper notice or flyer posted on a community bulletin board._
 
-- **Fatima:** Everyone, listen carefully. You must keep your Social Security number private. Never put it in a text or email.
-- **Student:** What if a website asks for it?
-- **Fatima:** You must not give it unless you are 100% sure the site is official. Government sites end in .gov.
-- **Student:** And my PIN number?
-- **Fatima:** You must keep that private too. Your bank will never ask for it by text or phone.
+Claudette asked the new number about the dog. It didn't answer the question. But at 2 AM, one more text came: "Mom, just send me your card number and PIN. I'll do it myself." Before work, Claudette stops at her bank. A notice on the board says: We will NEVER ask for your PIN by text, email, or phone.
+
+- **Claudette:** Your sign says you never ask for a PIN. Someone texted me for mine last night.
+- **Jessica:** That wasn't us. You must not share your PIN with anyone. Not even family.
+- **Claudette:** I didn't send it. I didn't send any money either.
+- **Jessica:** Good. If you ever share your card number by mistake, you must call us right away.
+- **Claudette:** Do I have to come here, or can I call?
+- **Jessica:** You don't have to come in. You can call the number on the back of your card.
 
 Must = strong obligation. It is required, not just a good idea. Must not (mustn't) = prohibition. It is not allowed. Do not do this.
 
-Don't confuse must not and don't have to. You must not share your PIN. = It is forbidden. Never do it. You don't have to use a special browser. = It is not required, but you can if you want.
+Don't confuse must not and don't have to. You must not share your PIN. = It is forbidden. Never do it. You don't have to come to the bank. = It is not required. You can come in if you want, or you can call.
 
 **Exercise: Required or forbidden?**
-- Fatima says: "You ___ give your Social Security number to a stranger on the phone." _(options: must / must not / should)_
-- Which sentence uses "must" correctly? _(options: You must to keep your PIN private. / You must keeping your PIN private. / You must keep your PIN private.)_
-- "You don't have to use two-step login." What does this mean? _(options: It is forbidden to use two-step login. / It is not required, but it is a good idea. / You must use two-step login.)_
-- Fill in: You ___ report it immediately if someone steals your card. (must / must not)
+- Jessica at the bank says: "You ___ share your PIN with anyone, not even family." _(options: must / must not / should)_
+- Which sentence uses "must" correctly? _(options: You must to report the text to the bank. / You must reporting the text to the bank. / You must report the text to the bank.)_
+- "You don't have to come to the bank. You can call." What does this mean? _(options: It is forbidden to come to the bank. / Coming in is not required. Calling is OK too. / You must come to the bank.)_
+- Fill in: If someone has your card number, you ___ call the bank right away. (must / must not)
 
 **Exercise: Build the sentence**
 - Unscramble:
 
 ## 4. Putting It Together. Which Modal Fits?
 
-> 🖼 **Scene:** East Boston neighborhood. Ana shows Bruno a suspicious text message.  
-> _Photo shows: A person looking at a smartphone with a concerned expression._
+> 🖼 **Scene:** Evening ESOL class, Thursday. Ms. Tran asks Claudette to tell the class her story.  
+> _Photo shows: An instructor standing at the front of a community classroom speaking to seated adults._
 
-- **Ana:** Bruno, look at this text. It says I won a prize and I must click this link right now.
-- **Bruno:** That looks like a scam. You shouldn’t click that link.
-- **Ana:** It says it's from my bank. Can my bank really send messages like this?
-- **Bruno:** Real banks can send texts, but they never ask for your password or PIN. You must not reply with any personal information.
-- **Ana:** So should I call the bank directly to check?
-- **Bruno:** Exactly. Use the number on the back of your card. That's always safe.
+- **Ms. Tran:** Claudette, you got a strange text this week. Can you tell the class?
+- **Claudette:** A "new number" said it was my daughter. It asked for $200, then my PIN.
+- **Ms. Tran:** That's a common scam. What should people do?
+- **Claudette:** You shouldn't send anything. You should call the real number. And you must never share your PIN.
+- **Ms. Tran:** And did you reach Nadège?
+- **Claudette:** Yes! This morning she video-called me. Her phone was fine the whole time. She never sent that text.
 
 The three modals side by side:
 
-All three modals use the same form: modal + base verb (no -s, no -ing, no "to"). She can see it. You should check it. He must report it.
+All three modals use the same form: modal + base verb (no -s, no -ing, no "to"). She can call her. You should check it. He must report it.
 
 **Exercise: Choose the right modal**
-- Ana gets a text asking for her PIN. Which sentence gives the best advice? _(options: You can share your PIN if it looks official. / You should share your PIN to be safe. / You must not share your PIN. Call your bank.)_
-- Which modal fits? "Scammers ___ pretend to be your bank." _(options: can / should / must not)_
-- Which sentence is NOT correct? _(options: You should to call your bank. / You must keep your password private. / You can use the library wifi for browsing.)_
-- Fill in with the right modal (can, should, or must not): You ___ click on links from numbers you don't recognize.
+- The "new number" asks Claudette for her PIN. Which sentence gives the best advice? _(options: You can share your PIN if it's your daughter. / You should share your PIN to help her. / You must not share your PIN. Call your bank.)_
+- Which modal fits? "Scammers ___ pretend to be your son or daughter." _(options: can / should / must not)_
+- Which sentence is NOT correct? _(options: You should to call your daughter's real number. / You must keep your PIN private. / You can video-call Haiti with wifi.)_
+- Fill in with the right modal (can, should, or must not): You ___ send money to a new number before you check.
 
 **Exercise: Build the sentence**
 - Unscramble:
 
 ## Mini quiz
 
-- Claudette is setting up her phone at the library. Which sentence is correct? _(options: She can uses the library wifi for free. / She can use the library wifi for free. / She can to use the library wifi for free.)_
-- Which sentence has an error? _(options: You must report a lost card immediately. / You should checks your account every week. / Scammers can look like your bank online.)_
-- Fill in the blank: "You ___ not click on suspicious links. This is a strong rule, not just advice." (must / should / can)
-- The library staff warns students about account safety. Put the words in order.
-- "You don't have to use a special browser for online banking." What does this mean? _(options: Using a special browser is forbidden. / Using a special browser is required. / Using a special browser is optional.)_
+- Claudette is setting up her new phone at the library. Which sentence is correct? _(options: She can video-calls her daughter for free. / She can video-call her daughter for free. / She can to video-call her daughter for free.)_
+- Which sentence has an error? _(options: You must call the bank if someone has your card number. / You should calls your daughter's old number first. / Scammers can pretend to be your family.)_
+- Fill in the blank: "You ___ not share your PIN, not even with family. This is a strong rule, not just advice." (must / should / can)
+- Jessica at the bank warns Claudette about her card. Put the words in order.
+- "You don't have to come to the bank. You can call the number on your card." What does this mean? _(options: Coming to the bank is forbidden. / Coming to the bank is required. / Coming to the bank is optional.)_
 

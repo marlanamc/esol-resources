@@ -60,7 +60,7 @@ Try it: Say the five forms. Look away and try again. Check just the one you forg
 - **Carlos:** Emergency! I took the wrong lunch bag from the fridge. There’s a ring inside. Is it Mark’s?
 - **Sarah:** Yes. Mark brings that blue bag every day. And tonight he wants to ask Lisa to marry him.
 - **Carlos:** Oh no. Class finishes at eight. Where is he now?
-- **Sarah:** He’s looking everywhere in the kitchen. I’m serving tables, so I can’t leave. Meet us at the café at eight.
+- **Sarah:** He’s looking everywhere in the kitchen. I’m serving tables, so I can’t leave. Meet Mark at the café at eight.
 
 Sarah talks about Mark’s usual routine and what is happening right now. Have you ever taken the wrong bag, coat, or phone?
 
@@ -98,14 +98,14 @@ Try it: Tell a partner one thing you did yesterday. Check the verb and tell it a
 
 ## 4. She said yes! · Be and have
 
-> 🖼 **Scene:** Later that night, Sarah starts a group chat with everyone from the café.  
+> 🖼 **Scene:** Later that night, Carlos sits down to do his online homework. Then a group chat from Sarah pops up.  
 > _Photo shows: A student using a laptop to complete an online lesson at a desk._
 
 - **Sarah:** Big news. Mark is engaged. Lisa said yes at 8:30!
 - **Carlos:** I am so happy for them. I’m also very hungry.
 - **Mark:** Lisa has the ring, and I have a sandwich for you tomorrow. Thank you, Carlos!
 - **Fernanda:** You were a hero tonight, Carlos. Take the right bag tomorrow.
-- **Carlos:** I’ve been careful all night. I’ve had enough surprises for one week!
+- **Carlos:** I’ve been hungry since six. I’ve had enough surprises for one week!
 
 Be and have change in special ways. Don’t add -ed.
 
@@ -127,7 +127,7 @@ Check one thing: “Lisa have the ring.” → “Lisa has the ring.” With she
 ## Mini quiz
 
 - Sarah explains the mix-up: “Mark ___ his lunch in the staff fridge every morning.” (leave) _(options: leave / leaves / leaving)_
-- Sarah texts Carlos from work: “I am ___ tables now. See you at the café!” (serve)
+- Sarah texts Carlos from work: “I am ___ tables now. Mark will meet you at the café!” (serve)
 - Carlos is home now. Which message needs a correction? _(options: I was nervous in class today. / I am home with a good story now. / I be ready to practice now.)_
 - The next day, Fernanda texts Sarah from her shift at the clinic. Put her message in order.
 - Sarah wants to say Lisa is wearing the ring now. Which message fits? _(options: She has the ring now. / She have the ring now. / She had the ring yesterday.)_

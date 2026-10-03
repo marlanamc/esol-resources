@@ -31,8 +31,8 @@ Marisol just finished her closing shift at the warehouse. She stops at the pharm
 
 Marisol texts her daughter on the bus home.
 
-- **Marisol:** Mija, I got my new prescription. Tell your father I need to stop taking the old white pills.
-- **Daughter:** OK Mamá. I'll tell him when he gets home.
+- **Marisol:** Mija, the doctor changed my pills because of the dizziness. I need to stop taking the old white ones.
+- **Daughter:** OK Mamá. I hope you feel better soon.
 
 In both messages, stop taking refers to Marisol’s old pills. That means: she was taking the pills before, and now she needs to end that habit.
 
@@ -77,21 +77,21 @@ She stopped to take her pill. → She was doing something. She paused. She took 
 - She ___ her lunch ___ her pill. (she paused eating, then took the pill) _(options: stopped eating / to take / stopped eating / taking)_
 
 **Exercise: Fill in the blank**
-- She stopped ___ her lunch to answer the pharmacist's call. (she paused eating, use 'eating'... or write 'to take' if she paused [something] to take the pill)
+- At noon, Marisol stopped ___ her pill with her sandwich. (She paused her work.)
 
 ## 3. Try Taking the Generic / Try to Get Covered
 
-> 🖼 **Scene:** Pharmacy aisle, Friday evening. Marisol compares two medicine boxes.  
+> 🖼 **Scene:** Pharmacy aisle, Friday evening. Marisol looks at the name-brand and generic medicine.  
 > _Photo shows: Rows of generic and name-brand medicine bottles on a pharmacy shelf._
 
-Marisol's insurance doesn't cover the name-brand medication. Jennifer the pharmacist suggests an option, and Marisol also decides to call the insurance company herself.
+After work on Friday, Marisol stops at the pharmacy again. Her receipt from last night says "generic," and she wants to know why. Jennifer explains.
 
-- **Jennifer:** The name brand isn't covered. But try taking the generic. It's the same medicine, just cheaper. Most people do fine with it.
+- **Jennifer:** Your insurance doesn't cover the name brand, so I gave you the generic. Try taking it. It's the same medicine.
 - **Marisol:** OK. I'll try taking it for a month and see.
-- **Jennifer:** You can also try to get the name brand covered. Call the insurance line and ask for a prior authorization.
-- **Marisol:** I'll try to call them tomorrow, but those calls are hard. You're on hold for an hour.
+- **Jennifer:** You can also try to get the name brand covered. Ask your doctor's office to request a prior authorization.
+- **Marisol:** I'll try to call them on Monday, but those calls are hard. You're on hold for an hour.
 
-Notice the two different uses: try taking (try the generic, it's an experiment, easy to do) and try to call (try to reach the insurance, it's difficult, may not succeed).
+Notice the two different uses: try taking (try the generic, it's an experiment, easy to do) and try to call (try to reach the doctor's office, it's difficult, may not succeed).
 
 try + -ing = experiment with something to see if it works. Low effort, worth trying.
 
@@ -119,7 +119,7 @@ try + to + verb = make an effort to do something. It may be difficult. You might
 Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Julio walks into the kitchen and asks if she already took it.
 
 - **Julio:** Did you take your pill this morning?
-- **Marisol:** Yes. I remember taking it at seven. I had it with my coffee.
+- **Marisol:** Yes. I remember taking it at seven. I had it with my breakfast.
 - **Julio:** Good. And tomorrow, remember to take it before you leave. You have the early shift.
 - **Marisol:** I know. The alarm is set. Don't worry. I always remember to take it now.
 
@@ -178,7 +178,7 @@ remember + -ing = recall a past action (memory)
 **Exercise: Spot the error**
 - "She stopped to smoke last year." (She quit the smoking habit) _(options: Correct / Not correct. Should be 'stopped smoking'. She ended the habit, not paused to do it.)_
 - "Remember to call the clinic on Monday." _(options: Correct / Not correct)_
-- "I tried getting the refill on Friday, but the pharmacy was closed." (She made an effort) _(options: Correct, 'tried getting' can work here / Not correct, must use 'tried to get')_
+- "I tried to get the refill on Friday, but the pharmacy was closed." (She made an effort) _(options: Correct. She made an effort, so 'tried to get' fits. / Not correct, must use 'tried getting')_
 
 **Exercise: Fill in the blank**
 - I remember ___ (fill out) the form at the clinic last week. I can picture the pen. (past memory, use -ing)
@@ -189,7 +189,7 @@ remember + -ing = recall a past action (memory)
 ## Mini quiz
 
 - The pharmacist says: 'You need to stop ___ the old blood pressure pills.' Which word fits? _(options: to take / taking / take)_
-- Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.) _(options: to take / taking / took)_
+- Marisol was working on the warehouse floor. At noon, she stopped ___ her pill. (She paused her work to take the pill.) _(options: to take / taking / took)_
 - Fill in the blank: "Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'" (She is recalling a past memory.)
 - Which sentence has an error? _(options: She stopped smoking last year. / She stopped to smoke last year. (meaning: she quit the habit) / She stopped to read the label before taking the pill.)_
 - Kelly's doctor told her to change an evening habit. Put the words in order.

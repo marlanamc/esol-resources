@@ -110,7 +110,7 @@ Adverbs of frequency go inside the sentence (before the verb). Time expressions 
 > 🖼 **Scene:** The hotel break room, Friday afternoon. Rosa and her coworker Jean finish their shift.  
 > _Photo shows: Two coworkers talking and smiling at the end of a work shift._
 
-- **Jean:** Rosa, you were here at 7 today. What happened?
+- **Jean:** Rosa, you made it at 7 today, with the detour? How?
 - **Rosa:** I have the bus app now. Good thing, because this week I have already been late twice.
 - **Jean:** Only twice? I have already worked three ten-hour shifts. I don't even know what day it is.
 - **Rosa:** It's Friday, Jean. Go home and sleep.

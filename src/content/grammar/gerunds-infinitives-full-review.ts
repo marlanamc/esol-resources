@@ -81,7 +81,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Tired of Commuting",
       icon: "🚌",
       explanation: `
-        ${sceneCard("sceneBusCommute", "111 bus after warehouse close. Tuesday, 11 PM.", "blue")}
+        ${sceneCard("sceneBusCommute", "Bus stop after warehouse close. Monday, 11 PM.", "blue")}
 
         <p><strong>Marisol</strong> just finished her closing shift at the warehouse. She texts her classmate <strong>Thiago</strong> from the bus stop.</p>
 
@@ -117,9 +117,9 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "Marisol is tired of the late bus. Which sentence is correct?",
               options: [
-                { value: "a", label: "I'm tired of waiting for the 111." },
-                { value: "b", label: "I'm tired of wait for the 111." },
-                { value: "c", label: "I'm tired to wait for the 111." },
+                { value: "a", label: "I'm tired of waiting for the late bus." },
+                { value: "b", label: "I'm tired of wait for the late bus." },
+                { value: "c", label: "I'm tired to wait for the late bus." },
               ],
               expectedAnswer: "a",
             },
@@ -170,15 +170,16 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "I Need to Call the Landlord",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneKitchenLetter", "Marisol's kitchen, East Boston. Wednesday, midnight.", "amber")}
+        ${sceneCard("sceneKitchenLetter", "Marisol's kitchen, East Boston. Tuesday, 10 PM, after class.", "amber")}
 
-        <p>A lease renewal letter arrived in the mail. The rent is going up. Marisol needs to call her landlord <strong>Mark</strong> before she falls asleep standing up.</p>
+        <p>A lease renewal letter arrived in the mail. The rent is going up. It's too late to call her landlord <strong>Mark</strong>, so Marisol texts her cousin <strong>Paola</strong>.</p>
 
         ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>need to call</strong> Mark about the rent increase.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "My rent is going up. I <strong>need to call</strong> Mark tomorrow.", side: "right", tone: "terracotta" },
+          { speaker: "Paola", avatar: "👩🏾", text: "Ugh. Are you going to move?", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>hope to find</strong> a cheaper place, but I <strong>plan to stay</strong> until fall if I can.", side: "right", tone: "terracotta" },
-          { speaker: "Cousin", avatar: "👩🏾", text: "You'd <strong>like to ask</strong> about a month-to-month lease, right?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>want to change</strong> jobs in the fall, so I don’t want to sign another full-year lease.", side: "right", tone: "terracotta" },
+          { speaker: "Paola", avatar: "👩🏾", text: "Then ask him about month-to-month.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes, I'd <strong>like to ask</strong> about that. I <strong>want to change</strong> jobs in the fall.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -263,7 +264,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Keep Working Overtime",
       icon: "📦",
       explanation: `
-        ${sceneCard("sceneWarehouseFloor", "Warehouse floor, Chelsea. Thursday, 4 PM.", "terracotta")}
+        ${sceneCard("sceneWarehouseFloor", "Warehouse floor, Chelsea. Wednesday, 4 PM.", "terracotta")}
 
         <p>Double shift week. Supervisor <strong>Brian</strong> asks who can stay late. Marisol needs the extra money for a deposit.</p>
 
@@ -352,15 +353,15 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Stop Forgetting Your Refills",
       icon: "💊",
       explanation: `
-        ${sceneCard("scenePharmacyPickup", "East Boston Pharmacy, Meridian Street. Friday, 10 PM.", "sage")}
+        ${sceneCard("scenePharmacyPickup", "East Boston Pharmacy, Meridian Street. Wednesday, 9:55 PM.", "sage")}
 
-        <p>Marisol stops at the pharmacy after her shift. <strong>Jennifer</strong> has her refill ready. They talked about her new prescription last month too.</p>
+        <p>After her long shift, Marisol runs to the pharmacy. It closes at 10, and she gets there at 9:55. Her refill has been ready since Monday. The pharmacist, <strong>Jennifer</strong>, knows her well.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏾", text: "Marisol, you <strong>need to stop forgetting</strong> your refills. This is the second time.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I know. I <strong>stopped to read</strong> your text on the bus, but by the time I got here, you were closed.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Try setting</strong> a phone alarm next time. And <strong>remember to pick up</strong> your refill before the weekend.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I’ll set one now. What time do you close on Friday?", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I know. I <strong>stopped to read</strong> your text at lunch, but then I forgot again.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Try setting</strong> a phone alarm. We close at 10, so <strong>remember to come</strong> before 9 next time.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "I’ll set one now. Thanks for waiting for me.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -381,7 +382,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("future task", "sage")}
-            <span><em><strong>Remember to pick up</strong> before the weekend.</em></span>
+            <span><em><strong>Remember to set</strong> an alarm for your refill.</em></span>
           </div>
         </div>
       `,
@@ -413,11 +414,11 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Jennifer reminds Marisol about the refill deadline.",
+              label: "Jennifer reminds Marisol to come earlier next time.",
               options: [
-                { value: "a", label: "Remember refilling before Friday." },
-                { value: "b", label: "Remember to refill before Friday." },
-                { value: "c", label: "Remember refill before Friday." },
+                { value: "a", label: "Remember coming earlier." },
+                { value: "b", label: "Remember to come earlier." },
+                { value: "c", label: "Remember come earlier." },
               ],
               expectedAnswer: "b",
             },
@@ -464,14 +465,14 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Marisol tells classmate <strong>Djamila</strong> about her week. She is juggling extra shifts and an apartment search. Djamila offers to help her look at listings on Monday.</p>
+        <p>Marisol tells classmate <strong>Djamila</strong> about her week. She is juggling extra shifts and an apartment search. She finally called Mark, and Djamila offers to help her look at listings on Monday.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Long week?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I’m <strong>tired of commuting</strong>, and now my rent is going up. I <strong>need to call</strong> Mark about it.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I don’t <strong>mind working</strong> extra hours to save for a deposit, but I barely have time to look at apartments.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>plan to change</strong> jobs in the fall. Maybe I can find something closer to home.", side: "right", tone: "terracotta" },
-          { speaker: "Djamila", avatar: "👩🏾", text: "I hope so. Do you have Monday off? We could look at some listings together.", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I’m <strong>tired of commuting</strong>, and I don’t <strong>mind working</strong> extra hours, but I barely have time to look at apartments.", side: "right", tone: "terracotta" },
+          { speaker: "Djamila", avatar: "👩🏾", text: "Did you call Mark about the rent?", side: "left", tone: "sage" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Yes! He agreed to month-to-month. I <strong>plan to change</strong> jobs in the fall, so that helps.", side: "right", tone: "terracotta" },
+          { speaker: "Djamila", avatar: "👩🏾", text: "Good news! Do you have Monday off? We could look at some listings together.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -561,7 +562,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
                 { value: "a", label: "I'm tired of commuting." },
                 { value: "b", label: "I need to call Mark." },
                 { value: "c", label: "I enjoy to work overtime." },
-                { value: "d", label: "I plan to visit my cousin's grave Monday." },
+                { value: "d", label: "I plan to look at apartments on Monday." },
               ],
               expectedAnswer: "c",
             },
@@ -624,7 +625,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
     {
       id: "gifr-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I'm tired of ___ for the 111.\" (Marisol hates waiting for the late bus.)",
+      question: "Fill in the blank: \"I'm tired of ___ for the late bus.\" (Marisol hates waiting at night.)",
       correctAnswer: "waiting",
       explanation: "After prepositions like 'of', use a gerund: waiting.",
       topic: "gerund-after-preposition",

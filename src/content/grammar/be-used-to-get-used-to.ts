@@ -170,9 +170,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       title: "I'm Not Used to the Cold Yet",
       icon: "❄️",
       explanation: `
-        ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. Wednesday, 5:30 AM.", "blue")}
+        ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. A Wednesday in January, 5:30 AM.", "blue")}
 
-        <p><strong>Priya</strong> is a home health aide. She waits with her classmate <strong>Angelo</strong> for her first transfer. It is January, and the wind is sharp.</p>
+        <p><strong>Priya</strong> is a home health aide. She waits with her classmate <strong>Angelo</strong> for her first transfer. It is Priya's first winter in Boston, and the wind is sharp.</p>
 
         ${dialogue([
           { speaker: "Priya", avatar: "👩🏽", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
@@ -371,7 +371,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Jean", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> late on Saturdays, so getting up is the hard part.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> two jobs, but Saturday nights end late. Getting up is hard.", side: "left", tone: "sage" },
           { speaker: "Jean", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
         ])}
 
@@ -406,11 +406,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jean had free weekends before. Not anymore.",
+              label: "Jean worked only days before, so his nights were free. Not anymore.",
               options: [
-                { value: "a", label: "I used to have weekends free." },
-                { value: "b", label: "I'm used to have weekends free." },
-                { value: "c", label: "I'm getting used to have weekends free." },
+                { value: "a", label: "I used to have my nights free." },
+                { value: "b", label: "I'm used to have my nights free." },
+                { value: "c", label: "I'm getting used to have my nights free." },
               ],
               expectedAnswer: "a",
             },
@@ -426,7 +426,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Jean is learning the hymns at his new parish.",
+              label: "Jean is new to the early service. He is still learning the hymns.",
               options: [
                 { value: "a", label: "He is used to the Creole hymns already." },
                 { value: "b", label: "He is getting used to the Creole hymns." },
@@ -477,14 +477,14 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneWorkText", "Warehouse break room. Wednesday, 2 PM.", "sage")}
 
-        <p>It has been a hard week for <strong>Fabienne</strong>: double shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor <strong>Mark</strong>.</p>
+        <p>It has been a hard week for <strong>Fabienne</strong>: double shifts, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor <strong>Mark</strong>.</p>
 
         ${dialogue([
           { speaker: "Fabienne", avatar: "👩🏾", text: "Hi Mark. Can I take Friday off? I have a parent-teacher meeting at 10.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "🧑‍💼", text: "Let me check the schedule. How are you holding up?", side: "left", tone: "sage" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>used to working</strong> overtime, but I'm <strong>not used to</strong> reading every school email in English yet.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "And I’m still <strong>getting used to</strong> the double shifts. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
-          { speaker: "Mark", avatar: "🧑‍💼", text: "OK. I'll try to cover Friday.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "Tired. I’m still <strong>getting used to</strong> the double shifts. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "OK, Friday's yours. Can you do Saturday, 6 to 2?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "Yes. I'm <strong>used to getting</strong> up early. Thank you, Mark!", side: "right", tone: "terracotta" },
         ])}
       `,
       tipBox: {
@@ -557,9 +557,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Build Priya's sentence about winter chores:",
-              words: ["I'm", "not", "used", "to", "shoveling", "snow", "yet"],
-              correctAnswer: "I'm not used to shoveling snow yet",
+              label: "Build Fabienne's sentence about Saturday:",
+              words: ["I'm", "used", "to", "working", "on", "Saturdays"],
+              correctAnswer: "I'm used to working on Saturdays",
             },
           ],
         },

@@ -60,8 +60,8 @@ should (advice) · must (required) · can (permission) · need to (necessity)
 
 ## 2. Clinic signs & prescription labels
 
-> 🖼 **Scene:** A sign on the hospital wall. Luis waits 40 minutes and reads every sign twice.  
-> _Photo shows: Migration health assessment centre sign on wall._
+> 🖼 **Scene:** Later today: the label on Luis's antibiotic. It gives orders, just like the signs Luis reads in the waiting room.  
+> _Photo shows: An orange prescription pill bottle with a printed medication label._
 
 Imperatives: the language of signs
 
@@ -297,7 +297,7 @@ Scene B · Luis ↔ Pharmacist (pharmacy counter)
 - **Luis:** "May I take it with my heartburn medicine?"
 - **Pharmacist:** "Yes, that's fine. You should still take this one with food."
 
-Scene C · Nurse ↔ Luis (earlier, in the ER bed)
+Scene C · Nurse ↔ Luis (after the exam, in the ER bed)
 
 - **Nurse:** "Please press this button if you need anything. Don't get up by yourself while the IV is in."
 - **Luis:** "Can I use my phone? I need to text my wife."
@@ -375,7 +375,7 @@ Employee-to-boss toolkit
 > 🖼 **Scene:** The ER hallway on the way out. Luis has his discharge sheet and his work note.  
 > _Photo shows: A bright, modern hospital corridor leading to exam rooms._
 
-At home, Marta reads Luis's discharge sheet out loud at the kitchen table. Every kind of sentence from today is on it.
+Luis leaves with his discharge sheet. At home, Marta reads it out loud at the kitchen table. Every kind of sentence from today is on it.
 
 All the grammar on one page
 

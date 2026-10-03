@@ -21,7 +21,7 @@
 
 ## 1. How Long Have You Worked Here?
 
-> 🖼 **Scene:** East Boston. A hotel on Meridian Street. Thursday morning.  
+> 🖼 **Scene:** East Boston. A hotel on Meridian Street. Thursday, 3:30 PM, after Rosa's shift.  
 > _Photo shows: A clean hotel hallway with a housekeeping cart parked outside a room._
 
 - **Jennifer (HR):** Thanks for coming in, Rosa. So, how long have you worked in housekeeping?
@@ -35,11 +35,11 @@ This is the same present perfect you have seen before. "How long" just focuses i
 
 **Exercise: Choose the right answer**
 - How long have you had your library card? _(options: I had my library card for two years. / I have had my library card for two years. / I have my library card two years.)_
-- How long has she lived in East Boston? _(options: She has lived here since 2020. / She lived here since 2020. / She is living here since 2020.)_
+- How long has she lived in East Boston? _(options: She has lived here since 2021. / She lived here since 2021. / She is living here since 2021.)_
 
 **Exercise: Fill in the blank**
 - ___ long has Rosa worked in housekeeping? (one word)
-- I ___ worked at this hotel for three years. (one word)
+- I ___ worked at my hotel for three years. (one word)
 
 ## 2. For vs. Since: Which One?
 
@@ -47,7 +47,7 @@ This is the same present perfect you have seen before. "How long" just focuses i
 > _Photo shows: Two hotel workers chatting at a small table during a break._
 
 - **Claudette:** How long have you been at this hotel?
-- **Maria:** I've been here since March. About four months.
+- **Maria:** I've been here since November. About four months.
 - **Claudette:** I've been here for two years. Started right when they opened the new wing.
 - **Maria:** Nice. How long have you had this shift?
 - **Claudette:** Only since January. Before that I had nights.
@@ -114,7 +114,7 @@ Present Perfect = started in the past and still true right now. Past Simple = fi
 
 ## 5. Putting It All Together
 
-> 🖼 **Scene:** Hotel HR office. Rosa's final interview round. Tuesday, 2 PM.  
+> 🖼 **Scene:** Hotel HR office. Rosa's final interview round. Tuesday, 3:30 PM, right after her shift.  
 > _Photo shows: Two people in a professional meeting, one taking notes and one speaking._
 
 Before the interview, Rosa practices with Yemi, a coworker at her current job, during their break.
@@ -135,7 +135,7 @@ At the interview with Jennifer:
 
 The negative is simple: haven't or hasn't + past participle. "I haven't worked a night shift before, but I can." That's an honest answer that still sounds professional.
 
-Women's History Month: In the break room, there's a flyer from the hotel workers union. One question on it reads: "How long have you worked without a raise?" Yemi reads it out loud and laughs. "Too long," she says.
+In the break room at Rosa's job, there's a flyer from the hotel workers union. One question on it reads: "How long have you worked without a raise?" Yemi reads it out loud and laughs. "Too long," she says.
 
 **Exercise: Interview questions**
 - How long have you driven a delivery van? _(options: I drove it for four years. / I have driven a delivery van for four years. / I driving for four years.)_

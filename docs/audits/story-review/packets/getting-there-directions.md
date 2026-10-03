@@ -19,12 +19,12 @@
 
 ## 1. Where Are You Going?
 
-> 🖼 **Scene:** Maverick Blue Line Station, East Boston. Tuesday, 7:00 PM.  
+> 🖼 **Scene:** Maverick Blue Line Station, East Boston. Wednesday, 7:00 PM.  
 > _Photo shows: Woman standing outside a subway station entrance at dusk, looking at her phone._
 
 Amara cleans patient rooms at the hospital. She waited three weeks for this doctor's appointment at the clinic on Meridian Street. It's at 7:15. If she is more than 10 minutes late, she has to make a new appointment and wait three more weeks. She has never been to this clinic, so she calls her coworker Jean.
 
-- **Amara:** Jean, I'm at Maverick. My appointment is at 7:15. How do I get to the clinic?
+- **Amara:** Jean, I'm at Maverick. My appointment is at 7:15. I know Meridian, but where on Meridian is the clinic?
 - **Jean:** Walk across Maverick Square. Turn left on Meridian Street.
 - **Amara:** Wait. I got a text. It says my package can't be delivered, and there's a link. I'm not expecting a package.
 - **Jean:** That's a scam. Delete it. Use your map, not the link.
@@ -100,10 +100,10 @@ Prepositions of location tell you WHERE something is in relation to something el
 
 ## 4. Step by Step
 
-> 🖼 **Scene:** The bus stop on Meridian Street, near the clinic. Elena will get off the bus here next Tuesday.  
+> 🖼 **Scene:** The bus stop on Meridian Street, near the clinic. Elena will get off the bus here next Wednesday.  
 > _Photo shows: A city bus stop on a busy urban street with pedestrians walking past._
 
-Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Tuesday at 7:30, and she comes by bus.
+Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Wednesday at 7:30, and she comes by bus.
 
 Amara's text to Elena
 
@@ -120,7 +120,7 @@ P.S. If you get a text about a package, don't tap the link. It's a scam.
 Use First, Then, Next, Finally to put directions in order. Each step starts with an imperative + preposition to say what to do AND where.
 
 **Exercise: Amara's text to Elena**
-- Elena might take the other bus, to Saratoga Street. Unscramble Amara's first step from there:
+- Amara adds one more step for Elena, before step 1. Unscramble it:
 - Elena finds the green door. It is "___ the right, next to the pharmacy." Which word fits? _(options: on / in / at)_
 - Amara uses four steps. She writes: First... Then... ___... Finally. Which word goes in the blank? _(options: After / Next / Soon)_
 

@@ -162,7 +162,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           { speaker: "Carlos", avatar: "👨🏽", text: "Emergency! I took the wrong lunch bag from the fridge. There’s a ring inside. Is it Mark’s?", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏻", text: "Yes. Mark <strong>brings</strong> that blue bag every day. And tonight he wants to ask Lisa to marry him.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Oh no. Class <strong>finishes</strong> at eight. Where is he now?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "He’s <strong>looking</strong> everywhere in the kitchen. I’m <strong>serving</strong> tables, so I can’t leave. Meet us at the café at eight.", side: "left", tone: "blue" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "He’s <strong>looking</strong> everywhere in the kitchen. I’m <strong>serving</strong> tables, so I can’t leave. Meet Mark at the café at eight.", side: "left", tone: "blue" },
         ])}
         <p>Sarah talks about Mark’s usual routine and what is happening right now. Have you ever taken the wrong bag, coat, or phone?</p>
         <p><strong>Quick form check:</strong> I/you/we/they <strong>bring</strong>; he/she/it <strong>brings</strong>. For an action in progress, use <strong>am/is/are + V-ing</strong>: “He’s looking everywhere.”</p>
@@ -278,13 +278,13 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       title: "She said yes! · Be and have",
       icon: "⚡",
       explanation: `
-        ${sceneCard("scenePhone", "Later that night, Sarah starts a group chat with everyone from the café.", "sage")}
+        ${sceneCard("scenePhone", "Later that night, Carlos sits down to do his online homework. Then a group chat from Sarah pops up.", "sage")}
         ${dialogue([
           { speaker: "Sarah", avatar: "👩🏻", text: "Big news. Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you tomorrow. Thank you, Carlos!", side: "left", tone: "amber" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> careful all night. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> hungry since six. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
         ])}
         <p><strong>Be</strong> and <strong>have</strong> change in special ways. Don’t add <em>-ed</em>.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
@@ -367,7 +367,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qfb1",
       type: "fill-blank",
-      question: "Sarah texts Carlos from work: “I am ___ tables now. See you at the café!” (serve)",
+      question: "Sarah texts Carlos from work: “I am ___ tables now. Mark will meet you at the café!” (serve)",
       correctAnswer: "serving",
       explanation: "Use am + V-ing for an action in progress: I am serving tables. Drop the final e in serve before adding -ing.",
       topic: "v1-ing",

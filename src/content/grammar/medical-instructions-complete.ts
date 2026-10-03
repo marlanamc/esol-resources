@@ -157,7 +157,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       title: "Clinic signs & prescription labels",
       icon: "🪧",
       explanation: `
-        ${sceneCard("clinicSign", "A sign on the hospital wall. Luis waits 40 minutes and reads every sign twice.", "terracotta")}
+        ${sceneCard("pillBottleLabel", "Later today at the pharmacy: the label on Luis's antibiotic. Like the signs he reads this morning, it gives orders.", "terracotta")}
 
         <h3>Imperatives: the language of signs</h3>
         <p>In the waiting room, Luis has nothing to do but read the walls: <em>Please take a number. Cover your cough. Tell the nurse if you feel worse.</em> Almost every sign, sticker, and prescription label in a hospital is an <strong>imperative</strong>: a short command with no subject. The subject "you" is understood.</p>
@@ -906,7 +906,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
           </div>
 
           <div class="gc-bg-white" style="padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 6px rgba(0,0,0,0.04)">
-            <h4 class="gc-text-blue" style="margin: 0 0 0.5rem 0">Scene C · Nurse ↔ Luis (earlier, in the ER bed)</h4>
+            <h4 class="gc-text-blue" style="margin: 0 0 0.5rem 0">Scene C · Nurse ↔ Luis (after the exam, in the ER bed)</h4>
             ${dialogue([
               { speaker: "Nurse", avatar: "👩🏾‍⚕️", side: "left", tone: "blue", text: "\"<strong>Please</strong> press this button if you need anything. <strong>Don't</strong> get up by yourself while the IV is in.\"" },
               { speaker: "Luis", avatar: "👨🏽", side: "right", tone: "sage", text: "\"<strong>Can I</strong> use my phone? I need to text my wife.\"" },
@@ -1128,7 +1128,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("hospitalHallway", "The ER hallway on the way out. Luis has his discharge sheet and his work note.", "green")}
 
-        <p>At home, Marta reads Luis's discharge sheet out loud at the kitchen table. Every kind of sentence from today is on it.</p>
+        <p>Luis leaves with his discharge sheet. At home, Marta reads it out loud at the kitchen table. Every kind of sentence from today is on it.</p>
 
         <div style="max-width: 480px; margin: 1.25rem auto; border: 2px solid #1a202c; border-radius: 0.375rem; overflow: hidden; background: #fffdf6">
           <div style="background: #1a202c; color: #ffffff; padding: 0.4rem 0.85rem; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.08em">DISCHARGE INSTRUCTIONS &nbsp;·&nbsp; LUIS &nbsp;·&nbsp; STREP THROAT</div>

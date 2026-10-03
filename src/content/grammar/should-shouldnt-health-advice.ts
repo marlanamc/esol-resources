@@ -77,7 +77,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Good morning. What brings you in today?" },
           { speaker: "Yolanda", avatar: "👩🏽", text: "My back. I hurt it lifting boxes at work yesterday. It's really bad." },
-          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Okay. You <strong>should</strong> rest for at least two days. And you <strong>shouldn't</strong> lift anything over ten pounds." },
+          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Okay. You <strong>should</strong> rest for at least two days. And you <strong>shouldn't</strong> lift anything over ten pounds until your follow-up." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Two days? I have a shift today..." },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "I know it's hard. But if you don't rest now, it will get a lot worse." },
         ])}
@@ -137,7 +137,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The nurse told Yolanda her appointment is important. Yolanda ___ miss it.",
+              label: "Yolanda has a follow-up appointment next week. It's important. Yolanda ___ miss it.",
               options: [
                 { value: "should", label: "should" },
                 { value: "shouldnt", label: "shouldn't" },
@@ -200,6 +200,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           { speaker: "Yolanda", avatar: "👩🏽", text: "Okay. Can I still go to work?" },
           { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "You <strong>had better</strong> not go back until Thursday. If you do, you could make this a lot worse. I'm serious." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "I understand. I'll text my supervisor." },
+          { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "Good. And come back next week for a follow-up. No lifting over ten pounds until then." },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -231,7 +232,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           <p style="margin: 0.4rem 0 0 0; font-family: monospace; font-size: 0.95rem">Subject + <strong>had better not</strong> + base verb</p>
         </div>
 
-        <p style="font-size: 0.92rem; color: #555">Note: <em>Had better</em> sounds formal or serious. Doctors, supervisors, and parents use it when something is really important. Don't use it for small everyday advice.</p>
+        <p style="font-size: 0.92rem; color: #555">Note: <em>Had better</em> is common in everyday conversation, but it sounds strong. It is a warning. Doctors, supervisors, and parents use it when something is really important. Don't use it for small everyday advice.</p>
       `,
       exercises: [
         {
@@ -250,7 +251,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: '"You <strong>had better</strong> not miss your follow-up appointment. Your back could get permanent damage."',
+              label: '"You <strong>had better</strong> not miss your follow-up appointment. Your back could get a lot worse."',
               options: [
                 { value: "advice", label: "Advice (good idea, not urgent)" },
                 { value: "warning", label: "Warning (do this or something bad happens)" },
@@ -275,7 +276,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The doctor is very serious: \"You ___ lift anything heavy for two weeks. If you do, you could need surgery.\"",
+              label: "The doctor is very serious: \"You ___ lift anything over ten pounds before your follow-up. If you do, you could hurt your back again.\"",
               options: [
                 { value: "ought-to-not", label: "ought not to" },
                 { value: "had-better-not", label: "had better not" },
@@ -331,8 +332,8 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Yolanda", avatar: "👩🏽", text: "Excuse me. <strong>Should</strong> I take ibuprofen or just rest?" },
-          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "You can take ibuprofen every six hours. Not more than that." },
-          { speaker: "Rami", avatar: "👨🏽", text: "Before you go, <strong>should</strong> you ask about physical therapy too?" },
+          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "You can take ibuprofen every six hours. But check with the pharmacist about your other medicines first." },
+          { speaker: "Rami", avatar: "👨🏽", text: "Before you go, you <strong>should</strong> ask about physical therapy too." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Good idea. Excuse me, <strong>should</strong> I see a physical therapist too?" },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Yes. You <strong>ought to</strong> call this number. They take MassHealth." },
         ])}
@@ -437,14 +438,14 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("scenePharmacyCounter", "Pharmacy counter, 8:30 a.m.", "sage")}
 
-        <p>Yolanda picks up her ibuprofen prescription. The pharmacist, James, explains the warnings.</p>
+        <p>Yolanda brings her ibuprofen prescription to the pharmacy. Before he fills it, the pharmacist, James, checks her other medicines.</p>
 
         ${dialogue([
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "Hi. A few things. You <strong>shouldn't</strong> skip doses. Take it every six hours, even if you feel better." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "Okay. What about food?" },
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You <strong>must not</strong> take this on an empty stomach. You're on blood pressure medicine, right? You <strong>must not</strong> take them together." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "How far apart?" },
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "At least two hours between them." },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You're on blood pressure medicine, right? Ibuprofen can raise your blood pressure and make that medicine work less well." },
+          { speaker: "Yolanda", avatar: "👩🏽", text: "Can I take them at different times?" },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "No, that doesn't fix it. You <strong>must not</strong> take this until your doctor says it's okay." },
+          { speaker: "Yolanda", avatar: "👩🏽", text: "But my back really hurts. What should I do?" },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "I'll call Dr. Mitchell now. Until he calls back, you <strong>shouldn't</strong> take anything else for the pain." },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -454,7 +455,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin-bottom: 1.5rem">
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
             <span style="font-size: 1.2rem">💬</span>
-            <span>You <strong>shouldn't</strong> skip doses.</span>
+            <span>You <strong>shouldn't</strong> stay up late. Rest helps.</span>
             ${labelPill("bad idea", "amber")}
           </div>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(176,87,64,0.1); border-radius: 0.5rem">
@@ -464,7 +465,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           </div>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(176,87,64,0.1); border-radius: 0.5rem">
             <span style="font-size: 1.2rem">🚫</span>
-            <span>You <strong>must not</strong> mix these two medicines.</span>
+            <span>You <strong>must not</strong> take this until your doctor says it's okay.</span>
             ${labelPill("hard rule", "terracotta")}
           </div>
         </div>
@@ -477,7 +478,9 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           </ul>
         </div>
 
-        <p>Back home, Yolanda texts her supervisor, Mark: "The doctor says I <strong>had better</strong> not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You <strong>shouldn't</strong> lift anything heavy that first week."</p>
+        <p>Twenty minutes later, Dr. Mitchell calls back. He changes her prescription to acetaminophen (Tylenol). Tip: always tell the pharmacist about every medicine you take.</p>
+
+        <p>Back home, Yolanda texts her supervisor, Mark: "The doctor says I <strong>had better</strong> not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You <strong>shouldn't</strong> lift anything over ten pounds until your follow-up. And you <strong>should</strong> fill out an injury report when you're back."</p>
       `,
       tipBox: {
         title: "Want to go deeper?",
@@ -491,7 +494,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "You ___ take ibuprofen and your blood pressure medicine together. The pharmacist was very clear.",
+              label: "You ___ take ibuprofen with your blood pressure medicine until your doctor says it's okay. The pharmacist was very clear.",
               options: [
                 { value: "shouldnt", label: "shouldn't" },
                 { value: "must-not", label: "must not" },
@@ -500,7 +503,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "You ___ skip doses. You'll recover faster if you take all of them.",
+              label: "You ___ carry the heavy laundry basket today. Ask someone to help you.",
               options: [
                 { value: "shouldnt", label: "shouldn't" },
                 { value: "must-not", label: "must not" },
@@ -547,9 +550,8 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
                 "You must not take this on an empty stomach",
                 "You must not mix these medicines",
                 "You must not take more than the dose",
-                "You must not skip doses",
                 "You must not drive after taking this",
-                "You must not take both medicines at the same time",
+                "You must not take ibuprofen with your blood pressure medicine",
                 "You must not take more than three times a day",
               ],
             },
@@ -588,10 +590,10 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
     },
     {
       id: "mq-mustnot-vs-shouldnt",
-      question: "The pharmacist says: \"You must not mix this with your blood pressure medicine.\" Why 'must not' and not 'shouldn't'?",
+      question: "The pharmacist says: \"You must not take this until your doctor says it's okay.\" Why 'must not' and not 'shouldn't'?",
       options: [
         { value: "a", label: "It's just a general suggestion, not urgent." },
-        { value: "b", label: "It's a hard rule. Mixing them is dangerous." },
+        { value: "b", label: "It's a hard rule. Taking it could be dangerous." },
         { value: "c", label: "It happened in the past." },
       ],
       correctAnswer: "b",

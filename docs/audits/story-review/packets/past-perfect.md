@@ -14,7 +14,7 @@
 - had + V3: Putting It in Order: James, Gloria
 - When, Before, After, By the Time: Jennifer, Gloria
 - Past Perfect vs. Past Simple: Wilmer, Cousin (phone)
-- Your Work Story: Hodan, Linh
+- Your Work Story: Hodan, Thanh
 
 ---
 
@@ -41,7 +41,7 @@ The first action (working in housekeeping) uses had + past participle. The secon
 
 ## 2. had + V3: Putting It in Order
 
-> 🖼 **Scene:** Break room, 10 AM. Gloria meets James, a forklift operator.  
+> 🖼 **Scene:** Break room, 10 AM. Before her interview, Gloria meets James, a forklift operator.  
 > _Photo shows: Two coworkers talking at a table in a workplace break room._
 
 - **James:** So what did you put on your application?
@@ -70,6 +70,7 @@ Positive: subject + had + past participle Negative: subject + hadn't + past part
 - **Gloria:** Yes. After I had finished my shift at the hotel, I helped count stock.
 - **Jennifer:** And by the time you left that job, had you trained anyone?
 - **Gloria:** I had trained two new cleaners before I left.
+- **Jennifer:** That's great experience. We'd like to offer you the job. Can you start Monday?
 
 Four words help you show which action came first. Learn them and you can use Past Perfect naturally.
 
@@ -119,13 +120,13 @@ Common mistake: Using Past Perfect for a single action. ✗ "I had worked yester
 
 ## 5. Your Work Story
 
-> 🖼 **Scene:** Break room. Hodan and her coworker Linh swap work histories.  
+> 🖼 **Scene:** Break room. Hodan and her coworker Thanh swap work histories.  
 > _Photo shows: A small group of workers sitting together and talking during a break._
 
 - **Hodan:** Before I came here, I had done home care for four years. Nights mostly.
-- **Linh:** I had worked in a restaurant before this. Twelve-hour shifts. I hadn't slept a full night in two years.
+- **Thanh:** I had worked in a restaurant before this. Twelve-hour shifts. I hadn't slept a full night in two years.
 - **Hodan:** That sounds hard. By the time I found this job, I had already saved enough to move. Now I walk here.
-- **Linh:** Lucky you. And the pay is better here. The restaurant hadn’t paid overtime, not once.
+- **Thanh:** Lucky you. And the pay is better here. By the time I quit, the restaurant hadn’t paid me overtime, not once.
 
 Past Perfect is natural in work histories: you talk about what you had done before the current job, and what had already happened before a key moment.
 
@@ -133,9 +134,9 @@ Past Perfect is natural in work histories: you talk about what you had done befo
 - Before she found this job, Hodan ___ (do) home care for four years.
 - By the time she found this job, she ___ (already save) enough to move.
 
-**Exercise: Linh's story**
-- Before Linh found this job, she ___ in a restaurant for years. _(options: had worked (Past Perfect) / worked (Past Simple))_
-- The restaurant ___ overtime in two years. _(options: hadn't paid (Past Perfect, negative) / didn't pay (Past Simple, negative))_
+**Exercise: Thanh's story**
+- Before Thanh found this job, she ___ in a restaurant for years. _(options: had worked (Past Perfect) / worked (Past Simple))_
+- By the time Thanh quit, the restaurant ___ her overtime even once. _(options: hadn't paid (Past Perfect, negative) / didn't pay (Past Simple, negative))_
 
 **Exercise: Your work history**
 - Unscramble:
@@ -146,5 +147,5 @@ Past Perfect is natural in work histories: you talk about what you had done befo
 - James hadn't driven a forklift before he ___. _(options: starts at this warehouse / started at this warehouse / had started at this warehouse)_
 - Fill in the blank: "Before Hodan got the job, she ___ home care for four years." (Earlier of two past actions.)
 - Which sentence has a mistake? _(options: After she had finished loading, she clocked out. / She had eaten lunch before the break ended. / I had called my cousin last night.)_
-- Linh finished her tasks before the manager arrived. Put the words in order.
+- Thanh finished her tasks before the manager arrived. Put the words in order.
 

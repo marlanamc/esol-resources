@@ -6,6 +6,7 @@
 
 ## Automatic signals
 
+- Section(s) with a cast that appears nowhere else: "Label reading role-play", "Healthcare rights in Massachusetts".
 - Section(s) where every speaker is a generic role (Classmate, Teacher, You...): "You're at the pharmacy", "Anatomy of the label", "Imperatives on labels", "Warnings and modals", "Dosage language", "OTC vs. Prescription — do you need a doctor's note?", "Your insurance card", "Types of insurance in the USA", "Key insurance terms".
 - Not on the course map, so theme fit has to be judged from the guide title alone.
 
@@ -23,19 +24,21 @@
 - Types of insurance in the USA: _no named speakers_
 - Key insurance terms: _no named speakers_
 - Using your insurance: Sofía, Pharmacist
-- Healthcare rights in Massachusetts: Rosa, Clinic worker, Ana, Worker advocate
+- Healthcare rights in Massachusetts: Marisol, Clinic worker, Fatima, Worker advocate
 - Prescription savings cards: Patient, Pharmacist
 
 ---
 
 ## 1. You're at the pharmacy
 
-> 🖼 **Scene:** Your child's medicine — but what does it say?  
+> 🖼 **Scene:** Shopping for medicine at the pharmacy. What does the label say?  
 > _Photo shows: A man and a woman looking at items in a store aisle._
 
-The pharmacist hands you a small orange bottle.
+You pick up a bottle of children's pain reliever. The label says:
 
-"Take 2 tablets every 4–6 hours. Do not exceed 5 doses in 24 hours. Do not use if your child is under 6 years old. May cause drowsiness. Keep out of reach of children."
+"Children 6–11 years: take 10 mL every 6 to 8 hours. Do not exceed 3 doses in 24 hours. Children under 6 years: ask a doctor. May cause stomach upset. Keep out of reach of children."
+
+This is a practice label. On real bottles, children's doses depend on weight and age, so always read the label on your own bottle.
 
 That is a lot of English. But every word matters. This guide will help you read and understand it all.
 
@@ -69,24 +72,24 @@ What you will learn in this guide
 
 🗯️ Imperatives — commands
 
-"Take 2 tablets." · "Do not exceed 5 doses." · "Keep out of reach of children."
+"Take with food." · "Do not exceed 3 doses." · "Keep out of reach of children."
 
 💬 Declaratives — statements
 
-"The dose is 2 tablets." · "You should not give this to children under 6."
+"The dose is 10 mL." · "You should not give this to children under 6."
 
 🔑 Modals — meaning-changers
 
 may (possible side effect) · must not / do not (danger) · should (advice) · can (permission)
 
 **Exercise: Quick Check: What Kind of Sentence?**
-- "Take 2 tablets every 4–6 hours." _(options: Imperative — a command (no subject) / Declarative — a statement (has a subject))_
-- "May cause drowsiness." _(options: Imperative — a command / Declarative — a statement with a modal)_
+- "Take 10 mL every 6 to 8 hours." _(options: Imperative — a command (no subject) / Declarative — a statement (has a subject))_
+- "May cause stomach upset." _(options: Imperative — a command / Declarative — a statement with a modal)_
 - "Do not use if child is under 6 years." _(options: Imperative — a command (negative) / Declarative — a statement)_
 
 ## 2. Anatomy of the label
 
-> 🖼 **Scene:** Reading every section carefully at home  
+> 🖼 **Scene:** Before you take any pills, read every section of the label  
 > _Photo shows: An orange and white medicine bottle with pills spilled into a person's hand._
 
 A medicine label in the USA is organized into standard sections. The government requires these sections to appear in a specific order — so once you know the pattern, you can read any label.
@@ -187,7 +190,7 @@ Many dosage instructions use if to tell you what to do in a specific situation:
 - Your child is 4 years old. What should you do for this medicine? _(options: Give her half the 6–11 dose / Ask a doctor before giving this medicine / Give her the smallest dose listed)_
 
 **Exercise: Conditional Sentence Reading**
-- "Stop use and ask a doctor if symptoms do not improve in 10 days." — When should you call a doctor? _(options: After taking 10 doses / If you still feel sick after 10 days of taking the medicine / Every 10 hours while taking the medicine)_
+- "Stop use and ask a doctor if fever gets worse or lasts more than 3 days." When should you call a doctor? _(options: After giving 3 doses / If the fever gets worse, or if your child still has a fever after 3 days / Every 3 hours while giving the medicine)_
 
 ## 6. Talking to the pharmacist
 
@@ -215,22 +218,22 @@ Useful phrases at the pharmacy
 
 ## 7. Label reading role-play
 
-> 🖼 **Scene:** You can find OTC medicines on the shelf — no prescription needed  
+> 🖼 **Scene:** Ana bought this medicine off the shelf. No prescription needed.  
 > _Photo shows: A pharmacy store aisle with over-the-counter medicine products on shelves._
 
-You are at home. Your son Pedro (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.
+Your neighbor Ana's son Pedro (age 7) has a fever. Ana has a bottle of children's pain reliever, the label from Section 2. She asks you to explain it.
 
 - **Ana:** What does this medicine do? I can't read all the English.
-- **You:** It's ibuprofen. It's a pain reliever and fever reducer. The active ingredient is ibuprofen — 100 mg per 5 mL.
-- **Ana:** How much do I give my son? He's 7.
-- **You:** He's between 6 and 11, so you give him 200 mg — that's 10 mL. You can give it every 6 to 8 hours, but not more than 3 times a day.
+- **You:** It's ibuprofen. It's a pain reliever and fever reducer. There are 100 mg in every 5 mL.
+- **Ana:** How much do I give Pedro? He's 7.
+- **You:** He's between 6 and 11, so give him 10 mL. Wait 6 to 8 hours between doses. No more than 3 doses a day.
 - **Ana:** And the warnings? What do I need to watch out for?
-- **You:** It may cause stomach upset — so give it with food. And do not give it if he's allergic to ibuprofen. If he doesn't feel better in 10 days, call the doctor.
+- **You:** Give it with food. If his fever gets worse or lasts more than 3 days, stop and call the doctor.
 
 Use the label from Section 2 to answer the exercises below. You can scroll up if you need to look at it again.
 
 **Exercise: Find the Information**
-- Pedro is 9 years old. What is the correct dose for him? _(options: 400 mg (20 mL) / 200 mg (10 mL) / 100 mg (5 mL))_
+- Pedro is 7 years old. What is the correct dose for him? _(options: 400 mg (20 mL) / 200 mg (10 mL) / 100 mg (5 mL))_
 - How many hours should you wait between doses for Pedro? _(options: 4 to 6 hours / 6 to 8 hours / 8 to 12 hours)_
 
 **Exercise: Find the Warning Words**
@@ -238,7 +241,7 @@ Use the label from Section 2 to answer the exercises below. You can scroll up if
 - Identify the modal that signals a POSSIBLE side effect:
 
 **Exercise: Explain It in Your Own Words**
-- "Stop use and ask a doctor if symptoms do not improve in 10 days." — Explain this in simple English:
+- "Stop use and ask a doctor if fever gets worse or lasts more than 3 days." Explain this in simple English:
 
 ## 8. OTC vs. Prescription — do you need a doctor's note?
 
@@ -295,9 +298,7 @@ Part C — Medicare Advantage plans (private plans that bundle A+B and usually D
 
 Part D — Prescription drug coverage
 
-For Medicaid and CHIP: go to your state's Medicaid website or call 1-877-543-7669
-
-For Marketplace plans: go to healthcare.gov or call 1-800-318-2596
+For MassHealth (Medicaid and CHIP in Massachusetts) and Health Connector plans: go to mahealthconnector.org
 
 For Medicare: go to medicare.gov or call 1-800-633-4227
 
@@ -305,9 +306,9 @@ For Community Health Centers: findahealthcenter.hrsa.gov
 
 **Exercise: Which Program?**
 - Dolores is 67 years old and retired. She paid taxes for 20 years. _(options: Medicaid / Medicare / CHIP / Employer insurance)_
-- Pedro is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid. _(options: CHIP — Children's Health Insurance Program / Medicare / ACA Marketplace / Employer insurance)_
-- Ana has a low income and no job with benefits. She needs coverage for herself. _(options: Medicare / Medicaid / CHIP / Employer insurance)_
-- Roberto is self-employed. He has a moderate income and needs to buy his own plan. _(options: CHIP / Medicaid / ACA Marketplace plan (healthcare.gov) / Medicare)_
+- Daniel is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid. _(options: CHIP — Children's Health Insurance Program / Medicare / ACA Marketplace / Employer insurance)_
+- Gladys has a low income and no job with benefits. She needs coverage for herself. _(options: Medicare / Medicaid / CHIP / Employer insurance)_
+- Roberto is self-employed. He has a moderate income and needs to buy his own plan. _(options: CHIP / Medicaid / Marketplace plan (MA Health Connector) / Medicare)_
 
 **Exercise: Medicare Parts**
 - Medicare Part D covers: _(options: Hospital stays / Prescription drugs / Doctor visits)_
@@ -327,7 +328,7 @@ Copay vs. Deductible — the most confused pair
 - In January, Roberto gets a hospital bill. Insurance says he must pay the first $1,500 before they help. _(options: Copay / Deductible)_
 
 **Exercise: In-Network vs. Out-of-Network**
-- Ana's insurance card shows her plan is BlueStar. She wants to see a doctor. Which doctor should she choose to pay LESS? _(options: Any doctor she finds on Google / A BlueStar in-network doctor / A specialist without a referral)_
+- Sofía's insurance card shows her plan is BlueStar. She wants to see a doctor. Which doctor should she choose to pay LESS? _(options: Any doctor she finds on Google / A BlueStar in-network doctor / A specialist without a referral)_
 - What does "formulary" mean? _(options: A type of medical form you sign at the doctor's office / The list of prescription medicines your insurance covers / The amount you pay at the pharmacy each visit)_
 
 **Exercise: Referrals**
@@ -398,11 +399,11 @@ Worker's compensation can pay for medical care related to a work injury. It is s
 
 FAQ: Can I get help if I am undocumented?
 
-Story 1: Rosa needs care but has no insurance
+Story 1: Marisol needs care but has no insurance
 
-- **Rosa:** I do not have insurance. I am afraid to go to the clinic because I cannot pay.
+- **Marisol:** I do not have insurance. I am afraid to go to the clinic because I cannot pay.
 - **Clinic worker:** You can still ask for help. Are you a Massachusetts resident? We can help you apply for MassHealth Limited or Health Safety Net if you qualify.
-- **Rosa:** What should I bring?
+- **Marisol:** What should I bring?
 - **Clinic worker:** Bring proof of who you are, proof that you live in Massachusetts, and income information if you have it. If something is missing, ask what else you can use.
 
 Story 2: Luis gets hurt at work
@@ -421,13 +422,13 @@ Ask the employer for the worker's compensation insurance information.
 
 If the claim is denied or the employer will not help, contact the Massachusetts Department of Industrial Accidents (DIA).
 
-Story 3: Ana is afraid to report a work injury
+Story 3: Fatima is afraid to report a work injury
 
-Ana hurt her back lifting boxes at work. She is at a community clinic asking for help. She is afraid her boss will get angry, fire her, or ask about her immigration status if she says the injury happened at work.
+Fatima hurt her back lifting boxes at work. She is at a community clinic asking for help. She is afraid her boss will get angry, fire her, or ask about her immigration status if she says the injury happened at work.
 
-- **Ana:** I got hurt at work, but I am scared to report it. Can my boss ask about my immigration status?
+- **Fatima:** I got hurt at work, but I am scared to report it. Can my boss ask about my immigration status?
 - **Worker advocate:** The Massachusetts Attorney General says their office serves all workers regardless of immigration status. Workers have rights to safe workplaces and protection from retaliation.
-- **Ana:** What should I say at the clinic?
+- **Fatima:** What should I say at the clinic?
 - **Worker advocate:** Say: "I was injured at work. I need medical care, and I need the worker's compensation insurance information. I would like everything in writing."
 
 Useful Massachusetts contacts
@@ -497,7 +498,7 @@ Massachusetts also has Prescription Advantage, a state prescription drug assista
 - "Do not use if child has had an allergic reaction to ibuprofen." This is: _(options: A possible side effect — watch for it / A hard rule — do not ignore it / Advice — call your doctor about it)_
 - "May cause drowsiness." What does "may" mean here? _(options: Everyone will feel drowsy after taking this. / Some people might feel drowsy. Watch for it. / You are allowed to feel drowsy.)_
 - The label says: "every 6 to 8 hours, not more than 3 times in 24 hours." Your child took a dose at 8 AM. When is the earliest she can have the next dose? _(options: 10 AM (2 hours later) / 2 PM (6 hours later) / 8 PM (12 hours later))_
-- "Stop use and ask a doctor if symptoms do not improve in 10 days." When should you call the doctor? _(options: After taking 10 doses / If the illness is still there after 10 days on the medicine / Every 10 hours while taking the medicine)_
+- "Stop use and ask a doctor if fever gets worse or lasts more than 3 days." When should you call the doctor? _(options: After giving 3 doses / If the fever gets worse, or it is still there after 3 days / Every 3 hours while giving the medicine)_
 - The label says "Active Ingredient: Acetaminophen 160 mg." What does "active ingredient" mean? _(options: The brand name of the medicine / The chemical that actually treats your symptom / The expiration date information)_
 - The label shows EXP: 06/2025. It is now August 2025. What should you do? _(options: Use the medicine — it's only 2 months past the date / Do not use it — it has expired. Get a new bottle. / Cut the dose in half to be safe)_
 - You want to ask the pharmacist if your daughter can take this medicine with her allergy medicine. Which question is most polite and clear? _(options: "Can she take both?" / "Is it okay if my daughter takes this with her allergy medicine?" / "Tell me if these medicines work together.")_

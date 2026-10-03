@@ -23,7 +23,7 @@ _None._
 > 🖼 **Scene:** Walk-in clinic, East Boston. Saturday, 7:30 AM.  
 > _Photo shows: A bright clinic waiting area with chairs and soft lighting._
 
-Yemi works as a packer at a warehouse in Chelsea. Three weeks ago she hurt her knee lifting a pallet. She kept working double shifts instead of resting. Now the pain is much worse, and she finally came to the clinic.
+Yemi works as a packer at a warehouse in Chelsea. Three weeks ago she hurt her knee lifting a pallet. She kept working double shifts instead of resting. Now the pain is much worse, and she finally came to the clinic. Ms. Patel is the nurse practitioner.
 
 - **Ms. Patel:** How long has your knee been hurting?
 - **Yemi:** About three weeks. I know I waited too long.
@@ -33,7 +33,7 @@ Yemi works as a packer at a warehouse in Chelsea. Three weeks ago she hurt her k
 Third conditional = you talk about a past choice and a different past result that did not happen. You cannot change it now, but you can say what would have been different.
 
 **Exercise: What does this sentence mean?**
-- "If I had come sooner, it wouldn't hurt this much." What is true? _(options: Yemi came sooner and her knee is fine. / Yemi did not come sooner, and her knee hurts a lot now. / Yemi will come to the clinic tomorrow.)_
+- "If I had come sooner, I wouldn't have missed so much work." What is true? _(options: Yemi came sooner and didn't miss any work. / Yemi did not come sooner, and she missed a lot of work. / Yemi will come to the clinic tomorrow.)_
 
 **Exercise: Fill in the blank**
 - If I ___ rested my knee, it would have healed faster.
@@ -115,18 +115,20 @@ Second conditional: If + past simple, would + base verb. Imaginary now. Third co
 > 🖼 **Scene:** Warehouse break room. Wednesday, before the shift.  
 > _Photo shows: Workers sitting at a table in a warehouse break room talking over lunch._
 
-A new workplace safety poster is up on the break room wall. Yemi and Jennifer read it before their shift.
+Yemi and Jennifer talk before their shift. Jennifer remembers a coworker who got hurt last year.
 
-- **Jennifer:** Look at this: 'If the site had followed the safety rules, that worker wouldn't have been injured.'
+- **Jennifer:** Remember Kevin last year? If he'd used the lift, he wouldn't have hurt his back.
 - **Yemi:** Same idea with my knee. If I had rested when it started, I wouldn't have missed three shifts.
-- **Jennifer:** And if you called the nurse line now, they would tell you what to do next. That's still possible.
+- **Jennifer:** And if you called the nurse line now, they'd tell you what to do next.
 - **Yemi:** You're right. I can't change the past. But I can call today.
+
+That evening, Yemi calls the nurse line. The nurse tells her to rest and ice the knee. On the way home, she stops at the pharmacy for a knee brace. The pharmacist shows her how to put it on and says, "If you had come in three weeks ago, I could have shown you this then."
 
 Third conditional for past regrets. Second conditional when you can still act.
 
 **Exercise: Pick the right pattern**
 - Yemi did not rest her knee three weeks ago. _(options: If I had rested my knee, it would have healed faster. / If I rested my knee, it would heal faster. / If I rest my knee, it will heal faster.)_
-- Workplace safety poster about a past accident. _(options: If the site followed the rules, he isn't injured. / If the site had followed the rules, he wouldn't have been injured. / If the site had followed the rules, he wouldn't be injured.)_
+- Jennifer talks about Kevin's accident last year. _(options: If he used the lift, he isn't injured. / If he had used the lift, he wouldn't have been injured. / If he has used the lift, he wouldn't have been injured.)_
 
 **Exercise: Fill in the blank**
 - If I ___ called the clinic three weeks ago, I wouldn't have missed three shifts.
@@ -139,7 +141,7 @@ Third conditional for past regrets. Second conditional when you can still act.
 
 ## Mini quiz
 
-- Yemi did not rest her knee when it started to hurt. Now it hurts a lot. Which sentence matches her situation? _(options: If I rest my knee, it won't hurt. / If I had rested my knee, it wouldn't hurt this much. / If I rested my knee, it wouldn't hurt.)_
+- Yemi did not rest her knee when it started to hurt, and it got worse. Which sentence matches her situation? _(options: If I rest my knee, it won't get worse. / If I had rested my knee, it wouldn't have gotten worse. / If I rested my knee, it wouldn't get worse.)_
 - Which sentence is a correct third conditional? _(options: If Yemi rested more, she will have healed faster. / If Yemi had rested more, she would have healed faster. / If Yemi has rested more, she would heal faster.)_
 - Fill in the blank: "If I had rested my knee, I ___ $80." (a different past result that didn't happen)
 - Find the error: "If I called the clinic last week, I wouldn't have missed three shifts." _(options: No error. / Error: should be "If I had called" (missing had). / Error: should be "I wouldn't miss" not "wouldn't have missed".)_

@@ -98,7 +98,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. It was my first job in Boston.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. Before that, I cleaned offices downtown.", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been</strong> in Boston?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have been</strong> here <strong>since</strong> 2020. You?", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "I <strong>have lived</strong> in East Boston <strong>for</strong> three years.", side: "left", tone: "sage" },
@@ -170,8 +170,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "have", "worked", "at", "this", "hotel", "since", "2022"],
-              correctAnswer: "I have worked at this hotel since 2022",
+              words: ["I", "have", "worked", "at", "this", "hotel", "since", "2024"],
+              correctAnswer: "I have worked at this hotel since 2024",
             },
           ],
         },
@@ -419,8 +419,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
               label: "\"How long has Yesenia lived in East Boston?\"",
               options: [
                 { value: "a", label: "She has lived there since five years." },
-                { value: "b", label: "She lived there for 2019." },
-                { value: "c", label: "She has lived there since 2019." },
+                { value: "b", label: "She lived there for 2021." },
+                { value: "c", label: "She has lived there since 2021." },
               ],
               expectedAnswer: "c",
             },
@@ -624,9 +624,9 @@ export const howLongForSinceContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Yesenia", avatar: "👩🏽", text: "Mami, this rental application asks how long we <strong>have lived</strong> here. Five years, right?", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "Yes, we <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> before your brother was born.", side: "left", tone: "sage" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "Yes, we <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> your brother was in kindergarten.", side: "left", tone: "sage" },
           { speaker: "Yesenia", avatar: "👩🏽", text: "Our lease ends in March, and everything nearby costs more.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "The kids <strong>have gone</strong> to that school <strong>for</strong> four years. I don't want to change their school.", side: "left", tone: "sage" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "Your brother <strong>has gone</strong> to that school <strong>since</strong> kindergarten. I don't want to change his school.", side: "left", tone: "sage" },
           { speaker: "Yesenia", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks.", side: "right", tone: "terracotta" },
         ])}
 
@@ -667,7 +667,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The children have gone to the same school ___ kindergarten.",
+              label: "Yesenia's brother has gone to the same school ___ kindergarten.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },

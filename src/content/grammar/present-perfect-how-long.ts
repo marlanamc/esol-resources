@@ -80,7 +80,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       id: "how-long-have-you",
       title: "How Long Have You Worked Here?",
       explanation: `
-        ${sceneCard("sceneHotelHallway", "East Boston. A hotel on Meridian Street. Thursday morning.", "sage")}
+        ${sceneCard("sceneHotelHallway", "East Boston. A hotel on Meridian Street. Thursday, 3:30 PM, after Rosa's shift.", "sage")}
 
         ${dialogue([
           { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Thanks for coming in, Rosa. So, <strong>how long have you worked</strong> in housekeeping?", side: "left", tone: "sage" },
@@ -130,9 +130,9 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
               type: "radio",
               label: "How long has she lived in East Boston?",
               options: [
-                { value: "a", label: "She has lived here since 2020." },
-                { value: "b", label: "She lived here since 2020." },
-                { value: "c", label: "She is living here since 2020." },
+                { value: "a", label: "She has lived here since 2021." },
+                { value: "b", label: "She lived here since 2021." },
+                { value: "c", label: "She is living here since 2021." },
               ],
               expectedAnswer: "a",
             },
@@ -150,7 +150,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "I ___ worked at this hotel for three years. (one word)",
+              label: "I ___ worked at my hotel for three years. (one word)",
               expectedAnswers: ["have", "'ve"],
             },
           ],
@@ -169,7 +169,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏾", text: "How long have you been at this hotel?", side: "left", tone: "sage" },
-          { speaker: "Maria", avatar: "👩🏽", text: "I've been here <strong>since March</strong>. About four months.", side: "right", tone: "terracotta" },
+          { speaker: "Maria", avatar: "👩🏽", text: "I've been here <strong>since November</strong>. About four months.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I've been here <strong>for two years</strong>. Started right when they opened the new wing.", side: "left", tone: "sage" },
           { speaker: "Maria", avatar: "👩🏽", text: "Nice. How long have you had this shift?", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Only <strong>since January</strong>. Before that I had nights.", side: "left", tone: "sage" },
@@ -425,7 +425,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("still true now", "sage")}
-            <span><em>I <strong>have lived</strong> in East Boston since 2020. (still live there)</em></span>
+            <span><em>I <strong>have lived</strong> in East Boston since 2021. (still live there)</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "amber")}
@@ -502,7 +502,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       id: "interview-practice",
       title: "Putting It All Together",
       explanation: `
-        ${sceneCard("sceneInterview", "Hotel HR office. Rosa's final interview round. Tuesday, 2 PM.", "terracotta")}
+        ${sceneCard("sceneInterview", "Hotel HR office. Rosa's final interview round. Tuesday, 3:30 PM, right after her shift.", "terracotta")}
 
         <p style="margin-bottom: 0.5rem">Before the interview, Rosa practices with Yemi, a coworker at her current job, during their break.</p>
 
@@ -530,7 +530,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         </div>
 
         <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(233,196,106,0.1); border-left: 3px solid #e9c46a; margin-top: 0.75rem">
-          <p style="margin: 0; font-size: 0.9rem; font-style: italic">Women's History Month: In the break room, there's a flyer from the hotel workers union. One question on it reads: "How long have you worked without a raise?" Yemi reads it out loud and laughs. "Too long," she says.</p>
+          <p style="margin: 0; font-size: 0.9rem; font-style: italic">In the break room at Rosa's job, there's a flyer from the hotel workers union. One question on it reads: "How long have you worked without a raise?" Yemi reads it out loud and laughs. "Too long," she says.</p>
         </div>
       `,
       tipBox: {

@@ -169,7 +169,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "had-plus-v3-form",
       title: "had + V3: Putting It in Order",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Break room, 10 AM. Gloria meets James, a forklift operator.", "sage")}
+        ${sceneCard("sceneBreakRoom", "Break room, 10 AM. Before her interview, Gloria meets James, a forklift operator.", "sage")}
 
         ${dialogue([
           { speaker: "James", avatar: "👨🏿", text: "So what did you put on your application?", side: "left", tone: "sage" },
@@ -287,6 +287,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           { speaker: "Gloria", avatar: "👩🏽", text: "Yes. After I <strong>had finished</strong> my shift at the hotel, I <strong>helped</strong> count stock.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩‍💼", text: "And by the time you left that job, had you trained anyone?", side: "left", tone: "sage" },
           { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>had trained</strong> two new cleaners before I left.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩‍💼", text: "That's great experience. We'd like to offer you the job. Can you start Monday?", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -497,13 +498,13 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "your-work-story",
       title: "Your Work Story",
       explanation: `
-        ${sceneCard("sceneWorkStory", "Break room. Hodan and her coworker Linh swap work histories.", "sage")}
+        ${sceneCard("sceneWorkStory", "Break room. Hodan and her coworker Thanh swap work histories.", "sage")}
 
         ${dialogue([
           { speaker: "Hodan", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
+          { speaker: "Thanh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
           { speaker: "Hodan", avatar: "👩🏿", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Lucky you. And the pay is better here. The restaurant <strong>hadn’t paid</strong> overtime, not once.", side: "left", tone: "sage" },
+          { speaker: "Thanh", avatar: "👩🏻", text: "Lucky you. And the pay is better here. By the time I quit, the restaurant <strong>hadn’t paid</strong> me overtime, not once.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -549,12 +550,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
         },
         {
           id: "pp-s5-ex2",
-          title: "Linh's story",
+          title: "Thanh's story",
           instructions: "Choose the correct form for each blank.",
           items: [
             {
               type: "radio",
-              label: "Before Linh found this job, she ___ in a restaurant for years.",
+              label: "Before Thanh found this job, she ___ in a restaurant for years.",
               options: [
                 { value: "a", label: "had worked (Past Perfect)" },
                 { value: "b", label: "worked (Past Simple)" },
@@ -563,7 +564,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The restaurant ___ overtime in two years.",
+              label: "By the time Thanh quit, the restaurant ___ her overtime even once.",
               options: [
                 { value: "a", label: "hadn't paid (Past Perfect, negative)" },
                 { value: "b", label: "didn't pay (Past Simple, negative)" },
@@ -649,7 +650,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qws1",
       type: "word-scramble" as const,
-      question: "Linh finished her tasks before the manager arrived. Put the words in order.",
+      question: "Thanh finished her tasks before the manager arrived. Put the words in order.",
       words: ["She", "had", "finished", "before", "the", "manager", "arrived"],
       correctAnswer: "She had finished before the manager arrived",
       hint: "had + past participle for the earlier action",

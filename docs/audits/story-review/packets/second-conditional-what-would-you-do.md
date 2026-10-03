@@ -66,10 +66,10 @@ Structure: If + past simple (if-clause) + comma + would + base verb (main clause
 
 ## 3. What Would You Do? Advice at Work
 
-> 🖼 **Scene:** Home health agency, East Boston. Monday afternoon.  
+> 🖼 **Scene:** Home health agency office, East Boston. Monday afternoon. Beatriz calls Nadine from a client's home.  
 > _Photo shows: Small office waiting area with chairs, a reception desk, and afternoon light coming through a window._
 
-- **Beatriz:** My coworker didn't show up again. The client is alone. What would you do?
+- **Beatriz:** My coworker didn't show up for Mrs. Lopez again. She's alone right now. What would you do?
 - **Nadine:** If I were you, I would call the agency right now, not wait.
 - **Beatriz:** And if they cut my hours because I called?
 - **Nadine:** If they did that, I would talk to the supervisor and write it down.
@@ -86,11 +86,11 @@ Structure: If + past simple (if-clause) + comma + would + base verb (main clause
 
 ## 4. Real vs. Imaginary: First vs. Second Conditional
 
-> 🖼 **Scene:** Hotel housekeeping, East Boston. Saturday morning.  
+> 🖼 **Scene:** Hotel housekeeping, East Boston. Friday morning.  
 > _Photo shows: Hotel corridor with a housekeeping cart parked outside a guest room door._
 
-- **Kevin:** If there's overtime on Saturday, I'll take it. I need the money.
-- **Sofia:** I wish I could. If I didn't have my son's birthday, I would take it too.
+- **Kevin:** If there's overtime tomorrow, I'll take it. I need the money.
+- **Sofia:** I wish I could. If it weren't my son's birthday, I would take it too.
 - **Kevin:** If they offered Sunday instead, would you do it?
 - **Sofia:** Maybe. If the pay were double, I definitely would.
 
@@ -115,8 +115,6 @@ First conditional: If + present simple, will + base verb. The situation is real 
 - **Milagros:** If we had the same schedule every week, people wouldn't quit so fast.
 - **Jennifer:** Exactly. And if they paid us more, I wouldn’t need a second job. I could be more flexible here.
 
-Women's History Month: in March, workers across the country talk about equal pay. Jennifer's line above is something many workers think about.
-
 Use longer if-clauses to talk about bigger changes: If the whole system were different... Use the second conditional any time you imagine a situation that is not real right now.
 
 **Exercise: What would Milagros do?**
@@ -135,5 +133,5 @@ Use longer if-clauses to talk about bigger changes: If the whole system were dif
 - Which sentence has an error? _(options: If I had more options, I would look for a different job. / If I will have more options, I would look for a different job. / I would look for a different job if I had more options.)_
 - Fill in the blank: "If I ___ you, I would call the agency." (Giving advice: use 'were' for all subjects.)
 - Kevin is likely to get overtime next week. Which sentence fits? _(options: If they offered me overtime, I would say yes. / If they offer me overtime, I will say yes. / If they offered me overtime, I will say yes.)_
-- Yemi imagines what she would do if she had more free time. Put the words in order.
+- Sofia can't take the Saturday shift because of her son's birthday. Put the words in order.
 

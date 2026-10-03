@@ -82,12 +82,12 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Where Are You Going?",
       icon: "🗺️",
       explanation: `
-        ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Tuesday, 7:00 PM.", "terracotta")}
+        ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Wednesday, 7:00 PM.", "terracotta")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara cleans patient rooms at the hospital. She waited three weeks for this doctor's appointment at the clinic on Meridian Street. It's at 7:15. If she is more than 10 minutes late, she has to make a new appointment and wait three more weeks. She has never been to this clinic, so she calls her coworker Jean.</p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Jean, I'm at Maverick. My appointment is at 7:15. How do I get to the clinic?", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Jean, I'm at Maverick. My appointment is at 7:15. I know Meridian, but where on Meridian is the clinic?", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Walk</strong> across Maverick Square. <strong>Turn</strong> left on Meridian Street.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "Wait. I got a text. It says my package can't be delivered, and there's a link. I'm not expecting a package.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "🧑🏾", text: "That's a scam. <strong>Delete</strong> it. <strong>Use</strong> your map, not the link.", side: "left", tone: "sage" },
@@ -384,9 +384,9 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Step by Step",
       icon: "👣",
       explanation: `
-        ${sceneCard("sceneBusStop", "The bus stop on Meridian Street, near the clinic. Elena will get off the bus here next Tuesday.", "blue")}
+        ${sceneCard("sceneBusStop", "The bus stop on Meridian Street, near the clinic. Elena will get off the bus here next Wednesday.", "blue")}
 
-        <p style="margin: 0 0 0.75rem 0">Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Tuesday at 7:30, and she comes by bus.</p>
+        <p style="margin: 0 0 0.75rem 0">Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Wednesday at 7:30, and she comes by bus.</p>
 
         <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(106,141,115,0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0">
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Amara's text to Elena</p>
@@ -430,9 +430,9 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Elena might take the other bus, to Saratoga Street. Unscramble Amara's first step from there:",
-              words: ["First,", "go", "straight", "on", "Saratoga", "Street", "for", "three", "blocks"],
-              correctAnswer: "First, go straight on Saratoga Street for three blocks",
+              label: "Amara adds one more step for Elena, before step 1. Unscramble it:",
+              words: ["Get", "off", "the", "bus", "at", "the", "stop", "near", "the", "clinic"],
+              correctAnswer: "Get off the bus at the stop near the clinic",
             },
             {
               type: "radio",

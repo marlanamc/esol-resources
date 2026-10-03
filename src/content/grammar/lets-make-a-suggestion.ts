@@ -83,7 +83,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneHallway", "Apartment building hallway, East Boston. Tuesday evening. No heat for two days.", "sage")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Gloria, Jean, and Marta are texting in a group chat. The building has no heat.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Gloria, Jean, and Marta meet in the hallway. The building has no heat.</em></p>
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏾", text: "<strong>Let's</strong> call the landlord right now. It's freezing in here.", side: "right", tone: "terracotta" },
@@ -131,9 +131,9 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
               type: "radio",
               label: "Gloria wants everyone in the group to act now. Which sentence fits best?",
               options: [
-                { value: "a", label: "We could take photos of the leak tonight." },
-                { value: "b", label: "Let's take photos of the leak tonight." },
-                { value: "c", label: "Let's to take photos of the leak tonight." },
+                { value: "a", label: "We could check the temperature in every apartment tonight." },
+                { value: "b", label: "Let's check the temperature in every apartment tonight." },
+                { value: "c", label: "Let's to check the temperature in every apartment tonight." },
               ],
               expectedAnswer: "b",
             },
@@ -178,7 +178,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "You Should and You Could. Suggesting to One Person",
       icon: "👂",
       explanation: `
-        ${sceneCard("sceneHallwayKevin", "Outside the apartment building. Marta talks to Kevin, the building manager's assistant.", "amber")}
+        ${sceneCard("sceneHallwayKevin", "Outside the apartment building. Marta talks to Kevin, a neighbor who has lived here for twenty years.", "amber")}
 
         ${dialogue([
           { speaker: "Marta", avatar: "👩🏽", text: "Kevin, the heat has been off for two days. What do we do?", side: "right", tone: "amber" },
@@ -186,7 +186,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           { speaker: "Marta", avatar: "👩🏽", text: "And if he doesn't answer?", side: "right", tone: "amber" },
           { speaker: "Kevin", avatar: "👨🏽", text: "You <strong>could</strong> call Inspectional Services. It's the city. They can force him to fix it.", side: "left", tone: "blue" },
           { speaker: "Marta", avatar: "👩🏽", text: "He <strong>must</strong> fix it by law, right?", side: "right", tone: "amber" },
-          { speaker: "Kevin", avatar: "👨🏽", text: "Yes. He <strong>must</strong> keep the heat at 68 degrees during the day. That's the law.", side: "left", tone: "blue" },
+          { speaker: "Kevin", avatar: "👨🏽", text: "Yes. He <strong>must</strong> keep apartments at 68 degrees or warmer during the day. That's the law.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -245,8 +245,8 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Fill in with should or could: The landlord ___ fix the heat. It is the law.",
-              expectedAnswers: ["must", "should"],
+              label: "Fill in: The landlord ___ fix the heat. It is the law, not just advice. (should / must)",
+              expectedAnswers: ["must"],
             },
           ],
         },
@@ -274,9 +274,9 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "Could We and Should We. Suggestions as Questions",
       icon: "🍽️",
       explanation: `
-        ${sceneCard("sceneRestaurantBreak", "Restaurant break room, East Boston. Friday night. The Saturday morning shift has no coverage.", "terracotta")}
+        ${sceneCard("sceneRestaurantBreak", "Restaurant kitchen, East Boston. Friday night. The Saturday morning shift has no coverage.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Halima's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Halima's childcare fell through. She can't work Saturday morning. Her coworkers Diego and Brian need to figure out the shift.</em></p>
 
         ${dialogue([
           { speaker: "Halima", avatar: "👩🏿", text: "I'm so sorry. My babysitter canceled. I can't come in Saturday morning.", side: "right", tone: "terracotta" },
@@ -369,15 +369,17 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "Putting It Together. Which Suggestion Fits?",
       icon: "🤔",
       explanation: `
-        ${sceneCard("sceneContrast", "Two coworkers review options together before making a decision.", "blue")}
+        ${sceneCard("sceneContrast", "Later that night. Neighbors Gloria and Jean look at Jean's phone and make a plan.", "blue")}
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏾", text: "OK so the heat is still off. <strong>Let's</strong> decide what to do tonight.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "🧑🏿", text: "<strong>We could</strong> call the city, or we could wait one more day.", side: "left", tone: "sage" },
           { speaker: "Gloria", avatar: "👩🏾", text: "No more waiting. You <strong>should</strong> call tonight and I'll send the written complaint.", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "<strong>Could we</strong> also get a letter from all three tenants? More names looks better.", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "🧑🏿", text: "<strong>Could we</strong> also get a letter signed by all the tenants? More names look better.", side: "left", tone: "sage" },
           { speaker: "Gloria", avatar: "👩🏾", text: "Yes. <strong>Why don't we</strong> knock on Marta's door right now?", side: "right", tone: "terracotta" },
         ])}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The next morning, Jean texts the group: <em>"I called the city. An inspector is coming Thursday."</em></p>
 
         <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">All four suggestion forms side by side:</p>
 
@@ -429,7 +431,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Marta wants the whole group to decide together right now. Which fits best?",
+              label: "Gloria wants the whole group to decide together right now. Which fits best?",
               options: [
                 { value: "a", label: "You could make a plan together." },
                 { value: "b", label: "Let's make a plan together." },
@@ -449,7 +451,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Diego gives a polite option to his manager Brian. Which fits?",
+              label: "Diego gives a polite option to his coworker Brian. Which fits?",
               options: [
                 { value: "a", label: "Let's share the Saturday hours." },
                 { value: "b", label: "You must share the Saturday hours." },
@@ -530,7 +532,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
     {
       id: "lets-make-a-suggestion-qws1",
       type: "word-scramble" as const,
-      question: "Rosa and her neighbor agree on a plan for the building issue. Put the words in order.",
+      question: "Gloria and Jean agree on a plan for the heat problem. Put the words in order.",
       words: ["Let's", "send", "the", "complaint", "tonight"],
       correctAnswer: "Let's send the complaint tonight",
       hint: "Let's + base verb",

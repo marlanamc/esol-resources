@@ -35,7 +35,7 @@ Before adding a core character to a guide, check their bio here. When a guide mo
 - **Family:** wife Ana, who isn't a citizen yet, and their kids. Neighbor Beatriz lives downstairs.
 - **Getting around:** drives.
 - **Class:** evening ESOL, with classmate Fernanda.
-- **Arc:** first time voting, in November (W7).
+- **Arc:** registers just before the deadline and votes for the first time, early, on a Saturday in late October (W7).
 
 ## Diego
 

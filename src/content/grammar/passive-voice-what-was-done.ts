@@ -88,7 +88,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was hired</strong>! Marcos talked to his supervisor and I <strong>was called</strong> the same day.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "That's great! What did they say?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was told</strong> to come in Monday with my ID. The paperwork <strong>is already done</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was told</strong> to come in Monday with my ID. Most of the paperwork <strong>was done</strong> online.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "So you start next week? That was fast.", side: "left", tone: "sage" },
         ])}
 
@@ -183,7 +183,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           <p style="margin: 0 0 0.25rem">Safety training <strong>is provided</strong>.</p>
           <p style="margin: 0 0 0.25rem">A uniform <strong>is included</strong>.</p>
           <p style="margin: 0 0 0.25rem">References <strong>are expected</strong>.</p>
-          <p style="margin: 0">Transportation near the Blue Line <strong>is recommended</strong>.</p>
+          <p style="margin: 0">The hotel <strong>is located</strong> near the Blue Line.</p>
         </div>
 
         <p>All of these are <strong>present passive</strong>. The company doesn't say "We require experience" or "We provide training" because the company isn't the point. The job conditions are the point.</p>
@@ -462,10 +462,10 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"My check <strong>were not paid</strong> on time.\"",
+              label: "\"My check <strong>were not deposited</strong> on time.\"",
               options: [
                 { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'was not paid' (singular subject: my check)" },
+                { value: "incorrect", label: "Not correct. Should be 'was not deposited' (singular subject: my check)" },
               ],
               expectedAnswer: "incorrect",
             },
@@ -528,6 +528,8 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "The handbook says 'Overtime <strong>is calculated</strong> after 40 hours.' But I worked 43 and my check <strong>was short</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏿", text: "Can I see your pay stub?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "Here. Look, overtime <strong>is listed</strong> as zero hours.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏿", text: "You should ask payroll to check. Tell them, “I worked 43 hours, but I <strong>was not paid</strong> for three hours of overtime.”", side: "left", tone: "sage" },
         ])}
       `,
