@@ -98,7 +98,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. Before that, I cleaned offices downtown.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> five years. I started in the laundry, then moved to housekeeping.", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been</strong> in Boston?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>have been</strong> here <strong>since</strong> 2020. You?", side: "right", tone: "terracotta" },
           { speaker: "Marco", avatar: "👨🏽", text: "I <strong>have lived</strong> in East Boston <strong>for</strong> three years.", side: "left", tone: "sage" },
@@ -111,7 +111,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("for", "sage")}
-            <span><em>I <strong>have worked</strong> here <strong>for</strong> two years.</em></span>
+            <span><em>I <strong>have worked</strong> here <strong>for</strong> five years.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("since", "sage")}
@@ -136,10 +136,10 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Claudette has worked at the hotel for two years.\"",
+              label: "\"Claudette has worked at the hotel for five years.\"",
               options: [
                 { value: "a", label: "She worked there a long time ago but stopped." },
-                { value: "b", label: "She started two years ago and still works there now." },
+                { value: "b", label: "She started five years ago and still works there now." },
                 { value: "c", label: "She is going to work there for two years." },
               ],
               expectedAnswer: "b",

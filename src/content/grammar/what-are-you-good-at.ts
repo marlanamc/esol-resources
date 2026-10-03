@@ -323,7 +323,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       title: "Suggestions for the City",
       icon: "🗣️",
       explanation: `
-        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Diego sits at Ms. Patel's desk while she writes down his suggestions for the city.", "blue")}
+        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Neighbors listen while Diego gives Ms. Patel his suggestions for the city.", "blue")}
 
         <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.</p>
 

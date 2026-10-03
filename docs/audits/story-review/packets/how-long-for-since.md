@@ -24,7 +24,7 @@
 > _Photo shows: Industrial laundry room with neatly folded linens and rolling carts in a hotel._
 
 - **Marco:** How long have you worked here?
-- **Claudette:** I have worked here for two years. Before that, I cleaned offices downtown.
+- **Claudette:** I have worked here for five years. I started in the laundry, then moved to housekeeping.
 - **Marco:** How long have you been in Boston?
 - **Claudette:** I have been here since 2020. You?
 - **Marco:** I have lived in East Boston for three years.
@@ -34,7 +34,7 @@ For / Since with present perfect = the situation started in the past and is stil
 The form: Subject + have / has + V3 + for or since + time Examples: have worked, have been, has lived, have had, has known
 
 **Exercise: What does it mean?**
-- "Claudette has worked at the hotel for two years." _(options: She worked there a long time ago but stopped. / She started two years ago and still works there now. / She is going to work there for two years.)_
+- "Claudette has worked at the hotel for five years." _(options: She worked there a long time ago but stopped. / She started five years ago and still works there now. / She is going to work there for two years.)_
 - "I have lived in East Boston since 2020." _(options: I moved away from East Boston in 2020. / I lived in East Boston in 2020 but not now. / I moved to East Boston in 2020 and I still live here.)_
 
 **Exercise: Build the sentence**

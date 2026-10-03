@@ -53,6 +53,14 @@ Before adding a core character to a guide, check their bio here. When a guide mo
 - **Home:** moved from Chelsea to an apartment building on Meridian Street, East Boston.
 - **Getting around:** takes the bus every day and listens to English podcasts on it.
 
+## Claudette
+
+- **From:** Haiti. Speaks Haitian Creole. In Boston since 2020.
+- **Work:** at a hotel in East Boston since her first year here: laundry first, now housekeeping. Picks up extra shifts, and has a second weekend job later in the year (W33).
+- **Family:** her daughter Nadège is still in Haiti, and they video-call often. Her cousin Jean lives in Montreal and visits. Her sister lives nearby with a big family.
+- **Community:** goes to a Haitian church in East Boston.
+- **Arc:** fall: a "Hi Mom, new number" scam text, which she catches with a question only Nadège could answer (W8). Jean visits from Montreal (W9).
+
 ## Ms. Tran: the ESOL teacher
 
 - Teaches the evening ESOL class, Tuesday and Thursday. Any guide that names the class's teacher uses Ms. Tran.
@@ -62,6 +70,6 @@ Before adding a core character to a guide, check their bio here. When a guide mo
 ## Names in use elsewhere
 
 These names are already used for different people in different guides. Using them again is fine, but don't give them a core character's life:
-Claudette, Marta, Jean, Gloria, Nadine, Ana (apart from Carlos's wife), Fatima, Bruno, Beatriz, Yemi, Fernanda (apart from Diego's partner), Lucia, Elena, Hector, Marco, Miguel, Teresa, Mina, Ms. Patel.
+Marta, Jean (apart from Claudette's cousin), Gloria, Nadine, Ana (apart from Carlos's wife), Fatima, Bruno, Beatriz, Yemi, Fernanda (apart from Diego's partner), Lucia, Elena, Hector, Marco, Miguel, Teresa, Mina, Ms. Patel.
 
 Also avoid seeded login usernames (for example `ricardo`, `marlie`) as character names.

@@ -93,7 +93,7 @@ Get used to + gerund = the process of adapting. It is getting easier, but you ar
 > 🖼 **Scene:** Haitian church, East Boston. Sunday, 9 AM.  
 > _Photo shows: People gathered inside a community church for a Sunday service._
 
-Jean sits with his cousin Claudette after service. They are figuring out which service fits around their work schedules.
+Jean sits with his friend Claudette after service. They are figuring out which service fits around their work schedules.
 
 - **Jean:** I’m getting used to the early service here. Can you come next Sunday?
 - **Claudette:** I’ll try. I’m used to working two jobs, but Saturday nights end late. Getting up is hard.
@@ -146,5 +146,5 @@ It has been a hard week for Fabienne: double shifts, English school emails, and 
 - What does "getting used to" mean? _(options: Already fully comfortable / Still adapting, but it is getting easier / A habit from the past that ended)_
 - Fill in the blank: "I'm not used to ___ outside in January." (Priya still finds the cold bus stop hard.)
 - Find the error: "She is used to work two jobs." _(options: No error. / Error: should be "used to working" (-ing after be used to). / Error: should be "used to work" as a past habit.)_
-- Jean describes his cousin Claudette's routine. Put the words in order.
+- Jean describes his friend Claudette's routine. Put the words in order.
 

@@ -77,7 +77,7 @@ I / You / We / They have to + base verb He / She / It has to + base verb
 > 🖼 **Scene:** Hotel housekeeping, third-floor break room. Tuesday afternoon.  
 > _Photo shows: Two coworkers talking during a break at work._
 
-Claudette has been at the hotel for four years. Hoa started two weeks ago. Claudette pulls her aside during a break.
+Claudette has been at the hotel for five years. Hoa started two weeks ago. Claudette pulls her aside during a break.
 
 - **Claudette:** You should tell your supervisor before you leave the floor, even on your break. She notices when people just disappear.
 - **Hoa:** Is that the rule?

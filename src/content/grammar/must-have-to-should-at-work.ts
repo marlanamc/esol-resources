@@ -285,7 +285,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBreakRoom", "Hotel housekeeping, third-floor break room. Tuesday afternoon.", "amber")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette has been at the hotel for four years. Hoa started two weeks ago. Claudette pulls her aside during a break.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette has been at the hotel for five years. Hoa started two weeks ago. Claudette pulls her aside during a break.</p>
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>should</strong> tell your supervisor before you leave the floor, even on your break. She notices when people just disappear.", side: "left", tone: "amber" },

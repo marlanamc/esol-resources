@@ -59,6 +59,12 @@ interface SwapTarget {
 }
 
 const SWAP_TARGETS: SwapTarget[] = [
+  {
+    // What Are You Good At? §3 is a neighborhood meeting, not a desk interview.
+    sceneId: "sceneCounselor",
+    file: "what-are-you-good-at-images.generated.ts",
+    photoId: "zAUFtGIWc0E",
+  },
   // ── all-four-conditionals-quick-tour ──────────────────────────────────
   {
     sceneId: "sceneWarehouseLift",

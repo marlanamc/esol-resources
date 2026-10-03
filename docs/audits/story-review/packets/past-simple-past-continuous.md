@@ -14,7 +14,7 @@
 - Past Simple: What Happened: Fred, Amara
 - Past Continuous: What Was Already in Progress: Amara, Fred
 - When + While: Putting Them Together: _no named speakers_
-- Tell the Story: Elena, Claudette
+- Tell the Story: Elena, Fabienne
 
 ---
 
@@ -80,9 +80,9 @@ Quick tip: the continuous action (line) is the background. The simple action (do
 > _Photo shows: A group of people walking down a sidewalk._
 
 - **Elena:** Yesterday was crazy. I was working a double shift when my son's school called.
-- **Claudette:** What happened? Is he okay?
+- **Fabienne:** What happened? Is he okay?
 - **Elena:** Yes, he fell at recess. While I was driving to school, it started to rain. I got there in ten minutes.
-- **Claudette:** In the rain? Were the roads okay? Did someone cover for you at work?
+- **Fabienne:** In the rain? Were the roads okay? Did someone cover for you at work?
 - **Elena:** My manager did. First time ever!
 
 Read Elena's story again. Choose past simple or past continuous for each blank.

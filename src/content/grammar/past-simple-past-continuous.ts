@@ -340,9 +340,9 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         ${sceneCard("scenePickup", "East Boston school entrance. Wednesday, 2:45 PM.", "sage")}
         ${dialogue([
           { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "In the rain? Were the roads okay? Did someone cover for you at work?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "In the rain? Were the roads okay? Did someone cover for you at work?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "My manager did. First time ever!", side: "right", tone: "terracotta" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>

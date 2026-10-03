@@ -48,7 +48,7 @@ This is the same present perfect you have seen before. "How long" just focuses i
 
 - **Claudette:** How long have you been at this hotel?
 - **Maria:** I've been here since November. About four months.
-- **Claudette:** I've been here for two years. Started right when they opened the new wing.
+- **Claudette:** I've been here for five years. Started in the laundry, now housekeeping.
 - **Maria:** Nice. How long have you had this shift?
 - **Claudette:** Only since January. Before that I had nights.
 
@@ -103,14 +103,14 @@ Present Perfect = started in the past and still true right now. Past Simple = fi
 
 **Exercise: Still true or finished?**
 - Rosa still works at her current job. She ___ there for three years. _(options: has worked (still there) / worked (she left))_
-- Claudette's old apartment was in Chelsea, but she moved. She ___ there for one year. _(options: has lived (still there) / lived (she moved away))_
+- Claudette's old apartment was in Dorchester, but she moved. She ___ there for one year. _(options: has lived (still there) / lived (she moved away))_
 
 **Exercise: Spot the error**
 - The first candidate left the Marriott last month. Which sentence describes this correctly? _(options: She worked there for two years. (Past Simple, finished) / She has worked there for two years. (Present Perfect, still going))_
 
 **Exercise: Fill in the correct tense**
 - Maria still lives on Meridian Street. She ___ (live) there since 2022.
-- Before this hotel, Claudette ___ (work) at a hotel in Chelsea for two years.
+- Before housekeeping, Claudette ___ (work) in the hotel laundry for two years.
 
 ## 5. Putting It All Together
 

@@ -274,16 +274,17 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "Could We and Should We. Suggestions as Questions",
       icon: "🍽️",
       explanation: `
-        ${sceneCard("sceneRestaurantBreak", "Restaurant kitchen, East Boston. Friday night. The Saturday morning shift has no coverage.", "terracotta")}
+        ${sceneCard("sceneRestaurantBreak", "Restaurant kitchen, East Boston. Friday, on break. Diego's building still has no heat.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Halima's childcare fell through. She can't work Saturday morning. Her coworkers Diego and Brian need to figure out the shift.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Diego lives in Gloria and Jean's building. On his break, he tells his coworkers Halima and Brian about the heat.</em></p>
 
         ${dialogue([
-          { speaker: "Halima", avatar: "👩🏿", text: "I'm so sorry. My babysitter canceled. I can't come in Saturday morning.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏽", text: "<strong>Could we</strong> split the shift? I can do the first two hours if someone else covers the rest.", side: "left", tone: "sage" },
-          { speaker: "Brian", avatar: "🧑🏽", text: "<strong>Should we</strong> call Luis? He asked about extra hours last week.", side: "right", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Yes. Or <strong>why don't we</strong> post it in the group chat? Someone might want the hours.", side: "left", tone: "sage" },
-          { speaker: "Brian", avatar: "🧑🏽", text: "Good thinking. <strong>Why don’t we</strong> do both? I’ll call Luis. Can you post in the chat?", side: "right", tone: "blue" },
+          { speaker: "Diego", avatar: "👨🏽", text: "Day three with no heat. My son slept in his coat last night.", side: "right", tone: "sage" },
+          { speaker: "Halima", avatar: "👩🏿", text: "<strong>Could we</strong> help? My cousin called the city councilor's office last winter. They called her landlord the same day.", side: "left", tone: "terracotta" },
+          { speaker: "Brian", avatar: "🧑🏽", text: "<strong>Should we</strong> call 311 first? They send an inspector.", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "👨🏽", text: "Good idea. But my English on the phone isn't great.", side: "right", tone: "sage" },
+          { speaker: "Halima", avatar: "👩🏿", text: "<strong>Why don't we</strong> call together on our break tomorrow? I'll help you explain.", side: "left", tone: "terracotta" },
+          { speaker: "Brian", avatar: "🧑🏽", text: "And <strong>could we</strong> write down what to say first? Your address, how many days, the temperature.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -295,21 +296,21 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("polite option", "terracotta")}
-            <span><em><strong>Could we</strong> split the shift between two people?</em></span>
+            <span><em><strong>Could we</strong> write down what to say first?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("checking agreement", "terracotta")}
-            <span><em><strong>Should we</strong> call someone who wants extra hours?</em></span>
+            <span><em><strong>Should we</strong> call 311 before we call the councilor?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("informal", "amber")}
-            <span><em><strong>Why don't we</strong> post it in the group chat?</em></span>
+            <span><em><strong>Why don't we</strong> call together on our break?</em></span>
           </div>
         </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-top: 0.75rem">
           <p style="margin: 0; font-size: 0.95rem"><strong>Form:</strong> Could we + base verb? &nbsp; Should we + base verb? &nbsp; Why don't we + base verb?<br>
-          <em>Could we <strong>split</strong> the shift?</em> &nbsp; <em>Should we <strong>call</strong> Luis?</em> &nbsp; <em>Why don't we <strong>post</strong> it?</em></p>
+          <em>Could we <strong>write</strong> it down?</em> &nbsp; <em>Should we <strong>call</strong> 311?</em> &nbsp; <em>Why don't we <strong>call</strong> together?</em></p>
         </div>
       `,
       exercises: [
@@ -320,27 +321,27 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego wants to propose a polite option about the weekend schedule. Which fits?",
+              label: "Halima wants to offer a polite option: emailing the councilor's office too. Which fits?",
               options: [
-                { value: "a", label: "Could we trade shifts this weekend?" },
-                { value: "b", label: "Could we trading shifts this weekend?" },
-                { value: "c", label: "Let's to trade shifts this weekend." },
+                { value: "a", label: "Could we email the councilor's office too?" },
+                { value: "b", label: "Could we emailing the councilor's office too?" },
+                { value: "c", label: "Let's to email the councilor's office too." },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Brian wants to check if texting the group is a good idea. Which fits?",
+              label: "Brian wants to check if asking for an inspection on Monday is a good idea. Which fits?",
               options: [
-                { value: "a", label: "Why don't we texted the group first?" },
-                { value: "b", label: "Should we text the group first?" },
-                { value: "c", label: "Should we to text the group first?" },
+                { value: "a", label: "Why don't we asked for a Monday inspection?" },
+                { value: "b", label: "Should we ask for a Monday inspection?" },
+                { value: "c", label: "Should we to ask for a Monday inspection?" },
               ],
               expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "Fill in: ___ don't we post it in the group chat? Someone might want the hours.",
+              label: "Fill in: ___ don't we call the city together? Two voices are better than one.",
               expectedAnswers: ["Why"],
             },
           ],
@@ -353,8 +354,8 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "don't", "we", "post", "the", "shift", "in", "the", "group", "chat"],
-              correctAnswer: "Why don't we post the shift in the group chat",
+              words: ["Why", "don't", "we", "make", "a", "list", "of", "questions", "for", "the", "city"],
+              correctAnswer: "Why don't we make a list of questions for the city",
             },
           ],
         },
@@ -521,7 +522,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
     {
       id: "lets-make-a-suggestion-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"We ___ split the shift between two people.\" (Which word gives a soft suggestion, not a command?)",
+      question: "Fill in the blank: \"We ___ ask the other tenants to call 311 too.\" (Which word gives a soft suggestion, not a command?)",
       correctAnswer: "could",
       explanation: "'We could' offers a soft option without pressure. 'Must' or 'will' would feel like a command.",
       topic: "we-could",
@@ -546,8 +547,8 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       id: "lets-make-a-suggestion-q7",
       question: "Which sentence has an error?",
       options: [
-        { value: "a", label: "Why don't we post the shift in the group chat?" },
-        { value: "b", label: "Could we split the hours?" },
+        { value: "a", label: "Why don't we call the councilor's office?" },
+        { value: "b", label: "Could we write down the dates?" },
         { value: "c", label: "Why don't we calls the landlord?" },
       ],
       correctAnswer: "c",

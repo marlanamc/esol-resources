@@ -192,7 +192,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         <p style="margin: 0 0 0.75rem 0">Amara gets to the clinic at 7:07. The front door is locked. Jean always comes in the daytime, so she didn't know. There are notes on a board next to the door.</p>
 
         <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(233,196,106,0.4); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: inherit">
-          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Evening patients: from Claudette, Office Manager</p>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Evening patients: from Marie, Office Manager</p>
           <ul style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 1.9">
             <li>The front door locks at 7 PM. <strong>Don't knock</strong>. Nobody can hear you.</li>
             <li><strong>Walk</strong> around the corner to Paris Street and <strong>use</strong> the side entrance.</li>
@@ -225,11 +225,11 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s2-1",
           title: "Don't or please?",
-          instructions: "Choose the sentence Claudette would write on the clinic's board.",
+          instructions: "Choose the sentence Marie would write on the clinic's board.",
           items: [
             {
               type: "radio",
-              label: "Claudette wants to warn patients NOT to do something. Which sentence does she write?",
+              label: "Marie wants to warn patients NOT to do something. Which sentence does she write?",
               options: [
                 { value: "a", label: "Park in front of the gate." },
                 { value: "b", label: "Don't park in front of the gate." },
@@ -239,7 +239,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Claudette wants to give a polite instruction about phones. Which is best?",
+              label: "Marie wants to give a polite instruction about phones. Which is best?",
               options: [
                 { value: "a", label: "You should turn off your phone in the waiting room." },
                 { value: "b", label: "Don't turn off your phone in the waiting room." },
@@ -268,7 +268,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s2-3",
           title: "Write the warning",
-          instructions: "Type the words Claudette would write on the clinic's board.",
+          instructions: "Type the words Marie would write on the clinic's board.",
           items: [
             {
               type: "text",
@@ -494,7 +494,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
     },
     {
       id: "getting-there-directions-q2",
-      question: "Claudette posts a warning on the clinic's board. Which sentence tells patients NOT to do something?",
+      question: "Marie posts a warning on the clinic's board. Which sentence tells patients NOT to do something?",
       options: [
         { value: "a", label: "Block the side door." },
         { value: "b", label: "Don't block the side door." },

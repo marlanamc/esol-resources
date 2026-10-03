@@ -87,8 +87,8 @@ More adjective + preposition pairs. They all follow the same rule: add -ing afte
 
 ## 3. Suggestions for the City
 
-> 🖼 **Scene:** Thursday, 7:30 PM, Room B. Diego sits at Ms. Patel's desk while she writes down his suggestions for the city.  
-> _Photo shows: A counselor and job seeker sitting across a desk reviewing paperwork._
+> 🖼 **Scene:** Thursday, 7:30 PM, Room B. Neighbors listen while Diego gives Ms. Patel his suggestions for the city.  
+> _Photo shows: a group of people sitting in a room_
 
 Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.
 

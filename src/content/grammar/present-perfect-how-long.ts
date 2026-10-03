@@ -170,7 +170,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏾", text: "How long have you been at this hotel?", side: "left", tone: "sage" },
           { speaker: "Maria", avatar: "👩🏽", text: "I've been here <strong>since November</strong>. About four months.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I've been here <strong>for two years</strong>. Started right when they opened the new wing.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I've been here <strong>for five years</strong>. Started in the laundry, now housekeeping.", side: "left", tone: "sage" },
           { speaker: "Maria", avatar: "👩🏽", text: "Nice. How long have you had this shift?", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Only <strong>since January</strong>. Before that I had nights.", side: "left", tone: "sage" },
         ])}
@@ -450,7 +450,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Claudette's old apartment was in Chelsea, but she moved. She ___ there for one year.",
+              label: "Claudette's old apartment was in Dorchester, but she moved. She ___ there for one year.",
               options: [
                 { value: "a", label: "has lived (still there)" },
                 { value: "b", label: "lived (she moved away)" },
@@ -487,7 +487,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Before this hotel, Claudette ___ (work) at a hotel in Chelsea for two years.",
+              label: "Before housekeeping, Claudette ___ (work) in the hotel laundry for two years.",
               expectedAnswers: ["worked"],
             },
           ],

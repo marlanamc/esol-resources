@@ -367,7 +367,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneChurch", "Haitian church, East Boston. Sunday, 9 AM.", "amber")}
 
-        <p><strong>Jean</strong> sits with his cousin <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
+        <p><strong>Jean</strong> sits with his friend <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
 
         ${dialogue([
           { speaker: "Jean", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
@@ -643,7 +643,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Jean describes his cousin Claudette's routine. Put the words in order.",
+      question: "Jean describes his friend Claudette's routine. Put the words in order.",
       words: ["She", "is", "used", "to", "working", "two", "jobs"],
       correctAnswer: "She is used to working two jobs",
       hint: "be used to + gerund",

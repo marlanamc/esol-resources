@@ -12,7 +12,7 @@
 
 - Let's and We Could. Suggesting Together: Gloria, Jean, Marta
 - You Should and You Could. Suggesting to One Person: Marta, Kevin
-- Could We and Should We. Suggestions as Questions: Halima, Diego, Brian
+- Could We and Should We. Suggestions as Questions: Diego, Halima, Brian
 - Putting It Together. Which Suggestion Fits?: Gloria, Jean
 
 ---
@@ -67,25 +67,26 @@ Should vs. Must: Kevin says the landlord must keep the heat on. That's the law. 
 
 ## 3. Could We and Should We. Suggestions as Questions
 
-> 🖼 **Scene:** Restaurant kitchen, East Boston. Friday night. The Saturday morning shift has no coverage.  
+> 🖼 **Scene:** Restaurant kitchen, East Boston. Friday, on break. Diego's building still has no heat.  
 > _Photo shows: Restaurant kitchen with workers preparing food under warm overhead lights._
 
-Halima's childcare fell through. She can't work Saturday morning. Her coworkers Diego and Brian need to figure out the shift.
+Diego lives in Gloria and Jean's building. On his break, he tells his coworkers Halima and Brian about the heat.
 
-- **Halima:** I'm so sorry. My babysitter canceled. I can't come in Saturday morning.
-- **Diego:** Could we split the shift? I can do the first two hours if someone else covers the rest.
-- **Brian:** Should we call Luis? He asked about extra hours last week.
-- **Diego:** Yes. Or why don't we post it in the group chat? Someone might want the hours.
-- **Brian:** Good thinking. Why don’t we do both? I’ll call Luis. Can you post in the chat?
+- **Diego:** Day three with no heat. My son slept in his coat last night.
+- **Halima:** Could we help? My cousin called the city councilor's office last winter. They called her landlord the same day.
+- **Brian:** Should we call 311 first? They send an inspector.
+- **Diego:** Good idea. But my English on the phone isn't great.
+- **Halima:** Why don't we call together on our break tomorrow? I'll help you explain.
+- **Brian:** And could we write down what to say first? Your address, how many days, the temperature.
 
 Could we...? = a suggestion in question form. Softer and more polite. Should we...? = asking if the group agrees something is the right move. Why don't we...? = an informal suggestion. Common in conversation.
 
-Form: Could we + base verb? Should we + base verb? Why don't we + base verb? Could we split the shift? Should we call Luis? Why don't we post it?
+Form: Could we + base verb? Should we + base verb? Why don't we + base verb? Could we write it down? Should we call 311? Why don't we call together?
 
 **Exercise: Pick the right suggestion**
-- Diego wants to propose a polite option about the weekend schedule. Which fits? _(options: Could we trade shifts this weekend? / Could we trading shifts this weekend? / Let's to trade shifts this weekend.)_
-- Brian wants to check if texting the group is a good idea. Which fits? _(options: Why don't we texted the group first? / Should we text the group first? / Should we to text the group first?)_
-- Fill in: ___ don't we post it in the group chat? Someone might want the hours.
+- Halima wants to offer a polite option: emailing the councilor's office too. Which fits? _(options: Could we email the councilor's office too? / Could we emailing the councilor's office too? / Let's to email the councilor's office too.)_
+- Brian wants to check if asking for an inspection on Monday is a good idea. Which fits? _(options: Why don't we asked for a Monday inspection? / Should we ask for a Monday inspection? / Should we to ask for a Monday inspection?)_
+- Fill in: ___ don't we call the city together? Two voices are better than one.
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -120,7 +121,7 @@ All suggestion forms use base verb with no changes. Let's call. We could text. Y
 
 - Gloria wants the whole group to act together. Which sentence fits? _(options: Let's meet in the lobby at six. / Let's to meet in the lobby at six. / Let's meeting in the lobby at six.)_
 - Kevin tells Marta that saving the repair receipts is the right and necessary step. Which fits? _(options: You could save the repair receipts. / You should save the repair receipts. / Let's save the repair receipts.)_
-- Fill in the blank: "We ___ split the shift between two people." (Which word gives a soft suggestion, not a command?)
+- Fill in the blank: "We ___ ask the other tenants to call 311 too." (Which word gives a soft suggestion, not a command?)
 - Gloria and Jean agree on a plan for the heat problem. Put the words in order.
-- Which sentence has an error? _(options: Why don't we post the shift in the group chat? / Could we split the hours? / Why don't we calls the landlord?)_
+- Which sentence has an error? _(options: Why don't we call the councilor's office? / Could we write down the dates? / Why don't we calls the landlord?)_
 

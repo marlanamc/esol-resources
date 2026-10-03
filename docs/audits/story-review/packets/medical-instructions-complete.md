@@ -60,7 +60,7 @@ should (advice) · must (required) · can (permission) · need to (necessity)
 
 ## 2. Clinic signs & prescription labels
 
-> 🖼 **Scene:** Later today: the label on Luis's antibiotic. It gives orders, just like the signs Luis reads in the waiting room.  
+> 🖼 **Scene:** Later today at the pharmacy: the label on Luis's antibiotic. Like the signs he reads this morning, it gives orders.  
 > _Photo shows: An orange prescription pill bottle with a printed medication label._
 
 Imperatives: the language of signs

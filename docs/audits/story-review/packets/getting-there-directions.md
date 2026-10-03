@@ -52,7 +52,7 @@ No subject needed. You do not say "You turn left." Just say "Turn left." The ver
 
 Amara gets to the clinic at 7:07. The front door is locked. Jean always comes in the daytime, so she didn't know. There are notes on a board next to the door.
 
-Evening patients: from Claudette, Office Manager
+Evening patients: from Marie, Office Manager
 
 The front door locks at 7 PM. Don't knock. Nobody can hear you.
 
@@ -67,8 +67,8 @@ Please sign in when you arrive. Thank you!
 Negative imperative: Don't + base verb. Use it to tell someone NOT to do something. Polite imperative: Please + base verb. Same structure, softer tone.
 
 **Exercise: Don't or please?**
-- Claudette wants to warn patients NOT to do something. Which sentence does she write? _(options: Park in front of the gate. / Don't park in front of the gate. / Not park in front of the gate.)_
-- Claudette wants to give a polite instruction about phones. Which is best? _(options: You should turn off your phone in the waiting room. / Don't turn off your phone in the waiting room. / Please turn off your phone in the waiting room.)_
+- Marie wants to warn patients NOT to do something. Which sentence does she write? _(options: Park in front of the gate. / Don't park in front of the gate. / Not park in front of the gate.)_
+- Marie wants to give a polite instruction about phones. Which is best? _(options: You should turn off your phone in the waiting room. / Don't turn off your phone in the waiting room. / Please turn off your phone in the waiting room.)_
 
 **Exercise: Check the sign**
 - "Please asks Laura at the front desk if you need help." Is this correct? _(options: Correct / Not correct. Should be "Please ask" (base verb, no -s))_
@@ -130,7 +130,7 @@ Use First, Then, Next, Finally to put directions in order. Each step starts with
 ## Mini quiz
 
 - Jean tells Amara how to get to the clinic. Which sentence is a correct imperative? _(options: You should turn left on Meridian Street and go two blocks. / Turn left on Meridian Street and go two blocks. / Turning left on Meridian Street and going two blocks.)_
-- Claudette posts a warning on the clinic's board. Which sentence tells patients NOT to do something? _(options: Block the side door. / Don't block the side door. / Please block the side door.)_
+- Marie posts a warning on the clinic's board. Which sentence tells patients NOT to do something? _(options: Block the side door. / Don't block the side door. / Please block the side door.)_
 - Fill in the blank: "The clinic is ___ the pharmacy and the bakery." (It's in the middle of the two.)
 - Build the imperative direction by tapping the words in order.
 - Which sentence has an error? _(options: Cross the street at the light. / Don't turn right at the corner. / Please turns left at the pharmacy.)_

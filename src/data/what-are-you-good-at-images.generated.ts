@@ -26,13 +26,10 @@ export const whatAreYouGoodAtImages: Record<
     },
   },
   sceneCounselor: {
-    url: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80&auto=format&fit=crop",
-    alt: "A counselor and job seeker sitting across a desk reviewing paperwork.",
-    unsplashId: "photo-1521791136064-7986c2920216",
-    credit: {
-      name: "Cytonn Photography",
-      url: "https://unsplash.com/@cytonn_photography",
-    },
+    url: "https://images.unsplash.com/photo-1634155938686-24a26c55d71a?w=1200&q=80&auto=format&fit=crop",
+    alt: "a group of people sitting in a room",
+    unsplashId: "zAUFtGIWc0E",
+    credit: { name: "RU Recovery Ministries", url: "https://unsplash.com/@rurecoveryministries" },
   },
   sceneApplication: {
     url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&auto=format&fit=crop",
