@@ -496,7 +496,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Diego", avatar: "🧑🏽", text: "Hi! Are you new to the building? I’m Diego.", side: "right", tone: "terracotta" },
           { speaker: "Diego", avatar: "🧑🏽", text: "I live upstairs. Let me know if you need help finding anything.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Thanks, I’m Fernanda. <strong>Who</strong> is the super? I need another key.", side: "left", tone: "blue" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "Thanks, I’m Fernanda. <strong>Who</strong> is the building manager? I need another key.", side: "left", tone: "blue" },
           { speaker: "Diego", avatar: "🧑🏽", text: "Mr. Alves, on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏽", text: "Last week. I’m still unpacking! <strong>Why</strong> did you choose East Boston?", side: "left", tone: "blue" },
           { speaker: "Diego", avatar: "🧑🏽", text: "It’s close to work. I can walk there. <strong>Where</strong> do you work?", side: "right", tone: "terracotta" },
@@ -542,7 +542,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               label: "Which question has a mistake?",
               options: [
                 { value: "a", label: "When did she move in?" },
-                { value: "b", label: "Who is the super?" },
+                { value: "b", label: "Who is the building manager?" },
                 { value: "c", label: "How she gets to work?" },
               ],
               expectedAnswer: "c",

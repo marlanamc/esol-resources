@@ -189,7 +189,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Schedule/Timetable",
+                                    label: "Schedule",
                                 },
                                 {
                                     value: "preference",
@@ -216,7 +216,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Schedule/Timetable",
+                                    label: "Schedule",
                                 },
                                 {
                                     value: "preference",
@@ -243,7 +243,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Schedule/Timetable",
+                                    label: "Schedule",
                                 },
                                 {
                                     value: "preference",
@@ -270,7 +270,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Schedule/Timetable",
+                                    label: "Schedule",
                                 },
                                 {
                                     value: "preference",

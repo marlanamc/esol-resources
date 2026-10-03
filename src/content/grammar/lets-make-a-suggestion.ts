@@ -178,7 +178,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "You Should and You Could. Suggesting to One Person",
       icon: "👂",
       explanation: `
-        ${sceneCard("sceneHallwayKevin", "Outside the apartment building. Marta talks to Kevin, the superintendent's assistant.", "amber")}
+        ${sceneCard("sceneHallwayKevin", "Outside the apartment building. Marta talks to Kevin, the building manager's assistant.", "amber")}
 
         ${dialogue([
           { speaker: "Marta", avatar: "👩🏽", text: "Kevin, the heat has been off for two days. What do we do?", side: "right", tone: "amber" },

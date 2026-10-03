@@ -428,7 +428,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           { speaker: "Omar", avatar: "🧑🏾", text: "Thursday I can do it. What time do you <strong>clock in</strong>?", side: "left", tone: "sage" },
           { speaker: "Hector", avatar: "👨🏽", text: "7 AM. I'll <strong>fill out</strong> the shift-swap form tonight and <strong>hand it in</strong> to Kevin tomorrow morning.", side: "right", tone: "terracotta" },
           { speaker: "Omar", avatar: "🧑🏾", text: "Good. Make sure he <strong>signs off on</strong> it before the end of his shift or it won't go through.", side: "left", tone: "sage" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I will. And I can <strong>pick up</strong> your Friday shift if you want. Shall I put that on the form too?", side: "right", tone: "terracotta" },
+          { speaker: "Hector", avatar: "👨🏽", text: "I will. And I can <strong>pick up</strong> your Friday shift if you want. Should I put that on the form too?", side: "right", tone: "terracotta" },
         ])}
 
         <p style="margin: 0.75rem 0">Look at how many phrasal verbs Hector and Omar used in one short conversation. This is normal at work. Knowing these verbs means you can handle a real shift-swap without any confusion.</p>
