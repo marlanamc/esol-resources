@@ -4,7 +4,7 @@ Reviewed 2026-10-03. Each guide's packet (`npm run audit:stories`) was read agai
 
 **40 guides: 21 Revise · 18 Polish · 1 Keep**
 
-> **Status (2026-10-03, later):** continuity fixes were applied to all 18 guides that scored 1 on "Makes sense". Contradictions between story, exercises and quiz, and timelines, names and jobs, were fixed without rewriting the stories. The scores below are from *before* those fixes. Still open: story rewrites for guides that are dull or off theme (Interest/Theme scores of 1), and whether to keep teaching "said to me that" as an error in Reported Speech. Packets are regenerated, so re-score with the rubric when you revisit a guide.
+> **Status (2026-10-03, later):** continuity fixes were applied to all 18 guides that scored 1 on "Makes sense". Contradictions between story, exercises and quiz, and timelines, names and jobs, were fixed without rewriting the stories. The scores below are from *before* those fixes. Later that day the stories of 7 guides were rewritten (Your Week in English, Zero + First Conditional, What Are You Good At?, Getting There, Parts of Speech, Medical Instructions, Reported Speech), and Reported Speech now teaches "said to me that" as correct (Marlana's decision). Only "said me" and "told that" are taught as errors. Packets are regenerated, so re-score with the rubric when you revisit a guide.
 
 ## Fix first: lines that teach something wrong
 
@@ -13,7 +13,7 @@ These matter more than a dull story, because students copy the answer key.
 | Guide | Problem | Status |
 |---|---|---|
 | [Reported Speech](packets/reported-speech.md) | The mini quiz asks students to report "We are at capacity now" as "They said ___". The keyed answer is "we were at capacity then", so the pronoun is wrong and no option is correct. Section 8 keys "Dr. Chen said **we** were short-staffed" for a patient reporting it. | ✅ Fixed: both keys now use *they* |
-| [Reported Speech](packets/reported-speech.md) | "said to me that…" and "to not skip doses" are marked as errors. They're grammatical, just less common. | ✅ "to not skip" swapped for a real error. ⏸ "said to me that" left as a teaching choice for Marlana |
+| [Reported Speech](packets/reported-speech.md) | "said to me that…" and "to not skip doses" are marked as errors. They're grammatical, just less common. | ✅ "to not skip" swapped for a real error. ✅ "said to me that" is now taught as correct |
 | [Just, Already, Yet](packets/just-already-yet.md) | The key wants "I have **already** paid the rent. I did it on Monday." Present perfect with a finished time is the classic error. | ❌ Not an error: the time is in a separate past-simple sentence, which is correct. No change. |
 | [Medical Instructions](packets/medical-instructions-complete.md) | The ER nurse says "You **must not** leave until the doctor sees you." Patients can legally leave, so this teaches the wrong meaning of *must*. | ✅ Fixed: "You must wear this wristband the whole time you are here." |
 | [Have to, Don't Have to, Can't](packets/have-to-dont-have-to-cant.md) | The caption calls it "Boston's Fair Housing Act of 1968". That act is federal. | ✅ Fixed: "The federal Fair Housing Act" |

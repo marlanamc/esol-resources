@@ -88,16 +88,17 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantManager", "La Palma Restaurant, East Boston. Monday morning before the lunch rush.", "terracotta")}
+        ${sceneCard("sceneRestaurantManager", "La Palma Restaurant, East Boston. Monday morning before the lunch rush. The manager, Scott, checks his clipboard.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Rosa has just started her second week. The manager, Scott, is going over the rules for new staff.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos is a line cook at La Palma. He became a U.S. citizen in June, and this November is his first election. Election Day is Tuesday, November 3.</em></p>
 
         ${dialogue([
-          { speaker: "Scott", avatar: "🧑‍💼", text: "OK, listen up. <strong>If you clock in</strong> more than five minutes late, <strong>I write you up</strong>. No exceptions.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "What about traffic? The 111 bus is always late.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "🧑‍💼", text: "Leave extra time if you can. <strong>If you’re running late</strong>, <strong>you call</strong> me before your shift starts.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And <strong>if I need</strong> a day off?", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "🧑‍💼", text: "<strong>If you need</strong> a day off, <strong>you ask</strong> me two weeks early. Always.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Scott, can I come in at 11 on Election Day? It's my first time voting.", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Congratulations. <strong>If you need</strong> a day off, <strong>you ask</strong> two weeks early. A morning is easier.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Just the morning. The polls open at 7. I'll be here by 11.", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Write it on the request sheet. My wife votes at 7 every year. <strong>If you go</strong> early, the line <strong>is</strong> short.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "And if the line is long and I'm late?", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Same as any day. <strong>If you're</strong> running late, <strong>you call</strong> me before your shift starts.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -108,11 +109,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("always true", "terracotta")}
-            <span><em><strong>If</strong> you clock in late, the manager <strong>writes</strong> you up.</em></span>
+            <span><em><strong>If</strong> you <strong>are</strong> in line by 8 PM, you <strong>get</strong> to vote.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("always true", "terracotta")}
-            <span><em><strong>If</strong> the kitchen is short, everyone <strong>stays</strong> late.</em></span>
+            <span><em><strong>If</strong> you <strong>go</strong> early, the line <strong>is</strong> short.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("always true", "terracotta")}
@@ -120,12 +121,12 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("always true", "terracotta")}
-            <span><em><strong>If</strong> I <strong>work</strong> Sundays, I <strong>get</strong> time-and-a-half.</em></span>
+            <span><em><strong>If</strong> you <strong>move</strong>, you <strong>update</strong> your voter registration.</em></span>
           </div>
         </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-top: 0.75rem">
-          <p style="margin: 0; font-size: 0.95rem"><strong>The comma rule:</strong> <em>If</em> + condition first, then result. You can also flip it: <em>You get time-and-a-half <strong>if</strong> you work Sundays.</em> (No comma when the result comes first.)</p>
+          <p style="margin: 0; font-size: 0.95rem"><strong>The comma rule:</strong> <em>If</em> + condition first, then result. You can also flip it: <em>You get to vote <strong>if</strong> you are in line by 8 PM.</em> (No comma when the result comes first.)</p>
         </div>
       `,
       exercises: [
@@ -138,9 +139,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Scott says this is always true at the restaurant. Which sentence fits the Zero Conditional?",
               options: [
-                { value: "a", label: "If you clock in late, I will write you up." },
-                { value: "b", label: "If you clock in late, I write you up." },
-                { value: "c", label: "If you clock in late, I wrote you up." },
+                { value: "a", label: "If you need a day off, you will ask two weeks early." },
+                { value: "b", label: "If you need a day off, you ask two weeks early." },
+                { value: "c", label: "If you need a day off, you asked two weeks early." },
               ],
               expectedAnswer: "b",
             },
@@ -148,15 +149,15 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is the Zero Conditional?",
               options: [
-                { value: "a", label: "If Rosa picks up the shift, she will earn more." },
-                { value: "b", label: "If Rosa picked up the shift, she would earn more." },
-                { value: "c", label: "If Rosa works Sundays, she gets time-and-a-half." },
+                { value: "a", label: "If Carlos goes at 7, he will be at work by 11." },
+                { value: "b", label: "If Carlos went at 7, he would be at work by 11." },
+                { value: "c", label: "If you go early, the line is short." },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "Fill in the blank with the correct form: If the kitchen ___ (be) short-staffed, everyone stays late.",
+              label: "Fill in the blank with the correct form: If your name ___ (be) on the voter list, you get a ballot.",
               expectedAnswers: ["is"],
             },
           ],
@@ -192,15 +193,17 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePaycheck", "Carlos's kitchen, East Boston. Thursday night after his shift.", "amber")}
+        ${sceneCard("scenePaycheck", "Carlos and Ana's kitchen, Thursday night. Ana goes through the bills and the mail.", "amber")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos is on the phone with his wife, Ana. The electric bill is due next Friday. He has a chance to pick up an extra shift Saturday morning.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos just got home from La Palma. His wife, Ana, is going through the mail.</em></p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "<strong>If I pick up</strong> the Saturday shift, <strong>I'll pay</strong> the electric bill on time.", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏾", text: "Will you get paid before the bill is due next Friday?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Yes, payday is Thursday. <strong>If I don't work</strong> Saturday, <strong>we won't have</strong> enough.", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏾", text: "OK. <strong>If the manager calls</strong> tonight, <strong>tell him</strong> yes. We need the money.", side: "left", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏾", text: "The electric bill came. It's $190 this month.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "<strong>If I pick up</strong> an extra shift, <strong>I'll pay</strong> it. Anything else?", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Nothing from the city. Carlos, did you ever register to vote?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I thought they did that at my citizenship ceremony.", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Maybe not. <strong>If you don't register</strong> by October 24, <strong>you won't vote</strong> this year.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Get my wallet. <strong>If I do</strong> it online right now, <strong>it'll take</strong> five minutes.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -211,19 +214,19 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real future", "amber")}
-            <span><em><strong>If</strong> I <strong>pick up</strong> the shift, I <strong>will pay</strong> the bill on time.</em></span>
+            <span><em><strong>If</strong> I <strong>pick up</strong> an extra shift, I <strong>will pay</strong> the electric bill.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real future", "amber")}
-            <span><em><strong>If</strong> I <strong>don't work</strong> Saturday, we <strong>won't have</strong> enough.</em></span>
+            <span><em><strong>If</strong> you <strong>don't register</strong> by October 24, you <strong>won't vote</strong> this year.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real future", "amber")}
-            <span><em><strong>If</strong> the manager <strong>calls</strong>, <strong>tell him</strong> yes.</em></span>
+            <span><em><strong>If</strong> the website <strong>asks</strong> for my license number, <strong>read</strong> it to me.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real future", "amber")}
-            <span><em><strong>If</strong> Rosa <strong>finishes</strong> early, she <strong>will take</strong> the bus home.</em></span>
+            <span><em><strong>If</strong> Carlos <strong>goes</strong> at 7, he <strong>will vote</strong> before his shift.</em></span>
           </div>
         </div>
 
@@ -241,11 +244,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is talking about his specific plan for this Saturday. Which fits the First Conditional?",
+              label: "Carlos is talking about his specific plan for tonight. Which fits the First Conditional?",
               options: [
-                { value: "a", label: "If I pick up the Saturday shift, I pay the bill." },
-                { value: "b", label: "If I pick up the Saturday shift, I will pay the bill." },
-                { value: "c", label: "If I will pick up the Saturday shift, I will pay the bill." },
+                { value: "a", label: "If I register tonight, I vote in November." },
+                { value: "b", label: "If I register tonight, I will vote in November." },
+                { value: "c", label: "If I will register tonight, I will vote in November." },
               ],
               expectedAnswer: "b",
             },
@@ -253,15 +256,15 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence has an error?",
               options: [
-                { value: "a", label: "If the manager calls tonight, tell him yes." },
-                { value: "b", label: "If we don't pay by Friday, the lights will go out." },
-                { value: "c", label: "If he will call tonight, I will answer." },
+                { value: "a", label: "If the website asks for your license, read it to me." },
+                { value: "b", label: "If you miss the deadline, you won't vote this year." },
+                { value: "c", label: "If he will register tonight, he will vote in November." },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "Fill in the blank: If Carlos ___ (not work) Saturday, they won't have enough money.",
+              label: "Ana tells her sister: If Carlos ___ (not work) on Election Day morning, he'll vote at 7.",
               expectedAnswers: ["doesn't work", "does not work"],
             },
           ],
@@ -290,15 +293,16 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       title: "Unless, When, and As Soon As",
       icon: "📱",
       explanation: `
-        ${sceneCard("scenePhoneTexting", "Break room, East Boston. The weekend schedule just went up on the wall.", "sage")}
+        ${sceneCard("scenePhoneTexting", "La Palma break room, the next Monday. Jennifer shows Carlos the November schedule on her phone.", "sage")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Claudette and her coworker Jennifer are looking at the Saturday night schedule. Last week, Jennifer asked for Saturday night off for a family visit.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Carlos is registered now. But Scott never saw the request sheet. Jennifer is a server at La Palma.</em></p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏻", text: "They scheduled me Saturday night. I asked for it off! I <strong>won’t be able to</strong> visit my family <strong>unless</strong> someone covers.", side: "left", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "I saw. <strong>As soon as</strong> Miguel <strong>gets</strong> here, I'll ask him if he can cover.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "That would be great. <strong>When I get paid</strong>, I'll treat you to lunch. I promise.", side: "left", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Deal. But I <strong>won’t confirm</strong> anything with him <strong>unless</strong> Scott approves it. Can you talk to Scott first?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Look. I'm on a double on Election Day, 7 to close. I <strong>won't</strong> vote <strong>unless</strong> someone <strong>switches</strong> with me.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "Or you can vote early. The library has early voting on weekends. You don't need a reason.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I didn't know that. <strong>As soon as</strong> my registration <strong>goes</strong> through, I'll look up the times.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "I'll still ask Miguel about Tuesday. <strong>When</strong> he <strong>gets</strong> here, I'll ask him.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Thanks. But I <strong>won't</strong> say yes to him <strong>unless</strong> Scott <strong>agrees</strong>.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -310,19 +314,19 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("unless = if not", "sage")}
-            <span><em>I <strong>won't be able to</strong> visit my family <strong>unless</strong> someone <strong>covers</strong> for me.</em></span>
+            <span><em>I <strong>won't</strong> vote <strong>unless</strong> someone <strong>switches</strong> with me.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("unless = if not", "sage")}
-            <span><em>I <strong>won't ask</strong> him <strong>unless</strong> you <strong>talk</strong> to Scott first.</em></span>
+            <span><em>I <strong>won't</strong> say yes <strong>unless</strong> Scott <strong>agrees</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("when = certain future", "blue")}
-            <span><em><strong>When</strong> I <strong>get paid</strong>, I'll treat you to lunch.</em></span>
+            <span><em><strong>When</strong> Miguel <strong>gets</strong> here, I'll ask him.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("as soon as = immediately", "amber")}
-            <span><em><strong>As soon as</strong> Miguel <strong>gets</strong> here, I'll ask him.</em></span>
+            <span><em><strong>As soon as</strong> my registration <strong>goes</strong> through, I'll look up the times.</em></span>
           </div>
         </div>
 
@@ -340,11 +344,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jennifer means: 'If nobody covers for me, I won't be able to visit my family.' Which sentence says this?",
+              label: "Carlos means: 'If nobody switches with me, I won't be able to vote on Election Day.' Which sentence says this?",
               options: [
-                { value: "a", label: "I won't be able to visit my family when someone covers for me." },
-                { value: "b", label: "I won't be able to visit my family unless someone covers for me." },
-                { value: "c", label: "I won't be able to visit my family as soon as someone covers for me." },
+                { value: "a", label: "I won't be able to vote when someone switches with me." },
+                { value: "b", label: "I won't be able to vote unless someone switches with me." },
+                { value: "c", label: "I won't be able to vote as soon as someone switches with me." },
               ],
               expectedAnswer: "b",
             },
@@ -360,7 +364,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Fill in: ___ Jennifer gets paid, she will treat Claudette to lunch. (When / Unless / As soon as)",
+              label: "Fill in: ___ Miguel gets to work, Jennifer will ask him about Tuesday. (When / Unless / As soon as)",
               expectedAnswers: ["When", "As soon as"],
             },
           ],
@@ -389,16 +393,17 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       title: "Zero vs. First: Which One Fits?",
       icon: "🤔",
       explanation: `
-        ${sceneCard("sceneChristmasEve", "La Palma Restaurant kitchen. The manager is posting the weekend hours.", "terracotta")}
+        ${sceneCard("sceneChristmasEve", "La Palma dining room, Thursday night. The dinner rush is on.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Marco is talking to his supervisor about the Saturday night shift and whether to take it.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Miguel can't switch. He has his kids on Tuesday. Carlos finds Scott between tables.</em></p>
 
         ${dialogue([
-          { speaker: "Marco", avatar: "👨🏾", text: "So Saturday nights pay double, right?", side: "right", tone: "terracotta" },
-          { speaker: "Supervisor", avatar: "🧑‍💼", text: "Yes. <strong>If you work Saturday nights, you earn double.</strong> Everybody wants those shifts.", side: "left", tone: "blue" },
-          { speaker: "Marco", avatar: "👨🏾", text: "OK. Then <strong>if I work this Saturday night, I will pay the rent on the 1st</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Supervisor", avatar: "🧑‍💼", text: "Good. Just so you know, <strong>if someone calls in sick, everyone stays until close</strong>.", side: "left", tone: "blue" },
-          { speaker: "Marco", avatar: "👨🏾", text: "I understand. <strong>If I don't hear from you by 6 PM, I will call to confirm</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Scott, Miguel can't switch with me. So I'm voting early, Saturday morning at the library.", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Sorry about the schedule. Saturday morning's fine. Can you take Saturday night, too? We're short.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Saturday nights pay double, right?", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Yes. <strong>If you work Saturday nights, you earn double.</strong> Everybody wants those shifts.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Then <strong>if I vote Saturday morning, I'll still make the night shift</strong>. That covers the electric bill and helps with rent.", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Deal. <strong>If I don't see you by 5, I'll call you</strong>.", side: "left", tone: "blue" },
         ])}
 
         <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">Zero vs. First: side by side</p>
@@ -424,16 +429,16 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
                 <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #e9c46a; text-shadow: 0 0 1px rgba(0,0,0,0.3)">First</td>
                 <td style="padding: 0.6rem 0.75rem">If + present, will + base</td>
                 <td style="padding: 0.6rem 0.75rem">real future plan</td>
-                <td style="padding: 0.6rem 0.75rem"><em>If I work this Saturday night, I <strong>will pay</strong> rent on the 1st.</em></td>
+                <td style="padding: 0.6rem 0.75rem"><em>If I vote Saturday morning, I <strong>will</strong> still <strong>make</strong> the night shift.</em></td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 0.75rem 1rem; border-radius: 0.5rem">
-          <p style="margin: 0; font-size: 0.95rem"><strong>The key question:</strong> Is this always true (Zero) or is this Marco's specific plan right now (First)?<br>
-          <em>"You earn double on Saturday nights"</em> = always true. Zero.<br>
-          <em>"I will pay rent on the 1st"</em> = Marco's plan for this month. First.</p>
+          <p style="margin: 0; font-size: 0.95rem"><strong>The key question:</strong> Is this always true (Zero) or is this Carlos's specific plan right now (First)?<br>
+          <em>"You earn double on Saturday nights"</em> = always true at La Palma. Zero.<br>
+          <em>"I'll still make the night shift"</em> = Carlos's plan for this Saturday. First.</p>
         </div>
       `,
       exercises: [
@@ -444,7 +449,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The supervisor is explaining a company policy that has always been true. Which type is this?",
+              label: "Scott is explaining a restaurant rule that is always true: double pay on Saturday nights. Which type is this?",
               options: [
                 { value: "a", label: "First Conditional. It is a future plan." },
                 { value: "b", label: "Zero Conditional. It is an always-true rule." },
@@ -454,10 +459,10 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Marco says, 'If I don't hear from you by 6 PM, I will call to confirm.' Which type is this?",
+              label: "Scott says, 'If I don't see you by 5, I'll call you.' Which type is this?",
               options: [
                 { value: "a", label: "Zero Conditional. It is always true." },
-                { value: "b", label: "First Conditional. It is Marco's real plan for tonight." },
+                { value: "b", label: "First Conditional. It is Scott's real plan for Saturday." },
                 { value: "c", label: "First Conditional, but the form is wrong." },
               ],
               expectedAnswer: "b",
@@ -466,15 +471,15 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is Zero Conditional?",
               options: [
-                { value: "a", label: "If I work this Friday, I will have enough for rent." },
-                { value: "b", label: "If the fire alarm rings, everyone leaves the building." },
-                { value: "c", label: "If she picks up the shift, she will pay the bill." },
+                { value: "a", label: "If I vote Saturday morning, I will make the night shift." },
+                { value: "b", label: "If you are in line by 8 PM, you get to vote." },
+                { value: "c", label: "If Miguel switches with me, I will vote on Tuesday." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "Fill in: If you ___ (work) Saturday nights, you earn double. (Zero Conditional)",
+              label: "Fill in Scott's rule: If you ___ (work) Saturday nights, you earn double. (Zero Conditional)",
               expectedAnswers: ["work"],
             },
           ],
@@ -500,20 +505,20 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "putting-it-together",
-      title: "Putting It Together: Work, Money, Childcare",
+      title: "Putting It Together: A Ride to the Polls",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneMixedPractice", "Linh's apartment, East Boston. Planning for next week.", "amber")}
+        ${sceneCard("sceneMixedPractice", "Carlos and Ana's living room, Friday evening. Carlos is at work. Ana's friend Beatriz stops by.", "amber")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Linh is talking to her cousin Beatriz. She is trying to figure out next week: overtime, childcare, and a bill that needs to be paid.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Beatriz lives downstairs. She is a citizen, but she doesn't drive. She cleans offices at night, and the polls close at 8.</em></p>
 
         ${dialogue([
-          { speaker: "Beatriz", avatar: "👩🏽", text: "So are you working next week or not?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "<strong>If they offer overtime, I'll take it.</strong> The electric bill is due the 26th.", side: "right", tone: "terracotta" },
-          { speaker: "Beatriz", avatar: "👩🏽", text: "And the kids? School is closed all week.", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "<strong>If my mother-in-law comes, I can work.</strong> She comes every year around this time. That's just what she does.", side: "right", tone: "terracotta" },
-          { speaker: "Beatriz", avatar: "👩🏽", text: "And <strong>if she doesn't come</strong>?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "<strong>If she doesn't come, I won't have anyone for the kids.</strong> So I won't be able to take the overtime.", side: "right", tone: "terracotta" },
+          { speaker: "Beatriz", avatar: "👩🏽", text: "Ana, I want to vote this year. But I don't drive, and Tuesday I work until 9.", side: "left", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Carlos is voting early tomorrow at the library. <strong>If you're</strong> ready at 9, <strong>he'll pick</strong> you up.", side: "right", tone: "terracotta" },
+          { speaker: "Beatriz", avatar: "👩🏽", text: "Really? Then I'll be outside at 9. Are you coming too?", side: "left", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏾", text: "I can't vote yet. I'm not a citizen. But <strong>if my sister comes</strong> for the kids, <strong>I can come</strong> with you.", side: "right", tone: "terracotta" },
+          { speaker: "Beatriz", avatar: "👩🏽", text: "OK. Call me <strong>as soon as</strong> you <strong>know</strong>.", side: "left", tone: "sage" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Don't worry. My sister always <strong>says</strong> yes <strong>if</strong> I <strong>make</strong> her breakfast.", side: "right", tone: "terracotta" },
         ])}
 
         <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">Which type is each sentence?</p>
@@ -521,19 +526,19 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 0.5rem 0 1.25rem">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("first", "amber")}
-            <span><em>"If they offer overtime, I'll take it."</em> Her plan for next week. Could change.</span>
+            <span><em>"If you're ready at 9, he'll pick you up."</em> A real plan for tomorrow.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("zero", "terracotta")}
-            <span><em>"She comes every year around this time. That's just what she does."</em> Always true, every year.</span>
+            <span><em>"My sister always says yes if I make her breakfast."</em> Always true, every time.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("first", "amber")}
-            <span><em>"If she doesn't come, I won't have anyone for the kids."</em> Real possible outcome next week.</span>
+            <span><em>"If my sister comes for the kids, I can come with you."</em> A real possibility for tomorrow.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("as soon as", "sage")}
-            <span><em>"As soon as you know, call me."</em> Same tense rule as First Conditional.</span>
+            <span><em>"Call me as soon as you know."</em> Same tense rule as First Conditional.</span>
           </div>
         </div>
       `,
@@ -545,20 +550,20 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Linh is talking about her real plan for next week. Which sentence fits?",
+              label: "Ana is talking about the real plan for tomorrow. Which sentence fits?",
               options: [
-                { value: "a", label: "If they post extra hours, I sign up." },
-                { value: "b", label: "If they post extra hours, I'll sign up." },
-                { value: "c", label: "If they will post extra hours, I'll sign up." },
+                { value: "a", label: "If you're ready at 9, he picks you up." },
+                { value: "b", label: "If you're ready at 9, he'll pick you up." },
+                { value: "c", label: "If you will be ready at 9, he'll pick you up." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Linh says her mother-in-law comes every year. Which conditional fits this?",
+              label: "Ana says, 'My sister always says yes if I make her breakfast.' Which conditional fits this?",
               options: [
                 { value: "a", label: "First Conditional. It is a future plan." },
-                { value: "b", label: "Zero Conditional. It happens every year, always." },
+                { value: "b", label: "Zero Conditional. It happens every time, always." },
                 { value: "c", label: "It is not a conditional." },
               ],
               expectedAnswer: "b",
@@ -567,15 +572,15 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence has an error?",
               options: [
-                { value: "a", label: "If she doesn't come, I won't be able to work." },
+                { value: "a", label: "If she doesn't come, I won't be able to go." },
                 { value: "b", label: "As soon as I know, I'll call you." },
-                { value: "c", label: "If they will offer overtime, I'll take it." },
+                { value: "c", label: "If Carlos will drive, I'll go." },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "Fill in the blank: If my mother-in-law ___ (come), I can work the overtime.",
+              label: "Fill in the blank: If my sister ___ (come) for the kids, I can go to the library with you.",
               expectedAnswers: ["comes"],
             },
           ],
@@ -604,7 +609,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "zero-first-conditional-q2",
-      question: "Carlos is making a promise about the extra Saturday shift and the electric bill. Which if-part is correct?",
+      question: "Carlos tells Ana about the extra Saturday night shift and the electric bill. Which if-part is correct?",
       options: [
         { value: "a", label: "If I will take the extra shift..." },
         { value: "b", label: "If I take the extra shift..." },
@@ -621,9 +626,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       id: "zero-first-conditional-q4",
       question: "Which sentence has an error?",
       options: [
-        { value: "a", label: "If the kitchen is short-staffed, everyone stays late." },
+        { value: "a", label: "If your name is on the list, you get a ballot." },
         { value: "b", label: "If Carlos will work Saturday, he will pay the bill." },
-        { value: "c", label: "If I don't hear from you, I will call to confirm." },
+        { value: "c", label: "If I don't see you by 5, I will call you." },
       ],
       correctAnswer: "b",
       explanation: "'Will' cannot appear in the if-part of a conditional. It should be: 'If Carlos works Saturday...'",
@@ -635,7 +640,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If you work Saturday nights, you ___ double pay.\" (Zero Conditional: always-true job rule.)",
+      question: "Fill in the blank: \"If you work Saturday nights, you ___ double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
       correctAnswer: "earn",
       explanation: "Zero Conditional uses If + present simple, present simple. The rule is always true at this job.",
       topic: "zero-conditional",
@@ -646,7 +651,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qws1",
       type: "word-scramble" as const,
-      question: "Marco plans his rent around the Saturday night shift. Put the words in order.",
+      question: "Carlos tells Ana why he said yes to the Saturday night shift. Put the words in order.",
       words: ["I", "will", "pay", "rent", "if", "I", "work"],
       correctAnswer: "I will pay rent if I work",
       hint: "will + base verb in the result part; present simple in the if-part",
@@ -658,14 +663,14 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     },
     {
       id: "zero-first-conditional-q7",
-      question: "The supervisor says: 'If you work Saturday nights, you earn double.' Marco says: 'If I work this Saturday night, I will pay rent on the 1st.' What is the difference?",
+      question: "Scott says: 'If you work Saturday nights, you earn double.' Carlos says: 'If I vote Saturday morning, I will still make the night shift.' What is the difference?",
       options: [
         { value: "a", label: "Both are Zero Conditional. They are the same." },
-        { value: "b", label: "The supervisor states a policy (Zero). Marco states his plan (First)." },
-        { value: "c", label: "Marco's sentence is wrong. He should say 'I earn' not 'I will pay.'" },
+        { value: "b", label: "Scott states a rule (Zero). Carlos states his plan (First)." },
+        { value: "c", label: "Carlos's sentence is wrong. He should say 'I make' not 'I will make.'" },
       ],
       correctAnswer: "b",
-      explanation: "Zero = an always-true rule (the policy). First = a real, specific future plan (Marco's decision about rent).",
+      explanation: "Zero = an always-true rule (double pay on Saturday nights). First = a real, specific future plan (Carlos's Saturday).",
       topic: "zero-vs-first",
       skill: "recognition",
       skillTag: "meaning-rule-vs-plan",

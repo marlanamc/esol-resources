@@ -82,13 +82,15 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "How often do you...?",
       icon: "📅",
       explanation: `
-        ${sceneCard("sceneAfterClass", "Outside the community center, Tuesday evening.", "terracotta")}
+        ${sceneCard("sceneAfterClass", "Outside the community center, Tuesday evening. Rosa came to class 30 minutes late.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Fatima", avatar: "🧕", text: "Rosa, how <strong>often</strong> do you take the bus to class?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>always</strong> take the 111. Every week.", side: "right", tone: "terracotta" },
-          { speaker: "Fatima", avatar: "🧕", text: "Me too. I <strong>usually</strong> leave at 5:30. But I'm <strong>sometimes</strong> late.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "That bus is unpredictable. I <strong>never</strong> leave home without checking the arrival times now.", side: "right", tone: "terracotta" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "Rosa! You're <strong>never</strong> late. What happened tonight?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "The 116. I <strong>always</strong> take it at 5:15, but tonight I waited 40 minutes.", side: "right", tone: "terracotta" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "It's detoured this week. The stop moved two blocks up, next to the pharmacy.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "How do you know that?", side: "right", tone: "terracotta" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "The MBTA app. I <strong>usually</strong> check it before I leave at 5:30. Don't you?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>never</strong> use apps for the bus. I just walk to the stop and wait.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -102,11 +104,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("~80%", "terracotta")}
-            <span><em>She <strong>usually</strong> cooks dinner after work.</em></span>
+            <span><em>She <strong>usually</strong> checks the app before she leaves.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("~60%", "amber")}
-            <span><em>They <strong>often</strong> study together on Fridays.</em></span>
+            <span><em>They <strong>often</strong> take the same bus to class.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("~40%", "amber")}
@@ -114,11 +116,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("~10%", "sage")}
-            <span><em>We <strong>rarely</strong> leave class early.</em></span>
+            <span><em>We <strong>rarely</strong> take a taxi.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("0%", "sage")}
-            <span><em>I <strong>never</strong> skip class.</em></span>
+            <span><em>I <strong>never</strong> click links in strange texts.</em></span>
           </div>
         </div>
 
@@ -141,7 +143,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The 111 bus <strong>is always</strong> crowded at 5:30. Where does 'always' go in this sentence?",
+              label: "The 116 bus <strong>is always</strong> crowded at 5:30. Where does 'always' go in this sentence?",
               options: [
                 { value: "correct", label: "Correct. After 'is' because 'be' comes first." },
                 { value: "before", label: "Wrong. It should go before 'is'." },
@@ -151,7 +153,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Fatima ___ leaves home at 5:30. Which adverb means she does it about 80% of the time?",
+              label: "Fatima ___ checks the app and leaves home at 5:30. Which adverb means she does it about 80% of the time?",
               options: [
                 { value: "always", label: "always" },
                 { value: "usually", label: "usually" },
@@ -182,7 +184,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "He ___ takes the bus. (Fill in the blank with an adverb meaning almost never.)",
+              label: "Fatima's husband drives a delivery truck. He ___ takes the bus. (Fill in the blank with an adverb meaning almost never.)",
               expectedAnswers: ["rarely"],
             },
           ],
@@ -196,16 +198,17 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "present-simple-routines",
       stepNumber: 2,
-      title: "I work, I cook, I take the bus",
+      title: "I work, I take the bus, I don't drive",
       icon: "📝",
       explanation: `
-        ${sceneCard("sceneForm", "East Boston Community Center, intake form, Monday afternoon.", "sage")}
+        ${sceneCard("sceneForm", "Wednesday afternoon. Rosa fills out a sign-up form at the community center's tech help desk.", "sage")}
 
         ${dialogue([
-          { speaker: "Staff", avatar: "👤", text: "Carlos, what does your weekly schedule look like?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>work</strong> Monday to Friday, 7 to 3. I <strong>come</strong> to class on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
-          { speaker: "Staff", avatar: "👤", text: "Do you have time for homework?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>don't</strong> have a lot of time, but I <strong>study</strong> on the bus.", side: "right", tone: "terracotta" },
+          { speaker: "Megan", avatar: "👩🏼", text: "OK, Rosa. The form asks about your week. What does it look like?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>work</strong> Monday to Friday, 7 to 3, at an airport hotel. I <strong>come</strong> to class Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
+          { speaker: "Megan", avatar: "👩🏼", text: "And how do you get to work?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>take</strong> the 116. I <strong>don't</strong> have a car. This week the bus is detoured, and I was late this morning.", side: "right", tone: "terracotta" },
+          { speaker: "Megan", avatar: "👩🏼", text: "Then let's put the MBTA app on your phone. It <strong>shows</strong> you where the bus is right now.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -262,7 +265,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos ___ to class on Tuesday and Thursday evenings. (come)",
+              label: "Rosa ___ to class on Tuesday and Thursday evenings. (come)",
               options: [
                 { value: "come", label: "come" },
                 { value: "comes", label: "comes" },
@@ -281,7 +284,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "___ Carlos take the bus to work?",
+              label: "___ Rosa take the bus to work?",
               options: [
                 { value: "Do", label: "Do" },
                 { value: "Does", label: "Does" },
@@ -298,8 +301,8 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Carlos", "doesn't", "work", "on", "Sundays"],
-              correctAnswer: "Carlos doesn't work on Sundays",
+              words: ["Rosa", "doesn't", "work", "on", "Sundays"],
+              correctAnswer: "Rosa doesn't work on Sundays",
             },
             {
               type: "text",
@@ -320,13 +323,14 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "Every day, twice a week...",
       icon: "🗓️",
       explanation: `
-        ${sceneCard("sceneWeeklySchedule", "Linh checks her phone calendar on the bus, Wednesday morning.", "blue")}
+        ${sceneCard("sceneWeeklySchedule", "Thursday morning on the bus. Rosa has the app now, and she's early. Then her phone buzzes.", "blue")}
 
         ${dialogue([
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Linh, how do you find time to practice English?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "I listen to podcasts <strong>every day</strong> on the bus. And I watch videos <strong>twice a week</strong> after work.", side: "right", tone: "blue" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "What about class?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "I go to class <strong>on Tuesdays and Thursdays</strong>. <strong>In the morning</strong> I review my notes before work.", side: "right", tone: "blue" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Rosa! I'm on this bus <strong>every day</strong> with my English podcast. I never see you here.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "The app sent me to this stop. Hold on. I just got a text about an unpaid toll.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "A toll? Rosa, you don't have a car.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I know! But it says, \"Pay $6.95 today or pay a $50 late fee.\" There's a link.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Don't touch it. I get those <strong>twice a week</strong>. Delete it and block the number.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -336,11 +340,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,144,226,0.06); border-radius: 0.4rem">
             ${labelPill("how often", "blue")}
-            <span><em>I go to the gym <strong>every day</strong>.</em></span>
+            <span><em>I take the bus <strong>every day</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,144,226,0.06); border-radius: 0.4rem">
             ${labelPill("how often", "blue")}
-            <span><em>She calls her family <strong>twice a week</strong>.</em></span>
+            <span><em>She gets fake toll texts <strong>twice a week</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,144,226,0.06); border-radius: 0.4rem">
             ${labelPill("which day", "amber")}
@@ -352,11 +356,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,144,226,0.06); border-radius: 0.4rem">
             ${labelPill("time of day", "terracotta")}
-            <span><em><strong>In the morning</strong>, I review my notes.</em></span>
+            <span><em><strong>In the morning</strong>, I check the bus app.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,144,226,0.06); border-radius: 0.4rem">
             ${labelPill("how often", "blue")}
-            <span><em>She volunteers <strong>once a month</strong> at the food pantry.</em></span>
+            <span><em>She reloads her CharlieCard <strong>once a month</strong>.</em></span>
           </div>
         </div>
 
@@ -382,7 +386,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "She volunteers ___ at the food pantry. Which phrase means one time per month?",
+              label: "Rosa reloads her CharlieCard ___. Which phrase means one time per month?",
               options: [
                 { value: "twice a week", label: "twice a week" },
                 { value: "once a month", label: "once a month" },
@@ -392,7 +396,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"In the morning I review my notes.\" Is the time expression in the right place?",
+              label: "\"In the morning I check the bus app.\" Is the time expression in the right place?",
               options: [
                 { value: "yes", label: "Yes. Time expressions can go at the start of the sentence." },
                 { value: "no", label: "No. Time expressions can only go at the end." },
@@ -413,7 +417,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Carlos doesn't work ___ Saturdays. (Use one preposition.)",
+              label: "Rosa doesn't work ___ Saturdays. (Use one preposition.)",
               expectedAnswers: ["on"],
             },
           ],
@@ -430,14 +434,13 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "This week I've already...",
       icon: "✅",
       explanation: `
-        ${sceneCard("sceneFriday", "Break room at the hotel, Friday afternoon, end of shift.", "amber")}
+        ${sceneCard("sceneFriday", "The hotel break room, Friday afternoon. Rosa and her coworker Jean finish their shift.", "amber")}
 
         ${dialogue([
-          { speaker: "Coworker", avatar: "👷", text: "Jean, are you tired? It's been a long week.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏽", text: "Yes! This week I <strong>have already worked</strong> three ten-hour shifts.", side: "right", tone: "amber" },
-          { speaker: "Coworker", avatar: "👷", text: "Did you still make it to English class?", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have already gone</strong> twice this week. I <strong>have already done</strong> my homework too.", side: "right", tone: "amber" },
-          { speaker: "Coworker", avatar: "👷", text: "Wow. Go home and sleep!", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏿", text: "Rosa, you were here at 7 today. What happened?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I have the bus app now. Good thing, because this week I <strong>have already been</strong> late twice.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏿", text: "Only twice? I <strong>have already worked</strong> three ten-hour shifts. I don't even know what day it is.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "It's Friday, Jean. Go home and sleep.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -455,7 +458,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("already done", "sage")}
-            <span><em>He <strong>has already gone</strong> to the store twice this week.</em></span>
+            <span><em>He <strong>has already gone</strong> to the new bus stop twice this week.</em></span>
           </div>
         </div>
 
@@ -529,15 +532,15 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "My Weekly Routine",
       icon: "🌟",
       explanation: `
-        ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday evening.", "terracotta")}
+        ${sceneCard("sceneNeighbors", "Outside Rosa's building on Meridian Street, Saturday evening. Her neighbor Valentina stops her.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, do you ever have a free evening? We\'d love to have you and the kids over.", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic, but I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "What about English class? Is that on the weekend?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "No, it’s <strong>twice a week</strong>, on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "So how about next Saturday?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday works. I’m <strong>always</strong> home with them that evening. I’ll check with the kids and text you.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Rosa, wait. I got a text. It says I owe $6.95 for a toll. Should I pay it?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Do you have a car?", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "No. I <strong>always</strong> take the bus. And I missed class Thursday. The 116 <strong>never</strong> came.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "It's detoured. The stop is next to the pharmacy this week. I <strong>usually</strong> check the app now.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "You? The app? On Tuesday you didn't even have it.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "A lot can change in a week. And that text is fake. I <strong>have already deleted</strong> mine.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -545,12 +548,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         </div>
 
         <div style="margin: 1rem 0; padding: 1rem 1.25rem; background: rgba(176,87,64,0.05); border-radius: 0.5rem; border: 1px solid rgba(176,87,64,0.15)">
-          <p style="font-weight: 700; margin: 0 0 0.6rem 0; font-size: 0.95rem">A weekly routine paragraph:</p>
+          <p style="font-weight: 700; margin: 0 0 0.6rem 0; font-size: 0.95rem">Rosa's week, in her own words:</p>
           <p style="margin: 0; line-height: 1.75; font-size: 0.95rem">
-            I <strong>usually</strong> work five days a week. I <strong>always</strong> take the bus <strong>in the morning</strong>.
+            I work five days a week at a hotel by the airport. I <strong>always</strong> take the 116 <strong>in the morning</strong>.
             I come to English class <strong>twice a week</strong>, <strong>on Tuesdays and Thursdays</strong>.
-            This week I <strong>have already worked</strong> four shifts and I <strong>have already attended</strong> one class.
-            I <strong>sometimes</strong> cook on Sundays. I <strong>never</strong> skip class.
+            This week the bus was detoured, and I <strong>have already been</strong> late twice.
+            Now I <strong>usually</strong> check the app before I leave. I <strong>never</strong> click links in texts about tolls. I don't even have a car.
           </p>
         </div>
       `,
@@ -571,7 +574,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Valentina has already ___ to class once this week. (go)",
+              label: "Valentina missed class Thursday. She has already ___ to class once this week, on Tuesday. (go)",
               options: [
                 { value: "gone", label: "gone (V3)" },
                 { value: "went", label: "went (past simple)" },
@@ -617,7 +620,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       ],
       tipBox: {
         title: "Great work this week",
-        content: "You now know how to talk about your weekly routine in English using adverbs of frequency, present simple, time expressions, and already. Next week: giving directions and using imperatives.",
+        content: "You now know how to talk about your weekly routine in English using adverbs of frequency, present simple, time expressions, and already. Next: giving directions and using imperatives.",
       },
     },
   ],
@@ -625,7 +628,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "your-week-q1",
-      question: "Your coworker asks about your coffee habit. Which answer is correct?",
+      question: "Jean asks Rosa about her coffee habit at work. Which answer is correct?",
       options: [
         { value: "a", label: "I drink always coffee at work." },
         { value: "b", label: "I always drink coffee at work." },
@@ -641,7 +644,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "your-week-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Carlos ___ to class on Tuesdays and Thursdays.\" (come: he/she/it form)",
+      question: "Fill in the blank: \"Rosa ___ to class on Tuesdays and Thursdays.\" (come: he/she/it form)",
       correctAnswer: "comes",
       explanation: "With he/she/it in present simple, add -s: come → comes.",
       topic: "present-simple",
@@ -679,14 +682,14 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
     {
       id: "your-week-q9",
-      question: "\"She is always late.\" Where does 'always' go in this sentence?",
+      question: "Rosa says about the 116 this week: \"It is always late.\" Where does 'always' go in this sentence?",
       options: [
-        { value: "a", label: "It should go before 'is': She always is late." },
-        { value: "b", label: "It should go at the end: She is late always." },
+        { value: "a", label: "It should go before 'is': It always is late." },
+        { value: "b", label: "It should go at the end: It is late always." },
         { value: "c", label: "It is in the right place. With 'be', the adverb comes after." },
       ],
       correctAnswer: "c",
-      explanation: "After the verb 'be', adverbs of frequency follow it: She is always late.",
+      explanation: "After the verb 'be', adverbs of frequency follow it: It is always late.",
       topic: "adverbs-of-frequency",
       skill: "usage",
       skillTag: "adverb-position-be",

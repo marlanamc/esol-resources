@@ -591,14 +591,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "qra-q2",
-      question: "You want to know the location of the computer lab. Which question do you ask?",
+      question: "The computer class moved to a new room this month. You want to know which room. Which question do you ask?",
       options: [
-        { value: "a", label: "Who is the computer lab?" },
-        { value: "b", label: "When is the computer lab?" },
-        { value: "c", label: "Where is the computer lab?" },
+        { value: "a", label: "Who is the computer class?" },
+        { value: "b", label: "When is the computer class?" },
+        { value: "c", label: "Where is the computer class?" },
       ],
       correctAnswer: "c",
-      explanation: "Where asks about a place or location.",
+      explanation: "Where asks about a place or location. When asks about time, so it won't tell you the room.",
       topic: "where",
       skill: "usage",
       skillTag: "meaning-where-place",

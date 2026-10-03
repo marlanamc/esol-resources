@@ -74,21 +74,25 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1. At the Restaurant
+    // SECTION 1. Before the Dinner Rush
     // =========================================================================
     {
       id: "at-the-restaurant",
       stepNumber: 1,
-      title: "At the Restaurant",
+      title: "Before the Dinner Rush",
       icon: "🍽️",
       explanation: `
-        ${sceneCard("sceneRestaurant", "East Boston, Thursday evening. Diego and Sarah talk during a break.", "terracotta")}
+        ${sceneCard("sceneRestaurant", "East Boston, Thursday, 4 PM. Diego and Sarah prep in the kitchen before the dinner rush.", "terracotta")}
+
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">On Monday, a car almost hit a boy at the crosswalk on Saratoga Street, right by the school. Tonight at 7, the neighbors are having a meeting about it at the library. Diego is a line cook. His shift ends at 6:30, if the kitchen isn't too busy.</p>
 
         ${dialogue([
-          { speaker: "Sarah", avatar: "👩🏻", text: "Diego, are you <strong>good at</strong> making tamales, or just the regular prep?", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "I'm <strong>good at</strong> cooking everything fast. And I'm <strong>interested in</strong> learning the grill.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "Nice. Are you <strong>afraid of</strong> working the weekend rush?", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "No, I'm not <strong>afraid of</strong> working hard. I'm used to it.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Are you going to the crosswalk meeting tonight? They need people to sign up for jobs.", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏽", text: "I have to. My son crosses there every day. I'm <strong>afraid of</strong> letting him go alone now.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "So what are you going to sign up for? What are you <strong>good at</strong>?", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏽", text: "I'm <strong>good at</strong> cooking fast. I don't think that fixes traffic.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Bring food. People stay longer when there's food.", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏽", text: "Ha. OK, but I'm more <strong>interested in</strong> getting a traffic light.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -103,11 +107,11 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("adjective + in", "terracotta")}
-            <span>She's <strong>interested in</strong> learn<strong>ing</strong> the grill.</span>
+            <span>I'm <strong>interested in</strong> gett<strong>ing</strong> a traffic light.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("adjective + of", "terracotta")}
-            <span>He's not <strong>afraid of</strong> work<strong>ing</strong> weekends.</span>
+            <span>I'm <strong>afraid of</strong> lett<strong>ing</strong> him go alone.</span>
           </div>
         </div>
 
@@ -141,7 +145,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "She is interested ___ learning the grill.",
+              label: "Sarah is interested ___ helping at the meeting.",
               options: [
                 { value: "at", label: "at" },
                 { value: "in", label: "in" },
@@ -151,7 +155,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "He is not afraid ___ working weekends.",
+              label: "Diego is afraid ___ letting his son cross alone.",
               options: [
                 { value: "at", label: "at" },
                 { value: "in", label: "in" },
@@ -177,12 +181,12 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "She is good at ___ (clean) quickly.",
+              label: "Sarah is good at ___ (clean) tables quickly.",
               expectedAnswers: ["cleaning"],
             },
             {
               type: "text",
-              label: "He is interested in ___ (learn) English.",
+              label: "Diego is interested in ___ (learn) who to call at City Hall.",
               expectedAnswers: ["learning"],
             },
           ],
@@ -191,23 +195,24 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 2. After the Interview
+    // SECTION 2. Outside the Meeting
     // =========================================================================
     {
       id: "after-the-interview",
       stepNumber: 2,
-      title: "After the Interview",
+      title: "Outside the Meeting",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneJobTalk", "East Boston, Friday afternoon. Marta and Bruno meet outside a temp agency.", "sage")}
+        ${sceneCard("sceneJobTalk", "Thursday, 6:50 PM. Marta and Bruno talk outside the library before the meeting.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">A flyer on the door asks for volunteers at a neighborhood food drive on Saturday.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Marta cleans rooms at a hotel. Bruno paints houses. They both came straight from work. The sign on the door says: <em>Saratoga Street Crosswalk Meeting, 7:00, Room B.</em> The first idea is a morning crossing watch: neighbors in orange vests who help kids cross from 7:30 to 8:00.</p>
 
         ${dialogue([
-          { speaker: "Marta", avatar: "👩🏾", text: "How did it go? Are you <strong>excited about</strong> getting the housecleaning job?", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "A little. But I'm <strong>nervous about</strong> working alone in someone's house.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "That makes sense. I’m <strong>tired of</strong> looking for work, but I’d be nervous about that too.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "At least they’ll train me first. I’m <strong>proud of</strong> getting through the interview.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "I'm <strong>tired of</strong> looking for a safe place to cross with my kids. That corner is the only way.", side: "left", tone: "sage" },
+          { speaker: "Bruno", avatar: "👨🏽", text: "Same. I want to sign up for the crossing watch on Tuesdays. I start work at nine.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "By yourself? Aren't you <strong>nervous about</strong> working that corner alone? Those drivers don't stop.", side: "left", tone: "sage" },
+          { speaker: "Bruno", avatar: "👨🏽", text: "A little. But my daughter is <strong>excited about</strong> seeing me in an orange vest.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "Put me down for Thursdays. Then you're not the only one in a vest.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -217,19 +222,19 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("excited about", "sage")}
-            <span>She is <strong>excited about</strong> start<strong>ing</strong> the job.</span>
+            <span>His daughter is <strong>excited about</strong> see<strong>ing</strong> him in a vest.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("nervous about", "sage")}
-            <span>He is <strong>nervous about</strong> work<strong>ing</strong> alone.</span>
+            <span>He is <strong>nervous about</strong> work<strong>ing</strong> the corner alone.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("tired of", "sage")}
-            <span>I am <strong>tired of</strong> look<strong>ing</strong> for work.</span>
+            <span>I am <strong>tired of</strong> look<strong>ing</strong> for a safe place to cross.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("proud of", "sage")}
-            <span>They are <strong>proud of</strong> try<strong>ing</strong> every day.</span>
+            <span>They are <strong>proud of</strong> start<strong>ing</strong> the crossing watch.</span>
           </div>
         </div>
       `,
@@ -241,7 +246,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Marta is tired of ___ for work.",
+              label: "Marta is tired of ___ for a safe place to cross.",
               options: [
                 { value: "looking", label: "looking" },
                 { value: "look", label: "look" },
@@ -251,7 +256,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Bruno is nervous about ___ alone.",
+              label: "Bruno is nervous about ___ alone at the corner.",
               options: [
                 { value: "working", label: "working" },
                 { value: "work", label: "work" },
@@ -261,7 +266,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"She is excited about start the new job.\" Is this correct?",
+              label: "\"She is excited about start the crossing watch.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'excited about starting'" },
@@ -296,12 +301,12 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Bruno is nervous about ___ (work) alone.",
+              label: "Bruno is nervous about ___ (work) the corner alone.",
               expectedAnswers: ["working"],
             },
             {
               type: "text",
-              label: "Marta is tired of ___ (look) for work.",
+              label: "Marta is tired of ___ (look) for a safe place to cross.",
               expectedAnswers: ["looking"],
             },
           ],
@@ -310,21 +315,24 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 3. At the Job Agency
+    // SECTION 3. Suggestions for the City
     // =========================================================================
     {
       id: "at-the-job-agency",
       stepNumber: 3,
-      title: "At the Job Agency",
+      title: "Suggestions for the City",
       icon: "🗣️",
       explanation: `
-        ${sceneCard("sceneCounselor", "East Boston WorkSource, Monday morning. Ms. Patel helps Hector prepare for interviews.", "blue")}
+        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Ms. Patel writes down Diego's suggestions for the city.", "blue")}
+
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.</p>
 
         ${dialogue([
-          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Thank you <strong>for coming</strong> in today, Hector. Let's talk about how to explain your skills.", side: "left", tone: "blue" },
-          { speaker: "Hector", avatar: "👨🏽", text: "OK. I kept my last job <strong>by showing</strong> up on time and helping out when we were busy.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Good. And don't leave today <strong>without asking</strong> me for the job list. I have new openings.", side: "left", tone: "blue" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I won't. I also want to ask <strong>about getting</strong> a construction certificate.", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Thank you <strong>for coming</strong>, Diego. And for the food. What should we ask the city for?", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "👨🏽", text: "A real light, not just new paint. Paint is gone after one winter.", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Good. And we can show them how bad it is <strong>by sending</strong> photos of cars that don't stop.", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "👨🏽", text: "I walk my son there every day. I can take those. Can I also ask <strong>about getting</strong> a morning crossing guard?", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Yes. Just don't leave <strong>without signing</strong> the letter. We need every name.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -334,19 +342,19 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("for + -ing", "blue")}
-            <span>Thank you <strong>for help</strong><strong>ing</strong> me.</span>
+            <span>Thank you <strong>for com</strong><strong>ing</strong>.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("by + -ing", "blue")}
-            <span>I got the job <strong>by show</strong><strong>ing</strong> up on time.</span>
+            <span>We can show them <strong>by send</strong><strong>ing</strong> photos.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("without + -ing", "blue")}
-            <span>Don't leave <strong>without ask</strong><strong>ing</strong> for the job list.</span>
+            <span>Don't leave <strong>without sign</strong><strong>ing</strong> the letter.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("about + -ing", "blue")}
-            <span>I want to ask <strong>about get</strong><strong>ting</strong> a certificate.</span>
+            <span>I want to ask <strong>about get</strong><strong>ting</strong> a crossing guard.</span>
           </div>
         </div>
       `,
@@ -358,7 +366,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "She got the job by ___ early every day.",
+              label: "Marta got a seat in the front by ___ early.",
               options: [
                 { value: "arriving", label: "arriving" },
                 { value: "arrive", label: "arrive" },
@@ -368,7 +376,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Don't sign the paper without ___ it first.",
+              label: "Don't sign the letter without ___ it first.",
               options: [
                 { value: "reading", label: "reading" },
                 { value: "read", label: "read" },
@@ -378,7 +386,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Thank you for ___ me today.",
+              label: "Thank you for ___ me with the letter.",
               options: [
                 { value: "helping", label: "helping" },
                 { value: "help", label: "help" },
@@ -395,12 +403,12 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I got the job by ___ (show) up on time.",
+              label: "Ms. Patel says, \"The city listens to us. We get results by ___ (show) up every time.\"",
               expectedAnswers: ["showing"],
             },
             {
               type: "text",
-              label: "Don't leave without ___ (ask) about the schedule.",
+              label: "Don't leave without ___ (ask) about the crossing watch schedule.",
               expectedAnswers: ["asking"],
             },
           ],
@@ -409,22 +417,29 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4. Your Job Skills Form
+    // SECTION 4. The Sign-Up Card
     // =========================================================================
     {
       id: "your-job-skills-form",
       stepNumber: 4,
-      title: "Your Job Skills Form",
+      title: "The Sign-Up Card",
       icon: "✍️",
       explanation: `
-        ${sceneCard("sceneApplication", "East Boston WorkSource, Monday morning. Amina fills out a skills form with Kevin at the front desk.", "amber")}
+        ${sceneCard("sceneApplication", "Thursday, 8:15 PM, the front desk of Room B. Amina fills out a sign-up card on a clipboard.", "amber")}
+
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Before people leave, Kevin hands out sign-up cards. The card asks two questions: <em>What are you good at? What are you interested in doing?</em> Amina is a home health aide. Her shift starts at 6 tomorrow morning.</p>
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "🧑🏻", text: "This part asks what you're <strong>good at</strong>. Just write two or three things.", side: "left", tone: "amber" },
-          { speaker: "Amina", avatar: "👩🏿", text: "I'm <strong>good at</strong> clean<strong>ing</strong> fast. And I'm <strong>interested in</strong> learn<strong>ing</strong> office work.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Good. Are you <strong>worried about</strong> anything on the application?", side: "left", tone: "amber" },
-          { speaker: "Amina", avatar: "👩🏿", text: "A little. But I'm <strong>excited about</strong> start<strong>ing</strong> something new.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "This card asks what you're <strong>good at</strong>. Just write two or three things.", side: "left", tone: "amber" },
+          { speaker: "Amina", avatar: "👩🏿", text: "I'm <strong>good at</strong> translat<strong>ing</strong>. Somali and Arabic. Does that help?", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "A lot. Half the families on that street can't read the letter in English.", side: "left", tone: "amber" },
+          { speaker: "Amina", avatar: "👩🏿", text: "I can do it, but I'm <strong>worried about</strong> finish<strong>ing</strong> tonight. I work at six.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Take it home. Bring it back Monday. The letter goes to the city Tuesday.", side: "left", tone: "amber" },
         ])}
+
+        <p style="border-left: 4px solid currentColor; padding: 0.75rem 1rem; margin: 1rem 0; background: rgba(0,0,0,0.03); border-radius: 0.4rem; font-size: 0.95rem; line-height: 1.6">
+          <strong>Two weeks later:</strong> The letter goes to the city with 214 names, in English, Spanish, Somali and Arabic. The city puts a flashing light at the Saratoga Street crosswalk. Diego's son walks to school by himself again. On Tuesdays, Bruno is at the corner in his orange vest.
+        </p>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>All the patterns together.</strong> The pattern is always the same: preposition + verb<strong>-ing</strong>.</p>
@@ -433,12 +448,12 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
         <div style="background: rgba(0,0,0,0.03); border-radius: 0.5rem; padding: 0.85rem 1rem; margin: 1rem 0; font-size: 0.95rem">
           <strong>Quick review:</strong>
           <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; line-height: 1.9">
-            <li>I am <strong>good at</strong> clean<strong>ing</strong>.</li>
-            <li>She is <strong>interested in</strong> learn<strong>ing</strong> English.</li>
-            <li>He is <strong>tired of</strong> work<strong>ing</strong> nights.</li>
-            <li>They are <strong>excited about</strong> start<strong>ing</strong>.</li>
-            <li>Thank you <strong>for help</strong><strong>ing</strong>.</li>
-            <li>Don't leave <strong>without ask</strong><strong>ing</strong>.</li>
+            <li>I am <strong>good at</strong> translat<strong>ing</strong>.</li>
+            <li>Diego is <strong>interested in</strong> gett<strong>ing</strong> a traffic light.</li>
+            <li>Marta is <strong>tired of</strong> look<strong>ing</strong> for a safe place to cross.</li>
+            <li>Amina is <strong>worried about</strong> finish<strong>ing</strong> tonight.</li>
+            <li>Thank you <strong>for com</strong><strong>ing</strong>.</li>
+            <li>Don't leave <strong>without sign</strong><strong>ing</strong> the letter.</li>
           </ul>
         </div>
       `,
@@ -461,8 +476,8 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is correct?",
               options: [
-                { value: "a", label: "He is interested in to learn construction." },
-                { value: "b", label: "He is interested in learning construction." },
+                { value: "a", label: "He is interested in to learn the city's rules." },
+                { value: "b", label: "He is interested in learning the city's rules." },
               ],
               expectedAnswer: "b",
             },
@@ -543,7 +558,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     },
     {
       id: "good-at-q2",
-      question: "Marta says, 'I am tired of look for work.' What is wrong?",
+      question: "Marta says, 'I am tired of look for a safe place to cross.' What is wrong?",
       options: [
         { value: "a", label: "Nothing is wrong." },
         { value: "b", label: "'look' should be 'looking'. A verb after a preposition needs -ing." },
@@ -559,7 +574,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     {
       id: "good-at-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She is interested ___ learning English.\" (Which preposition pairs with 'interested'?)",
+      question: "Fill in the blank: \"Amina is interested ___ translating the letter.\" (Which preposition pairs with 'interested'?)",
       correctAnswer: "in",
       explanation: "The fixed phrase is 'interested in'. Always followed by -ing.",
       topic: "gerunds-prepositions",
@@ -570,7 +585,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     {
       id: "good-at-qws1",
       type: "word-scramble" as const,
-      question: "Diego talks about his skills at the restaurant. Put the words in order.",
+      question: "Sarah asks Diego what he is good at. Put the words in order.",
       words: ["I", "am", "good", "at", "cooking", "fast"],
       correctAnswer: "I am good at cooking fast",
       hint: "good at + -ing",
@@ -584,9 +599,9 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       id: "good-at-q7",
       question: "Which sentence is correct?",
       options: [
-        { value: "a", label: "Don't sign without read the contract." },
-        { value: "b", label: "Don't sign without reading the contract." },
-        { value: "c", label: "Don't sign without to read the contract." },
+        { value: "a", label: "Don't sign without read the letter." },
+        { value: "b", label: "Don't sign without reading the letter." },
+        { value: "c", label: "Don't sign without to read the letter." },
       ],
       correctAnswer: "b",
       explanation: "'Without' is a preposition. The verb after it must be -ing: without reading.",

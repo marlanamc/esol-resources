@@ -511,7 +511,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "what-are-you-good-at": {
         activityTitle: "What Are You Good At?",
         metaTitle: "What Are You Good At? - Interactive Guide | Class Companion",
-        metaDescription: "Learn gerunds after prepositions — good at, interested in, tired of, afraid of — through real job scenarios in East Boston.",
+        metaDescription: "Learn gerunds after prepositions — good at, interested in, tired of, afraid of — through a neighborhood meeting about a dangerous crosswalk in East Boston.",
         loadContent: () =>
             import("@/content/grammar/what-are-you-good-at").then((m) => m.whatAreYouGoodAtContent),
     },

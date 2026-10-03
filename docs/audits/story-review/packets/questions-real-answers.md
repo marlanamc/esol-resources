@@ -191,7 +191,7 @@ Wrong word order (subject before helper)
 
 ## Mini quiz
 
-- You want to know the location of the computer lab. Which question do you ask? _(options: Who is the computer lab? / When is the computer lab? / Where is the computer lab?)_
+- The computer class moved to a new room this month. You want to know which room. Which question do you ask? _(options: Who is the computer class? / When is the computer class? / Where is the computer class?)_
 - Fill in the blank: "___ is the online meeting? On Monday and Wednesday evenings." (Which question word asks about time?)
 - Linh wants to join a video call. Which question is correctly formed? _(options: What time does the call starts? / What time does the call start? / What time the call starts?)_
 - A classmate asks about an online meeting. Put the words in order to make the question.

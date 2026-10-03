@@ -8,29 +8,31 @@
 
 ## Automatic signals
 
-- Section(s) with a cast that appears nowhere else: "All four working together".
+_None._
 
 ## Cast by section
 
 - Nouns: naming the world around you: James, Amara
 - Verbs: action verbs and state verbs: Carlos, Amara
 - Adjectives: describing words: Dilnoza, Amara
-- Adverbs: how, when, how often: Coordinator, Carlos
-- All four working together: Yemi, Linh
+- Adverbs: how, when, how often: Amara, Carlos
+- All four working together: Dilnoza, Amara
 
 ---
 
 ## 1. Nouns: naming the world around you
 
-> 🖼 **Scene:** East Boston Community Center. Tuesday, 5:30 PM.  
+> 🖼 **Scene:** East Boston Community Center. Tuesday, 5:30 PM. Amara writes down her information.  
 > _Photo shows: A woman with curly hair writing in a notebook at a desk with a laptop._
 
-Amara walks in to sign up for a free English class. James at the front desk greets her. Every sign, every room, and every person here has a name. Those names are nouns.
+Amara cleans patient rooms at a hospital. She works days and has two kids, so she can only study at night. Today she comes straight from work to sign up for a free English class. James works at the front desk.
 
-- **James:** Welcome! This is the registration desk. Can I get your name and address?
+- **James:** Hi. This is the registration desk. Can I get your name and address?
 - **Amara:** Amara Yusuf. My address is 24 Meridian Street, near the hospital.
-- **James:** Great. The classroom is on the second floor. You will need a pencil and a notebook.
-- **Amara:** Thank you. I have a notebook in my bag. Could I borrow a pencil?
+- **James:** Thanks. Please fill out this form. You will also need a pencil and a notebook for class.
+- **Amara:** I have a notebook in my bag. Could I borrow a pencil?
+
+Look at the words in bold: desk, name, address, street, hospital, form, pencil, notebook, bag. Each one is a name for a place or a thing. These words are nouns.
 
 Nouns name people, places, things, and ideas. If you can say "a ___" or "the ___" in front of it, it is probably a noun.
 
@@ -70,15 +72,18 @@ Most nouns add -s or -es to become plural.
 
 ## 2. Verbs: action verbs and state verbs
 
-> 🖼 **Scene:** Community center. Amara fills out the form. Carlos helps at the desk.  
+> 🖼 **Scene:** Community center. Carlos helps Amara with the registration form at the desk.  
 > _Photo shows: Community center desk where a volunteer helps a resident fill out a registration form._
 
-Amara is filling out the form. Carlos, a volunteer, stops by to help. Their conversation uses two very different kinds of verbs.
+Amara gets stuck on the form. A man at the next desk offers to help. She knows his face, but from where?
 
 - **Carlos:** Do you need help with the form?
-- **Amara:** Yes, thanks. I know you from the neighborhood! You work at the corner store, right?
-- **Carlos:** That’s right, on weekends. I also volunteer here. Which class do you want to take?
-- **Amara:** The Tuesday evening class. I remember seeing it on the flyer, but I can’t find it on this form.
+- **Amara:** Yes, thanks. Wait, I know you. You work in my building, right?
+- **Carlos:** That's right, I'm Carlos. I fix things there. I help here on Tuesdays. Which class do you want?
+- **Amara:** The Tuesday evening class. I remember it from a flyer, but I can't find it on this form.
+- **Carlos:** They added it late. Write "Tuesday evening" at the bottom. The room is on the board by the door.
+
+The words in bold are verbs. But they are not all the same kind. Some are things you do. Some are things that are true about you.
 
 There are two types of verbs. Action verbs describe things you do. State verbs describe things that are true about you, such as what you feel, know, have, or think.
 
@@ -98,9 +103,9 @@ Common state verbs: know, want, need, understand, remember, believe, like, love,
 
 **Exercise: Action or state?**
 - Carlos helps new students every Tuesday. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
-- Amara knows Carlos from the neighborhood. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
+- Amara knows Carlos from her building. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
 - She fills out the form at the registration desk. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
-- Carlos wants to practice his Haitian Creole. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
+- Amara wants an evening class. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
 
 **Exercise: Correct or not?**
 - "I am knowing all the students in my class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
@@ -117,15 +122,17 @@ Common state verbs: know, want, need, understand, remember, believe, like, love,
 
 ## 3. Adjectives: describing words
 
-> 🖼 **Scene:** Community center. Amara fills out the form. Dilnoza sits next to her.  
+> 🖼 **Scene:** Community center, by the window. Amara and Dilnoza laugh over the "About You" part of the form.  
 > _Photo shows: Two women sitting by a window, laughing together._
 
-Dilnoza is helping Amara with the "About You" section. Nouns alone are not enough. Amara needs to describe things.
+Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to describe their lives.
 
 - **Dilnoza:** This part asks us to describe our lives. What are you writing?
 - **Amara:** I have a full-time job. I work long hours. I have two children.
-- **Dilnoza:** My schedule is busy too. Did you write anything about where you live?
-- **Amara:** I live in a new building but it is a small space for four people.
+- **Dilnoza:** My schedule is busy too. What did you write about your home?
+- **Amara:** It's a new building, but it's a small space for four people.
+- **Dilnoza:** I live with my sister in a small apartment. We fight about the bathroom every morning.
+- **Amara:** Ha! Four people, one bathroom. I win.
 
 Adjectives describe nouns. They answer what kind? or how many? Adjectives usually come right before the noun they describe.
 
@@ -155,15 +162,18 @@ The apartment is small. (adjective after is/are/was)
 
 ## 4. Adverbs: how, when, how often
 
-> 🖼 **Scene:** Community center. Carlos answers questions about the volunteer schedule.  
+> 🖼 **Scene:** Saturday morning, cleanup day at Amara's building. Carlos writes repairs on his clipboard.  
 > _Photo shows: A person in gloves writing on a clipboard during a cleanup event._
 
-The coordinator is writing down volunteer hours. Carlos explains his schedule. He uses adverbs to say how, when, and how often he does things.
+On Saturday, it's cleanup day at Amara's building. Carlos is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.
 
-- **Coordinator:** How often can you volunteer, Carlos?
-- **Carlos:** I can come every Tuesday. My shift finishes early, so I can be here by four.
-- **Coordinator:** Great. Are you comfortable helping students fill out forms in English?
-- **Carlos:** Yes. I speak English pretty well now. If someone speaks too quickly, I just ask them to slow down.
+- **Amara:** Thanks again for Tuesday. How do you get to the center by four? I'm still at work then.
+- **Carlos:** Every Tuesday, I leave work early. Then I make up the hours on Saturday, like today.
+- **Amara:** Your English is so good. How did you learn?
+- **Carlos:** Same class. I speak pretty well now, but if people talk too quickly, I still ask them to slow down.
+- **Amara:** Good to know. And while you have that clipboard, my kitchen sink is leaking again.
+
+Carlos writes it down. "Monday," he says. The words in bold tell us when, how and how often. They are adverbs.
 
 Adverbs describe verbs. They answer how?, when?, or how often? Many adverbs end in -ly (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A group of words can do the same job: every Tuesday, last year, after work.
 
@@ -178,7 +188,7 @@ Carlos hardly works. (almost never, the opposite meaning)
 Adding -ly does not always make the adverb. Hardly is a different word with a different meaning.
 
 **Exercise: Adjective or adverb?**
-- Carlos is a ___ volunteer. He helps everyone. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
+- Carlos is a ___ worker. He fixes most things the same day. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - He finishes his work very ___. He is always done before noon. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - Dilnoza speaks English ___. She practices every day. (good / well) _(options: good (adjective) / well (adverb))_
 - Her pronunciation is ___. Her teacher is happy with her progress. (good / well) _(options: good (adjective) / well (adverb))_
@@ -189,15 +199,19 @@ Adding -ly does not always make the adverb. Hardly is a different word with a di
 
 ## 5. All four working together
 
-> 🖼 **Scene:** Community center bulletin board. Yemi and Linh read an announcement.  
+> 🖼 **Scene:** Tuesday, 6:20 PM. The board by the door at the community center, full of flyers and notices.  
 > _Photo shows: A corkboard filled with flyers and notices._
 
-After signing up, Yemi and Linh stop at the bulletin board. They read an announcement and help each other figure out the word types.
+It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Carlos told them about.
 
-- **Yemi:** Look at this notice. 'Free English classes start in September.' English and September are both nouns, right?
-- **Linh:** Yes. And 'start' is the verb. What about 'free'?
-- **Yemi:** 'Free' describes 'classes.' That's an adjective. And 'every Tuesday evening'... 'every Tuesday' tells us when.
-- **Linh:** So 'every Tuesday' does an adverb's job. It tells us when the classes meet. Got it!
+- **Dilnoza:** Here it is. "Classes meet every Tuesday evening in the large room." Which one is the large room?
+- **Amara:** Not the first door. That's the supply closet. I already tried it.
+- **Dilnoza:** It also says, "Bring a pencil and a small notebook."
+- **Amara:** Small? Mine is huge. It's my son's old school notebook.
+- **Dilnoza:** I don't think they'll check. More pages, more English.
+- **Amara:** OK. Let's find that room before all the good seats are gone.
+
+Now read the whole notice. Every word has a job. Some words name things, some show action, some describe, and some tell you when.
 
 The notice on the bulletin board:
 
@@ -214,16 +228,16 @@ Adjective: describes a noun. Ask: what kind? how many?
 Adverb: describes a verb. Ask: how? when? how often?
 
 **Exercise: Name the part of speech**
-- "Yemi reads the notice on the board." _(options: Noun / Verb / Adjective / Adverb)_
+- "Dilnoza reads the notice on the board." _(options: Noun / Verb / Adjective / Adverb)_
 - "The classes meet every Tuesday." _(options: Noun / Verb / Adjective / Adverb)_
 - "They need a small notebook." _(options: Noun / Verb / Adjective / Adverb)_
-- "Linh reads the notice carefully." _(options: Noun / Verb / Adjective / Adverb)_
+- "Amara reads the notice carefully." _(options: Noun / Verb / Adjective / Adverb)_
 - "The evening classes are free." _(options: Noun / Verb / Adjective / Adverb)_
 
 **Exercise: Fix the sentence**
-- "Yemi reads the announcement careful." _(options: careful: an adjective, it describes a noun / carefully: an adverb, it describes a verb)_
+- "Dilnoza reads the notice careful." _(options: careful: an adjective, it describes a noun / carefully: an adverb, it describes a verb)_
 - "The room is largely and comfortable." _(options: large: an adjective, it describes a noun / largely: an adverb, it describes a verb)_
-- "Yemi is a careful reader." _(options: careful: an adjective, it describes a noun / carefully: an adverb, it describes a verb)_
+- "Amara is a careful reader." _(options: careful: an adjective, it describes a noun / carefully: an adverb, it describes a verb)_
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -237,7 +251,7 @@ Adverb: describes a verb. Ask: how? when? how often?
 
 - Amara picks up a pencil at the registration desk. Which word is a noun? _(options: picks / pencil / at)_
 - Amara is talking about the class schedule. Which sentence is correct? _(options: "I am understanding the schedule." / "I understand the schedule." / "I understanding the schedule.")_
-- "Carlos is a helpful volunteer at the community center." Which word is the adjective? _(options: Carlos / helpful / center)_
-- Amara tells the class about her sister's work schedule. Put the words in order.
+- "Carlos is a helpful neighbor in Amara's building." Which word is the adjective? _(options: Carlos / helpful / building)_
+- Dilnoza tells Amara about her sister's work schedule. Put the words in order.
 - Three people describe themselves at the community center. Which sentence has an error? _(options: "I have two young children." / "I work hardly every day." / "I live in a small apartment.")_
 

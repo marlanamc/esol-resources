@@ -82,15 +82,17 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Where Are You Going?",
       icon: "🗺️",
       explanation: `
-        ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Tuesday, 7 PM.", "terracotta")}
+        ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Tuesday, 7:00 PM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara just got off the train. Her English class at the community center starts at 7:15, so she calls her friend Jean.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara cleans offices downtown. She waited three weeks for this doctor's appointment at the clinic on Meridian Street. It's at 7:15. If she is more than 10 minutes late, she has to make a new appointment and wait three more weeks. She has never been to this clinic, so she calls her coworker Jean.</p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Jean, I just got off the train at Maverick. How do I get to the community center?", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Walk</strong> straight on Maverick Square. <strong>Turn</strong> left on Meridian Street.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Then what?", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Cross</strong> the street at the light. <strong>Go</strong> two more blocks. You will see it on the right.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Jean, I'm at Maverick. My appointment is at 7:15. How do I get to the clinic?", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Walk</strong> across Maverick Square. <strong>Turn</strong> left on Meridian Street.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Wait. I got a text. It says my package can't be delivered, and there's a link. I'm not expecting a package.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "🧑🏾", text: "That's a scam. <strong>Delete</strong> it. <strong>Use</strong> your map, not the link.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Deleted. OK, I'm on Meridian. Then what?", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Cross</strong> at the light. <strong>Go</strong> two more blocks. It's on the right. Now <strong>hurry</strong>.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -104,7 +106,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("direction", "terracotta")}
-            <span><em><strong>Walk</strong> straight past the park.</em></span>
+            <span><em><strong>Walk</strong> across Maverick Square.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("direction", "terracotta")}
@@ -112,7 +114,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("direction", "terracotta")}
-            <span><em><strong>Take</strong> the first right after the bus stop.</em></span>
+            <span><em><strong>Delete</strong> the text. <strong>Use</strong> your map.</em></span>
           </div>
         </div>
 
@@ -128,17 +130,17 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Amara needs directions. Which sentence is correct?",
+              label: "Amara's map says the next turn is at the light. Which sentence is correct?",
               options: [
-                { value: "a", label: "You turn right on Border Street." },
-                { value: "b", label: "Turn right on Border Street." },
-                { value: "c", label: "Turning right on Border Street." },
+                { value: "a", label: "You turn right at the light." },
+                { value: "b", label: "Turn right at the light." },
+                { value: "c", label: "Turning right at the light." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Jean says: \"___ straight past the park.\" Which word fits?",
+              label: "Jean says: \"___ two more blocks.\" Which word fits?",
               options: [
                 { value: "a", label: "Goes" },
                 { value: "b", label: "Going" },
@@ -151,7 +153,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s1-2",
           title: "Build the direction",
-          instructions: "Put Jean's words in the right order.",
+          instructions: "Jean tells Amara a different way for next time. Put Jean's words in the right order.",
           items: [
             {
               type: "word-scramble",
@@ -185,18 +187,18 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "How to Say \"Don't\"",
       icon: "🚫",
       explanation: `
-        ${sceneCard("sceneBulletinBoard", "East Boston Community Center, bulletin board near the entrance.", "amber")}
+        ${sceneCard("sceneBulletinBoard", "Meridian Street, 7:07 PM. Handwritten notes on the board next to the clinic's front door.", "amber")}
 
-        <p style="margin: 0 0 0.75rem 0">A volunteer posted directions and warnings on the board. Read what she wrote.</p>
+        <p style="margin: 0 0 0.75rem 0">Amara gets to the clinic at 7:07. The front door is locked. Jean always comes in the daytime, so she didn't know. There are notes on a board next to the door.</p>
 
         <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(233,196,106,0.4); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: inherit">
-          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Notice from Claudette, Volunteer Coordinator</p>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Evening patients: from Claudette, Office Manager</p>
           <ul style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 1.9">
-            <li><strong>Walk</strong> to the end of the hallway and <strong>turn</strong> right for Room 4.</li>
-            <li><strong>Don't turn</strong> right at the front door. That door leads to the storage room.</li>
+            <li>The front door locks at 7 PM. <strong>Don't knock</strong>. Nobody can hear you.</li>
+            <li><strong>Walk</strong> around the corner to Paris Street and <strong>use</strong> the side entrance.</li>
             <li><strong>Don't use</strong> the side entrance after 8 PM. It locks automatically.</li>
             <li><strong>Please ask</strong> Laura at the front desk if you need help.</li>
-            <li><strong>Please sign in</strong> before class. Thank you!</li>
+            <li><strong>Please sign in</strong> when you arrive. Thank you!</li>
           </ul>
         </div>
 
@@ -207,15 +209,15 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
             ${labelPill("affirmative", "terracotta")}
-            <span><em><strong>Turn</strong> right for Room 4.</em></span>
+            <span><em><strong>Walk</strong> around the corner to Paris Street.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
             ${labelPill("negative", "amber")}
-            <span><em><strong>Don't turn</strong> right at the front door.</em></span>
+            <span><em><strong>Don't knock</strong> on the front door.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
             ${labelPill("polite", "sage")}
-            <span><em><strong>Please sign in</strong> before class.</em></span>
+            <span><em><strong>Please sign in</strong> when you arrive.</em></span>
           </div>
         </div>
       `,
@@ -223,11 +225,11 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s2-1",
           title: "Don't or please?",
-          instructions: "Choose the sentence Claudette would write on the bulletin board.",
+          instructions: "Choose the sentence Claudette would write on the clinic's board.",
           items: [
             {
               type: "radio",
-              label: "Claudette wants to warn students NOT to do something. Which sentence does she write?",
+              label: "Claudette wants to warn patients NOT to do something. Which sentence does she write?",
               options: [
                 { value: "a", label: "Park in front of the gate." },
                 { value: "b", label: "Don't park in front of the gate." },
@@ -239,9 +241,9 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
               type: "radio",
               label: "Claudette wants to give a polite instruction about phones. Which is best?",
               options: [
-                { value: "a", label: "You should turn off your phone in class." },
-                { value: "b", label: "Don't turn off your phone in class." },
-                { value: "c", label: "Please turn off your phone in class." },
+                { value: "a", label: "You should turn off your phone in the waiting room." },
+                { value: "b", label: "Don't turn off your phone in the waiting room." },
+                { value: "c", label: "Please turn off your phone in the waiting room." },
               ],
               expectedAnswer: "c",
             },
@@ -250,7 +252,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s2-2",
           title: "Check the sign",
-          instructions: "Is this bulletin-board sentence correct?",
+          instructions: "Is this sentence from the clinic's board correct?",
           items: [
             {
               type: "radio",
@@ -266,7 +268,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s2-3",
           title: "Write the warning",
-          instructions: "Type the words Claudette would write on the bulletin board.",
+          instructions: "Type the words Claudette would write on the clinic's board.",
           items: [
             {
               type: "text",
@@ -287,13 +289,16 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Where Is It?",
       icon: "📍",
       explanation: `
-        ${sceneCard("sceneSidewalk", "Meridian Street, East Boston. A sunny afternoon.", "sage")}
+        ${sceneCard("sceneSidewalk", "Paris Street, 7:09 PM. Amara stops Linh on the sidewalk outside the laundromat.", "sage")}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks around the corner to Paris Street. She sees shops, a laundromat and two doors, but no clinic sign. Six minutes left.</p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Excuse me, I'm looking for the health clinic on Meridian Street. Do you know where it is?", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Yes! It's <strong>next to</strong> the pharmacy, <strong>across from</strong> the laundromat.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Is it the big building?", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Right. It's <strong>between</strong> the pharmacy and the bakery, <strong>near</strong> the corner of Meridian and Maverick.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Excuse me. I'm looking for the side entrance to the clinic. Do you know where it is?", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Yes. It's <strong>next to</strong> the pharmacy, <strong>across from</strong> this laundromat.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I see a green door and a blue door. Which one?", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "The green one. It's <strong>between</strong> the pharmacy and the bakery. There's no sign. Everybody gets lost.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Thank you so much. My appointment is in six minutes.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -303,7 +308,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("next to", "sage")}
-            <span><em>The clinic is <strong>next to</strong> the pharmacy.</em></span>
+            <span><em>The green door is <strong>next to</strong> the pharmacy.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("across from", "sage")}
@@ -315,7 +320,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("on the corner of", "blue")}
-            <span><em>The bakery is <strong>on the corner of</strong> Meridian and Maverick.</em></span>
+            <span><em>The bakery is <strong>on the corner of</strong> Paris and Meridian.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("in front of", "blue")}
@@ -335,10 +340,10 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is standing on one side of the street. The clinic is on the other side. Where is the clinic?",
+              label: "Amara is standing in front of the laundromat. The clinic door is on the other side of the street. Where is the door?",
               options: [
                 { value: "a", label: "next to the street" },
-                { value: "b", label: "across from where he is standing" },
+                { value: "b", label: "across from where she is standing" },
                 { value: "c", label: "at the end of the street" },
               ],
               expectedAnswer: "b",
@@ -379,18 +384,19 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Step by Step",
       icon: "👣",
       explanation: `
-        ${sceneCard("sceneBusStop", "Bennington Street bus stop, East Boston. Saturday morning.", "blue")}
+        ${sceneCard("sceneBusStop", "The bus stop on Meridian Street, near the clinic. Elena will get off the bus here next Tuesday.", "blue")}
 
-        <p style="margin: 0 0 0.75rem 0">Elena is texting directions to her cousin Miguel. He just got off the bus on Bennington Street and needs to walk to the public library.</p>
+        <p style="margin: 0 0 0.75rem 0">Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Tuesday at 7:30, and she comes by bus.</p>
 
         <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(106,141,115,0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0">
-          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Elena's directions for Miguel</p>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Amara's text to Elena</p>
           <ol style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 2">
-            <li><strong>First,</strong> <strong>walk</strong> straight on Bennington Street for two blocks.</li>
-            <li><strong>Then,</strong> <strong>turn</strong> left on Bremen Street.</li>
-            <li><strong>Next,</strong> <strong>go</strong> past the park and <strong>cross</strong> at the crosswalk.</li>
-            <li><strong>Finally,</strong> <strong>look</strong> for the big blue doors. The library is <strong>on the right, next to</strong> the community garden.</li>
+            <li><strong>First,</strong> <strong>walk</strong> straight on Meridian Street for two blocks.</li>
+            <li><strong>Then,</strong> <strong>turn</strong> left on Paris Street. The front door is locked after 7.</li>
+            <li><strong>Next,</strong> <strong>go</strong> past the laundromat and <strong>cross</strong> at the crosswalk.</li>
+            <li><strong>Finally,</strong> <strong>look</strong> for the green door. It's <strong>on the right, next to</strong> the pharmacy. There's no sign.</li>
           </ol>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem">P.S. If you get a text about a package, <strong>don't tap</strong> the link. It's a scam.</p>
         </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -404,33 +410,33 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
             ${labelPill("step 2", "blue")}
-            <span><em><strong>Then,</strong> turn left on Bremen Street.</em></span>
+            <span><em><strong>Then,</strong> turn left on Paris Street.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
             ${labelPill("step 3", "blue")}
-            <span><em><strong>Next,</strong> go past the park.</em></span>
+            <span><em><strong>Next,</strong> go past the laundromat and cross.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
             ${labelPill("step 4", "blue")}
-            <span><em><strong>Finally,</strong> cross at the crosswalk.</em></span>
+            <span><em><strong>Finally,</strong> look for the green door.</em></span>
           </div>
         </div>
       `,
       exercises: [
         {
           id: "gtd-s4-1",
-          title: "Elena's directions",
-          instructions: "Put Miguel's route in order and choose the right words.",
+          title: "Amara's text to Elena",
+          instructions: "Put the directions in order and choose the right words.",
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble the direction:",
+              label: "Elena might take the other bus, to Saratoga Street. Unscramble Amara's first step from there:",
               words: ["First,", "go", "straight", "on", "Saratoga", "Street", "for", "three", "blocks"],
               correctAnswer: "First, go straight on Saratoga Street for three blocks",
             },
             {
               type: "radio",
-              label: "Miguel finds the library. It is \"___ the right, next to the community garden.\" Which word fits?",
+              label: "Elena finds the green door. It is \"___ the right, next to the pharmacy.\" Which word fits?",
               options: [
                 { value: "a", label: "on" },
                 { value: "b", label: "in" },
@@ -440,7 +446,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Elena uses four steps. She writes: First... Then... ___... Finally. Which word goes in the blank?",
+              label: "Amara uses four steps. She writes: First... Then... ___... Finally. Which word goes in the blank?",
               options: [
                 { value: "a", label: "After" },
                 { value: "b", label: "Next" },
@@ -453,11 +459,11 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s4-2",
           title: "Write the step",
-          instructions: "Type the word Elena uses in her directions.",
+          instructions: "Type the word Amara uses in her directions.",
           items: [
             {
               type: "text",
-              label: "Elena's second step: Then, ___ left on Bremen Street.",
+              label: "Amara's second step: Then, ___ left on Paris Street.",
               expectedAnswers: ["turn", "Turn"],
             },
           ],
@@ -473,7 +479,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "getting-there-directions-q1",
-      question: "Jean tells Amara how to get to the community center. Which sentence is a correct imperative?",
+      question: "Jean tells Amara how to get to the clinic. Which sentence is a correct imperative?",
       options: [
         { value: "a", label: "You should turn left on Meridian Street and go two blocks." },
         { value: "b", label: "Turn left on Meridian Street and go two blocks." },
@@ -488,11 +494,11 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
     },
     {
       id: "getting-there-directions-q2",
-      question: "Claudette posts a warning on the bulletin board. Which sentence tells students NOT to do something?",
+      question: "Claudette posts a warning on the clinic's board. Which sentence tells patients NOT to do something?",
       options: [
-        { value: "a", label: "Block the doorway during break." },
-        { value: "b", label: "Don't block the doorway during break." },
-        { value: "c", label: "Please block the doorway during break." },
+        { value: "a", label: "Block the side door." },
+        { value: "b", label: "Don't block the side door." },
+        { value: "c", label: "Please block the side door." },
       ],
       correctAnswer: "b",
       explanation: "Negative imperatives use 'Don't' + base verb to tell someone not to do something.",

@@ -82,16 +82,18 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Nouns: naming the world around you",
       icon: "🧱",
       explanation: `
-        ${sceneCard("sceneFrontDesk", "East Boston Community Center. Tuesday, 5:30 PM.", "terracotta")}
+        ${sceneCard("sceneFrontDesk", "East Boston Community Center. Tuesday, 5:30 PM. Amara writes down her information.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. James at the front desk greets her. Every sign, every room, and every person here has a <strong>name</strong>. Those names are nouns.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara cleans patient rooms at a hospital. She works days and has two kids, so she can only study at night. Today she comes straight from work to sign up for a free English class. James works at the front desk.</p>
 
         ${dialogue([
-          { speaker: "James", avatar: "🙋🏼", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
+          { speaker: "James", avatar: "🙋🏼", text: "Hi. This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Amara Yusuf. My <strong>address</strong> is 24 Meridian <strong>Street</strong>, near the <strong>hospital</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "James", avatar: "🙋🏼", text: "Great. The <strong>classroom</strong> is on the second <strong>floor</strong>. You will need a <strong>pencil</strong> and a <strong>notebook</strong>.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Thank you. I have a <strong>notebook</strong> in my bag. Could I borrow a <strong>pencil</strong>?", side: "right", tone: "terracotta" },
+          { speaker: "James", avatar: "🙋🏼", text: "Thanks. Please fill out this <strong>form</strong>. You will also need a <strong>pencil</strong> and a <strong>notebook</strong> for class.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "I have a <strong>notebook</strong> in my <strong>bag</strong>. Could I borrow a <strong>pencil</strong>?", side: "right", tone: "terracotta" },
         ])}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Look at the words in bold: <em>desk, name, address, street, hospital, form, pencil, notebook, bag</em>. Each one is a name for a place or a thing. These words are <strong>nouns</strong>.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Nouns</strong> name people, places, things, and ideas. If you can say "a ___" or "the ___" in front of it, it is probably a noun.</p>
@@ -259,16 +261,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Verbs: action verbs and state verbs",
       icon: "⚙️",
       explanation: `
-        ${sceneCard("sceneFormTable", "Community center. Amara fills out the form. Carlos helps at the desk.", "sage")}
+        ${sceneCard("sceneFormTable", "Community center. Carlos helps Amara with the registration form at the desk.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara is filling out the form. Carlos, a volunteer, stops by to help. Their conversation uses two very different kinds of verbs.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara gets stuck on the form. A man at the next desk offers to help. She knows his face, but from where?</p>
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. I <strong>know</strong> you from the neighborhood! You <strong>work</strong> at the corner store, right?", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "That’s right, on weekends. I also <strong>volunteer</strong> here. Which class do you <strong>want</strong> to take?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "The Tuesday evening class. I <strong>remember</strong> seeing it on the flyer, but I can’t <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. Wait, I <strong>know</strong> you. You <strong>work</strong> in my building, right?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "That's right, I'm Carlos. I fix things there. I <strong>help</strong> here on Tuesdays. Which class do you <strong>want</strong>?", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "The Tuesday evening class. I <strong>remember</strong> it from a flyer, but I can't <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
         ])}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The words in bold are <strong>verbs</strong>. But they are not all the same kind. Some are things you do. Some are things that are true about you.</p>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
           <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you, such as what you feel, know, have, or think.</p>
@@ -290,7 +295,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 0 0 1.25rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
-            <span><em>Amara <strong>knows</strong> Carlos from the neighborhood. She <strong>remembers</strong> his face.</em></span>
+            <span><em>Amara <strong>knows</strong> Carlos from her building. She <strong>remembers</strong> his face.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
@@ -332,7 +337,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Amara <strong>knows</strong> Carlos from the neighborhood.",
+              label: "Amara <strong>knows</strong> Carlos from her building.",
               options: [
                 { value: "action", label: "Action verb: you can watch someone do it" },
                 { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
@@ -350,7 +355,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Carlos <strong>wants</strong> to practice his Haitian Creole.",
+              label: "Amara <strong>wants</strong> an evening class.",
               options: [
                 { value: "action", label: "Action verb: you can watch someone do it" },
                 { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
@@ -442,15 +447,17 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adjectives: describing words",
       icon: "🎨",
       explanation: `
-        ${sceneCard("sceneAdjectivesFriends", "Community center. Amara fills out the form. Dilnoza sits next to her.", "amber")}
+        ${sceneCard("sceneAdjectivesFriends", "Community center, by the window. Amara and Dilnoza laugh over the \"About You\" part of the form.", "amber")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza is helping Amara with the "About You" section. Nouns alone are not enough. Amara needs to <strong>describe</strong> things.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to <strong>describe</strong> their lives.</p>
 
         ${dialogue([
           { speaker: "Dilnoza", avatar: "👩🏻", text: "This part asks us to describe our lives. What are you writing?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏾", text: "I have a <strong>full-time</strong> job. I work <strong>long</strong> hours. I have <strong>two</strong> children.", side: "right", tone: "terracotta" },
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "My schedule is <strong>busy</strong> too. Did you write anything about where you live?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "I live in a <strong>new</strong> building but it is a <strong>small</strong> space for four people.", side: "right", tone: "terracotta" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "My schedule is <strong>busy</strong> too. What did you write about your home?", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏾", text: "It's a <strong>new</strong> building, but it's a <strong>small</strong> space for four people.", side: "right", tone: "terracotta" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "I live with my sister in a <strong>small</strong> apartment. We fight about the bathroom every morning.", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Ha! Four people, one bathroom. I win.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -602,16 +609,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adverbs: how, when, how often",
       icon: "⚡",
       explanation: `
-        ${sceneCard("sceneVolunteer", "Community center. Carlos answers questions about the volunteer schedule.", "blue")}
+        ${sceneCard("sceneVolunteer", "Saturday morning, cleanup day at Amara's building. Carlos writes repairs on his clipboard.", "blue")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The coordinator is writing down volunteer hours. Carlos explains his schedule. He uses <strong>adverbs</strong> to say how, when, and how often he does things.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Carlos is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.</p>
 
         ${dialogue([
-          { speaker: "Coordinator", avatar: "📋", text: "How often can you volunteer, Carlos?", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I can come <strong>every Tuesday</strong>. My shift finishes <strong>early</strong>, so I can be here by four.", side: "right", tone: "sage" },
-          { speaker: "Coordinator", avatar: "📋", text: "Great. Are you comfortable helping students fill out forms in English?", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Yes. I speak English <strong>pretty well</strong> now. If someone speaks <strong>too quickly</strong>, I just ask them to slow down.", side: "right", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Thanks again for Tuesday. How do you get to the center by four? I'm still at work then.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "<strong>Every Tuesday</strong>, I leave work <strong>early</strong>. Then I make up the hours on Saturday, like today.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Your English is so good. How did you learn?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Same class. I speak <strong>pretty well</strong> now, but if people talk <strong>too quickly</strong>, I still ask them to slow down.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Good to know. And while you have that clipboard, my kitchen sink is leaking <strong>again</strong>.", side: "right", tone: "terracotta" },
         ])}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Carlos writes it down. "Monday," he says. The words in bold tell us <em>when</em>, <em>how</em> and <em>how often</em>. They are <strong>adverbs</strong>.</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A <strong>group of words</strong> can do the same job: <em>every Tuesday, last year, after work</em>.</p>
@@ -674,7 +684,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is a ___ volunteer. He helps everyone. (quick / quickly)",
+              label: "Carlos is a ___ worker. He fixes most things the same day. (quick / quickly)",
               options: [
                 { value: "quick", label: "quick (adjective)" },
                 { value: "quickly", label: "quickly (adverb)" },
@@ -739,16 +749,20 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "All four working together",
       icon: "🔍",
       explanation: `
-        ${sceneCard("sceneBulletinBoard", "Community center bulletin board. Yemi and Linh read an announcement.", "sage")}
+        ${sceneCard("sceneBulletinBoard", "Tuesday, 6:20 PM. The board by the door at the community center, full of flyers and notices.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">After signing up, Yemi and Linh stop at the bulletin board. They read an announcement and help each other figure out the word types.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Carlos told them about.</p>
 
         ${dialogue([
-          { speaker: "Yemi", avatar: "👨🏿", text: "Look at this notice. 'Free <strong>English</strong> classes start in <strong>September</strong>.' English and September are both nouns, right?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Yes. And 'start' is the verb. What about 'free'?", side: "right", tone: "blue" },
-          { speaker: "Yemi", avatar: "👨🏿", text: "'Free' describes 'classes.' That's an adjective. And 'every Tuesday <strong>evening</strong>'... 'every Tuesday' tells us when.", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "So 'every Tuesday' does an adverb's job. It tells us when the classes <strong>meet</strong>. Got it!", side: "right", tone: "blue" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "Here it is. \"Classes meet every Tuesday evening in the <strong>large</strong> room.\" Which one is the large room?", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Not the first door. That's the supply closet. I already tried it.", side: "right", tone: "terracotta" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "It also says, \"Bring a pencil and a <strong>small</strong> notebook.\"", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Small? Mine is huge. It's my son's old school notebook.", side: "right", tone: "terracotta" },
+          { speaker: "Dilnoza", avatar: "👩🏻", text: "I don't think they'll check. More pages, more English.", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏾", text: "OK. Let's find that room before all the good seats are gone.", side: "right", tone: "terracotta" },
         ])}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Now read the whole notice. Every word has a job. Some words name things, some show action, some describe, and some tell you when.</p>
 
         <div style="padding: 1.1rem 1.25rem; border-radius: 0.5rem; background: rgba(106,141,115,0.08); border: 1px solid rgba(106,141,115,0.2); margin: 1.25rem 0">
           <p style="margin: 0 0 0.75rem 0; font-weight: 600; font-size: 0.95rem">The notice on the bulletin board:</p>
@@ -787,7 +801,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Yemi reads the <strong>notice</strong> on the board.\"",
+              label: "\"Dilnoza reads the <strong>notice</strong> on the board.\"",
               options: [
                 { value: "noun", label: "Noun" },
                 { value: "verb", label: "Verb" },
@@ -820,7 +834,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Linh reads the notice <strong>carefully</strong>.\"",
+              label: "\"Amara reads the notice <strong>carefully</strong>.\"",
               options: [
                 { value: "noun", label: "Noun" },
                 { value: "verb", label: "Verb" },
@@ -850,7 +864,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Yemi reads the announcement <strong>careful</strong>.\"",
+              label: "\"Dilnoza reads the notice <strong>careful</strong>.\"",
               options: [
                 { value: "careful", label: "careful: an adjective, it describes a noun" },
                 { value: "carefully", label: "carefully: an adverb, it describes a verb" },
@@ -868,7 +882,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Yemi is a <strong>careful</strong> reader.\"",
+              label: "\"Amara is a <strong>careful</strong> reader.\"",
               options: [
                 { value: "careful", label: "careful: an adjective, it describes a noun" },
                 { value: "carefully", label: "carefully: an adverb, it describes a verb" },
@@ -885,9 +899,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Yemi", "and", "Linh", "read", "the", "notice", "together"],
-              correctAnswer: "Yemi and Linh read the notice together",
-              correctAnswers: ["Linh and Yemi read the notice together"],
+              words: ["Amara", "and", "Dilnoza", "read", "the", "notice", "together"],
+              correctAnswer: "Amara and Dilnoza read the notice together",
+              correctAnswers: ["Dilnoza and Amara read the notice together"],
             },
             {
               type: "word-scramble",
@@ -952,14 +966,14 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "pos-q3",
-      question: "\"Carlos is a helpful volunteer at the community center.\" Which word is the adjective?",
+      question: "\"Carlos is a helpful neighbor in Amara's building.\" Which word is the adjective?",
       options: [
         { value: "a", label: "Carlos" },
         { value: "b", label: "helpful" },
-        { value: "c", label: "center" },
+        { value: "c", label: "building" },
       ],
       correctAnswer: "b",
-      explanation: "Helpful describes the noun volunteer. It answers 'what kind of volunteer?'",
+      explanation: "Helpful describes the noun neighbor. It answers 'what kind of neighbor?'",
       topic: "adjectives",
       skill: "recognition",
       skillTag: "identify-adjective",
@@ -968,7 +982,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     {
       id: "pos-qws1",
       type: "word-scramble" as const,
-      question: "Amara tells the class about her sister's work schedule. Put the words in order.",
+      question: "Dilnoza tells Amara about her sister's work schedule. Put the words in order.",
       words: ["Her", "sister", "has", "a", "part-time", "job"],
       correctAnswer: "Her sister has a part-time job",
       hint: "Adjectives go before the noun",

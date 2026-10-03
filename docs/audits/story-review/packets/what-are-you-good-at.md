@@ -6,26 +6,30 @@
 
 ## Automatic signals
 
-- No named character appears in more than one section: this may be separate vignettes rather than one story.
+- Section(s) with a cast that appears nowhere else: "Outside the Meeting", "The Sign-Up Card".
 
 ## Cast by section
 
-- At the Restaurant: Sarah, Diego
-- After the Interview: Marta, Bruno
-- At the Job Agency: Ms. Patel, Hector
-- Your Job Skills Form: Kevin, Amina
+- Before the Dinner Rush: Sarah, Diego
+- Outside the Meeting: Marta, Bruno
+- Suggestions for the City: Ms. Patel, Diego
+- The Sign-Up Card: Kevin, Amina
 
 ---
 
-## 1. At the Restaurant
+## 1. Before the Dinner Rush
 
-> 🖼 **Scene:** East Boston, Thursday evening. Diego and Sarah talk during a break.  
+> 🖼 **Scene:** East Boston, Thursday, 4 PM. Diego and Sarah prep in the kitchen before the dinner rush.  
 > _Photo shows: Kitchen workers preparing food in a busy restaurant._
 
-- **Sarah:** Diego, are you good at making tamales, or just the regular prep?
-- **Diego:** I'm good at cooking everything fast. And I'm interested in learning the grill.
-- **Sarah:** Nice. Are you afraid of working the weekend rush?
-- **Diego:** No, I'm not afraid of working hard. I'm used to it.
+On Monday, a car almost hit a boy at the crosswalk on Saratoga Street, right by the school. Tonight at 7, the neighbors are having a meeting about it at the library. Diego is a line cook. His shift ends at 6:30, if the kitchen isn't too busy.
+
+- **Sarah:** Are you going to the crosswalk meeting tonight? They need people to sign up for jobs.
+- **Diego:** I have to. My son crosses there every day. I'm afraid of letting him go alone now.
+- **Sarah:** So what are you going to sign up for? What are you good at?
+- **Diego:** I'm good at cooking fast. I don't think that fixes traffic.
+- **Sarah:** Bring food. People stay longer when there's food.
+- **Diego:** Ha. OK, but I'm more interested in getting a traffic light.
 
 The pattern: adjective + preposition + verb-ing
 
@@ -45,89 +49,98 @@ worried about + -ing
 
 **Exercise: Exercise 1: Choose the correct preposition**
 - Diego is good ___ cooking fast. _(options: at / in / of)_
-- She is interested ___ learning the grill. _(options: at / in / of)_
-- He is not afraid ___ working weekends. _(options: at / in / of)_
+- Sarah is interested ___ helping at the meeting. _(options: at / in / of)_
+- Diego is afraid ___ letting his son cross alone. _(options: at / in / of)_
 - "I am good at cook." Is this sentence correct? _(options: Correct / Not correct. Should be 'good at cooking')_
 
 **Exercise: Exercise 2: Complete the sentence**
-- She is good at ___ (clean) quickly.
-- He is interested in ___ (learn) English.
+- Sarah is good at ___ (clean) tables quickly.
+- Diego is interested in ___ (learn) who to call at City Hall.
 
-## 2. After the Interview
+## 2. Outside the Meeting
 
-> 🖼 **Scene:** East Boston, Friday afternoon. Marta and Bruno meet outside a temp agency.  
+> 🖼 **Scene:** Thursday, 6:50 PM. Marta and Bruno talk outside the library before the meeting.  
 > _Photo shows: Two workers in work clothes talking outside a building._
 
-A flyer on the door asks for volunteers at a neighborhood food drive on Saturday.
+Marta cleans rooms at a hotel. Bruno paints houses. They both came straight from work. The sign on the door says: Saratoga Street Crosswalk Meeting, 7:00, Room B. The first idea is a morning crossing watch: neighbors in orange vests who help kids cross from 7:30 to 8:00.
 
-- **Marta:** How did it go? Are you excited about getting the housecleaning job?
-- **Bruno:** A little. But I'm nervous about working alone in someone's house.
-- **Marta:** That makes sense. I’m tired of looking for work, but I’d be nervous about that too.
-- **Bruno:** At least they’ll train me first. I’m proud of getting through the interview.
+- **Marta:** I'm tired of looking for a safe place to cross with my kids. That corner is the only way.
+- **Bruno:** Same. I want to sign up for the crossing watch on Tuesdays. I start work at nine.
+- **Marta:** By yourself? Aren't you nervous about working that corner alone? Those drivers don't stop.
+- **Bruno:** A little. But my daughter is excited about seeing me in an orange vest.
+- **Marta:** Put me down for Thursdays. Then you're not the only one in a vest.
 
 More adjective + preposition pairs. They all follow the same rule: add -ing after the preposition.
 
 **Exercise: Exercise 1: Choose the correct form**
-- Marta is tired of ___ for work. _(options: looking / look / looks)_
-- Bruno is nervous about ___ alone. _(options: working / work / to work)_
-- "She is excited about start the new job." Is this correct? _(options: Correct / Not correct. Should be 'excited about starting')_
+- Marta is tired of ___ for a safe place to cross. _(options: looking / look / looks)_
+- Bruno is nervous about ___ alone at the corner. _(options: working / work / to work)_
+- "She is excited about start the crossing watch." Is this correct? _(options: Correct / Not correct. Should be 'excited about starting')_
 
 **Exercise: Exercise 2: Build the sentence**
 - Unscramble:
 - Unscramble:
 
 **Exercise: Exercise 3: Complete the sentence**
-- Bruno is nervous about ___ (work) alone.
-- Marta is tired of ___ (look) for work.
+- Bruno is nervous about ___ (work) the corner alone.
+- Marta is tired of ___ (look) for a safe place to cross.
 
-## 3. At the Job Agency
+## 3. Suggestions for the City
 
-> 🖼 **Scene:** East Boston WorkSource, Monday morning. Ms. Patel helps Hector prepare for interviews.  
+> 🖼 **Scene:** Thursday, 7:30 PM, Room B. Ms. Patel writes down Diego's suggestions for the city.  
 > _Photo shows: A counselor and job seeker sitting across a desk reviewing paperwork._
 
-- **Ms. Patel:** Thank you for coming in today, Hector. Let's talk about how to explain your skills.
-- **Hector:** OK. I kept my last job by showing up on time and helping out when we were busy.
-- **Ms. Patel:** Good. And don't leave today without asking me for the job list. I have new openings.
-- **Hector:** I won't. I also want to ask about getting a construction certificate.
+Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.
+
+- **Ms. Patel:** Thank you for coming, Diego. And for the food. What should we ask the city for?
+- **Diego:** A real light, not just new paint. Paint is gone after one winter.
+- **Ms. Patel:** Good. And we can show them how bad it is by sending photos of cars that don't stop.
+- **Diego:** I walk my son there every day. I can take those. Can I also ask about getting a morning crossing guard?
+- **Ms. Patel:** Yes. Just don't leave without signing the letter. We need every name.
 
 Prepositions also come after verbs and in phrases. Same rule: preposition + -ing.
 
 **Exercise: Exercise 1: Correct form after the preposition**
-- She got the job by ___ early every day. _(options: arriving / arrive / arrived)_
-- Don't sign the paper without ___ it first. _(options: reading / read / to read)_
-- Thank you for ___ me today. _(options: helping / help / helped)_
+- Marta got a seat in the front by ___ early. _(options: arriving / arrive / arrived)_
+- Don't sign the letter without ___ it first. _(options: reading / read / to read)_
+- Thank you for ___ me with the letter. _(options: helping / help / helped)_
 
 **Exercise: Exercise 2: Complete the sentence**
-- I got the job by ___ (show) up on time.
-- Don't leave without ___ (ask) about the schedule.
+- Ms. Patel says, "The city listens to us. We get results by ___ (show) up every time."
+- Don't leave without ___ (ask) about the crossing watch schedule.
 
-## 4. Your Job Skills Form
+## 4. The Sign-Up Card
 
-> 🖼 **Scene:** East Boston WorkSource, Monday morning. Amina fills out a skills form with Kevin at the front desk.  
+> 🖼 **Scene:** Thursday, 8:15 PM, the front desk of Room B. Amina fills out a sign-up card on a clipboard.  
 > _Photo shows: Person filling out a paper form on a clipboard at a front desk._
 
-- **Kevin:** This part asks what you're good at. Just write two or three things.
-- **Amina:** I'm good at cleaning fast. And I'm interested in learning office work.
-- **Kevin:** Good. Are you worried about anything on the application?
-- **Amina:** A little. But I'm excited about starting something new.
+Before people leave, Kevin hands out sign-up cards. The card asks two questions: What are you good at? What are you interested in doing? Amina is a home health aide. Her shift starts at 6 tomorrow morning.
+
+- **Kevin:** This card asks what you're good at. Just write two or three things.
+- **Amina:** I'm good at translating. Somali and Arabic. Does that help?
+- **Kevin:** A lot. Half the families on that street can't read the letter in English.
+- **Amina:** I can do it, but I'm worried about finishing tonight. I work at six.
+- **Kevin:** Take it home. Bring it back Monday. The letter goes to the city Tuesday.
+
+Two weeks later: The letter goes to the city with 214 names, in English, Spanish, Somali and Arabic. The city puts a flashing light at the Saratoga Street crosswalk. Diego's son walks to school by himself again. On Tuesdays, Bruno is at the corner in his orange vest.
 
 All the patterns together. The pattern is always the same: preposition + verb-ing.
 
-I am good at cleaning.
+I am good at translating.
 
-She is interested in learning English.
+Diego is interested in getting a traffic light.
 
-He is tired of working nights.
+Marta is tired of looking for a safe place to cross.
 
-They are excited about starting.
+Amina is worried about finishing tonight.
 
-Thank you for helping.
+Thank you for coming.
 
-Don't leave without asking.
+Don't leave without signing the letter.
 
 **Exercise: Exercise 1: Error correction**
 - Which sentence is correct? _(options: She is good at clean the floors. / She is good at cleaning the floors.)_
-- Which sentence is correct? _(options: He is interested in to learn construction. / He is interested in learning construction.)_
+- Which sentence is correct? _(options: He is interested in to learn the city's rules. / He is interested in learning the city's rules.)_
 - Which sentence is correct? _(options: Don't go without signing the form. / Don't go without sign the form.)_
 
 **Exercise: Exercise 2: Build a sentence**
@@ -141,8 +154,8 @@ Don't leave without asking.
 ## Mini quiz
 
 - Diego says, 'I am good ___ cooking fast.' Which word fits? _(options: at / in / of)_
-- Marta says, 'I am tired of look for work.' What is wrong? _(options: Nothing is wrong. / 'look' should be 'looking'. A verb after a preposition needs -ing. / 'of' should be 'for'.)_
-- Fill in the blank: "She is interested ___ learning English." (Which preposition pairs with 'interested'?)
-- Diego talks about his skills at the restaurant. Put the words in order.
-- Which sentence is correct? _(options: Don't sign without read the contract. / Don't sign without reading the contract. / Don't sign without to read the contract.)_
+- Marta says, 'I am tired of look for a safe place to cross.' What is wrong? _(options: Nothing is wrong. / 'look' should be 'looking'. A verb after a preposition needs -ing. / 'of' should be 'for'.)_
+- Fill in the blank: "Amina is interested ___ translating the letter." (Which preposition pairs with 'interested'?)
+- Sarah asks Diego what he is good at. Put the words in order.
+- Which sentence is correct? _(options: Don't sign without read the letter. / Don't sign without reading the letter. / Don't sign without to read the letter.)_
 
