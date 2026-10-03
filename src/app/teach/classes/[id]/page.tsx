@@ -196,6 +196,15 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                         ) : (
                                                             <span className="text-text-muted">—</span>
                                                         )}
+                                                        {courseMapStatus && courseMapStatus.completedWeeksCount > 0 && (
+                                                            <div
+                                                                className="mt-0.5 text-xs font-medium"
+                                                                style={{ color: "var(--text-color-muted)" }}
+                                                                title="Weeks fully finished overall — stays even after the calendar moves to a new week"
+                                                            >
+                                                                {courseMapStatus.completedWeeksCount} wk{courseMapStatus.completedWeeksCount === 1 ? "" : "s"} total
+                                                            </div>
+                                                        )}
                                                     </td>
                                                     <td className="py-3 px-4 text-sm">
                                                         {courseMapStatus && courseMapStatus.overall.total > 0 ? (

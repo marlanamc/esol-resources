@@ -385,6 +385,7 @@ export async function getTimeframedLeaderboard(
       avatarColor: r.avatarColor,
       weekComplete: completionByUserId.get(r.userId)?.weekComplete ?? false,
       weeklyQuizComplete: completionByUserId.get(r.userId)?.weeklyQuizComplete ?? false,
+      completedWeeksCount: completionByUserId.get(r.userId)?.completedWeeksCount ?? 0,
     };
   });
 }

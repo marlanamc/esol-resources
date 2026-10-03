@@ -47,7 +47,7 @@ export function applyProgressCategoryUpdates(
         const categoryCompleted = isTimeSignalsCategory
             ? wasCategoryCompleted ||
               (typeof sanitizedAccuracy === "number" && sanitizedAccuracy >= 70)
-            : rawProgress >= 100;
+            : wasCategoryCompleted || rawProgress >= 100;
         currentData[category] = {
             completed: categoryCompleted,
             ...(sanitizedAccuracy !== undefined ? { accuracy: sanitizedAccuracy } : {}),
@@ -67,13 +67,17 @@ export function applyProgressCategoryUpdates(
     }
 
     if (vocabType && isVocabProgressType(vocabType)) {
+        const previousVocabData = asObject(currentData[vocabType]) ?? {};
+        const wasVocabCompleted = asBoolean(previousVocabData.completed);
+        const vocabCompleted = wasVocabCompleted || rawProgress >= 100;
         currentData[vocabType] = {
-            completed: rawProgress >= 100,
+            completed: vocabCompleted,
             progress: rawProgress,
-            completedAt:
-                rawProgress >= 100
-                    ? new Date().toISOString()
-                    : (currentData[vocabType] as { completedAt?: string })?.completedAt,
+            completedAt: vocabCompleted
+                ? wasVocabCompleted
+                    ? (previousVocabData as { completedAt?: string })?.completedAt
+                    : new Date().toISOString()
+                : (currentData[vocabType] as { completedAt?: string })?.completedAt,
         };
 
         let completedCount = 0;

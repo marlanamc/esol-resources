@@ -30,6 +30,7 @@ interface LeaderboardEntry {
   avatarColor: string | null;
   weekComplete: boolean;
   weeklyQuizComplete: boolean;
+  completedWeeksCount: number;
 }
 
 const TROPHY_TILE_BG =
@@ -448,6 +449,16 @@ export default function LeaderboardPage() {
                             <span>Week done</span>
                           </div>
                         )}
+                        {student.completedWeeksCount > 0 && (
+                          <div
+                            className="mt-1 flex items-center justify-center gap-1 text-xs font-semibold"
+                            style={{ color: 'var(--color-primary)' }}
+                            title={`Finished ${student.completedWeeksCount} week${student.completedWeeksCount === 1 ? '' : 's'} of the course map — this stays even after the calendar moves to a new week`}
+                          >
+                            <TrophyIcon size={14} />
+                            <span>{student.completedWeeksCount} week{student.completedWeeksCount === 1 ? '' : 's'} done</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -584,6 +595,16 @@ export default function LeaderboardPage() {
                           >
                             <CheckCircleIcon size={14} />
                             <span>Week done</span>
+                          </div>
+                        )}
+                        {entry.completedWeeksCount > 0 && (
+                          <div
+                            className="flex items-center gap-1 text-sm font-semibold"
+                            style={{ color: 'var(--color-primary)' }}
+                            title={`Finished ${entry.completedWeeksCount} week${entry.completedWeeksCount === 1 ? '' : 's'} of the course map — this stays even after the calendar moves to a new week`}
+                          >
+                            <TrophyIcon size={14} />
+                            <span>{entry.completedWeeksCount} week{entry.completedWeeksCount === 1 ? '' : 's'} done</span>
                           </div>
                         )}
                       </div>

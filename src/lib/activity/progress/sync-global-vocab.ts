@@ -34,12 +34,39 @@ export async function syncGlobalVocabularyProgress(params: {
                     ? JSON.parse(updatedCategoryData)
                     : updatedCategoryData;
 
-            const mergedData = { ...existingGlobalData, ...newData };
+            const mergedData: Record<string, unknown> = { ...existingGlobalData, ...newData };
+            for (const vType of VOCAB_PROGRESS_TYPES) {
+                const existingTypeData = (existingGlobalData[vType] ?? {}) as {
+                    completed?: boolean;
+                    completedAt?: string;
+                };
+                const newTypeData = (newData[vType] ?? {}) as {
+                    completed?: boolean;
+                    completedAt?: string;
+                };
+                const wasCompleted = Boolean(existingTypeData.completed);
+                const completed = wasCompleted || Boolean(newTypeData.completed);
+                mergedData[vType] = {
+                    ...existingTypeData,
+                    ...newTypeData,
+                    completed,
+                    completedAt: completed
+                        ? wasCompleted
+                            ? existingTypeData.completedAt
+                            : newTypeData.completedAt
+                        : newTypeData.completedAt ?? existingTypeData.completedAt,
+                };
+            }
             const completedCount = VOCAB_PROGRESS_TYPES.filter(
-                (vType) => mergedData[vType]?.completed
+                (vType) => (mergedData[vType] as { completed?: boolean } | undefined)?.completed
             ).length;
             const globalProgress = (completedCount / VOCAB_PROGRESS_TYPES.length) * 100;
-            const globalStatus = globalProgress >= 100 ? "completed" : "in_progress";
+            // Once the global record is complete, a reopened mode that hasn't been
+            // replayed to 100% yet must not downgrade it back to in_progress.
+            const globalStatus =
+                globalProgress >= 100 || globalRecord.status === "completed"
+                    ? "completed"
+                    : "in_progress";
 
             await prisma.activityProgress.update({
                 where: { id: globalRecord.id },

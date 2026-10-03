@@ -33,6 +33,32 @@ function buildItemHref(activity: CourseMapActivity): string {
     return buildMapActivityHref(activity) ?? "/dashboard/map";
 }
 
+/**
+ * How many weeks (in the student's visible map) are fully finished — every
+ * actionable required activity done. Unlike `weekComplete`, this isn't scoped
+ * to the current calendar week: a week counted here stays counted once the
+ * calendar moves on, so a student doesn't lose credit for finishing early.
+ */
+function countCompletedWeeks(
+    units: CourseMapUnit[],
+    guidedProgress: CourseMapProgressState
+): number {
+    let count = 0;
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            const actionable = level.requiredActivities.filter(
+                (activity) => activity.status !== "planned" && isMapActivityActionable(activity)
+            );
+            if (actionable.length === 0) continue;
+            const done = actionable.filter((activity) =>
+                isMapActivityCompleted(activity, guidedProgress)
+            ).length;
+            if (done >= actionable.length) count++;
+        }
+    }
+    return count;
+}
+
 function toTimelineItem(activity: CourseMapActivity, status: TimelineStatus): TimelineItem {
     return {
         activityId: activity.id,
@@ -167,13 +193,14 @@ async function loadAssignmentByActivityId(userId: string): Promise<
 export async function getCurrentWeekCompletion(
     user: { id: string; role?: string | null },
     options?: { now?: Date }
-): Promise<{ weekComplete: boolean; weeklyQuizComplete: boolean }> {
+): Promise<{ weekComplete: boolean; weeklyQuizComplete: boolean; completedWeeksCount: number }> {
     const snapshot = await buildCurrentWeekSnapshot(user, options);
-    if (!snapshot) return { weekComplete: false, weeklyQuizComplete: false };
+    if (!snapshot) return { weekComplete: false, weeklyQuizComplete: false, completedWeeksCount: 0 };
     const quizzes = snapshot.items.filter(item => item.type === "quiz");
     return {
         weekComplete: snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total,
         weeklyQuizComplete: quizzes.length > 0 && quizzes.every(item => item.status === "done"),
+        completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),
     };
 }
 
@@ -192,6 +219,8 @@ export interface StudentCourseMapStatus {
     weekComplete: boolean;
     /** Progress across every actionable required activity in the student's visible map. */
     overall: { done: number; total: number; percent: number };
+    /** Count of visible weeks fully finished — persists once earned, regardless of which week is current. */
+    completedWeeksCount: number;
 }
 
 /**
@@ -215,7 +244,11 @@ export async function getStudentCourseMapStatus(
     ).length;
     const percent = total > 0 ? Math.round((done / total) * 100) : 0;
 
-    return { weekComplete, overall: { done, total, percent } };
+    return {
+        weekComplete,
+        overall: { done, total, percent },
+        completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),
+    };
 }
 
 export interface ThisWeekPanelData {
