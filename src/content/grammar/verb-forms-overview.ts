@@ -1,4 +1,22 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { verbFormsOverviewImages as images } from "@/data/verb-forms-overview-images.generated";
+
+// Short scenes and classmate messages carry the grammar through the week.
+const scene = (id: keyof typeof images, caption: string) => {
+  const photo = images[id];
+  return `<figure class="vfo-scene gc-bg-white" style="margin:0 0 1rem; border-radius:12px; overflow:hidden; border:1px solid rgba(128,128,128,.25)">
+    <img src="${photo.url}" alt="${photo.alt}" loading="lazy" style="display:block; width:100%; height:180px; object-fit:cover" />
+    <figcaption style="padding:.45rem .7rem; font-size:.8rem; line-height:1.4"><strong>${caption}</strong><span style="display:block; font-size:.7rem">Photo: <a href="${photo.credit.url}" target="_blank" rel="noopener noreferrer">${photo.credit.name}</a> / Unsplash</span></figcaption>
+  </figure>`;
+};
+
+const messages = (label: string, turns: [string, string, string][]) => `
+  <div class="vfo-messages" role="group" aria-label="${label}" style="margin:.75rem 0; display:flex; flex-direction:column; gap:.5rem">
+    <div class="gc-text-blue" style="font-size:.75rem; font-weight:700; letter-spacing:.04em">${label}</div>
+    ${turns.map(([name, avatar, text], i) => `<div class="vfo-message gc-bg-${i % 2 ? "sage" : "blue"}-alpha" style="align-self:${i % 2 ? "flex-end" : "flex-start"}; max-width:94%; border:1px solid rgba(128,128,128,.25); border-radius:${i % 2 ? "12px 12px 3px 12px" : "12px 12px 12px 3px"}; padding:.55rem .75rem; line-height:1.5">
+      <span style="font-size:.8rem; font-weight:700">${avatar} ${name}</span><div>${text}</div>
+    </div>`).join("")}
+  </div>`;
 
 export const verbFormsOverviewContent: InteractiveGuideContent = {
   "type": "interactive-guide",
@@ -6,9 +24,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
   "sections": [
     {
       "id": "five-codes",
-      "title": "Five verb forms",
+      "title": "Meet the verb family",
       "icon": "📱",
-      "explanation": "<p>A verb changes form. Learn these five labels with <strong>work</strong>.</p><table><thead><tr><th scope=\"col\">Code</th><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V1</td><td>Base</td><td>work</td></tr><tr><td>V1-s</td><td>He / she / it</td><td>works</td></tr><tr><td>V-ing</td><td>-ing</td><td>working</td></tr><tr><td>V2</td><td>Past</td><td>worked</td></tr><tr><td>V3</td><td>Past participle</td><td>worked</td></tr></tbody></table><p><strong>Try it:</strong> Read the forms aloud. Cover them. Try again.</p>",
+      "explanation": `
+${scene("sceneClassNight", "After class • Carlos, Fernanda, and Sarah")}
+${messages("CLASS GROUP CHAT", [
+  ["Carlos", "👨🏽", "Work, works, working... One verb has a big family!"],
+  ["Fernanda", "👩🏾", "Five forms. Let's try them before dinner!"],
+])}
+<p><strong>One verb, five forms.</strong> Meet the family:</p><table><thead><tr><th scope="col">Code</th><th scope="col">Form</th><th scope="col">Example</th></tr></thead><tbody><tr><td>V1</td><td>Base</td><td>work</td></tr><tr><td>V1-s</td><td>He / she / it</td><td>works</td></tr><tr><td>V-ing</td><td>-ing</td><td>working</td></tr><tr><td>V2</td><td>Past</td><td>worked</td></tr><tr><td>V3</td><td>Past participle</td><td>worked</td></tr></tbody></table><p class="vfo-try"><strong>Your turn:</strong> Read the forms aloud. Cover them. Try again.</p>
+      `,
       "exercises": [
         {
           "id": "vfo-intro-1",
@@ -17,7 +42,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           "items": [
             {
               "type": "radio",
-              "label": "She ___ every day. (work)",
+              "label": "Carlos says: “My sister ___ every day.” (work)",
               "options": [
                 {
                   "value": "work",
@@ -68,9 +93,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       "id": "present-forms",
       "stepNumber": 2,
-      "title": "Present forms",
+      "title": "Save me a cookie!",
       "icon": "🔄",
-      "explanation": "<p>Use <strong>work / works</strong> for routines. Use <strong>am / is / are + working</strong> for an action happening now.</p><table><thead><tr><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V1</td><td>I <strong>work</strong> every day.</td></tr><tr><td>V1-s</td><td>She <strong>works</strong> every day.</td></tr><tr><td>V-ing</td><td>I <strong>am working</strong> now.</td></tr></tbody></table><p><strong>Try it:</strong> Change one example to make it true for you.</p>",
+      "explanation": `
+${scene("sceneWorkShift", "Tuesday • Planning a café meet-up")}
+${messages("CARLOS & FERNANDA", [
+  ["Carlos", "👨🏽", "I <strong>work</strong> mornings. My sister <strong>works</strong> evenings. Café at six?"],
+  ["Fernanda", "👩🏾", "I <strong>am working</strong> now. Six is good. Save me a cookie!"],
+])}
+<p><strong>V1 / V1-s:</strong> work / works → a routine.<br /><strong>V-ing:</strong> am / is / are + working → happening now.</p><p class="vfo-try"><strong>Your turn:</strong> Send your own reply: “I work ___.” or “I am ___ now.”</p>
+      `,
       "exercises": [
         {
           "id": "vfo-present-1",
@@ -117,7 +149,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               "type": "text",
-              "label": "My brother ___ at Logan Airport. (work)",
+              "label": "Carlos says: “My brother ___ at Logan Airport.” (work)",
               "expectedAnswers": [
                 "works"
               ]
@@ -129,9 +161,17 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       "id": "past-forms",
       "stepNumber": 3,
-      "title": "V2 and V3",
+      "title": "Yesterday at work, today at the café",
       "icon": "⏪",
-      "explanation": "<p><strong>V2</strong> tells about a finished past action. In the pattern <strong>have / has + V3</strong>, the past connects to now.</p><table><thead><tr><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V2</td><td>I <strong>worked</strong> yesterday.</td></tr><tr><td>V3</td><td>I <strong>have worked</strong> here for two years.</td></tr></tbody></table><p>For regular verbs, V2 and V3 both end in <strong>-ed</strong>. Other verbs can change: <strong>be → was / were → been</strong>.</p><p><strong>Try it:</strong> Check your verb. Fix one thing and try again.</p>",
+      "explanation": `
+${scene("sceneEveningHome", "Tuesday • At the café after work")}
+${messages("AT THE TABLE", [
+  ["Sarah", "👩🏻", "I <strong>worked</strong> late yesterday. Today, I have time for a cookie!"],
+  ["Fernanda", "👩🏾", "I <strong>have worked</strong> nearby for two years. How did I miss this café?"],
+])}
+<p><strong>V2: worked</strong> → a finished past action.<br /><strong>Have / has + V3: have worked</strong> → the past connects to now.</p>
+<p>Regular verbs: V2 and V3 end in <strong>-ed</strong>. Some verbs change: <strong>be → was / were → been</strong>.</p><p class="vfo-try"><strong>Your turn:</strong> Say one sentence about yesterday. Check your verb and try again.</p>
+      `,
       "exercises": [
         {
           "id": "vfo-past-1",
@@ -178,7 +218,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               "type": "text",
-              "label": "Last night I ___ until 10 pm. (work)",
+              "label": "Sarah texts: “Last night I ___ until 10 pm.” (work)",
               "expectedAnswers": [
                 "worked"
               ]
@@ -190,9 +230,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       "id": "be-and-have",
       "stepNumber": 4,
-      "title": "Be and have",
+      "title": "Five minutes before dinner",
       "icon": "⚡",
-      "explanation": "<p>These verbs do not follow the regular <strong>-ed</strong> pattern.</p><table><thead><tr><th scope=\"col\">Code</th><th scope=\"col\">be</th><th scope=\"col\">have</th></tr></thead><tbody><tr><td>V1</td><td>be</td><td>have</td></tr><tr><td>V1-s</td><td>is</td><td>has</td></tr><tr><td>V-ing</td><td>being</td><td>having</td></tr><tr><td>V2</td><td>was / were</td><td>had</td></tr><tr><td>V3</td><td>been</td><td>had</td></tr></tbody></table><p><strong>Be</strong> is the base form. In present statements, use <strong>am / is / are</strong>: I am ready. She is here. They are ready.</p><p>She <strong>has</strong> a job. We <strong>are having</strong> lunch. I <strong>have been</strong> busy.</p><p><strong>Try it:</strong> Choose two forms to practice again tomorrow.</p>",
+      "explanation": `
+${scene("sceneAppQuiz", "Wednesday • A little practice at home")}
+${messages("CLASS GROUP CHAT", [
+  ["Carlos", "👨🏽", "I <strong>am</strong> home. I <strong>have</strong> five minutes. Let's practice!"],
+  ["Sarah", "👩🏻", "I <strong>have been</strong> busy! My son <strong>has</strong> dinner ready. He says it's my turn tomorrow!"],
+])}
+<table><thead><tr><th scope="col">Code</th><th scope="col">be</th><th scope="col">have</th></tr></thead><tbody><tr><td>V1</td><td>be</td><td>have</td></tr><tr><td>V1-s</td><td>is</td><td>has</td></tr><tr><td>V-ing</td><td>being</td><td>having</td></tr><tr><td>V2</td><td>was / were</td><td>had</td></tr><tr><td>V3</td><td>been</td><td>had</td></tr></tbody></table><p><strong>Be</strong> is the base form. In present statements: <strong>I am, she is, they are.</strong></p><p class="vfo-try"><strong>Your turn:</strong> Choose two forms. Cover them, try, and check. Practice again tomorrow.</p>
+      `,
       "exercises": [
         {
           "id": "vfo-be-have-1",
@@ -239,7 +286,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               "type": "text",
-              "label": "Last year she ___ a nurse at the clinic. (be)",
+              "label": "Sarah says: “Last year I ___ a nurse at the clinic.” (be)",
               "expectedAnswers": [
                 "was"
               ]
