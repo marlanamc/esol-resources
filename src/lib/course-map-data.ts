@@ -352,29 +352,59 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "goal": "Build your foundation: learn verb forms, practice parts of speech, use your reference sheet, and make a small English study routine. Work one section at a time; after state testing, return to where you left off.",
         "items": [
           {
+            "id": "vocab-oct-learning-flashcards",
+            "activityId": "vocab-oct-learning",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "flashcards",
+            "order": 0,
+            "title": "Learning English: Flash Cards"
+          },
+          {
             "id": "verb-forms-overview",
             "href": "/grammar-reader/verb-forms-overview",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Verb Forms + Your Study Toolkit"
+          },
+          {
+            "id": "vocab-oct-learning-matching",
+            "activityId": "vocab-oct-learning",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "matching",
+            "order": 2,
+            "title": "Learning English: Matching"
           },
           {
             "id": "parts-of-speech-week-4",
             "activityId": "parts-of-speech-game",
             "href": "/activity/parts-of-speech-game?lesson=week-4-describing",
             "slot": "required",
-            "order": 1,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Week 4: Adjectives and Articles"
           },
           {
+            "id": "vocab-oct-learning-fill-blank",
+            "activityId": "vocab-oct-learning",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "fill-blank",
+            "order": 4,
+            "title": "Learning English: Fill in the Blank"
+          },
+          {
             "id": "verb-quiz-1",
             "activityId": "verb-quiz-1",
             "slot": "required",
-            "order": 2,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Weekly Quiz 1 — Together in Class",
@@ -384,7 +414,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "past-simple-past-continuous-guide",
             "href": "/grammar-reader/past-simple-past-continuous",
             "slot": "extra",
-            "order": 3,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Past Simple + Past Continuous: Telling the Story"
@@ -393,7 +423,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "all-verb-tenses-overview",
             "href": "/grammar-reader/all-verb-tenses-overview",
             "slot": "extra",
-            "order": 4,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "All Verb Tenses Overview"
@@ -401,7 +431,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "have-you-ever-speaking",
             "slot": "extra",
-            "order": 5,
+            "order": 8,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Conversation Practice: Telling Your Story"
@@ -409,7 +439,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "lived-worked-writing",
             "slot": "extra",
-            "order": 6,
+            "order": 9,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"When I came to the U.S.\""
@@ -418,7 +448,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-intro",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
-            "order": 7,
+            "order": 10,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Intro: /t/ /d/ /id/"
@@ -427,7 +457,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-game-extra",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
-            "order": 8,
+            "order": 11,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Game"
@@ -436,7 +466,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "helper-verb-repair",
             "activityId": "grammar-hospital-helper-repair-guided",
             "slot": "extra",
-            "order": 9,
+            "order": 12,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: Helper Verb Repair"
@@ -459,19 +489,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Digital Habits: Flash Cards"
           },
           {
-            "id": "just-already-yet",
-            "href": "/grammar-reader/just-already-yet",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Just, Already, Yet"
-          },
-          {
             "id": "questions-real-answers",
             "href": "/grammar-reader/questions-real-answers",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Questions That Get Real Answers"
@@ -479,7 +500,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "question-word-practice",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Question Word Practice Game"
@@ -491,7 +512,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 4,
+            "order": 3,
             "title": "Digital Habits: Matching"
           },
           {
@@ -501,7 +522,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Digital Habits: Fill in the Blank"
           },
           {
@@ -509,7 +530,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "parts-of-speech-game",
             "href": "/activity/parts-of-speech-game?lesson=week-5-subjects",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Week 5: Subjects and Verbs"
@@ -518,7 +539,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-2",
             "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 7,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Weekly Quiz 2"
@@ -530,7 +551,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
-            "order": 8,
+            "order": 7,
             "title": "Schedule Verbs: Flash Cards"
           },
           {
@@ -540,7 +561,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 9,
+            "order": 8,
             "title": "Schedule Verbs: Matching"
           },
           {
@@ -550,11 +571,11 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 10,
+            "order": 9,
             "title": "Schedule Verbs: Fill in the Blank"
           }
         ],
-        "goal": "Practice Digital Habits vocabulary and use just, already, and yet to talk about everyday routines."
+        "goal": "Practice Digital Habits vocabulary, ask useful questions, and identify subjects and verbs."
       },
       {
         "id": "week-6",
@@ -768,9 +789,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Have You Ever...?"
           },
           {
-            "id": "volunteering-scenario-practice",
+            "id": "just-already-yet",
+            "href": "/grammar-reader/just-already-yet",
             "slot": "required",
             "order": 2,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Just, Already, Yet"
+          },
+          {
+            "id": "volunteering-scenario-practice",
+            "slot": "required",
+            "order": 3,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Volunteering Scenario Practice"
@@ -782,7 +812,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 4,
             "title": "Action Verbs: Matching"
           },
           {
@@ -792,19 +822,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 5,
             "title": "Action Verbs: Fill in the Blank"
           },
           {
             "id": "verb-quiz-5",
             "activityId": "verb-quiz-5",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Weekly Quiz 5"
           }
-        ]
+        ],
+        "goal": "Talk about life experiences with Have you ever...? Then use just, already, and yet to describe recent actions and what is still unfinished."
       },
       {
         "id": "week-10",

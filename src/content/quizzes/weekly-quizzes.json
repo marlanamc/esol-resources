@@ -74,33 +74,33 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to successfully deal with a challenge”?",
+        "prompt": "Which word means “to give your attention to one thing”?",
         "options": [
-          "relocate",
-          "motivate",
-          "overcome"
+          "notice",
+          "compare",
+          "focus"
         ],
         "answers": [
-          "overcome"
+          "focus"
         ],
-        "explanation": "overcome: to successfully deal with a challenge. She worked hard to overcome the language barrier.",
-        "source": "vocab-sep-w4"
+        "explanation": "focus: to give your attention to one thing. Focus on one sentence at a time.",
+        "source": "vocab-oct-learning"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "With hard work, you can _____ your goal of passing the test.",
+        "prompt": "You learned a rule. Now _____ it by using it in a new sentence.",
         "options": [
-          "motivate",
-          "immigrate",
-          "overcome",
-          "achieve"
+          "apply",
+          "remember",
+          "notice",
+          "focus"
         ],
         "answers": [
-          "achieve"
+          "apply"
         ],
-        "explanation": "achieve: to reach a goal through hard work. With practice, you can achieve your language goals.",
-        "source": "vocab-sep-w4"
+        "explanation": "apply: to use what you learned. Apply the rule by writing a new sentence about yourself.",
+        "source": "vocab-oct-learning"
       },
       {
         "id": "grammar-0",
@@ -183,21 +183,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "I have already ___ my homework. (do)",
+        "prompt": "What do you ___ after class? (do)",
         "answers": [
-          "done"
+          "do"
         ],
-        "explanation": "I have already done my homework. (do)",
+        "explanation": "What do you do after class? (do)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "She has just ___ a study plan. (make)",
+        "prompt": "She ___ a study plan every Sunday. (make)",
         "answers": [
-          "made"
+          "makes"
         ],
-        "explanation": "She has just made a study plan. (make)",
+        "explanation": "She makes a study plan every Sunday. (make)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -234,32 +234,28 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Nadine picked up her EBT card last week. The staff member asks if she needs it today. What does Nadine say?",
+        "prompt": "You want to know the location of the computer lab. Which question do you ask?",
         "options": [
-          "I have just gotten my card.",
-          "I have already gotten my card.",
-          "I haven't gotten my card yet."
+          "Who is the computer lab?",
+          "When is the computer lab?",
+          "Where is the computer lab?"
         ],
         "answers": [
-          "I have already gotten my card."
+          "Where is the computer lab?"
         ],
-        "explanation": "ALREADY means done before now. She got the card last week, not moments ago.",
-        "source": "just-already-yet/jay-q1"
+        "explanation": "Where asks about a place or location.",
+        "source": "questions-real-answers/qra-q2"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Carlos walked in the door 30 seconds ago. His neighbor asks where he's been. He says:",
-        "options": [
-          "I have already gotten back from the pharmacy.",
-          "I have just gotten back from the pharmacy.",
-          "I haven't gotten back from the pharmacy yet."
-        ],
+        "prompt": "Fill in the blank: \"___ is the English class? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
         "answers": [
-          "I have just gotten back from the pharmacy."
+          "When",
+          "when"
         ],
-        "explanation": "JUST means very recently, moments ago. He arrived 30 seconds ago.",
-        "source": "just-already-yet/jay-q2"
+        "explanation": "When asks about a time. Monday and Wednesday evenings are times.",
+        "source": "questions-real-answers/qra-qfb1"
       }
     ]
   },

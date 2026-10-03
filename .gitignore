@@ -141,3 +141,6 @@ deep-research-report.md
 # Generated audio lives on Vercel Blob (NEXT_PUBLIC_AUDIO_CDN_URL).
 # Keep writing to public/audio/ locally; re-upload with npm run audio:upload:blob.
 /public/audio/
+
+# Private recovery snapshots of live quiz content and historical student work
+/.backups/

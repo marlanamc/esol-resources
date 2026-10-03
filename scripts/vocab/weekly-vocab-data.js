@@ -57,6 +57,18 @@ const weeklyVocabData = {
     ],
   },
 
+  "oct-learning": {
+    topic: "Learning English: Study Skills",
+    words: [
+      { term: "focus", pos: "verb", def: "to give your attention to one thing", ex: "Focus on one sentence at a time.", fillBlank: { text: "Put other work away and _____ on this one sentence.", options: ["notice", "focus", "correct", "compare"] } },
+      { term: "notice", pos: "verb", def: "to see or become aware of something", ex: "Look closely and notice the -s at the end of works.", fillBlank: { text: "Look closely at works. Do you _____ the -s at the end?", options: ["apply", "compare", "notice", "focus"] } },
+      { term: "compare", pos: "verb", def: "to look for similarities and differences", ex: "Compare I work and she works. What is different?", fillBlank: { text: "Look for similarities and differences: _____ these two sentences.", options: ["focus", "remember", "correct", "compare"] } },
+      { term: "correct", pos: "verb", def: "to fix a mistake", ex: "Use your reference sheet to correct the verb in your sentence.", fillBlank: { text: "Your sentence has a mistake. Use the example to _____ it.", options: ["correct", "apply", "focus", "compare"] } },
+      { term: "remember", pos: "verb", def: "to bring something back to mind", ex: "Cover the verb forms and try to remember them.", fillBlank: { text: "Hide your notes and try to _____ the verb forms from memory.", options: ["apply", "remember", "compare", "focus"] } },
+      { term: "apply", pos: "verb", def: "to use what you learned", ex: "Apply the rule by writing a new sentence about yourself.", fillBlank: { text: "You learned a rule. Now _____ it by using it in a new sentence.", options: ["notice", "focus", "apply", "remember"] } },
+    ],
+  },
+
   "sep-w3": {
     topic: "Start the Class: Digital Habits",
     words: [

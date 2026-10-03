@@ -40,10 +40,10 @@ describe('weekly quiz content and grading', () => {
     expect(normalizeQuizAnswer('  She  HAS a notebook! ')).toBe(normalizeQuizAnswer('She has a notebook.'));
     expect(normalizeQuizAnswer('don’t')).toBe(normalizeQuizAnswer("don't"));
   });
-  it('keeps the guided first quiz on familiar vocabulary', () => {
+  it('aligns the guided first quiz with Week 4 learning vocabulary', () => {
     expect(first.guided).toBe(true);
-    expect(first.questions.filter(q => q.section === 'vocabulary').map(q => q.answers[0])).toEqual(['overcome', 'achieve']);
-    expect(first.questions.filter(q => q.section === 'vocabulary').every(q => q.source === 'vocab-sep-w4')).toBe(true);
+    expect(first.questions.filter(q => q.section === 'vocabulary').map(q => q.answers[0])).toEqual(['focus', 'apply']);
+    expect(first.questions.filter(q => q.section === 'vocabulary').every(q => q.source === 'vocab-oct-learning')).toBe(true);
     expect(bank['verb-quiz-2'].questions.filter(q => q.section === 'vocabulary').every(q => q.source === 'vocab-sep-w3')).toBe(true);
   });
 });

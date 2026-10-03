@@ -29,11 +29,11 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   const [p1, a1, p2, a2] = WEEKLY_VERB_APPLICATIONS[n - 1];
   [ [p1, a1], [p2, a2] ].forEach(([prompt, answer], i) => questions.push({ id: `apply-${i}`, section: 'apply', prompt, answers: [answer], explanation: prompt.replace('___', answer), source: 'weekly-quiz-applications' }));
   const vocabWeek = week.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards') ? week : [...weeks].reverse().find(w => w.number < week.number && w.items.some(i => i.slot === 'required' && i.vocabUi === 'flashcards'))!;
-  const vocabId = n === 1 ? 'vocab-sep-w4' : vocabWeek.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards')!.activityId!;
+  const vocabId = vocabWeek.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards')!.activityId!;
   const words = weeklyVocabData[vocabId.replace('vocab-', '')].words as {term: string; def: string; ex: string; fillBlank?: {text: string; options: string[]}}[];
   for (let i = 0; i < 2; i++) {
     const index = n === 1
-      ? words.findIndex(word => word.term === ['overcome', 'achieve'][i])
+      ? words.findIndex(word => word.term === ['focus', 'apply'][i])
       : ((n - 1) * 2 + i) % words.length;
     const word = words[index];
     const useContext = word.fillBlank && (n + i) % 2 === 0;
