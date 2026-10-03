@@ -470,6 +470,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: Helper Verb Repair"
+          },
+          {
+            "id": "grammar-reference-scavenger-hunt",
+            "slot": "extra",
+            "order": 13,
+            "wrappedGame": false,
+            "activityType": "worksheet",
+            "title": "Scavenger Hunt: Find It in Your Reference Sheet"
           }
         ]
       },
@@ -678,13 +686,138 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "vocabUi": "fill-blank",
             "order": 9,
             "title": "Protect Yourself Verbs: Fill in the Blank"
+          },
+          {
+            "id": "adverbs-of-frequency-matching",
+            "activityId": "adverbs-of-frequency",
+            "slot": "extra",
+            "order": 10,
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "matching",
+            "title": "How Often? Adverbs of Frequency: Matching"
+          },
+          {
+            "id": "adverbs-of-frequency-fill-blank",
+            "activityId": "adverbs-of-frequency",
+            "slot": "extra",
+            "order": 11,
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "fill-blank",
+            "title": "How Often? Adverbs of Frequency: Fill in the Blank"
+          },
+          {
+            "id": "advisor-bulletin-scavenger-hunt",
+            "slot": "extra",
+            "order": 12,
+            "wrappedGame": false,
+            "activityType": "worksheet",
+            "title": "Community Resources Scavenger Hunt"
+          },
+          {
+            "id": "job-history-used-to-speaking",
+            "slot": "extra",
+            "order": 13,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Job History: What I Used to Do"
           }
         ],
         "goal": "Give and follow directions, and stay safe online while getting around town."
       },
       {
-        "id": "week-8",
+        "id": "week-11",
         "number": 7,
+        "title": "Our Voice, Our Vote",
+        "goal": "Register key civic verbs, make a suggestion, and practice contacting an official, timed with the November elections.",
+        "items": [
+          {
+            "id": "vocab-oct-w5-flashcards",
+            "activityId": "vocab-oct-w5",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "flashcards",
+            "order": 0,
+            "title": "Civic Verbs: Flash Cards"
+          },
+          {
+            "id": "lets-make-a-suggestion",
+            "href": "/grammar-reader/lets-make-a-suggestion",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Let's Make a Suggestion"
+          },
+          {
+            "id": "contact-official-practice",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "writing",
+            "title": "Contact an Official Practice"
+          },
+          {
+            "id": "vocab-oct-w5-matching",
+            "activityId": "vocab-oct-w5",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "matching",
+            "order": 3,
+            "title": "Civic Verbs: Matching"
+          },
+          {
+            "id": "vocab-oct-w5-fill-blank",
+            "activityId": "vocab-oct-w5",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "fill-blank",
+            "order": 4,
+            "title": "Civic Verbs: Fill in the Blank"
+          },
+          {
+            "id": "verb-quiz-7",
+            "activityId": "verb-quiz-7",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Weekly Quiz 7"
+          },
+          {
+            "id": "political-ads-fact-opinion",
+            "slot": "extra",
+            "order": 6,
+            "wrappedGame": false,
+            "activityType": "worksheet",
+            "title": "Political Ads: Fact or Opinion?"
+          },
+          {
+            "id": "zero-first-conditional",
+            "href": "/grammar-reader/zero-first-conditional",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Zero + First Conditional: If This, Then That"
+          },
+          {
+            "id": "community-issue-discussion",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Community Issue Case Study: Discussion"
+          }
+        ]
+      },
+      {
+        "id": "week-8",
+        "number": 8,
         "title": "Phone English + Family Connection",
         "items": [
           {
@@ -766,7 +899,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-9",
-        "number": 8,
+        "number": 9,
         "title": "Helping + Volunteering",
         "items": [
           {
@@ -839,7 +972,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-10",
-        "number": 9,
+        "number": 10,
         "title": "Public Meetings + Suggestions",
         "items": [
           {
@@ -908,140 +1041,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Weekly Quiz 6"
           }
         ]
-      },
-      {
-        "id": "week-11",
-        "number": 10,
-        "title": "Voting + Contacting Officials",
-        "items": [
-          {
-            "id": "vocab-nov-w3-flashcards",
-            "activityId": "vocab-nov-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 0,
-            "title": "Civic Verbs: Flash Cards"
-          },
-          {
-            "id": "lets-make-a-suggestion",
-            "href": "/grammar-reader/lets-make-a-suggestion",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Let's Make a Suggestion"
-          },
-          {
-            "id": "contact-official-practice",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "writing",
-            "title": "Contact an Official Practice"
-          },
-          {
-            "id": "vocab-nov-w3-matching",
-            "activityId": "vocab-nov-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 3,
-            "title": "Civic Verbs: Matching"
-          },
-          {
-            "id": "vocab-nov-w3-fill-blank",
-            "activityId": "vocab-nov-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 4,
-            "title": "Civic Verbs: Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-7",
-            "activityId": "verb-quiz-7",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Weekly Quiz 7"
-          }
-        ]
-      },
-      {
-        "id": "week-12",
-        "number": 11,
-        "title": "Community Issue Case Study",
-        "items": [
-          {
-            "id": "vocab-nov-w4-flashcards",
-            "activityId": "vocab-nov-w4",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 0,
-            "title": "Problem-Solving Verbs: Flash Cards"
-          },
-          {
-            "id": "zero-first-conditional",
-            "href": "/grammar-reader/zero-first-conditional",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Zero + First Conditional: If This, Then That"
-          },
-          {
-            "id": "community-problem-scenario",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Community Problem Scenario Game"
-          },
-          {
-            "id": "vocab-nov-w4-matching",
-            "activityId": "vocab-nov-w4",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 3,
-            "title": "Problem-Solving Verbs: Matching"
-          },
-          {
-            "id": "if-we-writing",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "writing",
-            "title": "Short Writing: \"If we..., we will...\""
-          },
-          {
-            "id": "vocab-nov-w4-fill-blank",
-            "activityId": "vocab-nov-w4",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 5,
-            "title": "Problem-Solving Verbs: Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-8",
-            "activityId": "verb-quiz-8",
-            "slot": "required",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Weekly Quiz 8"
-          }
-        ]
       }
     ]
   },
@@ -1053,7 +1052,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-13",
-        "number": 12,
+        "number": 11,
         "title": "How Long + For and Since",
         "items": [
           {
@@ -1126,7 +1125,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-14",
-        "number": 13,
+        "number": 12,
         "title": "More, Less, the Most: Comparatives + Superlatives",
         "items": [
           {
@@ -1191,7 +1190,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-15",
-        "number": 14,
+        "number": 13,
         "title": "How Much / How Many: Countable + Uncountable",
         "goal": "Use much, many, a lot of, a few, and a little when feeding a family on a budget.",
         "items": [
@@ -1231,18 +1230,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Weekly Quiz 11"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "unit-5",
-    "number": 5,
-    "title": "Housing & Renting",
-    "month": "January",
-    "weeks": [
+      },
       {
         "id": "week-16",
-        "number": 15,
+        "number": 14,
         "title": "Housing Basics",
         "items": [
           {
@@ -1313,6 +1304,72 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           }
         ]
       },
+      {
+        "id": "week-15b",
+        "number": 15,
+        "title": "Fall Review + Class Party",
+        "goal": "Review the fall semester together, finish any missing quizzes, and celebrate the end of the fall term.",
+        "items": [
+          {
+            "id": "all-verb-tenses-overview-review",
+            "href": "/grammar-reader/all-verb-tenses-overview",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Review: All Verb Tenses Overview"
+          },
+          {
+            "id": "catch-up-path-december",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "catch-up",
+            "title": "Catch-Up Path"
+          },
+          {
+            "id": "missing-quiz-make-up-december",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "catch-up",
+            "title": "Missing Quiz Make-Up"
+          },
+          {
+            "id": "optional-review-games-december",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "review",
+            "title": "Optional Review Games"
+          },
+          {
+            "id": "verb-quiz-8",
+            "activityId": "verb-quiz-8",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Weekly Quiz 8"
+          },
+          {
+            "id": "class-party-december",
+            "slot": "extra",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Class Party"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unit-5",
+    "number": 5,
+    "title": "Housing & Renting",
+    "month": "January",
+    "weeks": [
       {
         "id": "week-17",
         "number": 16,

@@ -138,6 +138,17 @@ const weeklyVocabData = {
       { term: "connect",   def: "to join or link with someone or something",                         ex: "I couldn't connect to the Wi-Fi at the library.", topics: ["communication", "digital-skills"], fillBlank: { text: "I couldn't _____ to the library Wi-Fi on my laptop.", options: ["contact", "connect", "respond", "confirm"] } },
     ],
   },
+  "oct-w5": {
+    topic: "Voting + Contacting Officials: Civic Verbs",
+    words: [
+      { term: "vote",      def: "to officially choose a person or option in an election",           ex: "Register and vote in your local elections.", topics: ["civic-life"], fillBlank: { text: "Citizens _____ in local elections to choose their leaders.", options: ["elect", "vote", "campaign", "petition"] } },
+      { term: "elect",     def: "to choose a person for a position by voting",                      ex: "Citizens elect leaders to represent them in government.", topics: ["civic-life"], fillBlank: { text: "In November, voters will _____ a new mayor.", options: ["vote", "elect", "represent", "advocate"] } },
+      { term: "advocate",  def: "to publicly support a cause or group of people",                   ex: "She advocates for better schools in her neighborhood.", topics: ["civic-life"], fillBlank: { text: "She _____ for better schools in her neighborhood.", options: ["represent", "advocate", "campaign", "petition"] } },
+      { term: "petition",  def: "to formally ask for change by collecting signatures",               ex: "We started a petition to fix the broken street lights.", topics: ["civic-life"], fillBlank: { text: "We _____ the city to fix the broken streetlights by collecting signatures.", options: ["campaign", "petition", "advocate", "vote"] } },
+      { term: "represent", def: "to speak or act on behalf of others",                              ex: "Your city council member represents your neighborhood.", topics: ["civic-life"], fillBlank: { text: "Your city council member _____ your neighborhood in government.", options: ["elect", "represent", "advocate", "vote"] } },
+      { term: "campaign",  def: "to work to get support for a cause or candidate",                  ex: "Many volunteers campaign for better housing in our city.", topics: ["civic-life"], fillBlank: { text: "Volunteers _____ for safer streets in our city.", options: ["vote", "campaign", "petition", "elect"] } },
+    ],
+  },
 
   /** Unit 3 – Community Participation (November) */
   "nov-w1": {

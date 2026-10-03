@@ -1,25 +1,30 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T06:03:14.700Z",
+  "generatedAt": "2026-10-03T17:06:33.237Z",
   "scope": "scripts/vocab/weekly-vocab-data.js",
   "note": "Cross-week duplicate normalized terms. Daily Vocab merges these into one VocabCard; baseline prevents accidental new duplicates during authoring.",
   "duplicateTerms": [
     "achieve",
     "advocate",
+    "apply",
     "avoid",
     "balance",
+    "campaign",
     "career",
     "compare",
+    "elect",
     "exercise",
     "experience",
     "follow up",
     "improve",
     "log in",
     "maintain",
+    "petition",
     "prefer",
     "prevent",
     "recommend",
     "report",
+    "represent",
     "request",
     "required",
     "resolve",
@@ -28,6 +33,7 @@
     "rule",
     "schedule",
     "sign",
-    "submit"
+    "submit",
+    "vote"
   ]
 }

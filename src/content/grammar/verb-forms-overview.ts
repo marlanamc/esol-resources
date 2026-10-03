@@ -136,6 +136,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         </ol>
         <p><strong>Make your plan:</strong> “After ___, I will practice ___ for five minutes.” For example: “After dinner, I will practice <em>be</em> and <em>have</em> for five minutes.” Say your plan to a partner or write it in your notebook.</p>
         <p><strong>If you miss class:</strong> Return to your last section, try one example, and write down one question to bring back. You can take this week in small pieces.</p>
+        <p style="margin-top: 1rem; font-size: 0.92rem; color: var(--color-text-muted)">This routine works because a little practice spread across the week beats one long session, testing yourself beats re-reading, and real sentences about your own life stick better than rules alone.</p>
       `,
       exercises: [{
         id: "vfo-study-routine",
@@ -166,6 +167,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               { value: "retry", label: "Check the example, fix the form, and try again." },
             ],
             expectedAnswer: "retry",
+          },
+          {
+            type: "text",
+            label: "Your turn: This week I will practice ___ when I talk about ___.",
+            acceptAnyAttempt: true,
           },
         ],
       }],
@@ -363,6 +369,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
           <p style="margin: 0; font-style: italic; color: var(--color-text-muted)">On weekly quizzes you learn the V3 form now. Present perfect grammar comes later. For regular verbs, V2 and V3 look the same.</p>
+          <p style="margin: 0.5rem 0 0; font-style: italic; color: var(--color-text-muted)">Coming soon: <strong>have + V3</strong> together make a new tense, present perfect. You already know both pieces.</p>
         </div>
       `,
       exercises: [

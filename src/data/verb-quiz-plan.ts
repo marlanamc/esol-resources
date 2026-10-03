@@ -25,7 +25,7 @@ const QUIZ_VERB_SETS: QuizVerbSet[] = [
   { verbs: ["take", "bring"] }, // W8 Volunteering
   { verbs: ["meet", "speak"] }, // W9 Public Meetings
   { verbs: ["write", "send"] }, // W10 Contacting Officials
-  { verbs: ["think", "know"] }, // W11 Community Issue
+  { verbs: ["think", "know"] }, // W14 Fall Review + Class Party
   { verbs: ["cost", "spend"] }, // W12 Money + Compare Prices
   { verbs: ["buy", "sell"] }, // W13 Comparatives / Financial
   { verbs: ["eat", "drink"] }, // W14 Grocery

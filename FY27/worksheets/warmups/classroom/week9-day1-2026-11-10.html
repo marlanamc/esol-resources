@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 9 Day 1 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .copy {
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.5in;
+  }
+  /* Type scale: 30 / 24 / 19 / 15 — each step >=1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 9px;
+  }
+  h1 { font-size: 30px; }
+  .date { font-size: 15px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 15px; font-style: italic; margin-top: -6px; margin-bottom: 10px; }
+
+  /* Section gap (.task) is much larger than the item gaps inside it. */
+  .task { margin-bottom: 14px; }
+  .task-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
+  .task-instructions { font-size: 15px; margin-bottom: 10px; }
+  .task-example { font-size: 15px; margin-bottom: 10px; }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 8px 12px;
+    margin-bottom: 9px;
+    letter-spacing: 0.3px;
+  }
+
+  .item-list { list-style: none; }
+  .item-list li { margin-bottom: 8px; }
+  .item-list li b.n { margin-right: 6px; }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 7em;
+    margin: 0 2px;
+  }
+  .blank.short { width: 3.4em; }
+  .blank.long { width: 11.9em; }
+  .answer-line {
+    display: block;
+    border-bottom: 1.5px solid #000;
+    height: 26px;
+    margin-left: 1.3em;
+  }
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 30px;
+    margin-bottom: 6px;
+  }
+  u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: bold; }
+
+  .footer-note {
+    margin-top: 14px;
+    font-size: 15px;
+    font-style: italic;
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: #fff; }
+  }
+
+  .sort-boxes { display: flex; gap: 14px; }
+  .sort-box { flex: 1; border: 1px solid #000; min-height: 125px; padding: 8px 10px; }
+  .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 8px; }
+  .opt { white-space: nowrap; }
+  .dialogue p { margin-top: 17px; font-size: 19px; }
+  .dialogue p:first-child { margin-top: 0; }
+  .dialogue .speaker { font-weight: bold; margin-right: 6px; }
+  .verb-chart { border-collapse: collapse; width: 100%; }
+  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 4px 9px; text-align: left; width: 33%; }
+  .verb-chart th { font-size: 15px; }
+  .verb-chart tr.example td { font-style: italic; }
+  .seq-blank { width: 1.8em !important; }
+
+</style>
+</head>
+<body>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 9, Tuesday</h1>
+        <span class="date">11/10/26</span>
+      </div>
+      <p class="subtitle">Helping + Volunteering &mdash; have you ever...?</p>
+      <section class="task">
+        <div class="task-title">1&ensp;Complete the verb chart</div>
+        <p class="task-instructions">Write the missing forms. Use your reference sheet to check.</p>
+        <table class="verb-chart">
+          <tr><th>V1 (base)</th><th>V2 (past)</th><th>V3 (past participle)</th></tr>
+          <tr class="example"><td>help</td><td>helped</td><td>helped</td></tr>
+          <tr><td>volunteer</td><td></td><td>volunteered</td></tr>
+          <tr><td>give</td><td>gave</td><td></td></tr>
+          <tr><td>donate</td><td>donated</td><td></td></tr>
+          <tr><td>join</td><td></td><td>joined</td></tr>
+          <tr><td>see</td><td>saw</td><td></td></tr>
+          <tr><td>assist</td><td></td><td>assisted</td></tr>
+          <tr><td>support</td><td>supported</td><td></td></tr>
+          <tr><td>go</td><td>went</td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">2&ensp;Fill in the blank</div>
+        <p class="task-instructions">Use every word once. Change the verb form if needed.</p>
+        <div class="word-bank"><span class="opt">assist</span> &middot; <span class="opt">donate</span> &middot; <span class="opt">join</span> &middot; <span class="opt">volunteer</span> &middot; <span class="opt">contribute</span> &middot; <span class="opt">support</span></div>
+        <ol class="item-list">
+          <li><b class="n">1.</b> She <span class="blank"></span> at the food bank every Saturday.</li>
+          <li><b class="n">2.</b> Can you <span class="blank"></span> me with this registration form?</li>
+          <li><b class="n">3.</b> Our neighborhood <span class="blank"></span> families who need help with food and rent.</li>
+          <li><b class="n">4.</b> Everyone can <span class="blank"></span> time or money to help the community garden.</li>
+          <li><b class="n">5.</b> We <span class="blank"></span> winter coats to the shelter twice a year.</li>
+          <li><b class="n">6.</b> Would you like to <span class="blank"></span> our community cleanup group?</li>
+        </ol>
+      </section>
+
+      <p class="footer-note">Finished? Try <b>Weekly Quiz 5</b> in My ESOL App after 6 p.m. Opens Thursday, Nov. 12; due Tuesday, Nov. 17 at 6 p.m.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 12 Day 2 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .copy {
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.5in;
+  }
+  /* Type scale: 30 / 24 / 19 / 15 — each step >=1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 9px;
+  }
+  h1 { font-size: 30px; }
+  .date { font-size: 15px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 15px; font-style: italic; margin-top: -6px; margin-bottom: 10px; }
+
+  /* Section gap (.task) is much larger than the item gaps inside it. */
+  .task { margin-bottom: 14px; }
+  .task-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
+  .task-instructions { font-size: 15px; margin-bottom: 10px; }
+  .task-example { font-size: 15px; margin-bottom: 10px; }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 8px 12px;
+    margin-bottom: 9px;
+    letter-spacing: 0.3px;
+  }
+
+  .item-list { list-style: none; }
+  .item-list li { margin-bottom: 8px; }
+  .item-list li b.n { margin-right: 6px; }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 7em;
+    margin: 0 2px;
+  }
+  .blank.short { width: 3.4em; }
+  .blank.long { width: 11.9em; }
+  .answer-line {
+    display: block;
+    border-bottom: 1.5px solid #000;
+    height: 26px;
+    margin-left: 1.3em;
+  }
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 30px;
+    margin-bottom: 6px;
+  }
+  u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: bold; }
+
+  .footer-note {
+    margin-top: 14px;
+    font-size: 15px;
+    font-style: italic;
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: #fff; }
+  }
+
+  .sort-boxes { display: flex; gap: 14px; }
+  .sort-box { flex: 1; border: 1px solid #000; min-height: 125px; padding: 8px 10px; }
+  .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 8px; }
+  .opt { white-space: nowrap; }
+  .dialogue p { margin-top: 17px; font-size: 19px; }
+  .dialogue p:first-child { margin-top: 0; }
+  .dialogue .speaker { font-weight: bold; margin-right: 6px; }
+  .verb-chart { border-collapse: collapse; width: 100%; }
+  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 4px 9px; text-align: left; width: 33%; }
+  .verb-chart th { font-size: 15px; }
+  .verb-chart tr.example td { font-style: italic; }
+  .seq-blank { width: 1.8em !important; }
+
+</style>
+</head>
+<body>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 12, Thursday</h1>
+        <span class="date">12/3/26</span>
+      </div>
+      <p class="subtitle">Weekly Quiz 10 opens today at 6 p.m. Pronunciation review + comparing prices.</p>
+      <section class="task">
+        <div class="task-title">1&ensp;Sound review: sort the words</div>
+        <p class="task-instructions">Say each word. Write it in the box for its vowel or starting sound.</p>
+        <div class="word-bank"><span class="opt">verify</span> &middot; <span class="opt">bill</span> &middot; <span class="opt">deposit</span> &middot; <span class="opt">believe</span> &middot; <span class="opt">visit</span> &middot; <span class="opt">receipt</span></div>
+        <div class="sort-boxes">
+          <div class="sort-box"><div class="sort-box-title">B sound</div></div>
+          <div class="sort-box"><div class="sort-box-title">V sound</div></div>
+        </div>
+      </section>
+      <section class="task">
+        <div class="task-title">2&ensp;Unscramble the sentence</div>
+        <p class="task-instructions">Put the words in the correct order. Start with a capital letter and end with a period.</p>
+        <p class="task-example"><b>Example:</b> store / this / cheaper / is / that / than &rarr; This store is cheaper than that.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> store / the / cheapest / is / this<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> than / is / that one / better / this coat<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> item / the / in the store / most expensive / is this<span class="answer-line"></span></li>
+          <li><b class="n">4.</b> smaller / my / apartment / his / than / is<span class="answer-line"></span></li>
+        </ol>
+      </section>
+
+      <p class="footer-note">Finished? Try <b>Weekly Quiz 10</b> in My ESOL App after 6 p.m. Due Tuesday, Dec. 8 at 6 p.m.; available afterward.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 13 Day 2 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .page { display: flex; width: 100%; }
+  .copy {
+    width: 50%;
+    height: 100vh;
+    padding: 0.3in 0.35in;
+    display: flex;
+    flex-direction: column;
+  }
+  .copy:first-child { border-right: 1.5px dashed #000; }
+  /* Type scale: 24 / 20 / 16 / 12 — each step ~1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+  }
+  h1 { font-size: 24px; }
+  .date { font-size: 12px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 12px; font-style: italic; margin-top: -3px; margin-bottom: 8px; }
+
+  /* Section gap (.task) is much larger than the item gaps inside it. */
+  .task { margin-bottom: 15px; }
+  .task-title { font-size: 20px; font-weight: bold; margin-bottom: 5px; }
+  .task-instructions { font-size: 12px; margin-bottom: 6px; }
+  .task-example { font-size: 12px; margin-bottom: 6px; }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+  }
+
+  .item-list { list-style: none; }
+  .item-list li { margin-bottom: 6px; }
+  .item-list li b.n { margin-right: 6px; }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 5.5em;
+    margin: 0 2px;
+  }
+  .blank.short { width: 3.4em; }
+  .blank.long { width: 9.3em; }
+  .answer-line {
+    display: block;
+    border-bottom: 1.5px solid #000;
+    height: 18px;
+    margin-left: 1.3em;
+  }
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 22px;
+    margin-bottom: 6px;
+  }
+  u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: bold; }
+
+  .footer-note {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 12px;
+    font-style: italic;
+  }
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+    body { background: #fff; }
+    .copy { height: auto; min-height: 8.1in; }
+  }
+
+  .sort-boxes { display: flex; gap: 12px; }
+  .sort-box { flex: 1; border: 1px solid #000; min-height: 110px; padding: 6px 10px; }
+  .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 6px; }
+  .opt { white-space: nowrap; }
+  .dialogue p { margin-top: 12px; font-size: 16px; }
+  .dialogue p:first-child { margin-top: 0; }
+  .dialogue .speaker { font-weight: bold; margin-right: 6px; }
+  .verb-chart { border-collapse: collapse; width: 100%; }
+  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 3px 8px; text-align: left; width: 33%; }
+  .verb-chart th { font-size: 12px; }
+  .verb-chart tr.example td { font-style: italic; }
+  .seq-blank { width: 1.6em !important; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 13, Thursday</h1>
+        <span class="date">12/10/26</span>
+      </div>
+      <p class="subtitle">Weekly Quiz 11 opens today at 6 p.m. Put the shopping trip in order.</p>
+      <section class="task">
+        <div class="task-title">1&ensp;Put the story in order</div>
+        <p class="task-instructions">Write the order number (1-6) in the blank before each sentence.</p>
+        <ol class="item-list">
+          <li><span class="blank seq-blank"></span> <b class="n">C.</b> I compared prices at two different stores.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">A.</b> I made a shopping list before leaving home.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">E.</b> I paid at the register and got my receipt.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">B.</b> I drove to the grocery store.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">F.</b> I carried the bags home and put the food away.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">D.</b> I put the cheapest items in my cart.</li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">2&ensp;Circle the correct word</div>
+        <p class="task-instructions">Circle "much" or "many" to complete each sentence correctly.</p>
+        <p class="task-example"><b>Example:</b> How (much / <b>many</b>) onions do we need?</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> How (much / many) rice is left in the bag?</li>
+          <li><b class="n">2.</b> How (much / many) potatoes should I buy?</li>
+          <li><b class="n">3.</b> How (much / many) money did you spend today?</li>
+          <li><b class="n">4.</b> How (much / many) eggs are in the fridge?</li>
+          <li><b class="n">5.</b> How (much / many) milk do you drink each week?</li>
+        </ol>
+      </section>
+
+      <p class="footer-note">Finished? Try <b>Weekly Quiz 11</b> in My ESOL App after 6 p.m. Due Tuesday, Dec. 15 at 6 p.m.; available afterward.</p>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 13, Thursday</h1>
+        <span class="date">12/10/26</span>
+      </div>
+      <p class="subtitle">Weekly Quiz 11 opens today at 6 p.m. Put the shopping trip in order.</p>
+      <section class="task">
+        <div class="task-title">1&ensp;Put the story in order</div>
+        <p class="task-instructions">Write the order number (1-6) in the blank before each sentence.</p>
+        <ol class="item-list">
+          <li><span class="blank seq-blank"></span> <b class="n">C.</b> I compared prices at two different stores.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">A.</b> I made a shopping list before leaving home.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">E.</b> I paid at the register and got my receipt.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">B.</b> I drove to the grocery store.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">F.</b> I carried the bags home and put the food away.</li>
+          <li><span class="blank seq-blank"></span> <b class="n">D.</b> I put the cheapest items in my cart.</li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">2&ensp;Circle the correct word</div>
+        <p class="task-instructions">Circle "much" or "many" to complete each sentence correctly.</p>
+        <p class="task-example"><b>Example:</b> How (much / <b>many</b>) onions do we need?</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> How (much / many) rice is left in the bag?</li>
+          <li><b class="n">2.</b> How (much / many) potatoes should I buy?</li>
+          <li><b class="n">3.</b> How (much / many) money did you spend today?</li>
+          <li><b class="n">4.</b> How (much / many) eggs are in the fridge?</li>
+          <li><b class="n">5.</b> How (much / many) milk do you drink each week?</li>
+        </ol>
+      </section>
+
+      <p class="footer-note">Finished? Try <b>Weekly Quiz 11</b> in My ESOL App after 6 p.m. Due Tuesday, Dec. 15 at 6 p.m.; available afterward.</p>
+    </div>
+  </div>
+</body>
+</html>

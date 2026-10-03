@@ -18,6 +18,7 @@ import { qualifiesForMedal } from "@/lib/medal-utils";
 import { getVisibleMap, type CourseMapUnit } from "@/lib/course-map";
 import { enrichCourseMapUnitsWithGrammarIds } from "@/lib/course-map-progress.server";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 
 // Force dynamic rendering to show real-time activity data
@@ -325,6 +326,7 @@ export default async function ProfilePage() {
         verbQuizSubmissions,
         grammarQuizSubmissions,
         visibleMapUnits,
+        weekCompletion,
     ] = await Promise.all([
         // Get activity progress for category stats.
         // Only status + activity.category are consumed below (see category filters
@@ -445,6 +447,7 @@ export default async function ProfilePage() {
         getVisibleMap({ id: userId, role: userRole }).then(({ units }) =>
             enrichCourseMapUnitsWithGrammarIds(units)
         ),
+        getCurrentWeekCompletion({ id: userId, role: userRole }),
     ]);
 
     // Combine both date sources
@@ -719,11 +722,23 @@ export default async function ProfilePage() {
                                             <div className="mt-0.5 text-[11px] font-medium text-text-muted">Explored</div>
                                         </div>
                                     </div>
+                                    {weekCompletion.completedWeeksCount > 0 && (
+                                        <>
+                                            <div className="h-8 w-px bg-border/60" />
+                                            <div className="flex items-center gap-2 text-accent">
+                                                <Award className="h-4 w-4" />
+                                                <div className="text-right leading-none">
+                                                    <div className="text-lg font-bold tabular-nums">{weekCompletion.completedWeeksCount}</div>
+                                                    <div className="mt-0.5 text-[11px] font-medium text-text-muted">Weeks done</div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
 
                             {/* Stats row for mobile/tablet - shown below greeting */}
-                            <div className="mt-5 grid grid-cols-3 gap-3 border-t border-border/40 pt-4 lg:hidden">
+                            <div className={`mt-5 grid gap-3 border-t border-border/40 pt-4 lg:hidden ${weekCompletion.completedWeeksCount > 0 ? 'grid-cols-4' : 'grid-cols-3'}`}>
                                 <div className="flex flex-col items-center text-center leading-none">
                                     <div className="mb-1 flex items-center gap-1.5 text-primary">
                                         <Trophy className="h-4 w-4" />
@@ -738,13 +753,22 @@ export default async function ProfilePage() {
                                     </div>
                                     <div className="text-[11px] font-medium text-text-muted">Day streak</div>
                                 </div>
-                                <div className="flex flex-col items-center text-center leading-none">
+                                <div className={`flex flex-col items-center text-center leading-none ${weekCompletion.completedWeeksCount > 0 ? 'border-r border-border/40' : ''}`}>
                                     <div className="mb-1 flex items-center gap-1.5 text-success">
                                         <BookOpen className="h-4 w-4" />
                                         <span className="text-lg font-bold tabular-nums sm:text-xl">{totalCompleted}</span>
                                     </div>
                                     <div className="text-[11px] font-medium text-text-muted">Explored</div>
                                 </div>
+                                {weekCompletion.completedWeeksCount > 0 && (
+                                    <div className="flex flex-col items-center text-center leading-none">
+                                        <div className="mb-1 flex items-center gap-1.5 text-accent">
+                                            <Award className="h-4 w-4" />
+                                            <span className="text-lg font-bold tabular-nums sm:text-xl">{weekCompletion.completedWeeksCount}</span>
+                                        </div>
+                                        <div className="text-[11px] font-medium text-text-muted">Weeks done</div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

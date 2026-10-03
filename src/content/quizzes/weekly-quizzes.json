@@ -391,7 +391,7 @@
   "verb-quiz-4": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 7,
+    "weekNumber": 8,
     "title": "Weekly Quiz 4: Phone English + Family Connection",
     "focusVerbs": [
       "tell",
@@ -525,7 +525,7 @@
   "verb-quiz-5": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 8,
+    "weekNumber": 9,
     "title": "Weekly Quiz 5: Helping + Volunteering",
     "focusVerbs": [
       "take",
@@ -654,7 +654,7 @@
   "verb-quiz-6": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 9,
+    "weekNumber": 10,
     "title": "Weekly Quiz 6: Public Meetings + Suggestions",
     "focusVerbs": [
       "meet",
@@ -783,8 +783,8 @@
   "verb-quiz-7": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 10,
-    "title": "Weekly Quiz 7: Voting + Contacting Officials",
+    "weekNumber": 7,
+    "title": "Weekly Quiz 7: Our Voice, Our Vote",
     "focusVerbs": [
       "write",
       "send"
@@ -864,7 +864,7 @@
           "vote"
         ],
         "explanation": "vote: to officially choose a person or option in an election. Register and vote in your local elections.",
-        "source": "vocab-nov-w3"
+        "source": "vocab-oct-w5"
       },
       {
         "id": "vocab-1",
@@ -880,7 +880,7 @@
           "elect"
         ],
         "explanation": "elect: to choose a person for a position by voting. Citizens elect leaders to represent them in government.",
-        "source": "vocab-nov-w3"
+        "source": "vocab-oct-w5"
       },
       {
         "id": "grammar-0",
@@ -917,8 +917,8 @@
   "verb-quiz-8": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 11,
-    "title": "Weekly Quiz 8: Community Issue Case Study",
+    "weekNumber": 15,
+    "title": "Weekly Quiz 8: Fall Review + Class Party",
     "focusVerbs": [
       "think",
       "know"
@@ -988,60 +988,70 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "The city wants to _____ bus service in our area.",
+        "prompt": "How many people will _____ this two-bedroom apartment?",
         "options": [
-          "prevent",
-          "improve",
-          "resolve",
-          "collaborate"
+          "rent",
+          "occupy",
+          "move",
+          "qualify"
         ],
         "answers": [
-          "improve"
+          "occupy"
         ],
-        "explanation": "improve: to make something better. The city wants to improve public transportation.",
-        "source": "vocab-nov-w4"
+        "explanation": "occupy: to live in or use a space. How many people will occupy this apartment?",
+        "source": "vocab-jan-w1"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to work together with others to achieve a goal”?",
+        "prompt": "Which word means “to go to live in a different place”?",
         "options": [
-          "collaborate",
-          "analyze",
-          "resolve"
+          "move",
+          "rent",
+          "lease"
         ],
         "answers": [
-          "collaborate"
+          "move"
         ],
-        "explanation": "collaborate: to work together with others to achieve a goal. We collaborated with local businesses to start the event.",
-        "source": "vocab-nov-w4"
+        "explanation": "move: to go to live in a different place. We plan to move to a bigger apartment next month.",
+        "source": "vocab-jan-w1"
       },
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"If you work late, you ___ double pay.\" (Zero Conditional: always-true job rule.)",
-        "answers": [
-          "earn"
+        "prompt": "Complete: \"At 3 p.m. tomorrow, I ___ in class.\"",
+        "options": [
+          "will be sitting",
+          "am sitting",
+          "sat"
         ],
-        "explanation": "Zero Conditional uses If + present simple, present simple. The rule is always true at this job.",
-        "source": "zero-first-conditional/zero-first-conditional-qfb1"
+        "answers": [
+          "will be sitting"
+        ],
+        "explanation": "Future Continuous (will be + verb-ing) describes an action in progress at a future time.",
+        "source": "all-verb-tenses-overview/quiz-13"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Jennifer plans her rent around her work schedule. Put the words in order. Words: I / will / pay / rent / if / I / work",
-        "answers": [
-          "I will pay rent if I work"
+        "prompt": "Complete: \"If I ___ early, I will catch the train.\"",
+        "options": [
+          "will leave",
+          "leave",
+          "left"
         ],
-        "explanation": "First Conditional: if + present simple, will + base verb. The if-part never uses 'will'.",
-        "source": "zero-first-conditional/zero-first-conditional-qws1"
+        "answers": [
+          "leave"
+        ],
+        "explanation": "In a real future conditional, the if-clause uses Present Simple, and the result clause uses will + verb.",
+        "source": "all-verb-tenses-overview/quiz-14"
       }
     ]
   },
   "verb-quiz-9": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 12,
+    "weekNumber": 11,
     "title": "Weekly Quiz 9: How Long + For and Since",
     "focusVerbs": [
       "cost",
@@ -1175,7 +1185,7 @@
   "verb-quiz-10": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 13,
+    "weekNumber": 12,
     "title": "Weekly Quiz 10: More, Less, the Most: Comparatives + Superlatives",
     "focusVerbs": [
       "buy",
@@ -1304,7 +1314,7 @@
   "verb-quiz-11": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 14,
+    "weekNumber": 13,
     "title": "Weekly Quiz 11: How Much / How Many: Countable + Uncountable",
     "focusVerbs": [
       "eat",
@@ -1433,7 +1443,7 @@
   "verb-quiz-12": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 15,
+    "weekNumber": 14,
     "title": "Weekly Quiz 12: Housing Basics",
     "focusVerbs": [
       "see",
