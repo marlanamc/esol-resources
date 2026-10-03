@@ -988,33 +988,33 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "How many people will _____ this two-bedroom apartment?",
+        "prompt": "Many workers are asking for higher _____ this year.",
         "options": [
-          "rent",
-          "occupy",
-          "move",
-          "qualify"
+          "wages",
+          "prices",
+          "taxes",
+          "bills"
         ],
         "answers": [
-          "occupy"
+          "wages"
         ],
-        "explanation": "occupy: to live in or use a space. How many people will occupy this apartment?",
-        "source": "vocab-jan-w1"
+        "explanation": "wages: the money a worker earns for their work. Many workers are asking for higher wages this year.",
+        "source": "vocab-dec-w3"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to go to live in a different place”?",
+        "prompt": "Which word means “not having a paid job right now”?",
         "options": [
-          "move",
-          "rent",
-          "lease"
+          "unemployed",
+          "prices",
+          "inflation"
         ],
         "answers": [
-          "move"
+          "unemployed"
         ],
-        "explanation": "move: to go to live in a different place. We plan to move to a bigger apartment next month.",
-        "source": "vocab-jan-w1"
+        "explanation": "unemployed: not having a paid job right now. The news said fewer people are unemployed this month.",
+        "source": "vocab-dec-w3"
       },
       {
         "id": "grammar-0",
@@ -1443,7 +1443,7 @@
   "verb-quiz-12": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 14,
+    "weekNumber": 16,
     "title": "Weekly Quiz 12: Housing Basics",
     "focusVerbs": [
       "see",
@@ -1577,7 +1577,7 @@
   "verb-quiz-13": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 16,
+    "weekNumber": 17,
     "title": "Weekly Quiz 13: Comparing Housing Options",
     "focusVerbs": [
       "choose",
@@ -1701,7 +1701,7 @@
   "verb-quiz-14": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 17,
+    "weekNumber": 18,
     "title": "Weekly Quiz 14: Landlord Calls + Repair Requests",
     "focusVerbs": [
       "break",
@@ -1830,7 +1830,7 @@
   "verb-quiz-15": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 18,
+    "weekNumber": 19,
     "title": "Weekly Quiz 15: Housing Problems + Solutions",
     "focusVerbs": [
       "hear",
@@ -1959,7 +1959,7 @@
   "verb-quiz-16": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 19,
+    "weekNumber": 20,
     "title": "Weekly Quiz 16: Resume + Workplace Basics",
     "focusVerbs": [
       "become",
@@ -2099,7 +2099,7 @@
   "verb-quiz-17": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 20,
+    "weekNumber": 21,
     "title": "Weekly Quiz 17: Workplace Rules + Must, Have To, Should",
     "focusVerbs": [
       "wear",
@@ -2244,7 +2244,7 @@
   "verb-quiz-18": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 21,
+    "weekNumber": 22,
     "title": "Weekly Quiz 18: Second Conditional + Catch-Up",
     "focusVerbs": [
       "win",
@@ -2373,7 +2373,7 @@
   "verb-quiz-19": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 22,
+    "weekNumber": 23,
     "title": "Weekly Quiz 19: Phrasal Verbs at Work + Workplace Rights",
     "focusVerbs": [
       "get",
@@ -2513,7 +2513,7 @@
   "verb-quiz-20": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 23,
+    "weekNumber": 24,
     "title": "Weekly Quiz 20: Job Applications + Interviews",
     "focusVerbs": [
       "understand",
@@ -2653,7 +2653,7 @@
   "verb-quiz-21": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 24,
+    "weekNumber": 25,
     "title": "Weekly Quiz 21: Career Progress + Skills",
     "focusVerbs": [
       "grow",
@@ -2793,7 +2793,7 @@
   "verb-quiz-22": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 25,
+    "weekNumber": 26,
     "title": "Weekly Quiz 22: Work Experience + Advocacy",
     "focusVerbs": [
       "teach",
@@ -2938,7 +2938,7 @@
   "verb-quiz-23": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 26,
+    "weekNumber": 27,
     "title": "Weekly Quiz 23: Passive Voice + Pay Stubs",
     "focusVerbs": [
       "pay",
@@ -3078,7 +3078,7 @@
   "verb-quiz-24": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 27,
+    "weekNumber": 28,
     "title": "Weekly Quiz 24: Healthcare Basics",
     "focusVerbs": [
       "feel",
@@ -3218,7 +3218,7 @@
   "verb-quiz-25": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 28,
+    "weekNumber": 29,
     "title": "Weekly Quiz 25: Symptoms + Clinic Visits",
     "focusVerbs": [
       "fall",
@@ -3358,7 +3358,7 @@
   "verb-quiz-26": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 29,
+    "weekNumber": 30,
     "title": "Weekly Quiz 26: The Doctor Said + Catch-Up",
     "focusVerbs": [
       "sit",
@@ -3482,7 +3482,7 @@
   "verb-quiz-27": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 30,
+    "weekNumber": 31,
     "title": "Weekly Quiz 27: Third Conditional + Pharmacy",
     "focusVerbs": [
       "forget",
@@ -3627,7 +3627,7 @@
   "verb-quiz-28": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 31,
+    "weekNumber": 32,
     "title": "Weekly Quiz 28: I Used to + Wellness",
     "focusVerbs": [
       "run",
@@ -3767,7 +3767,7 @@
   "verb-quiz-29": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 32,
+    "weekNumber": 33,
     "title": "Weekly Quiz 29: Be Used to + Still Adjusting",
     "focusVerbs": [
       "drive",
@@ -3907,7 +3907,7 @@
   "verb-quiz-30": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 33,
+    "weekNumber": 34,
     "title": "Weekly Quiz 30: All Four Conditionals + One Bad Week",
     "focusVerbs": [
       "lose",
@@ -4048,7 +4048,7 @@
   "verb-quiz-31": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 34,
+    "weekNumber": 35,
     "title": "Weekly Quiz 31: Gerunds + Infinitives + Packed Week",
     "focusVerbs": [
       "begin",
@@ -4189,7 +4189,7 @@
   "verb-quiz-32": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 35,
+    "weekNumber": 36,
     "title": "Weekly Quiz 32: All the Tenses: A Year in Review",
     "focusVerbs": [
       "steal",
@@ -4323,7 +4323,7 @@
   "verb-quiz-33": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 35,
+    "weekNumber": 36,
     "title": "Weekly Quiz 33: All the Tenses: A Year in Review",
     "focusVerbs": [
       "catch",
@@ -4452,7 +4452,7 @@
   "verb-quiz-34": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 35,
+    "weekNumber": 36,
     "title": "Weekly Quiz 34: All the Tenses: A Year in Review",
     "focusVerbs": [
       "hit",

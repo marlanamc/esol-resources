@@ -815,6 +815,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           }
         ]
       },
+    ]
+  },
+  {
+    "id": "unit-3",
+    "number": 3,
+    "title": "Community Participation",
+    "month": "November",
+    "weeks": [
       {
         "id": "week-8",
         "number": 8,
@@ -888,15 +896,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Weekly Quiz 4"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "unit-3",
-    "number": 3,
-    "title": "Community Participation",
-    "month": "November",
-    "weeks": [
+      },
       {
         "id": "week-9",
         "number": 9,
@@ -1232,8 +1232,136 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-16",
+        "id": "week-16-econ",
         "number": 14,
+        "title": "Understanding the News for Econ",
+        "goal": "Use comparatives and quantity words to talk about prices, jobs, and the economy in the news.",
+        "items": [
+          {
+            "id": "vocab-dec-w3-flashcards",
+            "activityId": "vocab-dec-w3",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "flashcards",
+            "order": 0,
+            "title": "Economy Words: Flash Cards"
+          },
+          {
+            "id": "econ-news-headlines-practice",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Reading the News: Prices and Jobs"
+          },
+          {
+            "id": "vocab-dec-w3-matching",
+            "activityId": "vocab-dec-w3",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "matching",
+            "order": 2,
+            "title": "Economy Words: Matching"
+          },
+          {
+            "id": "vocab-dec-w3-fill-blank",
+            "activityId": "vocab-dec-w3",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "fill-blank",
+            "order": 3,
+            "title": "Economy Words: Fill in the Blank"
+          },
+          {
+            "id": "econ-news-comprehension-check",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "review",
+            "title": "Econ Vocabulary Check"
+          },
+          {
+            "id": "econ-news-short-writing",
+            "slot": "extra",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "writing",
+            "title": "Short Writing: \"Prices are higher than...\""
+          }
+        ]
+      },
+      {
+        "id": "week-15b",
+        "number": 15,
+        "title": "Fall Review + Class Party",
+        "goal": "Review the fall semester together, finish any missing quizzes, and celebrate the end of the fall term.",
+        "items": [
+          {
+            "id": "all-verb-tenses-overview-review",
+            "href": "/grammar-reader/all-verb-tenses-overview",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Review: All Verb Tenses Overview"
+          },
+          {
+            "id": "catch-up-path-december",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "catch-up",
+            "title": "Catch-Up Path"
+          },
+          {
+            "id": "missing-quiz-make-up-december",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "catch-up",
+            "title": "Missing Quiz Make-Up"
+          },
+          {
+            "id": "optional-review-games-december",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "review",
+            "title": "Optional Review Games"
+          },
+          {
+            "id": "verb-quiz-8",
+            "activityId": "verb-quiz-8",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Weekly Quiz 8"
+          },
+          {
+            "id": "class-party-december",
+            "slot": "extra",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Class Party"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unit-5",
+    "number": 5,
+    "title": "Housing & Renting",
+    "month": "January",
+    "weeks": [
+      {
+        "id": "week-16",
+        "number": 16,
         "title": "Housing Basics",
         "items": [
           {
@@ -1305,74 +1433,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-15b",
-        "number": 15,
-        "title": "Fall Review + Class Party",
-        "goal": "Review the fall semester together, finish any missing quizzes, and celebrate the end of the fall term.",
-        "items": [
-          {
-            "id": "all-verb-tenses-overview-review",
-            "href": "/grammar-reader/all-verb-tenses-overview",
-            "slot": "required",
-            "order": 0,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Review: All Verb Tenses Overview"
-          },
-          {
-            "id": "catch-up-path-december",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "catch-up",
-            "title": "Catch-Up Path"
-          },
-          {
-            "id": "missing-quiz-make-up-december",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "catch-up",
-            "title": "Missing Quiz Make-Up"
-          },
-          {
-            "id": "optional-review-games-december",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": false,
-            "activityType": "review",
-            "title": "Optional Review Games"
-          },
-          {
-            "id": "verb-quiz-8",
-            "activityId": "verb-quiz-8",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Weekly Quiz 8"
-          },
-          {
-            "id": "class-party-december",
-            "slot": "extra",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "speaking",
-            "title": "Class Party"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "unit-5",
-    "number": 5,
-    "title": "Housing & Renting",
-    "month": "January",
-    "weeks": [
-      {
         "id": "week-17",
-        "number": 16,
+        "number": 17,
         "title": "Comparing Housing Options",
         "items": [
           {
@@ -1443,7 +1505,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-18",
-        "number": 17,
+        "number": 18,
         "title": "Landlord Calls + Repair Requests",
         "items": [
           {
@@ -1506,7 +1568,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-19",
-        "number": 18,
+        "number": 19,
         "title": "Housing Problems + Solutions",
         "items": [
           {
@@ -1585,7 +1647,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-20",
-        "number": 19,
+        "number": 20,
         "title": "Resume + Workplace Basics",
         "items": [
           {
@@ -1648,7 +1710,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-21",
-        "number": 20,
+        "number": 21,
         "title": "Workplace Rules + Must, Have To, Should",
         "items": [
           {
@@ -1720,7 +1782,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-22",
-        "number": 21,
+        "number": 22,
         "title": "Second Conditional + Catch-Up",
         "items": [
           {
@@ -1769,7 +1831,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-23",
-        "number": 22,
+        "number": 23,
         "title": "Phrasal Verbs at Work + Workplace Rights",
         "items": [
           {
@@ -1848,7 +1910,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-24",
-        "number": 23,
+        "number": 24,
         "title": "Job Applications + Interviews",
         "items": [
           {
@@ -1920,7 +1982,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-25",
-        "number": 24,
+        "number": 25,
         "title": "Career Progress + Skills",
         "items": [
           {
@@ -1992,7 +2054,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-26",
-        "number": 25,
+        "number": 26,
         "title": "Work Experience + Advocacy",
         "items": [
           {
@@ -2102,7 +2164,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-27",
-        "number": 26,
+        "number": 27,
         "title": "Passive Voice + Pay Stubs",
         "items": [
           {
@@ -2165,7 +2227,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-28",
-        "number": 27,
+        "number": 28,
         "title": "Healthcare Basics",
         "items": [
           {
@@ -2229,7 +2291,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-29",
-        "number": 28,
+        "number": 29,
         "title": "Symptoms + Clinic Visits",
         "items": [
           {
@@ -2292,7 +2354,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-30",
-        "number": 29,
+        "number": 30,
         "title": "The Doctor Said + Catch-Up",
         "items": [
           {
@@ -2341,7 +2403,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-31",
-        "number": 30,
+        "number": 31,
         "title": "Third Conditional + Pharmacy",
         "items": [
           {
@@ -2412,7 +2474,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-32",
-        "number": 31,
+        "number": 32,
         "title": "I Used to + Wellness",
         "items": [
           {
@@ -2484,7 +2546,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-33",
-        "number": 32,
+        "number": 33,
         "title": "Be Used to + Still Adjusting",
         "items": [
           {
@@ -2539,7 +2601,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-34",
-        "number": 33,
+        "number": 34,
         "title": "All Four Conditionals + One Bad Week",
         "items": [
           {
@@ -2610,7 +2672,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-35",
-        "number": 34,
+        "number": 35,
         "title": "Gerunds + Infinitives + Packed Week",
         "items": [
           {
@@ -2690,7 +2752,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-36",
-        "number": 35,
+        "number": 36,
         "title": "All the Tenses: A Year in Review",
         "items": [
           {

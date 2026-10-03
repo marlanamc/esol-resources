@@ -219,6 +219,17 @@ const weeklyVocabData = {
       { term: "dispute",   def: "to say that something is wrong and ask for a correction",          ex: "If there is an error on your bill, call to dispute it.", topics: ["money", "communication"], fillBlank: { text: "If your bill is wrong, call the bank to _____ the charge.", options: ["charge", "dispute", "refund", "exchange"] } },
     ],
   },
+  "dec-w3": {
+    topic: "Understanding the News: Economy Words",
+    words: [
+      { term: "prices",    def: "how much things cost",                                              ex: "Prices went up at the grocery store this year.", topics: ["money"], fillBlank: { text: "_____ went up at the grocery store this year.", options: ["Jobs", "Prices", "Wages", "Taxes"] } },
+      { term: "inflation", def: "when prices rise and money buys less than before",                  ex: "Inflation means your paycheck doesn't go as far as it used to.", topics: ["money"], fillBlank: { text: "_____ means your paycheck doesn't go as far as it used to.", options: ["A refund", "Inflation", "A budget", "A deposit"] } },
+      { term: "wages",     def: "the money a worker earns for their work",                            ex: "Many workers are asking for higher wages this year.", topics: ["money", "work"], fillBlank: { text: "Many workers are asking for higher _____ this year.", options: ["wages", "prices", "taxes", "bills"] } },
+      { term: "unemployed",def: "not having a paid job right now",                                    ex: "The news said fewer people are unemployed this month.", topics: ["money", "work"], fillBlank: { text: "The news said fewer people are _____ this month.", options: ["unemployed", "budgeted", "taxed", "charged"] } },
+      { term: "interest rate", def: "the extra money a bank charges (or pays) on money you borrow or save", ex: "When the interest rate goes up, loans cost more.", topics: ["money"], fillBlank: { text: "When the _____ goes up, loans cost more money.", options: ["interest rate", "inflation", "wage", "refund"] } },
+      { term: "economy",   def: "how well money, jobs, and businesses are doing in a place",          ex: "The news talks about the economy almost every day.", topics: ["money"], fillBlank: { text: "The news talks about the _____ almost every day.", options: ["economy", "refund", "deposit", "wage"] } },
+    ],
+  },
 
   /** Unit 5 – Housing (January) */
   "jan-w1": {
