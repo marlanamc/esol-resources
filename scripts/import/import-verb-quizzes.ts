@@ -68,7 +68,7 @@ async function main() {
     const activity = await prisma.activity.create({
       data: {
         title: title,
-        description: `Complete the irregular verb forms for this week's verbs. Test your knowledge of V1 (3rd person), V1-ing, V2 (past), and V3 (past participle).`,
+        description: `Complete the irregular verb forms for this week's verbs. Test your knowledge of V1-s (He / She / It Form), V-ing (-ing Form), V2 (Past Form), and V3 (Past Participle).`,
         type: 'quiz',
         category: 'quizzes',
         level: 'intermediate',

@@ -490,7 +490,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "verb-forms-overview": {
         activityTitle: "Verb Forms: V1 → V3",
         metaTitle: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
-        metaDescription: "Learn the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+        metaDescription: "Learn the five verb form codes (V1, V1-s, V-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
         loadContent: () =>
             import("@/content/grammar/verb-forms-overview").then((m) => m.verbFormsOverviewContent),
     },

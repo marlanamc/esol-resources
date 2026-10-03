@@ -110,11 +110,11 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
             <thead className="bg-[var(--color-bg-light)] border-b border-[var(--color-border-subtle)]">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">Verb</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Base)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1 (3rd)<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(he/she/it)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1-ing<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(present)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V2<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(past)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V3<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(participle)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Base Form)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1-s<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(He / She / It Form)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V-ing<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(-ing Form)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V2<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Form)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V3<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Participle)</span></th>
               </tr>
             </thead>
             <tbody>
@@ -234,7 +234,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
 
                 <div>
                   <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                    V1 (3rd person) - he/she/it
+                    V1-s (He / She / It Form)
                   </label>
                   <input
                     type="text"
@@ -250,7 +250,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
 
                 <div>
                   <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                    V1-ing (Present Participle)
+                    V-ing (-ing Form)
                   </label>
                   <input
                     type="text"
@@ -266,7 +266,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
 
                 <div>
                   <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                    V2 (Simple Past)
+                    V2 (Past Form)
                   </label>
                   <input
                     type="text"

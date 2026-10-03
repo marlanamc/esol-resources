@@ -455,7 +455,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>How Long Will It Have Been Happening?</h3>
-                <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + V1-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
+                <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + V-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
 
                 <div class="gc-bg-white gc-bg-white" style="border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
                     <h4 style="margin-top: 0; color: #7c3aed">The Journey Tracker's Formula</h4>
@@ -466,7 +466,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <span>+</span>
                         <span style="background: #f3e8ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #a855f7">will have been</span>
                         <span>+</span>
-                        <span style="background: #e9d5ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600">V1-ing</span>
+                        <span style="background: #e9d5ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600">V-ing</span>
                     </div>
                     <p class="gc-text-muted" style="margin: 0; font-size: 0.9rem; ">Example: <strong>By December</strong>, I <strong>will have been working</strong> here for 5 years.</p>
                 </div>
@@ -499,7 +499,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center">
-                        <strong>will have been</strong> + <strong>V1-ing</strong>
+                        <strong>will have been</strong> + <strong>V-ing</strong>
                     </p>
                     <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ; text-align: center">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>will have been</strong> + -ing
@@ -609,7 +609,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span class="gc-bg-white" style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #a855f7">will have been</span>
                             <span>+</span>
-                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V1-ing</span>
+                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic">I <strong>will have been working</strong> for 5 years.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic">She <strong>will have been studying</strong> all day.</p>
@@ -699,7 +699,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444">won't have been</span>
                             <span>+</span>
-                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V1-ing</span>
+                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic">I <strong>won't have been working</strong> long.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic">They <strong>won't have been waiting</strong> very long.</p>
@@ -1225,7 +1225,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <div class="gc-badge-purple-light gc-callout-top" style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7">
                         <h4 style="margin: 0 0 0.5rem 0; color: #7c3aed">The Journey Tracker (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> will have been + V1-ing</p>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> will have been + V-ing</p>
                         <p style="margin: 0 0 0.5rem 0"><strong>Focus:</strong> Duration UP TO that point</p>
                         <p style="margin: 0"><strong>Key words:</strong> for, how long, all day/week</p>
                     </div>

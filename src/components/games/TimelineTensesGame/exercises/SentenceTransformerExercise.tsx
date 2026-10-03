@@ -24,15 +24,15 @@ const TENSE_FORMULA_LOOKUP: Record<string, { formula: string; example: string }>
   'Present Simple':             { formula: 'subject + V1 (/ V1-s for he/she/it)',       example: 'She works every day.' },
   'Past Simple':                { formula: 'subject + V2',                               example: 'She worked yesterday.' },
   'Future Simple':              { formula: 'subject + will + V1',                        example: 'She will work tomorrow.' },
-  'Present Continuous':         { formula: 'subject + am/is/are + V1-ing',               example: 'She is working right now.' },
-  'Past Continuous':            { formula: 'subject + was/were + V1-ing',                example: 'She was working at 8pm.' },
-  'Future Continuous':          { formula: 'subject + will be + V1-ing',                 example: 'She will be working all night.' },
+  'Present Continuous':         { formula: 'subject + am/is/are + V-ing',               example: 'She is working right now.' },
+  'Past Continuous':            { formula: 'subject + was/were + V-ing',                example: 'She was working at 8pm.' },
+  'Future Continuous':          { formula: 'subject + will be + V-ing',                 example: 'She will be working all night.' },
   'Present Perfect':            { formula: 'subject + have/has + V3',                    example: 'She has worked here before.' },
   'Past Perfect':               { formula: 'subject + had + V3',                         example: 'She had worked before the meeting.' },
   'Future Perfect':             { formula: 'subject + will have + V3',                   example: 'She will have worked 10 hours by then.' },
-  'Present Perfect Continuous': { formula: 'subject + have/has + been + V1-ing',         example: 'She has been working for hours.' },
-  'Past Perfect Continuous':    { formula: 'subject + had + been + V1-ing',              example: 'She had been working when I called.' },
-  'Future Perfect Continuous':  { formula: 'subject + will have been + V1-ing',          example: 'She will have been working for a year.' },
+  'Present Perfect Continuous': { formula: 'subject + have/has + been + V-ing',         example: 'She has been working for hours.' },
+  'Past Perfect Continuous':    { formula: 'subject + had + been + V-ing',              example: 'She had been working when I called.' },
+  'Future Perfect Continuous':  { formula: 'subject + will have been + V-ing',          example: 'She will have been working for a year.' },
 };
 
 /**

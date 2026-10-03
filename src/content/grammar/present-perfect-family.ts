@@ -518,7 +518,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center">
-                        <strong>have/has</strong> + <strong>been</strong> + <strong>V1-ing</strong>
+                        <strong>have/has</strong> + <strong>been</strong> + <strong>V-ing</strong>
                     </p>
                     <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ; text-align: center">
                         I/You/We/They <strong>have been</strong> + -ing | He/She/It <strong>has been</strong> + -ing
@@ -778,7 +778,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Question Formation</h4>
                     <p style="margin: 0; font-size: 0.9rem"><strong>Result:</strong> Have/Has + subject + V3...?</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Duration:</strong> Have/Has + subject + been + V1-ing...?</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Duration:</strong> Have/Has + subject + been + V-ing...?</p>
                 </div>
 
                 <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
@@ -1491,7 +1491,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1">
                         <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">The Worker (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> have/has been + V1-ing</p>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> have/has been + V-ing</p>
                         <p style="margin: 0 0 0.5rem 0"><strong>Focus:</strong> Duration, activity, evidence</p>
                         <p style="margin: 0"><strong>Key words:</strong> for, since, all day, lately, how long</p>
                     </div>

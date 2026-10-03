@@ -124,7 +124,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         {
             id: "phrasal-verb-forms",
             stepNumber: 2,
-            title: "Phrasal Verb Forms: V1, V1-3rd, V1-ing, V2, V3",
+            title: "Phrasal Verb Forms: V1, V1-s, V-ing, V2, V3",
             icon: "🔁",
             explanation: `
                 <h3>Key Rule: Change the Verb, Keep the Particle</h3>
@@ -132,17 +132,17 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
                 <div style="margin: 1rem 0; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 0.5rem">
                     <ul style="margin: 0">
-                        <li><strong>call out</strong> → calls out (V1-3rd), calling out (V1-ing), called out (V2), called out (V3)</li>
-                        <li><strong>clock in</strong> → clocks in (V1-3rd), clocking in (V1-ing), clocked in (V2), clocked in (V3)</li>
-                        <li><strong>fill out</strong> → fills out (V1-3rd), filling out (V1-ing), filled out (V2), filled out (V3)</li>
-                        <li><strong>turn in</strong> → turns in (V1-3rd), turning in (V1-ing), turned in (V2), turned in (V3)</li>
+                        <li><strong>call out</strong> → calls out (V1-s), calling out (V-ing), called out (V2), called out (V3)</li>
+                        <li><strong>clock in</strong> → clocks in (V1-s), clocking in (V-ing), clocked in (V2), clocked in (V3)</li>
+                        <li><strong>fill out</strong> → fills out (V1-s), filling out (V-ing), filled out (V2), filled out (V3)</li>
+                        <li><strong>turn in</strong> → turns in (V1-s), turning in (V-ing), turned in (V2), turned in (V3)</li>
                     </ul>
                 </div>
 
                 <h4>How You Hear These Forms at Work</h4>
                 <ul>
-                    <li><strong>V1-3rd (simple present):</strong> "She <strong>calls out</strong> only when she is very sick."</li>
-                    <li><strong>V1-ing (continuous):</strong> "I am <strong>filling out</strong> the incident form now."</li>
+                    <li><strong>V1-s (simple present):</strong> "She <strong>calls out</strong> only when she is very sick."</li>
+                    <li><strong>V-ing (continuous):</strong> "I am <strong>filling out</strong> the incident form now."</li>
                     <li><strong>V2 (past):</strong> "I <strong>called out</strong> yesterday."</li>
                     <li><strong>V3 (perfect):</strong> "She has <strong>turned in</strong> her timesheet."</li>
                 </ul>
@@ -760,7 +760,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>wrap up</strong> - finish, complete</li>
                 </ul>
 
-                <h3>Form Pattern (V1, V1-3rd, V1-ing, V2, V3)</h3>
+                <h3>Form Pattern (V1, V1-s, V-ing, V2, V3)</h3>
                 <ul>
                     <li><strong>call out</strong> → call out / calls out / calling out / called out / called out</li>
                     <li><strong>clock in</strong> → clock in / clocks in / clocking in / clocked in / clocked in</li>

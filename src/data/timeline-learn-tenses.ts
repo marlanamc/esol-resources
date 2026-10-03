@@ -75,7 +75,7 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Present Simple',
         shortMeaning: 'A habit, routine, or fact that is true now.',
         formulas: {
-          affirmative: 'subject + V1 / V1-3rd',
+          affirmative: 'subject + V1 / V1-s',
           negative: 'subject + do(es) + not + V1',
           question: 'Do(es) + subject + V1?',
         },
@@ -118,9 +118,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Past Continuous',
         shortMeaning: 'An action that was in progress in the past.',
         formulas: {
-          affirmative: 'subject + was/were + V1-ing',
-          negative: 'subject + was/were + not + V1-ing',
-          question: 'Was/Were + subject + V1-ing?',
+          affirmative: 'subject + was/were + V-ing',
+          negative: 'subject + was/were + not + V-ing',
+          question: 'Was/Were + subject + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'I was cooking when the phone rang.', verbPhrase: 'was cooking' },
@@ -135,9 +135,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Present Continuous',
         shortMeaning: 'An action happening right now.',
         formulas: {
-          affirmative: 'subject + am/is/are + V1-ing',
-          negative: 'subject + am/is/are + not + V1-ing',
-          question: 'Am/Is/Are + subject + V1-ing?',
+          affirmative: 'subject + am/is/are + V-ing',
+          negative: 'subject + am/is/are + not + V-ing',
+          question: 'Am/Is/Are + subject + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'I am washing the dishes right now.', verbPhrase: 'am washing' },
@@ -152,9 +152,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Present Continuous (Near Future)',
         shortMeaning: 'A fixed plan or arrangement happening soon.',
         formulas: {
-          affirmative: 'subject + am/is/are + V1-ing',
-          negative: 'subject + am/is/are + not + V1-ing',
-          question: 'Am/Is/Are + subject + V1-ing?',
+          affirmative: 'subject + am/is/are + V-ing',
+          negative: 'subject + am/is/are + not + V-ing',
+          question: 'Am/Is/Are + subject + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'I am visiting my grandma next week.', verbPhrase: 'am visiting' },
@@ -169,9 +169,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Future Continuous',
         shortMeaning: 'An action that will be in progress later.',
         formulas: {
-          affirmative: 'subject + will be + V1-ing',
-          negative: 'subject + will not be + V1-ing',
-          question: 'Will + subject + be + V1-ing?',
+          affirmative: 'subject + will be + V-ing',
+          negative: 'subject + will not be + V-ing',
+          question: 'Will + subject + be + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'I will be working at 8 tomorrow.', verbPhrase: 'will be working' },
@@ -258,9 +258,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Past Perfect Continuous',
         shortMeaning: 'How long something had been happening before a past moment.',
         formulas: {
-          affirmative: 'subject + had + been + V1-ing',
-          negative: 'subject + had + not + been + V1-ing',
-          question: 'Had + subject + been + V1-ing?',
+          affirmative: 'subject + had + been + V-ing',
+          negative: 'subject + had + not + been + V-ing',
+          question: 'Had + subject + been + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'They had been playing for hours before dinner.', verbPhrase: 'had been playing' },
@@ -278,9 +278,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Present Perfect Continuous',
         shortMeaning: 'How long something has been happening until now.',
         formulas: {
-          affirmative: 'subject + have/has + been + V1-ing',
-          negative: 'subject + have/has + not + been + V1-ing',
-          question: 'Have/Has + subject + been + V1-ing?',
+          affirmative: 'subject + have/has + been + V-ing',
+          negative: 'subject + have/has + not + been + V-ing',
+          question: 'Have/Has + subject + been + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'I have been living here for two years.', verbPhrase: 'have been living' },
@@ -295,9 +295,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Future Perfect Continuous',
         shortMeaning: 'How long something will have been happening by a future time.',
         formulas: {
-          affirmative: 'subject + will have been + V1-ing',
-          negative: 'subject + will not have been + V1-ing',
-          question: 'Will + subject + have been + V1-ing?',
+          affirmative: 'subject + will have been + V-ing',
+          negative: 'subject + will not have been + V-ing',
+          question: 'Will + subject + have been + V-ing?',
         },
         examples: {
           affirmative: { sentence: 'By June, I will have been working here for a year.', verbPhrase: 'will have been working' },
@@ -338,9 +338,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Be Used to (Current Familiarity)',
         shortMeaning: 'Already accustomed to something — it feels normal now.',
         formulas: {
-          affirmative: 'subject + am/is/are + used to + V1-ing / noun',
-          negative: 'subject + am/is/are + not + used to + V1-ing / noun',
-          question: 'Am/Is/Are + subject + used to + V1-ing / noun?',
+          affirmative: 'subject + am/is/are + used to + V-ing / noun',
+          negative: 'subject + am/is/are + not + used to + V-ing / noun',
+          question: 'Am/Is/Are + subject + used to + V-ing / noun?',
         },
         examples: {
           affirmative: { sentence: 'I am used to waking up early.', verbPhrase: 'am used to waking' },
@@ -355,9 +355,9 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
         tenseName: 'Get Used to (Becoming Accustomed)',
         shortMeaning: 'The process of adapting — not there yet, but it is getting easier.',
         formulas: {
-          affirmative: 'subject + am/is/are + getting used to + V1-ing / noun',
-          negative: 'subject + am/is/are + not + getting used to + V1-ing / noun',
-          question: 'Am/Is/Are + subject + getting used to + V1-ing / noun?',
+          affirmative: 'subject + am/is/are + getting used to + V-ing / noun',
+          negative: 'subject + am/is/are + not + getting used to + V-ing / noun',
+          question: 'Am/Is/Are + subject + getting used to + V-ing / noun?',
         },
         examples: {
           affirmative: { sentence: 'I am getting used to the new schedule.', verbPhrase: 'am getting used to' },

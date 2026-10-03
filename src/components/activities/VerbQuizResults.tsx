@@ -15,8 +15,8 @@ interface VerbQuizResultsProps {
 const FORM_KEYS = ['v1_3rd', 'v1_ing', 'v2', 'v3'] as const;
 
 const FORM_LABELS: Record<(typeof FORM_KEYS)[number], string> = {
-  v1_3rd: 'V1 3rd',
-  v1_ing: 'V1-ing',
+  v1_3rd: 'V1-s',
+  v1_ing: 'V-ing',
   v2: 'V2',
   v3: 'V3',
 };

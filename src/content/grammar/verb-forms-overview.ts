@@ -95,7 +95,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Every week you will take a <strong>verb quiz</strong> in this app. Each quiz asks about <strong>five forms</strong> of two verbs. Learn the codes now so the quizzes feel familiar, not scary.</p>
 
         ${dialogue([
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "On the quiz you will see five codes: <strong>V1, V1-3rd, V1-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "On the quiz you will see five codes: <strong>V1, V1-s, V-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "So I do not have to learn new labels each time?", side: "right", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Exactly. Two verbs per quiz. V1 is often filled in for you. You type the other four.", side: "left", tone: "sage" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "Like leveling up in a game. One small step at a time.", side: "right", tone: "blue" },
@@ -104,11 +104,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">The five codes with the verb <em>work</em>:</p>
 
         <div style="display: grid; gap: 0.45rem; margin: 1rem 0">
-          ${formCodeRow("V1", "base form", "work", "terracotta")}
-          ${formCodeRow("V1-3rd", "he / she / it", "works", "sage")}
-          ${formCodeRow("V1-ing", "-ing form", "working", "blue")}
-          ${formCodeRow("V2", "past simple", "worked", "amber")}
-          ${formCodeRow("V3", "past participle", "worked", "terracotta")}
+          ${formCodeRow("V1", "Base Form", "work", "terracotta")}
+          ${formCodeRow("V1-s", "He / She / It Form", "works", "sage")}
+          ${formCodeRow("V-ing", "-ing Form", "working", "blue")}
+          ${formCodeRow("V2", "Past Form", "worked", "amber")}
+          ${formCodeRow("V3", "Past Participle", "worked", "terracotta")}
         </div>
 
         <div class="gc-callout-sage" style="background: rgba(106, 141, 115, 0.12); padding: 1rem 1.25rem; border-radius: 0.5rem">
@@ -136,7 +136,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               label: "Which code is the dictionary form with no ending added?",
               options: [
                 { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-3rd" },
+                { value: "v1-3rd", label: "V1-s" },
                 { value: "v2", label: "V2" },
               ],
               expectedAnswer: "v1",
@@ -154,7 +154,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "present-forms",
       stepNumber: 1,
-      title: "V1, V1-3rd, V1-ing: forms you use now",
+      title: "V1, V1-s, V-ing: forms you use now",
       icon: "🔄",
       explanation: `
         ${sceneCard("sceneWorkShift", "Meridian Street café. Tuesday afternoon shift.", "sage")}
@@ -166,7 +166,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>V1</strong> = base form. <strong>V1-3rd</strong> = he/she/it form (usually add <em>-s</em>). <strong>V1-ing</strong> = base + <em>-ing</em> for actions in progress.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>V1</strong> = Base Form. <strong>V1-s</strong> = He / She / It Form (usually add <em>-s</em>). <strong>V-ing</strong> = -ing Form. Use it with a form of <em>be</em> for actions in progress.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -175,16 +175,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             <span><em>I <strong>work</strong> at a café.</em> &nbsp;·&nbsp; <em>They <strong>have</strong> two kids.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("V1-3rd", "sage")}
+            ${labelPill("V1-s", "sage")}
             <span><em>She <strong>works</strong> every Saturday.</em> &nbsp;·&nbsp; <em>He <strong>has</strong> a new job.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(38,138,130,0.06); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("V1-ing", "blue")}
+            ${labelPill("V-ing", "blue")}
             <span><em>I am <strong>working</strong> right now.</em> &nbsp;·&nbsp; <em>They are <strong>having</strong> lunch.</em></span>
           </div>
         </div>
 
-        <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted)">On the quiz, V1 is often already filled in. You type V1-3rd, V1-ing, V2, and V3.</p>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted)">On the quiz, V1 is often already filled in. You type V1-s, V-ing, V2, and V3.</p>
       `,
       exercises: [
         {
@@ -197,8 +197,8 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               label: "She <strong>works</strong> every Saturday. Which code is <strong>works</strong>?",
               options: [
                 { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-3rd" },
-                { value: "v1-ing", label: "V1-ing" },
+                { value: "v1-3rd", label: "V1-s" },
+                { value: "v1-ing", label: "V-ing" },
               ],
               expectedAnswer: "v1-3rd",
             },
@@ -334,15 +334,15 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneClassNight", "Same classroom. Ms. Tran writes the chart on the board.", "blue")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Your first quiz focuses on <strong>be</strong> and <strong>have</strong>. These verbs do not follow the regular pattern. Every form is different.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Your first quiz focuses on <strong>be</strong> and <strong>have</strong>. These verbs do not follow the regular pattern. Some forms change; others stay the same.</p>
 
         <div style="display: grid; gap: 0.75rem; margin: 1.25rem 0">
           <div style="padding: 1rem 1.15rem; border-radius: 0.65rem; border: 1px solid rgba(176,87,64,0.2); background: rgba(176,87,64,0.05)">
             <p style="margin: 0 0 0.65rem 0; font-weight: 700; font-size: 1.05rem">be</p>
             <div style="display: grid; gap: 0.35rem; font-size: 0.92rem">
-              ${formCodeRow("V1", "am / are", "I am · you are", "terracotta")}
-              ${formCodeRow("V1-3rd", "is", "she is", "sage")}
-              ${formCodeRow("V1-ing", "being", "I am being careful", "blue")}
+              ${formCodeRow("V1", "be", "I will be there", "terracotta")}
+              ${formCodeRow("V1-s", "is", "she is", "sage")}
+              ${formCodeRow("V-ing", "being", "I am being careful", "blue")}
               ${formCodeRow("V2", "was / were", "I was · they were", "amber")}
               ${formCodeRow("V3", "been", "I have been here", "terracotta")}
             </div>
@@ -351,8 +351,8 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             <p style="margin: 0 0 0.65rem 0; font-weight: 700; font-size: 1.05rem">have</p>
             <div style="display: grid; gap: 0.35rem; font-size: 0.92rem">
               ${formCodeRow("V1", "have", "I have two kids", "terracotta")}
-              ${formCodeRow("V1-3rd", "has", "she has a car", "sage")}
-              ${formCodeRow("V1-ing", "having", "we are having dinner", "blue")}
+              ${formCodeRow("V1-s", "has", "she has a car", "sage")}
+              ${formCodeRow("V-ing", "having", "we are having dinner", "blue")}
               ${formCodeRow("V2", "had", "I had a meeting", "amber")}
               ${formCodeRow("V3", "had", "I have had this job", "terracotta")}
             </div>
@@ -361,7 +361,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
           <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Watch out</p>
-          <p style="margin: 0; font-size: 0.95rem">With <em>be</em>, V1 is not one word. It is <strong>am / are</strong> (and <strong>is</strong> for V1-3rd). V2 is <strong>was / were</strong>, not <em>beed</em>.</p>
+          <p style="margin: 0; font-size: 0.95rem">The Base Form (V1) is <strong>be</strong>. In present statements, use <strong>am / is / are</strong>; the He / She / It Form (V1-s) is <strong>is</strong>. V2 is <strong>was / were</strong>, not <em>beed</em>.</p>
         </div>
       `,
       exercises: [
@@ -427,7 +427,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         <div style="display: grid; gap: 0.45rem; margin: 1rem 0">
           ${[
-            ["V1-3rd", "third person (he/she/it)", "v1-3rd"],
+            ["V1-s", "third person (he/she/it)", "v1-3rd"],
             ["V3", "after have / has", "v3"],
           ].map(([code, desc]) => `
             <div style="padding: 0.6rem 0.85rem; border-radius: 0.45rem; background: rgba(106,141,115,0.08); display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center">
@@ -452,7 +452,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               label: "Which code is <strong>third person (he/she/it)</strong>?",
               options: [
                 { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-3rd" },
+                { value: "v1-3rd", label: "V1-s" },
                 { value: "v2", label: "V2" },
               ],
               expectedAnswer: "v1-3rd",
@@ -461,7 +461,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which code goes after <em>have / has</em>?",
               options: [
-                { value: "v1-ing", label: "V1-ing" },
+                { value: "v1-ing", label: "V-ing" },
                 { value: "v2", label: "V2" },
                 { value: "v3", label: "V3" },
               ],
@@ -498,7 +498,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         { value: "c", label: "taking" },
       ],
       correctAnswer: "b",
-      explanation: "V1-3rd is the he/she/it form. With he, add -s: takes.",
+      explanation: "V1-s is the he/she/it form. With he, add -s: takes.",
       topic: "v1-3rd",
       skill: "usage",
       skillTag: "third-person-s",
@@ -509,7 +509,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       type: "fill-blank" as const,
       question: "Fill in the blank: \"Nadine is ___ at the cafeteria right now.\" (work + -ing)",
       correctAnswer: "working",
-      explanation: "V1-ing adds -ing to the base form: work → working. Use with am/is/are for actions in progress.",
+      explanation: "V-ing adds -ing to the base form: work → working. Use with am/is/are for actions in progress.",
       topic: "v1-ing",
       skill: "usage",
       skillTag: "form-verb-ing",
@@ -545,14 +545,14 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     },
     {
       id: "vfo-q8",
-      question: "Which sentence uses the V1-3rd form of have correctly?",
+      question: "Which sentence uses the V1-s form of have correctly?",
       options: [
         { value: "a", label: "She has a new schedule." },
         { value: "b", label: "She have a new schedule." },
         { value: "c", label: "She had a new schedule." },
       ],
       correctAnswer: "a",
-      explanation: "With she, the V1-3rd form of have is has, not have (V1) or had (V2).",
+      explanation: "With she, the V1-s form of have is has, not have (V1) or had (V2).",
       topic: "have",
       skill: "error-detection",
       skillTag: "have-third-person",

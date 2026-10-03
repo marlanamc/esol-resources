@@ -384,8 +384,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     const isSelected = state.selectedForms.includes(form) && state.difficulty === 'custom';
                     const labels: Record<string, string> = {
                       v1: 'V1',
-                      v1_3rd: 'V1-3rd',
-                      v1_ing: 'V1-ing',
+                      v1_3rd: 'V1-s',
+                      v1_ing: 'V-ing',
                       v2: 'V2',
                       v3: 'V3'
                     };
@@ -648,7 +648,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <InputCard 
           label="V1" 
-          sub="present" 
+          sub="Base Form"
           value={state.inputs.v1} 
           onChange={(v) => handleInputChange('v1', v)}
           isValid={state.validation?.v1}
@@ -660,8 +660,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
           onEnter={state.validation ? nextVerb : checkAnswer}
         />
         <InputCard 
-          label="V1-3rd" 
-          sub="he/she/it" 
+          label="V1-s"
+          sub="He / She / It Form"
           value={state.inputs.v1_3rd} 
           onChange={(v) => handleInputChange('v1_3rd', v)}
           isValid={state.validation?.v1_3rd}
@@ -673,8 +673,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
           onEnter={state.validation ? nextVerb : checkAnswer}
         />
         <InputCard 
-          label="V1-ing" 
-          sub="participle" 
+          label="V-ing"
+          sub="-ing Form"
           value={state.inputs.v1_ing} 
           onChange={(v) => handleInputChange('v1_ing', v)}
           isValid={state.validation?.v1_ing}
@@ -687,7 +687,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         />
         <InputCard 
           label="V2" 
-          sub="past" 
+          sub="Past Form"
           value={state.inputs.v2} 
           onChange={(v) => handleInputChange('v2', v)}
           isValid={state.validation?.v2}
@@ -700,7 +700,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         />
         <InputCard 
           label="V3" 
-          sub="participle" 
+          sub="Past Participle"
           value={state.inputs.v3} 
           onChange={(v) => handleInputChange('v3', v)}
           isValid={state.validation?.v3}

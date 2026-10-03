@@ -445,7 +445,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>How Long Before That Moment?</h3>
-                <p>Use <strong>The Past Perfect (Duration)</strong> (had been + V1-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
+                <p>Use <strong>The Past Perfect (Duration)</strong> (had been + V-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
 
                 <div class="gc-bg-white gc-bg-white" style="border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
                     <h4 style="margin-top: 0; color: #6d28d9">Duration Before a Past Moment</h4>
@@ -497,7 +497,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center">
-                        <strong>had been</strong> + <strong>V1-ing</strong>
+                        <strong>had been</strong> + <strong>V-ing</strong>
                     </p>
                     <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ; text-align: center">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>had been</strong> + -ing
@@ -593,7 +593,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span class="gc-bg-violet" style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #8b5cf6">had been</span>
                             <span>+</span>
-                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V1-ing</span>
+                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic">She <strong>had been working</strong> all day.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic">They <strong>had been waiting</strong> for hours.</p>
@@ -688,7 +688,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444">hadn't been</span>
                             <span>+</span>
-                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V1-ing</span>
+                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600">V-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic">I <strong>hadn't been sleeping</strong> well.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic">They <strong>hadn't been waiting</strong> long.</p>
@@ -1214,7 +1214,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <div class="gc-badge-purple-light gc-callout-top gc-bg-violet" style="padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6">
                         <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9">The Background Painter (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> had been + V1-ing</p>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> had been + V-ing</p>
                         <p style="margin: 0 0 0.5rem 0"><strong>Focus:</strong> How LONG before</p>
                         <p style="margin: 0"><strong>Key words:</strong> for, since, all day/morning, how long</p>
                     </div>
@@ -1421,18 +1421,18 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "Were they had been working all day?" },
             ],
             correctAnswer: "a",
-            explanation: "Question form: Had + subject + been + V1-ing?",
+            explanation: "Question form: Had + subject + been + V-ing?",
         },
         {
             id: "ppf-q13",
             question: "Choose the correct structure for Past Perfect Continuous:",
             options: [
                 { value: "a", label: "had + V3" },
-                { value: "c", label: "have been + V1-ing" },
-                { value: "b", label: "had been + V1-ing" },
+                { value: "c", label: "have been + V-ing" },
+                { value: "b", label: "had been + V-ing" },
             ],
             correctAnswer: "b",
-            explanation: "Past Perfect Continuous: had been + V1-ing (e.g., had been working).",
+            explanation: "Past Perfect Continuous: had been + V-ing (e.g., had been working).",
         },
 
         // Error Identification (14-15)

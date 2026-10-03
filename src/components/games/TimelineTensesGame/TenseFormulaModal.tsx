@@ -11,11 +11,11 @@ interface TenseFormulaModalProps {
 type FormType = 'affirmative' | 'negative' | 'question';
 
 const LEGEND = [
-  { code: 'V1',     desc: 'base form',        eg: 'study' },
-  { code: 'V1-3rd', desc: '3rd person -s',    eg: 'studies' },
-  { code: 'V1-ing', desc: 'continuous -ing',  eg: 'studying' },
-  { code: 'V2',     desc: 'past simple form', eg: 'studied' },
-  { code: 'V3',     desc: 'past participle',  eg: 'studied' },
+  { code: 'V1',     desc: 'Base Form',        eg: 'study' },
+  { code: 'V1-s', desc: 'He / She / It Form',    eg: 'studies' },
+  { code: 'V-ing', desc: '-ing Form',  eg: 'studying' },
+  { code: 'V2',     desc: 'Past Form', eg: 'studied' },
+  { code: 'V3',     desc: 'Past Participle',  eg: 'studied' },
 ];
 
 const TENSES: {
@@ -33,7 +33,7 @@ const TENSES: {
     meaning: 'habits, facts, routines',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Simple',
-    affirmative: 'subject + V1 / V1-3rd',
+    affirmative: 'subject + V1 / V1-s',
     negative:    'subject + do(es) + not + V1',
     question:    'Do(es) + subject + V1?',
     example: { affirmative: 'He studies every day.', negative: "He doesn't study today.", question: 'Does he study here?' },
@@ -63,9 +63,9 @@ const TENSES: {
     meaning: 'happening right now, or arranged soon',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Continuous',
-    affirmative: 'subject + am/is/are + V1-ing',
-    negative:    'subject + am/is/are + not + V1-ing',
-    question:    'Am/Is/Are + subject + V1-ing?',
+    affirmative: 'subject + am/is/are + V-ing',
+    negative:    'subject + am/is/are + not + V-ing',
+    question:    'Am/Is/Are + subject + V-ing?',
     example: { affirmative: 'He is studying right now.', negative: "He isn't studying.", question: 'Is he studying?' },
   },
   {
@@ -73,9 +73,9 @@ const TENSES: {
     meaning: 'the background scene — was in progress',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Continuous',
-    affirmative: 'subject + was/were + V1-ing',
-    negative:    'subject + was/were + not + V1-ing',
-    question:    'Was/Were + subject + V1-ing?',
+    affirmative: 'subject + was/were + V-ing',
+    negative:    'subject + was/were + not + V-ing',
+    question:    'Was/Were + subject + V-ing?',
     example: { affirmative: 'He was studying at 8pm.', negative: "He wasn't studying.", question: 'Was he studying?' },
   },
   {
@@ -83,9 +83,9 @@ const TENSES: {
     meaning: 'will be in progress at a future moment',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Continuous',
-    affirmative: 'subject + will be + V1-ing',
-    negative:    'subject + will not be + V1-ing',
-    question:    'Will + subject + be + V1-ing?',
+    affirmative: 'subject + will be + V-ing',
+    negative:    'subject + will not be + V-ing',
+    question:    'Will + subject + be + V-ing?',
     example: { affirmative: 'He will be studying all night.', negative: "He won't be studying.", question: 'Will he be studying?' },
   },
   {
@@ -123,9 +123,9 @@ const TENSES: {
     meaning: 'still happening — how long so far',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Perfect Continuous',
-    affirmative: 'subject + have/has + been + V1-ing',
-    negative:    'subject + have/has + not + been + V1-ing',
-    question:    'Have/Has + subject + been + V1-ing?',
+    affirmative: 'subject + have/has + been + V-ing',
+    negative:    'subject + have/has + not + been + V-ing',
+    question:    'Have/Has + subject + been + V-ing?',
     example: { affirmative: 'He has been studying for hours.', negative: "He hasn't been studying.", question: 'Has he been studying?' },
   },
   {
@@ -133,9 +133,9 @@ const TENSES: {
     meaning: 'how long before a past moment',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Perfect Continuous',
-    affirmative: 'subject + had + been + V1-ing',
-    negative:    'subject + had + not + been + V1-ing',
-    question:    'Had + subject + been + V1-ing?',
+    affirmative: 'subject + had + been + V-ing',
+    negative:    'subject + had + not + been + V-ing',
+    question:    'Had + subject + been + V-ing?',
     example: { affirmative: 'He had been studying when she called.', negative: "He hadn't been studying.", question: 'Had he been studying?' },
   },
   {
@@ -143,9 +143,9 @@ const TENSES: {
     meaning: 'how long by a future deadline',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Perfect Continuous',
-    affirmative: 'subject + will have been + V1-ing',
-    negative:    "subject + won't have been + V1-ing",
-    question:    'Will + subject + have been + V1-ing?',
+    affirmative: 'subject + will have been + V-ing',
+    negative:    "subject + won't have been + V-ing",
+    question:    'Will + subject + have been + V-ing?',
     example: { affirmative: 'He will have been studying for a year.', negative: "He won't have been studying.", question: 'Will he have been studying?' },
   },
 ];
@@ -166,11 +166,11 @@ const CATEGORY_USE_CASE: Record<string, string> = {
 
 /** Bold any Vx code in a formula string */
 function FormulaText({ text }: { text: string }) {
-  const parts = text.split(/(V1-3rd|V1-ing|V1|V2|V3)/g);
+  const parts = text.split(/(V1-s|V-ing|V1|V2|V3)/g);
   return (
     <>
       {parts.map((part, i) =>
-        /^(V1-3rd|V1-ing|V1|V2|V3)$/.test(part)
+        /^(V1-s|V-ing|V1|V2|V3)$/.test(part)
           ? <strong key={i} className="font-black text-text">{part}</strong>
           : <span key={i}>{part}</span>
       )}
