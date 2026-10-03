@@ -94,7 +94,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         <p>Marisol texts her daughter on the bus home.</p>
 
         ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, I got my new prescription. Please tell your father I need to <strong>stop taking</strong> the old white pills. I’ll put them aside when I get home.", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, I got my new prescription. Tell your father I need to <strong>stop taking</strong> the old white pills.", side: "right", tone: "terracotta" },
           { speaker: "Daughter", avatar: "👧🏽", text: "OK Mamá. I'll tell him when he gets home.", side: "left", tone: "amber" },
         ])}
 
@@ -542,7 +542,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Fatuma", avatar: "👩🏿", text: "It says: 'Stop taking ibuprofen while on this medication.' What does that mean?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "It means you need to <strong>stop taking</strong> the ibuprofen while you’re on this medicine. Do you want to call the pharmacist to check?", side: "right", tone: "terracotta" },
+          { speaker: "Marisol", avatar: "👩🏽", text: "It says to <strong>stop taking</strong> ibuprofen while you’re on this medicine. Let’s call the pharmacist to check.", side: "right", tone: "terracotta" },
           { speaker: "Fatuma", avatar: "👩🏿", text: "Yes, please. I also keep forgetting my pills when I’m busy.", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I used to forget too. Now I <strong>stop to take</strong> mine when my phone alarm goes off.", side: "right", tone: "terracotta" },
           { speaker: "Marisol", avatar: "👩🏽", text: "<strong>Try setting</strong> an alarm. It helps me <strong>remember to take</strong> them.", side: "right", tone: "terracotta" },

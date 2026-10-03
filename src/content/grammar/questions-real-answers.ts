@@ -179,7 +179,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           { speaker: "Amara", avatar: "👩🏿", text: "<strong>Who</strong> is your landlord? Mine never answers the phone.", side: "left", tone: "sage" },
           { speaker: "Neighbor", avatar: "🧑🏽", text: "Mr. Costa. He\'s on the second floor. <strong>What</strong> is your apartment number?", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏿", text: "3B. The kitchen light is broken. <strong>Where</strong> can I leave him a message?", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "There’s a box outside his office. <strong>What</strong> happened to the light?", side: "right", tone: "blue" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "There\'s a box outside his office. <strong>What</strong> happened to the light?", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏿", text: "It went out yesterday. I changed the bulb, but it still doesn’t work.", side: "left", tone: "sage" },
         ])}
 

@@ -532,7 +532,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday evening.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, do you ever have a free evening? We’d love to have you and the kids over.", side: "left", tone: "sage" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, do you ever have a free evening? We\'d love to have you and the kids over.", side: "left", tone: "sage" },
           { speaker: "Valentina", avatar: "👩🏾", text: "Saturday would be good. I’m <strong>always</strong> home with them that evening.", side: "right", tone: "terracotta" },
           { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic, but I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
           { speaker: "Neighbor", avatar: "🧑🏽", text: "What about English class? Is that on the weekend?", side: "left", tone: "sage" },
