@@ -62,26 +62,27 @@ const dialogue = (turns: Turn[]): string => {
   `;
 };
 
+
 export const verbFormsOverviewContent: InteractiveGuideContent = {
   type: "interactive-guide",
   tableOfContents: true,
   sections: [
     {
       id: "five-codes",
-      title: "One missing dinner, five verb forms",
-      icon: "📱",
+      title: "The wrong lunch bag · five verb forms",
+      icon: "👜",
       explanation: `
-        ${sceneCard("sceneLunch", "Tuesday, before English class. Carlos has a lunch bag and an empty stomach.", "terracotta")}
+        ${sceneCard("sceneLunch", "Tuesday, class break. Carlos opens his lunch bag and finds a surprise.", "terracotta")}
         <p>Catch up with Carlos and Fernanda. Read for the message first.</p>
         ${dialogue([
-          { speaker: "Fernanda", avatar: "👩🏾", text: "You brought dinner! What’s in the bag?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Just a fork. I left the food in the fridge!", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Oh no! Can your sister Sarah bring it?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "No, she’s <strong>working</strong> right now. She usually <strong>works</strong> evenings.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "That’s too bad. Let’s get something at the café after class.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Good plan. At least I’m ready if they run out of forks!", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Break time! What did you bring for dinner tonight?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "A sandwich. Wait, this isn’t my bag. There’s no food, just a little box.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Is that a ring box? Whose bag is that?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I took it from the staff fridge at the restaurant. Mark, the line cook, <strong>works</strong> there with my sister.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Call your sister now! Maybe Mark is looking for it.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I can’t. Sarah’s <strong>working</strong> right now. She’s a server, so I’ll text her.", side: "right", tone: "terracotta" },
         ])}
-        <p>Carlos explains why Sarah cannot bring his dinner. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
+        <p>Carlos washes dishes at the restaurant in the mornings, so he uses the staff fridge too. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
           <p><strong>Five labels, one verb.</strong> The labels help you find and check a form.</p>
           <ul style="padding-left:1.25rem; line-height:1.7">
@@ -102,26 +103,26 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Why is Carlos going to the café after class?",
+              label: "Why is Carlos surprised at the break?",
               options: [
                 {
                   value: "shift",
-                  label: "He is starting his restaurant shift."
+                  label: "He is late for his restaurant shift."
                 },
                 {
                   value: "dinner",
-                  label: "He left his food at home."
+                  label: "His bag has a ring box, not his dinner."
                 },
                 {
                   value: "sister",
-                  label: "He is taking dinner to his sister."
+                  label: "His sister forgot her lunch at home."
                 }
               ],
               expectedAnswer: "dinner"
             },
             {
               type: "radio",
-              label: "Can Sarah bring Carlos his dinner now?",
+              label: "Can Carlos call Sarah right now?",
               options: [
                 {
                   value: "no",
@@ -140,7 +141,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Carlos tells the teacher: “My sister ___ at a restaurant.” (work)",
+              label: "Carlos tells Fernanda: “Mark ___ at the restaurant with my sister.” (work)",
               expectedAnswers: [
                 "works"
               ]
@@ -153,18 +154,18 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "present-forms",
       stepNumber: 2,
-      title: "Save me a seat · V1, V1-s, V-ing",
+      title: "Mark is looking everywhere · V1, V1-s, V-ing",
       icon: "🔄",
       explanation: `
-        ${sceneCard("sceneWorkShift", "During the class break, Carlos texts his sister Sarah at the restaurant.", "blue")}
+        ${sceneCard("sceneWorkShift", "Still on break, Carlos texts his sister Sarah at the restaurant.", "blue")}
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Guess where my dinner is? Still in our fridge.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "Again? You <strong>pack</strong> a lunch every day. You just don’t always take it!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I know! Fernanda and I are going to the café when class <strong>finishes</strong> at eight. Want to join us?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "I’m <strong>serving</strong> dinner right now. I finish at eight, too. Save me a seat!", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Emergency! I took the wrong lunch bag from the fridge. There’s a ring inside. Is it Mark’s?", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Yes! Mark <strong>brings</strong> that blue bag every day. Tonight he wants to ask Lisa to marry him!", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Oh no. Class <strong>finishes</strong> at eight. Where is he now?", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "He’s <strong>looking</strong> everywhere in the kitchen. I’m <strong>serving</strong> tables, so I can’t leave. Meet us at the café at eight!", side: "left", tone: "blue" },
         ])}
-        <p>Sarah talks about Carlos’s usual routine and what she’s doing now. What do you sometimes forget when you leave home?</p>
-        <p><strong>Quick form check:</strong> I/you/we/they <strong>pack</strong>; he/she/it <strong>packs</strong>. For an action in progress, use <strong>am/is/are + V-ing</strong>: “I’m serving dinner.”</p>
+        <p>Sarah talks about Mark’s usual routine and what is happening right now. Have you ever taken the wrong bag, coat, or phone?</p>
+        <p><strong>Quick form check:</strong> I/you/we/they <strong>bring</strong>; he/she/it <strong>brings</strong>. For an action in progress, use <strong>am/is/are + V-ing</strong>: “He’s looking everywhere.”</p>
         <p><strong>Your reply:</strong> “I usually ___ before class. Right now, I’m ___.” Use your own details, then say it again without looking.</p>
       `,
       exercises: [
@@ -179,29 +180,29 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               options: [
                 {
                   value: "routine",
-                  label: "I serve dinner every evening."
+                  label: "I serve tables every evening."
                 },
                 {
                   value: "past",
-                  label: "I served dinner last night."
+                  label: "I served tables last night."
                 },
                 {
                   value: "now",
-                  label: "I’m serving dinner. I’ll text you later."
+                  label: "I’m serving tables. I’ll text you later."
                 }
               ],
               expectedAnswer: "now"
             },
             {
               type: "text",
-              label: "Sarah texts: “My brother usually ___ his food at home.” (forget)",
+              label: "Sarah texts: “Mark never ___ his lunch bag. He’s checking every shelf!” (forget)",
               expectedAnswers: [
                 "forgets"
               ]
             },
             {
               type: "text",
-              label: "Carlos replies: “Not tomorrow! I am ___ a reminder on my phone.” (set)",
+              label: "Carlos replies: “Tell him not to worry. I am ___ an alarm for eight o’clock.” (set)",
               expectedAnswers: [
                 "setting"
               ]
@@ -213,18 +214,18 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "past-forms",
       stepNumber: 3,
-      title: "Dinner, finally · V2 and V3",
+      title: "Just in time · V2 and V3",
       icon: "⏪",
       explanation: `
-        ${sceneCard("sceneCafe", "After class, at the café. Sarah arrives, and Carlos finally gets dinner.", "amber")}
+        ${sceneCard("sceneCafe", "8:05 at the café. Mark runs in, out of breath.", "amber")}
         ${dialogue([
-          { speaker: "Sarah", avatar: "👩🏻", text: "You’ve already <strong>finished</strong> your sandwich? That was fast!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I was starving. I <strong>worked</strong> until nine yesterday and missed dinner then, too.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Two nights in a row? I’ve <strong>done</strong> that before. Let’s get you something for tomorrow, too.", side: "left", tone: "sage" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "Next time, text me before you leave home. I’ll send one word: LUNCH.", side: "right", tone: "blue" },
+          { speaker: "Mark", avatar: "👨🏿", text: "Carlos! I’ve <strong>looked</strong> everywhere for that bag!", side: "left", tone: "amber" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Sorry! I <strong>grabbed</strong> the wrong one this morning. I <strong>opened</strong> it at break. Here’s your ring.", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "👨🏿", text: "Thank you! Now I have to tell you something. I ate your sandwich at lunch.", side: "left", tone: "amber" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "So Carlos has <strong>missed</strong> dinner, but he saved your big night. Go, Mark! You have twenty minutes.", side: "left", tone: "sage" },
         ])}
-        <p>Carlos tells what happened yesterday. Fernanda recognizes the problem from her own experience. The reference examples below show how V2 and V3 work with the same verb.</p>
-        <p><strong>Quick form check:</strong> “I worked yesterday” uses <strong>V2</strong>. “I have worked nearby for two years” uses <strong>have + V3</strong>. <strong>I’ve</strong> means <strong>I have</strong>.</p>
+        <p>Carlos tells what happened this morning. Mark and Fernanda connect the past to right now. The examples below show how V2 and V3 work with the same verb.</p>
+        <p><strong>Quick form check:</strong> “I grabbed the bag this morning” uses <strong>V2</strong>. “I’ve looked everywhere” uses <strong>have + V3</strong>. <strong>I’ve</strong> means <strong>I have</strong>.</p>
         <p>For regular verbs, V2 and V3 both end in <strong>-ed</strong>. They look the same; the words around them help you understand the meaning.</p>
         <p><strong>Try it:</strong> Tell a partner one thing you did yesterday. Check the verb and tell it again. You can invent details.</p>
       `,
@@ -236,7 +237,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fernanda says, “I’ve worked at the clinic for two years.” What does she mean?",
+              label: "After Mark leaves, Fernanda says, “I’ve worked at the clinic for two years.” What does she mean?",
               options: [
                 {
                   value: "finished",
@@ -255,14 +256,14 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Carlos texts: “Yesterday I ___ class with only a fork in my bag!” (start)",
+              label: "Carlos tells Mark: “I ___ class with your ring in my bag!” (start)",
               expectedAnswers: [
                 "started"
               ]
             },
             {
               type: "text",
-              label: "Sarah replies: “You have ___ that lunch bag all week. Check inside it!” (use)",
+              label: "Mark laughs: “I have ___ that blue bag for three years. I need a new one!” (use)",
               expectedAnswers: [
                 "used"
               ]
@@ -274,15 +275,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "be-and-have",
       stepNumber: 4,
-      title: "Your turn in the group chat · Be and have",
+      title: "She said yes! · Be and have",
       icon: "⚡",
       explanation: `
-        ${sceneCard("scenePhone", "Wednesday evening. Five minutes of English in the class group chat.", "sage")}
+        ${sceneCard("scenePhone", "Later that night, Carlos checks the class group chat.", "sage")}
         ${dialogue([
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Everyone home? I <strong>am</strong> ready for five minutes of practice.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong>! And this time I <strong>have</strong> my dinner right here.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏻", text: "He <strong>has</strong> a sandwich, an apple, AND his fork. I checked!", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> forgetful this week. But I’ve <strong>had</strong> plenty of help!", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "Big news! Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry!", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you tomorrow. Thank you, Carlos!", side: "left", tone: "amber" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow!", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> careful all night. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
         ])}
         <p><strong>Be</strong> and <strong>have</strong> change in special ways. Don’t add <em>-ed</em>.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
@@ -291,7 +293,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           <p>In present statements, use <strong>I am, he/she/it is, you/we/they are</strong>.</p>
         </div>
         <p><strong>Join the chat:</strong> “Today I am ___. Yesterday I was ___. I have ___.” Say or write your own reply. You can invent details.</p>
-        <p><strong>Check one thing:</strong> “My sister have my lunch.” → “My sister <strong>has</strong> my lunch.” With <em>she</em>, use <em>has</em>. Now check one verb in your reply and try again. Return to two forms tomorrow.</p>
+        <p><strong>Check one thing:</strong> “Lisa have the ring.” → “Lisa <strong>has</strong> the ring.” With <em>she</em>, use <em>has</em>. Now check one verb in your reply and try again. Return to two forms tomorrow.</p>
       `,
       exercises: [
         {
@@ -301,33 +303,33 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Sarah types, “My brother have his lunch today.” Help her fix the message.",
+              label: "Sarah types, “Lisa have the ring now.” Help her fix the message.",
               options: [
                 {
                   value: "has",
-                  label: "My brother has his lunch today."
+                  label: "Lisa has the ring now."
                 },
                 {
                   value: "having",
-                  label: "My brother having his lunch today."
+                  label: "Lisa having the ring now."
                 },
                 {
                   value: "have",
-                  label: "My brother have his lunch today."
+                  label: "Lisa have the ring now."
                 }
               ],
               expectedAnswer: "has"
             },
             {
               type: "text",
-              label: "Carlos replies: “Yesterday we ___ at the café after class.” (be)",
+              label: "Fernanda replies: “We ___ at the café when Mark ran in!” (be)",
               expectedAnswers: [
                 "were"
               ]
             },
             {
               type: "text",
-              label: "Fernanda texts: “I’ve ___ a long day. Five minutes of practice is enough tonight.” (have)",
+              label: "Carlos texts: “I’ve ___ a crazy day. Five minutes of practice is enough tonight.” (have)",
               expectedAnswers: [
                 "had"
               ]
@@ -340,7 +342,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "vfo-q3",
-      question: "Sarah explains why Carlos needs a reminder: “My brother ___ his lunch at home most mornings.” (leave)",
+      question: "Sarah explains the mix-up: “Mark ___ his lunch in the staff fridge every morning.” (leave)",
       options: [
         {
           value: "a",
@@ -356,7 +358,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         }
       ],
       correctAnswer: "b",
-      explanation: "This is his usual routine. With my brother (he), use leaves.",
+      explanation: "This is his usual routine. With Mark (he), use leaves.",
       topic: "v1-3rd",
       skill: "usage",
       skillTag: "third-person-s",
@@ -365,9 +367,9 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qfb1",
       type: "fill-blank",
-      question: "Sarah sends a photo from work: “I am ___ dinner now. See you after class!” (serve)",
+      question: "Sarah texts Carlos from work: “I am ___ tables now. See you at the café!” (serve)",
       correctAnswer: "serving",
-      explanation: "Use am + V-ing for an action in progress: I am serving dinner. Drop the final e in serve before adding -ing.",
+      explanation: "Use am + V-ing for an action in progress: I am serving tables. Drop the final e in serve before adding -ing.",
       topic: "v1-ing",
       skill: "usage",
       skillTag: "form-verb-ing",
@@ -379,11 +381,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       options: [
         {
           value: "a",
-          label: "I was hungry in class yesterday."
+          label: "I was nervous in class today."
         },
         {
           value: "b",
-          label: "I am home with my dinner now."
+          label: "I am home with a good story now."
         },
         {
           value: "c",
@@ -400,7 +402,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qws1",
       type: "word-scramble",
-      question: "Fernanda tells Sarah about her job at the clinic. Put her message in order.",
+      question: "The next day, Fernanda texts Sarah from her shift at the clinic. Put her message in order.",
       words: [
         "years",
         "worked",
@@ -420,23 +422,23 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     },
     {
       id: "vfo-q8",
-      question: "Sarah wants to say Carlos has his food with him now. Which message fits?",
+      question: "Sarah wants to say Lisa is wearing the ring now. Which message fits?",
       options: [
         {
           value: "a",
-          label: "He has his lunch today."
+          label: "She has the ring now."
         },
         {
           value: "b",
-          label: "He have his lunch today."
+          label: "She have the ring now."
         },
         {
           value: "c",
-          label: "He had his lunch yesterday."
+          label: "She had the ring yesterday."
         }
       ],
       correctAnswer: "a",
-      explanation: "He has tells us about now. He had tells us about the past. With he, use has instead of have.",
+      explanation: "She has tells us about now. She had tells us about the past. With she, use has instead of have.",
       topic: "have",
       skill: "error-detection",
       skillTag: "have-third-person",
