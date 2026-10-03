@@ -29,24 +29,24 @@ describe("overview effort credit", () => {
     return {button: checkButton(tree)!, onComplete, onExerciseComplete};
   }
   it("rewards a complete imperfect attempt using the original reward key", () => {
-    const result = render({0:"work", 1:"v2", 2:"works"});
+    const result = render({0:"shift", 1:"yes", 2:"work"});
     expect(result.button.props.disabled).toBe(false);
     result.button.props.onClick();
     expect(result.onExerciseComplete).toHaveBeenCalledWith({exerciseId:"know-the-codes",sectionId:"five-codes"});
     expect(result.onComplete).not.toHaveBeenCalled();
   });
   it("does not reward an incomplete or whitespace-only attempt", () => {
-    const result = render({0:"works",1:"v1",2:"   "});
+    const result = render({0:"dinner",1:"no",2:"   "});
     expect(result.button.props.disabled).toBe(true);
     result.button.props.onClick();
     expect(result.onExerciseComplete).not.toHaveBeenCalled();
   });
   it("keeps accuracy-based completion and other guides' behavior", () => {
-    const correct = render({0:"works",1:"v1",2:"work"});
+    const correct = render({0:"dinner",1:"no",2:"works"});
     correct.button.props.onClick();
     expect(correct.onComplete).toHaveBeenCalledOnce();
     expect(correct.onExerciseComplete).toHaveBeenCalledOnce();
-    const other = render({0:"work",1:"v2",2:"works"}, false);
+    const other = render({0:"shift",1:"yes",2:"work"}, false);
     other.button.props.onClick();
     expect(other.onExerciseComplete).not.toHaveBeenCalled();
   });
