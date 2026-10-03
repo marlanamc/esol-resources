@@ -84,7 +84,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Tuesday, 7 PM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara just got off the train. Hannah from the community center told her to walk up Meridian Street.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara just got off the train. Her English class at the community center starts at 7:15, so she calls her friend Jean.</p>
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Jean, I just got off the train at Maverick. How do I get to the community center?", side: "right", tone: "terracotta" },
@@ -94,7 +94,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Imperatives</strong> = commands and instructions. Use the base form of the verb. There is no subject. you are talking directly to the person.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Imperatives</strong> = commands and instructions. Use the base form of the verb. There is no subject. You are talking directly to the person.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -155,7 +155,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble Jean's direction:",
+              label: "Unscramble the direction:",
               words: ["Take", "the", "second", "right", "after", "the", "bank"],
               correctAnswer: "Take the second right after the bank",
             },
@@ -193,9 +193,9 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Notice from Claudette, Volunteer Coordinator</p>
           <ul style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 1.9">
             <li><strong>Walk</strong> to the end of the hallway and <strong>turn</strong> right for Room 4.</li>
-            <li><strong>Don't turn</strong> right at the front door. that leads to the storage room.</li>
+            <li><strong>Don't turn</strong> right at the front door. That door leads to the storage room.</li>
             <li><strong>Don't use</strong> the side entrance after 8 PM. It locks automatically.</li>
-            <li><strong>Please ask</strong> at the front desk if you need help.</li>
+            <li><strong>Please ask</strong> Laura at the front desk if you need help.</li>
             <li><strong>Please sign in</strong> before class. Thank you!</li>
           </ul>
         </div>
@@ -237,7 +237,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Claudette wants to give a polite instruction to sign in. Which is best?",
+              label: "Claudette wants to give a polite instruction about phones. Which is best?",
               options: [
                 { value: "a", label: "You should turn off your phone in class." },
                 { value: "b", label: "Don't turn off your phone in class." },
@@ -254,7 +254,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Please asks at the front desk if you need help.\" Is this correct?",
+              label: "\"Please asks Laura at the front desk if you need help.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be \"Please ask\" (base verb, no -s)" },
@@ -293,7 +293,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           { speaker: "Carlos", avatar: "👨🏽", text: "Excuse me, I'm looking for the health clinic on Meridian Street. Do you know where it is?", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "Yes! It's <strong>next to</strong> the pharmacy, <strong>across from</strong> the laundromat.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Is it the big building?", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Right. It's <strong>between</strong> the pharmacy and the bakery, <strong>on the corner of</strong> Meridian and Maverick.", side: "left", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Right. It's <strong>between</strong> the pharmacy and the bakery, <strong>near</strong> the corner of Meridian and Maverick.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -315,7 +315,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("on the corner of", "blue")}
-            <span><em>It is <strong>on the corner of</strong> Meridian and Maverick.</em></span>
+            <span><em>The bakery is <strong>on the corner of</strong> Meridian and Maverick.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("in front of", "blue")}
@@ -362,7 +362,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The clinic is _____ the pharmacy. (opposite side of the street)",
+              label: "The clinic is _____ the laundromat. (opposite side of the street)",
               expectedAnswers: ["across from"],
             },
           ],
@@ -381,19 +381,17 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBusStop", "Bennington Street bus stop, East Boston. Saturday morning.", "blue")}
 
-        <p style="margin: 0 0 0.75rem 0">Elena is writing directions for her cousin Miguel. He just got off the bus on Bennington Street and needs to walk to the public library.</p>
+        <p style="margin: 0 0 0.75rem 0">Elena is texting directions to her cousin Miguel. He just got off the bus on Bennington Street and needs to walk to the public library.</p>
 
         <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(106,141,115,0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0">
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Elena's directions for Miguel</p>
           <ol style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 2">
             <li><strong>First,</strong> <strong>walk</strong> straight on Bennington Street for two blocks.</li>
             <li><strong>Then,</strong> <strong>turn</strong> left on Bremen Street.</li>
-            <li><strong>Next,</strong> <strong>go</strong> past the park. The library is <strong>on the right, next to</strong> the community garden.</li>
-            <li><strong>Finally,</strong> <strong>cross</strong> at the crosswalk and <strong>walk</strong> <strong>in front of</strong> the big blue doors.</li>
+            <li><strong>Next,</strong> <strong>go</strong> past the park and <strong>cross</strong> at the crosswalk.</li>
+            <li><strong>Finally,</strong> <strong>look</strong> for the big blue doors. The library is <strong>on the right, next to</strong> the community garden.</li>
           </ol>
         </div>
-
-        <p style="margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.6">That same week, Elena texted Miguel directions to the flower market on Chelsea Street: <em><strong>Turn</strong> right after the bus stop. <strong>Walk</strong> past the bakery. The flowers are <strong>next to</strong> the entrance.</em></p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>First, Then, Next, Finally</strong> to put directions in order. Each step starts with an imperative + preposition to say what to do AND where.</p>
@@ -426,7 +424,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble Elena's first direction:",
+              label: "Unscramble the direction:",
               words: ["First,", "go", "straight", "on", "Saratoga", "Street", "for", "three", "blocks"],
               correctAnswer: "First, go straight on Saratoga Street for three blocks",
             },
@@ -477,12 +475,12 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       id: "getting-there-directions-q1",
       question: "Jean tells Amara how to get to the community center. Which sentence is a correct imperative?",
       options: [
-        { value: "a", label: "You should take the first left after the park." },
-        { value: "b", label: "Take the first left after the park." },
-        { value: "c", label: "Taking the first left after the park." },
+        { value: "a", label: "You should turn left on Meridian Street and go two blocks." },
+        { value: "b", label: "Turn left on Meridian Street and go two blocks." },
+        { value: "c", label: "Turning left on Meridian Street and going two blocks." },
       ],
       correctAnswer: "b",
-      explanation: "Imperatives use the base verb with no subject. 'Take' is correct.",
+      explanation: "Imperatives use the base verb with no subject. 'Turn' is correct.",
       topic: "imperatives",
       skill: "usage",
       skillTag: "affirmative-imperative-form",

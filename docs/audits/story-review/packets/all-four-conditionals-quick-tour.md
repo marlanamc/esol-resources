@@ -10,25 +10,25 @@ _None._
 
 ## Cast by section
 
-- If I Lift Wrong, My Back Hurts: Brian, Yemi
-- If the Clinic Opens at 8, I'll Go: Yemi, Ms. Patel
+- If I Lift Wrong, My Knee Hurts: Brian, Yemi
+- If the Clinic Opens at 8, I'll Go: Yemi, Rachel
 - If I Had Day Shifts, I Would Sleep More: Yemi, Rachel
 - If I Had Gone Sooner, I Would Have Paid Less: Yemi, Ms. Patel
 - One Bad Week: All Four Together: Djamila, Yemi
 
 ---
 
-## 1. If I Lift Wrong, My Back Hurts
+## 1. If I Lift Wrong, My Knee Hurts
 
-> 🖼 **Scene:** Warehouse loading dock, Chelsea. Monday, 7 AM.  
+> 🖼 **Scene:** Warehouse loading dock, Chelsea. Monday, 10 PM.  
 > _Photo shows: A warehouse worker on a loading dock handling freight with safety gear._
 
-Yemi works as a packer at a warehouse in Chelsea. After her knee got worse last month, supervisor Brian reviews lifting rules before she returns to pallets.
+Yemi works nights as a packer at a warehouse in Chelsea. Her knee got worse last month, and she missed three shifts. Tonight is her first shift back, so supervisor Brian reviews lifting rules before she returns to pallets.
 
 - **Brian:** Before you lift again, remember the rules. If you lift with your back, you hurt yourself.
 - **Yemi:** I know. I learned that the hard way.
 - **Brian:** If you bend at the waist, you risk injury. Use your legs.
-- **Yemi:** OK. If I lift wrong, my back hurts. Can you watch me try again?
+- **Yemi:** OK. If I lift wrong, my knee hurts. Can you watch me try again?
 
 Zero conditional = a fact or rule that is always true. Both verbs are present simple. If + present, present.
 
@@ -47,11 +47,11 @@ Zero conditional = a fact or rule that is always true. Both verbs are present si
 > 🖼 **Scene:** Yemi's kitchen, Chelsea. Saturday, 6:30 AM.  
 > _Photo shows: A person in a kitchen early in the morning checking their phone before leaving for work._
 
-Yemi finally plans to see a doctor about her knee. She checks the clinic hours on her phone before her shift.
+Two days before her first shift back, Yemi needs a follow-up visit for her knee. She texts her coworker Rachel, who goes to the same clinic.
 
-- **Yemi:** If the clinic opens at 8, I'll go before work.
+- **Yemi:** If the clinic opens at 8, I'll go first thing.
 - **Yemi:** If the line is short, I'll be back by noon.
-- **Ms. Patel:** Walk-ins start at 8. Text me when you arrive.
+- **Rachel:** Walk-ins start at 8. Bring your ID and your insurance card.
 - **Yemi:** If they can't see me, I'll try the walk-in downtown.
 
 First conditional = a real situation that might happen. The result is in the future. If + present, will + base verb.
@@ -64,14 +64,14 @@ First conditional = a real situation that might happen. The result is in the fut
 - If the line is short, I ___ be back by noon.
 
 **Exercise: Unscramble**
-- Build Yemi's plan for her early shift:
+- Build Yemi's plan for her follow-up visit:
 
 ## 3. If I Had Day Shifts, I Would Sleep More
 
-> 🖼 **Scene:** Warehouse break room. Sunday night, 11:30 PM.  
+> 🖼 **Scene:** Warehouse break room. Tuesday, 2 AM.  
 > _Photo shows: Two coworkers talking in a break room after a late warehouse shift._
 
-After close, Yemi and coworker Rachel compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.
+On their break, Yemi and Rachel compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.
 
 - **Yemi:** If I had day shifts, I would sleep more.
 - **Rachel:** I know. If my schedule were different, I wouldn’t miss bedtime with my kids. Are you thinking about changing shifts?
@@ -94,11 +94,11 @@ Second conditional = an imaginary situation now. The verb after if looks like pa
 > 🖼 **Scene:** Clinic billing desk, East Boston. Saturday, 10 AM.  
 > _Photo shows: A clinic reception desk with paperwork and a patient reviewing a bill._
 
-After her visit, Yemi sees the copay and thinks about the shifts she missed waiting too long. She talked about this with Ms. Patel last week too.
+After her follow-up visit, Yemi sees the copay and thinks about the shifts she missed by waiting too long. Ms. Patel at the front desk helps her with the bill.
 
 - **Yemi:** If I had called last week, I wouldn't have missed three shifts.
-- **Ms. Patel:** You're here now. That's what matters.
-- **Yemi:** I’m just worried about the money. If I had gone sooner, I wouldn’t have lost so much in wages.
+- **Ms. Patel:** I can set up a payment plan for the copay.
+- **Yemi:** Thanks. I’m just worried about the money. If I had gone sooner, I wouldn’t have lost so much in wages.
 
 Third conditional = a past choice and a different past result that did not happen. You cannot change it now. If + past perfect, would have + V3.
 
@@ -117,13 +117,13 @@ Third conditional = a past choice and a different past result that did not happe
 > 🖼 **Scene:** Evening ESOL class, East Boston. Thursday, 7 PM.  
 > _Photo shows: Adults seated at desks in an evening classroom sharing their week._
 
-Yemi tells classmate Djamila about her bad week — a back injury, a clinic trip, and missed shifts.
+Yemi tells classmate Djamila about her bad week: a knee injury, a clinic trip, and missed shifts.
 
 - **Djamila:** Rough week?
-- **Yemi:** Yeah. If I lift wrong, my back hurts. This time I had to miss work.
-- **Yemi:** I finally went to the clinic Saturday. If I had gone sooner, I wouldn’t have missed three shifts.
+- **Yemi:** Yeah. If I lift wrong, my knee hurts. This time I had to miss work.
+- **Yemi:** I went back to the clinic Saturday. If I had gone sooner, I wouldn’t have missed three shifts.
 - **Yemi:** The night shifts don’t help. If I had day shifts, I would sleep more.
-- **Yemi:** For now, if my back still hurts tomorrow, I’ll call the clinic again.
+- **Yemi:** For now, if my knee still hurts tomorrow, I’ll call the clinic again.
 
 Zero = always true | First = real future | Second = imaginary now | Third = imaginary past
 
@@ -134,17 +134,17 @@ Zero = always true | First = real future | Second = imaginary now | Third = imag
 - Last winter Djamila skipped the flu shot and got sick. Her regret. _(options: If I get the flu shot, I don't get sick. / If I had gotten the flu shot, I wouldn't have been sick for a week. / If I got the flu shot, I wouldn't be sick. / If I will get the flu shot, I won't be sick.)_
 
 **Exercise: Spot the error**
-- Which sentence has an error? _(options: If I lift wrong, my back hurts. / If the clinic opens at 8, I'll go. / If I would have day shifts, I would sleep more. / If I had gone sooner, I would have paid less.)_
+- Which sentence has an error? _(options: If I lift wrong, my knee hurts. / If the clinic opens at 8, I'll go. / If I would have day shifts, I would sleep more. / If I had gone sooner, I would have paid less.)_
 - Past regret: If I ___ (go) sooner, I would have paid less.
 
 **Exercise: Unscramble**
-- Build Yemi's regret about the billing mistake (third conditional):
+- Build Yemi's regret about waiting (third conditional):
 
 ## Mini quiz
 
-- Yemi has a real plan for after her appointment tomorrow. Which sentence fits? _(options: If the doctor gives me a note, I'll bring it to work tomorrow. / If the doctor gives me a note, I bring it to work tomorrow. / If the doctor gave me a note, I would bring it to work. / If the doctor had given me a note, I would have brought it to work.)_
+- Yemi has a real plan for after her follow-up visit on Saturday. Which sentence fits? _(options: If the doctor gives me a note, I'll bring it to work on Monday. / If the doctor gives me a note, I bring it to work on Monday. / If the doctor gave me a note, I would bring it to work. / If the doctor had given me a note, I would have brought it to work.)_
 - Rachel says: 'If I earned more, I would move to a bigger apartment.' What do we know about Rachel? _(options: She earns enough and is moving soon. / She moved to a bigger apartment last year. / She does not earn enough now. The move is imaginary. / She will earn more next month for sure.)_
 - Brian posts a rule in the break room. It is always true. Complete it: "If the warehouse door stays open, the loading dock ___ (get) cold."
-- Find the error: "If I would have asked for lighter boxes, I would not have hurt my back." _(options: No error. The sentence is correct. / The if-part should be "If I had asked for lighter boxes". / The if-part should be "If I ask for lighter boxes". / The result should be "I will not hurt my back".)_
+- Find the error: "If I would have asked for lighter boxes, I would not have hurt my knee." _(options: No error. The sentence is correct. / The if-part should be "If I had asked for lighter boxes". / The if-part should be "If I ask for lighter boxes". / The result should be "I will not hurt my knee".)_
 - Yemi does not have a car. She imagines a different life. Put the words in order to build her sentence.
 

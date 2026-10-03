@@ -164,8 +164,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Marco", "has", "worked", "at", "the", "bakery", "for", "two", "years"],
-              correctAnswer: "Marco has worked at the bakery for two years",
+              words: ["Claudette", "has", "been", "in", "Boston", "since", "2020"],
+              correctAnswer: "Claudette has been in Boston since 2020",
             },
             {
               type: "word-scramble",
@@ -361,8 +361,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           { speaker: "Kevin", avatar: "🧑🏻", text: "<strong>How long have</strong> you <strong>had</strong> your current plan?", side: "left", tone: "amber" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have had</strong> it <strong>for</strong> three years. I pay $65 a month.", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "🧑🏻", text: "Three years at $65? You can get the same data for $40.", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Really? <strong>How long has</strong> that plan <strong>been</strong> available?", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "It <strong>has been</strong> available <strong>since</strong> last summer.", side: "left", tone: "amber" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Really? I <strong>have paid</strong> too much <strong>for</strong> three years! I'm switching today.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Smart. That plan <strong>has been</strong> our best deal <strong>since</strong> last summer.", side: "left", tone: "amber" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -386,7 +386,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("answer", "terracotta")}
-            <span><em>I <strong>have lived</strong> here <strong>for</strong> four years. / <strong>Since</strong> 2020.</em></span>
+            <span><em>I <strong>have lived</strong> here <strong>for</strong> four years. / <strong>Since</strong> 2022.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.07); border-radius: 0.4rem">
             ${labelPill("question", "amber")}
@@ -498,9 +498,9 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Javier", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "blue" },
           { speaker: "Beatriz", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. You?", side: "right", tone: "terracotta" },
-          { speaker: "Javier", avatar: "👨🏽", text: "I <strong>have been</strong> here <strong>since</strong> the restaurant opened.", side: "left", tone: "blue" },
+          { speaker: "Javier", avatar: "👨🏽", text: "I <strong>have been</strong> here <strong>since</strong> the restaurant opened in 2015.", side: "left", tone: "blue" },
           { speaker: "Beatriz", avatar: "👩🏾", text: "That’s a long time! When did you last take a day off?", side: "right", tone: "terracotta" },
-          { speaker: "Javier", avatar: "👨🏽", text: "I <strong>took</strong> a day off last month. Just one day.", side: "left", tone: "blue" },
+          { speaker: "Javier", avatar: "👨🏽", text: "I <strong>took</strong> one day off last month. And Kofi <strong>left</strong> last Tuesday, so now we're short.", side: "left", tone: "blue" },
         ])}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">
@@ -527,7 +527,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
-            <span><em>She <strong>moved</strong> into that apartment in 2020.</em></span>
+            <span><em>She <strong>moved</strong> into that apartment in 2022.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("still true now", "sage")}
@@ -547,7 +547,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Javier ___ at this restaurant for two years. (He still works there.)",
+              label: "Beatriz ___ at this restaurant for two years. (She still works there.)",
               options: [
                 { value: "worked", label: "worked (past simple. finished)" },
                 { value: "has worked", label: "has worked (present perfect. still true now)" },
@@ -556,7 +556,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Beatriz ___ the restaurant last Tuesday. (She is not there anymore.)",
+              label: "Kofi, the dishwasher, ___ the restaurant last Tuesday. (He is not there anymore.)",
               options: [
                 { value: "left", label: "left (past simple. finished)" },
                 { value: "has left", label: "has left (present perfect)" },
@@ -623,11 +623,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ${sceneCard("sceneHolidayDinner", "Rosa's apartment, East Boston. The family is discussing their lease over dinner.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "Mami, how long <strong>have</strong> we <strong>lived</strong> in this apartment?", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "We <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> before your brother was born.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And now the lease ends in March. How long <strong>have</strong> the kids <strong>gone</strong> to that school?", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "Four years. I do not want to change their school.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks. Everything costs more.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Mami, this rental application asks how long we <strong>have lived</strong> here. Five years, right?", side: "right", tone: "terracotta" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "Yes, we <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> before your brother was born.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Our lease ends in March, and everything nearby costs more.", side: "right", tone: "terracotta" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "The kids <strong>have gone</strong> to that school <strong>for</strong> four years. I don't want to change their school.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(176,87,64,0.06); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
@@ -667,7 +667,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The children have gone to the same school ___ 2020.",
+              label: "The children have gone to the same school ___ kindergarten.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -753,14 +753,14 @@ export const howLongForSinceContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "hlfs-q2",
-      question: "Rosa has had her phone plan since 2021. She wants to say the same thing using 'for'. It is now 2024. What does she say?",
+      question: "Rosa got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
       options: [
         { value: "a", label: "I have had this plan for since three years." },
         { value: "b", label: "I have had this plan for three years." },
-        { value: "c", label: "I have had this plan for 2021." },
+        { value: "c", label: "I have had this plan for 2023." },
       ],
       correctAnswer: "b",
-      explanation: "'For' takes a length of time, not a starting year. 2024 minus 2021 = three years.",
+      explanation: "'For' takes a length of time (three years), not a starting year (2023).",
       topic: "for-vs-since",
       skill: "usage",
       skillTag: "for-length-of-time",
@@ -770,9 +770,9 @@ export const howLongForSinceContent: InteractiveGuideContent = {
       id: "hlfs-q3",
       question: "Rosa's friend asks about her apartment. Choose the correct for/since sentence.",
       options: [
-        { value: "a", label: "She has lived here since four years." },
-        { value: "b", label: "She has lived here for 2020." },
-        { value: "c", label: "She has lived here since 2020." },
+        { value: "a", label: "She has lived here since five years." },
+        { value: "b", label: "She has lived here for 2021." },
+        { value: "c", label: "She has lived here since 2021." },
       ],
       correctAnswer: "c",
       explanation: "'Since' goes with a starting point like a year or date. 'For' goes with a length of time like 'four years'.",
@@ -807,11 +807,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
     {
       id: "hlfs-q7",
-      question: "Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct?",
+      question: "Kofi's last day at the restaurant was Tuesday of last week. He does not work there anymore. Which sentence is correct?",
       options: [
-        { value: "a", label: "Beatriz has left the restaurant since last Tuesday." },
-        { value: "b", label: "Beatriz has worked at the restaurant for last Tuesday." },
-        { value: "c", label: "Beatriz left the restaurant last Tuesday." },
+        { value: "a", label: "Kofi has left the restaurant since last Tuesday." },
+        { value: "b", label: "Kofi has worked at the restaurant for last Tuesday." },
+        { value: "c", label: "Kofi left the restaurant last Tuesday." },
       ],
       correctAnswer: "c",
       explanation: "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",

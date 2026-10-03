@@ -199,7 +199,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "Hi Yolanda. The nurse told me about your back. You <strong>ought to</strong> take anti-inflammatory medicine with food for the next five days." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Okay. Can I still go to work?" },
           { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "You <strong>had better</strong> not go back until Thursday. If you do, you could make this a lot worse. I'm serious." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "I understand. I'll call my supervisor." },
+          { speaker: "Yolanda", avatar: "👩🏽", text: "I understand. I'll text my supervisor." },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -327,12 +327,12 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       title: "Asking for Advice",
       icon: "🙋",
       explanation: `
-        <p>In the next curtained area, Rami is also at the clinic. He had a bad cough for a week. When he hears Yolanda struggling to understand the nurse's fast instructions, he helps her ask again.</p>
+        <p>In the next curtained area, Rami is also at the clinic. He has had a bad cough for a week. When he hears Yolanda struggling to understand the nurse's fast instructions, he helps her ask again.</p>
 
         ${dialogue([
           { speaker: "Yolanda", avatar: "👩🏽", text: "Excuse me. <strong>Should</strong> I take ibuprofen or just rest?" },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "You can take ibuprofen every six hours. Not more than that." },
-          { speaker: "Rami", avatar: "👨🏽", text: "Before we go, <strong>should</strong> we ask about physical therapy?" },
+          { speaker: "Rami", avatar: "👨🏽", text: "Before you go, <strong>should</strong> you ask about physical therapy too?" },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Good idea. Excuse me, <strong>should</strong> I see a physical therapist too?" },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Yes. You <strong>ought to</strong> call this number. They take MassHealth." },
         ])}
@@ -477,7 +477,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           </ul>
         </div>
 
-        <p>Yolanda is back home, resting. Rami texts her to check in.</p>
+        <p>Back home, Yolanda texts her supervisor, Mark: "The doctor says I <strong>had better</strong> not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You <strong>shouldn't</strong> lift anything heavy that first week."</p>
       `,
       tipBox: {
         title: "Want to go deeper?",
@@ -491,7 +491,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "You ___ mix ibuprofen and blood pressure medicine. It can cause a medical emergency.",
+              label: "You ___ take ibuprofen and your blood pressure medicine together. The pharmacist was very clear.",
               options: [
                 { value: "shouldnt", label: "shouldn't" },
                 { value: "must-not", label: "must not" },
@@ -527,7 +527,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence uses the wrong modal for the situation?",
               options: [
-                { value: "a", label: '"You shouldn\'t take this medicine on an empty stomach. It will damage your stomach lining permanently." (dangerous situation)' },
+                { value: "a", label: '"You shouldn\'t take this medicine on an empty stomach." (the pharmacist\'s hard rule)' },
                 { value: "b", label: '"You shouldn\'t stay up too late tonight. Rest is important." (general advice)' },
                 { value: "c", label: '"You ought to drink more water during the day." (general advice)' },
               ],
@@ -559,21 +559,6 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
     },
   ],
   miniQuiz: [
-    {
-      id: "mq-should-basic",
-      question: "The nurse says: \"You ___ rest for two days.\" Which word fits best?",
-      options: [
-        { value: "a", label: "must" },
-        { value: "b", label: "should" },
-        { value: "c", label: "will" },
-      ],
-      correctAnswer: "b",
-      explanation: "Should gives advice. It means 'this is a good idea.' Must would mean she has no choice.",
-      topic: "should-advice",
-      skill: "usage",
-      skillTag: "should-basic-usage",
-      difficulty: "easy",
-    },
     {
       id: "mq-had-better-warning",
       question: "The doctor says: \"You had better not go back to work until Thursday.\" Why does he use 'had better'?",
@@ -628,6 +613,21 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       skill: "usage",
       skillTag: "had-better-word-order",
       difficulty: "medium",
+    },
+    {
+      id: "mq-error-detection",
+      question: "Which sentence has an error?",
+      options: [
+        { value: "a", label: "You must not take this on an empty stomach." },
+        { value: "b", label: "You should rest for two days." },
+        { value: "c", label: "You should to call your supervisor." },
+      ],
+      correctAnswer: "c",
+      explanation: "'Should' is followed by the base verb without 'to': should call, not should to call.",
+      topic: "should-advice",
+      skill: "error-detection",
+      skillTag: "modal-base-verb-form",
+      difficulty: "easy",
     },
   ],
 };

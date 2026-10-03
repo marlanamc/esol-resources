@@ -4,6 +4,8 @@ Reviewed 2026-10-03. Each guide's packet (`npm run audit:stories`) was read agai
 
 **40 guides: 21 Revise · 18 Polish · 1 Keep**
 
+> **Status (2026-10-03, later):** continuity fixes were applied to all 18 guides that scored 1 on "Makes sense". Contradictions between story, exercises and quiz, and timelines, names and jobs, were fixed without rewriting the stories. The scores below are from *before* those fixes. Still open: story rewrites for guides that are dull or off theme (Interest/Theme scores of 1), and whether to keep teaching "said to me that" as an error in Reported Speech. Packets are regenerated, so re-score with the rubric when you revisit a guide.
+
 ## Fix first: lines that teach something wrong
 
 These matter more than a dull story, because students copy the answer key.

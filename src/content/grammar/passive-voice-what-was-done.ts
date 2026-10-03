@@ -79,11 +79,11 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
     {
       id: "she-was-hired",
       title: "She Was Hired After the Referral",
-      icon: "🏭",
+      icon: "🏨",
       explanation: `
-        ${sceneCard("sceneReferral", "Outside the warehouse on Marginal Street, Thursday afternoon.", "terracotta")}
+        ${sceneCard("sceneReferral", "Outside a hotel near the airport, Thursday afternoon.", "terracotta")}
 
-        <p>Gloria got a new job. Her cousin Marcos works at the same warehouse and put in a good word for her. She calls her friend Linh to share the news.</p>
+        <p>Gloria got a new job. Her cousin Marcos works at the same hotel and put in a good word for her. She tells her friend Linh the news.</p>
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was hired</strong>! Marcos talked to his supervisor and I <strong>was called</strong> the same day.", side: "right", tone: "terracotta" },
@@ -175,7 +175,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneJobAd", "Job posting at the East Boston Career Center, Tuesday morning.", "sage")}
 
-        <p>Before her interview, Gloria found the job posting online. Job ads almost always use passive voice. Look at the language:</p>
+        <p>Before she was hired, Gloria saw this job posting at the Career Center. Job ads almost always use passive voice. Look at the language:</p>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem; font-weight: 700">Hotel Housekeeper, Full-Time</p>
@@ -221,7 +221,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Steel-toe boots ___ for this position.",
+              label: "Non-slip shoes ___ for this position.",
               options: [
                 { value: "is required", label: "is required" },
                 { value: "are required", label: "are required" },
@@ -293,7 +293,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was given</strong> a locker and a uniform. Then I <strong>was told</strong> my schedule for the week.", side: "right", tone: "terracotta" },
           { speaker: "Marcos", avatar: "👨🏾", text: "Did they show you the break room?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "Yes. I <strong>was shown</strong> everything by Jennifer, the floor supervisor. And I <strong>was asked</strong> to sign a form about the uniform.", side: "right", tone: "terracotta" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "Yes. Jennifer, the floor supervisor, showed me around. And I <strong>was asked</strong> to sign a form about the uniform.", side: "right", tone: "terracotta" },
           { speaker: "Marcos", avatar: "👨🏾", text: "Jennifer is good. You'll be fine.", side: "left", tone: "sage" },
         ])}
 
@@ -396,7 +396,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneScheduleChange", "Break room at the hotel, Thursday afternoon.", "amber")}
 
-        <p>Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her coworker Jennifer.</p>
+        <p>Three weeks later, Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her supervisor, Jennifer.</p>
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏽", text: "Did you see this? My Saturday shift <strong>was changed</strong> to Friday. I <strong>wasn't told</strong> anything.", side: "right", tone: "terracotta" },
@@ -620,7 +620,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "pvwwd-q1",
-      question: "Gloria got a new job. She says: 'I ___ hired last Monday.' Which word fits?",
+      question: "Gloria got a new job. She says: 'I ___ hired on Thursday.' Which word fits?",
       options: [
         { value: "a", label: "am" },
         { value: "b", label: "was" },

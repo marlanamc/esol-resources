@@ -19,14 +19,14 @@
 
 ## 1. Six days a week
 
-> 🖼 **Scene:** East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Cambridge Street by 9.  
+> 🖼 **Scene:** East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Saratoga Street by 9.  
 > _Photo shows: Two construction workers in hard hats and safety vests talking at a job site in the early morning._
 
 Hector and Kevin grab coffee before the crew arrives. The roadwork means traffic is already backing up.
 
 - **Kevin:** You look tired, man.
 - **Hector:** I have been working six days a week since January. No breaks.
-- **Kevin:** That’s rough. I have been driving extra shifts too. We’re short of drivers this month.
+- **Kevin:** That’s rough. I have been driving extra shifts too. We’re short of truck drivers this month.
 - **Hector:** How long have you been doing that?
 - **Kevin:** Three weeks. I’m hoping things slow down soon.
 
@@ -36,7 +36,7 @@ Form: have / has + been + verb-ing I have been working six days a week. He has b
 
 **Exercise: Choose the correct form**
 - Hector works six days a week. Which sentence is correct? _(options: He have been working six days a week. / He has been working six days a week. / He has been worked six days a week.)_
-- Kevin and Hector both drive extra shifts. Which sentence is correct? _(options: They has been driving extra shifts. / They have been drive extra shifts. / They have been driving extra shifts.)_
+- Kevin and the other truck drivers all drive extra shifts. Which sentence is correct? _(options: They has been driving extra shifts. / They have been drive extra shifts. / They have been driving extra shifts.)_
 
 **Exercise: Unscramble**
 - Unscramble:
@@ -77,14 +77,14 @@ Amara starts her first day at the hotel. Jennifer asks about her background befo
 
 - **Jennifer:** How long have you been working in housekeeping?
 - **Amara:** I have been cleaning offices and hotels for three years, since I came to Boston from Somalia.
-- **Jennifer:** And have you been using any industrial laundry equipment?
-- **Amara:** Yes, I have. I learned on the machines at my last job.
+- **Jennifer:** Your application says you work weekends at a laundry. Have you been using the big machines there?
+- **Amara:** Yes, I have. Every Saturday and Sunday since last year.
 
 Question form: How long + have / has + subject + been + verb-ing?
 
 **Exercise: Choose the correct question**
 - Which question is correct? _(options: How long you have been living in Boston? / How long have you been living in Boston? / How long have you been live in Boston?)_
-- Jennifer asks about Amara's supervisor. Which is correct? _(options: How long has she been manage the team? / How long she has been managing the team? / How long has she been managing the team?)_
+- Amara asks Jennifer about her new supervisor. Which is correct? _(options: How long has she been manage the team? / How long she has been managing the team? / How long has she been managing the team?)_
 
 **Exercise: Unscramble the question**
 - Unscramble:
@@ -124,5 +124,5 @@ Present Perfect (have + V3) = the action is finished. You care about the result.
 - Jennifer asks Amara a question about her experience. Which question is correct? _(options: How long you have been folding laundry? / How long have you been folding laundry? / How long have you been fold laundry?)_
 - Fill in the blank: "She has been ___ money for months." (Present Perfect Continuous: verb-ing after 'has been'.)
 - Which sentence has a grammar error? _(options: She has been working at the hotel for two years. / How long have you been waiting for the bus? / He have been saving money since January.)_
-- Jennifer asks Amara about her forklift experience at the warehouse. Put the words in order.
+- Jennifer asks Amara about her cleaning experience. Put the words in order.
 

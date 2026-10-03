@@ -87,14 +87,14 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Cambridge Street by 9.", "terracotta")}
+        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. Roadwork closes Saratoga Street by 9.", "terracotta")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives. The roadwork means traffic is already backing up.</p>
 
         ${dialogue([
           { speaker: "Kevin", avatar: "🧑🏻", text: "You look tired, man.", side: "left", tone: "terracotta" },
           { speaker: "Hector", avatar: "👨🏽", text: "I <strong>have been working</strong> six days a week since January. No breaks.", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "That’s rough. I <strong>have been driving</strong> extra shifts too. We’re short of drivers this month.", side: "left", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "That’s rough. I <strong>have been driving</strong> extra shifts too. We’re short of truck drivers this month.", side: "left", tone: "terracotta" },
           { speaker: "Hector", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been doing</strong> that?", side: "right", tone: "sage" },
           { speaker: "Kevin", avatar: "🧑🏻", text: "Three weeks. I’m hoping things slow down soon.", side: "left", tone: "terracotta" },
         ])}
@@ -138,7 +138,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Kevin and Hector both drive extra shifts. Which sentence is correct?",
+              label: "Kevin and the other truck drivers all drive extra shifts. Which sentence is correct?",
               options: [
                 { value: "a", label: "They has been driving extra shifts." },
                 { value: "b", label: "They have been drive extra shifts." },
@@ -292,8 +292,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "How long <strong>have</strong> you <strong>been working</strong> in housekeeping?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been cleaning</strong> offices and hotels for three years, since I came to Boston from Somalia.", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "And <strong>have</strong> you <strong>been using</strong> any industrial laundry equipment?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. I learned on the machines at my last job.", side: "right", tone: "sage" },
+          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Your application says you work weekends at a laundry. <strong>Have</strong> you <strong>been using</strong> the big machines there?", side: "left", tone: "amber" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. Every Saturday and Sunday since last year.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -333,7 +333,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Jennifer asks about Amara's supervisor. Which is correct?",
+              label: "Amara asks Jennifer about her new supervisor. Which is correct?",
               options: [
                 { value: "a", label: "How long has she been manage the team?" },
                 { value: "b", label: "How long she has been managing the team?" },
@@ -541,9 +541,9 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     {
       id: "ive-been-working-qws1",
       type: "word-scramble" as const,
-      question: "Jennifer asks Amara about her forklift experience at the warehouse. Put the words in order.",
-      words: ["How", "long", "have", "you", "been", "driving", "the", "forklift"],
-      correctAnswer: "How long have you been driving the forklift",
+      question: "Jennifer asks Amara about her cleaning experience. Put the words in order.",
+      words: ["How", "long", "have", "you", "been", "cleaning", "hotel", "rooms"],
+      correctAnswer: "How long have you been cleaning hotel rooms",
       hint: "How long + have/has + subject + been + verb-ing",
       explanation: "PPC questions follow: How long + have/has + subject + been + verb-ing?",
       topic: "present-perfect-continuous",

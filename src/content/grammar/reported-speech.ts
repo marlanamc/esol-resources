@@ -67,14 +67,15 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             title: "Reported Speech: Your clinic day in English",
             icon: "💬",
             explanation: `
-                ${sceneCard("sceneMychartPing", "7:30 PM — Mina reads a portal message", "blue")}
+                ${sceneCard("sceneMychartPing", "7:30 PM. Mina's clinic day is over, and a portal message arrives.", "blue")}
 
                 <div class="gc-grad-terracotta" style="padding: 1.25rem 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem">
                   <p style="font-size: 1.1rem; margin: 0">You will repeat what <strong>Dr. Chen</strong>, <strong>Nurse Jordan</strong>, <strong>Reception Alex</strong>, and <strong>Pharmacist Sam</strong> said — to your partner, your boss, or your family — <em>without</em> copying every word.</p>
                   <p style="margin: 0.65rem 0 0; font-weight: 600">That skill is <strong>reported speech</strong> (also called indirect speech).</p>
                 </div>
 
-                <h3>Your journey (same characters, nine stops)</h3>
+                <h3>Looking back at Mina's day (same characters, nine stops)</h3>
+                <p>It is evening now. Mina has to tell her partner, her boss, and her family what everyone said today. Go back through her day, one stop at a time.</p>
                 <ol style="margin: 0.5rem 0 1.25rem 1rem; line-height: 1.75">
                   <li><strong>Portal ping</strong> — why reporting matters</li>
                   <li><strong>Exam room</strong> — direct vs reported</li>
@@ -444,11 +445,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Jordan: \"I am on the infusion schedule today.\" (You report later.)",
+                            label: "Jordan: \"I am in Bay 2 today.\" (You report later.)",
                             options: [
-                                { value: "b", label: "Jordan said she is on the infusion schedule today." },
-                                { value: "c", label: "Jordan said she will be on the infusion schedule today." },
-                                { value: "a", label: "Jordan said she was on the infusion schedule that day." },
+                                { value: "b", label: "Jordan said she is in Bay 2 today." },
+                                { value: "c", label: "Jordan said she will be in Bay 2 today." },
+                                { value: "a", label: "Jordan said she was in Bay 2 that day." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -513,7 +514,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             title: "Pharmacy: commands and requests",
             icon: "📋",
             explanation: `
-                ${sceneCard("scenePharmacy", "Pickup window — Pharmacist Sam", "amber")}
+                ${sceneCard("scenePharmacy", "Pharmacy shelves behind the counter. Pharmacist Sam", "amber")}
 
                 <p>Instructions and polite requests use a different shape: <strong>told / asked + person + to + base verb</strong>.</p>
 
@@ -808,7 +809,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                                     label: "Backshift the tense when the reporting frame is past",
                                 },
                                 { value: "b", label: "Always use future tense" },
-                                { value: "c", label: "Remove all pronouns" },
+                                { value: "c", label: "Put the doctor's words in quotation marks" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -821,7 +822,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                                     label: "Commands use told + person + to + verb (not that take)",
                                 },
                                 { value: "b", label: "Switch said to told" },
-                                { value: "c", label: "Add more adjectives" },
+                                { value: "c", label: "Change told to asked" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -929,21 +930,21 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "IT (hospital Wi-Fi): \"Don't share your password.\"",
+                            label: "Sam: \"Don't take this pill on an empty stomach.\"",
                             options: [
-                                { value: "b", label: "IT said us not share our password." },
-                                { value: "a", label: "IT told us not to share our password." },
-                                { value: "c", label: "IT told us that don't share our password." },
+                                { value: "b", label: "Sam said me not take the pill on an empty stomach." },
+                                { value: "a", label: "Sam told me not to take the pill on an empty stomach." },
+                                { value: "c", label: "Sam told me that don't take the pill on an empty stomach." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "Jordan: \"Your badge is ready at the desk.\"",
+                            label: "Jordan: \"Your visit summary is ready at the desk.\"",
                             options: [
-                                { value: "a", label: "Jordan said my badge is ready at the desk." },
-                                { value: "c", label: "Jordan told my badge was ready at the desk." },
-                                { value: "b", label: "Jordan said my badge was ready at the desk." },
+                                { value: "a", label: "Jordan said my visit summary is ready at the desk." },
+                                { value: "c", label: "Jordan told my visit summary was ready at the desk." },
+                                { value: "b", label: "Jordan said my visit summary was ready at the desk." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -1075,11 +1076,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"I am on the infusion schedule today.\" → Jordan said _____.",
+                            label: "\"I am in Bay 2 today.\" → Jordan said _____.",
                             options: [
-                                { value: "b", label: "she is on the infusion schedule today" },
-                                { value: "c", label: "Jordan told that she was on the infusion schedule" },
-                                { value: "a", label: "she was on the infusion schedule that day" },
+                                { value: "b", label: "she is in Bay 2 today" },
+                                { value: "c", label: "Jordan told that she was in Bay 2" },
+                                { value: "a", label: "she was in Bay 2 that day" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -1129,11 +1130,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: 'Convert: "I am on the infusion schedule today." → Jordan said _____.',
+            question: 'Convert: "I am in Bay 2 today." → Jordan said _____.',
             options: [
-                { value: "b", label: "she was on the infusion schedule that day" },
-                { value: "a", label: "she is on the infusion schedule today" },
-                { value: "c", label: "I was on the infusion schedule that day" },
+                { value: "b", label: "she was in Bay 2 that day" },
+                { value: "a", label: "she is in Bay 2 today" },
+                { value: "c", label: "I was in Bay 2 that day" },
             ],
             correctAnswer: "b",
             explanation: "Present am/is often becomes was/were when we report from the past.",
@@ -1368,7 +1369,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             id: "quiz-19",
             question: "Pharmacist Sam: \"Don't drink grapefruit juice with this pill.\" → Sam told me _____.",
             options: [
-                { value: "a", label: "to not drink grapefruit juice with this pill" },
+                { value: "a", label: "to don't drink grapefruit juice with this pill" },
                 { value: "b", label: "not to drink grapefruit juice with this pill" },
                 { value: "c", label: "don't drink grapefruit juice with this pill" },
             ],

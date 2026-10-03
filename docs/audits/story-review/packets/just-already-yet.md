@@ -11,7 +11,7 @@
 ## Cast by section
 
 - She's already done it: ALREADY: Nadine
-- Just finished: JUST: Carlos
+- Just finished: JUST: Mark, Carlos
 - Not yet: YET: Linh's son, Linh
 - Reading a To-Do List: All Three Together: Rosa
 - Hear it, use it: Practice in the real world: Amara, Bruno
@@ -23,12 +23,12 @@
 > 🖼 **Scene:** East Boston Community Center, front desk. Tuesday morning.  
 > _Photo shows: Bright community center reception area with a front desk and welcoming entrance._
 
-Nadine stops by before class. Mark from her building called about the food pantry too.
+Nadine stops by the front desk before class.
 
-- **Staff:** Hi, are you here to pick up your EBT card?
-- **Nadine:** No, I have already picked it up. I came in last week.
-- **Staff:** Oh great, you have already taken care of that. Is there anything else I can help with?
-- **Nadine:** Yes, actually. I haven't signed up for the food pantry yet.
+- **Staff:** Hi, are you here to sign up for the food pantry?
+- **Nadine:** No, I have already signed up. I came in last week.
+- **Staff:** Oh, good. Is there anything else I can help with?
+- **Nadine:** Yes, actually. I haven't gotten my pickup day yet.
 
 ALREADY = done before now, sooner than expected, or to confirm something is finished. It does not tell you when it happened.
 
@@ -38,15 +38,15 @@ ALREADY sits between have / has and the past participle (V3). It never moves to 
 
 Common mistake
 
-✗ She has picked up her card already. (already at the end. not the standard position)
+✗ She has signed up already. (already at the end. not the standard position)
 
-✓ She has already picked up her card.
+✓ She has already signed up.
 
 **Exercise: Where does ALREADY go?**
 - Which sentence is correct? _(options: Nadine already has renewed her bus pass. / Nadine has already renewed her bus pass. / Nadine has renewed already her bus pass.)_
 - Which sentence is correct? _(options: I have texted already my sister. / Already I have texted my sister. / I have already texted my sister.)_
 - The staff member says: "Someone ___ you." (help. use already) _(options: has already helped / already has helped / has helped already)_
-- Nadine ___ already picked up her EBT card.
+- Nadine ___ already signed up for the food pantry.
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -57,9 +57,9 @@ Common mistake
 > 🖼 **Scene:** Pharmacy on Chelsea Street. Thursday afternoon.  
 > _Photo shows: A neighborhood pharmacy counter with shelves of medicine and a prescription pickup window._
 
-- **Neighbor:** Hey Carlos, coming back from the pharmacy?
+- **Mark:** Hey Carlos, coming back from the pharmacy?
 - **Carlos:** Yeah, I have just picked up my prescription. The line was crazy.
-- **Neighbor:** I know. I've just gotten back from there too. Did they have everything?
+- **Mark:** I know. I've just gotten back from there too. Did they have everything?
 - **Carlos:** Yes, thankfully. They have just restocked my medicine, so I didn’t have to come back.
 
 JUST = very recently, a short time ago. The action finished moments ago or today.
@@ -140,9 +140,9 @@ Common mistakes
 > _Photo shows: a kitchen counter with a napkin and a pen on it_
 
 - **Rosa:** OK, let me check my list before I leave for class.
-- **Rosa:** The kids had Monday off from school. I have already taken them to the clinic.
+- **Rosa:** I have already taken the kids to the clinic. They had Monday off, so we went then.
 - **Rosa:** I have already paid the rent. Done.
-- **Rosa:** I have just called the school about my daughter. Still on my mind.
+- **Rosa:** I have just called the school about my daughter. They'll call me back.
 - **Rosa:** But I haven't picked up the groceries yet. That one has to wait.
 
 Rosa's to-do list:
@@ -177,7 +177,7 @@ Quick summary before the quiz:
 
 **Exercise: What does it mean?**
 - "Amara hasn't registered for the food pantry yet." _(options: Amara registered a long time ago. / Amara registered just now. / Amara hasn't registered, but she probably will.)_
-- "Bruno has just found out about the program." _(options: Bruno learned about the program a long time ago. / Bruno learned about the program very recently. / Bruno doesn't know about the program yet.)_
+- "Amara has just found out about the program." _(options: Amara learned about the program a long time ago. / Amara learned about the program very recently. / Amara doesn't know about the program yet.)_
 - "I have already called the landlord." What does this tell you? _(options: The call happened before now. It is done. / The call is happening right now. / The call hasn't happened yet.)_
 
 **Exercise: Spot the mistake**
@@ -191,9 +191,9 @@ Quick summary before the quiz:
 
 ## Mini quiz
 
-- Nadine picked up her EBT card last week. The staff member asks if she needs it today. What does Nadine say? _(options: I have just gotten my card. / I have already gotten my card. / I haven't gotten my card yet.)_
+- Nadine signed up for the food pantry last week. The staff member asks if she wants to sign up today. What does Nadine say? _(options: I have just signed up for the pantry. / I have already signed up for the pantry. / I haven't signed up for the pantry yet.)_
 - Carlos walked in the door 30 seconds ago. His neighbor asks where he's been. He says: _(options: I have already gotten back from the pharmacy. / I have just gotten back from the pharmacy. / I haven't gotten back from the pharmacy yet.)_
 - Fill in the blank: "Linh hasn't paid the electric bill ___." (It's expected but not done.)
-- Nadine registered for the ESL program before today's class. Put the words in order.
+- Nadine registered for the food pantry last week. Put the words in order.
 - Which sentence has ALREADY in the correct position? _(options: Already she has registered for the program. / She has registered already for the program. / She has already registered for the program.)_
 

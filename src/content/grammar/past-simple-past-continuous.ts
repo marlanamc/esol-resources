@@ -88,8 +88,8 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneStreet", "Meridian Street, East Boston. Tuesday morning, 7:40 AM.", "terracotta")}
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Fred missed the bus again. His neighbor Michael had the same problem last week.</p>
+        ${sceneCard("sceneStreet", "Meridian Street, East Boston. Tuesday, 7:40 AM. The 111 just left.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Fred missed the 111 bus again. At break, he tells his classmate Amara what happened.</p>
         ${dialogue([
           { speaker: "Fred", avatar: "👨🏽", text: "I <strong>missed</strong> the 111 bus this morning. I <strong>walked</strong> to the Blue Line. I <strong>arrived</strong> late.", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏾", text: "Oh no! What happened?", side: "left", tone: "sage" },
@@ -172,12 +172,12 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneTrain", "Blue Line train, East Boston. Tuesday morning.", "blue")}
+        ${sceneCard("sceneTrain", "Blue Line station, East Boston. Fred walked here after he missed the bus.", "blue")}
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏾", text: "So what were you doing when the bus left?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was listening</strong> to music. I didn't hear it coming.", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏾", text: "And you <strong>were carrying</strong> those groceries too, right?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨🏽", text: "Yes! I <strong>was thinking</strong> about class and I <strong>was carrying</strong> two bags. I couldn't run fast.", side: "right", tone: "blue" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was listening</strong> to music. I <strong>was thinking</strong> about class. I didn't hear it coming.", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Did you try to run after it?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I tried! But I <strong>was carrying</strong> a hot coffee. I couldn't run fast.", side: "right", tone: "blue" },
         ])}
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Continuous</strong> = an action that was already in progress at a moment in the past. It was running in the background. It is not finished yet when we describe it.</p>
@@ -190,7 +190,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("in progress", "blue")}
-            <span><em>He <strong>was carrying</strong> two grocery bags.</em></span>
+            <span><em>He <strong>was carrying</strong> a hot coffee.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("in progress", "blue")}
@@ -227,8 +227,8 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "was", "carrying", "two", "bags", "of", "groceries"],
-              correctAnswer: "She was carrying two bags of groceries",
+              words: ["He", "was", "carrying", "a", "hot", "coffee"],
+              correctAnswer: "He was carrying a hot coffee",
             },
             {
               type: "text",
@@ -322,7 +322,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "He ___ (carry) groceries when he missed the bus.",
+              label: "He ___ (carry) a hot coffee when he missed the bus.",
               expectedAnswers: ["was carrying"],
             },
           ],
@@ -342,7 +342,8 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "Ten minutes? I’m glad you <strong>got</strong> there so quickly. Did someone cover for you at work?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "Ten minutes in the rain? Wow. Did someone cover for you at work?", side: "left", tone: "sage" },
+          { speaker: "Elena", avatar: "👩🏾", text: "My manager did. First time ever!", side: "right", tone: "terracotta" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>
       `,
@@ -443,10 +444,10 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     {
       id: "pspc-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"While Amara ___ at the bus stop, Fred called her.\" (wait + was/were)",
-      correctAnswer: "was waiting",
-      acceptedAnswers: ["Was waiting"],
-      explanation: "While + past continuous: was/were + verb-ing. The waiting was in progress when the interruption happened.",
+      question: "Fill in the blank: \"While Fred ___ to music, the bus left.\" (listen + was/were)",
+      correctAnswer: "was listening",
+      acceptedAnswers: ["Was listening"],
+      explanation: "While + past continuous: was/were + verb-ing. The listening was in progress when the interruption happened.",
       topic: "when-while",
       skill: "usage",
       skillTag: "while-plus-past-continuous",
@@ -455,9 +456,9 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     {
       id: "pspc-qws1",
       type: "word-scramble" as const,
-      question: "Rosa was at work when the doctor called. Put the words in order to tell what happened.",
-      words: ["Rosa", "was", "working", "when", "the", "doctor", "called"],
-      correctAnswer: "Rosa was working when the doctor called",
+      question: "Elena was at work when her son's school called. Put the words in order to tell what happened.",
+      words: ["Elena", "was", "working", "when", "the", "school", "called"],
+      correctAnswer: "Elena was working when the school called",
       hint: "Past continuous + when + past simple",
       explanation: "Past continuous (was working) is the background action. Past simple (called) is the interruption.",
       topic: "past-continuous",
@@ -467,14 +468,14 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     },
     {
       id: "pspc-q4",
-      question: "\"The bus left ___ he was crossing the street.\" Which word fits?",
+      question: "\"He was crossing the street ___ the bus left.\" Which word fits?",
       options: [
         { value: "a", label: "when" },
         { value: "b", label: "while" },
         { value: "c", label: "Both 'when' and 'while' are correct here." },
       ],
       correctAnswer: "a",
-      explanation: "'When' connects a simple action (the bus left) to a continuous one (he was crossing). 'While' would go with the continuous clause: 'While he was crossing, the bus left.'",
+      explanation: "'When' goes with the short, finished action (the bus left). 'While' goes with the longer action in progress: 'While he was crossing the street, the bus left.'",
       topic: "when-while",
       skill: "usage",
       skillTag: "when-while-contrast",

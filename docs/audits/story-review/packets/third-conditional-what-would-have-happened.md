@@ -14,7 +14,7 @@ _None._
 - Building the Sentence: Yemi, Jennifer
 - Three Shifts and a Bigger Bill: Jennifer, Yemi
 - Imaginary Now vs. Imaginary Past: Jennifer, Yemi
-- What Would Have Happened? One Whole Story: Hector, Yemi, Jennifer
+- What Would Have Happened? One Whole Story: Jennifer, Yemi
 
 ---
 
@@ -28,7 +28,7 @@ Yemi works as a packer at a warehouse in Chelsea. Three weeks ago she hurt her k
 - **Ms. Patel:** How long has your knee been hurting?
 - **Yemi:** About three weeks. I know I waited too long.
 - **Yemi:** If I had come sooner, maybe I wouldn’t have missed so much work.
-- **Ms. Patel:** Let's take a look. You're here now. That's what matters.
+- **Ms. Patel:** Let's take a look. Can you bend it for me?
 
 Third conditional = you talk about a past choice and a different past result that did not happen. You cannot change it now, but you can say what would have been different.
 
@@ -46,7 +46,7 @@ Third conditional = you talk about a past choice and a different past result tha
 > 🖼 **Scene:** Yemi's kitchen table. Saturday afternoon.  
 > _Photo shows: A person writing in a notebook at a kitchen table on a weekend afternoon._
 
-After the clinic visit, Yemi writes notes for herself. She texts her coworker Jennifer what she wishes she had done last month.
+After the clinic visit, Yemi writes notes for herself. She texts her coworker Jennifer what she wishes she had done three weeks ago.
 
 - **Yemi:** If I had called the clinic three weeks ago, they would have told me to rest.
 - **Jennifer:** Yeah. If you had iced it every night, it would have gotten better.
@@ -62,7 +62,7 @@ If + had + past participle, would have + past participle. The word had is requir
 - If I had rested my knee, I ___ have kept working normal shifts.
 
 **Exercise: Spot the error**
-- "If I called the clinic last week, I would have saved three shifts." What is wrong? _(options: No error. The sentence is correct. / Error: should be "If I had called" (missing had). / Error: should be "I would save" not "would have saved".)_
+- "If I called the clinic last week, I wouldn't have missed three shifts." What is wrong? _(options: No error. The sentence is correct. / Error: should be "If I had called" (missing had). / Error: should be "I wouldn't miss" not "wouldn't have missed".)_
 
 ## 3. Three Shifts and a Bigger Bill
 
@@ -96,31 +96,31 @@ Negative results: wouldn't have + past participle. You can also use could have o
 
 - **Jennifer:** If you called the clinic now, they would help you figure out the bill.
 - **Yemi:** Do you think so? I’ve been putting it off.
-- **Yemi:** If I had called last month, I would have saved myself a lot of worry.
+- **Yemi:** If I had called three weeks ago, I would have saved myself a lot of worry.
 - **Jennifer:** You can still call today. I can sit with you while you do it.
 
 Second conditional: If + past simple, would + base verb. Imaginary now. Third conditional: If + had + V3, would have + V3. Imaginary past.
 
 **Exercise: Second or third?**
-- Jennifer can still call the clinic today about the bill. "If I ___ the clinic, they would help me." _(options: called (second conditional, still possible) / had called (third conditional, past only))_
-- Yemi missed three shifts last month. That cannot change. "If I ___ sooner, I would have saved three shifts." _(options: went (second conditional) / had gone (third conditional))_
-- "If I called last month, I would have saved three shifts." Is this correct? _(options: Correct / Not correct. Should be 'had called' for a past regret)_
+- Yemi can still call the clinic today about the bill. "If I ___ the clinic, they would help me." _(options: called (second conditional, still possible) / had called (third conditional, past only))_
+- Yemi missed three shifts last week. That cannot change. "If I ___ sooner, I wouldn't have missed three shifts." _(options: went (second conditional) / had gone (third conditional))_
+- "If I called three weeks ago, I wouldn't have missed three shifts." Is this correct? _(options: Correct / Not correct. Should be 'had called' for a past regret)_
 
 **Exercise: Fill in the blank**
 - If I called the clinic now, they ___ help me. (imaginary now)
-- If I had rested last month, I ___ have saved $400. (past regret)
+- If I had rested three weeks ago, I ___ have saved $400. (past regret)
 
 ## 5. What Would Have Happened? One Whole Story
 
-> 🖼 **Scene:** Construction site locker room. Wednesday, April 28.  
-> _Photo shows: man in orange hard hat holding red plastic bag_
+> 🖼 **Scene:** Warehouse break room. Wednesday, before the shift.  
+> _Photo shows: Workers sitting at a table in a warehouse break room talking over lunch._
 
-Yemi's cousin Hector works construction in East Boston. A workplace safety poster is on the locker room wall.
+A new workplace safety poster is up on the break room wall. Yemi and Jennifer read it before their shift.
 
-- **Hector:** The poster says: if the site had followed the safety rules, that worker wouldn't have been injured.
+- **Jennifer:** Look at this: 'If the site had followed the safety rules, that worker wouldn't have been injured.'
 - **Yemi:** Same idea with my knee. If I had rested when it started, I wouldn't have missed three shifts.
 - **Jennifer:** And if you called the nurse line now, they would tell you what to do next. That's still possible.
-- **Yemi:** You're right. I can't change last month. But I can call today.
+- **Yemi:** You're right. I can't change the past. But I can call today.
 
 Third conditional for past regrets. Second conditional when you can still act.
 
@@ -129,19 +129,19 @@ Third conditional for past regrets. Second conditional when you can still act.
 - Workplace safety poster about a past accident. _(options: If the site followed the rules, he isn't injured. / If the site had followed the rules, he wouldn't have been injured. / If the site had followed the rules, he wouldn't be injured.)_
 
 **Exercise: Fill in the blank**
-- If I ___ called the clinic last month, I would have saved three shifts.
+- If I ___ called the clinic three weeks ago, I wouldn't have missed three shifts.
 
 **Exercise: Unscramble**
 - Unscramble:
 
 **Exercise: Spot the error**
-- Yemi says: "If I had called last month, I would save three shifts." What is wrong? _(options: No error. / Error: should be "would have saved" (past result needs would have + V3). / Error: should be "If I called" without had.)_
+- Yemi says: "If I had called three weeks ago, I wouldn't miss three shifts." What is wrong? _(options: No error. / Error: should be "wouldn't have missed" (past result needs would have + V3). / Error: should be "If I called" without had.)_
 
 ## Mini quiz
 
-- Yemi did not stretch before her shift. Now her back hurts. Which sentence matches her situation? _(options: If I stretch before work, my back won't hurt. / If I had stretched before work, my back wouldn't hurt this much. / If I stretched before work, my back wouldn't hurt.)_
-- Which sentence is a correct third conditional? _(options: If Marco saved more, he will have bought the car. / If Marco had saved more, he would have bought the car. / If Marco has saved more, he would buy the car.)_
-- Fill in the blank: "If I had rested my knee, I ___ $80." (a different past result — it didn't happen)
-- Find the error: "If I called the clinic last week, I would have saved three shifts." _(options: No error. / Error: should be "If I had called" (missing had). / Error: should be "I would save" not "would have saved".)_
-- Rosa regrets waiting to call the landlord about the rent. Put the words in order.
+- Yemi did not rest her knee when it started to hurt. Now it hurts a lot. Which sentence matches her situation? _(options: If I rest my knee, it won't hurt. / If I had rested my knee, it wouldn't hurt this much. / If I rested my knee, it wouldn't hurt.)_
+- Which sentence is a correct third conditional? _(options: If Yemi rested more, she will have healed faster. / If Yemi had rested more, she would have healed faster. / If Yemi has rested more, she would heal faster.)_
+- Fill in the blank: "If I had rested my knee, I ___ $80." (a different past result that didn't happen)
+- Find the error: "If I called the clinic last week, I wouldn't have missed three shifts." _(options: No error. / Error: should be "If I had called" (missing had). / Error: should be "I wouldn't miss" not "wouldn't have missed".)_
+- Yemi regrets waiting to go to the clinic. Put the words in order.
 

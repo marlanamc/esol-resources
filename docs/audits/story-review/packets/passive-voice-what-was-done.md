@@ -20,10 +20,10 @@ _None._
 
 ## 1. She Was Hired After the Referral
 
-> 🖼 **Scene:** Outside the warehouse on Marginal Street, Thursday afternoon.  
+> 🖼 **Scene:** Outside a hotel near the airport, Thursday afternoon.  
 > _Photo shows: Two women talking outside a workplace building, one sharing good news with a smile._
 
-Gloria got a new job. Her cousin Marcos works at the same warehouse and put in a good word for her. She calls her friend Linh to share the news.
+Gloria got a new job. Her cousin Marcos works at the same hotel and put in a good word for her. She tells her friend Linh the news.
 
 - **Gloria:** I was hired! Marcos talked to his supervisor and I was called the same day.
 - **Linh:** That's great! What did they say?
@@ -49,7 +49,7 @@ Passive voice = the subject receives the action. We use it when we don't know wh
 > 🖼 **Scene:** Job posting at the East Boston Career Center, Tuesday morning.  
 > _Photo shows: A person reading a printed job posting at a community board._
 
-Before her interview, Gloria found the job posting online. Job ads almost always use passive voice. Look at the language:
+Before she was hired, Gloria saw this job posting at the Career Center. Job ads almost always use passive voice. Look at the language:
 
 Hotel Housekeeper, Full-Time
 
@@ -73,7 +73,7 @@ Singular: Experience is required. Plural: References are expected.
 - **Marcos:** Right. And a uniform is included too. You don't buy that either.
 
 **Exercise: Choose the correct form**
-- Steel-toe boots ___ for this position. _(options: is required / are required / require)_
+- Non-slip shoes ___ for this position. _(options: is required / are required / require)_
 - A background check ___ before your first day. _(options: is completed / are completed / completing)_
 - "We require experience." This sentence in passive voice is: _(options: Experience is required. / Experience is requiring. / Experience was required.)_
 
@@ -92,7 +92,7 @@ Monday is Gloria's first day. A lot happens. That night she calls her cousin to 
 
 - **Gloria:** I was given a locker and a uniform. Then I was told my schedule for the week.
 - **Marcos:** Did they show you the break room?
-- **Gloria:** Yes. I was shown everything by Jennifer, the floor supervisor. And I was asked to sign a form about the uniform.
+- **Gloria:** Yes. Jennifer, the floor supervisor, showed me around. And I was asked to sign a form about the uniform.
 - **Marcos:** Jennifer is good. You'll be fine.
 
 These are all past passive. Something happened to Gloria. She received the action. The person who did it (Jennifer, HR) isn't always important.
@@ -117,7 +117,7 @@ Singular: She was given a locker. Plural: They were told the rules.
 > 🖼 **Scene:** Break room at the hotel, Thursday afternoon.  
 > _Photo shows: A work schedule posted on a break room wall showing shift assignments._
 
-Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her coworker Jennifer.
+Three weeks later, Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her supervisor, Jennifer.
 
 - **Gloria:** Did you see this? My Saturday shift was changed to Friday. I wasn't told anything.
 - **Jennifer:** I know. Several shifts were moved without any notice. Can you work Friday?
@@ -170,7 +170,7 @@ Use passive when the doer is unknown, obvious, or not the point.
 
 ## Mini quiz
 
-- Gloria got a new job. She says: 'I ___ hired last Monday.' Which word fits? _(options: am / was / were)_
+- Gloria got a new job. She says: 'I ___ hired on Thursday.' Which word fits? _(options: am / was / were)_
 - Which sentence is passive voice? _(options: The manager posted the schedule. / The schedule was posted by the manager. / The manager is posting the schedule.)_
 - Fill in the blank: "My overtime ___ not paid." (Overtime is singular: was or were?)
 - Which sentence has an error? _(options: My check was short last Friday. / Safety training is provided to all workers. / My overtime were not paid.)_

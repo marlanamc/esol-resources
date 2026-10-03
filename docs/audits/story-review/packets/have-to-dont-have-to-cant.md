@@ -10,7 +10,7 @@ _None._
 
 ## Cast by section
 
-- Have to. The landlord must fix it: Rosa, Claudette
+- Have to. The landlord must fix it: Rosa, Lisa
 - Don't have to. You're not required: Javier, Rosa
 - Can't. This is not allowed: Amara, Rosa
 - Putting it all together: Diego, Rosa
@@ -25,9 +25,9 @@ _None._
 Lisa at the hotline answers calls like Rosa's every winter.
 
 - **Rosa:** My heat stopped working on Monday. It's freezing in my apartment. What can I do?
-- **Claudette:** The landlord has to provide heat. It's the law in Massachusetts.
+- **Lisa:** The landlord has to provide heat. It's the law in Massachusetts.
 - **Rosa:** And if he doesn't fix it?
-- **Claudette:** He has to fix it within 24 hours in winter. You don't have to wait. Call the city inspector.
+- **Lisa:** He has to fix it within 24 hours in winter. You don't have to wait. Call the city inspector.
 
 Have to / Has to = something is required. Someone is obligated to do it. It is not a choice.
 
@@ -35,7 +35,7 @@ Form: I / you / we / they have to + verb. He / she / it has to + verb.
 
 **Exercise: Choose the right sentence**
 - The smoke detector is broken. What does the law say about the landlord? _(options: He have to replace it. / He has to replace it. / He to replace it.)_
-- Rosa and her roommate ___ pay rent on the first. (have to / has to) _(options: has to / have to / having to)_
+- All the tenants in Rosa's building ___ pay rent on the first. (have to / has to) _(options: has to / have to / having to)_
 - "The landlord have to give notice before coming in." Is this correct? _(options: Yes, correct. / No, should be 'has to' because landlord = he.)_
 
 **Exercise: Fill in the blank**
@@ -99,12 +99,12 @@ Rosa got a tenant rights flyer at the health center. Her coworker Diego is helpi
 
 - **Diego:** Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.
 - **Rosa:** OK. It says landlords have to keep the heat above 68 degrees from September to June.
-- **Diego:** That's required. And this one: 'Tenants don't have to pay for repairs caused by normal use.' So it's not your responsibility.
-- **Rosa:** And this: 'Landlords can't retaliate if you file a complaint.' Good to know.
+- **Diego:** So he has no choice. And this one: 'Tenants don't have to pay for repairs caused by normal use.'
+- **Rosa:** And this: 'Landlords can't retaliate if you file a complaint.' Good. Then I'm calling the inspector today.
 
 Quick reference
 
-Black History Month: Boston's Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.
+Black History Month: The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.
 
 **Exercise: Read the flyer**
 - "The landlord must provide hot water at all times." _(options: have to. it is required / don't have to. it is not required / can't. it is not allowed)_

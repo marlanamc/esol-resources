@@ -23,10 +23,10 @@ _None._
 > 🖼 **Scene:** East Boston Neighborhood Health Center. Tuesday, 4:30 PM.  
 > _Photo shows: A blue asthma inhaler on a white surface._
 
-Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler appointment.
+Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.
 
-- **Nurse Kelly:** Hi, this is Kelly from East Boston Neighborhood Health Center. I'm calling about Amina's inhaler.
-- **Amara:** Yes, hi. Her blue inhaler is almost empty.
+- **Nurse Kelly:** Hi, this is Kelly from East Boston Neighborhood Health Center. Our records show Amina's blue inhaler is almost empty.
+- **Amara:** Yes, hi. She used it twice last night.
 - **Nurse Kelly:** The doctor says the pharmacy can refill it today if you come before 6.
 - **Amara:** OK. I'll write it down and tell my husband.
 
@@ -45,7 +45,7 @@ Amara needs to tell Marco everything later. She cannot repeat Kelly's exact word
 
 ## 2. Telling Marco: She Said That…
 
-> 🖼 **Scene:** Marco's restaurant on Meridian Street. Tuesday, 5:45 PM.  
+> 🖼 **Scene:** Marco's restaurant on Meridian Street. Tuesday, 4:45 PM.  
 > _Photo shows: A busy restaurant dining room with tables set for service._
 
 Marco is wiping down the prep station when Amara texts him. He reads it between orders.
@@ -72,31 +72,31 @@ When you report a statement, the verb often moves back one step: is → was, can
 > 🖼 **Scene:** Amara and Marco's apartment. Wednesday morning.  
 > _Photo shows: Two adults talking in a bright apartment living room on a weekday morning._
 
-Marco picked up the new inhaler after his shift. Their cousin Gloria is watching Amina before school. Marco needs to pass on the doctor's instructions.
+Marco left work early and picked up the new inhaler before 6. Their cousin Gloria is watching Amina before school. Marco needs to pass on the pharmacist's instructions.
 
-- **Marco:** The doctor told me to keep the inhaler in a warm place, not the cold car.
+- **Marco:** The pharmacist told me to keep the inhaler at room temperature, not in the cold car.
 - **Gloria:** OK. I'll keep it in the kitchen drawer.
-- **Marco:** He asked Amara to call if Amina's breathing gets worse.
+- **Marco:** He asked us to call the clinic if Amina's breathing gets worse.
 - **Gloria:** And the old nebulizer?
 - **Marco:** He told us not to use it. It's too old.
 
 For commands and advice, use told / asked + person + to + verb. For negative commands: told + person + not to + verb.
 
-Marco's grandmother Lucia called from Guatemala last week. She said the doctor told her to fast before her blood work. She wanted to know when she needed to stop eating before the appointment. Reported speech helps her explain the doctor's rules to the family.
+Tonight Marco will call his mother Lucia in Guatemala. She worries about Amina, so he will tell her what the clinic and the pharmacist said.
 
 **Exercise: Choose the Reported Command**
-- The doctor said: "Shake the bottle before each use." How does Marco report this? _(options: The doctor told me shaking the bottle before each use. / The doctor told me to shake the bottle before each use. / The doctor told me shake the bottle before each use.)_
-- The doctor said: "Don't use the old nebulizer." How does Marco report this? _(options: The doctor told us not to use the old nebulizer. / The doctor told us don't use the old nebulizer. / The doctor told us to not use the old nebulizer.)_
+- The pharmacist said: "Shake the inhaler before each use." How does Marco report this? _(options: The pharmacist told me shaking the inhaler before each use. / The pharmacist told me to shake the inhaler before each use. / The pharmacist told me shake the inhaler before each use.)_
+- The pharmacist said: "Don't use the old nebulizer." How does Marco report this? _(options: The pharmacist told us not to use the old nebulizer. / The pharmacist told us don't use the old nebulizer. / The pharmacist told us to not use the old nebulizer.)_
 
 **Exercise: Fill in the Blank**
-- Direct: "Call if her breathing gets worse." Reported: He asked Amara ___ call if her breathing got worse.
+- Direct: "Call if her breathing gets worse." Reported: He asked us ___ call if her breathing got worse.
 
 **Exercise: Unscramble**
 - Unscramble:
 
 ## 4. She Asked If…
 
-> 🖼 **Scene:** Clinic follow-up call. Wednesday, 2 PM.  
+> 🖼 **Scene:** Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.  
 > _Photo shows: A doctor in a white coat talking with a patient in an exam room._
 
 Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answered because Amara was at work. Now he is telling Amara what Sarah asked.
@@ -105,7 +105,7 @@ Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answer
 - **Amara:** What else?
 - **Marco:** She asked when we could come for the follow-up.
 - **Amara:** Did she ask about the insurance card?
-- **Marco:** Yes. She asked if we had brought it last time.
+- **Marco:** Yes. She asked if we had brought the new card last time. They don't have a copy.
 
 Yes/no questions become asked if + statement (no question word order). Wh-questions keep the question word: asked when / what / where + statement.
 
@@ -124,19 +124,19 @@ Yes/no questions become asked if + statement (no question word order). Wh-questi
 > 🖼 **Scene:** Marco's break room. Wednesday, 9 PM.  
 > _Photo shows: A quiet workplace break room with tables and chairs at the end of an evening shift._
 
-Marco calls his mother Lucia in Guatemala. She speaks limited English, so Marco uses simple reported speech to explain the whole visit.
+Marco calls his mother Lucia in Guatemala on his break. She speaks limited English, so Marco uses simple reported speech to explain everything.
 
 - **Marco:** Mamá, the nurse said that Amina's inhaler was almost empty.
-- **Lucia:** Ay, mijo. And the doctor?
-- **Marco:** He told me to keep it warm. He told us not to use the old machine.
-- **Lucia:** OK. I’ll put the old machine away. When is Amina’s next appointment?
+- **Lucia:** Ay, mijo. And the pharmacy?
+- **Marco:** The pharmacist told me to keep it at room temperature. He told us not to use the old machine.
+- **Lucia:** Good. Tell Amina to call me after school. When is her next appointment?
 - **Marco:** Sarah asked when we could come back. I said that Saturday might work. We’re waiting to hear.
 
 Statements, commands, and questions. All three patterns in one real phone call.
 
 **Exercise: Statements, Commands, or Questions?**
 - Kelly said: "The pharmacy can refill it today." _(options: Kelly said that the pharmacy could refill it today. / Kelly told me to refill it today. / Kelly asked if the pharmacy could refill it today.)_
-- The doctor said: "Don't use the old nebulizer." _(options: The doctor said that we don't use the old nebulizer. / The doctor told us not to use the old nebulizer. / The doctor asked if we use the old nebulizer.)_
+- The pharmacist said: "Don't use the old nebulizer." _(options: The pharmacist said that we don't use the old nebulizer. / The pharmacist told us not to use the old nebulizer. / The pharmacist asked if we use the old nebulizer.)_
 
 **Exercise: Fill in the Blank**
 - Sarah asked: "When can you come?" Marco said Sarah asked ___ we could come.
@@ -149,9 +149,9 @@ Statements, commands, and questions. All three patterns in one real phone call.
 
 ## Mini quiz
 
-- Kelly said: "The new pills are stronger." How does Amara report this to Marco? _(options: Kelly said that the new pills are stronger. / Kelly said that the new pills were stronger. / Kelly told me to the new pills were stronger.)_
-- The doctor said: "Check your blood sugar every morning." How does Marco tell Gloria? _(options: The doctor told me to check my blood sugar every morning. / The doctor said that check my blood sugar every morning. / The doctor asked me check my blood sugar every morning.)_
+- Kelly said: "The new inhaler is ready." How does Amara report this to Marco? _(options: Kelly said that the new inhaler is ready. / Kelly said that the new inhaler was ready. / Kelly told me to the new inhaler was ready.)_
+- Kelly said: "Bring the inhaler to the follow-up." How does Amara tell Marco? _(options: Kelly told me to bring the inhaler to the follow-up. / Kelly said that bring the inhaler to the follow-up. / Kelly asked me bring the inhaler to the follow-up.)_
 - Fill in the blank: "Kelly said: 'We can refill it today.' → Kelly said that they ___ refill it today." (can back-shifts in reported speech)
 - Find the error: "Kelly said that the pharmacy will refill it today." _(options: No error. / Error: will should be would. / Error: said should be told.)_
-- Marco reports what the doctor said about Amina's inhaler. Put the words in order.
+- Marco reports what the pharmacist said about Amina's inhaler. Put the words in order.
 

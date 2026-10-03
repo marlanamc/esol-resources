@@ -20,10 +20,10 @@
 
 ## 1. Past Simple: What Happened
 
-> 🖼 **Scene:** Meridian Street, East Boston. Tuesday morning, 7:40 AM.  
+> 🖼 **Scene:** Meridian Street, East Boston. Tuesday, 7:40 AM. The 111 just left.  
 > _Photo shows: A street filled with parked cars next to tall buildings._
 
-Fred missed the bus again. His neighbor Michael had the same problem last week.
+Fred missed the 111 bus again. At break, he tells his classmate Amara what happened.
 
 - **Fred:** I missed the 111 bus this morning. I walked to the Blue Line. I arrived late.
 - **Amara:** Oh no! What happened?
@@ -41,13 +41,13 @@ Notice: each action is a single dot on the timeline. They happened, they finishe
 
 ## 2. Past Continuous: What Was Already in Progress
 
-> 🖼 **Scene:** Blue Line train, East Boston. Tuesday morning.  
+> 🖼 **Scene:** Blue Line station, East Boston. Fred walked here after he missed the bus.  
 > _Photo shows: photo of train station_
 
 - **Amara:** So what were you doing when the bus left?
-- **Fred:** I was listening to music. I didn't hear it coming.
-- **Amara:** And you were carrying those groceries too, right?
-- **Fred:** Yes! I was thinking about class and I was carrying two bags. I couldn't run fast.
+- **Fred:** I was listening to music. I was thinking about class. I didn't hear it coming.
+- **Amara:** Did you try to run after it?
+- **Fred:** I tried! But I was carrying a hot coffee. I couldn't run fast.
 
 Past Continuous = an action that was already in progress at a moment in the past. It was running in the background. It is not finished yet when we describe it.
 
@@ -72,7 +72,7 @@ Quick tip: the continuous action (line) is the background. The simple action (do
 - The bus left while he ___ the street. Which fits? _(options: crossed / was crossing)_
 - "She was talking on the phone when she was dropping her bag." Is this correct? _(options: Correct / Not correct. 'dropped' fits the interruption, not 'was dropping')_
 - Unscramble:
-- He ___ (carry) groceries when he missed the bus.
+- He ___ (carry) a hot coffee when he missed the bus.
 
 ## 4. Tell the Story
 
@@ -82,7 +82,8 @@ Quick tip: the continuous action (line) is the background. The simple action (do
 - **Elena:** Yesterday was crazy. I was working a double shift when my son's school called.
 - **Claudette:** What happened? Is he okay?
 - **Elena:** Yes, he fell at recess. While I was driving to school, it started to rain. I got there in ten minutes.
-- **Claudette:** Ten minutes? I’m glad you got there so quickly. Did someone cover for you at work?
+- **Claudette:** Ten minutes in the rain? Wow. Did someone cover for you at work?
+- **Elena:** My manager did. First time ever!
 
 Read Elena's story again. Choose past simple or past continuous for each blank.
 
@@ -98,7 +99,7 @@ Read Elena's story again. Choose past simple or past continuous for each blank.
 
 - Fred missed the bus, walked to the train, and arrived late. Which tense is this? _(options: Past Continuous, because the actions were in progress. / Past Simple, because each action finished before the next one started. / Present Simple, because it is a routine.)_
 - A classmate writes: "Elena was work when the school called." What is wrong with this sentence? _(options: Nothing is wrong. / It should be 'was working' because past continuous needs the -ing form of the verb. / It should be 'Elena working' without 'was'.)_
-- Fill in the blank: "While Amara ___ at the bus stop, Fred called her." (wait + was/were)
-- Rosa was at work when the doctor called. Put the words in order to tell what happened.
-- "The bus left ___ he was crossing the street." Which word fits? _(options: when / while / Both 'when' and 'while' are correct here.)_
+- Fill in the blank: "While Fred ___ to music, the bus left." (listen + was/were)
+- Elena was at work when her son's school called. Put the words in order to tell what happened.
+- "He was crossing the street ___ the bus left." Which word fits? _(options: when / while / Both 'when' and 'while' are correct here.)_
 

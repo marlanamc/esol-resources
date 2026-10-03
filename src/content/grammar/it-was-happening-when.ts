@@ -82,17 +82,17 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Finished actions, one after another",
         elements: [
-          { id: "ps-dot-1", type: "single-dot", zone: "past", position: 25, verbLabel: "woke up" },
+          { id: "ps-dot-1", type: "single-dot", zone: "past", position: 25, verbLabel: "heard a crack" },
           { id: "ps-dot-2", type: "single-dot", zone: "past", position: 50, verbLabel: "saw the water" },
           { id: "ps-dot-3", type: "single-dot", zone: "past", position: 75, verbLabel: "called the landlord" },
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartment", "East Boston apartment, third floor. Tuesday night, 11:45 PM.", "terracotta")}
+        ${sceneCard("sceneApartment", "East Boston apartment, third floor. Tuesday night, 11:45 PM. Lucia calls her landlord, Brian.", "terracotta")}
         ${dialogue([
-          { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>heard</strong> a noise from the ceiling last night. I <strong>looked</strong> up and <strong>saw</strong> a crack.", side: "right", tone: "terracotta" },
-          { speaker: "Landlord", avatar: "🧑‍💼", text: "What did you see?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Water. It <strong>came</strong> through the ceiling above the kitchen. I <strong>grabbed</strong> a bucket and I <strong>called</strong> you right away.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Brian, I'm sorry to call so late. I <strong>heard</strong> a noise from the ceiling. I <strong>looked</strong> up and <strong>saw</strong> a crack.", side: "right", tone: "terracotta" },
+          { speaker: "Brian", avatar: "👨🏻", text: "Is there any water?", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. It <strong>came</strong> through the ceiling above the kitchen. I <strong>grabbed</strong> a bucket and I <strong>called</strong> you right away.", side: "right", tone: "terracotta" },
         ])}
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Simple</strong> = finished actions told in order. Each one happened and ended before the next one started.</p>
@@ -100,7 +100,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
-            <span><em>Lucia <strong>woke up</strong> at midnight.</em></span>
+            <span><em>Lucia <strong>heard</strong> a crack at midnight.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
@@ -124,7 +124,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Lucia ___ a noise and got out of bed. Which form fits?",
+              label: "Lucia ___ a noise and looked up. Which form fits?",
               options: [
                 { value: "hears", label: "hears" },
                 { value: "heard", label: "heard" },
@@ -172,12 +172,12 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneKitchen", "Lucia's apartment kitchen. Same night, before the pipe burst.", "blue")}
+        ${sceneCard("sceneKitchen", "Lucia's apartment kitchen. Wednesday, 7:00 AM. Brian comes up to look at the damage.", "blue")}
         ${dialogue([
-          { speaker: "Landlord", avatar: "🧑‍💼", text: "Was anyone else awake when it happened?", side: "left", tone: "sage" },
+          { speaker: "Brian", avatar: "👨🏻", text: "Was anyone else awake when it happened?", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "My younger kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen when the water <strong>started</strong> coming through.", side: "right", tone: "blue" },
-          { speaker: "Landlord", avatar: "🧑‍💼", text: "Was your older daughter in the kitchen too?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. We <strong>were getting</strong> ready for a family dinner. She <strong>was writing</strong> place cards at the table.", side: "right", tone: "blue" },
+          { speaker: "Brian", avatar: "👨🏻", text: "Was your older daughter in the kitchen too?", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. She <strong>was finishing</strong> her homework. She <strong>was writing</strong> an essay for school at the table.", side: "right", tone: "blue" },
         ])}
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Continuous</strong> = an action already in progress at a moment in the past. It was running in the background. Form: <strong>was / were + verb-ing</strong>.</p>
@@ -231,7 +231,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Her daughter ___ (write) names on envelopes when the pipe burst.",
+              label: "Her daughter ___ (write) an essay for school when the pipe burst.",
               expectedAnswers: ["was writing"],
             },
           ],
@@ -332,19 +332,19 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4 — Telling the Landlord
+    // SECTION 4 — Telling the Insurance Company
     // =========================================================================
     {
       id: "telling-the-landlord",
-      title: "Telling the Landlord",
+      title: "Telling the Insurance Company",
       explanation: `
-        ${sceneCard("scenePhone", "Lucia's apartment. Wednesday morning, 8:00 AM.", "amber")}
+        ${sceneCard("scenePhone", "Lucia's apartment. Wednesday, 11:00 AM. Her renter's insurance company calls.", "amber")}
         ${dialogue([
-          { speaker: "Brian", avatar: "👨🏻", text: "Lucia, this is Brian from the building. I heard about the pipe. Can you walk me through what happened?", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏼", text: "Lucia, this is Sarah from your renter's insurance. Can you walk me through what happened?", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "Yes. It <strong>was</strong> almost midnight. The kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen <strong>when</strong> I <strong>heard</strong> a crack above me.", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "👨🏻", text: "And then?", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏼", text: "And then?", side: "left", tone: "sage" },
           { speaker: "Lucia", avatar: "👩🏽", text: "Water <strong>came</strong> down fast. I <strong>grabbed</strong> a bucket. <strong>While</strong> I <strong>was holding</strong> the bucket, I <strong>called</strong> the landlord with my other hand.", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "👨🏻", text: "Okay, I have enough to file the report. Thank you.", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏼", text: "Okay, I have enough to file the claim. Thank you.", side: "left", tone: "sage" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Lucia uses both tenses together: past simple for the sequence of events, past continuous for what was already happening in the background. Choose the right tense for each blank below.</p>
       `,
@@ -383,10 +383,10 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Brian called Lucia while she was sleeping.\" Which action was already in progress?",
+              label: "\"Sarah called Lucia while she was cleaning up the water.\" Which action was already in progress?",
               options: [
-                { value: "a", label: "Brian calling" },
-                { value: "b", label: "Lucia sleeping" },
+                { value: "a", label: "Sarah calling" },
+                { value: "b", label: "Lucia cleaning up" },
                 { value: "c", label: "Both were in progress." },
               ],
               expectedAnswer: "b",
@@ -408,10 +408,10 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       id: "your-turn-what-happened",
       title: "Your Turn: What Happened?",
       explanation: `
-        ${sceneCard("sceneInspector", "Building hallway. Wednesday afternoon. Housing inspector visit.", "sage")}
+        ${sceneCard("sceneInspector", "Building hallway. Wednesday afternoon. Ms. Rivera from Inspectional Services visits.", "sage")}
         ${dialogue([
-          { speaker: "Officer Davis", avatar: "👩‍💼", text: "Ms. Lucia, I need you to look over this written statement. Tell me if anything is wrong.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Of course. I want to make sure it is right.", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Rivera", avatar: "👩‍💼", text: "Lucia, please look over this written statement. Tell me if anything is wrong.", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👩🏽", text: "Sure. I want to get it right.", side: "right", tone: "terracotta" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Help Lucia check her written statement. Correct the errors and build accurate sentences for the inspector's report.</p>
       `,
@@ -462,7 +462,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "The kids ___ (not / wake up) when the water started. They stayed asleep.",
+              label: "The kids ___ (not / wake up) when the water started. They woke up later.",
               expectedAnswers: ["did not wake up", "didn't wake up"],
             },
           ],
@@ -509,7 +509,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
     {
       id: "iwh-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
+      question: "Fill in the blank: \"While Lucia ___ the landlord, Amina heard her voice.\" (Action in progress: past continuous.)",
       correctAnswer: "was calling",
       explanation: "'While' introduces the action that was in progress, so past continuous (was calling) is needed. 'Called' would use past simple.",
       topic: "when-while",

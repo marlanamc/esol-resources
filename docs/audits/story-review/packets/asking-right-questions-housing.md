@@ -86,7 +86,7 @@ How much asks about price or an uncountable amount. How many asks about a counta
 - **Scott:** Sure. The two-bedroom apartment is $1,350 a month.
 - **Nadine:** Do you know if heat is included?
 - **Scott:** Yes, heat and hot water are both included.
-- **Nadine:** Can you tell me whether children are allowed?
+- **Nadine:** Can you tell me whether parking spots are included?
 
 Indirect questions are polite. After "Can you tell me" or "Do you know," the word order changes to statement order. No inversion.
 
@@ -108,15 +108,15 @@ Can you tell me + what/where/when/how much + [subject + verb]? Do you know + if/
 
 **Exercise: Write the missing word**
 - Can you tell me ___ the deposit is?
-- Do you know ___ children are allowed?
+- Do you know ___ parking spots are included?
 
 ## 4. Questions to Ask Before You Waste a Trip
 
 > 🖼 **Scene:** Outside the hotel, East Boston. Rosa and Nadine compare calls after the evening shift.  
 > _Photo shows: Two women talking outside on a city sidewalk in the evening after their work shift._
 
-- **Rosa:** Did you ask about children? I forgot.
-- **Nadine:** I said: Can you tell me whether children are allowed? He said yes.
+- **Rosa:** Did you ask about parking? I forgot.
+- **Nadine:** I said: Can you tell me whether parking spots are included? He said yes.
 - **Rosa:** Good. How long is the lease?
 - **Nadine:** One year. He has appointments on Monday. Do you know when you can go?
 - **Rosa:** Monday morning works. I have the day off. I’ll call him now.
@@ -127,7 +127,7 @@ How much is the rent? / Can you tell me how much the rent is?
 
 Is heat included? / Do you know if heat is included?
 
-Are children allowed? / Can you tell me whether children are allowed?
+Are parking spots included? / Can you tell me whether parking spots are included?
 
 How long is the lease?
 
@@ -144,7 +144,7 @@ Direct questions are fast and clear on the phone. Indirect questions sound polit
 - You are at a property management office and want to ask about the lease. Which is better? _(options: How long is the lease? / Can you tell me how long the lease is?)_
 
 **Exercise: Direct to indirect**
-- Direct: "Are children allowed?" Indirect version: _(options: Can you tell me if are children allowed? / Can you tell me if children are allowed? / Do you know children are allowed?)_
+- Direct: "Are parking spots included?" Indirect version: _(options: Can you tell me if are parking spots included? / Can you tell me if parking spots are included? / Do you know parking spots are included?)_
 - Direct: "When can I move in?" Indirect version: _(options: Do you know when can I move in? / Do you know when I can move in? / Can you tell me when I in can move?)_
 
 **Exercise: Build the question**
@@ -161,5 +161,5 @@ Direct questions are fast and clear on the phone. Indirect questions sound polit
 - Rosa wants to ask about the price of rent. Which question word does she use? _(options: How many / How much / How long)_
 - Fill in the blank: "Can you tell me ___ heat is included?" (Indirect question: use if or whether.)
 - Rosa calls about an apartment listing. Put the words in order to ask about the water bill.
-- Which sentence has a word order mistake? _(options: Do you know if heat is included? / Can you tell me when is it available? / Can you tell me whether children are allowed?)_
+- Which sentence has a word order mistake? _(options: Do you know if heat is included? / Can you tell me when is it available? / Can you tell me whether parking spots are included?)_
 

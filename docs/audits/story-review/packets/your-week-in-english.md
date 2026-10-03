@@ -37,8 +37,8 @@ Before a main verb: I always take the bus.
 After the verb be: She is sometimes late.
 
 **Exercise: Adverb position**
-- Fatima is always on time for class. Where does 'always' go in this sentence? _(options: Correct. After 'is' because 'be' comes first. / Wrong. It should go before 'is'. / Wrong. It should go at the end.)_
-- Rosa ___ takes the 111 bus to class. Which adverb means she takes it about 80% of the time? _(options: always / usually / rarely)_
+- The 111 bus is always crowded at 5:30. Where does 'always' go in this sentence? _(options: Correct. After 'is' because 'be' comes first. / Wrong. It should go before 'is'. / Wrong. It should go at the end.)_
+- Fatima ___ leaves home at 5:30. Which adverb means she does it about 80% of the time? _(options: always / usually / rarely)_
 - "She sometimes is late." Is this sentence correct? _(options: Yes, it is correct. / No. With 'be', the adverb comes after: 'She is sometimes late.')_
 
 **Exercise: Build the sentence**
@@ -84,7 +84,7 @@ With doesn't, the main verb goes back to the base form. She doesn't work (not wo
 - **Classmate:** Linh, how do you find time to practice English?
 - **Linh:** I listen to podcasts every day on the bus. And I watch videos twice a week after work.
 - **Classmate:** What about class?
-- **Linh:** I come here on Tuesdays and Thursdays. In the morning I review my notes before work.
+- **Linh:** I go to class on Tuesdays and Thursdays. In the morning I review my notes before work.
 
 Time expressions say when or how often something happens. They usually go at the beginning or end of a sentence.
 
@@ -99,7 +99,7 @@ Adverbs of frequency go inside the sentence (before the verb). Time expressions 
 
 **Exercise: Build the sentence**
 - Unscramble:
-- Carlos works ___ Saturdays. (Use one preposition.)
+- Carlos doesn't work ___ Saturdays. (Use one preposition.)
 
 ## 4. This week I've already...
 
@@ -108,9 +108,9 @@ Adverbs of frequency go inside the sentence (before the verb). Time expressions 
 
 - **Coworker:** Jean, are you tired? It's been a long week.
 - **Jean:** Yes! This week I have already worked three ten-hour shifts.
-- **Coworker:** Have you gone to your English class?
-- **Jean:** I have already gone twice this week. And I have already done all my homework.
-- **Coworker:** You work hard!
+- **Coworker:** Did you still make it to English class?
+- **Jean:** Yes, I have already gone twice this week. I have already done my homework too.
+- **Coworker:** Wow. Go home and sleep!
 
 You saw already in the Week 5 guide. Here it shows up again. When something is finished this week or today, English uses have/has + already + V3.
 
@@ -132,11 +132,11 @@ I / You / We / They use have. He / She / It uses has. The main verb is always V3
 > _Photo shows: Two neighbors chatting outside an apartment building on the sidewalk._
 
 - **Neighbor:** Valentina, do you ever have a free evening? We'd love to have you and the kids over.
-- **Valentina:** Saturday would be good. I’m always home with them that evening.
 - **Valentina:** I usually work Monday to Friday at the clinic, but I never work weekends.
 - **Neighbor:** What about English class? Is that on the weekend?
 - **Valentina:** No, it’s twice a week, on Tuesday and Thursday evenings.
-- **Valentina:** Saturday works for us. I’ll check with the kids and text you.
+- **Neighbor:** So how about next Saturday?
+- **Valentina:** Saturday works. I’m always home with them that evening. I’ll check with the kids and text you.
 
 Put it all together: adverbs of frequency + present simple + time expressions + already = a full picture of your week.
 
@@ -159,6 +159,6 @@ I usually work five days a week. I always take the bus in the morning. I come to
 - Your coworker asks about your coffee habit. Which answer is correct? _(options: I drink always coffee at work. / I always drink coffee at work. / Always I drink coffee at work.)_
 - Fill in the blank: "Carlos ___ to class on Tuesdays and Thursdays." (come: he/she/it form)
 - "She don't work on Sundays." What is wrong with this sentence? _(options: Nothing is wrong. / Should be 'doesn't' because 'she' is third person singular. / Should be 'didn't' because it happened in the past.)_
-- Rosa describes her morning commute. Put the words in order.
+- Fatima describes her trip to class. Put the words in order.
 - "She is always late." Where does 'always' go in this sentence? _(options: It should go before 'is': She always is late. / It should go at the end: She is late always. / It is in the right place. With 'be', the adverb comes after.)_
 

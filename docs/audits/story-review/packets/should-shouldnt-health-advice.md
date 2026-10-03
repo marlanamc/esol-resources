@@ -56,7 +56,7 @@ The doctor comes in after the nurse. He has more to say.
 - **Dr. Mitchell:** Hi Yolanda. The nurse told me about your back. You ought to take anti-inflammatory medicine with food for the next five days.
 - **Yolanda:** Okay. Can I still go to work?
 - **Dr. Mitchell:** You had better not go back until Thursday. If you do, you could make this a lot worse. I'm serious.
-- **Yolanda:** I understand. I'll call my supervisor.
+- **Yolanda:** I understand. I'll text my supervisor.
 
 Ought to is similar to should. It means "this is a good idea." Had better is stronger. It means "do this or something bad will happen."
 
@@ -86,11 +86,11 @@ Note: Had better sounds formal or serious. Doctors, supervisors, and parents use
 
 ## 3. Asking for Advice
 
-In the next curtained area, Rami is also at the clinic. He had a bad cough for a week. When he hears Yolanda struggling to understand the nurse's fast instructions, he helps her ask again.
+In the next curtained area, Rami is also at the clinic. He has had a bad cough for a week. When he hears Yolanda struggling to understand the nurse's fast instructions, he helps her ask again.
 
 - **Yolanda:** Excuse me. Should I take ibuprofen or just rest?
 - **Nurse Sandra:** You can take ibuprofen every six hours. Not more than that.
-- **Rami:** Before we go, should we ask about physical therapy?
+- **Rami:** Before you go, should you ask about physical therapy too?
 - **Yolanda:** Good idea. Excuse me, should I see a physical therapist too?
 - **Nurse Sandra:** Yes. You ought to call this number. They take MassHealth.
 
@@ -128,24 +128,24 @@ Shouldn't = bad idea, but not dangerous
 
 Must not / Mustn't = dangerous, forbidden, or a hard medical rule
 
-Yolanda is back home, resting. Rami texts her to check in.
+Back home, Yolanda texts her supervisor, Mark: "The doctor says I had better not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You shouldn't lift anything heavy that first week."
 
 **Exercise: Advice or Hard Rule?**
-- You ___ mix ibuprofen and blood pressure medicine. It can cause a medical emergency. _(options: shouldn't / must not)_
+- You ___ take ibuprofen and your blood pressure medicine together. The pharmacist was very clear. _(options: shouldn't / must not)_
 - You ___ skip doses. You'll recover faster if you take all of them. _(options: shouldn't / must not)_
-- You ___ drive after taking this medicine. It causes serious drowsiness. _(options: shouldn't / must not)_
+- A different bottle says: CAUSES SERIOUS DROWSINESS. You ___ drive after taking that medicine. _(options: shouldn't / must not)_
 
 **Exercise: Error Detection**
-- Which sentence uses the wrong modal for the situation? _(options: "You shouldn't take this medicine on an empty stomach. It will damage your stomach lining permanently." (dangerous situation) / "You shouldn't stay up too late tonight. Rest is important." (general advice) / "You ought to drink more water during the day." (general advice))_
+- Which sentence uses the wrong modal for the situation? _(options: "You shouldn't take this medicine on an empty stomach." (the pharmacist's hard rule) / "You shouldn't stay up too late tonight. Rest is important." (general advice) / "You ought to drink more water during the day." (general advice))_
 
 **Exercise: Pharmacist Warning**
 - Write a hard rule about taking medicine. Start with: You must not ...
 
 ## Mini quiz
 
-- The nurse says: "You ___ rest for two days." Which word fits best? _(options: must / should / will)_
 - The doctor says: "You had better not go back to work until Thursday." Why does he use 'had better'? _(options: He's being polite and it's just a suggestion. / He's giving a strong warning. If she goes back, something bad will happen. / He's talking about what she did in the past.)_
 - Fill in the blank: "Yolanda's back hurts. She ___ lift heavy boxes today." (bad idea)
 - The pharmacist says: "You must not mix this with your blood pressure medicine." Why 'must not' and not 'shouldn't'? _(options: It's just a general suggestion, not urgent. / It's a hard rule. Mixing them is dangerous. / It happened in the past.)_
 - The doctor gives Yolanda a strong warning about her back. Put the words in order.
+- Which sentence has an error? _(options: You must not take this on an empty stomach. / You should rest for two days. / You should to call your supervisor.)_
 

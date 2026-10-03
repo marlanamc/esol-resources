@@ -6,15 +6,15 @@
 
 ## Automatic signals
 
-- Section(s) with a cast that appears nowhere else: "I'm Not Used to the Cold Yet", "Three "Used To" Patterns: Don't Mix Them Up".
+- Section(s) with a cast that appears nowhere else: "I'm Used to Working Nights", "I'm Not Used to the Cold Yet", "Three "Used To" Patterns: Don't Mix Them Up".
 
 ## Cast by section
 
 - I'm Used to Working Nights: Jennifer, Rafael
 - I'm Not Used to the Cold Yet: Priya, Angelo
-- I'm Getting Used to School Emails: Fabienne
+- I'm Getting Used to School Emails: Fabienne, Nadine
 - Three "Used To" Patterns: Don't Mix Them Up: Jean, Claudette
-- Still Adjusting: One Hard Week: Fabienne, Jennifer
+- Still Adjusting: One Hard Week: Fabienne, Mark
 
 ---
 
@@ -46,10 +46,10 @@ Be used to + gerund = something feels familiar or normal now. Not the same as us
 > 🖼 **Scene:** Bus stop near Maverick Square. Wednesday, 5:30 AM.  
 > _Photo shows: A city bus on a cold winter street with commuters waiting at the curb._
 
-Priya is a home health aide. She texts her classmate Angelo before her first transfer. It is January, and the wind is sharp.
+Priya is a home health aide. She waits with her classmate Angelo for her first transfer. It is January, and the wind is sharp.
 
 - **Priya:** I'm not used to waiting outside this long. My hands are freezing.
-- **Angelo:** Me too. I moved here in August.
+- **Angelo:** Same. I moved here in August. This is my first winter.
 - **Priya:** I'm also not used to switching buses in the dark. Back home I walked to work.
 - **Angelo:** Me too. I used to walk everywhere. Let’s wait inside until the bus is closer.
 
@@ -57,7 +57,7 @@ Negative: am / is / are + not + used to + gerund. Something still feels uncomfor
 
 **Exercise: Choose the correct negative**
 - Priya still finds the cold hard. Which sentence is correct? _(options: I'm not used to wait outside in January. / I'm not used to waiting outside in January. / I didn't use to waiting outside in January.)_
-- Angelo rode a bike everywhere back home. Which sentence is correct? _(options: I'm used to ride a bike everywhere. / I used to ride a bike everywhere. / I used to riding a bike everywhere.)_
+- Angelo walked everywhere back home, even to the market. Which sentence is correct? _(options: I'm used to walk to the market every day. / I used to walk to the market every day. / I used to walking to the market every day.)_
 
 **Exercise: Fill in the blank**
 - I'm not used to ___ (switch) buses in the dark.
@@ -70,11 +70,11 @@ Negative: am / is / are + not + used to + gerund. Something still feels uncomfor
 > 🖼 **Scene:** Bus stop after a double shift. Thursday, 6:45 PM.  
 > _Photo shows: A parent at a bus stop checking messages on their phone after a double shift._
 
-Fabienne packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English.
+Fabienne packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English. She texts her classmate Nadine.
 
 - **Fabienne:** I'm getting used to reading school emails in English.
 - **Fabienne:** I still have to read some of them twice, especially the ones about school health forms.
-- **Classmate:** Same here. I’m getting used to the vocabulary, but I still ask the teacher when I’m not sure.
+- **Nadine:** Same here. I’m getting used to the vocabulary, but I still ask the teacher when I’m not sure.
 
 Get used to + gerund = the process of adapting. It is getting easier, but you are not fully comfortable yet.
 
@@ -97,7 +97,7 @@ Jean sits with his cousin Claudette after service. They are figuring out which s
 
 - **Jean:** I’m getting used to the early service here. Can you come next Sunday?
 - **Claudette:** I’ll try. I’m used to working late on Saturdays, so getting up is the hard part.
-- **Jean:** I know what you mean. I used to work only days. Now I work nights too. We could go to a later service.
+- **Jean:** I know. I used to work only days. Now I work nights too. We could try a later service.
 
 used to + verb = past habit, not true now. be used to + -ing = familiar now. get used to + -ing = still adapting.
 
@@ -114,16 +114,16 @@ used to + verb = past habit, not true now. be used to + -ing = familiar now. get
 
 ## 5. Still Adjusting: One Hard Week
 
-> 🖼 **Scene:** Warehouse break room. Friday, 2 PM.  
+> 🖼 **Scene:** Warehouse break room. Wednesday, 2 PM.  
 > _Photo shows: Two coworkers talking in a break room before a shift change._
 
-It has been a hard week for Fabienne: night shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. She texts her supervisor Jennifer.
+It has been a hard week for Fabienne: double shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor Mark.
 
-- **Fabienne:** Hi Jennifer. Can I take Friday off? Parent-teacher meeting at 10.
-- **Jennifer:** Let me check the schedule. How are you holding up?
+- **Fabienne:** Hi Mark. Can I take Friday off? I have a parent-teacher meeting at 10.
+- **Mark:** Let me check the schedule. How are you holding up?
 - **Fabienne:** I'm used to working overtime, but I'm not used to reading every school email in English yet.
-- **Fabienne:** And I’m still getting used to the night shift. Could I make up the hours on Saturday?
-- **Jennifer:** OK. I'll try to cover Friday.
+- **Fabienne:** And I’m still getting used to the double shifts. Could I make up the hours on Saturday?
+- **Mark:** OK. I'll try to cover Friday.
 
 **Exercise: Pick the right pattern**
 - Before she moved, Fabienne always slept before midnight. Not now. _(options: I used to sleep before midnight. / I'm used to sleeping before midnight. / I'm getting used to sleeping before midnight.)_
@@ -132,7 +132,7 @@ It has been a hard week for Fabienne: night shifts, a cold commute, English scho
 - Winter mornings are still new, but getting easier. _(options: I'm getting used to the winter mornings. / I'm used to the winter mornings already. / I used to the winter mornings.)_
 
 **Exercise: Fill in the blank**
-- I'm ___ used to the night shift. (still adapting)
+- I'm ___ used to the double shifts. (still adapting)
 
 **Exercise: Unscramble**
 - Build Priya's sentence about winter chores:
@@ -146,5 +146,5 @@ It has been a hard week for Fabienne: night shifts, a cold commute, English scho
 - What does "getting used to" mean? _(options: Already fully comfortable / Still adapting, but it is getting easier / A habit from the past that ended)_
 - Fill in the blank: "I'm not used to ___ outside in January." (Priya still finds the cold bus stop hard.)
 - Find the error: "She is used to work two jobs." _(options: No error. / Error: should be "used to working" (-ing after be used to). / Error: should be "used to work" as a past habit.)_
-- Rafael describes his double-shift routine at the hotel. Put the words in order.
+- Jean describes his cousin Claudette's routine. Put the words in order.
 

@@ -77,8 +77,8 @@ The form: Subject + have / has + V3 + for or since + time Examples: have worked,
 - **Kevin:** How long have you had your current plan?
 - **Rosa:** I have had it for three years. I pay $65 a month.
 - **Kevin:** Three years at $65? You can get the same data for $40.
-- **Rosa:** Really? How long has that plan been available?
-- **Kevin:** It has been available since last summer.
+- **Rosa:** Really? I have paid too much for three years! I'm switching today.
+- **Kevin:** Smart. That plan has been our best deal since last summer.
 
 How long have you...? is the question. The answer uses for or since.
 
@@ -105,15 +105,15 @@ How long + have/has + subject + V3? How long have you had this plan? How long ha
 
 - **Javier:** How long have you worked here?
 - **Beatriz:** I have worked here for two years. You?
-- **Javier:** I have been here since the restaurant opened.
+- **Javier:** I have been here since the restaurant opened in 2015.
 - **Beatriz:** That’s a long time! When did you last take a day off?
-- **Javier:** I took a day off last month. Just one day.
+- **Javier:** I took one day off last month. And Kofi left last Tuesday, so now we're short.
 
 Key question to ask yourself: Is this situation still true NOW? Use present perfect + for/since. Is it finished? Use past simple.
 
 **Exercise: Still true now or finished?**
-- Javier ___ at this restaurant for two years. (He still works there.) _(options: worked (past simple. finished) / has worked (present perfect. still true now))_
-- Beatriz ___ the restaurant last Tuesday. (She is not there anymore.) _(options: left (past simple. finished) / has left (present perfect))_
+- Beatriz ___ at this restaurant for two years. (She still works there.) _(options: worked (past simple. finished) / has worked (present perfect. still true now))_
+- Kofi, the dishwasher, ___ the restaurant last Tuesday. (He is not there anymore.) _(options: left (past simple. finished) / has left (present perfect))_
 - They ___ the same manager since the restaurant opened. (Still the same manager now.) _(options: had (past simple. finished) / have had (present perfect. still true now))_
 
 **Exercise: Error correction**
@@ -128,11 +128,11 @@ Key question to ask yourself: Is this situation still true NOW? Use present perf
 > 🖼 **Scene:** Rosa's apartment, East Boston. The family is discussing their lease over dinner.  
 > _Photo shows: Family gathered around a table for dinner, sharing food and conversation._
 
-- **Rosa:** Mami, how long have we lived in this apartment?
-- **Teresa:** We have lived here for five years. Since before your brother was born.
-- **Rosa:** And now the lease ends in March. How long have the kids gone to that school?
-- **Teresa:** Four years. I do not want to change their school.
-- **Rosa:** Neither do I. I have been looking at apartments nearby for weeks. Everything costs more.
+- **Rosa:** Mami, this rental application asks how long we have lived here. Five years, right?
+- **Teresa:** Yes, we have lived here for five years. Since before your brother was born.
+- **Rosa:** Our lease ends in March, and everything nearby costs more.
+- **Teresa:** The kids have gone to that school for four years. I don't want to change their school.
+- **Rosa:** Neither do I. I have been looking at apartments nearby for weeks.
 
 Common real-life situations that use for and since:
 
@@ -149,7 +149,7 @@ How long has it been since you saw your family?
 **Exercise: For or Since?**
 - Rosa's family has lived in the apartment ___ five years. _(options: for / since)_
 - She has worked evening shifts ___ three years. _(options: for / since)_
-- The children have gone to the same school ___ 2020. _(options: for / since)_
+- The children have gone to the same school ___ kindergarten. _(options: for / since)_
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -165,9 +165,9 @@ How long has it been since you saw your family?
 
 ## Mini quiz
 
-- Rosa has had her phone plan since 2021. She wants to say the same thing using 'for'. It is now 2024. What does she say? _(options: I have had this plan for since three years. / I have had this plan for three years. / I have had this plan for 2021.)_
-- Rosa's friend asks about her apartment. Choose the correct for/since sentence. _(options: She has lived here since four years. / She has lived here for 2020. / She has lived here since 2020.)_
+- Rosa got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say? _(options: I have had this plan for since three years. / I have had this plan for three years. / I have had this plan for 2023.)_
+- Rosa's friend asks about her apartment. Choose the correct for/since sentence. _(options: She has lived here since five years. / She has lived here for 2021. / She has lived here since 2021.)_
 - Fill in the blank: "I have lived here ___ 2020." (Which word shows a starting point in time?)
 - Your neighbor asks how long you have lived in East Boston. Put the words in order.
-- Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct? _(options: Beatriz has left the restaurant since last Tuesday. / Beatriz has worked at the restaurant for last Tuesday. / Beatriz left the restaurant last Tuesday.)_
+- Kofi's last day at the restaurant was Tuesday of last week. He does not work there anymore. Which sentence is correct? _(options: Kofi has left the restaurant since last Tuesday. / Kofi has worked at the restaurant for last Tuesday. / Kofi left the restaurant last Tuesday.)_
 

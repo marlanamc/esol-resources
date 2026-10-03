@@ -74,7 +74,7 @@ Common mistake: ✗ "I have worked here since two years." ✓ "I have worked her
 
 ## 3. The Form: have/has + past participle
 
-> 🖼 **Scene:** Hotel HR office. Rosa fills out a work history form.  
+> 🖼 **Scene:** Hotel HR office. Jennifer calls Rosa's current job to check her work history.  
 > _Photo shows: Woman with purple hair talking on phone at desk._
 
 I / you / we / they + have + past participle (V3) he / she / it + has + past participle (V3)
@@ -102,34 +102,36 @@ I / you / we / they + have + past participle (V3) he / she / it + has + past par
 Present Perfect = started in the past and still true right now. Past Simple = finished. That job, that apartment, that situation is done.
 
 **Exercise: Still true or finished?**
-- Rosa still works at the cleaning company. She ___ there for three years. _(options: has worked (still there) / worked (she left))_
+- Rosa still works at her current job. She ___ there for three years. _(options: has worked (still there) / worked (she left))_
 - Claudette's old apartment was in Chelsea, but she moved. She ___ there for one year. _(options: has lived (still there) / lived (she moved away))_
 
 **Exercise: Spot the error**
-- Rosa quit her old job last month. Which sentence describes this correctly? _(options: She worked there for two years. (Past Simple, finished) / She has worked there for two years. (Present Perfect, still going))_
+- The first candidate left the Marriott last month. Which sentence describes this correctly? _(options: She worked there for two years. (Past Simple, finished) / She has worked there for two years. (Present Perfect, still going))_
 
 **Exercise: Fill in the correct tense**
 - Maria still lives on Meridian Street. She ___ (live) there since 2022.
-- Claudette moved last year. She ___ (work) at that hotel for two years before she left.
+- Before this hotel, Claudette ___ (work) at a hotel in Chelsea for two years.
 
 ## 5. Putting It All Together
 
 > 🖼 **Scene:** Hotel HR office. Rosa's final interview round. Tuesday, 2 PM.  
 > _Photo shows: Two people in a professional meeting, one taking notes and one speaking._
 
-Before the interview, Rosa's coworker Yemi coaches her in the break room.
+Before the interview, Rosa practices with Yemi, a coworker at her current job, during their break.
 
-- **Yemi:** They'll ask how long. Don't say 'I worked.' Say 'I have worked' so they know you're still going.
-- **Rosa:** OK. How long have I worked in housekeeping? Three years. Since 2021.
+- **Yemi:** They'll ask how long you've been in housekeeping. Don't be nervous. Just tell the truth.
+- **Rosa:** OK. How long have I worked in housekeeping? Three years. Since 2023.
 - **Yemi:** Perfect. And how long in East Boston?
 - **Rosa:** I have lived here for five years. I know this neighborhood.
 
 At the interview with Jennifer:
 
 - **Jennifer (HR):** How long have you worked in hotel housekeeping?
-- **Rosa:** I have worked in housekeeping for three years, since 2021.
+- **Rosa:** I have worked in housekeeping for three years, since 2023.
 - **Jennifer (HR):** And have you ever supervised other cleaners?
 - **Rosa:** I haven't been a supervisor, but I've trained two new workers at my current job.
+- **Jennifer (HR):** Good. We'd like to offer you the job. When could you start?
+- **Rosa:** Thank you! I'll give my notice tomorrow, so in two weeks.
 
 The negative is simple: haven't or hasn't + past participle. "I haven't worked a night shift before, but I can." That's an honest answer that still sounds professional.
 

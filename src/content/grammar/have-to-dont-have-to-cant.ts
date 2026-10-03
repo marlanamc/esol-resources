@@ -87,9 +87,9 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "My heat stopped working on Monday. It's freezing in my apartment. What can I do?", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "The landlord <strong>has to</strong> provide heat. It's the law in Massachusetts.", side: "left", tone: "sage" },
+          { speaker: "Lisa", avatar: "👩🏾", text: "The landlord <strong>has to</strong> provide heat. It's the law in Massachusetts.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And if he doesn't fix it?", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "He <strong>has to</strong> fix it within 24 hours in winter. You don't <strong>have to</strong> wait. Call the city inspector.", side: "left", tone: "sage" },
+          { speaker: "Lisa", avatar: "👩🏾", text: "He <strong>has to</strong> fix it within 24 hours in winter. You don't <strong>have to</strong> wait. Call the city inspector.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -137,7 +137,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa and her roommate ___ pay rent on the first. (have to / has to)",
+              label: "All the tenants in Rosa's building ___ pay rent on the first. (have to / has to)",
               options: [
                 { value: "a", label: "has to" },
                 { value: "b", label: "have to" },
@@ -413,8 +413,8 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏾", text: "Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says landlords <strong>have to</strong> keep the heat above 68 degrees from September to June.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏾", text: "That's required. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.' So it's not your responsibility.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> retaliate if you file a complaint.' Good to know.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏾", text: "So he has no choice. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.'", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> retaliate if you file a complaint.' Good. Then I'm calling the inspector today.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0">

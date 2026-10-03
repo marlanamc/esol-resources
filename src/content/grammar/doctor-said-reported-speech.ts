@@ -90,11 +90,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneClinicCall", "East Boston Neighborhood Health Center. Tuesday, 4:30 PM.", "sage")}
 
-        <p>Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler appointment.</p>
+        <p>Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.</p>
 
         ${dialogue([
-          { speaker: "Nurse Kelly", avatar: "👩‍⚕️", text: "Hi, this is <strong>Kelly</strong> from East Boston Neighborhood Health Center. I'm calling about Amina's inhaler.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yes, hi. Her blue inhaler is almost empty.", side: "right", tone: "terracotta" },
+          { speaker: "Nurse Kelly", avatar: "👩‍⚕️", text: "Hi, this is Kelly from East Boston Neighborhood Health Center. Our records show Amina's blue inhaler <strong>is</strong> almost empty.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Yes, hi. She used it twice last night.", side: "right", tone: "terracotta" },
           { speaker: "Nurse Kelly", avatar: "👩‍⚕️", text: "The doctor <strong>says</strong> the pharmacy <strong>can</strong> refill it today if you come before 6.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "OK. I'll write it down and tell my husband.", side: "right", tone: "terracotta" },
         ])}
@@ -176,7 +176,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantShift", "Marco's restaurant on Meridian Street. Tuesday, 5:45 PM.", "terracotta")}
+        ${sceneCard("sceneRestaurantShift", "Marco's restaurant on Meridian Street. Tuesday, 4:45 PM.", "terracotta")}
 
         <p>Marco is wiping down the prep station when Amara texts him. He reads it between orders.</p>
 
@@ -271,12 +271,12 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBabysitter", "Amara and Marco's apartment. Wednesday morning.", "blue")}
 
-        <p>Marco picked up the new inhaler after his shift. Their cousin Gloria is watching Amina before school. Marco needs to pass on the doctor's instructions.</p>
+        <p>Marco left work early and picked up the new inhaler before 6. Their cousin Gloria is watching Amina before school. Marco needs to pass on the pharmacist's instructions.</p>
 
         ${dialogue([
-          { speaker: "Marco", avatar: "👨🏽", text: "The doctor <strong>told me to</strong> keep the inhaler in a warm place, not the cold car.", side: "right", tone: "terracotta" },
+          { speaker: "Marco", avatar: "👨🏽", text: "The pharmacist <strong>told me to</strong> keep the inhaler at room temperature, not in the cold car.", side: "right", tone: "terracotta" },
           { speaker: "Gloria", avatar: "👩🏾", text: "OK. I'll keep it in the kitchen drawer.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "He <strong>asked Amara to</strong> call if Amina's breathing gets worse.", side: "right", tone: "terracotta" },
+          { speaker: "Marco", avatar: "👨🏽", text: "He <strong>asked us to</strong> call the clinic if Amina's breathing gets worse.", side: "right", tone: "terracotta" },
           { speaker: "Gloria", avatar: "👩🏾", text: "And the old nebulizer?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "He <strong>told us not to</strong> use it. It's too old.", side: "right", tone: "terracotta" },
         ])}
@@ -288,7 +288,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0 1.5rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem">
             ${labelPill("told me to", "sage")}
-            <span><em>Direct: "Keep it in a warm place." → He told me to keep it in a warm place.</em></span>
+            <span><em>Direct: "Keep it at room temperature." → He told me to keep it at room temperature.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem">
             ${labelPill("asked me to", "blue")}
@@ -300,7 +300,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p>Marco's grandmother Lucia called from Guatemala last week. She said the doctor <strong>told her to</strong> fast before her blood work. She wanted to know when she needed to stop eating before the appointment. Reported speech helps her explain the doctor's rules to the family.</p>
+        <p>Tonight Marco will call his mother Lucia in Guatemala. She worries about Amina, so he will tell her what the clinic and the pharmacist said.</p>
       `,
       exercises: [
         {
@@ -310,21 +310,21 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The doctor said: \"Shake the bottle before each use.\" How does Marco report this?",
+              label: "The pharmacist said: \"Shake the inhaler before each use.\" How does Marco report this?",
               options: [
-                { value: "a", label: "The doctor told me shaking the bottle before each use." },
-                { value: "b", label: "The doctor told me to shake the bottle before each use." },
-                { value: "c", label: "The doctor told me shake the bottle before each use." },
+                { value: "a", label: "The pharmacist told me shaking the inhaler before each use." },
+                { value: "b", label: "The pharmacist told me to shake the inhaler before each use." },
+                { value: "c", label: "The pharmacist told me shake the inhaler before each use." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "The doctor said: \"Don't use the old nebulizer.\" How does Marco report this?",
+              label: "The pharmacist said: \"Don't use the old nebulizer.\" How does Marco report this?",
               options: [
-                { value: "a", label: "The doctor told us not to use the old nebulizer." },
-                { value: "b", label: "The doctor told us don't use the old nebulizer." },
-                { value: "c", label: "The doctor told us to not use the old nebulizer." },
+                { value: "a", label: "The pharmacist told us not to use the old nebulizer." },
+                { value: "b", label: "The pharmacist told us don't use the old nebulizer." },
+                { value: "c", label: "The pharmacist told us to not use the old nebulizer." },
               ],
               expectedAnswer: "a",
             },
@@ -337,7 +337,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Direct: \"Call if her breathing gets worse.\" Reported: He asked Amara ___ call if her breathing got worse.",
+              label: "Direct: \"Call if her breathing gets worse.\" Reported: He asked us ___ call if her breathing got worse.",
               expectedAnswers: ["to"],
             },
           ],
@@ -349,8 +349,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "doctor", "told", "her", "not", "to", "use", "the", "old", "nebulizer"],
-              correctAnswer: "The doctor told her not to use the old nebulizer",
+              words: ["The", "pharmacist", "told", "us", "not", "to", "use", "the", "old", "nebulizer"],
+              correctAnswer: "The pharmacist told us not to use the old nebulizer",
             },
           ],
         },
@@ -365,7 +365,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "She Asked If…",
       icon: "❓",
       explanation: `
-        ${sceneCard("sceneTextingMarco", "Clinic follow-up call. Wednesday, 2 PM.", "sage")}
+        ${sceneCard("sceneTextingMarco", "Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.", "sage")}
 
         <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Amara was at work. Now he is telling Amara what Sarah asked.</p>
 
@@ -374,7 +374,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           { speaker: "Amara", avatar: "👩🏿", text: "What else?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "She <strong>asked when</strong> we <strong>could</strong> come for the follow-up.", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏿", text: "Did she ask about the insurance card?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought it last time.", side: "right", tone: "terracotta" },
+          { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought the new card last time. They don't have a copy.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -462,13 +462,13 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneCallingLucia", "Marco's break room. Wednesday, 9 PM.", "amber")}
 
-        <p>Marco calls his mother Lucia in Guatemala. She speaks limited English, so Marco uses simple reported speech to explain the whole visit.</p>
+        <p>Marco calls his mother Lucia in Guatemala on his break. She speaks limited English, so Marco uses simple reported speech to explain everything.</p>
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "Mamá, the nurse <strong>said that</strong> Amina's inhaler <strong>was</strong> almost empty.", side: "right", tone: "terracotta" },
-          { speaker: "Lucia", avatar: "👵🏽", text: "Ay, mijo. And the doctor?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "He <strong>told me to</strong> keep it warm. He <strong>told us not to</strong> use the old machine.", side: "right", tone: "terracotta" },
-          { speaker: "Lucia", avatar: "👵🏽", text: "OK. I’ll put the old machine away. When is Amina’s next appointment?", side: "left", tone: "sage" },
+          { speaker: "Lucia", avatar: "👵🏽", text: "Ay, mijo. And the pharmacy?", side: "left", tone: "sage" },
+          { speaker: "Marco", avatar: "👨🏽", text: "The pharmacist <strong>told me to</strong> keep it at room temperature. He <strong>told us not to</strong> use the old machine.", side: "right", tone: "terracotta" },
+          { speaker: "Lucia", avatar: "👵🏽", text: "Good. Tell Amina to call me after school. When is her next appointment?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "Sarah <strong>asked when</strong> we <strong>could</strong> come back. I <strong>said that</strong> Saturday might work. We’re waiting to hear.", side: "right", tone: "terracotta" },
         ])}
 
@@ -496,11 +496,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The doctor said: \"Don't use the old nebulizer.\"",
+              label: "The pharmacist said: \"Don't use the old nebulizer.\"",
               options: [
-                { value: "a", label: "The doctor said that we don't use the old nebulizer." },
-                { value: "b", label: "The doctor told us not to use the old nebulizer." },
-                { value: "c", label: "The doctor asked if we use the old nebulizer." },
+                { value: "a", label: "The pharmacist said that we don't use the old nebulizer." },
+                { value: "b", label: "The pharmacist told us not to use the old nebulizer." },
+                { value: "c", label: "The pharmacist asked if we use the old nebulizer." },
               ],
               expectedAnswer: "b",
             },
@@ -525,8 +525,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble Marco's sentence to Lucia:",
-              words: ["He", "told", "me", "to", "keep", "the", "inhaler", "in", "a", "warm", "place"],
-              correctAnswer: "He told me to keep the inhaler in a warm place",
+              words: ["He", "told", "me", "to", "keep", "the", "inhaler", "at", "room", "temperature"],
+              correctAnswer: "He told me to keep the inhaler at room temperature",
             },
           ],
         },
@@ -553,11 +553,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "doctor-said-q1",
-      question: "Kelly said: \"The new pills are stronger.\" How does Amara report this to Marco?",
+      question: "Kelly said: \"The new inhaler is ready.\" How does Amara report this to Marco?",
       options: [
-        { value: "a", label: "Kelly said that the new pills are stronger." },
-        { value: "b", label: "Kelly said that the new pills were stronger." },
-        { value: "c", label: "Kelly told me to the new pills were stronger." },
+        { value: "a", label: "Kelly said that the new inhaler is ready." },
+        { value: "b", label: "Kelly said that the new inhaler was ready." },
+        { value: "c", label: "Kelly told me to the new inhaler was ready." },
       ],
       correctAnswer: "b",
       explanation: "In reported statements, is becomes was. Use said that + subject + verb.",
@@ -568,11 +568,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "doctor-said-q3",
-      question: "The doctor said: \"Check your blood sugar every morning.\" How does Marco tell Gloria?",
+      question: "Kelly said: \"Bring the inhaler to the follow-up.\" How does Amara tell Marco?",
       options: [
-        { value: "a", label: "The doctor told me to check my blood sugar every morning." },
-        { value: "b", label: "The doctor said that check my blood sugar every morning." },
-        { value: "c", label: "The doctor asked me check my blood sugar every morning." },
+        { value: "a", label: "Kelly told me to bring the inhaler to the follow-up." },
+        { value: "b", label: "Kelly said that bring the inhaler to the follow-up." },
+        { value: "c", label: "Kelly asked me bring the inhaler to the follow-up." },
       ],
       correctAnswer: "a",
       explanation: "Commands use told + person + to + base verb.",
@@ -610,9 +610,9 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     {
       id: "doctor-said-ws1",
       type: "word-scramble" as const,
-      question: "Marco reports what the doctor said about Amina's inhaler. Put the words in order.",
-      words: ["The", "doctor", "told", "me", "to", "keep", "the", "inhaler", "warm"],
-      correctAnswer: "The doctor told me to keep the inhaler warm",
+      question: "Marco reports what the pharmacist said about Amina's inhaler. Put the words in order.",
+      words: ["The", "pharmacist", "told", "me", "to", "keep", "the", "inhaler", "inside"],
+      correctAnswer: "The pharmacist told me to keep the inhaler inside",
       hint: "reported command: told + person + to + verb",
       explanation: "Commands in reported speech use told + person + to + base verb.",
       topic: "reported-speech",

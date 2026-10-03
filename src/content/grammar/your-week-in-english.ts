@@ -141,7 +141,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fatima <strong>is always</strong> on time for class. Where does 'always' go in this sentence?",
+              label: "The 111 bus <strong>is always</strong> crowded at 5:30. Where does 'always' go in this sentence?",
               options: [
                 { value: "correct", label: "Correct. After 'is' because 'be' comes first." },
                 { value: "before", label: "Wrong. It should go before 'is'." },
@@ -151,7 +151,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa ___ takes the 111 bus to class. Which adverb means she takes it about 80% of the time?",
+              label: "Fatima ___ leaves home at 5:30. Which adverb means she does it about 80% of the time?",
               options: [
                 { value: "always", label: "always" },
                 { value: "usually", label: "usually" },
@@ -326,7 +326,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           { speaker: "Classmate", avatar: "🧑🏽", text: "Linh, how do you find time to practice English?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏾", text: "I listen to podcasts <strong>every day</strong> on the bus. And I watch videos <strong>twice a week</strong> after work.", side: "right", tone: "blue" },
           { speaker: "Classmate", avatar: "🧑🏽", text: "What about class?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "I come here <strong>on Tuesdays and Thursdays</strong>. <strong>In the morning</strong> I review my notes before work.", side: "right", tone: "blue" },
+          { speaker: "Linh", avatar: "👩🏾", text: "I go to class <strong>on Tuesdays and Thursdays</strong>. <strong>In the morning</strong> I review my notes before work.", side: "right", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -408,12 +408,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Linh", "practices", "English", "twice", "a", "week", "on", "the", "bus"],
-              correctAnswer: "Linh practices English twice a week on the bus",
+              words: ["Linh", "listens", "to", "podcasts", "every", "day", "on", "the", "bus"],
+              correctAnswer: "Linh listens to podcasts every day on the bus",
             },
             {
               type: "text",
-              label: "Carlos works ___ Saturdays. (Use one preposition.)",
+              label: "Carlos doesn't work ___ Saturdays. (Use one preposition.)",
               expectedAnswers: ["on"],
             },
           ],
@@ -435,9 +435,9 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Coworker", avatar: "👷", text: "Jean, are you tired? It's been a long week.", side: "left", tone: "sage" },
           { speaker: "Jean", avatar: "👨🏽", text: "Yes! This week I <strong>have already worked</strong> three ten-hour shifts.", side: "right", tone: "amber" },
-          { speaker: "Coworker", avatar: "👷", text: "Have you gone to your English class?", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏽", text: "I <strong>have already gone</strong> twice this week. And I <strong>have already done</strong> all my homework.", side: "right", tone: "amber" },
-          { speaker: "Coworker", avatar: "👷", text: "You work hard!", side: "left", tone: "sage" },
+          { speaker: "Coworker", avatar: "👷", text: "Did you still make it to English class?", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have already gone</strong> twice this week. I <strong>have already done</strong> my homework too.", side: "right", tone: "amber" },
+          { speaker: "Coworker", avatar: "👷", text: "Wow. Go home and sleep!", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -533,11 +533,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, do you ever have a free evening? We\'d love to have you and the kids over.", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday would be good. I’m <strong>always</strong> home with them that evening.", side: "right", tone: "terracotta" },
           { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic, but I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
           { speaker: "Neighbor", avatar: "🧑🏽", text: "What about English class? Is that on the weekend?", side: "left", tone: "sage" },
           { speaker: "Valentina", avatar: "👩🏾", text: "No, it’s <strong>twice a week</strong>, on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday works for us. I’ll check with the kids and text you.", side: "right", tone: "terracotta" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "So how about next Saturday?", side: "left", tone: "sage" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Saturday works. I’m <strong>always</strong> home with them that evening. I’ll check with the kids and text you.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -667,11 +667,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "your-week-qws1",
       type: "word-scramble" as const,
-      question: "Rosa describes her morning commute. Put the words in order.",
-      words: ["She", "usually", "takes", "the", "bus", "to", "work"],
-      correctAnswer: "She usually takes the bus to work",
+      question: "Fatima describes her trip to class. Put the words in order.",
+      words: ["She", "usually", "leaves", "home", "at", "5:30"],
+      correctAnswer: "She usually leaves home at 5:30",
       hint: "Adverbs of frequency go before the main verb",
-      explanation: "Usually goes before the main verb: She usually takes.",
+      explanation: "Usually goes before the main verb: She usually leaves.",
       topic: "adverbs-of-frequency",
       skill: "usage",
       skillTag: "adverb-position",

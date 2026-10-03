@@ -88,9 +88,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusCommute", "On the way home after her shift. Tuesday, 8:15 AM.", "sage")}
+        ${sceneCard("sceneBusCommute", "On the 114 bus after her shift. Tuesday, 1:15 PM.", "sage")}
 
-        <p>Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. After her morning shift, she video-calls her sister Mai on the 114 bus.</p>
+        <p>Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. After work, she video-calls her sister Mai on the 114 bus.</p>
 
         ${dialogue([
           { speaker: "Mai", avatar: "👩🏻", text: "How are the kids?", side: "left", tone: "sage" },
@@ -185,7 +185,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem">
             ${labelPill("negative", "terracotta")}
-            <span><em>I <strong>didn't use to</strong> cook dinner at 11 pm.</em> (Now I cook earlier.)</span>
+            <span><em>I <strong>didn't use to</strong> wake up at 4.</em> (Now I do.)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem">
             ${labelPill("question", "blue")}
@@ -228,7 +228,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I didn't ___ to cook dinner at 11 pm.",
+              label: "I didn't ___ to wake up at 4.",
               expectedAnswers: ["use"],
             },
           ],
@@ -267,9 +267,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartment", "Parking lot near the hotel. Tuesday, 3 PM.", "amber")}
+        ${sceneCard("sceneApartment", "Linh's street in East Boston. Tuesday, 3 PM.", "amber")}
 
-        <p>After her shift, Linh meets her classmate Carlos. They talk about life before and after Boston.</p>
+        <p>Linh runs into her classmate Carlos outside her building. They talk about life before and after Boston.</p>
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
@@ -409,7 +409,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
               label: "Which sentence has an error?",
               options: [
                 { value: "a", label: "I used to walk to work back home." },
-                { value: "b", label: "I am used to walk two buses now." },
+                { value: "b", label: "I am used to take two buses now." },
                 { value: "c", label: "I didn't use to meal-prep on Sundays." },
               ],
               expectedAnswer: "b",
@@ -462,8 +462,8 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Linh, tell us one thing that changed.", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to have</strong> family nearby. <strong>But now I</strong> only see them on video calls.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I miss my family too. And getting around is different. I <strong>used to</strong> drive, but now I take two buses to work.", side: "left", tone: "blue" },
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That’s a long day. <strong>Did you use to</strong> cook late at night too, Linh?", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I miss my family too. And my job changed. I <strong>used to</strong> work outside, but now I work in a freezer.", side: "left", tone: "blue" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That’s a big change. Linh, <strong>did you use to</strong> stay up late?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}
       `,
@@ -529,7 +529,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos says: \"I used to cooking dinner at 11 pm.\" What is wrong?",
+              label: "Linh writes: \"I used to cooking dinner at 11 pm.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
                 { value: "b", label: "Error: should be \"used to cook\" (base verb)." },
@@ -561,11 +561,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     },
     {
       id: "ut-q3",
-      question: "Linh wakes up later now. Which negative sentence is correct?",
+      question: "Linh starts work at 5 AM now. Back home, she started at 8. Which negative sentence is correct?",
       options: [
-        { value: "a", label: "I didn't used to sleep past 5 am." },
-        { value: "b", label: "I didn't use to sleep past 5 am." },
-        { value: "c", label: "I don't use to sleep past 5 am." },
+        { value: "a", label: "I didn't used to start work at 5." },
+        { value: "b", label: "I didn't use to start work at 5." },
+        { value: "c", label: "I don't use to start work at 5." },
       ],
       correctAnswer: "b",
       explanation: "Negative: didn't use to (no -d on use).",
@@ -607,7 +607,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       words: ["I", "used", "to", "see", "my", "cousins", "every", "Sunday"],
       correctAnswer: "I used to see my cousins every Sunday",
       hint: "used to + base verb for past habits",
-      explanation: "Used to + base verb (have) describes a past state that is no longer true.",
+      explanation: "Used to + base verb (see) describes a past habit that is no longer true.",
       topic: "used-to",
       skill: "usage",
       skillTag: "used-to-word-order",

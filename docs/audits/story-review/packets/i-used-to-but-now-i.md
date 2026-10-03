@@ -20,10 +20,10 @@ _None._
 
 ## 1. Life Was Different Back Home
 
-> 🖼 **Scene:** On the way home after her shift. Tuesday, 8:15 AM.  
+> 🖼 **Scene:** On the 114 bus after her shift. Tuesday, 1:15 PM.  
 > _Photo shows: A commuter on a city bus looking out the window during the morning commute._
 
-Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. After her morning shift, she video-calls her sister Mai on the 114 bus.
+Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. After work, she video-calls her sister Mai on the 114 bus.
 
 - **Mai:** How are the kids?
 - **Linh:** They're good. Busy with school.
@@ -60,17 +60,17 @@ Negative: didn't use to + base verb. No -d on use. Question: Did you use to + ba
 - Michelle asks about Linh's old schedule. Which question is correct? _(options: Did you used to wake up at 4? / Did you use to wake up at 4? / Do you use to wake up at 4?)_
 
 **Exercise: Fill in the blank**
-- I didn't ___ to cook dinner at 11 pm.
+- I didn't ___ to wake up at 4.
 
 **Exercise: Spot the error**
 - "I didn't used to meal-prep on Sundays." What is wrong? _(options: No error. / Error: should be "didn't use to" (no -d on use). / Error: should be "don't use to".)_
 
 ## 3. Before Boston, After Boston
 
-> 🖼 **Scene:** Parking lot near the hotel. Tuesday, 3 PM.  
+> 🖼 **Scene:** Linh's street in East Boston. Tuesday, 3 PM.  
 > _Photo shows: A three-decker apartment building on a residential urban street._
 
-After her shift, Linh meets her classmate Carlos. They talk about life before and after Boston.
+Linh runs into her classmate Carlos outside her building. They talk about life before and after Boston.
 
 - **Carlos:** Where did you live before you came here?
 - **Linh:** I used to live with my parents. But now I share a two-bedroom apartment with my cousin.
@@ -104,7 +104,7 @@ Used to + verb = past habit, not true now. Am used to + -ing = accustomed now (d
 
 **Exercise: Which sentence is correct?**
 - Linh packed rice every day in the past. She doesn't anymore. _(options: I used to pack rice in lunchboxes. / I am used to pack rice in lunchboxes. / I used to packing rice in lunchboxes.)_
-- Which sentence has an error? _(options: I used to walk to work back home. / I am used to walk two buses now. / I didn't use to meal-prep on Sundays.)_
+- Which sentence has an error? _(options: I used to walk to work back home. / I am used to take two buses now. / I didn't use to meal-prep on Sundays.)_
 
 **Exercise: Fill in the blank**
 - I ___ to pack rice every day. (past habit, not true now)
@@ -121,8 +121,8 @@ Ms. Tran asks students to share how life changed since they moved to Boston.
 
 - **Ms. Tran:** Linh, tell us one thing that changed.
 - **Linh:** I used to have family nearby. But now I only see them on video calls.
-- **Carlos:** I miss my family too. And getting around is different. I used to drive, but now I take two buses to work.
-- **Ms. Tran:** That’s a long day. Did you use to cook late at night too, Linh?
+- **Carlos:** I miss my family too. And my job changed. I used to work outside, but now I work in a freezer.
+- **Ms. Tran:** That’s a big change. Linh, did you use to stay up late?
 - **Linh:** Yes. I used to cook at 11 pm. But now I meal-prep on Sunday.
 
 **Exercise: Pick the right pattern**
@@ -136,12 +136,12 @@ Ms. Tran asks students to share how life changed since they moved to Boston.
 - Unscramble:
 
 **Exercise: Spot the error**
-- Carlos says: "I used to cooking dinner at 11 pm." What is wrong? _(options: No error. / Error: should be "used to cook" (base verb). / Error: should be "didn't used to cook".)_
+- Linh writes: "I used to cooking dinner at 11 pm." What is wrong? _(options: No error. / Error: should be "used to cook" (base verb). / Error: should be "didn't used to cook".)_
 
 ## Mini quiz
 
 - Linh used to walk to work, but now she takes two buses. What does "used to" describe in sentences like this? _(options: Something that is still true today / A past habit or state that ended / A plan for the future)_
-- Linh wakes up later now. Which negative sentence is correct? _(options: I didn't used to sleep past 5 am. / I didn't use to sleep past 5 am. / I don't use to sleep past 5 am.)_
+- Linh starts work at 5 AM now. Back home, she started at 8. Which negative sentence is correct? _(options: I didn't used to start work at 5. / I didn't use to start work at 5. / I don't use to start work at 5.)_
 - Fill in the blank: "I used to walk to work, but now I ___ two buses."
 - Find the error: "I used to packing PB&J in lunchboxes." _(options: No error. / Error: should be "used to pack" (base verb, not -ing). / Error: should be "didn't use to pack".)_
 - Linh talks about how her Sundays changed. Put the words in order.

@@ -124,10 +124,10 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "By the time Gloria walked in, she had already saved enough for the bus pass.",
+              label: "By the time Gloria walked in, the manager had already called her references.",
               options: [
                 { value: "a", label: "She walked into the warehouse" },
-                { value: "b", label: "She saved enough for the bus pass" },
+                { value: "b", label: "The manager called her references" },
               ],
               expectedAnswer: "b",
             },
@@ -149,12 +149,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "By the time she got the interview, she ___ (work) at the hotel for three years.",
+              label: "By the time she got the interview, she ___ (work) at the hotel for two years.",
               expectedAnswers: ["had worked"],
             },
             {
               type: "text",
-              label: "When the shift started, Gloria ___ (already arrive) at the loading dock.",
+              label: "When the manager came out, Gloria ___ (already arrive) at the front desk.",
               expectedAnswers: ["had already arrived"],
             },
           ],
@@ -173,7 +173,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "James", avatar: "👨🏿", text: "So what did you put on your application?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "I wrote that before this I <strong>had cleaned</strong> offices and <strong>had handled</strong> supply orders. Never drove a forklift, though.", side: "right", tone: "terracotta" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I wrote that I <strong>had cleaned</strong> hotel rooms and <strong>had handled</strong> supply orders. Never drove a forklift, though.", side: "right", tone: "terracotta" },
           { speaker: "James", avatar: "👨🏿", text: "Same. I <strong>hadn't driven</strong> one either before they trained me here.", side: "left", tone: "sage" },
         ])}
 
@@ -188,7 +188,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("positive", "sage")}
-            <span><em>She <strong>had cleaned</strong> offices for two years before she switched jobs.</em></span>
+            <span><em>She <strong>had cleaned</strong> hotel rooms for two years before she applied here.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("negative", "terracotta")}
@@ -252,7 +252,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Before she got this job, Gloria ___ (clean) offices at three different hotels.",
+              label: "Before she applied here, Gloria ___ (clean) hotel rooms for two years.",
               expectedAnswers: ["had cleaned"],
             },
           ],
@@ -350,7 +350,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Before she walked into the interview, she ___ (practice) her answers with a coworker.",
+              label: "Before she walked into the interview, she ___ (practice) her answers with a friend.",
               expectedAnswers: ["had practiced"],
             },
           ],
@@ -426,7 +426,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego ___ the supervisor job last week. (one fact, no sequence)",
+              label: "Diego ___ the supervisor job this morning. (one fact, no sequence)",
               options: [
                 { value: "a", label: "got (Past Simple)" },
                 { value: "b", label: "had got (Past Perfect)" },
@@ -444,7 +444,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "When his cousin called, Diego ___ the news already.",
+              label: "When Diego called his cousin, he ___ the news already.",
               options: [
                 { value: "a", label: "heard (Past Simple)" },
                 { value: "b", label: "had already heard (Past Perfect)" },
@@ -502,8 +502,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "That sounds exhausting. By the time I found this job, I <strong>had already saved</strong> enough to move closer. The shorter trip helps.", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "It really does. And the pay is better here. The restaurant <strong>hadn’t paid</strong> overtime, not once.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Lucky you. And the pay is better here. The restaurant <strong>hadn’t paid</strong> overtime, not once.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -542,7 +542,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "By the time she applied, she ___ (already save) enough to move closer to the bus.",
+              label: "By the time she found this job, she ___ (already save) enough to move.",
               expectedAnswers: ["had already saved"],
             },
           ],
@@ -623,7 +623,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Before she got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
+      question: "Fill in the blank: \"Before Amara got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
       correctAnswer: "had done",
       explanation: "Past Perfect (had done) shows the action that happened first, before she got the new job.",
       topic: "past-perfect",
@@ -649,7 +649,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qws1",
       type: "word-scramble" as const,
-      question: "Teresa finished her tasks before the manager arrived. Put the words in order.",
+      question: "Linh finished her tasks before the manager arrived. Put the words in order.",
       words: ["She", "had", "finished", "before", "the", "manager", "arrived"],
       correctAnswer: "She had finished before the manager arrived",
       hint: "had + past participle for the earlier action",

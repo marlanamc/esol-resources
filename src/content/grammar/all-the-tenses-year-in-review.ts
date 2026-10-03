@@ -99,17 +99,17 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "East Boston evening ESOL class. Thursday, June 5, 7 PM.", "sage")}
 
-        <p><strong>Ms. Tran</strong> stands at the front of the room. It is the last class of the year. She asks the class to look back at September and ahead to fall.</p>
+        <p><strong>Ms. Tran</strong> stands at the front of the room. It is the last class of the year. She asks the class about their plans for the fall.</p>
 
         ${dialogue([
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "You <strong>started</strong> this class in September. You <strong>have been studying</strong> all year. What <strong>will</strong> you do next?", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "It's our last night together. What <strong>will</strong> you do in the fall?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my lunch shifts.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I already <strong>work</strong> Saturdays at the hotel, too. Two evenings a week is about all I can manage.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "Me too. By August I <strong>will have finished</strong> Level 3. I hope we can stay in the same class.", side: "left", tone: "blue" },
+          { speaker: "David", avatar: "👨🏻", text: "Me too. We're both taking the free online summer course. By August we <strong>will have finished</strong> it.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Eleven tenses, one timeline.</strong> You used all of these in real life this year.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Eleven tenses, one timeline.</strong> Here is the whole year on one timeline.</p>
           <p style="margin: 0; font-size: 0.95rem"><strong>Simple</strong> = fact or finished. <strong>Continuous</strong> = in progress. <strong>Perfect</strong> = connected to a reference point. <strong>Past perfect</strong> = before another past event. <strong>Future perfect</strong> = done <em>by</em> a future date.</p>
         </div>
 
@@ -124,7 +124,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("by August", "amber")}
-            <span><em>By August I <strong>will have finished</strong> Level 3.</em></span>
+            <span><em>By August I <strong>will have finished</strong> the summer course.</em></span>
           </div>
         </div>
       `,
@@ -156,7 +156,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "By August, Rosa ___ (finish) Level 3.",
+              label: "By August, Rosa ___ (finish) the online summer course.",
               expectedAnswers: ["will have finished"],
             },
           ],
@@ -185,7 +185,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏼", text: "You usually <strong>leave</strong> at three, right? Do you need to go early today?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, if that’s OK. My daughter <strong>has</strong> a field trip tomorrow, and I need to pick up a few things. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, if that’s OK. My daughter <strong>has</strong> a field trip tomorrow. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the register for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Two thirty, please. Thanks. I know we <strong>are running</strong> behind today.", side: "right", tone: "terracotta" },
         ])}
@@ -269,9 +269,9 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartmentKitchen", "Rosa's apartment, Orient Heights. January 14, 11:45 PM.", "blue")}
+        ${sceneCard("sceneApartmentKitchen", "Rosa's kitchen, Orient Heights. The leak happened here on January 14.", "blue")}
 
-        <p>Rosa tells her landlord what happened in January: what she was doing, what happened next, and what she had already done before calling.</p>
+        <p>In June, the landlord sends Rosa a bill for the ceiling damage. She calls him to explain what happened in January: what she was doing, what happened next, and what she had already done before calling.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>was cooking</strong> when water <strong>came</strong> through the ceiling.", side: "right", tone: "terracotta" },
@@ -291,7 +291,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("before that", "sage")}
-            <span><em>I <strong>had already saved</strong> for the bus pass before I applied.</em></span>
+            <span><em>I <strong>had already saved</strong> some money before the car broke down.</em></span>
           </div>
         </div>
       `,
@@ -322,7 +322,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "She ___ (already save) for the bus pass before she applied.",
+              label: "She ___ (already save) some money before the car broke down in March.",
               expectedAnswers: ["had already saved", "had saved"],
             },
           ],
@@ -361,9 +361,9 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneVideoCall", "Hotel laundry room after a double shift. Wednesday, 9:30 PM.", "sage")}
+        ${sceneCard("sceneVideoCall", "Taqueria back room after a double shift. Friday, 9:30 PM.", "sage")}
 
-        <p>Rosa calls her sister <strong>Teresa</strong> after a long restaurant shift. Teresa is at home waiting for her.</p>
+        <p>Rosa covered a dinner shift too. She calls her sister <strong>Teresa</strong> after the long double shift at the restaurant. Teresa is at home waiting for her.</p>
 
         ${dialogue([
           { speaker: "Teresa", avatar: "👩🏽", text: "Still at work? I haven’t seen you all week.", side: "left", tone: "sage" },
@@ -451,22 +451,22 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusHome", "121 bus toward Maverick Square. Thursday, 9:15 PM.", "amber")}
+        ${sceneCard("sceneBusHome", "121 bus toward Maverick Square. Thursday, 6:15 PM.", "amber")}
 
-        <p>Before the last class, Rosa and classmate <strong>David</strong> talk on the 121 bus about finishing Level 3 and their plans for September.</p>
+        <p>On the way to the last class, Rosa and classmate <strong>David</strong> talk on the 121 bus about their plans for the summer and the fall.</p>
 
         ${dialogue([
           { speaker: "David", avatar: "👨🏻", text: "Level 4 in the fall?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>will be taking</strong> evening classes while I keep working lunch shifts.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> Level 3. It feels good to be moving on.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "It does. By September I <strong>will have been studying</strong> here for a full year. I <strong>will ask</strong> Ms. Tran about the Level 4 schedule tonight.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> the summer course. It feels good to keep moving.", side: "right", tone: "terracotta" },
+          { speaker: "David", avatar: "👨🏻", text: "It does. By tonight we <strong>will have been studying</strong> together for a full year. I <strong>will ask</strong> Ms. Tran about Level 4.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Future Simple</strong> = plan or prediction. <strong>Future Continuous</strong> = in progress at a future time. <strong>Future Perfect</strong> = done by a future date. <strong>Future Perfect Continuous</strong> = duration by a future date.</p>
         </div>
 
-        <p style="margin: 1rem 0; line-height: 1.6; font-size: 0.98rem">Rosa looks out the window and thinks about her year. She <strong>was tired</strong> when class <strong>started</strong> in September. She <strong>has been studying</strong> all year. She <strong>takes</strong> this bus every Thursday. Tonight she <strong>is sitting</strong> next to a woman who <strong>has lived</strong> here <strong>since</strong> 2019.</p>
+        <p style="margin: 1rem 0; line-height: 1.6; font-size: 0.98rem">Rosa looks out the window and thinks about her year. She <strong>was</strong> so tired when class <strong>started</strong> in September. She <strong>has been studying</strong> after work ever since, and she <strong>is</strong> still tired. But tonight she <strong>is smiling</strong>.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
@@ -475,7 +475,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("by August", "amber")}
-            <span><em>By August I <strong>will have finished</strong> Level 3.</em></span>
+            <span><em>By August I <strong>will have finished</strong> the summer course.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("by tonight", "amber")}
@@ -516,7 +516,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "By August she ___ (finish) Level 3.",
+              label: "By August she ___ (finish) the summer course.",
               expectedAnswers: ["will have finished"],
             },
           ],
@@ -548,7 +548,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"By August I <strong>will finish</strong> Level 3.\" Time word: <strong>By August</strong>.",
+              label: "\"By August I <strong>will finish</strong> the summer course.\" Time word: <strong>By August</strong>.",
               options: [
                 { value: "correct", label: "Correct as written" },
                 { value: "will have finished", label: "Should be 'will have finished'" },
@@ -606,11 +606,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     },
     {
       id: "atyr-q6",
-      question: "Before Rosa applied for warehouse work, she saved for the bus pass. Which sentence fits?",
+      question: "Rosa saved some money before her car broke down in March. Which sentence fits?",
       options: [
-        { value: "a", label: "She had already saved for the bus pass." },
-        { value: "b", label: "She already saved for the bus pass." },
-        { value: "c", label: "She has already saved for the bus pass." },
+        { value: "a", label: "She had already saved some money when the car broke down." },
+        { value: "b", label: "She already saved some money when the car broke down." },
+        { value: "c", label: "She has already saved some money when the car broke down." },
       ],
       correctAnswer: "a",
       explanation: "Past perfect for something finished before another past event.",
@@ -622,9 +622,9 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     {
       id: "atyr-ws1",
       type: "word-scramble" as const,
-      question: "Rosa plans to finish Level 3 by August. Put the words in order.",
-      words: ["She", "will", "have", "finished", "Level", "3", "by", "August"],
-      correctAnswer: "She will have finished Level 3 by August",
+      question: "Rosa plans to finish her summer course by August. Put the words in order.",
+      words: ["She", "will", "have", "finished", "the", "course", "by", "August"],
+      correctAnswer: "She will have finished the course by August",
       hint: "future perfect with 'by' = done before that future date",
       explanation: "Future perfect: will have + past participle. Used with 'by' to show something completed before a future point.",
       topic: "future-perfect",

@@ -172,11 +172,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. Wednesday, 5:30 AM.", "blue")}
 
-        <p><strong>Priya</strong> is a home health aide. She texts her classmate <strong>Angelo</strong> before her first transfer. It is January, and the wind is sharp.</p>
+        <p><strong>Priya</strong> is a home health aide. She waits with her classmate <strong>Angelo</strong> for her first transfer. It is January, and the wind is sharp.</p>
 
         ${dialogue([
           { speaker: "Priya", avatar: "👩🏽", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
-          { speaker: "Angelo", avatar: "👨🏻", text: "Me too. I moved here in August.", side: "left", tone: "sage" },
+          { speaker: "Angelo", avatar: "👨🏻", text: "Same. I moved here in August. This is my first winter.", side: "left", tone: "sage" },
           { speaker: "Priya", avatar: "👩🏽", text: "I'm also <strong>not used to switching</strong> buses in the dark. Back home I walked to work.", side: "right", tone: "terracotta" },
           { speaker: "Angelo", avatar: "👨🏻", text: "Me too. I <strong>used to walk</strong> everywhere. Let’s wait inside until the bus is closer.", side: "left", tone: "blue" },
         ])}
@@ -214,11 +214,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Angelo rode a bike everywhere back home. Which sentence is correct?",
+              label: "Angelo walked everywhere back home, even to the market. Which sentence is correct?",
               options: [
-                { value: "a", label: "I'm used to ride a bike everywhere." },
-                { value: "b", label: "I used to ride a bike everywhere." },
-                { value: "c", label: "I used to riding a bike everywhere." },
+                { value: "a", label: "I'm used to walk to the market every day." },
+                { value: "b", label: "I used to walk to the market every day." },
+                { value: "c", label: "I used to walking to the market every day." },
               ],
               expectedAnswer: "b",
             },
@@ -271,12 +271,12 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneSchoolPhone", "Bus stop after a double shift. Thursday, 6:45 PM.", "sage")}
 
-        <p><strong>Fabienne</strong> packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English.</p>
+        <p><strong>Fabienne</strong> packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English. She texts her classmate <strong>Nadine</strong>.</p>
 
         ${dialogue([
           { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>getting used to reading</strong> school emails in English.", side: "right", tone: "terracotta" },
           { speaker: "Fabienne", avatar: "👩🏾", text: "I still have to read some of them twice, especially the ones about school health forms.", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Same here. I’m <strong>getting used to</strong> the vocabulary, but I still ask the teacher when I’m not sure.", side: "left", tone: "sage" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Same here. I’m <strong>getting used to</strong> the vocabulary, but I still ask the teacher when I’m not sure.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -372,7 +372,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Jean", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> late on Saturdays, so getting up is the hard part.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏾", text: "I know what you mean. I <strong>used to work</strong> only days. Now I work nights too. We could go to a later service.", side: "right", tone: "terracotta" },
+          { speaker: "Jean", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -475,16 +475,16 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       title: "Still Adjusting: One Hard Week",
       icon: "📅",
       explanation: `
-        ${sceneCard("sceneWorkText", "Warehouse break room. Friday, 2 PM.", "sage")}
+        ${sceneCard("sceneWorkText", "Warehouse break room. Wednesday, 2 PM.", "sage")}
 
-        <p>It has been a hard week for <strong>Fabienne</strong>: night shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. She texts her supervisor <strong>Jennifer</strong>.</p>
+        <p>It has been a hard week for <strong>Fabienne</strong>: double shifts, a cold commute, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor <strong>Mark</strong>.</p>
 
         ${dialogue([
-          { speaker: "Fabienne", avatar: "👩🏾", text: "Hi Jennifer. Can I take Friday off? Parent-teacher meeting at 10.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "Let me check the schedule. How are you holding up?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "Hi Mark. Can I take Friday off? I have a parent-teacher meeting at 10.", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "Let me check the schedule. How are you holding up?", side: "left", tone: "sage" },
           { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>used to working</strong> overtime, but I'm <strong>not used to</strong> reading every school email in English yet.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "And I’m still <strong>getting used to</strong> the night shift. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "OK. I'll try to cover Friday.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "And I’m still <strong>getting used to</strong> the double shifts. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "OK. I'll try to cover Friday.", side: "left", tone: "sage" },
         ])}
       `,
       tipBox: {
@@ -546,7 +546,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I'm ___ used to the night shift. (still adapting)",
+              label: "I'm ___ used to the double shifts. (still adapting)",
               expectedAnswers: ["getting"],
             },
           ],
@@ -643,7 +643,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Rafael describes his double-shift routine at the hotel. Put the words in order.",
+      question: "Jean describes his cousin Claudette's routine. Put the words in order.",
       words: ["She", "is", "used", "to", "working", "two", "jobs"],
       correctAnswer: "She is used to working two jobs",
       hint: "be used to + gerund",

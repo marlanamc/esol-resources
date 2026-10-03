@@ -285,7 +285,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneJobApplication", "Hotel HR office. Rosa fills out a work history form.", "terracotta")}
+        ${sceneCard("sceneJobApplication", "Hotel HR office. Jennifer calls Rosa's current job to check her work history.", "terracotta")}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -441,7 +441,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa still works at the cleaning company. She ___ there for three years.",
+              label: "Rosa still works at her current job. She ___ there for three years.",
               options: [
                 { value: "a", label: "has worked (still there)" },
                 { value: "b", label: "worked (she left)" },
@@ -466,7 +466,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa quit her old job last month. Which sentence describes this correctly?",
+              label: "The first candidate left the Marriott last month. Which sentence describes this correctly?",
               options: [
                 { value: "a", label: "She worked there for two years. (Past Simple, finished)" },
                 { value: "b", label: "She has worked there for two years. (Present Perfect, still going)" },
@@ -487,7 +487,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Claudette moved last year. She ___ (work) at that hotel for two years before she left.",
+              label: "Before this hotel, Claudette ___ (work) at a hotel in Chelsea for two years.",
               expectedAnswers: ["worked"],
             },
           ],
@@ -504,11 +504,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneInterview", "Hotel HR office. Rosa's final interview round. Tuesday, 2 PM.", "terracotta")}
 
-        <p style="margin-bottom: 0.5rem">Before the interview, Rosa's coworker Yemi coaches her in the break room.</p>
+        <p style="margin-bottom: 0.5rem">Before the interview, Rosa practices with Yemi, a coworker at her current job, during their break.</p>
 
         ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "They'll ask how long. Don't say 'I worked.' Say 'I <strong>have worked</strong>' so they know you're still going.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "OK. How long <strong>have</strong> I worked in housekeeping? Three years. <strong>Since 2021</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "They'll ask how long you've been in housekeeping. Don't be nervous. Just tell the truth.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "OK. How long <strong>have</strong> I worked in housekeeping? Three years. <strong>Since 2023</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Yemi", avatar: "👩🏿", text: "Perfect. And how long in East Boston?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have lived</strong> here for five years. I know this neighborhood.", side: "right", tone: "terracotta" },
         ])}
@@ -517,9 +517,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "How long have you worked in hotel housekeeping?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have worked</strong> in housekeeping for three years, since 2021.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have worked</strong> in housekeeping for three years, since 2023.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "And have you ever supervised other cleaners?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>haven't</strong> been a supervisor, but I've trained two new workers at my current job.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Good. We'd like to offer you the job. When could you start?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Thank you! I'll give my notice tomorrow, so in two weeks.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
@@ -570,8 +572,8 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "have", "worked", "in", "housekeeping", "since", "2021"],
-              correctAnswer: "I have worked in housekeeping since 2021",
+              words: ["I", "have", "worked", "in", "housekeeping", "since", "2023"],
+              correctAnswer: "I have worked in housekeeping since 2023",
             },
           ],
         },
@@ -606,7 +608,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         { value: "c", label: "I am being on the morning team for one year." },
       ],
       correctAnswer: "b",
-      explanation: "Present perfect (have worked) is correct because Rosa still works there. Past simple would mean she left.",
+      explanation: "Present perfect (have been) is correct because Rosa is still on the team. Past simple would mean she left.",
       topic: "present-perfect",
       skill: "usage",
       skillTag: "how-long-still-true",

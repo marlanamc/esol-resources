@@ -74,11 +74,11 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 - If I Lift Wrong, My Back Hurts
+    // SECTION 1 - If I Lift Wrong, My Knee Hurts
     // =========================================================================
     {
       id: "zero-lift-wrong",
-      title: "If I Lift Wrong, My Back Hurts",
+      title: "If I Lift Wrong, My Knee Hurts",
       icon: "📋",
       tenseDiagram: {
         title: "Zero conditional: always true",
@@ -88,15 +88,15 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneWarehouseLift", "Warehouse loading dock, Chelsea. Monday, 7 AM.", "terracotta")}
+        ${sceneCard("sceneWarehouseLift", "Warehouse loading dock, Chelsea. Monday, 10 PM.", "terracotta")}
 
-        <p><strong>Yemi</strong> works as a packer at a warehouse in Chelsea. After her knee got worse last month, supervisor <strong>Brian</strong> reviews lifting rules before she returns to pallets.</p>
+        <p><strong>Yemi</strong> works nights as a packer at a warehouse in Chelsea. Her knee got worse last month, and she missed three shifts. Tonight is her first shift back, so supervisor <strong>Brian</strong> reviews lifting rules before she returns to pallets.</p>
 
         ${dialogue([
           { speaker: "Brian", avatar: "🧑🏼", text: "Before you lift again, remember the rules. <strong>If you lift</strong> with your back, <strong>you hurt</strong> yourself.", side: "left", tone: "blue" },
           { speaker: "Yemi", avatar: "👩🏿", text: "I know. I learned that the hard way.", side: "right", tone: "terracotta" },
           { speaker: "Brian", avatar: "🧑🏼", text: "<strong>If you bend</strong> at the waist, <strong>you risk</strong> injury. Use your legs.", side: "left", tone: "blue" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "OK. <strong>If I lift</strong> wrong, my back <strong>hurts</strong>. Can you watch me try again?", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "OK. <strong>If I lift</strong> wrong, my knee <strong>hurts</strong>. Can you watch me try again?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -106,7 +106,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("always true", "terracotta")}
-            <span><em><strong>If</strong> I <strong>lift</strong> wrong, my back <strong>hurts</strong>.</em></span>
+            <span><em><strong>If</strong> I <strong>lift</strong> wrong, my knee <strong>hurts</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("rule", "sage")}
@@ -161,8 +161,8 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Build a zero conditional about Yemi's knee:",
-              words: ["If", "you", "lift", "wrong,", "your", "back", "hurts"],
-              correctAnswer: "If you lift wrong, your back hurts",
+              words: ["If", "you", "lift", "wrong,", "your", "knee", "hurts"],
+              correctAnswer: "If you lift wrong, your knee hurts",
             },
           ],
         },
@@ -186,12 +186,12 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEarlyMorning", "Yemi's kitchen, Chelsea. Saturday, 6:30 AM.", "amber")}
 
-        <p>Yemi finally plans to see a doctor about her knee. She checks the clinic hours on her phone before her shift.</p>
+        <p>Two days before her first shift back, Yemi needs a follow-up visit for her knee. She texts her coworker <strong>Rachel</strong>, who goes to the same clinic.</p>
 
         ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If the clinic opens</strong> at 8, <strong>I'll go</strong> before work.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If the clinic opens</strong> at 8, <strong>I'll go</strong> first thing.", side: "right", tone: "terracotta" },
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If the line is</strong> short, <strong>I'll be</strong> back by noon.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩🏽", text: "Walk-ins start at 8. Text me when you arrive.", side: "left", tone: "sage" },
+          { speaker: "Rachel", avatar: "👩🏻", text: "Walk-ins start at 8. Bring your ID and your insurance card.", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If they can't see</strong> me, <strong>I'll try</strong> the walk-in downtown.", side: "right", tone: "terracotta" },
         ])}
 
@@ -202,7 +202,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real plan", "amber")}
-            <span><em><strong>If</strong> the clinic <strong>opens</strong> at 8, I <strong>'ll go</strong> before work.</em></span>
+            <span><em><strong>If</strong> the clinic <strong>opens</strong> at 8, I <strong>'ll go</strong> first thing.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("not zero", "terracotta")}
@@ -256,7 +256,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Build Yemi's plan for her early shift:",
+              label: "Build Yemi's plan for her follow-up visit:",
               words: ["If", "the", "clinic", "opens", "early,", "I'll", "go", "before", "my", "shift"],
               correctAnswer: "If the clinic opens early, I'll go before my shift",
             },
@@ -280,9 +280,9 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBreakRoomNight", "Warehouse break room. Sunday night, 11:30 PM.", "blue")}
+        ${sceneCard("sceneBreakRoomNight", "Warehouse break room. Tuesday, 2 AM.", "blue")}
 
-        <p>After close, Yemi and coworker <strong>Rachel</strong> compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.</p>
+        <p>On their break, Yemi and <strong>Rachel</strong> compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.</p>
 
         ${dialogue([
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
@@ -377,12 +377,12 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneClinicBilling", "Clinic billing desk, East Boston. Saturday, 10 AM.", "sage")}
 
-        <p>After her visit, Yemi sees the copay and thinks about the shifts she missed waiting too long. She talked about this with <strong>Ms. Patel</strong> last week too.</p>
+        <p>After her follow-up visit, Yemi sees the copay and thinks about the shifts she missed by waiting too long. <strong>Ms. Patel</strong> at the front desk helps her with the bill.</p>
 
         ${dialogue([
           { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had called</strong> last week, I <strong>wouldn't have missed</strong> three shifts.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩🏽", text: "You're here now. That's what matters.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "I’m just worried about the money. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have lost</strong> so much in wages.", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Patel", avatar: "👩🏽", text: "I can set up a payment plan for the copay.", side: "left", tone: "sage" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "Thanks. I’m just worried about the money. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have lost</strong> so much in wages.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -465,14 +465,14 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week — a back injury, a clinic trip, and missed shifts.</p>
+        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week: a knee injury, a clinic trip, and missed shifts.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Rough week?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Yeah. <strong>If I lift</strong> wrong, my back <strong>hurts</strong>. This time I had to miss work.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "I finally went to the clinic Saturday. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have missed</strong> three shifts.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "Yeah. <strong>If I lift</strong> wrong, my knee <strong>hurts</strong>. This time I had to miss work.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "I went back to the clinic Saturday. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have missed</strong> three shifts.", side: "right", tone: "terracotta" },
           { speaker: "Yemi", avatar: "👩🏿", text: "The night shifts don’t help. <strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "For now, <strong>if my back still hurts</strong> tomorrow, <strong>I’ll call</strong> the clinic again.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "For now, <strong>if my knee still hurts</strong> tomorrow, <strong>I’ll call</strong> the clinic again.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -548,7 +548,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence has an error?",
               options: [
-                { value: "a", label: "If I lift wrong, my back hurts." },
+                { value: "a", label: "If I lift wrong, my knee hurts." },
                 { value: "b", label: "If the clinic opens at 8, I'll go." },
                 { value: "c", label: "If I would have day shifts, I would sleep more." },
                 { value: "d", label: "If I had gone sooner, I would have paid less." },
@@ -568,9 +568,9 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Build Yemi's regret about the billing mistake (third conditional):",
-              words: ["If", "I", "had", "checked", "the", "bill,", "I", "would", "have", "caught", "the", "mistake"],
-              correctAnswer: "If I had checked the bill, I would have caught the mistake",
+              label: "Build Yemi's regret about waiting (third conditional):",
+              words: ["If", "I", "had", "called", "the", "clinic,", "I", "would", "have", "gotten", "help", "sooner"],
+              correctAnswer: "If I had called the clinic, I would have gotten help sooner",
             },
           ],
         },
@@ -581,10 +581,10 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "afc-q3",
-      question: "Yemi has a real plan for after her appointment tomorrow. Which sentence fits?",
+      question: "Yemi has a real plan for after her follow-up visit on Saturday. Which sentence fits?",
       options: [
-        { value: "a", label: "If the doctor gives me a note, I'll bring it to work tomorrow." },
-        { value: "b", label: "If the doctor gives me a note, I bring it to work tomorrow." },
+        { value: "a", label: "If the doctor gives me a note, I'll bring it to work on Monday." },
+        { value: "b", label: "If the doctor gives me a note, I bring it to work on Monday." },
         { value: "c", label: "If the doctor gave me a note, I would bring it to work." },
         { value: "d", label: "If the doctor had given me a note, I would have brought it to work." },
       ],
@@ -624,12 +624,12 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
     },
     {
       id: "afc-q6",
-      question: "Find the error: \"If I would have asked for lighter boxes, I would not have hurt my back.\"",
+      question: "Find the error: \"If I would have asked for lighter boxes, I would not have hurt my knee.\"",
       options: [
         { value: "a", label: "No error. The sentence is correct." },
         { value: "b", label: "The if-part should be \"If I had asked for lighter boxes\"." },
         { value: "c", label: "The if-part should be \"If I ask for lighter boxes\"." },
-        { value: "d", label: "The result should be \"I will not hurt my back\"." },
+        { value: "d", label: "The result should be \"I will not hurt my knee\"." },
       ],
       correctAnswer: "b",
       explanation: "Third conditional never uses would in the if-part: if + had + V3, would have + V3.",

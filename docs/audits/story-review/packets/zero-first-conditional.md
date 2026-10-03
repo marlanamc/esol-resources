@@ -52,7 +52,7 @@ Carlos is on the phone with his wife, Ana. The electric bill is due next Friday.
 
 - **Carlos:** If I pick up the Saturday shift, I'll pay the electric bill on time.
 - **Ana:** Will you get paid before the bill is due next Friday?
-- **Carlos:** If I don't work Saturday, we won't have enough. Not after rent.
+- **Carlos:** Yes, payday is Thursday. If I don't work Saturday, we won't have enough.
 - **Ana:** OK. If the manager calls tonight, tell him yes. We need the money.
 
 First Conditional = a real situation that might happen. The result is in the future. If + present simple, will + base verb.
@@ -72,11 +72,11 @@ Important: In the if-part, never use will. Correct: If I pick up the shift... Wr
 > 🖼 **Scene:** Break room, East Boston. The weekend schedule just went up on the wall.  
 > _Photo shows: Two coworkers looking at a phone together in a break room._
 
-Claudette and her coworker Jennifer are texting about the Saturday night schedule. Jennifer requested two days off for a family visit last week.
+Claudette and her coworker Jennifer are looking at the Saturday night schedule. Last week, Jennifer asked for Saturday night off for a family visit.
 
-- **Jennifer:** Did you see the schedule? They put me down for Saturday night, but I requested it off. I won’t be able to visit my family unless someone covers for me.
+- **Jennifer:** They scheduled me Saturday night. I asked for it off! I won’t be able to visit my family unless someone covers.
 - **Claudette:** I saw. As soon as Miguel gets here, I'll ask him if he can cover.
-- **Jennifer:** That would be great. When the bonus comes in, I'll treat you to lunch. I promise.
+- **Jennifer:** That would be great. When I get paid, I'll treat you to lunch. I promise.
 - **Claudette:** Deal. But I won’t confirm anything with him unless Scott approves it. Can you talk to Scott first?
 
 Unless = if not. Same tense rules as the First Conditional. When = at that moment in the future (more certain than if). As soon as = immediately when something happens.
@@ -84,9 +84,9 @@ Unless = if not. Same tense rules as the First Conditional. When = at that momen
 Same rule: After unless, when, and as soon as, use present simple, not will. Correct: As soon as he gets here, I'll ask. Wrong: As soon as he will get here, I'll ask.
 
 **Exercise: Unless, when, or as soon as?**
-- Jennifer means: 'I will be available IF my days off are not changed.' Which word fits? _(options: I'll be available when my days off get changed back. / I'll be available unless my days off get changed back. / I'll be available as soon as my days off get changed back.)_
+- Jennifer means: 'If nobody covers for me, I won't be able to visit my family.' Which sentence says this? _(options: I won't be able to visit my family when someone covers for me. / I won't be able to visit my family unless someone covers for me. / I won't be able to visit my family as soon as someone covers for me.)_
 - Which sentence has an error? _(options: When the schedule posts, I'll text you. / As soon as Miguel will get here, I'll ask him. / I won't cover unless someone else steps up.)_
-- Fill in: ___ the bonus comes in, Jennifer will treat Claudette to lunch. (When / Unless / As soon as)
+- Fill in: ___ Jennifer gets paid, she will treat Claudette to lunch. (When / Unless / As soon as)
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -99,14 +99,14 @@ Same rule: After unless, when, and as soon as, use present simple, not will. Cor
 Marco is talking to his supervisor about the Saturday night shift and whether to take it.
 
 - **Marco:** So Saturday nights pay double, right?
-- **Supervisor:** Yes. If you work Saturday nights, you earn double. That's the policy. It's been that way for years.
-- **Marco:** OK. Then if I work this Saturday night, I will pay the rent on Friday before I go to my sister's.
-- **Supervisor:** Good. And just so you know, if someone calls in sick, the whole shift stays. That's policy too.
+- **Supervisor:** Yes. If you work Saturday nights, you earn double. Everybody wants those shifts.
+- **Marco:** OK. Then if I work this Saturday night, I will pay the rent on the 1st.
+- **Supervisor:** Good. Just so you know, if someone calls in sick, everyone stays until close.
 - **Marco:** I understand. If I don't hear from you by 6 PM, I will call to confirm.
 
 Zero vs. First: side by side
 
-The key question: Is this always true (Zero) or is this Marco's specific plan right now (First)? "You earn double on Saturday nights" = always true. Zero. "I will pay rent on Friday" = Marco's plan for this week. First.
+The key question: Is this always true (Zero) or is this Marco's specific plan right now (First)? "You earn double on Saturday nights" = always true. Zero. "I will pay rent on the 1st" = Marco's plan for this month. First.
 
 **Exercise: Zero or First?**
 - The supervisor is explaining a company policy that has always been true. Which type is this? _(options: First Conditional. It is a future plan. / Zero Conditional. It is an always-true rule. / Neither. It uses 'will' so it is different.)_
@@ -134,7 +134,7 @@ Linh is talking to her cousin Beatriz. She is trying to figure out next week: ov
 Which type is each sentence?
 
 **Exercise: Zero, First, or Unless?**
-- Linh is talking about her real plan for this week. Which sentence fits? _(options: If they post extra hours, I sign up. / If they post extra hours, I'll sign up. / If they will post extra hours, I'll sign up.)_
+- Linh is talking about her real plan for next week. Which sentence fits? _(options: If they post extra hours, I sign up. / If they post extra hours, I'll sign up. / If they will post extra hours, I'll sign up.)_
 - Linh says her mother-in-law comes every year. Which conditional fits this? _(options: First Conditional. It is a future plan. / Zero Conditional. It happens every year, always. / It is not a conditional.)_
 - Which sentence has an error? _(options: If she doesn't come, I won't be able to work. / As soon as I know, I'll call you. / If they will offer overtime, I'll take it.)_
 - Fill in the blank: If my mother-in-law ___ (come), I can work the overtime.
@@ -146,7 +146,7 @@ Which type is each sentence?
 
 - Carlos is making a promise about the extra Saturday shift and the electric bill. Which if-part is correct? _(options: If I will take the extra shift... / If I take the extra shift... / If I took the extra shift...)_
 - Which sentence has an error? _(options: If the kitchen is short-staffed, everyone stays late. / If Carlos will work Saturday, he will pay the bill. / If I don't hear from you, I will call to confirm.)_
-- Fill in the blank: "If you work late, you ___ double pay." (Zero Conditional: always-true job rule.)
-- Jennifer plans her rent around her work schedule. Put the words in order.
-- The supervisor says: 'If you work Saturday nights, you earn double.' Marco says: 'If I work this Saturday night, I will pay rent Friday.' What is the difference? _(options: Both are Zero Conditional. They are the same. / The supervisor states a policy (Zero). Marco states his plan (First). / Marco's sentence is wrong. He should say 'I earn' not 'I will pay.')_
+- Fill in the blank: "If you work Saturday nights, you ___ double pay." (Zero Conditional: always-true job rule.)
+- Marco plans his rent around the Saturday night shift. Put the words in order.
+- The supervisor says: 'If you work Saturday nights, you earn double.' Marco says: 'If I work this Saturday night, I will pay rent on the 1st.' What is the difference? _(options: Both are Zero Conditional. They are the same. / The supervisor states a policy (Zero). Marco states his plan (First). / Marco's sentence is wrong. He should say 'I earn' not 'I will pay.')_
 

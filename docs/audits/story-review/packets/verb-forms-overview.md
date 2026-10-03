@@ -6,7 +6,7 @@
 
 ## Automatic signals
 
-- 14 of 19 dialogue lines use "!". This can read as forced cheerfulness.
+_None._
 
 ## Cast by section
 
@@ -24,11 +24,11 @@
 
 Catch up with Carlos and Fernanda. Read for the message first.
 
-- **Fernanda:** Break time! What did you bring for dinner tonight?
+- **Fernanda:** Break time. What did you bring for dinner tonight?
 - **Carlos:** A sandwich. Wait, this isn’t my bag. There’s no food, just a little box.
 - **Fernanda:** Is that a ring box? Whose bag is that?
 - **Carlos:** I took it from the staff fridge at the restaurant. Mark, the line cook, works there with my sister.
-- **Fernanda:** Call your sister now! Maybe Mark is looking for it.
+- **Fernanda:** Call your sister. Maybe Mark is looking for it.
 - **Carlos:** I can’t. Sarah’s working right now. She’s a server, so I’ll text her.
 
 Carlos washes dishes at the restaurant in the mornings, so he uses the staff fridge too. Notice works and working, then compare all five forms below.
@@ -58,9 +58,9 @@ Try it: Say the five forms. Look away and try again. Check just the one you forg
 > _Photo shows: Busy restaurant dining room with staff serving during an evening shift._
 
 - **Carlos:** Emergency! I took the wrong lunch bag from the fridge. There’s a ring inside. Is it Mark’s?
-- **Sarah:** Yes! Mark brings that blue bag every day. Tonight he wants to ask Lisa to marry him!
+- **Sarah:** Yes. Mark brings that blue bag every day. And tonight he wants to ask Lisa to marry him.
 - **Carlos:** Oh no. Class finishes at eight. Where is he now?
-- **Sarah:** He’s looking everywhere in the kitchen. I’m serving tables, so I can’t leave. Meet us at the café at eight!
+- **Sarah:** He’s looking everywhere in the kitchen. I’m serving tables, so I can’t leave. Meet us at the café at eight.
 
 Sarah talks about Mark’s usual routine and what is happening right now. Have you ever taken the wrong bag, coat, or phone?
 
@@ -79,8 +79,8 @@ Your reply: “I usually ___ before class. Right now, I’m ___.” Use your own
 > _Photo shows: Cozy neighborhood café with warm light, tables, and people relaxing after work._
 
 - **Mark:** Carlos! I’ve looked everywhere for that bag!
-- **Carlos:** Sorry! I grabbed the wrong one this morning. I opened it at break. Here’s your ring.
-- **Mark:** Thank you! Now I have to tell you something. I ate your sandwich at lunch.
+- **Carlos:** Sorry. I grabbed the wrong one this morning. I opened it at break. Here’s your ring.
+- **Mark:** Thank you. Now I have to tell you something. I ate your sandwich at lunch.
 - **Fernanda:** So Carlos has missed dinner, but he saved your big night. Go, Mark! You have twenty minutes.
 
 Carlos tells what happened this morning. Mark and Fernanda connect the past to right now. The examples below show how V2 and V3 work with the same verb.
@@ -98,13 +98,13 @@ Try it: Tell a partner one thing you did yesterday. Check the verb and tell it a
 
 ## 4. She said yes! · Be and have
 
-> 🖼 **Scene:** Later that night, Carlos checks the class group chat.  
+> 🖼 **Scene:** Later that night, Sarah starts a group chat with everyone from the café.  
 > _Photo shows: A student using a laptop to complete an online lesson at a desk._
 
-- **Sarah:** Big news! Mark is engaged. Lisa said yes at 8:30!
-- **Carlos:** I am so happy for them. I’m also very hungry!
+- **Sarah:** Big news. Mark is engaged. Lisa said yes at 8:30!
+- **Carlos:** I am so happy for them. I’m also very hungry.
 - **Mark:** Lisa has the ring, and I have a sandwich for you tomorrow. Thank you, Carlos!
-- **Fernanda:** You were a hero tonight, Carlos. Take the right bag tomorrow!
+- **Fernanda:** You were a hero tonight, Carlos. Take the right bag tomorrow.
 - **Carlos:** I’ve been careful all night. I’ve had enough surprises for one week!
 
 Be and have change in special ways. Don’t add -ed.

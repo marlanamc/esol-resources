@@ -96,7 +96,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           { speaker: "Ms. Patel", avatar: "👩🏽", text: "How long has your knee been hurting?", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "About three weeks. I know I waited too long.", side: "right", tone: "terracotta" },
           { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had come</strong> sooner, maybe I <strong>wouldn’t have missed</strong> so much work.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩🏽", text: "Let's take a look. You're here now. That's what matters.", side: "left", tone: "sage" },
+          { speaker: "Ms. Patel", avatar: "👩🏽", text: "Let's take a look. Can you bend it for me?", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -176,7 +176,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       explanation: `
         ${sceneCard("sceneWritingNotes", "Yemi's kitchen table. Saturday afternoon.", "terracotta")}
 
-        <p>After the clinic visit, Yemi writes notes for herself. She texts her coworker Jennifer what she wishes she had done last month.</p>
+        <p>After the clinic visit, Yemi writes notes for herself. She texts her coworker Jennifer what she wishes she had done three weeks ago.</p>
 
         ${dialogue([
           { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> the clinic three weeks ago, they <strong>would have told</strong> me to rest.", side: "right", tone: "terracotta" },
@@ -249,11 +249,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           items: [
             {
               type: "radio",
-              label: "\"If I called the clinic last week, I would have saved three shifts.\" What is wrong?",
+              label: "\"If I called the clinic last week, I wouldn't have missed three shifts.\" What is wrong?",
               options: [
                 { value: "a", label: "No error. The sentence is correct." },
                 { value: "b", label: "Error: should be \"If I had called\" (missing had)." },
-                { value: "c", label: "Error: should be \"I would save\" not \"would have saved\"." },
+                { value: "c", label: "Error: should be \"I wouldn't miss\" not \"wouldn't have missed\"." },
               ],
               expectedAnswer: "b",
             },
@@ -373,7 +373,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏻", text: "If you <strong>called</strong> the clinic now, they <strong>would help</strong> you figure out the bill.", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "Do you think so? I’ve been putting it off.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> last month, I <strong>would have saved</strong> myself a lot of worry.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> three weeks ago, I <strong>would have saved</strong> myself a lot of worry.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "You can still call today. I can sit with you while you do it.", side: "left", tone: "sage" },
         ])}
 
@@ -391,7 +391,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("third (past)", "blue")}
-            <span><em>If I <strong>had called</strong> last month, I <strong>would have saved</strong> three shifts.</em> (Too late.)</span>
+            <span><em>If I <strong>had called</strong> three weeks ago, I <strong>wouldn't have missed</strong> three shifts.</em> (Too late.)</span>
           </div>
         </div>
       `,
@@ -403,7 +403,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           items: [
             {
               type: "radio",
-              label: "Jennifer can still call the clinic today about the bill. \"If I ___ the clinic, they would help me.\"",
+              label: "Yemi can still call the clinic today about the bill. \"If I ___ the clinic, they would help me.\"",
               options: [
                 { value: "a", label: "called (second conditional, still possible)" },
                 { value: "b", label: "had called (third conditional, past only)" },
@@ -412,7 +412,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "radio",
-              label: "Yemi missed three shifts last month. That cannot change. \"If I ___ sooner, I would have saved three shifts.\"",
+              label: "Yemi missed three shifts last week. That cannot change. \"If I ___ sooner, I wouldn't have missed three shifts.\"",
               options: [
                 { value: "a", label: "went (second conditional)" },
                 { value: "b", label: "had gone (third conditional)" },
@@ -421,7 +421,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "radio",
-              label: "\"If I called last month, I would have saved three shifts.\" Is this correct?",
+              label: "\"If I called three weeks ago, I wouldn't have missed three shifts.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'had called' for a past regret" },
@@ -442,7 +442,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "text",
-              label: "If I had rested last month, I ___ have saved $400. (past regret)",
+              label: "If I had rested three weeks ago, I ___ have saved $400. (past regret)",
               expectedAnswers: ["would"],
             },
           ],
@@ -458,15 +458,15 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       title: "What Would Have Happened? One Whole Story",
       icon: "🦺",
       explanation: `
-        ${sceneCard("sceneConstructionLocker", "Construction site locker room. Wednesday, April 28.", "terracotta")}
+        ${sceneCard("sceneBreakRoom", "Warehouse break room. Wednesday, before the shift.", "terracotta")}
 
-        <p>Yemi's cousin Hector works construction in East Boston. A workplace safety poster is on the locker room wall.</p>
+        <p>A new workplace safety poster is up on the break room wall. Yemi and Jennifer read it before their shift.</p>
 
         ${dialogue([
-          { speaker: "Hector", avatar: "👨🏽", text: "The poster says: if the site <strong>had followed</strong> the safety rules, that worker <strong>wouldn't have been</strong> injured.", side: "left", tone: "sage" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "Look at this: 'If the site <strong>had followed</strong> the safety rules, that worker <strong>wouldn't have been</strong> injured.'", side: "left", tone: "sage" },
           { speaker: "Yemi", avatar: "👩🏿", text: "Same idea with my knee. If I <strong>had rested</strong> when it started, I <strong>wouldn't have missed</strong> three shifts.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "And if you <strong>called</strong> the nurse line now, they <strong>would tell</strong> you what to do next. That's still possible.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "You're right. I can't change last month. But I can call today.", side: "right", tone: "terracotta" },
+          { speaker: "Yemi", avatar: "👩🏿", text: "You're right. I can't change the past. But I can call today.", side: "right", tone: "terracotta" },
         ])}
 
         <p>Third conditional for past regrets. Second conditional when you can still act.</p>
@@ -510,7 +510,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           items: [
             {
               type: "text",
-              label: "If I ___ called the clinic last month, I would have saved three shifts.",
+              label: "If I ___ called the clinic three weeks ago, I wouldn't have missed three shifts.",
               expectedAnswers: ["had"],
             },
           ],
@@ -533,10 +533,10 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
           items: [
             {
               type: "radio",
-              label: "Yemi says: \"If I had called last month, I would save three shifts.\" What is wrong?",
+              label: "Yemi says: \"If I had called three weeks ago, I wouldn't miss three shifts.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
-                { value: "b", label: "Error: should be \"would have saved\" (past result needs would have + V3)." },
+                { value: "b", label: "Error: should be \"wouldn't have missed\" (past result needs would have + V3)." },
                 { value: "c", label: "Error: should be \"If I called\" without had." },
               ],
               expectedAnswer: "b",
@@ -550,11 +550,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
   miniQuiz: [
     {
       id: "tc-q1",
-      question: "Yemi did not stretch before her shift. Now her back hurts. Which sentence matches her situation?",
+      question: "Yemi did not rest her knee when it started to hurt. Now it hurts a lot. Which sentence matches her situation?",
       options: [
-        { value: "a", label: "If I stretch before work, my back won't hurt." },
-        { value: "b", label: "If I had stretched before work, my back wouldn't hurt this much." },
-        { value: "c", label: "If I stretched before work, my back wouldn't hurt." },
+        { value: "a", label: "If I rest my knee, it won't hurt." },
+        { value: "b", label: "If I had rested my knee, it wouldn't hurt this much." },
+        { value: "c", label: "If I rested my knee, it wouldn't hurt." },
       ],
       correctAnswer: "b",
       explanation: "Third conditional uses if + had + V3 for a past action that did not happen.",
@@ -567,9 +567,9 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       id: "tc-q2",
       question: "Which sentence is a correct third conditional?",
       options: [
-        { value: "a", label: "If Marco saved more, he will have bought the car." },
-        { value: "b", label: "If Marco had saved more, he would have bought the car." },
-        { value: "c", label: "If Marco has saved more, he would buy the car." },
+        { value: "a", label: "If Yemi rested more, she will have healed faster." },
+        { value: "b", label: "If Yemi had rested more, she would have healed faster." },
+        { value: "c", label: "If Yemi has rested more, she would heal faster." },
       ],
       correctAnswer: "b",
       explanation: "Third conditional: if + had + V3, would have + V3.",
@@ -581,7 +581,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     {
       id: "tc-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If I had rested my knee, I ___ $80.\" (a different past result — it didn't happen)",
+      question: "Fill in the blank: \"If I had rested my knee, I ___ $80.\" (a different past result that didn't happen)",
       correctAnswer: "wouldn't have paid",
       acceptedAnswers: ["would not have paid"],
       explanation: "A past result that did not happen uses wouldn't have + past participle.",
@@ -592,11 +592,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     },
     {
       id: "tc-q6",
-      question: "Find the error: \"If I called the clinic last week, I would have saved three shifts.\"",
+      question: "Find the error: \"If I called the clinic last week, I wouldn't have missed three shifts.\"",
       options: [
         { value: "a", label: "No error." },
         { value: "b", label: "Error: should be \"If I had called\" (missing had)." },
-        { value: "c", label: "Error: should be \"I would save\" not \"would have saved\"." },
+        { value: "c", label: "Error: should be \"I wouldn't miss\" not \"wouldn't have missed\"." },
       ],
       correctAnswer: "b",
       explanation: "Last week is in the past. The if-clause needs had + past participle.",
@@ -608,7 +608,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     {
       id: "tc-ws1",
       type: "word-scramble" as const,
-      question: "Rosa regrets waiting to call the landlord about the rent. Put the words in order.",
+      question: "Yemi regrets waiting to go to the clinic. Put the words in order.",
       words: ["If", "I", "had", "gone", "sooner", "I", "would", "have", "paid", "less"],
       correctAnswer: "If I had gone sooner I would have paid less",
       hint: "if + had + past participle, would have + past participle",

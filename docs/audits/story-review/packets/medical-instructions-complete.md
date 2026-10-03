@@ -34,7 +34,7 @@
 
 You: "My head is pounding and I can't keep food down."
 
-Nurse: "Please sit down. You should fill out this form. You must not leave until the doctor sees you."
+Nurse: "Please sit down. You should fill out this form. You must wear this wristband the whole time you are here."
 
 Three small sentences. Three different kinds of grammar. That's today's guide.
 
