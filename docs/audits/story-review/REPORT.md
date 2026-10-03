@@ -1,12 +1,548 @@
 # Grammar guide story review
 
+## Round 2 (2026-10-03, after the fixes)
+
+This review comes after a day of fixes: continuity fixes, rewrites of 7 guides, and the [cast sheet](../../grammar-guide-cast.md). It uses the same rubric, with new reviewers who also checked each guide against the cast sheet.
+
+| | Keep | Polish | Revise |
+|---|---|---|---|
+| Round 1 | 1 | 18 | 21 |
+| **Round 2** | **11** | **20** | **9** |
+
+The "Makes sense" scores improved the most: 18 guides scored 1 in round 1, and 8 do now.
+
+### Fix first: safety, law and answer keys
+
+These are reviewer findings that haven't been checked against the source yet. Check each one before changing anything.
+
+| Guide | Problem |
+|---|---|
+| [Should / Shouldn't: Health Advice](packets/should-shouldnt-health-advice.md) | The pharmacist says to take ibuprofen and blood pressure medicine "two hours" apart, but spacing them doesn't fix that interaction. Also, "don't skip doses even if you feel better" is antibiotic advice, and the lifting limits contradict each other. |
+| [Medicine Labels & Insurance](packets/medicine-labels-insurance.md) | "Call the doctor after 10 days" for a child's fever is unsafe; real labels say 3. It sends Massachusetts learners to healthcare.gov instead of the MA Health Connector. Core character Rosa is shown uninsured, next to the FAQ for undocumented people. |
+| [Have to / Don't Have to / Can't](packets/have-to-dont-have-to-cant.md) | It presents a "24-hour notice law" and "can't show it without your permission" as Massachusetts law. |
+| [All the Tenses: Year in Review](packets/all-the-tenses-year-in-review.md) | The landlord bills Rosa in June, after she moved out, for a January leak. |
+| [More, Less, the Most](packets/more-less-the-most.md) | The quiz says Plan B is more expensive than Plan A, but Plan A is "the most expensive". The exercises disagree with the dialogue about which apartment costs $200 more. |
+| Answer keys | Have You Ever marks "Did you ever…?" as wrong. Just, Already, Yet marks "has signed up already" as wrong. Third Conditional keys a mixed conditional as correct. Phrasal Verbs accepts only "fill it" for handing a form in. Stop Taking has a broken fill-in and a key that contradicts the try-to rule. Past Perfect's Linh line misuses the past perfect. |
+
+### Cast sheet slips
+
+- **Must, Have to, Should at Work:** Amara is a new restaurant line cook. This was missed in the cast fixes.
+- **I Used to, but Now I:** Linh "shares a two-bedroom with my cousin".
+- **I've Been Working:** Amara has been cleaning "offices and hotels", not hospital rooms.
+- **Welcome Back:** the 121 bus, and "the kids".
+- **Just, Already, Yet:** Rosa leaves for class on a Friday morning.
+- **Need to Find a Place:** Rosa's cousin is unnamed (Javier).
+
+### Round 2 verdicts
+
+| Verdict | Week | Guide | Scores (Clear · Sense · Cringe · Theme · Interest) |
+|---|---|---|---|
+| **Revise** | 8 | [Can, Should, Must](packets/can-should-must.md) | 2 · 3 · 2 · 2 · 1 |
+| **Revise** | 11 | [How Long + For and Since](packets/how-long-for-since.md) | 2 · 1 · 3 · 2 · 2 |
+| **Revise** | 12 | [More, Less, the Most](packets/more-less-the-most.md) | 3 · 1 · 3 · 3 · 2 |
+| **Revise** | 16 | [Asking the Right Questions About Housing](packets/asking-right-questions-housing.md) | 2 · 1 · 3 · 3 · 2 |
+| **Revise** | 17 | [Have to, Don't Have to, Can't](packets/have-to-dont-have-to-cant.md) | 3 · 1 · 2 · 2 · 3 |
+| **Revise** | 21 | [Must, Have to, Should at Work](packets/must-have-to-should-at-work.md) | 3 · 1 · 3 · 3 · 2 |
+| **Revise** | 28 | [You Should, You Shouldn't: Health Advice](packets/should-shouldnt-health-advice.md) | 3 · 1 · 2 · 3 · 3 |
+| **Revise** | 35 | [Gerunds + Infinitives: Full Review](packets/gerunds-infinitives-full-review.md) | 2 · 1 · 2 · 3 · 2 |
+| **Revise** | – | [medicine-labels-insurance](packets/medicine-labels-insurance.md) | 2 · 1 · 3 · 3 · 2 |
+| **Polish** | 1 | [Welcome Back: Simple & Continuous Review](packets/welcome-back-tenses-review.md) | 3 · 2 · 3 · 3 · 2 |
+| **Polish** | 4 | [Past Simple + Past Continuous: Telling the Story](packets/past-simple-past-continuous.md) | 2 · 2 · 2 · 2 · 2 |
+| **Polish** | 4 | [Verb Forms + Your Study Toolkit](packets/verb-forms-overview.md) | 3 · 2 · 2 · 2 · 3 |
+| **Polish** | 7 | [Let's Make a Suggestion](packets/lets-make-a-suggestion.md) | 2 · 2 · 2 · 2 · 2 |
+| **Polish** | 9 | [Have You Ever...?](packets/have-you-ever.md) | 2 · 2 · 2 · 2 · 2 |
+| **Polish** | 9 | [Just, Already, Yet](packets/just-already-yet.md) | 2 · 2 · 3 · 2 · 2 |
+| **Polish** | 13 | [How Much / How Many](packets/how-much-how-many.md) | 2 · 2 · 2 · 2 · 2 |
+| **Polish** | 18 | [I Need to Find a Place: Infinitives](packets/need-to-find-a-place-infinitives.md) | 2 · 2 · 3 · 2 · 2 |
+| **Polish** | 20 | [Past Perfect: What Had Already Happened](packets/past-perfect.md) | 2 · 2 · 3 · 3 · 2 |
+| **Polish** | 22 | [Second Conditional: What Would You Do?](packets/second-conditional-what-would-you-do.md) | 2 · 2 · 2 · 3 · 2 |
+| **Polish** | 23 | [Phrasal Verbs at Work](packets/phrasal-verbs-at-work.md) | 2 · 2 · 3 · 2 · 2 |
+| **Polish** | 24 | [Present Perfect + How Long](packets/present-perfect-how-long.md) | 3 · 2 · 2 · 3 · 3 |
+| **Polish** | 25 | [I've Been Working: Present Perfect Continuous](packets/ive-been-working.md) | 2 · 2 · 3 · 2 · 2 |
+| **Polish** | 26 | [Enjoy Doing vs. Want to Do](packets/enjoy-doing-want-to-do.md) | 3 · 2 · 3 · 2 · 2 |
+| **Polish** | 29 | [Stop Taking It or Stop to Take It?](packets/stop-taking-or-stop-to-take.md) | 3 · 2 · 3 · 2 · 2 |
+| **Polish** | 31 | [Third Conditional: What Would Have Happened](packets/third-conditional-what-would-have-happened.md) | 3 · 3 · 2 · 2 · 2 |
+| **Polish** | 32 | [I Used to, but Now I...](packets/i-used-to-but-now-i.md) | 3 · 2 · 3 · 2 · 2 |
+| **Polish** | 33 | [Be Used to / Get Used to](packets/be-used-to-get-used-to.md) | 2 · 2 · 2 · 3 · 2 |
+| **Polish** | 34 | [All Four Conditionals: A Quick Tour](packets/all-four-conditionals-quick-tour.md) | 2 · 2 · 2 · 3 · 2 |
+| **Polish** | 36 | [All the Tenses: A Year in Review](packets/all-the-tenses-year-in-review.md) | 2 · 2 · 2 · 3 · 2 |
+| **Keep** | 5 | [Questions That Get Real Answers](packets/questions-real-answers.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 6 | [Getting There: Directions + Imperatives](packets/getting-there-directions.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 6 | [Your Week in English](packets/your-week-in-english.md) | 3 · 3 · 3 · 3 · 3 |
+| **Keep** | 7 | [Zero + First Conditional: If This, Then That](packets/zero-first-conditional.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 10 | [What Are You Good At?](packets/what-are-you-good-at.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 16 | [Parts of Speech Guide](packets/parts-of-speech.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 19 | [It Was Happening When](packets/it-was-happening-when.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | 27 | [Passive Voice: What Was Done](packets/passive-voice-what-was-done.md) | 3 · 3 · 3 · 2 · 3 |
+| **Keep** | 30 | [The Doctor Said: Reported Speech](packets/doctor-said-reported-speech.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | – | [medical-instructions-complete](packets/medical-instructions-complete.md) | 3 · 2 · 3 · 3 · 3 |
+| **Keep** | – | [reported-speech](packets/reported-speech.md) | 3 · 2 · 3 · 3 · 3 |
+
+### Round 2 full reviews
+
+
+### Welcome Back: Simple & Continuous Review (`welcome-back-tenses-review`), Week 1
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 2 → **Polish**
+One-line story: On the way back to class, Rosa tells classmate David about last night's lost-gym-shoe chaos and how her sister is helping with dinner this week.
+Problems:
+- Section 1 scene caption: "Rosa heads to the 121 bus after work." The cast sheet says Rosa takes the 116. Also "5:45 PM ... after work" is a stretch, since her shift ends at 3.
+- Section 1 and section 3 exercise: "My sister is helping with the kids this week" / option "I'm making dinner for your kids this week." Rosa has one daughter, so "the kids" / "your kids" reads like a family change.
+- Section 2 vs exercises and quiz: the dialogue is about snacks ("You always have snacks in that bag!" / "I pack two now"), but the exercise and quiz switch to sandwiches ("We ___ two sandwiches every morning", "Why do you always bring two sandwiches?").
+- Section 4: generic "Teacher"/"Student" retell the same shoe-under-the-sofa story as section 1, now with a son. That makes two near-identical shoe stories, and the quiz mixes them ("my daughter ___ under the sofa and found them"). Nothing happens beyond the shoe mix-up, so Interest is a 2.
+Best fix: change the caption to "Tuesday, 5:15 PM. Rosa waits for the 116 to class", change "the kids" to "my daughter" in section 1 and the exercise option, and give section 4's shoe story a different mishap (for example the student's son left his lunch on the bus) so it isn't a replay.
+
+### Parts of Speech Guide (`parts-of-speech`), Weeks 2–3 (also listed for Week 16)
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: Amara signs up for an evening English class after her hospital shift, finds out the man helping her is her building's maintenance worker Samuel, and on cleanup day gets her leaking sink on his list.
+Problems:
+- Section 5 notice: "Classes meet every Tuesday evening." Section 2: "The Tuesday evening class." The cast sheet puts Amara in Ms. Tran's Tuesday and Thursday class.
+- Section 3: "it's a small space for four people" / "Four people, one bathroom. I win." Her bio says Amara and two kids, which is three people. A fourth person is never explained.
+- Section 1 exercise: "The volunteer explains each question carefully." No volunteer appears. James works the desk and Samuel helps on Tuesdays.
+- Mini quiz: "Dilnoza tells Amara about her sister's work schedule." The story never says anything about the sister's work.
+- Minor: section 4 exercise "Her teacher is happy with her progress" is about Dilnoza, who just registered.
+Best fix: change the notice to "Classes meet Tuesday and Thursday evenings", change "four people" to "three people" (or add one line about who the fourth is), and change "The volunteer" to "Samuel" in the noun exercise.
+
+### Past Simple + Past Continuous: Telling the Story (`past-simple-past-continuous`), Week 4
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 2 · Interest 2 → **Polish**
+One-line story: Fred misses his bus because he was listening to music with a hot coffee in his hand, and separately Elena leaves a double shift when her son falls at recess.
+Problems:
+- Section 1: the scene is "Tuesday, 7:40 AM," but "At break, he tells his classmate Amara." It's unclear what break this is or where he arrived late to (work? class?). The section 2 caption puts them at the Blue Line station while they talk "at break."
+- Section 1 caption: "Meridian Street, East Boston ... The 111 just left." The 111 runs Chelsea to Haymarket. It doesn't run on Meridian Street (the 116/117/120/121 do).
+- Section 4: "Ten minutes in the rain? Wow." Elena was driving, so the rain doesn't matter and the reaction doesn't make sense.
+- Section 1: "I missed the 111 bus this morning. I walked to the Blue Line. I arrived late." This reads like a list of tense samples, not something a person says.
+- Exercises: "The bus left while he ___ the street" and the quiz "He was crossing the street ___ the bus left." The story never has Fred crossing a street. Also "While Claudette was waiting, Elena was arrived." Claudette was never waiting.
+- Theme (learn how to learn / study routine) is absent. The commute only fits the unit.
+Best fix: switch to the 116 or 117, change "At break" to "At class that evening", replace "Ten minutes in the rain? Wow." with "In the rain? Were the roads okay?", and add a crossing to Fred's story ("I was crossing Meridian when it pulled away") so the exercises match.
+
+### Verb Forms + Your Study Toolkit (`verb-forms-overview`), Week 4
+Scores: Clear 3 · Sense 2 · Cringe 2 · Theme 2 · Interest 3 → **Polish**
+One-line story: At class break, Carlos realizes he grabbed line cook Mark's lunch bag, which has a ring in it, gets it back to Mark at 8:05 at the café, and Lisa says yes at 8:30.
+Problems:
+- Section 2: Sarah says "I'm serving tables, so I can't leave. Meet us at the café at eight." But in section 3 only Mark, Carlos and Fernanda are at the café, and section 4 says "everyone from the café" includes Sarah.
+- Section 4: "I've been careful all night." The line is there to show "been", but it doesn't mean anything here. Carlos hasn't had to be careful.
+- Section 4 photo: "A student using a laptop to complete an online lesson." The caption is a late-night group chat.
+- Theme (study toolkit) shows up only in the "Try it" prompts, not in the story.
+- The cast checks out: Carlos as morning prep cook at La Palma, Sarah as a server, and Fernanda at the clinic all match the sheet.
+Best fix: change Sarah's line to "Meet Mark at the café at eight," and change Carlos's last line to something like "I've been hungry since six. I've had enough surprises for one week!"
+
+### Questions That Get Real Answers (`questions-real-answers`), Week 5
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: Five short digital-habit moments: Rosa spots a fake bank email, Amara finds a lost download, Jean backs up his photos, Linh finds out her phone already has a flashlight, and Diego reports a fake delivery text.
+Problems:
+- Section 3: the caption says "Jean asks for help saving his photos" but the photo shows "Two women talking in a modern office setting."
+- Mini quiz: "The computer class moved to a new room this month" adds a setting that's never introduced (harmless).
+- Vignettes are separate but each is clear, has a small problem with a payoff, and stays on the digital-habits theme. The advice is sound ("call the number on your bank card").
+Best fix: swap the section 3 photo for a man at a help table with a phone and a USB cable.
+
+### Getting There: Directions + Imperatives (`getting-there-directions`), Week 6
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: Amara races to a 7:15 clinic appointment she waited three weeks for, deletes a scam package text on the way, finds the front door locked, and gets to the unmarked side door with two minutes to spare.
+Problems:
+- Section 1: the appointment is "Tuesday, 7:00 PM." That's Amara's class night per the cast sheet, and the guide never mentions that she's missing class.
+- Section 1: Amara lives on Meridian Street (cast), but Jean has to tell her "Turn left on Meridian Street." Getting directions onto her own street is a little odd.
+- Section 4 exercise: "Elena might take the other bus, to Saratoga Street. Unscramble Amara's first step from there." This introduces a route the text to Elena never describes, so it's confusing.
+- The timeline checks out (7:07 → 7:09 "six minutes left" → 7:13 "two minutes early"), and the package-scam thread pays off in the P.S.
+Best fix: move the appointment to Wednesday, and have Amara say "I know Meridian, but where on Meridian?" Or delete the Saratoga Street exercise item.
+
+### Your Week in English (`your-week-in-english`), Week 6
+Scores: Clear 3 · Sense 3 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: In the 116 detour week, Rosa is late twice, gets the MBTA app put on her phone, spots a fake toll text, and by Saturday is the one warning her neighbor.
+Problems:
+- Section 4: Jean says "Rosa, you were here at 7 today. What happened?" Fatima said in section 1 that Rosa is "never late," so Jean's surprise could be misread as Rosa being usually late. It works if read as "despite the detour."
+- Everything else matches the cast sheet: the 116, the airport hotel 7–3, class Tuesday and Thursday, no car (which sets up the toll-scam joke). The Wednesday-to-Thursday app timeline holds, and it hits the W6 detour arc.
+Best fix (optional): change Jean's line to "Rosa, you made it at 7 with the detour? How?"
+
+### Let's Make a Suggestion (`lets-make-a-suggestion`), Week 7
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 2 · Interest 2 → **Polish** (borderline Revise)
+One-line story: Tenants Gloria, Jean and Marta work out what to do about two days with no heat, and separately Diego and Brian cover a Saturday shift when Halima's babysitter cancels.
+Problems:
+- Mini quiz: "Rosa and her neighbor agree on a plan for the building issue." Rosa never appears in this guide. This is a leftover name, and Rosa's heat arc is W17, not W7.
+- Section 4: "More names looks better." This is an ungrammatical model line. It should be "More names look better."
+- Section 4 caption: "Two coworkers review options together." Gloria and Jean are neighbors/tenants, not coworkers.
+- Section 4: "Could we also get a letter from all three tenants?" Section 1 talks about asking "the other tenants," so there are more than three.
+- Section 1 exercise: "Let's take photos of the leak tonight." The problem is no heat, not a leak. Also, the section 4 exercise says "Marta wants the whole group to decide," but it was Gloria who said that.
+- Section 2: Kevin is "the building manager's assistant" but tells tenants to report his own boss to Inspectional Services. A real assistant might do this, but it reads oddly. (The 68° daytime rule is correct.)
+- Section 4 exercise: "Diego gives a polite option to his manager Brian." Section 3 never says Brian is the manager.
+- Theme: Week 7 is "Our Voice, Our Vote." The heat story touches on contacting an official, but the shift-swap story is off-theme and neither story resolves.
+Best fix: replace the quiz's "Rosa" with "Gloria", fix "looks" to "look", recaption section 4 as neighbors, change "leak" to "cold apartments", and end section 4 with a payoff: "Gloria: I called the city. An inspector is coming Thursday."
+
+### Zero + First Conditional: If This, Then That (`zero-first-conditional`), Week 7
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: New citizen Carlos almost misses registering, gets scheduled for a double on Election Day, votes early on Saturday morning instead, and drives his downstairs neighbor Beatriz to vote too.
+Problems:
+- Section 4: Scott says "We're short" for Saturday night and in the same breath "Everybody wants those shifts." These two lines contradict each other.
+- Section 1: "If you need a day off, you ask two weeks early." The natural phrasing is "two weeks ahead" or "two weeks in advance."
+- Section 3: "But I won't say yes to him unless Scott agrees." This is confusing, since Miguel would be the one offering. Something like "I can't switch unless Scott agrees" is clearer.
+- Facts check out: Nov 3, 2026 is a Tuesday. Oct 24 is the MA registration deadline. Polls are open 7 to 8. Early voting needs no excuse. Carlos citizen in June, Ana not a citizen, Beatriz downstairs, and Carlos drives all match the cast sheet. Small note: the cast Arc says "first time voting, in November," but he votes early in October. That's fine, but consider updating the Arc.
+Best fix: change Scott's line to "Saturday nights pay double, but nobody wants to close," and change "two weeks early" to "two weeks ahead."
+
+### Can, Should, Must (`can-should-must`), Week 8
+Scores: Clear 2 · Sense 3 · Cringe 2 · Theme 2 · Interest 1 → **Revise**
+One-line story: There's no single story. Four strangers (Claudette, Miguel, a workshop class, Ana) get digital-safety advice from a tech helper, a librarian, a workshop leader and a friend.
+Problems:
+- Interest: sections 1–3 are pure advice exchanges, for example the Librarian's "Exactly. And you shouldn't use your birthday or your name." Only Ana's prize text in section 4 has a problem, and it doesn't resolve.
+- Cringe: section 3 is a lecture ("Everyone, listen carefully. You must keep your Social Security number private."), and section 2 is a flyer read aloud. These are lessons dressed up as dialogue. Section 2 also leans on the bulletin-board/workshop default that the spec warns against.
+- Theme: Week 8 is "Phone English + Family Connection." There's a phone, but family connection never appears.
+- Clear: none of the four casts ever meet, and no named character appears in more than one section.
+- Section 1 exercise: "You ___ (can / can't) share your password with anyone." This uses can't as a prohibition, but the section just defined can't as "not possible / not able."
+- Minor accuracy: "On public wifi, yes, sometimes they can [see your bank account]" overstates the risk, since bank apps encrypt traffic. That's acceptable as cautious advice, but don't build exercises on it.
+Best fix: make it one family story. Claudette sets up her new phone at the library to video-call her daughter in Haiti (can). That night she gets a "Hi Mom, I lost my phone, this is my new number, send $200" text. Her neighbor Bruno tells her what she should and shouldn't do. Her bank's rule she must follow is "we will never ask for your PIN." She calls her daughter's real number and the daughter is fine. This keeps can/should/must and hits both phone English and family connection.
+
+
+### Have You Ever...? (`have-you-ever`), Week 9
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 2 · Interest 2 → **Polish**
+One-line story: Four unrelated scenes (cousins on the phone about food, classmates about a festival, two volunteer orientations) ask each other about past experiences.
+Problems:
+- §1 intro: a stray line with no payoff. "Emily from work called earlier, but tonight Claudette wants to catch up with family." Emily never shows up again.
+- §1: Jean (Haitian, in Montreal) asks his Haitian cousin "Have you ever tried Haitian food in Boston?" and then says "I've seen that place" about a Maverick Square restaurant. It isn't clear where the family dinner for twenty is happening or how Jean knows the restaurant.
+- §1–§2: the week is Helping + Volunteering, but half the guide is about restaurants and food (festival, Somali restaurant). Volunteering only appears in §3–§4.
+- §3/§4: stiff orientation lines. "But I am excited to learn." and "so I would love to help." The orientation in §3 takes place "Saturday morning", a free-time volunteer setting the spec warns about.
+- §2 / §4 exercises (grammar fact): "Did you ever try Guatemalan food?" is marked "Not correct". In American English, "Did you ever...?" is a common, acceptable way to ask about life experience. It would be better to call it "less common" or "use Have you ever for this lesson" than to call it wrong. The "Did she ever volunteer at the library?" item has the same problem.
+- §4 exercise + quiz: Minh's "citizenship class two years ago" appears only in the exercises, never in his dialogue. This is minor.
+Best fix: tie §1 to the theme. Jean asks "Have you ever helped with a community dinner?" because the family wants to cook at a church fundraiser. Delete the Emily line.
+
+### Just, Already, Yet (`just-already-yet`), Week 9
+Scores: Clear 2 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Five neighborhood errands (food pantry sign-up, pharmacy pickup, Linh's bills, Rosa's to-do list, Amara missing the pantry deadline).
+Problems:
+- §4 scene vs cast sheet: "Rosa's kitchen, Friday morning." "OK, let me check my list before I leave for class." Rosa's class is Tuesday/Thursday evening, and on a Friday morning she is at work (7 to 3). The timing contradicts her bio.
+- §1 teaching (grammar fact): "✗ She has signed up already. (already at the end. not the standard position)". Putting *already* at the end is normal, standard English ("I've done it already"). The §1 exercise also marks "has helped already" as wrong. Change ✗ to "also OK, but put it in the middle for this lesson", or limit the ✗ to "has renewed already her bus pass".
+- §4 exercises: "I have ___ paid the rent. I did it on Monday." appears twice in the same exercise, once as a choice item and once as a text item.
+- Theme: the week is Helping + Volunteering. Only the food pantry touches it, and that is from the recipient's side. The other scenes are personal errands.
+Best fix: change the §4 scene to "Rosa's kitchen, Thursday, 4 PM" and the line to "before I leave for class tonight". Change the "already" rule to "usually between have and V3".
+
+### What Are You Good At? (`what-are-you-good-at`), Week 10
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: After a car almost hits a boy at the Saratoga Street crosswalk, Diego, Marta, Bruno and Amina sign up for jobs at a neighborhood meeting, and their letter gets a flashing light installed.
+Problems:
+- §3 photo contradicts the scene. The caption is a 7:30 PM neighborhood meeting in Room B, but the photo is "A counselor and job seeker sitting across a desk reviewing paperwork."
+- §1 exercises: "Sarah is good at ___ (clean) tables quickly." and "Sarah is interested ___ helping at the meeting." The story has Sarah prepping in the kitchen, not cleaning tables, and she never says she's helping. These are small leaps.
+- §3 exercise: "The city listens to us. We get results by ___ (show) up every time." This is a little preachy for Ms. Patel, but it's only an exercise line.
+- Diego's details all match the cast sheet: line cook, son walks across Saratoga Street, shift ends 6:30, arrives late in kitchen shoes.
+Best fix: swap the §3 photo for a library meeting room, and change Sarah's exercise to "Sarah is good at ___ (chop) onions quickly."
+
+### How Long + For and Since (`how-long-for-since`), Week 11
+Scores: Clear 2 · Sense 1 · Cringe 3 · Theme 2 · Interest 2 → **Revise**
+One-line story: Separate scenes (hotel laundry, Linh's hallway, Yesenia switching phone plans, a restaurant kitchen, Yesenia's family filling out a rental application).
+Problems:
+- §3 exercise contradicts §5 and the quiz. "How long has Yesenia lived in East Boston?" has the key "She has lived there since 2019." But §5 says "we have lived here for five years" and the quiz key is "She has lived here since 2021."
+- §5 family timeline doesn't work. Teresa says "for five years. Since before your brother was born." and then "The kids have gone to that school for four years." A brother under five can't have been in school for four years, and it's unclear whose kids "the kids" are (Yesenia's? her siblings?). The exercise "The children have gone to the same school ___ kindergarten" makes it murkier.
+- §1: "I have worked here for two years. It was my first job in Boston." This is the wrong tense for a job she still has ("It's my first job"). It also sits oddly with "I have been here since 2020": six years in Boston, but her first job only two years ago.
+- Theme: the goal is a phone plan and hunting for something cheaper. Only §3 is about that. The rest is jobs and leases.
+Best fix: change the §3 key to "since 2021". Change Teresa's line to "Since before your little brother started kindergarten", and the next line to "Your brother has gone to that school for four years." Change §1 to "It's my first job in Boston" and "since 2023".
+
+### More, Less, the Most (`more-less-the-most`), Week 12
+Scores: Clear 3 · Sense 1 · Cringe 3 · Theme 3 · Interest 2 → **Revise**
+One-line story: Rosa compares groceries and phone plans and buys marigolds, while Diego and Fernanda compare two apartments.
+Problems:
+- Quiz contradicts §2. The quiz item "Plan B is ___ expensive than Plan A." has the key "more". But the §2 exercise "Plan A is ___ (expensive) of the three options." has the key "the most expensive". Plan B can't cost more than the most expensive plan.
+- §3 dialogue contradicts its own exercises. In the dialogue, Diego praises Maverick, and Fernanda answers "But it costs more. $200 more a month." That reads as Maverick costing more. The exercises say the opposite: "The Bremen Street apartment has ___ rooms, but it costs $200 ___ a month." (key: more, more) and "This apartment is ___ (small) than the one on Bremen Street, but it is also ___ (cheap)."
+- §1 scene: "After a double shift, Rosa and Amara stop..." Rosa works Monday to Friday, 7 to 3. "after work" fits her better. Also, Amara says "the walk is shorter" here, but the exercise says "The dollar store is ___ (close) to my apartment than Market Basket."
+- §4: the marigolds are never explained. Saying "for the Day of the Dead altar" would make the purchase make sense for Rosa.
+- Quiz: "Carlos compares the markets near his house." Carlos isn't in this guide. This is minor.
+Best fix: give Fernanda "Bremen has the extra room, but it costs $200 more a month." Change the quiz to "Plan B is ___ expensive than Plan C." Change §1 to "After work".
+
+### How Much / How Many (`how-much-how-many`), Week 13
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 2 · Interest 2 → **Polish**
+One-line story: Five separate grocery scenes: checking what's in the fridge, shopping for a family visit, a cheap dinner, a cereal label, and too much rice.
+Problems:
+- §2: it's unclear who Sarah is. "Claudette shops before her sister's family arrives." Claudette asks Sarah "How many people are coming?" even though Claudette is the host. Then Sarah says "Let's check the serving size on the bag." Is she in the store? Is she the sister?
+- §3 vs cast sheet: Diego (partner Fernanda, school-age son) shops after a double shift, and his coworker Kevin texts, "We can make rice and onions tonight. I have some beans we can add." It reads as if Diego and Kevin share a home.
+- §4: Ana talks to herself in three lines. "That's a lot of sugar, and there isn't much protein." It's stiff. The exercise then has her looking at "a few onions left in the bag" in the cereal aisle.
+- §5: "I bought too many bags of rice. We can't eat all this." Ten bags (per the exercise) is an odd mistake, and rice keeps anyway.
+- Quiz: "Diego needs to buy rice. What does he ask the cashier? How much rice do you have?" Nobody asks a cashier that.
+- Theme: the theme is feeding a family on a budget, but money barely appears. Only Ana's "This one is cheaper" mentions it.
+Best fix: make §2 a phone call. Claudette's sister Sarah asks "How much rice do you need for twelve?" and Claudette has $40 until Friday. Turn the quiz item into "What does Diego ask Fernanda?"
+
+### Asking the Right Questions About Housing (`asking-right-questions-housing`), Week 16
+Scores: Clear 2 · Sense 1 · Cringe 3 · Theme 3 · Interest 2 → **Revise**
+One-line story: Rosa (lease ending) calls about a Leyden Street listing, Nadine calls a management office, and they compare notes after their shift.
+Problems:
+- §1/§2 timeline and place: in §1 it's "Rosa's break" on Meridian Street, and in §2 "She has five minutes before her shift starts." It can't be both. Also, Rosa works at an airport hotel, so she isn't on Meridian Street during a break. And §2 says "Brian picks up", yet Rosa was already talking to him in §1.
+- §4 vs cast sheet: "Did you ask about parking? I forgot." Rosa has no car and takes the 116 bus.
+- §4: it's unclear whose apartment it is. Nadine called Scott about a $1,350 two-bedroom, and Rosa's listing is Brian's $1,400 apartment on Leyden Street. Then Nadine says "He has appointments on Saturday. Do you know when you can go?" and Rosa says "I'll call him now." Students can't tell which landlord or which apartment.
+- §2 model line: "Is there a laundry in the building?" sounds off. "Is there laundry in the building?" is better, and §4's list already uses that. The exercise "___ laundry included in the building?" has the same problem.
+Best fix: put §1–§2 at "Meridian Street, Saturday morning", with Rosa calling Brian from the laundromat. In §4, have Nadine say she called the same building's management office for Rosa, at the same $1,400. Change Rosa's question to "Did you ask if the bus stop is close?"
+
+### Have to, Don't Have to, Can't (`have-to-dont-have-to-cant`), Week 17
+Scores: Clear 3 · Sense 1 · Cringe 2 · Theme 2 · Interest 3 → **Revise**
+One-line story: Rosa's heat breaks in January, and with a hotline worker, her cousin Javier, Amara and Diego she learns what her landlord has to do, doesn't have to do, and can't do.
+Problems:
+- Law (MA), §3 + §4 exercise: "And he can't come in without 24 hours notice." and "Landlords are prohibited from entering without 24 hours notice." Massachusetts law has no fixed 24-hour rule. It requires reasonable notice, and 24 hours is a common lease term, not the statute.
+- Law (MA), §3: "He can't show it without your permission while you still live there." MA law (c.186 §15B) lets a landlord enter to show the unit to prospective tenants with reasonable notice. Teaching tenants a right they don't have is risky.
+- §3 vs arc: "But I didn't say I'm leaving." The cast arc (and the Week 16 guide) has Rosa's lease ending and Rosa already looking for a new place.
+- §3: "Rosa, the landlord called me too." It's unclear why the landlord would call Amara about showing Rosa's apartment.
+- §4 caption: "Black History Month: The federal Fair Housing Act of 1968..." This is pasted on and has nothing to do with the flyer scene.
+- Quiz: "Fill in the blank: 'You ___ repaint the walls.' (Two words: not required.)" The answer, "don't have to", is three words.
+- Theme: the week is Comparing Housing Options, but the story is about rights in her current apartment.
+Best fix: replace the §3 showing line with "He can't come in without notice first. Ask him to text you a day before." and the fee line stays. Reword the flyer item to "Landlords have to give notice before entering." Change "Two words" to "Three words". Drop "I didn't say I'm leaving" and write "I'm still here until March."
+
+### I Need to Find a Place: Infinitives (`need-to-find-a-place-infinitives`), Week 18
+Scores: Clear 2 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Five people hunting for apartments (Rosa, Wilson, Amara with Nadine, Diego, Lucia) say what they need, want, hope, plan and would like to do.
+Problems:
+- §1: the speaker is labeled only "Cousin". Rosa's cousin on the cast sheet is Javier, so use his name. "after a double shift" doesn't fit Rosa's 7–3 schedule.
+- §1 timeline: "My lease ends in six weeks." Then the exercise says "Rosa need to find an apartment before February." Six weeks from the Week 18 date is past February.
+- §3: Amara is apartment hunting ("Last place, we paid for everything"). The cast sheet puts her in Rosa's building on Meridian Street, with no move in her Arc. It's also unclear whether she and Nadine are looking together.
+- §2/§4: the same "listing on Bremen Street" is Wilson's (through Jennifer's cousin) and also the one Diego calls Brian about. The quiz then has "Wilson calls about an apartment on Bremen Street."
+- Theme: the week is Landlord Calls + Repair Requests. Only §4 is a landlord call, and there's no repair request anywhere.
+Best fix: name the cousin Javier. Move Diego's call to "the apartment on Lexington Street". Give Amara's §3 a repair angle ("I need to ask about the heat before we sign. At our last place, it broke every winter."), or swap her for a non-core name.
+
+### It Was Happening When (`it-was-happening-when`), Week 19
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: A pipe bursts over Lucia's kitchen at midnight, and she tells the landlord, her neighbor, the insurance company and the inspector what happened.
+Problems:
+- §4 vs §2: Lucia tells the insurer "The kids were sleeping." But §2 has her older daughter awake at the kitchen table: "She was finishing her homework."
+- §3 model line: "Water came everywhere." This isn't idiomatic. Use "Water went everywhere" or "Water was everywhere."
+- §2 photo: "Apartment kitchen at night", but the scene is Wednesday, 7:00 AM.
+Best fix: change the §4 line to "My younger kids were sleeping." and the §3 line to "Water went everywhere."
+
+
+### Past Perfect: What Had Already Happened (`past-perfect`), Week 20
+Scores: Clear 2 · Sense 2 · Cringe 3 · Theme 3 · Interest 2 → **Polish**
+One-line story: Gloria, a hotel housekeeper, applies to a warehouse and interviews; then two separate scenes: Wilmer gets promoted, and Hodan and Linh compare old jobs.
+Problems:
+- S2 vs S3 order: Gloria is already in the break room chatting with a forklift operator ("So what did you put on your application?") *before* her HR interview in S3. Is she hired or not? The reader can't tell where she is in the process.
+- Gloria's thread never ends: we never learn if she gets the warehouse job. Meanwhile Wilmer (S4) gets "the supervisor job," which steals the payoff.
+- S5 Linh: "The restaurant hadn't paid overtime, not once." This uses the past perfect with no second past moment, which is the exact mistake S4 teaches against ("I had worked yesterday"). The matching exercise "The restaurant ___ overtime in two years. (hadn't paid)" is awkward too.
+- S5 Linh: where "here" is isn't clear. The cast sheet puts Linh in hotel housekeeping only "from spring", and Week 20 is still winter. If "here" is a hotel, it's early. If it's the warehouse, it contradicts her arc.
+Best fix: make it one story. Move S2 after S3 ("Gloria's first break after she's hired"), let Jennifer offer the job at the end of S3, and give Wilmer's promotion to James. For S5, change Linh to a non-core name (e.g. Hodan's coworker "Thanh") or set it explicitly at the restaurant she's leaving. Rewrite the overtime line: "Before I left, they had never paid me overtime, not once."
+
+### Must, Have to, Should at Work (`must-have-to-should-at-work`), Week 21
+Scores: Clear 3 · Sense 1 · Cringe 3 · Theme 3 · Interest 2 → **Revise**
+One-line story: Four workplaces, four new workers, each learning one kind of rule: construction safety (must), restaurant procedure (have to), hotel etiquette (should), and a manager's text before an inspection (all three).
+Problems:
+- S2 core-cast conflict: "Marta has worked the line for three years. Amara started this week." In Week 21 Amara cleans patient rooms at the hospital (full-time day shift). She doesn't move to hotel housekeeping until W25 and is never a line cook.
+- S2: Amara's recap includes something nobody said: "Clock in, text if I'm late, uniform always." The uniform never comes up in the dialogue, but the fill-in depends on it: "The manager checks every day. She ___ wear her uniform." She also never answers "Do you have his number?"
+- S3: "Linh started two weeks ago" at the hotel. The cast sheet starts Linh's hotel job "from spring", so Week 21 is early. A minor timing problem.
+- S4: Jennifer texts Sunday night that the "Health inspection is at 10:30". Boston routine restaurant inspections are unannounced. It's plausible only as a scheduled re-inspection.
+- Quiz 5: "The safety sign at the warehouse". No warehouse appears in the guide (S1 is a construction site).
+Best fix: rename S2's new hire to a non-core name (e.g. "Fadumo started this week") and add one Marta line: "And you have to wear the full uniform. He checks." Make S4 "the health inspector is coming back at 10:30 for the re-inspection." Change the quiz to "at the construction site."
+
+### Second Conditional: What Would You Do? (`second-conditional-what-would-you-do`), Week 22
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 3 · Interest 2 → **Polish**
+One-line story: Five unrelated pairs of coworkers imagine different schedules, sites, pay and promotions.
+Problems:
+- S3 setting contradiction: the scene is "Home health agency, East Boston", yet Nadine says "If I were you, I would call the agency right now." They are standing in the agency. It's also unclear where Beatriz is while "The client is alone."
+- S4: the scene is "Saturday morning", but Kevin says "If there's overtime on Saturday, I'll take it." Sofia's "If I didn't have my son's birthday" is unnatural ("If it weren't my son's birthday").
+- S5 caption reads as pasted in: "Women's History Month: in March, workers across the country talk about equal pay. Jennifer's line above is something many workers think about." Jennifer's line is about a second job, not equal pay.
+- Quiz 5: "Yemi imagines…". This is a new name the guide never introduced.
+- Five separate pairs with no recurring person, all at the same "imagine a different job" level. Nothing builds.
+Best fix: set S3 at the client's apartment ("Beatriz texts Nadine from the client's kitchen") so "call the agency" makes sense. Make S4 "next Saturday" and change Sofia to "If it weren't my son's birthday, I would take it." Either cut the Women's History Month note or give Jennifer an actual equal-pay line ("If they paid us the same as the night guys, I wouldn't need a second job").
+
+### Phrasal Verbs at Work (`phrasal-verbs-at-work`), Week 23
+Scores: Clear 2 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Separate workplace scenes: a first-day clock-in, Diego calling in for a sick kid, a timesheet correction before payroll closes, and a shift swap.
+Problems:
+- S4 exercise is broken: "Fatima has the timesheet. She needs to ___ ___ in before 3 PM. (fill + pronoun)", accepting only "fill it". In the story she has to *hand/turn it in*, and S4's own examples are "hand it in / turn it in."
+- Quiz 3 contradicts the story: "Ana ___ Diego because he was sick." Diego wasn't sick; his kid had a 103 fever (Quiz 2 even says so).
+- S5: the scene is "Thursday, 4:55 PM", but Hector asks "Can you cover for me Thursday?" That's today.
+- S2: Ana will "let Kevin know" while Diego must "call the manager before 6". Is Kevin the manager? This is a small confusion.
+- Theme says "+ Workplace Rights", but rights only show up indirectly in the payroll-correction scene.
+- Quiz 5: "Claudette filled out a form…". New name.
+Best fix: change the S4 item to "(hand + pronoun)" with answers "hand it" / "turn it". Fix the quiz to "because his son was sick." Make S5 "next Thursday." For theme, give Fatima one rights beat: "If it's not fixed, I'm not paid for Tuesday. That's my right to check."
+
+### Present Perfect + How Long (`present-perfect-how-long`), Week 24
+Scores: Clear 3 · Sense 2 · Cringe 2 · Theme 3 · Interest 3 → **Polish**
+One-line story: Rosa interviews for a housekeeping job at a hotel on Meridian Street, practices with a coworker, and gets the offer.
+Problems:
+- S2 timeline: "I've been here since March. About four months." Week 24 is around March (S5 even references Women's History Month), so "four months since March" puts the scene in July.
+- Rosa works Monday to Friday, 7 to 3, yet both interviews fall inside her shift: "Thursday morning" and "Tuesday, 2 PM" (right after "Rosa practices with Yemi… during their break"). One line explaining a day off or a late start would fix it.
+- S5 caption reads as pasted in: "Women's History Month: … a flyer from the hotel workers union… 'How long have you worked without a raise?' Yemi reads it out loud and laughs. 'Too long.'" It's a nice line but has nothing to do with women's history, and it interrupts the interview.
+- S1 exercise: "How long has she lived in East Boston? She has lived here since 2020." The reader just heard Rosa say 2021.
+- S1 fill-in: "I ___ worked at this hotel for three years." In this scene Rosa is applying to "this hotel", so the line reads as if she already works there.
+Best fix: change Maria to "since November. About four months." Have Rosa say she "switched to the early break" or "took a personal day" for the final round. Change the S1 key year to 2021 and make the fill-in "at my hotel". Either drop the Women's History Month framing and keep the union flyer as a plain break-room beat, or cut it.
+
+### I've Been Working: Present Perfect Continuous (`ive-been-working`), Week 25
+Scores: Clear 2 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Separate tired-worker scenes: Hector's six-day weeks, Daniela's two-bus commute, Amara's first day in hotel housekeeping, and a job-fair line.
+Problems:
+- S3 cast drift: Amara says "I have been cleaning offices and hotels for three years, since I came to Boston." By the cast sheet, until now she has cleaned patient rooms at the hospital. This is the W25 job change, and the hospital should be what she names. "Your application says you work weekends at a laundry" adds a second job not on her bio. That's plausible, but it's new canon.
+- S3 caption vs photo: the scene is the "Hotel laundry department" but the photo shows "Hotel corridor with a housekeeping cart". Minor.
+- S1: "Roadwork closes Saratoga Street by 9. The roadwork means traffic is already backing up." The roadwork is set up and never comes back.
+- S4 model line: "Their recruiter asked how long I have been working in construction." In reported speech this should backshift to "how long I had been working", or be quoted directly. It's OK in speech, but shaky as a model.
+- Theme ("Career Progress + Skills"): S1–S2 are about exhaustion and commuting, not progress. Marta waits an hour and nothing pays off.
+Best fix: change Amara's line to "I have been cleaning patient rooms at the hospital for almost three years," and drop the laundry job (Jennifer can ask "Have you been using the big floor machines there?"). Give Marta a payoff: she walks to the shorter construction line and gets an interview slot. Reword Osmin: "She asked, 'How long have you been working in construction?'"
+
+### Enjoy Doing vs. Want to Do (`enjoy-doing-want-to-do`), Week 26
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Elena, a hotel housekeeper with back pain, wants to move to warehouse work and talks it through with Amara, her cousin Bruno, her supervisor and Ms. Tran.
+Problems:
+- Timeline: Week 26 is already spring, but the plan keeps shifting: "Are you going to stay through spring?", "I plan to apply for warehouse work in the spring", "after spring", "I decided to stay through May." Is she applying now or waiting?
+- S4 fill-in contradicts the story: "She started ___ (look) for new jobs last month." Everywhere else she hasn't started looking yet. The instruction "(write the to + verb form)" also sits next to "Elena likes ___ (work)… (write the -ing form)". That's fine, but the "started" fact is wrong.
+- S5 leftover non-sequitur: "After class, a coworker from the hotel texted Elena a photo of a new café near the park. She invited Elena to have lunch after Saturday's shift." It connects to nothing.
+- S1: Amara "I've been avoiding lifting the heavy carts for weeks". Per the cast sheet she started hotel housekeeping in W25, one week ago. "For weeks" is a slight stretch, and "since I started" works better.
+- S1 exercise: "Elena enjoys ___ to the guests every morning." She's on the afternoon shift in this scene.
+- Theme "+ Advocacy": nobody advocates. Elena says "I haven't said anything yet," and Amara's shoulder goes nowhere.
+Best fix: make the plan "stay through May, then apply" everywhere, and change S4 to "She plans ___ (look)…". Replace the café paragraph with an advocacy beat: Amara asks Kevin to stop assigning her the heavy laundry carts ("I want to ask for lighter carts until my shoulder heals") and he agrees to pair her.
+
+### Passive Voice: What Was Done (`passive-voice-what-was-done`), Week 27
+Scores: Clear 3 · Sense 3 · Cringe 3 · Theme 2 · Interest 3 → **Keep**
+One-line story: Gloria gets hired at an airport hotel through her cousin, starts work, has an approved day off overwritten by a schedule change, and finds her overtime short.
+Problems:
+- Theme ("Passive Voice + Pay Stubs"): the pay stub only shows up in the last two lines ("my check was short"). Nobody reads a stub.
+- S2 job ad: "Transportation near the Blue Line is recommended." No real ad says this. "Near the Blue Line" or "Easy access by Blue Line" would read better.
+- S1 "The paperwork is already done" vs S3 "I was asked to sign a form about the uniform" / "sign three forms on her first day." This is a small contradiction.
+- S4 "Correct the error": "My check were not paid on time." "A check is paid" is an odd collocation. Use "My check was not deposited on time."
+Best fix: in S5, have Gloria hold the stub: "Look, overtime is listed as 0 hours. Three hours were not paid." Jennifer: "Payroll is closed today, but it can be corrected on the next check." Change S1 to "Most of the paperwork was done online."
+
+### You Should, You Shouldn't: Health Advice (`should-shouldnt-health-advice`), Week 28
+Scores: Clear 3 · Sense 1 · Cringe 2 · Theme 3 · Interest 3 → **Revise**
+One-line story: Yolanda hurts her back lifting at the warehouse, goes to a walk-in clinic before her shift, gets told to stay out until Thursday, and picks up her medicine.
+Problems:
+- S4 medical error: "You're on blood pressure medicine, right? You must not take them together." / "At least two hours between them." The ibuprofen–blood-pressure-medicine problem isn't solved by spacing doses. NSAIDs can raise blood pressure and weaken BP medicine regardless of timing. A real pharmacist would check with the prescriber or suggest acetaminophen. Students may act on this.
+- S4: "You shouldn't skip doses. Take it every six hours, even if you feel better." That's antibiotic advice. For ibuprofen for pain, "as needed, no more than every six hours" is the norm. S3 already said "every six hours. Not more than that."
+- Lifting restriction keeps changing: nurse "rest for at least two days… shouldn't lift anything over ten pounds"; doctor "not until Thursday"; S2 exercise "You ___ lift anything heavy for two weeks. If you do, you could need surgery" (overdramatic); Mark "You shouldn't lift anything heavy that first week."
+- S3 unnatural model line: Rami (a stranger in the next curtain) says "Before you go, should you ask about physical therapy too?" No one says this. It's a teacher's-pet setup for "should" questions.
+- S2 note: "Had better sounds formal or serious." It isn't formal; it's conversational and strong.
+- S1 exercise: "The nurse told Yolanda her appointment is important. Yolanda ___ miss it." No appointment has been mentioned.
+- Real-world gap: she was injured *at work*, so the realistic advice "You should report it to your supervisor. It could be workers' comp" is missing from a "health advice" guide.
+Best fix: rewrite the pharmacy exchange: "You're on blood pressure medicine, right? Then you shouldn't take ibuprofen. It can raise your blood pressure. Let's call your doctor about acetaminophen instead." Keep "must not take this on an empty stomach" for the hard rule. Make Rami say "You should ask about physical therapy too." Unify the restriction to "no lifting over ten pounds until your follow-up." Have Mark's text add "You should fill out an injury report when you're back."
+
+### Stop Taking It or Stop to Take It? (`stop-taking-or-stop-to-take`), Week 29
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Over one weekend, Marisol, a warehouse worker, switches blood pressure pills, deals with insurance, sets a pill alarm and helps a neighbor read a label.
+Problems:
+- S3 contradiction: on Thursday night Jennifer "has her new prescription ready", and Marisol takes "my new pill" at lunch Friday. Then on Friday evening, "The name brand isn't covered. But try taking the generic." Has she already been taking it?
+- S2 exercise 3 is broken: "She stopped ___ her lunch to answer the pharmacist's call. (she paused eating, use 'eating'... or write 'to take' if she paused [something] to take the pill)". The instructions say "Write 'taking' or 'to take'", and the accepted answers are "to take"/"taking", which give "She stopped to take her lunch to answer…". No pharmacist's call happens in the story.
+- S5 exercise contradicts S3's rule: "I tried getting the refill on Friday, but the pharmacy was closed. (She made an effort)" is keyed **Correct**, but S3 teaches that effort = "try to".
+- Quiz 2: "Marisol was working at her desk." She works a warehouse floor.
+- S3 fact: "Call the insurance line and ask for a prior authorization." The prescriber's office submits prior authorizations. The patient can call, but should ask the doctor's office to request one.
+- S1: "Tell your father I need to stop taking the old white pills". It's unclear why Julio needs to know. S4: "I had it with my coffee" when the label says take with food.
+- Theme ("Symptoms + Clinic Visits"): it's all pharmacy and medication. No symptoms and no clinic visit.
+Best fix: make S3 happen at the Thursday pickup ("Jennifer: The name brand isn't covered, so today I'm giving you the generic"), and Friday's pill is the generic. Rewrite S2 ex3 as "She stopped ___ (eat) her lunch to take her pill" → "eating". Change the S5 key to Not correct, or reword it to "She tried to get the refill". Change the quiz to "working on the loading dock." Add one symptom line to S1 ("The doctor changed it because of the dizziness").
+
+
+### The Doctor Said: Reported Speech (`doctor-said-reported-speech`), Week 30
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: The clinic warns Luz that her daughter Amina's inhaler is almost empty and must be refilled before 6. Marco leaves his line shift early to get it, passes on the pharmacist's rules to cousin Gloria, and explains everything to his mother in Guatemala.
+Problems:
+- §5 intro: "She speaks limited English, so Marco uses simple reported speech to explain everything." He opens with "Mamá" and she answers "Ay, mijo". A Guatemalan son would call his mother in Spanish, so the stated reason makes no sense.
+- §4 scene vs photo: the caption says "Amina's doctor's office calls about her follow-up", but the photo shows "A doctor in a white coat talking with a patient in an exam room". It's a phone call.
+- §4: "She asked if we had brought the new card last time. They don't have a copy." If the clinic has no copy, it already knows they didn't bring it. "She asked if we could bring the new card" is more natural, but the §4 fill-in is built on "had brought", so that would need changing too.
+- §2 exercise: "Kelly said: 'The pharmacy is closed today.'" This contradicts the story, where the pharmacy can refill it today. §4 exercise "Where do you live?" and quiz "Bring the inhaler to the follow-up" are also things nobody in the story says.
+- §1 note: "She cannot repeat Kelly's exact words on a noisy restaurant line", but in §2 she texts him. Minor.
+Best fix: Drop the "limited English" line. Write something like "Marco calls his mother Lucia in Guatemala on his break. He has to explain in his own words what three different people told him." Then change the §2 exercise to "Kelly said: 'The pharmacy closes at 6.'" → "Kelly said that the pharmacy closed at 6."
+
+### Third Conditional: What Would Have Happened (`third-conditional-what-would-have-happened`), Week 31
+Scores: Clear 3 · Sense 3 · Cringe 2 · Theme 2 · Interest 2 → **Polish**
+One-line story: Yemi, a warehouse packer, hurts her knee lifting a pallet, works through the pain for three weeks, then loses about $400 in missed shifts and pays an $80 clinic bill. She regrets waiting.
+Problems:
+- Theme: the week is "Third Conditional + Pharmacy", but there is no pharmacy anywhere in the story. Health comes through only as the clinic.
+- §5 poster: "'If the site had followed the safety rules, that worker wouldn't have been injured.'" No real safety poster talks like this. It's a grammar example pinned to a wall.
+- §5 Jennifer: "And if you called the nurse line now, they would tell you what to do next. That's still possible." The "That's still possible" line explains the grammar to the reader. In §4, "If you called the clinic now, they would help you figure out the bill" is also stiff. A coworker would say "If you call them, they'll help you."
+- Interest: the story ends on "But I can call today." It never says whether she calls, and the "call" switches from the clinic about the bill (§4) to the nurse line about the knee (§5). It doesn't pay off.
+- §1 exercise and mini-quiz Q1: the correct answer is "If I had rested my knee, it wouldn't hurt this much." That's a mixed conditional, which the guide never teaches. In a third-conditional quiz, students will be told the "wrong" pattern is right.
+- §1: Ms. Patel's role is never given. "Can you bend it for me?" suggests a clinician, but in Week 34 a Ms. Patel works the billing desk (see below).
+Best fix: Put the payoff at the pharmacy. In §5, Yemi picks up an anti-inflammatory, and the pharmacist mentions the free nurse line ("If you had called us, we could have told you to ice it"). Yemi ends with a real result. Replace the poster with a line Jennifer actually says, and make the mixed-conditional items pure third conditional ("...it would have healed faster").
+
+### I Used to, but Now I... (`i-used-to-but-now-i`), Week 32
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 2 · Interest 2 → **Polish**
+One-line story: Linh, a hotel housekeeper who starts at 5 AM, compares her life in Vietnam with her life in Boston: family nearby, sleep, commute, meal prep, and her son's lunch.
+Problems:
+- §3: "I used to live with my parents. But now I share a two-bedroom apartment with my cousin." The cast sheet gives Linh two kids and her own apartment on Meridian Street, and §4 shows her packing lunch for both kids. A cousin roommate is new and makes for a crowded, confusing household.
+- Cast fit: Linh's real history (two years of 12-hour restaurant shifts before the hotel) is the obvious "used to" for her, but it's missing. Instead, §2 compares to "Back home I used to start work at 8."
+- §4: "I used to pack rice for you every day. Do you want some today?" / Son: "Can I have PB&J today?" / "You used to ask for rice, but now you prefer sandwiches." If he already prefers sandwiches, he wouldn't ask for PB&J as a special request, and she wouldn't offer rice. The beat contradicts itself.
+- §1 photo: "looking out the window during the morning commute", but the caption is "Tuesday, 1:15 PM", after her shift.
+- Theme/Interest: "Wellness" stays in the background (sleep, meal prep). Most sections are Linh listing before-and-after routines, and nothing is at stake except the small lunch moment.
+Best fix: Build it around Linh's tiredness. "I used to work 12-hour restaurant shifts and cook at 11 PM. Now I start at 5 AM, so I meal-prep on Sunday." Make §3 "I used to live in Chelsea. Now I live on Meridian Street with my kids." In §4, the son surprises her: "Mom, I used to like rice. Now everyone at school eats sandwiches."
+
+### Be Used to / Get Used to (`be-used-to-get-used-to`), Week 33
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 3 · Interest 2 → **Polish**
+One-line story: Five separate adjustment scenes: a line cook used to closing, two classmates freezing at a 5:30 AM bus stop, a parent learning school emails, cousins juggling church around shifts, and Fabienne asking her supervisor for Friday off.
+Problems:
+- Disconnected vignettes in a single-topic guide: there are four unrelated casts, and only Fabienne appears twice.
+- §5 intro: "double shifts, a cold commute, English school emails". The cold commute belongs to Priya in §2, not to Fabienne. The §5 unscramble is "Build Priya's sentence about winter chores", in Fabienne's scene.
+- §5 Fabienne: "I'm used to working overtime ... And I'm still getting used to the double shifts." These contradict each other.
+- §5: Fabienne tells her supervisor "I'm not used to reading every school email in English yet" while asking for a day off. That's a grammar line, not something you say to Mark.
+- §2 is set in January ("It is January", "This is my first winter"), but this is a late-spring week. It reads like a flashback with no frame.
+- §4 exercises: "Claudette has two jobs", "Jean is learning the hymns at his new parish", and "Jean had free weekends before". The story never says any of these.
+Best fix: Make Fabienne the through-line. Give her Priya's cold-commute lines ("I'm still not used to waiting for the bus at 5:30"), keep Rafael as her cousin on the line if you need a "be used to" model, and end at Mark: "OK, Friday's yours. Can you do Saturday 6 to 2?" Then remove the "used to overtime" line.
+
+### All Four Conditionals: A Quick Tour (`all-four-conditionals-quick-tour`), Week 34
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 3 · Interest 2 → **Polish**
+One-line story: Yemi returns to night shifts at the warehouse after a knee injury, goes to a Saturday follow-up and gets a payment plan, and walks a classmate through her bad week.
+Problems:
+- §4: "If I had called last week, I wouldn't have missed three shifts." §1 says "Her knee got worse last month, and she missed three shifts", so calling last week couldn't have prevented it.
+- Cross-guide drift with Week 31, where the same Yemi has the same knee, the same "three shifts" and Ms. Patel. There she is back at work in the break room on "Monday morning" and at "Tuesday lunch", which reads as day shift. Here "Yemi works nights" and "Tonight is her first shift back". Ms. Patel was examining her knee in W31 and now works the billing desk. Students reading three weeks apart will see one story contradict the other.
+- Clarity: the sections run Monday 10 PM, back to Saturday, Tuesday 2 AM, back to Saturday, then Thursday. The two jumps back need a second read.
+- §5: Yemi's four lines are one conditional each, in textbook order ("If I lift wrong, my knee hurts... If I had gone sooner... If I had day shifts..."). The lesson is in disguise.
+- Ending: "if my knee still hurts tomorrow, I'll call the clinic again." The bad week has no payoff.
+Best fix: Present it as the sequel. "Yemi's knee felt better, but after a week of nights it hurts again." Order the sections Saturday clinic → Saturday billing → Monday first shift → Tuesday break → Thursday class, and change §4 to "If I had gone last month...". In §5, let Djamila ask questions so the conditionals come up as answers instead of a list.
+
+### Gerunds + Infinitives: Full Review (`gerunds-infinitives-full-review`), Week 35
+Scores: Clear 2 · Sense 1 · Cringe 2 · Theme 3 · Interest 2 → **Revise**
+One-line story: In one packed week, warehouse worker Marisol faces a late bus, a rent increase, double shifts while she saves for a deposit, and a missed refill. A classmate offers to look at apartments with her.
+Problems:
+- §2: it's "Wednesday, midnight", and "Marisol needs to call her landlord Mark before she falls asleep standing up." No tenant calls a landlord at midnight about a rent increase.
+- §2: the speaker "Cousin" is never introduced. "You'd like to ask about a month-to-month lease, right?" is a stiff way to set up "would like to".
+- Timeline: §3 is Thursday 4 PM, a double shift with "stay an extra hour tonight". §5 is Thursday 7 PM in ESOL class, the same week.
+- §4 (Friday 10 PM, at the counter): "remember to pick up your refill before the weekend" and Marisol asks "What time do you close on Friday?" while she is standing there on Friday. "I stopped to read your text on the bus, but by the time I got here, you were closed" is forced to fit "stop + to", because stopping to read a text doesn't make you late. The §4 exercise "Remember to refill before Friday" also contradicts the Friday setting.
+- §5 exercise distractor: "I plan to visit my cousin's grave Monday." This grim detail comes from nowhere and clashes with Djamila's plan to look at listings on Monday.
+- §1: "111 bus" home to East Boston from a Chelsea warehouse. The 111 runs Chelsea to Haymarket, not into East Boston. Check the route.
+- Interest: the rent call never happens, and the week ends on an offer.
+Best fix: In §2, have Marisol text her cousin at midnight instead: "I need to call Mark tomorrow. I want to ask about month-to-month." Move the double shift to Wednesday. In §4, make the problem a missed pickup: "Marisol, you need to stop forgetting your refills. We close at 10. Remember to come before 9 next time." End §5 with Mark's answer ("He agreed to month-to-month") so the week pays off.
+
+### All the Tenses: A Year in Review (`all-the-tenses-year-in-review`), Week 36
+Scores: Clear 2 · Sense 2 · Cringe 2 · Theme 3 · Interest 2 → **Polish**
+One-line story: On the last night of class, Rosa looks back on the year: leaving work early, the January leak, a double shift at her new hotel, and plans for Level 4 in the fall.
+Problems:
+- §1: Rosa says "I work at the hotel all day, too", and David answers "Me too." Nobody said anything "too" refers to, and David now seems to work at the hotel. Two Rosa lines in a row point to a missing David line.
+- §2 photo: the caption is "Hotel lobby on Meridian Street", but the photo shows "A busy restaurant dining room during the lunch rush".
+- §2: "Do you need to go early today?" / "My daughter has a field trip tomorrow." A trip tomorrow is a weak reason to leave early today. A permission slip or a sitter problem today would work.
+- §3 (law): "In June, the landlord sends Rosa a bill for the ceiling damage" from a January leak "through the ceiling", after she has moved out (lease ended in February). Rosa didn't cause a leak from upstairs. In MA, a landlord can't bill her for it, and a deposit has to be returned within 30 days. The scene just ends, with no hint she shouldn't pay. The cast arc for winter is "the heat breaks", not a leak.
+- §4 Teresa: "I have made dinner, so you won't need to cook tonight." This is forced present perfect where an American would say "I made dinner."
+- §5 narration: "But tonight she is smiling." A little sweet, but acceptable for the final guide.
+Best fix: Give David the missing line ("I'm in construction all day. Two nights a week is all I can do.") and change Rosa's to "I work at the hotel all day." In §3, use the arc's broken heat and reverse the conflict: "Rosa calls her old landlord because he still hasn't returned her deposit. 'The heat had already been broken for a week when I called you.'"
+
+### medical-instructions-complete (`medical-instructions-complete`), off-map
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: Luis, a line cook, wakes up with a fever of 103 on a Friday, is diagnosed with strep in the ER, gets an antibiotic and a work note, and calls out of the busy weekend. Kevin covers for him, and Luis owes him a Saturday.
+Problems:
+- §2 photo: "Migration health assessment centre sign on wall". A UK immigration-medical sign doesn't match "A sign on the hospital wall" in an ER.
+- §10 caption: "The ER hallway on the way out", but the text says "At home, Marta reads Luis's discharge sheet out loud at the kitchen table."
+- §8 Scene C is labeled "earlier, in the ER bed", and the one-hour IV doesn't fit cleanly between the 8:15 arrival, the 40-minute wait and the 9:20 test result.
+- §6: Marta's allergy refill being ready at the *hospital* pharmacy during Luis's ER visit is a slight stretch.
+- (Packet only: the "Kitchen sign at work" rung is missing from the §4 packet, but the source has all five rungs.)
+- The facts check out: food workers with strep are excluded until 24 hours on antibiotics with no fever, which gives "until Sunday". Free interpreter rights and the work note are also right.
+Best fix: Swap the §2 photo for a US ER waiting-room sign, and change the §10 caption to "Home, Friday afternoon: Marta reads the discharge sheet."
+
+### medicine-labels-insurance (`medicine-labels-insurance`), off-map
+Scores: Clear 2 · Sense 1 · Cringe 3 · Theme 3 · Interest 2 → **Revise**
+One-line story: There isn't one. It's a reference guide on labels, insurance and MA healthcare rights with short role-plays (Sofía at the pharmacy, a neighbor reading a label, Rosa uninsured, Luis and Ana hurt at work).
+Problems:
+- §13, core cast: "Rosa: I do not have insurance. I am afraid to go to the clinic because I cannot pay." It sits next to MassHealth Limited and the "Can I get help if I am undocumented?" FAQ, which implies an immigration status that contradicts her bio (Mexican American, full-time hotel housekeeper since 2023). The cast rule says to use a different name.
+- §7: "Your son Pedro (age 9) has a fever... Your neighbor Ana... asks you to explain the label." Then Ana asks "How much do I give my son? He's 7." The next exercise asks about "Pedro is 9 years old." It's unclear whose child is sick.
+- One name, several people: Ana is a neighbor with a 7-year-old (§7), "has a low income and no job with benefits" (§10), has a BlueStar plan (§11), and hurt her back at work (§13).
+- Medical fact (§5, §7, quiz): "If he doesn't feel better in 10 days, call the doctor." The faux label is children's ibuprofen. Real children's labels say to stop and ask a doctor if fever lasts more than 3 days or pain more than 3 days. Telling parents to wait 10 days with a feverish child is unsafe.
+- MA fact (§10): "For Marketplace plans: go to healthcare.gov". Massachusetts runs its own exchange, the MA Health Connector (mahealthconnector.org), and that's where these learners enroll.
+- §1 label ("Take 2 tablets every 4–6 hours. Do not exceed 5 doses... May cause drowsiness") doesn't match the §2 label (ibuprofen liquid, every 6–8 hours, 3 doses) that the rest of the guide uses. The §1 photo of a "store aisle" doesn't match "the pharmacist hands you a small orange bottle".
+- Interest: the stakes (fear of the bill, a work injury) are real, but there's no story that runs through, so nothing pays off.
+Best fix: Rename §13's Rosa (e.g., "Marisol"), make §7 "Ana's son Pedro (age 9) has a fever" with Ana asking about *him*, give the other Ana roles new names, and change "10 days" to "if the fever lasts more than 3 days, call the doctor". Point Marketplace to the MA Health Connector.
+
+### reported-speech (`reported-speech`), off-map
+Scores: Clear 3 · Sense 2 · Cringe 3 · Theme 3 · Interest 3 → **Keep**
+One-line story: Mina, an airport-hotel housekeeper, gets bad news at her diabetes check-up and has to explain everything that night to her supervisor Denise, who only cares about tomorrow's shift, and her sister Gloria, who has just bought her twelve grapefruits.
+Problems:
+- §4 (medicine): "The test only takes about an hour." A fasting blood draw takes minutes, so "an hour" makes Denise's math ("I can be there by 9:30") look off. "With the wait, it can take an hour" would fix it.
+- §2/§5 (medicine): Dr. Chen orders a fasting blood test to "look at your medicine", but Sam hands over a new cholesterol pill the same morning, before the test. A nitpick, but a nurse-student would catch it.
+- §5 photo: "Old bottles line the shelves at the pharmacy next to the clinic" is a caption bent to fit a "historic pharmacy" photo.
+- The sections jump between 8:40, 9:10 and 9:40 out of order, but each one is labeled with its time, so it's fine.
+Best fix: Change Jordan's line to "It's quick, but the lab is busy in the morning. Plan on an hour." Optionally have Sam say "Dr. Chen wants you to start this now, and the blood test will check how it's working."
+
+
+---
+
+## Round 1 (2026-10-03, before the fixes)
+
+
 Reviewed 2026-10-03. Each guide's packet (`npm run audit:stories`) was read against [RUBRIC.md](RUBRIC.md). The verdicts are editorial judgment, not test results.
 
 **40 guides: 21 Revise · 18 Polish · 1 Keep**
 
 > **Status (2026-10-03, later):** continuity fixes were applied to all 18 guides that scored 1 on "Makes sense". Contradictions between story, exercises and quiz, and timelines, names and jobs, were fixed without rewriting the stories. The scores below are from *before* those fixes. Later that day the stories of 7 guides were rewritten (Your Week in English, Zero + First Conditional, What Are You Good At?, Getting There, Parts of Speech, Medical Instructions, Reported Speech), and Reported Speech now teaches "said to me that" as correct (Marlana's decision). Only "said me" and "told that" are taught as errors. Packets are regenerated, so re-score with the rubric when you revisit a guide.
 
-## Fix first: lines that teach something wrong
+### Fix first: lines that teach something wrong
 
 These matter more than a dull story, because students copy the answer key.
 
@@ -20,7 +556,7 @@ These matter more than a dull story, because students copy the answer key.
 | [Asking the Right Questions About Housing](packets/asking-right-questions-housing.md) | The model question is "Can you tell me whether children are allowed?" Refusing renters with children is illegal in Massachusetts, which Week 17 itself teaches. | ✅ Fixed: the question is now "whether parking spots are included" |
 | [Should / Shouldn't: Health Advice](packets/should-shouldnt-health-advice.md) | An exercise says her medicine "causes serious drowsiness", but the story's medicine is ibuprofen. | ✅ Fixed: the item now refers to a different bottle |
 
-## Patterns across the guides
+### Patterns across the guides
 
 1. **Exercises and quizzes contradict the story (the most common problem).** The story says Amara, the exercise says Bruno. A hotel job turns into a warehouse job. Someone "quit last month" while they're still at work in the scene. Eighteen guides scored 1 on "Makes sense", almost always because of this. When you rewrite a story, re-read every exercise and quiz item against it.
 2. **The same names keep changing roles.** Jennifer is a restaurant supervisor, then a warehouse supervisor, then a coworker. Rosa, Mark, Kevin and Carlos turn up with different jobs and families. Either keep a stable cast sheet (Rosa is always a housekeeper with a daughter), or use different names.
@@ -30,7 +566,7 @@ These matter more than a dull story, because students copy the answer key.
 6. **Teacher's-pet lines.** Characters name the grammar ("That's an adjective"), coach it out loud, or give a public-service announcement.
 7. **Photos that don't match captions.** These were flagged in about 8 guides.
 
-## Verdicts
+### Verdicts
 
 | Verdict | Week | Guide | Scores (Clear · Sense · Cringe · Theme · Interest) |
 |---|---|---|---|
@@ -75,7 +611,7 @@ These matter more than a dull story, because students copy the answer key.
 | **Polish** | – | [Medicine Labels & Insurance](packets/medicine-labels-insurance.md) | 2 · 2 · 2 · 3 · 2 |
 | **Keep** | 18 | [I Need to Find a Place: Infinitives](packets/need-to-find-a-place-infinitives.md) | 3 · 3 · 3 · 2 · 3 |
 
-## Full reviews
+### Full reviews
 
 Per-guide notes, in course order. Each quotes the problem lines and gives one concrete fix.
 
