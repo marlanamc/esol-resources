@@ -688,29 +688,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Protect Yourself Verbs: Fill in the Blank"
           },
           {
-            "id": "adverbs-of-frequency-matching",
-            "activityId": "adverbs-of-frequency",
-            "slot": "extra",
-            "order": 10,
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "title": "How Often? Adverbs of Frequency: Matching"
-          },
-          {
-            "id": "adverbs-of-frequency-fill-blank",
-            "activityId": "adverbs-of-frequency",
-            "slot": "extra",
-            "order": 11,
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "title": "How Often? Adverbs of Frequency: Fill in the Blank"
-          },
-          {
             "id": "advisor-bulletin-scavenger-hunt",
             "slot": "extra",
-            "order": 12,
+            "order": 10,
             "wrappedGame": false,
             "activityType": "worksheet",
             "title": "Community Resources Scavenger Hunt"
@@ -718,7 +698,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "job-history-used-to-speaking",
             "slot": "extra",
-            "order": 13,
+            "order": 11,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Job History: What I Used to Do"
