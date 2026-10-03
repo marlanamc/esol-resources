@@ -11,10 +11,10 @@ export const questionsRealAnswersImages: Record<string, {
     credit: { name: "Priscilla Du Preez", url: "https://unsplash.com/@priscilladupreez" },
   },
   sceneApartmentHallway: {
-    url: "https://images.unsplash.com/photo-1769421977169-c45b3faa6b8e?w=1200&q=80&auto=format&fit=crop",
-    alt: "Residential apartment hallway with numbered doors and natural light.",
-    unsplashId: "JyF6Ccb6DX8",
-    credit: { name: "Owen Wei", url: "https://unsplash.com/@owen_wei" },
+    url: "https://images.unsplash.com/photo-1573495782715-34f01d853a77?w=1200&q=80&auto=format&fit=crop",
+    alt: "A woman working on a laptop at a round table.",
+    unsplashId: "QYnAdQlLNek",
+    credit: { name: "Jonathan Borba", url: "https://unsplash.com/it/foto/una-donna-che-guarda-un-computer-QYnAdQlLNek" },
   },
   sceneIntakeDesk: {
     url: "https://images.unsplash.com/photo-1758691737207-e75821e080cb?w=1200&q=80&auto=format&fit=crop",
@@ -29,9 +29,9 @@ export const questionsRealAnswersImages: Record<string, {
     credit: { name: "Kübra Arslaner", url: "https://unsplash.com/@nediyodukenson" },
   },
   sceneNeighborsMeet: {
-    url: "https://images.unsplash.com/photo-1772724317350-520faccb15e6?w=1200&q=80&auto=format&fit=crop",
-    alt: "New residents with boxes outside an apartment building entrance, meeting neighbors.",
-    unsplashId: "12fPtfXsktE",
-    credit: { name: "Apartment Life", url: "https://unsplash.com/@apartmentlife" },
+    url: "https://images.unsplash.com/photo-1628009702672-5958b1de3fc3?w=1200&q=80&auto=format&fit=crop",
+    alt: "A person holding a smartphone and using its on-screen keyboard.",
+    unsplashId: "L8dpOf2r1Mo",
+    credit: { name: "Nathana Rebouças", url: "https://unsplash.com/@nathanareboucas" },
   },
 };

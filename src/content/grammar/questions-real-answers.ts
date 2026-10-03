@@ -76,22 +76,22 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     // INTRO
     {
       id: "questions-open-doors",
-      title: "Questions open doors",
+      title: "Questions for smarter digital habits",
       icon: "🗝️",
       explanation: `
-        ${sceneCard("sceneFirstDay", "East Boston Adult Education Center. First night of class.", "terracotta")}
+        ${sceneCard("sceneFirstDay", "East Boston. Rosa asks Sarah about an unexpected email.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The first week of class is full of questions. Rosa meets someone in her class on the first night. Questions help you learn names, find out where people are from, and start a real conversation.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, use questions to talk about digital habits: checking messages, finding files, protecting your information, and asking for help. Rosa has an email that does not seem right.</p>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Six question words. Each one asks for a different kind of information.</p>
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏾", text: "<strong>Who</strong> is your teacher this semester?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Ms. Tran. I’m Sarah, by the way. <strong>What</strong> class are you in?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Level 3, with Ms. Tran too! <strong>Where</strong> is her classroom?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Upstairs, I think. Is this your first day?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "No, I started last September. Come on, I’ll show you where to go.", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Thanks! I wasn’t sure I was in the right building.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "<strong>What</strong> do you do when you get a strange email?", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "🧑🏽", text: "I don\'t click anything. <strong>Who</strong> is it from?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "It says it\'s from my bank. It wants me to click a link to keep my account open.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "🧑🏽", text: "That sounds suspicious. <strong>Where</strong> do you usually check your account?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "In the bank\'s app. I\'ll open that instead.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "🧑🏽", text: "Good idea. If you\'re still worried, call the number on your bank card.", side: "left", tone: "sage" },
         ])}
 
         <div style="display: grid; gap: 0.45rem; margin: 1.25rem 0">
@@ -118,7 +118,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"___ is your teacher?\" (You want to know the person's name.)",
+              label: "\"___ is the sender of this email?\" (You want to know the person's name.)",
               options: [
                 { value: "who", label: "Who" },
                 { value: "what", label: "What" },
@@ -128,7 +128,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"___ does class start?\" (You want to know the time.)",
+              label: "\"___ does the video call start?\" (You want to know the time.)",
               options: [
                 { value: "why", label: "Why" },
                 { value: "when", label: "When" },
@@ -138,7 +138,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"___ is the classroom?\" (You want to know the place.)",
+              label: "\"___ is the Downloads folder?\" (You want to know the place.)",
               options: [
                 { value: "what", label: "What" },
                 { value: "who", label: "Who" },
@@ -148,7 +148,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"___ did you choose this class?\" (You want to know the reason.)",
+              label: "\"___ did you delete that message?\" (You want to know the reason.)",
               options: [
                 { value: "why", label: "Why" },
                 { value: "when", label: "When" },
@@ -158,7 +158,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "\"___ is your teacher?\" (You want to know the person's name.)",
+              label: "\"___ is the sender of this email?\" (You want to know the person's name.)",
               expectedAnswers: ["Who", "who"],
             },
           ],
@@ -173,21 +173,21 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "Who, What, Where: the basics",
       icon: "📍",
       explanation: `
-        ${sceneCard("sceneApartmentHallway", "Maverick Street, East Boston. Saturday morning.", "sage")}
+        ${sceneCard("sceneApartmentHallway", "At a computer. Amara and Sarah look for a downloaded job application.", "sage")}
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "<strong>Who</strong> is your landlord? Mine never answers the phone.", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "Mr. Costa. He\'s on the second floor. <strong>What</strong> is your apartment number?", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "3B. The kitchen light is broken. <strong>Where</strong> can I leave him a message?", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "There\'s a box outside his office. <strong>What</strong> happened to the light?", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "It went out yesterday. I changed the bulb, but it still doesn’t work.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I can\'t find the form I downloaded. <strong>Where</strong> is it?", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "🧑🏽", text: "Let\'s look in your Downloads folder. <strong>What</strong> is the file called?", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Job application. There it is! <strong>Who</strong> is the contact person?", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "🧑🏽", text: "James in the hiring office. His email address is on the job posting.", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Thanks. I\'ll check the address before I send it.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
           <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem">Questions with <strong>Who, What, Where</strong> use two different helpers depending on the verb.</p>
           <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.8">
-            <li>With <strong>be</strong>: <em>Who <strong>is</strong> your teacher? Where <strong>are</strong> you from?</em></li>
-            <li>With other verbs: <em>What <strong>do</strong> you do? Where <strong>does</strong> she work?</em></li>
+            <li>With <strong>be</strong>: <em>Who <strong>is</strong> the sender? Where <strong>are</strong> my downloads?</em></li>
+            <li>With other verbs: <em>What <strong>do</strong> you share online? Where <strong>does</strong> she save her files?</em></li>
           </ul>
         </div>
 
@@ -197,7 +197,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #6a8d73; background: rgba(106,141,115,0.07)">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73; margin-bottom: 0.3rem">With BE</div>
             <p style="margin: 0"><em>Wh- word + <strong>am / is / are</strong> + subject</em></p>
-            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Where <strong>is</strong> the classroom? &nbsp; Who <strong>are</strong> your classmates?</p>
+            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Where <strong>is</strong> the file? &nbsp; Who <strong>is</strong> the sender?</p>
           </div>
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #268a82; background: rgba(38,138,130,0.07)">
             <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #268a82; margin-bottom: 0.3rem">With DO / DOES</div>
@@ -208,8 +208,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
           <p style="margin: 0 0 0.5rem 0; font-weight: 600; font-size: 0.95rem">Common mistake to avoid:</p>
-          <p style="margin: 0 0 0.25rem 0">&#10007; <em>Where <strong>you</strong> work?</em> &nbsp; <span style="font-size: 0.88rem; color: var(--color-text-muted)">(missing do/does)</span></p>
-          <p style="margin: 0">&#10003; <em>Where <strong>do you</strong> work?</em></p>
+          <p style="margin: 0 0 0.25rem 0">&#10007; <em>Where <strong>you</strong> save your files?</em> &nbsp; <span style="font-size: 0.88rem; color: var(--color-text-muted)">(missing do/does)</span></p>
+          <p style="margin: 0">&#10003; <em>Where <strong>do you</strong> save your files?</em></p>
         </div>
       `,
       exercises: [
@@ -220,36 +220,36 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Where you shop?\" How do you fix this question?",
+              label: "\"Where you shop online?\" How do you fix this question?",
               options: [
-                { value: "a", label: "Where you are shopping?" },
-                { value: "b", label: "Where do you shop?" },
-                { value: "c", label: "Where shops you?" },
+                { value: "a", label: "Where you are shopping online?" },
+                { value: "b", label: "Where do you shop online?" },
+                { value: "c", label: "Where shops you online?" },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "\"What is your landlord's name?\" Is this question correct?",
+              label: "\"What is the file's name?\" Is this question correct?",
               options: [
                 { value: "correct", label: "Yes, correct as written." },
-                { value: "incorrect", label: "No. Should be: What does your landlord's name?" },
+                { value: "incorrect", label: "No. Should be: What does the file's name?" },
               ],
               expectedAnswer: "correct",
             },
             {
               type: "radio",
-              label: "\"What do your sister?\" How do you fix this question?",
+              label: "\"What do your sister share online?\" How do you fix this question?",
               options: [
-                { value: "a", label: "What does your sister do?" },
-                { value: "b", label: "What is your sister do?" },
-                { value: "c", label: "What your sister does?" },
+                { value: "a", label: "What does your sister share online?" },
+                { value: "b", label: "What is your sister share online?" },
+                { value: "c", label: "What your sister shares online?" },
               ],
               expectedAnswer: "a",
             },
             {
               type: "text",
-              label: "\"Where ___ you work?\" (Fill in the missing helper verb.)",
+              label: "\"Where ___ you save your files?\" (Fill in the missing helper verb.)",
               expectedAnswers: ["do"],
             },
           ],
@@ -262,14 +262,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Where", "does", "Amara", "work"],
-              correctAnswer: "Where does Amara work",
+              words: ["Where", "does", "Amara", "save", "her", "files"],
+              correctAnswer: "Where does Amara save her files",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["What", "is", "your", "zip", "code"],
-              correctAnswer: "What is your zip code",
+              words: ["What", "is", "the", "file", "name"],
+              correctAnswer: "What is the file name",
             },
           ],
         },
@@ -283,15 +283,15 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "When and How: time and details",
       icon: "🕐",
       explanation: `
-        ${sceneCard("sceneIntakeDesk", "Community Education Center. Student intake office.", "blue")}
+        ${sceneCard("sceneIntakeDesk", "A community center in East Boston. Jean asks for help saving his photos.", "blue")}
 
         ${dialogue([
-          { speaker: "Coordinator", avatar: "👩‍💼", text: "<strong>When</strong> did you arrive in the US?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "About two years ago. In March 2022.", side: "right", tone: "amber" },
-          { speaker: "Coordinator", avatar: "👩‍💼", text: "<strong>How</strong> do you get to class?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "By bus, usually the 114. <strong>How long</strong> is the program?", side: "right", tone: "amber" },
-          { speaker: "Coordinator", avatar: "👩‍💼", text: "One year. Classes meet twice a week. Does that fit your schedule?", side: "left", tone: "blue" },
-          { speaker: "Jean", avatar: "🧑🏿", text: "I think so. <strong>When</strong> do they meet? Tuesdays and Thursdays?", side: "right", tone: "amber" },
+          { speaker: "Tech helper", avatar: "👩‍💼", text: "<strong>When</strong> did you last save a copy of your photos on another device?", side: "left", tone: "blue" },
+          { speaker: "Jean", avatar: "🧑🏿", text: "I haven\'t done that. <strong>How</strong> do I copy them to my laptop?", side: "right", tone: "amber" },
+          { speaker: "Tech helper", avatar: "👩‍💼", text: "You can connect your phone with a USB cable. Do you have yours?", side: "left", tone: "blue" },
+          { speaker: "Jean", avatar: "🧑🏿", text: "Yes, right here. <strong>How long</strong> does it take?", side: "right", tone: "amber" },
+          { speaker: "Tech helper", avatar: "👩‍💼", text: "It depends on how many photos you have. Let\'s try a few first.", side: "left", tone: "blue" },
+          { speaker: "Jean", avatar: "🧑🏿", text: "Thanks. I don\'t want to lose my family photos if my phone breaks.", side: "right", tone: "amber" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -301,11 +301,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0 1.25rem 0">
           ${[
-            ["When", "a point in time", "When did you arrive? When does class start?", "amber"],
-            ["How", "a method or way", "How do you get to class? (by bus, by foot)", "blue"],
-            ["How long", "a duration", "How long is the program? (one year)", "blue"],
-            ["How often", "a frequency", "How often do you study? (twice a week)", "blue"],
-            ["How far", "a distance", "How far is the bus stop? (two blocks)", "blue"],
+            ["When", "a point in time", "When did the message arrive? When does the download finish?", "amber"],
+            ["How", "a method or way", "How do you join the video call? (through the app)", "blue"],
+            ["How long", "a duration", "How long does the download take? (two minutes)", "blue"],
+            ["How often", "a frequency", "How often do you check your email? (twice a day)", "blue"],
+            ["How far", "a distance", "How far is the computer from the Wi-Fi router? (ten feet)", "blue"],
           ].map(([word, meaning, example, color]) => `
             <div style="padding: 0.6rem 0.85rem; border-radius: 0.45rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
               <div style="display: flex; gap: 0.6rem; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.25rem">
@@ -325,7 +325,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "You want to know if the class meets Monday or Tuesday. You ask: \"___ does class meet?\"",
+              label: "You want to know if the online meeting is Monday or Tuesday. You ask: \"___ does the online meeting start?\"",
               options: [
                 { value: "when", label: "When" },
                 { value: "how", label: "How" },
@@ -335,7 +335,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "You want to know if the program is 6 months or 12 months. You ask: \"___ is the program?\"",
+              label: "You want to know if the video is 6 minutes or 12 minutes. You ask: \"___ is the video?\"",
               options: [
                 { value: "when", label: "When" },
                 { value: "how long", label: "How long" },
@@ -345,7 +345,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "You want to know if your classmate studies every day or once a week. You ask: \"___ do you study?\"",
+              label: "You want to know if your classmate checks email every day or once a week. You ask: \"___ do you check your email?\"",
               options: [
                 { value: "how far", label: "How far" },
                 { value: "how often", label: "How often" },
@@ -362,12 +362,12 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "\"___ did you start this program?\" (You want to know the month or year.)",
+              label: "\"___ did you create this account?\" (You want to know the month or year.)",
               expectedAnswers: ["When", "when"],
             },
             {
               type: "text",
-              label: "\"___ do you come to class?\" (You want to know the method: bus, car, walking.)",
+              label: "\"___ do you join the video call?\" (You want to know the method: through an app or a website.)",
               expectedAnswers: ["How", "how"],
             },
           ],
@@ -387,14 +387,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "Why: giving and asking for reasons",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneWhyClassroom", "ESL classroom, Level 3. Before class starts.", "amber")}
+        ${sceneCard("sceneWhyClassroom", "During a class break. Linh checks what an app can access on her phone.", "amber")}
 
         ${dialogue([
-          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Why</strong> did you sign up for this class?", side: "left", tone: "amber" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "<strong>Because</strong> I need better English for my job. My boss speaks only English. <strong>Why</strong> did you?", side: "right", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Because</strong> I want to help my kids with homework. And I want to understand the school letters.", side: "left", tone: "amber" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Me too. <strong>Why</strong> is English spelling so hard?", side: "right", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "That's the big question!", side: "left", tone: "amber" },
+          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Why</strong> does this flashlight app want my location?", side: "left", tone: "amber" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "That\'s strange. <strong>What</strong> happens if you say no?", side: "right", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "It still works. I\'m turning off location access.", side: "left", tone: "amber" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "<strong>Why</strong> don\'t you use the flashlight that came with your phone?", side: "right", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Because</strong> I didn\'t know I had one! Can you show me?", side: "left", tone: "amber" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -405,26 +405,26 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0 1.25rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.55rem 0.85rem; background: rgba(181,110,26,0.07); border-radius: 0.45rem; flex-wrap: wrap">
             ${labelPill("question", "amber")}
-            <span><em>Why <strong>do</strong> you study English?</em></span>
+            <span><em>Why <strong>do</strong> you keep your passwords private?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.55rem 0.85rem; background: rgba(181,110,26,0.07); border-radius: 0.45rem; flex-wrap: wrap">
             ${labelPill("answer", "sage")}
-            <span><em><strong>Because</strong> I want a better job.</em></span>
+            <span><em><strong>Because</strong> I want to protect my accounts.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.55rem 0.85rem; background: rgba(181,110,26,0.07); border-radius: 0.45rem; flex-wrap: wrap">
             ${labelPill("question", "amber")}
-            <span><em>Why <strong>did</strong> she choose this program?</em></span>
+            <span><em>Why <strong>did</strong> she close the website?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.55rem 0.85rem; background: rgba(181,110,26,0.07); border-radius: 0.45rem; flex-wrap: wrap">
             ${labelPill("answer", "sage")}
-            <span><em><strong>Because</strong> it is close to her house.</em></span>
+            <span><em><strong>Because</strong> it asked for information she did not want to share.</em></span>
           </div>
         </div>
 
         <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
           <p style="margin: 0 0 0.4rem 0; font-weight: 600; font-size: 0.95rem">Short answer (informal):</p>
           <p style="margin: 0 0 0.2rem 0; font-size: 0.9rem; color: var(--color-text-muted)">You do not have to repeat the full question in your answer.</p>
-          <p style="margin: 0.4rem 0 0; font-size: 0.95rem"><em>Why do you take the bus? &nbsp; Because it is cheaper than a car.</em></p>
+          <p style="margin: 0.4rem 0 0; font-size: 0.95rem"><em>Why do you silence your phone at night? &nbsp; Because I need to sleep.</em></p>
         </div>
       `,
       exercises: [
@@ -435,21 +435,21 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Why do you come to class at night?\" Which answer fits?",
+              label: "\"Why do you turn off notifications at night?\" Which answer fits?",
               options: [
-                { value: "a", label: "Because I work during the day." },
-                { value: "b", label: "Because the night is dark." },
-                { value: "c", label: "Because class is in English." },
+                { value: "a", label: "Because I need to sleep without interruptions." },
+                { value: "b", label: "I turn them off at ten." },
+                { value: "c", label: "The setting is under Notifications." },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "\"Why did Linh sign up for Level 3?\" Which answer fits?",
+              label: "\"Why did Linh turn off location access for the flashlight app?\" Which answer fits?",
               options: [
-                { value: "a", label: "Because Level 3 is on Tuesday." },
-                { value: "b", label: "Because she wants to help her kids with homework." },
-                { value: "c", label: "Because the classroom is big." },
+                { value: "a", label: "She downloaded the app on Tuesday." },
+                { value: "b", label: "Because the flashlight works without knowing her location." },
+                { value: "c", label: "The flashlight button is on the screen." },
               ],
               expectedAnswer: "b",
             },
@@ -463,18 +463,18 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "do", "you", "take", "the", "early", "bus"],
-              correctAnswer: "Why do you take the early bus",
+              words: ["Why", "do", "you", "use", "different", "passwords"],
+              correctAnswer: "Why do you use different passwords",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "did", "he", "change", "his", "schedule"],
-              correctAnswer: "Why did he change his schedule",
+              words: ["Why", "did", "he", "delete", "the", "email"],
+              correctAnswer: "Why did he delete the email",
             },
             {
               type: "text",
-              label: "\"Why do you study English?\" A good answer usually starts with ___.",
+              label: "\"Why do you check the sender before replying?\" A good answer usually starts with ___.",
               expectedAnswers: ["because", "Because"],
             },
           ],
@@ -486,20 +486,20 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "all-six-together",
       stepNumber: 4,
-      title: "Getting to know a neighbor",
+      title: "Checking a suspicious message",
       icon: "🤝",
       explanation: `
-        ${sceneCard("sceneNeighborsMeet", "Meridian Street, East Boston. Mid-September, Sunday afternoon.", "terracotta")}
+        ${sceneCard("sceneNeighborsMeet", "After work in East Boston. Diego shows Fernanda an unexpected delivery text.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Diego meets his new neighbor Fernanda. They introduce themselves and talk about the building and the neighborhood.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Diego has not ordered anything, but a text says he owes a delivery fee. He and Fernanda talk through what to do before he clicks anything.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "🧑🏽", text: "Hi! Are you new to the building? I’m Diego.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "I live upstairs. Let me know if you need help finding anything.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Thanks, I’m Fernanda. <strong>Who</strong> is the building manager? I need another key.", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "Mr. Alves, on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Last week. I’m still unpacking! <strong>Why</strong> did you choose East Boston?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "It’s close to work. I can walk there. <strong>Where</strong> do you work?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "I got a text about a package. It says I need to pay a delivery fee.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "<strong>What</strong> did you order?", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Nothing. That\'s <strong>why</strong> I\'m confused.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "Then don\'t use the link. <strong>Where</strong> is the option to report the message?", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Here, under the menu. I\'ll report it as junk.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏽", text: "Good. <strong>How often</strong> do you get these texts? I\'ve had three this week.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -511,13 +511,13 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 0 0 1.25rem 0">
           <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; background: rgba(220,50,50,0.07); border-left: 3px solid rgba(220,50,50,0.4)">
             <p style="margin: 0 0 0.2rem 0; font-weight: 600; font-size: 0.88rem">Missing helper verb</p>
-            <p style="margin: 0 0 0.15rem 0">&#10007; <em>Where you live?</em></p>
-            <p style="margin: 0">&#10003; <em>Where <strong>do</strong> you live?</em></p>
+            <p style="margin: 0 0 0.15rem 0">&#10007; <em>Where you save your photos?</em></p>
+            <p style="margin: 0">&#10003; <em>Where <strong>do</strong> you save your photos?</em></p>
           </div>
           <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; background: rgba(220,50,50,0.07); border-left: 3px solid rgba(220,50,50,0.4)">
             <p style="margin: 0 0 0.2rem 0; font-weight: 600; font-size: 0.88rem">Wrong word order (subject before helper)</p>
-            <p style="margin: 0 0 0.15rem 0">&#10007; <em>What you are doing?</em></p>
-            <p style="margin: 0">&#10003; <em>What <strong>are you</strong> doing?</em></p>
+            <p style="margin: 0 0 0.15rem 0">&#10007; <em>What you are downloading?</em></p>
+            <p style="margin: 0">&#10003; <em>What <strong>are you</strong> downloading?</em></p>
           </div>
         </div>
       `,
@@ -531,9 +531,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which question has a mistake?",
               options: [
-                { value: "a", label: "Where does Fernanda live?" },
-                { value: "b", label: "Why did Diego choose East Boston?" },
-                { value: "c", label: "What you do for work?" },
+                { value: "a", label: "Where does Fernanda save her photos?" },
+                { value: "b", label: "Why did Diego report the text?" },
+                { value: "c", label: "What you do with strange emails?" },
               ],
               expectedAnswer: "c",
             },
@@ -541,15 +541,15 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which question has a mistake?",
               options: [
-                { value: "a", label: "When did she move in?" },
-                { value: "b", label: "Who is the building manager?" },
-                { value: "c", label: "How she gets to work?" },
+                { value: "a", label: "When did she download the app?" },
+                { value: "b", label: "Who is the sender?" },
+                { value: "c", label: "How she checks her email?" },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "\"___ did Diego choose East Boston?\" (You want to know the reason.)",
+              label: "\"___ did Diego report the text?\" (You want to know the reason.)",
               expectedAnswers: ["Why", "why"],
             },
           ],
@@ -562,20 +562,20 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["How", "do", "you", "get", "to", "work"],
-              correctAnswer: "How do you get to work",
+              words: ["How", "do", "you", "report", "a", "message"],
+              correctAnswer: "How do you report a message",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "did", "Diego", "choose", "East", "Boston"],
-              correctAnswer: "Why did Diego choose East Boston",
+              words: ["Why", "did", "Diego", "report", "the", "text"],
+              correctAnswer: "Why did Diego report the text",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["When", "does", "the", "class", "start"],
-              correctAnswer: "When does the class start",
+              words: ["When", "does", "the", "video", "call", "start"],
+              correctAnswer: "When does the video call start",
             },
           ],
         },
@@ -607,7 +607,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "qra-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"___ is the English class? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
+      question: "Fill in the blank: \"___ is the online meeting? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
       correctAnswer: "When",
       acceptedAnswers: ["when"],
       explanation: "When asks about a time. Monday and Wednesday evenings are times.",
@@ -618,14 +618,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     },
     {
       id: "qra-q6",
-      question: "Linh is at the community center intake desk. Which question is correctly formed?",
+      question: "Linh wants to join a video call. Which question is correctly formed?",
       options: [
-        { value: "a", label: "What time you start?" },
-        { value: "b", label: "What time do you start?" },
-        { value: "c", label: "What time starts you?" },
+        { value: "a", label: "What time does the call starts?" },
+        { value: "b", label: "What time does the call start?" },
+        { value: "c", label: "What time the call starts?" },
       ],
       correctAnswer: "b",
-      explanation: "With most verbs, you need do or does between the Wh- word and the subject. \"What time do you start?\" is the correct form.",
+      explanation: "With most verbs, you need do or does between the Wh- word and the subject. \"What time does the call start?\" is the correct form.",
       topic: "question-formation",
       skill: "error-detection",
       skillTag: "form-do-does-missing",
@@ -634,9 +634,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "qra-qws1",
       type: "word-scramble" as const,
-      question: "A classmate asks about the bus schedule. Put the words in order to make the question.",
-      words: ["When", "does", "the", "bus", "come"],
-      correctAnswer: "When does the bus come",
+      question: "A classmate asks about an online meeting. Put the words in order to make the question.",
+      words: ["When", "does", "the", "online", "meeting", "start"],
+      correctAnswer: "When does the online meeting start",
       hint: "Wh- word → helper verb → subject → main verb",
       explanation: "Question word order: Wh- word + do/does + subject + main verb.",
       topic: "question-formation",
@@ -646,14 +646,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     },
     {
       id: "qra-q7",
-      question: "Linh wants to know if the waiting list is 2 weeks long or 2 months long. She asks:",
+      question: "Linh wants to know if a tutorial video is 2 minutes long or 20 minutes long. She asks:",
       options: [
-        { value: "a", label: "How often is the waiting list?" },
-        { value: "b", label: "How long is the waiting list?" },
-        { value: "c", label: "How far is the waiting list?" },
+        { value: "a", label: "How often is the video?" },
+        { value: "b", label: "How long is the video?" },
+        { value: "c", label: "How far is the video?" },
       ],
       correctAnswer: "b",
-      explanation: "How long asks about duration. Months and years are durations.",
+      explanation: "How long asks about duration. Two minutes and twenty minutes are lengths of time.",
       topic: "how-long",
       skill: "usage",
       skillTag: "meaning-how-long-duration",
