@@ -83,7 +83,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, use questions to talk about digital habits: checking messages, finding files, protecting your information, and asking for help. Rosa has an email that does not seem right.</p>
 
-        <p style="margin: 0 0 0.75rem 0; font-weight: 600">Six question words. Each one asks for a different kind of information.</p>
+        <p style="margin: 0 0 0.75rem 0; font-weight: 600">Notice how Rosa and Sarah use questions to understand the message and decide what to do.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏾", text: "<strong>What</strong> do you do when you get a strange email?", side: "right", tone: "terracotta" },
