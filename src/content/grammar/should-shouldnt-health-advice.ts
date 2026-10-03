@@ -440,9 +440,9 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         <p>Yolanda picks up her ibuprofen prescription. The pharmacist, James, explains the warnings.</p>
 
         ${dialogue([
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "Hi. I have a few things to go over. You <strong>shouldn't</strong> skip doses. Take it every six hours, even if you feel better." },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "Hi. A few things. You <strong>shouldn't</strong> skip doses. Take it every six hours, even if you feel better." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Okay. What about food?" },
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You <strong>must not</strong> take this on an empty stomach. You're also on blood pressure medicine, right? You <strong>must not</strong> take both at the same time. That's dangerous." },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You <strong>must not</strong> take this on an empty stomach. You're on blood pressure medicine, right? You <strong>must not</strong> take them together." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "How far apart?" },
           { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "At least two hours between them." },
         ])}

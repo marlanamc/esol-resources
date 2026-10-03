@@ -87,13 +87,15 @@ function extractDialogueTurnsFromBlock(
 ): DialogueTurn[] {
     const turns: DialogueTurn[] = [];
     const turnRegex =
-        /\{\s*speaker:\s*["']([^"']+)["'],\s*avatar:\s*["']([^"']*)["'],\s*text:\s*["'`]((?:\\.|[^"'\\])*)["'`]/g;
+        // Each value must close with the quote it opened with, so apostrophes
+        // inside a double-quoted string ("Rosa's sister", "It's") don't end it early.
+        /\{\s*speaker:\s*(["'])((?:\\.|(?!\1)[^\\])+)\1,\s*avatar:\s*(["'])((?:(?!\3).)*)\3,\s*text:\s*(["'`])((?:\\.|(?!\5)[^\\])*)\5/g;
 
     let match: RegExpExecArray | null;
     while ((match = turnRegex.exec(block)) !== null) {
-        const speaker = match[1];
-        const avatar = match[2];
-        const text = match[3]
+        const speaker = match[2]!;
+        const avatar = match[4]!;
+        const text = match[6]!
             .replace(/\\n/g, "\n")
             .replace(/\\"/g, '"')
             .replace(/\\'/g, "'");

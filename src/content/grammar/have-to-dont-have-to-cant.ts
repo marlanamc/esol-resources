@@ -413,7 +413,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏾", text: "Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says landlords <strong>have to</strong> keep the heat above 68 degrees from September to June.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏾", text: "Right, that's required. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.' That means it's not your responsibility.", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏾", text: "That's required. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.' So it's not your responsibility.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> retaliate if you file a complaint.' Good to know.", side: "right", tone: "terracotta" },
         ])}
 

@@ -88,7 +88,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Kevin", avatar: "🧑‍💼", text: "Before we start, you <strong>must</strong> wear your hard hat and steel-toe boots on this site. Every day, no exceptions.", side: "left", tone: "terracotta" },
           { speaker: "Diego", avatar: "👨🏽", text: "What about when I'm just walking to the truck?", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑‍💼", text: "Same rule. OSHA says you <strong>must</strong> wear the gear any time you're on site. And you <strong>must not</strong> use your phone near heavy equipment.", side: "left", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑‍💼", text: "Same rule. OSHA says you <strong>must</strong> wear the gear whenever you're on site. You <strong>must not</strong> use your phone near heavy equipment.", side: "left", tone: "terracotta" },
           { speaker: "Diego", avatar: "👨🏽", text: "Got it. Hard hat, boots, no phone near the machines.", side: "right", tone: "sage" },
         ])}
 

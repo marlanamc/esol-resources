@@ -33,6 +33,7 @@
     "audit:holiday-references": "node --import tsx scripts/checks/audit-holiday-references.ts",
     "audit:mini-guide-images": "node --import tsx scripts/checks/build-mini-guide-image-sheet.ts",
     "audit:scene-images": "node --import tsx scripts/checks/audit-scene-images.ts",
+    "audit:stories": "node --import tsx scripts/checks/build-story-packets.ts",
     "report:level1-definitions": "node --import tsx scripts/checks/report-level1-definition-audit.ts",
     "audit:answer-position": "node scripts/checks/audit-answer-position-bias.js",
     "audit:answer-position:update-baseline": "node scripts/checks/audit-answer-position-bias.js --update-baseline",

@@ -151,9 +151,8 @@ export function runToneHeuristics(
 
         const speakerLower = turn.speaker.toLowerCase();
         const isCasual = CASUAL_SPEAKER_HINTS.some((hint) => speakerLower.includes(hint));
-        const hasContraction = /\b\w+'\w+|\b\w+n't\b|\bI'm\b|\bI've\b|\bI'd\b|\bwe're\b|\bthey're\b|\bit's\b|\bthat's\b/i.test(
-            turn.text,
-        );
+        // Guides use curly apostrophes (’) as well as straight ones.
+        const hasContraction = /\b\w+['’]\w+/.test(turn.text);
 
         if (isCasual && !hasContraction && countWords(turn.text) >= 10) {
             findings.push(
