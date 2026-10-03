@@ -12,9 +12,9 @@ _None._
 
 - Life Was Different Back Home: Mai, Linh
 - I Didn't Use To...: Michelle, Linh
-- Before Boston, After Boston: Carlos, Linh
+- Before Boston, After Boston: Edwin, Linh
 - Don't Mix Them Up: Linh, Son
-- Tell Your Story: One Whole Conversation: Ms. Tran, Linh, Carlos
+- Tell Your Story: One Whole Conversation: Ms. Tran, Linh, Edwin
 
 ---
 
@@ -70,11 +70,11 @@ Negative: didn't use to + base verb. No -d on use. Question: Did you use to + ba
 > 🖼 **Scene:** Linh's street in East Boston. Tuesday, 3 PM.  
 > _Photo shows: A three-decker apartment building on a residential urban street._
 
-Linh runs into her classmate Carlos outside her building. They talk about life before and after Boston.
+Linh runs into her classmate Edwin outside her building. They talk about life before and after Boston.
 
-- **Carlos:** Where did you live before you came here?
+- **Edwin:** Where did you live before you came here?
 - **Linh:** I used to live with my parents. But now I share a two-bedroom apartment with my cousin.
-- **Carlos:** How did you get to work back home?
+- **Edwin:** How did you get to work back home?
 - **Linh:** I used to walk to work. But now I take two buses.
 
 Used to works for past states (live, have, be) and actions (walk, cook, work). Pair it with but now I... to show the change.
@@ -121,7 +121,7 @@ Ms. Tran asks students to share how life changed since they moved to Boston.
 
 - **Ms. Tran:** Linh, tell us one thing that changed.
 - **Linh:** I used to have family nearby. But now I only see them on video calls.
-- **Carlos:** I miss my family too. And my job changed. I used to work outside, but now I work in a freezer.
+- **Edwin:** I miss my family too. And my job changed. I used to work outside, but now I work in a freezer.
 - **Ms. Tran:** That’s a big change. Linh, did you use to stay up late?
 - **Linh:** Yes. I used to cook at 11 pm. But now I meal-prep on Sunday.
 

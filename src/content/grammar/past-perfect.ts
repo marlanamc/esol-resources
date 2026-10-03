@@ -386,12 +386,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePromotion", "Loading dock. Diego calls his cousin during a break.", "terracotta")}
+        ${sceneCard("scenePromotion", "Loading dock. Wilmer calls his cousin during a break.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Diego", avatar: "👨🏾", text: "I got the supervisor job! They <strong>called</strong> me this morning.", side: "right", tone: "terracotta" },
+          { speaker: "Wilmer", avatar: "👨🏾", text: "I got the supervisor job! They <strong>called</strong> me this morning.", side: "right", tone: "terracotta" },
           { speaker: "Cousin (phone)", avatar: "🧑🏽", text: "No way! What did you tell them?", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "I told them I <strong>had lifted</strong> heavy loads, <strong>had covered</strong> two shifts alone, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
+          { speaker: "Wilmer", avatar: "👨🏾", text: "I told them I <strong>had lifted</strong> heavy loads, <strong>had covered</strong> two shifts alone, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -426,7 +426,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego ___ the supervisor job this morning. (one fact, no sequence)",
+              label: "Wilmer ___ the supervisor job this morning. (one fact, no sequence)",
               options: [
                 { value: "a", label: "got (Past Simple)" },
                 { value: "b", label: "had got (Past Perfect)" },
@@ -435,7 +435,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Before the manager promoted him, Diego ___ every shift on time for six months.",
+              label: "Before the manager promoted him, Wilmer ___ every shift on time for six months.",
               options: [
                 { value: "a", label: "showed up (Past Simple)" },
                 { value: "b", label: "had shown up (Past Perfect)" },
@@ -444,7 +444,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "When Diego called his cousin, he ___ the news already.",
+              label: "When Wilmer called his cousin, he ___ the news already.",
               options: [
                 { value: "a", label: "heard (Past Simple)" },
                 { value: "b", label: "had already heard (Past Perfect)" },
@@ -477,7 +477,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Diego ___ (work) at the warehouse for a year before he got the promotion.",
+              label: "Wilmer ___ (work) at the warehouse for a year before he got the promotion.",
               expectedAnswers: ["had worked"],
             },
             {
@@ -497,12 +497,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "your-work-story",
       title: "Your Work Story",
       explanation: `
-        ${sceneCard("sceneWorkStory", "Break room. Amara and her coworker Linh swap work histories.", "sage")}
+        ${sceneCard("sceneWorkStory", "Break room. Hodan and her coworker Linh swap work histories.", "sage")}
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
+          { speaker: "Hodan", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
+          { speaker: "Hodan", avatar: "👩🏿", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
           { speaker: "Linh", avatar: "👩🏻", text: "Lucky you. And the pay is better here. The restaurant <strong>hadn’t paid</strong> overtime, not once.", side: "left", tone: "sage" },
         ])}
 
@@ -527,17 +527,17 @@ export const pastPerfectContent: InteractiveGuideContent = {
       `,
       tipBox: {
         title: "February at the warehouse",
-        content: "A break-room poster near Amara's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
+        content: "A break-room poster near Hodan's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
       },
       exercises: [
         {
           id: "pp-s5-ex1",
-          title: "Amara's story",
-          instructions: "Fill in the blanks to complete Amara's work history.",
+          title: "Hodan's story",
+          instructions: "Fill in the blanks to complete Hodan's work history.",
           items: [
             {
               type: "text",
-              label: "Before she found this job, Amara ___ (do) home care for four years.",
+              label: "Before she found this job, Hodan ___ (do) home care for four years.",
               expectedAnswers: ["had done"],
             },
             {
@@ -623,7 +623,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Before Amara got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
+      question: "Fill in the blank: \"Before Hodan got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
       correctAnswer: "had done",
       explanation: "Past Perfect (had done) shows the action that happened first, before she got the new job.",
       topic: "past-perfect",

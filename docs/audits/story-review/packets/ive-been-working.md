@@ -11,9 +11,9 @@
 ## Cast by section
 
 - Six days a week: Kevin, Hector
-- Two buses since the car broke down: Claudette, Rosa
+- Two buses since the car broke down: Claudette, Daniela
 - How long have you been working here?: Jennifer, Amara
-- Still going or already done?: Diego, Marta
+- Still going or already done?: Osmin, Marta
 
 ---
 
@@ -46,20 +46,20 @@ Form: have / has + been + verb-ing I have been working six days a week. He has b
 
 ## 2. Two buses since the car broke down
 
-> 🖼 **Scene:** Bennington Street bus stop, 11:15 PM. Rosa and Claudette wait for the 112 after a double shift.  
+> 🖼 **Scene:** Bennington Street bus stop, 11:15 PM. Daniela and Claudette wait for the 112 after a double shift.  
 > _Photo shows: Commuters waiting at a bus stop on a city street after a work shift._
 
-Rosa's car broke down in February. The commute home now takes twice as long.
+Daniela's car broke down in February. The commute home now takes twice as long.
 
 - **Claudette:** You still taking two buses?
-- **Rosa:** Yeah. I have been taking two buses since my car broke down in February.
+- **Daniela:** Yeah. I have been taking two buses since my car broke down in February.
 - **Claudette:** How long have you been waiting for the mechanic?
-- **Rosa:** Three weeks. He keeps saying next week.
+- **Daniela:** Three weeks. He keeps saying next week.
 
 Use for with a length of time. Use since with a starting point.
 
 **Exercise: For or since?**
-- Rosa has been taking two buses ___ her car broke down. _(options: for / since)_
+- Daniela has been taking two buses ___ her car broke down. _(options: for / since)_
 - Hector has been working on this site ___ four months. _(options: for / since)_
 
 **Exercise: Unscramble**
@@ -97,18 +97,18 @@ Question form: How long + have / has + subject + been + verb-ing?
 > 🖼 **Scene:** East Boston Community School gym. Job fair, Thursday afternoon. The last hour of the event.  
 > _Photo shows: Job seekers talking with employers and waiting in line at a community career fair._
 
-Diego just finished talking to a recruiter and finds Marta still standing in line. They compare notes.
+Osmin just finished talking to a recruiter and finds Marta still standing in line. They compare notes.
 
-- **Diego:** I have applied to three companies today. I'm done.
+- **Osmin:** I have applied to three companies today. I'm done.
 - **Marta:** I have been standing in this line for an hour. I haven't even talked to anyone yet.
-- **Diego:** That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I have been working in construction.
+- **Osmin:** That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I have been working in construction.
 - **Marta:** What did you say?
-- **Diego:** Four years. She said that's good experience.
+- **Osmin:** Four years. She said that's good experience.
 
 Present Perfect (have + V3) = the action is finished. You care about the result. Present Perfect Continuous (have been + verb-ing) = the action is still happening. You care about how long.
 
 **Exercise: Finished or still happening?**
-- Diego finished talking to all three recruiters. Which sentence fits? _(options: He has been talking to three recruiters. / He has talked to three recruiters.)_
+- Osmin finished talking to all three recruiters. Which sentence fits? _(options: He has been talking to three recruiters. / He has talked to three recruiters.)_
 - Marta started waiting an hour ago and she is still in line. Which sentence fits? _(options: She has stood in line for an hour. / She has been standing in line for an hour.)_
 - "She has been saved enough money to move." Is this sentence correct? _(options: Correct / Not correct. Saving is finished, so use 'has saved.')_
 

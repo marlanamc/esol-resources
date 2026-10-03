@@ -13,7 +13,7 @@ _None._
 - Stop Taking the Old Medicine: Jennifer, Marisol, Daughter
 - Stop to Take It With Food: Kevin, Marisol
 - Try Taking the Generic / Try to Get Covered: Jennifer, Marisol
-- Remember to Take It / I Remember Taking It: Carlos, Marisol
+- Remember to Take It / I Remember Taking It: Julio, Marisol
 - The Pairs Together: Fatuma, Marisol
 
 ---
@@ -116,11 +116,11 @@ try + to + verb = make an effort to do something. It may be difficult. You might
 > 🖼 **Scene:** Saturday morning, 7:00 AM. Marisol's phone alarm goes off.  
 > _Photo shows: A phone screen showing a morning alarm reminder to take medication._
 
-Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Carlos walks into the kitchen and asks if she already took it.
+Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Julio walks into the kitchen and asks if she already took it.
 
-- **Carlos:** Did you take your pill this morning?
+- **Julio:** Did you take your pill this morning?
 - **Marisol:** Yes. I remember taking it at seven. I had it with my coffee.
-- **Carlos:** Good. And tomorrow, remember to take it before you leave. You have the early shift.
+- **Julio:** Good. And tomorrow, remember to take it before you leave. You have the early shift.
 - **Marisol:** I know. The alarm is set. Don't worry. I always remember to take it now.
 
 Two uses, two meanings. Remember taking it means she's looking back at something she already did. Remember to take it means she's looking forward at something she must not forget.
@@ -190,7 +190,7 @@ remember + -ing = recall a past action (memory)
 
 - The pharmacist says: 'You need to stop ___ the old blood pressure pills.' Which word fits? _(options: to take / taking / take)_
 - Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.) _(options: to take / taking / took)_
-- Fill in the blank: "Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'" (She is recalling a past memory.)
+- Fill in the blank: "Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'" (She is recalling a past memory.)
 - Which sentence has an error? _(options: She stopped smoking last year. / She stopped to smoke last year. (meaning: she quit the habit) / She stopped to read the label before taking the pill.)_
 - Kelly's doctor told her to change an evening habit. Put the words in order.
 

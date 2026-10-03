@@ -26,8 +26,8 @@ _None._
 Ms. Tran stands at the front of the room. It is the last class of the year. She asks the class about their plans for the fall.
 
 - **Ms. Tran:** It's our last night together. What will you do in the fall?
-- **Rosa:** I will enroll in Level 4 in September. I just need to make sure it fits around my lunch shifts.
-- **Rosa:** I already work Saturdays at the hotel, too. Two evenings a week is about all I can manage.
+- **Rosa:** I will enroll in Level 4 in September. I just need to make sure it fits around my work schedule.
+- **Rosa:** I work at the hotel all day, too. Two evenings a week is about all I can manage.
 - **David:** Me too. We're both taking the free online summer course. By August we will have finished it.
 
 Eleven tenses, one timeline. Here is the whole year on one timeline.
@@ -41,29 +41,29 @@ Simple = fact or finished. Continuous = in progress. Perfect = connected to a re
 
 ## 2. Every Tuesday vs. Right Now
 
-> 🖼 **Scene:** Taqueria on Meridian Street. Wednesday, 1:30 PM.  
+> 🖼 **Scene:** Hotel lobby on Meridian Street. Wednesday, 1:30 PM.  
 > _Photo shows: A busy restaurant dining room during the lunch rush with staff moving between tables._
 
-Rosa works lunch shifts at a restaurant on Meridian Street. Hotel laundry on Saturdays. ESOL class on Tuesday and Thursday evenings. Supervisor Jennifer covers the register when Rosa leaves at 3.
+Rosa is a housekeeper at a hotel on Meridian Street, Monday to Friday, 7 to 3. ESOL class on Tuesday and Thursday evenings. Supervisor Jennifer covers the late checkouts when Rosa leaves at 3.
 
 - **Jennifer:** You usually leave at three, right? Do you need to go early today?
 - **Rosa:** Yes, if that’s OK. My daughter has a field trip tomorrow. I am texting the sitter now.
-- **Jennifer:** Sure. I usually cover the register for you on Wednesdays anyway. What time do you need to leave?
+- **Jennifer:** Sure. I usually cover the late checkouts for you on Wednesdays anyway. What time do you need to leave?
 - **Rosa:** Two thirty, please. Thanks. I know we are running behind today.
 
 Present Simple = routines and facts. Present Continuous = happening right now or this week.
 
 **Exercise: Simple or continuous?**
-- Rosa ___ lunch shifts at the restaurant Monday through Friday. (work) _(options: works / is working / worked)_
+- Rosa ___ at the hotel Monday through Friday. (work) _(options: works / is working / worked)_
 - Hold on. Rosa ___ the sitter right now. (text) _(options: texts / is texting / has texted)_
-- Jennifer usually ___ the register when Rosa leaves. (cover)
+- Jennifer usually ___ the late checkouts when Rosa leaves. (cover)
 
 **Exercise: Unscramble**
 - Unscramble:
 
 ## 3. What Happened, What Was Already Done
 
-> 🖼 **Scene:** Rosa's kitchen, Orient Heights. The leak happened here on January 14.  
+> 🖼 **Scene:** Rosa's old kitchen, East Boston. The leak happened here on January 14.  
 > _Photo shows: A person cooking at a stove in a small apartment kitchen at night._
 
 In June, the landlord sends Rosa a bill for the ceiling damage. She calls him to explain what happened in January: what she was doing, what happened next, and what she had already done before calling.
@@ -78,42 +78,42 @@ Past Simple = finished event. Past Continuous = in progress when something else 
 **Exercise: Pick the right past form**
 - Water ___ through the ceiling while Rosa was cooking. (come) _(options: came / was coming / had come)_
 - Rosa ___ dinner when the pipe burst. (cook) _(options: cooked / was cooking / had cooked)_
-- She ___ (already save) some money before the car broke down in March.
+- She ___ (already save) some money before her lease ended in February.
 
 **Exercise: Find the error**
 - "I was cooking when water was coming through the ceiling." _(options: Correct as written / Should be 'came' (past simple for the burst) / Should be 'had come' (past perfect))_
 
 ## 4. From September Until Now
 
-> 🖼 **Scene:** Taqueria back room after a double shift. Friday, 9:30 PM.  
+> 🖼 **Scene:** Hotel break room after a double shift. Friday, 9:30 PM.  
 > _Photo shows: A woman on a video call on her phone after a long work shift, looking tired._
 
-Rosa covered a dinner shift too. She calls her sister Teresa after the long double shift at the restaurant. Teresa is at home waiting for her.
+Rosa covered an evening shift too. She calls her sister Teresa after the long double shift at the hotel. Teresa is at home waiting for her.
 
 - **Teresa:** Still at work? I haven’t seen you all week.
-- **Rosa:** Just finished. I have worked here for three years, and this has been my busiest week yet.
-- **Rosa:** And I have been taking two buses since the car broke down in March. It takes forever to get home.
+- **Rosa:** Just finished. I have worked in housekeeping for three years, and this has been my busiest week yet.
+- **Rosa:** And I have been taking extra shifts since I started here in March. I'm so tired.
 - **Teresa:** That sounds exhausting. I have made dinner, so you won’t need to cook tonight.
 
 Present Perfect = past connected to now (experience, change, duration with for/since). Present Perfect Continuous = ongoing action from past until now, often with for/since.
 
 **Exercise: Perfect or perfect continuous?**
 - Rosa ___ in East Boston since 2021. (live) _(options: has lived / has been living / lived)_
-- Since March she ___ two buses every day. (take) _(options: has taken / has been taking / takes)_
-- She ___ (work) at the restaurant for three years.
+- Since March she ___ extra shifts every week. (take) _(options: has taken / has been taking / takes)_
+- She ___ (work) in housekeeping for three years.
 
 **Exercise: Unscramble**
 - Unscramble:
 
 ## 5. What's Next: All Four Future Tenses
 
-> 🖼 **Scene:** 121 bus toward Maverick Square. Thursday, 6:15 PM.  
+> 🖼 **Scene:** 116 bus toward Maverick Square. Thursday, 6:15 PM.  
 > _Photo shows: Passengers seated inside a city bus at dusk heading home after work._
 
-On the way to the last class, Rosa and classmate David talk on the 121 bus about their plans for the summer and the fall.
+On the way to the last class, Rosa and classmate David talk on the 116 bus about their plans for the summer and the fall.
 
 - **David:** Level 4 in the fall?
-- **Rosa:** That’s the plan. I will be taking evening classes while I keep working lunch shifts.
+- **Rosa:** That’s the plan. I will be taking evening classes while I keep working at the hotel.
 - **Rosa:** By August I will have finished the summer course. It feels good to keep moving.
 - **David:** It does. By tonight we will have been studying together for a full year. I will ask Ms. Tran about Level 4.
 
@@ -135,9 +135,9 @@ Rosa looks out the window and thinks about her year. She was so tired when class
 
 ## Mini quiz
 
-- Rosa is texting the sitter at the register right now. Which sentence fits? _(options: She texts the sitter at the register. / She is texting the sitter at the register. / She has texted the sitter at the register.)_
+- Rosa is texting the sitter in the lobby right now. Which sentence fits? _(options: She texts the sitter in the lobby. / She is texting the sitter in the lobby. / She has texted the sitter in the lobby.)_
 - Find the error: "I have lived here since 2021." _(options: No error. / Error: should be 'lived' (past simple). / Error: should be 'am living' (present continuous).)_
 - Fill in the blank: "Rosa ___ class every Tuesday and Thursday." (It's her regular schedule.)
-- Rosa saved some money before her car broke down in March. Which sentence fits? _(options: She had already saved some money when the car broke down. / She already saved some money when the car broke down. / She has already saved some money when the car broke down.)_
+- Rosa saved some money before her lease ended in February. Which sentence fits? _(options: She had already saved some money when the lease ended. / She already saved some money when the lease ended. / She has already saved some money when the lease ended.)_
 - Rosa plans to finish her summer course by August. Put the words in order.
 

@@ -183,9 +183,9 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
         ${sceneCard("sceneApartmentSearch", "Break room at the warehouse. Thursday lunch.", "blue")}
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>want to stay</strong> on the Blue Line. Two buses to work is too much.", side: "right", tone: "terracotta" },
+          { speaker: "Wilson", avatar: "👨🏽", text: "I <strong>want to stay</strong> on the Blue Line. Two buses to work is too much.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "I get it. Do you <strong>want to see</strong> that listing on Bremen Street? My cousin said it's good.", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
+          { speaker: "Wilson", avatar: "👨🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "I’ll ask her before we arrange a visit. I <strong>want to make</strong> sure it’s in your budget.", side: "left", tone: "blue" },
         ])}
 
@@ -222,7 +222,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos ___ near the Blue Line. Choose the correct form.",
+              label: "Wilson ___ near the Blue Line. Choose the correct form.",
               options: [
                 { value: "a", label: "want stay" },
                 { value: "b", label: "wants to stay" },
@@ -636,7 +636,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
     {
       id: "infinitives-qws1",
       type: "word-scramble" as const,
-      question: "Carlos calls about an apartment on Bremen Street. Put the words in order.",
+      question: "Wilson calls about an apartment on Bremen Street. Put the words in order.",
       words: ["I", "would", "like", "to", "meet", "the", "landlord"],
       correctAnswer: "I would like to meet the landlord",
       hint: "would like to + base verb",

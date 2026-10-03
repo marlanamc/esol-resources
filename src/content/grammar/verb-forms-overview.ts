@@ -82,7 +82,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           { speaker: "Fernanda", avatar: "👩🏾", text: "Call your sister. Maybe Mark is looking for it.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I can’t. Sarah’s <strong>working</strong> right now. She’s a server, so I’ll text her.", side: "right", tone: "terracotta" },
         ])}
-        <p>Carlos washes dishes at the restaurant in the mornings, so he uses the staff fridge too. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
+        <p>Carlos preps food at La Palma in the mornings, so he uses the staff fridge too. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
           <p><strong>Five labels, one verb.</strong> The labels help you find and check a form.</p>
           <ul style="padding-left:1.25rem; line-height:1.7">

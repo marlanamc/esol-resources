@@ -261,16 +261,16 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Verbs: action verbs and state verbs",
       icon: "⚙️",
       explanation: `
-        ${sceneCard("sceneFormTable", "Community center. Carlos helps Amara with the registration form at the desk.", "sage")}
+        ${sceneCard("sceneFormTable", "Community center. Samuel helps Amara with the registration form at the desk.", "sage")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara gets stuck on the form. A man at the next desk offers to help. She knows his face, but from where?</p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. Wait, I <strong>know</strong> you. You <strong>work</strong> in my building, right?", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "That's right, I'm Carlos. I fix things there. I <strong>help</strong> here on Tuesdays. Which class do you <strong>want</strong>?", side: "left", tone: "sage" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "That's right, I'm Samuel. I fix things there. I <strong>help</strong> here on Tuesdays. Which class do you <strong>want</strong>?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "The Tuesday evening class. I <strong>remember</strong> it from a flyer, but I can't <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
         ])}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">The words in bold are <strong>verbs</strong>. But they are not all the same kind. Some are things you do. Some are things that are true about you.</p>
@@ -283,7 +283,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 0 0 1.25rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("action", "sage")}
-            <span><em>Carlos <strong>helps</strong> students every Tuesday. He <strong>explains</strong> the schedule.</em></span>
+            <span><em>Samuel <strong>helps</strong> students every Tuesday. He <strong>explains</strong> the schedule.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("action", "sage")}
@@ -295,7 +295,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 0 0 1.25rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
-            <span><em>Amara <strong>knows</strong> Carlos from her building. She <strong>remembers</strong> his face.</em></span>
+            <span><em>Amara <strong>knows</strong> Samuel from her building. She <strong>remembers</strong> his face.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
@@ -328,7 +328,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos <strong>helps</strong> new students every Tuesday.",
+              label: "Samuel <strong>helps</strong> new students every Tuesday.",
               options: [
                 { value: "action", label: "Action verb: you can watch someone do it" },
                 { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
@@ -337,7 +337,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Amara <strong>knows</strong> Carlos from her building.",
+              label: "Amara <strong>knows</strong> Samuel from her building.",
               options: [
                 { value: "action", label: "Action verb: you can watch someone do it" },
                 { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
@@ -380,7 +380,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Carlos is helping a student right now.\"",
+              label: "\"Samuel is helping a student right now.\"",
               options: [
                 { value: "correct", label: "Correct: this verb can use the -ing form." },
                 { value: "incorrect", label: "Not correct: this verb cannot use the -ing form." },
@@ -410,7 +410,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Carlos ___ new students find the right class. (help)",
+              label: "Samuel ___ new students find the right class. (help)",
               expectedAnswers: ["helps"],
             },
           ],
@@ -423,15 +423,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Carlos", "helps", "new", "students", "every", "Tuesday"],
-              correctAnswer: "Carlos helps new students every Tuesday",
+              words: ["Samuel", "helps", "new", "students", "every", "Tuesday"],
+              correctAnswer: "Samuel helps new students every Tuesday",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Amara", "sees", "Carlos", "at", "the", "coffee", "shop"],
-              correctAnswer: "Amara sees Carlos at the coffee shop",
-              correctAnswers: ["Carlos sees Amara at the coffee shop"],
+              words: ["Amara", "sees", "Samuel", "at", "the", "coffee", "shop"],
+              correctAnswer: "Amara sees Samuel at the coffee shop",
+              correctAnswers: ["Samuel sees Amara at the coffee shop"],
             },
           ],
         },
@@ -609,19 +609,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adverbs: how, when, how often",
       icon: "⚡",
       explanation: `
-        ${sceneCard("sceneVolunteer", "Saturday morning, cleanup day at Amara's building. Carlos writes repairs on his clipboard.", "blue")}
+        ${sceneCard("sceneVolunteer", "Saturday morning, cleanup day at Amara's building. Samuel writes repairs on his clipboard.", "blue")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Carlos is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.</p>
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏾", text: "Thanks again for Tuesday. How do you get to the center by four? I'm still at work then.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "<strong>Every Tuesday</strong>, I leave work <strong>early</strong>. Then I make up the hours on Saturday, like today.", side: "left", tone: "sage" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "<strong>Every Tuesday</strong>, I leave work <strong>early</strong>. Then I make up the hours on Saturday, like today.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Your English is so good. How did you learn?", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Same class. I speak <strong>pretty well</strong> now, but if people talk <strong>too quickly</strong>, I still ask them to slow down.", side: "left", tone: "sage" },
+          { speaker: "Samuel", avatar: "👨🏽", text: "Same class. I speak <strong>pretty well</strong> now, but if people talk <strong>too quickly</strong>, I still ask them to slow down.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Good to know. And while you have that clipboard, my kitchen sink is leaking <strong>again</strong>.", side: "right", tone: "terracotta" },
         ])}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Carlos writes it down. "Monday," he says. The words in bold tell us <em>when</em>, <em>how</em> and <em>how often</em>. They are <strong>adverbs</strong>.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Samuel writes it down. "Monday," he says. The words in bold tell us <em>when</em>, <em>how</em> and <em>how often</em>. They are <strong>adverbs</strong>.</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A <strong>group of words</strong> can do the same job: <em>every Tuesday, last year, after work</em>.</p>
@@ -630,7 +630,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("how", "blue")}
-            <span><em>Carlos works <strong>quickly</strong>. He speaks English <strong>well</strong>.</em></span>
+            <span><em>Samuel works <strong>quickly</strong>. He speaks English <strong>well</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("when", "blue")}
@@ -647,11 +647,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           <div style="display: flex; flex-direction: column; gap: 0.4rem">
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
               <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #b05740; text-transform: uppercase">Adjective</span>
-              <span><em>Carlos is a <strong>quick</strong> worker.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the noun "worker")</span></span>
+              <span><em>Samuel is a <strong>quick</strong> worker.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the noun "worker")</span></span>
             </div>
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
               <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #268a82; text-transform: uppercase">Adverb</span>
-              <span><em>Carlos works <strong>quickly</strong>.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the verb "works")</span></span>
+              <span><em>Samuel works <strong>quickly</strong>.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the verb "works")</span></span>
             </div>
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
               <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #b05740; text-transform: uppercase">Adjective</span>
@@ -666,8 +666,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); margin: 1rem 0">
           <p style="margin: 0 0 0.5rem 0; font-weight: 600">Careful: hard and hardly</p>
-          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Carlos works <strong>hard</strong>.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(with a lot of effort)</span></p>
-          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Carlos <strong>hardly</strong> works.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(almost never, the opposite meaning)</span></p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Samuel works <strong>hard</strong>.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(with a lot of effort)</span></p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Samuel <strong>hardly</strong> works.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(almost never, the opposite meaning)</span></p>
           <p style="margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--color-text-muted)">Adding -ly does not always make the adverb. <em>Hardly</em> is a different word with a different meaning.</p>
         </div>
       `,
@@ -684,7 +684,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is a ___ worker. He fixes most things the same day. (quick / quickly)",
+              label: "Samuel is a ___ worker. He fixes most things the same day. (quick / quickly)",
               options: [
                 { value: "quick", label: "quick (adjective)" },
                 { value: "quickly", label: "quickly (adverb)" },
@@ -727,7 +727,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Carlos explains the form ___. Everyone understands. (clear)",
+              label: "Samuel explains the form ___. Everyone understands. (clear)",
               expectedAnswers: ["clearly"],
             },
             {
@@ -751,7 +751,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneBulletinBoard", "Tuesday, 6:20 PM. The board by the door at the community center, full of flyers and notices.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Carlos told them about.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Samuel told them about.</p>
 
         ${dialogue([
           { speaker: "Dilnoza", avatar: "👩🏻", text: "Here it is. \"Classes meet every Tuesday evening in the <strong>large</strong> room.\" Which one is the large room?", side: "left", tone: "amber" },
@@ -966,9 +966,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "pos-q3",
-      question: "\"Carlos is a helpful neighbor in Amara's building.\" Which word is the adjective?",
+      question: "\"Samuel is a helpful neighbor in Amara's building.\" Which word is the adjective?",
       options: [
-        { value: "a", label: "Carlos" },
+        { value: "a", label: "Samuel" },
         { value: "b", label: "helpful" },
         { value: "c", label: "building" },
       ],

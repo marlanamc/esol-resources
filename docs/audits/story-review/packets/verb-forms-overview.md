@@ -31,7 +31,7 @@ Catch up with Carlos and Fernanda. Read for the message first.
 - **Fernanda:** Call your sister. Maybe Mark is looking for it.
 - **Carlos:** I can’t. Sarah’s working right now. She’s a server, so I’ll text her.
 
-Carlos washes dishes at the restaurant in the mornings, so he uses the staff fridge too. Notice works and working, then compare all five forms below.
+Carlos preps food at La Palma in the mornings, so he uses the staff fridge too. Notice works and working, then compare all five forms below.
 
 Five labels, one verb. The labels help you find and check a form.
 

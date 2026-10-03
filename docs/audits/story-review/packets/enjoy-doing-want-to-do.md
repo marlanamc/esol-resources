@@ -14,7 +14,7 @@
 - "I Want to Try Something New": Bruno, Elena
 - Gerund or Infinitive? The Two Lists: _no named speakers_
 - Both Are Right: start, like, love, hate: Kevin (supervisor), Elena
-- Putting It Together: Talking About Your Job Goals: Ms. Patel, Elena
+- Putting It Together: Talking About Your Job Goals: Ms. Tran, Elena
 
 ---
 
@@ -129,15 +129,15 @@ Remember: This is not true for most verbs. Enjoy, avoid, keep only take gerunds.
 > 🖼 **Scene:** East Boston Adult Learning Center. Tuesday evening, after class.  
 > _Photo shows: An adult student speaking one-on-one with a teacher after an evening English class._
 
-After class, Elena stays behind to talk to Ms. Patel. She wants to practice saying out loud what she's been thinking about for months.
+After class, Elena stays behind to talk to Ms. Tran. She wants to practice saying out loud what she's been thinking about for months.
 
-- **Ms. Patel:** Elena, you look distracted tonight. Everything okay?
+- **Ms. Tran:** Elena, you look distracted tonight. Everything okay?
 - **Elena:** Sorry. I keep thinking about changing jobs. I want to try warehouse work, but I'm not ready to quit yet.
-- **Ms. Patel:** What do you enjoy about your current job?
+- **Ms. Tran:** What do you enjoy about your current job?
 - **Elena:** I enjoy talking to the guests. And I like working early shifts. But I'm tired of the back pain. I avoid lifting as much as I can.
-- **Ms. Patel:** What are you planning for the spring?
+- **Ms. Tran:** What are you planning for the spring?
 - **Elena:** I decided to stay through May. Then I plan to apply somewhere new. My cousin said he can help.
-- **Ms. Patel:** That sounds like a plan. Let’s work on how you can describe your experience in an interview.
+- **Ms. Tran:** That sounds like a plan. Let’s work on how you can describe your experience in an interview.
 
 After class, a coworker from the hotel texted Elena a photo of a new café near the park. She invited Elena to have lunch after Saturday's shift.
 

@@ -13,9 +13,9 @@ _None._
 ## Cast by section
 
 - Nouns: naming the world around you: James, Amara
-- Verbs: action verbs and state verbs: Carlos, Amara
+- Verbs: action verbs and state verbs: Samuel, Amara
 - Adjectives: describing words: Dilnoza, Amara
-- Adverbs: how, when, how often: Amara, Carlos
+- Adverbs: how, when, how often: Amara, Samuel
 - All four working together: Dilnoza, Amara
 
 ---
@@ -72,16 +72,16 @@ Most nouns add -s or -es to become plural.
 
 ## 2. Verbs: action verbs and state verbs
 
-> 🖼 **Scene:** Community center. Carlos helps Amara with the registration form at the desk.  
+> 🖼 **Scene:** Community center. Samuel helps Amara with the registration form at the desk.  
 > _Photo shows: Community center desk where a volunteer helps a resident fill out a registration form._
 
 Amara gets stuck on the form. A man at the next desk offers to help. She knows his face, but from where?
 
-- **Carlos:** Do you need help with the form?
+- **Samuel:** Do you need help with the form?
 - **Amara:** Yes, thanks. Wait, I know you. You work in my building, right?
-- **Carlos:** That's right, I'm Carlos. I fix things there. I help here on Tuesdays. Which class do you want?
+- **Samuel:** That's right, I'm Samuel. I fix things there. I help here on Tuesdays. Which class do you want?
 - **Amara:** The Tuesday evening class. I remember it from a flyer, but I can't find it on this form.
-- **Carlos:** They added it late. Write "Tuesday evening" at the bottom. The room is on the board by the door.
+- **Samuel:** They added it late. Write "Tuesday evening" at the bottom. The room is on the board by the door.
 
 The words in bold are verbs. But they are not all the same kind. Some are things you do. Some are things that are true about you.
 
@@ -102,19 +102,19 @@ State verbs are almost never used in the continuous (-ing) form.
 Common state verbs: know, want, need, understand, remember, believe, like, love, hate, have, seem.
 
 **Exercise: Action or state?**
-- Carlos helps new students every Tuesday. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
-- Amara knows Carlos from her building. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
+- Samuel helps new students every Tuesday. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
+- Amara knows Samuel from her building. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
 - She fills out the form at the registration desk. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
 - Amara wants an evening class. _(options: Action verb: you can watch someone do it / State verb: a feeling, a fact, or something in the mind)_
 
 **Exercise: Correct or not?**
 - "I am knowing all the students in my class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
-- "Carlos is helping a student right now." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
+- "Samuel is helping a student right now." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
 - "She is wanting the Tuesday evening class." _(options: Correct: this verb can use the -ing form. / Not correct: this verb cannot use the -ing form.)_
 
 **Exercise: Fill in the verb**
 - Amara ___ the Tuesday evening class. (want)
-- Carlos ___ new students find the right class. (help)
+- Samuel ___ new students find the right class. (help)
 
 **Exercise: Build the sentence**
 - Unscramble:
@@ -162,18 +162,18 @@ The apartment is small. (adjective after is/are/was)
 
 ## 4. Adverbs: how, when, how often
 
-> 🖼 **Scene:** Saturday morning, cleanup day at Amara's building. Carlos writes repairs on his clipboard.  
+> 🖼 **Scene:** Saturday morning, cleanup day at Amara's building. Samuel writes repairs on his clipboard.  
 > _Photo shows: A person in gloves writing on a clipboard during a cleanup event._
 
-On Saturday, it's cleanup day at Amara's building. Carlos is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.
+On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.
 
 - **Amara:** Thanks again for Tuesday. How do you get to the center by four? I'm still at work then.
-- **Carlos:** Every Tuesday, I leave work early. Then I make up the hours on Saturday, like today.
+- **Samuel:** Every Tuesday, I leave work early. Then I make up the hours on Saturday, like today.
 - **Amara:** Your English is so good. How did you learn?
-- **Carlos:** Same class. I speak pretty well now, but if people talk too quickly, I still ask them to slow down.
+- **Samuel:** Same class. I speak pretty well now, but if people talk too quickly, I still ask them to slow down.
 - **Amara:** Good to know. And while you have that clipboard, my kitchen sink is leaking again.
 
-Carlos writes it down. "Monday," he says. The words in bold tell us when, how and how often. They are adverbs.
+Samuel writes it down. "Monday," he says. The words in bold tell us when, how and how often. They are adverbs.
 
 Adverbs describe verbs. They answer how?, when?, or how often? Many adverbs end in -ly (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A group of words can do the same job: every Tuesday, last year, after work.
 
@@ -181,20 +181,20 @@ Adjective or adverb? The question is: what does it describe?
 
 Careful: hard and hardly
 
-Carlos works hard. (with a lot of effort)
+Samuel works hard. (with a lot of effort)
 
-Carlos hardly works. (almost never, the opposite meaning)
+Samuel hardly works. (almost never, the opposite meaning)
 
 Adding -ly does not always make the adverb. Hardly is a different word with a different meaning.
 
 **Exercise: Adjective or adverb?**
-- Carlos is a ___ worker. He fixes most things the same day. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
+- Samuel is a ___ worker. He fixes most things the same day. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - He finishes his work very ___. He is always done before noon. (quick / quickly) _(options: quick (adjective) / quickly (adverb))_
 - Dilnoza speaks English ___. She practices every day. (good / well) _(options: good (adjective) / well (adverb))_
 - Her pronunciation is ___. Her teacher is happy with her progress. (good / well) _(options: good (adjective) / well (adverb))_
 
 **Exercise: Fill in the adverb**
-- Carlos explains the form ___. Everyone understands. (clear)
+- Samuel explains the form ___. Everyone understands. (clear)
 - Amara listens ___ during the orientation. (careful)
 
 ## 5. All four working together
@@ -202,7 +202,7 @@ Adding -ly does not always make the adverb. Hardly is a different word with a di
 > 🖼 **Scene:** Tuesday, 6:20 PM. The board by the door at the community center, full of flyers and notices.  
 > _Photo shows: A corkboard filled with flyers and notices._
 
-It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Carlos told them about.
+It's the first Tuesday class. Amara and Dilnoza meet at the door. The form didn't say which room, so they look for the notice Samuel told them about.
 
 - **Dilnoza:** Here it is. "Classes meet every Tuesday evening in the large room." Which one is the large room?
 - **Amara:** Not the first door. That's the supply closet. I already tried it.
@@ -251,7 +251,7 @@ Adverb: describes a verb. Ask: how? when? how often?
 
 - Amara picks up a pencil at the registration desk. Which word is a noun? _(options: picks / pencil / at)_
 - Amara is talking about the class schedule. Which sentence is correct? _(options: "I am understanding the schedule." / "I understand the schedule." / "I understanding the schedule.")_
-- "Carlos is a helpful neighbor in Amara's building." Which word is the adjective? _(options: Carlos / helpful / building)_
+- "Samuel is a helpful neighbor in Amara's building." Which word is the adjective? _(options: Samuel / helpful / building)_
 - Dilnoza tells Amara about her sister's work schedule. Put the words in order.
 - Three people describe themselves at the community center. Which sentence has an error? _(options: "I have two young children." / "I work hardly every day." / "I live in a small apartment.")_
 

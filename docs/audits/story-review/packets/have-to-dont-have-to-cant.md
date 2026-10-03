@@ -95,7 +95,7 @@ Can't = it is not allowed. It is against the rules or the law. It is prohibited.
 
 ## 4. Putting it all together
 
-Rosa got a tenant rights flyer at the health center. Her coworker Diego is helping her read it during their break.
+Rosa got a tenant rights flyer at the health center. Her neighbor Diego is helping her read it on the front steps.
 
 - **Diego:** Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.
 - **Rosa:** OK. It says landlords have to keep the heat above 68 degrees from September to June.

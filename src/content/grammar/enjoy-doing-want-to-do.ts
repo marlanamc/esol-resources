@@ -543,16 +543,16 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneClassroom", "East Boston Adult Learning Center. Tuesday evening, after class.", "terracotta")}
 
-        <p style="margin-bottom: 0.75rem">After class, Elena stays behind to talk to Ms. Patel. She wants to practice saying out loud what she's been thinking about for months.</p>
+        <p style="margin-bottom: 0.75rem">After class, Elena stays behind to talk to Ms. Tran. She wants to practice saying out loud what she's been thinking about for months.</p>
 
         ${dialogue([
-          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "Elena, you look distracted tonight. Everything okay?", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Elena, you look distracted tonight. Everything okay?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "Sorry. I <strong>keep thinking</strong> about changing jobs. I <strong>want to try</strong> warehouse work, but I'm not ready to quit yet.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "What do you enjoy about your current job?", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "What do you enjoy about your current job?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>enjoy talking</strong> to the guests. And I <strong>like working</strong> early shifts. But I'm tired of the back pain. I <strong>avoid lifting</strong> as much as I can.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "What are you planning for the spring?", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "What are you planning for the spring?", side: "left", tone: "sage" },
           { speaker: "Elena", avatar: "👩🏽", text: "I <strong>decided to stay</strong> through May. Then I <strong>plan to apply</strong> somewhere new. My cousin said he can help.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍🏫", text: "That sounds like a plan. Let’s work on how you can describe your experience in an interview.", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That sounds like a plan. Let’s work on how you can describe your experience in an interview.", side: "left", tone: "sage" },
         ])}
 
         <p style="margin: 0.75rem 0 0.5rem 0; font-size: 0.95rem; font-style: italic">After class, a coworker from the hotel texted Elena a photo of a new café near the park. She invited Elena to have lunch after Saturday's shift.</p>
@@ -609,7 +609,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
         {
           id: "pit-s5-ex2",
           title: "Build the sentence",
-          instructions: "Unscramble what Elena says to Ms. Patel.",
+          instructions: "Unscramble what Elena says to Ms. Tran.",
           items: [
             {
               type: "word-scramble",

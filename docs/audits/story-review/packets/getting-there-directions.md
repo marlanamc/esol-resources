@@ -22,7 +22,7 @@
 > 🖼 **Scene:** Maverick Blue Line Station, East Boston. Tuesday, 7:00 PM.  
 > _Photo shows: Woman standing outside a subway station entrance at dusk, looking at her phone._
 
-Amara cleans offices downtown. She waited three weeks for this doctor's appointment at the clinic on Meridian Street. It's at 7:15. If she is more than 10 minutes late, she has to make a new appointment and wait three more weeks. She has never been to this clinic, so she calls her coworker Jean.
+Amara cleans patient rooms at the hospital. She waited three weeks for this doctor's appointment at the clinic on Meridian Street. It's at 7:15. If she is more than 10 minutes late, she has to make a new appointment and wait three more weeks. She has never been to this clinic, so she calls her coworker Jean.
 
 - **Amara:** Jean, I'm at Maverick. My appointment is at 7:15. How do I get to the clinic?
 - **Jean:** Walk across Maverick Square. Turn left on Meridian Street.

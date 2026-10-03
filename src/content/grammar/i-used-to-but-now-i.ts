@@ -269,12 +269,12 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneApartment", "Linh's street in East Boston. Tuesday, 3 PM.", "amber")}
 
-        <p>Linh runs into her classmate Carlos outside her building. They talk about life before and after Boston.</p>
+        <p>Linh runs into her classmate Edwin outside her building. They talk about life before and after Boston.</p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
+          { speaker: "Edwin", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> share a two-bedroom apartment with my cousin.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "How did you get to work back home?", side: "left", tone: "sage" },
+          { speaker: "Edwin", avatar: "👨🏽", text: "How did you get to work back home?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to walk</strong> to work. <strong>But now I</strong> take two buses.", side: "right", tone: "terracotta" },
         ])}
 
@@ -462,7 +462,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Linh, tell us one thing that changed.", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to have</strong> family nearby. <strong>But now I</strong> only see them on video calls.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I miss my family too. And my job changed. I <strong>used to</strong> work outside, but now I work in a freezer.", side: "left", tone: "blue" },
+          { speaker: "Edwin", avatar: "👨🏽", text: "I miss my family too. And my job changed. I <strong>used to</strong> work outside, but now I work in a freezer.", side: "left", tone: "blue" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "That’s a big change. Linh, <strong>did you use to</strong> stay up late?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}

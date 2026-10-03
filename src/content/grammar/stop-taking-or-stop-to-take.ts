@@ -416,12 +416,12 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneAlarm", "Saturday morning, 7:00 AM. Marisol's phone alarm goes off.", "amber")}
 
-        <p>Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Carlos walks into the kitchen and asks if she already took it.</p>
+        <p>Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Julio walks into the kitchen and asks if she already took it.</p>
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Did you take your pill this morning?", side: "left", tone: "sage" },
+          { speaker: "Julio", avatar: "👨🏽", text: "Did you take your pill this morning?", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>remember taking</strong> it at seven. I had it with my coffee.", side: "right", tone: "terracotta" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Good. And tomorrow, <strong>remember to take</strong> it before you leave. You have the early shift.", side: "left", tone: "sage" },
+          { speaker: "Julio", avatar: "👨🏽", text: "Good. And tomorrow, <strong>remember to take</strong> it before you leave. You have the early shift.", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I know. The alarm is set. Don't worry. I always <strong>remember to take</strong> it now.", side: "right", tone: "terracotta" },
         ])}
 
@@ -710,7 +710,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     {
       id: "sti-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
+      question: "Fill in the blank: \"Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
       correctAnswer: "taking",
       explanation: "'Remember taking' = recalling a past event. Something that already happened.",
       topic: "gerunds-infinitives-meaning-change",

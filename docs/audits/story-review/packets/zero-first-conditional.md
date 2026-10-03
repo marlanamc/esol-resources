@@ -23,7 +23,7 @@ _None._
 > 🖼 **Scene:** La Palma Restaurant, East Boston. Monday morning before the lunch rush. The manager, Scott, checks his clipboard.  
 > _Photo shows: Restaurant manager reviewing a clipboard near the kitchen entrance._
 
-Carlos is a line cook at La Palma. He became a U.S. citizen in June, and this November is his first election. Election Day is Tuesday, November 3.
+Carlos is a prep cook at La Palma. He became a U.S. citizen in June, and this November is his first election. Election Day is Tuesday, November 3.
 
 - **Carlos:** Scott, can I come in at 11 on Election Day? It's my first time voting.
 - **Scott:** Congratulations. If you need a day off, you ask two weeks early. A morning is easier.

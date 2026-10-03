@@ -11,7 +11,7 @@
 
 ## Cast by section
 
-- What Did She Say?: Jennifer (supervisor), Rosa
+- What Did She Say?: Jennifer (supervisor), Gabriela
 - Calling In and Covering a Shift: Diego, Ana
 - Paperwork Before Payday: Mark (manager), Fatima
 - Separable or Not? The Hidden Rule: _no named speakers_
@@ -21,24 +21,24 @@
 
 ## 1. What Did She Say?
 
-> 🖼 **Scene:** Hotel laundry room, East Boston. Rosa's first day.  
+> 🖼 **Scene:** Hotel laundry room, East Boston. Gabriela's first day.  
 > _Photo shows: Hotel laundry room with industrial washing machines and folded linens._
 
-- **Jennifer (supervisor):** OK Rosa, clock in first, then come find me. I need you to fill out this new-hire form before your shift starts.
-- **Rosa:** Clock in? Fill out? Sorry, where do I do that?
+- **Jennifer (supervisor):** OK Gabriela, clock in first, then come find me. I need you to fill out this new-hire form before your shift starts.
+- **Gabriela:** Clock in? Fill out? Sorry, where do I do that?
 - **Jennifer (supervisor):** You clock in at the machine by the door. Then fill out the form here at this desk. I can help if you have questions.
-- **Rosa:** Thanks. I’ll clock in first, then come back here.
+- **Gabriela:** Thanks. I’ll clock in first, then come back here.
 
 Phrasal verb = a verb plus a small word (in, out, up, for...). The meaning is new. You can't guess it from the separate words.
 
-Rosa knows the words clock, fill, and call. But clock in, fill out, and call in mean something completely different at work.
+Gabriela knows the words clock, fill, and call. But clock in, fill out, and call in mean something completely different at work.
 
 **Exercise: Match the meaning**
 - Your supervisor says: "Make sure you clock in before your shift." What should you do? _(options: Buy a clock for the break room / Use the machine to record when your shift starts / Call your supervisor when you arrive)_
 - The HR form says: "Fill out your name and address below." What should you do? _(options: Fill a cup with water / Find someone to write the form for you / Write your name and address in the blank spaces)_
 
 **Exercise: Fill in the blank**
-- Rosa is sick. She needs to ___ ___ before 7 AM. (two words: call + ?)
+- Gabriela is sick. She needs to ___ ___ before 7 AM. (two words: call + ?)
 
 ## 2. Calling In and Covering a Shift
 
@@ -122,7 +122,7 @@ Look at how many phrasal verbs Hector and Omar used in one short conversation. T
 
 ## Mini quiz
 
-- Rosa's manager says, "Make sure you clock in before 8 AM." What should Rosa do? _(options: Buy a clock for the break room / Use the machine to record when her shift starts / Call her manager at 8 AM)_
+- Gabriela's manager says, "Make sure you clock in before 8 AM." What should Gabriela do? _(options: Buy a clock for the break room / Use the machine to record when her shift starts / Call her manager at 8 AM)_
 - Diego can't go to work because his child is sick. What does he do? _(options: He shows up late / He calls in sick / He picks up a shift)_
 - Fill in the blank: "Ana ___ Diego because he was sick." (Two words: she did his shift for him.)
 - Which sentence is NOT correct? _(options: She filled out the form at the front desk. / She filled the form out at the front desk. / She filled out it at the front desk.)_

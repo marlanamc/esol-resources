@@ -13,8 +13,8 @@
 - She Had Already Done the Work: Gloria
 - had + V3: Putting It in Order: James, Gloria
 - When, Before, After, By the Time: Jennifer, Gloria
-- Past Perfect vs. Past Simple: Diego, Cousin (phone)
-- Your Work Story: Amara, Linh
+- Past Perfect vs. Past Simple: Wilmer, Cousin (phone)
+- Your Work Story: Hodan, Linh
 
 ---
 
@@ -94,43 +94,43 @@ By the time she applied, she had worked there for two years. By the time + Past 
 
 ## 4. Past Perfect vs. Past Simple
 
-> 🖼 **Scene:** Loading dock. Diego calls his cousin during a break.  
+> 🖼 **Scene:** Loading dock. Wilmer calls his cousin during a break.  
 > _Photo shows: Workers reviewing a clipboard together at a construction or warehouse site._
 
-- **Diego:** I got the supervisor job! They called me this morning.
+- **Wilmer:** I got the supervisor job! They called me this morning.
 - **Cousin (phone):** No way! What did you tell them?
-- **Diego:** I told them I had lifted heavy loads, had covered two shifts alone, and had never missed a day.
+- **Wilmer:** I told them I had lifted heavy loads, had covered two shifts alone, and had never missed a day.
 
 Use Past Simple for one finished action in the past. Use Past Perfect only when you have two past actions and need to show which one came first.
 
 Common mistake: Using Past Perfect for a single action. ✗ "I had worked yesterday." (only one action, no sequence) ✓ "I worked yesterday."
 
 **Exercise: One action or two?**
-- Diego ___ the supervisor job this morning. (one fact, no sequence) _(options: got (Past Simple) / had got (Past Perfect))_
-- Before the manager promoted him, Diego ___ every shift on time for six months. _(options: showed up (Past Simple) / had shown up (Past Perfect))_
-- When Diego called his cousin, he ___ the news already. _(options: heard (Past Simple) / had already heard (Past Perfect))_
+- Wilmer ___ the supervisor job this morning. (one fact, no sequence) _(options: got (Past Simple) / had got (Past Perfect))_
+- Before the manager promoted him, Wilmer ___ every shift on time for six months. _(options: showed up (Past Simple) / had shown up (Past Perfect))_
+- When Wilmer called his cousin, he ___ the news already. _(options: heard (Past Simple) / had already heard (Past Perfect))_
 
 **Exercise: Error check**
 - Which sentence is NOT correct? _(options: He had worked a double shift before he got promoted. / She had finished her break yesterday. / By the time the manager arrived, they had loaded the truck.)_
 
 **Exercise: Fill in the correct tense**
-- Diego ___ (work) at the warehouse for a year before he got the promotion.
+- Wilmer ___ (work) at the warehouse for a year before he got the promotion.
 - He ___ (call) his cousin right after the manager told him.
 
 ## 5. Your Work Story
 
-> 🖼 **Scene:** Break room. Amara and her coworker Linh swap work histories.  
+> 🖼 **Scene:** Break room. Hodan and her coworker Linh swap work histories.  
 > _Photo shows: A small group of workers sitting together and talking during a break._
 
-- **Amara:** Before I came here, I had done home care for four years. Nights mostly.
+- **Hodan:** Before I came here, I had done home care for four years. Nights mostly.
 - **Linh:** I had worked in a restaurant before this. Twelve-hour shifts. I hadn't slept a full night in two years.
-- **Amara:** That sounds hard. By the time I found this job, I had already saved enough to move. Now I walk here.
+- **Hodan:** That sounds hard. By the time I found this job, I had already saved enough to move. Now I walk here.
 - **Linh:** Lucky you. And the pay is better here. The restaurant hadn’t paid overtime, not once.
 
 Past Perfect is natural in work histories: you talk about what you had done before the current job, and what had already happened before a key moment.
 
-**Exercise: Amara's story**
-- Before she found this job, Amara ___ (do) home care for four years.
+**Exercise: Hodan's story**
+- Before she found this job, Hodan ___ (do) home care for four years.
 - By the time she found this job, she ___ (already save) enough to move.
 
 **Exercise: Linh's story**
@@ -144,7 +144,7 @@ Past Perfect is natural in work histories: you talk about what you had done befo
 
 - By the time Gloria walked into the warehouse, she ___ two years in housekeeping. _(options: has worked / had worked / worked)_
 - James hadn't driven a forklift before he ___. _(options: starts at this warehouse / started at this warehouse / had started at this warehouse)_
-- Fill in the blank: "Before Amara got the job, she ___ home care for four years." (Earlier of two past actions.)
+- Fill in the blank: "Before Hodan got the job, she ___ home care for four years." (Earlier of two past actions.)
 - Which sentence has a mistake? _(options: After she had finished loading, she clocked out. / She had eaten lunch before the break ended. / I had called my cousin last night.)_
 - Linh finished her tasks before the manager arrived. Put the words in order.
 

@@ -12,9 +12,9 @@
 
 - How Long Have You Been Here?: Marco, Claudette
 - For vs. Since: What's the Difference?: Linh, Gloria
-- "How Long Have You Had That Plan?": Kevin, Rosa
+- "How Long Have You Had That Plan?": Kevin, Yesenia
 - For and Since on the Timeline: Javier, Beatriz
-- Real Practice: Lease, Job, and Family: Rosa, Teresa
+- Real Practice: Lease, Job, and Family: Yesenia, Teresa
 
 ---
 
@@ -71,13 +71,13 @@ The form: Subject + have / has + V3 + for or since + time Examples: have worked,
 
 ## 3. "How Long Have You Had That Plan?"
 
-> 🖼 **Scene:** Phone store on Meridian Street. Rosa asks about a cheaper prepaid plan.  
+> 🖼 **Scene:** Phone store on Meridian Street. Yesenia asks about a cheaper prepaid plan.  
 > _Photo shows: Person at a cell phone store counter looking at prepaid phone plans on display._
 
 - **Kevin:** How long have you had your current plan?
-- **Rosa:** I have had it for three years. I pay $65 a month.
+- **Yesenia:** I have had it for three years. I pay $65 a month.
 - **Kevin:** Three years at $65? You can get the same data for $40.
-- **Rosa:** Really? I have paid too much for three years! I'm switching today.
+- **Yesenia:** Really? I have paid too much for three years! I'm switching today.
 - **Kevin:** Smart. That plan has been our best deal since last summer.
 
 How long have you...? is the question. The answer uses for or since.
@@ -88,7 +88,7 @@ How long + have/has + subject + V3? How long have you had this plan? How long ha
 
 **Exercise: Choose the correct answer**
 - "How long have you had your winter jacket?" _(options: I had this jacket for two winters ago. / I have had this jacket for two winters. / I have had this jacket two winters ago.)_
-- "How long has Rosa lived in East Boston?" _(options: She has lived there since five years. / She lived there for 2019. / She has lived there since 2019.)_
+- "How long has Yesenia lived in East Boston?" _(options: She has lived there since five years. / She lived there for 2019. / She has lived there since 2019.)_
 
 **Exercise: Build the question**
 - Unscramble:
@@ -125,14 +125,14 @@ Key question to ask yourself: Is this situation still true NOW? Use present perf
 
 ## 5. Real Practice: Lease, Job, and Family
 
-> 🖼 **Scene:** Rosa's apartment, East Boston. The family is discussing their lease over dinner.  
+> 🖼 **Scene:** Yesenia's apartment, East Boston. The family is discussing their lease over dinner.  
 > _Photo shows: Family gathered around a table for dinner, sharing food and conversation._
 
-- **Rosa:** Mami, this rental application asks how long we have lived here. Five years, right?
+- **Yesenia:** Mami, this rental application asks how long we have lived here. Five years, right?
 - **Teresa:** Yes, we have lived here for five years. Since before your brother was born.
-- **Rosa:** Our lease ends in March, and everything nearby costs more.
+- **Yesenia:** Our lease ends in March, and everything nearby costs more.
 - **Teresa:** The kids have gone to that school for four years. I don't want to change their school.
-- **Rosa:** Neither do I. I have been looking at apartments nearby for weeks.
+- **Yesenia:** Neither do I. I have been looking at apartments nearby for weeks.
 
 Common real-life situations that use for and since:
 
@@ -147,7 +147,7 @@ We have known our landlord since we moved in.
 How long has it been since you saw your family?
 
 **Exercise: For or Since?**
-- Rosa's family has lived in the apartment ___ five years. _(options: for / since)_
+- Yesenia's family has lived in the apartment ___ five years. _(options: for / since)_
 - She has worked evening shifts ___ three years. _(options: for / since)_
 - The children have gone to the same school ___ kindergarten. _(options: for / since)_
 
@@ -160,13 +160,13 @@ How long has it been since you saw your family?
 - "I have worked here for 2021." _(options: Correct as is. / I have worked here since 2021. ('2021' is a starting point, not a length) / I worked here since 2021.)_
 
 **Exercise: Fill in the blank**
-- Rosa ___ (work) evening shifts for three years.
+- Yesenia ___ (work) evening shifts for three years.
 - How long ___ they ___ (know) their landlord?
 
 ## Mini quiz
 
-- Rosa got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say? _(options: I have had this plan for since three years. / I have had this plan for three years. / I have had this plan for 2023.)_
-- Rosa's friend asks about her apartment. Choose the correct for/since sentence. _(options: She has lived here since five years. / She has lived here for 2021. / She has lived here since 2021.)_
+- Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say? _(options: I have had this plan for since three years. / I have had this plan for three years. / I have had this plan for 2023.)_
+- Yesenia's friend asks about her apartment. Choose the correct for/since sentence. _(options: She has lived here since five years. / She has lived here for 2021. / She has lived here since 2021.)_
 - Fill in the blank: "I have lived here ___ 2020." (Which word shows a starting point in time?)
 - Your neighbor asks how long you have lived in East Boston. Put the words in order.
 - Kofi's last day at the restaurant was Tuesday of last week. He does not work there anymore. Which sentence is correct? _(options: Kofi has left the restaurant since last Tuesday. / Kofi has worked at the restaurant for last Tuesday. / Kofi left the restaurant last Tuesday.)_

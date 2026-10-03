@@ -355,13 +355,13 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePhoneStore", "Phone store on Meridian Street. Rosa asks about a cheaper prepaid plan.", "amber")}
+        ${sceneCard("scenePhoneStore", "Phone store on Meridian Street. Yesenia asks about a cheaper prepaid plan.", "amber")}
 
         ${dialogue([
           { speaker: "Kevin", avatar: "🧑🏻", text: "<strong>How long have</strong> you <strong>had</strong> your current plan?", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have had</strong> it <strong>for</strong> three years. I pay $65 a month.", side: "right", tone: "terracotta" },
+          { speaker: "Yesenia", avatar: "👩🏽", text: "I <strong>have had</strong> it <strong>for</strong> three years. I pay $65 a month.", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "🧑🏻", text: "Three years at $65? You can get the same data for $40.", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Really? I <strong>have paid</strong> too much <strong>for</strong> three years! I'm switching today.", side: "right", tone: "terracotta" },
+          { speaker: "Yesenia", avatar: "👩🏽", text: "Really? I <strong>have paid</strong> too much <strong>for</strong> three years! I'm switching today.", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "🧑🏻", text: "Smart. That plan <strong>has been</strong> our best deal <strong>since</strong> last summer.", side: "left", tone: "amber" },
         ])}
 
@@ -416,7 +416,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"How long has Rosa lived in East Boston?\"",
+              label: "\"How long has Yesenia lived in East Boston?\"",
               options: [
                 { value: "a", label: "She has lived there since five years." },
                 { value: "b", label: "She lived there for 2019." },
@@ -620,14 +620,14 @@ export const howLongForSinceContent: InteractiveGuideContent = {
       title: "Real Practice: Lease, Job, and Family",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneHolidayDinner", "Rosa's apartment, East Boston. The family is discussing their lease over dinner.", "terracotta")}
+        ${sceneCard("sceneHolidayDinner", "Yesenia's apartment, East Boston. The family is discussing their lease over dinner.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "Mami, this rental application asks how long we <strong>have lived</strong> here. Five years, right?", side: "right", tone: "terracotta" },
+          { speaker: "Yesenia", avatar: "👩🏽", text: "Mami, this rental application asks how long we <strong>have lived</strong> here. Five years, right?", side: "right", tone: "terracotta" },
           { speaker: "Teresa", avatar: "👩🏾", text: "Yes, we <strong>have lived</strong> here <strong>for</strong> five years. <strong>Since</strong> before your brother was born.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Our lease ends in March, and everything nearby costs more.", side: "right", tone: "terracotta" },
+          { speaker: "Yesenia", avatar: "👩🏽", text: "Our lease ends in March, and everything nearby costs more.", side: "right", tone: "terracotta" },
           { speaker: "Teresa", avatar: "👩🏾", text: "The kids <strong>have gone</strong> to that school <strong>for</strong> four years. I don't want to change their school.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks.", side: "right", tone: "terracotta" },
+          { speaker: "Yesenia", avatar: "👩🏽", text: "Neither do I. I <strong>have been</strong> looking at apartments nearby <strong>for</strong> weeks.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(176,87,64,0.06); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
@@ -649,7 +649,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa's family has lived in the apartment ___ five years.",
+              label: "Yesenia's family has lived in the apartment ___ five years.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -729,7 +729,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Rosa ___ (work) evening shifts for three years.",
+              label: "Yesenia ___ (work) evening shifts for three years.",
               expectedAnswers: ["has worked"],
             },
             {
@@ -753,7 +753,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "hlfs-q2",
-      question: "Rosa got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
+      question: "Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
       options: [
         { value: "a", label: "I have had this plan for since three years." },
         { value: "b", label: "I have had this plan for three years." },
@@ -768,7 +768,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
     {
       id: "hlfs-q3",
-      question: "Rosa's friend asks about her apartment. Choose the correct for/since sentence.",
+      question: "Yesenia's friend asks about her apartment. Choose the correct for/since sentence.",
       options: [
         { value: "a", label: "She has lived here since five years." },
         { value: "b", label: "She has lived here for 2021." },

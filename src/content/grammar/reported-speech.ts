@@ -1022,7 +1022,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     {
                         speaker: "Denise",
                         avatar: "👩🏼",
-                        text: "Fine. I'll give your first floor to Carlos. Did the doctor say anything about work?",
+                        text: "Fine. I'll give your first floor to Andrés. Did the doctor say anything about work?",
                         side: "right",
                         tone: "amber",
                     },

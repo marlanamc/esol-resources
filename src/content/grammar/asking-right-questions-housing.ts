@@ -515,14 +515,14 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "Questions to Ask Before You Waste a Trip",
       icon: "📞",
       explanation: `
-        ${sceneCard("sceneAfterWork", "Outside the hotel, East Boston. Rosa and Nadine compare calls after the evening shift.", "blue")}
+        ${sceneCard("sceneAfterWork", "Outside the hotel, East Boston. Rosa and Nadine compare calls after their shift.", "blue")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "Did you ask about parking? I forgot.", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether parking spots are included?</em> He said yes.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Good. <strong>How long</strong> is the lease?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "One year. He has appointments on Monday. <strong>Do you know when</strong> you can go?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Monday morning works. I have the day off. I’ll call him now.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏾", text: "One year. He has appointments on Saturday. <strong>Do you know when</strong> you can go?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Saturday morning works. I don't work weekends. I’ll call him now.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(59,130,246,0.06); border-left: 3px solid #3b82f6; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">

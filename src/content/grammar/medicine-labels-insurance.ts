@@ -897,7 +897,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("pharmacyAisle", "You can find OTC medicines on the shelf — no prescription needed", "terracotta")}
 
-        <p>You are at home. Your son Carlos (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.</p>
+        <p>You are at home. Your son Pedro (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.</p>
 
         ${dialogue([
           { speaker: "Ana", avatar: "👩🏽", text: "What does this medicine do? I can't read all the English.", side: "left", tone: "amber" },
@@ -922,7 +922,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is 9 years old. What is the correct dose for him?",
+              label: "Pedro is 9 years old. What is the correct dose for him?",
               options: [
                 { value: "a", label: "400 mg (20 mL)" },
                 { value: "b", label: "200 mg (10 mL)" },
@@ -932,7 +932,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "How many hours should you wait between doses for Carlos?",
+              label: "How many hours should you wait between doses for Pedro?",
               options: [
                 { value: "a", label: "4 to 6 hours" },
                 { value: "b", label: "6 to 8 hours" },
@@ -1377,7 +1377,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Carlos is 10 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid.",
+              label: "Pedro is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid.",
               options: [
                 { value: "chip", label: "CHIP — Children's Health Insurance Program" },
                 { value: "medicare", label: "Medicare" },

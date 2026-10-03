@@ -218,7 +218,7 @@ Useful phrases at the pharmacy
 > 🖼 **Scene:** You can find OTC medicines on the shelf — no prescription needed  
 > _Photo shows: A pharmacy store aisle with over-the-counter medicine products on shelves._
 
-You are at home. Your son Carlos (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.
+You are at home. Your son Pedro (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.
 
 - **Ana:** What does this medicine do? I can't read all the English.
 - **You:** It's ibuprofen. It's a pain reliever and fever reducer. The active ingredient is ibuprofen — 100 mg per 5 mL.
@@ -230,8 +230,8 @@ You are at home. Your son Carlos (age 9) has a fever. You pick up the bottle of 
 Use the label from Section 2 to answer the exercises below. You can scroll up if you need to look at it again.
 
 **Exercise: Find the Information**
-- Carlos is 9 years old. What is the correct dose for him? _(options: 400 mg (20 mL) / 200 mg (10 mL) / 100 mg (5 mL))_
-- How many hours should you wait between doses for Carlos? _(options: 4 to 6 hours / 6 to 8 hours / 8 to 12 hours)_
+- Pedro is 9 years old. What is the correct dose for him? _(options: 400 mg (20 mL) / 200 mg (10 mL) / 100 mg (5 mL))_
+- How many hours should you wait between doses for Pedro? _(options: 4 to 6 hours / 6 to 8 hours / 8 to 12 hours)_
 
 **Exercise: Find the Warning Words**
 - Identify the warning signal words:
@@ -305,7 +305,7 @@ For Community Health Centers: findahealthcenter.hrsa.gov
 
 **Exercise: Which Program?**
 - Dolores is 67 years old and retired. She paid taxes for 20 years. _(options: Medicaid / Medicare / CHIP / Employer insurance)_
-- Carlos is 10 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid. _(options: CHIP — Children's Health Insurance Program / Medicare / ACA Marketplace / Employer insurance)_
+- Pedro is 9 years old. His parents work but can't afford private insurance, and they earn too much for Medicaid. _(options: CHIP — Children's Health Insurance Program / Medicare / ACA Marketplace / Employer insurance)_
 - Ana has a low income and no job with benefits. She needs coverage for herself. _(options: Medicare / Medicaid / CHIP / Employer insurance)_
 - Roberto is self-employed. He has a moderate income and needs to buy his own plan. _(options: CHIP / Medicaid / ACA Marketplace plan (healthcare.gov) / Medicare)_
 

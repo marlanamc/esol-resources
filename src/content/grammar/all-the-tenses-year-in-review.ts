@@ -103,8 +103,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "It's our last night together. What <strong>will</strong> you do in the fall?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my lunch shifts.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I already <strong>work</strong> Saturdays at the hotel, too. Two evenings a week is about all I can manage.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my work schedule.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>work</strong> at the hotel all day, too. Two evenings a week is about all I can manage.", side: "right", tone: "terracotta" },
           { speaker: "David", avatar: "👨🏻", text: "Me too. We're both taking the free online summer course. By August we <strong>will have finished</strong> it.", side: "left", tone: "blue" },
         ])}
 
@@ -116,7 +116,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("every Tuesday", "terracotta")}
-            <span><em>I <strong>take</strong> the 121 every Tuesday.</em></span>
+            <span><em>I <strong>take</strong> the 116 every Tuesday.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("right now", "blue")}
@@ -179,14 +179,14 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantShift", "Taqueria on Meridian Street. Wednesday, 1:30 PM.", "terracotta")}
+        ${sceneCard("sceneRestaurantShift", "Hotel lobby on Meridian Street. Wednesday, 1:30 PM.", "terracotta")}
 
-        <p>Rosa works lunch shifts at a restaurant on Meridian Street. Hotel laundry on Saturdays. ESOL class on Tuesday and Thursday evenings. Supervisor <strong>Jennifer</strong> covers the register when Rosa leaves at 3.</p>
+        <p>Rosa is a housekeeper at a hotel on Meridian Street, Monday to Friday, 7 to 3. ESOL class on Tuesday and Thursday evenings. Supervisor <strong>Jennifer</strong> covers the late checkouts when Rosa leaves at 3.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "👩🏼", text: "You usually <strong>leave</strong> at three, right? Do you need to go early today?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Yes, if that’s OK. My daughter <strong>has</strong> a field trip tomorrow. I <strong>am texting</strong> the sitter now.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the register for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
+          { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the late checkouts for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Two thirty, please. Thanks. I know we <strong>are running</strong> behind today.", side: "right", tone: "terracotta" },
         ])}
 
@@ -197,7 +197,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("routine", "terracotta")}
-            <span><em>I <strong>work</strong> lunch shifts Monday through Friday.</em></span>
+            <span><em>I <strong>work</strong> at the hotel Monday through Friday.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("right now", "blue")}
@@ -213,7 +213,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa ___ lunch shifts at the restaurant Monday through Friday. (work)",
+              label: "Rosa ___ at the hotel Monday through Friday. (work)",
               options: [
                 { value: "works", label: "works" },
                 { value: "is working", label: "is working" },
@@ -233,7 +233,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Jennifer usually ___ the register when Rosa leaves. (cover)",
+              label: "Jennifer usually ___ the late checkouts when Rosa leaves. (cover)",
               expectedAnswers: ["covers"],
             },
           ],
@@ -269,7 +269,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartmentKitchen", "Rosa's kitchen, Orient Heights. The leak happened here on January 14.", "blue")}
+        ${sceneCard("sceneApartmentKitchen", "Rosa's old kitchen, East Boston. The leak happened here on January 14.", "blue")}
 
         <p>In June, the landlord sends Rosa a bill for the ceiling damage. She calls him to explain what happened in January: what she was doing, what happened next, and what she had already done before calling.</p>
 
@@ -291,7 +291,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("before that", "sage")}
-            <span><em>I <strong>had already saved</strong> some money before the car broke down.</em></span>
+            <span><em>I <strong>had already saved</strong> some money before my lease ended.</em></span>
           </div>
         </div>
       `,
@@ -322,7 +322,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "She ___ (already save) some money before the car broke down in March.",
+              label: "She ___ (already save) some money before her lease ended in February.",
               expectedAnswers: ["had already saved", "had saved"],
             },
           ],
@@ -361,14 +361,14 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneVideoCall", "Taqueria back room after a double shift. Friday, 9:30 PM.", "sage")}
+        ${sceneCard("sceneVideoCall", "Hotel break room after a double shift. Friday, 9:30 PM.", "sage")}
 
-        <p>Rosa covered a dinner shift too. She calls her sister <strong>Teresa</strong> after the long double shift at the restaurant. Teresa is at home waiting for her.</p>
+        <p>Rosa covered an evening shift too. She calls her sister <strong>Teresa</strong> after the long double shift at the hotel. Teresa is at home waiting for her.</p>
 
         ${dialogue([
           { speaker: "Teresa", avatar: "👩🏽", text: "Still at work? I haven’t seen you all week.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have worked</strong> here for three years, and this has been my busiest week yet.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>have been taking</strong> two buses since the car broke down in March. It takes forever to get home.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have worked</strong> in housekeeping for three years, and this has been my busiest week yet.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>have been taking</strong> extra shifts since I started here in March. I'm so tired.", side: "right", tone: "terracotta" },
           { speaker: "Teresa", avatar: "👩🏽", text: "That sounds exhausting. I <strong>have made</strong> dinner, so you won’t need to cook tonight.", side: "left", tone: "sage" },
         ])}
 
@@ -383,7 +383,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("since March", "sage")}
-            <span><em>I <strong>have been taking</strong> two buses since the car broke down.</em></span>
+            <span><em>I <strong>have been taking</strong> extra shifts since I started the new job.</em></span>
           </div>
         </div>
       `,
@@ -404,7 +404,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Since March she ___ two buses every day. (take)",
+              label: "Since March she ___ extra shifts every week. (take)",
               options: [
                 { value: "has taken", label: "has taken" },
                 { value: "has been taking", label: "has been taking" },
@@ -414,7 +414,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "She ___ (work) at the restaurant for three years.",
+              label: "She ___ (work) in housekeeping for three years.",
               expectedAnswers: ["has worked", "has been working"],
             },
           ],
@@ -426,8 +426,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "have", "been", "taking", "two", "buses", "since", "March"],
-              correctAnswer: "I have been taking two buses since March",
+              words: ["I", "have", "been", "taking", "extra", "shifts", "since", "March"],
+              correctAnswer: "I have been taking extra shifts since March",
             },
           ],
         },
@@ -451,13 +451,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusHome", "121 bus toward Maverick Square. Thursday, 6:15 PM.", "amber")}
+        ${sceneCard("sceneBusHome", "116 bus toward Maverick Square. Thursday, 6:15 PM.", "amber")}
 
-        <p>On the way to the last class, Rosa and classmate <strong>David</strong> talk on the 121 bus about their plans for the summer and the fall.</p>
+        <p>On the way to the last class, Rosa and classmate <strong>David</strong> talk on the 116 bus about their plans for the summer and the fall.</p>
 
         ${dialogue([
           { speaker: "David", avatar: "👨🏻", text: "Level 4 in the fall?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>will be taking</strong> evening classes while I keep working lunch shifts.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>will be taking</strong> evening classes while I keep working at the hotel.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> the summer course. It feels good to keep moving.", side: "right", tone: "terracotta" },
           { speaker: "David", avatar: "👨🏻", text: "It does. By tonight we <strong>will have been studying</strong> together for a full year. I <strong>will ask</strong> Ms. Tran about Level 4.", side: "left", tone: "blue" },
         ])}
@@ -565,11 +565,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "atyr-q2",
-      question: "Rosa is texting the sitter at the register right now. Which sentence fits?",
+      question: "Rosa is texting the sitter in the lobby right now. Which sentence fits?",
       options: [
-        { value: "a", label: "She texts the sitter at the register." },
-        { value: "b", label: "She is texting the sitter at the register." },
-        { value: "c", label: "She has texted the sitter at the register." },
+        { value: "a", label: "She texts the sitter in the lobby." },
+        { value: "b", label: "She is texting the sitter in the lobby." },
+        { value: "c", label: "She has texted the sitter in the lobby." },
       ],
       correctAnswer: "b",
       explanation: "Present continuous for an action in progress right now.",
@@ -606,11 +606,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     },
     {
       id: "atyr-q6",
-      question: "Rosa saved some money before her car broke down in March. Which sentence fits?",
+      question: "Rosa saved some money before her lease ended in February. Which sentence fits?",
       options: [
-        { value: "a", label: "She had already saved some money when the car broke down." },
-        { value: "b", label: "She already saved some money when the car broke down." },
-        { value: "c", label: "She has already saved some money when the car broke down." },
+        { value: "a", label: "She had already saved some money when the lease ended." },
+        { value: "b", label: "She already saved some money when the lease ended." },
+        { value: "c", label: "She has already saved some money when the lease ended." },
       ],
       correctAnswer: "a",
       explanation: "Past perfect for something finished before another past event.",

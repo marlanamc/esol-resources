@@ -276,10 +276,10 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneRestaurantBreak", "Restaurant break room, East Boston. Friday night. The Saturday morning shift has no coverage.", "terracotta")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Amara's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Halima's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.</em></p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "I'm so sorry. My babysitter canceled. I can't come in Saturday morning.", side: "right", tone: "terracotta" },
+          { speaker: "Halima", avatar: "👩🏿", text: "I'm so sorry. My babysitter canceled. I can't come in Saturday morning.", side: "right", tone: "terracotta" },
           { speaker: "Diego", avatar: "👨🏽", text: "<strong>Could we</strong> split the shift? I can do the first two hours if someone else covers the rest.", side: "left", tone: "sage" },
           { speaker: "Brian", avatar: "🧑🏽", text: "<strong>Should we</strong> call Luis? He asked about extra hours last week.", side: "right", tone: "blue" },
           { speaker: "Diego", avatar: "👨🏽", text: "Yes. Or <strong>why don't we</strong> post it in the group chat? Someone might want the hours.", side: "left", tone: "sage" },

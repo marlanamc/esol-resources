@@ -11,7 +11,7 @@
 ## Cast by section
 
 - I Need to Move: Rosa, Cousin
-- I Want to Stay Near the Bus: Carlos, Jennifer
+- I Want to Stay Near the Bus: Wilson, Jennifer
 - I Hope to Find Something Before Rent Goes Up: Amara, Nadine
 - I Would Like to See the Apartment: Brian (landlord), Diego
 - Mini Review + Building the Sentence: _no named speakers_
@@ -45,15 +45,15 @@ need to + base verb = something you have to do. It is necessary.
 > 🖼 **Scene:** Break room at the warehouse. Thursday lunch.  
 > _Photo shows: Coworkers comparing apartment listings over lunch in a warehouse break room._
 
-- **Carlos:** I want to stay on the Blue Line. Two buses to work is too much.
+- **Wilson:** I want to stay on the Blue Line. Two buses to work is too much.
 - **Jennifer:** I get it. Do you want to see that listing on Bremen Street? My cousin said it's good.
-- **Carlos:** Yeah, but I want to keep it under fourteen hundred. Does she know the price?
+- **Wilson:** Yeah, but I want to keep it under fourteen hundred. Does she know the price?
 - **Jennifer:** I’ll ask her before we arrange a visit. I want to make sure it’s in your budget.
 
 want to + base verb = a desire or preference. Something you would like to do.
 
 **Exercise: Choose the correct form**
-- Carlos ___ near the Blue Line. Choose the correct form. _(options: want stay / wants to stay / wants staying)_
+- Wilson ___ near the Blue Line. Choose the correct form. _(options: want stay / wants to stay / wants staying)_
 - "I want finding a place near the bus." Is this correct? _(options: Correct / Not correct. Should be 'want to find')_
 
 **Exercise: Fill in the blank**
@@ -141,5 +141,5 @@ I would like to pay less than $1,500 a month.
 - Diego is calling a landlord for the first time. Which sounds most polite and appropriate? _(options: I want to look at the lease. / I would like to look at the lease. / I need to look at the lease.)_
 - Fill in the blank: "She ___ to find one before February." (She is trying but not certain she will.)
 - "She needs finding a bigger apartment." What is wrong? _(options: Nothing is wrong. / 'finding' should be 'to find'. Use needs to + base verb. / 'bigger' should be 'more big'.)_
-- Carlos calls about an apartment on Bremen Street. Put the words in order.
+- Wilson calls about an apartment on Bremen Street. Put the words in order.
 

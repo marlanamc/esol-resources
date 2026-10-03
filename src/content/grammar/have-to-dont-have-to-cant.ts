@@ -407,7 +407,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       icon: "📄",
       explanation: `
         <div style="margin-bottom: 1.25rem">
-          <p>Rosa got a tenant rights flyer at the health center. Her coworker Diego is helping her read it during their break.</p>
+          <p>Rosa got a tenant rights flyer at the health center. Her neighbor Diego is helping her read it on the front steps.</p>
         </div>
 
         ${dialogue([

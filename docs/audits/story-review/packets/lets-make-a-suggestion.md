@@ -12,7 +12,7 @@
 
 - Let's and We Could. Suggesting Together: Gloria, Jean, Marta
 - You Should and You Could. Suggesting to One Person: Marta, Kevin
-- Could We and Should We. Suggestions as Questions: Amara, Diego, Brian
+- Could We and Should We. Suggestions as Questions: Halima, Diego, Brian
 - Putting It Together. Which Suggestion Fits?: Gloria, Jean
 
 ---
@@ -70,9 +70,9 @@ Should vs. Must: Kevin says the landlord must keep the heat on. That's the law. 
 > 🖼 **Scene:** Restaurant break room, East Boston. Friday night. The Saturday morning shift has no coverage.  
 > _Photo shows: Restaurant kitchen with workers preparing food under warm overhead lights._
 
-Amara's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.
+Halima's childcare fell through. She can't work Saturday morning. Diego and Brian need to figure out the shift.
 
-- **Amara:** I'm so sorry. My babysitter canceled. I can't come in Saturday morning.
+- **Halima:** I'm so sorry. My babysitter canceled. I can't come in Saturday morning.
 - **Diego:** Could we split the shift? I can do the first two hours if someone else covers the rest.
 - **Brian:** Should we call Luis? He asked about extra hours last week.
 - **Diego:** Yes. Or why don't we post it in the group chat? Someone might want the hours.

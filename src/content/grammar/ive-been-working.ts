@@ -190,15 +190,15 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusStop", "Bennington Street bus stop, 11:15 PM. Rosa and Claudette wait for the 112 after a double shift.", "blue")}
+        ${sceneCard("sceneBusStop", "Bennington Street bus stop, 11:15 PM. Daniela and Claudette wait for the 112 after a double shift.", "blue")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Rosa's car broke down in February. The commute home now takes twice as long.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Daniela's car broke down in February. The commute home now takes twice as long.</p>
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏿", text: "You still taking two buses?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yeah. I <strong>have been taking</strong> two buses since my car broke down in February.", side: "right", tone: "sage" },
+          { speaker: "Daniela", avatar: "👩🏽", text: "Yeah. I <strong>have been taking</strong> two buses since my car broke down in February.", side: "right", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏿", text: "How long <strong>have</strong> you <strong>been waiting</strong> for the mechanic?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Three weeks. He keeps saying next week.", side: "right", tone: "sage" },
+          { speaker: "Daniela", avatar: "👩🏽", text: "Three weeks. He keeps saying next week.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -232,7 +232,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Rosa has been taking two buses ___ her car broke down.",
+              label: "Daniela has been taking two buses ___ her car broke down.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -380,14 +380,14 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneJobFair", "East Boston Community School gym. Job fair, Thursday afternoon. The last hour of the event.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Diego just finished talking to a recruiter and finds Marta still standing in line. They compare notes.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Osmin just finished talking to a recruiter and finds Marta still standing in line. They compare notes.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "👨🏽", text: "I <strong>have applied</strong> to three companies today. I'm done.", side: "right", tone: "terracotta" },
+          { speaker: "Osmin", avatar: "👨🏽", text: "I <strong>have applied</strong> to three companies today. I'm done.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "I <strong>have been standing</strong> in this line for an hour. I haven't even talked to anyone yet.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I <strong>have been working</strong> in construction.", side: "right", tone: "terracotta" },
+          { speaker: "Osmin", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked how long I <strong>have been working</strong> in construction.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "What did you say?", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Four years. She said that's good experience.", side: "right", tone: "terracotta" },
+          { speaker: "Osmin", avatar: "👨🏽", text: "Four years. She said that's good experience.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -422,7 +422,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego finished talking to all three recruiters. Which sentence fits?",
+              label: "Osmin finished talking to all three recruiters. Which sentence fits?",
               options: [
                 { value: "a", label: "He has been talking to three recruiters." },
                 { value: "b", label: "He has talked to three recruiters." },
@@ -456,8 +456,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Diego", "has", "been", "working", "in", "construction", "for", "four", "years"],
-              correctAnswer: "Diego has been working in construction for four years",
+              words: ["Osmin", "has", "been", "working", "in", "construction", "for", "four", "years"],
+              correctAnswer: "Osmin has been working in construction for four years",
             },
           ],
         },

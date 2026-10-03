@@ -279,7 +279,7 @@ Denise doesn't need Mina's A1c. She needs to know about tomorrow's shift.
 - **Mina:** I'm okay, but the lab was full. They told me to come back tomorrow at 7:30.
 - **Denise:** So you'll miss the start of your shift. How long is the test?
 - **Mina:** The nurse said it took about an hour. I can be there by 9:30.
-- **Denise:** Fine. I'll give your first floor to Carlos. Did the doctor say anything about work?
+- **Denise:** Fine. I'll give your first floor to Andrés. Did the doctor say anything about work?
 - **Mina:** She told me to walk more. So no elevator for me tomorrow.
 
 Call 2: Gloria, who wants every detail

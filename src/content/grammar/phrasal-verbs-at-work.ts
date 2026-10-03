@@ -80,20 +80,20 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "what-did-she-say",
       title: "What Did She Say?",
       explanation: `
-        ${sceneCard("sceneHotelLaundry", "Hotel laundry room, East Boston. Rosa's first day.", "terracotta")}
+        ${sceneCard("sceneHotelLaundry", "Hotel laundry room, East Boston. Gabriela's first day.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "OK Rosa, <strong>clock in</strong> first, then come find me. I need you to <strong>fill out</strong> this new-hire form before your shift starts.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Clock in? Fill out? Sorry, where do I do that?", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "OK Gabriela, <strong>clock in</strong> first, then come find me. I need you to <strong>fill out</strong> this new-hire form before your shift starts.", side: "left", tone: "sage" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "Clock in? Fill out? Sorry, where do I do that?", side: "right", tone: "terracotta" },
           { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "You <strong>clock in</strong> at the machine by the door. Then <strong>fill out</strong> the form here at this desk. I can help if you have questions.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Thanks. I’ll clock in first, then come back here.", side: "right", tone: "terracotta" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "Thanks. I’ll clock in first, then come back here.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Phrasal verb</strong> = a verb plus a small word (in, out, up, for...). The meaning is new. You can't guess it from the separate words.</p>
         </div>
 
-        <p style="margin: 0.75rem 0">Rosa knows the words <em>clock</em>, <em>fill</em>, and <em>call</em>. But <em>clock in</em>, <em>fill out</em>, and <em>call in</em> mean something completely different at work.</p>
+        <p style="margin: 0.75rem 0">Gabriela knows the words <em>clock</em>, <em>fill</em>, and <em>call</em>. But <em>clock in</em>, <em>fill out</em>, and <em>call in</em> mean something completely different at work.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
@@ -145,7 +145,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Rosa is sick. She needs to ___ ___ before 7 AM. (two words: call + ?)",
+              label: "Gabriela is sick. She needs to ___ ___ before 7 AM. (two words: call + ?)",
               expectedAnswers: ["call in"],
             },
           ],
@@ -530,7 +530,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "phrasal-verbs-at-work-q1",
-      question: "Rosa's manager says, \"Make sure you clock in before 8 AM.\" What should Rosa do?",
+      question: "Gabriela's manager says, \"Make sure you clock in before 8 AM.\" What should Gabriela do?",
       options: [
         { value: "a", label: "Buy a clock for the break room" },
         { value: "b", label: "Use the machine to record when her shift starts" },

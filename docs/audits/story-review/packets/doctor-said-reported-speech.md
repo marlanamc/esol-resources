@@ -10,10 +10,10 @@ _None._
 
 ## Cast by section
 
-- The Clinic Call: Nurse Kelly, Amara
-- Telling Marco: She Said That…: Amara, Marco
+- The Clinic Call: Nurse Kelly, Luz
+- Telling Marco: She Said That…: Luz, Marco
 - He Told Me To…: Marco, Gloria
-- She Asked If…: Marco, Amara
+- She Asked If…: Marco, Luz
 - One Whole Story: Marco, Lucia
 
 ---
@@ -23,22 +23,22 @@ _None._
 > 🖼 **Scene:** East Boston Neighborhood Health Center. Tuesday, 4:30 PM.  
 > _Photo shows: A blue asthma inhaler on a white surface._
 
-Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.
+Luz is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.
 
 - **Nurse Kelly:** Hi, this is Kelly from East Boston Neighborhood Health Center. Our records show Amina's blue inhaler is almost empty.
-- **Amara:** Yes, hi. She used it twice last night.
+- **Luz:** Yes, hi. She used it twice last night.
 - **Nurse Kelly:** The doctor says the pharmacy can refill it today if you come before 6.
-- **Amara:** OK. I'll write it down and tell my husband.
+- **Luz:** OK. I'll write it down and tell my husband.
 
 Reported speech means you tell someone else what another person said. You are not repeating the exact words. You change the form: present becomes past, can becomes could, will becomes would.
 
-Amara needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.
+Luz needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.
 
 **Exercise: Direct or Reported?**
-- Kelly spoke to Amara on the phone. Which sentence is reported speech? _(options: Kelly said, "The pharmacy can refill it today." / Kelly said that the pharmacy could refill it today. / Can the pharmacy refill it today?)_
+- Kelly spoke to Luz on the phone. Which sentence is reported speech? _(options: Kelly said, "The pharmacy can refill it today." / Kelly said that the pharmacy could refill it today. / Can the pharmacy refill it today?)_
 
 **Exercise: Fill in the Blank**
-- Amara tells Marco: "Kelly ___ that Amina's inhaler was almost empty."
+- Luz tells Marco: "Kelly ___ that Amina's inhaler was almost empty."
 
 **Exercise: Unscramble**
 - Unscramble this reported sentence:
@@ -48,28 +48,28 @@ Amara needs to tell Marco everything later. She cannot repeat Kelly's exact word
 > 🖼 **Scene:** Marco's restaurant on Meridian Street. Tuesday, 4:45 PM.  
 > _Photo shows: A busy restaurant dining room with tables set for service._
 
-Marco is wiping down the prep station when Amara texts him. He reads it between orders.
+Marco is wiping down the prep station when Luz texts him. He reads it between orders.
 
-- **Amara:** Kelly said that we could get the inhaler refilled today.
+- **Luz:** Kelly said that we could get the inhaler refilled today.
 - **Marco:** Good. Is there enough left for now?
-- **Amara:** A little, but it’s almost empty. She said that we had to get there before 6.
+- **Luz:** A little, but it’s almost empty. She said that we had to get there before 6.
 - **Marco:** OK. I’ll try to leave early. Did she say anything else?
 
 When you report a statement, the verb often moves back one step: is → was, can → could, will → would. Use said that + subject + verb.
 
 **Exercise: Change to Reported Speech**
-- Kelly said: "The pharmacy is closed today." How does Amara report this? _(options: Kelly said that the pharmacy is closed today. / Kelly said that the pharmacy was closed today. / Kelly said that the pharmacy will be closed today.)_
-- Kelly said: "We can refill it today." How does Amara report this? _(options: Kelly said that they can refill it today. / Kelly said that they could refill it today. / Kelly said that they will refill it today.)_
+- Kelly said: "The pharmacy is closed today." How does Luz report this? _(options: Kelly said that the pharmacy is closed today. / Kelly said that the pharmacy was closed today. / Kelly said that the pharmacy will be closed today.)_
+- Kelly said: "We can refill it today." How does Luz report this? _(options: Kelly said that they can refill it today. / Kelly said that they could refill it today. / Kelly said that they will refill it today.)_
 
 **Exercise: Fill in the Blank**
-- Direct: "The doctor will call tomorrow." Reported: Amara said the doctor ___ call tomorrow.
+- Direct: "The doctor will call tomorrow." Reported: Luz said the doctor ___ call tomorrow.
 
 **Exercise: Unscramble**
 - Unscramble:
 
 ## 3. He Told Me To…
 
-> 🖼 **Scene:** Amara and Marco's apartment. Wednesday morning.  
+> 🖼 **Scene:** Luz and Marco's apartment. Wednesday morning.  
 > _Photo shows: Two adults talking in a bright apartment living room on a weekday morning._
 
 Marco left work early and picked up the new inhaler before 6. Their cousin Gloria is watching Amina before school. Marco needs to pass on the pharmacist's instructions.
@@ -99,12 +99,12 @@ Tonight Marco will call his mother Lucia in Guatemala. She worries about Amina, 
 > 🖼 **Scene:** Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.  
 > _Photo shows: A doctor in a white coat talking with a patient in an exam room._
 
-Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answered because Amara was at work. Now he is telling Amara what Sarah asked.
+Clinic receptionist Sarah called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.
 
 - **Marco:** Sarah from the clinic called. She asked if Amina was feeling better.
-- **Amara:** What else?
+- **Luz:** What else?
 - **Marco:** She asked when we could come for the follow-up.
-- **Amara:** Did she ask about the insurance card?
+- **Luz:** Did she ask about the insurance card?
 - **Marco:** Yes. She asked if we had brought the new card last time. They don't have a copy.
 
 Yes/no questions become asked if + statement (no question word order). Wh-questions keep the question word: asked when / what / where + statement.
@@ -145,12 +145,12 @@ Statements, commands, and questions. All three patterns in one real phone call.
 - Unscramble Marco's sentence to Lucia:
 
 **Exercise: Find the Error**
-- Marco texts Amara: "Sarah asked when can we come Saturday." What is wrong? _(options: No error. The sentence is correct. / Error: it should be "Sarah asked when we could come Saturday." / Error: it should be "Sarah said when we could come Saturday.")_
+- Marco texts Luz: "Sarah asked when can we come Saturday." What is wrong? _(options: No error. The sentence is correct. / Error: it should be "Sarah asked when we could come Saturday." / Error: it should be "Sarah said when we could come Saturday.")_
 
 ## Mini quiz
 
-- Kelly said: "The new inhaler is ready." How does Amara report this to Marco? _(options: Kelly said that the new inhaler is ready. / Kelly said that the new inhaler was ready. / Kelly told me to the new inhaler was ready.)_
-- Kelly said: "Bring the inhaler to the follow-up." How does Amara tell Marco? _(options: Kelly told me to bring the inhaler to the follow-up. / Kelly said that bring the inhaler to the follow-up. / Kelly asked me bring the inhaler to the follow-up.)_
+- Kelly said: "The new inhaler is ready." How does Luz report this to Marco? _(options: Kelly said that the new inhaler is ready. / Kelly said that the new inhaler was ready. / Kelly told me to the new inhaler was ready.)_
+- Kelly said: "Bring the inhaler to the follow-up." How does Luz tell Marco? _(options: Kelly told me to bring the inhaler to the follow-up. / Kelly said that bring the inhaler to the follow-up. / Kelly asked me bring the inhaler to the follow-up.)_
 - Fill in the blank: "Kelly said: 'We can refill it today.' → Kelly said that they ___ refill it today." (can back-shifts in reported speech)
 - Find the error: "Kelly said that the pharmacy will refill it today." _(options: No error. / Error: will should be would. / Error: said should be told.)_
 - Marco reports what the pharmacist said about Amina's inhaler. Put the words in order.

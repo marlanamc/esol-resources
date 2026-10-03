@@ -112,14 +112,14 @@ Can you tell me + what/where/when/how much + [subject + verb]? Do you know + if/
 
 ## 4. Questions to Ask Before You Waste a Trip
 
-> 🖼 **Scene:** Outside the hotel, East Boston. Rosa and Nadine compare calls after the evening shift.  
+> 🖼 **Scene:** Outside the hotel, East Boston. Rosa and Nadine compare calls after their shift.  
 > _Photo shows: Two women talking outside on a city sidewalk in the evening after their work shift._
 
 - **Rosa:** Did you ask about parking? I forgot.
 - **Nadine:** I said: Can you tell me whether parking spots are included? He said yes.
 - **Rosa:** Good. How long is the lease?
-- **Nadine:** One year. He has appointments on Monday. Do you know when you can go?
-- **Rosa:** Monday morning works. I have the day off. I’ll call him now.
+- **Nadine:** One year. He has appointments on Saturday. Do you know when you can go?
+- **Rosa:** Saturday morning works. I don't work weekends. I’ll call him now.
 
 Questions every renter should ask, direct and indirect:
 

@@ -10,32 +10,32 @@
 
 ## Cast by section
 
-- Must. No exceptions on this site: Kevin, Diego
+- Must. No exceptions on this site: Kevin, Josué
 - Have to. Your employer's rules: Marta, Amara
 - Should. What good workers do: Claudette, Linh
-- Must, have to, or should?: Jennifer, Rosa
+- Must, have to, or should?: Jennifer, Paola
 - Putting it all together: _no named speakers_
 
 ---
 
 ## 1. Must. No exceptions on this site
 
-> 🖼 **Scene:** East Boston construction site, Monday morning. Diego's first day.  
+> 🖼 **Scene:** East Boston construction site, Monday morning. Josué's first day.  
 > _Photo shows: Construction worker in a hard hat and safety vest reviewing work on a job site._
 
-Kevin is the foreman. Before Diego picks up a single tool, Kevin goes through the safety rules.
+Kevin is the foreman. Before Josué picks up a single tool, Kevin goes through the safety rules.
 
 - **Kevin:** Before we start, you must wear your hard hat and steel-toe boots on this site. Every day, no exceptions.
-- **Diego:** What about when I'm just walking to the truck?
+- **Josué:** What about when I'm just walking to the truck?
 - **Kevin:** Same rule. OSHA says you must wear the gear whenever you're on site. You must not use your phone near heavy equipment.
-- **Diego:** Got it. Hard hat, boots, no phone near the machines.
+- **Josué:** Got it. Hard hat, boots, no phone near the machines.
 
 Must / Must not = a rule from the law, a safety regulation, or a company policy. No choice. Everyone follows it.
 
 Form: must + base verb (no -s, no -ing, no to) He must wear boots. She must not use her phone. They must sign in.
 
 **Exercise: Choose the right word**
-- Diego's foreman says: "You ___ wear your hard hat. It's an OSHA rule." _(options: should / must / have to)_
+- Josué's foreman says: "You ___ wear your hard hat. It's an OSHA rule." _(options: should / must / have to)_
 - "Workers ___ enter a closed area without a supervisor." Which word makes this a prohibition? _(options: must not / don't have to / shouldn't)_
 
 **Exercise: Unscramble the safety rule**
@@ -96,13 +96,13 @@ Should / Shouldn't = strong advice. It's not a written rule, but problems happen
 
 ## 4. Must, have to, or should?
 
-> 🖼 **Scene:** Sunday night. Rosa gets a text from her manager, Jennifer, about Monday's shift.  
+> 🖼 **Scene:** Sunday night. Paola gets a text from her manager, Jennifer, about Monday's shift.  
 > _Photo shows: Person reading a work text message on their phone the night before a shift._
 
-The restaurant has an inspection on Monday, and a coworker has called out sick. Jennifer texts Rosa about the busy day ahead.
+The restaurant has an inspection on Monday, and a coworker has called out sick. Jennifer texts Paola about the busy day ahead.
 
-- **Jennifer:** Hey Rosa. A few things for tomorrow.
-- **Rosa:** OK, what's up?
+- **Jennifer:** Hey Paola. A few things for tomorrow.
+- **Paola:** OK, what's up?
 - **Jennifer:** First, you must be here by 10. Health inspection is at 10:30. No exceptions.
 - **Jennifer:** You also have to cover lunch because Marcus called out sick. I’m arranging someone to help you.
 - **Jennifer:** And you should bring something to eat. It’ll be a long day.
@@ -113,7 +113,7 @@ A city inspection. Official, non-negotiable, serious consequences. Must is corre
 
 A scheduling decision from the manager. Required, but not a law. Have to fits.
 
-Jennifer's suggestion. Helpful, but nothing bad happens if Rosa forgets it. Should is right.
+Jennifer's suggestion. Helpful, but nothing bad happens if Paola forgets it. Should is right.
 
 Must = law, official rule, safety. No exceptions. Have to = your employer's requirement for this job. Should = strong advice. Good judgment. Not written down.
 
@@ -121,11 +121,11 @@ Watch out: must not vs. don't have to You must not use your phone near equipment
 
 **Exercise: Choose the right modal**
 - The city health inspector is coming. Jennifer says: "You ___ be here by 10." Which word fits best? _(options: should / must / have to)_
-- Marcus called out sick. Jennifer needs Rosa to cover. Which sentence is correct? _(options: Rosa must cover the lunch shift because it's a safety rule. / Rosa has to cover the lunch shift because the manager needs it. / Rosa should cover the lunch shift if she feels like it.)_
+- Marcus called out sick. Jennifer needs Paola to cover. Which sentence is correct? _(options: Paola must cover the lunch shift because it's a safety rule. / Paola has to cover the lunch shift because the manager needs it. / Paola should cover the lunch shift if she feels like it.)_
 - The sign says: "Workers ___ enter this area without a safety pass." Which word makes this a prohibition? _(options: must not / don't have to / shouldn't always)_
 
 **Exercise: Fill in the blank**
-- Jennifer's scheduling rule: Rosa ___ cover the lunch shift. (Employer requirement, two words.)
+- Jennifer's scheduling rule: Paola ___ cover the lunch shift. (Employer requirement, two words.)
 
 ## 5. Putting it all together
 
@@ -139,7 +139,7 @@ You have seen all three modals at work. Here is a quick reference before the qui
 - Unscramble:
 
 **Exercise: Fill in the blank**
-- It's not required, but Rosa can pick up Sunday. She ___ work Sunday.
+- It's not required, but Paola can pick up Sunday. She ___ work Sunday.
 
 ## Mini quiz
 

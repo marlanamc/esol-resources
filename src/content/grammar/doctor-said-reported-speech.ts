@@ -90,13 +90,13 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneClinicCall", "East Boston Neighborhood Health Center. Tuesday, 4:30 PM.", "sage")}
 
-        <p>Amara is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.</p>
+        <p>Luz is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.</p>
 
         ${dialogue([
           { speaker: "Nurse Kelly", avatar: "👩‍⚕️", text: "Hi, this is Kelly from East Boston Neighborhood Health Center. Our records show Amina's blue inhaler <strong>is</strong> almost empty.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yes, hi. She used it twice last night.", side: "right", tone: "terracotta" },
+          { speaker: "Luz", avatar: "👩🏿", text: "Yes, hi. She used it twice last night.", side: "right", tone: "terracotta" },
           { speaker: "Nurse Kelly", avatar: "👩‍⚕️", text: "The doctor <strong>says</strong> the pharmacy <strong>can</strong> refill it today if you come before 6.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏿", text: "OK. I'll write it down and tell my husband.", side: "right", tone: "terracotta" },
+          { speaker: "Luz", avatar: "👩🏿", text: "OK. I'll write it down and tell my husband.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -114,7 +114,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p>Amara needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.</p>
+        <p>Luz needs to tell Marco everything later. She cannot repeat Kelly's exact words on a noisy restaurant line. She reports what was said.</p>
       `,
       exercises: [
         {
@@ -124,7 +124,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kelly spoke to Amara on the phone. Which sentence is reported speech?",
+              label: "Kelly spoke to Luz on the phone. Which sentence is reported speech?",
               options: [
                 { value: "a", label: "Kelly said, \"The pharmacy can refill it today.\"" },
                 { value: "b", label: "Kelly said that the pharmacy could refill it today." },
@@ -141,7 +141,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Amara tells Marco: \"Kelly ___ that Amina's inhaler was almost empty.\"",
+              label: "Luz tells Marco: \"Kelly ___ that Amina's inhaler was almost empty.\"",
               expectedAnswers: ["said"],
             },
           ],
@@ -178,12 +178,12 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneRestaurantShift", "Marco's restaurant on Meridian Street. Tuesday, 4:45 PM.", "terracotta")}
 
-        <p>Marco is wiping down the prep station when Amara texts him. He reads it between orders.</p>
+        <p>Marco is wiping down the prep station when Luz texts him. He reads it between orders.</p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Kelly <strong>said that</strong> we <strong>could</strong> get the inhaler refilled today.", side: "left", tone: "sage" },
+          { speaker: "Luz", avatar: "👩🏿", text: "Kelly <strong>said that</strong> we <strong>could</strong> get the inhaler refilled today.", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "Good. Is there enough left for now?", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "A little, but it’s almost empty. She <strong>said that</strong> we <strong>had</strong> to get there before 6.", side: "left", tone: "sage" },
+          { speaker: "Luz", avatar: "👩🏿", text: "A little, but it’s almost empty. She <strong>said that</strong> we <strong>had</strong> to get there before 6.", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "OK. I’ll try to leave early. Did she <strong>say</strong> anything else?", side: "right", tone: "terracotta" },
         ])}
 
@@ -214,7 +214,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kelly said: \"The pharmacy is closed today.\" How does Amara report this?",
+              label: "Kelly said: \"The pharmacy is closed today.\" How does Luz report this?",
               options: [
                 { value: "a", label: "Kelly said that the pharmacy is closed today." },
                 { value: "b", label: "Kelly said that the pharmacy was closed today." },
@@ -224,7 +224,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Kelly said: \"We can refill it today.\" How does Amara report this?",
+              label: "Kelly said: \"We can refill it today.\" How does Luz report this?",
               options: [
                 { value: "a", label: "Kelly said that they can refill it today." },
                 { value: "b", label: "Kelly said that they could refill it today." },
@@ -241,7 +241,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Direct: \"The doctor will call tomorrow.\" Reported: Amara said the doctor ___ call tomorrow.",
+              label: "Direct: \"The doctor will call tomorrow.\" Reported: Luz said the doctor ___ call tomorrow.",
               expectedAnswers: ["would"],
             },
           ],
@@ -269,7 +269,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "He Told Me To…",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneBabysitter", "Amara and Marco's apartment. Wednesday morning.", "blue")}
+        ${sceneCard("sceneBabysitter", "Luz and Marco's apartment. Wednesday morning.", "blue")}
 
         <p>Marco left work early and picked up the new inhaler before 6. Their cousin Gloria is watching Amina before school. Marco needs to pass on the pharmacist's instructions.</p>
 
@@ -367,13 +367,13 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneTextingMarco", "Amina's doctor's office calls about her follow-up. Wednesday, 2 PM.", "sage")}
 
-        <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Amara was at work. Now he is telling Amara what Sarah asked.</p>
+        <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.</p>
 
         ${dialogue([
           { speaker: "Marco", avatar: "👨🏽", text: "Sarah from the clinic called. She <strong>asked if</strong> Amina <strong>was</strong> feeling better.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "What else?", side: "left", tone: "sage" },
+          { speaker: "Luz", avatar: "👩🏿", text: "What else?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "She <strong>asked when</strong> we <strong>could</strong> come for the follow-up.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Did she ask about the insurance card?", side: "left", tone: "sage" },
+          { speaker: "Luz", avatar: "👩🏿", text: "Did she ask about the insurance card?", side: "left", tone: "sage" },
           { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought the new card last time. They don't have a copy.", side: "right", tone: "terracotta" },
         ])}
 
@@ -536,7 +536,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Marco texts Amara: \"Sarah asked when can we come Saturday.\" What is wrong?",
+              label: "Marco texts Luz: \"Sarah asked when can we come Saturday.\" What is wrong?",
               options: [
                 { value: "a", label: "No error. The sentence is correct." },
                 { value: "b", label: "Error: it should be \"Sarah asked when we could come Saturday.\"" },
@@ -553,7 +553,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "doctor-said-q1",
-      question: "Kelly said: \"The new inhaler is ready.\" How does Amara report this to Marco?",
+      question: "Kelly said: \"The new inhaler is ready.\" How does Luz report this to Marco?",
       options: [
         { value: "a", label: "Kelly said that the new inhaler is ready." },
         { value: "b", label: "Kelly said that the new inhaler was ready." },
@@ -568,7 +568,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "doctor-said-q3",
-      question: "Kelly said: \"Bring the inhaler to the follow-up.\" How does Amara tell Marco?",
+      question: "Kelly said: \"Bring the inhaler to the follow-up.\" How does Luz tell Marco?",
       options: [
         { value: "a", label: "Kelly told me to bring the inhaler to the follow-up." },
         { value: "b", label: "Kelly said that bring the inhaler to the follow-up." },
