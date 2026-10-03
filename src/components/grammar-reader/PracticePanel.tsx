@@ -9,6 +9,7 @@ interface PracticePanelProps {
     onAnswerChange: (exerciseId: string, itemIndex: number, value: string) => void;
     onSectionComplete: () => void;
     onExerciseComplete?: (info: ExerciseCompletionInfo) => void;
+    rewardAttempts?: boolean;
     unlocked: boolean;
 }
 
@@ -19,6 +20,7 @@ export const PracticePanel = React.memo(function PracticePanel({
     onAnswerChange,
     onSectionComplete,
     onExerciseComplete,
+    rewardAttempts = false,
     unlocked,
 }: PracticePanelProps) {
     const hasExercises = section.exercises && section.exercises.length > 0;
@@ -49,6 +51,7 @@ export const PracticePanel = React.memo(function PracticePanel({
                             }
                             onComplete={onSectionComplete}
                             onExerciseComplete={onExerciseComplete}
+                            rewardAttempts={rewardAttempts}
                         />
                     ))}
                 </div>

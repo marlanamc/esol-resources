@@ -115,6 +115,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
                 let restoredLastSectionIndex: number | null = null;
                 let restoredCompletedSectionIds: string[] = [];
+                let hasRetiredOverviewSections = false;
                 const categoryData = data.categoryData;
                 if (categoryData && typeof categoryData === "string") {
                     const parsed = JSON.parse(categoryData) as {
@@ -126,6 +127,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     }
                     const savedCompleted = parsed?._guide?.completedSectionIds;
                     if (Array.isArray(savedCompleted)) {
+                        hasRetiredOverviewSections = completionKey === "verb-forms-overview" &&
+                            savedCompleted.some((id) => ["your-study-toolkit", "small-study-routine", "quiz-ready"].includes(id));
                         restoredCompletedSectionIds = Array.from(
                             new Set(
                                 savedCompleted
@@ -139,7 +142,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
                 if (typeof restoredLastSectionIndex === "number") {
                     const clamped = Math.max(0, Math.min(restoredLastSectionIndex, content.sections.length - 1));
-                    setCurrentSectionIndex(clamped);
+                    // Old numeric positions no longer match the shortened overview.
+                    const firstIncomplete = sectionKeys.findIndex((id) => !restoredCompletedSectionIds.includes(id));
+                    setCurrentSectionIndex(hasRetiredOverviewSections
+                        ? (firstIncomplete < 0 ? content.sections.length - 1 : firstIncomplete)
+                        : clamped);
                 }
 
                 if (restoredCompletedSectionIds.length > 0) {
@@ -159,7 +166,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             }
         })();
         return () => { cancelled = true; };
-    }, [activityId, content.sections.length, readAssignmentId, sectionKeys]);
+    }, [activityId, completionKey, content.sections.length, readAssignmentId, sectionKeys]);
 
     // Fallback title if a page didn't provide completionKey.
     useEffect(() => {
@@ -692,6 +699,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                             onAnswerChange={handleAnswerChange}
                                             onSectionComplete={handleSectionComplete}
                                             onExerciseComplete={handleExerciseComplete}
+                                            rewardAttempts={completionKey === "verb-forms-overview"}
                                             unlocked={practiceUnlocked}
                                         />
                                     </div>

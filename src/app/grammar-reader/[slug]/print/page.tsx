@@ -13,6 +13,7 @@ interface Props {
 export default async function GrammarPrintPage({ params }: Props) {
     const { slug } = await params;
     const content = await getGrammarContent(slug);
+    const isVerbOverview = slug === "verb-forms-overview";
 
     if (!content) {
         notFound();
@@ -245,12 +246,38 @@ export default async function GrammarPrintPage({ params }: Props) {
                     margin-top: 2rem;
                 }
             ` }} />
-            <div className="print-all-sections">
+            {isVerbOverview && <style>{`
+                .verb-overview-print { font-size: 14pt; line-height: 1.5; }
+                .verb-overview-print .guide-header { margin: 0 0 1rem; padding-bottom: .5rem; }
+                .verb-overview-print .guide-header h1 { font-size: 22pt; margin: 0; }
+                .verb-overview-print .section { margin: 0; padding: 0; border: 0; }
+                .verb-overview-print .section-header { margin-bottom: 1rem; gap: .5rem; }
+                .verb-overview-print .section-title { font-size: 20pt; }
+                .verb-overview-print .section-number { min-width: auto; font-size: 18pt; }
+                .verb-overview-print .section-icon { display: none; }
+                .verb-overview-print .explanation { line-height: 1.5; margin-bottom: 1rem; }
+                .verb-overview-print .explanation td, .verb-overview-print .explanation th { padding: .4rem .6rem; }
+                .verb-overview-print .exercises { margin-top: 1rem; padding-top: .75rem; }
+                .verb-overview-print .exercises > h3, .verb-overview-print .exercise-title,
+                .verb-overview-print .exercise-answer-expectation { display: none; }
+                .verb-overview-print .exercise { margin-bottom: 1rem; break-inside: avoid; }
+                .verb-overview-print .exercise-item { padding-left: 0; margin-bottom: 1rem; break-inside: avoid; }
+                .verb-overview-print .exercise-item-options { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-left: 0; }
+                .verb-overview-print .page-break .exercise-item-options { display: block; }
+                .verb-overview-print .answer-line { border-bottom: 1px solid #777; height: 1.7rem; margin: .5rem 0; }
+                @media print {
+                    @page { size: letter; margin: .65in; }
+                    .verb-overview-print { padding: 0 !important; }
+                    .verb-overview-print .section ~ .section { break-before: page; }
+                    .verb-overview-print .guide-header h1 { font-size: 22pt !important; }
+                }
+            `}</style>}
+            <div className={`print-all-sections${isVerbOverview ? " verb-overview-print" : ""}`}>
 
             <div className="guide-header">
                 <h1>{guideTitle}</h1>
                 <p style={{ color: "#666", fontSize: "1.1rem" }}>
-                    Complete Grammar Guide - All Sections
+                    {isVerbOverview ? "Week 4 • Verb forms" : "Complete Grammar Guide - All Sections"}
                 </p>
             </div>
 
@@ -506,7 +533,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                                                                             optIdx
                                                                     )}
                                                                     ) {opt.label}
-                                                                    {opt.value ===
+                                                                    {!isVerbOverview && opt.value ===
                                                                         item.expectedAnswer && (
                                                                         <span
                                                                             style={{
@@ -525,7 +552,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                                                         )}
                                                     </div>
                                                 )}
-                                            {item.type === "text" &&
+                                            {!isVerbOverview && item.type === "text" &&
                                                 item.expectedAnswer && (
                                                     <div
                                                         style={{
@@ -542,6 +569,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                                                         </strong>
                                                     </div>
                                                 )}
+                                            {isVerbOverview && item.type === "text" && <div className="answer-line" />}
                                             {item.type === "select" &&
                                                 item.options && (
                                                     <div
@@ -587,7 +615,7 @@ export default async function GrammarPrintPage({ params }: Props) {
             {content.miniQuiz && content.miniQuiz.length > 0 && (
                 <div className="section page-break">
                     <div className="section-header">
-                        <h2 className="section-title">Mini Quiz</h2>
+                        <h2 className="section-title">{isVerbOverview ? "Quick check" : "Mini Quiz"}</h2>
                     </div>
                     <div className="exercises">
                         {content.miniQuiz.map((question, idx) => (
@@ -604,7 +632,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                                             >
                                                 {String.fromCharCode(97 + optIdx)}
                                                 ) {opt.label}
-                                                {opt.value ===
+                                                {!isVerbOverview && opt.value ===
                                                     question.correctAnswer && (
                                                     <span
                                                         style={{
@@ -621,7 +649,11 @@ export default async function GrammarPrintPage({ params }: Props) {
                                         ))}
                                     </div>
                                 )}
-                                {question.explanation && (
+                                {isVerbOverview && "words" in question && Array.isArray(question.words) && (
+                                    <p>{question.words.join(" / ")}</p>
+                                )}
+                                {isVerbOverview && !("options" in question && question.options) && <div className="answer-line" />}
+                                {!isVerbOverview && question.explanation && (
                                     <div
                                         style={{
                                             marginTop: "0.5rem",

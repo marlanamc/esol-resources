@@ -30,6 +30,7 @@ interface ExerciseSectionProps {
     onAnswerChange: (itemIndex: number, value: string) => void;
     onComplete: () => void;
     onExerciseComplete?: (info: ExerciseCompletionInfo) => void;
+    rewardAttempts?: boolean;
 }
 
 export function ExerciseSection({
@@ -40,6 +41,7 @@ export function ExerciseSection({
     onAnswerChange,
     onComplete,
     onExerciseComplete,
+    rewardAttempts = false,
 }: ExerciseSectionProps) {
     const [submitted, setSubmitted] = useState(false);
     const [results, setResults] = useState<Record<number, boolean>>({});
@@ -142,7 +144,9 @@ export function ExerciseSection({
         const allCorrect = Object.values(newResults).every((r) => r);
         if (allCorrect) {
             onComplete();
-            // Notify parent about exercise completion for points tracking
+        }
+        // A complete attempt earns effort credit in the Week 4 overview.
+        if (allCorrect || (rewardAttempts && allAnswered)) {
             if (onExerciseComplete) {
                 const exerciseId = exercise.title
                     ? exercise.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
@@ -171,7 +175,7 @@ export function ExerciseSection({
         if (item.type === "checkbox") {
             return parseCheckboxAnswer(answers[index] || "").length > 0;
         }
-        return !!answers[index];
+        return Boolean(answers[index]?.trim());
     });
     const correctCount = Object.values(results).filter((r) => r).length;
     const totalCount = exercise.items.length;

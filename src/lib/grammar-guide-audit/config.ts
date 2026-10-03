@@ -121,4 +121,4 @@ export const CASUAL_SPEAKER_HINTS = [
 export const PLAIN_YELLOW_AVATARS = new Set(["👩", "👨", "🧑"]);
 
 /** Week 4 adds two short study-toolkit sections to the five verb-form sections. */
-export const GUIDE_SECTION_LIMITS: Record<string, number> = { "verb-forms-overview": 7 };
+export const GUIDE_SECTION_LIMITS: Record<string, number> = {};

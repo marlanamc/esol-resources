@@ -108,7 +108,13 @@ export function applyProgressCategoryUpdates(
         currentData._guide = {
             ...existingGuide,
             lastSectionIndex,
-            ...(completedSectionIds ? { completedSectionIds } : {}),
+            // Keep completion evidence when a revised guide removes sections.
+            ...(completedSectionIds ? {
+                completedSectionIds: Array.from(new Set([
+                    ...(sanitizeGuideCompletedSectionIds(existingGuide.completedSectionIds) ?? []),
+                    ...completedSectionIds,
+                ])),
+            } : {}),
         };
     }
 

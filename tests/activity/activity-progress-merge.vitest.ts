@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { applyProgressCategoryUpdates } from "@/lib/activity/progress/category-updates";
 import { buildProgressGetResponse } from "@/lib/activity/progress";
 import {
   chooseBestProgressRecord,
@@ -78,5 +79,20 @@ describe("activity progress merge", () => {
     const body = await response.json();
     expect(body.progress).toBe(50);
     expect(body.status).toBe("in_progress");
+  });
+});
+
+
+describe("revised grammar guide progress", () => {
+  it("keeps retired section evidence and exercise rewards when saving the shorter guide", () => {
+    const exercises = { "your-study-toolkit:vfo-reference-practice": { completed: true, pointsAwarded: 5 } };
+    const result = applyProgressCategoryUpdates({
+      currentData: { _guide: { completedSectionIds: ["your-study-toolkit", "five-codes"] }, exercises, totalExercisePoints: 5 },
+      rawProgress: 60,
+      guideState: { lastSectionIndex: 1, completedSectionIds: ["five-codes", "present-forms"] },
+    });
+    expect(result.currentData._guide).toEqual({ lastSectionIndex: 1, completedSectionIds: ["your-study-toolkit", "five-codes", "present-forms"] });
+    expect(result.currentData.exercises).toEqual(exercises);
+    expect(result.currentData.totalExercisePoints).toBe(5);
   });
 });

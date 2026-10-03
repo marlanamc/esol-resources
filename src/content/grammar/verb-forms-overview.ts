@@ -1,654 +1,358 @@
 import type { InteractiveGuideContent } from "@/types/activity";
-import { verbFormsOverviewImages as img } from "@/data/verb-forms-overview-images.generated";
-
-// ---------------------------------------------------------------------------
-// Visual helpers
-// ---------------------------------------------------------------------------
-
-const sceneCard = (
-  sceneId: keyof typeof img,
-  caption: string,
-  accent: "terracotta" | "sage" | "blue" | "amber" = "terracotta"
-): string => {
-  const scene = img[sceneId];
-  if (!scene) return "";
-  return `
-    <div class="gc-bg-white" style="margin: 0 0 1.5rem 0; padding: 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.06)">
-      <img src="${scene.url}" srcset="${scene.url.replace("w=1200", "w=400")} 400w, ${scene.url.replace("w=1200", "w=800")} 800w, ${scene.url} 1200w" sizes="(max-width: 640px) 100vw, 800px" alt="${scene.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover" />
-      <div style="padding: 0.55rem 0.9rem; font-size: 0.82rem; background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; gap: 0.5rem; align-items: center; flex-wrap: wrap">
-        <span><span class="gc-text-${accent}" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Scene</span> &nbsp;${caption}</span>
-        <span style="font-size: 0.68rem; opacity: 0.7">Photo: <a href="${scene.credit.url}" rel="noopener" target="_blank">${scene.credit.name}</a> / Unsplash</span>
-      </div>
-    </div>
-  `;
-};
-
-type Turn = {
-  speaker: string;
-  avatar: string;
-  text: string;
-  side: "left" | "right";
-  tone: "terracotta" | "sage" | "blue" | "amber";
-};
-
-const dialogue = (turns: Turn[]): string => {
-  const bubbles = turns
-    .map((t) => {
-      const bgClass = `gc-bg-${t.tone}-alpha`;
-      const radius =
-        t.side === "left"
-          ? "0.875rem 0.875rem 0.875rem 0.25rem"
-          : "0.875rem 0.875rem 0.25rem 0.875rem";
-      const rowStyle =
-        t.side === "left"
-          ? "display: flex; gap: 0.625rem; align-items: flex-start"
-          : "display: flex; gap: 0.625rem; align-items: flex-start; flex-direction: row-reverse";
-      return `
-        <div style="${rowStyle}">
-          <div style="font-size: 1.65rem; line-height: 1; flex-shrink: 0; padding-top: 0.25rem">${t.avatar}</div>
-          <div class="${bgClass}" style="padding: 0.65rem 0.9rem; border-radius: ${radius}; max-width: 82%">
-            <div class="gc-text-${t.tone}" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 0.15rem">${t.speaker}</div>
-            <div style="line-height: 1.5">${t.text}</div>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-
-  return `
-    <div style="display: flex; flex-direction: column; gap: 0.625rem; margin: 1.25rem 0; padding: 1rem; border-radius: 0.75rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06)">
-      ${bubbles}
-    </div>
-  `;
-};
-
-const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
-
-const formCodeRow = (
-  code: string,
-  name: string,
-  example: string,
-  color: "terracotta" | "sage" | "blue" | "amber"
-): string => `
-  <div style="display: flex; gap: 0.75rem; align-items: center; padding: 0.55rem 0.75rem; background: rgba(0,0,0,0.03); border-radius: 0.4rem; flex-wrap: wrap">
-    ${labelPill(code, color)}
-    <span style="font-size: 0.95rem"><strong>${name}</strong> &nbsp;·&nbsp; <em>${example}</em></span>
-  </div>
-`;
-
-// ---------------------------------------------------------------------------
-// Guide content
-// ---------------------------------------------------------------------------
 
 export const verbFormsOverviewContent: InteractiveGuideContent = {
-  type: "interactive-guide",
-  tableOfContents: true,
-  sections: [
+  "type": "interactive-guide",
+  "tableOfContents": true,
+  "sections": [
     {
-      id: "your-study-toolkit",
-      title: "Your toolkit: a little practice, one step at a time",
-      icon: "🧭",
-      explanation: `
-        <p>This week builds skills you will use all year: noticing word jobs, finding verb forms, checking a reference, and practicing on your own.</p>
-        <p><strong>Coming back from state testing?</strong> Start with one section. Use the contents to return to your place. You can read an example, try a few questions, and continue another day.</p>
-        <h3>Use your reference sheet</h3>
-        <p>Keep your class reference sheet beside you, or <a href="/dashboard/reference" target="_blank" rel="noopener noreferrer">open the reference page in a new tab</a>. You do not need to memorize the whole sheet.</p>
-        <ol>
-          <li><strong>Find:</strong> Choose the part that matches your question. For a sentence about now, find a present-tense example.</li>
-          <li><strong>Notice:</strong> Point to the subject, the verb, and any helper verb. Read the example aloud.</li>
-          <li><strong>Try:</strong> Change one detail to make a true sentence about yourself.</li>
-          <li><strong>Check:</strong> Compare your sentence with the example. Fix one thing and try again.</li>
-        </ol>
-        <p><strong>Try together:</strong> Read “She works.” Point to the pronoun and the verb. Change it to “I work.” What changed? Use the sheet to explain it to a partner, or say your explanation aloud if you are working alone.</p>
-      `,
-      exercises: [{
-        id: "vfo-reference-practice",
-        title: "Use an example",
-        instructions: "Try the questions, then check the example. Mistakes show you what to practice next.",
-        items: [
-          {
-            type: "radio",
-            label: "In ‘She works,’ which word is the pronoun?",
-            options: [{ value: "works", label: "works" }, { value: "she", label: "She" }],
-            expectedAnswer: "she",
-          },
-          {
-            type: "text",
-            label: "Change ‘She works’ to a sentence with I: I ___.",
-            expectedAnswers: ["work"],
-          },
-        ],
-      }],
-    },
-    {
-      id: "small-study-routine",
-      title: "Make a small English practice routine",
-      icon: "🌱",
-      explanation: `
-        <p>Try this short routine with two verbs from class. Five minutes is a useful place to start; choose a time that fits your day.</p>
-        <ol>
-          <li><strong>Look:</strong> Read the forms and one example. Say them aloud.</li>
-          <li><strong>Cover:</strong> Hide the example. Try saying or writing what you remember.</li>
-          <li><strong>Check:</strong> Look again. Correct one form, then cover it and try again.</li>
-          <li><strong>Use:</strong> Make one sentence about your life.</li>
-          <li><strong>Return:</strong> Practice those verbs again tomorrow before adding more.</li>
-        </ol>
-        <p><strong>Make your plan:</strong> “After ___, I will practice ___ for five minutes.” For example: “After dinner, I will practice <em>be</em> and <em>have</em> for five minutes.” Say your plan to a partner or write it in your notebook.</p>
-        <p><strong>If you miss class:</strong> Return to your last section, try one example, and write down one question to bring back. You can take this week in small pieces.</p>
-        <p style="margin-top: 1rem; font-size: 0.92rem; color: var(--color-text-muted)">This routine works because a little practice spread across the week beats one long session, testing yourself beats re-reading, and real sentences about your own life stick better than rules alone.</p>
-      `,
-      exercises: [{
-        id: "vfo-study-routine",
-        title: "Choose your next step",
-        instructions: "Choose the action that follows the practice routine above.",
-        items: [
-          {
-            type: "text",
-            label: "Complete this study plan with the base form of practice: After dinner, I will ___ English for five minutes.",
-            expectedAnswers: ["practice"],
-          },
-          {
-            type: "radio",
-            label: "You read the forms of have. What comes next?",
-            options: [
-              { value: "try", label: "Cover them and try from memory, then check." },
-              { value: "copy", label: "Copy the whole reference sheet without checking." },
-              { value: "stop", label: "Stop practicing until the quiz." },
-            ],
-            expectedAnswer: "try",
-          },
-          {
-            type: "radio",
-            label: "You notice a mistake in your verb form. What can you do?",
-            options: [
-              { value: "skip", label: "Skip the verb forever." },
-              { value: "wait", label: "Wait until every answer feels easy." },
-              { value: "retry", label: "Check the example, fix the form, and try again." },
-            ],
-            expectedAnswer: "retry",
-          },
-          {
-            type: "text",
-            label: "Your turn: This week I will practice ___ when I talk about ___.",
-            acceptAnyAttempt: true,
-          },
-        ],
-      }],
-    },
-    {
-      id: "five-codes",
-      title: "Five codes, every week",
-      icon: "📱",
-      explanation: `
-        ${sceneCard("sceneClassNight", "East Boston Adult Ed Center. First week of class, 6 PM.", "terracotta")}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Each weekly review quiz takes about <strong>5–10 minutes</strong>. You will recall selected forms of two or three verbs, use verbs in sentences, and answer a few vocabulary and grammar questions. Learn these five codes so you recognize whichever forms appear.</p>
-
-        ${dialogue([
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Our reference uses five codes: <strong>V1, V1-s, V-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "So I do not have to learn new labels each time?", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Exactly. Two verbs per quiz. V1 is often filled in for you. You type the other four.", side: "left", tone: "sage" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Like leveling up in a game. One small step at a time.", side: "right", tone: "blue" },
-        ])}
-
-        <p style="margin: 0 0 0.75rem 0; font-weight: 600">The five codes with the verb <em>work</em>:</p>
-
-        <div style="display: grid; gap: 0.45rem; margin: 1rem 0">
-          ${formCodeRow("V1", "Base Form", "work", "terracotta")}
-          ${formCodeRow("V1-s", "He / She / It Form", "works", "sage")}
-          ${formCodeRow("V-ing", "-ing Form", "working", "blue")}
-          ${formCodeRow("V2", "Past Form", "worked", "amber")}
-          ${formCodeRow("V3", "Past Participle", "worked", "terracotta")}
-        </div>
-
-        <div class="gc-callout-sage" style="background: rgba(106, 141, 115, 0.12); padding: 1rem 1.25rem; border-radius: 0.5rem">
-          <p style="margin: 0"><strong>Regular verbs</strong> like <em>work</em> add <em>-ed</em> for V2 and V3. <strong>Irregular verbs</strong> like <em>be</em> and <em>have</em> change more. That is what the weekly quizzes practice.</p>
-        </div>
-      `,
-      exercises: [
+      "id": "five-codes",
+      "title": "Five verb forms",
+      "icon": "📱",
+      "explanation": "<p>A verb changes form. Learn these five labels with <strong>work</strong>.</p><table><thead><tr><th scope=\"col\">Code</th><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V1</td><td>Base</td><td>work</td></tr><tr><td>V1-s</td><td>He / she / it</td><td>works</td></tr><tr><td>V-ing</td><td>-ing</td><td>working</td></tr><tr><td>V2</td><td>Past</td><td>worked</td></tr><tr><td>V3</td><td>Past participle</td><td>worked</td></tr></tbody></table><p><strong>Try it:</strong> Read the forms aloud. Cover them. Try again.</p>",
+      "exercises": [
         {
-          id: "vfo-intro-1",
-          title: "Know the codes",
-          instructions: "How many verb form codes are on our reference?",
-          items: [
+          "id": "vfo-intro-1",
+          "title": "Know the codes",
+          "instructions": "Choose or write the form.",
+          "items": [
             {
-              type: "radio",
-              label: "How many verb form codes are on our reference?",
-              options: [
-                { value: "3", label: "3 forms" },
-                { value: "5", label: "5 forms" },
-                { value: "7", label: "7 forms" },
+              "type": "radio",
+              "label": "She ___ every day. (work)",
+              "options": [
+                {
+                  "value": "work",
+                  "label": "work"
+                },
+                {
+                  "value": "works",
+                  "label": "works"
+                },
+                {
+                  "value": "working",
+                  "label": "working"
+                }
               ],
-              expectedAnswer: "5",
+              "expectedAnswer": "works"
             },
             {
-              type: "radio",
-              label: "Which code is the dictionary form with no ending added?",
-              options: [
-                { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-s" },
-                { value: "v2", label: "V2" },
+              "type": "radio",
+              "label": "Which code is the dictionary form with no ending added?",
+              "options": [
+                {
+                  "value": "v1",
+                  "label": "V1"
+                },
+                {
+                  "value": "v1-3rd",
+                  "label": "V1-s"
+                },
+                {
+                  "value": "v2",
+                  "label": "V2"
+                }
               ],
-              expectedAnswer: "v1",
+              "expectedAnswer": "v1"
             },
             {
-              type: "text",
-              label: "For the verb <em>work</em>, the V1 (base) form is ___.",
-              expectedAnswers: ["work"],
-            },
-          ],
-        },
+              "type": "text",
+              "label": "For the verb work, the V1 (base) form is ___.",
+              "expectedAnswers": [
+                "work"
+              ]
+            }
+          ]
+        }
       ],
+      "stepNumber": 1
     },
-
     {
-      id: "present-forms",
-      stepNumber: 1,
-      title: "V1, V1-s, V-ing: forms you use now",
-      icon: "🔄",
-      explanation: `
-        ${sceneCard("sceneWorkShift", "Meridian Street café. Tuesday afternoon shift.", "sage")}
-
-        ${dialogue([
-          { speaker: "Minh", avatar: "👨🏽", text: "I <strong>work</strong> here three days a week. My sister <strong>works</strong> mornings only.", side: "right", tone: "terracotta" },
-          { speaker: "Manager", avatar: "🧑‍💼", text: "Right now she\'s <strong>working</strong> the register. Can you cover the back?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "👨🏽", text: "Sure. I am <strong>taking</strong> a break, but I can start in five minutes.", side: "right", tone: "terracotta" },
-        ])}
-
-        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>V1</strong> = Base Form. <strong>V1-s</strong> = He / She / It Form (usually add <em>-s</em>). <strong>V-ing</strong> = -ing Form. Use it with a form of <em>be</em> for actions in progress.</p>
-        </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("V1", "terracotta")}
-            <span><em>I <strong>work</strong> at a café.</em> &nbsp;·&nbsp; <em>They <strong>have</strong> two kids.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("V1-s", "sage")}
-            <span><em>She <strong>works</strong> every Saturday.</em> &nbsp;·&nbsp; <em>He <strong>has</strong> a new job.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(38,138,130,0.06); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("V-ing", "blue")}
-            <span><em>I am <strong>working</strong> right now.</em> &nbsp;·&nbsp; <em>They are <strong>having</strong> lunch.</em></span>
-          </div>
-        </div>
-
-        <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted)">On the quiz, V1 is often already filled in. You type V1-s, V-ing, V2, and V3.</p>
-      `,
-      exercises: [
+      "id": "present-forms",
+      "stepNumber": 2,
+      "title": "Present forms",
+      "icon": "🔄",
+      "explanation": "<p>Use <strong>work / works</strong> for routines. Use <strong>am / is / are + working</strong> for an action happening now.</p><table><thead><tr><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V1</td><td>I <strong>work</strong> every day.</td></tr><tr><td>V1-s</td><td>She <strong>works</strong> every day.</td></tr><tr><td>V-ing</td><td>I <strong>am working</strong> now.</td></tr></tbody></table><p><strong>Try it:</strong> Change one example to make it true for you.</p>",
+      "exercises": [
         {
-          id: "vfo-present-1",
-          title: "Spot the form",
-          instructions: "Choose the correct form for each sentence.",
-          items: [
+          "id": "vfo-present-1",
+          "title": "Spot the form",
+          "instructions": "Choose the correct form for each sentence.",
+          "items": [
             {
-              type: "radio",
-              label: "She <strong>works</strong> every Saturday. Which code is <strong>works</strong>?",
-              options: [
-                { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-s" },
-                { value: "v1-ing", label: "V-ing" },
+              "type": "radio",
+              "label": "Which sentence describes a routine?",
+              "options": [
+                {
+                  "value": "work",
+                  "label": "I am working now."
+                },
+                {
+                  "value": "works",
+                  "label": "She works on Mondays."
+                },
+                {
+                  "value": "worked",
+                  "label": "She worked yesterday."
+                }
               ],
-              expectedAnswer: "v1-3rd",
+              "expectedAnswer": "works"
             },
             {
-              type: "radio",
-              label: "My brother ___ at Logan Airport. (work)",
-              options: [
-                { value: "work", label: "work" },
-                { value: "works", label: "works" },
-                { value: "worked", label: "worked" },
+              "type": "radio",
+              "label": "Right now, I am ___ on my homework. (work)",
+              "options": [
+                {
+                  "value": "work",
+                  "label": "work"
+                },
+                {
+                  "value": "working",
+                  "label": "working"
+                },
+                {
+                  "value": "worked",
+                  "label": "worked"
+                }
               ],
-              expectedAnswer: "works",
+              "expectedAnswer": "working"
             },
             {
-              type: "radio",
-              label: "Right now, I am ___ on my homework. (work)",
-              options: [
-                { value: "work", label: "work" },
-                { value: "working", label: "working" },
-                { value: "worked", label: "worked" },
-              ],
-              expectedAnswer: "working",
-            },
-            {
-              type: "text",
-              label: "My brother ___ at Logan Airport. (work)",
-              expectedAnswers: ["works"],
-            },
-          ],
-        },
-        {
-          id: "vfo-present-2",
-          title: "Build the sentence",
-          instructions: "Put the words in the right order.",
-          items: [
-            {
-              type: "word-scramble",
-              label: "Unscramble:",
-              words: ["She", "has", "two", "jobs", "right", "now"],
-              correctAnswer: "She has two jobs right now",
-            },
-          ],
-        },
-      ],
+              "type": "text",
+              "label": "My brother ___ at Logan Airport. (work)",
+              "expectedAnswers": [
+                "works"
+              ]
+            }
+          ]
+        }
+      ]
     },
-
     {
-      id: "past-forms",
-      stepNumber: 2,
-      title: "V2 and V3: the past forms",
-      icon: "⏪",
-      explanation: `
-        ${sceneCard("sceneEveningHome", "East Boston. Wednesday evening after class.", "amber")}
-
-        ${dialogue([
-          { speaker: "Nadine", avatar: "👩🏾", text: "Yesterday I <strong>worked</strong> until 6. I was so tired.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑🏽", text: "Me too. I\'ve <strong>had</strong> a long shift at the hospital.", side: "left", tone: "sage" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "I <strong>have worked</strong> at the school cafeteria for three years now.", side: "right", tone: "terracotta" },
-        ])}
-
-        <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>V2</strong> = finished past action. <strong>V3</strong> = the form after <em>have / has / had</em>. You will use V3 a lot later in the year.</p>
-        </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #b56e1a; background: rgba(181,110,26,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #b56e1a; margin-bottom: 0.3rem">V2. past simple</div>
-            <p style="margin: 0"><em>work</em> → <strong>worked</strong> &nbsp;·&nbsp; <em>have</em> → <strong>had</strong></p>
-            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Yesterday I <strong>worked</strong> until 6.</p>
-          </div>
-          <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #6a8d73; background: rgba(106,141,115,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73; margin-bottom: 0.3rem">V3. past participle</div>
-            <p style="margin: 0"><em>work</em> → <strong>worked</strong> &nbsp;·&nbsp; <em>have</em> → <strong>had</strong></p>
-            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">I <strong>have worked</strong> here for three years.</p>
-          </div>
-        </div>
-
-        <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
-          <p style="margin: 0; font-style: italic; color: var(--color-text-muted)">On weekly quizzes you learn the V3 form now. Present perfect grammar comes later. For regular verbs, V2 and V3 look the same.</p>
-          <p style="margin: 0.5rem 0 0; font-style: italic; color: var(--color-text-muted)">Coming soon: <strong>have + V3</strong> together make a new tense, present perfect. You already know both pieces.</p>
-        </div>
-      `,
-      exercises: [
+      "id": "past-forms",
+      "stepNumber": 3,
+      "title": "V2 and V3",
+      "icon": "⏪",
+      "explanation": "<p><strong>V2</strong> tells about a finished past action. In the pattern <strong>have / has + V3</strong>, the past connects to now.</p><table><thead><tr><th scope=\"col\">Form</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><td>V2</td><td>I <strong>worked</strong> yesterday.</td></tr><tr><td>V3</td><td>I <strong>have worked</strong> here for two years.</td></tr></tbody></table><p>For regular verbs, V2 and V3 both end in <strong>-ed</strong>. Other verbs can change: <strong>be → was / were → been</strong>.</p><p><strong>Try it:</strong> Check your verb. Fix one thing and try again.</p>",
+      "exercises": [
         {
-          id: "vfo-past-1",
-          title: "Choose V2 or V3",
-          instructions: "Read the sentence. Which form fits?",
-          items: [
+          "id": "vfo-past-1",
+          "title": "Choose V2 or V3",
+          "instructions": "Read the sentence. Which form fits?",
+          "items": [
             {
-              type: "radio",
-              label: "Last night I ___ until 10 pm. (work)",
-              options: [
-                { value: "work", label: "work" },
-                { value: "working", label: "working" },
-                { value: "worked", label: "worked" },
+              "type": "radio",
+              "label": "I have ___ here since January. (work)",
+              "options": [
+                {
+                  "value": "work",
+                  "label": "work"
+                },
+                {
+                  "value": "worked",
+                  "label": "worked"
+                },
+                {
+                  "value": "working",
+                  "label": "working"
+                }
               ],
-              expectedAnswer: "worked",
+              "expectedAnswer": "worked"
             },
             {
-              type: "radio",
-              label: "I have ___ here since January. (work)",
-              options: [
-                { value: "work", label: "work" },
-                { value: "worked", label: "worked" },
-                { value: "working", label: "working" },
+              "type": "radio",
+              "label": "She ___ a good salary last year. (have)",
+              "options": [
+                {
+                  "value": "has",
+                  "label": "has"
+                },
+                {
+                  "value": "had",
+                  "label": "had"
+                },
+                {
+                  "value": "having",
+                  "label": "having"
+                }
               ],
-              expectedAnswer: "worked",
+              "expectedAnswer": "had"
             },
             {
-              type: "radio",
-              label: "She ___ a good salary last year. (have)",
-              options: [
-                { value: "has", label: "has" },
-                { value: "had", label: "had" },
-                { value: "having", label: "having" },
-              ],
-              expectedAnswer: "had",
-            },
-            {
-              type: "text",
-              label: "Last night I ___ until 10 pm. (work)",
-              expectedAnswers: ["worked"],
-            },
-          ],
-        },
-      ],
+              "type": "text",
+              "label": "Last night I ___ until 10 pm. (work)",
+              "expectedAnswers": [
+                "worked"
+              ]
+            }
+          ]
+        }
+      ]
     },
-
     {
-      id: "be-and-have",
-      stepNumber: 3,
-      title: "be and have: the tricky ones",
-      icon: "⚡",
-      explanation: `
-        ${sceneCard("sceneClassNight", "Same classroom. Ms. Tran writes the chart on the board.", "blue")}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Your first quiz focuses on <strong>be</strong> and <strong>have</strong>. These verbs do not follow the regular pattern. Some forms change; others stay the same.</p>
-
-        <div style="display: grid; gap: 0.75rem; margin: 1.25rem 0">
-          <div style="padding: 1rem 1.15rem; border-radius: 0.65rem; border: 1px solid rgba(176,87,64,0.2); background: rgba(176,87,64,0.05)">
-            <p style="margin: 0 0 0.65rem 0; font-weight: 700; font-size: 1.05rem">be</p>
-            <div style="display: grid; gap: 0.35rem; font-size: 0.92rem">
-              ${formCodeRow("V1", "be", "I will be there", "terracotta")}
-              ${formCodeRow("V1-s", "is", "she is", "sage")}
-              ${formCodeRow("V-ing", "being", "I am being careful", "blue")}
-              ${formCodeRow("V2", "was / were", "I was · they were", "amber")}
-              ${formCodeRow("V3", "been", "I have been here", "terracotta")}
-            </div>
-          </div>
-          <div style="padding: 1rem 1.15rem; border-radius: 0.65rem; border: 1px solid rgba(106,141,115,0.25); background: rgba(106,141,115,0.06)">
-            <p style="margin: 0 0 0.65rem 0; font-weight: 700; font-size: 1.05rem">have</p>
-            <div style="display: grid; gap: 0.35rem; font-size: 0.92rem">
-              ${formCodeRow("V1", "have", "I have two kids", "terracotta")}
-              ${formCodeRow("V1-s", "has", "she has a car", "sage")}
-              ${formCodeRow("V-ing", "having", "we are having dinner", "blue")}
-              ${formCodeRow("V2", "had", "I had a meeting", "amber")}
-              ${formCodeRow("V3", "had", "I have had this job", "terracotta")}
-            </div>
-          </div>
-        </div>
-
-        <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
-          <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Watch out</p>
-          <p style="margin: 0; font-size: 0.95rem">The Base Form (V1) is <strong>be</strong>. In present statements, use <strong>am / is / are</strong>; the He / She / It Form (V1-s) is <strong>is</strong>. V2 is <strong>was / were</strong>, not <em>beed</em>.</p>
-        </div>
-      `,
-      exercises: [
+      "id": "be-and-have",
+      "stepNumber": 4,
+      "title": "Be and have",
+      "icon": "⚡",
+      "explanation": "<p>These verbs do not follow the regular <strong>-ed</strong> pattern.</p><table><thead><tr><th scope=\"col\">Code</th><th scope=\"col\">be</th><th scope=\"col\">have</th></tr></thead><tbody><tr><td>V1</td><td>be</td><td>have</td></tr><tr><td>V1-s</td><td>is</td><td>has</td></tr><tr><td>V-ing</td><td>being</td><td>having</td></tr><tr><td>V2</td><td>was / were</td><td>had</td></tr><tr><td>V3</td><td>been</td><td>had</td></tr></tbody></table><p><strong>Be</strong> is the base form. In present statements, use <strong>am / is / are</strong>: I am ready. She is here. They are ready.</p><p>She <strong>has</strong> a job. We <strong>are having</strong> lunch. I <strong>have been</strong> busy.</p><p><strong>Try it:</strong> Choose two forms to practice again tomorrow.</p>",
+      "exercises": [
         {
-          id: "vfo-be-have-1",
-          title: "be and have on the quiz",
-          instructions: "Choose the correct form.",
-          items: [
+          "id": "vfo-be-have-1",
+          "title": "be and have on the quiz",
+          "instructions": "Choose the correct form.",
+          "items": [
             {
-              type: "radio",
-              label: "They have ___ friends in East Boston for years. (be)",
-              options: [
-                { value: "was", label: "was" },
-                { value: "were", label: "were" },
-                { value: "been", label: "been" },
+              "type": "radio",
+              "label": "They have ___ friends in East Boston for years. (be)",
+              "options": [
+                {
+                  "value": "was",
+                  "label": "was"
+                },
+                {
+                  "value": "were",
+                  "label": "were"
+                },
+                {
+                  "value": "been",
+                  "label": "been"
+                }
               ],
-              expectedAnswer: "been",
+              "expectedAnswer": "been"
             },
             {
-              type: "radio",
-              label: "Last year she ___ a nurse at the clinic. (be)",
-              options: [
-                { value: "is", label: "is" },
-                { value: "was", label: "was" },
-                { value: "been", label: "been" },
+              "type": "radio",
+              "label": "He ___ two jobs right now. (have)",
+              "options": [
+                {
+                  "value": "have",
+                  "label": "have"
+                },
+                {
+                  "value": "has",
+                  "label": "has"
+                },
+                {
+                  "value": "had",
+                  "label": "had"
+                }
               ],
-              expectedAnswer: "was",
+              "expectedAnswer": "has"
             },
             {
-              type: "radio",
-              label: "He ___ two jobs right now. (have)",
-              options: [
-                { value: "have", label: "have" },
-                { value: "has", label: "has" },
-                { value: "had", label: "had" },
-              ],
-              expectedAnswer: "has",
-            },
-            {
-              type: "text",
-              label: "Last year she ___ a nurse at the clinic. (be)",
-              expectedAnswers: ["was"],
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      id: "quiz-ready",
-      stepNumber: 4,
-      title: "Ready for Verb Quiz 1",
-      icon: "✅",
-      explanation: `
-        ${sceneCard("sceneAppQuiz", "After class. Carlos opens the app on his Chromebook.", "sage")}
-
-        ${dialogue([
-          { speaker: "Carlos", avatar: "👨🏽", text: "Okay, Verb Quiz 1. <strong>be</strong> and <strong>have</strong>. I know what V1 through V3 mean now.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Same codes every week. Two verbs at a time. That helps.", side: "left", tone: "blue" },
-        ])}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">You do not need to memorize everything today. This guide gives you the map. The quiz helps you practice two verbs at a time.</p>
-
-        <div style="display: grid; gap: 0.45rem; margin: 1rem 0">
-          ${[
-            ["V1-s", "third person (he/she/it)", "v1-3rd"],
-            ["V3", "after have / has", "v3"],
-          ].map(([code, desc]) => `
-            <div style="padding: 0.6rem 0.85rem; border-radius: 0.45rem; background: rgba(106,141,115,0.08); display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center">
-              <strong>${code}</strong>
-              <span style="font-size: 0.92rem">${desc}</span>
-            </div>
-          `).join("")}
-        </div>
-
-        <div class="gc-callout-sage" style="background: rgba(106, 141, 115, 0.12); padding: 1rem 1.25rem; border-radius: 0.5rem">
-          <p style="margin: 0">Open <strong>Verb Quiz 1: be + have</strong> from the course map when your teacher releases it. You already know the five codes.</p>
-        </div>
-      `,
-      exercises: [
-        {
-          id: "vfo-ready-1",
-          title: "Match the code",
-          instructions: "Connect each code to the right description.",
-          items: [
-            {
-              type: "radio",
-              label: "Which code is <strong>third person (he/she/it)</strong>?",
-              options: [
-                { value: "v1", label: "V1" },
-                { value: "v1-3rd", label: "V1-s" },
-                { value: "v2", label: "V2" },
-              ],
-              expectedAnswer: "v1-3rd",
-            },
-            {
-              type: "radio",
-              label: "Which code goes after <em>have / has</em>?",
-              options: [
-                { value: "v1-ing", label: "V-ing" },
-                { value: "v2", label: "V2" },
-                { value: "v3", label: "V3" },
-              ],
-              expectedAnswer: "v3",
-            },
-            {
-              type: "text",
-              label: "Type the V3 form of <em>have</em>: She has ___ a Chromebook since Monday.",
-              expectedAnswers: ["had"],
-            },
-            {
-              type: "text",
-              label: "Type the V3 form of <em>be</em>: Carlos has ___ in class all week.",
-              expectedAnswers: ["been"],
-            },
-          ],
-        },
-      ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content:
-          "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/simple-tenses-review\" style=\"font-weight:700;text-decoration:underline\">Verb Forms Full Guide</a>.",
-      },
-    },
+              "type": "text",
+              "label": "Last year she ___ a nurse at the clinic. (be)",
+              "expectedAnswers": [
+                "was"
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ],
-
-  miniQuiz: [
+  "miniQuiz": [
     {
-      id: "vfo-q3",
-      question: "Fernanda's son goes to school every morning. She says: \"He ___ the bus at 7:15.\" Which form fits?",
-      options: [
-        { value: "a", label: "take" },
-        { value: "b", label: "takes" },
-        { value: "c", label: "taking" },
+      "id": "vfo-q3",
+      "question": "He ___ the bus every morning.",
+      "options": [
+        {
+          "value": "a",
+          "label": "take"
+        },
+        {
+          "value": "b",
+          "label": "takes"
+        },
+        {
+          "value": "c",
+          "label": "taking"
+        }
       ],
-      correctAnswer: "b",
-      explanation: "V1-s is the he/she/it form. With he, add -s: takes.",
-      topic: "v1-3rd",
-      skill: "usage",
-      skillTag: "third-person-s",
-      difficulty: "easy",
+      "correctAnswer": "b",
+      "explanation": "V1-s is the he/she/it form. With he, add -s: takes.",
+      "topic": "v1-3rd",
+      "skill": "usage",
+      "skillTag": "third-person-s",
+      "difficulty": "easy"
     },
     {
-      id: "vfo-qfb1",
-      type: "fill-blank" as const,
-      question: "Fill in the blank: \"Nadine is ___ at the cafeteria right now.\" (work + -ing)",
-      correctAnswer: "working",
-      explanation: "V-ing adds -ing to the base form: work → working. Use with am/is/are for actions in progress.",
-      topic: "v1-ing",
-      skill: "usage",
-      skillTag: "form-verb-ing",
-      difficulty: "easy",
+      "id": "vfo-qfb1",
+      "type": "fill-blank",
+      "question": "She is ___ right now. (work + -ing)",
+      "correctAnswer": "working",
+      "explanation": "V-ing adds -ing to the base form: work → working. Use with am/is/are for actions in progress.",
+      "topic": "v1-ing",
+      "skill": "usage",
+      "skillTag": "form-verb-ing",
+      "difficulty": "easy"
     },
     {
-      id: "vfo-q7",
-      question: "Which sentence has the wrong form of be?",
-      options: [
-        { value: "a", label: "They were at class last night." },
-        { value: "b", label: "She was tired after work." },
-        { value: "c", label: "I be a student here." },
+      "id": "vfo-q7",
+      "question": "Which sentence has the wrong form of be?",
+      "options": [
+        {
+          "value": "a",
+          "label": "They were at class last night."
+        },
+        {
+          "value": "b",
+          "label": "She was tired after work."
+        },
+        {
+          "value": "c",
+          "label": "I be a student here."
+        }
       ],
-      correctAnswer: "c",
-      explanation: "V1 of be is am/are/is, not be. Say: I am a student here.",
-      topic: "be",
-      skill: "error-detection",
-      skillTag: "be-v1-not-base",
-      difficulty: "medium",
+      "correctAnswer": "c",
+      "explanation": "Be is the base form. In present statements, use am/is/are: I am a student here.",
+      "topic": "be",
+      "skill": "error-detection",
+      "skillTag": "be-v1-not-base",
+      "difficulty": "medium"
     },
     {
-      id: "vfo-qws1",
-      type: "word-scramble" as const,
-      question: "Rosa's coworker has worked at the clinic for three years. Put the words in order.",
-      words: ["She", "has", "worked", "here", "for", "three", "years"],
-      correctAnswer: "She has worked here for three years",
-      hint: "have/has + V3",
-      explanation: "After have/has, use V3. This connects past experience to the present.",
-      topic: "v3",
-      skill: "usage",
-      skillTag: "have-plus-v3",
-      difficulty: "medium",
-    },
-    {
-      id: "vfo-q8",
-      question: "Which sentence uses the V1-s form of have correctly?",
-      options: [
-        { value: "a", label: "She has a new schedule." },
-        { value: "b", label: "She have a new schedule." },
-        { value: "c", label: "She had a new schedule." },
+      "id": "vfo-qws1",
+      "type": "word-scramble",
+      "question": "Sarah describes her job. Put the words in order.",
+      "words": [
+        "years",
+        "worked",
+        "She",
+        "three",
+        "has",
+        "here",
+        "for"
       ],
-      correctAnswer: "a",
-      explanation: "With she, the V1-s form of have is has, not have (V1) or had (V2).",
-      topic: "have",
-      skill: "error-detection",
-      skillTag: "have-third-person",
-      difficulty: "medium",
+      "correctAnswer": "She has worked here for three years",
+      "hint": "have/has + V3",
+      "explanation": "After have/has, use V3. This connects past experience to the present.",
+      "topic": "v3",
+      "skill": "usage",
+      "skillTag": "have-plus-v3",
+      "difficulty": "medium"
     },
-  ],
+    {
+      "id": "vfo-q8",
+      "question": "Which sentence uses the V1-s form of have correctly?",
+      "options": [
+        {
+          "value": "a",
+          "label": "She has a new schedule."
+        },
+        {
+          "value": "b",
+          "label": "She have a new schedule."
+        },
+        {
+          "value": "c",
+          "label": "She had a new schedule."
+        }
+      ],
+      "correctAnswer": "a",
+      "explanation": "With she, the V1-s form of have is has, not have (V1) or had (V2).",
+      "topic": "have",
+      "skill": "error-detection",
+      "skillTag": "have-third-person",
+      "difficulty": "medium"
+    }
+  ]
 };

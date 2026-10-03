@@ -89,10 +89,13 @@ export async function POST(request: Request) {
     const points = POINTS.GRAMMAR_EXERCISE;
     const reason = `grammar-exercise:${slug}:${exerciseKey}`;
 
-    await applyAwardChain({
+    const award = await applyAwardChain({
         userId,
         points,
         reason,
+        // These keys represent one exercise award, including retries after a failed save.
+        dedupeKey: true,
+        dedupeWindowMs: 100 * 365.25 * 24 * 60 * 60 * 1000,
     });
 
     // Update category data
@@ -131,8 +134,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
         ok: true,
-        pointsAwarded: points,
-        alreadyCompleted: false,
+        pointsAwarded: award.deduped ? 0 : points,
+        alreadyCompleted: Boolean(award.deduped),
         totalExercisePoints: categoryData.totalExercisePoints,
     });
 }

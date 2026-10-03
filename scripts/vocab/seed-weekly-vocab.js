@@ -191,6 +191,9 @@ async function main() {
     }
 
     // Create or update single consolidated activity
+    // contentKind must be "map" for the activity to appear on the course map
+    // (see src/lib/content-kind.ts) — without it, the activity still exists
+    // but the week silently has no visible items and vanishes from the map.
     await prisma.activity.upsert({
       where: { id: activityId },
       update: {
@@ -199,6 +202,8 @@ async function main() {
         type: "vocabulary",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
         content: JSON.stringify(consolidatedContent),
+        contentKind: "map",
+        isReleased: true,
       },
       create: {
         id: activityId,
@@ -208,6 +213,8 @@ async function main() {
         level: "intermediate",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
         content: JSON.stringify(consolidatedContent),
+        contentKind: "map",
+        isReleased: true,
       },
     });
 
