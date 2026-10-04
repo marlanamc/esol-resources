@@ -48,6 +48,8 @@ const eslintConfig = defineConfig([
     "docs/**",
     // Claude Design handoff prototypes (HTML/JS references, not app code).
     "design_handoff_*/**",
+    // Local Claude worktrees: full repo copies that would be linted twice.
+    ".claude/**",
   ]),
 ]);
 

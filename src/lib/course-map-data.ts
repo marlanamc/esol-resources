@@ -407,7 +407,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 1 — Together in Class",
+            "title": "Week 4 Quiz — Together in Class",
             "badge": "Guided"
           },
           {
@@ -532,7 +532,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 2"
+            "title": "Week 5 Quiz"
           },
           {
             "id": "vocab-oct-w1-flashcards",
@@ -637,7 +637,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 3"
+            "title": "Week 6 Quiz"
           },
           {
             "id": "vocab-oct-w3-flashcards",
@@ -748,7 +748,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 7"
+            "title": "Week 7 Quiz"
           },
           {
             "id": "political-ads-fact-opinion",
@@ -776,7 +776,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Community Issue Case Study: Discussion"
           }
         ]
-      },
+      }
     ]
   },
   {
@@ -855,7 +855,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 4"
+            "title": "Week 8 Quiz"
           }
         ]
       },
@@ -927,7 +927,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 5"
+            "title": "Week 9 Quiz"
           }
         ],
         "goal": "Talk about life experiences with Have you ever...? Then use just, already, and yet to describe recent actions and what is still unfinished."
@@ -1000,7 +1000,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 6"
+            "title": "Week 10 Quiz"
           }
         ]
       }
@@ -1080,7 +1080,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 9"
+            "title": "Week 11 Quiz"
           }
         ],
         "goal": "Talk about how long you have lived, worked, and kept the same phone plan while hunting for something cheaper."
@@ -1145,7 +1145,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 10"
+            "title": "Week 12 Quiz"
           }
         ],
         "goal": "Compare prices, phone plans, and apartment listings when stretching a paycheck."
@@ -1189,7 +1189,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 11"
+            "title": "Week 13 Quiz"
           }
         ]
       },
@@ -1302,7 +1302,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 8"
+            "title": "Week 15 Quiz"
           },
           {
             "id": "class-party-december",
@@ -1382,7 +1382,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 12"
+            "title": "Week 16 Quiz"
           },
           {
             "id": "parts-of-speech-refresh-extra",
@@ -1462,7 +1462,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 13"
+            "title": "Week 17 Quiz"
           }
         ]
       },
@@ -1525,7 +1525,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 14"
+            "title": "Week 18 Quiz"
           }
         ]
       },
@@ -1596,7 +1596,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 15"
+            "title": "Week 19 Quiz"
           }
         ]
       }
@@ -1667,7 +1667,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 16"
+            "title": "Week 20 Quiz"
           }
         ]
       },
@@ -1739,7 +1739,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 17"
+            "title": "Week 21 Quiz"
           }
         ]
       },
@@ -1788,7 +1788,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 18"
+            "title": "Week 22 Quiz"
           }
         ]
       },
@@ -1859,7 +1859,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 19"
+            "title": "Week 23 Quiz"
           }
         ]
       }
@@ -1939,7 +1939,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 20"
+            "title": "Week 24 Quiz"
           }
         ]
       },
@@ -2011,7 +2011,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 21"
+            "title": "Week 25 Quiz"
           }
         ]
       },
@@ -2121,7 +2121,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 22"
+            "title": "Week 26 Quiz"
           }
         ]
       },
@@ -2176,7 +2176,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 23"
+            "title": "Week 27 Quiz"
           }
         ]
       }
@@ -2248,7 +2248,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 24"
+            "title": "Week 28 Quiz"
           }
         ]
       },
@@ -2311,7 +2311,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 25"
+            "title": "Week 29 Quiz"
           }
         ]
       },
@@ -2360,7 +2360,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 26"
+            "title": "Week 30 Quiz"
           }
         ]
       },
@@ -2423,7 +2423,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 27"
+            "title": "Week 31 Quiz"
           }
         ]
       }
@@ -2503,7 +2503,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 28"
+            "title": "Week 32 Quiz"
           }
         ]
       },
@@ -2558,7 +2558,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 29"
+            "title": "Week 33 Quiz"
           }
         ]
       },
@@ -2629,7 +2629,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 30"
+            "title": "Week 34 Quiz"
           }
         ]
       },
@@ -2701,7 +2701,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 31"
+            "title": "Week 35 Quiz"
           }
         ]
       }
@@ -2822,7 +2822,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 11,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 32"
+            "title": "Week 36 Bonus Quiz 1"
           },
           {
             "id": "verb-quiz-33",
@@ -2831,7 +2831,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 12,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 33"
+            "title": "Week 36 Bonus Quiz 2"
           },
           {
             "id": "verb-quiz-34",
@@ -2840,7 +2840,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 13,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Weekly Quiz 34"
+            "title": "Week 36 Bonus Quiz 3"
           }
         ]
       }

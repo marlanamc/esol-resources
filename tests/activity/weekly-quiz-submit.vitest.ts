@@ -40,7 +40,7 @@ describe('weekly quiz submission', () => {
     const data = await response.json();
     expect(data.score).toBe(0);
     expect(data.points).toBe(2);
-    expect(data.weeklyQuizResult.results).toHaveLength(10);
+    expect(data.weeklyQuizResult.results).toHaveLength(quiz.questions.length);
     expect(mocks.createSubmission.mock.calls[0][0].data.score).toBe(0);
     expect(mocks.createProgress.mock.calls[0][0].data.status).toBe('completed');
     expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student', points: 2, source: 'activity' }));

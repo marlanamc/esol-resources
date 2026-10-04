@@ -4,6 +4,8 @@ import path from 'node:path';
 import { PrismaClient, Prisma } from '@prisma/client';
 import quizzes from '../../src/content/quizzes/weekly-quizzes.json';
 import { getWeeklyQuizSchedule } from '../../src/lib/weekly-quiz-schedule';
+import { COURSE_MAP_UNITS } from '../../src/lib/course-map-data';
+const mapTitles = new Map(COURSE_MAP_UNITS.flatMap(u => u.weeks.flatMap(w => w.items)).map(item => [item.id, item.title]));
 const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const db = new PrismaClient();
 const apply = process.argv.includes('--apply');
@@ -63,7 +65,7 @@ async function main() {
         title: content.title, description: 'A 5–10 minute review: verb forms in context, vocabulary, and this week’s grammar.', type: 'quiz', category: 'quizzes', contentKind: 'map', deletedAt: null,
         ...(replace ? { content: JSON.stringify(content), isReleased: false } : {}),
       } });
-      await tx.courseMapItem.updateMany({ where: { activityId: id }, data: { activityType: 'quiz', title: id === 'verb-quiz-1' ? 'Weekly Quiz 1 — Together in Class' : `Weekly Quiz ${id.replace('verb-quiz-', '')}` } });
+      await tx.courseMapItem.updateMany({ where: { activityId: id }, data: { activityType: 'quiz', title: mapTitles.get(id) ?? content.title } });
       await tx.assignment.updateMany({ where: { activityId: id }, data: { title: content.title, dueDate: getWeeklyQuizSchedule(content.weekNumber)!.dueAt } });
     }
     const active = await tx.activity.findMany({ where: { AND: [quizWhere, { deletedAt: null }] }, select: { id: true, type: true, category: true, contentKind: true, content: true } });
