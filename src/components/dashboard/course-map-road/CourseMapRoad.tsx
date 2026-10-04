@@ -28,6 +28,9 @@ interface Props {
 /** Scroll-spy line, below the sticky bar. */
 const SPY_OFFSET_PX = 70;
 
+/** How much of the current week's card must be on screen to hide "Back to this week". */
+const CURRENT_VISIBLE_PX = 80;
+
 function prefersReducedMotion(): boolean {
     return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
@@ -69,6 +72,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     );
     const [openOptional, setOpenOptional] = useState<Set<number>>(() => new Set());
     const [viewedWeek, setViewedWeek] = useState(landingWeek);
+    const [currentOnScreen, setCurrentOnScreen] = useState(landingWeek === currentWeek);
     const [headerHeight, setHeaderHeight] = useState(0);
 
     const rootRef = useRef<HTMLDivElement>(null);
@@ -159,10 +163,23 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                 found = Number(el.dataset.roadSpy);
             }
             setViewedWeek(found);
+
+            // Between the sticky bars and the bottom nav.
+            const current = document.getElementById(`road-week-${currentWeek}`);
+            if (isRendered(current)) {
+                const rect = current.getBoundingClientRect();
+                const nav = document.querySelector(".bottom-nav");
+                const bottom = isRendered(nav) ? nav.getBoundingClientRect().top : window.innerHeight;
+                const visible = Math.min(rect.bottom, bottom) - Math.max(rect.top, stickyOffset());
+                setCurrentOnScreen(visible >= CURRENT_VISIBLE_PX);
+            } else {
+                setCurrentOnScreen(false);
+            }
         };
         const onScroll = () => {
             if (!frame) frame = window.requestAnimationFrame(update);
         };
+        onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onScroll);
         return () => {
@@ -375,7 +392,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
             </div>
 
             {/* Back to this week */}
-            {relation !== "this" ? (
+            {relation !== "this" && !currentOnScreen ? (
                 <button
                     type="button"
                     onClick={() => jumpToWeek(currentWeek)}
