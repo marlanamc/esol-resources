@@ -2300,7 +2300,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice: use 'were' for all subjects.)",
+        "prompt": "Fill in the blank: \"If I ___ you, I would talk to Jennifer.\" (Giving advice: use 'were' for all subjects.)",
         "answers": [
           "were"
         ],
@@ -2310,7 +2310,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Kevin is likely to get overtime next week. Which sentence fits?",
+        "prompt": "Marta is likely to get overtime next week. Which sentence fits?",
         "options": [
           "If they offered me overtime, I would say yes.",
           "If they offer me overtime, I will say yes.",
