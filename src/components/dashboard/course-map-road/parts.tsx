@@ -3,7 +3,8 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { Check, ChevronDown, ChevronRight, Lock, Play, Plus } from "lucide-react";
-import { CourseMapActivityFormatChip } from "@/components/dashboard/CourseMapActivityFormatChip";
+import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     formatRoadCtaTitle,
@@ -225,61 +226,73 @@ export function UnitSign({
 
 export function ActivityRow({
     activity,
-    step,
-    accent,
     showNext,
     inset = 16,
 }: {
     activity: RoadActivity;
-    step: number;
-    accent: string;
     showNext: boolean;
     inset?: number;
 }) {
     const isNext = showNext && activity.isNext;
-    const dot = activity.done ? (
-        <span className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
-            <Check size={14} strokeWidth={3} aria-hidden />
-        </span>
-    ) : activity.href == null ? (
-        <span className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full text-text-muted" style={{ border: "1.5px dashed var(--road-rail-future)" }}>
-            <Lock size={12} aria-hidden />
+    const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
+    const tone = getLearnerCategoryTone(format.tone);
+    const Icon = format.icon;
+    const locked = !activity.done && activity.href == null;
+
+    // The circle wears the activity's color: soft when done, outlined when waiting, filled when next.
+    const ring = locked ? (
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-text-muted" style={{ border: "1.5px dashed var(--road-rail-future)" }}>
+            <Lock size={14} aria-hidden />
         </span>
     ) : (
         <span
-            className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full text-[12px] font-extrabold"
+            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
             style={
-                isNext
-                    ? { background: "var(--surface-base)", border: `2px solid ${accent}`, color: accent }
-                    : { border: "1.5px solid color-mix(in srgb, var(--text-muted) 45%, transparent)", color: "var(--text-muted)" }
+                activity.done
+                    ? { background: tone.surface, color: tone.accent }
+                    : isNext
+                      ? { background: tone.accent, color: "var(--road-on-tone)" }
+                      : { background: "var(--surface-base)", border: `2px solid ${tone.accent}`, color: tone.accent }
             }
         >
-            {step}
+            <Icon size={19} aria-hidden />
+            {activity.done ? (
+                <span
+                    className="absolute -bottom-1 -right-1 flex h-[18px] w-[18px] items-center justify-center rounded-full"
+                    style={{ background: "var(--success-color)", color: "var(--road-on-success)", boxShadow: "0 0 0 2px var(--surface-base)" }}
+                >
+                    <Check size={10} strokeWidth={3.5} aria-hidden />
+                </span>
+            ) : null}
         </span>
     );
 
     const content = (
         <>
-            {dot}
+            {ring}
             <span className="min-w-0 flex-1">
-                <span className="block text-[15px] font-semibold leading-[1.3] text-text">{activity.title}</span>
-                <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <CourseMapActivityFormatChip type={activity.activityType} vocabUi={activity.vocabUi} title={activity.title} size="md" />
+                <span className={`block text-[15px] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{activity.title}</span>
+                <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
+                    {format.label}
                 </span>
-                {/* The checkmark, lock and highlighted row carry these visually. */}
+                {/* The check badge, lock and Start label carry these visually. */}
                 {activity.done ? <span className="sr-only">Done</span> : null}
-                {!activity.done && activity.href == null ? <span className="sr-only">Opens later</span> : null}
-                {isNext ? <span className="sr-only">Next</span> : null}
+                {locked ? <span className="sr-only">Opens later</span> : null}
             </span>
+            {isNext ? (
+                <span className="shrink-0 rounded-full px-3 py-1.5 text-[13px] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
+                    Start
+                </span>
+            ) : null}
         </>
     );
 
-    const className = "flex min-h-[58px] items-center gap-3 py-2.5 text-left";
+    const className = "flex min-h-[64px] items-center gap-3 py-2.5 text-left";
     const style: CSSProperties = {
         paddingLeft: inset,
         paddingRight: inset,
         borderTop: ROW_BORDER,
-        background: isNext ? `color-mix(in srgb, ${accent} 7%, transparent)` : undefined,
+        background: isNext ? `color-mix(in srgb, ${tone.accent} 9%, transparent)` : undefined,
     };
 
     if (!activity.href) {
@@ -298,23 +311,19 @@ export function ActivityRow({
 
 function ActivityList({
     activities,
-    accent,
     showNext,
     inset,
 }: {
     activities: RoadActivity[];
-    accent: string;
     showNext: boolean;
     inset?: number;
 }) {
     return (
         <div>
-            {activities.map((activity, index) => (
+            {activities.map((activity) => (
                 <ActivityRow
                     key={activity.id}
                     activity={activity}
-                    step={index + 1}
-                    accent={accent}
                     showNext={showNext}
                     inset={inset}
                 />
@@ -327,12 +336,10 @@ function OptionalPractice({
     week,
     open,
     onToggle,
-    accent,
 }: {
     week: RoadWeek;
     open: boolean;
     onToggle: () => void;
-    accent: string;
 }) {
     if (week.extras.length === 0) return null;
     return (
@@ -347,7 +354,7 @@ function OptionalPractice({
                 </span>
                 <Chevron open={open} />
             </button>
-            {open ? <ActivityList activities={week.extras} accent={accent} showNext={false} inset={12} /> : null}
+            {open ? <ActivityList activities={week.extras} showNext={false} inset={12} /> : null}
         </div>
     );
 }
@@ -411,9 +418,9 @@ export function CompactWeekRow({
             {open ? (
                 <div className="mb-3 overflow-hidden rounded-2xl" style={{ background: "var(--surface-base)", border: CARD_BORDER }}>
                     <div className="-mt-px">
-                        <ActivityList activities={week.activities} accent={tone.accent} showNext={week.state === "upcoming"} inset={14} />
+                        <ActivityList activities={week.activities} showNext={week.state === "upcoming"} inset={14} />
                     </div>
-                    <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} />
+                    <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} />
                 </div>
             ) : null}
         </RoadRow>
@@ -536,10 +543,10 @@ export function CurrentWeekCard({
                         <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
                             This week&apos;s activities
                         </p>
-                        <ActivityList activities={week.activities} accent={tone.accent} showNext />
+                        <ActivityList activities={week.activities} showNext />
                     </>
                 ) : null}
-                <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} />
+                <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} />
             </div>
         </RoadRow>
     );
