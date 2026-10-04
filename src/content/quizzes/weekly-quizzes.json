@@ -1107,14 +1107,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct?",
+        "prompt": "Kofi, a dishwasher at Lupe's restaurant, had his last day on Tuesday of last week. He does not work there anymore. Which sentence is correct?",
         "options": [
-          "Beatriz has left the restaurant since last Tuesday.",
-          "Beatriz has worked at the restaurant for last Tuesday.",
-          "Beatriz left the restaurant last Tuesday."
+          "Kofi has left the restaurant since last Tuesday.",
+          "Kofi has worked at the restaurant for last Tuesday.",
+          "Kofi left the restaurant last Tuesday."
         ],
         "answers": [
-          "Beatriz left the restaurant last Tuesday."
+          "Kofi left the restaurant last Tuesday."
         ],
         "explanation": "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",
         "source": "how-long-for-since/hlfs-q7"
@@ -1122,16 +1122,16 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa has had her phone plan since 2021. She wants to say the same thing using 'for'. It is now 2024. What does she say?",
+        "prompt": "Yesenia has had her phone plan since 2023. She wants to say the same thing using 'for'. It is now 2026. What does she say?",
         "options": [
           "I have had this plan for since three years.",
           "I have had this plan for three years.",
-          "I have had this plan for 2021."
+          "I have had this plan for 2023."
         ],
         "answers": [
           "I have had this plan for three years."
         ],
-        "explanation": "'For' takes a length of time, not a starting year. 2024 minus 2021 = three years.",
+        "explanation": "'For' takes a length of time, not a starting year. 2026 minus 2023 = three years.",
         "source": "how-long-for-since/hlfs-q2"
       }
     ]
