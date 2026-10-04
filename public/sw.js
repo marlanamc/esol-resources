@@ -3,7 +3,8 @@ const swUrl = new URL(self.location.href);
 const buildId = swUrl.searchParams.get("build") || "local-dev";
 const CACHE_NAME = `class-companion-${buildId}`;
 const OFFLINE_URL = "/offline";
-const NAVIGATION_NETWORK_TIMEOUT_MS = 8000;
+const NAVIGATION_NETWORK_TIMEOUT_MS = 15000;
+const NAVIGATION_RETRY_DELAY_MS = 1000;
 
 const SHELL_CACHE = [
   "/manifest.json",
@@ -55,8 +56,18 @@ async function networkFirstWithTimeout(request, timeoutMs) {
     setTimeout(() => reject(new Error("network timeout")), timeoutMs);
   });
 
+  // iOS PWAs often wake before the network is ready, so the first fetch can reject
+  // instantly. Retry once before treating the device as offline.
+  const fetchWithRetry = () =>
+    fetch(request.clone()).catch(
+      () =>
+        new Promise((resolve) => setTimeout(resolve, NAVIGATION_RETRY_DELAY_MS)).then(() =>
+          fetch(request.clone())
+        )
+    );
+
   try {
-    const response = await Promise.race([fetch(request), timeoutPromise]);
+    const response = await Promise.race([fetchWithRetry(), timeoutPromise]);
     // Do not cache HTML navigations — stale shells + cache-first static assets caused
     // a visible "old UI then flash to new" after deploys. Offline still falls back below.
     return response instanceof Response ? response : offlinePlainResponse();
