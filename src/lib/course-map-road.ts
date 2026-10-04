@@ -91,7 +91,6 @@ export interface RoadActivity {
     title: string;
     activityType: CourseMapActivityType;
     vocabUi?: string;
-    badge?: string;
     /** Null when the activity cannot be opened yet. */
     href: string | null;
     done: boolean;
@@ -195,7 +194,6 @@ function toRoadActivity(
         title: formatNextUpActivityTitle(activity.title),
         activityType: activity.activityType,
         ...(activity.vocabUi ? { vocabUi: activity.vocabUi } : {}),
-        ...(activity.badge ? { badge: activity.badge } : {}),
         href,
         done: isMapActivityCompleted(activity, progress),
         isNext: false,

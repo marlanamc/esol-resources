@@ -267,21 +267,12 @@ export function ActivityRow({
                 <span className="block text-[15px] font-semibold leading-[1.3] text-text">{activity.title}</span>
                 <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
                     <CourseMapActivityFormatChip type={activity.activityType} vocabUi={activity.vocabUi} title={activity.title} size="md" />
-                    {activity.badge ? (
-                        <span className="rounded-full px-2 py-0.5 text-[12px] font-bold" style={{ background: chipBg, color: accent }}>
-                            {activity.badge}
-                        </span>
-                    ) : null}
-                    {activity.done || activity.href == null ? (
-                        <span className="text-[13px] font-semibold text-text-muted">{activity.done ? "Done" : "Opens later"}</span>
-                    ) : null}
                 </span>
+                {/* The checkmark, lock and highlighted row carry these visually. */}
+                {activity.done ? <span className="sr-only">Done</span> : null}
+                {!activity.done && activity.href == null ? <span className="sr-only">Opens later</span> : null}
+                {isNext ? <span className="sr-only">Next</span> : null}
             </span>
-            {isNext ? (
-                <span className="shrink-0 rounded-full px-2 py-[3px] text-[12px] font-extrabold" style={{ background: chipBg, color: accent }}>
-                    Next
-                </span>
-            ) : null}
         </>
     );
 
