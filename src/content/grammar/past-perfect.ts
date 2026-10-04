@@ -387,12 +387,14 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePromotion", "Loading dock. Wilmer calls his cousin during a break.", "terracotta")}
+        ${sceneCard("scenePromotion", "Outside the warehouse, Wednesday evening. After the interview, Gloria calls a friend.", "terracotta")}
+
+        <p>Marta used to clean rooms with Gloria at the hotel. She still works there. Gloria calls her with the good news.</p>
 
         ${dialogue([
-          { speaker: "Wilmer", avatar: "👨🏾", text: "I got the supervisor job! They <strong>called</strong> me this morning.", side: "right", tone: "terracotta" },
-          { speaker: "Cousin (phone)", avatar: "🧑🏽", text: "No way! What did you tell them?", side: "left", tone: "sage" },
-          { speaker: "Wilmer", avatar: "👨🏾", text: "I told them I <strong>had lifted</strong> heavy loads, <strong>had covered</strong> two shifts alone, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I got the warehouse job! Jennifer <strong>offered</strong> it to me today.", side: "right", tone: "terracotta" },
+          { speaker: "Marta (phone)", avatar: "🧑🏽", text: "No way! What did you tell her?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I told her I <strong>had cleaned</strong> hotel rooms for two years, <strong>had trained</strong> two new cleaners, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -405,11 +407,11 @@ export const pastPerfectContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("one action", "sage")}
-            <span><em>They <strong>called</strong> him this morning.</em> (just one past fact)</span>
+            <span><em>Jennifer <strong>offered</strong> her the job today.</em> (just one past fact)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("two actions", "amber")}
-            <span><em>Before he <strong>got</strong> the job, he <strong>had covered</strong> two shifts alone.</em> (1st: covered; 2nd: got the job)</span>
+            <span><em>Before she <strong>got</strong> the job, she <strong>had trained</strong> two new cleaners.</em> (1st: trained; 2nd: got the job)</span>
           </div>
         </div>
 
@@ -427,7 +429,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Wilmer ___ the supervisor job this morning. (one fact, no sequence)",
+              label: "Gloria ___ the warehouse job today. (one fact, no sequence)",
               options: [
                 { value: "a", label: "got (Past Simple)" },
                 { value: "b", label: "had got (Past Perfect)" },
@@ -436,7 +438,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Before the manager promoted him, Wilmer ___ every shift on time for six months.",
+              label: "Before she applied here, Gloria ___ every shift on time at the hotel.",
               options: [
                 { value: "a", label: "showed up (Past Simple)" },
                 { value: "b", label: "had shown up (Past Perfect)" },
@@ -445,10 +447,10 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "When Wilmer called his cousin, he ___ the news already.",
+              label: "When Gloria called Marta, Marta ___ her shift at the hotel already.",
               options: [
-                { value: "a", label: "heard (Past Simple)" },
-                { value: "b", label: "had already heard (Past Perfect)" },
+                { value: "a", label: "finished (Past Simple)" },
+                { value: "b", label: "had already finished (Past Perfect)" },
               ],
               expectedAnswer: "b",
             },
@@ -463,7 +465,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is NOT correct?",
               options: [
-                { value: "a", label: "He had worked a double shift before he got promoted." },
+                { value: "a", label: "She had worked a double shift before she got the job." },
                 { value: "b", label: "She had finished her break yesterday." },
                 { value: "c", label: "By the time the manager arrived, they had loaded the truck." },
               ],
@@ -478,12 +480,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Wilmer ___ (work) at the warehouse for a year before he got the promotion.",
+              label: "Gloria ___ (work) at the hotel for two years before she got the warehouse job.",
               expectedAnswers: ["had worked"],
             },
             {
               type: "text",
-              label: "He ___ (call) his cousin right after the manager told him.",
+              label: "She ___ (call) Marta right after Jennifer offered her the job.",
               expectedAnswers: ["called"],
             },
           ],
@@ -498,13 +500,15 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "your-work-story",
       title: "Your Work Story",
       explanation: `
-        ${sceneCard("sceneWorkStory", "Break room. Hodan and her coworker Thanh swap work histories.", "sage")}
+        ${sceneCard("sceneWorkStory", "Break room, Gloria's first week. Gloria and James swap work histories.", "sage")}
+
+        <p>It is Gloria's first week at the warehouse. At lunch, James, the forklift operator she met before her interview, sits down with her. They talk about their old jobs.</p>
 
         ${dialogue([
-          { speaker: "Hodan", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
-          { speaker: "Thanh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
-          { speaker: "Hodan", avatar: "👩🏿", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
-          { speaker: "Thanh", avatar: "👩🏻", text: "Lucky you. And the pay is better here. By the time I quit, the restaurant <strong>hadn’t paid</strong> me overtime, not once.", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "Before I came here, I <strong>had cleaned</strong> hotel rooms for two years. Mornings mostly.", side: "right", tone: "terracotta" },
+          { speaker: "James", avatar: "👨🏿", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
+          { speaker: "James", avatar: "👨🏿", text: "Lucky you. And the pay is better here. By the time I quit, the restaurant <strong>hadn’t paid</strong> me overtime, not once.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -528,18 +532,18 @@ export const pastPerfectContent: InteractiveGuideContent = {
       `,
       tipBox: {
         title: "February at the warehouse",
-        content: "A break-room poster near Hodan's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
+        content: "A break-room poster near Gloria's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
       },
       exercises: [
         {
           id: "pp-s5-ex1",
-          title: "Hodan's story",
-          instructions: "Fill in the blanks to complete Hodan's work history.",
+          title: "Gloria's story",
+          instructions: "Fill in the blanks to complete Gloria's work history.",
           items: [
             {
               type: "text",
-              label: "Before she found this job, Hodan ___ (do) home care for four years.",
-              expectedAnswers: ["had done"],
+              label: "Before she found this job, Gloria ___ (clean) hotel rooms for two years.",
+              expectedAnswers: ["had cleaned"],
             },
             {
               type: "text",
@@ -550,12 +554,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
         },
         {
           id: "pp-s5-ex2",
-          title: "Thanh's story",
+          title: "James's story",
           instructions: "Choose the correct form for each blank.",
           items: [
             {
               type: "radio",
-              label: "Before Thanh found this job, she ___ in a restaurant for years.",
+              label: "Before James found this job, he ___ in a restaurant for years.",
               options: [
                 { value: "a", label: "had worked (Past Perfect)" },
                 { value: "b", label: "worked (Past Simple)" },
@@ -564,7 +568,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "By the time Thanh quit, the restaurant ___ her overtime even once.",
+              label: "By the time James quit, the restaurant ___ him overtime even once.",
               options: [
                 { value: "a", label: "hadn't paid (Past Perfect, negative)" },
                 { value: "b", label: "didn't pay (Past Simple, negative)" },
@@ -624,9 +628,9 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Before Hodan got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
-      correctAnswer: "had done",
-      explanation: "Past Perfect (had done) shows the action that happened first, before she got the new job.",
+      question: "Fill in the blank: \"Before Gloria got the job, she ___ hotel rooms for two years.\" (Earlier of two past actions.)",
+      correctAnswer: "had cleaned",
+      explanation: "Past Perfect (had cleaned) shows the action that happened first, before she got the new job.",
       topic: "past-perfect",
       skill: "usage",
       skillTag: "work-history-narrative",
@@ -638,7 +642,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
       options: [
         { value: "a", label: "After she had finished loading, she clocked out." },
         { value: "b", label: "She had eaten lunch before the break ended." },
-        { value: "c", label: "I had called my cousin last night." },
+        { value: "c", label: "I had called Marta last night." },
       ],
       correctAnswer: "c",
       explanation: "Past Perfect needs two past actions. 'Last night' is just one action, so Past Simple (called) is correct.",
@@ -650,7 +654,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qws1",
       type: "word-scramble" as const,
-      question: "Thanh finished her tasks before the manager arrived. Put the words in order.",
+      question: "Gloria finished her tasks before the manager arrived. Put the words in order.",
       words: ["She", "had", "finished", "before", "the", "manager", "arrived"],
       correctAnswer: "She had finished before the manager arrived",
       hint: "had + past participle for the earlier action",

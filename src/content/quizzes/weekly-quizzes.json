@@ -2041,7 +2041,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Teresa finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
+        "prompt": "Gloria finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
         "answers": [
           "She had finished before the manager arrived"
         ],
