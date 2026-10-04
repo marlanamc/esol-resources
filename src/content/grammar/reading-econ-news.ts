@@ -122,6 +122,27 @@ export const readingEconNewsContent: InteractiveGuideContent = {
           <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 0.7rem 1rem; border-radius: 0.5rem"><strong>3. Good news or bad news for workers?</strong> More jobs and higher wages are usually good. Higher prices and more unemployment are usually bad.</div>
         </div>
 
+        <h3>Up words and down words</h3>
+        <p>On the news, you will hear <strong>increase</strong> and <strong>decrease</strong> all the time. <em>"Gas prices are increasing."</em> <em>"Unemployment decreased this month."</em> These are the news words for <strong>go up</strong> and <strong>go down</strong>.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 1rem 0; max-width: 520px">
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.8rem 1rem; border-radius: 0.5rem">
+            <div style="font-weight: 700; margin-bottom: 0.4rem">⬆ Going up</div>
+            <div style="line-height: 1.8"><strong>increase</strong><br>rise / rose<br>go up / went up<br>higher</div>
+          </div>
+          <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 0.8rem 1rem; border-radius: 0.5rem">
+            <div style="font-weight: 700; margin-bottom: 0.4rem">⬇ Going down</div>
+            <div style="line-height: 1.8"><strong>decrease</strong><br>fall / fell<br>drop / dropped<br>lower</div>
+          </div>
+        </div>
+
+        <p>You will see these words in two ways:</p>
+        <ul>
+          <li><strong>Gas prices increased.</strong> (something happened)</li>
+          <li><strong>There was an increase in gas prices.</strong> (a thing: <em>an increase</em>)</li>
+        </ul>
+        <p>Both sentences mean the same thing: gas costs more now.</p>
+
         ${fakeHeadlineCard({
           source: "Local News",
           headline: "More Companies Are Hiring This Month",
@@ -168,6 +189,54 @@ export const readingEconNewsContent: InteractiveGuideContent = {
               type: "text",
               label: "\"Grocery Prices ___ Again This Month\" (the news word for \"went up\")",
               expectedAnswers: ["Rise", "rise", "Rose", "rose"],
+            },
+          ],
+        },
+        {
+          id: "up-down-words-1",
+          title: "Up or down?",
+          instructions: "Read each sentence from the news. Is the number going up or going down?",
+          items: [
+            {
+              type: "radio",
+              label: "\"Gas prices are increasing again this week.\"",
+              options: [
+                { value: "up", label: "⬆ Going up" },
+                { value: "down", label: "⬇ Going down" },
+              ],
+              expectedAnswer: "up",
+            },
+            {
+              type: "radio",
+              label: "\"The city will decrease bus fares next year.\"",
+              options: [
+                { value: "up", label: "⬆ Going up" },
+                { value: "down", label: "⬇ Going down" },
+              ],
+              expectedAnswer: "down",
+            },
+            {
+              type: "radio",
+              label: "\"There was a big increase in rent this year.\"",
+              options: [
+                { value: "down", label: "⬇ Going down" },
+                { value: "up", label: "⬆ Going up" },
+              ],
+              expectedAnswer: "up",
+            },
+            {
+              type: "radio",
+              label: "\"Unemployment fell to 3.5% this month.\"",
+              options: [
+                { value: "up", label: "⬆ Going up" },
+                { value: "down", label: "⬇ Going down" },
+              ],
+              expectedAnswer: "down",
+            },
+            {
+              type: "text",
+              label: "\"Milk prices went down.\" Use a news word: \"Milk prices ___.\"",
+              expectedAnswers: ["decreased", "Decreased", "fell", "Fell", "dropped", "Dropped"],
             },
           ],
         },
