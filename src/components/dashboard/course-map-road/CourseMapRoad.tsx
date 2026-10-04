@@ -13,6 +13,7 @@ import {
     RoadRow,
     UnitSign,
 } from "./parts";
+import styles from "./road.module.css";
 
 interface Props {
     model: CourseMapRoadModel;
@@ -224,7 +225,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     };
 
     return (
-        <div ref={rootRef} className="-mx-4 font-legible md:-mx-6">
+        <div ref={rootRef} className={`-mx-4 font-legible md:-mx-6 ${styles.road}`}>
             <h1 className="sr-only">Course Map</h1>
 
             {/* Sticky top bar */}

@@ -1,0 +1,44 @@
+/* Road colors live with the road. Kept out of globals.css so the whole
+   set ships with the component (globals.css was served stale once). */
+.road {
+  --road-rail: #cdbfa9;
+  --road-rail-future: #d6cbbb;
+  --road-segment-future: #efe9df;
+  --road-progress-todo: #e9e1d4;
+  --road-node-past-border: #8f99a5;
+  --road-locked-bg: #f3eee6;
+  --road-locked-icon: #8a94a0;
+  --road-future-title: #6b7684;
+  --road-future-meta: #7a8594;
+  --road-summary: #4a5566;
+  --road-neutral-chip: #f1ece4;
+  --road-bar-bg: rgba(253, 249, 240, 0.95);
+  --road-ink: #1a202c;
+  --road-ink-text: #fffdfa;
+  --road-on-accent: #fffdfa;
+  --road-on-success: #fffdfa;
+  --road-done-bg: #eef4ec;
+  --road-done-text: #2d6930;
+}
+
+:global(.dark) .road,
+:global([data-theme="dark"]) .road {
+  --road-rail: rgba(168, 213, 247, 0.32);
+  --road-rail-future: rgba(168, 213, 247, 0.22);
+  --road-segment-future: rgba(168, 213, 247, 0.12);
+  --road-progress-todo: rgba(168, 213, 247, 0.16);
+  --road-node-past-border: #8fa3b8;
+  --road-locked-bg: rgba(168, 213, 247, 0.08);
+  --road-locked-icon: #8fa3b8;
+  --road-future-title: #a9b8c8;
+  --road-future-meta: #93a4b6;
+  --road-summary: #c3d0dc;
+  --road-neutral-chip: rgba(168, 213, 247, 0.1);
+  --road-bar-bg: rgba(13, 22, 32, 0.92);
+  --road-ink: #e8f1f8;
+  --road-ink-text: #0d1620;
+  --road-on-accent: #fffdfa;
+  --road-on-success: #0d1620;
+  --road-done-bg: rgba(111, 191, 159, 0.16);
+  --road-done-text: #8ed4b8;
+}
