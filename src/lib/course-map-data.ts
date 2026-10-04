@@ -411,24 +411,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "badge": "Guided"
           },
           {
-            "id": "past-simple-past-continuous-guide",
-            "href": "/grammar-reader/past-simple-past-continuous",
-            "slot": "extra",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Past Simple + Past Continuous: Telling the Story"
-          },
-          {
-            "id": "all-verb-tenses-overview",
-            "href": "/grammar-reader/all-verb-tenses-overview",
-            "slot": "extra",
-            "order": 7,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "All Verb Tenses Overview"
-          },
-          {
             "id": "have-you-ever-speaking",
             "slot": "extra",
             "order": 8,
