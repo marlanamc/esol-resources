@@ -5,7 +5,7 @@ import type { CourseMapUnit } from "@/lib/course-map";
 
 /**
  * The weekday a class week becomes "this week" for students, and the hour it
- * turns over. Content opens earlier — Sunday 8pm, see WEEK_REVEAL_* — so there
+ * turns over. Content opens earlier — Sunday 8am, see WEEK_REVEAL_* — so there
  * is a deliberate early-access window before the week is the one being taught.
  */
 export const WEEK_SWITCH_WEEKDAY = 2; // Tuesday
@@ -145,4 +145,18 @@ export function resolveCurrentWeek(options: ResolveCurrentWeekOptions): CurrentW
         source: "fallback",
         scheduledWeekNumber: scheduled.weekNumber,
     };
+}
+
+/**
+ * The next week, when it is already open but class has not moved to it yet —
+ * the early-access window between WEEK_REVEAL_* and WEEK_SWITCH_*. Only for
+ * classroom learners on the calendar week; null otherwise.
+ */
+export function resolveEarlyAccessWeek(
+    resolution: CurrentWeekResolution | null,
+    visibleWeeks: number[]
+): number | null {
+    if (!resolution || resolution.source !== "calendar") return null;
+    const next = resolution.weekNumber + 1;
+    return visibleWeeks.includes(next) ? next : null;
 }
