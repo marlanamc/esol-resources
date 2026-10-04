@@ -112,15 +112,15 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, front desk. Tuesday morning.", "sage")}
+        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, front desk. Tuesday, 3:30 PM, after Rosa's shift.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Nadine stops by the front desk before class.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, we follow Rosa through a busy few days. She wants to volunteer at the Saturday food pantry. Before class, she stops by the front desk. Kevin is the volunteer coordinator at the community center.</p>
 
         ${dialogue([
-          { speaker: "Staff", avatar: "👨🏽", text: "Hi, are you here to sign up for the food pantry?", side: "left", tone: "sage" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "No, I <strong>have already signed</strong> up. I came in last week.", side: "right", tone: "terracotta" },
-          { speaker: "Staff", avatar: "👨🏽", text: "Oh, good. Is there anything else I can help with?", side: "left", tone: "sage" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "Yes, actually. I <strong>haven't gotten</strong> my pickup day <strong>yet</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "👨🏽", text: "Hi Rosa, are you here to sign up as a volunteer at the food pantry?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "No, I <strong>have already signed</strong> up. I came in last week.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "👨🏽", text: "Oh, good. Is there anything else I can help with?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, actually. I <strong>haven't gotten</strong> my Saturday shift time <strong>yet</strong>.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -149,7 +149,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("done", "sage")}
-            <span><em>Nadine <strong>has already signed</strong> up for the food pantry.</em></span>
+            <span><em>Rosa <strong>has already signed</strong> up for the food pantry.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("sooner than expected", "sage")}
@@ -177,9 +177,9 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which sentence is correct?",
               options: [
-                { value: "a", label: "Nadine has already renew her bus pass." },
-                { value: "b", label: "Nadine has already renewed her bus pass." },
-                { value: "c", label: "Nadine has renewed already her bus pass." },
+                { value: "a", label: "Rosa has already renew her bus pass." },
+                { value: "b", label: "Rosa has already renewed her bus pass." },
+                { value: "c", label: "Rosa has renewed already her bus pass." },
               ],
               expectedAnswer: "b",
             },
@@ -195,7 +195,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The staff member says: \"Someone ___ you.\" (help. use already)",
+              label: "Kevin says: \"Someone ___ you.\" (help. use already)",
               options: [
                 { value: "a", label: "has already helped" },
                 { value: "b", label: "has already help" },
@@ -205,7 +205,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Nadine ___ already signed up for the food pantry.",
+              label: "Rosa ___ already signed up to volunteer at the food pantry.",
               expectedAnswers: ["has"],
             },
           ],
@@ -251,13 +251,15 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePharmacy", "Pharmacy on Chelsea Street. Thursday afternoon.", "amber")}
+        ${sceneCard("scenePharmacy", "Outside the pharmacy on Chelsea Street. Wednesday afternoon. Rosa runs into Amara.", "amber")}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The next day, Rosa goes to the pharmacy after work. Outside, she meets Amara, her neighbor from Meridian Street. Amara works at the hospital.</p>
 
         ${dialogue([
-          { speaker: "Mark", avatar: "👨🏽", text: "Hey Carlos, coming back from the pharmacy?", side: "left", tone: "amber" },
-          { speaker: "Carlos", avatar: "🧑🏽", text: "Yeah, I <strong>have just picked</strong> up my prescription. The line was crazy.", side: "right", tone: "terracotta" },
-          { speaker: "Mark", avatar: "👨🏽", text: "I know. I\'ve <strong>just gotten</strong> back from there too. Did they have everything?", side: "left", tone: "amber" },
-          { speaker: "Carlos", avatar: "🧑🏽", text: "Yes, thankfully. They <strong>have just restocked</strong> my medicine, so I didn’t have to come back.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Hey Rosa, coming back from the pharmacy?", side: "left", tone: "amber" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yeah, I <strong>have just picked</strong> up my prescription. The line was crazy.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I know. I\'ve <strong>just gotten</strong> back from there too. Did they have everything?", side: "left", tone: "amber" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, thankfully. They <strong>have just restocked</strong> my medicine, so I didn’t have to come back.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -276,7 +278,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ])}
 
         ${placementDiagram([
-          { text: "Carlos" },
+          { text: "Rosa" },
           { text: "has" },
           { text: "JUST", highlight: true },
           { text: "gotten" },
@@ -324,7 +326,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos is still on the stairs. He got back from the pharmacy two minutes ago. Which fits?",
+              label: "Rosa is still on the stairs. She got back from the pharmacy two minutes ago. Which fits?",
               options: [
                 { value: "just", label: "have JUST gotten back. moments ago" },
                 { value: "already", label: "have ALREADY gotten back. done before" },
@@ -358,10 +360,10 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Carlos just has picked up his medication.\"",
+              label: "\"Rosa just has picked up her medication.\"",
               options: [
                 { value: "correct", label: "Correct as written" },
-                { value: "incorrect", label: "Not correct. Should be: Carlos has just picked up his medication." },
+                { value: "incorrect", label: "Not correct. Should be: Rosa has just picked up her medication." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -376,7 +378,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Carlos ___ just picked up his prescription.",
+              label: "Rosa ___ just picked up her prescription.",
               expectedAnswers: ["has"],
             },
           ],
@@ -412,13 +414,15 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneKitchenTable", "Linh's kitchen table, East Boston. Wednesday evening.", "blue")}
+        ${sceneCard("sceneKitchenTable", "Rosa's kitchen table, East Boston. Wednesday evening, the same day.", "blue")}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">That evening, Rosa sits at the kitchen table with her daughter. Rosa has a few things to do around the apartment, like calling the landlord about the kitchen faucet.</p>
 
         ${dialogue([
-          { speaker: "Linh's son", avatar: "👦🏻", text: "Mom, have you called the landlord <strong>yet</strong>?", side: "left", tone: "blue" },
-          { speaker: "Linh", avatar: "👩🏻", text: "No, I <strong>haven't called</strong> him <strong>yet</strong>. I will do it tomorrow.", side: "right", tone: "terracotta" },
-          { speaker: "Linh's son", avatar: "👦🏻", text: "OK. Have you paid the electric bill <strong>yet</strong>? It’s due tomorrow.", side: "left", tone: "blue" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Not <strong>yet</strong>. Let me do that now, before I forget.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa's daughter", avatar: "👧🏽", text: "Mom, have you called the landlord <strong>yet</strong>?", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "No, I <strong>haven't called</strong> him <strong>yet</strong>. I will do it tomorrow.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa's daughter", avatar: "👧🏽", text: "OK. Have you paid the electric bill <strong>yet</strong>? It’s due tomorrow.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Not <strong>yet</strong>. Let me do that now, before I forget.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -478,7 +482,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Linh's son wants to know about the library books. Which question is correct?",
+              label: "Rosa's daughter wants to know about the library books. Which question is correct?",
               options: [
                 { value: "a", label: "Have you yet returned the library books?" },
                 { value: "b", label: "Have you returned the library books yet?" },
@@ -573,6 +577,8 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       icon: "📋",
       explanation: `
         ${sceneCard("sceneToDoList", "Rosa's kitchen, Thursday, 4 PM.", "terracotta")}
+
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The next day, Rosa is home from work. She checks her to-do list before she leaves for class.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏾", text: "OK, let me check my list before I leave for class tonight.", side: "right", tone: "terracotta" },
@@ -723,15 +729,15 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       title: "Hear it, use it: Practice in the real world",
       icon: "🎧",
       explanation: `
-        ${sceneCard("sceneApartmentHallway", "Quick exchanges. East Boston, around the neighborhood.", "sage")}
+        ${sceneCard("sceneApartmentHallway", "The hallway of Rosa's building. Saturday afternoon.", "sage")}
 
-        <p style="margin: 0 0 0.75rem; line-height: 1.6">These are real phrases you might hear or say this week, on the bus, at the store, or talking with a neighbor. Read them and check your understanding.</p>
+        <p style="margin: 0 0 0.75rem; line-height: 1.6">On Saturday, Rosa finishes her first volunteer shift at the food pantry. She comes home in her pantry T-shirt and meets Amara in the hallway. These are real phrases you might hear or say with a neighbor. Read them and check your understanding.</p>
 
         ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Bruno, have you signed up for the food pantry <strong>yet</strong>?", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Yes, I <strong>have already registered</strong>. I did it online last week.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Oh nice. I <strong>have just found out</strong> about it. I'll do it tonight.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Check the dates first. This month’s deadline <strong>has just passed</strong>, I think. You might need to wait until next month.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Rosa, is that a food pantry T-shirt? Have you signed up to volunteer there <strong>yet</strong>?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, I <strong>have already registered</strong>. I did it at the community center last week.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Oh nice. I <strong>have just found out</strong> about it. I'll sign up tonight.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Check the dates first. This month’s deadline <strong>has just passed</strong>, I think. You might need to wait until next month.", side: "right", tone: "terracotta" },
         ])}
 
         <p style="margin: 1rem 0 0.6rem; font-weight: 700; font-size: 0.9rem">Quick summary before the quiz:</p>
@@ -759,7 +765,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Amara hasn't registered for the food pantry yet.\"",
+              label: "\"Amara hasn't registered as a food pantry volunteer yet.\"",
               options: [
                 { value: "a", label: "Amara registered a long time ago." },
                 { value: "b", label: "Amara registered just now." },
@@ -769,7 +775,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Amara has just found out about the program.\"",
+              label: "\"Amara has just found out about the volunteer program.\"",
               options: [
                 { value: "a", label: "Amara learned about the program a long time ago." },
                 { value: "b", label: "Amara learned about the program very recently." },
@@ -852,11 +858,11 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "jay-q1",
-      question: "Nadine signed up for the food pantry last week. The staff member asks if she wants to sign up today. What does Nadine say?",
+      question: "Rosa signed up to volunteer at the food pantry last week. Kevin asks if she wants to sign up today. What does Rosa say?",
       options: [
-        { value: "a", label: "I have just signed up for the pantry." },
-        { value: "b", label: "I have already signed up for the pantry." },
-        { value: "c", label: "I haven't signed up for the pantry yet." },
+        { value: "a", label: "I have just signed up to volunteer." },
+        { value: "b", label: "I have already signed up to volunteer." },
+        { value: "c", label: "I haven't signed up to volunteer yet." },
       ],
       correctAnswer: "b",
       explanation: "ALREADY means done before now. She signed up last week, not moments ago.",
@@ -867,14 +873,14 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
     },
     {
       id: "jay-q2",
-      question: "Carlos walked in the door 30 seconds ago. His neighbor asks where he's been. He says:",
+      question: "Rosa walked in the door 30 seconds ago. Her neighbor Amara asks where she's been. Rosa says:",
       options: [
         { value: "a", label: "I have already gotten back from the pharmacy." },
         { value: "b", label: "I have just gotten back from the pharmacy." },
         { value: "c", label: "I haven't gotten back from the pharmacy yet." },
       ],
       correctAnswer: "b",
-      explanation: "JUST means very recently, moments ago. He arrived 30 seconds ago.",
+      explanation: "JUST means very recently, moments ago. She arrived 30 seconds ago.",
       topic: "just",
       skill: "usage",
       skillTag: "meaning-very-recently",
@@ -883,7 +889,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
     {
       id: "jay-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Linh hasn't paid the electric bill ___.\" (It's expected but not done.)",
+      question: "Fill in the blank: \"Rosa hasn't paid the electric bill ___.\" (It's expected but not done.)",
       correctAnswer: "yet",
       explanation: "YET goes at the end of a negative sentence when something is expected but hasn't happened.",
       topic: "yet",
@@ -894,7 +900,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
     {
       id: "jay-qws1",
       type: "word-scramble" as const,
-      question: "Nadine registered for the food pantry last week. Put the words in order.",
+      question: "Rosa registered for the food pantry last week. Put the words in order.",
       words: ["She", "has", "already", "registered", "for", "the", "food", "pantry"],
       correctAnswer: "She has already registered for the food pantry",
       hint: "ALREADY goes between have/has and the past participle",

@@ -82,7 +82,9 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Need to Move",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneLeaseEnding", "Rosa's kitchen, East Boston. Wednesday night. Her cousin Javier stopped by after dinner.", "terracotta")}
+        <p>Rosa is a hotel housekeeper. Her lease ends soon, and she needs a new apartment. Her cousin Javier comes to help her think.</p>
+
+        ${sceneCard("sceneLeaseEnding", "Rosa's kitchen, East Boston. A Wednesday night in January. Her cousin Javier stopped by after dinner.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "My lease ends at the end of February. I <strong>need to find</strong> something fast.", side: "right", tone: "terracotta" },
@@ -106,7 +108,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("necessary", "sage")}
-            <span><em>We <strong>need to move</strong> before the end of January.</em></span>
+            <span><em>We <strong>need to move</strong> before the end of February.</em></span>
           </div>
         </div>
 
@@ -180,13 +182,15 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Want to Stay Near the Bus",
       icon: "🚌",
       explanation: `
-        ${sceneCard("sceneApartmentSearch", "Break room at the warehouse. Thursday lunch.", "blue")}
+        <p>The next day at work, Rosa tells her coworker Marta about her search. Marta is a housekeeper at the airport hotel too.</p>
+
+        ${sceneCard("sceneApartmentSearch", "The break room at the hotel. Thursday lunch, the next day.", "blue")}
 
         ${dialogue([
-          { speaker: "Wilson", avatar: "👨🏽", text: "I <strong>want to stay</strong> on the Blue Line. Two buses to work is too much.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "I get it. Do you <strong>want to see</strong> that listing on Bremen Street? My cousin said it's good.", side: "left", tone: "blue" },
-          { speaker: "Wilson", avatar: "👨🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "I’ll ask her before we arrange a visit. I <strong>want to make</strong> sure it’s in your budget.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>want to stay</strong> near the 116 bus. I don't have a car, and two buses to work is too much.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏻", text: "I get it. Do you <strong>want to see</strong> that listing on Bremen Street? My cousin said it's good.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏻", text: "I’ll ask her before we arrange a visit. I <strong>want to make</strong> sure it’s in your budget.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -222,7 +226,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Wilson ___ near the Blue Line. Choose the correct form.",
+              label: "Rosa ___ near the 116 bus. Choose the correct form.",
               options: [
                 { value: "a", label: "want stay" },
                 { value: "b", label: "wants to stay" },
@@ -278,13 +282,15 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Hope to Find Something Before Rent Goes Up",
       icon: "📋",
       explanation: `
-        ${sceneCard("scenePhoneCall", "Halima's kitchen. Saturday morning. She and her sister Nadine are both looking for apartments.", "sage")}
+        <p>Rosa does not work on Saturday. Her sister Teresa comes over with her phone. Teresa helps Rosa with her daughter, and now she helps with the apartment search too.</p>
+
+        ${sceneCard("scenePhoneCall", "Rosa's kitchen. Saturday morning. Her sister Teresa came over to help her look for apartments.", "sage")}
 
         ${dialogue([
-          { speaker: "Halima", avatar: "👩🏿", text: "I <strong>hope to find</strong> something before spring. If we wait, the prices go up.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "I <strong>plan to call</strong> that place on Maverick Street today. Three bedrooms, laundry inside.", side: "left", tone: "sage" },
-          { speaker: "Halima", avatar: "👩🏿", text: "Good. I <strong>plan to ask</strong> about the heat. In our place now, it breaks every winter.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "Me too. I <strong>hope to hear</strong> back from them by tonight.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>hope to find</strong> something before spring. If we wait, the prices go up.", side: "right", tone: "terracotta" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "I <strong>plan to call</strong> that place on Maverick Street for you today. Two bedrooms, laundry inside.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Good. I <strong>plan to ask</strong> about the heat. In my building now, it breaks every winter.", side: "right", tone: "terracotta" },
+          { speaker: "Teresa", avatar: "👩🏾", text: "Good idea. I <strong>hope to hear</strong> back from them by tonight.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -306,7 +312,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("plan", "sage")}
-            <span><em>They <strong>plan to move</strong> in January.</em></span>
+            <span><em>They <strong>plan to move</strong> in March.</em></span>
           </div>
         </div>
       `,
@@ -318,7 +324,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Halima is not 100% sure she will find an apartment this week. Which sentence fits?",
+              label: "Rosa is not 100% sure she will find an apartment this week. Which sentence fits?",
               options: [
                 { value: "a", label: "She plans to find one this week." },
                 { value: "b", label: "She hopes to find one this week." },
@@ -328,7 +334,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Nadine has already decided to call the landlord at 5 PM. Which sentence fits?",
+              label: "Teresa has already decided to call the landlord at 5 PM. Which sentence fits?",
               options: [
                 { value: "a", label: "She hopes to call at 5 PM." },
                 { value: "b", label: "She plans to call at 5 PM." },
@@ -357,8 +363,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["They", "plan", "to", "move", "before", "the", "end", "of", "January"],
-              correctAnswer: "They plan to move before the end of January",
+              words: ["We", "plan", "to", "move", "before", "the", "end", "of", "February"],
+              correctAnswer: "We plan to move before the end of February",
             },
           ],
         },
@@ -374,13 +380,15 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Would Like to See the Apartment",
       icon: "📞",
       explanation: `
-        ${sceneCard("sceneEastBostonStreet", "East Boston neighborhood. Diego calls a listing after work.", "blue")}
+        <p>The next week, Rosa has a few places to visit. She calls Brian, the landlord of the apartment on Lexington Street. This is her first call to a landlord, so she uses polite English.</p>
+
+        ${sceneCard("sceneEastBostonStreet", "East Boston. Monday after work. Rosa saw a For Rent sign on Lexington Street and now calls the number. Brian is the landlord.", "blue")}
 
         ${dialogue([
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Hello, this is Brian. Can I help you?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Hi. I <strong>would like to see</strong> the apartment on Lexington Street. Is it still available?", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Hi. I <strong>would like to see</strong> the apartment on Lexington Street. Is it still available?", side: "right", tone: "terracotta" },
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Yes, it is. When would you like to come?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "I <strong>would like to come</strong> on Saturday morning, if that works.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>would like to come</strong> on Saturday morning, if that works.", side: "right", tone: "terracotta" },
           { speaker: "Brian (landlord)", avatar: "🧑‍💼", text: "Saturday at 10 is fine. See you then.", side: "left", tone: "blue" },
         ])}
 
@@ -416,7 +424,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego is calling a landlord for the first time. Which sounds more appropriate?",
+              label: "Rosa is calling a landlord for the first time. Which sounds more appropriate?",
               options: [
                 { value: "a", label: "\"I want to schedule a tour.\"" },
                 { value: "b", label: "\"I would like to schedule a tour.\"" },
@@ -454,8 +462,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "would", "like", "to", "ask", "about", "the", "parking"],
-              correctAnswer: "I would like to ask about the parking",
+              words: ["I", "would", "like", "to", "ask", "about", "the", "deposit"],
+              correctAnswer: "I would like to ask about the deposit",
             },
           ],
         },
@@ -471,16 +479,16 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "Mini Review + Building the Sentence",
       icon: "✅",
       explanation: `
-        <p>It is Tuesday evening. Lucia just got home from her housecleaning job. The kids are home from school this week. Her lease ends in three weeks. She opens her notes app and writes everything down.</p>
+        <p>It is Wednesday evening in early February. Rosa just got home from the hotel. Her daughter is doing homework. Rosa's lease ends in three weeks. She has talked to Javier, Marta, Teresa, and Brian. Now she opens her notes app and writes everything down.</p>
 
         <div style="background: rgba(106,141,115,0.08); border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin: 1.25rem 0; border: 1px solid rgba(106,141,115,0.2)">
-          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73">Lucia's list</p>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73">Rosa's list</p>
           <ul style="margin: 0; padding-left: 1.25rem; line-height: 2">
             <li>I <strong>need to call</strong> the listing on Breed Street before 5 PM.</li>
-            <li>I <strong>want to find</strong> something with a second bedroom for the kids.</li>
-            <li>I <strong>hope to move</strong> before the end of January.</li>
-            <li>I <strong>plan to ask</strong> my supervisor for Saturday off so I can see apartments.</li>
-            <li>I <strong>would like to pay</strong> less than $1,500 a month.</li>
+            <li>I <strong>want to find</strong> something with a second bedroom for my daughter.</li>
+            <li>I <strong>hope to move</strong> before the end of February.</li>
+            <li>I <strong>plan to ask</strong> my supervisor for Friday afternoon off so I can see apartments.</li>
+            <li>I <strong>would like to pay</strong> less than $1,400 a month.</li>
           </ul>
         </div>
 
@@ -497,9 +505,9 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             <tbody>
               <tr><td style="padding: 0.4rem 0.6rem"><strong>need to</strong></td><td style="padding: 0.4rem 0.6rem">necessary</td><td style="padding: 0.4rem 0.6rem"><em>I need to call now.</em></td></tr>
               <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.4rem 0.6rem"><strong>want to</strong></td><td style="padding: 0.4rem 0.6rem">desire</td><td style="padding: 0.4rem 0.6rem"><em>I want to find a bigger place.</em></td></tr>
-              <tr><td style="padding: 0.4rem 0.6rem"><strong>hope to</strong></td><td style="padding: 0.4rem 0.6rem">wish (unsure)</td><td style="padding: 0.4rem 0.6rem"><em>I hope to move before February.</em></td></tr>
-              <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.4rem 0.6rem"><strong>plan to</strong></td><td style="padding: 0.4rem 0.6rem">intention</td><td style="padding: 0.4rem 0.6rem"><em>I plan to ask for Saturday off.</em></td></tr>
-              <tr><td style="padding: 0.4rem 0.6rem"><strong>would like to</strong></td><td style="padding: 0.4rem 0.6rem">polite want</td><td style="padding: 0.4rem 0.6rem"><em>I'd like to pay less than $1,500.</em></td></tr>
+              <tr><td style="padding: 0.4rem 0.6rem"><strong>hope to</strong></td><td style="padding: 0.4rem 0.6rem">wish (unsure)</td><td style="padding: 0.4rem 0.6rem"><em>I hope to move before March.</em></td></tr>
+              <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.4rem 0.6rem"><strong>plan to</strong></td><td style="padding: 0.4rem 0.6rem">intention</td><td style="padding: 0.4rem 0.6rem"><em>I plan to ask for Friday afternoon off.</em></td></tr>
+              <tr><td style="padding: 0.4rem 0.6rem"><strong>would like to</strong></td><td style="padding: 0.4rem 0.6rem">polite want</td><td style="padding: 0.4rem 0.6rem"><em>I'd like to pay less than $1,400.</em></td></tr>
             </tbody>
           </table>
         </div>
@@ -519,8 +527,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "hopes", "to", "move", "before", "the", "end", "of", "January"],
-              correctAnswer: "She hopes to move before the end of January",
+              words: ["She", "hopes", "to", "move", "before", "the", "end", "of", "February"],
+              correctAnswer: "She hopes to move before the end of February",
             },
           ],
         },
@@ -541,7 +549,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Lucia is 100% sure she is calling the listing today. Which word fits best?",
+              label: "Rosa is 100% sure she is calling the listing today. Which word fits best?",
               options: [
                 { value: "a", label: "She hopes to call the listing today." },
                 { value: "b", label: "She plans to call the listing today." },
@@ -554,7 +562,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
         {
           id: "inf-s5-ex3",
           title: "Complete the sentence",
-          instructions: "Type the correct phrase from Lucia's list.",
+          instructions: "Type the correct phrase from Rosa's list.",
           items: [
             {
               type: "text",
@@ -563,7 +571,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "I ___ find something with a second bedroom for the kids. (want to)",
+              label: "I ___ find something with a second bedroom for my daughter. (want to)",
               expectedAnswers: ["want to find"],
             },
           ],
@@ -594,7 +602,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "infinitives-q4",
-      question: "Diego is calling a landlord for the first time. Which sounds most polite and appropriate?",
+      question: "Rosa is calling a landlord for the first time. Which sounds most polite and appropriate?",
       options: [
         { value: "a", label: "I want to look at the lease." },
         { value: "b", label: "I would like to look at the lease." },
@@ -636,7 +644,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
     {
       id: "infinitives-qws1",
       type: "word-scramble" as const,
-      question: "Wilson calls about an apartment on Bremen Street. Put the words in order.",
+      question: "Rosa calls about an apartment on Lexington Street. Put the words in order.",
       words: ["I", "would", "like", "to", "meet", "the", "landlord"],
       correctAnswer: "I would like to meet the landlord",
       hint: "would like to + base verb",

@@ -918,7 +918,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "\"Have you ever called 311?\" Omar says no. What is the best reply?",
+        "prompt": "\"Have you ever called 311?\" Claudette says no. What is the best reply?",
         "options": [
           "No, I didn't.",
           "No, I haven't.",
@@ -1652,7 +1652,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Kofi's last day at the restaurant was Tuesday of last week. He does not work there anymore. Which sentence is correct?",
+        "prompt": "Kofi, a dishwasher at Lupe's restaurant, had his last day on Tuesday of last week. He does not work there anymore. Which sentence is correct?",
         "options": [
           "Kofi has left the restaurant since last Tuesday.",
           "Kofi has worked at the restaurant for last Tuesday.",
@@ -2027,7 +2027,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa checks the fridge before grocery shopping. Put the words in order. Words: How / many / eggs / do / we / have",
+        "prompt": "Claudette checks the fridge before grocery shopping. Put the words in order. Words: How / many / eggs / do / we / have",
         "answers": [
           "How many eggs do we have"
         ],
@@ -2582,7 +2582,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Wilson calls about an apartment on Bremen Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
+        "prompt": "Rosa calls about an apartment on Lexington Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
         "answers": [
           "I would like to meet the landlord"
         ],
@@ -3016,7 +3016,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Thanh finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
+        "prompt": "Gloria finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
         "answers": [
           "She had finished before the manager arrived"
         ],
@@ -3235,7 +3235,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette tells Hoa: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?",
+        "prompt": "Diego tells Sagal: 'You ___ tell Jennifer before you leave the line.' It's not a written rule, but it's important. Which word fits?",
         "options": [
           "must",
           "have to",
@@ -3425,7 +3425,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice: use 'were' for all subjects.)",
+        "prompt": "Fill in the blank: \"If I ___ you, I would talk to Jennifer.\" (Giving advice: use 'were' for all subjects.)",
         "answers": [
           "were"
         ],
@@ -3435,7 +3435,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Kevin is likely to get overtime next week. Which sentence fits?",
+        "prompt": "Marta is likely to get overtime next week. Which sentence fits?",
         "options": [
           "If they offered me overtime, I would say yes.",
           "If they offer me overtime, I will say yes.",
@@ -5960,9 +5960,9 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Jean describes his friend Claudette's routine. Put the words in order. Words: She / is / used / to / working / two / jobs",
+        "prompt": "Frantz describes his friend Fabienne's routine. Put the words in order. Words: She / is / used / to / working / nights",
         "answers": [
-          "She is used to working two jobs"
+          "She is used to working nights"
         ],
         "explanation": "Be used to + gerund (working) means it feels familiar or normal now.",
         "source": "be-used-to-get-used-to/but-ws1"
@@ -5970,7 +5970,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rafael eats dinner at 1 AM after his shift every night. Which sentence is correct?",
+        "prompt": "Fabienne eats dinner at 1 AM after her shift every night. Which sentence is correct?",
         "options": [
           "I'm used to eat dinner very late.",
           "I'm used to eating dinner very late.",

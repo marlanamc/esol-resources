@@ -79,7 +79,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "Questions for smarter digital habits",
       icon: "🗝️",
       explanation: `
-        ${sceneCard("sceneFirstDay", "East Boston. Rosa asks Sarah about an unexpected email.", "terracotta")}
+        ${sceneCard("sceneFirstDay", "East Boston. Rosa asks her neighbor Sarah about an unexpected email.", "terracotta")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, use questions to talk about digital habits: checking messages, finding files, protecting your information, and asking for help. Rosa has an email that does not seem right.</p>
 
@@ -173,7 +173,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "Who, What, Where: the basics",
       icon: "📍",
       explanation: `
-        ${sceneCard("sceneApartmentHallway", "At a computer. Amara and Sarah look for a downloaded job application.", "sage")}
+        ${sceneCard("sceneApartmentHallway", "At a computer. Sarah, Amara's neighbor too, helps her find a downloaded job application.", "sage")}
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "I can\'t find the form I downloaded. <strong>Where</strong> is it?", side: "left", tone: "sage" },
