@@ -46,7 +46,8 @@ const eslintConfig = defineConfig([
     "_legacy/**",
     "archive/**",
     "docs/**",
-    "design_handoff_home_map_redesign/**",
+    // Claude Design handoff prototypes (HTML/JS references, not app code).
+    "design_handoff_*/**",
   ]),
 ]);
 

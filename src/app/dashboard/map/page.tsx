@@ -345,7 +345,6 @@ export default async function MapPage({
                                 guidedUnits={courseMapUnits}
                                 guidedAssignments={guidedAssignments}
                                 guidedProgress={guidedProgress}
-                                desktopLayout
                                 initialWeek={initialWeek}
                                 focusNextActivity={focusNextActivity}
                                 showUnitMonths={showUnitMonths}
@@ -375,16 +374,8 @@ export default async function MapPage({
                             showMonths={showUnitMonths}
                         />
                     ) : hasPath ? (
-                        <ClassCoursePath
-                            assignments={coursePathAssignments}
-                            guidedUnits={courseMapUnits}
-                            guidedAssignments={guidedAssignments}
-                            guidedProgress={guidedProgress}
-                            initialWeek={initialWeek}
-                            focusNextActivity={focusNextActivity}
-                            showUnitMonths={showUnitMonths}
-                            scheduledWeek={currentWeekMeta?.weekNumber ?? null}
-                        />
+                        // No course-map units: fall back to the sequenced assignment list.
+                        <ClassCoursePath assignments={coursePathAssignments} />
                     ) : (
                         <div className="dashboard-panel rounded-2xl p-6 text-center">
                             <p className="text-2xl mb-3">🗺️</p>
