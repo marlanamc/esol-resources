@@ -1,6 +1,6 @@
 export default function VocabReviewLoading() {
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <main className="mx-auto max-w-5xl px-4 pb-24 pt-4 sm:px-6 sm:pt-6 md:pb-12">
                 <div
                     className="relative overflow-hidden rounded-[32px] border p-5 sm:p-6"

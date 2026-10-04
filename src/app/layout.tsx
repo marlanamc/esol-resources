@@ -6,7 +6,13 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { FontSizeProvider } from "@/components/layout/FontSizeProvider";
 import { LearnerSearchProvider } from "@/components/search/LearnerSearchProvider";
 import { cookies } from "next/headers";
-import { APP_DESCRIPTION, APP_NAME, APP_SHORT_NAME } from "@/lib/brand";
+import {
+  APP_DESCRIPTION,
+  APP_NAME,
+  APP_SHORT_NAME,
+  THEME_COLOR_DARK,
+  THEME_COLOR_LIGHT,
+} from "@/lib/brand";
 
 const lora = Lora({
   variable: "--font-display",
@@ -65,14 +71,19 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: "cover",
-  themeColor: "#d97757",
-};
+// The app's dark mode is a saved toggle, not the OS setting, so the status bar
+// color comes from the same cookie the <html> theme does. ThemeProvider keeps
+// the meta tag in sync when the learner flips the toggle.
+export async function generateViewport(): Promise<Viewport> {
+  const cookieStore = await cookies();
+  const isDark = cookieStore.get("class-companion-theme")?.value === "dark";
+  return {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+    themeColor: isDark ? THEME_COLOR_DARK : THEME_COLOR_LIGHT,
+  };
+}
 
 export default async function RootLayout({
   children,

@@ -550,7 +550,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router]);
 
     return (
-        <div ref={readerContainerRef} className="grammar-reader-container min-h-screen bg-bg" data-testid="grammar-reader-shell">
+        <div ref={readerContainerRef} className="grammar-reader-container min-h-dvh bg-bg" data-testid="grammar-reader-shell">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast

@@ -665,7 +665,7 @@ export default async function ProfilePage() {
         else if (totalCompleted > 0) welcomeMessage = "Great progress so far!";
         
         return (
-            <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 pb-24">
+            <div className="min-h-dvh bg-gradient-to-br from-background via-background to-primary/5 pb-24">
                 {/* Decorative background elements */}
                 <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                     <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl opacity-50" />
@@ -1009,7 +1009,7 @@ export default async function ProfilePage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+        <div className="min-h-dvh bg-gradient-to-br from-background via-background to-primary/5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
                 {/* Header */}
                 <div className="mb-8">

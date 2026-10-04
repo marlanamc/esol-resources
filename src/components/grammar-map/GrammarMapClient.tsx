@@ -547,7 +547,7 @@ export function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps)
                 <div
                     ref={containerRef}
                     className="rounded-lg shadow-lg border overflow-auto relative bg-[var(--surface-base)] border-[var(--border-subtle)] dark:bg-[var(--surface-elevated)] dark:border-[var(--border-subtle)] min-h-[280px] sm:min-h-[400px] md:min-h-[500px]"
-                    style={{ height: 'calc(100vh - 320px)' }}
+                    style={{ height: 'calc(100dvh - 320px)' }}
                 >
                     {/* Scroll hint */}
                     <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[var(--surface-elevated)]/95 dark:bg-[var(--surface-overlay)]/95 backdrop-blur-sm px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg shadow-md text-xs sm:text-sm text-[var(--text-color-muted)] pointer-events-none border border-[var(--border-subtle)]">

@@ -9,7 +9,7 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
+      className="min-h-dvh relative overflow-hidden"
       style={{
         background:
           "linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg) 50%, var(--color-bg-gradient-end) 100%)",

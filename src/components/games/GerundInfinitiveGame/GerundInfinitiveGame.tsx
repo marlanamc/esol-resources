@@ -68,7 +68,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
   // Loading
   if (state.loading) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-dvh bg-bg flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -98,7 +98,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="min-h-screen bg-bg flex items-center justify-center p-4"
+        className="min-h-dvh bg-bg flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 shadow-lg text-center">
           <motion.div

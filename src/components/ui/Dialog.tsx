@@ -116,7 +116,7 @@ export function Dialog({
               className={`fixed bottom-0 left-0 right-0 z-[201] sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:${maxWidth} sm:w-full`}
               onKeyDown={(e) => { if (e.key === 'Escape') onClose(); }}
             >
-              <div className="bg-white dark:bg-[var(--surface-base)] rounded-t-[2rem] sm:rounded-[2rem] border border-white/20 shadow-2xl max-h-[90vh] flex flex-col">
+              <div className="bg-white dark:bg-[var(--surface-base)] rounded-t-[2rem] sm:rounded-[2rem] border border-white/20 shadow-2xl max-h-[90dvh] flex flex-col pb-[env(safe-area-inset-bottom,0px)] sm:pb-0">
                 {header}
                 {body}
                 {footerEl}
@@ -138,7 +138,7 @@ export function Dialog({
               >
                 <div className="bg-white dark:bg-[var(--surface-base)] rounded-3xl shadow-2xl overflow-hidden border border-border dark:border-white/10">
                   {header}
-                  <div className="overflow-y-auto custom-scrollbar max-h-[70vh]">
+                  <div className="overflow-y-auto custom-scrollbar max-h-[70dvh]">
                     {children}
                   </div>
                   {footerEl}

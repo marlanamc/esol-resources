@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, useMemo } from "react";
+import { THEME_COLOR_DARK, THEME_COLOR_LIGHT } from "@/lib/brand";
 
 type Theme = "light" | "dark";
 type ResolvedTheme = "light" | "dark";
@@ -55,6 +56,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             root.classList.remove("dark");
             root.setAttribute("data-theme", "light");
         }
+
+        // Keep the phone's status bar in step with the toggle (set server-side on load).
+        document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", newResolved === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT);
 
         setResolvedTheme(newResolved);
     }, []);

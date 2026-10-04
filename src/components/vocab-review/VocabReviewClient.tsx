@@ -667,7 +667,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             aria-label="Close filter picker"
           />
           <div
-            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85vh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
+            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85dvh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
             style={{ 
               overscrollBehavior: "contain",
               background: `linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 95%, transparent) 0%, color-mix(in srgb, var(--surface-subtle) 90%, transparent) 100%)`, 
@@ -767,7 +767,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             aria-label="Close review help"
           />
           <div
-            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85vh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
+            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85dvh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
             style={{ 
               overscrollBehavior: "contain",
               background: `linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 95%, transparent) 0%, color-mix(in srgb, var(--surface-subtle) 90%, transparent) 100%)`, 

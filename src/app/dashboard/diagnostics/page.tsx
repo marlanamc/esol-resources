@@ -54,7 +54,7 @@ export default async function DiagnosticsPage({
     }
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             {/* Header */}
             <header className="sticky top-0 bg-white/95 dark:bg-[var(--surface-elevated)]/95 backdrop-blur-md border-b border-border/40 dark:border-white/10 shadow-sm z-50">
                 <div className="container mx-auto py-4 px-6">

@@ -94,7 +94,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     }
 
     return (
-        <div className="min-h-screen bg-bg relative">
+        <div className="min-h-dvh bg-bg relative">
             <AccentColorInitializer accentKey={accentKey} />
             <a
                 href="#main-content"

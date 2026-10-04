@@ -50,7 +50,7 @@ export default async function StudentStatsPage() {
     }));
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
                 <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
                     <div className="min-w-0">

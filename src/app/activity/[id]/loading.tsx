@@ -4,7 +4,7 @@
 // both the immersive and standard activity layouts in page.tsx.
 export default function ActivityLoading() {
     return (
-        <div className="min-h-screen bg-bg flex flex-col">
+        <div className="min-h-dvh bg-bg flex flex-col">
             {/* Slim header placeholder to match the activity shells' top bar */}
             <div className="h-[60px] flex-shrink-0 border-b border-black/5 dark:border-white/10" />
             {/* Calm centered spinner */}

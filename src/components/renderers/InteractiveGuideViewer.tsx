@@ -46,7 +46,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
     const progressPercent = totalSteps > 0 ? Math.round(((currentStep + 1) / totalSteps) * 100) : 0;
 
     return (
-        <div ref={explanationRef} className="relative lg:fixed lg:inset-0 bg-bg z-fixed flex flex-col min-h-screen lg:h-screen lg:w-screen text-text font-body selection:bg-primary/20 lg:overflow-hidden">
+        <div ref={explanationRef} className="relative lg:fixed lg:inset-0 bg-bg z-fixed flex flex-col min-h-dvh lg:h-screen lg:w-screen text-text font-body selection:bg-primary/20 lg:overflow-hidden">
             {/* Header */}
             <header className="sticky lg:relative top-0 flex-none h-14 sm:h-16 px-4 sm:px-6 border-b flex items-center justify-between z-10" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'color-mix(in srgb, var(--color-bg) 97%, transparent)' }}>
                 <div className="flex items-center gap-4">

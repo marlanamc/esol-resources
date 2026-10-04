@@ -80,7 +80,7 @@ export default async function StudentDetailPage({
     const studentLabel = enrollment?.class.name ?? "Independent learner";
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <div className="container mx-auto px-4 py-6">
                 {/* Header with breadcrumb */}
                 <div className="mb-6">

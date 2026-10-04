@@ -249,7 +249,7 @@ export default async function MapPage({
             : null;
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 md:px-6 max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl lg:pt-4">
 
                 {/* Desktop two-column layout */}

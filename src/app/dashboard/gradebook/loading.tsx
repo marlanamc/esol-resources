@@ -1,6 +1,6 @@
 export default function GradebookLoading() {
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1400px] py-4 px-4 sm:px-6 lg:px-8">
                     <div className="h-4 w-32 skeleton rounded mb-2" />

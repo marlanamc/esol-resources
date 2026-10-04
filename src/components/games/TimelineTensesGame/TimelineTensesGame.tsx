@@ -213,7 +213,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
   // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-dvh bg-bg flex items-center justify-center">
         <div className="text-center">
           <div
             className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin"
@@ -232,7 +232,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="min-h-screen bg-bg flex items-center justify-center p-4"
+        className="min-h-dvh bg-bg flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 shadow-lg text-center">
           <motion.div

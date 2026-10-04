@@ -16,7 +16,7 @@ export default function ActivityError({
     }, [error]);
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-bg">
+        <div className="min-h-dvh bg-gray-50 dark:bg-bg">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
                 <div className="bg-white dark:bg-[var(--surface-elevated)] border border-border/60 dark:border-white/10 rounded-2xl shadow-sm p-6 space-y-4">
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">This activity couldn’t load</h1>

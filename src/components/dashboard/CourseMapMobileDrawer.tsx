@@ -112,7 +112,7 @@ export function CourseMapMobileDrawerPanel({
                 aria-label="Close course map"
                 onClick={close}
             />
-            <div className="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-hidden rounded-t-2xl border-t bg-bg shadow-2xl safe-area-bottom-padding-mobile-lg">
+            <div className="absolute inset-x-0 bottom-0 max-h-[88dvh] overflow-hidden rounded-t-2xl border-t bg-bg shadow-2xl safe-area-bottom-padding-mobile-lg">
                 <div className="flex items-center justify-between gap-3 border-b px-4 py-3" style={{ borderColor: "var(--border-subtle)" }}>
                     <h2 className="text-base font-bold text-text">Course Map</h2>
                     <button

@@ -28,7 +28,7 @@ export function ActivityCardSkeleton() {
 
 export function DashboardSkeleton() {
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             {/* Header */}
             <div className="bg-white dark:bg-[var(--surface-elevated)] border-b border-gray-200 dark:border-white/10 p-6 animate-pulse">
                 <div className="h-8 bg-gray-200 rounded w-1/3 mb-2"></div>

@@ -182,8 +182,8 @@ export function PublicVocabularyClient({ unit }: { unit: PublicLevel1VocabularyU
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-4 sm:px-6 lg:px-8">
+    <div className="min-h-dvh w-full overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
+      <div className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col px-4 py-4 sm:px-6 lg:px-8">
         <header className="relative mb-4 overflow-hidden rounded-[2rem] border border-[var(--tone-vocabulary-border)] bg-gradient-to-br from-[var(--tone-vocabulary-surface)] to-[var(--color-surface-contrast)] px-4 py-5 shadow-[0_10px_30px_rgba(38,138,130,0.10)] sm:px-7 sm:py-6">
           <div
             className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-40"
