@@ -453,14 +453,15 @@ export default async function DashboardPage() {
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
                     <div className="min-w-0 space-y-5">
-                        <ClassAnnouncement announcements={classAnnouncements} />
+                        <ClassAnnouncement announcements={classAnnouncements} variant="compact" />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                         <ThisWeekPanel
                             user={{ id: userId, role: userRole }}
                             fallback={nextStepFallback}
+                            variant="road"
                         />
                         {newThisWeekItems.length > 0 ? (
-                            <NewThisWeekSection items={newThisWeekItems} />
+                            <NewThisWeekSection items={newThisWeekItems} variant="list" />
                         ) : null}
                         <HelpfulLinksCard variant="plain" />
                     </div>
