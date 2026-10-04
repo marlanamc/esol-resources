@@ -12,6 +12,7 @@ vi.mock('@/lib/course-map-progress.server', () => ({
 vi.mock('@/lib/course-map-current-week', () => ({
   visibleWeekNumbers: () => [1, 2],
   resolveCurrentWeek: () => ({ weekNumber: 2 }),
+  resolveEarlyAccessWeek: () => null,
 }));
 
 import { getCurrentWeekCompletion } from '@/lib/course-map-week';

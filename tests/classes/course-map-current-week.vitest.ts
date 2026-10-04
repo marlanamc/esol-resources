@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
     resolveCurrentWeek,
+    resolveEarlyAccessWeek,
     resolveScheduledTeachingWeek,
     visibleWeekNumbers,
     weekSwitchAt,
@@ -160,8 +161,8 @@ describe("visibleWeekNumbers", () => {
 
 describe("Week 3 release and classroom changeover", () => {
     it.each([
-        ["2026-09-27T23:59:59Z", 2, false],
-        ["2026-09-28T00:00:00Z", 2, true],
+        ["2026-09-27T11:59:59Z", 2, false],
+        ["2026-09-27T12:00:00Z", 2, true],
         ["2026-09-28T15:18:00Z", 2, true],
         ["2026-09-29T03:59:59Z", 2, true],
         ["2026-09-29T04:00:00Z", 3, true],
@@ -172,5 +173,31 @@ describe("Week 3 release and classroom changeover", () => {
         expect(visibleWeeks.includes(3)).toBe(week3Released);
         expect(resolveCurrentWeek({ mode: "classroom", visibleWeeks, progressWeek: 3, now })?.weekNumber)
             .toBe(expectedWeek);
+    });
+});
+
+describe("resolveEarlyAccessWeek", () => {
+    const at = (instant: string) => {
+        const now = new Date(instant);
+        const visibleWeeks = buildTeachingWeeks()
+            .filter((week) => week.revealAt <= now)
+            .map((week) => week.index);
+        const resolution = resolveCurrentWeek({ mode: "classroom", visibleWeeks, progressWeek: null, now });
+        return resolveEarlyAccessWeek(resolution, visibleWeeks);
+    };
+
+    it.each([
+        ["2026-09-27T11:59:59Z", null], // Sun 7:59am ET: Week 3 not open yet
+        ["2026-09-27T12:00:00Z", 3], // Sun 8am ET: Week 3 opens early
+        ["2026-09-29T03:59:59Z", 3], // Mon 11:59pm ET: still early access
+        ["2026-09-29T04:00:00Z", null], // Tue midnight ET: Week 3 is now this week
+    ])("at %s offers early access to Week %s", (instant, expected) => {
+        expect(at(instant)).toBe(expected);
+    });
+
+    it("never applies to independent learners or fallback weeks", () => {
+        expect(resolveEarlyAccessWeek({ weekNumber: 2, source: "progress", scheduledWeekNumber: null }, [2, 3])).toBeNull();
+        expect(resolveEarlyAccessWeek({ weekNumber: 2, source: "fallback", scheduledWeekNumber: 4 }, [2, 3])).toBeNull();
+        expect(resolveEarlyAccessWeek(null, [1, 2])).toBeNull();
     });
 });

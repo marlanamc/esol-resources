@@ -50,4 +50,4 @@ export const CLASS_END_MINUTE = 30;
 
 /** Local time a week opens to students, in the learner timezone. */
 export const WEEK_REVEAL_WEEKDAY = 0; // Sunday
-export const WEEK_REVEAL_HOUR = 20; // 8pm
+export const WEEK_REVEAL_HOUR = 8; // 8am

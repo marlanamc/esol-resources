@@ -3,7 +3,7 @@
  *
  * Pairs each course-map week with a teaching week from the school calendar
  * (src/data/school-calendar-2026-27.ts) and stores the instant it should open
- * to students — Sunday 8pm ET by default. Break weeks hold no class sessions,
+ * to students — Sunday 8am ET by default. Break weeks hold no class sessions,
  * so the sequence pauses over them instead of unlocking content during a
  * vacation.
  *

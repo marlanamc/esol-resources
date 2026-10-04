@@ -18,6 +18,7 @@ import {
 } from "@/lib/course-map-navigation";
 import {
     resolveCurrentWeek,
+    resolveEarlyAccessWeek,
     visibleWeekNumbers,
 } from "@/lib/course-map-current-week";
 import {
@@ -82,6 +83,8 @@ interface CurrentWeekSnapshot {
     mode: VisibleMapMode;
     units: CourseMapUnit[];
     guidedProgress: CourseMapProgressState;
+    /** Next week, when it is open before class moves to it. */
+    earlyAccessWeekNumber: number | null;
 }
 
 async function buildCurrentWeekSnapshot(
@@ -98,9 +101,10 @@ async function buildCurrentWeekSnapshot(
     // Classroom learners follow the school calendar; independent learners keep
     // their progress-based week. resolveCurrentWeek owns that choice.
     const progressMatch = findFirstIncompleteRequired(units, guidedProgress);
+    const visibleWeeks = visibleWeekNumbers(units);
     const resolved = resolveCurrentWeek({
         mode: learnerMode,
-        visibleWeeks: visibleWeekNumbers(units),
+        visibleWeeks,
         progressWeek: progressMatch?.weekNumber ?? null,
         ...(options?.now ? { now: options.now } : {}),
     });
@@ -146,6 +150,7 @@ async function buildCurrentWeekSnapshot(
         mode: learnerMode,
         units,
         guidedProgress,
+        earlyAccessWeekNumber: resolveEarlyAccessWeek(resolved, visibleWeeks),
     };
 }
 
@@ -269,7 +274,13 @@ export async function getThisWeekPanelData(user: {
     const snapshot = await buildCurrentWeekSnapshot(user);
     if (!snapshot) return null;
 
-    const { mode: _mode, units: _units, guidedProgress: _guidedProgress, ...data } = snapshot;
+    const {
+        mode: _mode,
+        units: _units,
+        guidedProgress: _guidedProgress,
+        earlyAccessWeekNumber: _earlyAccessWeekNumber,
+        ...data
+    } = snapshot;
     return data;
 }
 
@@ -287,6 +298,8 @@ export interface DashboardResumeData {
     continueLabel: "Start here" | "Continue" | "Review this week";
     mapHref: string;
     weekItems: TimelineItem[];
+    /** Next week, when it is open before class moves to it. */
+    earlyAccessWeekNumber: number | null;
 }
 
 export async function getDashboardResumeData(
@@ -348,5 +361,6 @@ export async function getDashboardResumeData(
                 ...item,
                 title: formatNextUpActivityTitle(item.title),
             })),
+        earlyAccessWeekNumber: snapshot.earlyAccessWeekNumber,
     };
 }

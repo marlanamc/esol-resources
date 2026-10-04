@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { getDashboardResumeData } from "@/lib/course-map-week";
 import { ThisWeekPanelClient } from "@/components/dashboard/ThisWeekPanelClient";
+import { EarlyWeekBanner } from "@/components/dashboard/EarlyWeekBanner";
 
 interface ThisWeekPanelProps {
     user: { id: string; role?: string | null };
@@ -12,7 +13,7 @@ export async function ThisWeekPanel({ user, fallback = null, collapsedLimit }: T
     const data = await getDashboardResumeData(user);
     if (!data) return fallback;
 
-    return (
+    const panel = (
         <ThisWeekPanelClient
             weekNumber={data.weekNumber}
             weekTitle={data.weekTitle}
@@ -28,5 +29,14 @@ export async function ThisWeekPanel({ user, fallback = null, collapsedLimit }: T
             showUnitMonths={data.showUnitMonths}
             collapsedLimit={collapsedLimit}
         />
+    );
+
+    if (data.earlyAccessWeekNumber == null) return panel;
+
+    return (
+        <div className="space-y-3">
+            <EarlyWeekBanner weekNumber={data.earlyAccessWeekNumber} />
+            {panel}
+        </div>
     );
 }

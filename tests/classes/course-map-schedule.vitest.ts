@@ -65,11 +65,11 @@ describe("buildTeachingWeeks", () => {
     }
   });
 
-  it("opens every week at 8pm local on the Sunday before", () => {
+  it("opens every week at 8am local on the Sunday before", () => {
     for (const w of weeks) {
       const label = inET(w.revealAt);
       expect(label).toContain("Sun");
-      expect(label).toContain("20:00");
+      expect(label).toContain("08:00");
       expect(w.revealAt.getTime()).toBeLessThan(new Date(`${w.classDates[0]}T00:00:00Z`).getTime());
     }
   });
