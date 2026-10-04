@@ -82,13 +82,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Eggs and Milk: Countable vs. Uncountable",
       icon: "🥚",
       explanation: `
-        ${sceneCard("sceneGroceryTexting", "Stop and Shop, Chelsea Street. Marta texts from the aisle after her hotel laundry shift.", "terracotta")}
+        ${sceneCard("sceneGroceryTexting", "Market Basket, Revere Beach Parkway, Thursday after work.", "terracotta")}
+
+        <p style="margin: 0 0 1rem 0">Claudette works at a hotel in East Boston. On Thursday, she stops at the store on her way home. Her sister Sarah and Sarah's big family are coming for dinner on Saturday. Claudette texts her roommate Fabienne to check what they have at home.</p>
 
         ${dialogue([
-          { speaker: "Marta", avatar: "👩🏽", text: "Jorge, do we have <strong>eggs</strong>? How many are left?", side: "right", tone: "terracotta" },
-          { speaker: "Jorge", avatar: "👨🏾", text: "Three eggs. But we don't have <strong>milk</strong>. We need milk.", side: "left", tone: "sage" },
-          { speaker: "Marta", avatar: "👩🏽", text: "OK. <strong>How much</strong> rice do we have?", side: "right", tone: "terracotta" },
-          { speaker: "Jorge", avatar: "👨🏾", text: "Not much. Maybe half a bag.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Fabienne, do we have <strong>eggs</strong>? How many are left?", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "Three eggs. But we don't have <strong>milk</strong>. We need milk.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "OK. <strong>How much</strong> rice do we have?", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "Not much. Maybe half a bag.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -149,7 +151,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Marta says \"We need eggs.\" Jorge says \"We need milk.\" Which noun is countable?",
+              label: "Claudette says \"We need eggs.\" Fabienne says \"We need milk.\" Which noun is countable?",
               options: [
                 { value: "milk", label: "milk" },
                 { value: "eggs", label: "eggs" },
@@ -183,14 +185,16 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "How Many or How Much?",
       icon: "🛒",
       explanation: `
-        ${sceneCard("sceneMarketBasket", "Market Basket, Revere Beach Parkway. Claudette calls her sister Sarah before Sarah's family visits on Saturday.", "sage")}
+        ${sceneCard("sceneMarketBasket", "Still at Market Basket. Claudette calls her sister Sarah from the produce section.", "sage")}
+
+        <p style="margin: 0 0 1rem 0">Later that evening, Claudette is still shopping. She calls Sarah, who lives nearby, to plan the Saturday dinner.</p>
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏿", text: "<strong>How many</strong> people are coming on Saturday?", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏿", text: "We’re twelve with the kids. Do you have enough food?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏿", text: "Not yet. <strong>How much</strong> rice do I need for twelve people?", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "👩🏿", text: "Check the serving size on the bag. I’ll bring the cooking oil.", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Thanks. I only have $40 until Friday, so I’m getting the store brand.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Thanks. I only have $40 for the food, so I’m getting the store brand.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -279,13 +283,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "A Lot Of, A Few, A Little",
       icon: "🍚",
       explanation: `
-        ${sceneCard("sceneBudgetShopping", "Shaw's Supermarket, Broadway. Diego shops after a double restaurant shift. His partner Fernanda texts.", "amber")}
+        ${sceneCard("sceneBudgetShopping", "Friday after work. Claudette finishes her shopping with a big bag of rice in the cart.", "amber")}
+
+        <p style="margin: 0 0 1rem 0">On Friday after work, Claudette goes back to the store for the rest of the food. Fabienne texts her from home.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "👨🏽", text: "I got <strong>a lot of</strong> rice. Should last the week.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Nice. Did you get vegetables?", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Just <strong>a few</strong> onions. And <strong>a little</strong> oil.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "OK. We can make rice and onions tonight. There are some beans at home, too.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "I got <strong>a lot of</strong> rice. Should last the week.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "Nice. Did you get vegetables?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Just <strong>a few</strong> onions. And <strong>a little</strong> salt.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "OK. We can make rice and onions tonight. There are some beans at home, too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -319,17 +325,17 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Diego has some money left. Which is correct?",
+              label: "Claudette has some money left. Which is correct?",
               options: [
-                { value: "a", label: "He has a few money." },
-                { value: "b", label: "He has a little money." },
-                { value: "c", label: "He has a little moneys." },
+                { value: "a", label: "She has a few money." },
+                { value: "b", label: "She has a little money." },
+                { value: "c", label: "She has a little moneys." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Fernanda bought some apples. Which is correct?",
+              label: "Fabienne bought some apples. Which is correct?",
               options: [
                 { value: "a", label: "She bought a little apples." },
                 { value: "b", label: "She bought a few apples." },
@@ -376,15 +382,17 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Reading the Label",
       icon: "📦",
       explanation: `
-        ${sceneCard("sceneNutritionLabel", "Market Basket cereal aisle. Ana reads the nutrition label, looking for something affordable for her kids.", "terracotta")}
+        ${sceneCard("sceneNutritionLabel", "Market Basket cereal aisle, Friday evening. Claudette reads the nutrition label.", "terracotta")}
+
+        <p style="margin: 0 0 1rem 0">Fabienne finishes work and meets Claudette at the store to help carry the bags. Sarah's children will stay for breakfast on Sunday, so Claudette wants cereal that is cheap and good for them.</p>
 
         ${dialogue([
-          { speaker: "Ana's son", avatar: "👦🏽", text: "Mom, can we get this one?", side: "left", tone: "sage" },
-          { speaker: "Ana", avatar: "👩🏾", text: "It’s cheaper, but let me check how <strong>much</strong> sugar it has.", side: "right", tone: "terracotta" },
-          { speaker: "Ana's son", avatar: "👦🏽", text: "Is it a lot?", side: "left", tone: "sage" },
-          { speaker: "Ana", avatar: "👩🏾", text: "Yes. And there isn’t <strong>much</strong> protein. Only 2 grams.", side: "right", tone: "terracotta" },
-          { speaker: "Ana's son", avatar: "👦🏽", text: "What about the other ones?", side: "left", tone: "sage" },
-          { speaker: "Ana", avatar: "👩🏾", text: "There aren’t <strong>many</strong> at this price. Let’s check the store brand.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "Claudette, can we get this one?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "It’s cheaper, but let me check how <strong>much</strong> sugar it has.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "Is it a lot?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Yes. And there isn’t <strong>much</strong> protein. Only 2 grams.", side: "right", tone: "terracotta" },
+          { speaker: "Fabienne", avatar: "👩🏽", text: "What about the other ones?", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "There aren’t <strong>many</strong> at this price. Let’s check the store brand.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -428,7 +436,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "At home, Ana checks the bag of onions. Only two are left. Which is correct?",
+              label: "At home, Claudette checks the bag of onions. Only two are left. Which is correct?",
               options: [
                 { value: "a", label: "There aren't many onions." },
                 { value: "b", label: "There isn't many onions." },
@@ -475,13 +483,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Enough and Too Much / Too Many",
       icon: "🍲",
       explanation: `
-        ${sceneCard("sceneKitchenPrep", "Beatriz's kitchen, Thursday evening. Her neighbor Luisa stops by.", "sage")}
+        ${sceneCard("sceneKitchenPrep", "Claudette's kitchen, Saturday afternoon. Sarah arrives early.", "sage")}
+
+        <p style="margin: 0 0 1rem 0">On Saturday afternoon, Sarah comes early to help cook. Her husband and the kids will arrive later. Claudette looks at everything she bought.</p>
 
         ${dialogue([
-          { speaker: "Beatriz", avatar: "👩🏾", text: "I bought <strong>too many</strong> cans of beans. They were on sale, but we can't eat all this.", side: "right", tone: "terracotta" },
-          { speaker: "Luisa", avatar: "👩🏽", text: "Could you use some for the family dinner on Sunday?", side: "left", tone: "sage" },
-          { speaker: "Beatriz", avatar: "👩🏾", text: "Good idea. But I don’t have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
-          { speaker: "Luisa", avatar: "👩🏽", text: "I can bring plates. Just don’t cook <strong>too much</strong> food. Everyone brings something.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "I bought <strong>too many</strong> cans of beans. They were on sale, but we can't eat all this.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏿", text: "Let’s use some of them for dinner tonight.", side: "left", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏿", text: "Good idea. But I don’t have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
+          { speaker: "Sarah", avatar: "👩🏿", text: "I have plates in my car. Just don’t cook <strong>too much</strong> food. We brought some food too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -515,7 +525,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Beatriz has ten cans of beans but only needs three. Which is correct?",
+              label: "Claudette has ten cans of beans but only needs three. Which is correct?",
               options: [
                 { value: "a", label: "She has too much cans." },
                 { value: "b", label: "She has too many cans." },
@@ -565,7 +575,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Beatriz bought ten cans of beans but only needed three. She has ___ cans.",
+              label: "Claudette bought ten cans of beans but only needed three. She has ___ cans.",
               expectedAnswers: ["too many"],
             },
             {
@@ -589,7 +599,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "how-much-how-many-q1",
-      question: "Marta is at the store. She wants to know the number of eggs at home. What does she ask?",
+      question: "Claudette is at the store. She wants to know the number of eggs at home. What does she ask?",
       options: [
         { value: "a", label: "How much eggs do we have?" },
         { value: "b", label: "How many eggs do we have?" },
@@ -604,7 +614,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
     },
     {
       id: "how-much-how-many-q2",
-      question: "Diego is at the store. He texts Fernanda to ask about the cooking oil at home. What does he write?",
+      question: "Claudette is at the store. She texts Fabienne to ask about the cooking oil at home. What does she write?",
       options: [
         { value: "a", label: "How many oil do we have?" },
         { value: "b", label: "How much oil do we have?" },
@@ -631,7 +641,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
     {
       id: "how-much-how-many-qws1",
       type: "word-scramble" as const,
-      question: "Rosa checks the fridge before grocery shopping. Put the words in order.",
+      question: "Claudette checks the fridge before grocery shopping. Put the words in order.",
       words: ["How", "many", "eggs", "do", "we", "have"],
       correctAnswer: "How many eggs do we have",
       hint: "How many + plural countable noun",
