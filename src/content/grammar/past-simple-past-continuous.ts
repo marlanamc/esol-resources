@@ -337,15 +337,16 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
       id: "tell-the-story",
       title: "Tell the Story",
       explanation: `
-        ${sceneCard("scenePickup", "East Boston school entrance. Wednesday, 2:45 PM.", "sage")}
+        ${sceneCard("sceneClassroom", "Thursday evening ESOL class. Two days after Fred missed the bus.", "sage")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Ms. Tran is the evening ESOL teacher. On Thursday she asks Fred to tell the whole story of his morning. Amara sits next to him and asks a question.</p>
         ${dialogue([
-          { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "In the rain? Were the roads okay? Did someone cover for you at work?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏾", text: "My manager did. First time ever!", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Fred, tell us the story from the beginning. What happened on Tuesday morning?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was crossing</strong> Meridian when the bus <strong>left</strong>. I <strong>ran</strong> to the corner, but it was gone.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "And then you walked to the Blue Line?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "Yes. While I <strong>was walking</strong> to the station, it <strong>started</strong> to rain. I <strong>got</strong> to work twenty minutes late.", side: "right", tone: "terracotta" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Good story, Fred! You used when and while very well.", side: "left", tone: "sage" },
         ])}
-        <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>
+        <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Fred's story again. Choose past simple or past continuous for each blank.</p>
       `,
       exercises: [
         {
@@ -355,34 +356,34 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Elena ___ a double shift when the school called.",
+              label: "Fred ___ across Meridian when the bus left.",
               options: [
-                { value: "worked", label: "worked (past simple)" },
-                { value: "was working", label: "was working (past continuous)" },
+                { value: "crossed", label: "crossed (past simple)" },
+                { value: "was crossing", label: "was crossing (past continuous)" },
               ],
-              expectedAnswer: "was working",
+              expectedAnswer: "was crossing",
             },
             {
               type: "radio",
-              label: "Her son ___ at recess. It was a finished event.",
+              label: "The bus ___ early. It was a finished event.",
               options: [
-                { value: "fell", label: "fell (past simple)" },
-                { value: "was falling", label: "was falling (past continuous)" },
+                { value: "left", label: "left (past simple)" },
+                { value: "was leaving", label: "was leaving (past continuous)" },
               ],
-              expectedAnswer: "fell",
+              expectedAnswer: "left",
             },
             {
               type: "radio",
-              label: "While she ___ to school, it started to rain.",
+              label: "While he ___ to the station, it started to rain.",
               options: [
-                { value: "drove", label: "drove (past simple)" },
-                { value: "was driving", label: "was driving (past continuous)" },
+                { value: "walked", label: "walked (past simple)" },
+                { value: "was walking", label: "was walking (past continuous)" },
               ],
-              expectedAnswer: "was driving",
+              expectedAnswer: "was walking",
             },
             {
               type: "radio",
-              label: "\"While her son was waiting at school, Elena <strong>was arrived</strong>.\" Is this correct?",
+              label: "\"While it was raining, Fred <strong>was arrived</strong> at work.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. 'arrived' is past simple, not 'was arrived'" },
@@ -391,13 +392,13 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             },
             {
               type: "word-scramble",
-              label: "Unscramble Elena's sentence:",
-              words: ["She", "got", "to", "school", "in", "ten", "minutes"],
-              correctAnswer: "She got to school in ten minutes",
+              label: "Unscramble Fred's sentence:",
+              words: ["He", "got", "to", "work", "twenty", "minutes", "late"],
+              correctAnswer: "He got to work twenty minutes late",
             },
             {
               type: "text",
-              label: "It ___ (start) to rain while she was driving.",
+              label: "It ___ (start) to rain while he was walking.",
               expectedAnswers: ["started"],
             },
           ],
@@ -428,14 +429,14 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     },
     {
       id: "pspc-q3",
-      question: "A classmate writes: \"Elena was work when the school called.\" What is wrong with this sentence?",
+      question: "A classmate writes: \"Fred was cross Meridian when the bus left.\" What is wrong with this sentence?",
       options: [
         { value: "a", label: "Nothing is wrong." },
         { value: "b", label: "It should be 'was working' because past continuous needs the -ing form of the verb." },
-        { value: "c", label: "It should be 'Elena working' without 'was'." },
+        { value: "c", label: "It should be 'Fred crossing' without 'was'." },
       ],
       correctAnswer: "b",
-      explanation: "Past continuous = was/were + verb-ing. The background action needs both parts: \"Elena was working when the school called.\"",
+      explanation: "Past continuous = was/were + verb-ing. The background action needs both parts: \"Fred was crossing Meridian when the bus left.\"",
       topic: "past-continuous",
       skill: "error-detection",
       skillTag: "form-was-verb-ing",
@@ -456,11 +457,11 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     {
       id: "pspc-qws1",
       type: "word-scramble" as const,
-      question: "Elena was at work when her son's school called. Put the words in order to tell what happened.",
-      words: ["Elena", "was", "working", "when", "the", "school", "called"],
-      correctAnswer: "Elena was working when the school called",
+      question: "Fred was on Meridian Street when the bus left. Put the words in order to tell what happened.",
+      words: ["Fred", "was", "crossing", "Meridian", "when", "the", "bus", "left"],
+      correctAnswer: "Fred was crossing Meridian when the bus left",
       hint: "Past continuous + when + past simple",
-      explanation: "Past continuous (was working) is the background action. Past simple (called) is the interruption.",
+      explanation: "Past continuous (was crossing) is the background action. Past simple (left) is the interruption.",
       topic: "past-continuous",
       skill: "usage",
       skillTag: "form-past-cont-when",
