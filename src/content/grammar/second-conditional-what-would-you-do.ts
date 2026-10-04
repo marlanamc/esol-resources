@@ -196,7 +196,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Carmen", avatar: "👩🏽", text: "Sundays are the only day our family is together. What can we do?", side: "left", tone: "sage" },
-          { speaker: "Ramon", avatar: "👨🏾", text: "If my schedule <strong>changed</strong> to nights, I <strong>would be</strong> home with our son on Sundays. But the warehouse needs me during the day.", side: "right", tone: "terracotta" },
+          { speaker: "Ramon", avatar: "👨🏾", text: "If I <strong>didn't work</strong> Saturdays, we <strong>would have</strong> one day together. But the warehouse needs me on Saturdays.", side: "right", tone: "terracotta" },
           { speaker: "Carmen", avatar: "👩🏽", text: "What would you do if they moved you to a different site?", side: "left", tone: "sage" },
           { speaker: "Ramon", avatar: "👨🏾", text: "If the new site <strong>were</strong> far, I <strong>wouldn't take</strong> it. Two buses is too much.", side: "right", tone: "terracotta" },
         ])}
