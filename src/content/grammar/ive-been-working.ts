@@ -87,16 +87,16 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM.", "terracotta")}
+        ${sceneCard("sceneBusStop", "Meridian Street bus stop, Tuesday morning in March, 6:30 AM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara cleans patient rooms at the hospital. Her neighbor Rosa lives in the same building on Meridian Street, and they are classmates in the evening ESOL class. This morning they wait at the bus stop before work.</p>
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "🧑🏻", text: "You look tired, man.", side: "left", tone: "terracotta" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I <strong>have been working</strong> six days a week since January. No breaks.", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "That’s rough. I <strong>have been driving</strong> extra shifts too. We’re short of truck drivers this month.", side: "left", tone: "terracotta" },
-          { speaker: "Hector", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>been doing</strong> that?", side: "right", tone: "sage" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Three weeks. I’m hoping things slow down soon.", side: "left", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "You look tired, Amara.", side: "left", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been working</strong> six days a week since January. The hospital is short of cleaners.", side: "right", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "That’s rough. I <strong>have been studying</strong> every night for our ESOL project, so I’m tired too.", side: "left", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏿", text: "How long <strong>have</strong> you <strong>been doing</strong> that?", side: "right", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Three weeks. I’m hoping things slow down soon.", side: "left", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -106,7 +106,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 0.95rem"><strong>Form:</strong> have / has + been + verb-ing<br>
           <em>I <strong>have been working</strong> six days a week.</em><br>
-          <em>He <strong>has been driving</strong> extra shifts.</em></p>
+          <em>She <strong>has been studying</strong> every night.</em></p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -128,21 +128,21 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Hector works six days a week. Which sentence is correct?",
+              label: "Amara works six days a week. Which sentence is correct?",
               options: [
-                { value: "a", label: "He have been working six days a week." },
-                { value: "b", label: "He has been working six days a week." },
-                { value: "c", label: "He has been worked six days a week." },
+                { value: "a", label: "She have been working six days a week." },
+                { value: "b", label: "She has been working six days a week." },
+                { value: "c", label: "She has been worked six days a week." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Kevin and the other truck drivers all drive extra shifts. Which sentence is correct?",
+              label: "Rosa and her classmates all study every night. Which sentence is correct?",
               options: [
-                { value: "a", label: "They has been driving extra shifts." },
-                { value: "b", label: "They have been drive extra shifts." },
-                { value: "c", label: "They have been driving extra shifts." },
+                { value: "a", label: "They has been studying every night." },
+                { value: "b", label: "They have been study every night." },
+                { value: "c", label: "They have been studying every night." },
               ],
               expectedAnswer: "c",
             },
@@ -167,8 +167,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Kevin drives extra shifts. He ___ extra shifts for three weeks. (has been driving)",
-              expectedAnswers: ["has been driving"],
+              label: "Rosa studies every night. She ___ every night for three weeks. (has been studying)",
+              expectedAnswers: ["has been studying"],
             },
           ],
         },
@@ -185,20 +185,20 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Started in the past, still true now",
         elements: [
-          { id: "ppc-start", type: "single-dot", zone: "past", position: 25, verbLabel: "car broke down (Feb)" },
+          { id: "ppc-start", type: "single-dot", zone: "past", position: 25, verbLabel: "unit moved (Feb)" },
           { id: "ppc-ongoing", type: "solid-to-now", zone: "past", position: 45, verbLabel: "have been taking (since Feb → NOW)" },
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusStop", "Bennington Street bus stop, 11:15 PM. Daniela and Claudette wait for the 112 after a double shift.", "blue")}
+        ${sceneCard("sceneBusStop", "Meridian Street bus stop, Friday evening, 6:15 PM. Amara and Rosa wait for the bus home.", "blue")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Daniela's car broke down in February. The commute home now takes twice as long.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">In February, the hospital moved Amara's unit to a new building. Her trip home now takes twice as long, and she wants a job closer to home. At the bus stop, Rosa asks about it.</p>
 
         ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏿", text: "You still taking two buses?", side: "left", tone: "blue" },
-          { speaker: "Daniela", avatar: "👩🏽", text: "Yeah. I <strong>have been taking</strong> two buses since my car broke down in February.", side: "right", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "How long <strong>have</strong> you <strong>been waiting</strong> for the mechanic?", side: "left", tone: "blue" },
-          { speaker: "Daniela", avatar: "👩🏽", text: "Three weeks. He keeps saying next week.", side: "right", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "You still taking two buses?", side: "left", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Yeah. I <strong>have been taking</strong> two buses since the hospital moved my unit in February.", side: "right", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "How long <strong>have</strong> you <strong>been looking</strong> for a job closer to home?", side: "left", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Three weeks. Our teacher, Ms. Tran, told us about a job fair on Saturday. I’m going.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -208,7 +208,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("for", "sage")}
-            <span><em>I have been waiting <strong>for three weeks</strong>.</em></span>
+            <span><em>I have been looking for a job <strong>for three weeks</strong>.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("for", "sage")}
@@ -232,7 +232,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Daniela has been taking two buses ___ her car broke down.",
+              label: "Amara has been taking two buses ___ the hospital moved her unit.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -241,7 +241,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Hector has been working on this site ___ four months.",
+              label: "Amara has been looking for a new job ___ three weeks.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -257,8 +257,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "has", "been", "waiting", "for", "the", "mechanic", "for", "three", "weeks"],
-              correctAnswer: "She has been waiting for the mechanic for three weeks",
+              words: ["She", "has", "been", "looking", "for", "a", "new", "job", "for", "three", "weeks"],
+              correctAnswer: "She has been looking for a new job for three weeks",
             },
           ],
         },
@@ -269,7 +269,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Kevin has been driving extra shifts ___ three weeks. (one word)",
+              label: "Rosa has been studying every night ___ three weeks. (one word)",
               expectedAnswers: ["for"],
             },
           ],
@@ -285,15 +285,16 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       title: "How long have you been working here?",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneHotel", "Hotel hallway, third floor. Jennifer from HR runs orientation for new hires.", "amber")}
+        ${sceneCard("sceneJobFair", "East Boston Community School gym, Saturday morning. The job fair has just opened.", "amber")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara starts her first day at the hotel. Jennifer asks about her background before the walkthrough.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara arrives early. Jennifer is the HR manager for a hotel on Meridian Street, and she has a table at the fair. Amara is the first person in her line.</p>
 
         ${dialogue([
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "How long <strong>have</strong> you <strong>been working</strong> in housekeeping?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been cleaning</strong> patient rooms at the hospital for almost three years.", side: "right", tone: "sage" },
           { speaker: "Jennifer", avatar: "🧑‍💼", text: "Good. <strong>Have</strong> you <strong>been using</strong> the big floor machines there?", side: "left", tone: "amber" },
           { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. I've been using them since my first month.", side: "right", tone: "sage" },
+          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Great. Please come to the hotel on Monday for your interview.", side: "left", tone: "amber" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -333,7 +334,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Amara asks Jennifer about her new supervisor. Which is correct?",
+              label: "Amara asks Jennifer about the head housekeeper at the hotel. Which is correct?",
               options: [
                 { value: "a", label: "How long has she been manage the team?" },
                 { value: "b", label: "How long she has been managing the team?" },
@@ -378,17 +379,17 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       title: "Still going or already done?",
       icon: "⚖️",
       explanation: `
-        ${sceneCard("sceneJobFair", "East Boston Community School gym. Job fair, Thursday afternoon. The last hour of the event.", "sage")}
+        ${sceneCard("sceneHotel", "Hotel hallway, third floor. Amara’s first morning at the hotel.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Osmin just finished talking to a recruiter and finds Marta still standing in line. They compare notes.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara got the job. Today is her first morning at the hotel. Marta is a housekeeper who has worked there for four years, and Jennifer asked her to train Amara. They stop in the hallway for a minute.</p>
 
         ${dialogue([
-          { speaker: "Osmin", avatar: "👨🏽", text: "I <strong>have applied</strong> to three companies today. I'm done.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "I <strong>have been standing</strong> in this line for an hour. I haven't even talked to anyone yet.", side: "left", tone: "sage" },
-          { speaker: "Osmin", avatar: "👨🏽", text: "That’s frustrating. The construction company’s line is shorter. Their recruiter asked me, “How long <strong>have</strong> you <strong>been working</strong> in construction?”", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "What did you say?", side: "left", tone: "sage" },
-          { speaker: "Osmin", avatar: "👨🏽", text: "Four years. She said that's good experience.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "OK, I'm switching lines. I've been doing site cleanup for two years.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have cleaned</strong> six rooms already. The third floor is done.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "Good work. I <strong>have been training</strong> new people for three hours. I haven't had a break yet.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "How long <strong>have</strong> you <strong>been working</strong> here?", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "Four years. Jennifer told me you have a lot of experience.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Almost three years at the hospital. I hope it helps here.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏾", text: "It will. After lunch, you can do the fourth floor by yourself.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -399,11 +400,11 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
-            <span><em>I <strong>have applied</strong> to three companies. (done)</em></span>
+            <span><em>I <strong>have cleaned</strong> six rooms. (done)</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("still happening", "blue")}
-            <span><em>I <strong>have been standing</strong> in line for an hour. (not done)</em></span>
+            <span><em>I <strong>have been training</strong> new people for three hours. (not done)</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("finished", "terracotta")}
@@ -423,19 +424,19 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Osmin finished talking to all three recruiters. Which sentence fits?",
+              label: "Amara finished cleaning all six rooms. Which sentence fits?",
               options: [
-                { value: "a", label: "He has been talking to three recruiters." },
-                { value: "b", label: "He has talked to three recruiters." },
+                { value: "a", label: "She has been cleaning six rooms." },
+                { value: "b", label: "She has cleaned six rooms." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Marta started waiting an hour ago and she is still in line. Which sentence fits?",
+              label: "Marta started training new people three hours ago and she is still training. Which sentence fits?",
               options: [
-                { value: "a", label: "She has stood in line for an hour." },
-                { value: "b", label: "She has been standing in line for an hour." },
+                { value: "a", label: "She has trained new people for three hours." },
+                { value: "b", label: "She has been training new people for three hours." },
               ],
               expectedAnswer: "b",
             },
@@ -457,8 +458,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Osmin", "has", "been", "working", "in", "construction", "for", "four", "years"],
-              correctAnswer: "Osmin has been working in construction for four years",
+              words: ["Marta", "has", "been", "working", "at", "the", "hotel", "for", "four", "years"],
+              correctAnswer: "Marta has been working at the hotel for four years",
             },
           ],
         },
@@ -469,8 +470,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Marta is still in line. She ___ in line for an hour. (has been standing)",
-              expectedAnswers: ["has been standing"],
+              label: "Marta is still training. She ___ new people for three hours. (has been training)",
+              expectedAnswers: ["has been training"],
             },
           ],
         },
@@ -485,11 +486,11 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "ive-been-working-q1",
-      question: "Hector works six days a week and is still working that schedule now. Which sentence is correct?",
+      question: "Amara works six days a week and is still working that schedule now. Which sentence is correct?",
       options: [
-        { value: "a", label: "He has worked six days a week since January." },
-        { value: "b", label: "He has been working six days a week since January." },
-        { value: "c", label: "He is working six days a week since January." },
+        { value: "a", label: "She has worked six days a week since January." },
+        { value: "b", label: "She has been working six days a week since January." },
+        { value: "c", label: "She is working six days a week since January." },
       ],
       correctAnswer: "b",
       explanation: "Present Perfect Continuous (has been working) is used for an ongoing action that started in the past and is still happening now.",
