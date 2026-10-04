@@ -16,6 +16,7 @@
   --road-ink-text: #fffdfa;
   --road-on-accent: #fffdfa;
   --road-on-success: #fffdfa;
+  --road-on-tone: #fffdfa;
   --road-done-bg: #eef4ec;
   --road-done-text: #2d6930;
 }
@@ -37,6 +38,7 @@
   --road-ink-text: #0d1620;
   --road-on-accent: #fffdfa;
   --road-on-success: #0d1620;
+  --road-on-tone: #0d1620;
   --road-done-bg: rgba(111, 191, 159, 0.16);
   --road-done-text: #8ed4b8;
 }
