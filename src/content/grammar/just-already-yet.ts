@@ -251,7 +251,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePharmacy", "Pharmacy on Chelsea Street. Thursday afternoon.", "amber")}
+        ${sceneCard("scenePharmacy", "Outside the pharmacy on Chelsea Street. Thursday afternoon. Carlos runs into Mark, a coworker from the restaurant.", "amber")}
 
         ${dialogue([
           { speaker: "Mark", avatar: "👨🏽", text: "Hey Carlos, coming back from the pharmacy?", side: "left", tone: "amber" },

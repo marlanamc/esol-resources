@@ -365,7 +365,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "She Asked If…",
       icon: "❓",
       explanation: `
-        ${sceneCard("sceneTextingMarco", "Amina's doctor's office. Sarah at the front desk calls about the follow-up. Wednesday, 2 PM.", "sage")}
+        ${sceneCard("sceneTextingMarco", "Wednesday, 2 PM. Sarah from the clinic calls about the follow-up. Luz is at work, so Marco answers.", "sage")}
 
         <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.</p>
 
