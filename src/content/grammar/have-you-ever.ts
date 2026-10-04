@@ -94,12 +94,12 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePhone", "East Boston, Tuesday evening. Claudette texts her cousin Jean in Montreal.", "sage")}
+        ${sceneCard("scenePhone", "East Boston, Tuesday evening, a month before Jean's visit. Claudette texts her cousin Jean in Montreal.", "sage")}
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏾", text: "You’re visiting next month, right? <strong>Have</strong> you <strong>ever helped</strong> at a food pantry?", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have</strong>. I <strong>packed</strong> boxes at my church in Montreal last winter. Why?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "The pantry near Maverick Square needs help that Saturday. A lot of the families there speak Creole.", side: "right", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "The pantry near Maverick Square needs volunteers that Saturday. A lot of the families there speak Creole.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "👨🏽", text: "Good, we can translate. <strong>Have</strong> you <strong>ever volunteered</strong> there?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven’t</strong>. But I picked up food there when I first came. They were kind to me.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "👨🏽", text: "Then sign us both up. Send me the time and the address.", side: "left", tone: "sage" },
@@ -224,13 +224,13 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneClassroom", "After class, Eastie Community Learning Center. Two students talk before leaving.", "terracotta")}
+        ${sceneCard("sceneClassroom", "After class, Thursday evening, three weeks later. Claudette talks with her classmate Amara, who volunteered at the pantry before.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Diego", avatar: "🧑🏽", text: "<strong>Did</strong> you <strong>try</strong> the Somali food at the festival on Saturday?", side: "left", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "No, I worked that day. Was it good? <strong>Have</strong> you <strong>ever been</strong> to a Somali restaurant?", side: "right", tone: "sage" },
-          { speaker: "Diego", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. Is there one near here?", side: "left", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Yes! My cousin <strong>went</strong> there last Friday and loved it.", side: "right", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "Amara, <strong>did</strong> you <strong>go</strong> to the food pantry near Maverick Square last Saturday?", side: "left", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Yes, I did. I dropped off some cans. <strong>Have</strong> you <strong>ever been</strong> inside?", side: "right", tone: "sage" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven't</strong>. I only got food at the front table. Jean and I will volunteer there.", side: "left", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "You will like it! My son <strong>went</strong> with me last Friday and he loved sorting the cans.", side: "right", tone: "sage" },
         ])}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">
@@ -359,13 +359,13 @@ export const haveYouEverContent: InteractiveGuideContent = {
       title: "Yes, I have. No, I haven't.",
       icon: "✋",
       explanation: `
-        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, Wednesday, 6 PM. New volunteers come for orientation after work.", "amber")}
+        ${sceneCard("sceneCommunityCenter", "East Boston Community Center, Wednesday, 6 PM, a month later. Jean arrived from Montreal on Monday. He and Claudette come to the volunteer orientation. Kevin, the pantry coordinator, meets the new volunteers.", "amber")}
 
         ${dialogue([
-          { speaker: "Fatima", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>volunteered</strong> with youth programs before?", side: "left", tone: "amber" },
-          { speaker: "Omar", avatar: "🧑🏽", text: "Yes, I <strong>have</strong>. I <strong>worked</strong> with kids at a summer camp in 2021.", side: "right", tone: "sage" },
-          { speaker: "Fatima", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>done</strong> any food distribution work?", side: "left", tone: "amber" },
-          { speaker: "Omar", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But my family used a food pantry when we first came. I want to help back.", side: "right", tone: "sage" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Welcome, Jean. <strong>Have</strong> you ever <strong>volunteered</strong> at a food pantry before?", side: "left", tone: "amber" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have</strong>. I <strong>packed</strong> boxes at my church in Montreal last winter.", side: "right", tone: "sage" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Great. And Claudette, <strong>have</strong> you ever <strong>done</strong> any food distribution work?", side: "left", tone: "amber" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven't</strong>. But I got food here when I first came. I want to help back.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -469,13 +469,13 @@ export const haveYouEverContent: InteractiveGuideContent = {
       title: "Real Practice: Your Community",
       icon: "🏘️",
       explanation: `
-        ${sceneCard("sceneVolunteering", "East Boston Community Center, volunteer orientation sign-in table.", "sage")}
+        ${sceneCard("sceneVolunteering", "The pantry, Saturday morning. Claudette and Jean sign in at the volunteer table for their first shift. Kevin is checking names.", "sage")}
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>attended</strong> a neighborhood meeting?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "🧑🏽", text: "Yes, I <strong>have</strong>. I <strong>went</strong> to one about the new bus route last spring.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Have</strong> you ever <strong>done</strong> translation work for your community?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "🧑🏽", text: "No, I <strong>haven't</strong>. But I speak Vietnamese and English, and my neighbor needs help at her housing meeting.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "Good morning! Jean, <strong>have</strong> you ever <strong>attended</strong> a neighborhood meeting? We have one for volunteers next month.", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have</strong>. I <strong>went</strong> to one about a community garden last spring.", side: "right", tone: "terracotta" },
+          { speaker: "Kevin", avatar: "🧑🏻", text: "<strong>Have</strong> you ever <strong>done</strong> translation work for your community?", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏽", text: "No, I <strong>haven't</strong>. But Claudette and I speak Creole and English, and many families here need help.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(106,141,115,0.08); border-left: 3px solid #6a8d73; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
@@ -508,11 +508,11 @@ export const haveYouEverContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"Has she ever volunteer at the library?\"",
+              label: "\"Has Claudette ever volunteer at the library?\"",
               options: [
                 { value: "a", label: "Correct as is." },
-                { value: "b", label: "Not correct. Should be: Has she ever volunteered at the library? (V3 after has)" },
-                { value: "c", label: "Not correct. Should be: Has she ever volunteering at the library?" },
+                { value: "b", label: "Not correct. Should be: Has Claudette ever volunteered at the library? (V3 after has)" },
+                { value: "c", label: "Not correct. Should be: Has Claudette ever volunteering at the library?" },
               ],
               expectedAnswer: "b",
             },
@@ -525,12 +525,12 @@ export const haveYouEverContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Minh ___ a citizenship class two years ago.",
+              label: "Jean ___ boxes at his church last winter.",
               options: [
-                { value: "took", label: "took (past simple. specific time: two years ago)" },
-                { value: "has taken", label: "has taken (present perfect)" },
+                { value: "packed", label: "packed (past simple. specific time: last winter)" },
+                { value: "has packed", label: "has packed (present perfect)" },
               ],
-              expectedAnswer: "took",
+              expectedAnswer: "packed",
             },
             {
               type: "radio",
@@ -614,7 +614,7 @@ export const haveYouEverContent: InteractiveGuideContent = {
     },
     {
       id: "hye-q7",
-      question: "\"Have you ever called 311?\" Omar says no. What is the best reply?",
+      question: "\"Have you ever called 311?\" Claudette says no. What is the best reply?",
       options: [
         { value: "a", label: "No, I didn't." },
         { value: "b", label: "No, I haven't." },
@@ -642,10 +642,10 @@ export const haveYouEverContent: InteractiveGuideContent = {
     },
     {
       id: "hye-q8",
-      question: "Minh says: \"I have went to a citizenship class two years ago.\" What is wrong?",
+      question: "Jean says: \"I have went to a food pantry two years ago.\" What is wrong?",
       options: [
-        { value: "a", label: "Should be: I went to a citizenship class two years ago. (specific time needs Past Simple)" },
-        { value: "b", label: "Should be: I have gone to a citizenship class two years ago." },
+        { value: "a", label: "Should be: I went to a food pantry two years ago. (specific time needs Past Simple)" },
+        { value: "b", label: "Should be: I have gone to a food pantry two years ago." },
         { value: "c", label: "Nothing is wrong." },
       ],
       correctAnswer: "a",
