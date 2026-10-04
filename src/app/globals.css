@@ -2741,6 +2741,9 @@ html:not([data-theme="dark"]) .dashboard-accent-button:hover {
 .grammar-reader-container .explanation-content .gc-bg-blue-alpha {
   background: rgba(59, 130, 246, 0.1);
 }
+.grammar-reader-container .explanation-content .gc-bg-red-alpha {
+  background: rgba(239, 68, 68, 0.1);
+}
 
 /* ── Gradient Classes ── */
 .grammar-reader-container .explanation-content .gc-grad-terracotta {
@@ -3310,6 +3313,10 @@ html:not([data-theme="dark"]) .dashboard-accent-button:hover {
 }
 .dark .grammar-reader-container .explanation-content .gc-bg-blue-alpha * {
   color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red-alpha {
+  background: rgba(55, 25, 25, 0.78) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
 }
 
 /* ── Additional Callout Borders (for migration script) ── */

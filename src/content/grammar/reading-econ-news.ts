@@ -33,7 +33,13 @@ const fakeBarChart = (opts: {
   bars: { label: string; value: number; display: string }[];
   accent?: "terracotta" | "sage" | "blue" | "amber";
 }): string => {
-  const accent = opts.accent ?? "terracotta";
+  // Solid fills inline: globals.css only defines pale tints for these accents.
+  const fill = {
+    terracotta: "rgb(200, 107, 81)",
+    sage: "rgb(110, 145, 118)",
+    blue: "rgb(59, 130, 246)",
+    amber: "rgb(245, 158, 11)",
+  }[opts.accent ?? "terracotta"];
   const max = Math.max(...opts.bars.map((b) => b.value));
   return `
     <div style="border: 1px solid rgba(0,0,0,0.1); border-radius: 0.65rem; padding: 1rem 1.1rem; margin: 1.25rem 0; max-width: 520px; background: rgba(0,0,0,0.015)">
@@ -46,7 +52,7 @@ const fakeBarChart = (opts: {
           <div style="display: grid; grid-template-columns: 90px 1fr 64px; gap: 0.6rem; align-items: center">
             <div style="font-size: 0.8rem; font-weight: 600">${b.label}</div>
             <div style="background: rgba(0,0,0,0.06); border-radius: 999px; height: 16px; overflow: hidden">
-              <div class="gc-bg-${accent}" style="width: ${pct}%; height: 100%; border-radius: 999px"></div>
+              <div style="background: ${fill}; width: ${pct}%; height: 100%; border-radius: 999px"></div>
             </div>
             <div style="font-size: 0.8rem; font-weight: 700; text-align: right">${b.display}</div>
           </div>
