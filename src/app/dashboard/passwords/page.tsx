@@ -78,7 +78,7 @@ export default async function PasswordsPage() {
     const students = Array.from(studentMap.values());
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <header className="sticky top-0 bg-white/80 dark:bg-[var(--surface-elevated)]/95 backdrop-blur-md border-b border-border/40 dark:border-white/10 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1800px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>

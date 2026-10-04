@@ -3,7 +3,7 @@ import { BackButton } from '@/components/ui/BackButton';
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-bg to-bg-light flex items-center justify-center px-4">
+        <div className="min-h-dvh bg-gradient-to-br from-bg to-bg-light flex items-center justify-center px-4">
             <div className="max-w-md w-full text-center">
                 <div className="mb-8">
                     <h1 className="text-9xl font-bold text-primary mb-4 font-display">404</h1>

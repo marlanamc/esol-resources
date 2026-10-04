@@ -16,7 +16,7 @@ export default function GlobalError({
     }, [error]);
 
     return (
-        <div className="min-h-screen bg-bg flex items-center justify-center px-4 py-12">
+        <div className="min-h-dvh bg-bg flex items-center justify-center px-4 py-12">
             <div className="w-full max-w-xl bg-white border border-border/60 rounded-2xl shadow-sm p-6 space-y-4">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-bold">

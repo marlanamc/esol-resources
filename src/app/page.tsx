@@ -3,7 +3,7 @@ import { LoginCtaLink } from "@/components/ui/LoginCtaLink";
 
 export default function Home() {
     return (
-        <div className="min-h-screen relative overflow-hidden" style={{
+        <div className="min-h-dvh relative overflow-hidden" style={{
             background: "linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg) 50%, var(--color-bg-gradient-end) 100%)"
         }}>
             {/* Decorative elements */}
@@ -13,7 +13,7 @@ export default function Home() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl"></div>
             </div>
 
-            <div className="relative max-w-6xl mx-auto px-6 py-12 sm:py-20 flex flex-col items-center justify-center min-h-screen">
+            <div className="relative max-w-6xl mx-auto px-6 py-12 sm:py-20 flex flex-col items-center justify-center min-h-dvh">
                 {/* Header */}
                 <header className="text-center space-y-8 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">

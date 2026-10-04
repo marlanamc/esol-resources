@@ -326,7 +326,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white dark:bg-[#162b3d] rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 dark:border-white/10 min-h-screen md:min-h-0"
+          className="bg-white dark:bg-[#162b3d] rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 dark:border-white/10 min-h-dvh md:min-h-0"
         >
           <div className="bg-terracotta dark:bg-terracotta/90 p-8 text-white text-center pb-12">
             <Brain className="w-16 h-16 mx-auto mb-4 opacity-90" />

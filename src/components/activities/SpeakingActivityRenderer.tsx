@@ -84,7 +84,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
   };
 
   return (
-    <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+    <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-dvh lg:h-screen lg:w-screen">
       {pointsToast && (
         <PointsToast
           key={pointsToast.key}
@@ -568,7 +568,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
   }
 
   return (
-    <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+    <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-dvh lg:h-screen lg:w-screen">
       {pointsToast && (
         <PointsToast
           key={pointsToast.key}

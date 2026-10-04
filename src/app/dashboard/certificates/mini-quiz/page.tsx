@@ -115,7 +115,7 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
     const passed = displayScore >= 70;
 
     return (
-        <div className="min-h-screen pb-24">
+        <div className="min-h-dvh pb-24">
             {/* Back button positioned over the showcase */}
             <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
                 <LearnerMenu mode="quiet" className="bg-white/90 backdrop-blur shadow-lg" />

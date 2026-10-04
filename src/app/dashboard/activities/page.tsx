@@ -270,7 +270,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
         const defaultClassId = classes.length > 0 ? classes[0]!.id : null;
 
         return (
-            <div className="min-h-screen bg-bg">
+            <div className="min-h-dvh bg-bg">
                 <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 dark:bg-[var(--surface-elevated)]/95 border-white/60 dark:border-white/10 shadow-sm">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
                         <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
@@ -357,7 +357,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
     });
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
                 <ActivityCategoryPicker
                     activities={visibleActivities}

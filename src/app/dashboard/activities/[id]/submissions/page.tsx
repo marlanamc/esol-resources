@@ -68,7 +68,7 @@ export default async function WritingSubmissionsPage({ params }: Props) {
     });
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-bg">
+        <div className="min-h-dvh bg-gray-50 dark:bg-bg">
             <header className="bg-white dark:bg-[var(--surface-elevated)] shadow">
                 <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <BackButton href="/dashboard/activities" className="mb-4">Back to Activities</BackButton>

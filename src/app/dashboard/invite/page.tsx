@@ -106,7 +106,7 @@ export default function InvitePage() {
         : "";
 
     return (
-        <div className="min-h-screen bg-bg px-4 py-6 sm:py-8">
+        <div className="min-h-dvh bg-bg px-4 py-6 sm:py-8">
             <div className="max-w-lg mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex items-center gap-3">

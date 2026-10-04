@@ -145,10 +145,11 @@ function PanelBody({
             role="dialog"
             aria-label="Grammar Hospital difficulty settings"
             className="
-                fixed inset-x-0 bottom-0 z-40 max-h-[88vh] overflow-y-auto rounded-t-2xl
+                fixed inset-x-0 bottom-0 z-40 max-h-[88dvh] overflow-y-auto rounded-t-2xl
                 md:absolute md:inset-x-auto md:bottom-auto md:right-0 md:top-full md:mt-2 md:w-[22rem] md:max-h-none md:rounded-2xl
                 border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a]
                 shadow-[0_12px_40px_rgba(74,47,26,0.18)] p-5
+                pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))] md:pb-5
             "
         >
             <div className="flex items-center justify-between mb-4">

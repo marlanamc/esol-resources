@@ -95,7 +95,7 @@ export default async function GrammarMapPage() {
     }, {} as Record<string, { completionPercentage: number; status: string }>);
 
     return (
-        <div className="min-h-screen bg-[var(--bg-color)]">
+        <div className="min-h-dvh bg-[var(--bg-color)]">
             <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-[var(--surface-elevated)]/95 dark:bg-[var(--color-glass-bg)] border-[var(--border-subtle)] shadow-sm">
                 <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
                     <LearnerMenu mode="quiet" />

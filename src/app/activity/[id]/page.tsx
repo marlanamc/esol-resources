@@ -65,7 +65,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         ? resolveActivityGameUi(activityForRender)
         : null;
     const isComparisonBattleGame = gameUi === "comparison-battle";
-    const standardPageClassName = "min-h-screen bg-bg";
+    const standardPageClassName = "min-h-dvh bg-bg";
     const standardHeaderClassName = "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
     const standardTitleClassName = "text-gray-900 dark:text-white";
     const standardContentCardClassName = isVerbQuiz
@@ -83,7 +83,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
         return (
-            <div className="min-h-screen bg-bg">
+            <div className="min-h-dvh bg-bg">
                 {studentReliabilityOverlays}
                 <GrammarReader
                     content={parsedContent}
@@ -358,7 +358,7 @@ function renderImmersiveActivity(
         immersiveGameUi !== "grammar-hospital" &&
         immersiveGameUi !== "cafe-catch-up";
     return (
-        <div className="min-h-screen bg-bg flex flex-col">
+        <div className="min-h-dvh bg-bg flex flex-col">
             {overlays}
             {shouldRenderImmersiveHeader && (
                 <header className="border-b border-white/10 bg-bg/95 backdrop-blur-md shadow-sm flex-shrink-0">

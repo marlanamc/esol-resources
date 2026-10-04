@@ -40,7 +40,7 @@ export default async function GrammarGuidePage({ params }: Props) {
     const content = await guide.loadContent();
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <GrammarReader
                 content={content}
                 completionKey={slug}

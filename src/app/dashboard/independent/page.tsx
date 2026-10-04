@@ -240,7 +240,7 @@ export default async function IndependentDashboardPage() {
     const dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: session.user.role }} currentView="independent" />
 

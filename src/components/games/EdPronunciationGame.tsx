@@ -414,7 +414,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden rounded-3xl bg-[var(--surface-elevated)] text-text shadow-2xl border border-white/10"
+                    className="w-full max-w-lg max-h-[90dvh] flex flex-col overflow-hidden rounded-3xl bg-[var(--surface-elevated)] text-text shadow-2xl border border-white/10"
                   >
                     <div className="flex items-center justify-between shrink-0 border-b border-violet-200 dark:border-violet-800 bg-violet-50 dark:bg-violet-900/30 p-6">
                       <div className="flex items-center gap-3">

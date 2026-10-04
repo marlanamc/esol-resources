@@ -49,7 +49,7 @@ export default async function VerbQuizResultsPage({
     
     if (isNaN(weekNumber) || weekNumber < 1 || weekNumber > 20) {
         return (
-            <div className="min-h-screen bg-bg">
+            <div className="min-h-dvh bg-bg">
                 <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                     <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div>
@@ -75,7 +75,7 @@ export default async function VerbQuizResultsPage({
 
     if (!activity) {
         return (
-            <div className="min-h-screen bg-bg">
+            <div className="min-h-dvh bg-bg">
                 <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                     <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div>
@@ -112,7 +112,7 @@ export default async function VerbQuizResultsPage({
               );
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>

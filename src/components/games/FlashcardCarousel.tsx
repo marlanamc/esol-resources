@@ -258,7 +258,7 @@ export default function FlashcardCarousel({
 
     return (
         <div
-            className={`fixed inset-x-0 bottom-0 ${reserveMobileTopNavSpace ? "top-[68px]" : "top-0"} bg-bg flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4`}
+            className={`fixed inset-x-0 bottom-0 ${reserveMobileTopNavSpace ? "top-[68px]" : "top-0"} bg-bg flex flex-col touch-manipulation md:static md:h-auto md:min-h-dvh md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4`}
         >
             {/* Points Toast */}
             {pointsToast && (

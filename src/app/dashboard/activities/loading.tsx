@@ -1,6 +1,6 @@
 export default function ActivitiesLoading() {
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-dvh bg-bg">
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
                 <div className="space-y-6">
                     <div className="flex flex-col items-center gap-2 mb-2">

@@ -2,7 +2,7 @@ import { TrophyIcon } from "@/components/icons/Icons";
 
 export default function LeaderboardLoading() {
     return (
-        <div className="min-h-screen" style={{ backgroundColor: '#fef9f3' }}>
+        <div className="min-h-dvh" style={{ backgroundColor: '#fef9f3' }}>
             <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0' }}>
                 <div className="container mx-auto py-4 px-4 sm:px-6">
                     <div className="flex items-center gap-4">

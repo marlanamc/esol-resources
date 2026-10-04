@@ -19,7 +19,7 @@ export default async function AccountPage() {
 
     if (role === "teacher") {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+            <div className="min-h-dvh bg-gradient-to-br from-background via-background to-primary/5">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24">
                     <h1 className="text-3xl font-display font-bold text-text mb-2">
                         Account settings
@@ -45,7 +45,7 @@ export default async function AccountPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+        <div className="min-h-dvh bg-gradient-to-br from-background via-background to-primary/5">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24">
                 <h1 className="text-3xl font-display font-bold text-text mb-2">
                     Account settings

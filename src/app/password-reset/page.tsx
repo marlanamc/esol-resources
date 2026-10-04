@@ -75,7 +75,7 @@ function PasswordResetContent() {
     const inputClasses = "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 bg-bg">
+        <div className="min-h-dvh flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 bg-bg">
             <div className="max-w-md w-full space-y-6 sm:space-y-8">
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 text-primary">
