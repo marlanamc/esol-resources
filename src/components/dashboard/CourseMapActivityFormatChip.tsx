@@ -21,13 +21,14 @@ export function getCourseMapActivityFormat(type: string, vocabUi?: string, title
     }
 }
 
-export function CourseMapActivityFormatChip({ type, vocabUi, title }: { type: string; vocabUi?: string; title: string }) {
+export function CourseMapActivityFormatChip({ type, vocabUi, title, size = "sm" }: { type: string; vocabUi?: string; title: string; size?: "sm" | "md" }) {
     const format = getCourseMapActivityFormat(type, vocabUi, title);
     const tone = getLearnerCategoryTone(format.tone);
     const Icon = format.icon;
+    const sizeClass = size === "md" ? "px-[9px] py-1 text-[13px] font-semibold" : "px-2 py-1 text-xs font-medium";
     return (
-        <span className="inline-flex max-w-full items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium leading-tight" style={{ background: tone.chipBg, color: tone.chipText }}>
-            <Icon size={13} className="shrink-0" aria-hidden />
+        <span className={`inline-flex max-w-full items-center gap-1.5 rounded-full leading-tight ${sizeClass}`} style={{ background: tone.chipBg, color: tone.chipText }}>
+            <Icon size={size === "md" ? 14 : 13} className="shrink-0" aria-hidden />
             <span>{format.label}</span>
         </span>
     );

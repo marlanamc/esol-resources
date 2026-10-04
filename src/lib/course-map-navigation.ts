@@ -38,7 +38,8 @@ export function parseMapUnitFromHash(hash: string): number | null {
 export function scrollToMapTarget(targetId: string, behavior: ScrollBehavior = "smooth"): void {
     if (typeof document === "undefined") return;
     const el = document.getElementById(targetId);
-    if (!el) return;
+    // Skip targets in a hidden layout (the desktop and mobile maps both render).
+    if (!el || el.getClientRects().length === 0) return;
     const top = el.getBoundingClientRect().top + window.scrollY - COURSE_MAP_SCROLL_OFFSET_PX;
     window.scrollTo({ top: Math.max(0, top), behavior });
 }
