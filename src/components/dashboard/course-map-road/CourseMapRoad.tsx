@@ -231,10 +231,10 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
             {/* Sticky top bar */}
             <div
                 ref={barRef}
-                className="sticky z-30 px-4 pt-3 pb-2.5 backdrop-blur-[8px]"
+                className="sticky z-30 px-4 pt-3 pb-2.5"
                 style={{
                     top: headerHeight,
-                    background: "var(--road-bar-bg)",
+                    background: "var(--bg-color)",
                     borderBottom: "1px solid var(--border-subtle)",
                 }}
             >
