@@ -637,7 +637,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "\"Have you ever called 311?\" Omar says no. What is the best reply?",
+        "prompt": "\"Have you ever called 311?\" Claudette says no. What is the best reply?",
         "options": [
           "No, I didn't.",
           "No, I haven't.",
