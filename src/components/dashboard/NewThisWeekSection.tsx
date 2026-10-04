@@ -1,5 +1,7 @@
-
+import { Check } from "lucide-react";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
+import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
+import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 import { getGameEmojiForActivity } from "@/lib/game-emoji";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { stripVocabTypeSuffix } from "@/lib/vocab/display";
@@ -8,6 +10,8 @@ import type { FeaturedAssignment } from "@/components/dashboard/todays-assignmen
 interface NewThisWeekSectionProps {
     items: FeaturedAssignment[];
     subtitle?: string | null;
+    /** `list` uses the course map's activity rows (mobile classroom home). */
+    variant?: "grid" | "list";
 }
 
 function resolveCategoryKey(assignment: FeaturedAssignment): string {
@@ -90,9 +94,14 @@ function resolveActivityEmoji(assignment: FeaturedAssignment): string {
 export function NewThisWeekSection({
     items,
     subtitle,
+    variant = "grid",
 }: NewThisWeekSectionProps) {
     if (items.length === 0) {
         return null;
+    }
+
+    if (variant === "list") {
+        return <FeaturedList items={items} />;
     }
 
     return (
@@ -165,6 +174,78 @@ export function NewThisWeekSection({
                                     </p>
                                 </div>
                             </div>
+                        </ActivityLink>
+                    );
+                })}
+            </div>
+        </section>
+    );
+}
+
+const ROW_BORDER = "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)";
+
+function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
+    return (
+        <section aria-label="Featured" className={`font-legible ${roadStyles.road}`}>
+            <h2 className="mb-2 text-[12px] font-extrabold uppercase tracking-[.07em] text-text-muted">Featured</h2>
+            <div
+                className="overflow-hidden rounded-2xl"
+                style={{
+                    background: "var(--surface-base)",
+                    border: "1px solid color-mix(in srgb, var(--road-rail) 75%, transparent)",
+                }}
+            >
+                {items.map((assignment, index) => {
+                    const title = resolveDisplayTitle(assignment);
+                    const format = getCourseMapActivityFormat((assignment.activity.type || "").toLowerCase(), undefined, title);
+                    const tone = getLearnerCategoryTone(format.tone);
+                    const Icon = format.icon;
+                    const done = (assignment.progress ?? 0) >= 100;
+
+                    return (
+                        <ActivityLink
+                            key={assignment.id}
+                            activityId={assignment.activityId}
+                            assignmentId={assignment.assignmentId ?? assignment.id}
+                            href={assignment.href}
+                            className="flex min-h-[64px] items-center gap-3 px-4 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset"
+                            style={{ borderTop: index === 0 ? undefined : ROW_BORDER }}
+                        >
+                            <span
+                                className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                                style={
+                                    done
+                                        ? { background: tone.surface, color: tone.accent }
+                                        : { background: "var(--surface-base)", border: `2px solid ${tone.accent}`, color: tone.accent }
+                                }
+                            >
+                                <Icon size={19} aria-hidden />
+                                {done ? (
+                                    <span
+                                        className="absolute -bottom-1 -right-1 flex h-[18px] w-[18px] items-center justify-center rounded-full"
+                                        style={{ background: "var(--success-color)", color: "var(--road-on-success)", boxShadow: "0 0 0 2px var(--surface-base)" }}
+                                    >
+                                        <Check size={10} strokeWidth={3.5} aria-hidden />
+                                    </span>
+                                ) : null}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                                <span className={`block text-[15px] leading-[1.3] ${done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>
+                                    {title}
+                                </span>
+                                <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: done ? "var(--text-muted)" : tone.chipText }}>
+                                    {format.label}
+                                </span>
+                                {done ? <span className="sr-only">Done</span> : null}
+                            </span>
+                            {assignment.isNewRelease && !done ? (
+                                <span
+                                    className="shrink-0 rounded-full px-2 py-[3px] text-[10.5px] font-extrabold uppercase tracking-[.06em] text-text-muted"
+                                    style={{ background: "var(--road-neutral-chip)" }}
+                                >
+                                    New
+                                </span>
+                            ) : null}
                         </ActivityLink>
                     );
                 })}
