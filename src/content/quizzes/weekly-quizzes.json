@@ -3834,9 +3834,9 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rafael describes his double-shift routine at the hotel. Put the words in order. Words: She / is / used / to / working / two / jobs",
+        "prompt": "Frantz describes his friend Fabienne's routine. Put the words in order. Words: She / is / used / to / working / nights",
         "answers": [
-          "She is used to working two jobs"
+          "She is used to working nights"
         ],
         "explanation": "Be used to + gerund (working) means it feels familiar or normal now.",
         "source": "be-used-to-get-used-to/but-ws1"
@@ -3844,7 +3844,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rafael eats dinner at 1 AM after his shift every night. Which sentence is correct?",
+        "prompt": "Fabienne eats dinner at 1 AM after her shift every night. Which sentence is correct?",
         "options": [
           "I'm used to eat dinner very late.",
           "I'm used to eating dinner very late.",
