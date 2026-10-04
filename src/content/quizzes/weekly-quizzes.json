@@ -3,7 +3,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 4,
-    "title": "Weekly Quiz 1: Foundations: Learn How to Learn",
+    "title": "Week 4 Quiz: Foundations: Learn How to Learn",
     "focusVerbs": [
       "be",
       "have"
@@ -12,8 +12,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "be",
+        "form": "v1_3rd",
         "prompt": "be → V1-s (he/she/it)",
         "answers": [
           "is"
@@ -22,8 +24,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "be",
+        "form": "v1_ing",
         "prompt": "be → V-ing",
         "answers": [
           "being"
@@ -32,8 +36,47 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "be",
+        "form": "v2",
+        "prompt": "be → V2 (past) (give both forms, separated by /)",
+        "answers": [
+          "was/were",
+          "were/was"
+        ],
+        "explanation": "V2 (past) of be: was/were.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "be",
+        "form": "v3",
+        "prompt": "be → V3 (past participle)",
+        "answers": [
+          "been"
+        ],
+        "explanation": "V3 (past participle) of be: been.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "have",
+        "form": "v1_3rd",
+        "prompt": "have → V1-s (he/she/it)",
+        "answers": [
+          "has"
+        ],
+        "explanation": "V1-s (he/she/it) of have: has.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "have",
+        "form": "v1_ing",
         "prompt": "have → V-ing",
         "answers": [
           "having"
@@ -42,13 +85,27 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "have",
+        "form": "v2",
         "prompt": "have → V2 (past)",
         "answers": [
           "had"
         ],
         "explanation": "V2 (past) of have: had.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "have",
+        "form": "v3",
+        "prompt": "have → V3 (past participle)",
+        "answers": [
+          "had"
+        ],
+        "explanation": "V3 (past participle) of have: had.",
         "source": "verb-conjugations"
       },
       {
@@ -133,7 +190,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 5,
-    "title": "Weekly Quiz 2: Digital Habits + Community Routines",
+    "title": "Week 5 Quiz: Digital Habits + Community Routines",
     "focusVerbs": [
       "do",
       "make"
@@ -141,8 +198,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "do",
+        "form": "v1_3rd",
+        "prompt": "do → V1-s (he/she/it)",
+        "answers": [
+          "does"
+        ],
+        "explanation": "V1-s (he/she/it) of do: does.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "do",
+        "form": "v1_ing",
         "prompt": "do → V-ing",
         "answers": [
           "doing"
@@ -151,8 +222,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "do",
+        "form": "v2",
         "prompt": "do → V2 (past)",
         "answers": [
           "did"
@@ -161,8 +234,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "do",
+        "form": "v3",
+        "prompt": "do → V3 (past participle)",
+        "answers": [
+          "done"
+        ],
+        "explanation": "V3 (past participle) of do: done.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "make",
+        "form": "v1_3rd",
+        "prompt": "make → V1-s (he/she/it)",
+        "answers": [
+          "makes"
+        ],
+        "explanation": "V1-s (he/she/it) of make: makes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "make",
+        "form": "v1_ing",
+        "prompt": "make → V-ing",
+        "answers": [
+          "making"
+        ],
+        "explanation": "V-ing of make: making.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "make",
+        "form": "v2",
         "prompt": "make → V2 (past)",
         "answers": [
           "made"
@@ -171,8 +282,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "make",
+        "form": "v3",
         "prompt": "make → V3 (past participle)",
         "answers": [
           "made"
@@ -234,22 +347,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "You want to know the location of the computer lab. Which question do you ask?",
+        "prompt": "You want to find the room for the computer class. Which question do you ask?",
         "options": [
-          "Who is the computer lab?",
-          "When is the computer lab?",
-          "Where is the computer lab?"
+          "Who is the computer class?",
+          "When is the computer class?",
+          "Where is the computer class?"
         ],
         "answers": [
-          "Where is the computer lab?"
+          "Where is the computer class?"
         ],
-        "explanation": "Where asks about a place or location.",
+        "explanation": "Where asks about a place or location. When asks about time, so it won't tell you the room.",
         "source": "questions-real-answers/qra-q2"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"___ is the English class? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
+        "prompt": "Fill in the blank: \"___ is the online meeting? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
         "answers": [
           "When",
           "when"
@@ -263,7 +376,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 6,
-    "title": "Weekly Quiz 3: Getting Around: Directions + Digital Safety",
+    "title": "Week 6 Quiz: Getting Around: Directions + Digital Safety",
     "focusVerbs": [
       "go",
       "come"
@@ -271,8 +384,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "go",
+        "form": "v1_3rd",
+        "prompt": "go → V1-s (he/she/it)",
+        "answers": [
+          "goes"
+        ],
+        "explanation": "V1-s (he/she/it) of go: goes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "go",
+        "form": "v1_ing",
+        "prompt": "go → V-ing",
+        "answers": [
+          "going"
+        ],
+        "explanation": "V-ing of go: going.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "go",
+        "form": "v2",
         "prompt": "go → V2 (past)",
         "answers": [
           "went"
@@ -281,8 +420,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "go",
+        "form": "v3",
         "prompt": "go → V3 (past participle)",
         "answers": [
           "gone"
@@ -291,23 +432,51 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "come → V3 (past participle)",
-        "answers": [
-          "come"
-        ],
-        "explanation": "V3 (past participle) of come: come.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "come",
+        "form": "v1_3rd",
         "prompt": "come → V1-s (he/she/it)",
         "answers": [
           "comes"
         ],
         "explanation": "V1-s (he/she/it) of come: comes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "come",
+        "form": "v1_ing",
+        "prompt": "come → V-ing",
+        "answers": [
+          "coming"
+        ],
+        "explanation": "V-ing of come: coming.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "come",
+        "form": "v2",
+        "prompt": "come → V2 (past)",
+        "answers": [
+          "came"
+        ],
+        "explanation": "V2 (past) of come: came.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "come",
+        "form": "v3",
+        "prompt": "come → V3 (past participle)",
+        "answers": [
+          "come"
+        ],
+        "explanation": "V3 (past participle) of come: come.",
         "source": "verb-conjugations"
       },
       {
@@ -379,11 +548,11 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa describes her morning commute. Put the words in order. Words: She / usually / takes / the / bus / to / work",
+        "prompt": "Fatima describes her trip to class. Put the words in order. Words: She / usually / leaves / home / at / 5:30",
         "answers": [
-          "She usually takes the bus to work"
+          "She usually leaves home at 5:30"
         ],
-        "explanation": "Usually goes before the main verb: She usually takes.",
+        "explanation": "Usually goes before the main verb: She usually leaves.",
         "source": "your-week-in-english/your-week-qws1"
       }
     ]
@@ -392,7 +561,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 8,
-    "title": "Weekly Quiz 4: Phone English + Family Connection",
+    "title": "Week 8 Quiz: Phone English + Family Connection",
     "focusVerbs": [
       "tell",
       "say"
@@ -400,18 +569,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "tell → V3 (past participle)",
-        "answers": [
-          "told"
-        ],
-        "explanation": "V3 (past participle) of tell: told.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "tell",
+        "form": "v1_3rd",
         "prompt": "tell → V1-s (he/she/it)",
         "answers": [
           "tells"
@@ -420,8 +581,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "tell",
+        "form": "v1_ing",
+        "prompt": "tell → V-ing",
+        "answers": [
+          "telling"
+        ],
+        "explanation": "V-ing of tell: telling.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "tell",
+        "form": "v2",
+        "prompt": "tell → V2 (past)",
+        "answers": [
+          "told"
+        ],
+        "explanation": "V2 (past) of tell: told.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "tell",
+        "form": "v3",
+        "prompt": "tell → V3 (past participle)",
+        "answers": [
+          "told"
+        ],
+        "explanation": "V3 (past participle) of tell: told.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "say",
+        "form": "v1_3rd",
         "prompt": "say → V1-s (he/she/it)",
         "answers": [
           "says"
@@ -430,13 +629,39 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "say",
+        "form": "v1_ing",
         "prompt": "say → V-ing",
         "answers": [
           "saying"
         ],
         "explanation": "V-ing of say: saying.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "say",
+        "form": "v2",
+        "prompt": "say → V2 (past)",
+        "answers": [
+          "said"
+        ],
+        "explanation": "V2 (past) of say: said.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "say",
+        "form": "v3",
+        "prompt": "say → V3 (past participle)",
+        "answers": [
+          "said"
+        ],
+        "explanation": "V3 (past participle) of say: said.",
         "source": "verb-conjugations"
       },
       {
@@ -493,14 +718,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "\"You don't have to use a special browser for online banking.\" What does this mean?",
+        "prompt": "\"You don't have to come to the bank. You can call the number on your card.\" What does this mean?",
         "options": [
-          "Using a special browser is forbidden.",
-          "Using a special browser is required.",
-          "Using a special browser is optional."
+          "Coming to the bank is forbidden.",
+          "Coming to the bank is required.",
+          "Coming to the bank is optional."
         ],
         "answers": [
-          "Using a special browser is optional."
+          "Coming to the bank is optional."
         ],
         "explanation": "'Don't have to' means it is not required. It is different from 'must not,' which means it is forbidden.",
         "source": "can-should-must/can-should-must-q6"
@@ -508,14 +733,14 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Claudette is setting up her phone at the library. Which sentence is correct?",
+        "prompt": "Claudette is setting up her new phone at the library. Which sentence is correct?",
         "options": [
-          "She can uses the library wifi for free.",
-          "She can use the library wifi for free.",
-          "She can to use the library wifi for free."
+          "She can video-calls her daughter for free.",
+          "She can video-call her daughter for free.",
+          "She can to video-call her daughter for free."
         ],
         "answers": [
-          "She can use the library wifi for free."
+          "She can video-call her daughter for free."
         ],
         "explanation": "Modal verbs (can, should, must) are always followed by the base verb with no changes.",
         "source": "can-should-must/can-should-must-q1"
@@ -526,7 +751,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 9,
-    "title": "Weekly Quiz 5: Helping + Volunteering",
+    "title": "Week 9 Quiz: Helping + Volunteering",
     "focusVerbs": [
       "take",
       "bring"
@@ -534,8 +759,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "take",
+        "form": "v1_3rd",
         "prompt": "take → V1-s (he/she/it)",
         "answers": [
           "takes"
@@ -544,8 +771,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "take",
+        "form": "v1_ing",
         "prompt": "take → V-ing",
         "answers": [
           "taking"
@@ -554,8 +783,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "take",
+        "form": "v2",
+        "prompt": "take → V2 (past)",
+        "answers": [
+          "took"
+        ],
+        "explanation": "V2 (past) of take: took.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "take",
+        "form": "v3",
+        "prompt": "take → V3 (past participle)",
+        "answers": [
+          "taken"
+        ],
+        "explanation": "V3 (past participle) of take: taken.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v1_3rd",
+        "prompt": "bring → V1-s (he/she/it)",
+        "answers": [
+          "brings"
+        ],
+        "explanation": "V1-s (he/she/it) of bring: brings.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v1_ing",
         "prompt": "bring → V-ing",
         "answers": [
           "bringing"
@@ -564,13 +831,27 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "bring",
+        "form": "v2",
         "prompt": "bring → V2 (past)",
         "answers": [
           "brought"
         ],
         "explanation": "V2 (past) of bring: brought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v3",
+        "prompt": "bring → V3 (past participle)",
+        "answers": [
+          "brought"
+        ],
+        "explanation": "V3 (past participle) of bring: brought.",
         "source": "verb-conjugations"
       },
       {
@@ -655,7 +936,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 10,
-    "title": "Weekly Quiz 6: Public Meetings + Suggestions",
+    "title": "Week 10 Quiz: Public Meetings + Suggestions",
     "focusVerbs": [
       "meet",
       "speak"
@@ -663,8 +944,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "meet",
+        "form": "v1_3rd",
+        "prompt": "meet → V1-s (he/she/it)",
+        "answers": [
+          "meets"
+        ],
+        "explanation": "V1-s (he/she/it) of meet: meets.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "meet",
+        "form": "v1_ing",
         "prompt": "meet → V-ing",
         "answers": [
           "meeting"
@@ -673,8 +968,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "meet",
+        "form": "v2",
         "prompt": "meet → V2 (past)",
         "answers": [
           "met"
@@ -683,8 +980,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "meet",
+        "form": "v3",
+        "prompt": "meet → V3 (past participle)",
+        "answers": [
+          "met"
+        ],
+        "explanation": "V3 (past participle) of meet: met.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v1_3rd",
+        "prompt": "speak → V1-s (he/she/it)",
+        "answers": [
+          "speaks"
+        ],
+        "explanation": "V1-s (he/she/it) of speak: speaks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v1_ing",
+        "prompt": "speak → V-ing",
+        "answers": [
+          "speaking"
+        ],
+        "explanation": "V-ing of speak: speaking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v2",
         "prompt": "speak → V2 (past)",
         "answers": [
           "spoke"
@@ -693,8 +1028,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "speak",
+        "form": "v3",
         "prompt": "speak → V3 (past participle)",
         "answers": [
           "spoken"
@@ -756,7 +1093,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Diego talks about his skills at the restaurant. Put the words in order. Words: I / am / good / at / cooking / fast",
+        "prompt": "Sarah asks Diego what he is good at. Put the words in order. Words: I / am / good / at / cooking / fast",
         "answers": [
           "I am good at cooking fast"
         ],
@@ -768,12 +1105,12 @@
         "section": "grammar",
         "prompt": "Which sentence is correct?",
         "options": [
-          "Don't sign without read the contract.",
-          "Don't sign without reading the contract.",
-          "Don't sign without to read the contract."
+          "Don't sign without read the letter.",
+          "Don't sign without reading the letter.",
+          "Don't sign without to read the letter."
         ],
         "answers": [
-          "Don't sign without reading the contract."
+          "Don't sign without reading the letter."
         ],
         "explanation": "'Without' is a preposition. The verb after it must be -ing: without reading.",
         "source": "what-are-you-good-at/good-at-q7"
@@ -784,7 +1121,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 7,
-    "title": "Weekly Quiz 7: Our Voice, Our Vote",
+    "title": "Week 7 Quiz: Our Voice, Our Vote",
     "focusVerbs": [
       "write",
       "send"
@@ -792,8 +1129,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "write",
+        "form": "v1_3rd",
+        "prompt": "write → V1-s (he/she/it)",
+        "answers": [
+          "writes"
+        ],
+        "explanation": "V1-s (he/she/it) of write: writes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "write",
+        "form": "v1_ing",
+        "prompt": "write → V-ing",
+        "answers": [
+          "writing"
+        ],
+        "explanation": "V-ing of write: writing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "write",
+        "form": "v2",
         "prompt": "write → V2 (past)",
         "answers": [
           "wrote"
@@ -802,8 +1165,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "write",
+        "form": "v3",
         "prompt": "write → V3 (past participle)",
         "answers": [
           "written"
@@ -812,23 +1177,51 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "send → V3 (past participle)",
-        "answers": [
-          "sent"
-        ],
-        "explanation": "V3 (past participle) of send: sent.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "send",
+        "form": "v1_3rd",
         "prompt": "send → V1-s (he/she/it)",
         "answers": [
           "sends"
         ],
         "explanation": "V1-s (he/she/it) of send: sends.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "send",
+        "form": "v1_ing",
+        "prompt": "send → V-ing",
+        "answers": [
+          "sending"
+        ],
+        "explanation": "V-ing of send: sending.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "send",
+        "form": "v2",
+        "prompt": "send → V2 (past)",
+        "answers": [
+          "sent"
+        ],
+        "explanation": "V2 (past) of send: sent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "send",
+        "form": "v3",
+        "prompt": "send → V3 (past participle)",
+        "answers": [
+          "sent"
+        ],
+        "explanation": "V3 (past participle) of send: sent.",
         "source": "verb-conjugations"
       },
       {
@@ -918,13 +1311,109 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 15,
-    "title": "Weekly Quiz 8: Fall Review + Class Party",
+    "title": "Week 15 Quiz: Fall Review + Class Party",
     "focusVerbs": [
       "think",
       "know"
     ],
     "estimatedMinutes": "5–10",
     "questions": [
+      {
+        "id": "form-0-v1_3rd",
+        "section": "forms",
+        "verb": "think",
+        "form": "v1_3rd",
+        "prompt": "think → V1-s (he/she/it)",
+        "answers": [
+          "thinks"
+        ],
+        "explanation": "V1-s (he/she/it) of think: thinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "think",
+        "form": "v1_ing",
+        "prompt": "think → V-ing",
+        "answers": [
+          "thinking"
+        ],
+        "explanation": "V-ing of think: thinking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "think",
+        "form": "v2",
+        "prompt": "think → V2 (past)",
+        "answers": [
+          "thought"
+        ],
+        "explanation": "V2 (past) of think: thought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "think",
+        "form": "v3",
+        "prompt": "think → V3 (past participle)",
+        "answers": [
+          "thought"
+        ],
+        "explanation": "V3 (past participle) of think: thought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "know",
+        "form": "v1_3rd",
+        "prompt": "know → V1-s (he/she/it)",
+        "answers": [
+          "knows"
+        ],
+        "explanation": "V1-s (he/she/it) of know: knows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "know",
+        "form": "v1_ing",
+        "prompt": "know → V-ing",
+        "answers": [
+          "knowing"
+        ],
+        "explanation": "V-ing of know: knowing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "know",
+        "form": "v2",
+        "prompt": "know → V2 (past)",
+        "answers": [
+          "knew"
+        ],
+        "explanation": "V2 (past) of know: knew.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "know",
+        "form": "v3",
+        "prompt": "know → V3 (past participle)",
+        "answers": [
+          "known"
+        ],
+        "explanation": "V3 (past participle) of know: known.",
+        "source": "verb-conjugations"
+      },
       {
         "id": "recap-0",
         "section": "vocabulary",
@@ -1006,7 +1495,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 11,
-    "title": "Weekly Quiz 9: How Long + For and Since",
+    "title": "Week 11 Quiz: How Long + For and Since",
     "focusVerbs": [
       "cost",
       "spend"
@@ -1014,8 +1503,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "cost",
+        "form": "v1_3rd",
         "prompt": "cost → V1-s (he/she/it)",
         "answers": [
           "costs"
@@ -1024,8 +1515,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "cost",
+        "form": "v1_ing",
         "prompt": "cost → V-ing",
         "answers": [
           "costing"
@@ -1034,8 +1527,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "cost",
+        "form": "v2",
+        "prompt": "cost → V2 (past)",
+        "answers": [
+          "cost"
+        ],
+        "explanation": "V2 (past) of cost: cost.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "cost",
+        "form": "v3",
+        "prompt": "cost → V3 (past participle)",
+        "answers": [
+          "cost"
+        ],
+        "explanation": "V3 (past participle) of cost: cost.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "spend",
+        "form": "v1_3rd",
+        "prompt": "spend → V1-s (he/she/it)",
+        "answers": [
+          "spends"
+        ],
+        "explanation": "V1-s (he/she/it) of spend: spends.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "spend",
+        "form": "v1_ing",
         "prompt": "spend → V-ing",
         "answers": [
           "spending"
@@ -1044,13 +1575,27 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "spend",
+        "form": "v2",
         "prompt": "spend → V2 (past)",
         "answers": [
           "spent"
         ],
         "explanation": "V2 (past) of spend: spent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "spend",
+        "form": "v3",
+        "prompt": "spend → V3 (past participle)",
+        "answers": [
+          "spent"
+        ],
+        "explanation": "V3 (past participle) of spend: spent.",
         "source": "verb-conjugations"
       },
       {
@@ -1107,14 +1652,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct?",
+        "prompt": "Kofi's last day at the restaurant was Tuesday of last week. He does not work there anymore. Which sentence is correct?",
         "options": [
-          "Beatriz has left the restaurant since last Tuesday.",
-          "Beatriz has worked at the restaurant for last Tuesday.",
-          "Beatriz left the restaurant last Tuesday."
+          "Kofi has left the restaurant since last Tuesday.",
+          "Kofi has worked at the restaurant for last Tuesday.",
+          "Kofi left the restaurant last Tuesday."
         ],
         "answers": [
-          "Beatriz left the restaurant last Tuesday."
+          "Kofi left the restaurant last Tuesday."
         ],
         "explanation": "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",
         "source": "how-long-for-since/hlfs-q7"
@@ -1122,16 +1667,16 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa has had her phone plan since 2021. She wants to say the same thing using 'for'. It is now 2024. What does she say?",
+        "prompt": "Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
         "options": [
           "I have had this plan for since three years.",
           "I have had this plan for three years.",
-          "I have had this plan for 2021."
+          "I have had this plan for 2023."
         ],
         "answers": [
           "I have had this plan for three years."
         ],
-        "explanation": "'For' takes a length of time, not a starting year. 2024 minus 2021 = three years.",
+        "explanation": "'For' takes a length of time (three years), not a starting year (2023).",
         "source": "how-long-for-since/hlfs-q2"
       }
     ]
@@ -1140,7 +1685,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 12,
-    "title": "Weekly Quiz 10: More, Less, the Most: Comparatives + Superlatives",
+    "title": "Week 12 Quiz: More, Less, the Most: Comparatives + Superlatives",
     "focusVerbs": [
       "buy",
       "sell"
@@ -1148,8 +1693,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "buy",
+        "form": "v1_3rd",
+        "prompt": "buy → V1-s (he/she/it)",
+        "answers": [
+          "buys"
+        ],
+        "explanation": "V1-s (he/she/it) of buy: buys.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "buy",
+        "form": "v1_ing",
         "prompt": "buy → V-ing",
         "answers": [
           "buying"
@@ -1158,8 +1717,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "buy",
+        "form": "v2",
         "prompt": "buy → V2 (past)",
         "answers": [
           "bought"
@@ -1168,8 +1729,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "buy",
+        "form": "v3",
+        "prompt": "buy → V3 (past participle)",
+        "answers": [
+          "bought"
+        ],
+        "explanation": "V3 (past participle) of buy: bought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "sell",
+        "form": "v1_3rd",
+        "prompt": "sell → V1-s (he/she/it)",
+        "answers": [
+          "sells"
+        ],
+        "explanation": "V1-s (he/she/it) of sell: sells.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "sell",
+        "form": "v1_ing",
+        "prompt": "sell → V-ing",
+        "answers": [
+          "selling"
+        ],
+        "explanation": "V-ing of sell: selling.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "sell",
+        "form": "v2",
         "prompt": "sell → V2 (past)",
         "answers": [
           "sold"
@@ -1178,8 +1777,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "sell",
+        "form": "v3",
         "prompt": "sell → V3 (past participle)",
         "answers": [
           "sold"
@@ -1241,7 +1842,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Kevin compares three ways to get to work. Which sentence is correct?",
+        "prompt": "Fernanda compares three ways to get to work. Which sentence is correct?",
         "options": [
           "The Blue Line is the most fastest.",
           "The Blue Line is fastest.",
@@ -1256,7 +1857,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Plan B is ___ expensive than Plan A.\" (Long adjective comparative: don't add -er.)",
+        "prompt": "Fill in the blank: \"Plan B is ___ expensive than Plan C.\" (Long adjective comparative: don't add -er.)",
         "answers": [
           "more"
         ],
@@ -1269,7 +1870,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 13,
-    "title": "Weekly Quiz 11: How Much / How Many: Countable + Uncountable",
+    "title": "Week 13 Quiz: How Much / How Many: Countable + Uncountable",
     "focusVerbs": [
       "eat",
       "drink"
@@ -1277,8 +1878,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "eat",
+        "form": "v1_3rd",
+        "prompt": "eat → V1-s (he/she/it)",
+        "answers": [
+          "eats"
+        ],
+        "explanation": "V1-s (he/she/it) of eat: eats.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v1_ing",
+        "prompt": "eat → V-ing",
+        "answers": [
+          "eating"
+        ],
+        "explanation": "V-ing of eat: eating.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v2",
         "prompt": "eat → V2 (past)",
         "answers": [
           "ate"
@@ -1287,8 +1914,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "eat",
+        "form": "v3",
         "prompt": "eat → V3 (past participle)",
         "answers": [
           "eaten"
@@ -1297,23 +1926,51 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "drink → V3 (past participle)",
-        "answers": [
-          "drunk"
-        ],
-        "explanation": "V3 (past participle) of drink: drunk.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "drink",
+        "form": "v1_3rd",
         "prompt": "drink → V1-s (he/she/it)",
         "answers": [
           "drinks"
         ],
         "explanation": "V1-s (he/she/it) of drink: drinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v1_ing",
+        "prompt": "drink → V-ing",
+        "answers": [
+          "drinking"
+        ],
+        "explanation": "V-ing of drink: drinking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v2",
+        "prompt": "drink → V2 (past)",
+        "answers": [
+          "drank"
+        ],
+        "explanation": "V2 (past) of drink: drank.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v3",
+        "prompt": "drink → V3 (past participle)",
+        "answers": [
+          "drunk"
+        ],
+        "explanation": "V3 (past participle) of drink: drunk.",
         "source": "verb-conjugations"
       },
       {
@@ -1398,7 +2055,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 16,
-    "title": "Weekly Quiz 12: Housing Basics",
+    "title": "Week 16 Quiz: Housing Basics",
     "focusVerbs": [
       "see",
       "find"
@@ -1406,18 +2063,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "see → V3 (past participle)",
-        "answers": [
-          "seen"
-        ],
-        "explanation": "V3 (past participle) of see: seen.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "see",
+        "form": "v1_3rd",
         "prompt": "see → V1-s (he/she/it)",
         "answers": [
           "sees"
@@ -1426,8 +2075,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "see",
+        "form": "v1_ing",
+        "prompt": "see → V-ing",
+        "answers": [
+          "seeing"
+        ],
+        "explanation": "V-ing of see: seeing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "see",
+        "form": "v2",
+        "prompt": "see → V2 (past)",
+        "answers": [
+          "saw"
+        ],
+        "explanation": "V2 (past) of see: saw.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "see",
+        "form": "v3",
+        "prompt": "see → V3 (past participle)",
+        "answers": [
+          "seen"
+        ],
+        "explanation": "V3 (past participle) of see: seen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "find",
+        "form": "v1_3rd",
         "prompt": "find → V1-s (he/she/it)",
         "answers": [
           "finds"
@@ -1436,13 +2123,39 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "find",
+        "form": "v1_ing",
         "prompt": "find → V-ing",
         "answers": [
           "finding"
         ],
         "explanation": "V-ing of find: finding.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "find",
+        "form": "v2",
+        "prompt": "find → V2 (past)",
+        "answers": [
+          "found"
+        ],
+        "explanation": "V2 (past) of find: found.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "find",
+        "form": "v3",
+        "prompt": "find → V3 (past participle)",
+        "answers": [
+          "found"
+        ],
+        "explanation": "V3 (past participle) of find: found.",
         "source": "verb-conjugations"
       },
       {
@@ -1532,7 +2245,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 17,
-    "title": "Weekly Quiz 13: Comparing Housing Options",
+    "title": "Week 17 Quiz: Comparing Housing Options",
     "focusVerbs": [
       "choose",
       "let"
@@ -1540,8 +2253,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "choose",
+        "form": "v1_3rd",
         "prompt": "choose → V1-s (he/she/it)",
         "answers": [
           "chooses"
@@ -1550,8 +2265,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "choose",
+        "form": "v1_ing",
         "prompt": "choose → V-ing",
         "answers": [
           "choosing"
@@ -1560,8 +2277,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "choose",
+        "form": "v2",
+        "prompt": "choose → V2 (past)",
+        "answers": [
+          "chose"
+        ],
+        "explanation": "V2 (past) of choose: chose.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "choose",
+        "form": "v3",
+        "prompt": "choose → V3 (past participle)",
+        "answers": [
+          "chosen"
+        ],
+        "explanation": "V3 (past participle) of choose: chosen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "let",
+        "form": "v1_3rd",
+        "prompt": "let → V1-s (he/she/it)",
+        "answers": [
+          "lets"
+        ],
+        "explanation": "V1-s (he/she/it) of let: lets.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "let",
+        "form": "v1_ing",
         "prompt": "let → V-ing",
         "answers": [
           "letting"
@@ -1570,13 +2325,27 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "let",
+        "form": "v2",
         "prompt": "let → V2 (past)",
         "answers": [
           "let"
         ],
         "explanation": "V2 (past) of let: let.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "let",
+        "form": "v3",
+        "prompt": "let → V3 (past participle)",
+        "answers": [
+          "let"
+        ],
+        "explanation": "V3 (past participle) of let: let.",
         "source": "verb-conjugations"
       },
       {
@@ -1647,7 +2416,7 @@
         "answers": [
           "The landlord has to give notice"
         ],
-        "explanation": "'Has to' shows the landlord is legally required to give notice before entering.",
+        "explanation": "'Has to' shows the lease requires the landlord to give notice before entering.",
         "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qws1"
       }
     ]
@@ -1656,7 +2425,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 18,
-    "title": "Weekly Quiz 14: Landlord Calls + Repair Requests",
+    "title": "Week 18 Quiz: Landlord Calls + Repair Requests",
     "focusVerbs": [
       "break",
       "hold"
@@ -1664,8 +2433,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "break",
+        "form": "v1_3rd",
+        "prompt": "break → V1-s (he/she/it)",
+        "answers": [
+          "breaks"
+        ],
+        "explanation": "V1-s (he/she/it) of break: breaks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "break",
+        "form": "v1_ing",
         "prompt": "break → V-ing",
         "answers": [
           "breaking"
@@ -1674,8 +2457,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "break",
+        "form": "v2",
         "prompt": "break → V2 (past)",
         "answers": [
           "broke"
@@ -1684,8 +2469,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "break",
+        "form": "v3",
+        "prompt": "break → V3 (past participle)",
+        "answers": [
+          "broken"
+        ],
+        "explanation": "V3 (past participle) of break: broken.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "hold",
+        "form": "v1_3rd",
+        "prompt": "hold → V1-s (he/she/it)",
+        "answers": [
+          "holds"
+        ],
+        "explanation": "V1-s (he/she/it) of hold: holds.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "hold",
+        "form": "v1_ing",
+        "prompt": "hold → V-ing",
+        "answers": [
+          "holding"
+        ],
+        "explanation": "V-ing of hold: holding.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "hold",
+        "form": "v2",
         "prompt": "hold → V2 (past)",
         "answers": [
           "held"
@@ -1694,8 +2517,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "hold",
+        "form": "v3",
         "prompt": "hold → V3 (past participle)",
         "answers": [
           "held"
@@ -1757,7 +2582,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Carlos calls about an apartment on Bremen Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
+        "prompt": "Wilson calls about an apartment on Bremen Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
         "answers": [
           "I would like to meet the landlord"
         ],
@@ -1785,7 +2610,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 19,
-    "title": "Weekly Quiz 15: Housing Problems + Solutions",
+    "title": "Week 19 Quiz: Housing Problems + Solutions",
     "focusVerbs": [
       "hear",
       "leave"
@@ -1793,8 +2618,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "hear",
+        "form": "v1_3rd",
+        "prompt": "hear → V1-s (he/she/it)",
+        "answers": [
+          "hears"
+        ],
+        "explanation": "V1-s (he/she/it) of hear: hears.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "hear",
+        "form": "v1_ing",
+        "prompt": "hear → V-ing",
+        "answers": [
+          "hearing"
+        ],
+        "explanation": "V-ing of hear: hearing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "hear",
+        "form": "v2",
         "prompt": "hear → V2 (past)",
         "answers": [
           "heard"
@@ -1803,8 +2654,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "hear",
+        "form": "v3",
         "prompt": "hear → V3 (past participle)",
         "answers": [
           "heard"
@@ -1813,23 +2666,51 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "leave → V3 (past participle)",
-        "answers": [
-          "left"
-        ],
-        "explanation": "V3 (past participle) of leave: left.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "leave",
+        "form": "v1_3rd",
         "prompt": "leave → V1-s (he/she/it)",
         "answers": [
           "leaves"
         ],
         "explanation": "V1-s (he/she/it) of leave: leaves.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v1_ing",
+        "prompt": "leave → V-ing",
+        "answers": [
+          "leaving"
+        ],
+        "explanation": "V-ing of leave: leaving.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v2",
+        "prompt": "leave → V2 (past)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "V2 (past) of leave: left.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v3",
+        "prompt": "leave → V3 (past participle)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "V3 (past participle) of leave: left.",
         "source": "verb-conjugations"
       },
       {
@@ -1901,7 +2782,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
+        "prompt": "Fill in the blank: \"While Lucia ___ the landlord, Amina heard her voice.\" (Action in progress: past continuous.)",
         "answers": [
           "was calling"
         ],
@@ -1914,7 +2795,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 20,
-    "title": "Weekly Quiz 16: Resume + Workplace Basics",
+    "title": "Week 20 Quiz: Resume + Workplace Basics",
     "focusVerbs": [
       "become",
       "lead",
@@ -1923,18 +2804,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "become → V3 (past participle)",
-        "answers": [
-          "become"
-        ],
-        "explanation": "V3 (past participle) of become: become.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "become",
+        "form": "v1_3rd",
         "prompt": "become → V1-s (he/she/it)",
         "answers": [
           "becomes"
@@ -1943,8 +2816,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "become",
+        "form": "v1_ing",
+        "prompt": "become → V-ing",
+        "answers": [
+          "becoming"
+        ],
+        "explanation": "V-ing of become: becoming.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "become",
+        "form": "v2",
+        "prompt": "become → V2 (past)",
+        "answers": [
+          "became"
+        ],
+        "explanation": "V2 (past) of become: became.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "become",
+        "form": "v3",
+        "prompt": "become → V3 (past participle)",
+        "answers": [
+          "become"
+        ],
+        "explanation": "V3 (past participle) of become: become.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "lead",
+        "form": "v1_3rd",
         "prompt": "lead → V1-s (he/she/it)",
         "answers": [
           "leads"
@@ -1953,8 +2864,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "lead",
+        "form": "v1_ing",
         "prompt": "lead → V-ing",
         "answers": [
           "leading"
@@ -1963,13 +2876,75 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "lead",
+        "form": "v2",
+        "prompt": "lead → V2 (past)",
+        "answers": [
+          "led"
+        ],
+        "explanation": "V2 (past) of lead: led.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "lead",
+        "form": "v3",
+        "prompt": "lead → V3 (past participle)",
+        "answers": [
+          "led"
+        ],
+        "explanation": "V3 (past participle) of lead: led.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "go",
+        "form": "v1_3rd",
+        "prompt": "go → V1-s (he/she/it)",
+        "answers": [
+          "goes"
+        ],
+        "explanation": "V1-s (he/she/it) of go: goes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "go",
+        "form": "v1_ing",
         "prompt": "go → V-ing",
         "answers": [
           "going"
         ],
         "explanation": "V-ing of go: going.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "go",
+        "form": "v2",
+        "prompt": "go → V2 (past)",
+        "answers": [
+          "went"
+        ],
+        "explanation": "V2 (past) of go: went.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "go",
+        "form": "v3",
+        "prompt": "go → V3 (past participle)",
+        "answers": [
+          "gone"
+        ],
+        "explanation": "V3 (past participle) of go: gone.",
         "source": "verb-conjugations"
       },
       {
@@ -2041,7 +3016,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Teresa finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
+        "prompt": "Thanh finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
         "answers": [
           "She had finished before the manager arrived"
         ],
@@ -2054,7 +3029,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 21,
-    "title": "Weekly Quiz 17: Workplace Rules + Must, Have To, Should",
+    "title": "Week 21 Quiz: Workplace Rules + Must, Have To, Should",
     "focusVerbs": [
       "wear",
       "keep",
@@ -2063,8 +3038,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "wear",
+        "form": "v1_3rd",
         "prompt": "wear → V1-s (he/she/it)",
         "answers": [
           "wears"
@@ -2073,8 +3050,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "wear",
+        "form": "v1_ing",
         "prompt": "wear → V-ing",
         "answers": [
           "wearing"
@@ -2083,8 +3062,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "wear",
+        "form": "v2",
+        "prompt": "wear → V2 (past)",
+        "answers": [
+          "wore"
+        ],
+        "explanation": "V2 (past) of wear: wore.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "wear",
+        "form": "v3",
+        "prompt": "wear → V3 (past participle)",
+        "answers": [
+          "worn"
+        ],
+        "explanation": "V3 (past participle) of wear: worn.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "keep",
+        "form": "v1_3rd",
+        "prompt": "keep → V1-s (he/she/it)",
+        "answers": [
+          "keeps"
+        ],
+        "explanation": "V1-s (he/she/it) of keep: keeps.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "keep",
+        "form": "v1_ing",
         "prompt": "keep → V-ing",
         "answers": [
           "keeping"
@@ -2093,8 +3110,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "keep",
+        "form": "v2",
         "prompt": "keep → V2 (past)",
         "answers": [
           "kept"
@@ -2103,13 +3122,63 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "keep",
+        "form": "v3",
+        "prompt": "keep → V3 (past participle)",
+        "answers": [
+          "kept"
+        ],
+        "explanation": "V3 (past participle) of keep: kept.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v1_3rd",
+        "prompt": "leave → V1-s (he/she/it)",
+        "answers": [
+          "leaves"
+        ],
+        "explanation": "V1-s (he/she/it) of leave: leaves.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v1_ing",
+        "prompt": "leave → V-ing",
+        "answers": [
+          "leaving"
+        ],
+        "explanation": "V-ing of leave: leaving.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v2",
         "prompt": "leave → V2 (past)",
         "answers": [
           "left"
         ],
         "explanation": "V2 (past) of leave: left.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "leave",
+        "form": "v3",
+        "prompt": "leave → V3 (past participle)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "V3 (past participle) of leave: left.",
         "source": "verb-conjugations"
       },
       {
@@ -2166,7 +3235,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette tells Linh: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?",
+        "prompt": "Claudette tells Hoa: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?",
         "options": [
           "must",
           "have to",
@@ -2199,7 +3268,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 22,
-    "title": "Weekly Quiz 18: Second Conditional + Catch-Up",
+    "title": "Week 22 Quiz: Second Conditional + Catch-Up",
     "focusVerbs": [
       "win",
       "fly"
@@ -2207,8 +3276,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "win",
+        "form": "v1_3rd",
+        "prompt": "win → V1-s (he/she/it)",
+        "answers": [
+          "wins"
+        ],
+        "explanation": "V1-s (he/she/it) of win: wins.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "win",
+        "form": "v1_ing",
         "prompt": "win → V-ing",
         "answers": [
           "winning"
@@ -2217,8 +3300,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "win",
+        "form": "v2",
         "prompt": "win → V2 (past)",
         "answers": [
           "won"
@@ -2227,8 +3312,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "win",
+        "form": "v3",
+        "prompt": "win → V3 (past participle)",
+        "answers": [
+          "won"
+        ],
+        "explanation": "V3 (past participle) of win: won.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "fly",
+        "form": "v1_3rd",
+        "prompt": "fly → V1-s (he/she/it)",
+        "answers": [
+          "flies"
+        ],
+        "explanation": "V1-s (he/she/it) of fly: flies.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "fly",
+        "form": "v1_ing",
+        "prompt": "fly → V-ing",
+        "answers": [
+          "flying"
+        ],
+        "explanation": "V-ing of fly: flying.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "fly",
+        "form": "v2",
         "prompt": "fly → V2 (past)",
         "answers": [
           "flew"
@@ -2237,8 +3360,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "fly",
+        "form": "v3",
         "prompt": "fly → V3 (past participle)",
         "answers": [
           "flown"
@@ -2328,7 +3453,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 23,
-    "title": "Weekly Quiz 19: Phrasal Verbs at Work + Workplace Rights",
+    "title": "Week 23 Quiz: Phrasal Verbs at Work + Workplace Rights",
     "focusVerbs": [
       "get",
       "put",
@@ -2337,8 +3462,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "get",
+        "form": "v1_3rd",
+        "prompt": "get → V1-s (he/she/it)",
+        "answers": [
+          "gets"
+        ],
+        "explanation": "V1-s (he/she/it) of get: gets.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "get",
+        "form": "v1_ing",
+        "prompt": "get → V-ing",
+        "answers": [
+          "getting"
+        ],
+        "explanation": "V-ing of get: getting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "get",
+        "form": "v2",
         "prompt": "get → V2 (past)",
         "answers": [
           "got"
@@ -2347,8 +3498,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "get",
+        "form": "v3",
         "prompt": "get → V3 (past participle)",
         "answers": [
           "got"
@@ -2357,18 +3510,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "put → V3 (past participle)",
-        "answers": [
-          "put"
-        ],
-        "explanation": "V3 (past participle) of put: put.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "put",
+        "form": "v1_3rd",
         "prompt": "put → V1-s (he/she/it)",
         "answers": [
           "puts"
@@ -2377,13 +3522,87 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "put",
+        "form": "v1_ing",
+        "prompt": "put → V-ing",
+        "answers": [
+          "putting"
+        ],
+        "explanation": "V-ing of put: putting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "put",
+        "form": "v2",
+        "prompt": "put → V2 (past)",
+        "answers": [
+          "put"
+        ],
+        "explanation": "V2 (past) of put: put.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "put",
+        "form": "v3",
+        "prompt": "put → V3 (past participle)",
+        "answers": [
+          "put"
+        ],
+        "explanation": "V3 (past participle) of put: put.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v1_3rd",
         "prompt": "bring → V1-s (he/she/it)",
         "answers": [
           "brings"
         ],
         "explanation": "V1-s (he/she/it) of bring: brings.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v1_ing",
+        "prompt": "bring → V-ing",
+        "answers": [
+          "bringing"
+        ],
+        "explanation": "V-ing of bring: bringing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v2",
+        "prompt": "bring → V2 (past)",
+        "answers": [
+          "brought"
+        ],
+        "explanation": "V2 (past) of bring: brought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "bring",
+        "form": "v3",
+        "prompt": "bring → V3 (past participle)",
+        "answers": [
+          "brought"
+        ],
+        "explanation": "V3 (past participle) of bring: brought.",
         "source": "verb-conjugations"
       },
       {
@@ -2440,7 +3659,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette filled out a form at the front desk. Put the words in order. (The pronoun must go in the middle.) Words: She / filled / it / out / at / the / desk",
+        "prompt": "Gabriela filled out the new-hire form at the desk. Put the words in order. (The pronoun must go in the middle.) Words: She / filled / it / out / at / the / desk",
         "answers": [
           "She filled it out at the desk"
         ],
@@ -2450,7 +3669,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa's manager says, \"Make sure you clock in before 8 AM.\" What should Rosa do?",
+        "prompt": "Gabriela's manager says, \"Make sure you clock in before 8 AM.\" What should Gabriela do?",
         "options": [
           "Buy a clock for the break room",
           "Use the machine to record when her shift starts",
@@ -2468,7 +3687,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 24,
-    "title": "Weekly Quiz 20: Job Applications + Interviews",
+    "title": "Week 24 Quiz: Job Applications + Interviews",
     "focusVerbs": [
       "understand",
       "mean",
@@ -2477,18 +3696,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "understand → V3 (past participle)",
-        "answers": [
-          "understood"
-        ],
-        "explanation": "V3 (past participle) of understand: understood.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "understand",
+        "form": "v1_3rd",
         "prompt": "understand → V1-s (he/she/it)",
         "answers": [
           "understands"
@@ -2497,8 +3708,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "understand",
+        "form": "v1_ing",
+        "prompt": "understand → V-ing",
+        "answers": [
+          "understanding"
+        ],
+        "explanation": "V-ing of understand: understanding.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "understand",
+        "form": "v2",
+        "prompt": "understand → V2 (past)",
+        "answers": [
+          "understood"
+        ],
+        "explanation": "V2 (past) of understand: understood.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "understand",
+        "form": "v3",
+        "prompt": "understand → V3 (past participle)",
+        "answers": [
+          "understood"
+        ],
+        "explanation": "V3 (past participle) of understand: understood.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "mean",
+        "form": "v1_3rd",
         "prompt": "mean → V1-s (he/she/it)",
         "answers": [
           "means"
@@ -2507,8 +3756,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "mean",
+        "form": "v1_ing",
         "prompt": "mean → V-ing",
         "answers": [
           "meaning"
@@ -2517,13 +3768,75 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "mean",
+        "form": "v2",
+        "prompt": "mean → V2 (past)",
+        "answers": [
+          "meant"
+        ],
+        "explanation": "V2 (past) of mean: meant.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "mean",
+        "form": "v3",
+        "prompt": "mean → V3 (past participle)",
+        "answers": [
+          "meant"
+        ],
+        "explanation": "V3 (past participle) of mean: meant.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v1_3rd",
+        "prompt": "speak → V1-s (he/she/it)",
+        "answers": [
+          "speaks"
+        ],
+        "explanation": "V1-s (he/she/it) of speak: speaks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v1_ing",
         "prompt": "speak → V-ing",
         "answers": [
           "speaking"
         ],
         "explanation": "V-ing of speak: speaking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v2",
+        "prompt": "speak → V2 (past)",
+        "answers": [
+          "spoke"
+        ],
+        "explanation": "V2 (past) of speak: spoke.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "speak",
+        "form": "v3",
+        "prompt": "speak → V3 (past participle)",
+        "answers": [
+          "spoken"
+        ],
+        "explanation": "V3 (past participle) of speak: spoken.",
         "source": "verb-conjugations"
       },
       {
@@ -2608,7 +3921,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 25,
-    "title": "Weekly Quiz 21: Career Progress + Skills",
+    "title": "Week 25 Quiz: Career Progress + Skills",
     "focusVerbs": [
       "grow",
       "build",
@@ -2617,8 +3930,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "grow",
+        "form": "v1_3rd",
         "prompt": "grow → V1-s (he/she/it)",
         "answers": [
           "grows"
@@ -2627,8 +3942,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "grow",
+        "form": "v1_ing",
         "prompt": "grow → V-ing",
         "answers": [
           "growing"
@@ -2637,8 +3954,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "grow",
+        "form": "v2",
+        "prompt": "grow → V2 (past)",
+        "answers": [
+          "grew"
+        ],
+        "explanation": "V2 (past) of grow: grew.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "grow",
+        "form": "v3",
+        "prompt": "grow → V3 (past participle)",
+        "answers": [
+          "grown"
+        ],
+        "explanation": "V3 (past participle) of grow: grown.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "build",
+        "form": "v1_3rd",
+        "prompt": "build → V1-s (he/she/it)",
+        "answers": [
+          "builds"
+        ],
+        "explanation": "V1-s (he/she/it) of build: builds.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "build",
+        "form": "v1_ing",
         "prompt": "build → V-ing",
         "answers": [
           "building"
@@ -2647,8 +4002,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "build",
+        "form": "v2",
         "prompt": "build → V2 (past)",
         "answers": [
           "built"
@@ -2657,13 +4014,63 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "build",
+        "form": "v3",
+        "prompt": "build → V3 (past participle)",
+        "answers": [
+          "built"
+        ],
+        "explanation": "V3 (past participle) of build: built.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "do",
+        "form": "v1_3rd",
+        "prompt": "do → V1-s (he/she/it)",
+        "answers": [
+          "does"
+        ],
+        "explanation": "V1-s (he/she/it) of do: does.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "do",
+        "form": "v1_ing",
+        "prompt": "do → V-ing",
+        "answers": [
+          "doing"
+        ],
+        "explanation": "V-ing of do: doing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "do",
+        "form": "v2",
         "prompt": "do → V2 (past)",
         "answers": [
           "did"
         ],
         "explanation": "V2 (past) of do: did.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "do",
+        "form": "v3",
+        "prompt": "do → V3 (past participle)",
+        "answers": [
+          "done"
+        ],
+        "explanation": "V3 (past participle) of do: done.",
         "source": "verb-conjugations"
       },
       {
@@ -2735,9 +4142,9 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Jennifer asks Amara about her forklift experience at the warehouse. Put the words in order. Words: How / long / have / you / been / driving / the / forklift",
+        "prompt": "Jennifer asks Amara about her cleaning experience. Put the words in order. Words: How / long / have / you / been / cleaning / patient / rooms",
         "answers": [
-          "How long have you been driving the forklift"
+          "How long have you been cleaning patient rooms"
         ],
         "explanation": "PPC questions follow: How long + have/has + subject + been + verb-ing?",
         "source": "ive-been-working/ive-been-working-qws1"
@@ -2748,7 +4155,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 26,
-    "title": "Weekly Quiz 22: Work Experience + Advocacy",
+    "title": "Week 26 Quiz: Work Experience + Advocacy",
     "focusVerbs": [
       "teach",
       "show",
@@ -2757,8 +4164,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "teach",
+        "form": "v1_3rd",
+        "prompt": "teach → V1-s (he/she/it)",
+        "answers": [
+          "teaches"
+        ],
+        "explanation": "V1-s (he/she/it) of teach: teaches.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "teach",
+        "form": "v1_ing",
         "prompt": "teach → V-ing",
         "answers": [
           "teaching"
@@ -2767,8 +4188,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "teach",
+        "form": "v2",
         "prompt": "teach → V2 (past)",
         "answers": [
           "taught"
@@ -2777,8 +4200,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "teach",
+        "form": "v3",
+        "prompt": "teach → V3 (past participle)",
+        "answers": [
+          "taught"
+        ],
+        "explanation": "V3 (past participle) of teach: taught.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "show",
+        "form": "v1_3rd",
+        "prompt": "show → V1-s (he/she/it)",
+        "answers": [
+          "shows"
+        ],
+        "explanation": "V1-s (he/she/it) of show: shows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "show",
+        "form": "v1_ing",
+        "prompt": "show → V-ing",
+        "answers": [
+          "showing"
+        ],
+        "explanation": "V-ing of show: showing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "show",
+        "form": "v2",
         "prompt": "show → V2 (past)",
         "answers": [
           "showed"
@@ -2787,8 +4248,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "show",
+        "form": "v3",
         "prompt": "show → V3 (past participle)",
         "answers": [
           "shown"
@@ -2797,8 +4260,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-2-v1_3rd",
         "section": "forms",
+        "verb": "think",
+        "form": "v1_3rd",
+        "prompt": "think → V1-s (he/she/it)",
+        "answers": [
+          "thinks"
+        ],
+        "explanation": "V1-s (he/she/it) of think: thinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "think",
+        "form": "v1_ing",
+        "prompt": "think → V-ing",
+        "answers": [
+          "thinking"
+        ],
+        "explanation": "V-ing of think: thinking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "think",
+        "form": "v2",
+        "prompt": "think → V2 (past)",
+        "answers": [
+          "thought"
+        ],
+        "explanation": "V2 (past) of think: thought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "think",
+        "form": "v3",
         "prompt": "think → V3 (past participle)",
         "answers": [
           "thought"
@@ -2893,7 +4394,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 27,
-    "title": "Weekly Quiz 23: Passive Voice + Pay Stubs",
+    "title": "Week 27 Quiz: Passive Voice + Pay Stubs",
     "focusVerbs": [
       "pay",
       "give",
@@ -2902,8 +4403,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "pay",
+        "form": "v1_3rd",
+        "prompt": "pay → V1-s (he/she/it)",
+        "answers": [
+          "pays"
+        ],
+        "explanation": "V1-s (he/she/it) of pay: pays.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "pay",
+        "form": "v1_ing",
+        "prompt": "pay → V-ing",
+        "answers": [
+          "paying"
+        ],
+        "explanation": "V-ing of pay: paying.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "pay",
+        "form": "v2",
         "prompt": "pay → V2 (past)",
         "answers": [
           "paid"
@@ -2912,8 +4439,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "pay",
+        "form": "v3",
         "prompt": "pay → V3 (past participle)",
         "answers": [
           "paid"
@@ -2922,18 +4451,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "give → V3 (past participle)",
-        "answers": [
-          "given"
-        ],
-        "explanation": "V3 (past participle) of give: given.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "give",
+        "form": "v1_3rd",
         "prompt": "give → V1-s (he/she/it)",
         "answers": [
           "gives"
@@ -2942,13 +4463,87 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "give",
+        "form": "v1_ing",
+        "prompt": "give → V-ing",
+        "answers": [
+          "giving"
+        ],
+        "explanation": "V-ing of give: giving.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "give",
+        "form": "v2",
+        "prompt": "give → V2 (past)",
+        "answers": [
+          "gave"
+        ],
+        "explanation": "V2 (past) of give: gave.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "give",
+        "form": "v3",
+        "prompt": "give → V3 (past participle)",
+        "answers": [
+          "given"
+        ],
+        "explanation": "V3 (past participle) of give: given.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "write",
+        "form": "v1_3rd",
         "prompt": "write → V1-s (he/she/it)",
         "answers": [
           "writes"
         ],
         "explanation": "V1-s (he/she/it) of write: writes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "write",
+        "form": "v1_ing",
+        "prompt": "write → V-ing",
+        "answers": [
+          "writing"
+        ],
+        "explanation": "V-ing of write: writing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "write",
+        "form": "v2",
+        "prompt": "write → V2 (past)",
+        "answers": [
+          "wrote"
+        ],
+        "explanation": "V2 (past) of write: wrote.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "write",
+        "form": "v3",
+        "prompt": "write → V3 (past participle)",
+        "answers": [
+          "written"
+        ],
+        "explanation": "V3 (past participle) of write: written.",
         "source": "verb-conjugations"
       },
       {
@@ -3033,7 +4628,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 28,
-    "title": "Weekly Quiz 24: Healthcare Basics",
+    "title": "Week 28 Quiz: Healthcare Basics",
     "focusVerbs": [
       "feel",
       "sleep",
@@ -3042,18 +4637,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "feel → V3 (past participle)",
-        "answers": [
-          "felt"
-        ],
-        "explanation": "V3 (past participle) of feel: felt.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "feel",
+        "form": "v1_3rd",
         "prompt": "feel → V1-s (he/she/it)",
         "answers": [
           "feels"
@@ -3062,8 +4649,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "feel",
+        "form": "v1_ing",
+        "prompt": "feel → V-ing",
+        "answers": [
+          "feeling"
+        ],
+        "explanation": "V-ing of feel: feeling.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "feel",
+        "form": "v2",
+        "prompt": "feel → V2 (past)",
+        "answers": [
+          "felt"
+        ],
+        "explanation": "V2 (past) of feel: felt.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "feel",
+        "form": "v3",
+        "prompt": "feel → V3 (past participle)",
+        "answers": [
+          "felt"
+        ],
+        "explanation": "V3 (past participle) of feel: felt.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "sleep",
+        "form": "v1_3rd",
         "prompt": "sleep → V1-s (he/she/it)",
         "answers": [
           "sleeps"
@@ -3072,8 +4697,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "sleep",
+        "form": "v1_ing",
         "prompt": "sleep → V-ing",
         "answers": [
           "sleeping"
@@ -3082,13 +4709,75 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "sleep",
+        "form": "v2",
+        "prompt": "sleep → V2 (past)",
+        "answers": [
+          "slept"
+        ],
+        "explanation": "V2 (past) of sleep: slept.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "sleep",
+        "form": "v3",
+        "prompt": "sleep → V3 (past participle)",
+        "answers": [
+          "slept"
+        ],
+        "explanation": "V3 (past participle) of sleep: slept.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v1_3rd",
+        "prompt": "eat → V1-s (he/she/it)",
+        "answers": [
+          "eats"
+        ],
+        "explanation": "V1-s (he/she/it) of eat: eats.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v1_ing",
         "prompt": "eat → V-ing",
         "answers": [
           "eating"
         ],
         "explanation": "V-ing of eat: eating.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v2",
+        "prompt": "eat → V2 (past)",
+        "answers": [
+          "ate"
+        ],
+        "explanation": "V2 (past) of eat: ate.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "eat",
+        "form": "v3",
+        "prompt": "eat → V3 (past participle)",
+        "answers": [
+          "eaten"
+        ],
+        "explanation": "V3 (past participle) of eat: eaten.",
         "source": "verb-conjugations"
       },
       {
@@ -3145,27 +4834,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "The doctor gives Yolanda a strong warning about her back. Put the words in order. Words: You / had / better / rest / today",
-        "answers": [
-          "You had better rest today"
+        "prompt": "Which sentence has an error?",
+        "options": [
+          "You must not take this on an empty stomach.",
+          "You should rest for two days.",
+          "You should to call your supervisor."
         ],
-        "explanation": "Had better + base verb gives a strong warning. No 'to' after had better.",
-        "source": "should-shouldnt-health-advice/mq-ws1"
+        "answers": [
+          "You should to call your supervisor."
+        ],
+        "explanation": "'Should' is followed by the base verb without 'to': should call, not should to call.",
+        "source": "should-shouldnt-health-advice/mq-error-detection"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "The nurse says: \"You ___ rest for two days.\" Which word fits best?",
+        "prompt": "The doctor says: \"You had better not go back to work until Thursday.\" Why does he use 'had better'?",
         "options": [
-          "must",
-          "should",
-          "will"
+          "He's being polite and it's just a suggestion.",
+          "He's giving a strong warning. If she goes back, something bad will happen.",
+          "He's talking about what she did in the past."
         ],
         "answers": [
-          "should"
+          "He's giving a strong warning. If she goes back, something bad will happen."
         ],
-        "explanation": "Should gives advice. It means 'this is a good idea.' Must would mean she has no choice.",
-        "source": "should-shouldnt-health-advice/mq-should-basic"
+        "explanation": "Had better signals a warning. There is a bad consequence if she ignores the advice.",
+        "source": "should-shouldnt-health-advice/mq-had-better-warning"
       }
     ]
   },
@@ -3173,7 +4867,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 29,
-    "title": "Weekly Quiz 25: Symptoms + Clinic Visits",
+    "title": "Week 29 Quiz: Symptoms + Clinic Visits",
     "focusVerbs": [
       "fall",
       "hurt",
@@ -3182,8 +4876,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "fall",
+        "form": "v1_3rd",
         "prompt": "fall → V1-s (he/she/it)",
         "answers": [
           "falls"
@@ -3192,8 +4888,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "fall",
+        "form": "v1_ing",
         "prompt": "fall → V-ing",
         "answers": [
           "falling"
@@ -3202,8 +4900,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "fall",
+        "form": "v2",
+        "prompt": "fall → V2 (past)",
+        "answers": [
+          "fell"
+        ],
+        "explanation": "V2 (past) of fall: fell.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "fall",
+        "form": "v3",
+        "prompt": "fall → V3 (past participle)",
+        "answers": [
+          "fallen"
+        ],
+        "explanation": "V3 (past participle) of fall: fallen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "hurt",
+        "form": "v1_3rd",
+        "prompt": "hurt → V1-s (he/she/it)",
+        "answers": [
+          "hurts"
+        ],
+        "explanation": "V1-s (he/she/it) of hurt: hurts.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "hurt",
+        "form": "v1_ing",
         "prompt": "hurt → V-ing",
         "answers": [
           "hurting"
@@ -3212,8 +4948,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "hurt",
+        "form": "v2",
         "prompt": "hurt → V2 (past)",
         "answers": [
           "hurt"
@@ -3222,13 +4960,63 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "hurt",
+        "form": "v3",
+        "prompt": "hurt → V3 (past participle)",
+        "answers": [
+          "hurt"
+        ],
+        "explanation": "V3 (past participle) of hurt: hurt.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "take",
+        "form": "v1_3rd",
+        "prompt": "take → V1-s (he/she/it)",
+        "answers": [
+          "takes"
+        ],
+        "explanation": "V1-s (he/she/it) of take: takes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "take",
+        "form": "v1_ing",
+        "prompt": "take → V-ing",
+        "answers": [
+          "taking"
+        ],
+        "explanation": "V-ing of take: taking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "take",
+        "form": "v2",
         "prompt": "take → V2 (past)",
         "answers": [
           "took"
         ],
         "explanation": "V2 (past) of take: took.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "take",
+        "form": "v3",
+        "prompt": "take → V3 (past participle)",
+        "answers": [
+          "taken"
+        ],
+        "explanation": "V3 (past participle) of take: taken.",
         "source": "verb-conjugations"
       },
       {
@@ -3285,7 +5073,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.)",
+        "prompt": "Marisol was working on the warehouse floor. At noon, she stopped ___ her pill. (She paused her work to take the pill.)",
         "options": [
           "to take",
           "taking",
@@ -3300,7 +5088,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
+        "prompt": "Fill in the blank: \"Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
         "answers": [
           "taking"
         ],
@@ -3313,7 +5101,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 30,
-    "title": "Weekly Quiz 26: The Doctor Said + Catch-Up",
+    "title": "Week 30 Quiz: The Doctor Said + Catch-Up",
     "focusVerbs": [
       "sit",
       "stand"
@@ -3321,8 +5109,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "sit",
+        "form": "v1_3rd",
+        "prompt": "sit → V1-s (he/she/it)",
+        "answers": [
+          "sits"
+        ],
+        "explanation": "V1-s (he/she/it) of sit: sits.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "sit",
+        "form": "v1_ing",
         "prompt": "sit → V-ing",
         "answers": [
           "sitting"
@@ -3331,8 +5133,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "sit",
+        "form": "v2",
         "prompt": "sit → V2 (past)",
         "answers": [
           "sat"
@@ -3341,8 +5145,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "sit",
+        "form": "v3",
+        "prompt": "sit → V3 (past participle)",
+        "answers": [
+          "sat"
+        ],
+        "explanation": "V3 (past participle) of sit: sat.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "stand",
+        "form": "v1_3rd",
+        "prompt": "stand → V1-s (he/she/it)",
+        "answers": [
+          "stands"
+        ],
+        "explanation": "V1-s (he/she/it) of stand: stands.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "stand",
+        "form": "v1_ing",
+        "prompt": "stand → V-ing",
+        "answers": [
+          "standing"
+        ],
+        "explanation": "V-ing of stand: standing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "stand",
+        "form": "v2",
         "prompt": "stand → V2 (past)",
         "answers": [
           "stood"
@@ -3351,8 +5193,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "stand",
+        "form": "v3",
         "prompt": "stand → V3 (past participle)",
         "answers": [
           "stood"
@@ -3424,9 +5268,9 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Marco reports what the doctor said about Amina's inhaler. Put the words in order. Words: The / doctor / told / me / to / keep / the / inhaler / warm",
+        "prompt": "Marco reports what the pharmacist said about Amina's inhaler. Put the words in order. Words: The / pharmacist / told / me / to / keep / the / inhaler / inside",
         "answers": [
-          "The doctor told me to keep the inhaler warm"
+          "The pharmacist told me to keep the inhaler inside"
         ],
         "explanation": "Commands in reported speech use told + person + to + base verb.",
         "source": "doctor-said-reported-speech/doctor-said-ws1"
@@ -3437,7 +5281,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 31,
-    "title": "Weekly Quiz 27: Third Conditional + Pharmacy",
+    "title": "Week 31 Quiz: Third Conditional + Pharmacy",
     "focusVerbs": [
       "forget",
       "read",
@@ -3446,8 +5290,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "forget",
+        "form": "v1_3rd",
+        "prompt": "forget → V1-s (he/she/it)",
+        "answers": [
+          "forgets"
+        ],
+        "explanation": "V1-s (he/she/it) of forget: forgets.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "forget",
+        "form": "v1_ing",
+        "prompt": "forget → V-ing",
+        "answers": [
+          "forgetting"
+        ],
+        "explanation": "V-ing of forget: forgetting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "forget",
+        "form": "v2",
         "prompt": "forget → V2 (past)",
         "answers": [
           "forgot"
@@ -3456,8 +5326,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "forget",
+        "form": "v3",
         "prompt": "forget → V3 (past participle)",
         "answers": [
           "forgotten"
@@ -3466,18 +5338,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "read → V3 (past participle)",
-        "answers": [
-          "read"
-        ],
-        "explanation": "V3 (past participle) of read: read.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "read",
+        "form": "v1_3rd",
         "prompt": "read → V1-s (he/she/it)",
         "answers": [
           "reads"
@@ -3486,13 +5350,87 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "read",
+        "form": "v1_ing",
+        "prompt": "read → V-ing",
+        "answers": [
+          "reading"
+        ],
+        "explanation": "V-ing of read: reading.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "read",
+        "form": "v2",
+        "prompt": "read → V2 (past)",
+        "answers": [
+          "read"
+        ],
+        "explanation": "V2 (past) of read: read.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "read",
+        "form": "v3",
+        "prompt": "read → V3 (past participle)",
+        "answers": [
+          "read"
+        ],
+        "explanation": "V3 (past participle) of read: read.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "know",
+        "form": "v1_3rd",
         "prompt": "know → V1-s (he/she/it)",
         "answers": [
           "knows"
         ],
         "explanation": "V1-s (he/she/it) of know: knows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "know",
+        "form": "v1_ing",
+        "prompt": "know → V-ing",
+        "answers": [
+          "knowing"
+        ],
+        "explanation": "V-ing of know: knowing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "know",
+        "form": "v2",
+        "prompt": "know → V2 (past)",
+        "answers": [
+          "knew"
+        ],
+        "explanation": "V2 (past) of know: knew.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "know",
+        "form": "v3",
+        "prompt": "know → V3 (past participle)",
+        "answers": [
+          "known"
+        ],
+        "explanation": "V3 (past participle) of know: known.",
         "source": "verb-conjugations"
       },
       {
@@ -3549,14 +5487,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Yemi did not stretch before her shift. Now her back hurts. Which sentence matches her situation?",
+        "prompt": "Yemi did not rest her knee when it started to hurt, and it got worse. Which sentence matches her situation?",
         "options": [
-          "If I stretch before work, my back won't hurt.",
-          "If I had stretched before work, my back wouldn't hurt this much.",
-          "If I stretched before work, my back wouldn't hurt."
+          "If I rest my knee, it won't get worse.",
+          "If I had rested my knee, it wouldn't have gotten worse.",
+          "If I rested my knee, it wouldn't get worse."
         ],
         "answers": [
-          "If I had stretched before work, my back wouldn't hurt this much."
+          "If I had rested my knee, it wouldn't have gotten worse."
         ],
         "explanation": "Third conditional uses if + had + V3 for a past action that did not happen.",
         "source": "third-conditional-what-would-have-happened/tc-q1"
@@ -3566,12 +5504,12 @@
         "section": "grammar",
         "prompt": "Which sentence is a correct third conditional?",
         "options": [
-          "If Marco saved more, he will have bought the car.",
-          "If Marco had saved more, he would have bought the car.",
-          "If Marco has saved more, he would buy the car."
+          "If Yemi rested more, she will have healed faster.",
+          "If Yemi had rested more, she would have healed faster.",
+          "If Yemi has rested more, she would heal faster."
         ],
         "answers": [
-          "If Marco had saved more, he would have bought the car."
+          "If Yemi had rested more, she would have healed faster."
         ],
         "explanation": "Third conditional: if + had + V3, would have + V3.",
         "source": "third-conditional-what-would-have-happened/tc-q2"
@@ -3582,7 +5520,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 32,
-    "title": "Weekly Quiz 28: I Used to + Wellness",
+    "title": "Week 32 Quiz: I Used to + Wellness",
     "focusVerbs": [
       "run",
       "ride",
@@ -3591,18 +5529,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "run → V3 (past participle)",
-        "answers": [
-          "run"
-        ],
-        "explanation": "V3 (past participle) of run: run.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "run",
+        "form": "v1_3rd",
         "prompt": "run → V1-s (he/she/it)",
         "answers": [
           "runs"
@@ -3611,8 +5541,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "run",
+        "form": "v1_ing",
+        "prompt": "run → V-ing",
+        "answers": [
+          "running"
+        ],
+        "explanation": "V-ing of run: running.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "run",
+        "form": "v2",
+        "prompt": "run → V2 (past)",
+        "answers": [
+          "ran"
+        ],
+        "explanation": "V2 (past) of run: ran.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "run",
+        "form": "v3",
+        "prompt": "run → V3 (past participle)",
+        "answers": [
+          "run"
+        ],
+        "explanation": "V3 (past participle) of run: run.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "ride",
+        "form": "v1_3rd",
         "prompt": "ride → V1-s (he/she/it)",
         "answers": [
           "rides"
@@ -3621,8 +5589,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "ride",
+        "form": "v1_ing",
         "prompt": "ride → V-ing",
         "answers": [
           "riding"
@@ -3631,13 +5601,75 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "ride",
+        "form": "v2",
+        "prompt": "ride → V2 (past)",
+        "answers": [
+          "rode"
+        ],
+        "explanation": "V2 (past) of ride: rode.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "ride",
+        "form": "v3",
+        "prompt": "ride → V3 (past participle)",
+        "answers": [
+          "ridden"
+        ],
+        "explanation": "V3 (past participle) of ride: ridden.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v1_3rd",
+        "prompt": "drink → V1-s (he/she/it)",
+        "answers": [
+          "drinks"
+        ],
+        "explanation": "V1-s (he/she/it) of drink: drinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v1_ing",
         "prompt": "drink → V-ing",
         "answers": [
           "drinking"
         ],
         "explanation": "V-ing of drink: drinking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v2",
+        "prompt": "drink → V2 (past)",
+        "answers": [
+          "drank"
+        ],
+        "explanation": "V2 (past) of drink: drank.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "drink",
+        "form": "v3",
+        "prompt": "drink → V3 (past participle)",
+        "answers": [
+          "drunk"
+        ],
+        "explanation": "V3 (past participle) of drink: drunk.",
         "source": "verb-conjugations"
       },
       {
@@ -3722,7 +5754,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 33,
-    "title": "Weekly Quiz 29: Be Used to + Still Adjusting",
+    "title": "Week 33 Quiz: Be Used to + Still Adjusting",
     "focusVerbs": [
       "drive",
       "wake",
@@ -3731,8 +5763,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "drive",
+        "form": "v1_3rd",
         "prompt": "drive → V1-s (he/she/it)",
         "answers": [
           "drives"
@@ -3741,8 +5775,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "drive",
+        "form": "v1_ing",
         "prompt": "drive → V-ing",
         "answers": [
           "driving"
@@ -3751,8 +5787,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "drive",
+        "form": "v2",
+        "prompt": "drive → V2 (past)",
+        "answers": [
+          "drove"
+        ],
+        "explanation": "V2 (past) of drive: drove.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "drive",
+        "form": "v3",
+        "prompt": "drive → V3 (past participle)",
+        "answers": [
+          "driven"
+        ],
+        "explanation": "V3 (past participle) of drive: driven.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "wake",
+        "form": "v1_3rd",
+        "prompt": "wake → V1-s (he/she/it)",
+        "answers": [
+          "wakes"
+        ],
+        "explanation": "V1-s (he/she/it) of wake: wakes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "wake",
+        "form": "v1_ing",
         "prompt": "wake → V-ing",
         "answers": [
           "waking"
@@ -3761,8 +5835,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "wake",
+        "form": "v2",
         "prompt": "wake → V2 (past)",
         "answers": [
           "woke"
@@ -3771,13 +5847,63 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "wake",
+        "form": "v3",
+        "prompt": "wake → V3 (past participle)",
+        "answers": [
+          "woken"
+        ],
+        "explanation": "V3 (past participle) of wake: woken.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "come",
+        "form": "v1_3rd",
+        "prompt": "come → V1-s (he/she/it)",
+        "answers": [
+          "comes"
+        ],
+        "explanation": "V1-s (he/she/it) of come: comes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "come",
+        "form": "v1_ing",
+        "prompt": "come → V-ing",
+        "answers": [
+          "coming"
+        ],
+        "explanation": "V-ing of come: coming.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "come",
+        "form": "v2",
         "prompt": "come → V2 (past)",
         "answers": [
           "came"
         ],
         "explanation": "V2 (past) of come: came.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "come",
+        "form": "v3",
+        "prompt": "come → V3 (past participle)",
+        "answers": [
+          "come"
+        ],
+        "explanation": "V3 (past participle) of come: come.",
         "source": "verb-conjugations"
       },
       {
@@ -3834,7 +5960,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rafael describes his double-shift routine at the hotel. Put the words in order. Words: She / is / used / to / working / two / jobs",
+        "prompt": "Jean describes his friend Claudette's routine. Put the words in order. Words: She / is / used / to / working / two / jobs",
         "answers": [
           "She is used to working two jobs"
         ],
@@ -3862,7 +5988,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 34,
-    "title": "Weekly Quiz 30: All Four Conditionals + One Bad Week",
+    "title": "Week 34 Quiz: All Four Conditionals + One Bad Week",
     "focusVerbs": [
       "lose",
       "cut",
@@ -3871,8 +5997,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "lose",
+        "form": "v1_3rd",
+        "prompt": "lose → V1-s (he/she/it)",
+        "answers": [
+          "loses"
+        ],
+        "explanation": "V1-s (he/she/it) of lose: loses.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "lose",
+        "form": "v1_ing",
         "prompt": "lose → V-ing",
         "answers": [
           "losing"
@@ -3881,8 +6021,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "lose",
+        "form": "v2",
         "prompt": "lose → V2 (past)",
         "answers": [
           "lost"
@@ -3891,8 +6033,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "lose",
+        "form": "v3",
+        "prompt": "lose → V3 (past participle)",
+        "answers": [
+          "lost"
+        ],
+        "explanation": "V3 (past participle) of lose: lost.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "cut",
+        "form": "v1_3rd",
+        "prompt": "cut → V1-s (he/she/it)",
+        "answers": [
+          "cuts"
+        ],
+        "explanation": "V1-s (he/she/it) of cut: cuts.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "cut",
+        "form": "v1_ing",
+        "prompt": "cut → V-ing",
+        "answers": [
+          "cutting"
+        ],
+        "explanation": "V-ing of cut: cutting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "cut",
+        "form": "v2",
         "prompt": "cut → V2 (past)",
         "answers": [
           "cut"
@@ -3901,8 +6081,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "cut",
+        "form": "v3",
         "prompt": "cut → V3 (past participle)",
         "answers": [
           "cut"
@@ -3911,8 +6093,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-2-v1_3rd",
         "section": "forms",
+        "verb": "break",
+        "form": "v1_3rd",
+        "prompt": "break → V1-s (he/she/it)",
+        "answers": [
+          "breaks"
+        ],
+        "explanation": "V1-s (he/she/it) of break: breaks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "break",
+        "form": "v1_ing",
+        "prompt": "break → V-ing",
+        "answers": [
+          "breaking"
+        ],
+        "explanation": "V-ing of break: breaking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "break",
+        "form": "v2",
+        "prompt": "break → V2 (past)",
+        "answers": [
+          "broke"
+        ],
+        "explanation": "V2 (past) of break: broke.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "break",
+        "form": "v3",
         "prompt": "break → V3 (past participle)",
         "answers": [
           "broken"
@@ -4003,7 +6223,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 35,
-    "title": "Weekly Quiz 31: Gerunds + Infinitives + Packed Week",
+    "title": "Week 35 Quiz: Gerunds + Infinitives + Packed Week",
     "focusVerbs": [
       "begin",
       "quit",
@@ -4012,8 +6232,34 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "begin",
+        "form": "v1_3rd",
+        "prompt": "begin → V1-s (he/she/it)",
+        "answers": [
+          "begins"
+        ],
+        "explanation": "V1-s (he/she/it) of begin: begins.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "begin",
+        "form": "v1_ing",
+        "prompt": "begin → V-ing",
+        "answers": [
+          "beginning"
+        ],
+        "explanation": "V-ing of begin: beginning.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "begin",
+        "form": "v2",
         "prompt": "begin → V2 (past)",
         "answers": [
           "began"
@@ -4022,8 +6268,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "begin",
+        "form": "v3",
         "prompt": "begin → V3 (past participle)",
         "answers": [
           "begun"
@@ -4032,18 +6280,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-1-v1_3rd",
         "section": "forms",
-        "prompt": "quit → V3 (past participle)",
-        "answers": [
-          "quit"
-        ],
-        "explanation": "V3 (past participle) of quit: quit.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
+        "verb": "quit",
+        "form": "v1_3rd",
         "prompt": "quit → V1-s (he/she/it)",
         "answers": [
           "quits"
@@ -4052,13 +6292,87 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-2-0",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "quit",
+        "form": "v1_ing",
+        "prompt": "quit → V-ing",
+        "answers": [
+          "quitting"
+        ],
+        "explanation": "V-ing of quit: quitting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "quit",
+        "form": "v2",
+        "prompt": "quit → V2 (past)",
+        "answers": [
+          "quit"
+        ],
+        "explanation": "V2 (past) of quit: quit.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "quit",
+        "form": "v3",
+        "prompt": "quit → V3 (past participle)",
+        "answers": [
+          "quit"
+        ],
+        "explanation": "V3 (past participle) of quit: quit.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_3rd",
+        "section": "forms",
+        "verb": "choose",
+        "form": "v1_3rd",
         "prompt": "choose → V1-s (he/she/it)",
         "answers": [
           "chooses"
         ],
         "explanation": "V1-s (he/she/it) of choose: chooses.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v1_ing",
+        "section": "forms",
+        "verb": "choose",
+        "form": "v1_ing",
+        "prompt": "choose → V-ing",
+        "answers": [
+          "choosing"
+        ],
+        "explanation": "V-ing of choose: choosing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v2",
+        "section": "forms",
+        "verb": "choose",
+        "form": "v2",
+        "prompt": "choose → V2 (past)",
+        "answers": [
+          "chose"
+        ],
+        "explanation": "V2 (past) of choose: chose.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-v3",
+        "section": "forms",
+        "verb": "choose",
+        "form": "v3",
+        "prompt": "choose → V3 (past participle)",
+        "answers": [
+          "chosen"
+        ],
+        "explanation": "V3 (past participle) of choose: chosen.",
         "source": "verb-conjugations"
       },
       {
@@ -4144,7 +6458,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 36,
-    "title": "Weekly Quiz 32: All the Tenses: A Year in Review",
+    "title": "Week 36 Bonus Quiz 1: All the Tenses: A Year in Review",
     "focusVerbs": [
       "steal",
       "freeze"
@@ -4152,18 +6466,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
-        "prompt": "steal → V3 (past participle)",
-        "answers": [
-          "stolen"
-        ],
-        "explanation": "V3 (past participle) of steal: stolen.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
+        "verb": "steal",
+        "form": "v1_3rd",
         "prompt": "steal → V1-s (he/she/it)",
         "answers": [
           "steals"
@@ -4172,8 +6478,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "steal",
+        "form": "v1_ing",
+        "prompt": "steal → V-ing",
+        "answers": [
+          "stealing"
+        ],
+        "explanation": "V-ing of steal: stealing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v2",
+        "section": "forms",
+        "verb": "steal",
+        "form": "v2",
+        "prompt": "steal → V2 (past)",
+        "answers": [
+          "stole"
+        ],
+        "explanation": "V2 (past) of steal: stole.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "steal",
+        "form": "v3",
+        "prompt": "steal → V3 (past participle)",
+        "answers": [
+          "stolen"
+        ],
+        "explanation": "V3 (past participle) of steal: stolen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "freeze",
+        "form": "v1_3rd",
         "prompt": "freeze → V1-s (he/she/it)",
         "answers": [
           "freezes"
@@ -4182,13 +6526,39 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v1_ing",
         "section": "forms",
+        "verb": "freeze",
+        "form": "v1_ing",
         "prompt": "freeze → V-ing",
         "answers": [
           "freezing"
         ],
         "explanation": "V-ing of freeze: freezing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "freeze",
+        "form": "v2",
+        "prompt": "freeze → V2 (past)",
+        "answers": [
+          "froze"
+        ],
+        "explanation": "V2 (past) of freeze: froze.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "freeze",
+        "form": "v3",
+        "prompt": "freeze → V3 (past participle)",
+        "answers": [
+          "frozen"
+        ],
+        "explanation": "V3 (past participle) of freeze: frozen.",
         "source": "verb-conjugations"
       },
       {
@@ -4245,14 +6615,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa is texting the sitter at the register right now. Which sentence fits?",
+        "prompt": "Rosa is texting the sitter at work right now. Which sentence fits?",
         "options": [
-          "She texts the sitter at the register.",
-          "She is texting the sitter at the register.",
-          "She has texted the sitter at the register."
+          "She texts the sitter at work.",
+          "She is texting the sitter at work.",
+          "She has texted the sitter at work."
         ],
         "answers": [
-          "She is texting the sitter at the register."
+          "She is texting the sitter at work."
         ],
         "explanation": "Present continuous for an action in progress right now.",
         "source": "all-the-tenses-year-in-review/atyr-q2"
@@ -4278,7 +6648,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 36,
-    "title": "Weekly Quiz 33: All the Tenses: A Year in Review",
+    "title": "Week 36 Bonus Quiz 2: All the Tenses: A Year in Review",
     "focusVerbs": [
       "catch",
       "fight"
@@ -4286,8 +6656,10 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "catch",
+        "form": "v1_3rd",
         "prompt": "catch → V1-s (he/she/it)",
         "answers": [
           "catches"
@@ -4296,8 +6668,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v1_ing",
         "section": "forms",
+        "verb": "catch",
+        "form": "v1_ing",
         "prompt": "catch → V-ing",
         "answers": [
           "catching"
@@ -4306,8 +6680,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "catch",
+        "form": "v2",
+        "prompt": "catch → V2 (past)",
+        "answers": [
+          "caught"
+        ],
+        "explanation": "V2 (past) of catch: caught.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v3",
+        "section": "forms",
+        "verb": "catch",
+        "form": "v3",
+        "prompt": "catch → V3 (past participle)",
+        "answers": [
+          "caught"
+        ],
+        "explanation": "V3 (past participle) of catch: caught.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "fight",
+        "form": "v1_3rd",
+        "prompt": "fight → V1-s (he/she/it)",
+        "answers": [
+          "fights"
+        ],
+        "explanation": "V1-s (he/she/it) of fight: fights.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "fight",
+        "form": "v1_ing",
         "prompt": "fight → V-ing",
         "answers": [
           "fighting"
@@ -4316,13 +6728,27 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v2",
         "section": "forms",
+        "verb": "fight",
+        "form": "v2",
         "prompt": "fight → V2 (past)",
         "answers": [
           "fought"
         ],
         "explanation": "V2 (past) of fight: fought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v3",
+        "section": "forms",
+        "verb": "fight",
+        "form": "v3",
+        "prompt": "fight → V3 (past participle)",
+        "answers": [
+          "fought"
+        ],
+        "explanation": "V3 (past participle) of fight: fought.",
         "source": "verb-conjugations"
       },
       {
@@ -4389,14 +6815,14 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Before Rosa applied for warehouse work, she saved for the bus pass. Which sentence fits?",
+        "prompt": "Rosa saved some money before her lease ended in February. Which sentence fits?",
         "options": [
-          "She had already saved for the bus pass.",
-          "She already saved for the bus pass.",
-          "She has already saved for the bus pass."
+          "She had already saved some money when the lease ended.",
+          "She already saved some money when the lease ended.",
+          "She has already saved some money when the lease ended."
         ],
         "answers": [
-          "She had already saved for the bus pass."
+          "She had already saved some money when the lease ended."
         ],
         "explanation": "Past perfect for something finished before another past event.",
         "source": "all-the-tenses-year-in-review/atyr-q6"
@@ -4407,7 +6833,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 36,
-    "title": "Weekly Quiz 34: All the Tenses: A Year in Review",
+    "title": "Week 36 Bonus Quiz 3: All the Tenses: A Year in Review",
     "focusVerbs": [
       "hit",
       "lend"
@@ -4415,8 +6841,22 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
+        "id": "form-0-v1_3rd",
         "section": "forms",
+        "verb": "hit",
+        "form": "v1_3rd",
+        "prompt": "hit → V1-s (he/she/it)",
+        "answers": [
+          "hits"
+        ],
+        "explanation": "V1-s (he/she/it) of hit: hits.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-v1_ing",
+        "section": "forms",
+        "verb": "hit",
+        "form": "v1_ing",
         "prompt": "hit → V-ing",
         "answers": [
           "hitting"
@@ -4425,8 +6865,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-0-1",
+        "id": "form-0-v2",
         "section": "forms",
+        "verb": "hit",
+        "form": "v2",
         "prompt": "hit → V2 (past)",
         "answers": [
           "hit"
@@ -4435,8 +6877,46 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-0",
+        "id": "form-0-v3",
         "section": "forms",
+        "verb": "hit",
+        "form": "v3",
+        "prompt": "hit → V3 (past participle)",
+        "answers": [
+          "hit"
+        ],
+        "explanation": "V3 (past participle) of hit: hit.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_3rd",
+        "section": "forms",
+        "verb": "lend",
+        "form": "v1_3rd",
+        "prompt": "lend → V1-s (he/she/it)",
+        "answers": [
+          "lends"
+        ],
+        "explanation": "V1-s (he/she/it) of lend: lends.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v1_ing",
+        "section": "forms",
+        "verb": "lend",
+        "form": "v1_ing",
+        "prompt": "lend → V-ing",
+        "answers": [
+          "lending"
+        ],
+        "explanation": "V-ing of lend: lending.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-v2",
+        "section": "forms",
+        "verb": "lend",
+        "form": "v2",
         "prompt": "lend → V2 (past)",
         "answers": [
           "lent"
@@ -4445,8 +6925,10 @@
         "source": "verb-conjugations"
       },
       {
-        "id": "form-1-1",
+        "id": "form-1-v3",
         "section": "forms",
+        "verb": "lend",
+        "form": "v3",
         "prompt": "lend → V3 (past participle)",
         "answers": [
           "lent"
@@ -4508,9 +6990,9 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa plans to finish Level 3 by August. Put the words in order. Words: She / will / have / finished / Level / 3 / by / August",
+        "prompt": "Rosa plans to finish her summer course by August. Put the words in order. Words: She / will / have / finished / the / course / by / August",
         "answers": [
-          "She will have finished Level 3 by August"
+          "She will have finished the course by August"
         ],
         "explanation": "Future perfect: will have + past participle. Used with 'by' to show something completed before a future point.",
         "source": "all-the-tenses-year-in-review/atyr-ws1"
@@ -4518,14 +7000,14 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa is texting the sitter at the register right now. Which sentence fits?",
+        "prompt": "Rosa is texting the sitter at work right now. Which sentence fits?",
         "options": [
-          "She texts the sitter at the register.",
-          "She is texting the sitter at the register.",
-          "She has texted the sitter at the register."
+          "She texts the sitter at work.",
+          "She is texting the sitter at work.",
+          "She has texted the sitter at work."
         ],
         "answers": [
-          "She is texting the sitter at the register."
+          "She is texting the sitter at work."
         ],
         "explanation": "Present continuous for an action in progress right now.",
         "source": "all-the-tenses-year-in-review/atyr-q2"

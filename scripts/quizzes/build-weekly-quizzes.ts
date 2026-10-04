@@ -5,27 +5,32 @@ import { GUIDED_VERB_QUIZ_PLAN } from '../../src/data/verb-quiz-plan';
 import { getGrammarContent } from '../../src/lib/grammar-content-loader';
 import { WEEKLY_VERB_APPLICATIONS } from '../../src/content/quizzes/weekly-quiz-applications';
 import type { WeeklyQuizContent, WeeklyQuizQuestion } from '../../src/types/weekly-quiz';
-import type { VerbData } from '../../src/types/verb-quiz';
+import { buildVerbFormsTable, weekQuizTitle } from '../../src/lib/weekly-quiz';
 const { weeklyVocabData } = require('../vocab/weekly-vocab-data');
-const bank: Record<string, VerbData> = Object.assign({}, ...Object.values(JSON.parse(fs.readFileSync('src/content/quizzes/verb-conjugations.json', 'utf8'))).map((w: unknown) => (w as { verbs: object }).verbs));
 const weeks = COURSE_MAP_UNITS.flatMap(unit => unit.weeks);
 const plain = (s: string) => s.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&[lr]dquo;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
-const forms = ['v1_3rd', 'v1_ing', 'v2', 'v3'] as const;
-const labels = ['V1-s (he/she/it)', 'V-ing', 'V2 (past)', 'V3 (past participle)'];
 const quizzes: Record<string, WeeklyQuizContent> = {};
+
+// Weeks with more than one quiz (the optional final-review extras) number them.
+const bonusNumber = (quizNumber: number, weekNumber: number) => {
+  const sameWeek = GUIDED_VERB_QUIZ_PLAN.filter(q => weeks.find(w => w.items.some(i => i.activityId === q.activityId))?.number === weekNumber);
+  return sameWeek.length > 1 ? sameWeek.findIndex(q => q.quizNumber === quizNumber) + 1 : undefined;
+};
 async function main() {
 for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   const n = plan.quizNumber;
   const week = weeks.find(w => w.items.some(i => i.activityId === plan.activityId))!;
   if (!week) throw new Error(`Missing map week for ${plan.activityId}`);
+  const title = `${weekQuizTitle(week.number, bonusNumber(plan.quizNumber, week.number))}: ${week.title}`;
   if (n === 8) {
     // Fall Review + Class Party: an easy, low-stakes recap across the whole
     // fall semester instead of new grammar/verb-form questions — this quiz
     // lands on a party day, not a test day.
     quizzes[plan.activityId] = {
-      type: 'weekly-quiz', version: 1, weekNumber: week.number, title: `Weekly Quiz ${n}: ${week.title}`,
+      type: 'weekly-quiz', version: 1, weekNumber: week.number, title,
       focusVerbs: plan.verbs, estimatedMinutes: '5–10',
       questions: [
+        ...buildVerbFormsTable(plan.verbs),
         { id: 'recap-0', section: 'vocabulary', prompt: 'Which word means “to meet someone new and tell them your name”?', options: ['introduce', 'volunteer', 'calculate'], answers: ['introduce'], explanation: 'Introduce: She introduced herself on the first day of class.', source: 'sep-w1' },
         { id: 'recap-1', section: 'vocabulary', prompt: 'Which word means “to pay close attention to one thing”?', options: ['focus', 'depart', 'donate'], answers: ['focus'], explanation: 'Focus: Focus on one section at a time when you study.', source: 'oct-learning' },
         { id: 'recap-2', section: 'vocabulary', prompt: 'Which word means “to leave a place to start a trip”?', options: ['arrive', 'depart', 'assist'], answers: ['depart'], explanation: 'Depart: The bus departs at 7:15 every morning.', source: 'oct-w2' },
@@ -35,14 +40,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     };
     continue;
   }
-  const questions: WeeklyQuizQuestion[] = [];
-  plan.verbs.forEach((verb, v) => {
-    for (let j = 0; j < (v < 2 ? 2 : 1); j++) {
-      const f = (n - 1 + j + v) % 4;
-      const answer = bank[verb][forms[f]];
-      questions.push({ id: `form-${v}-${j}`, section: 'forms', prompt: `${verb} → ${labels[f]}${answer.includes('/') ? ' (give both forms, separated by /)' : ''}`, answers: answer.includes('/') ? [answer, answer.split('/').reverse().join('/')] : [answer], explanation: `${labels[f]} of ${verb}: ${answer}.`, source: 'verb-conjugations' });
-    }
-  });
+  const questions: WeeklyQuizQuestion[] = buildVerbFormsTable(plan.verbs);
   const [p1, a1, p2, a2] = WEEKLY_VERB_APPLICATIONS[n - 1];
   [ [p1, a1], [p2, a2] ].forEach(([prompt, answer], i) => questions.push({ id: `apply-${i}`, section: 'apply', prompt, answers: [answer], explanation: prompt.replace('___', answer), source: 'weekly-quiz-applications' }));
   const vocabWeek = week.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards') ? week : [...weeks].reverse().find(w => w.number < week.number && w.items.some(i => i.slot === 'required' && i.vocabUi === 'flashcards'))!;
@@ -94,13 +92,13 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     prompt: 'Report this yesterday: The doctor said, “I am busy.” Complete: The doctor said that she ___ busy. Use past-tense backshift.',
     options: undefined, answers: ['was'], explanation: 'With past-tense backshift, am becomes was.',
   });
-  quizzes[plan.activityId] = { type: 'weekly-quiz', version: 1, weekNumber: week.number, title: `Weekly Quiz ${n}: ${week.title}`, focusVerbs: plan.verbs, ...(n === 1 ? {guided: true} : {}), estimatedMinutes: '5–10', questions };
+  quizzes[plan.activityId] = { type: 'weekly-quiz', version: 1, weekNumber: week.number, title, focusVerbs: plan.verbs, ...(n === 1 ? {guided: true} : {}), estimatedMinutes: '5–10', questions };
 }
 const output = JSON.stringify(quizzes, null, 2) + '\n';
 const destination = 'src/content/quizzes/weekly-quizzes.json';
 if (process.argv.includes('--check')) {
   if (fs.readFileSync(destination, 'utf8') !== output) throw new Error('Weekly quiz content is out of date. Run npm run quizzes:build.');
 } else fs.writeFileSync(destination, output);
-console.log(`${Object.keys(quizzes).length} weekly quizzes validated; 10–11 answers each.`);
+console.log(`${Object.keys(quizzes).length} weekly quizzes validated; each opening with the verb-forms table.`);
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

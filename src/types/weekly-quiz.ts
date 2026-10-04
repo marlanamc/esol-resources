@@ -1,7 +1,11 @@
 export type WeeklyQuizSection = 'forms' | 'apply' | 'vocabulary' | 'grammar';
+export type WeeklyQuizVerbForm = 'v1_3rd' | 'v1_ing' | 'v2' | 'v3';
 export interface WeeklyQuizQuestion {
   id: string;
   section: WeeklyQuizSection;
+  /** Forms-table cells only: the focus verb and which form to write. */
+  verb?: string;
+  form?: WeeklyQuizVerbForm;
   prompt: string;
   options?: string[];
   answers: string[];
