@@ -227,14 +227,12 @@ export function ActivityRow({
     activity,
     step,
     accent,
-    chipBg,
     showNext,
     inset = 16,
 }: {
     activity: RoadActivity;
     step: number;
     accent: string;
-    chipBg: string;
     showNext: boolean;
     inset?: number;
 }) {
@@ -267,21 +265,12 @@ export function ActivityRow({
                 <span className="block text-[15px] font-semibold leading-[1.3] text-text">{activity.title}</span>
                 <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
                     <CourseMapActivityFormatChip type={activity.activityType} vocabUi={activity.vocabUi} title={activity.title} size="md" />
-                    {activity.badge ? (
-                        <span className="rounded-full px-2 py-0.5 text-[12px] font-bold" style={{ background: chipBg, color: accent }}>
-                            {activity.badge}
-                        </span>
-                    ) : null}
-                    {activity.done || activity.href == null ? (
-                        <span className="text-[13px] font-semibold text-text-muted">{activity.done ? "Done" : "Opens later"}</span>
-                    ) : null}
                 </span>
+                {/* The checkmark, lock and highlighted row carry these visually. */}
+                {activity.done ? <span className="sr-only">Done</span> : null}
+                {!activity.done && activity.href == null ? <span className="sr-only">Opens later</span> : null}
+                {isNext ? <span className="sr-only">Next</span> : null}
             </span>
-            {isNext ? (
-                <span className="shrink-0 rounded-full px-2 py-[3px] text-[12px] font-extrabold" style={{ background: chipBg, color: accent }}>
-                    Next
-                </span>
-            ) : null}
         </>
     );
 
@@ -310,13 +299,11 @@ export function ActivityRow({
 function ActivityList({
     activities,
     accent,
-    chipBg,
     showNext,
     inset,
 }: {
     activities: RoadActivity[];
     accent: string;
-    chipBg: string;
     showNext: boolean;
     inset?: number;
 }) {
@@ -328,7 +315,6 @@ function ActivityList({
                     activity={activity}
                     step={index + 1}
                     accent={accent}
-                    chipBg={chipBg}
                     showNext={showNext}
                     inset={inset}
                 />
@@ -342,13 +328,11 @@ function OptionalPractice({
     open,
     onToggle,
     accent,
-    chipBg,
 }: {
     week: RoadWeek;
     open: boolean;
     onToggle: () => void;
     accent: string;
-    chipBg: string;
 }) {
     if (week.extras.length === 0) return null;
     return (
@@ -363,7 +347,7 @@ function OptionalPractice({
                 </span>
                 <Chevron open={open} />
             </button>
-            {open ? <ActivityList activities={week.extras} accent={accent} chipBg={chipBg} showNext={false} inset={12} /> : null}
+            {open ? <ActivityList activities={week.extras} accent={accent} showNext={false} inset={12} /> : null}
         </div>
     );
 }
@@ -427,9 +411,9 @@ export function CompactWeekRow({
             {open ? (
                 <div className="mb-3 overflow-hidden rounded-2xl" style={{ background: "var(--surface-base)", border: CARD_BORDER }}>
                     <div className="-mt-px">
-                        <ActivityList activities={week.activities} accent={tone.accent} chipBg={tone.chipBg} showNext={week.state === "upcoming"} inset={14} />
+                        <ActivityList activities={week.activities} accent={tone.accent} showNext={week.state === "upcoming"} inset={14} />
                     </div>
-                    <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} chipBg={tone.chipBg} />
+                    <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} />
                 </div>
             ) : null}
         </RoadRow>
@@ -552,10 +536,10 @@ export function CurrentWeekCard({
                         <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
                             This week&apos;s activities
                         </p>
-                        <ActivityList activities={week.activities} accent={tone.accent} chipBg={tone.chipBg} showNext />
+                        <ActivityList activities={week.activities} accent={tone.accent} showNext />
                     </>
                 ) : null}
-                <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} chipBg={tone.chipBg} />
+                <OptionalPractice week={week} open={optionalOpen} onToggle={onToggleOptional} accent={tone.accent} />
             </div>
         </RoadRow>
     );

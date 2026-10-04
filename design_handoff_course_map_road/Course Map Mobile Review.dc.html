@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Lora:wght@600;700&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ebe6dd;font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;color:#1a202c;-webkit-font-smoothing:antialiased}
+a{color:#b05740}a:hover{color:#8e4432}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+
+<section style="padding:48px 56px 48px;display:flex;flex-direction:column;gap:28px;border-bottom:2px dashed rgba(180,165,145,.85);font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible','DM Sans',sans-serif">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:920px">
+    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5e6b7d">Turn 3 · Starting from scratch</div>
+    <div style="font-family:Lora,Georgia,serif;font-size:34px;font-weight:700;line-height:1.15">One road through the course, opening on "You are here"</div>
+    <div style="font-size:16px;line-height:1.55;color:#5e6b7d;text-wrap:pretty">A map should work like a map app: it opens on where you are, and you can scroll anywhere. One button brings you back. There are no folders, no dropdowns, and nothing opens inside anything else. Both phones are live: scroll them, tap the course bar at the top, and tap any week.</div>
+  </div>
+
+  <div id="3a" style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <span style="align-self:flex-start;background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;font-family:'DM Sans',sans-serif">3a</span>
+
+    <sc-for list="{{ phones }}" as="p" hint-placeholder-count="2">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:14px;font-weight:700;color:#5e6b7d">{{ p.caption }}</div>
+        <div data-phone="{{ p.id }}" style="width:375px;height:780px;position:relative;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+          <div ref="{{ p.setRef }}" onScroll="{{ p.onScroll }}" style="position:absolute;top:0;left:0;right:0;bottom:56px;overflow-y:auto;scrollbar-width:none">
+
+            <div data-bar="1" style="position:sticky;top:0;z-index:5;background:rgba(253,249,240,.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(207,191,171,.65);padding:12px 16px 10px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:.07em;line-height:1.35;text-transform:uppercase;color:{{ p.v.accent }}">{{ p.v.cycleLabel }} · {{ p.v.month }} · Unit {{ p.v.unitN }}</div>
+              <div style="margin-top:2px;display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <div style="min-width:0;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap"><span style="font-family:Lora,Georgia,serif;font-size:21px;font-weight:700;line-height:1.2;white-space:nowrap">Week {{ p.v.n }}</span><span style="font-size:14px;font-weight:600;color:#5e6b7d">{{ p.v.dates }}</span></div>
+                <sc-if value="{{ p.v.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+                <sc-if value="{{ p.v.notThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;background:#fffdfa;box-shadow:inset 0 0 0 1px rgba(207,191,171,.9);color:#5e6b7d">{{ p.v.relText }}</span></sc-if>
+              </div>
+              <div data-strip="1" style="margin:10px -16px 0;padding:2px 16px;overflow-x:auto;scrollbar-width:none;position:relative">
+                <div style="display:flex;gap:7px;width:max-content;align-items:stretch">
+                  <sc-for list="{{ p.segUnits }}" as="u" hint-placeholder-count="10">
+                    <sc-if value="{{ u.divider }}"><span style="width:2px;margin:4px 3px 2px;border-radius:1px;background:#cdbfa9"></span></sc-if>
+                    <div style="display:flex;flex-direction:column;gap:3px">
+                      <div style="display:flex;gap:3px">
+                        <sc-for list="{{ u.segs }}" as="s" hint-placeholder-count="4">
+                          <button data-seg="{{ s.n }}" onClick="{{ s.jump }}" aria-label="Go to week {{ s.n }}" style="width:16px;height:22px;padding:0;border:none;background:transparent;display:flex;align-items:center"><span style="display:block;width:100%;height:10px;border-radius:3px;background:{{ s.bg }};box-shadow:{{ s.ring }}"></span></button>
+                        </sc-for>
+                      </div>
+                      <span style="font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:{{ u.accent }};border-left:2px solid {{ u.accent }};padding-left:4px;line-height:1.1;white-space:nowrap">{{ u.short }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:4px 0 110px">
+              <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="8">
+                <sc-if value="{{ it.isCycle }}">
+                  <div data-uw="{{ it.uw }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:0 16px 0 12px">
+                    <div style="position:relative"><div style="position:absolute;left:21px;top:0;bottom:0;width:3px;background:{{ it.rail }}"></div></div>
+                    <div onClick="{{ it.toggle }}" style="margin:18px 0 4px;padding:12px 14px;border-radius:16px;background:#1a202c;color:#fffdfa;display:flex;align-items:center;gap:10px;cursor:pointer">
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.75">{{ it.label }}</div>
+                        <div style="font-family:Lora,Georgia,serif;font-size:18px;font-weight:700;line-height:1.2">{{ it.range }}</div>
+                        <sc-if value="{{ it.showSummary }}"><div style="font-size:13px;opacity:.85;margin-top:2px">{{ it.summary }}</div></sc-if>
+                      </div>
+                      <sc-if value="{{ it.collapsible }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fffdfa" style="flex-shrink:0;transform:{{ it.chevRot }};stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m6 9 6 6 6-6"></path></svg></sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ it.isSign }}">
+                  <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:0 16px 0 12px">
+                    <div style="position:relative"><div style="position:absolute;left:21px;top:0;bottom:0;width:3px;background:{{ it.rail }}"></div></div>
+                    <div data-uw="{{ it.uw }}" data-un="{{ it.n }}" onClick="{{ it.toggleUnit }}" style="margin:16px 0 8px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:{{ it.chip }};cursor:pointer">
+                      <span style="width:32px;height:32px;border-radius:9px;flex-shrink:0;background:{{ it.accent }};color:#fffdfa;display:grid;place-items:center;font-family:Lora,Georgia,serif;font-weight:700;font-size:16px">{{ it.n }}</span>
+                      <div style="min-width:0"><div style="font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ it.accent }}">{{ it.month }} · Unit {{ it.n }}</div><div style="font-family:Lora,Georgia,serif;font-size:17px;font-weight:700;line-height:1.2">{{ it.title }}</div><sc-if value="{{ it.showSummary }}"><div style="font-size:13px;font-weight:600;color:#4a5566;margin-top:2px">{{ it.summary }}</div></sc-if></div>
+                      <sc-if value="{{ it.collapsible }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a5566" style="margin-left:auto;flex-shrink:0;transform:{{ it.chevRot }};stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m6 9 6 6 6-6"></path></svg></sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ it.isWeek }}">
+                  <div data-wk="{{ it.n }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:0 16px 0 12px">
+                    <div style="position:relative;display:flex;justify-content:center;align-items:flex-start">
+                      <div style="position:absolute;left:21px;top:0;bottom:0;width:3px;background:{{ it.rail }}"></div>
+                      <div style="position:relative;z-index:1;margin-top:16px">
+                        <sc-if value="{{ it.nodeDone }}"><span style="width:30px;height:30px;border-radius:50%;background:#4d6b53;color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px #fdf9f0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                        <sc-if value="{{ it.nodeCurrent }}"><span style="width:42px;height:42px;border-radius:50%;background:{{ it.accent }};color:#fffdfa;display:grid;place-items:center;font-weight:800;font-size:18px;box-shadow:0 0 0 4px #fdf9f0,0 0 0 9px {{ it.accentRing }}">{{ it.n }}</span></sc-if>
+                        <sc-if value="{{ it.nodeLock }}"><span style="width:30px;height:30px;box-sizing:border-box;border-radius:50%;background:#f3eee6;border:2px dashed #d6cbbb;color:#8a94a0;display:grid;place-items:center;box-shadow:0 0 0 4px #fdf9f0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M7 11V7a5 5 0 0 1 10 0v4M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z"></path></svg></span></sc-if>
+                        <sc-if value="{{ it.nodePlain }}"><span style="width:30px;height:30px;box-sizing:border-box;border-radius:50%;background:#fdf9f0;border:2px solid {{ it.nodeBorder }};color:{{ it.nodeFg }};display:grid;place-items:center;font-weight:800;font-size:13px;box-shadow:0 0 0 4px #fdf9f0">{{ it.n }}</span></sc-if>
+                      </div>
+                    </div>
+
+                    <div style="min-width:0;padding:6px 0">
+                      <sc-if value="{{ it.compact }}">
+                        <button onClick="{{ it.toggle }}" style="width:100%;display:flex;align-items:center;gap:8px;min-height:60px;padding:6px 0;border:none;background:transparent;text-align:left;color:#1a202c;font-family:inherit">
+                          <span style="flex:1;min-width:0">
+                            <span style="display:block;font-size:13px;font-weight:700;color:#5e6b7d">Week {{ it.n }} · {{ it.dates }}</span>
+                            <span style="display:block;font-size:16.5px;font-weight:700;line-height:1.3;color:{{ it.titleColor }};text-wrap:pretty">{{ it.title }}</span>
+                            <span style="display:block;margin-top:2px;font-size:13.5px;color:{{ it.statusColor }}">{{ it.statusText }}</span>
+                          </span>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;transform:{{ it.chevRot }};stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </button>
+                      </sc-if>
+
+                      <sc-if value="{{ it.isLockedRow }}">
+                        <div style="display:flex;align-items:center;min-height:58px;padding:6px 0">
+                          <span style="flex:1;min-width:0">
+                            <span style="display:block;font-size:13px;font-weight:700;color:#7a8594">Week {{ it.n }} · {{ it.dates }}</span>
+                            <span style="display:block;font-size:16px;font-weight:700;line-height:1.3;color:#6b7684;text-wrap:pretty">{{ it.title }}</span>
+                            <span style="display:block;margin-top:2px;font-size:13.5px;color:#5e6b7d">{{ it.statusText }}</span>
+                          </span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ it.isOpen }}">
+                        <div style="margin:2px 0 10px;border-radius:16px;background:#fffdfa;border:1px solid rgba(207,191,171,.75);overflow:hidden">
+                          <sc-if value="{{ it.earlyNote }}"><div style="padding:10px 14px;font-size:13.5px;line-height:1.45;color:#5e6b7d;background:rgba(247,242,232,.8)">Your class does this week on {{ it.dates }}. You can start early if you like.</div></sc-if>
+                          <sc-for list="{{ it.acts }}" as="a" hint-placeholder-count="3">
+                            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:56px;border-top:1px solid rgba(207,191,171,.45)">
+                              <span style="width:26px;height:26px;box-sizing:border-box;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:{{ a.dotBg }};color:{{ a.dotFg }};border:{{ a.dotBorder }}">{{ a.dotText }}</span>
+                              <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:600;line-height:1.3">{{ a.title }}</span><span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;color:#5e6b7d"><span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 9px;font-size:13px;font-weight:600;line-height:1.2;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span><span style="font-weight:600;white-space:nowrap">{{ a.metaText }}</span></span></span>
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+
+                      <sc-if value="{{ it.isCurrent }}">
+                        <div style="margin:4px 0 14px;border-radius:20px;background:#fffdfa;border:{{ it.accentBorder }};box-shadow:0 12px 28px rgba(40,31,23,.12);overflow:hidden">
+                          <div style="padding:14px 16px 12px">
+                            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                              <span style="white-space:nowrap;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:{{ it.accent }};color:#fffdfa">You are here</span>
+                              <span style="font-size:13.5px;font-weight:700;color:#5e6b7d;white-space:nowrap">Week {{ it.n }} · {{ it.dates }}</span>
+                            </div>
+                            <div style="margin-top:8px;font-family:Lora,Georgia,serif;font-size:24px;font-weight:700;line-height:1.2">{{ it.title }}</div>
+                            <div style="margin-top:10px;display:flex;align-items:center;gap:10px">
+                              <div style="flex:1;display:flex;gap:4px">
+                                <sc-for list="{{ it.acts }}" as="a" hint-placeholder-count="6"><span style="flex:1;height:8px;border-radius:4px;background:{{ a.segBg }}"></span></sc-for>
+                              </div>
+                              <span style="white-space:nowrap;flex-shrink:0;font-size:13.5px;font-weight:700;color:#5e6b7d">{{ it.doneText }}</span>
+                            </div>
+                          </div>
+                          <sc-if value="{{ it.hasNext }}">
+                            <div style="margin:0 12px 12px;display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 14px;border-radius:16px;background:{{ it.accent }};color:#fffdfa;box-shadow:{{ it.accentShadow }};cursor:pointer">
+                              <span style="width:38px;height:38px;flex-shrink:0;border-radius:50%;background:#fffdfa;color:{{ it.accent }};display:grid;place-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round;margin-left:2px"><path d="M6 3 20 12 6 21Z"></path></svg></span>
+                              <span style="flex:1;min-width:0"><span style="display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.92">{{ it.ctaVerb }} · {{ it.nextMin }} min</span><span style="display:block;font-size:17px;font-weight:700;line-height:1.25">{{ it.nextTitle }}</span></span>
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                            </div>
+                          </sc-if>
+                          <sc-if value="{{ it.currentDone }}">
+                            <div style="margin:0 12px 12px;padding:14px;border-radius:16px;background:#eef4ec;color:#2d6930;font-size:15px;font-weight:700;line-height:1.4">You finished this week! You can review anything below or start next week early.</div>
+                          </sc-if>
+                          <div style="padding:4px 16px 6px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">This week's activities</div>
+                          <sc-for list="{{ it.acts }}" as="a" hint-placeholder-count="6">
+                            <div style="display:flex;align-items:center;gap:12px;padding:10px 16px;min-height:58px;border-top:1px solid rgba(207,191,171,.45);background:{{ a.rowBg }}">
+                              <span style="width:26px;height:26px;box-sizing:border-box;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:{{ a.dotBg }};color:{{ a.dotFg }};border:{{ a.dotBorder }}">{{ a.dotText }}</span>
+                              <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:600;line-height:1.3">{{ a.title }}</span><span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;color:#5e6b7d"><span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 9px;font-size:13px;font-weight:600;line-height:1.2;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span><span style="font-weight:600;white-space:nowrap">{{ a.metaText }}</span></span></span>
+                              <sc-if value="{{ a.showNext }}"><span style="white-space:nowrap;flex-shrink:0;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;background:{{ a.nextBg }};color:{{ a.nextFg }}">Next</span></sc-if>
+                            </div>
+                          </sc-for>
+                          <div style="margin:10px 12px 12px;border-radius:14px;border:1.5px dashed rgba(180,165,145,.85);display:flex;align-items:center;gap:12px;padding:10px 12px">
+                            <span style="display:flex;width:34px;height:34px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.9);color:#5e6b7d"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+                            <span style="min-width:0;flex:1"><span style="display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Extra · not required</span><span style="display:block;font-size:15px;font-weight:600">More games for this week</span></span>
+                          </div>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ p.showRecenter }}">
+            <button onClick="{{ p.recenter }}" style="position:absolute;left:50%;bottom:72px;transform:translateX(-50%);z-index:6;min-height:50px;padding:0 20px;border-radius:999px;border:none;background:#1a202c;color:#fffdfa;font-family:inherit;font-size:15.5px;font-weight:700;white-space:nowrap;box-shadow:0 10px 24px rgba(0,0,0,.28);display:flex;align-items:center;gap:8px"><span style="font-size:18px">{{ p.recenterArrow }}</span>Back to this week</button>
+          </sc-if>
+
+          <div style="position:absolute;left:0;right:0;bottom:0;height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px;font-family:'DM Sans',sans-serif">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+
+    <div style="width:380px;display:flex;flex-direction:column;gap:16px;padding-top:30px">
+      <div style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Why it works for students</div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">1</span><div style="font-size:15px;line-height:1.5"><b>It always opens on "You are here".</b> The big dot (in the unit's color) and one big button answer the main question: what do I do now?</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">2</span><div style="font-size:15px;line-height:1.5"><b>One road, no folders.</b> Units are signs along the road, not boxes you open. Weeks never move, so September is always above October.</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">3</span><div style="font-size:15px;line-height:1.5"><b>"Back to this week" appears when you need it.</b> As soon as you scroll away, a button shows up, like the "re-center" button in a map app.</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">4</span><div style="font-size:15px;line-height:1.5"><b>The top bar tells you where you're looking.</b> The month, unit, week, and dates update as you scroll. The whole course is one line: tap any piece to jump there.</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">5</span><div style="font-size:15px;line-height:1.5"><b>Real dates, not just numbers.</b> "Oct 5–9" matches the classroom calendar and the student's own phone. "Week 5" alone means nothing outside the app.</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">6</span><div style="font-size:15px;line-height:1.5"><b>Easy-to-read type.</b> Atkinson Hyperlegible (already in your worksheets folder) makes letters like I/l/1 and O/0 easier to tell apart. The base size is 15–16px.</div></div>
+      <div style="padding:14px 16px;border-radius:14px;background:#fffdfa;border:1px solid rgba(207,191,171,.65);font-size:14.5px;line-height:1.55"><b>What's gone:</b> the week dropdown, unit cards inside unit cards, "Previous / Upcoming" groups, "Week details", and lists that reorder themselves. Past weeks that aren't finished just show "2 of 3 done", with no warnings, so the focus stays on this week.</div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">7</span><div style="font-size:15px;line-height:1.5"><b>Built around your two cycles.</b> The top bar is one swipeable strip for the whole year, with a line between Cycle 1 and Cycle 2. It slides along as you scroll the map. Swipe it back to October and tap a week to jump there. In April, all of Cycle 1 is one dark "21 of 21 weeks done" banner, and February and March fold into short signs. Tap any of them to open it in place.</div></div>
+      <div style="display:grid;grid-template-columns:26px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#1a202c;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">8</span><div style="font-size:15px;line-height:1.5"><b>Future weeks are visible but locked.</b> Students see what's coming and when it opens ("Opens Monday, Apr 19"), so the road still leads somewhere. They can't open it early. Later units show only their name and start date. To compare, switch <b>Future weeks</b> to "Open early" in Tweaks.</div></div>
+      <div style="padding:14px 16px;border-radius:14px;background:rgba(244,211,94,.22);font-size:14.5px;line-height:1.55"><b>Try it:</b> switch <b>Time of year</b> to April in Tweaks to see the map late in the year.  scroll the left phone up to September and watch the top bar change and the "Back to this week" button appear. Then tap a future week to look inside it.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 56px 40px;display:flex;flex-direction:column;gap:28px;border-bottom:2px dashed rgba(180,165,145,.85)">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:900px">
+    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5e6b7d">Turn 2 · Ship-now fixes + student test</div>
+    <div style="font-family:Lora,Georgia,serif;font-size:32px;font-weight:700;line-height:1.15">Step 1: safe fixes inside today's layout</div>
+    <div style="font-size:15px;line-height:1.55;color:#5e6b7d;text-wrap:pretty">Same unit cards, same activity rows, same page. Only the header, the week list and the optional card change. Each change is marked A–E with the file it touches. The phone is clickable.</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+
+    <div id="2a" style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">2a</span>
+        <span style="font-size:16px;font-weight:700">Ship-now spec for your developer</span>
+      </div>
+      <div style="display:flex;gap:28px;align-items:flex-start">
+        <div style="width:375px;flex-shrink:0;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+          <div style="padding:8px 16px 24px;display:flex;flex-direction:column;gap:12px">
+            <div style="border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid color-mix(in srgb,#B0432B 18%,rgba(0,0,0,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10),0 14px 32px rgba(40,31,23,.08)">
+              <div style="padding:12px 16px 12px;border-bottom:1px solid rgba(207,191,171,.65);background:{{ D.headBg }};position:relative">
+                <span style="position:absolute;right:8px;top:8px;width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">A</span>
+                <div style="display:flex;align-items:center;gap:8px;padding-right:30px">
+                  <span style="flex:1;min-width:0;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;line-height:1.4;color:{{ D.accent }}">Unit {{ D.unitN }} · {{ D.month }}</span>
+                  <sc-if value="{{ D.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+                </div>
+                <div style="margin-top:4px;font-family:Lora,Georgia,serif;font-size:20px;font-weight:700;line-height:1.25">Week {{ D.n }} · {{ D.title }}</div>
+                <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
+                  <div style="position:relative;height:6px;flex:1;overflow:hidden;border-radius:999px;background:#fdf9f0;border:1px solid rgba(207,191,171,.65)"><div style="position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:#b05740;width:{{ D.pct }}"></div></div>
+                  <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ D.fraction }}</span>
+                </div>
+                <div style="margin-top:10px;display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;position:relative">
+                  <span style="position:absolute;left:50%;top:-14px;transform:translateX(-50%);width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:2">B</span>
+                  <div style="display:flex"><sc-if value="{{ D.hasPrev }}"><button onClick="{{ D.goPrev }}" style="white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 12px 0 6px;border-radius:12px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;font-size:13px;font-weight:700;color:#1a202c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m15 18-6-6 6-6"></path></svg>Week {{ D.prevN }}</button></sc-if></div>
+                  <div><sc-if value="{{ D.notThis }}"><button onClick="{{ backD }}" style="white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-radius:999px;border:none;background:rgba(176,87,64,.12);font-size:13px;font-weight:800;color:#8e4432">This week</button></sc-if></div>
+                  <div style="display:flex;justify-content:flex-end"><sc-if value="{{ D.hasNext }}"><button onClick="{{ D.goNext }}" style="white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:12px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;font-size:13px;font-weight:700;color:#1a202c">Week {{ D.nextN }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg></button></sc-if></div>
+                </div>
+              </div>
+
+              <sc-for list="{{ D.acts }}" as="a" hint-placeholder-count="6">
+                <div style="border-bottom:{{ a.border }}">
+                  <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px;background:{{ a.rowBg }}">
+                    <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center">
+                      <sc-if value="{{ a.isDone }}"><span style="display:flex;width:28px;height:28px;border-radius:50%;background:#4d6b53;color:#fff;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:flex;width:32px;height:32px;border-radius:50%;background:#b05740;color:#fffdfa;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round"><path d="M6 3 20 12 6 21Z"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isTodo }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(94,107,125,.5)" style="stroke-width:1.5"><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                    </span>
+                    <span style="min-width:0;flex:1">
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:block;margin-bottom:4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#b05740">{{ D.actionLabel }}</span></sc-if>
+                      <span style="display:block;font-size:15px;font-weight:600;line-height:1.375">{{ a.title }}</span>
+                      <span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:#5e6b7d">
+                        <span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.25;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span>
+                        <sc-if value="{{ a.isDone }}"><span style="font-weight:600">Done</span></sc-if>
+                        <sc-if value="{{ a.isCurrent }}"><span style="border-radius:999px;background:rgba(176,87,64,.12);padding:2px 8px;font-weight:700;color:#b05740">Next</span></sc-if>
+                      </span>
+                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </div>
+                </div>
+              </sc-for>
+
+              <div style="margin:12px 16px;border-radius:14px;border:1.5px dashed rgba(180,165,145,.85);display:flex;align-items:center;gap:12px;padding:10px 12px;position:relative">
+                <span style="position:absolute;right:-8px;top:-12px;width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">E</span>
+                <span style="display:flex;width:36px;height:36px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.78);color:#5e6b7d"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+                <span style="min-width:0;flex:1"><span style="display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Extra · not required</span><span style="display:block;font-size:14px;font-weight:600">More games for Week {{ D.n }}</span></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+              </div>
+
+              <div style="border-top:1px solid rgba(207,191,171,.65);position:relative">
+                <span style="position:absolute;right:12px;top:10px;width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:2">C</span>
+                <p style="margin:0;padding:12px 16px 4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#5e6b7d">All weeks in Unit {{ D.unitN }}</p>
+                <sc-for list="{{ D.unitWeeks }}" as="w" hint-placeholder-count="3">
+                  <button onClick="{{ w.onD }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:10px 16px;min-height:56px;text-align:left;border:none;background:{{ w.selBgD }};color:#1a202c;position:relative">
+                    <span style="width:32px;height:32px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;font-size:14px;font-weight:800;background:{{ w.badgeBg }};color:{{ w.badgeFg }}">{{ w.n }}</span>
+                    <span style="flex:1;min-width:0"><span style="display:block;font-size:14px;font-weight:600;line-height:1.3">{{ w.title }}</span><span style="display:block;font-size:12px;color:#5e6b7d;margin-top:1px">{{ w.status }}</span></span>
+                    <sc-if value="{{ w.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+                    <sc-if value="{{ w.isSelD }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:700;color:#b05740">Open</span></sc-if>
+                  </button>
+                </sc-for>
+                <span style="position:absolute;left:4px;top:40px;width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:2">D</span>
+              </div>
+            </div>
+
+            <sc-for list="{{ D.otherUnits }}" as="u" hint-placeholder-count="2">
+              <button onClick="{{ u.onD }}" style="width:100%;text-align:left;color:#1a202c;border-radius:18px;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10);display:flex;align-items:center;gap:12px;padding:14px">
+                <div style="width:40px;height:40px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;background:{{ u.accent }};color:#fffdfa"><span style="font-family:Lora,Georgia,serif;font-weight:700;font-size:17px">{{ u.n }}</span></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ u.accent }}">Unit {{ u.n }} · {{ u.month }}</div>
+                  <div style="font-family:Lora,Georgia,serif;font-weight:700;font-size:15px;margin-top:3px;line-height:1.15">{{ u.title }}</div>
+                  <div style="font-size:11px;color:#5e6b7d;margin-top:2px">{{ u.range }}</div>
+                </div>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"><path d="M6.5 4.5l5 4.5-5 4.5"></path></svg>
+              </button>
+            </sc-for>
+            <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;border-radius:16px;border:1px solid rgba(207,191,171,.65);padding:14px 16px;font-size:14px;font-weight:600"><span>Practice Library</span><span style="color:#5e6b7d">→</span></div>
+          </div>
+          <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+          </div>
+        </div>
+
+        <div style="width:360px;display:flex;flex-direction:column;gap:14px;padding-top:4px">
+          <div style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Changes for your developer</div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">A</span><div style="font-size:14px;line-height:1.5"><b>Header always says where you are.</b> Replace the "This week / Viewing / Coming up" heading with a fixed line: "Unit 1 · September", then "Week 2 · Parts of Speech". "This week" becomes a small green tag. Remove the "Week details" toggle, because its content is now always visible.<div style="margin-top:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5e6b7d">CourseMapMobileWayfinding.tsx</div></div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">B</span><div style="font-size:14px;line-height:1.5"><b>Previous / next buttons instead of the hidden dropdown.</b> "‹ Week 1" and "Week 3 ›" call the existing <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">dispatchOpenMapWeek(n±1)</span>. "This week" appears only when browsing another week and reuses <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">backToCurrent()</span>.<div style="margin-top:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5e6b7d">CourseMapMobileWayfinding.tsx</div></div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">C</span><div style="font-size:14px;line-height:1.5"><b>Weeks never change order.</b> Drop the Previous / Upcoming / This week grouping and list <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">unit.weeks</span> in course order. The open week stays in its place with an "Open" label.<div style="margin-top:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5e6b7d">course-path/mobile.tsx · MobileUnitSection</div></div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">D</span><div style="font-size:14px;line-height:1.5"><b>Week numbers in squares, not circles.</b> <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">rounded-full</span> → <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">rounded-[9px]</span> with a filled tint, so a week can't be mistaken for an unfinished activity. The square turns green when the week is finished.<div style="margin-top:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5e6b7d">course-path/mobile.tsx · MobileWeekCard (closed)</div></div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:6px;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">E</span><div style="font-size:14px;line-height:1.5"><b>Optional practice looks optional.</b> Dashed card, labelled "Extra · not required", so it doesn't read as the 7th required activity.<div style="margin-top:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5e6b7d">course-path/mobile.tsx · MobileWeekCard (open)</div></div></div>
+          <div style="margin-top:6px;padding:14px 16px;border-radius:14px;background:#fffdfa;border:1px solid rgba(207,191,171,.65);font-size:14px;line-height:1.5"><b>Not changing:</b> activity rows, format chips, unit cards, Practice Library, bottom nav, and the desktop layout.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="2b" style="display:flex;flex-direction:column;gap:14px;width:560px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">2b</span>
+        <span style="font-size:16px;font-weight:700">Student test script · about 20 minutes</span>
+      </div>
+      <div style="background:#fffdfa;border-radius:18px;border:1px solid rgba(207,191,171,.65);box-shadow:0 14px 32px rgba(40,31,23,.08);padding:28px 30px;display:flex;flex-direction:column;gap:18px">
+        <div>
+          <div style="font-family:Lora,Georgia,serif;font-size:22px;font-weight:700">Can students find their way on the map?</div>
+          <div style="font-size:14px;line-height:1.55;color:#5e6b7d;margin-top:4px">3 students, one at a time, on their own phone. About 5 minutes each. Run it once on today's map, then again after the fixes, and compare.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Before you start</div>
+          <div style="font-size:14px;line-height:1.6">• Start them on the <b>Home</b> tab, not the map.<br>• Say: <i>"I'm testing the app, not you. If something is confusing, that's the app's fault."</i><br>• Ask them to <b>think out loud</b>, in any language.<br>• <b>Don't help.</b> If they're stuck for 30 seconds, say "What would you try?", then move on.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Tasks (read them out loud)</div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">1</span><div style="font-size:14px;line-height:1.5"><b>"Open the course map. What week is the class on?"</b><div style="color:#5e6b7d">Watch: do they find the Map tab? Do they read the header or guess?</div></div></div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">2</span><div style="font-size:14px;line-height:1.5"><b>"What unit is that? What month?"</b><div style="color:#5e6b7d">Watch: can they answer without opening anything?</div></div></div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">3</span><div style="font-size:14px;line-height:1.5"><b>"Show me the next thing you need to do."</b> (Point, don't tap.)<div style="color:#5e6b7d">Watch: do they point at the right activity?</div></div></div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">4</span><div style="font-size:14px;line-height:1.5"><b>"Find Week 1."</b><div style="color:#5e6b7d">Watch: what do they tap first? Do they notice when the screen changes?</div></div></div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">5</span><div style="font-size:14px;line-height:1.5"><b>"Now go back to this week."</b><div style="color:#5e6b7d">This is the most important task. Watch for scrolling around or going back to Home.</div></div></div>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:10px"><span style="width:26px;height:26px;border-radius:50%;background:#b05740;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center">6</span><div style="font-size:14px;line-height:1.5"><b>"Where would you find extra games for this week? Do you have to do them?"</b><div style="color:#5e6b7d">Watch: do they know optional practice is optional?</div></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Score each task</div>
+          <div style="display:grid;grid-template-columns:1.4fr repeat(3,1fr);border:1px solid rgba(207,191,171,.65);border-radius:12px;overflow:hidden;font-size:13px">
+            <div style="padding:8px 10px;background:rgba(247,242,232,.9);font-weight:800">Task</div><div style="padding:8px 10px;background:rgba(247,242,232,.9);font-weight:800">Student A</div><div style="padding:8px 10px;background:rgba(247,242,232,.9);font-weight:800">Student B</div><div style="padding:8px 10px;background:rgba(247,242,232,.9);font-weight:800">Student C</div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">1 · Which week</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">2 · Which unit</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">3 · Next activity</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">4 · Find Week 1</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">5 · Back to this week</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+            <div style="padding:8px 10px;border-top:1px solid rgba(207,191,171,.65)">6 · Optional practice</div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div><div style="border-top:1px solid rgba(207,191,171,.65)"></div>
+          </div>
+          <div style="font-size:13px;color:#5e6b7d"><b style="color:#1a202c">✓</b> did it alone · <b style="color:#1a202c">~</b> hesitated or tried twice · <b style="color:#1a202c">✗</b> needed help. Write down the first thing they tapped.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Afterwards, ask</div>
+          <div style="font-size:14px;line-height:1.6">• "What was the most confusing part?"<br>• "If you could change one thing, what would it be?"</div>
+        </div>
+        <div style="padding:12px 14px;border-radius:12px;background:rgba(244,211,94,.22);font-size:14px;line-height:1.5"><b>How to read it:</b> if 2 of the 3 students get a ~ or ✗ on the same task, that's a real problem. If tasks 4–5 still fail after the fixes, try the week strip (<a href="#1b">1b</a>).</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding:48px 56px 96px;display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:900px">
+    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5e6b7d">Turn 1 · Mobile course map</div>
+    <div style="font-family:Lora,Georgia,serif;font-size:32px;font-weight:700;line-height:1.15">Can students tell where they are?</div>
+    <div style="font-size:15px;line-height:1.55;color:#5e6b7d;text-wrap:pretty">The current screen is rebuilt from the repo on the left, with notes on where students could get lost. The three redesigns all answer the same three questions on every screen: <b style="color:#1a202c">Which unit am I in? Which week am I looking at? How do I get back to this week?</b> The redesigns are clickable.</div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+
+    <!-- ============ CURRENT ============ -->
+    <div id="current" style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#1a202c;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">Current</span>
+        <span style="font-size:16px;font-weight:700">What students see today</span>
+      </div>
+      <div style="display:flex;gap:28px;align-items:flex-start">
+        <!-- phone -->
+        <div style="width:375px;flex-shrink:0;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25);position:relative">
+          <div style="padding:8px 16px 24px;display:flex;flex-direction:column;gap:12px">
+            <div style="border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid color-mix(in srgb,#B0432B 18%,rgba(0,0,0,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10),0 14px 32px rgba(40,31,23,.08)">
+              <div style="padding:12px 16px 4px;border-bottom:1px solid rgba(207,191,171,.65);background:color-mix(in srgb,rgba(176,67,43,.09) 70%,#fcfbf9);position:relative">
+                <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:16px;bottom:52px;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:3">1</span></sc-if>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <h1 style="margin:0;font-family:Lora,Georgia,serif;font-size:20px;font-weight:700;line-height:1.25;color:#B0432B;position:relative">This week<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:-30px;top:0;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">3</span></sc-if></h1>
+                  <div style="position:relative;display:flex;min-height:44px;align-items:center;border-radius:12px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;padding:8px 36px 8px 12px">
+                    <span style="font-size:14px;font-weight:700">Week 2</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m6 9 6 6 6-6"></path></svg>
+                    <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:-12px;top:-10px;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">2</span></sc-if>
+                  </div>
+                </div>
+                <p style="margin:4px 0 0;font-size:16px;font-weight:600;line-height:1.25">{{ cur.title }}</p>
+                <div style="margin-top:8px;display:flex;align-items:center;gap:12px;position:relative">
+                  <div style="position:relative;height:6px;flex:1;overflow:hidden;border-radius:999px;background:#fdf9f0;border:1px solid rgba(207,191,171,.65)"><div style="position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:#b05740;width:{{ cur.pct }}"></div></div>
+                  <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ cur.fraction }}</span>
+                  <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:84px;top:-26px;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">7</span></sc-if>
+                </div>
+                <div style="min-height:44px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700"><span style="font-size:9px">▶</span>Week details</div>
+                <p style="margin:0;padding-bottom:12px;font-size:12px;line-height:1.6;color:#5e6b7d">Work at your own pace. Start with one activity.</p>
+              </div>
+
+              <sc-for list="{{ cur.acts }}" as="a" hint-placeholder-count="6">
+                <div style="border-bottom:{{ a.border }}">
+                  <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px;background:{{ a.rowBg }}">
+                    <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center">
+                      <sc-if value="{{ a.isDone }}"><span style="display:flex;width:28px;height:28px;border-radius:50%;background:#4d6b53;color:#fff;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:flex;width:32px;height:32px;border-radius:50%;background:#b05740;color:#fffdfa;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round"><path d="M6 3 20 12 6 21Z"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isTodo }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(94,107,125,.5)" style="stroke-width:1.5"><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                    </span>
+                    <span style="min-width:0;flex:1">
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:block;margin-bottom:4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#b05740">{{ cur.actionLabel }}</span></sc-if>
+                      <span style="display:block;font-size:15px;font-weight:600;line-height:1.375">{{ a.title }}</span>
+                      <span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:#5e6b7d">
+                        <span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.25;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span>
+                        <sc-if value="{{ a.isDone }}"><span style="font-weight:600">Done</span></sc-if>
+                        <sc-if value="{{ a.isCurrent }}"><span style="border-radius:999px;background:rgba(176,87,64,.12);padding:2px 8px;font-weight:700;color:#b05740">Next</span></sc-if>
+                      </span>
+                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </div>
+                </div>
+              </sc-for>
+
+              <div style="border-top:1px solid rgba(207,191,171,.65);position:relative">
+                <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:40px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:3">8</span></sc-if>
+                <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px">
+                  <span style="display:flex;width:40px;height:40px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.78);color:#5e6b7d"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+                  <span style="min-width:0;flex:1"><span style="display:block;font-size:16px;font-weight:600">Optional practice</span><span style="display:block;font-size:14px;color:#5e6b7d">More games and activities</span></span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                </div>
+              </div>
+
+              <div style="border-top:1px solid rgba(207,191,171,.65);position:relative">
+                <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:16px;top:8px;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:3">4</span></sc-if>
+                <p style="margin:0;padding:12px 16px 4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#5e6b7d">Previous weeks</p>
+                <sc-for list="{{ prevWeeks }}" as="w" hint-placeholder-count="1">
+                  <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;position:relative">
+                    <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;border:1px solid color-mix(in srgb,#B0432B 55%,rgba(207,191,171,.65));font-size:14px;font-weight:700;color:#B0432B">{{ w.n }}</span>
+                    <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;right:40px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e;z-index:3">5</span></sc-if>
+                    <span style="min-width:0;flex:1"><span style="display:block;font-size:12px;font-weight:700;color:#b05740">{{ w.label }}</span><span style="display:block;font-size:14px;font-weight:600;line-height:1.375">{{ w.title }}</span><span style="display:block;margin-top:2px;font-size:12px;color:#5e6b7d">{{ w.fraction }}</span></span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="border-top:1px solid rgba(207,191,171,.65)">
+                <p style="margin:0;padding:12px 16px 4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#5e6b7d">Upcoming weeks</p>
+                <sc-for list="{{ upWeeks }}" as="w" hint-placeholder-count="1">
+                  <div style="display:flex;align-items:center;gap:12px;padding:12px 16px">
+                    <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;border:1px solid color-mix(in srgb,#B0432B 55%,rgba(207,191,171,.65));font-size:14px;font-weight:700;color:#B0432B">{{ w.n }}</span>
+                    <span style="min-width:0;flex:1"><span style="display:block;font-size:12px;font-weight:700;color:#b05740">{{ w.label }} · Coming up</span><span style="display:block;font-size:14px;font-weight:600;line-height:1.375">{{ w.title }}</span><span style="display:block;margin-top:2px;font-size:12px;color:#5e6b7d">Class starts Tuesday · You can start now</span></span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <sc-for list="{{ otherUnits }}" as="u" hint-placeholder-count="2">
+              <div style="border-radius:18px;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10),0 14px 32px rgba(40,31,23,.08);display:flex;align-items:center;gap:12px;padding:14px;position:relative">
+                <sc-if value="{{ u.firstNote }}"><span style="position:absolute;left:-10px;top:-10px;width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px #f4d35e">6</span></sc-if>
+                <div style="width:40px;height:40px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;background:{{ u.accent }};color:#fffdfa;box-shadow:0 5px 12px color-mix(in srgb,{{ u.accent }} 32%,transparent)"><span style="font-family:Lora,Georgia,serif;font-weight:700;font-size:17px">{{ u.n }}</span></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ u.accent }}">{{ u.month }}</span><span style="display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;font-size:10.5px;font-weight:700;line-height:1.2;color:#5e6b7d;background:rgba(247,242,232,.78);box-shadow:inset 0 0 0 1px rgba(207,191,171,.65)">Upcoming</span></div>
+                  <div style="font-family:Lora,Georgia,serif;font-weight:700;font-size:15px;margin-top:3px;line-height:1.15">{{ u.title }}</div>
+                  <div style="font-size:11px;color:#5e6b7d;margin-top:2px">0/{{ u.count }} weeks</div>
+                </div>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"><path d="M6.5 4.5l5 4.5-5 4.5"></path></svg>
+              </div>
+            </sc-for>
+
+            <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;border-radius:16px;border:1px solid rgba(207,191,171,.65);padding:14px 16px;font-size:14px;font-weight:600"><span>Practice Library</span><span style="color:#5e6b7d">→</span></div>
+          </div>
+          <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:color-mix(in srgb,#fdf9f0 94%,transparent);box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px 0">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+          </div>
+        </div>
+
+        <!-- findings -->
+        <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+        <div style="width:330px;display:flex;flex-direction:column;gap:14px;padding-top:4px">
+          <div style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Where students could get lost</div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">1</span><div style="font-size:14px;line-height:1.5"><b>The unit name disappears when you open a unit.</b> The month, unit name, and colored badge are replaced by "This week". The only place it says "Unit 1" is inside the closed "Week details" section.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">2</span><div style="font-size:14px;line-height:1.5"><b>The main navigation looks like a label.</b> "Week 2 ⌄" is a hidden dropdown that lists every week in the course in one long system menu. There's no "previous week" or "next week" button.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">3</span><div style="font-size:14px;line-height:1.5"><b>The heading changes its wording.</b> It says "This week", "Viewing", or "Coming up" depending on the week. The biggest text on the screen keeps changing meaning in the same spot.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">4</span><div style="font-size:14px;line-height:1.5"><b>Weeks change order when you tap one.</b> The open week jumps to the top and the others regroup into "Previous" and "Upcoming". After a tap, the week you chose is no longer where it was.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">5</span><div style="font-size:14px;line-height:1.5"><b>Weeks and activities use the same shape.</b> Week numbers sit in round outlines, just like the "not done" activity circles above them.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">6</span><div style="font-size:14px;line-height:1.5"><b>It's unclear where Unit 1 ends.</b> Unit 1 is a card that contains weeks, and the other units are separate cards below it. Tapping Unit 2 closes Unit 1 and moves the whole page.</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">7</span><div style="font-size:14px;line-height:1.5"><b>Nothing shows your place in the course.</b> "1/6 finished" only covers this week. Nothing says "Week 2 of 8" or "September".</div></div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start"><span style="width:22px;height:22px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center">8</span><div style="font-size:14px;line-height:1.5"><b>Optional practice looks like required work.</b> It uses the same row size and type as the required activities.</div></div>
+          <div style="margin-top:6px;padding:14px 16px;border-radius:14px;background:#fffdfa;border:1px solid rgba(207,191,171,.65);font-size:14px;line-height:1.5"><b>What already works:</b> the activity rows. They have big tap targets, clear done / next / to-do icons, format chips, and a single "Continue" label. All three redesigns keep them as they are.</div>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- ============ 1a REFINED ============ -->
+    <div id="1a" style="display:flex;flex-direction:column;gap:14px;width:375px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">1a</span>
+        <span style="font-size:16px;font-weight:700">Refined: same structure, clearer labels</span>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#5e6b7d;text-wrap:pretty">Unit and week names are always visible. Previous / next buttons replace the hidden dropdown. Weeks never reorder. Week numbers use squares, so they don't look like activities.</div>
+      <div style="width:375px;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+        <div style="padding:8px 16px 24px;display:flex;flex-direction:column;gap:12px">
+          <div style="border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10),0 14px 32px rgba(40,31,23,.08)">
+            <div style="padding:14px 16px 12px;border-bottom:1px solid rgba(207,191,171,.65);background:{{ A.headBg }}">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:{{ A.accent }};color:#fffdfa;font-family:Lora,Georgia,serif;font-weight:700;font-size:13px">{{ A.unitN }}</span>
+                <span style="flex:1;min-width:0;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:{{ A.accent }}">Unit {{ A.unitN }} · {{ A.month }}</span>
+                <sc-if value="{{ A.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+              </div>
+              <div style="margin-top:10px;font-size:13px;font-weight:700;color:#5e6b7d">Week {{ A.n }} of {{ totalWeeks }}</div>
+              <div style="margin-top:2px;font-family:Lora,Georgia,serif;font-size:22px;font-weight:700;line-height:1.2">{{ A.title }}</div>
+              <div style="margin-top:10px;display:flex;align-items:center;gap:12px">
+                <div style="position:relative;height:6px;flex:1;overflow:hidden;border-radius:999px;background:#fdf9f0;border:1px solid rgba(207,191,171,.65)"><div style="position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:#b05740;width:{{ A.pct }}"></div></div>
+                <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ A.fraction }}</span>
+              </div>
+              <div style="margin-top:12px;display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+                <div style="display:flex">
+                  <sc-if value="{{ A.hasPrev }}"><button onClick="{{ A.goPrev }}" style="min-height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 12px 0 6px;border-radius:12px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;font-size:13px;font-weight:700;color:#1a202c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m15 18-6-6 6-6"></path></svg>Week {{ A.prevN }}</button></sc-if>
+                </div>
+                <div>
+                  <sc-if value="{{ A.notThis }}"><button onClick="{{ backA }}" style="min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-radius:999px;border:none;background:rgba(176,87,64,.12);font-size:13px;font-weight:800;color:#8e4432"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5"></path></svg>This week</button></sc-if>
+                </div>
+                <div style="display:flex;justify-content:flex-end">
+                  <sc-if value="{{ A.hasNext }}"><button onClick="{{ A.goNext }}" style="min-height:44px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:12px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;font-size:13px;font-weight:700;color:#1a202c">Week {{ A.nextN }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg></button></sc-if>
+                </div>
+              </div>
+            </div>
+
+            <sc-for list="{{ A.acts }}" as="a" hint-placeholder-count="6">
+              <div style="border-bottom:{{ a.border }}">
+                <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px;background:{{ a.rowBg }}">
+                  <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center">
+                    <sc-if value="{{ a.isDone }}"><span style="display:flex;width:28px;height:28px;border-radius:50%;background:#4d6b53;color:#fff;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                    <sc-if value="{{ a.isCurrent }}"><span style="display:flex;width:32px;height:32px;border-radius:50%;background:#b05740;color:#fffdfa;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round"><path d="M6 3 20 12 6 21Z"></path></svg></span></sc-if>
+                    <sc-if value="{{ a.isTodo }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(94,107,125,.5)" style="stroke-width:1.5"><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                  </span>
+                  <span style="min-width:0;flex:1">
+                    <sc-if value="{{ a.isCurrent }}"><span style="display:block;margin-bottom:4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#b05740">{{ A.actionLabel }}</span></sc-if>
+                    <span style="display:block;font-size:15px;font-weight:600;line-height:1.375">{{ a.title }}</span>
+                    <span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:#5e6b7d">
+                      <span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.25;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span>
+                      <sc-if value="{{ a.isDone }}"><span style="font-weight:600">Done</span></sc-if>
+                    </span>
+                  </span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="margin:12px 16px 16px;border-radius:14px;border:1.5px dashed rgba(180,165,145,.85);display:flex;align-items:center;gap:12px;padding:10px 12px">
+              <span style="display:flex;width:36px;height:36px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.78);color:#5e6b7d"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+              <span style="min-width:0;flex:1"><span style="display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Extra · not required</span><span style="display:block;font-size:14px;font-weight:600">More games for Week {{ A.n }}</span></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+            </div>
+          </div>
+
+          <div style="margin-top:8px;display:flex;align-items:baseline;justify-content:space-between;padding:0 4px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">All weeks in Unit {{ A.unitN }}</span>
+            <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ A.unitTitle }}</span>
+          </div>
+          <div style="border-radius:16px;overflow:hidden;background:#fffdfa;border:1px solid rgba(207,191,171,.65)">
+            <sc-for list="{{ A.unitWeeks }}" as="w" hint-placeholder-count="3">
+              <button onClick="{{ w.onA }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:56px;text-align:left;border:none;border-bottom:{{ w.border }};background:{{ w.selBg }};color:#1a202c">
+                <span style="width:32px;height:32px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;font-size:14px;font-weight:800;background:{{ w.badgeBg }};color:{{ w.badgeFg }}">{{ w.n }}</span>
+                <span style="flex:1;min-width:0"><span style="display:block;font-size:14px;font-weight:700;line-height:1.3">{{ w.title }}</span><span style="display:block;font-size:12px;color:#5e6b7d;margin-top:1px">{{ w.status }}</span></span>
+                <sc-if value="{{ w.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+                <sc-if value="{{ w.isSelA }}"><span style="font-size:11px;font-weight:700;color:#5e6b7d">Viewing</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:8px;padding:0 4px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Other units</div>
+          <sc-for list="{{ A.otherUnits }}" as="u" hint-placeholder-count="2">
+            <button onClick="{{ u.onA }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;text-align:left;color:#1a202c">
+              <div style="width:36px;height:36px;border-radius:12px;flex-shrink:0;display:grid;place-items:center;background:{{ u.accent }};color:#fffdfa;font-family:Lora,Georgia,serif;font-weight:700;font-size:16px">{{ u.n }}</div>
+              <div style="flex:1;min-width:0"><div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ u.accent }}">Unit {{ u.n }} · {{ u.month }}</div><div style="font-family:Lora,Georgia,serif;font-weight:700;font-size:15px;margin-top:2px">{{ u.title }}</div><div style="font-size:12px;color:#5e6b7d;margin-top:1px">{{ u.range }}</div></div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+          </sc-for>
+        </div>
+        <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b WEEK STRIP ============ -->
+    <div id="1b" style="display:flex;flex-direction:column;gap:14px;width:375px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">1b</span>
+        <span style="font-size:16px;font-weight:700">Bolder: a week strip at the top</span>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#5e6b7d;text-wrap:pretty">The whole course is one row of week tiles, grouped by month. The screen shows one week at a time. There are no unit cards and nothing opens or closes. "Today" scrolls back to this week.</div>
+      <div style="width:375px;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+        <div style="background:#fffdfa;border-bottom:1px solid rgba(207,191,171,.65);padding:12px 0 12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px">
+            <span style="font-family:Lora,Georgia,serif;font-size:20px;font-weight:700">Course map</span>
+            <button onClick="{{ backB }}" style="white-space:nowrap;flex-shrink:0;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(207,191,171,.65);background:{{ B.todayBg }};color:{{ B.todayFg }};font-size:12px;font-weight:800">Today · Week {{ thisWeek }}</button>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:14px;overflow-x:auto;padding:0 16px 2px;scrollbar-width:none">
+            <sc-for list="{{ B.units }}" as="u" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                <span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ u.accent }}">{{ u.month }}</span>
+                <div style="display:flex;gap:6px">
+                  <sc-for list="{{ u.weeks }}" as="w" hint-placeholder-count="3">
+                    <button onClick="{{ w.onB }}" style="width:50px;height:58px;flex-shrink:0;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border:{{ w.tileBorder }};background:{{ w.tileBg }};color:{{ w.tileFg }}">
+                      <span style="font-size:9px;font-weight:800;letter-spacing:.06em;opacity:.75">WK</span>
+                      <span style="font-size:18px;font-weight:800;line-height:1">{{ w.n }}</span>
+                      <span style="font-size:9px;font-weight:800;height:11px;color:{{ w.tileSubFg }}">{{ w.tileSub }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:12px">
+          <div style="padding:0 4px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="line-height:1.4;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:{{ B.accent }}">Unit {{ B.unitN }} · {{ B.unitTitle }}</span>
+              <sc-if value="{{ B.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+              <sc-if value="{{ B.isFuture }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(247,242,232,.9);box-shadow:inset 0 0 0 1px rgba(207,191,171,.65);color:#5e6b7d">Coming up · you can start early</span></sc-if>
+              <sc-if value="{{ B.isPast }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(247,242,232,.9);box-shadow:inset 0 0 0 1px rgba(207,191,171,.65);color:#5e6b7d">Earlier week</span></sc-if>
+            </div>
+            <div style="margin-top:6px;font-family:Lora,Georgia,serif;font-size:24px;font-weight:700;line-height:1.2">Week {{ B.n }}: {{ B.title }}</div>
+            <div style="margin-top:10px;display:flex;align-items:center;gap:12px">
+              <div style="position:relative;height:6px;flex:1;overflow:hidden;border-radius:999px;background:#fffdfa;border:1px solid rgba(207,191,171,.65)"><div style="position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:#b05740;width:{{ B.pct }}"></div></div>
+              <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ B.fraction }}</span>
+            </div>
+          </div>
+
+          <div style="border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10)">
+            <sc-for list="{{ B.acts }}" as="a" hint-placeholder-count="6">
+              <div style="border-bottom:{{ a.border }}">
+                <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px;background:{{ a.rowBg }}">
+                  <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center">
+                    <sc-if value="{{ a.isDone }}"><span style="display:flex;width:28px;height:28px;border-radius:50%;background:#4d6b53;color:#fff;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                    <sc-if value="{{ a.isCurrent }}"><span style="display:flex;width:32px;height:32px;border-radius:50%;background:#b05740;color:#fffdfa;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round"><path d="M6 3 20 12 6 21Z"></path></svg></span></sc-if>
+                    <sc-if value="{{ a.isTodo }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(94,107,125,.5)" style="stroke-width:1.5"><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                  </span>
+                  <span style="min-width:0;flex:1">
+                    <sc-if value="{{ a.isCurrent }}"><span style="display:block;margin-bottom:4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#b05740">{{ B.actionLabel }}</span></sc-if>
+                    <span style="display:block;font-size:15px;font-weight:600;line-height:1.375">{{ a.title }}</span>
+                    <span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:#5e6b7d">
+                      <span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.25;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span>
+                      <sc-if value="{{ a.isDone }}"><span style="font-weight:600">Done</span></sc-if>
+                    </span>
+                  </span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="border-radius:14px;border:1.5px dashed rgba(180,165,145,.85);display:flex;align-items:center;gap:12px;padding:10px 12px">
+            <span style="display:flex;width:36px;height:36px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.78);color:#5e6b7d"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+            <span style="min-width:0;flex:1"><span style="display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Extra · not required</span><span style="display:block;font-size:14px;font-weight:600">More games for Week {{ B.n }}</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+            <div><sc-if value="{{ B.hasPrev }}"><button onClick="{{ B.goPrev }}" style="width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;text-align:left;padding:8px 12px;color:#1a202c"><span style="display:block;font-size:11px;font-weight:700;color:#5e6b7d">‹ Previous</span><span style="display:block;font-size:14px;font-weight:700">Week {{ B.prevN }}</span></button></sc-if></div>
+            <div><sc-if value="{{ B.hasNext }}"><button onClick="{{ B.goNext }}" style="width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;text-align:right;padding:8px 12px;color:#1a202c"><span style="display:block;font-size:11px;font-weight:700;color:#5e6b7d">Next ›</span><span style="display:block;font-size:14px;font-weight:700">Week {{ B.nextN }}</span></button></sc-if></div>
+          </div>
+        </div>
+        <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1c TABLE OF CONTENTS ============ -->
+    <div id="1c" style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#b05740;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">1c</span>
+        <span style="font-size:16px;font-weight:700">Bolder: list of weeks → week page</span>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#5e6b7d;max-width:790px;text-wrap:pretty">Two levels, like a book: a list of every week (left), and a page for one week (right). Nothing opens inside anything else, and "‹ All weeks" always goes back. Tap a week on the left to change the page on the right.</div>
+      <div style="display:flex;gap:40px;align-items:flex-start">
+        <!-- overview -->
+        <div style="width:375px;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+          <div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:14px">
+            <div style="padding:0 4px"><div style="font-family:Lora,Georgia,serif;font-size:26px;font-weight:700;line-height:1.15">Course map</div><div style="font-size:13px;color:#5e6b7d;margin-top:2px">{{ courseRange }}</div></div>
+            <button onClick="{{ backC }}" style="text-align:left;border:none;border-radius:18px;padding:16px;background:#B0432B;color:#fffdfa;box-shadow:0 10px 24px rgba(176,67,43,.28)">
+              <span style="display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85">This week · Week {{ thisWeek }}</span>
+              <span style="display:block;font-family:Lora,Georgia,serif;font-size:21px;font-weight:700;margin-top:4px">{{ cur.title }}</span>
+              <span style="display:flex;align-items:center;gap:10px;margin-top:10px"><span style="position:relative;height:6px;flex:1;border-radius:999px;background:rgba(255,253,250,.3);overflow:hidden"><span style="position:absolute;top:0;bottom:0;left:0;background:#fffdfa;border-radius:999px;width:{{ cur.pct }}"></span></span><span style="white-space:nowrap;flex-shrink:0;font-size:12px;font-weight:700">{{ cur.fraction }}</span></span>
+              <span style="margin-top:14px;display:flex;min-height:48px;align-items:center;justify-content:space-between;border-radius:999px;background:#fffdfa;color:#172235;padding:0 18px;font-size:14px;font-weight:800">{{ cur.ctaText }}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </button>
+            <sc-for list="{{ C.units }}" as="u" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 4px 0">
+                  <span style="width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:{{ u.accent }};color:#fffdfa;font-family:Lora,Georgia,serif;font-weight:700;font-size:12px">{{ u.n }}</span>
+                  <span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:{{ u.accent }}">{{ u.month }}</span>
+                  <span style="font-size:13px;font-weight:700">{{ u.title }}</span>
+                </div>
+                <div style="border-radius:16px;overflow:hidden;background:#fffdfa;border:1px solid rgba(207,191,171,.65)">
+                  <sc-for list="{{ u.weeks }}" as="w" hint-placeholder-count="3">
+                    <button onClick="{{ w.onC }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:58px;text-align:left;border:none;border-bottom:{{ w.border }};background:{{ w.selBgC }};color:#1a202c">
+                      <span style="width:34px;height:34px;border-radius:10px;flex-shrink:0;display:grid;place-items:center;font-size:14px;font-weight:800;background:{{ w.badgeBg }};color:{{ w.badgeFg }}">{{ w.n }}</span>
+                      <span style="flex:1;min-width:0"><span style="display:block;font-size:14px;font-weight:700;line-height:1.3">{{ w.title }}</span><span style="display:block;font-size:12px;color:#5e6b7d;margin-top:1px">{{ w.status }}</span></span>
+                      <sc-if value="{{ w.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+          </div>
+        </div>
+
+        <!-- week page -->
+        <div style="width:375px;border-radius:32px;overflow:hidden;background:#fdf9f0;box-shadow:0 0 0 10px #1f2329,0 30px 60px rgba(0,0,0,.25)">
+          <div style="background:#fffdfa;border-bottom:1px solid rgba(207,191,171,.65);padding:6px 8px;display:flex;align-items:center;justify-content:space-between">
+            <span style="min-height:44px;display:inline-flex;align-items:center;gap:2px;padding:0 10px 0 4px;font-size:15px;font-weight:700;color:#b05740"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="m15 18-6-6 6-6"></path></svg>All weeks</span>
+            <sc-if value="{{ C.notThis }}"><button onClick="{{ backC }}" style="min-height:36px;padding:0 12px;border-radius:999px;border:none;background:rgba(176,87,64,.12);color:#8e4432;font-size:12px;font-weight:800;margin-right:6px">Go to this week</button></sc-if>
+          </div>
+          <div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:12px">
+            <div style="padding:0 4px">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="line-height:1.4;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:{{ C.accent }}">Unit {{ C.unitN }} · {{ C.month }}</span>
+                <sc-if value="{{ C.isThis }}"><span style="white-space:nowrap;flex-shrink:0;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#4d6b53;color:#fffdfa">This week</span></sc-if>
+              </div>
+              <div style="margin-top:6px;font-family:Lora,Georgia,serif;font-size:24px;font-weight:700;line-height:1.2">Week {{ C.n }}: {{ C.title }}</div>
+              <div style="margin-top:10px;display:flex;align-items:center;gap:12px">
+                <div style="position:relative;height:6px;flex:1;overflow:hidden;border-radius:999px;background:#fffdfa;border:1px solid rgba(207,191,171,.65)"><div style="position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:#b05740;width:{{ C.pct }}"></div></div>
+                <span style="flex-shrink:0;white-space:nowrap;font-size:12px;font-weight:600;color:#5e6b7d">{{ C.fraction }}</span>
+              </div>
+            </div>
+            <div style="border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fcfbf9 0%,#faf7f3 100%);border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.06),0 6px 18px rgba(40,31,23,.10)">
+              <sc-for list="{{ C.acts }}" as="a" hint-placeholder-count="6">
+                <div style="border-bottom:{{ a.border }}">
+                  <div style="display:flex;min-height:64px;align-items:center;gap:12px;padding:12px 16px;background:{{ a.rowBg }}">
+                    <span style="display:flex;width:32px;height:32px;flex-shrink:0;align-items:center;justify-content:center">
+                      <sc-if value="{{ a.isDone }}"><span style="display:flex;width:28px;height:28px;border-radius:50%;background:#4d6b53;color:#fff;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:flex;width:32px;height:32px;border-radius:50%;background:#b05740;color:#fffdfa;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" style="stroke-width:2;stroke-linejoin:round"><path d="M6 3 20 12 6 21Z"></path></svg></span></sc-if>
+                      <sc-if value="{{ a.isTodo }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(94,107,125,.5)" style="stroke-width:1.5"><circle cx="12" cy="12" r="10"></circle></svg></sc-if>
+                    </span>
+                    <span style="min-width:0;flex:1">
+                      <sc-if value="{{ a.isCurrent }}"><span style="display:block;margin-bottom:4px;font-size:10px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;color:#b05740">{{ C.actionLabel }}</span></sc-if>
+                      <span style="display:block;font-size:15px;font-weight:600;line-height:1.375">{{ a.title }}</span>
+                      <span style="margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:#5e6b7d">
+                        <span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.25;white-space:nowrap;flex-shrink:0;background:{{ a.chipBg }};color:{{ a.chipFg }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="{{ a.icon }}"></path></svg>{{ a.chipLabel }}</span>
+                        <sc-if value="{{ a.isDone }}"><span style="font-weight:600">Done</span></sc-if>
+                      </span>
+                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="border-radius:14px;border:1.5px dashed rgba(180,165,145,.85);display:flex;align-items:center;gap:12px;padding:10px 12px">
+              <span style="display:flex;width:36px;height:36px;flex-shrink:0;align-items:center;justify-content:center;border-radius:50%;background:rgba(247,242,232,.78);color:#5e6b7d"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round"><path d="M5 12h14M12 5v14"></path></svg></span>
+              <span style="min-width:0;flex:1"><span style="display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e6b7d">Extra · not required</span><span style="display:block;font-size:14px;font-weight:600">More games for Week {{ C.n }}</span></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e6b7d" style="flex-shrink:0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 18 6-6-6-6"></path></svg>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+              <div><sc-if value="{{ C.hasPrev }}"><button onClick="{{ C.goPrev }}" style="width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;text-align:left;padding:8px 12px;color:#1a202c"><span style="display:block;font-size:11px;font-weight:700;color:#5e6b7d">‹ Previous</span><span style="display:block;font-size:14px;font-weight:700">Week {{ C.prevN }}</span></button></sc-if></div>
+              <div><sc-if value="{{ C.hasNext }}"><button onClick="{{ C.goNext }}" style="width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(207,191,171,.65);background:#fffdfa;text-align:right;padding:8px 12px;color:#1a202c"><span style="display:block;font-size:11px;font-weight:700;color:#5e6b7d">Next ›</span><span style="display:block;font-size:14px;font-weight:700">Week {{ C.nextN }}</span></button></sc-if></div>
+            </div>
+          </div>
+          <div style="height:56px;border-top:1px solid rgba(207,191,171,.65);background:#fdf9f0;box-shadow:0 -2px 16px rgba(13,22,32,.16);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 8px">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"></path></svg><span style="font-size:10px;font-weight:700">Home</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#b05740;position:relative"><span style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:0 0 999px 999px;background:#b05740"></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path></svg><span style="font-size:10px;font-weight:700">Map</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18"></path></svg><span style="font-size:10px;font-weight:700">Calendar</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5e6b7d"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg><span style="font-size:10px;font-weight:700">Leaderboard</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;season&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;October&quot;,&quot;April&quot;],&quot;default&quot;:&quot;October&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Student state&quot;,&quot;label&quot;:&quot;Time of year (Turn 3)&quot;},&quot;futureWeeks&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Locked until class week&quot;,&quot;Open early&quot;],&quot;default&quot;:&quot;Locked until class week&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Student state&quot;,&quot;label&quot;:&quot;Future weeks (Turn 3)&quot;},&quot;progress&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Just started&quot;,&quot;Early in week&quot;,&quot;Week finished&quot;],&quot;default&quot;:&quot;Early in week&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Student state&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Review&quot;}}">
+const IC = {
+  book: "M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+  copy: "M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2zM4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2",
+  link: "M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 1 1 0 10h-2M8 12h8",
+  pencil: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4",
+  puzzle: "M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z",
+  game: "M6 11h4M8 9v4M15 12h.01M18 10h.01M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z",
+  quiz: "M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 14l2 2 4-4",
+};
+const TONE = {
+  grammar: ["rgba(238,244,236,0.95)", "#2d6930"],
+  vocab: ["rgba(237,245,244,0.95)", "#1a6560"],
+  games: ["rgba(245,240,250,0.95)", "#5c2d7a"],
+  quiz: ["rgba(255,247,237,0.96)", "#923a25"],
+};
+const FMT = {
+  guide: ["Read & practice", IC.book, "grammar"],
+  flash: ["Flash cards", IC.copy, "vocab"],
+  match: ["Match pairs", IC.link, "vocab"],
+  fill: ["Complete sentences", IC.pencil, "vocab"],
+  sort: ["Sort words", IC.puzzle, "games"],
+  game: ["Game", IC.game, "games"],
+  quiz: ["Quiz", IC.quiz, "quizzes"],
+};
+const UNITS = [
+  { n: 1, month: "September", title: "Getting Started", accent: "#B0432B", surf: "rgba(176,67,43,.09)", chip: "#fae8e5", weeks: [1, 2, 3] },
+  { n: 2, month: "October", title: "Everyday Life", accent: "#8A5A0B", surf: "rgba(138,90,11,.09)", chip: "#f6ecd8", weeks: [4, 5, 6] },
+  { n: 3, month: "November", title: "Health & Community", accent: "#4B6B1F", surf: "rgba(75,107,31,.09)", chip: "#eef3e0", weeks: [7, 8] },
+];
+const WEEKS = {
+  1: ["Start the Class", [["guide", "Welcome Back: Simple & Continuous Review"]]],
+  2: ["Parts of Speech", [["guide", "Parts of Speech Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["sort", "Word Sort: Verbs"], ["match", "Say It & Spell It: Matching"], ["fill", "Say It & Spell It: Fill in the Blank"], ["game", "Action or Description?"]]],
+  3: ["Parts of Speech Review", [["quiz", "Parts of Speech Quiz"], ["sort", "Word Sort: Nouns"], ["match", "Say It & Spell It: Matching"]]],
+  4: ["Verb Forms + Past Simple", [["guide", "Verb Forms Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["quiz", "Verb Quiz 1"]]],
+  5: ["Daily Routines", [["guide", "Simple Present Guide"], ["game", "Routine Builder"], ["fill", "Say It & Spell It: Fill in the Blank"]]],
+  6: ["Getting Around: Directions + Digital Safety", [["guide", "Directions Guide"], ["game", "Find the Place"], ["quiz", "Directions Quiz"]]],
+  7: ["At the Doctor", [["guide", "Should / Shouldn't Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["quiz", "Health Quiz"]]],
+  8: ["Community Resources", [["guide", "Articles: Community Resources"], ["match", "Say It & Spell It: Matching"], ["game", "Where Do You Go?"]]],
+};
+const THIS = 2, TOTAL = 8, BORDER = "1px solid rgba(207,191,171,.65)";
+const unitOf = (n) => UNITS.find((u) => u.weeks.includes(n));
+
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTHS_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const UY = [
+  { n: 1, m: 8, title: "Getting Started", accent: "#B0432B", chip: "#fae8e5", titles: ["Start the Class", "Parts of Speech", "Parts of Speech Review", "Verb Forms + Past Simple"] },
+  { n: 2, m: 9, title: "Everyday Life", accent: "#8A5A0B", chip: "#f6ecd8", titles: ["Daily Routines", "Getting Around: Directions + Digital Safety", "Shopping & Money", "Unit 2 Review"] },
+  { n: 3, m: 10, title: "Health & Community", accent: "#4B6B1F", chip: "#eef3e0", titles: ["At the Doctor", "Medicine Labels", "Community Resources", "Giving Advice", "Unit 3 Review"] },
+  { n: 4, m: 11, title: "Work & Goals", accent: "#1E6E5C", chip: "#e4f3ef", titles: ["Reading Job Ads", "Talking About Experience", "Holiday Week: Review Games", "Unit 4 Review"] },
+  { n: 5, m: 0, title: "Home & Housing", accent: "#17667F", chip: "#e0f0f5", titles: ["Describing Your Home", "Calling the Landlord", "Reading a Lease", "Unit 5 Review"] },
+  { n: 6, m: 1, title: "Money & Banking", accent: "#2A5599", chip: "#e4ebf6", titles: ["Banking Basics", "Comparing Prices", "Returns & Receipts", "Unit 6 Review"] },
+  { n: 7, m: 2, title: "Family & School", accent: "#4A46A0", chip: "#eceaf6", titles: ["Talking About Family", "Parent–Teacher Meetings", "School Forms", "Comparatives", "Unit 7 Review"] },
+  { n: 8, m: 3, title: "Travel & Transportation", accent: "#7A3E9D", chip: "#f3eaf7", titles: ["Bus & Train Schedules", "Travel Stories: Past Continuous", "Making Plans: Will vs. Going To", "Unit 8 Review"] },
+  { n: 9, m: 4, title: "Our Community", accent: "#9C3272", chip: "#f8e8f0", titles: ["Local Services", "Volunteering", "Giving Opinions", "Writing an Email", "Unit 9 Review"] },
+  { n: 10, m: 5, title: "Looking Ahead", accent: "#A32B4A", chip: "#f8e6eb", titles: ["Future Goals", "Year Review"] },
+];
+const startOf = (n) => new Date(2026, 8, 7 + 7 * (n - 1));
+const U3 = UY.map((u) => ({ ...u, month: MONTHS_FULL[u.m], short: MON[u.m], weeks: [] }));
+const W3 = {};
+for (let n = 1; n < 60; n++) {
+  const d = startOf(n); if (d > new Date(2027, 5, 18)) break;
+  const u = U3.find((x) => x.m === d.getMonth()); if (!u) break;
+  W3[n] = [u.titles[u.weeks.length] || "Review Week", null]; u.weeks.push(n);
+}
+const TOTAL3 = Object.keys(W3).length;
+const ACTS3 = {
+  1: [["guide", "Welcome Back: Simple & Continuous Review"]],
+  2: [["guide", "Parts of Speech Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["sort", "Word Sort: Verbs"], ["match", "Say It & Spell It: Matching"], ["fill", "Say It & Spell It: Fill in the Blank"], ["game", "Action or Description?"]],
+  3: [["quiz", "Parts of Speech Quiz"], ["sort", "Word Sort: Nouns"], ["match", "Say It & Spell It: Matching"]],
+  4: [["guide", "Verb Forms Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["quiz", "Verb Quiz 1"]],
+  5: [["guide", "Simple Present Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["sort", "Word Sort: Daily Verbs"], ["match", "Say It & Spell It: Matching"], ["game", "What Time Do You…?"], ["quiz", "Simple Present Quiz"]],
+  32: [["guide", "Past Continuous Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["sort", "Word Sort: Travel Words"], ["match", "Say It & Spell It: Matching"], ["game", "What Were You Doing?"], ["quiz", "Past Continuous Quiz"]],
+};
+const actsFor = (n) => {
+  if (ACTS3[n]) return ACTS3[n];
+  const t = W3[n][0];
+  if (/Review/.test(t)) return [["quiz", t + " Quiz"], ["match", "Say It & Spell It: Matching"]];
+  return [["guide", t.split(":")[0] + " Guide"], ["flash", "Say It & Spell It: Flash Cards"], ["quiz", t.split(":")[0] + " Quiz"]];
+};
+const SEASON = { October: { cur: 5, back: 2 }, April: { cur: 32, back: 24 } };
+const CYCLES = [
+  { n: 1, label: "Cycle 1", range: "September – January", units: [1, 2, 3, 4, 5] },
+  { n: 2, label: "Cycle 2", range: "February – June", units: [6, 7, 8, 9, 10] },
+];
+const cycleOfUnit = (un) => CYCLES.find((c) => c.units.includes(un));
+const LOCK_D = "M7 11V7a5 5 0 0 1 10 0v4M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z";
+const PARTIAL = [4, 15, 23, 29];
+const MIN3 = { guide: 10, flash: 5, sort: 5, match: 5, fill: 5, game: 8, quiz: 10 };
+const DASH = "repeating-linear-gradient(to bottom,#d6cbbb 0 6px,transparent 6px 12px)";
+const dates3 = (n) => { const s = startOf(n), e = new Date(s); e.setDate(s.getDate() + 4);
+  return s.getMonth() === e.getMonth() ? `${MON[s.getMonth()]} ${s.getDate()}–${e.getDate()}` : `${MON[s.getMonth()]} ${s.getDate()} – ${MON[e.getMonth()]} ${e.getDate()}`; };
+
+class Component extends DCLogic {
+  state = { a: THIS, b: THIS, c: THIS, d: THIS, views: {}, open: { p1: {}, p2: {} }, openUnits: { p1: {}, p2: {} }, openCycles: { p1: {}, p2: {} } };
+  locked() { return (this.props.futureWeeks ?? "Locked until class week") !== "Open early"; }
+
+  season() { return SEASON[this.props.season] || SEASON.October; }
+  initView(id) { const s = this.season(); return id === "p1" ? s.cur : s.back; }
+  landAll() {
+    const go = () => { this.scrollToWeek("p1", this.initView("p1"), false); this.scrollToWeek("p2", this.initView("p2"), false); };
+    [200, 900, 1800].forEach((ms) => setTimeout(go, ms));
+  }
+  componentDidMount() { this.landAll(); setTimeout(() => { this.centerStrip("p1", false); this.centerStrip("p2", false); }, 1000); }
+  centerStrip(id, smooth) {
+    const sc = this.scrollers && this.scrollers[id]; if (!sc) return;
+    const strip = sc.querySelector("[data-strip]"); const n = this.state.views[id] ?? this.initView(id);
+    const seg = strip && strip.querySelector(`[data-seg="${n}"]`); if (!seg) return;
+    strip.scrollTo({ left: Math.max(0, seg.offsetLeft - strip.clientWidth / 2 + seg.offsetWidth / 2), behavior: smooth ? "smooth" : "auto" });
+  }
+  componentDidUpdate(prev, prevState) {
+    ["p1", "p2"].forEach((id) => { if (prevState && prevState.views[id] !== this.state.views[id]) this.centerStrip(id, true); });
+    if (prev.season !== this.props.season || prev.futureWeeks !== this.props.futureWeeks) {
+      this.setState({ views: {}, open: { p1: {}, p2: {} }, openUnits: { p1: {}, p2: {} }, openCycles: { p1: {}, p2: {} } }, () => this.landAll());
+    }
+  }
+  refFor(id) { this._refs = this._refs || {}; if (!this._refs[id]) this._refs[id] = (el) => { this.scrollers = this.scrollers || {}; this.scrollers[id] = el; }; return this._refs[id]; }
+  scrollFor(id) { this._sc = this._sc || {}; if (!this._sc[id]) this._sc[id] = () => this.onScroll3(id); return this._sc[id]; }
+  geo(id) {
+    const sc = this.scrollers && this.scrollers[id]; if (!sc) return null;
+    const r = sc.getBoundingClientRect(); const scale = r.height / sc.offsetHeight || 1;
+    const bar = sc.querySelector("[data-bar]"); const barH = bar ? bar.offsetHeight : 120;
+    return { sc, r, scale, barH };
+  }
+  isCollapsed(id, u) { const cur = this.season().cur; return u.weeks[u.weeks.length - 1] < cur && !(this.state.openUnits[id] || {})[u.n]; }
+  scrollToWeek(id, n, smooth, retry) {
+    const g = this.geo(id); if (!g) return;
+    const el = g.sc.querySelector(`[data-wk="${n}"]`);
+    if (!el) {
+      const u = U3.find((x) => x.weeks.includes(n));
+      if (u && !retry) {
+        const c = cycleOfUnit(u.n);
+        this.setState((st) => ({ openUnits: { ...st.openUnits, [id]: { ...st.openUnits[id], [u.n]: true } }, openCycles: { ...st.openCycles, [id]: { ...st.openCycles[id], [c.n]: true } } }), () => setTimeout(() => this.scrollToWeek(id, n, smooth, true), 30));
+        return;
+      }
+      const sign = u && g.sc.querySelector(`[data-un="${u.n}"]`);
+      if (!sign) return;
+      const t2 = (sign.getBoundingClientRect().top - g.r.top) / g.scale + g.sc.scrollTop - g.barH - 4;
+      g.sc.scrollTo({ top: Math.max(0, t2), behavior: smooth ? "smooth" : "auto" });
+      return;
+    }
+    const top = (el.getBoundingClientRect().top - g.r.top) / g.scale + g.sc.scrollTop - g.barH - 4;
+    g.sc.scrollTo({ top: Math.max(0, top), behavior: smooth ? "smooth" : "auto" });
+  }
+  onScroll3(id) {
+    const g = this.geo(id); if (!g) return;
+    let v = null;
+    g.sc.querySelectorAll("[data-wk],[data-uw]").forEach((el) => {
+      const raw = el.getAttribute("data-wk") || el.getAttribute("data-uw"); if (!raw) return;
+      if ((el.getBoundingClientRect().top - g.r.top) / g.scale <= g.barH + 70 || v == null) v = +raw;
+    });
+    if (v != null && this.state.views[id] !== v) this.setState((s) => ({ views: { ...s.views, [id]: v } }));
+  }
+  done3(n, total) {
+    const p = this.props.progress ?? "Early in week"; const cur = this.season().cur;
+    if (n < cur) return PARTIAL.includes(n) && total > 1 ? total - 1 : total;
+    if (n === cur) return p === "Just started" ? 0 : p === "Week finished" ? total : 1;
+    return 0;
+  }
+  week3(n, openMap, id) {
+    const cur = this.season().cur;
+    const title = W3[n][0], list = actsFor(n); const u = U3.find((x) => x.weeks.includes(n));
+    const total = list.length, done = this.done3(n, total);
+    const past = n < cur, future = n > cur, isCurrent = n === cur, allDone = done >= total;
+    const acts = list.map(([k, t], i) => {
+      const f = FMT[k]; const tn = TONE[f[2]] || TONE.quiz; const isDone = i < done, isNext = i === done && !future;
+      return { chipLabel: f[0], icon: f[1], chipBg: tn[0], chipFg: tn[1], metaText: isDone ? "Done" : `about ${MIN3[k]} min`, title: t, isDone, isNext, sub: isDone ? `${f[0]} · Done` : `${f[0]} · about ${MIN3[k]} min`,
+        dotText: isDone ? "✓" : String(i + 1), dotBg: isDone ? "#4d6b53" : isNext ? "#fffdfa" : "transparent",
+        dotFg: isDone ? "#fff" : isNext ? u.accent : "#5e6b7d", nextBg: u.chip, nextFg: u.accent,
+        dotBorder: isDone ? "2px solid #4d6b53" : isNext ? `2px solid ${u.accent}` : "1.5px solid rgba(94,107,125,.45)",
+        rowBg: isNext && isCurrent ? `color-mix(in srgb, ${u.accent} 7%, transparent)` : "transparent", showNext: isNext && isCurrent,
+        segBg: isDone ? "#4d6b53" : isNext ? `color-mix(in srgb, ${u.accent} 45%, transparent)` : "#e9e1d4" };
+    });
+    const next = acts.find((a) => a.isNext);
+    const s = startOf(n);
+    const isOpen = !isCurrent && !!openMap[n] && !(future && this.locked());
+    const locked = future && this.locked();
+    const cyc = cycleOfUnit(u.n);
+    return { accentRing: `color-mix(in srgb, ${u.accent} 22%, transparent)`, accentBorder: `1px solid color-mix(in srgb, ${u.accent} 30%, transparent)`, accentShadow: `0 8px 18px color-mix(in srgb, ${u.accent} 30%, transparent)`, isLockedRow: locked, nodeLock: locked, cycleLabel: cyc.label, isWeek: true, isSign: false, n, title, dates: dates3(n), acts, total, done, isCurrent, compact: !isCurrent && !locked, isOpen,
+      hasNext: isCurrent && !!next, currentDone: isCurrent && allDone,
+      nextTitle: next ? next.title.replace(/^Say It & Spell It: /, "") : "", nextMin: next ? MIN3[list[done][0]] : 0,
+      ctaVerb: done > 0 ? "Continue" : "Start", doneText: `${done} of ${total} done`,
+      nodeDone: allDone && !isCurrent, nodeCurrent: isCurrent, nodePlain: !isCurrent && !allDone && !locked,
+      nodeBorder: past ? "#8f99a5" : "#d6cbbb", nodeFg: past ? "#1a202c" : "#7a8594",
+      rail: n <= cur ? "#cdbfa9" : DASH, titleColor: future ? "#4a5566" : "#1a202c",
+      statusColor: allDone ? "#4d6b53" : "#5e6b7d",
+      statusText: locked ? `Opens Monday, ${MON[s.getMonth()]} ${s.getDate()}` : allDone ? "All done ✓" : past ? `${done} of ${total} done` : `${total} activities · class starts ${MON[s.getMonth()]} ${s.getDate() + 1}`,
+      chevRot: isOpen ? "rotate(180deg)" : "none", earlyNote: future,
+      toggle: () => this.setState((st) => ({ open: { ...st.open, [id]: { ...st.open[id], [n]: !st.open[id][n] } } })),
+      month: u.month, unitN: u.n, accent: u.accent, isThis: isCurrent, notThis: !isCurrent, relText: past ? "Earlier week" : "Coming up" };
+  }
+  phone(id) {
+    const cur = this.season().cur;
+    const view = this.state.views[id] ?? this.initView(id); const openMap = this.state.open[id] || {};
+    const items = [];
+    const lockedMode = this.locked();
+    const curCycle = cycleOfUnit(U3.find((x) => x.weeks.includes(cur)).n);
+    CYCLES.forEach((c) => {
+      const cUnits = U3.filter((u) => c.units.includes(u.n));
+      const first = cUnits[0].weeks[0], last = cUnits[cUnits.length - 1].weeks.slice(-1)[0];
+      const pastCycle = last < cur, futureCycle = first > cur;
+      const cycleOpen = !!(this.state.openCycles[id] || {})[c.n];
+      const collapsed = (pastCycle && !cycleOpen) || (futureCycle && (lockedMode || !cycleOpen));
+      const doneWeeks = cUnits.flatMap((u) => u.weeks).filter((n) => { const t = actsFor(n).length; return this.done3(n, t) >= t; }).length;
+      const totalWeeks = last - first + 1;
+      const fs = startOf(first);
+      items.push({ isCycle: true, label: c.label + (c === curCycle ? " · now" : ""), range: c.range,
+        rail: first <= cur ? "#cdbfa9" : DASH, uw: collapsed && pastCycle ? String(first) : "",
+        collapsible: pastCycle || (futureCycle && !lockedMode), chevRot: collapsed ? "none" : "rotate(180deg)",
+        showSummary: pastCycle || futureCycle,
+        summary: pastCycle ? `${doneWeeks} of ${totalWeeks} weeks done` : `Starts ${MON[fs.getMonth()]} ${fs.getDate()} · ${totalWeeks} weeks`,
+        toggle: () => this.setState((st) => ({ openCycles: { ...st.openCycles, [id]: { ...st.openCycles[id], [c.n]: collapsed } } })) });
+      if (collapsed) return;
+      cUnits.forEach((u) => {
+        const isPastUnit = u.weeks[u.weeks.length - 1] < cur;
+        const isFutureUnit = u.weeks[0] > cur;
+        const uCollapsed = this.isCollapsed(id, u) || (isFutureUnit && lockedMode);
+        const dw = u.weeks.filter((n) => { const t = actsFor(n).length; return this.done3(n, t) >= t; }).length;
+        const us = startOf(u.weeks[0]);
+        items.push({ isSign: true, isWeek: false, n: u.n, month: u.month, title: u.title, accent: isFutureUnit && lockedMode ? "#6b7684" : u.accent, chip: isFutureUnit && lockedMode ? "#f1ece4" : u.chip,
+          rail: u.weeks[0] <= cur ? "#cdbfa9" : DASH, collapsible: isPastUnit, collapsed: uCollapsed,
+          showSummary: isPastUnit || (isFutureUnit && lockedMode),
+          uw: uCollapsed && isPastUnit ? String(u.weeks[0]) : "",
+          summary: isPastUnit ? `Weeks ${u.weeks[0]}–${u.weeks[u.weeks.length - 1]} · ${dw} of ${u.weeks.length} weeks done${dw === u.weeks.length ? " ✓" : ""}` : `Opens ${MON[us.getMonth()]} ${us.getDate()} · ${u.weeks.length} weeks`,
+          chevRot: uCollapsed ? "none" : "rotate(180deg)",
+          toggleUnit: isPastUnit ? () => this.setState((st) => ({ openUnits: { ...st.openUnits, [id]: { ...st.openUnits[id], [u.n]: !this.isCollapsed(id, u) ? false : true } } })) : undefined });
+        if (!uCollapsed) u.weeks.forEach((n) => items.push(this.week3(n, openMap, id)));
+      });
+    });
+    const segUnits = U3.map((u) => ({ short: u.short, accent: u.accent, divider: u.n === 6,
+      segs: u.weeks.map((n) => {
+        const total = actsFor(n).length, d = this.done3(n, total);
+        return { n, bg: n === cur ? u.accent : d >= total ? "#4d6b53" : n < cur ? "#cdbfa9" : lockedMode ? "#efe9df" : "#e9e1d4",
+          ring: n === view ? "0 0 0 1.5px #fdf9f0,0 0 0 3.5px #1a202c" : "none", jump: () => this.scrollToWeek(id, n, true) };
+      }) }));
+    const backMonth = MONTHS_FULL[startOf(this.initView("p2")).getMonth()];
+    return { id, items, v: this.week3(view, {}, id), segUnits,
+      showRecenter: view !== cur, recenterArrow: view < cur ? "↓" : "↑",
+      recenter: () => this.scrollToWeek(id, cur, true), setRef: this.refFor(id), onScroll: this.scrollFor(id),
+      caption: id === "p1" ? `Opens on this week · ${this.props.season || "October"}` : `After scrolling back to ${backMonth}` };
+  }
+  doneFor(n) {
+    const p = this.props.progress ?? "Early in week";
+    if (n === 1) return 1;
+    if (n === THIS) return p === "Just started" ? 0 : p === "Week finished" ? 6 : 1;
+    return 0;
+  }
+
+  week(n) {
+    const [title, list] = WEEKS[n];
+    const u = unitOf(n);
+    const done = this.doneFor(n);
+    const total = list.length;
+    const acts = list.map(([k, t], i) => {
+      const f = FMT[k]; const tone = TONE[f[2]] || TONE.quiz;
+      const isDone = i < done, isCurrent = i === done;
+      return { title: t, chipLabel: f[0], icon: f[1], chipBg: tone[0], chipFg: tone[1], isDone, isCurrent, isTodo: !isDone && !isCurrent,
+        rowBg: isCurrent ? "rgba(176,87,64,.05)" : "transparent", border: i < total - 1 ? BORDER : "none" };
+    });
+    const next = acts.find((a) => a.isCurrent);
+    const isThis = n === THIS;
+    const allDone = done >= total;
+    const status = allDone ? `All ${total} finished ✓` : done > 0 ? `${done} of ${total} finished` : n > THIS ? `${total} activities · coming up` : `${total} activities`;
+    return {
+      n, title, acts, done, total, isThis, isPast: n < THIS, isFuture: n > THIS, notThis: !isThis,
+      label: `Week ${n}`, fraction: `${done}/${total} finished`, pct: `${Math.round((done / total) * 100)}%`,
+      actionLabel: done > 0 ? "Continue" : "Start",
+      ctaText: next ? `${done > 0 ? "Continue" : "Start"}: ${next.title.replace(/^Say It & Spell It: /, "")}` : "Review this week",
+      unitN: u.n, month: u.month, unitTitle: u.title, accent: u.accent,
+      headBg: `color-mix(in srgb, ${u.surf} 70%, #fcfbf9)`,
+      hasPrev: n > 1, hasNext: n < TOTAL, prevN: n - 1, nextN: n + 1,
+      status,
+      badgeBg: allDone ? "#4d6b53" : isThis ? u.accent : u.chip,
+      badgeFg: allDone || isThis ? "#fffdfa" : u.accent,
+    };
+  }
+
+  renderVals() {
+    const set = (k, v) => () => this.setState({ [k]: Math.max(1, Math.min(TOTAL, v)) });
+    const { a, b, c } = this.state;
+
+    const cur = this.week(THIS);
+    const decorate = (w, i, arr) => ({
+      ...w,
+      border: i < arr.length - 1 ? BORDER : "none",
+      onA: set("a", w.n), onB: set("b", w.n), onC: set("c", w.n),
+      isSelA: w.n === a && !w.isThis,
+      selBg: w.n === a ? "rgba(247,242,232,.95)" : "#fffdfa",
+      selBgC: w.n === c ? "rgba(176,87,64,.07)" : "#fffdfa",
+      tileBg: w.n === b ? "#1a202c" : "#fffdfa",
+      tileFg: w.n === b ? "#fffdfa" : "#1a202c",
+      tileBorder: w.isThis && w.n !== b ? "2px solid #b05740" : w.n === b ? "2px solid #1a202c" : BORDER,
+      tileSub: w.done >= w.total ? "✓" : w.isThis ? "NOW" : "",
+      tileSubFg: w.n === b ? "#fffdfa" : w.done >= w.total ? "#4d6b53" : "#b05740",
+    });
+    const unitsFull = UNITS.map((u) => {
+      const ws = u.weeks.map((n) => this.week(n));
+      return { ...u, weeks: ws.map(decorate), range: `Weeks ${u.weeks[0]}–${u.weeks[u.weeks.length - 1]}`, count: u.weeks.length, onA: set("a", u.weeks[0]) };
+    });
+
+    const A = this.week(a);
+    const B = this.week(b);
+    const C = this.week(c);
+    const nav = (k, w) => ({ ...w, goPrev: set(k, w.n - 1), goNext: set(k, w.n + 1) });
+
+    return {
+      showNotes: this.props.showNotes ?? true,
+      thisWeek: THIS, totalWeeks: TOTAL,
+      courseRange: `September – November · ${TOTAL} weeks`,
+      cur,
+      prevWeeks: [this.week(1)],
+      upWeeks: [this.week(3)],
+      otherUnits: UNITS.slice(1).map((u, i) => ({ ...u, count: u.weeks.length, firstNote: i === 0 && (this.props.showNotes ?? true) })),
+      A: { ...nav("a", A), unitWeeks: unitsFull.find((u) => u.n === A.unitN).weeks, otherUnits: unitsFull.filter((u) => u.n !== A.unitN) },
+      B: { ...nav("b", B), units: unitsFull, todayBg: b === THIS ? "#fffdfa" : "#b05740", todayFg: b === THIS ? "#5e6b7d" : "#fffdfa" },
+      C: { ...nav("c", C), units: unitsFull },
+      phones: ["p1", "p2"].map((id) => this.phone(id)),
+      backA: set("a", THIS), backB: set("b", THIS), backC: set("c", THIS), backD: set("d", THIS),
+      D: (() => {
+        const w = nav("d", this.week(this.state.d));
+        const unit = unitsFull.find((u) => u.n === w.unitN);
+        return { ...w,
+          unitWeeks: unit.weeks.map((x) => ({ ...x, onD: set("d", x.n), isSelD: x.n === this.state.d,
+            selBgD: x.n === this.state.d ? "rgba(176,87,64,.06)" : "transparent" })),
+          otherUnits: unitsFull.filter((u) => u.n !== w.unitN).map((u) => ({ ...u, onD: set("d", u.weeks[0]) })) };
+      })(),
+    };
+  }
+}
+</script>
+</body>
+</html>
