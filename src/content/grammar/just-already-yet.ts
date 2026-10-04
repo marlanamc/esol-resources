@@ -735,7 +735,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Rosa, is that a food pantry T-shirt? Have you signed up to volunteer there <strong>yet</strong>?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, I <strong>have already registered</strong>. I did it online last week.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, I <strong>have already registered</strong>. I did it at the community center last week.", side: "right", tone: "terracotta" },
           { speaker: "Amara", avatar: "👩🏿", text: "Oh nice. I <strong>have just found out</strong> about it. I'll sign up tonight.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Check the dates first. This month’s deadline <strong>has just passed</strong>, I think. You might need to wait until next month.", side: "right", tone: "terracotta" },
         ])}
