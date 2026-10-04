@@ -78,11 +78,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           { speaker: "Fernanda", avatar: "👩🏾", text: "Break time. What did you bring for dinner tonight?", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "A sandwich. Wait, this isn’t my bag. There’s no food, just a little box.", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "Is that a ring box? Whose bag is that?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I took it from the staff fridge at the restaurant. Mark, the line cook, <strong>works</strong> there with my sister.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "Call your sister. Maybe Mark is looking for it.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I can’t. Sarah’s <strong>working</strong> right now. She’s a server, so I’ll text her.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I think it’s Mark’s bag. He <strong>works</strong> with me at the restaurant. We use the same staff fridge.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Call him. Maybe he is looking for it.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I don’t have his number. But my sister Sarah is <strong>working</strong> there right now. I’ll text her.", side: "right", tone: "terracotta" },
         ])}
-        <p>Carlos preps food at La Palma in the mornings, so he uses the staff fridge too. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
+        <p>Carlos preps food at La Palma in the mornings. Mark is a line cook there, and Sarah is a server. Notice <strong>works</strong> and <strong>working</strong>, then compare all five forms below.</p>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
           <p><strong>Five labels, one verb.</strong> The labels help you find and check a form.</p>
           <ul style="padding-left:1.25rem; line-height:1.7">
@@ -122,26 +122,26 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Can Carlos call Sarah right now?",
+              label: "Where is Sarah right now?",
               options: [
                 {
                   value: "no",
-                  label: "No. She is working."
+                  label: "At the restaurant. She is working."
                 },
                 {
                   value: "yes",
-                  label: "Yes. She has finished work."
+                  label: "At home. She has finished work."
                 },
                 {
                   value: "home",
-                  label: "Yes. She is at home."
+                  label: "At class with Carlos."
                 }
               ],
               expectedAnswer: "no"
             },
             {
               type: "text",
-              label: "Carlos tells Fernanda: “Mark ___ at the restaurant with my sister.” (work)",
+              label: "Carlos tells Fernanda: “Mark ___ with me at the restaurant.” (work)",
               expectedAnswers: [
                 "works"
               ]
