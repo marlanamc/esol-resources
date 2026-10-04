@@ -87,15 +87,15 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneNightKitchen", "Restaurant kitchen, East Boston. Tuesday, 11 PM.", "terracotta")}
+        ${sceneCard("sceneNightKitchen", "Restaurant kitchen, East Boston. A Tuesday in November, 11 PM.", "terracotta")}
 
-        <p><strong>Rafael</strong> has worked as a line cook for two years. His shift supervisor <strong>Jennifer</strong> checks in before close.</p>
+        <p><strong>Fabienne</strong> moved to East Boston from Haiti last summer. She has two kids, and she works nights as a prep cook at a restaurant. Her supervisor <strong>Mark</strong> checks in before close.</p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏼", text: "Long night again. How do you handle closing every Tuesday?", side: "left", tone: "sage" },
-          { speaker: "Rafael", avatar: "👨🏽", text: "I'm <strong>used to finishing</strong> at midnight. The first month was hard.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "You're fast on the line now.", side: "left", tone: "sage" },
-          { speaker: "Rafael", avatar: "👨🏽", text: "Yeah. I'm <strong>used to working</strong> nights. It feels normal.", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "Long night again. How do you handle closing every Tuesday?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>used to finishing</strong> at midnight. The first month was hard.", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "You're fast on the line now.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "Yeah. I'm <strong>used to working</strong> nights. It feels normal.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -127,9 +127,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"I'm used to working nights.\" What is true now?",
               options: [
-                { value: "a", label: "Rafael worked nights in the past but stopped." },
-                { value: "b", label: "Working nights feels familiar to Rafael now." },
-                { value: "c", label: "Rafael will start working nights next month." },
+                { value: "a", label: "Fabienne worked nights in the past but stopped." },
+                { value: "b", label: "Working nights feels familiar to Fabienne now." },
+                { value: "c", label: "Fabienne will start working nights next month." },
               ],
               expectedAnswer: "b",
             },
@@ -153,7 +153,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Build a sentence about Rafael's routine:",
+              label: "Build a sentence about Fabienne's routine:",
               words: ["I'm", "used", "to", "sleeping", "in", "the", "afternoon"],
               correctAnswer: "I'm used to sleeping in the afternoon",
             },
@@ -170,15 +170,15 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       title: "I'm Not Used to the Cold Yet",
       icon: "❄️",
       explanation: `
-        ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. A Wednesday in January, 5:30 AM.", "blue")}
+        ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. A Wednesday in January, 12:30 AM.", "blue")}
 
-        <p><strong>Priya</strong> is a home health aide. She waits with her classmate <strong>Angelo</strong> for her first transfer. It is Priya's first winter in Boston, and the wind is sharp.</p>
+        <p>Two months later, it is January. After closing, <strong>Fabienne</strong> waits for the bus home with <strong>Nadine</strong>, a server at the restaurant who is also in her ESOL class. It is Fabienne's first winter in Boston, and the wind is sharp.</p>
 
         ${dialogue([
-          { speaker: "Priya", avatar: "👩🏽", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
-          { speaker: "Angelo", avatar: "👨🏻", text: "Same. I moved here in August. This is my first winter.", side: "left", tone: "sage" },
-          { speaker: "Priya", avatar: "👩🏽", text: "I'm also <strong>not used to switching</strong> buses in the dark. Back home I walked to work.", side: "right", tone: "terracotta" },
-          { speaker: "Angelo", avatar: "👨🏻", text: "Me too. I <strong>used to walk</strong> everywhere. Let’s wait inside until the bus is closer.", side: "left", tone: "blue" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Same. I moved here in August. This is my first winter.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm also <strong>not used to switching</strong> buses in the dark. Back home I walked to work.", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Me too. I <strong>used to walk</strong> everywhere. Let’s wait inside until the bus is closer.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -204,7 +204,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Priya still finds the cold hard. Which sentence is correct?",
+              label: "Fabienne still finds the cold hard. Which sentence is correct?",
               options: [
                 { value: "a", label: "I'm not used to wait outside in January." },
                 { value: "b", label: "I'm not used to waiting outside in January." },
@@ -214,7 +214,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Angelo walked everywhere back home, even to the market. Which sentence is correct?",
+              label: "Nadine walked everywhere back home, even to the market. Which sentence is correct?",
               options: [
                 { value: "a", label: "I'm used to walk to the market every day." },
                 { value: "b", label: "I used to walk to the market every day." },
@@ -269,9 +269,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneSchoolPhone", "Bus stop after a double shift. Thursday, 6:45 PM.", "sage")}
+        ${sceneCard("sceneSchoolPhone", "Bus stop after a double shift. A Thursday in February, 6:45 PM.", "sage")}
 
-        <p><strong>Fabienne</strong> packs boxes at a warehouse in Chelsea. After her second shift, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English. She texts her classmate <strong>Nadine</strong>.</p>
+        <p>A few weeks later, <strong>Fabienne</strong> works a double shift at the restaurant. At the bus stop, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English. She texts her friend <strong>Nadine</strong>.</p>
 
         ${dialogue([
           { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>getting used to reading</strong> school emails in English.", side: "right", tone: "terracotta" },
@@ -367,11 +367,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneChurch", "Haitian church, East Boston. Sunday, 9 AM.", "amber")}
 
-        <p><strong>Frantz</strong> sits with his friend <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
+        <p>The next Sunday, <strong>Fabienne</strong> goes to her Haitian church. Her friend <strong>Frantz</strong> sits with her after service. They are figuring out which service fits around their work schedules.</p>
 
         ${dialogue([
           { speaker: "Frantz", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> two jobs, but Saturday nights end late. Getting up is hard.", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> nights, but Saturday nights end late. Getting up is hard.", side: "left", tone: "sage" },
           { speaker: "Frantz", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
         ])}
 
@@ -390,7 +390,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("familiar", "sage")}
-            <span><em>She's <strong>used to working</strong> two jobs.</em></span>
+            <span><em>She's <strong>used to working</strong> nights.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("adapting", "blue")}
@@ -416,11 +416,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Claudette has two jobs. That feels normal to her.",
+              label: "Fabienne works nights. That feels normal to her.",
               options: [
-                { value: "a", label: "She used to working two jobs." },
-                { value: "b", label: "She is used to working two jobs." },
-                { value: "c", label: "She is getting used to work two jobs." },
+                { value: "a", label: "She used to working nights." },
+                { value: "b", label: "She is used to working nights." },
+                { value: "c", label: "She is getting used to work nights." },
               ],
               expectedAnswer: "b",
             },
@@ -442,7 +442,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"She is used to work two jobs.\" What is wrong?",
+              label: "\"She is used to work nights.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
                 { value: "b", label: "Error: should be \"used to working\" (-ing after be used to)." },
@@ -475,16 +475,16 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       title: "Still Adjusting: One Hard Week",
       icon: "📅",
       explanation: `
-        ${sceneCard("sceneWorkText", "Warehouse break room. Wednesday, 2 PM.", "sage")}
+        ${sceneCard("sceneWorkText", "Restaurant break room. A Wednesday in March, 4 PM.", "sage")}
 
-        <p>It has been a hard week for <strong>Fabienne</strong>: double shifts, English school emails, and now she needs Friday off for a parent-teacher meeting. On her break, she finds her supervisor <strong>Mark</strong>.</p>
+        <p>It has been a hard week for <strong>Fabienne</strong>: double shifts, English school emails, and now she needs Friday off for a parent-teacher meeting. Before her shift starts, she finds her supervisor <strong>Mark</strong> in the break room.</p>
 
         ${dialogue([
           { speaker: "Fabienne", avatar: "👩🏾", text: "Hi Mark. Can I take Friday off? I have a parent-teacher meeting at 10.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "🧑‍💼", text: "Let me check the schedule. How are you holding up?", side: "left", tone: "sage" },
           { speaker: "Fabienne", avatar: "👩🏾", text: "Tired. I’m still <strong>getting used to</strong> the double shifts. Could I make up the hours on Saturday?", side: "right", tone: "terracotta" },
-          { speaker: "Mark", avatar: "🧑‍💼", text: "OK, Friday's yours. Can you do Saturday, 6 to 2?", side: "left", tone: "sage" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "Yes. I'm <strong>used to getting</strong> up early. Thank you, Mark!", side: "right", tone: "terracotta" },
+          { speaker: "Mark", avatar: "🧑‍💼", text: "OK, Friday's yours. Can you work Saturday, 4 to midnight?", side: "left", tone: "sage" },
+          { speaker: "Fabienne", avatar: "👩🏾", text: "Yes. I'm <strong>used to working</strong> late. Thank you, Mark!", side: "right", tone: "terracotta" },
         ])}
       `,
       tipBox: {
@@ -509,11 +509,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The early bus feels normal to Fabienne now.",
+              label: "The late bus feels normal to Fabienne now.",
               options: [
-                { value: "a", label: "I'm used to taking the early bus." },
-                { value: "b", label: "I used to taking the early bus." },
-                { value: "c", label: "I'm getting used to take the early bus." },
+                { value: "a", label: "I'm used to taking the late bus." },
+                { value: "b", label: "I used to taking the late bus." },
+                { value: "c", label: "I'm getting used to take the late bus." },
               ],
               expectedAnswer: "a",
             },
@@ -529,11 +529,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Winter mornings are still new, but getting easier.",
+              label: "Winter nights are still new, but getting easier.",
               options: [
-                { value: "a", label: "I'm getting used to the winter mornings." },
-                { value: "b", label: "I'm used to the winter mornings already." },
-                { value: "c", label: "I used to the winter mornings." },
+                { value: "a", label: "I'm getting used to the winter nights." },
+                { value: "b", label: "I'm used to the winter nights already." },
+                { value: "c", label: "I used to the winter nights." },
               ],
               expectedAnswer: "a",
             },
@@ -569,11 +569,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"I'm used to wake up at 4 for the bus.\" What is wrong?",
+              label: "\"I'm used to sleep in the afternoon.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
-                { value: "b", label: "Error: should be \"used to waking up\" (-ing after be used to)." },
-                { value: "c", label: "Error: should be \"used to wake\" (past habit)." },
+                { value: "b", label: "Error: should be \"used to sleeping\" (-ing after be used to)." },
+                { value: "c", label: "Error: should be \"used to sleep\" (past habit)." },
               ],
               expectedAnswer: "b",
             },
@@ -586,7 +586,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "but-q2",
-      question: "Rafael eats dinner at 1 AM after his shift every night. Which sentence is correct?",
+      question: "Fabienne eats dinner at 1 AM after her shift every night. Which sentence is correct?",
       options: [
         { value: "a", label: "I'm used to eat dinner very late." },
         { value: "b", label: "I'm used to eating dinner very late." },
@@ -617,7 +617,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I'm not used to ___ outside in January.\" (Priya still finds the cold bus stop hard.)",
+      question: "Fill in the blank: \"I'm not used to ___ outside in January.\" (Fabienne still finds the cold bus stop hard.)",
       correctAnswer: "waiting",
       explanation: "After be used to (or not used to), use a gerund: waiting.",
       topic: "be-used-to",
@@ -627,7 +627,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     },
     {
       id: "but-q7",
-      question: "Find the error: \"She is used to work two jobs.\"",
+      question: "Find the error: \"She is used to work nights.\"",
       options: [
         { value: "a", label: "No error." },
         { value: "b", label: "Error: should be \"used to working\" (-ing after be used to)." },
@@ -643,9 +643,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Frantz describes his friend Claudette's routine. Put the words in order.",
-      words: ["She", "is", "used", "to", "working", "two", "jobs"],
-      correctAnswer: "She is used to working two jobs",
+      question: "Frantz describes his friend Fabienne's routine. Put the words in order.",
+      words: ["She", "is", "used", "to", "working", "nights"],
+      correctAnswer: "She is used to working nights",
       hint: "be used to + gerund",
       explanation: "Be used to + gerund (working) means it feels familiar or normal now.",
       topic: "be-used-to",
