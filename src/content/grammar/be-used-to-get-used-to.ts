@@ -367,12 +367,12 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneChurch", "Haitian church, East Boston. Sunday, 9 AM.", "amber")}
 
-        <p><strong>Jean</strong> sits with his friend <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
+        <p><strong>Frantz</strong> sits with his friend <strong>Claudette</strong> after service. They are figuring out which service fits around their work schedules.</p>
 
         ${dialogue([
-          { speaker: "Jean", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
+          { speaker: "Frantz", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> two jobs, but Saturday nights end late. Getting up is hard.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
+          { speaker: "Frantz", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -406,7 +406,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jean worked only days before, so his nights were free. Not anymore.",
+              label: "Frantz worked only days before, so his nights were free. Not anymore.",
               options: [
                 { value: "a", label: "I used to have my nights free." },
                 { value: "b", label: "I'm used to have my nights free." },
@@ -426,7 +426,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Jean is new to the early service. He is still learning the hymns.",
+              label: "Frantz is new to the early service. He is still learning the hymns.",
               options: [
                 { value: "a", label: "He is used to the Creole hymns already." },
                 { value: "b", label: "He is getting used to the Creole hymns." },
@@ -643,7 +643,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Jean describes his friend Claudette's routine. Put the words in order.",
+      question: "Frantz describes his friend Claudette's routine. Put the words in order.",
       words: ["She", "is", "used", "to", "working", "two", "jobs"],
       correctAnswer: "She is used to working two jobs",
       hint: "be used to + gerund",

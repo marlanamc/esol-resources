@@ -289,15 +289,15 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       title: "Where Is It?",
       icon: "📍",
       explanation: `
-        ${sceneCard("sceneSidewalk", "Paris Street, 7:09 PM. Amara stops Linh on the sidewalk outside the laundromat.", "sage")}
+        ${sceneCard("sceneSidewalk", "Paris Street, 7:09 PM. Amara stops a woman on the sidewalk outside the laundromat.", "sage")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks around the corner to Paris Street. She sees shops, a laundromat and two doors, but no clinic sign. Six minutes left.</p>
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Excuse me. I'm looking for the side entrance to the clinic. Do you know where it is?", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "Yes. It's <strong>next to</strong> the pharmacy, <strong>across from</strong> this laundromat.", side: "left", tone: "sage" },
+          { speaker: "Woman", avatar: "👩🏻", text: "Yes. It's <strong>next to</strong> the pharmacy, <strong>across from</strong> this laundromat.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "I see a green door and a blue door. Which one?", side: "right", tone: "terracotta" },
-          { speaker: "Linh", avatar: "👩🏻", text: "The green one. It's <strong>between</strong> the pharmacy and the bakery. There's no sign. Everybody gets lost.", side: "left", tone: "sage" },
+          { speaker: "Woman", avatar: "👩🏻", text: "The green one. It's <strong>between</strong> the pharmacy and the bakery. There's no sign. Everybody gets lost.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏿", text: "Thank you so much. My appointment is in six minutes.", side: "right", tone: "terracotta" },
         ])}
 
@@ -336,7 +336,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s3-1",
           title: "Choose the preposition",
-          instructions: "Read Linh's landmarks. Which sentence fits?",
+          instructions: "Read the woman's landmarks. Which sentence fits?",
           items: [
             {
               type: "radio",
@@ -363,7 +363,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         {
           id: "gtd-s3-2",
           title: "Fill in the landmark",
-          instructions: "Type the preposition phrase Linh would use.",
+          instructions: "Type the preposition phrase the woman would use.",
           items: [
             {
               type: "text",
