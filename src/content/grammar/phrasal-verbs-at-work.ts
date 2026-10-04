@@ -80,7 +80,9 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "what-did-she-say",
       title: "What Did She Say?",
       explanation: `
-        ${sceneCard("sceneHotelLaundry", "Hotel laundry room, East Boston. Gabriela's first day.", "terracotta")}
+        ${sceneCard("sceneHotelLaundry", "Hotel laundry room, East Boston. Gabriela's first day at her new job.", "terracotta")}
+
+        <p style="margin: 0.75rem 0">Gabriela just got a job in the laundry room of a hotel. Her supervisor, Jennifer, meets her at the door on her first morning. You will follow Gabriela through her first weeks at work.</p>
 
         ${dialogue([
           { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "OK Gabriela, <strong>clock in</strong> first, then come find me. I need you to <strong>fill out</strong> this new-hire form before your shift starts.", side: "left", tone: "sage" },
@@ -160,13 +162,15 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "calling-in-covering",
       title: "Calling In and Covering a Shift",
       explanation: `
-        ${sceneCard("sceneTextThread", "Diego's phone. Tuesday morning, 5:45 AM.", "sage")}
+        ${sceneCard("sceneTextThread", "Gabriela's phone. Tuesday of her second week, 5:45 AM.", "sage")}
+
+        <p style="margin: 0.75rem 0">Marta works in the laundry room too. She started at the hotel last year, and she is helping Gabriela learn the job. Early Tuesday morning, Marta sends Gabriela a text message.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "👨🏾", text: "Ana, I can't come in today. My son's fever is 103. I have to <strong>call in sick</strong>. Can you <strong>cover for</strong> me?", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏿", text: "Yeah, I can do it. I'll <strong>show up</strong> early. You just call Kevin before 6. He's the manager today.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "Thank you. I'll <strong>pick up</strong> one of your shifts next week, I promise.", side: "right", tone: "terracotta" },
-          { speaker: "Ana", avatar: "👩🏿", text: "Don't worry. Go take care of your son.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏿", text: "Gabriela, I can't come in today. I have a bad fever. I have to <strong>call in sick</strong>. Can you <strong>cover for</strong> me?", side: "right", tone: "terracotta" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "Yeah, I can do it. I'll <strong>show up</strong> early. You just call Jennifer before 6. She's our supervisor.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏿", text: "Thank you. I'll <strong>pick up</strong> one of your shifts next week, I promise.", side: "right", tone: "terracotta" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "Don't worry. Go rest and feel better.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -200,7 +204,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos's back hurts. He calls his manager and says he can't work today. He ___.",
+              label: "Marta has a fever. She calls her supervisor and says she can't work today. She ___.",
               options: [
                 { value: "a", label: "calls in sick" },
                 { value: "b", label: "shows up sick" },
@@ -210,7 +214,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Lucia agreed to work her coworker's Saturday shift. She ___ a shift.",
+              label: "Gabriela agreed to work Marta's Tuesday shift. She ___ a shift.",
               options: [
                 { value: "a", label: "called in" },
                 { value: "b", label: "covered in" },
@@ -227,7 +231,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Ana said she would ___ for Diego while he stayed home with his sick child.",
+              label: "Gabriela said she would ___ for Marta while Marta stayed home sick.",
               expectedAnswers: ["cover"],
             },
           ],
@@ -242,13 +246,15 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "paperwork-before-payday",
       title: "Paperwork Before Payday",
       explanation: `
-        ${sceneCard("sceneRestaurantPaperwork", "Restaurant back office. Thursday, 2:30 PM. Payday tomorrow.", "amber")}
+        ${sceneCard("sceneRestaurantPaperwork", "Jennifer's small office behind the laundry room. Thursday, 2:30 PM. Payday tomorrow.", "amber")}
+
+        <p style="margin: 0.75rem 0">Two days later, Gabriela has a problem. Her timesheet is missing the hours she worked on Tuesday, when she covered for Marta. Jennifer also handles the timesheets for the laundry room, so Gabriela goes to her office.</p>
 
         ${dialogue([
-          { speaker: "Mark (manager)", avatar: "🧑‍💼", text: "Fatima, you need to <strong>hand in</strong> your timesheet today. Payroll closes at 3.", side: "left", tone: "amber" },
-          { speaker: "Fatima", avatar: "👩🏾", text: "I have it, but there's an error on Tuesday. Do I need to <strong>fill out</strong> a new one?", side: "right", tone: "terracotta" },
-          { speaker: "Mark (manager)", avatar: "🧑‍💼", text: "Yeah, grab a correction form, <strong>fill it out</strong>, and <strong>turn it in</strong> to me. I'll <strong>sign off on</strong> it before 3.", side: "left", tone: "amber" },
-          { speaker: "Fatima", avatar: "👩🏾", text: "OK. I worked those hours, so I want to get paid for them. I'll be right back.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "Gabriela, you need to <strong>hand in</strong> your timesheet today. Payroll closes at 3.", side: "left", tone: "amber" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "I have it, but there's an error on Tuesday. Do I need to <strong>fill out</strong> a new one?", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "Yeah, grab a correction form, <strong>fill it out</strong>, and <strong>turn it in</strong> to me. I'll <strong>sign off on</strong> it before 3.", side: "left", tone: "amber" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "OK. I worked those hours, so I want to get paid for them. I'll be right back.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -406,7 +412,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Fatima has the timesheet. She needs to ___ ___ in before 3 PM. (hand or turn + pronoun)",
+              label: "Gabriela has the timesheet. She needs to ___ ___ in before 3 PM. (hand or turn + pronoun)",
               expectedAnswers: ["hand it", "turn it"],
             },
           ],
@@ -421,17 +427,19 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "end-of-shift",
       title: "End of Shift",
       explanation: `
-        ${sceneCard("sceneWarehouseClockout", "Warehouse loading dock, East Boston. Thursday, 4:55 PM.", "terracotta")}
+        ${sceneCard("sceneWarehouseClockout", "Near the time clock by the laundry room door. The next Thursday, 2:55 PM, almost the end of the shift.", "terracotta")}
+
+        <p style="margin: 0.75rem 0">The next week, Gabriela needs a favor. Marta is back at work and feeling better, and she still wants to help. Jennifer has to approve every shift swap.</p>
 
         ${dialogue([
-          { speaker: "Hector", avatar: "👨🏽", text: "Hey Omar, can you <strong>cover for</strong> me next Thursday? I have a clinic appointment I can't move.", side: "right", tone: "terracotta" },
-          { speaker: "Omar", avatar: "🧑🏾", text: "Next Thursday I can do it. What time do you <strong>clock in</strong>?", side: "left", tone: "sage" },
-          { speaker: "Hector", avatar: "👨🏽", text: "7 AM. I'll <strong>fill out</strong> the shift-swap form tonight and <strong>hand it in</strong> to Scott tomorrow morning.", side: "right", tone: "terracotta" },
-          { speaker: "Omar", avatar: "🧑🏾", text: "Good. Make sure he <strong>signs off on</strong> it before the end of his shift or it won't go through.", side: "left", tone: "sage" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I will. And I can <strong>pick up</strong> your Friday shift if you want. Should I put that on the form too?", side: "right", tone: "terracotta" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "Hey Marta, can you <strong>cover for</strong> me next Thursday? I have a clinic appointment I can't move.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏿", text: "Next Thursday I can do it. What time do you <strong>clock in</strong>?", side: "left", tone: "sage" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "7 AM. I'll <strong>fill out</strong> the shift-swap form tonight and <strong>hand it in</strong> to Jennifer tomorrow morning.", side: "right", tone: "terracotta" },
+          { speaker: "Marta", avatar: "👩🏿", text: "Good. Make sure she <strong>signs off on</strong> it before the end of her shift or it won't go through.", side: "left", tone: "sage" },
+          { speaker: "Gabriela", avatar: "👩🏽", text: "I will. And I can <strong>pick up</strong> your Friday shift if you want. Should I put that on the form too?", side: "right", tone: "terracotta" },
         ])}
 
-        <p style="margin: 0.75rem 0">Look at how many phrasal verbs Hector and Omar used in one short conversation. This is normal at work. Knowing these verbs means you can handle a real shift-swap without any confusion.</p>
+        <p style="margin: 0.75rem 0">Look at how many phrasal verbs Gabriela and Marta used in one short conversation. This is normal at work. Knowing these verbs means you can handle a real shift-swap without any confusion.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
@@ -476,7 +484,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Hector can't work next Thursday. He needs someone to ___ for him.",
+              label: "Gabriela can't work next Thursday. He needs someone to ___ for him.",
               options: [
                 { value: "a", label: "cover" },
                 { value: "b", label: "clock" },
@@ -514,7 +522,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Hector will ___ in at 7 AM on Friday to cover Omar's shift.",
+              label: "Gabriela will ___ in at 7 AM on Friday to cover Marta's shift.",
               expectedAnswers: ["clock"],
             },
           ],
@@ -545,7 +553,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     },
     {
       id: "phrasal-verbs-at-work-q2",
-      question: "Diego can't go to work because his child is sick. What does he do?",
+      question: "Marta can't go to work because she is sick. What does he do?",
       options: [
         { value: "a", label: "He shows up late" },
         { value: "b", label: "He calls in sick" },
@@ -561,7 +569,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     {
       id: "phrasal-verbs-at-work-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Ana ___ Diego because his son was sick.\" (Two words: she did his shift for him.)",
+      question: "Fill in the blank: \"Gabriela ___ Marta because Marta was sick.\" (Two words: she did his shift for him.)",
       correctAnswer: "covered for",
       explanation: "Cover for someone means to do their shift because they can't come in.",
       topic: "phrasal-verbs-at-work",
