@@ -2,15 +2,11 @@
 
 import { Check, ChevronDown, ChevronRight } from "lucide-react";
 import {
-    cloneElement,
-    isValidElement,
     useCallback,
     useEffect,
     useMemo,
     useRef,
     useState,
-    type ReactElement,
-    type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
@@ -43,17 +39,14 @@ import {
     flattenRequired,
 } from "./course-path/shared";
 import { DesktopUnitSection } from "./course-path/desktop";
-import { MobileUnitSection } from "./course-path/mobile";
 
 interface Props {
     assignments: PathActivity[];
     guidedUnits?: CourseMapUnit[];
     guidedAssignments?: Record<string, GuidedAssignmentInfo>;
     guidedProgress?: CourseMapProgressState;
-    desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;
-    mobileWayfinding?: ReactNode;
     /** School-year month labels (e.g. September) — classroom only */
     showUnitMonths?: boolean;
     /** The week the school calendar says the class is on. */
@@ -65,20 +58,16 @@ function GuidedCoursePath({
     guidedUnits,
     guidedAssignments,
     guidedProgress,
-    desktopLayout = false,
     initialWeek = null,
     focusNextActivity = false,
-    mobileWayfinding,
     showUnitMonths = true,
     scheduledWeek = null,
 }: {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
     guidedProgress: CourseMapProgressState;
-    desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;
-    mobileWayfinding?: ReactNode;
     showUnitMonths?: boolean;
     scheduledWeek?: number | null;
 }) {
@@ -167,17 +156,13 @@ function GuidedCoursePath({
         currentUnit?.unitNumber ??
         null;
     const [openUnitNumber, setOpenUnitNumber] = useState<number | null>(() => defaultUnitNumber);
-    const [mobileOpenWeek, setMobileOpenWeek] = useState<number | null>(resolveOpenWeek);
-    const [mobileOptionalOpen, setMobileOptionalOpen] = useState<Record<number, boolean>>({});
     const [desktopSelectedWeek, setDesktopSelectedWeek] = useState<number | null>(resolveOpenWeek);
     const [desktopOptionalOpen, setDesktopOptionalOpen] = useState<Record<number, boolean>>({});
     const [pulseCurrentActivity, setPulseCurrentActivity] = useState(focusNextActivity);
     const didInitialScroll = useRef(false);
 
     const openDesktopWeek = desktopSelectedWeek;
-    const activeWeekNumber = desktopLayout
-        ? (openDesktopWeek ?? currentWeek?.level.levelNumber ?? null)
-        : (mobileOpenWeek ?? currentWeek?.level.levelNumber ?? null);
+    const activeWeekNumber = openDesktopWeek ?? currentWeek?.level.levelNumber ?? null;
     const mapReturnHref =
         pathname === "/dashboard/map" && activeWeekNumber != null
             ? buildMapReturnHref(activeWeekNumber, true)
@@ -186,16 +171,9 @@ function GuidedCoursePath({
     const navigateToWeek = useCallback((weekNumber: number, focusActivity = false, behavior: ScrollBehavior = "smooth") => {
         const parentUnit = weekSummaries.find((w) => w.level.levelNumber === weekNumber);
         if (parentUnit) setOpenUnitNumber(parentUnit.unitNumber);
-        if (desktopLayout) {
-            setDesktopSelectedWeek(weekNumber);
-        } else {
-            setMobileOpenWeek(weekNumber);
-        }
+        setDesktopSelectedWeek(weekNumber);
         window.requestAnimationFrame(() => {
-            const target = !desktopLayout && !focusActivity && parentUnit
-                ? `unit-${parentUnit.unitNumber}`
-                : `week-${weekNumber}`;
-            scrollToMapTarget(target, behavior);
+            scrollToMapTarget(`week-${weekNumber}`, behavior);
             if (focusActivity) {
                 setPulseCurrentActivity(true);
                 window.requestAnimationFrame(() => scrollToMapTarget("map-activity-current", behavior));
@@ -203,7 +181,7 @@ function GuidedCoursePath({
                 focusMapWeekHeading(weekNumber);
             }
         });
-    }, [desktopLayout, weekSummaries]);
+    }, [weekSummaries]);
 
     useEffect(() => {
         if (didInitialScroll.current) return;
@@ -278,65 +256,7 @@ function GuidedCoursePath({
         return () => window.removeEventListener(COURSE_MAP_OPEN_WEEK_EVENT, handler);
     }, [navigateToWeek]);
 
-    let content: ReactNode;
-
-    if (!desktopLayout) {
-        const openUnitHeader = isValidElement(mobileWayfinding)
-            ? cloneElement(mobileWayfinding as ReactElement<{
-                embedded?: boolean;
-                pinnedUnitNumber?: number | null;
-                pinnedWeekNumber?: number | null;
-            }>, {
-                embedded: true,
-                pinnedUnitNumber: openUnitNumber,
-                pinnedWeekNumber: mobileOpenWeek,
-            })
-            : mobileWayfinding;
-
-        content = (
-            <div className="space-y-3">
-                {openUnitNumber == null ? mobileWayfinding : null}
-
-                <div className="space-y-3">
-                    {unitSummaries.map((unit) => (
-                        <MobileUnitSection
-                            key={unit.unitNumber}
-                            unit={unit}
-                            isOpen={openUnitNumber === unit.unitNumber}
-                            header={openUnitNumber === unit.unitNumber ? openUnitHeader : null}
-                            openWeekNumber={mobileOpenWeek}
-                            openOptional={mobileOptionalOpen}
-                            currentId={currentId}
-                            currentLabel={currentLabel}
-                            guidedAssignments={guidedAssignments}
-                            guidedProgress={guidedProgress}
-                            showUnitMonths={showUnitMonths}
-                            scheduledWeek={scheduledWeek}
-                            onToggle={() =>
-                                setOpenUnitNumber((prev) =>
-                                    prev === unit.unitNumber
-                                        ? (defaultUnitNumber ?? null)
-                                        : unit.unitNumber
-                                )
-                            }
-                            onWeekToggle={(weekNumber) =>
-                                setMobileOpenWeek((prev) =>
-                                    prev === weekNumber ? null : weekNumber
-                                )
-                            }
-                            onOptionalToggle={(weekNumber) =>
-                                setMobileOptionalOpen((prev) => ({
-                                    ...prev,
-                                    [weekNumber]: !prev[weekNumber],
-                                }))
-                            }
-                        />
-                    ))}
-                </div>
-            </div>
-        );
-    } else {
-        content = (
+    const content = (
         <div className="space-y-4">
             {unitSummaries.map((unit) => (
                 <DesktopUnitSection
@@ -371,8 +291,7 @@ function GuidedCoursePath({
                 />
             ))}
         </div>
-        );
-    }
+    );
 
     return (
         <CoursePathReturnHrefContext.Provider value={mapReturnHref}>
@@ -562,10 +481,8 @@ export function ClassCoursePath({
     guidedUnits = [],
     guidedAssignments = {},
     guidedProgress = {},
-    desktopLayout = false,
     initialWeek = null,
     focusNextActivity = false,
-    mobileWayfinding,
     showUnitMonths = true,
     scheduledWeek = null,
 }: Props) {
@@ -575,10 +492,8 @@ export function ClassCoursePath({
                 guidedUnits={guidedUnits}
                 guidedAssignments={guidedAssignments}
                 guidedProgress={guidedProgress}
-                desktopLayout={desktopLayout}
                 initialWeek={initialWeek}
                 focusNextActivity={focusNextActivity}
-                mobileWayfinding={mobileWayfinding}
                 showUnitMonths={showUnitMonths}
                 scheduledWeek={scheduledWeek}
             />
