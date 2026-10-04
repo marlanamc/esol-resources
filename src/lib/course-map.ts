@@ -102,8 +102,18 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
 
 export type VisibleMapMode = "independent" | "classroom";
 
+/** Every unit and week in the course, titles only — no activities, no visibility. */
+export interface CourseMapOutlineUnit {
+  unitNumber: number;
+  unitTitle: string;
+  month: string;
+  weeks: { weekNumber: number; title: string }[];
+}
+
 export interface VisibleMapResult {
   units: CourseMapUnit[];
+  /** The whole course skeleton, so unrevealed weeks can be shown as locked. */
+  outline: CourseMapOutlineUnit[];
   mode: VisibleMapMode;
   revealedWeekIds: Set<string>;
 }
@@ -246,7 +256,14 @@ export async function getVisibleMap(
     })
     .filter((u): u is NonNullable<typeof u> => u !== null);
 
-  return { units, mode, revealedWeekIds };
+  const outline: CourseMapOutlineUnit[] = allUnitsRaw.map((unit) => ({
+    unitNumber: unit.number,
+    unitTitle: unit.title,
+    month: unit.month ?? "",
+    weeks: unit.weeks.map((week) => ({ weekNumber: week.number, title: week.title })),
+  }));
+
+  return { units, outline, mode, revealedWeekIds };
 }
 
 export { getCourseMapProgressActivityIds as getCourseMapActivityIds } from "@/lib/course-map-progress";

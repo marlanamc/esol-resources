@@ -18,7 +18,7 @@ import {
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { canUseTeacherTools } from "@/lib/auth/roles";
 import { CourseMapJumpToWeek } from "@/components/dashboard/CourseMapJumpToWeek";
-import { CourseMapMobileWayfinding } from "@/components/dashboard/CourseMapMobileWayfinding";
+import { CourseMapRoad } from "@/components/dashboard/course-map-road/CourseMapRoad";
 import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
 import {
     buildMapWeekProgress,
@@ -31,6 +31,8 @@ import {
     visibleWeekNumbers,
 } from "@/lib/course-map-current-week";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
+import { buildCourseMapRoad, type RoadScheduleWeek } from "@/lib/course-map-road";
+import { buildTeachingWeeks } from "@/lib/course-map-schedule";
 
 export const metadata = {
     title: "Course Map | My ESOL Class",
@@ -61,7 +63,7 @@ export default async function MapPage({
     const effectiveLearnerMode = await getEffectiveLearnerMode(userId, session.user);
     const showUnitMonths = effectiveLearnerMode === "classroom";
 
-    const [{ units: rawCourseMapUnits }, enrollments] = await Promise.all([
+    const [{ units: rawCourseMapUnits, outline: courseOutline }, enrollments] = await Promise.all([
         getVisibleMap(
             { id: userId, role: session.user.role },
             { mode: effectiveLearnerMode }
@@ -221,6 +223,31 @@ export default async function MapPage({
     });
     const weekProgress = buildMapWeekProgress(courseMapUnits, guidedProgress);
 
+    // Mobile "road": the whole course outline, with dates from the class calendar.
+    const roadSchedule = showUnitMonths
+        ? new Map<number, RoadScheduleWeek>(
+              buildTeachingWeeks().map((week) => [
+                  week.index,
+                  {
+                      weekNumber: week.index,
+                      weekStart: week.weekStart,
+                      firstClassDate: week.classDates[0] ?? null,
+                  },
+              ])
+          )
+        : undefined;
+    const roadModel =
+        courseMapUnits.length > 0 && currentWeekMeta
+            ? buildCourseMapRoad({
+                  outline: courseOutline,
+                  units: courseMapUnits,
+                  progress: guidedProgress,
+                  currentWeek: currentWeekMeta.weekNumber,
+                  assignmentIds: guidedAssignments,
+                  schedule: roadSchedule,
+              })
+            : null;
+
     return (
         <div className="min-h-screen bg-bg">
             <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 md:px-6 max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl lg:pt-4">
@@ -338,9 +365,16 @@ export default async function MapPage({
                     </div>
                 </div>
 
-                {/* Mobile layout — hero-first */}
+                {/* Mobile layout — the course as one road */}
                 <div className="lg:hidden">
-                    {hasPath ? (
+                    {roadModel ? (
+                        <CourseMapRoad
+                            model={roadModel}
+                            initialWeek={initialWeek}
+                            weekNoun={showUnitMonths ? "Week" : "Level"}
+                            showMonths={showUnitMonths}
+                        />
+                    ) : hasPath ? (
                         <ClassCoursePath
                             assignments={coursePathAssignments}
                             guidedUnits={courseMapUnits}
@@ -350,21 +384,6 @@ export default async function MapPage({
                             focusNextActivity={focusNextActivity}
                             showUnitMonths={showUnitMonths}
                             scheduledWeek={currentWeekMeta?.weekNumber ?? null}
-                            mobileWayfinding={
-                                courseMapUnits.length > 0 ? (
-                                    <CourseMapMobileWayfinding
-                                        units={courseMapUnits}
-                                        weekProgress={weekProgress}
-                                        currentWeek={currentWeekMeta}
-                                        overallPct={overallPct}
-                                        completedLevels={completedLevels}
-                                        totalLevels={totalLevels}
-                                        showUnitMonths={showUnitMonths}
-                                        guidedProgress={guidedProgress}
-                                        guidedAssignments={guidedAssignments}
-                                    />
-                                ) : null
-                            }
                         />
                     ) : (
                         <div className="dashboard-panel rounded-2xl p-6 text-center">
