@@ -89,8 +89,10 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneRestaurant", "East Boston restaurant kitchen. Thursday night, end of shift.", "terracotta")}
 
+        <p style="margin: 0.75rem 0">Carmen works at a restaurant in East Boston. Her coworker Marta works there too. Tonight, Carmen's manager, Jennifer, gave her a new schedule. This week, we follow Carmen as she thinks about what to do.</p>
+
         ${dialogue([
-          { speaker: "Carmen", avatar: "👩🏽", text: "My manager just told me I'm working Sundays now. Every Sunday.", side: "right", tone: "terracotta" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "Jennifer just told me I'm working Sundays now. Every Sunday.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "Every Sunday? What <strong>would</strong> you <strong>do</strong> if you <strong>could choose</strong> your own schedule?", side: "left", tone: "sage" },
           { speaker: "Carmen", avatar: "👩🏽", text: "If I <strong>had</strong> more options, I <strong>would look</strong> for a different job. But right now I need this one.", side: "right", tone: "terracotta" },
           { speaker: "Marta", avatar: "👩🏾", text: "I understand. If my pay <strong>were</strong> better, I <strong>wouldn’t need</strong> two jobs. It’s hard to make a change.", side: "left", tone: "sage" },
@@ -188,11 +190,14 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneWarehouse", "Chelsea Street warehouse break room. Friday morning.", "sage")}
+        ${sceneCard("sceneWarehouse", "Chelsea Street warehouse. Friday morning, the next day.", "sage")}
+
+        <p style="margin: 0.75rem 0">The next morning, Carmen calls her husband, Ramon. Ramon works at a warehouse on Chelsea Street. He is on his break. Carmen tells him about the Sunday schedule, and they imagine other options.</p>
 
         ${dialogue([
-          { speaker: "Ramon", avatar: "👨🏾", text: "If my schedule <strong>changed</strong> to nights, I <strong>would need</strong> a different babysitter.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "👨🏻", text: "What would you do if they moved you to a different site?", side: "left", tone: "sage" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "Sundays are the only day our family is together. What can we do?", side: "left", tone: "sage" },
+          { speaker: "Ramon", avatar: "👨🏾", text: "If my schedule <strong>changed</strong> to nights, I <strong>would be</strong> home with our son on Sundays. But the warehouse needs me during the day.", side: "right", tone: "terracotta" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "What would you do if they moved you to a different site?", side: "left", tone: "sage" },
           { speaker: "Ramon", avatar: "👨🏾", text: "If the new site <strong>were</strong> far, I <strong>wouldn't take</strong> it. Two buses is too much.", side: "right", tone: "terracotta" },
         ])}
 
@@ -244,7 +249,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "If the company ___ (pay) more, Scott would stay.",
+              label: "If the warehouse ___ (pay) more, Ramon would stay.",
               expectedAnswers: ["paid"],
             },
           ],
@@ -276,13 +281,15 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       id: "advice-at-work",
       title: "What Would You Do? Advice at Work",
       explanation: `
-        ${sceneCard("sceneAgency", "Home health agency office, East Boston. Monday afternoon. Beatriz calls Nadine from a client's home.", "blue")}
+        ${sceneCard("sceneAgency", "Home health agency office, East Boston. Friday afternoon, the same day.", "blue")}
+
+        <p style="margin: 0.75rem 0">After lunch, Carmen stops by the home health agency where her friend Nadine works. Nadine is a scheduler there, and she gives good advice about work problems.</p>
 
         ${dialogue([
-          { speaker: "Beatriz", avatar: "👩🏻", text: "My coworker didn't show up for Mrs. Lopez again. She's alone right now. What would you do?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "If I <strong>were</strong> you, I <strong>would call</strong> the agency right now, not wait.", side: "left", tone: "sage" },
-          { speaker: "Beatriz", avatar: "👩🏻", text: "And if they <strong>cut</strong> my hours because I called?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "If they <strong>did</strong> that, I <strong>would talk</strong> to the supervisor and write it down.", side: "left", tone: "sage" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "Marta can't work my Sundays, and Ramon can't change his schedule. I don't know what to do. What would you do?", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "If I <strong>were</strong> you, I <strong>would talk</strong> to Jennifer soon, not wait.", side: "left", tone: "sage" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "And if she <strong>cut</strong> my hours because I asked?", side: "right", tone: "terracotta" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "If she <strong>did</strong> that, I <strong>would ask</strong> for a meeting and write down what she said.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -292,7 +299,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("advice", "blue")}
-            <span><em>If I <strong>were</strong> you, I <strong>would call</strong> the agency.</em></span>
+            <span><em>If I <strong>were</strong> you, I <strong>would talk</strong> to Jennifer.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("advice", "blue")}
@@ -300,7 +307,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("advice", "blue")}
-            <span><em>If I <strong>were</strong> in your position, I <strong>wouldn't sign</strong> that form.</em></span>
+            <span><em>If I <strong>were</strong> in your position, I <strong>wouldn't wait</strong> any longer.</em></span>
           </div>
         </div>
       `,
@@ -312,17 +319,17 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"If I <strong>am</strong> you, I would call the agency.\"",
+              label: "\"If I <strong>am</strong> you, I would talk to Jennifer.\"",
               options: [
                 { value: "correct", label: "Correct as written" },
-                { value: "were", label: "Not correct. Should be: If I were you, I would call the agency." },
-                { value: "was", label: "Not correct. Should be: If I was you, I would call the agency." },
+                { value: "were", label: "Not correct. Should be: If I were you, I would talk to Jennifer." },
+                { value: "was", label: "Not correct. Should be: If I was you, I would talk to Jennifer." },
               ],
               expectedAnswer: "were",
             },
             {
               type: "radio",
-              label: "\"If I <strong>were</strong> the supervisor, I <strong>would change</strong> the policy.\"",
+              label: "\"If I <strong>were</strong> the manager, I <strong>would change</strong> the schedule.\"",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'was'" },
@@ -365,13 +372,15 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneHotel", "Hotel housekeeping, East Boston. Friday morning.", "amber")}
+        ${sceneCard("sceneHotel", "Hotel hallway, East Boston. Monday morning.", "amber")}
+
+        <p style="margin: 0.75rem 0">On Monday morning, Carmen visits Marta at the hotel where Marta has her second job. Marta cleans rooms here before her restaurant shift. The hotel has extra hours tomorrow, and Marta wants to ask Carmen about them.</p>
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "👨🏽", text: "If there's overtime tomorrow, I'll take it. I need the money.", side: "right", tone: "terracotta" },
-          { speaker: "Sofia", avatar: "👩🏼", text: "I wish I could. If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", side: "left", tone: "sage" },
-          { speaker: "Kevin", avatar: "👨🏽", text: "If they <strong>offered</strong> Sunday instead, <strong>would</strong> you <strong>do</strong> it?", side: "right", tone: "terracotta" },
-          { speaker: "Sofia", avatar: "👩🏼", text: "Maybe. If the pay <strong>were</strong> double, I definitely <strong>would</strong>.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏾", text: "If there's overtime here tomorrow, I'll take it. I need the money. Do you want to come too?", side: "right", tone: "terracotta" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "I wish I could. If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", side: "left", tone: "sage" },
+          { speaker: "Marta", avatar: "👩🏾", text: "If they <strong>offered</strong> Friday night instead, <strong>would</strong> you <strong>do</strong> it?", side: "right", tone: "terracotta" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "Maybe. If the pay <strong>were</strong> double, I definitely <strong>would</strong>.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -400,7 +409,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kevin always picks up extra shifts. \"If they ___ me overtime next week, I'll say yes.\"",
+              label: "Marta always picks up extra shifts. \"If they ___ me overtime next week, I'll say yes.\"",
               options: [
                 { value: "offer", label: "offer (first conditional, real possibility)" },
                 { value: "offered", label: "offered (second conditional, imaginary)" },
@@ -409,7 +418,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Sofia can't change her son's birthday. \"If I ___ free on Saturday, I would come in.\"",
+              label: "Carmen can't change her son's birthday. \"If I ___ free on Saturday, I would come in.\"",
               options: [
                 { value: "am", label: "am (first conditional, real possibility)" },
                 { value: "were", label: "were (second conditional, imaginary)" },
@@ -434,12 +443,12 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "If Sofia finishes by 3, she ___ pick up her son on time. (real plan)",
+              label: "If Carmen finishes by 3, she ___ pick up her son on time. (real plan)",
               expectedAnswers: ["will"],
             },
             {
               type: "text",
-              label: "If Kevin had a second job, he ___ save faster. (imaginary)",
+              label: "If Marta worked every Saturday, she ___ save faster. (imaginary)",
               expectedAnswers: ["would"],
             },
           ],
@@ -454,13 +463,15 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       id: "what-would-change",
       title: "At Work: What Would Change?",
       explanation: `
-        ${sceneCard("sceneOffice", "Office cleaning company break room. Late at night.", "terracotta")}
+        ${sceneCard("sceneOffice", "The office hallway above the restaurant. Monday night, after closing.", "terracotta")}
+
+        <p style="margin: 0.75rem 0">That night, after the restaurant closes, Carmen finally talks to her manager, Jennifer. Carmen is nervous, but she has thought about what she wants to say.</p>
 
         ${dialogue([
-          { speaker: "Milagros", avatar: "👩🏾", text: "If they <strong>promoted</strong> me to team lead, I <strong>would train</strong> the new people better.", side: "right", tone: "terracotta" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "Jennifer, thank you for talking with me. I like my job here. If you <strong>promoted</strong> me to team lead, I <strong>would train</strong> the new people better.", side: "right", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏻", text: "What else would you change if you were in charge?", side: "left", tone: "sage" },
-          { speaker: "Milagros", avatar: "👩🏾", text: "If we <strong>had</strong> the same schedule every week, people <strong>wouldn't quit</strong> so fast.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "Exactly. And if they <strong>paid</strong> us more, I <strong>wouldn’t need</strong> a second job. I could be more flexible here.", side: "left", tone: "sage" },
+          { speaker: "Carmen", avatar: "👩🏽", text: "If we <strong>had</strong> the same schedule every week, people <strong>wouldn't quit</strong> so fast.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏻", text: "You're right. And if the owner <strong>paid</strong> more, I <strong>wouldn’t need</strong> to hire new people every month. Let's try something. Starting next month, you work every other Sunday.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -481,12 +492,12 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "change-ex1",
-          title: "What would Milagros do?",
+          title: "What would Carmen do?",
           instructions: "Choose the answer that fits the second conditional correctly.",
           items: [
             {
               type: "radio",
-              label: "Milagros does not have a promotion right now. \"If the company ___ me team lead, I would train new workers.\"",
+              label: "Carmen does not have a promotion right now. \"If the company ___ me team lead, I would train new workers.\"",
               options: [
                 { value: "promotes", label: "promotes" },
                 { value: "promoted", label: "promoted" },
@@ -496,7 +507,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"If they <strong>pay</strong> everyone the same, I <strong>wouldn't need</strong> two jobs.\" Is this correct?",
+              label: "\"If they <strong>pay</strong> Marta more, she <strong>wouldn't need</strong> two jobs.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'paid' to match 'wouldn't need'" },
@@ -524,7 +535,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "If Jennifer ___ (have) one job, she would sleep more than five hours.",
+              label: "If Marta ___ (have) one job, she would sleep more than five hours.",
               expectedAnswers: ["had"],
             },
           ],
@@ -574,7 +585,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     {
       id: "sc-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice: use 'were' for all subjects.)",
+      question: "Fill in the blank: \"If I ___ you, I would talk to Jennifer.\" (Giving advice: use 'were' for all subjects.)",
       correctAnswer: "were",
       explanation: "In 'If I were you,' use 'were' for all subjects in the second conditional if-clause, not 'was' or 'am'.",
       topic: "second-conditional",
@@ -584,7 +595,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     },
     {
       id: "sc-q5",
-      question: "Kevin is likely to get overtime next week. Which sentence fits?",
+      question: "Marta is likely to get overtime next week. Which sentence fits?",
       options: [
         { value: "a", label: "If they offered me overtime, I would say yes." },
         { value: "b", label: "If they offer me overtime, I will say yes." },
@@ -600,7 +611,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     {
       id: "sc-qws1",
       type: "word-scramble" as const,
-      question: "Sofia can't take the Saturday shift because of her son's birthday. Put the words in order.",
+      question: "Carmen can't take the overtime shift because of her son's birthday. Put the words in order.",
       words: ["She", "would", "say", "yes", "if", "she", "could"],
       correctAnswer: "She would say yes if she could",
       hint: "would + base verb … if + past simple",
