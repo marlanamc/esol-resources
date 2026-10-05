@@ -26,7 +26,25 @@ export interface ReviewLesson {
   bridge?: boolean;
   transfer?: { prompt: string; example: string; check: string; parts?: { text: string; category?: ReviewCategory }[] };
   examples: ReviewItem[];
+  /** Every scored question in order. For a lesson with rounds, the rounds flattened. */
   questions: ReviewItem[];
+  rounds?: ReviewRound[];
+}
+/** One question type per round: label, then find, then choose. */
+export interface ReviewRound {
+  kind: ReviewQuestionKind;
+  title: string;
+  intro: string;
+  questions: ReviewItem[];
+}
+const ROUND_COPY: Record<ReviewQuestionKind, { title: string; intro: string }> = {
+  label: { title: 'What’s its job?', intro: 'Look at the highlighted part. Choose its job.' },
+  find: { title: 'Find it', intro: 'Read the sentence. Tap the word with that job.' },
+  choose: { title: 'Fill the blank', intro: 'Choose the word that fits the sentence.' },
+};
+function rounds(label: ReviewItem[], find: ReviewItem[], choose: ReviewItem[]): Pick<ReviewLesson, 'rounds' | 'questions'> {
+  const all = ([['label', label], ['find', find], ['choose', choose]] as const).map(([kind, questions]) => ({ kind, ...ROUND_COPY[kind], questions }));
+  return { rounds: all, questions: all.flatMap(round => round.questions) };
 }
 function item(id: string, before: string, target: string, after: string, answer: ReviewCategory, explanation: string): ReviewItem {
   return { id, before, target, after, answer, explanation };
@@ -47,16 +65,28 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("week-4-describing-examples-1", "We have a ", "small", " kitchen.", "Adjective", "Small describes the kitchen. An adjective describes a noun."),
       item("week-4-describing-examples-2", "We have ", "a", " small kitchen.", "Article", "A introduces the noun kitchen. The articles are a, an, and the."),
     ],
-    questions: [
+    ...rounds([
       item("week-4-describing-questions-1", "The soup is ", "hot", ".", "Adjective", "Hot describes the soup. Adjectives can come after is."),
-      choose("week-4-describing-questions-2", "I need ", "a", " pen.", "Article", ["a", "an"], "We say a pen. Use a before a consonant sound."),
-      find("week-4-describing-questions-3", "She has ", "an", " appointment.", "Article", "An introduces appointment. We use an before a vowel sound."),
-      find("week-4-describing-questions-4", "The ", "new", " student is here.", "Adjective", "New describes the student."),
       item("week-4-describing-questions-5", "Please close ", "the", " door.", "Article", "The introduces a particular door."),
-      choose("week-4-describing-questions-6", "Our neighbor is ", "friendly", ".", "Adjective", ["friend", "friendly"], "We need an adjective here. Friendly describes our neighbor."),
+      item("week-4-describing-questions-7", "My coat is ", "warm", ".", "Adjective", "Warm describes my coat."),
+      item("week-4-describing-questions-8", "I saw ", "an", " old friend.", "Article", "An introduces old friend. We use an before a vowel sound."),
       { ...item("week-4-describing-review-1", "The ", "bus", " arrives at eight.", "Noun", "Bus names a thing."), review: true, categories: ["Noun", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-4-describing-review-2", "We ", "cook", " dinner together.", "Verb", "Cook tells what we do."), review: true, categories: ["Noun", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
-    ],
+    ], [
+      find("week-4-describing-questions-3", "She has ", "an", " appointment.", "Article", "An introduces appointment. We use an before a vowel sound."),
+      find("week-4-describing-questions-4", "The ", "new", " student is here.", "Adjective", "New describes the student."),
+      find("week-4-describing-questions-9", "I want ", "a", " sandwich.", "Article", "A introduces the noun sandwich."),
+      find("week-4-describing-questions-10", "This apple is ", "sweet", ".", "Adjective", "Sweet describes the apple."),
+      find("week-4-describing-questions-11", "We had lunch at ", "the", " park.", "Article", "The introduces a particular park."),
+      find("week-4-describing-questions-12", "She has ", "long", " hair.", "Adjective", "Long describes her hair."),
+    ], [
+      choose("week-4-describing-questions-2", "I need ", "a", " pen.", "Article", ["a", "an"], "We say a pen. Use a before a consonant sound."),
+      choose("week-4-describing-questions-6", "Our neighbor is ", "friendly", ".", "Adjective", ["friend", "friendly"], "We need an adjective here. Friendly describes our neighbor."),
+      choose("week-4-describing-questions-13", "I eat ", "an", " egg every day.", "Article", ["a", "an"], "We say an egg. Use an before a vowel sound."),
+      choose("week-4-describing-questions-14", "The street is ", "busy", " today.", "Adjective", ["business", "busy"], "We need an adjective here. Busy describes the street."),
+      choose("week-4-describing-questions-15", "Can you open ", "the", " window?", "Article", ["an", "the"], "We say the window. Window starts with a consonant sound, so an does not fit."),
+      choose("week-4-describing-questions-16", "We live in a ", "small", " apartment.", "Adjective", ["smile", "small"], "We need an adjective here. Small describes the apartment."),
+    ]),
   },
   "week-5-subjects": {
     id: "week-5-subjects", title: "Subjects and verbs", categories: ["Subject", "Verb"],
@@ -67,16 +97,28 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("week-5-subjects-examples-1", "", "The teacher", " helps us.", "Subject", "The teacher is who this sentence is about. Teacher is a noun; The teacher is the subject."),
       item("week-5-subjects-examples-2", "The teacher ", "helps", " us.", "Verb", "Helps tells what the teacher does."),
     ],
-    questions: [
+    ...rounds([
       item("week-5-subjects-questions-1", "", "My sister", " works at a clinic.", "Subject", "My sister is who works at the clinic."),
-      find("week-5-subjects-questions-2", "The children ", "play", " outside.", "Verb", "Play tells what the children do."),
-      find("week-5-subjects-questions-3", "", "We", " need more time.", "Subject", "We is who needs more time. A pronoun can be a subject."),
       item("week-5-subjects-questions-4", "The soup ", "is", " hot.", "Verb", "Is links the soup to the description hot. A verb does not have to show an action."),
       item("week-5-subjects-questions-5", "", "The bus", " is late.", "Subject", "The bus is what this sentence is about, even without an action."),
-      choose("week-5-subjects-questions-6", "They ", "have", " a car.", "Verb", ["has", "have"], "They goes with have. Have is the verb."),
+      item("week-5-subjects-questions-7", "", "My neighbors", " have a garden.", "Subject", "My neighbors is who has the garden."),
       { ...item("week-5-subjects-review-1", "The ", "new", " student is here.", "Adjective", "New describes the student."), review: true, categories: ["Adjective", "Article"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-5-subjects-review-2", "I need ", "a", " pen.", "Article", "A introduces the noun pen."), review: true, categories: ["Adjective", "Article"], prompt: "Remember this: choose the label for the highlighted part." },
-    ],
+    ], [
+      find("week-5-subjects-questions-2", "The children ", "play", " outside.", "Verb", "Play tells what the children do."),
+      find("week-5-subjects-questions-3", "", "We", " need more time.", "Subject", "We is who needs more time. A pronoun can be a subject."),
+      find("week-5-subjects-questions-8", "", "Maria", " works at a bank.", "Subject", "Maria is who works at the bank."),
+      find("week-5-subjects-questions-9", "My son ", "studies", " English.", "Verb", "Studies tells what my son does."),
+      find("week-5-subjects-questions-10", "Every morning, ", "she", " drinks tea.", "Subject", "She is who drinks tea. The subject does not always come first."),
+      find("week-5-subjects-questions-11", "The store ", "closes", " at nine.", "Verb", "Closes tells what the store does."),
+    ], [
+      choose("week-5-subjects-questions-6", "They ", "have", " a car.", "Verb", ["has", "have"], "They goes with have. Have is the verb."),
+      choose("week-5-subjects-questions-12", "She ", "works", " at a hotel.", "Verb", ["work", "works"], "She goes with works. Works is the verb."),
+      choose("week-5-subjects-questions-13", "", "They", " live near the park.", "Subject", ["Them", "They"], "We need a subject here. They can be a subject; them cannot."),
+      choose("week-5-subjects-questions-14", "My brother ", "is", " a cook.", "Verb", ["is", "are"], "My brother is one person, so we use is."),
+      choose("week-5-subjects-questions-15", "", "We", " take the bus.", "Subject", ["Us", "We"], "We need a subject here. We can be a subject; us cannot."),
+      choose("week-5-subjects-questions-16", "The baby ", "sleeps", " in the afternoon.", "Verb", ["sleep", "sleeps"], "The baby is one person, so we use sleeps."),
+    ]),
   },
   "week-6-objects": {
     id: "week-6-objects", title: "Actions and descriptions", categories: ["Object", "Complement"],
@@ -86,16 +128,28 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("week-6-objects-examples-1", "She helps ", "a friend", ".", "Object", "A friend is who she helps. This part is the object."),
       item("week-6-objects-examples-2", "She is ", "friendly", ".", "Complement", "Friendly describes her after is. This description completes the sentence; it is a complement."),
     ],
-    questions: [
+    ...rounds([
       item("week-6-objects-questions-1", "He reads ", "a book", ".", "Object", "A book is what he reads."),
-      find("week-6-objects-questions-2", "The room is ", "quiet", ".", "Complement", "Quiet describes the room after is."),
-      find("week-6-objects-questions-3", "We need ", "help", ".", "Object", "Help is what we need."),
       item("week-6-objects-questions-4", "My brother is ", "a driver", ".", "Complement", "A driver tells who my brother is after is."),
       item("week-6-objects-questions-5", "They carry ", "the bags", ".", "Object", "The bags are what they carry."),
-      choose("week-6-objects-questions-6", "The children are ", "happy", ".", "Complement", ["happily", "happy"], "After are, we need a complement that describes the children: happy."),
+      item("week-6-objects-questions-7", "Our teacher is ", "very patient", ".", "Complement", "Very patient describes our teacher after is."),
       { ...item("week-6-objects-review-1", "", "The teacher", " helps us.", "Subject", "The teacher is the subject: who this sentence is about."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-6-objects-review-2", "The teacher ", "helps", " us.", "Verb", "Helps tells what the teacher does."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
-    ],
+    ], [
+      find("week-6-objects-questions-2", "The room is ", "quiet", ".", "Complement", "Quiet describes the room after is."),
+      find("week-6-objects-questions-3", "We need ", "help", ".", "Object", "Help is what we need."),
+      find("week-6-objects-questions-8", "I want ", "water", ".", "Object", "Water is what I want."),
+      find("week-6-objects-questions-9", "My mother is ", "tired", ".", "Complement", "Tired describes my mother after is."),
+      find("week-6-objects-questions-10", "He fixes ", "cars", ".", "Object", "Cars are what he fixes."),
+      find("week-6-objects-questions-11", "The store is ", "open", ".", "Complement", "Open describes the store after is."),
+    ], [
+      choose("week-6-objects-questions-6", "The children are ", "happy", ".", "Complement", ["happily", "happy"], "After are, we need a complement that describes the children: happy."),
+      choose("week-6-objects-questions-12", "Please call ", "me", " later.", "Object", ["I", "me"], "Me is the object: who you call. After a verb, use me, not I."),
+      choose("week-6-objects-questions-13", "He is ", "tired", " today.", "Complement", ["tire", "tired"], "After is, we need a word that describes him: tired."),
+      choose("week-6-objects-questions-14", "My friend helps ", "them", " every week.", "Object", ["them", "they"], "Them is the object: who my friend helps. After a verb, use them, not they."),
+      choose("week-6-objects-questions-15", "The test was ", "easy", ".", "Complement", ["easily", "easy"], "After was, we need a word that describes the test: easy."),
+      choose("week-6-objects-questions-16", "I visit ", "her", " on Sundays.", "Object", ["her", "she"], "Her is the object: who I visit. After a verb, use her, not she."),
+    ]),
   },
   "week-7-adverbs": {
     id: "week-7-adverbs", title: "Adverbs: how and how often", categories: ["Adjective", "Adverb"],
@@ -104,16 +158,28 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("week-7-adverbs-examples-1", "She drives ", "carefully", ".", "Adverb", "Carefully tells how she drives. An adverb can add information about a verb."),
       item("week-7-adverbs-examples-2", "She ", "often", " drives to work.", "Adverb", "Often tells how frequently she drives. Adverbs can tell how often."),
     ],
-    questions: [
-      choose("week-7-adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "Slowly tells how he speaks. An adverb describes an action verb."),
-      choose("week-7-adverbs-questions-2", "He is a ", "careful", " driver.", "Adjective", ["careful", "carefully"], "Careful describes the noun driver, so we need an adjective."),
-      find("week-7-adverbs-questions-3", "We ", "usually", " cook at home.", "Adverb", "Usually tells how often we cook."),
+    ...rounds([
       item("week-7-adverbs-questions-4", "The children are ", "happy", ".", "Adjective", "Happy describes the children."),
       item("week-7-adverbs-questions-5", "She is ", "always", " early.", "Adverb", "Always tells how consistently she is early. It comes after is here."),
-      find("week-7-adverbs-questions-6", "He walks ", "quickly", ".", "Adverb", "Quickly tells how he walks."),
+      item("week-7-adverbs-questions-7", "She sings ", "beautifully", ".", "Adverb", "Beautifully tells how she sings."),
+      item("week-7-adverbs-questions-8", "We had a ", "quiet", " evening.", "Adjective", "Quiet describes the noun evening."),
       { ...item("week-7-adverbs-review-1", "She helps ", "a friend", ".", "Object", "A friend is who she helps: the object."), review: true, categories: ["Object", "Complement"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-7-adverbs-review-2", "She is ", "friendly", ".", "Complement", "Friendly describes her after is: a complement."), review: true, categories: ["Object", "Complement"], prompt: "Remember this: choose the label for the highlighted part." },
-    ],
+    ], [
+      find("week-7-adverbs-questions-3", "We ", "usually", " cook at home.", "Adverb", "Usually tells how often we cook."),
+      find("week-7-adverbs-questions-6", "He walks ", "quickly", ".", "Adverb", "Quickly tells how he walks."),
+      find("week-7-adverbs-questions-9", "I ", "sometimes", " eat breakfast.", "Adverb", "Sometimes tells how often I eat breakfast."),
+      find("week-7-adverbs-questions-10", "This is a ", "difficult", " question.", "Adjective", "Difficult describes the noun question."),
+      find("week-7-adverbs-questions-11", "My son ", "never", " eats vegetables.", "Adverb", "Never tells how often my son eats vegetables."),
+      find("week-7-adverbs-questions-12", "I have a ", "new", " phone.", "Adjective", "New describes the noun phone."),
+    ], [
+      choose("week-7-adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "Slowly tells how he speaks. An adverb describes an action verb."),
+      choose("week-7-adverbs-questions-2", "He is a ", "careful", " driver.", "Adjective", ["careful", "carefully"], "Careful describes the noun driver, so we need an adjective."),
+      choose("week-7-adverbs-questions-13", "Please talk ", "quietly", " at night.", "Adverb", ["quiet", "quietly"], "Quietly tells how to talk, so we need an adverb."),
+      choose("week-7-adverbs-questions-14", "She is a ", "good", " cook.", "Adjective", ["good", "well"], "Good describes the noun cook, so we need an adjective."),
+      choose("week-7-adverbs-questions-15", "He works ", "well", " with others.", "Adverb", ["good", "well"], "Well tells how he works, so we need an adverb."),
+      choose("week-7-adverbs-questions-16", "The weather is ", "beautiful", " today.", "Adjective", ["beautiful", "beautifully"], "After is, beautiful describes the weather, so we need an adjective."),
+    ]),
   },
   'foundation-check-in': {
     id: 'foundation-check-in', title: 'Quick foundation check-in', categories: ['Pronoun', 'Article'],
@@ -186,16 +252,28 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item('nv-example-noun', 'The ', 'teacher', ' helps us.', 'Noun', 'Teacher names a person. A noun names a person, place, thing, or idea.'),
       item('nv-example-verb', 'The teacher ', 'helps', ' us.', 'Verb', 'Helps tells what the teacher does. A verb can show an action or a state, as in “She is ready.”'),
     ],
-    questions: [
+    ...rounds([
       item('nv-1', 'The ', 'bus', ' arrives at eight.', 'Noun', 'Bus names a thing.'),
-      find('nv-2', 'We ', 'cook', ' dinner together.', 'Verb', 'Cook tells what we do.'),
       item('nv-3', 'My sister ', 'is', ' a nurse.', 'Verb', 'Is links my sister to who she is. Is is a verb, even though it does not show an action.'),
-      choose('nv-4', 'The children ', 'walk', ' to school.', 'Verb', ['school', 'walk'], 'We need a verb here. Walk tells what the children do.'),
-      find('nv-5', 'I ', 'have', ' two children.', 'Verb', 'Have expresses a relationship or possession. It is a verb.'),
-      choose('nv-6', 'The ', 'doctor', ' listens carefully.', 'Noun', ['listen', 'doctor'], 'We need a noun here. Who listens? The doctor. Doctor names a person.'),
       item('nv-7', 'We ', 'need', ' more time.', 'Verb', 'Need tells what we require. It is a verb, even though you cannot see an action.'),
+      item('nv-9', 'My ', 'neighbor', ' works at night.', 'Noun', 'Neighbor names a person.'),
+      item('nv-10', 'The store ', 'opens', ' at nine.', 'Verb', 'Opens tells what the store does.'),
+      item('nv-11', 'We buy ', 'rice', ' every week.', 'Noun', 'Rice names a thing.'),
+    ], [
+      find('nv-2', 'We ', 'cook', ' dinner together.', 'Verb', 'Cook tells what we do.'),
+      find('nv-5', 'I ', 'have', ' two children.', 'Verb', 'Have expresses a relationship or possession. It is a verb.'),
       find('nv-8', 'Good ', 'health', ' is important.', 'Noun', 'Health names an idea or condition. Nouns do not always name things you can touch.'),
-    ],
+      find('nv-12', 'I like ', 'music', '.', 'Noun', 'Music names a thing you enjoy.'),
+      find('nv-13', 'They ', 'live', ' here.', 'Verb', 'Live tells what they do.'),
+      find('nv-14', 'It is my ', 'birthday', '.', 'Noun', 'Birthday names a special day.'),
+    ], [
+      choose('nv-4', 'The children ', 'walk', ' to school.', 'Verb', ['school', 'walk'], 'We need a verb here. Walk tells what the children do.'),
+      choose('nv-6', 'The ', 'doctor', ' listens carefully.', 'Noun', ['listen', 'doctor'], 'We need a noun here. Who listens? The doctor. Doctor names a person.'),
+      choose('nv-15', 'My son ', 'plays', ' soccer.', 'Verb', ['plays', 'player'], 'We need a verb here. Plays tells what my son does.'),
+      choose('nv-16', 'I drink ', 'coffee', ' in the morning.', 'Noun', ['cook', 'coffee'], 'We need a noun here. Coffee names what I drink.'),
+      choose('nv-17', 'The ', 'baby', ' sleeps a lot.', 'Noun', ['baby', 'sleep'], 'We need a noun here. Who sleeps? The baby. Baby names a person.'),
+      choose('nv-18', 'We ', 'work', ' on Saturday.', 'Verb', ['job', 'work'], 'We need a verb here. Work tells what we do.'),
+    ]),
   },
   'adjectives-articles': {
     id: 'adjectives-articles', title: 'Adjectives and articles', categories: ['Adjective', 'Article'],

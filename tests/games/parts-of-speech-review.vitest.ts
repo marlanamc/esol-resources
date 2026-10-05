@@ -12,8 +12,8 @@ function attempt(lessonId: ReviewAttempt['lessonId'] = 'nouns-verbs'): ReviewAtt
     answers: REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: reviewCorrectAnswer(q) })) };
 }
 describe('Short Parts of Speech review', () => {
-  it('covers eight mixed nouns/verbs including state verbs, and nine optional questions', () => {
-    expect(REVIEW_LESSONS['nouns-verbs'].questions).toHaveLength(8);
+  it('covers eighteen mixed nouns/verbs including state verbs, and nine optional questions', () => {
+    expect(REVIEW_LESSONS['nouns-verbs'].questions).toHaveLength(18);
     expect(REVIEW_LESSONS['more-word-jobs'].questions).toHaveLength(9);
     for (const word of ['is', 'have', 'need']) expect(REVIEW_LESSONS['nouns-verbs'].questions.find(q => q.target === word)?.answer).toBe('Verb');
     for (const lesson of Object.values(REVIEW_LESSONS)) {
@@ -32,13 +32,14 @@ describe('Short Parts of Speech review', () => {
     expect(new Set(lesson.questions.map(q => q.kind ?? 'label'))).toEqual(new Set(['label', 'find', 'choose']));
     const find = lesson.questions.find(q => q.id === 'nv-2')!;
     expect(reviewWords(find)[Number(reviewCorrectAnswer(find))]).toBe('cook');
-    const wrongWord = attempt(); wrongWord.answers[1].answer = '0';
-    expect(scoreReviewAttempt(wrongWord).correct).toBe(7);
-    const outOfRange = attempt(); outOfRange.answers[1].answer = '9';
+    const at = (id: string) => lesson.questions.findIndex(q => q.id === id);
+    const wrongWord = attempt(); wrongWord.answers[at('nv-2')].answer = '0';
+    expect(scoreReviewAttempt(wrongWord).correct).toBe(17);
+    const outOfRange = attempt(); outOfRange.answers[at('nv-2')].answer = '9';
     expect(() => scoreReviewAttempt(outOfRange)).toThrow();
-    const wrongOption = attempt(); wrongOption.answers[3].answer = 'school';
-    expect(scoreReviewAttempt(wrongOption).correct).toBe(7);
-    const unofferedWord = attempt(); unofferedWord.answers[3].answer = 'run';
+    const wrongOption = attempt(); wrongOption.answers[at('nv-4')].answer = 'school';
+    expect(scoreReviewAttempt(wrongOption).correct).toBe(17);
+    const unofferedWord = attempt(); unofferedWord.answers[at('nv-4')].answer = 'run';
     expect(() => scoreReviewAttempt(unofferedWord)).toThrow();
   });
   it('mixes question types in every lesson a student can open', () => {
@@ -63,10 +64,10 @@ describe('Short Parts of Speech review', () => {
     }
   });
   it('scores from authored answers and rejects partial, duplicate, unknown, and wrong-category answers', () => {
-    expect(scoreReviewAttempt(attempt()).correct).toBe(8);
+    expect(scoreReviewAttempt(attempt()).correct).toBe(18);
     const wrong = attempt(); wrong.answers[0].answer = 'Verb';
-    expect(scoreReviewAttempt(wrong).correct).toBe(7);
-    expect(() => scoreReviewAttempt({ ...attempt(), correct: 8 })).toThrow();
+    expect(scoreReviewAttempt(wrong).correct).toBe(17);
+    expect(() => scoreReviewAttempt({ ...attempt(), correct: 18 })).toThrow();
     expect(() => scoreReviewAttempt({ ...attempt(), answers: attempt().answers.slice(1) })).toThrow();
     const duplicate = attempt(); duplicate.answers[1] = duplicate.answers[0];
     expect(() => scoreReviewAttempt(duplicate)).toThrow();
@@ -90,8 +91,8 @@ describe('Short Parts of Speech review', () => {
     const replay = attempt(); replay.attemptId = '22222222-2222-4222-8222-222222222222'; replay.answers[0].answer = 'Verb';
     const second = applyReviewAttempt(optional.category, replay, 'third');
     const delayed = applyReviewAttempt(second.category, attempt(), 'fourth');
-    expect(second.correct).toBe(7);
-    expect(second.review.lessons['nouns-verbs']?.correct).toBe(8);
+    expect(second.correct).toBe(17);
+    expect(second.review.lessons['nouns-verbs']?.correct).toBe(18);
     expect(delayed.category).toEqual(optional.category);
   });
   it('does not let the optional lesson alone complete the required review', () => {
@@ -119,11 +120,13 @@ describe('Weekly Parts of Speech curriculum', () => {
     for (const { id, week } of WEEKLY_REVIEW_LESSONS) {
       const lesson = REVIEW_LESSONS[id];
       expect(lesson.examples).toHaveLength(2);
-      expect(lesson.questions).toHaveLength(8);
+      expect(lesson.rounds?.map(round => [round.kind, round.questions.length])).toEqual([['label', 6], ['find', 6], ['choose', 6]]);
+      expect(lesson.questions).toEqual(lesson.rounds!.flatMap(round => round.questions));
+      for (const round of lesson.rounds!) for (const q of round.questions) expect(q.kind ?? 'label', q.id).toBe(round.kind);
       expect(lesson.questions.filter(q => q.review)).toHaveLength(week === 3 ? 0 : 2);
       expect(lesson.transfer?.prompt).toBeTruthy();
       expect(lesson.transfer?.check).toBeTruthy();
-      expect(scoreReviewAttempt(attempt(id)).correct).toBe(8);
+      expect(scoreReviewAttempt(attempt(id)).correct).toBe(18);
     }
     expect(REVIEW_LESSONS['week-4-describing'].categories).toEqual(['Adjective', 'Article']);
     expect(REVIEW_LESSONS['week-5-subjects'].bridge).toBe(true);
@@ -147,10 +150,11 @@ describe('Weekly Parts of Speech curriculum', () => {
   });
   it('validates category choices separately for focus and familiar-review questions', () => {
     const input = attempt('week-4-describing');
-    input.answers[6].answer = 'Adjective';
+    const familiar = input.answers.findIndex(a => a.questionId === 'week-4-describing-review-1');
+    input.answers[familiar].answer = 'Adjective';
     expect(() => scoreReviewAttempt(input)).toThrow();
-    input.answers[6].answer = 'Verb';
-    expect(scoreReviewAttempt(input).correct).toBe(7);
+    input.answers[familiar].answer = 'Verb';
+    expect(scoreReviewAttempt(input).correct).toBe(17);
     input.answers[0].answer = 'Noun';
     expect(() => scoreReviewAttempt(input)).toThrow();
   });
@@ -159,7 +163,7 @@ describe('Weekly Parts of Speech curriculum', () => {
     expect(old.review.lessons['week-4-describing']).toBeUndefined();
     const current = applyReviewAttempt(old.category, attempt('week-4-describing'), 'now');
     expect(current.review.lessons['adjectives-articles']).toEqual(old.review.lessons['adjectives-articles']);
-    expect(current.review.lessons['week-4-describing']?.correct).toBe(8);
+    expect(current.review.lessons['week-4-describing']?.correct).toBe(18);
   });
   it('preserves the former optional lesson without treating it as Week 4 completion', () => {
     const previous = applyReviewAttempt({}, attempt('more-word-jobs'), 'before');

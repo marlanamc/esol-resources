@@ -154,6 +154,10 @@ export function getGameCardCopy(activityId: string, title: string) {
   if (haystack.includes('timeline')) {
     return { friendlyTitle: 'Timeline Game', useThisFor: 'visualize tenses and match verbs to moments on a timeline' };
   }
+  // parts-of-speech-game opens Word Jobs; the guided wrapper is still the original discovery game.
+  if (activityId === 'parts-of-speech-game' || haystack.includes('word jobs')) {
+    return { friendlyTitle: 'Word Jobs', useThisFor: 'find the job of each word in a sentence, in three short rounds' };
+  }
   if (haystack.includes('parts of speech')) {
     return { friendlyTitle: 'Parts of speech discovery', useThisFor: 'learn and sort the eight parts of speech through quick rounds' };
   }

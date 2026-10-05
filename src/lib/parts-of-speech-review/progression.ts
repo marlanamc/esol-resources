@@ -1,16 +1,18 @@
 import { z } from 'zod';
 import { REVIEW_LESSONS, reviewChoices, reviewCorrectAnswer, type ReviewLessonId } from './content';
 
+// Course map lessons run three rounds of six questions; leave room for growth.
+const MAX_REVIEW_QUESTIONS = 30;
 const lessonIds = Object.keys(REVIEW_LESSONS) as [ReviewLessonId, ...ReviewLessonId[]];
 
 export const reviewAttemptSchema = z.object({
   version: z.literal(1),
   attemptId: z.string().uuid(),
   lessonId: z.enum(lessonIds),
-  answers: z.array(z.object({ questionId: z.string(), answer: z.string().max(60) }).strict()).max(9),
+  answers: z.array(z.object({ questionId: z.string(), answer: z.string().max(60) }).strict()).max(MAX_REVIEW_QUESTIONS),
 }).strict();
 export type ReviewAttempt = z.infer<typeof reviewAttemptSchema>;
-const resultSchema = z.object({ completed: z.literal(true), correct: z.number().int().min(0).max(9), total: z.number().int().min(1).max(9), completedAt: z.string(), attemptId: z.string().uuid() });
+const resultSchema = z.object({ completed: z.literal(true), correct: z.number().int().min(0).max(MAX_REVIEW_QUESTIONS), total: z.number().int().min(1).max(MAX_REVIEW_QUESTIONS), completedAt: z.string(), attemptId: z.string().uuid() });
 const progressSchema = z.object({ version: z.literal(1), lessons: z.object(Object.fromEntries(lessonIds.map(id => [id, resultSchema.optional()])) as Record<ReviewLessonId, z.ZodOptional<typeof resultSchema>>) });
 export type ReviewProgress = z.infer<typeof progressSchema>;
 export function readReviewProgress(value: unknown): ReviewProgress {

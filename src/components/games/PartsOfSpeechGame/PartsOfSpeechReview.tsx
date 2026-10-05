@@ -4,21 +4,16 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, MessageCircle } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
-import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewCategory, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
 import styles from './PartsOfSpeechReview.module.css';
 import { ReviewCategoryCue, categoryColorClass } from './ReviewCategoryCue';
 import { SpeakButton } from './SpeakButton';
 
-type Stage = 'start' | 'bridge' | 'example' | 'question' | 'results';
+type Stage = 'start' | 'bridge' | 'example' | 'round' | 'question' | 'results';
 const primary = styles.primary + ' inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-[#ffffff] hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary disabled:opacity-60';
 const secondary = styles.secondary + ' inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-5 py-3 font-semibold text-text hover:bg-bg-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary';
 
-// Ungraded warm-up on the start screen; nothing here is saved.
-const HERO_WORDS: { text: string; category: ReviewCategory }[] = [
-  { text: 'The', category: 'Article' }, { text: 'teacher', category: 'Noun' },
-  { text: 'helps', category: 'Verb' }, { text: 'us.', category: 'Pronoun' },
-];
 const CORE_ORDER = REVIEW_TOPICS.flatMap(topic => topic.core);
 
 function questionPrompt(item: ReviewItem, lesson: ReviewLesson) {
@@ -41,7 +36,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
     return requested && Object.hasOwn(REVIEW_LESSONS, requested) ? requested as ReviewLessonId : null;
   });
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
-  // A course map link (?lesson=) opens that week's lesson directly; Back leads to the Word Jobs start screen.
+  // A course map link (?lesson=) opens that week's lesson directly, and Back returns straight to the map.
   const [stage, setStage] = useState<Stage>(() => assignedLesson ? (REVIEW_LESSONS[assignedLesson].bridge ? 'bridge' : 'example') : 'start');
   const [lessonId, setLessonId] = useState<ReviewLessonId>(assignedLesson ?? 'nouns-verbs');
   const [index, setIndex] = useState(0);
@@ -56,8 +51,6 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   const [pointsAwarded, setPointsAwarded] = useState(0);
   const [openTopic, setOpenTopic] = useState<number | null>(null);
   const [extraOpen, setExtraOpen] = useState<Record<number, boolean>>({});
-  const [revealedWords, setRevealedWords] = useState<Record<number, boolean>>({});
-  const [lastWord, setLastWord] = useState<number | null>(null);
   const pending = useRef<ReviewAttempt | null>(null);
   const saving = useRef(false);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -69,6 +62,12 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   const missedQuestions = lesson.questions.filter(q => answers.find(a => a.questionId === q.id)?.answer !== reviewCorrectAnswer(q));
   const kind = item?.kind ?? 'label';
   const correctAnswer = item ? reviewCorrectAnswer(item) : '';
+  // Missed-question practice is one flat list, so rounds only apply to the first pass.
+  const lessonRounds = missed ? undefined : lesson.rounds;
+  const roundStarts = (lessonRounds ?? []).reduce<number[]>((starts, round, i) => [...starts, i ? starts[i - 1] + lessonRounds![i - 1].questions.length : 0], []);
+  const roundIndex = lessonRounds ? roundStarts.filter(start => start <= index).length - 1 : -1;
+  const round = lessonRounds?.[roundIndex];
+  const isCorrect = (q: ReviewItem) => answers.find(a => a.questionId === q.id)?.answer === reviewCorrectAnswer(q);
 
   async function load() {
     setLoadState('loading');
@@ -119,14 +118,18 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   }
   function nextQuestion() {
     if (!selection) return;
-    if (index + 1 < questions.length) { setIndex(index + 1); setSelection(null); return; }
+    if (index + 1 < questions.length) {
+      setIndex(index + 1); setSelection(null);
+      if (roundStarts.includes(index + 1)) setStage('round');
+      return;
+    }
     setStage('results');
     if (missed) setRevisited(true);
     if (!missed) void save({ version: 1, attemptId, lessonId, answers });
     setMissed(null);
   }
   function back() {
-    if (stage === 'start') router.push(returnHref);
+    if (stage === 'start' || assignedLesson) router.push(returnHref);
     else { setStage('start'); setMissed(null); }
   }
   const hasUnsaved = saveState === 'error' || saveState === 'saving';
@@ -145,8 +148,8 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   return <div ref={screen} className="fixed inset-0 z-20 overflow-y-auto bg-bg text-text">
     <div className="mx-auto max-w-2xl px-5 pb-12 pt-5 sm:px-8 sm:pt-8">
       <header className="mb-8">
-        <button type="button" onClick={back} disabled={stage === 'start' && hasUnsaved} className="inline-flex min-h-12 items-center gap-2 rounded-lg text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
-          <ArrowLeft size={18} aria-hidden="true" />{stage === 'start' ? 'Back to activities' : 'Back to review'}
+        <button type="button" onClick={back} disabled={(stage === 'start' || !!assignedLesson) && hasUnsaved} className="inline-flex min-h-12 items-center gap-2 rounded-lg text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+          <ArrowLeft size={18} aria-hidden="true" />{assignedLesson ? 'Back to course map' : stage === 'start' ? 'Back to activities' : 'Back to review'}
         </button>
       </header>
       {hasUnsaved && <div role="status" className="mb-6 rounded-xl border border-border p-4 text-sm">
@@ -158,26 +161,6 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         <section aria-labelledby="word-jobs-title">
           <h1 id="word-jobs-title" ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-4xl font-medium leading-[1.1] tracking-[-0.01em] sm:text-[44px]`}>Word Jobs</h1>
           <p className="mt-2 text-lg leading-normal text-text">Every word has a job. Can you find it?</p>
-          <div className={`${styles.heroCard} mt-5`}>
-            <div className="grid grid-cols-[minmax(0,1fr)_48px] items-start gap-3">
-              <div className={styles.heroWords}>
-                {HERO_WORDS.map(({ text, category }, wordIndex) => {
-                  const shown = !!revealedWords[wordIndex];
-                  return <span key={text} className={styles.heroWordWrap}>
-                    <button type="button" aria-pressed={shown} aria-label={`${text.replace('.', '')}: tap to see its job`}
-                      className={`${styles.heroWord} ${categoryColorClass(category)} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary`}
-                      onClick={() => { setRevealedWords(previous => ({ ...previous, [wordIndex]: !shown })); setLastWord(shown ? null : wordIndex); }}>{text}</button>
-                    {shown && <span className={styles.miniCue}><ReviewCategoryCue category={category} /></span>}
-                  </span>;
-                })}
-              </div>
-              <SpeakButton text="The teacher helps us." className="!h-[48px] !w-[48px]" />
-            </div>
-            <p aria-live="polite" className="text-sm font-semibold text-text-muted">
-              {lastWord !== null && revealedWords[lastWord] && <span className="sr-only">{HERO_WORDS[lastWord].text.replace('.', '')}: {HERO_WORDS[lastWord].category}. </span>}
-              {Object.values(revealedWords).some(Boolean) ? 'Nice. Tap another word.' : 'Tap a word to see its job.'}
-            </p>
-          </div>
         </section>
         <section className={styles.upNext} aria-labelledby="up-next-title">
           <p className="text-sm font-bold tracking-[0.02em] text-primary">{assignedLesson ? 'From your teacher' : Object.keys(progress.lessons).length ? 'Up next' : 'Start here'}</p>
@@ -249,12 +232,26 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           <p className="mt-5 leading-relaxed">Both labels can be true. In this lesson, look for the subject and the verb.</p>
           <button className={`${primary} mt-6 w-full`} onClick={() => setStage('example')}>See the examples <ArrowRight size={18} aria-hidden="true" /></button>
         </div>
+      </main> : stage === 'round' && round ? <main>
+        <section className={styles.roundCard} aria-labelledby="round-title">
+          <p className="text-sm font-bold tracking-[0.02em] text-primary">Round {roundIndex + 1} of {lessonRounds!.length}</p>
+          <h1 id="round-title" ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-3xl sm:text-4xl`}>{round.title}</h1>
+          <p className="text-lg leading-relaxed">{round.intro}</p>
+          <ol className={styles.roundDots} aria-label="Rounds">
+            {lessonRounds!.map((r, i) => <li key={r.kind} className={i < roundIndex ? styles.roundDone : i === roundIndex ? styles.roundCurrent : ''}>
+              <span className="sr-only">{r.title}{i < roundIndex ? ', done' : i === roundIndex ? ', now' : ''}</span>
+            </li>)}
+          </ol>
+          <p className="text-[15px] text-text-muted">{round.questions.length} questions</p>
+          <button className={`${primary} min-h-[52px] w-full text-[17px]`} onClick={() => setStage('question')}>Start round <ArrowRight size={18} aria-hidden="true" /></button>
+        </section>
       </main> : stage === 'results' ? <main>
         <section className={styles.completion} aria-labelledby="completion-title">
           <div className={styles.completionTitle}><CheckCircle2 className={styles.completionIcon} size={32} aria-hidden="true" /><h1 id="completion-title" ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-3xl`}>Lesson complete</h1></div>
           <p className="mt-3">One lesson is enough for today.</p>
           <p className="mt-4 font-semibold">{lesson.title}</p>
           <div className={styles.score}><strong>{correct} / {lesson.questions.length}</strong><span>correct on this review</span></div>
+          {lesson.rounds && <ul className={styles.roundScores}>{lesson.rounds.map(r => <li key={r.kind}><span>{r.title}</span><strong>{r.questions.filter(isCorrect).length} / {r.questions.length}</strong></li>)}</ul>}
           <div className={styles.cueRow}>{lesson.categories.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
           {revisited && <p className="mt-3 text-sm">You revisited the missed words. Your original score stays the same.</p>}
           {saveState === 'saved' && <p role="status" className={styles.saved}><Check size={16} aria-hidden="true" />Your completion is saved.{pointsAwarded > 0 ? ` +${pointsAwarded} points!` : ''}</p>}
@@ -269,11 +266,12 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           <p className="mt-3 text-sm text-text-muted">Say it aloud or write on paper. Ungraded; not saved here.</p>
         </section>
         <div className="mt-7 flex flex-col items-stretch gap-3">
-          <button className={primary} onClick={() => setStage('start')}>Finish for today</button>
+          <button className={primary} disabled={!!assignedLesson && hasUnsaved} onClick={() => assignedLesson ? router.push(returnHref) : setStage('start')}>{assignedLesson ? 'Back to course map' : 'Finish for today'}</button>
           {missedQuestions.length > 0 && <button className={secondary} onClick={() => { setMissed(missedQuestions); setIndex(0); setSelection(null); setStage('question'); }}>Review missed questions</button>}
+          {assignedLesson && <button className={secondary} disabled={hasUnsaved} onClick={() => setStage('start')}>More Word Jobs lessons</button>}
         </div>
       </main> : <main>
-        <p className="mb-3 text-sm font-semibold text-text-muted">{stage === 'example' ? `Example ${index + 1} of ${lesson.examples.length}` : `${missed ? 'Practice' : item.review ? 'Familiar review · Question' : 'Question'} ${index + 1} of ${questions.length}`}</p>
+        <p className="mb-3 text-sm font-semibold text-text-muted">{stage === 'example' ? `Example ${index + 1} of ${lesson.examples.length}` : round ? `Round ${roundIndex + 1} · ${item.review ? 'Familiar review · ' : ''}Question ${index - roundStarts[roundIndex] + 1} of ${round.questions.length}` : `${missed ? 'Practice' : item.review ? 'Familiar review · Question' : 'Question'} ${index + 1} of ${questions.length}`}</p>
         <h1 ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-2xl sm:text-3xl`}>{stage === 'example' ? lesson.title : questionPrompt(item, lesson)}</h1>
         <div className={`${styles.panel} mt-7 rounded-2xl border border-border bg-white p-5 dark:bg-[#162b3d] sm:p-7`}>
           <div className="grid grid-cols-[minmax(0,1fr)_48px] items-center gap-3">
@@ -310,8 +308,8 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         {(stage === 'example' || selection) && <div className="mt-6 flex justify-end"><button className={`${primary} w-full sm:min-w-36 sm:w-auto`} onClick={() => {
           if (stage === 'question') nextQuestion();
           else if (index + 1 < lesson.examples.length) setIndex(index + 1);
-          else { setStage('question'); setIndex(0); }
-        }}>{stage === 'example' && index + 1 === lesson.examples.length ? 'Try it' : stage === 'question' && index + 1 === questions.length ? 'See results' : 'Next'} <ArrowRight size={18} aria-hidden="true" /></button></div>}
+          else { setStage(lesson.rounds ? 'round' : 'question'); setIndex(0); }
+        }}>{stage === 'example' && index + 1 === lesson.examples.length ? 'Try it' : stage === 'question' && index + 1 === questions.length ? 'See results' : stage === 'question' && roundStarts.includes(index + 1) ? 'Next round' : 'Next'} <ArrowRight size={18} aria-hidden="true" /></button></div>}
         </div>
       </main>}
     </div>
