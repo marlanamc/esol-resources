@@ -59,11 +59,6 @@
 .score strong { font-size: 1.7rem; line-height: 1.2; }
 .saved { display: flex; align-items: center; gap: .4rem; font-size: .875rem; margin-top: 1rem; }
 .saved svg { flex-shrink: 0; }
-.transfer { margin-top: 1.25rem; padding: 1.5rem; border-radius: 1.25rem; border: 1px solid #e6d1b3; background: #fff4e2; color: var(--color-text); }
-.transferTitle { display: flex; align-items: center; gap: .65rem; }
-.transferTitle svg { flex-shrink: 0; color: #9c502e; }
-.transfer h2 { margin: 0; }
-.sentenceExample { margin-top: 1rem; padding: 1rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: .8rem; line-height: 1.8; }
 .bridgeRow { padding: 1rem; border-radius: .85rem; background: var(--cue-bg); border-left: 3px solid var(--cue); }
 .bridgeRow dt { color: var(--cue); }
 :global(.dark) .blue { --cue: #a7cefc; --cue-bg: #203b56; }
@@ -75,8 +70,6 @@
 :global(.dark) .rose { --cue: #f4b5d0; --cue-bg: #462f40; }
 :global(.dark) .target:not(.revealed) { background: #3e4752; }
 :global(.dark) .completion { background: #1d3a35; color: #c1e8d3; border-color: #416559; }
-:global(.dark) .transfer { background: #322e27; border-color: #68523d; }
-:global(.dark) .transferTitle svg { color: #efba89; }
 :global(.dark) .primary { color: #122536; }
 :global(.dark) .primary:hover { background: color-mix(in srgb, var(--color-primary) 88%, white); }
 .completionTitle { flex-wrap: wrap; }
@@ -135,3 +128,4 @@
 .roundDots li.roundCurrent { background: var(--color-primary); }
 .roundScores { display: flex; flex-direction: column; gap: .35rem; margin-top: .75rem; padding: 0; list-style: none; }
 .roundScores li { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .75rem; border-radius: .6rem; background: var(--color-bg-light); }
+.roundDoneNote { display: inline-flex; align-items: center; gap: .4rem; font-weight: 600; color: var(--color-text-muted); }
