@@ -6,9 +6,9 @@ import type { CourseMapUnit } from "@/lib/course-map";
 /**
  * The weekday a class week becomes "this week" for students, and the hour it
  * turns over. Content opens earlier — Sunday 8am, see WEEK_REVEAL_* — so there
- * is a deliberate early-access window before the week is the one being taught.
+ * is a short Sunday early-access window before the week is the one being taught.
  */
-export const WEEK_SWITCH_WEEKDAY = 2; // Tuesday
+export const WEEK_SWITCH_WEEKDAY = 1; // Monday
 export const WEEK_SWITCH_HOUR = 0; // midnight
 
 /**

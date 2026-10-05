@@ -28,14 +28,14 @@ const inET = (d: Date) =>
 const allWeeks = Array.from({ length: 36 }, (_, i) => i + 1);
 
 describe("weekSwitchAt", () => {
-    it("switches at Tuesday midnight Eastern for the Sept 21 week", () => {
-        expect(weekSwitchAt("2026-09-21").toISOString()).toBe("2026-09-22T04:00:00.000Z");
+    it("switches at Monday midnight Eastern for the Sept 21 week", () => {
+        expect(weekSwitchAt("2026-09-21").toISOString()).toBe("2026-09-21T04:00:00.000Z");
     });
 
-    it("always lands on Tuesday 00:00 local, including across DST changes", () => {
+    it("always lands on Monday 00:00 local, including across DST changes", () => {
         for (const week of buildTeachingWeeks()) {
             const label = inET(weekSwitchAt(week.weekStart));
-            expect(label).toContain("Tue");
+            expect(label).toContain("Mon");
             expect(label).toContain("00:00");
         }
     });
@@ -48,20 +48,20 @@ describe("weekSwitchAt", () => {
 });
 
 describe("resolveScheduledTeachingWeek", () => {
-    it("still shows Week 1 on Monday September 21", () => {
+    it("still shows Week 1 at 11:59pm Sunday September 20", () => {
+        expect(resolveScheduledTeachingWeek(new Date("2026-09-21T03:59:00Z"))?.weekNumber).toBe(1);
+    });
+
+    it("switches to Week 2 at midnight Eastern on Monday September 21", () => {
+        expect(resolveScheduledTeachingWeek(new Date("2026-09-21T04:00:00Z"))?.weekNumber).toBe(2);
+    });
+
+    it("shows Week 2 on Monday September 21", () => {
         // Mon Sep 21, 8am ET
-        expect(resolveScheduledTeachingWeek(new Date("2026-09-21T12:00:00Z"))?.weekNumber).toBe(1);
+        expect(resolveScheduledTeachingWeek(new Date("2026-09-21T12:00:00Z"))?.weekNumber).toBe(2);
     });
 
-    it("still shows Week 1 at 11:59pm Monday", () => {
-        expect(resolveScheduledTeachingWeek(new Date("2026-09-22T03:59:00Z"))?.weekNumber).toBe(1);
-    });
-
-    it("switches to Week 2 at midnight Eastern on Tuesday September 22", () => {
-        expect(resolveScheduledTeachingWeek(new Date("2026-09-22T04:00:00Z"))?.weekNumber).toBe(2);
-    });
-
-    it("does not advance during the Sunday 8pm early-access window", () => {
+    it("does not advance during the Sunday early-access window", () => {
         // Sun Sep 20, 9pm ET — Week 2 content is open but the class is on Week 1.
         expect(resolveScheduledTeachingWeek(new Date("2026-09-21T01:00:00Z"))?.weekNumber).toBe(1);
     });
@@ -92,11 +92,11 @@ describe("resolveCurrentWeek — classroom", () => {
             now: new Date(iso),
         });
 
-    it("keeps Week 1 on Monday even when Week 1 is unfinished", () => {
-        expect(at("2026-09-21T12:00:00Z")).toMatchObject({ weekNumber: 1, source: "calendar" });
+    it("keeps Week 1 on Sunday even when Week 1 is unfinished", () => {
+        expect(at("2026-09-21T01:00:00Z")).toMatchObject({ weekNumber: 1, source: "calendar" });
     });
 
-    it("moves to Week 2 on Tuesday even when Week 1 is unfinished", () => {
+    it("moves to Week 2 on Monday even when Week 1 is unfinished", () => {
         expect(at("2026-09-22T04:00:00Z")).toMatchObject({ weekNumber: 2, source: "calendar" });
     });
 
@@ -163,9 +163,9 @@ describe("Week 3 release and classroom changeover", () => {
     it.each([
         ["2026-09-27T11:59:59Z", 2, false],
         ["2026-09-27T12:00:00Z", 2, true],
-        ["2026-09-28T15:18:00Z", 2, true],
-        ["2026-09-29T03:59:59Z", 2, true],
-        ["2026-09-29T04:00:00Z", 3, true],
+        ["2026-09-28T03:59:59Z", 2, true],
+        ["2026-09-28T04:00:00Z", 3, true],
+        ["2026-09-28T15:18:00Z", 3, true],
     ])("at %s features Week %i", (instant, expectedWeek, week3Released) => {
         const now = new Date(instant);
         const teaching = buildTeachingWeeks();
@@ -189,8 +189,8 @@ describe("resolveEarlyAccessWeek", () => {
     it.each([
         ["2026-09-27T11:59:59Z", null], // Sun 7:59am ET: Week 3 not open yet
         ["2026-09-27T12:00:00Z", 3], // Sun 8am ET: Week 3 opens early
-        ["2026-09-29T03:59:59Z", 3], // Mon 11:59pm ET: still early access
-        ["2026-09-29T04:00:00Z", null], // Tue midnight ET: Week 3 is now this week
+        ["2026-09-28T03:59:59Z", 3], // Sun 11:59pm ET: still early access
+        ["2026-09-28T04:00:00Z", null], // Mon midnight ET: Week 3 is now this week
     ])("at %s offers early access to Week %s", (instant, expected) => {
         expect(at(instant)).toBe(expected);
     });
