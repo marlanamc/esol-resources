@@ -641,7 +641,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
     {
       id: "how-much-how-many-qws1",
       type: "word-scramble" as const,
-      question: "Claudette calls Fabienne from the store. Put her question in order.",
+      question: "Claudette calls Fabienne from the grocery store. Put her question in order.",
       words: ["How", "many", "eggs", "do", "we", "have"],
       correctAnswer: "How many eggs do we have",
       hint: "How many + plural countable noun",
