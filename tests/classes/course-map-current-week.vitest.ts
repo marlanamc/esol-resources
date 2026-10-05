@@ -183,7 +183,7 @@ describe("resolveEarlyAccessWeek", () => {
             .filter((week) => week.revealAt <= now)
             .map((week) => week.index);
         const resolution = resolveCurrentWeek({ mode: "classroom", visibleWeeks, progressWeek: null, now });
-        return resolveEarlyAccessWeek(resolution, visibleWeeks);
+        return resolveEarlyAccessWeek(resolution, visibleWeeks, now);
     };
 
     it.each([
@@ -193,6 +193,16 @@ describe("resolveEarlyAccessWeek", () => {
         ["2026-09-28T04:00:00Z", null], // Mon midnight ET: Week 3 is now this week
     ])("at %s offers early access to Week %s", (instant, expected) => {
         expect(at(instant)).toBe(expected);
+    });
+
+    it("waits for the calendar reveal even when every week is visible (admin view)", () => {
+        const now = new Date("2026-10-05T16:00:00Z"); // Mon noon ET, Week 4
+        const resolution = resolveCurrentWeek({ mode: "classroom", visibleWeeks: allWeeks, progressWeek: null, now });
+        expect(resolution?.weekNumber).toBe(4);
+        expect(resolveEarlyAccessWeek(resolution, allWeeks, now)).toBeNull();
+        const sunday = new Date("2026-10-11T12:00:00Z"); // Sun 8am ET: Week 5 opens
+        const early = resolveCurrentWeek({ mode: "classroom", visibleWeeks: allWeeks, progressWeek: null, now: sunday });
+        expect(resolveEarlyAccessWeek(early, allWeeks, sunday)).toBe(5);
     });
 
     it("never applies to independent learners or fallback weeks", () => {

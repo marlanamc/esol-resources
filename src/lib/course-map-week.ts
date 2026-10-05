@@ -150,7 +150,7 @@ async function buildCurrentWeekSnapshot(
         mode: learnerMode,
         units,
         guidedProgress,
-        earlyAccessWeekNumber: resolveEarlyAccessWeek(resolved, visibleWeeks),
+        earlyAccessWeekNumber: resolveEarlyAccessWeek(resolved, visibleWeeks, options?.now),
     };
 }
 
