@@ -222,9 +222,9 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           { speaker: "Mark", avatar: "👨🏿", text: "Carlos! I’ve <strong>looked</strong> everywhere for that bag!", side: "left", tone: "amber" },
           { speaker: "Carlos", avatar: "👨🏽", text: "Sorry. I <strong>grabbed</strong> the wrong one this morning. I <strong>opened</strong> it at break. Here’s your ring.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "👨🏿", text: "Thank you. Now I have to tell you something. I ate your sandwich at lunch.", side: "left", tone: "amber" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "So Carlos has <strong>missed</strong> dinner, but he saved your big night. Go, Mark! You have twenty minutes.", side: "left", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "So I’ve <strong>missed</strong> dinner, but I saved your big night. Go, Mark! You have twenty minutes.", side: "right", tone: "terracotta" },
         ])}
-        <p>Carlos tells what happened this morning. Mark and Fernanda connect the past to right now. The examples below show how V2 and V3 work with the same verb.</p>
+        <p>Carlos tells what happened this morning. Mark and Carlos also connect the past to right now. The examples below show how V2 and V3 work with the same verb.</p>
         <p><strong>Quick form check:</strong> “I grabbed the bag this morning” uses <strong>V2</strong>. “I’ve looked everywhere” uses <strong>have + V3</strong>. <strong>I’ve</strong> means <strong>I have</strong>.</p>
         <p>For regular verbs, V2 and V3 both end in <strong>-ed</strong>. They look the same; the words around them help you understand the meaning.</p>
         <p><strong>Try it:</strong> Tell a partner one thing you did yesterday. Check the verb and tell it again. You can invent details.</p>
@@ -237,19 +237,19 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "After Mark leaves, Fernanda says, “I’ve worked at the clinic for two years.” What does she mean?",
+              label: "Carlos tells Mark, “I’ve worked at La Palma for four years. This is my first mix-up!” What does he mean?",
               options: [
                 {
                   value: "finished",
-                  label: "She stopped working there two years ago."
+                  label: "He stopped working there four years ago."
                 },
                 {
                   value: "still",
-                  label: "She started two years ago and still works there."
+                  label: "He started four years ago and still works there."
                 },
                 {
                   value: "future",
-                  label: "She will start there in two years."
+                  label: "He will start there in four years."
                 }
               ],
               expectedAnswer: "still"
@@ -283,14 +283,50 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           { speaker: "Sarah", avatar: "👩🏻", text: "Big news. Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry.", side: "right", tone: "terracotta" },
           { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you tomorrow. Thank you, Carlos!", side: "left", tone: "amber" },
-          { speaker: "Fernanda", avatar: "👩🏾", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow.", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏻", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> hungry since six. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
         ])}
         <p><strong>Be</strong> and <strong>have</strong> change in special ways. Don’t add <em>-ed</em>.</p>
+        <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+            <thead>
+              <tr style="background: rgba(106,141,115,0.12)">
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Form</th>
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">be</th>
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">have</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">V1</td>
+                <td style="padding: 0.6rem 0.75rem">be</td>
+                <td style="padding: 0.6rem 0.75rem">have</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">V1-s</td>
+                <td style="padding: 0.6rem 0.75rem">is</td>
+                <td style="padding: 0.6rem 0.75rem">has</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">V-ing</td>
+                <td style="padding: 0.6rem 0.75rem">being</td>
+                <td style="padding: 0.6rem 0.75rem">having</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">V2</td>
+                <td style="padding: 0.6rem 0.75rem">was / were</td>
+                <td style="padding: 0.6rem 0.75rem">had</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">V3</td>
+                <td style="padding: 0.6rem 0.75rem">been</td>
+                <td style="padding: 0.6rem 0.75rem">had</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="gc-callout-sage" style="padding:1rem; border-radius:.5rem; background:rgba(106,141,115,.12)">
-          <p><strong>Be:</strong> V1 be · V1-s is · V-ing being · V2 was/were · V3 been</p>
-          <p><strong>Have:</strong> V1 have · V1-s has · V-ing having · V2 had · V3 had</p>
-          <p>In present statements, use <strong>I am, he/she/it is, you/we/they are</strong>.</p>
+          <p style="margin:0">In present statements, use <strong>I am, he/she/it is, you/we/they are</strong>.</p>
         </div>
         <p><strong>Join the chat:</strong> “Today I am ___. Yesterday I was ___. I have ___.” Say or write your own reply. You can invent details.</p>
         <p><strong>Check one thing:</strong> “Lisa have the ring.” → “Lisa <strong>has</strong> the ring.” With <em>she</em>, use <em>has</em>. Now check one verb in your reply and try again. Return to two forms tomorrow.</p>
@@ -322,7 +358,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Fernanda replies: “We ___ at the café when Mark ran in!” (be)",
+              label: "Mark replies: “Lisa and I ___ both so nervous at dinner!” (be)",
               expectedAnswers: [
                 "were"
               ]
@@ -402,17 +438,17 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qws1",
       type: "word-scramble",
-      question: "The next day, Fernanda texts Sarah from her shift at the clinic. Put her message in order.",
+      question: "The next day at La Palma, Carlos tells Sarah about his job. Put his message in order.",
       words: [
         "years",
         "worked",
         "I",
-        "two",
+        "four",
         "have",
         "here",
         "for"
       ],
-      correctAnswer: "I have worked here for two years",
+      correctAnswer: "I have worked here for four years",
       hint: "have/has + V3",
       explanation: "After have/has, use V3. This connects past experience to the present.",
       topic: "v3",
