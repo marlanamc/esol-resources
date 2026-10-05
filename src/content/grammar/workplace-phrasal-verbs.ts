@@ -951,7 +951,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-11",
-            question: "Complete: 'Nina is ___ the manager this week.'",
+            question: "Complete: 'My coworker is ___ the manager this week.'",
             options: [
                 { value: "b", label: "turning in" },
                 { value: "c", label: "calling back" },

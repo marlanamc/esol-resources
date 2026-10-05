@@ -900,7 +900,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-12",
-            question: "Choose the best sentence to answer: 'What were you doing at 6 PM yesterday?'",
+            question: "Yesterday you made dinner from 5:30 to 7:00. A friend asks about 6 PM. Which sentence is best?",
             options: [
                 { value: "a", label: "I was cooking dinner." },
                 { value: "b", label: "I cooked dinner." },

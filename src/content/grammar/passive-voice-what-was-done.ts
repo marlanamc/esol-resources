@@ -478,7 +478,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Gloria ___ ___ about the schedule change. (negative: was not told)",
+              label: "Gloria ___ ___ about the schedule change. (negative past passive of tell)",
               expectedAnswers: ["was not told", "wasn't told"],
             },
           ],
@@ -679,7 +679,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
     {
       id: "pvwwd-qws1",
       type: "word-scramble" as const,
-      question: "Gloria reads the schedule that was posted at work. Put the words in order.",
+      question: "Gloria reads the new schedule at work. Put the words in order.",
       words: ["The", "schedule", "was", "posted", "by", "the", "manager"],
       correctAnswer: "The schedule was posted by the manager",
       hint: "receiver + was/were + past participle + by + doer",

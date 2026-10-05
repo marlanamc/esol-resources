@@ -481,7 +481,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kevin ___ leaving on time every day.",
+              label: "Kevin ___ on time every day.",
               options: [
                 { value: "a", label: "loves / loves to leave (both correct)" },
                 { value: "b", label: "only loves leaving (gerund only)" },
@@ -491,7 +491,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Elena ___ to clean the top-floor rooms.",
+              label: "Elena ___ the top-floor rooms.",
               options: [
                 { value: "a", label: "enjoys to clean (infinitive only)" },
                 { value: "b", label: "enjoys cleaning (gerund only, enjoy never takes infinitive)" },

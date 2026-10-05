@@ -982,7 +982,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     {
       id: "pos-qws1",
       type: "word-scramble" as const,
-      question: "Dilnoza tells Amara about her sister. Put the words in order.",
+      question: "Amara tells a friend about Dilnoza. Put the words in order.",
       words: ["Her", "sister", "has", "a", "part-time", "job"],
       correctAnswer: "Her sister has a part-time job",
       hint: "Adjectives go before the noun",

@@ -629,7 +629,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "She ___ (climb) Mount Everest—it's on her bucket list.",
+                            label: "She ___ (climb) Mount Everest. She has a photo from the top.",
                             expectedAnswer: "has climbed",
                         },
                         {

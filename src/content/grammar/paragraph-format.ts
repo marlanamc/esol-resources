@@ -876,7 +876,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
         {
             id: "quiz-4",
             question:
-                "What does 'unity' mean when describing East Boston stories?",
+                "What does 'unity' mean in a paragraph?",
             options: [
                 {
                     value: "a",
@@ -1017,7 +1017,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
         {
             id: "quiz-11",
             question:
-                "What does 'coherence' mean after describing Harborwalk improvements?",
+                "What does 'coherence' mean in a paragraph?",
             options: [
                 {
                     value: "a",

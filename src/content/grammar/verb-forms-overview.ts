@@ -237,7 +237,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Carlos tells Mark, “I’ve worked at La Palma for four years. This is my first mix-up!” What does he mean?",
+              label: "Carlos says sorry to Mark: “I’ve worked at La Palma for four years. This is my first mix-up!” What does he mean?",
               options: [
                 {
                   value: "finished",
@@ -438,7 +438,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qws1",
       type: "word-scramble",
-      question: "The next day at La Palma, Carlos tells Sarah about his job. Put his message in order.",
+      question: "The next day, a new coworker at La Palma asks Carlos, “When did you start here?” Put his answer in order.",
       words: [
         "years",
         "worked",
@@ -458,7 +458,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     },
     {
       id: "vfo-q8",
-      question: "Sarah wants to say Lisa is wearing the ring now. Which message fits?",
+      question: "Sarah writes to the group chat about Lisa right now. Which message is correct?",
       options: [
         {
           value: "a",
