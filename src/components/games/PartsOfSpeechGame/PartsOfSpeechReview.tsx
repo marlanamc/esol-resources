@@ -252,7 +252,8 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           {saveState === 'saved' && <p role="status" className={styles.saved}><Check size={16} aria-hidden="true" />Your completion is saved.{pointsAwarded > 0 ? ` +${pointsAwarded} points!` : ''}</p>}
         </section>
         <div className="mt-7 flex flex-col items-stretch gap-3">
-          <button className={primary} disabled={hasUnsaved} onClick={() => setStage('start')}>Back to Word Jobs <ArrowRight size={18} aria-hidden="true" /></button>
+          {/* Finish where the student started: the course map for an assigned lesson, otherwise the Word Jobs menu. */}
+          <button className={primary} disabled={hasUnsaved} onClick={() => assignedLesson ? router.push(returnHref) : setStage('start')}>{assignedLesson ? 'Back to course map' : 'Back to Word Jobs'} <ArrowRight size={18} aria-hidden="true" /></button>
           {missedQuestions.length > 0 && <button className={secondary} onClick={() => { setMissed(missedQuestions); setIndex(0); setSelection(null); setStage('question'); }}>Review missed questions</button>}
         </div>
       </main> : <main>
