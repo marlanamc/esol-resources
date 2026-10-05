@@ -24,7 +24,11 @@ import {
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
-import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
+import {
+  RETURN_TO_QUERY_PARAM,
+  resolveLearnerReturnHrefSync,
+  sanitizeInternalHref,
+} from '@/lib/learner/navigation';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { useTheme } from '@/components/layout/ThemeProvider';
 import {
@@ -226,12 +230,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     }));
   }, [state.difficulty]);
 
-  // Auto-start into sorting mode — the menu is informational but not needed in the course path.
+  // Auto-start from the course map only — the menu is informational but not needed in the course path.
+  // Everywhere else (home featured items, activities list) students see the menu first.
+  const launchedFromCourseMap = Boolean(
+    sanitizeInternalHref(searchParams.get(RETURN_TO_QUERY_PARAM))?.startsWith('/dashboard/map')
+  );
   useEffect(() => {
-    if (autoStartedRef.current || state.phase !== 'menu') return;
+    if (!launchedFromCourseMap || autoStartedRef.current || state.phase !== 'menu') return;
     autoStartedRef.current = true;
     startGame(state.mode);
-  }, [state.phase, state.mode, startGame]);
+  }, [launchedFromCourseMap, state.phase, state.mode, startGame]);
 
   const handleSortingAnswer = useCallback((answer: EdSound) => {
     if (state.showFeedback) return;
