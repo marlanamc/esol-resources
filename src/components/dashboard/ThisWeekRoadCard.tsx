@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { ChevronDown, ChevronRight, Play } from "lucide-react";
 import type { TimelineItem } from "@/components/dashboard/ActivityTimeline";
-import { ActivityRow } from "@/components/dashboard/course-map-road/parts";
+import { ActivityRow, SegmentedProgress } from "@/components/dashboard/course-map-road/parts";
 import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
@@ -88,21 +88,7 @@ export function ThisWeekRoadCard({
                     <h2 className="mt-2 mb-0 font-display text-[24px] font-bold leading-tight text-text">{weekTitle}</h2>
                     {items.length > 0 ? (
                         <div className="mt-2.5 flex items-center gap-3">
-                            <div className="flex flex-1 gap-1" aria-hidden>
-                                {activities.map((activity) => (
-                                    <span
-                                        key={activity.id}
-                                        className="h-2 flex-1 rounded"
-                                        style={{
-                                            background: activity.done
-                                                ? "var(--success-color)"
-                                                : activity.isNext
-                                                  ? `color-mix(in srgb, ${tone.accent} 45%, transparent)`
-                                                  : "var(--road-progress-todo)",
-                                        }}
-                                    />
-                                ))}
-                            </div>
+                            <SegmentedProgress activities={activities} accent={tone.accent} />
                             <span className="text-[13.5px] font-bold whitespace-nowrap text-text-muted">
                                 {progress.done} of {progress.total} done
                             </span>
