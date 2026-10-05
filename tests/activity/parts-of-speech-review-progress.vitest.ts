@@ -27,7 +27,7 @@ describe('Parts of Speech review persistence', () => {
     const payloads = await Promise.all(responses.map(response => response.json()));
     expect(payloads.map(p => p.pointsAwarded)).toEqual([3, 0]);
     expect(db.award).toHaveBeenCalledTimes(1);
-    for (const payload of payloads) expect(payload).toMatchObject({ ok: true, progress: 100, status: 'completed', correct: 8 });
+    for (const payload of payloads) expect(payload).toMatchObject({ ok: true, progress: 100, status: 'completed', correct: 18 });
   });
   it('preserves library records and completes even at zero correct', async () => {
     const library = { 'pos-1-verbs': { stage: 'mastered' } };
@@ -36,6 +36,13 @@ describe('Parts of Speech review persistence', () => {
     const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
     expect(await response.json()).toMatchObject({ correct: 0, progress: 100 });
     expect(JSON.parse(db.rows[0].categoryData as string)['pos-1-verbs']).toEqual(library['pos-1-verbs']);
+  });
+  it('keeps a result saved from the older eight-question lesson', async () => {
+    const old = { completed: true, correct: 6, total: 8, completedAt: 'then', attemptId: '33333333-3333-4333-8333-333333333333' };
+    db.rows = [{ id: 'existing', progress: 100, categoryData: JSON.stringify({ _partsOfSpeechReview: { version: 1, lessons: { 'nouns-verbs': old } } }) }];
+    const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', attempt());
+    expect((await response.json()).review.lessons['nouns-verbs']).toEqual(old);
+    expect(db.writes).toBe(0);
   });
   it('rejects incomplete attempts before any database write', async () => {
     await expect(savePartsOfSpeechReview('student', 'parts-of-speech-game', { ...attempt(), answers: [] })).rejects.toThrow();
@@ -47,7 +54,7 @@ it('saves a later week independently without completing the foundation and award
     const lessonId = 'week-5-subjects';
     const input = { ...attempt(), lessonId, answers: correctAnswers(lessonId) };
     const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
-    expect(await response.json()).toMatchObject({ progress: 0, status: 'in_progress', pointsAwarded: 3, review: { lessons: { 'week-5-subjects': { completed: true, correct: 8 } } } });
+    expect(await response.json()).toMatchObject({ progress: 0, status: 'in_progress', pointsAwarded: 3, review: { lessons: { 'week-5-subjects': { completed: true, correct: 18, total: 18 } } } });
     await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
     expect(db.writes).toBe(1);
     const saved = JSON.parse(db.rows[0].categoryData as string)._partsOfSpeechReview.lessons;

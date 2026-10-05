@@ -70,9 +70,9 @@ async function importGame() {
     });
 
     const baseData = {
-      title: 'Parts of Speech Discovery Game',
+      title: 'Word Jobs',
       description:
-        'Learn all 8 parts of speech through discovery-based exercises. Master nouns, verbs, adjectives, adverbs, prepositions, conjunctions, pronouns, and articles — then see how they connect to grammar patterns like gerunds and infinitives.',
+        'Every word has a job. Find nouns, verbs, adjectives, and more in everyday sentences, in three short rounds. The original parts of speech practice library is linked at the bottom.',
       type: 'game',
       category: 'games',
       level: 'beginner',
@@ -97,7 +97,7 @@ async function importGame() {
       console.log('✅ Activity created:', created.id);
     }
 
-    console.log('   Title: Parts of Speech Discovery Game');
+    console.log('   Title: Word Jobs');
     console.log('   Type:  game');
     console.log('   UI:    parts-of-speech');
     console.log('\n🔗 Access at: /activity/parts-of-speech-game');
