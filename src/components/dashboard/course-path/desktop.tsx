@@ -1,7 +1,12 @@
 "use client";
 
 import { Check, ChevronDown, ChevronRight, Plus, RotateCcw } from "lucide-react";
-import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
+import {
+    ActivityRow,
+    SegmentedProgress,
+    timelineToRoadActivities,
+} from "@/components/dashboard/course-map-road/parts";
+import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 import type { CourseMapActivity } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
@@ -359,11 +364,21 @@ export function DesktopWeekPanel({
           : isAhead
             ? "Coming up"
             : "Viewing";
+    const tone = getCourseMapUnitTone(week.unitNumber);
+    const roadActivities = timelineToRoadActivities(
+        buildWeekTimelineItems(
+            week.level.requiredActivities,
+            guidedProgress,
+            guidedAssignments,
+            currentId,
+            buildMapReturnHref(week.level.levelNumber, true)
+        )
+    );
 
     return (
         <section
             id={`week-${week.level.levelNumber}`}
-            className={`dashboard-panel rounded-2xl p-6 ${MAP_SCROLL_MARGIN}`}
+            className={`dashboard-panel rounded-2xl p-6 ${roadStyles.road} ${MAP_SCROLL_MARGIN}`}
             style={courseMapUnitToneStyle(week.unitNumber)}
             aria-labelledby={`week-${week.level.levelNumber}-heading`}
         >
@@ -376,9 +391,19 @@ export function DesktopWeekPanel({
             </h2>
             <button type="button" onClick={onToggle} aria-expanded={isOpen} className="flex w-full items-start gap-5 text-left">
                 <span className="min-w-0 flex-1">
-                    <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                        {weekPrefix ? `${weekPrefix} · ` : ""}
-                        {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
+                    <span className="flex items-center gap-2.5">
+                        <span className="text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                            {weekPrefix && !isScheduled ? `${weekPrefix} · ` : ""}
+                            {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
+                        </span>
+                        {isScheduled && weekPrefix ? (
+                            <span
+                                className="rounded-full px-2.5 py-[3px] text-[11px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                                style={{ background: tone.button, color: "var(--road-on-accent)" }}
+                            >
+                                You are here
+                            </span>
+                        ) : null}
                     </span>
                     <span className="mt-2 block font-display text-3xl font-bold leading-tight text-text">
                         {week.level.levelTitle}
@@ -388,9 +413,14 @@ export function DesktopWeekPanel({
                             {focus}
                         </span>
                     ) : null}
-                </span>
-                <span className="shrink-0 rounded-full border px-5 py-2 text-base font-bold tabular-nums text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 35%, var(--border-subtle))" }}>
-                    {week.requiredDone} / {week.requiredTotal}
+                    {roadActivities.length > 0 ? (
+                        <span className="mt-4 flex max-w-xl items-center gap-3">
+                            <SegmentedProgress activities={roadActivities} accent={tone.accent} />
+                            <span className="text-sm font-bold whitespace-nowrap text-text-muted">
+                                {week.requiredDone} of {week.requiredTotal} done
+                            </span>
+                        </span>
+                    ) : null}
                 </span>
                 <ChevronDown size={22} className="mt-2 shrink-0 rotate-180 text-text" aria-hidden />
             </button>
@@ -409,24 +439,10 @@ export function DesktopWeekPanel({
                 </button>
             ) : null}
 
-            <div className="mt-6">
-                {(() => {
-                    const returnHref = buildMapReturnHref(week.level.levelNumber, true);
-                    const timelineItems = buildWeekTimelineItems(
-                        week.level.requiredActivities,
-                        guidedProgress,
-                        guidedAssignments,
-                        currentId,
-                        returnHref
-                    );
-                    const tone = getCourseMapUnitTone(week.unitNumber);
-                    return (
-                        <ActivityTimeline
-                            items={timelineItems}
-                            accent={{ fg: tone.accent, bg: tone.surface }}
-                        />
-                    );
-                })()}
+            <div className="-mx-6 mt-5">
+                {roadActivities.map((activity) => (
+                    <ActivityRow key={activity.id} activity={activity} showNext inset={24} />
+                ))}
             </div>
 
             {extraPractice.length > 0 ? (

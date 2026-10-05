@@ -6,6 +6,8 @@ import { Check, ChevronDown, ChevronRight, Lock, Play, Plus } from "lucide-react
 import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
+import type { TimelineItem } from "@/components/dashboard/ActivityTimeline";
+import type { CourseMapActivityType } from "@/lib/course-map";
 import {
     formatRoadCtaTitle,
     type RoadActivity,
@@ -306,6 +308,42 @@ export function ActivityRow({
         <Link href={activity.href} className={`${className} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset`} style={style}>
             {content}
         </Link>
+    );
+}
+
+/** Timeline items as road rows; the current item (or first to-do) is next. Locked items get no link. */
+export function timelineToRoadActivities(items: TimelineItem[]): RoadActivity[] {
+    const currentIndex = items.findIndex((item) => item.status === "current");
+    const nextIndex = currentIndex >= 0 ? currentIndex : items.findIndex((item) => item.status === "todo");
+    return items.map((item, index) => ({
+        id: item.activityId,
+        title: item.title,
+        activityType: item.type as CourseMapActivityType,
+        vocabUi: item.vocabUi,
+        href: item.status === "locked" ? null : item.href,
+        done: item.status === "done",
+        isNext: index === nextIndex,
+    }));
+}
+
+/** One bar per activity: green when done, unit color when next. */
+export function SegmentedProgress({ activities, accent }: { activities: RoadActivity[]; accent: string }) {
+    return (
+        <div className="flex flex-1 gap-1" aria-hidden>
+            {activities.map((activity) => (
+                <span
+                    key={activity.id}
+                    className="h-2 flex-1 rounded"
+                    style={{
+                        background: activity.done
+                            ? "var(--success-color)"
+                            : activity.isNext
+                              ? `color-mix(in srgb, ${accent} 45%, transparent)`
+                              : "var(--road-progress-todo)",
+                    }}
+                />
+            ))}
+        </div>
     );
 }
 

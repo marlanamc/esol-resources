@@ -272,7 +272,7 @@ export default async function MapPage({
                                             <circle cx="28" cy="28" r="22" fill="none" stroke="var(--border-subtle)" strokeWidth="5" />
                                             <circle
                                                 cx="28" cy="28" r="22" fill="none"
-                                                stroke={overallPct >= 100 ? "#e8933a" : "var(--primary, #b05740)"}
+                                                stroke="var(--success-color)"
                                                 strokeWidth="5"
                                                 strokeLinecap="round"
                                                 strokeDasharray={`${2 * Math.PI * 22}`}
@@ -294,14 +294,12 @@ export default async function MapPage({
                                         <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
                                     </div>
                                 </div>
-                                <div className="relative h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--surface-subtle)", border: "1px solid var(--border-subtle)" }}>
+                                <div className="relative h-2 w-full overflow-hidden rounded" style={{ background: "var(--surface-subtle)" }}>
                                     <div
-                                        className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-700 ease-out"
+                                        className="absolute inset-y-0 left-0 rounded transition-[width] duration-700 ease-out"
                                         style={{
                                             width: `${overallPct}%`,
-                                            background: overallPct >= 100
-                                                ? "linear-gradient(90deg, #b8442a 0%, #e8933a 70%, #f5c842 100%)"
-                                                : "linear-gradient(90deg, var(--primary, #b05740) 0%, #c98b3a 100%)",
+                                            background: "var(--success-color)",
                                         }}
                                     />
                                 </div>
