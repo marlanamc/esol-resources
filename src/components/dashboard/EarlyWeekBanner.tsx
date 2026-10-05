@@ -12,7 +12,7 @@ const dismissKey = (weekNumber: number) => `early-week-banner-dismissed:${weekNu
 
 /**
  * "Week N is open!" strip shown during the early-access window, between the
- * Sunday reveal and the Tuesday classroom switch. Dismissing hides it for
+ * Sunday reveal and the Monday classroom switch. Dismissing hides it for
  * that week only, so the next week's banner still appears.
  */
 export function EarlyWeekBanner({ weekNumber }: EarlyWeekBannerProps) {

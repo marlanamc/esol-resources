@@ -151,12 +151,18 @@ export function resolveCurrentWeek(options: ResolveCurrentWeekOptions): CurrentW
  * The next week, when it is already open but class has not moved to it yet —
  * the early-access window between WEEK_REVEAL_* and WEEK_SWITCH_*. Only for
  * classroom learners on the calendar week; null otherwise.
+ *
+ * The calendar's reveal time must also have passed: admins see every published
+ * week, so visibility alone would announce next week days before students get it.
  */
 export function resolveEarlyAccessWeek(
     resolution: CurrentWeekResolution | null,
-    visibleWeeks: number[]
+    visibleWeeks: number[],
+    now: Date = new Date()
 ): number | null {
     if (!resolution || resolution.source !== "calendar") return null;
     const next = resolution.weekNumber + 1;
-    return visibleWeeks.includes(next) ? next : null;
+    if (!visibleWeeks.includes(next)) return null;
+    const teaching = buildTeachingWeeks().find((week) => week.index === next);
+    return teaching && teaching.revealAt <= now ? next : null;
 }
