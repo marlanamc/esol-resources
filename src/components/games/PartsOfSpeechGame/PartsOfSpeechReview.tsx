@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
@@ -134,11 +134,6 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   }
   const hasUnsaved = saveState === 'error' || saveState === 'saving';
   const categories = item?.categories ?? lesson.categories;
-  const transfer: NonNullable<ReviewLesson['transfer']> = lesson.transfer ?? {
-    prompt: 'Say or write your own sentence using the pattern in this example.',
-    example: reviewSentence(lesson.examples[0]),
-    check: 'Point to the part you practiced and explain its job. You can ask your teacher for help.',
-  };
   const isSaved = (id: ReviewLessonId) => !!progress.lessons[id];
   const nextLessonId = assignedLesson ?? CORE_ORDER.find(id => !isSaved(id)) ?? CORE_ORDER[0];
   const nextLesson = REVIEW_LESSONS[nextLessonId];
@@ -242,13 +237,13 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
               <span className="sr-only">{r.title}{i < roundIndex ? ', done' : i === roundIndex ? ', now' : ''}</span>
             </li>)}
           </ol>
+          {roundIndex > 0 && <p className={styles.roundDoneNote}><Check size={16} aria-hidden="true" />{lessonRounds![roundIndex - 1].title}: {lessonRounds![roundIndex - 1].questions.filter(isCorrect).length} / {lessonRounds![roundIndex - 1].questions.length} correct</p>}
           <p className="text-[15px] text-text-muted">{round.questions.length} questions</p>
           <button className={`${primary} min-h-[52px] w-full text-[17px]`} onClick={() => setStage('question')}>Start round <ArrowRight size={18} aria-hidden="true" /></button>
         </section>
       </main> : stage === 'results' ? <main>
         <section className={styles.completion} aria-labelledby="completion-title">
           <div className={styles.completionTitle}><CheckCircle2 className={styles.completionIcon} size={32} aria-hidden="true" /><h1 id="completion-title" ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-3xl`}>Lesson complete</h1></div>
-          <p className="mt-3">One lesson is enough for today.</p>
           <p className="mt-4 font-semibold">{lesson.title}</p>
           <div className={styles.score}><strong>{correct} / {lesson.questions.length}</strong><span>correct on this review</span></div>
           {lesson.rounds && <ul className={styles.roundScores}>{lesson.rounds.map(r => <li key={r.kind}><span>{r.title}</span><strong>{r.questions.filter(isCorrect).length} / {r.questions.length}</strong></li>)}</ul>}
@@ -256,19 +251,9 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           {revisited && <p className="mt-3 text-sm">You revisited the missed words. Your original score stays the same.</p>}
           {saveState === 'saved' && <p role="status" className={styles.saved}><Check size={16} aria-hidden="true" />Your completion is saved.{pointsAwarded > 0 ? ` +${pointsAwarded} points!` : ''}</p>}
         </section>
-        <section className={styles.transfer} aria-labelledby="transfer-title">
-          <div className={styles.transferTitle}><MessageCircle size={24} aria-hidden="true" /><h2 id="transfer-title" className="font-display text-xl">Your turn: use it</h2></div>
-          <p className="mt-3 leading-relaxed">{transfer.prompt}</p>
-          <div className={styles.sentenceExample}><span className="block text-xs font-semibold text-text-muted">EXAMPLE</span>{transfer.parts ? transfer.parts.map((part, index) => part.category ? <mark key={index} title={part.category} className={`${styles.target} ${styles.revealed} ${categoryColorClass(part.category)}`}>{part.text}</mark> : <span key={index}>{part.text}</span>) : transfer.example}
-            {transfer.parts && <div className={styles.cueRow}>{[...new Set(transfer.parts.flatMap(part => part.category ? [part.category] : []))].map(category => <ReviewCategoryCue key={category} category={category} />)}</div>}
-          </div>
-          <p className="mt-3 leading-relaxed">{transfer.check}</p>
-          <p className="mt-3 text-sm text-text-muted">Say it aloud or write on paper. Ungraded; not saved here.</p>
-        </section>
         <div className="mt-7 flex flex-col items-stretch gap-3">
-          <button className={primary} disabled={!!assignedLesson && hasUnsaved} onClick={() => assignedLesson ? router.push(returnHref) : setStage('start')}>{assignedLesson ? 'Back to course map' : 'Finish for today'}</button>
+          <button className={primary} disabled={hasUnsaved} onClick={() => setStage('start')}>Back to Word Jobs <ArrowRight size={18} aria-hidden="true" /></button>
           {missedQuestions.length > 0 && <button className={secondary} onClick={() => { setMissed(missedQuestions); setIndex(0); setSelection(null); setStage('question'); }}>Review missed questions</button>}
-          {assignedLesson && <button className={secondary} disabled={hasUnsaved} onClick={() => setStage('start')}>More Word Jobs lessons</button>}
         </div>
       </main> : <main>
         <p className="mb-3 text-sm font-semibold text-text-muted">{stage === 'example' ? `Example ${index + 1} of ${lesson.examples.length}` : round ? `Round ${roundIndex + 1} · ${item.review ? 'Familiar review · ' : ''}Question ${index - roundStarts[roundIndex] + 1} of ${round.questions.length}` : `${missed ? 'Practice' : item.review ? 'Familiar review · Question' : 'Question'} ${index + 1} of ${questions.length}`}</p>
