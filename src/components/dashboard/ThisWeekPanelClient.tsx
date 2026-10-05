@@ -51,7 +51,7 @@ export function ThisWeekPanelClient({
     const unitLabel = showUnitMonths && unitMonth ? `Unit ${unitNumber} · ${unitMonth}` : `Unit ${unitNumber}`;
 
     // Same rows and colors as the course map road, so desktop and mobile read as one app.
-    const activities = timelineToRoadActivities(items);
+    const activities = timelineToRoadActivities(items, weekNumber);
     const currentItem = activities.find((activity) => activity.isNext);
     const collapsedItems = previewAroundCurrent(activities, currentItem, collapsedLimit);
     const canExpand = activities.length > collapsedItems.length;

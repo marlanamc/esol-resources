@@ -372,7 +372,8 @@ export function DesktopWeekPanel({
             guidedAssignments,
             currentId,
             buildMapReturnHref(week.level.levelNumber, true)
-        )
+        ),
+        week.level.levelNumber
     );
 
     return (

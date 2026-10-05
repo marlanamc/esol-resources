@@ -91,6 +91,8 @@ export interface RoadActivity {
     title: string;
     activityType: CourseMapActivityType;
     vocabUi?: string;
+    /** Course week the activity belongs to; names the vocab set on its row. */
+    weekNumber?: number;
     /** Null when the activity cannot be opened yet. */
     href: string | null;
     done: boolean;
@@ -177,6 +179,37 @@ export function formatRoadCtaTitle(title: string): string {
     return stripVocabPrefix(formatNextUpActivityTitle(title));
 }
 
+const VOCAB_ROUND_TITLES: Record<string, string> = {
+    flashcards: "Flash Cards",
+    matching: "Matching",
+    "fill-blank": "Fill in the Blank",
+};
+
+/**
+ * Title and detail line for a road row. The week heading already names the
+ * week and its topic, so the row leads with what the learner does: vocab
+ * rounds become "Flash Cards" over "Week 4 words", and a "Week 4:" or
+ * "Week 4 Quiz —" prefix is dropped. `formatLabel` is the activity format
+ * ("Quiz", "Game"); it is left out when the title already says it.
+ */
+export function formatRoadRowLabels(
+    activity: Pick<RoadActivity, "title" | "vocabUi" | "weekNumber">,
+    formatLabel: string
+): { title: string; detail: string | null } {
+    const vocabTitle = activity.vocabUi ? VOCAB_ROUND_TITLES[activity.vocabUi] : undefined;
+    if (vocabTitle) {
+        const detail = activity.weekNumber ? `Week ${activity.weekNumber} words` : "This week's words";
+        return { title: vocabTitle, detail };
+    }
+    const title =
+        activity.title
+            .replace(/^Week \d+:\s*/i, "")
+            .replace(/^Week \d+ Quiz\s*[—–-]\s*/i, "")
+            .trim() || activity.title;
+    const saysFormat = title.toLowerCase().includes(formatLabel.toLowerCase());
+    return { title, detail: saysFormat ? null : formatLabel };
+}
+
 function toRoadActivity(
     activity: CourseMapActivity,
     weekNumber: number,
@@ -194,6 +227,7 @@ function toRoadActivity(
         title: formatNextUpActivityTitle(activity.title),
         activityType: activity.activityType,
         ...(activity.vocabUi ? { vocabUi: activity.vocabUi } : {}),
+        weekNumber,
         href,
         done: isMapActivityCompleted(activity, progress),
         isNext: false,

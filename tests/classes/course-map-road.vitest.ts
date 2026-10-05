@@ -4,6 +4,7 @@ import {
     buildCourseMapRoad,
     cycleForUnit,
     formatRoadCtaTitle,
+    formatRoadRowLabels,
     formatRoadWeekDates,
     type RoadScheduleWeek,
 } from "@/lib/course-map-road";
@@ -117,5 +118,27 @@ describe("course map road", () => {
         expect(current.activities.filter((a) => a.isNext)).toHaveLength(1);
         expect(current.next?.href).toContain(encodeURIComponent("/dashboard/map?week=4"));
         expect(formatRoadCtaTitle(current.next!.title)).toBe("Flash Cards");
+    });
+});
+
+describe("formatRoadRowLabels", () => {
+    it("leads vocab rounds with the round and names the week's words", () => {
+        expect(formatRoadRowLabels({ title: "Learning English: Flash Cards", vocabUi: "flashcards", weekNumber: 4 }, "Flash cards"))
+            .toEqual({ title: "Flash Cards", detail: "Week 4 words" });
+        expect(formatRoadRowLabels({ title: "Learning English: Fill in the Blank", vocabUi: "fill-blank" }, "Complete sentences"))
+            .toEqual({ title: "Fill in the Blank", detail: "This week's words" });
+    });
+
+    it("drops the week prefix the heading already shows", () => {
+        expect(formatRoadRowLabels({ title: "Week 4: Adjectives and Articles" }, "Game"))
+            .toEqual({ title: "Adjectives and Articles", detail: "Game" });
+        expect(formatRoadRowLabels({ title: "Week 4 Quiz — Review Day" }, "Quiz"))
+            .toEqual({ title: "Review Day", detail: "Quiz" });
+    });
+
+    it("keeps a bare week quiz title and does not repeat its format", () => {
+        expect(formatRoadRowLabels({ title: "Week 9 Quiz" }, "Quiz")).toEqual({ title: "Week 9 Quiz", detail: null });
+        expect(formatRoadRowLabels({ title: "Verb Forms + Your Study Toolkit" }, "Read & practice"))
+            .toEqual({ title: "Verb Forms + Your Study Toolkit", detail: "Read & practice" });
     });
 });

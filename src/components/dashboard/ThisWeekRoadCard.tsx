@@ -25,12 +25,13 @@ export interface ThisWeekRoadCardProps {
     showUnitMonths?: boolean;
 }
 
-function toRoadActivity(item: TimelineItem, isNext: boolean): RoadActivity {
+function toRoadActivity(item: TimelineItem, isNext: boolean, weekNumber: number): RoadActivity {
     return {
         id: item.activityId,
         title: item.title,
         activityType: item.type as CourseMapActivityType,
         vocabUi: item.vocabUi,
+        weekNumber,
         href: item.href,
         done: item.status === "done",
         isNext,
@@ -59,7 +60,7 @@ export function ThisWeekRoadCard({
     const weekDone = progress.total > 0 && progress.done >= progress.total;
 
     const currentIndex = items.findIndex((item) => item.status === "current" || item.status === "todo");
-    const activities = items.map((item, index) => toRoadActivity(item, index === currentIndex));
+    const activities = items.map((item, index) => toRoadActivity(item, index === currentIndex, weekNumber));
     // The Continue button already names the next activity; the list stays folded until asked for.
     const canExpand = activities.length > 0;
 

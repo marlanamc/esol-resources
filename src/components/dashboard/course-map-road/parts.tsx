@@ -10,6 +10,7 @@ import type { TimelineItem } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivityType } from "@/lib/course-map";
 import {
     formatRoadCtaTitle,
+    formatRoadRowLabels,
     type RoadActivity,
     type RoadCycle,
     type RoadUnit,
@@ -239,6 +240,7 @@ export function ActivityRow({
     const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
     const tone = getLearnerCategoryTone(format.tone);
     const Icon = format.icon;
+    const labels = formatRoadRowLabels(activity, format.label);
     const locked = !activity.done && activity.href == null;
 
     // The circle wears the activity's color: soft when done, outlined when waiting, filled when next.
@@ -273,10 +275,12 @@ export function ActivityRow({
         <>
             {ring}
             <span className="min-w-0 flex-1">
-                <span className={`block text-[15px] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{activity.title}</span>
-                <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
-                    {format.label}
-                </span>
+                <span className={`block text-[15px] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{labels.title}</span>
+                {labels.detail ? (
+                    <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
+                        {labels.detail}
+                    </span>
+                ) : null}
                 {/* The check badge, lock and Start label carry these visually. */}
                 {activity.done ? <span className="sr-only">Done</span> : null}
                 {locked ? <span className="sr-only">Opens later</span> : null}
@@ -312,7 +316,7 @@ export function ActivityRow({
 }
 
 /** Timeline items as road rows; the current item (or first to-do) is next. Locked items get no link. */
-export function timelineToRoadActivities(items: TimelineItem[]): RoadActivity[] {
+export function timelineToRoadActivities(items: TimelineItem[], weekNumber?: number): RoadActivity[] {
     const currentIndex = items.findIndex((item) => item.status === "current");
     const nextIndex = currentIndex >= 0 ? currentIndex : items.findIndex((item) => item.status === "todo");
     return items.map((item, index) => ({
@@ -320,6 +324,7 @@ export function timelineToRoadActivities(items: TimelineItem[]): RoadActivity[] 
         title: item.title,
         activityType: item.type as CourseMapActivityType,
         vocabUi: item.vocabUi,
+        weekNumber,
         href: item.status === "locked" ? null : item.href,
         done: item.status === "done",
         isNext: index === nextIndex,
