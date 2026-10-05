@@ -144,6 +144,29 @@ if the alternate sentence is something you would not want a student to produce.
 - Aim for a difficulty ramp and an `id` per question; gaps in the id sequence
   (`q1, q3, q9`) usually mean questions were deleted and coverage drifted.
 
+### F. Story framing that makes no sense
+
+Items are often written around the target sentence, and then a story frame
+gets added to justify it. Read each frame and ask: **would this person really
+say this, to this person, at this moment?**
+
+- **Nobody tells someone a fact they already know.** *Found in
+  `verb-forms-overview`:* "Carlos tells Sarah about his job: I have worked here
+  for four years." Sarah is his sister and works at the same restaurant. Fixed
+  by having a new coworker ask "When did you start here?"
+- **The frame must match the answer.** *Found:* "Sarah wants to say Lisa is
+  wearing the ring now," but the answer is "She has the ring now." Having
+  something and wearing it are not the same.
+- **The frame must not hand over the form being tested.** A setup like "asks
+  'How long have you worked here?'" gives away have + V3. Have the character
+  ask a question in a different form instead.
+- **Mini-quiz items do not need to use the story.** The quiz checks the
+  grammar, not the plot, and a neutral setup shows whether students can use
+  the form outside the story. Keep a character only when the situation is
+  natural. Otherwise use a general everyday setup ("At work, someone asks...")
+  or no setup at all ("Put the sentence in order."). This is often better than
+  forcing a plot reason into the item.
+
 ## Step 3 - Look at every scene photo
 
 This is the part no script can do, and the part most likely to be wrong.
@@ -209,7 +232,7 @@ Procedure, for each scene in the guide:
 ## Step 4 - Fix, flag, or ask
 
 Fix directly:
-- anything in steps 2A-2E that is clearly wrong, plus alt text and ledger entries
+- anything in steps 2A-2F that is clearly wrong, plus alt text and ledger entries
 
 Flag, do not change:
 - anything that looks like a deliberate choice by the teacher - seasonal or

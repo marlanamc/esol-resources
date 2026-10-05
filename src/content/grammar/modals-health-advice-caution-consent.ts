@@ -563,7 +563,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                         },
                         {
                             type: "radio",
-                            label: "The warning says: 'Do not operate machinery after taking this medication.'",
+                            label: "The warning says: 'Do not drive after taking this medication.'",
                             options: [
                                 { value: "should not", label: "You should not drive. (advice)" },
                                 { value: "must not", label: "You must not drive. (dangerous/forbidden)" },
@@ -939,7 +939,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
       {
         id: "quiz-14",
         question:
-          "The warning says: 'Do not operate machinery after taking this medication.' Which sentence matches this warning?",
+          "The warning says: 'Do not drive after taking this medication.' Which sentence matches this warning?",
         options: [
           {
             value: "a",

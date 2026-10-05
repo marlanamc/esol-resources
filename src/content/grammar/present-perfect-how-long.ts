@@ -584,12 +584,12 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "How long have you lived in East Boston? -- I ___ (live) here for five years.",
+              label: "A neighbor asks, “Are you new here?” -- No. I ___ (live) here for five years.",
               expectedAnswers: ["have lived"],
             },
             {
               type: "text",
-              label: "Have you supervised other workers? -- I ___ (not / supervise) a team, but I've trained two people.",
+              label: "At an interview, someone asks, “Do you have any experience as a supervisor?” -- I ___ (not / supervise) a team, but I've trained two people.",
               expectedAnswers: ["haven't supervised", "have not supervised"],
             },
           ],

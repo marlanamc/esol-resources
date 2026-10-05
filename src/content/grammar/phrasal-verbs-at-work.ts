@@ -484,7 +484,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Gabriela can't work next Thursday. He needs someone to ___ for him.",
+              label: "Gabriela can't work next Thursday. She needs someone to ___ for her.",
               options: [
                 { value: "a", label: "cover" },
                 { value: "b", label: "clock" },
@@ -511,8 +511,8 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["He", "filled", "out", "the", "shift-swap", "form", "and", "handed", "it", "in"],
-              correctAnswer: "He filled out the shift-swap form and handed it in",
+              words: ["She", "filled", "out", "the", "shift-swap", "form", "and", "handed", "it", "in"],
+              correctAnswer: "She filled out the shift-swap form and handed it in",
             },
           ],
         },
@@ -553,11 +553,11 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     },
     {
       id: "phrasal-verbs-at-work-q2",
-      question: "Marta can't go to work because she is sick. What does he do?",
+      question: "Marta can't go to work because she is sick. What does she do?",
       options: [
-        { value: "a", label: "He shows up late" },
-        { value: "b", label: "He calls in sick" },
-        { value: "c", label: "He picks up a shift" },
+        { value: "a", label: "She shows up late" },
+        { value: "b", label: "She calls in sick" },
+        { value: "c", label: "She picks up a shift" },
       ],
       correctAnswer: "b",
       explanation: "Call in sick means to phone your job before your shift to say you can't come in.",
@@ -569,7 +569,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     {
       id: "phrasal-verbs-at-work-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Gabriela ___ Marta because Marta was sick.\" (Two words: she did his shift for him.)",
+      question: "Fill in the blank: \"Gabriela ___ Marta because Marta was sick.\" (Two words: she did her shift for her.)",
       correctAnswer: "covered for",
       explanation: "Cover for someone means to do their shift because they can't come in.",
       topic: "phrasal-verbs-at-work",

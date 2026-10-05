@@ -404,7 +404,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Marisol paused on the bus in order to look at the directions.",
+              label: "On the way to the bus stop, Marisol stood still for a minute so she could check the directions on her phone.",
               options: [
                 { value: "a", label: "I stopped checking the directions." },
                 { value: "b", label: "I stopped to check the directions." },
@@ -414,7 +414,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Jennifer reminds Marisol to come earlier next time.",
+              label: "Next time, Jennifer wants Marisol to come before 9. What does Jennifer say?",
               options: [
                 { value: "a", label: "Remember coming earlier." },
                 { value: "b", label: "Remember to come earlier." },
