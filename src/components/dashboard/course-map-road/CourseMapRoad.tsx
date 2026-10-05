@@ -1,9 +1,13 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Fragment, type CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import { syncMapUrl } from "@/lib/course-map-navigation";
+import {
+    COURSE_MAP_OPEN_WEEK_EVENT,
+    syncMapUrl,
+    type CourseMapOpenWeekDetail,
+} from "@/lib/course-map-navigation";
 import type { CourseMapRoadModel, RoadUnit, RoadWeek } from "@/lib/course-map-road";
 import {
     CompactWeekRow,
@@ -31,9 +35,19 @@ const SPY_OFFSET_PX = 70;
 /** How much of the current week's card must be on screen to hide "Back to this week". */
 const CURRENT_VISIBLE_PX = 80;
 
+/** Desktop strip pills show their week number while the road is this short. */
+const STRIP_NUMBERS_MAX_WEEKS = 24;
+
 function prefersReducedMotion(): boolean {
     return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
+
+function isDesktop(): boolean {
+    return typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
+}
+
+/** Desktop: breathing room between the strip and the week it lands on. */
+const DESKTOP_LAND_GAP_PX = 16;
 
 function isRendered(el: Element | null): el is HTMLElement {
     return el != null && el.getClientRects().length > 0;
@@ -102,6 +116,21 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
         [stickyOffset]
     );
 
+    // Land with the week just under the strip; desktop leaves a little room above it.
+    const landOn = useCallback(
+        (id: string) => {
+            if (!isDesktop()) {
+                scrollToId(id, "auto");
+                return;
+            }
+            const el = document.getElementById(id);
+            if (!isRendered(el)) return;
+            const top = el.getBoundingClientRect().top + window.scrollY - stickyOffset() - DESKTOP_LAND_GAP_PX;
+            window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+        },
+        [scrollToId, stickyOffset]
+    );
+
     // The sticky bar sits under the app header, whose height varies with safe areas.
     useLayoutEffect(() => {
         const header = document.querySelector(".mode-header");
@@ -119,13 +148,13 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
         didLand.current = true;
         const unitLocked = landing && unitByNumber.get(landing.unitNumber)?.isLocked;
         const target = unitLocked ? `road-unit-${landing.unitNumber}` : `road-week-${landingWeek}`;
-        scrollToId(target, "auto");
+        landOn(target);
         // The router resets scroll after navigation; land again once it has.
         // Not cancelled on cleanup: Strict Mode's re-run returns early above.
         window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => scrollToId(target, "auto"));
+            window.requestAnimationFrame(() => landOn(target));
         });
-    }, [landing, landingWeek, scrollToId, unitByNumber]);
+    }, [landing, landingWeek, landOn, unitByNumber]);
 
     // Run a jump once the folds it opened have rendered.
     useEffect(() => {
@@ -148,6 +177,16 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
         },
         [unitByNumber, weekByNumber]
     );
+
+    // The desktop sidebar asks for a week through the shared open-week event.
+    useEffect(() => {
+        const onOpenWeek = (event: Event) => {
+            const { week } = (event as CustomEvent<CourseMapOpenWeekDetail>).detail;
+            jumpToWeek(week);
+        };
+        window.addEventListener(COURSE_MAP_OPEN_WEEK_EVENT, onOpenWeek);
+        return () => window.removeEventListener(COURSE_MAP_OPEN_WEEK_EVENT, onOpenWeek);
+    }, [jumpToWeek]);
 
     // Scroll-spy: the viewed week is the last spy row whose top has passed the line.
     useEffect(() => {
@@ -205,6 +244,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     const viewedTone = getCourseMapUnitTone(viewed?.unitNumber ?? 1);
     const relation = viewedWeek === currentWeek ? "this" : viewedWeek < currentWeek ? "earlier" : "later";
     const nextWeekOpen = weekByNumber.get(currentWeek + 1)?.isLocked === false;
+    const stripNumbers = weeks.length <= STRIP_NUMBERS_MAX_WEEKS;
 
     // Cycles only mean something once there is more than one on the road.
     const showCycles = cycles.length > 1;
@@ -242,13 +282,14 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     };
 
     return (
-        <div ref={rootRef} className={`-mx-4 font-legible md:-mx-6 ${styles.road}`}>
-            <h1 className="sr-only">Course Map</h1>
+        <div ref={rootRef} className={`-mx-4 font-legible md:-mx-6 lg:mx-0 ${styles.road}`}>
+            {/* Desktop shows a visible title in the sidebar. */}
+            <h1 className="sr-only lg:hidden">Course Map</h1>
 
             {/* Sticky top bar */}
             <div
                 ref={barRef}
-                className="sticky z-30 px-4 pt-3 pb-2.5"
+                className="sticky z-30 px-4 pt-3 pb-2.5 lg:px-1 lg:pt-1 lg:pb-4"
                 style={{
                     top: headerHeight,
                     background: "var(--bg-color)",
@@ -261,10 +302,10 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                             {eyebrow}
                         </p>
                         <p className="m-0 flex items-baseline gap-1.5 leading-tight whitespace-nowrap">
-                            <span className="font-display text-[21px] font-bold text-text">
+                            <span className="font-display text-[21px] font-bold text-text lg:text-[28px]">
                                 {weekNoun} {viewedWeek}
                             </span>
-                            {viewed?.dates ? <span className="text-[14px] font-semibold text-text-muted">{viewed.dates}</span> : null}
+                            {viewed?.dates ? <span className="text-[14px] font-semibold text-text-muted lg:text-[17px]">{viewed.dates}</span> : null}
                         </p>
                     </div>
                     {relation === "this" ? (
@@ -284,7 +325,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                 {/* Week strip */}
                 <div
                     ref={stripRef}
-                    className="relative -mx-4 mt-2.5 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    className="relative -mx-4 mt-2.5 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-4 lg:gap-2.5 lg:overflow-visible lg:px-0.5 lg:py-1"
                 >
                     {cycles.map((cycle, cycleIndex) => (
                         <Fragment key={cycle.number}>
@@ -294,8 +335,12 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                             {cycle.units.map((unit) => {
                                 const tone = getCourseMapUnitTone(unit.unitNumber);
                                 return (
-                                    <div key={unit.unitNumber} className="flex shrink-0 flex-col gap-[3px]">
-                                        <div className="flex gap-[3px]">
+                                    <div
+                                        key={unit.unitNumber}
+                                        className="flex shrink-0 flex-col gap-[3px] lg:min-w-0 lg:shrink lg:[flex-basis:0] lg:[flex-grow:var(--strip-weeks)] lg:gap-1.5"
+                                        style={{ "--strip-weeks": unit.weeks.length } as CSSProperties}
+                                    >
+                                        <div className="flex gap-[3px] lg:gap-1">
                                             {unit.weeks.map((week) => {
                                                 const bg = week.isCurrent
                                                     ? tone.button
@@ -304,6 +349,11 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                                       : week.isFuture || week.isLocked
                                                         ? "var(--road-segment-future)"
                                                         : "var(--road-rail)";
+                                                const fg = week.isCurrent
+                                                    ? "var(--road-on-tone)"
+                                                    : week.isDone
+                                                      ? "var(--road-on-success)"
+                                                      : "var(--road-future-meta)";
                                                 return (
                                                     <button
                                                         key={week.weekNumber}
@@ -312,24 +362,31 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                                         aria-label={`Go to ${weekNoun.toLowerCase()} ${week.weekNumber}`}
                                                         aria-current={week.weekNumber === viewedWeek ? "true" : undefined}
                                                         onClick={() => jumpToWeek(week.weekNumber)}
-                                                        className="icon-button flex h-[22px] w-4 items-center justify-center"
+                                                        className="icon-button flex h-[22px] w-4 items-center justify-center lg:h-8 lg:w-auto lg:min-w-0 lg:flex-1"
                                                     >
                                                         <span
-                                                            className="block h-2.5 w-4 rounded-[3px]"
+                                                            className="flex h-2.5 w-4 items-center justify-center rounded-[3px] lg:h-full lg:w-full lg:rounded-[7px]"
                                                             style={{
                                                                 background: bg,
+                                                                color: fg,
                                                                 boxShadow:
                                                                     week.weekNumber === viewedWeek
                                                                         ? "0 0 0 1.5px var(--bg-color), 0 0 0 3.5px var(--text)"
                                                                         : undefined,
                                                             }}
-                                                        />
+                                                        >
+                                                            {stripNumbers ? (
+                                                                <span aria-hidden className="hidden text-[12px] font-bold lg:inline">
+                                                                    {week.weekNumber}
+                                                                </span>
+                                                            ) : null}
+                                                        </span>
                                                     </button>
                                                 );
                                             })}
                                         </div>
                                         <span
-                                            className="pl-1 text-[10.5px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                                            className="pl-1 text-[10.5px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap lg:pl-1.5 lg:text-[12px] lg:tracking-[.1em]"
                                             style={{ color: tone.accent, borderLeft: `2px solid ${tone.accent}` }}
                                         >
                                             {showMonths && unit.month ? unit.month.slice(0, 3) : `Unit ${unit.unitNumber}`}

@@ -19,6 +19,7 @@ import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { canUseTeacherTools } from "@/lib/auth/roles";
 import { CourseMapJumpToWeek } from "@/components/dashboard/CourseMapJumpToWeek";
 import { CourseMapRoad } from "@/components/dashboard/course-map-road/CourseMapRoad";
+import { CourseMapRoadSidebar } from "@/components/dashboard/course-map-road/CourseMapRoadSidebar";
 import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
 import {
     buildMapWeekProgress,
@@ -252,105 +253,166 @@ export default async function MapPage({
         <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 md:px-6 max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl lg:pt-4">
 
-                {/* Desktop two-column layout */}
-                <div className="hidden lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] lg:gap-8 lg:items-start lg:pt-2">
-
-                    {/* Sticky left sidebar — full unit list; stays pinned while scrolling the path */}
-                    <aside className="sticky top-[5.5rem] z-10 w-full self-start space-y-5">
-                        <div>
-                            <h1 className="text-3xl font-display font-bold text-text leading-tight">Course Map</h1>
-                            <p className="text-sm text-text-muted mt-1">
-                                {showUnitMonths ? "Your next lesson and weekly path" : "Your next lesson and course path"}
-                            </p>
-                        </div>
-
-                        {totalLevels > 0 && (
-                            <div className="dashboard-panel rounded-2xl p-5 space-y-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="relative shrink-0 w-16 h-16" title={`${completedRequired} of ${totalRequired} activities done`}>
-                                        <svg viewBox="0 0 56 56" className="w-full h-full -rotate-90" aria-hidden>
-                                            <circle cx="28" cy="28" r="22" fill="none" stroke="var(--border-subtle)" strokeWidth="5" />
-                                            <circle
-                                                cx="28" cy="28" r="22" fill="none"
-                                                stroke="var(--success-color)"
-                                                strokeWidth="5"
-                                                strokeLinecap="round"
-                                                strokeDasharray={`${2 * Math.PI * 22}`}
-                                                strokeDashoffset={`${2 * Math.PI * 22 * (1 - overallPct / 100)}`}
-                                                style={{ transition: "stroke-dashoffset 0.7s ease-out" }}
-                                            />
-                                        </svg>
-                                        <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text">
-                                            {overallPct}%
-                                        </span>
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-base font-bold text-text leading-tight">
-                                            {completedLevels > 0 ? "🏆 " : ""}{completedLevels}{" "}
-                                            <span className="font-normal text-text-muted text-sm">
-                                                / {totalLevels} {showUnitMonths ? "Weeks" : "Levels"}
-                                            </span>
-                                        </p>
-                                        <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
-                                    </div>
-                                </div>
-                                <div className="relative h-2 w-full overflow-hidden rounded" style={{ background: "var(--surface-subtle)" }}>
-                                    <div
-                                        className="absolute inset-y-0 left-0 rounded transition-[width] duration-700 ease-out"
-                                        style={{
-                                            width: `${overallPct}%`,
-                                            background: "var(--success-color)",
-                                        }}
-                                    />
-                                </div>
+                {roadModel ? (
+                    // The course as one road; desktop adds a unit sidebar beside it.
+                    // Rendered once so the road's week ids stay unique.
+                    <div className="lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] lg:gap-8 lg:items-start lg:pt-2">
+                        <aside className="hidden lg:block sticky top-[5.5rem] z-10 w-full self-start space-y-5">
+                            <div>
+                                <h1 className="text-3xl font-display font-bold text-text leading-tight">Course Map</h1>
+                                <p className="text-sm text-text-muted mt-1">
+                                    {showUnitMonths ? "Your next lesson and weekly path" : "Your next lesson and course path"}
+                                </p>
                             </div>
-                        )}
-
-                        {hasPath && currentWeekMeta ? (
-                            <CourseMapJumpToWeek
-                                currentWeek={currentWeekMeta}
-                                variant="sidebar"
-                                showUnitMonths={showUnitMonths}
-                            />
-                        ) : null}
-
-                        {courseMapUnits.length > 0 ? (
-                            <CourseMapUnitNav
-                                units={courseMapUnits}
-                                unitProgress={unitProgress}
-                                weekProgress={weekProgress}
-                                currentWeekNumber={currentWeekMeta?.weekNumber ?? null}
-                                variant="sidebar"
-                                showUnitMonths={showUnitMonths}
-                            />
-                        ) : null}
-
-                        <Link
-                            href="/dashboard/activities"
-                            className="flex items-center justify-between w-full rounded-2xl border px-4 py-3 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
-                            style={{ borderColor: "var(--border-subtle)" }}
-                        >
-                            <span>Practice Library</span>
-                            <span className="text-text-muted">→</span>
-                        </Link>
-                    </aside>
-
-                    {/* Right column */}
-                    <div className="min-w-0">
-                        {hasPath ? (
-                            <ClassCoursePath
-                                assignments={coursePathAssignments}
-                                guidedUnits={courseMapUnits}
-                                guidedAssignments={guidedAssignments}
-                                guidedProgress={guidedProgress}
+                            <CourseMapRoadSidebar model={roadModel} showMonths={showUnitMonths} />
+                            <Link
+                                href="/dashboard/activities"
+                                className="flex items-center justify-between w-full rounded-2xl border px-4 py-3.5 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
+                                style={{ borderColor: "var(--border-subtle)" }}
+                            >
+                                <span>Practice Library</span>
+                                <span className="text-text-muted">→</span>
+                            </Link>
+                        </aside>
+                        <div className="min-w-0">
+                            <CourseMapRoad
+                                model={roadModel}
                                 initialWeek={initialWeek}
-                                focusNextActivity={focusNextActivity}
-                                showUnitMonths={showUnitMonths}
-                                scheduledWeek={currentWeekMeta?.weekNumber ?? null}
+                                weekNoun={showUnitMonths ? "Week" : "Level"}
+                                showMonths={showUnitMonths}
                             />
+                            <div className="mt-6 lg:hidden">
+                                <Link
+                                    href="/dashboard/activities"
+                                    className="flex items-center justify-between w-full rounded-2xl border px-4 py-3.5 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
+                                    style={{ borderColor: "var(--border-subtle)" }}
+                                >
+                                    <span>Practice Library</span>
+                                    <span className="text-text-muted">→</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                    {/* Desktop two-column layout */}
+                    <div className="hidden lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] lg:gap-8 lg:items-start lg:pt-2">
+
+                        {/* Sticky left sidebar — full unit list; stays pinned while scrolling the path */}
+                        <aside className="sticky top-[5.5rem] z-10 w-full self-start space-y-5">
+                            <div>
+                                <h1 className="text-3xl font-display font-bold text-text leading-tight">Course Map</h1>
+                                <p className="text-sm text-text-muted mt-1">
+                                    {showUnitMonths ? "Your next lesson and weekly path" : "Your next lesson and course path"}
+                                </p>
+                            </div>
+
+                            {totalLevels > 0 && (
+                                <div className="dashboard-panel rounded-2xl p-5 space-y-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative shrink-0 w-16 h-16" title={`${completedRequired} of ${totalRequired} activities done`}>
+                                            <svg viewBox="0 0 56 56" className="w-full h-full -rotate-90" aria-hidden>
+                                                <circle cx="28" cy="28" r="22" fill="none" stroke="var(--border-subtle)" strokeWidth="5" />
+                                                <circle
+                                                    cx="28" cy="28" r="22" fill="none"
+                                                    stroke="var(--success-color)"
+                                                    strokeWidth="5"
+                                                    strokeLinecap="round"
+                                                    strokeDasharray={`${2 * Math.PI * 22}`}
+                                                    strokeDashoffset={`${2 * Math.PI * 22 * (1 - overallPct / 100)}`}
+                                                    style={{ transition: "stroke-dashoffset 0.7s ease-out" }}
+                                                />
+                                            </svg>
+                                            <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text">
+                                                {overallPct}%
+                                            </span>
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-base font-bold text-text leading-tight">
+                                                {completedLevels > 0 ? "🏆 " : ""}{completedLevels}{" "}
+                                                <span className="font-normal text-text-muted text-sm">
+                                                    / {totalLevels} {showUnitMonths ? "Weeks" : "Levels"}
+                                                </span>
+                                            </p>
+                                            <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
+                                        </div>
+                                    </div>
+                                    <div className="relative h-2 w-full overflow-hidden rounded" style={{ background: "var(--surface-subtle)" }}>
+                                        <div
+                                            className="absolute inset-y-0 left-0 rounded transition-[width] duration-700 ease-out"
+                                            style={{
+                                                width: `${overallPct}%`,
+                                                background: "var(--success-color)",
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {hasPath && currentWeekMeta ? (
+                                <CourseMapJumpToWeek
+                                    currentWeek={currentWeekMeta}
+                                    variant="sidebar"
+                                    showUnitMonths={showUnitMonths}
+                                />
+                            ) : null}
+
+                            {courseMapUnits.length > 0 ? (
+                                <CourseMapUnitNav
+                                    units={courseMapUnits}
+                                    unitProgress={unitProgress}
+                                    weekProgress={weekProgress}
+                                    currentWeekNumber={currentWeekMeta?.weekNumber ?? null}
+                                    variant="sidebar"
+                                    showUnitMonths={showUnitMonths}
+                                />
+                            ) : null}
+
+                            <Link
+                                href="/dashboard/activities"
+                                className="flex items-center justify-between w-full rounded-2xl border px-4 py-3 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
+                                style={{ borderColor: "var(--border-subtle)" }}
+                            >
+                                <span>Practice Library</span>
+                                <span className="text-text-muted">→</span>
+                            </Link>
+                        </aside>
+
+                        {/* Right column */}
+                        <div className="min-w-0">
+                            {hasPath ? (
+                                <ClassCoursePath
+                                    assignments={coursePathAssignments}
+                                    guidedUnits={courseMapUnits}
+                                    guidedAssignments={guidedAssignments}
+                                    guidedProgress={guidedProgress}
+                                    initialWeek={initialWeek}
+                                    focusNextActivity={focusNextActivity}
+                                    showUnitMonths={showUnitMonths}
+                                    scheduledWeek={currentWeekMeta?.weekNumber ?? null}
+                                />
+                            ) : (
+                                <div className="dashboard-panel rounded-2xl p-8 text-center">
+                                    <p className="text-3xl mb-3">🗺️</p>
+                                    <p className="text-sm font-semibold text-text mb-1">No path set up yet</p>
+                                    <p className="text-xs text-text-muted">
+                                        {showUnitMonths
+                                            ? "Your teacher will add your course path here soon."
+                                            : "Course content will appear here when it is published."}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Mobile layout */}
+                    <div className="lg:hidden">
+                        {hasPath ? (
+                            // No course-map units: fall back to the sequenced assignment list.
+                            <ClassCoursePath assignments={coursePathAssignments} />
                         ) : (
-                            <div className="dashboard-panel rounded-2xl p-8 text-center">
-                                <p className="text-3xl mb-3">🗺️</p>
+                            <div className="dashboard-panel rounded-2xl p-6 text-center">
+                                <p className="text-2xl mb-3">🗺️</p>
                                 <p className="text-sm font-semibold text-text mb-1">No path set up yet</p>
                                 <p className="text-xs text-text-muted">
                                     {showUnitMonths
@@ -359,43 +421,19 @@ export default async function MapPage({
                                 </p>
                             </div>
                         )}
-                    </div>
-                </div>
-
-                {/* Mobile layout — the course as one road */}
-                <div className="lg:hidden">
-                    {roadModel ? (
-                        <CourseMapRoad
-                            model={roadModel}
-                            initialWeek={initialWeek}
-                            weekNoun={showUnitMonths ? "Week" : "Level"}
-                            showMonths={showUnitMonths}
-                        />
-                    ) : hasPath ? (
-                        // No course-map units: fall back to the sequenced assignment list.
-                        <ClassCoursePath assignments={coursePathAssignments} />
-                    ) : (
-                        <div className="dashboard-panel rounded-2xl p-6 text-center">
-                            <p className="text-2xl mb-3">🗺️</p>
-                            <p className="text-sm font-semibold text-text mb-1">No path set up yet</p>
-                            <p className="text-xs text-text-muted">
-                                {showUnitMonths
-                                    ? "Your teacher will add your course path here soon."
-                                    : "Course content will appear here when it is published."}
-                            </p>
+                        <div className="mt-6">
+                            <Link
+                                href="/dashboard/activities"
+                                className="flex items-center justify-between w-full rounded-2xl border px-4 py-3.5 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
+                                style={{ borderColor: "var(--border-subtle)" }}
+                            >
+                                <span>Practice Library</span>
+                                <span className="text-text-muted">→</span>
+                            </Link>
                         </div>
-                    )}
-                    <div className="mt-6">
-                        <Link
-                            href="/dashboard/activities"
-                            className="flex items-center justify-between w-full rounded-2xl border px-4 py-3.5 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
-                            style={{ borderColor: "var(--border-subtle)" }}
-                        >
-                            <span>Practice Library</span>
-                            <span className="text-text-muted">→</span>
-                        </Link>
                     </div>
-                </div>
+                    </>
+                )}
             </main>
         </div>
     );
