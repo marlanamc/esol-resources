@@ -407,7 +407,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Week 4 Quiz — Together in Class",
+            "title": "Week 4 Quiz",
             "badge": "Guided"
           },
           {

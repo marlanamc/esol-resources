@@ -21,8 +21,7 @@ for (const unit of units) {
     const quizzes = week.items.filter((item) => QUIZ_ID.test(item.id));
     for (const item of quizzes) {
       const bonus = quizzes.length > 1 ? quizzes.indexOf(item) + 1 : undefined;
-      // The first quiz is taken together in class; keep saying so on the map.
-      const title = weekQuizTitle(week.number, bonus) + (item.id === "verb-quiz-1" ? " — Together in Class" : "");
+      const title = weekQuizTitle(week.number, bonus);
       if (item.title !== title) {
         item.title = title;
         changed++;
