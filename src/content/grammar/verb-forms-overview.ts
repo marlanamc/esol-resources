@@ -282,7 +282,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Sarah", avatar: "👩🏻", text: "Big news. Mark <strong>is</strong> engaged. Lisa said yes at 8:30!", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>am</strong> so happy for them. I’m also very hungry.", side: "right", tone: "terracotta" },
-          { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you tomorrow. Thank you, Carlos!", side: "left", tone: "amber" },
+          { speaker: "Mark", avatar: "👨🏿", text: "Lisa <strong>has</strong> the ring, and I <strong>have</strong> a sandwich for you. Thank you, Carlos!", side: "left", tone: "amber" },
           { speaker: "Sarah", avatar: "👩🏻", text: "You <strong>were</strong> a hero tonight, Carlos. Take the right bag tomorrow.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I’ve <strong>been</strong> hungry since six. I’ve <strong>had</strong> enough surprises for one week!", side: "right", tone: "terracotta" },
         ])}
