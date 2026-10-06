@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, XCircle } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
@@ -279,18 +279,36 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           {stage === 'example' ? <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div> : kind === 'choose' ? <fieldset className="mt-6">
             <legend className="sr-only">Choose the word for the blank</legend>
             <div className={styles.answers}>
-              {(item.options ?? []).map(option => <button key={option} type="button" aria-pressed={selection === option} disabled={selection !== null}
-                className={`${secondary} text-lg disabled:cursor-default`} onClick={() => choose(option)}>{option}</button>)}
+              {(item.options ?? []).map(option => {
+                const isAnswer = selection !== null && option === correctAnswer;
+                const isWrongPick = selection === option && option !== correctAnswer;
+                return <button key={option} type="button" aria-pressed={selection === option} disabled={selection !== null}
+                  className={`${secondary} text-lg disabled:cursor-default ${isAnswer ? styles.correct : ''} ${isWrongPick ? styles.incorrect : ''}`}
+                  onClick={() => choose(option)}>{option}
+                  {isAnswer && <CheckCircle2 size={18} aria-hidden="true" className={styles.resultIcon} />}
+                  {isWrongPick && <XCircle size={18} aria-hidden="true" className={styles.resultIcon} />}
+                  {(isAnswer || isWrongPick) && <span className="sr-only">{isAnswer ? ', correct answer' : ', your answer, incorrect'}</span>}
+                </button>;
+              })}
             </div>
           </fieldset> : kind === 'label' && <fieldset className="mt-6">
             <legend className="sr-only">Choose the category for {item.target}</legend>
             <div className={styles.answers}>
-              {categories.map(category => <button key={category} type="button" aria-pressed={selection === category} disabled={selection !== null}
-                className={`${secondary} ${styles.categoryChoice} ${categoryColorClass(category)} disabled:cursor-default`}
-                onClick={() => choose(category)}><ReviewCategoryCue category={category} compact /></button>)}
+              {categories.map(category => {
+                const isAnswer = selection !== null && category === correctAnswer;
+                const isWrongPick = selection === category && category !== correctAnswer;
+                return <button key={category} type="button" aria-pressed={selection === category} disabled={selection !== null}
+                  className={`${secondary} ${styles.categoryChoice} ${categoryColorClass(category)} ${isAnswer ? styles.correct : ''} ${isWrongPick ? styles.incorrect : ''} disabled:cursor-default`}
+                  onClick={() => choose(category)}>
+                  <ReviewCategoryCue category={category} compact />
+                  {isAnswer && <CheckCircle2 size={18} aria-hidden="true" className={styles.resultIcon} />}
+                  {isWrongPick && <XCircle size={18} aria-hidden="true" className={styles.resultIcon} />}
+                  {(isAnswer || isWrongPick) && <span className="sr-only">{isAnswer ? ', correct answer' : ', your answer, incorrect'}</span>}
+                </button>;
+              })}
             </div>
           </fieldset>}
-          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className="mb-3 font-semibold">{selection === correctAnswer ? 'Correct.' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
+          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className={`mb-3 flex items-center gap-2 font-semibold ${selection === correctAnswer ? styles.correctText : styles.incorrectText}`}>{selection === correctAnswer ? <CheckCircle2 size={20} aria-hidden="true" /> : <XCircle size={20} aria-hidden="true" />}{selection === correctAnswer ? 'Correct.' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
         {(stage === 'example' || selection) && <div className="mt-6 flex justify-end"><button className={`${primary} w-full sm:min-w-36 sm:w-auto`} onClick={() => {
           if (stage === 'question') nextQuestion();
           else if (index + 1 < lesson.examples.length) setIndex(index + 1);
