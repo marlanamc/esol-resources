@@ -58,7 +58,7 @@ function FormsTable({ questions, renderCell }: {
         </thead>
         <tbody>
           {rows.map(([verb, cells]) => <tr key={verb} className="border-t border-border">
-            <th scope="row" className="bg-[var(--tone-quizzes-surface-muted)]/50 px-4 py-3 font-mono text-lg font-semibold text-text">{verb}</th>
+            <th scope="row" className="bg-[var(--tone-quizzes-surface-muted)]/50 px-4 py-3 font-mono text-lg font-semibold text-text">{verb}{verb === 'be' && <span className="block text-sm font-normal text-text-muted">(am/are)</span>}</th>
             {formColumns.map(([form, label]) => <td key={form} className="px-4 py-3 align-top">{cells[form] && renderCell(cells[form], `${verb}: ${label}`)}</td>)}
           </tr>)}
         </tbody>
@@ -66,7 +66,7 @@ function FormsTable({ questions, renderCell }: {
     </div>
     <div className="space-y-4 md:hidden">
       {rows.map(([verb, cells]) => <div key={verb} className="space-y-3 rounded-xl border border-[var(--tone-quizzes-border)] bg-bg p-4">
-        <p className="text-sm font-semibold text-text-muted">V1 (base form) <span className="ml-1 font-mono text-lg text-text">{verb}</span></p>
+        <p className="text-sm font-semibold text-text-muted">V1 (base form) <span className="ml-1 font-mono text-lg text-text">{verb}</span>{verb === 'be' && <span className="ml-1 font-mono text-text-muted">(am/are)</span>}</p>
         {formColumns.map(([form, label, hint]) => cells[form] && <div key={form}>
           <p className="mb-1 text-sm font-semibold text-text-muted">{label} ({hint})</p>
           {renderCell(cells[form], `${verb}: ${label}`)}
@@ -161,7 +161,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
           <span aria-hidden="true" className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-bold ${badge}`}>{index + 1}</span>
           <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{instructions}</p></div>
         </div>
-        {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <input aria-label={label} name={q.id} required maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? 'two forms: ___/___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />} />}
+        {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <input aria-label={label} name={q.id} required maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? '___ / ___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />} />}
         {numbered.filter(q => q.section === section).map(q => <fieldset key={q.id} disabled={busy || queued} className="rounded-xl bg-bg p-4">
           {/* Floated so the prompt sits inside the card instead of straddling the fieldset's top edge. */}
           <legend className="float-left mb-3 w-full font-semibold leading-snug text-text">{numbered.indexOf(q) + 1}. {q.prompt}</legend>
