@@ -133,62 +133,100 @@ export function getInitialCasePhase(
 }
 
 /**
- * Pick `roundSize` cases at random, then order them easiest-first.
+ * Round length when the activity does not set one.
  *
- * Sampling before sorting is deliberate: it keeps a round graded gently while
- * varying which cases appear, so replaying an optional practice item is not the
- * same five sentences every time. Returns the whole deck when no size is set or
- * the deck is already small enough.
+ * Without a cap every play served the whole filtered deck -- 18 to 80
+ * sentences -- so each visit was the same long list and "Keep practicing"
+ * had nothing new to deal.
  */
+export const DEFAULT_ROUND_SIZE = 8;
+
+function shuffleInPlace<T>(items: T[]): T[] {
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+    return items;
+}
+
+/** Easiest-first, with cases of equal difficulty in random order. */
+function orderEasiestFirst(cases: GrammarHospitalCase[]): GrammarHospitalCase[] {
+    // Array.prototype.sort is stable, so shuffling first randomises ties
+    // instead of always breaking them by id.
+    return shuffleInPlace([...cases]).sort(
+        (a, b) => (a.complexity ?? 3) - (b.complexity ?? 3)
+    );
+}
+
 /**
- * Deal a round that climbs.
+ * Deal a round that climbs, preferring cases the learner has not seen lately.
  *
  * A flat random draw from a deck spanning several complexity levels can hand a
- * learner five of the same difficulty -- five easy ones teach nothing new, five
- * hard ones stall them on the first case. Dealing round-robin from easiest
- * upwards spans every level present, so after sortCasesProgressively the round
- * opens on the gentlest case available and ends on the hardest.
+ * learner five of the same difficulty, so cases are dealt round-robin from
+ * easiest upwards. Round-robin alone over-serves small levels, though -- a
+ * level with three cases put all three in nearly every round -- so the deal
+ * runs twice: first over cases not in `recentIds`, then, only if that falls
+ * short, over the recent ones. The result is ordered easiest-first.
  */
 export function sampleRound(
     cases: GrammarHospitalCase[],
-    roundSize?: number
+    roundSize?: number,
+    recentIds: ReadonlySet<string> = new Set()
 ): GrammarHospitalCase[] {
     if (!roundSize || roundSize <= 0 || cases.length <= roundSize) {
-        return sortCasesProgressively(cases);
+        return orderEasiestFirst(cases);
     }
 
-    const byComplexity = new Map<number, GrammarHospitalCase[]>();
-    for (const caseItem of cases) {
-        const level = caseItem.complexity ?? 3;
-        const bucket = byComplexity.get(level);
-        if (bucket) bucket.push(caseItem);
-        else byComplexity.set(level, [caseItem]);
-    }
-
-    const levels = [...byComplexity.keys()].sort((a, b) => a - b);
-    for (const level of levels) {
-        const bucket = byComplexity.get(level)!;
-        for (let i = bucket.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [bucket[i], bucket[j]] = [bucket[j], bucket[i]];
+    const deal = (pool: GrammarHospitalCase[], picked: GrammarHospitalCase[]) => {
+        const byComplexity = new Map<number, GrammarHospitalCase[]>();
+        for (const caseItem of shuffleInPlace([...pool])) {
+            const level = caseItem.complexity ?? 3;
+            const bucket = byComplexity.get(level);
+            if (bucket) bucket.push(caseItem);
+            else byComplexity.set(level, [caseItem]);
         }
-    }
+        const levels = [...byComplexity.keys()].sort((a, b) => a - b);
+        while (picked.length < roundSize) {
+            let tookOne = false;
+            for (const level of levels) {
+                if (picked.length >= roundSize) break;
+                const next = byComplexity.get(level)!.pop();
+                if (!next) continue;
+                picked.push(next);
+                tookOne = true;
+            }
+            if (!tookOne) break;
+        }
+    };
 
     const picked: GrammarHospitalCase[] = [];
-    while (picked.length < roundSize) {
-        let tookOne = false;
-        for (const level of levels) {
-            if (picked.length >= roundSize) break;
-            const next = byComplexity.get(level)!.pop();
-            if (!next) continue;
-            picked.push(next);
-            tookOne = true;
-        }
-        // Every bucket is empty — the caller asked for more than the deck holds.
-        if (!tookOne) break;
-    }
+    deal(cases.filter((c) => !recentIds.has(c.id)), picked);
+    deal(cases.filter((c) => recentIds.has(c.id)), picked);
 
-    return sortCasesProgressively(picked);
+    return orderEasiestFirst(picked);
+}
+
+/**
+ * Which recently played ids a new round should steer around.
+ *
+ * `history` is oldest-first. Holding back up to (deck size - round size) of
+ * the most recent ones makes the deck rotate: a case comes back only once the
+ * learner has been through the rest.
+ */
+export function recentIdsToAvoid(
+    history: readonly string[],
+    deck: readonly GrammarHospitalCase[],
+    roundSize: number
+): Set<string> {
+    const inDeck = new Set(deck.map((c) => c.id));
+    const room = Math.max(0, deck.length - roundSize);
+    if (room === 0) return new Set();
+
+    const avoid = new Set<string>();
+    for (let i = history.length - 1; i >= 0 && avoid.size < room; i--) {
+        if (inDeck.has(history[i])) avoid.add(history[i]);
+    }
+    return avoid;
 }
 
 export interface DeckFilter {
