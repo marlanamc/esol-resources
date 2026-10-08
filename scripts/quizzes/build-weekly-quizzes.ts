@@ -45,21 +45,21 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   [ [p1, a1], [p2, a2] ].forEach(([prompt, answer], i) => questions.push({ id: `apply-${i}`, section: 'apply', prompt, answers: [answer], explanation: prompt.replace('___', answer), source: 'weekly-quiz-applications' }));
   const vocabWeek = week.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards') ? week : [...weeks].reverse().find(w => w.number < week.number && w.items.some(i => i.slot === 'required' && i.vocabUi === 'flashcards'))!;
   const vocabId = vocabWeek.items.find(i => i.slot === 'required' && i.vocabUi === 'flashcards')!.activityId!;
-  const words = weeklyVocabData[vocabId.replace('vocab-', '')].words as {term: string; def: string; ex: string; fillBlank?: {text: string; options: string[]}}[];
+  const words = weeklyVocabData[vocabId.replace('vocab-', '')].words as {term: string; def: string; ex: string; fillBlank?: {text: string; options: string[]}; quizDistractors?: string[]}[];
   for (let i = 0; i < 2; i++) {
     const index = n === 1
       ? words.findIndex(word => word.term === ['focus', 'apply'][i])
       : ((n - 1) * 2 + i) % words.length;
     const word = words[index];
     const useContext = word.fillBlank && (n + i) % 2 === 0;
-    const options = useContext ? [...word.fillBlank!.options] : [word.term, ...words.filter(w => w.term !== word.term).slice(0, 2).map(w => w.term)];
+    const options = useContext ? [...word.fillBlank!.options] : [word.term, ...(word.quizDistractors ?? words.filter(w => w.term !== word.term).slice(0, 2).map(w => w.term))];
     const rotate = (n + i) % options.length;
     questions.push({ id: `vocab-${i}`, section: 'vocabulary', prompt: useContext ? plain(word.fillBlank!.text) : `Which word means “${plain(word.def)}”?`, options: [...options.slice(rotate), ...options.slice(0, rotate)], answers: [word.term], explanation: `${word.term}: ${plain(word.def)}. ${plain(word.ex)}`, source: vocabId });
   }
   if (n === 1) {
     questions.push(
       { id: 'grammar-0', section: 'grammar', prompt: 'In “The helpful teacher has a book,” which word describes the teacher?', options: ['teacher', 'helpful', 'has'], answers: ['helpful'], explanation: 'Helpful is an adjective. It describes the noun teacher.', source: 'parts-of-speech-week-4' },
-      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a notebook.” Write the complete sentence.', answers: ['She has a notebook.'], explanation: 'With she, the present form of have is has.', source: 'verb-forms-overview' },
+      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a dog when she was younger.” Write the complete sentence.', answers: ['She had a dog when she was younger.'], explanation: '“When she was younger” is in the past, so have becomes had.', source: 'verb-forms-overview' },
     );
   } else {
     const slug = week.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))!.href!.split('/').pop()!;
