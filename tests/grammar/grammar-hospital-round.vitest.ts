@@ -3,6 +3,7 @@ import type { GrammarHospitalCase } from "@/types/activity";
 import {
     getCaseStepInfo,
     getInitialCasePhase,
+    recentIdsToAvoid,
     sampleRound,
     shouldSkipHelper,
 } from "@/lib/grammar-hospital/progression";
@@ -140,5 +141,63 @@ describe("sampleRound", () => {
             seen.add(sampleRound(deck, 5).map((c) => c.id).join(","));
         }
         expect(seen.size).toBeGreaterThan(1);
+    });
+
+    it("steers around recently played cases", () => {
+        const recent = new Set(deck.slice(0, 15).map((c) => c.id));
+        for (let i = 0; i < 20; i++) {
+            for (const c of sampleRound(deck, 5, recent)) expect(recent.has(c.id)).toBe(false);
+        }
+    });
+
+    it("falls back to recent cases only when the fresh ones run out", () => {
+        const recent = new Set(deck.slice(0, 18).map((c) => c.id));
+        const round = sampleRound(deck, 5, recent);
+        expect(round).toHaveLength(5);
+        expect(round.filter((c) => !recent.has(c.id))).toHaveLength(2);
+    });
+
+    it("does not put every case of a small level in every round", () => {
+        // Round-robin used to deal all three easy cases into nearly every
+        // round, so learners met the same openers every time they played.
+        const lopsided = [
+            ...Array.from({ length: 3 }, (_, i) => caseStub({ id: `easy${i}`, complexity: 1 })),
+            ...Array.from({ length: 15 }, (_, i) => caseStub({ id: `mid${i}`, complexity: 2 })),
+        ];
+        let history: string[] = [];
+        const counts = new Map<string, number>();
+        for (let i = 0; i < 9; i++) {
+            const round = sampleRound(lopsided, 6, recentIdsToAvoid(history, lopsided, 6));
+            for (const c of round) counts.set(c.id, (counts.get(c.id) ?? 0) + 1);
+            history = [...history, ...round.map((c) => c.id)];
+        }
+        // 9 rounds x 6 = 54 deals over 18 cases: a full rotation serves each 3 times.
+        for (const c of lopsided) expect(counts.get(c.id)).toBe(3);
+    });
+
+    it("shuffles cases of equal difficulty when serving the whole deck", () => {
+        const flat = deck.filter((c) => c.complexity === 1);
+        const orders = new Set<string>();
+        for (let i = 0; i < 25; i++) orders.add(sampleRound(flat).map((c) => c.id).join(","));
+        expect(orders.size).toBeGreaterThan(1);
+    });
+});
+
+describe("recentIdsToAvoid", () => {
+    const deck = Array.from({ length: 10 }, (_, i) => caseStub({ id: `c${i}` }));
+
+    it("holds back at most deck size minus round size, most recent first", () => {
+        const history = ["c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7"];
+        expect([...recentIdsToAvoid(history, deck, 4)].sort()).toEqual(
+            ["c2", "c3", "c4", "c5", "c6", "c7"]
+        );
+    });
+
+    it("ignores ids from other decks", () => {
+        expect(recentIdsToAvoid(["x1", "c1", "x2"], deck, 4)).toEqual(new Set(["c1"]));
+    });
+
+    it("avoids nothing when the round needs the whole deck", () => {
+        expect(recentIdsToAvoid(["c1"], deck, 10).size).toBe(0);
     });
 });

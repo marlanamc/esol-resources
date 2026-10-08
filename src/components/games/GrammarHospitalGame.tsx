@@ -29,9 +29,46 @@ import {
     SettingsForm,
     type GrammarHospitalSettings,
 } from "@/components/games/grammar-hospital/SettingsPanel";
-import { filterDeck, sampleRound, toWordTiles } from "@/lib/grammar-hospital/progression";
+import {
+    DEFAULT_ROUND_SIZE,
+    filterDeck,
+    recentIdsToAvoid,
+    sampleRound,
+    toWordTiles,
+} from "@/lib/grammar-hospital/progression";
 
 const GAME_ID = "grammar-hospital";
+
+// Recently played case ids, oldest first, so the next round can steer around
+// them. Per-browser only: losing it just means a round may repeat a case.
+const RECENT_HISTORY_LIMIT = 120;
+
+function recentStorageKey(activityId: string): string {
+    return `${GAME_ID}:recent:${activityId}`;
+}
+
+function readRecentCases(activityId: string): string[] {
+    try {
+        const raw = window.localStorage.getItem(recentStorageKey(activityId));
+        const parsed: unknown = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string") : [];
+    } catch {
+        return [];
+    }
+}
+
+function rememberRecentCase(activityId: string, caseId: string): void {
+    try {
+        const history = readRecentCases(activityId).filter((id) => id !== caseId);
+        history.push(caseId);
+        window.localStorage.setItem(
+            recentStorageKey(activityId),
+            JSON.stringify(history.slice(-RECENT_HISTORY_LIMIT))
+        );
+    } catch {
+        // Storage unavailable (private mode, blocked) — rounds still deal, just without memory.
+    }
+}
 
 /** Sentence repair practice with optional hints and unlimited attempts. */
 
@@ -94,7 +131,7 @@ function renderUnhealthy(c: GrammarHospitalCase): React.ReactNode {
 export default function GrammarHospitalGame({ activityId, content }: Props) {
     const allCases = useMemo(() => content.cases ?? [], [content.cases]);
     const participationPoints = content.participationPoints ?? 5;
-    const roundSize = content.roundSize;
+    const roundSize = content.roundSize ?? DEFAULT_ROUND_SIZE;
     const isCourseMapPreset = content.courseMapPreset === true;
     const presetSettings = useMemo(
         () => normalizeGHSettings(content.defaultSettings),
@@ -127,13 +164,16 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     // The round the learner actually plays. filterDeck narrows by tier,
     // complexity and focus (widening back rather than stranding them on an
-    // empty deck); sampleRound then cuts it to content.roundSize.
+    // empty deck); sampleRound then cuts it to roundSize, steering around
+    // the cases this learner played most recently.
     const cases = useMemo(() => {
-        return sampleRound(filterDeck(allCases, settings), roundSize);
+        const deck = filterDeck(allCases, settings);
+        const history = typeof window === "undefined" ? [] : readRecentCases(activityId);
+        return sampleRound(deck, roundSize, recentIdsToAvoid(history, deck, roundSize));
         // roundKey is a cache-buster, not an input: bumping it on replay draws
         // a fresh sample rather than repeating the same cases.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [allCases, settings, roundSize, roundKey]);
+    }, [allCases, settings, roundSize, roundKey, activityId]);
 
     const totalCases = cases.length;
 
@@ -234,6 +274,13 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
             setRepairTiles([]);
         }
     }, [current]);
+
+    // Record each case once the learner actually reaches it, so the next round
+    // can steer around what they just played.
+    const playing = phase !== "intro";
+    useEffect(() => {
+        if (playing && current) rememberRecentCase(activityId, current.id);
+    }, [playing, current, activityId]);
 
     const accuracy = useMemo(() => {
         if (results.length === 0) return 0;
