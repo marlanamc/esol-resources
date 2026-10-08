@@ -177,11 +177,11 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix one word: “She have a dog when she was younger.” Write the complete sentence.",
+        "prompt": "Fix one word: “She have a brother in Colombia.” Write the complete sentence.",
         "answers": [
-          "She had a dog when she was younger."
+          "She has a brother in Colombia."
         ],
-        "explanation": "“When she was younger” is in the past, so have becomes had.",
+        "explanation": "With she, have becomes has.",
         "source": "verb-forms-overview"
       }
     ]

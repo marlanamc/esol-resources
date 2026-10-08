@@ -59,7 +59,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   if (n === 1) {
     questions.push(
       { id: 'grammar-0', section: 'grammar', prompt: 'In “The helpful teacher has a book,” which word describes the teacher?', options: ['teacher', 'helpful', 'has'], answers: ['helpful'], explanation: 'Helpful is an adjective. It describes the noun teacher.', source: 'parts-of-speech-week-4' },
-      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a dog when she was younger.” Write the complete sentence.', answers: ['She had a dog when she was younger.'], explanation: '“When she was younger” is in the past, so have becomes had.', source: 'verb-forms-overview' },
+      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a brother in Colombia.” Write the complete sentence.', answers: ['She has a brother in Colombia.'], explanation: 'With she, have becomes has.', source: 'verb-forms-overview' },
     );
   } else {
     const slug = week.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))!.href!.split('/').pop()!;
