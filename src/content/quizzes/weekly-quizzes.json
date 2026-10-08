@@ -111,21 +111,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "She ___ ready to study. (be)",
+        "prompt": "Right now, she ___ ready to study. (be)",
         "answers": [
           "is"
         ],
-        "explanation": "She is ready to study. (be)",
+        "explanation": "Right now, she is ready to study. (be)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "He ___ a reference sheet. (have)",
+        "prompt": "Every day in class, he ___ a reference sheet. (have)",
         "answers": [
           "has"
         ],
-        "explanation": "He has a reference sheet. (have)",
+        "explanation": "Every day in class, he has a reference sheet. (have)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -2027,7 +2027,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette checks the fridge before grocery shopping. Put the words in order. Words: How / many / eggs / do / we / have",
+        "prompt": "Claudette calls Fabienne from the grocery store. Put her question in order. Words: How / many / eggs / do / we / have",
         "answers": [
           "How many eggs do we have"
         ],

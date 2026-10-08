@@ -162,12 +162,13 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
           <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{instructions}</p></div>
         </div>
         {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <input aria-label={label} name={q.id} required maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? 'two forms: ___/___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />} />}
-        {numbered.filter(q => q.section === section).map(q => <fieldset key={q.id} disabled={busy || queued} className="space-y-2 rounded-xl bg-bg p-4">
-          <legend className="mb-2 font-semibold text-text">{numbered.indexOf(q) + 1}. {q.prompt}</legend>
-          {q.options ? <div className="grid gap-2 sm:grid-cols-2">{q.options.map(option => <label key={option} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-border bg-bg px-3 py-2 text-text has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+        {numbered.filter(q => q.section === section).map(q => <fieldset key={q.id} disabled={busy || queued} className="rounded-xl bg-bg p-4">
+          {/* Floated so the prompt sits inside the card instead of straddling the fieldset's top edge. */}
+          <legend className="float-left mb-3 w-full font-semibold leading-snug text-text">{numbered.indexOf(q) + 1}. {q.prompt}</legend>
+          {q.options ? <div className="clear-left grid gap-2 sm:grid-cols-2">{q.options.map(option => <label key={option} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-border bg-bg px-3 py-2 text-text has-[:checked]:border-primary has-[:checked]:bg-primary/10">
             <input type="radio" name={q.id} value={option} required checked={answers[q.id] === option} onChange={() => setAnswers(previous => ({ ...previous, [q.id]: option }))} className="accent-primary" />
             <span>{option}</span>
-          </label>)}</div> : <input aria-label={q.prompt} name={q.id} required maxLength={500} autoComplete="off" spellCheck={false} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={inputClass} />}
+          </label>)}</div> : <input aria-label={q.prompt} name={q.id} required maxLength={500} autoComplete="off" spellCheck={false} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`clear-left ${inputClass}`} />}
         </fieldset>)}
       </section>)}
       {queued && <p role="status" className="rounded-xl bg-bg-light p-4 text-text">Saved on this device. Your quiz will submit when you reconnect; points and the completion icon appear after it syncs.</p>}
