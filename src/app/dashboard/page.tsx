@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { timedQuery } from "@/lib/shared/perf-log";
@@ -95,9 +96,13 @@ export default async function DashboardPage() {
         await persistLearnerPreview(userId, "classroom");
     }
 
-    void trackLogin(userId).catch((err) => {
-        logger.warn("Failed to track login for streak", { userId, error: String(err) });
-    });
+    // after() keeps the function alive until the login transaction commits; a bare
+    // fire-and-forget promise can be frozen mid-transaction, pinning a DB connection.
+    after(() =>
+        trackLogin(userId).catch((err) => {
+            logger.warn("Failed to track login for streak", { userId, error: String(err) });
+        })
+    );
 
     if (userRole === "student") {
         const learnerState = await withPrismaReadRetry(() => getLearnerState(prisma, userId));

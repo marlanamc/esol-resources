@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import { trackLogin } from "@/lib/gamification/gamification";
 import { logger } from "@/lib/shared/logger";
 import { headers } from "next/headers";
+import { after } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/api/rate-limit";
 import { SESSION } from "@/lib/constants";
 import { normalizeUserRole } from "./roles";
@@ -76,11 +77,15 @@ export const authOptions: NextAuthOptions = {
                     });
 
                     // Track login for activity calendar
-                    trackLogin(user.id).catch(err => {
-                        logger.error('Failed to track login activity', err, {
-                            userId: user.id,
-                        });
-                    });
+                    // after() keeps the function alive until the login transaction commits;
+                    // a bare fire-and-forget promise can be frozen mid-transaction, pinning a DB connection.
+                    after(() =>
+                        trackLogin(user.id).catch(err => {
+                            logger.error('Failed to track login activity', err, {
+                                userId: user.id,
+                            });
+                        })
+                    );
 
                     const role = normalizeUserRole(user.role);
 
