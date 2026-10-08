@@ -111,21 +111,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Right now, she ___ ready to study. (be)",
+        "prompt": "She ___ going to the Salvadoran festival this Saturday. (be)",
         "answers": [
           "is"
         ],
-        "explanation": "Right now, she is ready to study. (be)",
+        "explanation": "She is going to the Salvadoran festival this Saturday. (be)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "Every day in class, he ___ a reference sheet. (have)",
+        "prompt": "He ___ a Honda Civic before he crashed it. (have)",
         "answers": [
-          "has"
+          "had"
         ],
-        "explanation": "Every day in class, he has a reference sheet. (have)",
+        "explanation": "He had a Honda Civic before he crashed it. (have)",
         "source": "weekly-quiz-applications"
       },
       {

@@ -1,6 +1,6 @@
 /** New contextual questions: one use of each focus verb, separate from recall. */
 export const WEEKLY_VERB_APPLICATIONS: [string, string, string, string][] = [
-  ['Right now, she ___ ready to study. (be)', 'is', 'Every day in class, he ___ a reference sheet. (have)', 'has'],
+  ['She ___ going to the Salvadoran festival this Saturday. (be)', 'is', 'He ___ a Honda Civic before he crashed it. (have)', 'had'],
   ['What do you ___ after class? (do)', 'do', 'She ___ a study plan every Sunday. (make)', 'makes'],
   ['Yesterday, I ___ to the library. (go)', 'went', 'Please ___ to the front desk. (come)', 'come'],
   ['Can you ___ me your phone number? (tell)', 'tell', 'You should ___ your name clearly. (say)', 'say'],
