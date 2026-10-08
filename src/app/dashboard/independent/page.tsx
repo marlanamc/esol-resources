@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
@@ -41,9 +42,12 @@ export default async function IndependentDashboardPage() {
 
     const userId = session.user.id;
 
-    void trackLogin(userId).catch((err) => {
-        logger.warn("Failed to track login for independent dashboard streak", { userId, error: String(err) });
-    });
+    // after() keeps the function alive until the login transaction commits (see dashboard/page.tsx).
+    after(() =>
+        trackLogin(userId).catch((err) => {
+            logger.warn("Failed to track login for independent dashboard streak", { userId, error: String(err) });
+        })
+    );
 
     const calendarWeekStart = getCalendarWeekStart();
 
