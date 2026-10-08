@@ -133,8 +133,8 @@
         "section": "vocabulary",
         "prompt": "Which word means “to give your attention to one thing”?",
         "options": [
-          "notice",
-          "compare",
+          "correct",
+          "remember",
           "focus"
         ],
         "answers": [
@@ -177,11 +177,11 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix one word: “She have a notebook.” Write the complete sentence.",
+        "prompt": "Fix one word: “She have a dog when she was younger.” Write the complete sentence.",
         "answers": [
-          "She has a notebook."
+          "She had a dog when she was younger."
         ],
-        "explanation": "With she, the present form of have is has.",
+        "explanation": "“When she was younger” is in the past, so have becomes had.",
         "source": "verb-forms-overview"
       }
     ]
