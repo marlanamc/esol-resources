@@ -35,8 +35,12 @@ const getCachedLeaderboard = unstable_cache(
 
 /**
  * GET /api/gamification/leaderboard
- * Get the leaderboard for a timeframe (day, week, month)
+ * Get the leaderboard for a timeframe (day, week, month, all)
  */
+/** All-time shows only the top few plus the viewer's own place, so long-tail ranks stay private. */
+const ALL_TIME_VISIBLE = 10;
+const ALL_TIME_RANK_LIMIT = 100;
+
 export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -50,7 +54,7 @@ export async function GET(req: NextRequest) {
     const scope = scopeParam === 'all' || scopeParam === 'independent' ? scopeParam : 'section';
     const limit = parseInt(searchParams.get('limit') || '20');
     const timeframeParam = (searchParams.get('timeframe') || 'week').toLowerCase() as LeaderboardRange;
-    const timeframe: LeaderboardRange = ['day', 'week', 'month'].includes(timeframeParam) ? timeframeParam : 'week';
+    const timeframe: LeaderboardRange = ['day', 'week', 'month', 'all'].includes(timeframeParam) ? timeframeParam : 'week';
     const user = session.user;
     if (!user.id) {
       return ApiErrors.unauthorized();
@@ -147,18 +151,23 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    const leaderboard = await getCachedLeaderboard(
+    const isAllTime = timeframe === 'all';
+    const ranked = await getCachedLeaderboard(
       timeframe,
-      limit,
+      isAllTime ? ALL_TIME_RANK_LIMIT : limit,
       resolvedClassId,
       resolvedClassIds,
       leaderboardOptions?.independentOnly === true
     );
-    const userRank = leaderboard.findIndex((entry) => entry.id === user.id) + 1;
+    const viewerEntry = ranked.find((entry) => entry.id === user.id) ?? null;
+    const leaderboard = isAllTime ? ranked.slice(0, ALL_TIME_VISIBLE) : ranked;
+    const viewerOutsideList = viewerEntry && !leaderboard.some((entry) => entry.id === user.id);
 
     return NextResponse.json({
       leaderboard,
-      userRank: userRank > 0 ? userRank : null,
+      userRank: viewerEntry?.rank ?? null,
+      viewerEntry: viewerOutsideList ? viewerEntry : null,
+      timeframe,
       classId: resolvedClassId || null,
       scope: leaderboardOptions?.independentOnly ? 'independent' : scope,
     });
