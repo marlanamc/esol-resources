@@ -561,7 +561,7 @@ export default function LeaderboardPage() {
                           {student.weeklyPoints} pts
                         </p>
                         {showWeekBadges && student.weeklyQuizComplete && (
-                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
+                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge compact /></div>
                         )}
                       </div>
                     </div>
