@@ -5,7 +5,7 @@ import { logger } from '@/lib/shared/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
-import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
+import { addDaysToDayKey as addDaysToLearnerDayKey, getCalendarWeekStart, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
 import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
@@ -248,11 +248,10 @@ function getRangeStart(range: LeaderboardRange): Date | null {
   switch (range) {
     case 'day':
       return startOfToday;
-    case 'week': {
-      const start = new Date(startOfToday);
-      start.setDate(start.getDate() - 6); // last 7 days including today
-      return start;
-    }
+    case 'week':
+      // Monday 00:00 learner time -- the same week the dashboard's "this week"
+      // points and the Monday weekly-points reset use, so the numbers agree.
+      return getCalendarWeekStart(now);
     case 'month':
     default: {
       return new Date(now.getFullYear(), now.getMonth(), 1); // beginning of current month
