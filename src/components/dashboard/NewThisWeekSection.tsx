@@ -17,15 +17,22 @@ interface NewThisWeekSectionProps {
 function resolveCategoryKey(assignment: FeaturedAssignment): string {
     const category = (assignment.activity.category || "").toLowerCase();
     const type = (assignment.activity.type || "").toLowerCase();
+    // Pronunciation games are stored as type "game"; the category is what the course map colors by.
+    if (category === "pronunciation" || type === "pronunciation") return "pronunciation";
     if (category === "games" || type === "game") return "games";
     if (category === "speaking" || type === "speaking") return "speaking";
     if (category === "vocabulary" || category === "vocab" || assignment.activityId.startsWith("vocab-")) {
         return "vocabulary";
     }
     if (category === "grammar" || type === "guide") return "grammar";
-    if (category === "pronunciation" || type === "pronunciation") return "pronunciation";
     if (category === "quizzes" || category === "quiz" || type === "quiz") return "quizzes";
     return category || "quizzes";
+}
+
+/** Course map rows tag pronunciation games as "pronunciation"; match that so Featured uses the same color. */
+function resolveFormatType(assignment: FeaturedAssignment): string {
+    if ((assignment.activity.category || "").toLowerCase() === "pronunciation") return "pronunciation";
+    return (assignment.activity.type || "").toLowerCase();
 }
 
 function resolveTypeLabel(assignment: FeaturedAssignment): string {
@@ -197,7 +204,7 @@ function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
             >
                 {items.map((assignment, index) => {
                     const title = resolveDisplayTitle(assignment);
-                    const format = getCourseMapActivityFormat((assignment.activity.type || "").toLowerCase(), undefined, title);
+                    const format = getCourseMapActivityFormat(resolveFormatType(assignment), undefined, title);
                     const tone = getLearnerCategoryTone(format.tone);
                     const Icon = format.icon;
                     const done = (assignment.progress ?? 0) >= 100;
