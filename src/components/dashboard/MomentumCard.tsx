@@ -41,6 +41,7 @@ export function MomentumCard({
     initialStreak = 0,
     initialLongestStreak = 0,
     initialSevenDayActivity = EMPTY_WEEK,
+    initialTotalPoints = 0,
     initialWeeklyPoints = 0,
     variant = "default",
     embedded = false,
@@ -51,6 +52,7 @@ export function MomentumCard({
     const streak = summary?.effectiveCurrentStreak ?? initialStreak;
     const longestStreak = initialLongestStreak;
     const weeklyPoints = summary?.actualWeeklyPoints ?? initialWeeklyPoints;
+    const totalPoints = summary?.totalPoints ?? initialTotalPoints;
     const sevenDayActivity = summary?.sevenDayActivity ?? initialSevenDayActivity;
 
     const todayIndex = getCalendarWeekTodayIndex();
@@ -98,9 +100,16 @@ export function MomentumCard({
                     </div>
                 </div>
 
-                <span className="ml-auto shrink-0 text-[13px] font-bold tabular-nums leading-none text-text">
-                    {weeklyPoints.toLocaleString()} pts
-                </span>
+                {/* Label both numbers: an unlabeled weekly figure read as "I lost points"
+                    to learners who remembered their (much larger) total. */}
+                <div className="ml-auto shrink-0 text-right leading-none">
+                    <div className="text-[13px] font-bold tabular-nums text-text">
+                        {weeklyPoints.toLocaleString()} pts <span className="text-[10px] font-semibold text-text-muted">this week</span>
+                    </div>
+                    <div className="mt-1 text-[10px] font-semibold tabular-nums text-text-muted">
+                        {totalPoints.toLocaleString()} total
+                    </div>
+                </div>
             </div>
 
             <div className="grid grid-cols-7" role="list" aria-label="This week's activity">
@@ -162,7 +171,7 @@ export function MomentumCard({
                     ? undefined
                     : { background: cardGradient, borderColor: cardBorder }
             }
-            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${weeklyPoints} points this week.`}
+            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${weeklyPoints} points this week, ${totalPoints} points total.`}
         >
             {isHeader && embedded ? (
                 <div

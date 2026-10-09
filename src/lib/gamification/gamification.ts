@@ -5,7 +5,7 @@ import { logger } from '@/lib/shared/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
-import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
+import { addDaysToDayKey as addDaysToLearnerDayKey, getCalendarWeekStart, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
 import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
@@ -236,20 +236,22 @@ export function calculateQuizPoints(score: number | null): number {
   return POINTS.QUIZ_COMPLETION;
 }
 
-export type LeaderboardRange = 'day' | 'week' | 'month';
+export type LeaderboardRange = 'day' | 'week' | 'month' | 'all';
 
-function getRangeStart(range: LeaderboardRange) {
+/** Start of the ledger window for a range; null means all time (no lower bound). */
+function getRangeStart(range: LeaderboardRange): Date | null {
+  if (range === 'all') return null;
+
   const now = new Date();
   const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   switch (range) {
     case 'day':
       return startOfToday;
-    case 'week': {
-      const start = new Date(startOfToday);
-      start.setDate(start.getDate() - 6); // last 7 days including today
-      return start;
-    }
+    case 'week':
+      // Monday 00:00 learner time -- the same week the dashboard's "this week"
+      // points and the Monday weekly-points reset use, so the numbers agree.
+      return getCalendarWeekStart(now);
     case 'month':
     default: {
       return new Date(now.getFullYear(), now.getMonth(), 1); // beginning of current month
@@ -297,7 +299,7 @@ export async function getTimeframedLeaderboard(
   // so we look up student metadata for just those users below, instead of
   // pulling the entire roster into memory on every leaderboard render.
   const whereLedger: Prisma.PointsLedgerWhereInput = {
-    createdAt: { gte: since },
+    ...(since ? { createdAt: { gte: since } } : {}),
     user: { ...studentWhere },
   };
 
@@ -377,6 +379,8 @@ export async function getTimeframedLeaderboard(
     return {
       id: r.userId,
       name: r.name,
+      // Points for the requested range (all-time totals when range === 'all');
+      // the field name predates the other ranges and is kept for API compatibility.
       weeklyPoints: r.points,
       currentStreak: r.currentStreak || 0,
       rank: currentRank,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useState, type CSSProperties } from 'react';
 import { TrophyIcon, FlameIcon, SparklesIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import { WeeklyQuizBadge } from '@/components/dashboard/WeeklyQuizBadge';
 import { Badge } from '@/components/ui';
@@ -39,6 +39,8 @@ const TROPHY_TILE_BG =
 type LeaderboardPayload = {
   leaderboard: LeaderboardEntry[];
   userRank: number | null;
+  /** The viewer's own row when they rank below the visible all-time list. */
+  viewerEntry: LeaderboardEntry | null;
   classId: string | null;
 };
 
@@ -48,6 +50,7 @@ interface ClassOption {
 }
 
 type LeaderboardScope = 'section' | 'all' | 'independent';
+type LeaderboardTimeframe = 'week' | 'all';
 type ViewerRole = 'student' | 'teacher' | 'admin' | null;
 type LearnerMode = 'classroom' | 'independent' | null;
 type IsAdmin = boolean;
@@ -55,15 +58,18 @@ type IsAdmin = boolean;
 async function fetchLeaderboard({
   classId,
   scope = 'section',
+  timeframe = 'week',
 }: {
   classId?: string | null;
   scope?: LeaderboardScope;
+  timeframe?: LeaderboardTimeframe;
 } = {}): Promise<LeaderboardPayload & { scope: LeaderboardScope }> {
   const params = new URLSearchParams();
   if (classId) {
     params.set('classId', classId);
   }
   params.set('scope', scope);
+  params.set('timeframe', timeframe);
   const response = await fetch(`/api/gamification/leaderboard${params.toString() ? `?${params.toString()}` : ''}`);
   if (!response.ok) {
     const raw = await response.text();
@@ -80,6 +86,7 @@ async function fetchLeaderboard({
   return {
     leaderboard: data.leaderboard || [],
     userRank: data.userRank || null,
+    viewerEntry: data.viewerEntry || null,
     classId: data.classId || null,
     scope: data.scope === 'all' || data.scope === 'independent' ? data.scope : 'section',
   };
@@ -89,6 +96,8 @@ export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [userRank, setUserRank] = useState<number | null>(null);
+  const [viewerEntry, setViewerEntry] = useState<LeaderboardEntry | null>(null);
+  const [timeframe, setTimeframe] = useState<LeaderboardTimeframe>('week');
   const [selectedClassId, setSelectedClassId] = useState<string | null>(null);
   const [classOptions, setClassOptions] = useState<ClassOption[]>([]);
   const [scope, setScope] = useState<LeaderboardScope>('section');
@@ -111,6 +120,7 @@ export default function LeaderboardPage() {
         if (cancelled) return;
         setLeaderboard(payload.leaderboard);
         setUserRank(payload.userRank);
+        setViewerEntry(payload.viewerEntry);
         setClassOptions(contextData.classes || []);
         setViewerRole(contextData.viewerRole || null);
         setLearnerMode(contextData.learnerMode || null);
@@ -137,9 +147,10 @@ export default function LeaderboardPage() {
     setSelectedClassId(normalizedClassId);
     setLoading(true);
     try {
-      const payload = await fetchLeaderboard({ classId: normalizedClassId, scope });
+      const payload = await fetchLeaderboard({ classId: normalizedClassId, scope, timeframe });
       setLeaderboard(payload.leaderboard);
       setUserRank(payload.userRank);
+      setViewerEntry(payload.viewerEntry);
     } catch (error) {
       console.error('Failed to fetch leaderboard:', error);
     } finally {
@@ -152,9 +163,26 @@ export default function LeaderboardPage() {
     setScope(nextScope);
     setLoading(true);
     try {
-      const payload = await fetchLeaderboard({ classId: selectedClassId, scope: nextScope });
+      const payload = await fetchLeaderboard({ classId: selectedClassId, scope: nextScope, timeframe });
       setLeaderboard(payload.leaderboard);
       setUserRank(payload.userRank);
+      setViewerEntry(payload.viewerEntry);
+    } catch (error) {
+      console.error('Failed to fetch leaderboard:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onTimeframeChange = async (nextTimeframe: LeaderboardTimeframe) => {
+    if (timeframe === nextTimeframe) return;
+    setTimeframe(nextTimeframe);
+    setLoading(true);
+    try {
+      const payload = await fetchLeaderboard({ classId: selectedClassId, scope, timeframe: nextTimeframe });
+      setLeaderboard(payload.leaderboard);
+      setUserRank(payload.userRank);
+      setViewerEntry(payload.viewerEntry);
     } catch (error) {
       console.error('Failed to fetch leaderboard:', error);
     } finally {
@@ -215,6 +243,41 @@ export default function LeaderboardPage() {
   }
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
+  const isAllTime = timeframe === 'all';
+  // Weekly quiz / week-done badges describe the current week, so they only make sense on the weekly board.
+  const showWeekBadges = !isAllTime;
+  const timeframeTabs = (
+    <div
+      role="tablist"
+      aria-label="Leaderboard time range"
+      className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
+      style={{
+        border: '1px solid var(--border-subtle)',
+        backgroundColor: 'var(--surface-contrast)',
+      }}
+    >
+      {([['week', 'This Week'], ['all', 'All Time']] as const).map(([value, label]) => {
+        const selected = timeframe === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            role="tab"
+            aria-selected={selected}
+            onClick={() => void onTimeframeChange(value)}
+            className="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-full sm:rounded-md transition-all duration-200"
+            style={
+              selected
+                ? { backgroundColor: 'var(--color-primary)', color: 'var(--text-on-accent)' }
+                : { backgroundColor: 'transparent', color: 'var(--color-text-muted)' }
+            }
+          >
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
   const studentScopeToggle = viewerRole === 'student' && learnerMode === 'independent' ? (
     <div
       className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
@@ -273,10 +336,12 @@ export default function LeaderboardPage() {
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-                  {scope === 'independent' ? 'Self-paced Leaderboard' : 'Weekly Leaderboard'}
+                  {scope === 'independent' ? 'Self-paced Leaderboard' : isAllTime ? 'All-Time Leaderboard' : 'Weekly Leaderboard'}
                 </h1>
                 <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
-                  {scope === 'independent' ? 'Top self-paced learners this week' : 'Top performers this week'}
+                  {isAllTime
+                    ? 'Total points since you joined'
+                    : scope === 'independent' ? 'Top self-paced learners this week' : 'Top performers this week'}
                 </p>
               </div>
             </div>
@@ -363,6 +428,8 @@ export default function LeaderboardPage() {
       </header>
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
+        <div className="flex justify-center">{timeframeTabs}</div>
+
         {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
         {leaderboard.some(entry => entry.rank <= 3) && hasNonZeroScores && (() => {
           // Get all students in top 3 ranks (handles ties)
@@ -436,10 +503,10 @@ export default function LeaderboardPage() {
                             <span>{student.currentStreak} day streak</span>
                           </div>
                         )}
-                        {student.weeklyQuizComplete && (
+                        {showWeekBadges && student.weeklyQuizComplete && (
                           <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
                         )}
-                        {student.weekComplete && (
+                        {showWeekBadges && student.weekComplete && (
                           <div
                             className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold"
                             style={{ color: 'var(--success-color)' }}
@@ -493,7 +560,7 @@ export default function LeaderboardPage() {
                         <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
                           {student.weeklyPoints} pts
                         </p>
-                        {student.weeklyQuizComplete && (
+                        {showWeekBadges && student.weeklyQuizComplete && (
                           <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
                         )}
                       </div>
@@ -521,14 +588,23 @@ export default function LeaderboardPage() {
               </div>
             </div>
             <div className="divide-y" style={{ borderColor: 'var(--border-subtle)' }}>
-              {leaderboard.map((entry) => {
+              {[...leaderboard, ...(viewerEntry ? [viewerEntry] : [])].map((entry) => {
               const rankColors = getRankColor(entry.rank);
               const rankChange = getRankChangeIndicator(entry.rankChange);
               const isUserRow = entry.rank === userRank;
+              const isDetachedViewerRow = entry === viewerEntry;
 
               return (
+                <Fragment key={entry.id}>
+                {isDetachedViewerRow && (
+                  <div
+                    className="px-4 py-1.5 text-center text-xs font-bold tracking-wide"
+                    style={{ backgroundColor: 'var(--surface-contrast)', color: 'var(--color-text-muted)' }}
+                  >
+                    Your place
+                  </div>
+                )}
                 <div
-                  key={entry.id}
                   className={`relative flex items-center justify-between gap-3 px-4 py-2.5 leading-none transition-all animate-card-lift ${isUserRow ? 'border-l-4' : ''}`}
                     style={{
                     backgroundColor: isUserRow ? 'color-mix(in srgb, var(--color-primary) 12%, transparent)' : 'transparent',
@@ -576,8 +652,8 @@ export default function LeaderboardPage() {
                             <span>{entry.currentStreak} day streak</span>
                           </div>
                         )}
-                        {entry.weeklyQuizComplete && <WeeklyQuizBadge />}
-                        {entry.weekComplete && (
+                        {showWeekBadges && entry.weeklyQuizComplete && <WeeklyQuizBadge />}
+                        {showWeekBadges && entry.weekComplete && (
                           <div
                             className="flex items-center gap-1 text-sm font-semibold"
                             style={{ color: 'var(--success-color)' }}
@@ -602,6 +678,7 @@ export default function LeaderboardPage() {
                     </div>
                   )}
                 </div>
+                </Fragment>
               );
               })}
             </div>

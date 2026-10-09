@@ -130,7 +130,9 @@ export function StudentQuickStats({
                     <StarIcon className="text-[var(--tone-speaking-accent)]" size={tight ? 10 : compact ? 12 : mobile ? 15 : 17} />
                 </div>
                 {(compact || tight) ? (
-                    <span className={`${textSz || "text-[13px]"} font-bold text-text leading-none`}>{summary.actualWeeklyPoints}</span>
+                    <span className={`${textSz || "text-[13px]"} font-bold text-text leading-none`}>
+                        {summary.actualWeeklyPoints} <span className="text-[10px] font-semibold text-text-muted">this week</span>
+                    </span>
                 ) : (
                 <div>
                     <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide leading-none text-[var(--tone-speaking-chip-text)]`}>This Week</div>
