@@ -4,7 +4,7 @@
 
 Word Rescue is live on https://myesolclass.com as the first required activity in weeks 1–4. Production deployment: `dpl_36kBDqxqXJuUKXx3juyqBUG9rBxZ`. The narrow release script enabled only `sep-w1`, `sep-w2`, `sep-w4`, and `oct-learning`; class reveals and schedules were unchanged. The sections below retain implementation history and earlier pending checks; this status supersedes their deployment status.
 
-Student access requires both a visible class week and membership in `RELEASED_RESCUE_COLLECTIONS`. Future releases must update that allowlist and apply the narrow `scripts/word-rescue/release.ts --apply --activate` process after reviewing the new week's content. Everyday practice is also available. Do not use the wholesale course-map seed for this narrow rollout.
+Student access follows the same visible class weeks as the course map, including manual reveals and scheduled releases. There is no separate per-week Word Rescue allowlist. Everyday practice remains available. The global activity release switch remains available for disabling the whole activity. Use the narrow placement script for new map entries; do not run the wholesale map seed for a Word Rescue-only rollout.
 
 Validation passed: production build and TypeScript, critical tests, full Vitest suite (759 tests at that run), final focused Word Rescue suite (36 tests), lint with no errors, and decoding all 93 initial-release audio clips. A real PostgreSQL transaction verified balance/ledger credit and duplicate-save suppression, then rolled back all temporary test records. Live smoke checks confirmed audio delivery, authenticated access using the dedicated E2E student, rejection of an unreleased collection, and all four map links ordered first.
 

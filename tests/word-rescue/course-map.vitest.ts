@@ -47,9 +47,3 @@ describe('weekly Word Rescue', () => {
     expect(buildCourseMapProgressState(rows.reverse())['word-rescue'].categoryData).toEqual({wordRescue:{words:{count:2}}});
   });
 });
-
-it('marks only the initial four vocabulary-week links as released', async () => {
-  const { isRescueMapLinkReleased } = await import('@/lib/word-rescue/release');
-  expect(isRescueMapLinkReleased('/activity/word-rescue?collection=oct-learning&fromMap=1')).toBe(true);
-  expect(isRescueMapLinkReleased('/activity/word-rescue?collection=oct-w2&fromMap=1')).toBe(false);
-});

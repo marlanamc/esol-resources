@@ -39,7 +39,17 @@ it('preserves a withdrawn unfinished session but allows new practice after a com
   state.session.index = 1;
   expect(applyRescueAction(state,action,allowed).state.session?.collectionId).toBe('everyday');
 });
-it('keeps later Word Rescue sets unavailable even when an older class has all map weeks revealed', async () => {
+it('makes all map-visible weeks available without a separate Word Rescue allowlist', async () => {
   visibleMap.mockResolvedValue({units:[{levels:[{requiredActivities:RESCUE_COLLECTIONS.map(set=>({activityId:set.sourceActivityId}))}]}]});
-  expect((await getRescueCollectionsForUser({id:'student',role:'student'})).map(set=>set.id)).toEqual(['everyday','sep-w1','sep-w2','sep-w4','oct-learning']);
+  expect((await getRescueCollectionsForUser({id:'student',role:'student'})).map(set=>set.id)).toEqual(RESCUE_COLLECTIONS.map(set=>set.id));
+});
+
+it('unlocks and withdraws a future set as the shared map visibility changes', async () => {
+  const student = {id:'student',role:'student'};
+  visibleMap.mockResolvedValue({units:[]});
+  expect((await getRescueCollectionsForUser(student)).some(set=>set.id==='sep-w3')).toBe(false);
+  visibleMap.mockResolvedValue({units:[{levels:[{requiredActivities:[{activityId:'vocab-sep-w3'}]}]}]});
+  expect((await getRescueCollectionsForUser(student)).map(set=>set.id)).toEqual(['everyday','sep-w3']);
+  visibleMap.mockResolvedValue({units:[]});
+  expect((await getRescueCollectionsForUser(student)).some(set=>set.id==='sep-w3')).toBe(false);
 });

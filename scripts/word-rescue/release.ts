@@ -4,7 +4,6 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { PrismaClient } from '@prisma/client';
 import { requireSafeDbTarget } from '../lib/require-safe-db-target';
 import { COURSE_MAP_UNITS } from '../../src/lib/course-map-data';
-import { RELEASED_RESCUE_COLLECTIONS } from '../../src/lib/word-rescue/release';
 loadEnvConfig(process.cwd());
 async function main() {
  const apply=process.argv.includes('--apply');
@@ -15,7 +14,7 @@ async function main() {
   if(!classroom) throw new Error('FY27 class not found');
   const weeks=await prisma.courseWeek.findMany({where:{OR:[{classReveals:{some:{classId:classroom.id}}},{weekSchedules:{some:{classId:classroom.id,revealAt:{lte:new Date()}}}}]},include:{items:true}});
   const desired=COURSE_MAP_UNITS.flatMap(u=>u.weeks).flatMap(w=>w.items.filter(i=>i.activityId==='word-rescue').map(item=>({weekId:w.id,item})));
-  const nodes=desired.filter(node=>weeks.some(w=>w.id===node.weekId)&&RELEASED_RESCUE_COLLECTIONS.has(new URL(node.item.href!,'https://myesolclass.com').searchParams.get('collection')!));
+  const nodes=desired.filter(node=>weeks.some(w=>w.id===node.weekId));
   console.log(JSON.stringify({apply,activate,weekIds:nodes.map(n=>n.weekId)}));
   if(!apply)return;
   requireSafeDbTarget('release Word Rescue to already released FY27 weeks');
