@@ -87,3 +87,29 @@
   12%, 80% { opacity: 1; transform: translate(-50%, 0); }
   100% { opacity: 0; transform: translate(-50%, -18px); }
 }
+
+.wordHeader { text-align: center; padding: 4px 0 20px; border-bottom: 1px solid #ccd8cf; margin-bottom: 14px; }
+.wordHeader .word { font-size: clamp(36px, 12vw, 56px); }
+.wordHeader .meaning { margin-bottom: 0; font-size: 17px; }
+.accordion { border: 1px solid #ccd8cf; border-radius: 12px; margin: 10px 0; overflow: clip; }
+.sectionHeading { margin: 0; font-size: 18px; }
+.sectionToggle { display: flex; width: 100%; align-items: center; gap: 10px; background: transparent; color: var(--wr-ink); text-align: left; padding: 14px !important; }
+.sectionToggle > svg:last-child { margin-left: auto; flex-shrink: 0; }
+.stepNumber { display: inline-flex; flex: 0 0 28px; height: 28px; justify-content: center; align-items: center; background: var(--wr-green); color: white; border-radius: 50%; font-size: 15px; }
+.sectionBody { padding: 0 14px 16px; }
+.sectionBody[hidden] { display: none; }
+.sectionBody .audioRow { margin: 12px 0; }
+.sectionBody .primary { margin-top: 14px; }
+.sectionBody .help { margin: 14px 0; }
+.sectionBody .recording { margin-top: 12px; padding-top: 12px; }
+.practiceLine + .practiceLine { border-top: 1px solid #ccd8cf; padding-top: 4px; }
+.practiceLine .phrase { font-size: 22px; margin: 14px 0 8px; line-height: 1.4; }
+.practiceLine .audio small { display: none; }
+.practiceLine .audio svg { grid-row: auto; }
+.practiceLine .audio { font-size: 14px; }
+.reflections { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.reflection { display: flex; justify-content: center; align-items: center; gap: 6px; border: 1px solid #7f9e91; background: transparent; color: var(--wr-ink); }
+.reflection[aria-pressed="true"] { border-color: var(--wr-rust); background: #f8ede7; opacity: 1 !important; }
+
+.sectionBody .audio { font-size: 14px; }
+.recording .secondary { display: flex; align-items: center; justify-content: center; gap: 10px; }

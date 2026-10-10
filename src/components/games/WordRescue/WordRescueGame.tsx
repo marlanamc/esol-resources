@@ -39,12 +39,12 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const [weekly, setWeekly] = useState(!!selectedCollection);
   const [week, setWeek] = useState(selectedCollection?.id ?? collections[1]?.id ?? 'everyday');
   const [stage, setStage] = useState<0 | 1 | 2>(0);
-  const [buildStep, setBuildStep] = useState<0 | 1>(0);
+  const [savedWordId, setSavedWordId] = useState<string | null>(null);
   const [helpOpen, setHelpOpen] = useState(false);
   const [lastClip, setLastClip] = useState<{ clip: ClipKind; rate: number }>({ clip: 'word', rate: 1 });
   const audio = useRescueAudio();
   const session = state.session;
-  const word = session ? RESCUE_WORD_BY_ID[session.wordIds[session.index]] : null;
+  const word = receipt && savedWordId ? RESCUE_WORD_BY_ID[savedWordId] : session ? RESCUE_WORD_BY_ID[session.wordIds[session.index]] : null;
   const allowedWords = new Set(collections.flatMap(set => set.wordIds));
   const sessionLocked = !!session && session.index < session.wordIds.length && session.wordIds.some(id => !allowedWords.has(id));
   const revisitCount = Object.entries(state.words).filter(([id, item]) => allowedWords.has(id) && item.confidence === 'again').length;
@@ -52,7 +52,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const roundPoints = roundComplete ? session!.wordIds.length * WORD_RESCUE_POINTS : 0;
   const active = !!word && !menu && !sessionLocked;
   const disabled = saving || !!pending || !loaded;
-  const stepTitle = useRef<HTMLHeadingElement | null>(null);
+  const sectionButtons = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
     if (!saving) { setShowSaving(false); return; }
@@ -85,7 +85,10 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
         result = body;
       }
       accept(result.state); savePending(null);
+      if (action.type === 'said') setStage(2);
       if (action.type === 'finish') {
+        setSavedWordId(action.wordId);
+        setStage(2);
         if (!preview && result.pointsAwarded > 0) {
           setWordReward({ id: `${action.sessionId}:${action.wordId}`, points: result.pointsAwarded });
         }
@@ -152,23 +155,23 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       setMenu(false);
       const current = latest.current.session;
       setStage(current?.said ? 2 : current?.heard.includes('word') ? 1 : 0);
-      setBuildStep(0);
+      setHelpOpen(false);
     });
   }, [fromMap, loaded, disabled, selectedCollection, collections, session, send]);
 
-  const move = (next: 0 | 1 | 2) => { audio.stop(); setStage(next); requestAnimationFrame(() => stepTitle.current?.focus()); };
+  const move = (next: 0 | 1 | 2) => { audio.stop(); setStage(next); requestAnimationFrame(() => sectionButtons.current[next]?.focus({ preventScroll: true })); };
   const play = (clip: ClipKind, rate: number, device = false) => {
     if (!word || !session || disabled) return;
     const onEnded = () => {
-      if (!session.heard.includes(clip)) void send({ type: 'heard', sessionId: session.id, wordId: word.id, clip });
+      if (!receipt && !session.heard.includes(clip)) void send({ type: 'heard', sessionId: session.id, wordId: word.id, clip });
     };
     setLastClip({ clip, rate });
     if (device) audio.speak(clipText(word, clip), rate, onEnded);
     else void audio.play(rescueAudioPath(word.id, clip), rate, onEnded);
   };
   const audioControls = (clip: ClipKind) => <div className={styles.audioRow}>
-    <button className={styles.audio} disabled={disabled || audio.recording || audio.permissionPending} onClick={() => play(clip, 1)}><Volume2 aria-hidden size={23} /><span>Hear normally</span><small>1× speed</small></button>
-    <button className={styles.audio} disabled={disabled || audio.recording || audio.permissionPending} onClick={() => play(clip, .7)}><Volume2 aria-hidden size={23} /><span>Hear slowly</span><small>0.7× speed</small></button>
+    <button className={styles.audio} disabled={disabled || audio.recording || audio.permissionPending} aria-label={`Hear ${clip} normally`} onClick={() => play(clip, 1)}><Volume2 aria-hidden size={23} /><span>{clip === 'word' ? 'Hear normally' : 'Normal'}</span><small>1× speed</small></button>
+    <button className={styles.audio} disabled={disabled || audio.recording || audio.permissionPending} aria-label={`Hear ${clip} slowly`} onClick={() => play(clip, .7)}><Volume2 aria-hidden size={23} /><span>{clip === 'word' ? 'Hear slowly' : 'Slow'}</span><small>0.7× speed</small></button>
   </div>;
   const chooseLanguage = (language: HelpLanguage) => { void send({ type: 'language', language }); };
   const hint = word?.help?.[state.language];
@@ -192,12 +195,12 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     <div className={styles.inner}>
     {preview && <div className={styles.preview}>Teacher preview · draft audio and language guides · no account points</div>}
     <header className={styles.header}><div className={styles.brand}>
-      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
-      <span>Word Rescue</span></div><span className={styles.muted}>{active && session ? `${session.index + 1} of ${session.wordIds.length}` : ''}</span></header>
+      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
+      <span>Word Rescue</span></div><span className={styles.muted}>{active && session ? `${receipt ? session.index : session.index + 1} of ${session.wordIds.length}` : ''}</span></header>
     {loaded && sessionLocked && <p role="status" className={styles.status}>Your saved session is kept safe. Its week must be released before you can continue.</p>}
     {notice && <p role="status" className={styles.status}>{notice}</p>}
     {(error || (pending && !saving)) && <div className={styles.error} role="alert"><p>{error || 'An earlier practice step is waiting to save.'}</p>{pending && <button className={styles.secondary} disabled={saving} onClick={() => void send(pending, true)}>{saving ? 'Saving…' : 'Retry save'}</button>}{!loaded && <button className={styles.secondary} onClick={() => window.location.reload()}>Reload saved practice</button>}</div>}
-    {!loaded && !error ? <p role="status">Loading your practice…</p> : receipt ? <section aria-live="polite" aria-atomic="true"><Check aria-hidden size={32} /><h1 className={styles.heading}>{roundComplete ? 'Round complete!' : 'Your practice counts.'}</h1>{roundComplete ? <div className={styles.roundReward}><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'A full round earns these points in the live activity. No account points are awarded in preview.' : `You practiced ${session!.mode === 'weekly' ? 'all ' : ''}${session!.wordIds.length} ${session!.mode === 'weekly' ? 'weekly words' : 'words'}. Your points are saved!`}</p></div> : <p className={styles.status}>{receipt}</p>}{fromMap && !word ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight aria-hidden size={20} /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setStage(0); setBuildStep(0); }}>{word ? 'Next word' : 'See my practice'}<ArrowRight aria-hidden size={20} /></button>}</section> : !active ? <section>
+    {!loaded && !error ? <p role="status">Loading your practice…</p> : !active ? <section>
       <h1 className={styles.heading}>{session && session.index >= session.wordIds.length && !menu ? 'A little more confident.' : 'Which words today?'}</h1>
       {selectedCollection && <p className={styles.status}>This week: {selectedCollection.label}</p>}
       <p className={styles.subtitle}>{fromMap ? `Practice all ${selectedCollection?.wordIds.length ?? 6} weekly words. Earn ${(selectedCollection?.wordIds.length ?? 6) * WORD_RESCUE_POINTS} points.` : 'Three words. A few small steps. Listen, try, and make them your own.'}</p>
@@ -205,47 +208,57 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       {!fromMap && <div className={styles.collections}>
         <button className={styles.collection} disabled={disabled || !!word} onClick={() => setWeekly(value => !value)} aria-expanded={weekly}>This week’s words<small>Choose the week your class is studying</small></button>
         {weekly && !collections.some(set => set.sourceActivityId) && <p className={styles.muted}>Your teacher hasn’t released any vocabulary weeks yet. You can practice everyday words.</p>}
-        {weekly && collections.some(set => set.sourceActivityId) && <div><label htmlFor="rescue-week">Class vocabulary week</label><select className={styles.select} id="rescue-week" value={week} onChange={event => setWeek(event.target.value)}>{collections.filter(item => item.sourceActivityId).map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select><button disabled={disabled || !!word || !week} className={styles.primary} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: week })) { setMenu(false); setStage(0); setBuildStep(0); } }}>Practice this week<ArrowRight aria-hidden size={20} /></button></div>}
-        <button className={styles.collection} disabled={disabled || !!word} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'everyday' })) { setMenu(false); setStage(0); setBuildStep(0); } }}>Everyday tricky words<small>Through, prohibited, achieve, and more</small></button>
-        <button className={styles.collection} disabled={disabled || !!word || !revisitCount} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'again' })) { setMenu(false); setStage(0); setBuildStep(0); } }}>Practice again<small>{revisitCount} words you chose to revisit</small></button>
+        {weekly && collections.some(set => set.sourceActivityId) && <div><label htmlFor="rescue-week">Class vocabulary week</label><select className={styles.select} id="rescue-week" value={week} onChange={event => setWeek(event.target.value)}>{collections.filter(item => item.sourceActivityId).map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select><button disabled={disabled || !!word || !week} className={styles.primary} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: week })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Practice this week<ArrowRight aria-hidden size={20} /></button></div>}
+        <button className={styles.collection} disabled={disabled || !!word} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'everyday' })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Everyday tricky words<small>Through, prohibited, achieve, and more</small></button>
+        <button className={styles.collection} disabled={disabled || !!word || !revisitCount} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'again' })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Practice again<small>{revisitCount} words you chose to revisit</small></button>
       </div>}
       {fromMap && <a className={styles.primary} href={returnHref}>Back to course map</a>}
       <p className={styles.muted} style={{ marginTop: 20 }}>{word ? 'Finish your saved session before starting another collection.' : 'Earn 2 points for each word you practice. Recording is always optional.'}</p>
     </section> : word && session && <section>
-      <ol className={styles.steps} aria-label="Practice steps">{['Hear', 'Build', 'Try'].map((label, index) => <li key={label} aria-current={stage === index ? 'step' : undefined}>{label}</li>)}</ol>
-      <h1 ref={stepTitle} tabIndex={-1} className={stage === 0 ? styles.word : styles.heading}>{stage === 0 ? highlighted(word) : stage === 1 ? 'Build it up.' : 'Make it your own.'}</h1>
-      {stage === 0 ? <>
-        <p className={styles.meaning}>{word.definition}</p>{audioControls('word')}
-        {word.clue && <p className={styles.clue}><Lightbulb aria-hidden size={21} /><span>{word.clue}</span></p>}
-        {languageHelp}
-        <button className={styles.primary} disabled={disabled || !session.heard.includes('word')} onClick={() => move(1)}>Build it up<ArrowRight aria-hidden size={20} /></button>
-        <p className={styles.muted} style={{ textAlign: 'center', marginTop: 10 }}>{session.heard.includes('word') ? 'Your practice counts.' : 'Listen to the whole word to continue.'}</p>
-      </> : stage === 1 ? <>
-        <p className={styles.subtitle}>Listen, say it, then add a little more.</p>
-        <p className={styles.muted}>{buildStep === 0 ? 'A SHORT PHRASE' : 'THE WHOLE SENTENCE'}</p>
-        <p className={styles.phrase}>{buildStep === 0 ? word.phrase : word.sentence}</p>
-        {audioControls(buildStep === 0 ? 'phrase' : 'sentence')}
-        <button className={styles.primary} disabled={disabled || !session.heard.includes(buildStep === 0 ? 'phrase' : 'sentence')} onClick={() => { audio.stop(); if (buildStep === 0) setBuildStep(1); else move(2); }}> {buildStep === 0 ? 'Try the sentence' : 'Ready to try'}<ArrowRight aria-hidden size={20} /></button>
-        <button className={styles.secondary} onClick={() => { if (buildStep === 1) { audio.stop(); setBuildStep(0); } else move(0); }}>Go back a step</button>
-      </> : <>
-        <p className={styles.subtitle}>Say the sentence aloud. Take your time.</p><p className={styles.phrase}>{word.sentence}</p>{audioControls('sentence')}
-        <div className={styles.recording}><p className={styles.muted}>Optional · hear yourself</p>
-          <button className={styles.secondary} disabled={disabled || audio.permissionPending} onClick={() => { if (audio.recording) audio.stopRecording(); else void audio.record(); }}>{audio.recording ? <><Square aria-hidden size={18} /> Stop recording</> : <><Mic aria-hidden size={18} /> {audio.permissionPending ? 'Waiting for microphone…' : audio.hasRecording ? 'Record again' : 'Record myself'}</>}</button>
-          {audio.hasRecording && <button className={styles.secondary} onClick={audio.listenToMe}><Volume2 aria-hidden size={18} /> Listen to me</button>}
-          <p className={styles.muted} style={{ marginTop: 8 }}>Only on this device. Deleted when you leave this word. Up to one minute.</p>
+      <div className={styles.wordHeader}>
+        <h1 className={styles.word}>{highlighted(word)}</h1>
+        <p className={styles.meaning}>{word.definition}</p>
+      </div>
+      <div className={styles.accordion}>
+        <h2 className={styles.sectionHeading}><button ref={node => { sectionButtons.current[0] = node; }} className={styles.sectionToggle} id="rescue-listen-heading" aria-expanded={stage === 0} aria-controls="rescue-listen" disabled={audio.recording || audio.permissionPending} onClick={() => move(0)}><span className={styles.stepNumber}>1</span><span>{receipt || session.heard.includes('word') ? 'Listened' : 'Listen & get help'}</span>{(receipt || session.heard.includes('word')) && <Check size={18} aria-hidden />}{stage === 0 ? <ChevronUp size={20} aria-hidden /> : <ChevronDown size={20} aria-hidden />}</button></h2>
+        <div id="rescue-listen" role="region" aria-labelledby="rescue-listen-heading" hidden={stage !== 0} className={styles.sectionBody}>
+          {audioControls('word')}
+          {word.clue && <p className={styles.clue}><Lightbulb aria-hidden size={21} /><span>{word.clue}</span></p>}
+          {languageHelp}
+          <button className={styles.primary} disabled={disabled || (!receipt && !session.heard.includes('word'))} onClick={() => move(1)}>Ready to practice</button>
         </div>
-        {!session.said ? <button className={styles.primary} disabled={disabled || audio.recording || audio.permissionPending} onClick={() => { audio.stop(); void send({ type: 'said', sessionId: session.id, wordId: word.id }); }}>I said it aloud<Check aria-hidden size={20} /></button> : <>
-          <p className={styles.subtitle} style={{ marginTop: 24 }}>You practiced. How does it feel?</p>
-          <button className={styles.primary} disabled={disabled || audio.recording || audio.permissionPending} onClick={() => { audio.reset(); void send({ type: 'finish', sessionId: session.id, wordId: word.id, confidence: 'easier' }); }}>Feels easier</button>
-          <button className={styles.secondary} disabled={disabled || audio.recording || audio.permissionPending} onClick={() => { audio.reset(); void send({ type: 'finish', sessionId: session.id, wordId: word.id, confidence: 'again' }); }}>Practice again</button>
-          <p className={styles.muted} style={{ textAlign: 'center', marginTop: 10 }}>Either choice earns 2 practice points.</p>
-        </>}
-      </>}
+      </div>
+      <div className={styles.accordion}>
+        <h2 className={styles.sectionHeading}><button ref={node => { sectionButtons.current[1] = node; }} className={styles.sectionToggle} id="rescue-build-heading" aria-expanded={stage === 1} aria-controls="rescue-build" disabled={audio.recording || audio.permissionPending || (!receipt && !session.heard.includes('word'))} onClick={() => move(1)}><span className={styles.stepNumber}>2</span><span>{receipt || session.said ? 'Practiced' : 'Build & say'}</span>{(receipt || session.said) && <Check size={18} aria-hidden />}{stage === 1 ? <ChevronUp size={20} aria-hidden /> : <ChevronDown size={20} aria-hidden />}</button></h2>
+        <div id="rescue-build" role="region" aria-labelledby="rescue-build-heading" hidden={stage !== 1} className={styles.sectionBody}>
+          
+          <div className={styles.practiceLine}><p className={styles.phrase}>{word.phrase}</p>{audioControls('phrase')}</div>
+          <div className={styles.practiceLine}><p className={styles.phrase}>{word.sentence}</p>{audioControls('sentence')}</div>
+          <div className={styles.recording}><p className={styles.muted}>Optional · hear yourself</p>
+            <button className={styles.secondary} disabled={disabled || audio.permissionPending} onClick={() => { if (audio.recording) audio.stopRecording(); else void audio.record(); }}>{audio.recording ? <><Square aria-hidden size={18} /> Stop recording</> : <><Mic aria-hidden size={18} /> {audio.permissionPending ? 'Waiting for microphone…' : audio.hasRecording ? 'Record again' : 'Record myself'}</>}</button>
+            {audio.hasRecording && <button className={styles.secondary} onClick={audio.listenToMe}><Volume2 aria-hidden size={18} /> Listen to me</button>}
+            <p className={styles.muted} style={{ marginTop: 8 }}>Only on this device. Deleted when you leave this word. Up to one minute.</p>
+          </div>
+          <button className={styles.primary} disabled={disabled || audio.recording || audio.permissionPending || (!receipt && !session.heard.includes('sentence'))} onClick={async () => { audio.stop(); if (receipt || session.said) move(2); else if (await send({ type: 'said', sessionId: session.id, wordId: word.id })) move(2); }}>I practiced it<Check aria-hidden size={20} /></button>
+        </div>
+      </div>
+      <div className={styles.accordion}>
+        <h2 className={styles.sectionHeading}><button ref={node => { sectionButtons.current[2] = node; }} className={styles.sectionToggle} id="rescue-reflect-heading" aria-expanded={stage === 2} aria-controls="rescue-reflect" disabled={audio.recording || audio.permissionPending || (!receipt && !session.said)} onClick={() => move(2)}><span className={styles.stepNumber}>3</span><span>How does it feel?</span>{stage === 2 ? <ChevronUp size={20} aria-hidden /> : <ChevronDown size={20} aria-hidden />}</button></h2>
+        <div id="rescue-reflect" role="region" aria-labelledby="rescue-reflect-heading" hidden={stage !== 2} className={styles.sectionBody}>
+          <div className={styles.reflections}>
+            {(['easier', 'again'] as const).map(confidence => <button key={confidence} className={styles.reflection} aria-pressed={receipt ? session.finished[word.id] === confidence : false} disabled={disabled || !!receipt} onClick={() => { audio.reset(); void send({ type: 'finish', sessionId: session.id, wordId: word.id, confidence }); }}>{receipt && session.finished[word.id] === confidence && <Check size={18} aria-hidden />}{confidence === 'easier' ? 'Feels easier' : 'Practice again'}</button>)}
+          </div>
+          {receipt ? <>
+            {roundComplete ? <div className={styles.roundReward} role="status"><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'Round complete. Preview only — no account points awarded.' : `You practiced all ${session.wordIds.length} words. Your points are saved!`}</p></div> : <p className={styles.status} role="status">{receipt}</p>}
+            {roundComplete && fromMap ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight size={20} aria-hidden /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(0); setHelpOpen(false); if (roundComplete) setMenu(true); requestAnimationFrame(() => sectionButtons.current[0]?.focus({ preventScroll: true })); }}>{roundComplete ? 'See my practice' : 'Next word'}<ArrowRight size={20} aria-hidden /></button>}
+          </> : <p className={styles.muted} style={{ marginTop: 14 }}>Either choice earns 2 practice points.</p>}
+        </div>
+      </div>
       <button className={`${styles.secondary} ${styles.stopAudio}`} disabled={!audio.busy} onClick={audio.stop}>Stop audio</button>
       {audio.error && <div role="alert" className={styles.error}><p>{audio.error}</p><button className={styles.secondary} disabled={disabled} onClick={() => play(lastClip.clip, lastClip.rate)}>Retry audio</button><button className={styles.secondary} disabled={disabled} onClick={() => play(lastClip.clip, lastClip.rate, true)}>Use device voice</button><p className={styles.muted}>Device voices vary. Listen to your teacher’s model when available.</p></div>}
       <p role="status" className={`${styles.muted} ${styles.saveStatus}`}>{showSaving ? 'Saving practice…' : '\u00a0'}</p>
     </section>}
-    {preview && <button className={styles.secondary} style={{ marginTop: 40 }} onClick={() => { audio.reset(); accept(emptyRescueProgress()); savePending(null); setReceipt(null); setMenu(false); setStage(0); setBuildStep(0); setError(''); localStorage.removeItem('word-rescue-preview-state'); }}>Reset preview</button>}
+    {preview && <button className={styles.secondary} style={{ marginTop: 40 }} onClick={() => { audio.reset(); accept(emptyRescueProgress()); savePending(null); setReceipt(null); setMenu(false); setStage(0); setHelpOpen(false); setError(''); localStorage.removeItem('word-rescue-preview-state'); }}>Reset preview</button>}
   </div></div>;
 }
 

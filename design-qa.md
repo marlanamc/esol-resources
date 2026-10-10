@@ -92,3 +92,29 @@ Repository hygiene check separately flagged existing Finder files: `FY27/.DS_Sto
 - Generated all 597 clips for the 199 active word IDs using one ElevenLabs voice/model/settings combination; 569 unique requests after text deduplication. Every generated file has provenance and a reusable signature. A cache version refreshes previously loaded preview audio.
 - 30 focused tests pass; TypeScript and scoped lint pass. Browser confirms current FY27 labels (e.g. Week 4 Foundations: Learn How to Learn). Screenshot: `output/word-rescue/fy27-collections.png`.
 - Still pending listening review and student release; generation does not imply reviewed pronunciation.
+
+
+## Word Rescue accordion implementation — October 10, 2026
+
+- Source visual: `/Users/marlanacreed/.codex/generated_images/01a12742-df34-7f60-b99d-8d0d87c269df/exec-69f32b5d-1bef-4342-a3f7-a2c6ce5e1f80.png` (1536×1024 board, three app states).
+- Implementation: `output/word-rescue/accordion-listen.png`, `accordion-practice.png`, `accordion-saved.png`; localhost preview at `/preview/word-rescue`.
+- Viewport: 390×844 CSS px, screenshot width 390px (1×), full-page captures. Compared the center reference panel (~390px wide) with the 390px implementation; excluded decorative frame/footer and the preview-only banner/reset control from app-content comparison. Reference and revised practice screenshot were opened together in one tool result. Entire panels were legible, so separate focused crops were unnecessary.
+- States: Listen; reopened completed Build & say; saved reflection. Reference's Build state is unfinished; the implementation practice screenshot shows the same region reopened after completing it, explaining its Practiced checkmark.
+
+### Findings and comparison history
+
+Initial P2: practice audio labels wrapped and the recording icon occupied another line, putting the main action too low. Fixed with compact Normal/Slow labels and an inline recording button. Recaptured `accordion-practice.png`; the unnecessary wrapping is resolved.
+
+Typography: existing app display serif and body fonts retained; clear large word and readable phrase/sentence text. Intentional difference from the generated mock's mixed fonts: established app fonts take precedence.
+Spacing: fixed word/meaning region and three bordered folding sections match the approved hierarchy. Phrase and sentence share one panel; recording privacy copy and persistent Stop audio are retained product requirements. Controls have 48px minimum touch height. Preview-only notices make captures taller than the live activity.
+Colors: cream, sage, dark green and terracotta use existing Word Rescue tokens. Selected confidence has a subtle terracotta outline/background.
+Assets: existing Lucide icons retained. Quotes, leaves, decorative frame and slogans deliberately omitted at the user's request. No raster assets needed.
+Copy: Ready to practice, I practiced it, How does it feel?, Next word match the approved flow. Preview honestly labels its illustrative totals; production retains confirmed +2 word toasts and the actual session total (+12 weekly, +6 standalone).
+
+### Interaction checks
+
+Browser walkthrough completed all three standalone preview words, including normal/slow model playback, both reflection choices, reopening completed panels, a stable word after saving, next-word reset, and final six-point preview total. No browser console errors. Weekly six-word / twelve-point persistence and retry deduplication remain covered by existing automated tests. No real student account was used for QA awards. Physical-device microphone behavior was not re-tested in this visual change.
+
+No actionable P0/P1/P2 findings remain. No added animation; user-paced folding and focus changes use preventScroll. The persistent per-word toast remains unchanged and honors reduced motion.
+
+final result: passed

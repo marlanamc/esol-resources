@@ -95,3 +95,7 @@ The release checkout was brought up to date with GitHub main, restoring the lead
 Course-map launches now pass weekly mode and practice the complete vocabulary collection (six words in the released weeks), earning 12 points at two points per word. Standalone starts stay at three words and six points. Weekly and standalone unfinished rounds have separate saved-session keys. Unfinished legacy weekly rounds expand to the full set without changing session IDs, credited words, or current listening/spoken evidence. A completed older three-word round retains its credit; the course-map checkmark now requires all distinct words in that week's collection.
 
 The persistent final receipt reports the actual round total: “+12 points earned” and “You practiced all 6 weekly words. Your points are saved!” for a full weekly round. Both confidence choices still earn equal credit, and retrying any finish request does not add points again.
+
+## One-page word practice
+
+The approved accordion design keeps the word and meaning above three sections: Listen & get help, Build & say, and How does it feel? Phrase and sentence audio share the practice section with optional recording. Completed sections can reopen. A successful finish preserves the completed word on screen until Next word; confirmed rewards remain +2 per word, with the final session total shown in the reflection section (+12 for a six-word weekly round). Preview clearly labels simulated credit. All saved-state, recording privacy, release and retry rules remain in force.
