@@ -96,8 +96,10 @@ export async function applyAwardChain(params: {
       newStreak: streakResult.newStreak,
       streakPointsAwarded: streakResult.pointsAwarded,
       newAchievementsCount: newAchievements.length,
-      totalPoints: updatedUser.points,
-      currentStreak: updatedUser.currentStreak,
+      // updatedUser was read before updateStreak ran, so add the streak bonus and
+      // report the post-update streak rather than the stale pre-completion values.
+      totalPoints: updatedUser.points + streakResult.pointsAwarded,
+      currentStreak: streakResult.newStreak,
     };
   }, { timeout: 10000 });
 }

@@ -17,9 +17,11 @@ const awardPointsMock = vi.fn(async (userId: string, points: number, reason: str
   return { points, currentStreak: 1 };
 });
 
+const updateStreakMock = vi.fn(async (..._args: unknown[]) => ({ streakUpdated: false, newStreak: 1, pointsAwarded: 0 }));
+
 vi.mock("@/lib/gamification/gamification", () => ({
   awardPoints: (...args: Parameters<typeof awardPointsMock>) => awardPointsMock(...args),
-  updateStreak: async () => ({ streakUpdated: false, newStreak: 1, pointsAwarded: 0 }),
+  updateStreak: (...args: unknown[]) => updateStreakMock(...args),
   checkAndAwardAchievements: async () => [],
 }));
 
@@ -61,6 +63,7 @@ beforeEach(() => {
   ledgerRows.length = 0;
   advisoryLocks.length = 0;
   awardPointsMock.mockClear();
+  updateStreakMock.mockClear();
 });
 
 describe("applyAwardChain dedupe", () => {
@@ -101,5 +104,18 @@ describe("applyAwardChain dedupe", () => {
     // must not start silently swallowing its awards.
     expect(awardPointsMock).toHaveBeenCalledTimes(2);
     expect(advisoryLocks).toHaveLength(0);
+  });
+});
+
+describe("applyAwardChain result", () => {
+  it("reports the streak and total after the streak update, not before it", async () => {
+    // awardPoints returns the user row before updateStreak runs: streak 1, 6 points.
+    updateStreakMock.mockResolvedValueOnce({ streakUpdated: true, newStreak: 2, pointsAwarded: 5 });
+
+    const result = await award();
+
+    expect(result.currentStreak).toBe(2);
+    expect(result.newStreak).toBe(2);
+    expect(result.totalPoints).toBe(11);
   });
 });
