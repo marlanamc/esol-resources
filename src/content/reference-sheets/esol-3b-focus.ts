@@ -23,7 +23,7 @@ export function emphasizeExamples(pages:BookPage[]) {
    case 'tense-choices':
     focus('.choice-sentences p',/\b(have been reading|am going to study|am working|have lost|have read|am meeting|will help|work|lost)\b/g);
     focus('tbody td',/\b(will not be|will be|will|not|is|Is|were|Were|be)\b/g); break;
-   case 'questions': focus('tbody th, tbody td',/\b(does|do|did|is|are|has|have|will|can|am|isn’t|don’t|doesn’t|didn’t|hasn’t|won’t|can’t)\b/gi); break;
+   case 'questions': focus('tbody th, tbody td',/\b(can’t|does|do|did|is|are|has|have|will|can|am|isn’t|don’t|doesn’t|didn’t|hasn’t|won’t)\b/gi); break;
    case 'future-clauses': focus('.arrival-scenes h3',/\b(will have cooked|will be cooking|will cook|arrive)\b/g); break;
    case 'contractions': focus('.decode-grid>div',/She’s|She’d|\b(is|has|had|would)\b/g); break;
    case 'modals':

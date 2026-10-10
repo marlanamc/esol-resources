@@ -1,3 +1,5 @@
+import rescueWeeks from '../data/word-rescue-weekly.generated.json';
+
 export interface CourseMapItemDef {
   id: string;
   activityId?: string;
@@ -2847,3 +2849,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     ]
   }
 ];
+
+// Keep pronunciation practice attached to the vocabulary already selected for each week.
+for (const unit of COURSE_MAP_UNITS) {
+  for (const week of unit.weeks) {
+    const vocabulary = week.items.find(item => rescueWeeks.some(set => item.activityId === `vocab-${set.id}`));
+    const collection = rescueWeeks.find(set => vocabulary?.activityId === `vocab-${set.id}`);
+    if (!collection) continue;
+    const order = Math.min(0, ...week.items.map(item => item.order));
+    for (const item of week.items) if (item.order >= order) item.order += 1;
+    week.items.unshift({
+      id: `${week.id}-word-rescue`, activityId: 'word-rescue',
+      href: `/activity/word-rescue?collection=${encodeURIComponent(collection.id)}&fromMap=1&returnTo=${encodeURIComponent(`/dashboard/map?week=${week.number}#week-${week.number}`)}`,
+      slot: 'required', order,
+      wrappedGame: false, activityType: 'pronunciation', title: 'Word Rescue · 3 words',
+    });
+  }
+}

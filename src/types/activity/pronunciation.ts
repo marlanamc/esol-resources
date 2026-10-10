@@ -89,3 +89,5 @@ export function isPronunciationSentenceListeningContent(value: unknown): value i
     const candidate = value as Record<string, unknown>;
     return candidate["type"] === "pronunciation-listening" && Array.isArray(candidate["sentences"]);
 }
+
+export interface WordRescueContent { type: "word-rescue"; version: 1; }

@@ -45,3 +45,50 @@ Signed-in activity navigation, live progress writes, production font rendering, 
 - Completed tasks remain reviewable; Next/Done/Locked stay separate from the format. The all-finished header invites review. Standalone wayfinding and desktop variants retain their existing launch behavior.
 - 49 focused render/format/date/session/launch tests passed. TypeScript and targeted lint passed. Signed-in production testing remains outside this local fixture.
 - final result: passed
+
+# Word Rescue mobile QA — October 10, 2026
+
+final result: passed
+
+Scope: visual and interactive development-preview review of Word Rescue. This does not certify the draft pronunciation content, real-device microphone behavior, or live-database rewards for student release.
+
+## Reference and comparison
+
+- Selected revised mobile reference: `output/word-rescue/mobile-reference.png` (854 × 1846; interpreted at 390 CSS pixels wide, scale approximately 0.457).
+- Final implementation: `output/word-rescue/mobile-spanish.jpg` (390 × 1150, 1× capture). Initial interactive viewport: 390 × 844. Full-height evidence expands the capture to include the language panel and teacher-only reset control, without changing layout width.
+- Compared the Hear stage with Spanish help expanded in both images in the same review input. Inspected the full screen and word/audio/language regions at readable size. The preview banner, extra single-syllable guidance, and reset control intentionally add vertical content. Scrolling is allowed; there is no horizontal overflow.
+- Typography: existing Lora/DM Sans tokens, large English word, 16px guidance, visible control labels. Increased the main word size after comparison.
+- Spacing: 20px phone insets, stacked stages, no sidebar. Reduced audio controls to a horizontal icon/text arrangement to better match the reference and save phone height.
+- Colors: warm paper, slate text, sage audio/help, darker terracotta primary action for contrast.
+- Assets: existing Lucide icons; no new illustrative assets required. The progress line replaces the reference's decorative circles while preserving all three step labels.
+- Copy: normal/slow audio, approximate language guidance, optional recording, and equal effort recognition. No stress-identification quiz or automatic accent grade.
+
+## Interaction evidence
+
+- Walked through through → through security → full sentence → spoken confirmation → Practice again → saved preview receipt → prohibited.
+- Verified normal word/phrase audio and slowed word/sentence audio. Empty initial sandbox-generated drafts were replaced by valid audio; all 687 final MP3 files have nonempty output.
+- Switched Spanish to Brazilian Portuguese, reloaded, and verified the selection and current session survived. Returned to Spanish for the saved screenshot.
+- Checked 320px and 390px phone widths and the 1440px desktop fallback. No horizontal overflow. Audio controls measured 73px tall; phone controls retain at least 48px touch height.
+- Final browser error/warning log was empty. The development-tool indicator is not part of the production UI.
+- 24 focused automated tests passed; TypeScript, scoped ESLint, whitespace, vocabulary-source synchronization, and nullable-assignment safety checks passed.
+
+## Remaining release checks
+
+- Review all synthesized clips and draft phrase extractions, and expand/review the authored bilingual pronunciation hints for the selected class weeks.
+- Test microphone grant/denial, local playback, and cleanup on physical iPhone Safari and Android Chrome. No ambient microphone recording was taken during this review.
+- Seed the unreleased activity and verify a real signed-in balance/ledger save on non-production PostgreSQL before student release. Persistence tests in this change use a mocked transaction contract.
+
+Repository hygiene check separately flagged existing Finder files: `FY27/.DS_Store`, `FY27/worksheets/.DS_Store`, and `output/.DS_Store`. They were not removed as part of this activity change.
+
+### Word Rescue weekly integration — October 10
+- 31 vocabulary weeks receive a collection-specific pronunciation link, before the closing verb quiz. Review weeks without a set remain unchanged.
+- Verified the October Week 2 mobile link selects transportation vocabulary and starts with “depart.” Screenshot: `output/word-rescue/weekly-mobile.png`.
+- 48 focused tests pass, including weekly completion isolation, latest-state merge, effort/retry contracts and existing map ordering/navigation. TypeScript and scoped UI lint pass.
+- Existing audio reused for 201 unique terms; ElevenLabs generated only “through” and “correctly.” Both new MP3s decode successfully. Provenance saved for all 229 word IDs. Phrases/sentences still use draft Samantha clips; listening review remains pending.
+- No database seed or student release performed. Live database reward and physical microphone checks remain outstanding as documented above.
+
+### FY27 picker and consistent voice — October 10 follow-up
+- Replaced legacy catalog labels/order with actual FY27 map titles and vocabulary references. The 31 current sets appear as FY27 · Week N · title; six unmapped catalog sets are excluded from new weekly sessions. Existing saved words remain readable.
+- Generated all 597 clips for the 199 active word IDs using one ElevenLabs voice/model/settings combination; 569 unique requests after text deduplication. Every generated file has provenance and a reusable signature. A cache version refreshes previously loaded preview audio.
+- 30 focused tests pass; TypeScript and scoped lint pass. Browser confirms current FY27 labels (e.g. Week 4 Foundations: Learn How to Learn). Screenshot: `output/word-rescue/fy27-collections.png`.
+- Still pending listening review and student release; generation does not imply reviewed pronunciation.

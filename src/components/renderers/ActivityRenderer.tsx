@@ -50,6 +50,7 @@ const NumbersGame = dynamic(() => import("../games/NumbersGame"), { loading: Act
 const VerbFormsGame = dynamic(() => import("../games/VerbFormsGame"), { loading: ActivityLoadingFallback });
 const EdPronunciationGame = dynamic(() => import("../games/EdPronunciationGame"), { loading: ActivityLoadingFallback });
 const MinimalPairsGame = dynamic(() => import("../games/MinimalPairsGame"), { loading: ActivityLoadingFallback });
+const WordRescueGame = dynamic(() => import("../games/WordRescue/WordRescueGame"), { loading: ActivityLoadingFallback });
 const PronunciationSentenceListeningGame = dynamic(() => import("../games/PronunciationSentenceListeningGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
@@ -176,6 +177,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 }
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
+                    case "word-rescue":
+                        return <WordRescueGame assignmentId={assignmentId} />;
                     case "numbers":
                         return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
                     case "fill-in-blank":

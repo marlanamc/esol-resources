@@ -42,14 +42,17 @@ export default async function TeachStudentDetailPage({ params, searchParams }: P
 
     if (!canView) redirect("/teach");
 
+    const returnTo = safeProgressReturn((await searchParams).returnTo);
+    const returnLabel = returnTo.startsWith("/teach/reports") ? "Back to participation" : returnTo.startsWith("/teach/classes/") ? "Back to roster" : "Back to workspace";
+
     return (
         <div className="space-y-6">
             <div>
                 <Link
-                    href={safeProgressReturn((await searchParams).returnTo)}
+                    href={returnTo}
                     className="text-xs text-text-muted hover:text-primary font-semibold inline-flex items-center gap-1"
                 >
-                    <ChevronLeft className="h-3 w-3" /> Back to participation
+                    <ChevronLeft className="h-3 w-3" /> {returnLabel}
                 </Link>
             </div>
 

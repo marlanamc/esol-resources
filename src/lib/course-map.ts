@@ -1,3 +1,4 @@
+import { isRescueMapLinkReleased } from '@/lib/word-rescue/release';
 import { readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
@@ -173,7 +174,7 @@ export async function getVisibleMap(
             include: {
               items: {
                 orderBy: { order: "asc" },
-                include: { activity: { select: { contentKind: true, content: true } } },
+                include: { activity: { select: { contentKind: true, content: true, isReleased: true } } },
               },
             },
           },
@@ -220,7 +221,7 @@ export async function getVisibleMap(
       id: item.id,
       title: item.title,
       activityType: item.activityType as CourseMapActivityType,
-      status: quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
+      status: item.href?.startsWith('/activity/word-rescue?') && (!item.activity?.isReleased || !isRescueMapLinkReleased(item.href)) ? "planned" : quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),
       ...(item.href ? { href: item.href } : {}),
       ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),

@@ -67,6 +67,7 @@ function pathChipFromOrder(order?: number | null, skillFamily?: string) {
 }
 
 function buildFallbackDescriptor(activity: PronunciationActivityLike): PronunciationActivityDescriptor {
+  if (activity.id === "word-rescue" || activity.ui === "word-rescue") return { friendlyTitle: "Word Rescue", useThisFor: "practice weekly vocabulary and everyday tricky words at your pace", motif: "pronunciation-wave", color: "#245b4c", recommendedOrder: null, pathChip: null, targetLabel: null, practiceMode: null };
   const haystack = `${activity.id ?? ""} ${activity.title ?? ""} ${activity.ui ?? ""}`.toLowerCase();
 
   if (haystack.includes("minimal-pairs") || haystack.includes("minimal pairs")) {

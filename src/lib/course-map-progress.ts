@@ -1,3 +1,4 @@
+import { RESCUE_COLLECTIONS } from '@/lib/word-rescue/content';
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";
 import { parseCategoryData } from "@/lib/categoryData";
 import {
@@ -51,6 +52,12 @@ export function buildCourseMapProgressState(rows: CourseMapProgressRow[]): Cours
         for (const row of activityRows) {
             if (!merged) {
                 merged = row;
+                continue;
+            }
+
+            if (activityId === 'word-rescue') {
+                // Account state is cumulative; select the newest snapshot, not the first completed row.
+                merged = (row.updatedAt?.getTime() ?? 0) >= (merged.updatedAt?.getTime() ?? 0) ? row : merged;
                 continue;
             }
 
@@ -122,6 +129,7 @@ export function parseGrammarReaderSlug(href?: string): string | null {
 export function getMapActivityProgressId(activity: CourseMapActivity): string | null {
     if (activity.activityId) return activity.activityId;
     // A canonical library activity can be linked by href without a map-only ID.
+    if (activity.href?.split('?')[0] === '/activity/word-rescue') return 'word-rescue';
     if (activity.href?.split('?')[0] === '/activity/parts-of-speech-game') return 'parts-of-speech-game';
     return null;
 }
@@ -143,6 +151,14 @@ export function isMapActivityCompleted(
 
     const entry = resolveProgressEntry(progress, progressId);
     if (!entry) return false;
+
+    if (progressId === 'word-rescue') {
+        const collectionId = new URL(activity.href ?? '/', 'https://class-companion.local').searchParams.get('collection');
+        const collection = RESCUE_COLLECTIONS.find(set => set.id === collectionId);
+        const rescue = entry.categoryData?.wordRescue as { words?: Record<string, { attempts?: number }> } | undefined;
+        if (!collection) return false;
+        return collection.wordIds.filter(id => (rescue?.words?.[id]?.attempts ?? 0) > 0).length >= Math.min(3, collection.wordIds.length);
+    }
 
     // Weekly lessons share the activity but have independent completion records.
     if (progressId === 'parts-of-speech-game' && activity.href) {

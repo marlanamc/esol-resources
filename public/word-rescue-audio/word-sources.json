@@ -1,0 +1,1147 @@
+{
+  "everyday-through": {
+    "text": "through",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-prohibited": {
+    "text": "prohibited",
+    "source": "vocabulary/prohibited.mp3",
+    "review": "needs-listening-review"
+  },
+  "everyday-achieve": {
+    "text": "achieve",
+    "source": "vocabulary/achieve.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-achieve": {
+    "text": "achieve",
+    "source": "vocabulary/achieve.mp3",
+    "review": "needs-listening-review"
+  },
+  "everyday-correctly": {
+    "text": "correctly",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-pronounce": {
+    "text": "pronounce",
+    "source": "vocabulary/pronounce.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-pronounce": {
+    "text": "pronounce",
+    "source": "vocabulary/pronounce.mp3",
+    "review": "needs-listening-review"
+  },
+  "everyday-spell": {
+    "text": "spell",
+    "source": "vocabulary/spell.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-spell": {
+    "text": "spell",
+    "source": "vocabulary/spell.mp3",
+    "review": "needs-listening-review"
+  },
+  "everyday-repeat": {
+    "text": "repeat",
+    "source": "vocabulary/repeat.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-repeat": {
+    "text": "repeat",
+    "source": "vocabulary/repeat.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-introduce": {
+    "text": "introduce",
+    "source": "vocabulary/introduce.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-greet": {
+    "text": "greet",
+    "source": "vocabulary/greet.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-share": {
+    "text": "share",
+    "source": "vocabulary/share.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-describe": {
+    "text": "describe",
+    "source": "vocabulary/describe.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-prefer": {
+    "text": "prefer",
+    "source": "vocabulary/prefer.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-catch-up": {
+    "text": "catch up",
+    "source": "vocabulary/catch up.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-identify": {
+    "text": "identify",
+    "source": "vocabulary/identify.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-categorize": {
+    "text": "categorize",
+    "source": "vocabulary/categorize.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-practice": {
+    "text": "practice",
+    "source": "vocabulary/practice.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-focus": {
+    "text": "focus",
+    "source": "vocabulary/focus.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-notice": {
+    "text": "notice",
+    "source": "vocabulary/notice.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-compare": {
+    "text": "compare",
+    "source": "vocabulary/compare.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-compare": {
+    "text": "compare",
+    "source": "vocabulary/compare.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-compare": {
+    "text": "compare",
+    "source": "vocabulary/compare.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-correct": {
+    "text": "correct",
+    "source": "vocabulary/correct.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-remember": {
+    "text": "remember",
+    "source": "vocabulary/remember.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-apply": {
+    "text": "apply",
+    "source": "vocabulary/apply.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-apply": {
+    "text": "apply",
+    "source": "vocabulary/apply.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-log-in": {
+    "text": "log in",
+    "source": "vocabulary/log in.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-navigate": {
+    "text": "navigate",
+    "source": "vocabulary/navigate.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-submit": {
+    "text": "submit",
+    "source": "vocabulary/submit.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-submit": {
+    "text": "submit",
+    "source": "vocabulary/submit.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-access": {
+    "text": "access",
+    "source": "vocabulary/access.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-complete": {
+    "text": "complete",
+    "source": "vocabulary/complete.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-review": {
+    "text": "review",
+    "source": "vocabulary/review.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-relocate": {
+    "text": "relocate",
+    "source": "vocabulary/relocate.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-motivate": {
+    "text": "motivate",
+    "source": "vocabulary/motivate.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-overcome": {
+    "text": "overcome",
+    "source": "vocabulary/overcome.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-immigrate": {
+    "text": "immigrate",
+    "source": "vocabulary/immigrate.mp3",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-belong": {
+    "text": "belong",
+    "source": "vocabulary/belong.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-schedule": {
+    "text": "schedule",
+    "source": "vocabulary/schedule.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-schedule": {
+    "text": "schedule",
+    "source": "vocabulary/schedule.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-commute": {
+    "text": "commute",
+    "source": "vocabulary/commute.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-prepare": {
+    "text": "prepare",
+    "source": "vocabulary/prepare.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-attend": {
+    "text": "attend",
+    "source": "vocabulary/attend.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-balance": {
+    "text": "balance",
+    "source": "vocabulary/balance.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-balance": {
+    "text": "balance",
+    "source": "vocabulary/balance.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w1-exercise": {
+    "text": "exercise",
+    "source": "vocabulary/exercise.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-exercise": {
+    "text": "exercise",
+    "source": "vocabulary/exercise.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-depart": {
+    "text": "depart",
+    "source": "vocabulary/depart.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-arrive": {
+    "text": "arrive",
+    "source": "vocabulary/arrive.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-transfer": {
+    "text": "transfer",
+    "source": "vocabulary/transfer.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-locate": {
+    "text": "locate",
+    "source": "vocabulary/locate.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-follow": {
+    "text": "follow",
+    "source": "vocabulary/follow.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-cross": {
+    "text": "cross",
+    "source": "vocabulary/cross.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-register": {
+    "text": "register",
+    "source": "vocabulary/register.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-protect": {
+    "text": "protect",
+    "source": "vocabulary/protect.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-verify": {
+    "text": "verify",
+    "source": "vocabulary/verify.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-avoid": {
+    "text": "avoid",
+    "source": "vocabulary/avoid.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-avoid": {
+    "text": "avoid",
+    "source": "vocabulary/avoid.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-sign": {
+    "text": "sign",
+    "source": "vocabulary/sign.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w3-update": {
+    "text": "update",
+    "source": "vocabulary/update.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-contact": {
+    "text": "contact",
+    "source": "vocabulary/contact.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-respond": {
+    "text": "respond",
+    "source": "vocabulary/respond.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-confirm": {
+    "text": "confirm",
+    "source": "vocabulary/confirm.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-decline": {
+    "text": "decline",
+    "source": "vocabulary/decline.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-postpone": {
+    "text": "postpone",
+    "source": "vocabulary/postpone.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-connect": {
+    "text": "connect",
+    "source": "vocabulary/connect.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-vote": {
+    "text": "vote",
+    "source": "vocabulary/vote.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-vote": {
+    "text": "vote",
+    "source": "vocabulary/vote.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-elect": {
+    "text": "elect",
+    "source": "vocabulary/elect.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-elect": {
+    "text": "elect",
+    "source": "vocabulary/elect.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-advocate": {
+    "text": "advocate",
+    "source": "vocabulary/advocate.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-advocate": {
+    "text": "advocate",
+    "source": "vocabulary/advocate.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-advocate": {
+    "text": "advocate",
+    "source": "vocabulary/advocate.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-petition": {
+    "text": "petition",
+    "source": "vocabulary/petition.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-petition": {
+    "text": "petition",
+    "source": "vocabulary/petition.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-represent": {
+    "text": "represent",
+    "source": "vocabulary/represent.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-represent": {
+    "text": "represent",
+    "source": "vocabulary/represent.mp3",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-campaign": {
+    "text": "campaign",
+    "source": "vocabulary/Campaign.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-campaign": {
+    "text": "campaign",
+    "source": "vocabulary/Campaign.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-volunteer": {
+    "text": "volunteer",
+    "source": "vocabulary/volunteer.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-assist": {
+    "text": "assist",
+    "source": "vocabulary/assist.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-support": {
+    "text": "support",
+    "source": "vocabulary/support.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-contribute": {
+    "text": "contribute",
+    "source": "vocabulary/contribute.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-donate": {
+    "text": "donate",
+    "source": "vocabulary/donate.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-join": {
+    "text": "join",
+    "source": "vocabulary/join.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-participate": {
+    "text": "participate",
+    "source": "vocabulary/participate.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-suggest": {
+    "text": "suggest",
+    "source": "vocabulary/suggest.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-propose": {
+    "text": "propose",
+    "source": "vocabulary/propose.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-recommend": {
+    "text": "recommend",
+    "source": "vocabulary/recommend.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-recommend": {
+    "text": "recommend",
+    "source": "vocabulary/recommend.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-agree": {
+    "text": "agree",
+    "source": "vocabulary/agree.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-listen": {
+    "text": "listen",
+    "source": "vocabulary/listen.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-analyze": {
+    "text": "analyze",
+    "source": "vocabulary/analyze.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-resolve": {
+    "text": "resolve",
+    "source": "vocabulary/resolve.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-resolve": {
+    "text": "resolve",
+    "source": "vocabulary/resolve.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-improve": {
+    "text": "improve",
+    "source": "vocabulary/improve.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-improve": {
+    "text": "improve",
+    "source": "vocabulary/improve.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-collaborate": {
+    "text": "collaborate",
+    "source": "vocabulary/collaborate.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-report": {
+    "text": "report",
+    "source": "vocabulary/report.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-report": {
+    "text": "report",
+    "source": "vocabulary/report.mp3",
+    "review": "needs-listening-review"
+  },
+  "nov-w4-prevent": {
+    "text": "prevent",
+    "source": "vocabulary/prevent.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-prevent": {
+    "text": "prevent",
+    "source": "vocabulary/prevent.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-prevent": {
+    "text": "prevent",
+    "source": "vocabulary/prevent.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-purchase": {
+    "text": "purchase",
+    "source": "vocabulary/purchase.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-budget": {
+    "text": "budget",
+    "source": "vocabulary/budget.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-save": {
+    "text": "save",
+    "source": "vocabulary/save.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-spend": {
+    "text": "spend",
+    "source": "vocabulary/spend.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-calculate": {
+    "text": "calculate",
+    "source": "vocabulary/calculate.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-exchange": {
+    "text": "exchange",
+    "source": "vocabulary/Exchange.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-refund": {
+    "text": "refund",
+    "source": "vocabulary/Refund.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-withdraw": {
+    "text": "withdraw",
+    "source": "vocabulary/Withdraw.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-deposit": {
+    "text": "deposit",
+    "source": "vocabulary/Deposit.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-charge": {
+    "text": "charge",
+    "source": "vocabulary/charge.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-dispute": {
+    "text": "dispute",
+    "source": "vocabulary/dispute.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-prices": {
+    "text": "prices",
+    "source": "vocabulary/prices.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-inflation": {
+    "text": "inflation",
+    "source": "vocabulary/inflation.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-wages": {
+    "text": "wages",
+    "source": "vocabulary/wages.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-unemployed": {
+    "text": "unemployed",
+    "source": "vocabulary/unemployed.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-interest-rate": {
+    "text": "interest rate",
+    "source": "vocabulary/interest rate.mp3",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-economy": {
+    "text": "economy",
+    "source": "vocabulary/economy.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-rent": {
+    "text": "rent",
+    "source": "vocabulary/Rent.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-lease": {
+    "text": "lease",
+    "source": "vocabulary/Lease.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-occupy": {
+    "text": "occupy",
+    "source": "vocabulary/occupy.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move": {
+    "text": "move",
+    "source": "vocabulary/move.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-qualify": {
+    "text": "qualify",
+    "source": "vocabulary/qualify.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-afford": {
+    "text": "afford",
+    "source": "vocabulary/afford.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-evaluate": {
+    "text": "evaluate",
+    "source": "vocabulary/evaluate.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-select": {
+    "text": "select",
+    "source": "vocabulary/select.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-negotiate": {
+    "text": "negotiate",
+    "source": "vocabulary/negotiate.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-own": {
+    "text": "own",
+    "source": "vocabulary/own.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-request": {
+    "text": "request",
+    "source": "vocabulary/request.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-inspect": {
+    "text": "inspect",
+    "source": "vocabulary/inspect.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-repair": {
+    "text": "repair",
+    "source": "vocabulary/repair.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-leak": {
+    "text": "leak",
+    "source": "vocabulary/Leak.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-clog": {
+    "text": "clog",
+    "source": "vocabulary/clog.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-maintain": {
+    "text": "maintain",
+    "source": "vocabulary/maintain.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-notify": {
+    "text": "notify",
+    "source": "vocabulary/notify.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-document": {
+    "text": "document",
+    "source": "vocabulary/document.mp3",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-reimburse": {
+    "text": "reimburse",
+    "source": "vocabulary/reimburse.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-break": {
+    "text": "break",
+    "source": "vocabulary/break.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-time-off": {
+    "text": "time off",
+    "source": "vocabulary/time off.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-team": {
+    "text": "team",
+    "source": "vocabulary/team.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-reliable": {
+    "text": "reliable",
+    "source": "vocabulary/reliable.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-flexible": {
+    "text": "flexible",
+    "source": "vocabulary/flexible.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-in": {
+    "text": "clock in",
+    "source": "vocabulary/clock in.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-out": {
+    "text": "clock out",
+    "source": "vocabulary/clock out.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-call-out": {
+    "text": "call out",
+    "source": "vocabulary/call out.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-shift": {
+    "text": "shift",
+    "source": "vocabulary/shift.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-supervisor": {
+    "text": "supervisor",
+    "source": "vocabulary/supervisor.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-follow-up": {
+    "text": "follow up",
+    "source": "vocabulary/follow up.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-follow-up": {
+    "text": "follow up",
+    "source": "vocabulary/follow up.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-experience": {
+    "text": "experience",
+    "source": "vocabulary/experience.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-resume": {
+    "text": "resume",
+    "source": "vocabulary/resume.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-cover-letter": {
+    "text": "cover letter",
+    "source": "vocabulary/cover letter.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-reference": {
+    "text": "reference",
+    "source": "vocabulary/reference.mp3",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-deadline": {
+    "text": "deadline",
+    "source": "vocabulary/deadline.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-promotion": {
+    "text": "promotion",
+    "source": "vocabulary/promotion.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-gross-pay": {
+    "text": "gross pay",
+    "source": "vocabulary/gross pay.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-deductions": {
+    "text": "deductions",
+    "source": "vocabulary/deductions.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-benefits": {
+    "text": "benefits",
+    "source": "vocabulary/benefits.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-priority": {
+    "text": "priority",
+    "source": "vocabulary/priority.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-emergency-fund": {
+    "text": "emergency fund",
+    "source": "vocabulary/emergency fund.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-must": {
+    "text": "must",
+    "source": "vocabulary/must.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-should": {
+    "text": "should",
+    "source": "vocabulary/should.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-can": {
+    "text": "can",
+    "source": "vocabulary/can.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-required": {
+    "text": "required",
+    "source": "vocabulary/required.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-allowed": {
+    "text": "allowed",
+    "source": "vocabulary/allowed.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-safety": {
+    "text": "safety",
+    "source": "vocabulary/safety.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-right": {
+    "text": "right",
+    "source": "vocabulary/right.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-courtesy": {
+    "text": "courtesy",
+    "source": "vocabulary/courtesy.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-strict": {
+    "text": "strict",
+    "source": "vocabulary/strict.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-comply": {
+    "text": "comply",
+    "source": "vocabulary/comply.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-violate": {
+    "text": "violate",
+    "source": "vocabulary/violate.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-feedback": {
+    "text": "feedback",
+    "source": "vocabulary/feedback.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-advice": {
+    "text": "advice",
+    "source": "vocabulary/advice.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-decision": {
+    "text": "decision",
+    "source": "vocabulary/decision.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-consequence": {
+    "text": "consequence",
+    "source": "vocabulary/consequence.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-reflect": {
+    "text": "reflect",
+    "source": "vocabulary/reflect.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-clarify": {
+    "text": "clarify",
+    "source": "vocabulary/clarify.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-show-up": {
+    "text": "show up",
+    "source": "vocabulary/show up.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-find-out": {
+    "text": "find out",
+    "source": "vocabulary/find out.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-help-out": {
+    "text": "help out",
+    "source": "vocabulary/help out.mp3",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-look-forward-to": {
+    "text": "look forward to",
+    "source": "vocabulary/look forward to.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-cough": {
+    "text": "cough",
+    "source": "vocabulary/cough.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-infected": {
+    "text": "infected",
+    "source": "vocabulary/infected.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-depressed": {
+    "text": "depressed",
+    "source": "vocabulary/depressed.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-habit": {
+    "text": "habit",
+    "source": "vocabulary/habit.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-quit": {
+    "text": "quit",
+    "source": "vocabulary/quit.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-recover": {
+    "text": "recover",
+    "source": "vocabulary/recover.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-lifestyle": {
+    "text": "lifestyle",
+    "source": "vocabulary/lifestyle.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-adjust": {
+    "text": "adjust",
+    "source": "vocabulary/adjust.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-appointment": {
+    "text": "appointment",
+    "source": "vocabulary/appointment.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-checkup": {
+    "text": "checkup",
+    "source": "vocabulary/checkup.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-diagnosis": {
+    "text": "diagnosis",
+    "source": "vocabulary/diagnosis.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-prescription": {
+    "text": "prescription",
+    "source": "vocabulary/prescription.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-fever": {
+    "text": "fever",
+    "source": "vocabulary/fever.mp3",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-contagious": {
+    "text": "contagious",
+    "source": "vocabulary/contagious.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-symptom": {
+    "text": "symptom",
+    "source": "vocabulary/symptom.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-temperature": {
+    "text": "temperature",
+    "source": "vocabulary/temperature.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-prescribe": {
+    "text": "prescribe",
+    "source": "vocabulary/prescribe.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-dose": {
+    "text": "dose",
+    "source": "vocabulary/dose.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-chronic": {
+    "text": "chronic",
+    "source": "vocabulary/chronic.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-nutrient": {
+    "text": "nutrient",
+    "source": "vocabulary/nutrient.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-wellness": {
+    "text": "wellness",
+    "source": "vocabulary/wellness.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-self-care": {
+    "text": "self-care",
+    "source": "vocabulary/self-care.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-relax": {
+    "text": "relax",
+    "source": "vocabulary/relax.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-coping-skills": {
+    "text": "coping skills",
+    "source": "vocabulary/coping skills.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-mindful": {
+    "text": "mindful",
+    "source": "vocabulary/mindful.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-processed": {
+    "text": "processed",
+    "source": "vocabulary/processed.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-remedy": {
+    "text": "remedy",
+    "source": "vocabulary/remedy.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-relieve": {
+    "text": "relieve",
+    "source": "vocabulary/relieve.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-soothe": {
+    "text": "soothe",
+    "source": "vocabulary/soothe.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-fluids": {
+    "text": "fluids",
+    "source": "vocabulary/fluids.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-ailment": {
+    "text": "ailment",
+    "source": "vocabulary/ailment.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-progress": {
+    "text": "progress",
+    "source": "vocabulary/progress.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-challenge": {
+    "text": "challenge",
+    "source": "vocabulary/challenge.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-success": {
+    "text": "success",
+    "source": "vocabulary/success.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-accomplish": {
+    "text": "accomplish",
+    "source": "vocabulary/accomplish.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-proud": {
+    "text": "proud",
+    "source": "vocabulary/proud.mp3",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-reflection": {
+    "text": "reflection",
+    "source": "vocabulary/reflection.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-goal": {
+    "text": "goal",
+    "source": "vocabulary/goal.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-achievement": {
+    "text": "achievement",
+    "source": "vocabulary/achievement.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-growth": {
+    "text": "growth",
+    "source": "vocabulary/growth.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-confident": {
+    "text": "confident",
+    "source": "vocabulary/confident.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-commitment": {
+    "text": "commitment",
+    "source": "vocabulary/commitment.mp3",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-appreciate": {
+    "text": "appreciate",
+    "source": "vocabulary/appreciate.mp3",
+    "review": "needs-listening-review"
+  }
+}

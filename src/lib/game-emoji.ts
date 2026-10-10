@@ -34,6 +34,7 @@ export function getGameEmojiForActivity({
       return "🔤";
     case "ed-pronunciation":
     case "minimal-pairs":
+    case "word-rescue":
     case "pronunciation-listening":
       return "🔊";
     case "flashcards":

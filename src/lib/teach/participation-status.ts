@@ -34,8 +34,8 @@ export function safeProgressReturn(value: string | undefined): string {
     try {
         const url = new URL(value, "https://workspace.local");
         return url.origin === "https://workspace.local" &&
-            url.pathname === "/teach/reports"
-            ? url.pathname + url.search
+            (url.pathname === "/teach/reports" || url.pathname === "/teach" || /^\/teach\/classes\/[a-zA-Z0-9_-]+$/.test(url.pathname))
+            ? url.pathname + url.search + url.hash
             : "/teach/reports";
     } catch {
         return "/teach/reports";

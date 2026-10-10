@@ -220,6 +220,7 @@ export async function isCurrentWeekComplete(
 }
 
 export interface StudentCourseMapStatus {
+    currentWeek: { number: number; title: string; done: number; total: number; percent: number };
     /** Finished every actionable required activity in the current week. */
     weekComplete: boolean;
     /** Progress across every actionable required activity in the student's visible map. */
@@ -250,6 +251,12 @@ export async function getStudentCourseMapStatus(
     const percent = total > 0 ? Math.round((done / total) * 100) : 0;
 
     return {
+        currentWeek: {
+            number: snapshot.weekNumber,
+            title: snapshot.weekTitle,
+            ...snapshot.progress,
+            percent: snapshot.progress.total > 0 ? Math.round(snapshot.progress.done / snapshot.progress.total * 100) : 0,
+        },
         weekComplete,
         overall: { done, total, percent },
         completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),

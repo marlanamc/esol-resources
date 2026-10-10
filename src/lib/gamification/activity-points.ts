@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "verb-speed-round" | "unknown";
+export type GameUi = "word-rescue" | "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "verb-speed-round" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -12,6 +12,7 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
   if (!parsed || typeof parsed !== "object" || !("type" in parsed)) return null;
   const t = (parsed as Record<string, unknown>).type;
   switch (t) {
+    case "word-rescue": return "word-rescue";
     case "numbers-game":
       return "numbers";
     case "ed-pronunciation":
@@ -54,6 +55,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
 
   const ui = activity?.ui?.trim().toLowerCase();
   if (ui) {
+    if (ui === "word-rescue") return "word-rescue";
     if (ui === "matching") return "matching";
     if (ui === "word-list" || ui === "wordlist" || ui === "list") return "word-list";
     if (ui === "numbers" || ui === "numbers-game") return "numbers";
@@ -105,6 +107,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
     const gameUi = resolveActivityGameUi(activity);
 
     switch (gameUi) {
+      case "word-rescue":
+        return 0; // Dedicated transactional per-word awards; never generic completion points.
       case "matching":
         return POINTS.MATCHING_GAME;
       case "fill-in-blank":

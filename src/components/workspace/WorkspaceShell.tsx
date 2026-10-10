@@ -23,6 +23,8 @@ import { ViewModeSwitcher } from "@/components/teach/ViewModeSwitcher";
 
 const primary = [
     { href: "/teach", label: "Home", Icon: House },
+    { href: "/teach/roster", label: "Roster", Icon: Users },
+    { href: "/teach/gradebook", label: "Gradebook", Icon: BookOpen },
     { href: "/teach/map", label: "Course Map", Icon: Map },
     { href: "/teach/activities", label: "Activities", Icon: BookOpen },
     { href: "/teach/calendar", label: "Calendar", Icon: CalendarDays },
@@ -70,14 +72,28 @@ export function WorkspaceShell({
         pathname.startsWith("/teach/gradebook") ||
         pathname.startsWith("/teach/students") ||
         pathname === "/admin/diagnostics";
-    const active = (href: string) =>
-        href === "/teach"
-            ? pathname === href
-            : href === "/teach/reports"
-              ? progress
-              : pathname.startsWith(href);
-    const scopedHref = (href: string) =>
-        selectedId ? `${href}?classId=${encodeURIComponent(selectedId)}` : href;
+    const active = (href: string) => {
+        const classDetail =
+            /^\/teach\/classes\/[^/]+$/.test(pathname) &&
+            pathname !== "/teach/classes/new";
+        if (href === "/teach") return pathname === href;
+        if (href === "/teach/roster") return classDetail;
+        if (href === "/teach/reports")
+            return progress && !pathname.startsWith("/teach/gradebook");
+        if (href === "/teach/classes")
+            return pathname.startsWith(href) && !classDetail;
+        return pathname.startsWith(href);
+    };
+    const scopedHref = (href: string) => {
+        if (href === "/teach/roster") {
+            return selectedId
+                ? `/teach/classes/${encodeURIComponent(selectedId)}#roster`
+                : "/teach/classes";
+        }
+        return selectedId
+            ? `${href}?classId=${encodeURIComponent(selectedId)}`
+            : href;
+    };
     const navLink = (item: (typeof primary)[number]) => (
         <Link
             key={item.href}
@@ -199,7 +215,7 @@ export function WorkspaceShell({
                 aria-label="Mobile workspace navigation"
                 className="workspace-bottom-nav"
             >
-                {[primary[0], primary[1], primary[2], primary[4]].map(
+                {[primary[0], primary[1], primary[2], primary[6]].map(
                     (item) => (
                         <Link
                             key={item.href}

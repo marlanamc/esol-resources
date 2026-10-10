@@ -229,6 +229,10 @@ export async function POST(request: NextRequest) {
             return ApiErrors.notFound("Activity", activityId);
         }
 
+        if (activity.id === "word-rescue" || activity.ui === "word-rescue") {
+            return apiError("Save Word Rescue through its per-word practice endpoint.", 400);
+        }
+
         let savedContent: { type?: string } | null = null;
         try { savedContent = JSON.parse(activity.content); } catch { /* Legacy non-JSON activities. */ }
         if (savedContent?.type === 'weekly-quiz') {

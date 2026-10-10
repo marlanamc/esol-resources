@@ -108,6 +108,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         );
     }
 
+    if (gameUi === "word-rescue") {
+        return <>{studentReliabilityOverlays}<ActivityRenderer activity={activityForRender} assignmentId={assignmentId} userRole={userRole} /></>;
+    }
+
     // Immersive games should render in the full-screen themed shell instead of the standard light activity page.
     if (
         !isVerbQuiz &&

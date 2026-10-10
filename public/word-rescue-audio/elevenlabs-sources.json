@@ -1,0 +1,4778 @@
+{
+  "everyday-through-word.mp3": {
+    "text": "through",
+    "signature": "196a5acc77995abc2e5e967e8f9ef53156ff6eced6e7d3066e77b795b2d1095e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-through-phrase.mp3": {
+    "text": "through security",
+    "signature": "32a2712d377277fe6c64482a4370e6cda2f7722ba20df1a7662dfdb4b9933c09",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-through-sentence.mp3": {
+    "text": "I’m going through security.",
+    "signature": "0555510c9b3bf4d4966e92928e0ab51093106535e1dca21cb50daa3cc77caffb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-prohibited-word.mp3": {
+    "text": "prohibited",
+    "signature": "46e33571cc9a86f5333f85a8929d997627fd62bac9c7943dd600e5da5af24455",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-prohibited-phrase.mp3": {
+    "text": "is prohibited",
+    "signature": "e7f91c33de3607a442a92ef5f8e74f9a0f1e8dc4dcdf17b08e2e47222c8341b1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-prohibited-sentence.mp3": {
+    "text": "Smoking is prohibited here.",
+    "signature": "226a1bf5cb20718053e21193d6b64a7427552f06693792fc8f8ba68e10367d89",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-achieve-word.mp3": {
+    "text": "achieve",
+    "signature": "bf47b36e0cbc39e49ee636f2dcec624c3fe4a2d67ed8d1af4a45d10ca335c378",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-achieve-word.mp3": {
+    "text": "achieve",
+    "signature": "bf47b36e0cbc39e49ee636f2dcec624c3fe4a2d67ed8d1af4a45d10ca335c378",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-achieve-phrase.mp3": {
+    "text": "achieve my goal",
+    "signature": "e1e78a030d59b3476bf04a10967029bf38c02fccfbb3d8c7b56c48d88f66772a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-achieve-phrase.mp3": {
+    "text": "achieve my goal",
+    "signature": "e1e78a030d59b3476bf04a10967029bf38c02fccfbb3d8c7b56c48d88f66772a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-achieve-sentence.mp3": {
+    "text": "I want to achieve my goal.",
+    "signature": "7d599cc51564ae9ed6e03b34fae43b47fa82a052fd5036434d9e705b3869787b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-correctly-word.mp3": {
+    "text": "correctly",
+    "signature": "23b0907d4b2450ed65a238915a7d152bfabbd21547b2bb510f2fe889a39aabec",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-correctly-phrase.mp3": {
+    "text": "say it correctly",
+    "signature": "ca07fd7f423cc588d1a53abe371f87e925079275476f45c18c6e9d6af4ec95f0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-correctly-sentence.mp3": {
+    "text": "I want to say it correctly.",
+    "signature": "e6ebe50361595fe599a52762ad4334d84609d4b6ccc587a40f095aec281c8017",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-pronounce-word.mp3": {
+    "text": "pronounce",
+    "signature": "fe7a411e4e1177a363222978c315a79b0bacd056347e52df235a1901125022b2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-pronounce-word.mp3": {
+    "text": "pronounce",
+    "signature": "fe7a411e4e1177a363222978c315a79b0bacd056347e52df235a1901125022b2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-pronounce-phrase.mp3": {
+    "text": "pronounce this word",
+    "signature": "1c67cef604123a72d4858ecece1330ee0ff01dc0ff3eb0881e302b977a524988",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-pronounce-phrase.mp3": {
+    "text": "pronounce this word",
+    "signature": "1c67cef604123a72d4858ecece1330ee0ff01dc0ff3eb0881e302b977a524988",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-pronounce-sentence.mp3": {
+    "text": "How do you pronounce this word?",
+    "signature": "f391ae006dc3cb1250ee7a1c8e26f73aa26147916aff56aa8ac0b52f0d25a6fd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-spell-word.mp3": {
+    "text": "spell",
+    "signature": "090691d6f302776e9c965d08229051e50dec0ffc8353a7a25d03589b02c3c44a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-spell-word.mp3": {
+    "text": "spell",
+    "signature": "090691d6f302776e9c965d08229051e50dec0ffc8353a7a25d03589b02c3c44a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-spell-phrase.mp3": {
+    "text": "spell your name",
+    "signature": "d1e7ca028e0c38c4e4bab036e76e298f58583c852a67231324885f103e8c7399",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-spell-phrase.mp3": {
+    "text": "spell your name",
+    "signature": "d1e7ca028e0c38c4e4bab036e76e298f58583c852a67231324885f103e8c7399",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-spell-sentence.mp3": {
+    "text": "Could you spell your name?",
+    "signature": "2308bc77dc7dcc89f581ff0f6f84c32f9dadcaa249142a17947e538b2b2e2521",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-repeat-word.mp3": {
+    "text": "repeat",
+    "signature": "946c480011e58fa54a0f22aba1f5caf790ed3d72c7494f56385829500f6e6814",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-repeat-word.mp3": {
+    "text": "repeat",
+    "signature": "946c480011e58fa54a0f22aba1f5caf790ed3d72c7494f56385829500f6e6814",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-repeat-phrase.mp3": {
+    "text": "repeat that, please",
+    "signature": "7f08957bd84ab5bc0f48c0911533a8283b5efa52e974435b766cf3ebb4088168",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-repeat-phrase.mp3": {
+    "text": "repeat that, please",
+    "signature": "7f08957bd84ab5bc0f48c0911533a8283b5efa52e974435b766cf3ebb4088168",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "everyday-repeat-sentence.mp3": {
+    "text": "Could you repeat that, please?",
+    "signature": "0cec6b3480f8e2f44a6e5532cd1bbb7e6027d0b145134c4d798b3264d158bb3e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-introduce-word.mp3": {
+    "text": "introduce",
+    "signature": "ffa44aa40d7ede4e357e8492a4d94ffd405b4fbd46d6e481e150aef52c0edb72",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-introduce-phrase.mp3": {
+    "text": "introduce yourself",
+    "signature": "fc61dd7048866801347f451f8f4c2488b4ab64b6dc81cbf8ba4b949c837cd18b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-introduce-sentence.mp3": {
+    "text": "Please introduce yourself to the class.",
+    "signature": "5617c0d12f6d8b9fec4e5e68ca5a94ab98bead62ac3c08c5d98fc6b2d8ddb5d9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-greet-word.mp3": {
+    "text": "greet",
+    "signature": "e84b8fdce723fd480aaa213c03f5d0c31eded0bc2fc272f3c970f841b7d20b63",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-greet-phrase.mp3": {
+    "text": "greet your classmates",
+    "signature": "671b14f09b54096672fd5c7d8cff29f1a3154e58180a8ea35fb95fb5c611e904",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-greet-sentence.mp3": {
+    "text": "Greet your classmates when you arrive.",
+    "signature": "358f6b123a3964fdedc1a4484ae8ee038b78cb38922b0730687ee50641a35106",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-share-word.mp3": {
+    "text": "share",
+    "signature": "46912a1a8152777727ac2e10c13ab0ff0546983386b7879337a6a7e87b1e026e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-share-phrase.mp3": {
+    "text": "share a fact",
+    "signature": "0bfc6d396f3072c6fadc61c728f432f78c9c6d84f1e7f05282d89319bd20d51c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-share-sentence.mp3": {
+    "text": "Share one interesting fact about yourself.",
+    "signature": "f6808a1d4f384e70e0664fd61c7a53b2f1c65e75ebb48c59b197daa116e3f88d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-describe-word.mp3": {
+    "text": "describe",
+    "signature": "cc4876861d173f79a109d786b58d0e7954d9d7d3f144c8ad3ff617333169c9d2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-describe-phrase.mp3": {
+    "text": "describe your neighborhood",
+    "signature": "bfaa1ff459ee27aeb199fbfedea1823a5992b6404c6ffce98b31d6475bec882d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-describe-sentence.mp3": {
+    "text": "Describe your neighborhood to the class.",
+    "signature": "45266d013a0730e2112f461cb7ebcedc6fdf849222858704fba20d1df17ffb5a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-prefer-word.mp3": {
+    "text": "prefer",
+    "signature": "d48132023a04452c4969f793b8a2d3b4b90638273bece5d748553f90b8846b1f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-prefer-phrase.mp3": {
+    "text": "prefer working with a partner",
+    "signature": "2376ebc1f14c06d99faee0499651fcb7295f450b1a02bc5f72b9fb7075e6f167",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-catch-up-word.mp3": {
+    "text": "catch up",
+    "signature": "1eeeba1087a7cb6633484ca4e546f3f80babd325f351f4a12b83b3b46fa3bcb7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-prefer-sentence.mp3": {
+    "text": "I prefer working with a partner to working alone.",
+    "signature": "1b55d1636522e6cc0b625d8870b510068d81d93135221713c0e0282ca6d51292",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-catch-up-phrase.mp3": {
+    "text": "catch up with a friend",
+    "signature": "8b5be753e0632fe429aa4855306eb61b2d2fd00057fdbee49822911aee43186d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w1-catch-up-sentence.mp3": {
+    "text": "Let's catch up — what did you do this summer?",
+    "signature": "3dd975e2a94f9d3b3e26b3f2642c0e72b00d0cccfee4d9c89575873539fe1cc7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-pronounce-sentence.mp3": {
+    "text": "Practice how to pronounce each new word.",
+    "signature": "bd6f19d07aceae7cb44bb950aeb3d49700e61e7bf2a6f42667892fc6b2fc487c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-spell-sentence.mp3": {
+    "text": "Can you spell your last name for me, please?",
+    "signature": "8e55ef3697136ddea0df7969d1bd1ffd156077fe2df6b93fe5c2aa7de2632b82",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-identify-word.mp3": {
+    "text": "identify",
+    "signature": "c144472ccaeadd80832ffec3b0636d6409738089d7052beea83f5409c9b39707",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-identify-phrase.mp3": {
+    "text": "identify the noun",
+    "signature": "75819c7200eea454050a375bae8e903567555412bb9684425c8694bd5a7574cf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-identify-sentence.mp3": {
+    "text": "Can you identify the noun in this sentence?",
+    "signature": "711cbb59f2ea61bc708364e93a306b97ab11afded935079a569907f039b40a46",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-categorize-word.mp3": {
+    "text": "categorize",
+    "signature": "cff1d87a3021ddc5d485d1abb14e37d499365803b2cba49aeeacb06a21bf4fb8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-categorize-phrase.mp3": {
+    "text": "categorize these words",
+    "signature": "2fb9cf9b2932bf96de9a6bbf034b4b1724055b8e89b9063c029654516056ac24",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-categorize-sentence.mp3": {
+    "text": "Categorize these words as nouns, verbs, or adjectives.",
+    "signature": "d9b401d3dc3ce2a5dca7462103d34e1e86abe0bda1f40b0174cb58cdf95fdbad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-practice-word.mp3": {
+    "text": "practice",
+    "signature": "5a7d2e21f613a75ae7572e0127be5ed2d76fed98ce6d21a30845a9fb3cac47ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-practice-phrase.mp3": {
+    "text": "practice speaking English",
+    "signature": "cee0d0d4de1f6722d2d64e27faa9da73824116990d83666f70a534f2826d3408",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-practice-sentence.mp3": {
+    "text": "Practice speaking English every day to get better.",
+    "signature": "b8bb1758a360ef673fd163644cb552317f15e7fca418e87ea46c46b24de88236",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w2-repeat-sentence.mp3": {
+    "text": "Please repeat the word after me.",
+    "signature": "4042d347d5152a3be8b3f6d22dc4d07fa728288e6fb894154dad69a9dc691f5e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-relocate-word.mp3": {
+    "text": "relocate",
+    "signature": "d14695de58562c83ae2f95080cedef3ac98b545e10d5d7e79605ea85c5afea34",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-relocate-phrase.mp3": {
+    "text": "relocate to a new city",
+    "signature": "8ec35836b1674c7ac9912cb761687a42ab1ac7c3d8357f63c85794fe3f510407",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-relocate-sentence.mp3": {
+    "text": "My company asked me to relocate from Boston to Chicago.",
+    "signature": "cac4a0652f9352092eaebdbb68aa0c9448acc71a38e2b576c83ca5097b03b938",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-motivate-word.mp3": {
+    "text": "motivate",
+    "signature": "30ae365d13d51797ed0e27534f9cddcded6dc8cc4a849551c8deda9840fd494e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-motivate-phrase.mp3": {
+    "text": "motivate me to learn",
+    "signature": "be5df84b768ed1231bd16ad02a3fe149abe2e13820d5331b0a8f605a24dec442",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-motivate-sentence.mp3": {
+    "text": "My children motivate me to learn English every day.",
+    "signature": "97639ae9f364d04b7653a7195fe1da5c4264d4826965696533acc5b1fa666a2c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-achieve-sentence.mp3": {
+    "text": "With practice, you can achieve your language goals.",
+    "signature": "603fa341102aad726b535bf46d8855a12305a0f8ab8392657db7219bb2ae1a1d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-overcome-word.mp3": {
+    "text": "overcome",
+    "signature": "2cf9c0eaff9cce72a5ce0165c422bff6e9281c8b2a47fdb446eb0ffbfbbdb1b2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-overcome-phrase.mp3": {
+    "text": "overcome a problem",
+    "signature": "97a5b5a2b902cd9a19813ad5c94ac5f4de9ecf6f974f063f0011c8e3d9c0204b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-overcome-sentence.mp3": {
+    "text": "She worked hard to overcome the language barrier.",
+    "signature": "c30b5a8bf479aabfce89ee198dbf80e00b386ea34e88bea70dcb7fe82a164c85",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-immigrate-word.mp3": {
+    "text": "immigrate",
+    "signature": "95ea2a170bbfef1a1eeee09d8b1b890cf79c7403e272fc6efa823b72fa51184c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-immigrate-phrase.mp3": {
+    "text": "immigrate to the U.S.",
+    "signature": "dc6f10049971fddd7b540d601e4d802dca11e7dabebc45d2547bf02276fc1972",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-immigrate-sentence.mp3": {
+    "text": "He immigrated to the U.S. five years ago.",
+    "signature": "a87221720fa81484ef5f749ec021b679d8e0be3f3c78175f6f73672cd1c46a37",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-belong-word.mp3": {
+    "text": "belong",
+    "signature": "294877dd77e72de16d4f6bd620a0ed5f5a2a5863dd448e9a9357d3670540ce41",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-belong-phrase.mp3": {
+    "text": "belong to a group",
+    "signature": "6715f27419f2c13ef2649415364152c7ba5ce7b5c9e0169da20dfad7ed329abe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w4-belong-sentence.mp3": {
+    "text": "My classmates welcome me and help me feel that I belong.",
+    "signature": "427858bc975b0354255ba58e82a3b0afaa84f73c8c7ad982539b21b68d1a3acd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-focus-word.mp3": {
+    "text": "focus",
+    "signature": "c42c01e4922d490f284752a0c0d018f3485c0013c1956b247bf55d18f71bd014",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-focus-phrase.mp3": {
+    "text": "focus on one sentence",
+    "signature": "6f2e95875eabac88418b1400c2c3e7d7676f409d5be8b84d579c6fb822717a2d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-notice-word.mp3": {
+    "text": "notice",
+    "signature": "61291eb2584a26c616f53528ec649747121ed84e05721240baff610f589e3545",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-focus-sentence.mp3": {
+    "text": "Focus on one sentence at a time.",
+    "signature": "5dd6bb0f6c4f36ef919e103f79e7fe3e55766df4e533f2f947389402055595ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-notice-phrase.mp3": {
+    "text": "notice the ending",
+    "signature": "67ed6d974196eb1179dca6dd4e8286f982824335bbad5ff4b729af096401ef2d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-compare-word.mp3": {
+    "text": "compare",
+    "signature": "5eced8bfa8e0625e5fb39b7b4bdffa44194e69c3e5c3cc09bd29fff72868b015",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-compare-word.mp3": {
+    "text": "compare",
+    "signature": "5eced8bfa8e0625e5fb39b7b4bdffa44194e69c3e5c3cc09bd29fff72868b015",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-compare-word.mp3": {
+    "text": "compare",
+    "signature": "5eced8bfa8e0625e5fb39b7b4bdffa44194e69c3e5c3cc09bd29fff72868b015",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-notice-sentence.mp3": {
+    "text": "Look closely and notice the -s at the end of works.",
+    "signature": "888f84a88ae397601dc9b244f8630e699bbe4708938ef490c6e5705efda24972",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-compare-phrase.mp3": {
+    "text": "compare two sentences",
+    "signature": "4162c05d8b8afc53da3d4590c0a4bd20e78dbfe2e0b30ba1d07042496d2f051f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-compare-sentence.mp3": {
+    "text": "Compare I work and she works. What is different?",
+    "signature": "54ab013c4f99a24fda37a1a07cf3ec924c50d662131049623f33dd52326f7c51",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-correct-word.mp3": {
+    "text": "correct",
+    "signature": "201e1da770180b89694880a00a3eb739ff664e2a5ab281b6d4d6ab53b73d294a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-correct-phrase.mp3": {
+    "text": "correct the verb",
+    "signature": "116776e9744155a1efdb451ddf97487f8ef0f2e95f1d7f4232ee4d9d510e8943",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-correct-sentence.mp3": {
+    "text": "Use your reference sheet to correct the verb in your sentence.",
+    "signature": "ff437087ee397ef664045c60691096e09ca736d2437ef58470ff407d246df446",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-remember-word.mp3": {
+    "text": "remember",
+    "signature": "b851a59e17e95a70231fd9bb06b7056245e649dc7da6ca31da5dffa1b9348d49",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-remember-phrase.mp3": {
+    "text": "remember the words",
+    "signature": "56cf944d8f351e7df9ce501b195d29324de54080052b66b70ac34f39e9e9718f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-remember-sentence.mp3": {
+    "text": "Cover the verb forms and try to remember them.",
+    "signature": "0daa8b3d292b0c33abe3a60aa6a62a663fa6023d47ef844a2f18ba2d64be02d5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-apply-word.mp3": {
+    "text": "apply",
+    "signature": "174965f84eca51c6bc5871f29baacbfbdc67028ecf3dfb04ca04217e921f81f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-apply-word.mp3": {
+    "text": "apply",
+    "signature": "174965f84eca51c6bc5871f29baacbfbdc67028ecf3dfb04ca04217e921f81f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-apply-phrase.mp3": {
+    "text": "apply the rule",
+    "signature": "2f717c793b5e8a23569fcd7eca2764463b4a87b8fbc752251474f20913da13a7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-learning-apply-sentence.mp3": {
+    "text": "Apply the rule by writing a new sentence about yourself.",
+    "signature": "38e7655f99f0f16cf28cebb58102ccc1f5238fecffecf2b36a47d6f65a2b9364",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-log-in-word.mp3": {
+    "text": "log in",
+    "signature": "12ca9916fb3a596bf7d72ce6cec65b6df981054b090315c0dfd0d77deee2b2a3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-log-in-phrase.mp3": {
+    "text": "log in to the",
+    "signature": "f09a39c29977e3c1bf0c4f043f8cb677a0d2444bc82df87c7a09f7493d778a8a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-navigate-word.mp3": {
+    "text": "navigate",
+    "signature": "775d0ba47bda57d7c7a4c270f470acaadacafd4f0758b893667cd2353f42e062",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-log-in-sentence.mp3": {
+    "text": "Please log in to the app every day to practice English.",
+    "signature": "33d37c6014aba8e82dae7efc9d5f9a024d2d96d1f08eb876c091d28743a71891",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-navigate-phrase.mp3": {
+    "text": "navigate the website",
+    "signature": "ee1e48528a6293a6fde7d24aa4591aa0b2c6d82f3ba7346ab48293663fb8cb04",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-navigate-sentence.mp3": {
+    "text": "Use the menu at the top to navigate the website.",
+    "signature": "f249779a7e18413245b860dfb7270cfc2c60aa23843dee45ee81e361c4ae1339",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-submit-word.mp3": {
+    "text": "submit",
+    "signature": "b7093389d6c3f9d2aabdc929bc0c2ebde75eb432c4e7afab7856ca3756889252",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-submit-word.mp3": {
+    "text": "submit",
+    "signature": "b7093389d6c3f9d2aabdc929bc0c2ebde75eb432c4e7afab7856ca3756889252",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-submit-phrase.mp3": {
+    "text": "Submit your answers",
+    "signature": "c8e0e5295d73b9c301637eb6ed22652af814063dff03ded2be51705c1a67639e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-submit-sentence.mp3": {
+    "text": "Submit your answers before the timer runs out.",
+    "signature": "0bc2af63b2b85723c833dc7144b7907698c22b8e903a3b26801cf12b5978b7d6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-access-word.mp3": {
+    "text": "access",
+    "signature": "6eb3b7f303c4aa715b64fa7b19259fff8825f4a00998ef72722c6d8f3f1e267a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-access-phrase.mp3": {
+    "text": "access your lessons",
+    "signature": "db249e56145618650e8fbcfe21ad12c2fd6cb4e361c7f55e299d4af92698f4e2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-access-sentence.mp3": {
+    "text": "You can access your lessons from any device.",
+    "signature": "319d9f47438a73308f44fc36550987b38d4a73abd43f22f77f1e99d9aa5f3c52",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-complete-word.mp3": {
+    "text": "complete",
+    "signature": "cc7ce2fa248c6c86351877e580f2a611a13860f1775a4e48c03f7b0ed5b4001a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-complete-phrase.mp3": {
+    "text": "complete at least",
+    "signature": "9ac04aba38239737ee8e2f7fde8d0432654f708cc3fde1bdc4617193d2f4f28c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-complete-sentence.mp3": {
+    "text": "Try to complete at least one activity each day.",
+    "signature": "e60c676800e2ec80cfe00df4438f9910baaa1b4c2118b6fbc84bb1d59eb04ef9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-review-word.mp3": {
+    "text": "review",
+    "signature": "eadb67408b95c30bd522791bcf0737a0f6b19601eefee5f0b0c9ad412af71e7f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-review-phrase.mp3": {
+    "text": "Review the words",
+    "signature": "2011780bc846e90a6ac5834efce985528bc4314e713157532d089708b2bde8f0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "sep-w3-review-sentence.mp3": {
+    "text": "Review the words before class on Thursday.",
+    "signature": "89c951f698950bd64310ca6257e6184575b98b48541b1a076695231c3caaeefe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-depart-word.mp3": {
+    "text": "depart",
+    "signature": "0c95d902b38acc33e44ec97a81d2e0c4141ff5e04de1abd47685f79026771c69",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-depart-phrase.mp3": {
+    "text": "depart on time",
+    "signature": "269ff716110db378263e7a8c18b43015efbe54667810ec3dad9a038ad2d63747",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-arrive-word.mp3": {
+    "text": "arrive",
+    "signature": "59ad2722e93e61994f8fe9067b9a3dd52620ef3c9a141566be59cb9b3373ba46",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-depart-sentence.mp3": {
+    "text": "The bus departs from Main Street at 7:00 AM.",
+    "signature": "9ffb57a3315bcfac415dd1f98e1c5af1cb4802cad79828564261c9cd658c9a5d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-arrive-phrase.mp3": {
+    "text": "arrive on time",
+    "signature": "00177724323d53965ce05a72506ac76fb08e71f45b7f262cadd55b03f451acf6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-arrive-sentence.mp3": {
+    "text": "What time does the train arrive at the station?",
+    "signature": "a70d1a2a51e22374878bae8bf0858c6f261226855081bcf48c453de7e384b91f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-transfer-word.mp3": {
+    "text": "transfer",
+    "signature": "d8fe3951ee11035f1a867f3e6b17e5c2920010810682ba8257d597bb0ac3b2a9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-transfer-phrase.mp3": {
+    "text": "transfer to the train",
+    "signature": "6f497b16ef0260cd31f8b674382ab76f9ea5627ae9610ab929648d5eb330c091",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-transfer-sentence.mp3": {
+    "text": "Transfer to the Red Line at Downtown Station.",
+    "signature": "f47d06be74a3d0c525bdc211a78a4820550d061d149b206ec208657764226b14",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-locate-word.mp3": {
+    "text": "locate",
+    "signature": "7d6bbd63ae017069e7f6594f6be58710edc07b72117275fc3f226e9a9aae3f7c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-locate-phrase.mp3": {
+    "text": "locate the station",
+    "signature": "3e71430f520134bf38335afbbade2893522dde3a53aac832a7fd0e5e23731934",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-locate-sentence.mp3": {
+    "text": "Can you locate the nearest pharmacy on the map?",
+    "signature": "ff8cc5d8f445be80e119e1f4c0f820f53bf77d700dee3b25623995962e288627",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-follow-word.mp3": {
+    "text": "follow",
+    "signature": "10689710eb3d01a3ff1d69915bd721a8dffe89df47920243d0bed6ae715dad88",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-follow-phrase.mp3": {
+    "text": "follow the signs",
+    "signature": "fe78d69e12091a5effc5db4baca74e5d9e6afd0928a0643de7558bf81c23ba15",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-cross-word.mp3": {
+    "text": "cross",
+    "signature": "d525d56501c9c5e949bbc0be3b852f0185eb66da69e25c15696e4bccd53934d4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-follow-sentence.mp3": {
+    "text": "Follow the signs to the emergency exit.",
+    "signature": "67a36bb22e4218b5c7e993615c162ad6494762532947119213f0f2a1d83a0e34",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-cross-phrase.mp3": {
+    "text": "cross the street",
+    "signature": "fe055b7b67705fa1c8d769dc42f487f2f7e8a740bc8ad58db2c1b2c8430bdc4b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-cross-sentence.mp3": {
+    "text": "Cross the street at the crosswalk when the light is green.",
+    "signature": "d00c7055cc306d0806f4936ff16b213539f3b30c801ded9987166957c72fbaa9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-vote-word.mp3": {
+    "text": "vote",
+    "signature": "69bd1e8cf36cf3d75a2fce218358d95a3f6b47065f8a6236ee0c34ba0ad93c0e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-vote-phrase.mp3": {
+    "text": "vote in your",
+    "signature": "4ea302ea3e29c95e547a884a14b911ca12157c15328d22ac0039042aa728dc43",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-vote-sentence.mp3": {
+    "text": "Register and vote in your local elections.",
+    "signature": "9814a06ccebdf25eeb6d634c7aa2cd8d73d9502764f029c746419b2b7bce49f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-elect-word.mp3": {
+    "text": "elect",
+    "signature": "6f8d6e738efba2043b6cdd5b67a388949a84c115f925cb3c73fcae5129651a81",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-elect-phrase.mp3": {
+    "text": "elect leaders to",
+    "signature": "ac13cc782a764ca2f9125ce417e6e3271c5da934f5098d503ad8c6b72286fdc9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-elect-sentence.mp3": {
+    "text": "Citizens elect leaders to represent them in government.",
+    "signature": "1691b209afcf8ad2776d76aa68ea6e7fd969dfa91e1f1836265c8c3abaed2dea",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-advocate-word.mp3": {
+    "text": "advocate",
+    "signature": "431b730ca450e99571363ad6b4a742ffc13f89560fd5e8079c1c85ac61ce1f7d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-advocate-word.mp3": {
+    "text": "advocate",
+    "signature": "431b730ca450e99571363ad6b4a742ffc13f89560fd5e8079c1c85ac61ce1f7d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-advocate-phrase.mp3": {
+    "text": "advocates for better",
+    "signature": "96e09fdb4cbb483dc1eca155812440e3fb34a1e150201a1364163143f1751946",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-advocate-sentence.mp3": {
+    "text": "She advocates for better schools in her neighborhood.",
+    "signature": "f10deddcddbfcbb608f0b2060eceaea3592e891638b00c502b7ad625c52f1330",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-petition-word.mp3": {
+    "text": "petition",
+    "signature": "b938a791cd44c3e86625d62a24cc5b779ea086d049cc6bf6a315c31c4ad6f2c3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-petition-phrase.mp3": {
+    "text": "petition to fix",
+    "signature": "9752227cffdaa702e747677a64883023814d6d958f1d67356b4644358ac88e87",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-petition-sentence.mp3": {
+    "text": "We started a petition to fix the broken street lights.",
+    "signature": "41389efc6296bfc247dfb7f293f5a8ac397f9d3745f1fde09d5a09de1d0c66b8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-represent-word.mp3": {
+    "text": "represent",
+    "signature": "b84b2a926bb0f37a9384abbc2ed633e949f7761b31c8214b18c3b2a87bb7b1de",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-represent-phrase.mp3": {
+    "text": "represents your neighborhood",
+    "signature": "7c4c734495054ec35a2d5fe93cdcf26b1722652c7c309d1b854663ef65b40138",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-represent-sentence.mp3": {
+    "text": "Your city council member represents your neighborhood.",
+    "signature": "e89c9f4f8ba3f60f1761027a1ff65784a99db80de9d9280baca55303db762c16",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-campaign-word.mp3": {
+    "text": "campaign",
+    "signature": "e933d6e36c4848f1df28a12edf8b9c0682a3a5ebb202a8384ec6d7360def9f19",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-campaign-phrase.mp3": {
+    "text": "campaign for better",
+    "signature": "f26ff606db6176f829359e853f2d6da30b2604864595557083514e91419d9c54",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w5-campaign-sentence.mp3": {
+    "text": "Many volunteers campaign for better housing in our city.",
+    "signature": "106502eea1ed84311419704c89779be7ad2890e51b8f3712ca41edd0425a3caf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-contact-word.mp3": {
+    "text": "contact",
+    "signature": "bd62599ad98b01a896ce598f77d5c2533a91fb96e9bdc4fd28b7b03eb35bd88f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-contact-phrase.mp3": {
+    "text": "Contact the school",
+    "signature": "91539115095c36e1fcb37463ddee80b7ed7b04652481fcad768995e600aaf75f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-contact-sentence.mp3": {
+    "text": "Contact the school if your child will be absent.",
+    "signature": "9a2f70206d9eb74c09c984e30805a204a244aed75c53f9192e91b31c1db0be31",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-respond-word.mp3": {
+    "text": "respond",
+    "signature": "83f1d5e6a98e871bbe50c2e85b7ccdcc7510f59d98f0ef17a97fd11321319ad2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-respond-phrase.mp3": {
+    "text": "respond to the",
+    "signature": "18ce9f940168e906c4e2d971662d278766824ed574fa4af887d24bcc24f5bb38",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-respond-sentence.mp3": {
+    "text": "Please respond to the email within 24 hours.",
+    "signature": "a75b46067ca0bf8a416c50d92efc3ca8cb4029e327ec5c153707cce4360d0f35",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-confirm-word.mp3": {
+    "text": "confirm",
+    "signature": "df9d380aa0a88ae12960262c78f516574a2b29693653d1ea1a177c66843fe6c1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-confirm-phrase.mp3": {
+    "text": "confirm your appointment",
+    "signature": "42098495e8d4a49af5e5d2e4640e75f75482845a691d4a155a834592cc35c4e4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-confirm-sentence.mp3": {
+    "text": "Call to confirm your appointment the day before.",
+    "signature": "f205713cd30bdaad1d6f30f741ee7e244163365d6aad841bba7e43b270872580",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-decline-word.mp3": {
+    "text": "decline",
+    "signature": "d458cc2152f5084ddf8db8a4c419faf24178885918b0c50e02b27e394b335c80",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-decline-phrase.mp3": {
+    "text": "decline the meeting",
+    "signature": "e4f4407bb683979054473d91c838646838dd70f8d78d24b2305d409d4e8da778",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-decline-sentence.mp3": {
+    "text": "She had to decline the meeting because she was sick.",
+    "signature": "afbd153464d85604404a239c14956adecc679cb55a2a322c2ba8ef7387ca216e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-postpone-word.mp3": {
+    "text": "postpone",
+    "signature": "bad2f8bda3be569db13d721c74da9f53a6e5f9b72dfb913417bc385edcc032db",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-postpone-phrase.mp3": {
+    "text": "postpone the meeting",
+    "signature": "7c0207daba51740f25103eccaeb5790c94d3289d7e178db49aa2ac66f9b5a4f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-postpone-sentence.mp3": {
+    "text": "We need to postpone the meeting until next week.",
+    "signature": "a7f2a17e3158373861f69dacdc57fc25ab242838831026c50d78af70679382ee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-connect-word.mp3": {
+    "text": "connect",
+    "signature": "38017cf618b4293e3e12c70d0ebd8b6ef3d10c0f085a2c603f4cd4fa4c346e59",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-connect-phrase.mp3": {
+    "text": "connect to the",
+    "signature": "ebbb5089c8df45921e8a31446b1f3325db4be85093fa422e3fed0d857f1126b4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-connect-sentence.mp3": {
+    "text": "I couldn't connect to the Wi-Fi at the library.",
+    "signature": "953109a7cccefa499c5b180335490a60c95b5c41e62ab5060e430f88651434f1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-volunteer-word.mp3": {
+    "text": "volunteer",
+    "signature": "94af682cc6ed601697fdac59b4acebb7c9052cf51e71af13d26862eb0bd4474b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-volunteer-phrase.mp3": {
+    "text": "volunteers at the",
+    "signature": "cb3712e44fc6498d9fb9215b36118ed949fb31eda33756784e40a53e4a3dd35e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-volunteer-sentence.mp3": {
+    "text": "She volunteers at the food bank every Saturday.",
+    "signature": "d83c3a40dd709193d80071f3c5543e5e9fc20045460df482ad293bac5fc86b02",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-assist-word.mp3": {
+    "text": "assist",
+    "signature": "5a0e7dffdcadc58d4972dfb460badb9c2e93249edf46da4f46ec0fe523f2f6e4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-assist-phrase.mp3": {
+    "text": "assist me with",
+    "signature": "d0c6a736a601ceb693277ddcebe6304757ec83d27627aedf95f34a5da5cdbd88",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-assist-sentence.mp3": {
+    "text": "Can you assist me with this form?",
+    "signature": "5d3de8987494d52e088e5230dad2454e6f95d9354f596c8fe73b715ef57b9e6c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-support-word.mp3": {
+    "text": "support",
+    "signature": "7b9b97ec9a86ff5d8561b6c22b77f8b81ffa42a42a8f32f4e8bac54ec759497b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-support-phrase.mp3": {
+    "text": "supports local families",
+    "signature": "f96cb8cd4485821993b7676f191f040e2e47da7f57d032da2b10e7790154b4c8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-support-sentence.mp3": {
+    "text": "Our community supports local families in need.",
+    "signature": "803712a703137d17d3960cc683662fa6bfae101190b45b68c778ce6a41701c82",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-contribute-word.mp3": {
+    "text": "contribute",
+    "signature": "7ff2668b0792a928012c2c22e90d6c2ee14940e13780e9c462e3a5587597b408",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-contribute-phrase.mp3": {
+    "text": "contribute in a",
+    "signature": "9385e8bf6310bfd05de94363e3edded282e773e984a1c8439b7c6d003674352d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-contribute-sentence.mp3": {
+    "text": "Everyone can contribute in a small way to make things better.",
+    "signature": "1a62a090756fb994041788900ec21ae87f4ad512b465b270962e9bd89f7524fd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-donate-word.mp3": {
+    "text": "donate",
+    "signature": "4ae9e90b40ac3fa35031e89e4c475ae1248eeee0c5ddeac32a1192fe9fd83c6d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-donate-phrase.mp3": {
+    "text": "donate clothing to",
+    "signature": "3732412f0c7fa50e52ad60c41f39155b1802e403f783bacb6131c9182d52cd64",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-donate-sentence.mp3": {
+    "text": "We donate clothing to the shelter twice a year.",
+    "signature": "159d77b02abe6d5be10a146b75714bf6a2e4e65f0c14d92a9e773e1d4332f5e8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-join-word.mp3": {
+    "text": "join",
+    "signature": "42e9e952fad3f7089ba58a2286e0c1df6ec0f256503ce9a051bb241543673434",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-join-phrase.mp3": {
+    "text": "join our community",
+    "signature": "05de8ae9c32e8485546e106e603920ab52e89442aa86186af5e1330d8b24c934",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-join-sentence.mp3": {
+    "text": "Would you like to join our community garden project?",
+    "signature": "3806e8fc58462965ce1dd7e2e5ce8cd7c6451f1e1d5a1b6c23f297761ce3b653",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-participate-word.mp3": {
+    "text": "participate",
+    "signature": "6b764d4114d7dd8070054a1ff57e95d90cd6205c6abf84554aec8159bb891ff9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-participate-phrase.mp3": {
+    "text": "participate in the",
+    "signature": "06ea63d252dd0755b90e9743a5fd4dbb76fd887097fbc6fad4937805a5133e4d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-participate-sentence.mp3": {
+    "text": "Everyone is welcome to participate in the town meeting.",
+    "signature": "98651dd6b4f813d09f25479c7b076701c79c4bd64999decc3982c64735541dc5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-suggest-word.mp3": {
+    "text": "suggest",
+    "signature": "91b24b7e6aa8bfb8111a5d6a032b388f2f71c41df4e07173605117a4a20b8430",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-suggest-phrase.mp3": {
+    "text": "suggest adding more",
+    "signature": "d885b101c1223caa9d0b4b92230fc5cba4be9c2a45050300963a119bd1e570ef",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-propose-word.mp3": {
+    "text": "propose",
+    "signature": "c3ca7ea87b2ab56b46fa1b4f3fd5cd2886827b7ddc563bfcc3c8c4b24850855c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-suggest-sentence.mp3": {
+    "text": "I'd like to suggest adding more bus routes to our area.",
+    "signature": "bd454f99df78f2a866621fa941fec477a163b96fc3ce982d67c6e30810afb790",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-propose-phrase.mp3": {
+    "text": "propose a new",
+    "signature": "fc7c273cd77f9cfb648725a177b3bf78a03183278cd95e16f1e4d56117cdbff9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-propose-sentence.mp3": {
+    "text": "The committee will propose a new community garden.",
+    "signature": "5290e00d296d75b0ef39c73ea02e752e691028ff35685c9a3a4ddb67a91e8b76",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-recommend-word.mp3": {
+    "text": "recommend",
+    "signature": "e86dc4ff55f59627081597f4ea35c829195bb2ddde4985adcc4dfcfc1bd61ef4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-recommend-word.mp3": {
+    "text": "recommend",
+    "signature": "e86dc4ff55f59627081597f4ea35c829195bb2ddde4985adcc4dfcfc1bd61ef4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-recommend-phrase.mp3": {
+    "text": "recommended that we",
+    "signature": "cc9efa91c58ba4c186d153e3aa67b067c06535108e399da5b997ffd1f3dce80f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-agree-word.mp3": {
+    "text": "agree",
+    "signature": "df31a554c40b1b143bb359a41e029a57aedc8e97db267223f73e40612ff6d8ac",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-recommend-sentence.mp3": {
+    "text": "The teacher recommended that we study for at least one hour.",
+    "signature": "c584c1f24f2e955394d28e6bdfc777688cae3e162691ef2eb9bc1d22e09d1a90",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-agree-phrase.mp3": {
+    "text": "agreed with the",
+    "signature": "ef0a36ea0edaf758da15e417ad788274126dab1491be63b04cf04450e6282552",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-agree-sentence.mp3": {
+    "text": "Most people at the meeting agreed with the new plan.",
+    "signature": "59d4ba40cd0268d068a5c58e78b362cf767982568af75e86f9acc8f981d0a2c9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-listen-word.mp3": {
+    "text": "listen",
+    "signature": "b74b0764fd6d5a4d1cf8d78139536461365d5f567f9bb211d388713736a297dc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-listen-phrase.mp3": {
+    "text": "listen to the",
+    "signature": "3d6850bec6d65506482f17d89909bec12e4787c2573eb29b1e16f6899e8f6346",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w2-listen-sentence.mp3": {
+    "text": "Good leaders listen to the concerns of their community.",
+    "signature": "ef8c203854204e401ba5bc38a27eae4c805a2a48aa33f72aa2133c024c138366",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-purchase-word.mp3": {
+    "text": "purchase",
+    "signature": "18aa8a32b8167defd21ac1b0dacaa25867d791e6a7948d26dadae4ddb28aefb9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-purchase-phrase.mp3": {
+    "text": "purchase anything online",
+    "signature": "da89cbf37dffad5806cd432af5ab03063f4ee73ebe99447a42b2c98b673203b1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-purchase-sentence.mp3": {
+    "text": "Think carefully before you purchase anything online.",
+    "signature": "92442824c5854f69718d78f54705b193c8ad8775a150365e12a42f6ee5bb1cf8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-compare-phrase.mp3": {
+    "text": "compare two sentences",
+    "signature": "4162c05d8b8afc53da3d4590c0a4bd20e78dbfe2e0b30ba1d07042496d2f051f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-compare-sentence.mp3": {
+    "text": "Always compare prices before you buy.",
+    "signature": "0dc2a42a4e9e8d827393b54ce8b896ca76b06efc4749258438247b684e23540f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-budget-word.mp3": {
+    "text": "budget",
+    "signature": "92ea004d8c195100c6391299c757536c195cdf31ffcad61194c74f07834014a2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-budget-phrase.mp3": {
+    "text": "Budget your money",
+    "signature": "8ebb0d7efd71d683474a7c58802e2a7a0e1f5b3b7993dad25e5b242b9af91f3a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-budget-sentence.mp3": {
+    "text": "Budget your money so you can pay all your bills.",
+    "signature": "ae768f6a47ffbcc1c216832ea701e65eba926b261fa1fb24bb6485f8ffa83581",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-save-word.mp3": {
+    "text": "save",
+    "signature": "6872a7442ff0426a4e82a796dab8fa491814a38113b8068bef29b67dc68472df",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-save-phrase.mp3": {
+    "text": "save at least",
+    "signature": "b272f318edd83225d6937dd7f606841965ff97f4ac3a25a038b3a627bdfd66db",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-spend-word.mp3": {
+    "text": "spend",
+    "signature": "752b6dcedd3f24079cc72d612afeaff4698aab9a3e4f3f871a776b930e7ee099",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-save-sentence.mp3": {
+    "text": "Try to save at least 10% of your income each month.",
+    "signature": "07a12f1fa87a25f936e43ee9f13cf471c25a9f14abc5d1101b4e0bc4fcf4c0f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-spend-phrase.mp3": {
+    "text": "spend more than",
+    "signature": "debbed1972e25aac455fc77ff4299c8195bcb56101d49b38bcd73d6a9a1fe04a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-spend-sentence.mp3": {
+    "text": "Don't spend more than you earn.",
+    "signature": "1f12c6f2fadd0b0e6265b5ed024cce1ab36b00b1288975274fef18e8ce486db6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-calculate-word.mp3": {
+    "text": "calculate",
+    "signature": "4de89bcad676a644e66ae56ca4972aa1b2819d4f235e0a2a4752ad5b33c58d65",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-calculate-phrase.mp3": {
+    "text": "Calculate the total",
+    "signature": "38304de4c1f607959bfe320b4c242a1f601c68ed4a12f0c7f9004e0797b0e05e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w1-calculate-sentence.mp3": {
+    "text": "Calculate the total cost before you decide to buy.",
+    "signature": "d50da202a8f551dd4fcf3abc2e2a12fcb992ecc087a19802cb9488fa6ac38a52",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-exchange-word.mp3": {
+    "text": "exchange",
+    "signature": "fadf3fd916b25212abd79881cd30c05c749c8b4a0bd6c13827391f3b535ed462",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-exchange-phrase.mp3": {
+    "text": "exchange this shirt",
+    "signature": "13a11a4748f68fb06e9079145db0f819f708896d18234b1fafcdab625833741a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-refund-word.mp3": {
+    "text": "refund",
+    "signature": "9aa42dc5f7cd56b4de6cb1ebfeab9a1fef6ecb29279fd94a76220100e43574db",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-exchange-sentence.mp3": {
+    "text": "I want to exchange this shirt for a larger size.",
+    "signature": "8b5220eb9b425712d92ec5eab25a8f67d2e25d543a1522a5f8084f3fcaf22051",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-refund-phrase.mp3": {
+    "text": "refund for the",
+    "signature": "3a2dd1137ac8b3fddc724aef8205bc9971ef61c8540cef19676788f356a7dafd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-refund-sentence.mp3": {
+    "text": "The store gave me a full refund for the broken item.",
+    "signature": "8f41425aba74a02b5c56c835ac0a6aac7fa2c6faa46dd8aeeaae784d3ff0558f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-withdraw-word.mp3": {
+    "text": "withdraw",
+    "signature": "864e05bd7c89b5fb7545a8837d09f6a8501d5c17136ece68772eef84eb8ced05",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-withdraw-phrase.mp3": {
+    "text": "withdraw cash from",
+    "signature": "78d7c6e7549b556beadea649ceece99b8cb63c363f0c0afea2991d032c32b0ca",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-withdraw-sentence.mp3": {
+    "text": "I need to withdraw cash from the ATM.",
+    "signature": "d252e8255380409847108937baa915fa20d444cb84b7a65aee5ce55fce9fb701",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-deposit-word.mp3": {
+    "text": "deposit",
+    "signature": "2f7ba37554cac2eae56b00852bef3fc31508550316531c956d912d485979b3f5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-deposit-phrase.mp3": {
+    "text": "Deposit your check",
+    "signature": "86299915d651ef38e9bf829f1c88f4392f6b284dfb310d96a06bd26c9b529a8b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-charge-word.mp3": {
+    "text": "charge",
+    "signature": "a01b6f653e8a02ca6e1d2dc6bc594ee5cb9739f6ddd8972d58e2424cf532a18a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-deposit-sentence.mp3": {
+    "text": "Deposit your check before the end of the business day.",
+    "signature": "2be7d569a298ea406a11768b86f2874a0fd57cfdcd8879839b6fc0e662757784",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-charge-phrase.mp3": {
+    "text": "charge your card",
+    "signature": "1d4ecdda925a0dfb1bcf1bdb58790f334b672e67a3ba3f1fb6ebb07e28077980",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-charge-sentence.mp3": {
+    "text": "The store will charge your card when the item ships.",
+    "signature": "8d91217cd487f6ced2aa564fd97de0f92bd7da31751c63bc822eb51280e45fca",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-dispute-word.mp3": {
+    "text": "dispute",
+    "signature": "7d8df1b31882a0569898fe42c007f550a46e663e5eaf2feef0f1c5eb0b9b6fc4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-dispute-phrase.mp3": {
+    "text": "dispute it",
+    "signature": "203017977145aa50fc5496035507fa693163b7267f1cf0a312f3bdfe8b71b908",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w2-dispute-sentence.mp3": {
+    "text": "If there is an error on your bill, call to dispute it.",
+    "signature": "2f871d81a7395be9d3b57294349b31994b362213c09c0faad0b705e69009c0ff",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-prices-word.mp3": {
+    "text": "prices",
+    "signature": "1630417c591944204ac487d91f36ba3774e42838b7b12c566ee51eb01dc0a8a7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-prices-phrase.mp3": {
+    "text": "Prices went up",
+    "signature": "f69cf64731dad9b0005e308f2ed84052bc3fce27444295c84fb30ccc73736daa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-prices-sentence.mp3": {
+    "text": "Prices went up at the grocery store this year.",
+    "signature": "a769396dbfbaf463f6a26ac969a2bf08e566f2a2b01bc94ea3ea34b59c186078",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-inflation-word.mp3": {
+    "text": "inflation",
+    "signature": "604b3305c8c6fa928707a0a98b7ef8f8d411cf01515c9ad173df1541729b636e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-inflation-phrase.mp3": {
+    "text": "Inflation means your",
+    "signature": "544f0fbea616ff73b48a1c90bc2cf8d7d9f9fb3eba7ebb500cb84f6a38aa7ebf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-inflation-sentence.mp3": {
+    "text": "Inflation means your paycheck doesn't go as far as it used to.",
+    "signature": "42e034e8065120f4be2d23b856bc00ddb8fb702245cad02921653b5f3451ef81",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-wages-word.mp3": {
+    "text": "wages",
+    "signature": "88d6d08de413017605202f8ad4d75e485ff8e4483458c95d8f691d466ed66ded",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-wages-phrase.mp3": {
+    "text": "wages this year",
+    "signature": "5ef6190317779c5780d6f6a2907aa629970ff1891b9906e15780dbcaaa972503",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-wages-sentence.mp3": {
+    "text": "Many workers are asking for higher wages this year.",
+    "signature": "41e2011eaadbb27a976adbc37220f26f4a9fcdc78e65822f254f661cf67f04ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-unemployed-word.mp3": {
+    "text": "unemployed",
+    "signature": "05dc4cd31f82df78e8d554ccf57532e73c149ebfbba54c0141e80a64c13a3258",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-unemployed-phrase.mp3": {
+    "text": "unemployed this month",
+    "signature": "e0d0b47a17a89dc5b7337d9864ad2da45d1d85af5544c17b3bcc44ca9be754ec",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-unemployed-sentence.mp3": {
+    "text": "The news said fewer people are unemployed this month.",
+    "signature": "e4e47bf335a1ab0cb771a4702277b0be23712393708852b05e31fdc25ed8f0d3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-interest-rate-word.mp3": {
+    "text": "interest rate",
+    "signature": "a8e9140ea0681c7c6f85ba859cf474f6f5da0ee4da493b2429296aeddbe1f511",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-interest-rate-sentence.mp3": {
+    "text": "When the interest rate goes up, loans cost more.",
+    "signature": "0fa05828a0637abc50ae877e2e118fb13ef6b3ca256c799f4a2fd455e2129e6d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-interest-rate-phrase.mp3": {
+    "text": "interest rate goes up",
+    "signature": "0414b759c57be0cc5feb913c35160b4609f9c364f1da1e0607ada7e2ab9352f4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-economy-word.mp3": {
+    "text": "economy",
+    "signature": "b3b277878a27f62af23063bd4f7388903b54675d1e41e38e183f42c369c520ee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-economy-phrase.mp3": {
+    "text": "economy almost every",
+    "signature": "0be3c787c0cee0551d35a34f04815e68fe8acdfa4d35728f232ec69eab985872",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-rent-word.mp3": {
+    "text": "rent",
+    "signature": "28ebae99fc40bd0875b435aaffd293841c69f182b6cd527de39e5eb99d0253e6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-w3-economy-sentence.mp3": {
+    "text": "The news talks about the economy almost every day.",
+    "signature": "b17bea163b401f0966c44ec02b4674e053261be13350fe36bcf0571ecb24380b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-rent-phrase.mp3": {
+    "text": "rent our apartment",
+    "signature": "8619db772b3b5004ed2b9fce3a586572af3cc9d7f53a35f83860313697aa6da1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-rent-sentence.mp3": {
+    "text": "We rent our apartment for $1,200 a month.",
+    "signature": "7c1c3d00890ec2f43fba8b7249838d38d094520c0a64ad535c5a5e9244c34284",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-lease-word.mp3": {
+    "text": "lease",
+    "signature": "4ff409f439385b364cd95364ea484b6fdf2cf4c9c405f091a37fd72743f12acf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-lease-phrase.mp3": {
+    "text": "lease for the",
+    "signature": "0929ac1ea2d6e9b5bd0ce03cf26c8c6c6124272b68af6d645ebc861b2c029a35",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-lease-sentence.mp3": {
+    "text": "We signed a 12-month lease for the apartment.",
+    "signature": "e54358e066757a7f5e0452f264f7d22786b648eb3962242f6835ba194e9d1a2b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-occupy-word.mp3": {
+    "text": "occupy",
+    "signature": "f826889e30662d8d64dd1feb76cd5077a2ffbac34920d66923d0460646e81932",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-occupy-phrase.mp3": {
+    "text": "occupy this apartment",
+    "signature": "fbe9ebf1e88ebded7a4f7578f8533daafb7d8566b16ea7ad1d4a6ed394a205d1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-word.mp3": {
+    "text": "move",
+    "signature": "3727e43569dd787f260bef35253f7c26b4838d27b37262f3249d2b3bdbfbaf77",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-occupy-sentence.mp3": {
+    "text": "How many people will occupy this apartment?",
+    "signature": "8817d794cc11320220fa25bd5c6b5b28fa6e44ba269c6ea6fc754b4840ef64dd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-phrase.mp3": {
+    "text": "move to a",
+    "signature": "69a158c9e55c57b9e92e705a3ab2334e15735e1339c6e1f952f32279e1aa0910",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-sentence.mp3": {
+    "text": "We plan to move to a bigger apartment next month.",
+    "signature": "122ca875dcc0c47e1dda561b63a2bca0a25d2200aa5f02b86cb54a3c5d1aa325",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-qualify-word.mp3": {
+    "text": "qualify",
+    "signature": "b8f4837df5f736f02eec832ddaa3e1a5bf1f996ca72dd8f5e9fda68ededa1df9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-qualify-phrase.mp3": {
+    "text": "qualify for the",
+    "signature": "a3b34353bf840f3327392aab1367240568b02be6305821d6760764083ea8a110",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-qualify-sentence.mp3": {
+    "text": "Do I qualify for the low-income housing program?",
+    "signature": "8b72db8b8c4da776bb06c3f32ee5185262f4dcf360b849e653bbd76b5e01d2b1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-apply-phrase.mp3": {
+    "text": "apply the rule",
+    "signature": "2f717c793b5e8a23569fcd7eca2764463b4a87b8fbc752251474f20913da13a7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-compare-phrase.mp3": {
+    "text": "compare two sentences",
+    "signature": "4162c05d8b8afc53da3d4590c0a4bd20e78dbfe2e0b30ba1d07042496d2f051f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-apply-sentence.mp3": {
+    "text": "You need to apply online for that apartment.",
+    "signature": "f6be1b8c1c9e8292acfd6f36299ae6ed30f77661363f5b24b059deb193fb6353",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-afford-word.mp3": {
+    "text": "afford",
+    "signature": "bb0b854aa01893da316de23db10a97cd8ad08b20a51c5ad9f4cf07beaa3e3ad2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-compare-sentence.mp3": {
+    "text": "Compare the rent and size of each apartment.",
+    "signature": "c3896ff847a22616a44d5a19d45b6725e93888af8f27a234256f893352b435a6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-afford-phrase.mp3": {
+    "text": "afford an apartment",
+    "signature": "1c6c6f257f2dce94cbe3b501bdd2b816eebe056786b3c1d74913a363fac998fd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-afford-sentence.mp3": {
+    "text": "I can't afford an apartment in that area.",
+    "signature": "7a4f7f45867e66123bf5b0c28b57e19d23362a63e819c51b80fcf9aff1eff649",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-evaluate-word.mp3": {
+    "text": "evaluate",
+    "signature": "b6f6f966035563658184324b5be930cdd34404bef74cce1558d7d91fb22f2029",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-evaluate-phrase.mp3": {
+    "text": "Evaluate the location",
+    "signature": "2c85a0797b24cafd41dc8f3b4359f9f0e50b96811b40a179203b816bb0afc841",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-evaluate-sentence.mp3": {
+    "text": "Evaluate the location, price, and size before deciding.",
+    "signature": "32d2c3e2b9a278dd31ee1abb1704be4e1af31681c52fda3e65d865217d568b69",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-select-word.mp3": {
+    "text": "select",
+    "signature": "d09181d9641be3a11b27001ba434eedbbd9382885ba154f07d3f0b94254d0361",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-select-phrase.mp3": {
+    "text": "select an apartment",
+    "signature": "2cda069e79617df644eeaf35fcae75df4299b6649aa4424924b8857f3830c636",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-select-sentence.mp3": {
+    "text": "We will select an apartment by the end of the week.",
+    "signature": "3603d09b1b2508359bdcbe9dfcd4fa458fbce7eb50fce21f26ff41e271f72926",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-negotiate-word.mp3": {
+    "text": "negotiate",
+    "signature": "9924f9d4aec3556bee3c3f257e1f2a0a84bf78f172051b9328fe3e42c1829b00",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-negotiate-phrase.mp3": {
+    "text": "negotiate the rent",
+    "signature": "d8ebac45d63f2a39d142a3504d890a2abe60d45fa4fb988310b3fbf2d1bbc9f2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-negotiate-sentence.mp3": {
+    "text": "You can negotiate the rent with the landlord.",
+    "signature": "6322587f564d5fa0545febbd0169e75019c8d459006c386b0753fd6331a35d01",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-own-word.mp3": {
+    "text": "own",
+    "signature": "d50b72d15c12aa9089b9f037d30107faecaddeeb9b1682e33728dc242c321295",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-own-phrase.mp3": {
+    "text": "own my own",
+    "signature": "843a470327355ea327b6558d521e7284d328fca8edf020ecc10057d21b85fdd9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-own-sentence.mp3": {
+    "text": "Someday I hope to own my own home.",
+    "signature": "f0506b67624cbaa71015f4d2c51df0444c05ac9d9f6882bb0096bd70a801779b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-request-word.mp3": {
+    "text": "request",
+    "signature": "7e471857f46df8bbe49640df828283cf29ada1ee0ecb5d5f1455868e6ff07711",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-request-phrase.mp3": {
+    "text": "request a repair",
+    "signature": "93a876d46717364eacdb459a06faa99de3c7cacd1f52f229e190af8e1f30b35f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-request-sentence.mp3": {
+    "text": "I need to request a repair for the broken heater.",
+    "signature": "f6113210f59f78f811e1646ec22ee0ab71cf90ce7dbcff6e62cfe84ba95216aa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-report-word.mp3": {
+    "text": "report",
+    "signature": "a6860e6c145a80457a49a68c6876ef76b8bb9f62c2a1962a954453f606046002",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-report-phrase.mp3": {
+    "text": "Report any leaks",
+    "signature": "62092a1a9585d1336460ea9e85227a9c84c15c10a38af57b81c157da18240ab5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-report-sentence.mp3": {
+    "text": "Report any leaks or damage to your landlord right away.",
+    "signature": "95bcca00904f1b33cffffd30fc843b80b0bed9fbce9ae2483ac7cad5198f57ba",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-inspect-word.mp3": {
+    "text": "inspect",
+    "signature": "1f41975b65bbc4f045e42ebc114c4b02753e5bd99f3936508660071467a677a6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-inspect-sentence.mp3": {
+    "text": "The landlord will inspect the apartment next Monday.",
+    "signature": "9ef269697ae5fd060ad271ddb9b63b149e80e23200a6d52c617a775dd1f95e8f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-inspect-phrase.mp3": {
+    "text": "inspect the apartment",
+    "signature": "171f808a66a686940e79bdf9f09321f4c6ea025f4bd2ad4bb8c0023187a88363",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-repair-word.mp3": {
+    "text": "repair",
+    "signature": "0d305efd0f3a0391b0106de22d6c81621a9f9d8337a7f1d3ff55bc636403acf4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-repair-phrase.mp3": {
+    "text": "repair the broken",
+    "signature": "1e1ffd96ffdf145fefdd2331f8798fc3eb1146780d07994ed53192afc4c0bd61",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-repair-sentence.mp3": {
+    "text": "The landlord must repair the broken window within 24 hours.",
+    "signature": "fa4c606decbbac786c6a8d13b09e8dde54ff5df89a1bef20c6ec830f0a49a12a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-leak-word.mp3": {
+    "text": "leak",
+    "signature": "087317bc9bbda932618e2237124a05e38220053c6c3086f78a44919b77230f54",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-leak-phrase.mp3": {
+    "text": "leaking after the",
+    "signature": "86569435033e23bb11cf6be494b2163994a1483d7ad2e7e5888e1a061a1019fe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-leak-sentence.mp3": {
+    "text": "The ceiling is leaking after the heavy rain.",
+    "signature": "94c8da65f5056ca5f747d94759d0c8cec52c3f107baefc050807e9d9882aa8a4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-clog-word.mp3": {
+    "text": "clog",
+    "signature": "b750c75021f52dbb5d2659b72fdb47c9812876d7d35bbac4ba9f95d0d179d0ee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-clog-phrase.mp3": {
+    "text": "clogged and the",
+    "signature": "efcd13af85dc8d27b1690b763300db1af5e2ab476f4d75121e223485c44b55e8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w3-clog-sentence.mp3": {
+    "text": "The kitchen sink is clogged and the water won't drain.",
+    "signature": "5634a2b0a3667c3690040f9061e2c734caacbdbd9b487c6c448b9959698d8baa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-resolve-word.mp3": {
+    "text": "resolve",
+    "signature": "b93edbd23d22ba73bdabedd93630f6977ef4a36233326ca5fb96c32d9ed1d945",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-resolve-phrase.mp3": {
+    "text": "resolve the heating",
+    "signature": "39617d4fc8852d9f5191f39080f65ffb9d5e09abfa858ad7bcd7f1c0337caab7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-resolve-sentence.mp3": {
+    "text": "The landlord promised to resolve the heating issue today.",
+    "signature": "f927614ac0176330f45ade93cf92597937feae00ae95b041cfff76df1981daf2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-maintain-word.mp3": {
+    "text": "maintain",
+    "signature": "490ae9a5e6af3a7a6815f0d8a9c112dc52f676eb212f40d255c651e4505d7804",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-maintain-phrase.mp3": {
+    "text": "maintain a clean",
+    "signature": "5f8931490d681ecba9e8237d6c42a95ce88a51e4bb1571ffd6ffa82dc486803b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-maintain-sentence.mp3": {
+    "text": "Tenants must maintain a clean and safe apartment.",
+    "signature": "43ea4b919c15b874d0cfed275ec0977651378b11b1e6e2b9b3049312746017ae",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-notify-word.mp3": {
+    "text": "notify",
+    "signature": "fd9a78b97fe39939c9b75a51e887764b3c1e7bc5755c6faa604d9238727d96fc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-notify-phrase.mp3": {
+    "text": "Notify your landlord",
+    "signature": "3be31c50d3d6e5e6c3c7bea56f1af56df14d8296ad39517f091cda4164796e58",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-notify-sentence.mp3": {
+    "text": "Notify your landlord in writing if you plan to move out.",
+    "signature": "9fa7e862ca773b3c75a2687007af7aeda82f99702fbb3f41d99bc19b56647102",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-document-word.mp3": {
+    "text": "document",
+    "signature": "209b123457c7a1db82b91e2401d00beb78b5ceccb8b0cecc182ee542cb6e9da2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-document-phrase.mp3": {
+    "text": "Document the damage",
+    "signature": "389074f42b63d02ee51186da60954832314fab8eb4558c9318ad24bf51d264fb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-document-sentence.mp3": {
+    "text": "Document the damage with photos before the landlord visits.",
+    "signature": "da6ae893daa43589e9b2bcd0f6bb32f5130037cacc210a696b5ac16fa35d29c9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-prevent-word.mp3": {
+    "text": "prevent",
+    "signature": "aeb2a74c0138f4aa574f930e8c0509d6262663b6aecac9ea5becc725bdcb6cdd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-prevent-word.mp3": {
+    "text": "prevent",
+    "signature": "aeb2a74c0138f4aa574f930e8c0509d6262663b6aecac9ea5becc725bdcb6cdd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-prevent-phrase.mp3": {
+    "text": "prevent mold in",
+    "signature": "38613d8de0d896e4cfb5b357769af5193f1048abf2411923604305c17110de84",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-reimburse-word.mp3": {
+    "text": "reimburse",
+    "signature": "7a63ffde448d431cdead2755262cfe8c3d903f932f5048ee8b66f2d974719294",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-prevent-sentence.mp3": {
+    "text": "Regular cleaning can prevent mold in the bathroom.",
+    "signature": "612c9747fed7520b9b21e441194678ce07197b05e007af701397f59bb080b5de",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-reimburse-phrase.mp3": {
+    "text": "reimburse us for",
+    "signature": "1df22fe099cb0db795f411e8353ab612c41346c21e772626e847742e7f48a073",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-reimburse-sentence.mp3": {
+    "text": "The landlord agreed to reimburse us for the plumber's cost.",
+    "signature": "322e4a2dde9d83f19f020830dd4bcaa9a0dd6ff569bd6a426fb68b0245127e96",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-schedule-word.mp3": {
+    "text": "schedule",
+    "signature": "d7f8e9fe96956052db525e8df1c072a5b95f9542f7e274e1bf32d6ae54a57737",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-schedule-phrase.mp3": {
+    "text": "schedule changes every",
+    "signature": "08e79e828e542b972a1c43899d73c676a9d553f4b6543a39921ee6abef9afd8c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-schedule-sentence.mp3": {
+    "text": "My work schedule changes every week.",
+    "signature": "52efbabb13f1cd377258de944058118d85fe2eb0f7109b113f12c1f92f269396",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-break-word.mp3": {
+    "text": "break",
+    "signature": "db783cd5c79ef8345664f0b36607b70e7d58e38975b5487bf3d0376aa93c6320",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-break-phrase.mp3": {
+    "text": "break at 10:00",
+    "signature": "c2b028c8f2095af02b6b3d16013891f8aea531418d524899b5d44b60d672b21a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-break-sentence.mp3": {
+    "text": "We take a 15-minute break at 10:00 AM.",
+    "signature": "cea97364aff41d0a98a475a94cb9675e114ef7764a44975f4590f905fc98bf41",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-time-off-word.mp3": {
+    "text": "time off",
+    "signature": "69097fa83e2f40cb3af9cfc8641ff6511f83e312ab43e6cc4afdfbfc84d35f2e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-time-off-phrase.mp3": {
+    "text": "time off to visit",
+    "signature": "090c27303b154d9c34927bb1f95a2dfa92ad4925ad309c8d39dc2b33279b22da",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-time-off-sentence.mp3": {
+    "text": "I asked my boss for some time off to visit my family.",
+    "signature": "eb021e8d3be58315ad17b280e88723db7c48168b510a5e016fb39035dcedd2c6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-team-word.mp3": {
+    "text": "team",
+    "signature": "6c3f048e233e22a788fa728ff70ff5aefda697cbb3c60cdcf60c05c82dfdef8a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-team-phrase.mp3": {
+    "text": "team meets every",
+    "signature": "080b63b0fc0115103f9c093afc7628968746095da0a056129240bd42234d77f5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-team-sentence.mp3": {
+    "text": "Our sales team meets every Monday morning.",
+    "signature": "be32aa7a695a0c2b431e354a79296a8f47ff0e43d0814f3b1101a7649a09da5e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-reliable-word.mp3": {
+    "text": "reliable",
+    "signature": "8c6c550c62e81a5d33491c095d353d43c3d8ac6b72b0e199ee6d51ef3d83ef89",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-reliable-phrase.mp3": {
+    "text": "reliable worker who",
+    "signature": "f3074c871ff8a441764a29344e7ce0235012d8124d48475d140578604557ee7a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-reliable-sentence.mp3": {
+    "text": "He is a reliable worker who always shows up on time.",
+    "signature": "e05c4933cafcf5d26bb00cd1e1b474992385fa10834874685f7716a46ee5a6fd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-flexible-word.mp3": {
+    "text": "flexible",
+    "signature": "5a4d31b91ca2818cc03508fbbc6ef80a31a1af0d927d4337cb8c5aa4447fe1ff",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-flexible-phrase.mp3": {
+    "text": "flexible with your",
+    "signature": "ec7760753c0ca120c6f2df40f18ba14964e5d55bb0ea775738649f681617f02e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-3-5-flexible-sentence.mp3": {
+    "text": "Can you be flexible with your hours next week?",
+    "signature": "676af88c187a5a4953976053bc2537c1ece4c8d2eb7a262b87e7cf2205173516",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-must-word.mp3": {
+    "text": "must",
+    "signature": "2d16f8ceff6cba644d7b790da11bea79dfa48df8d74c43846342c8155c500b9a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-must-phrase.mp3": {
+    "text": "must wear closed-toe",
+    "signature": "7b7e9077a19f2302fe289d9aa5c6c4f1c04976dd8cab1a3ad067560cb56f2e4e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-must-sentence.mp3": {
+    "text": "You must wear closed-toe shoes in the kitchen.",
+    "signature": "c36a006992b8907d2a0fa5cef674ee7ce9443277226195e6b311a84238a88774",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-should-word.mp3": {
+    "text": "should",
+    "signature": "3829e20455fdab4e446a61fabed89242de51a0cc606633990e8020726e4ad635",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-should-phrase.mp3": {
+    "text": "should ask your",
+    "signature": "9d9fe02b9b94cba47bfdc936cb3fa56246edcc4b9fdd1a6868ed7b3bd6d6d362",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-should-sentence.mp3": {
+    "text": "You should ask your supervisor if you are unsure.",
+    "signature": "cdc44eb67d6c419027a9515d8d28fd3ea0a0dbb36280202169bd354283ec128d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-can-word.mp3": {
+    "text": "can",
+    "signature": "3f5866e31434a06ca1a3d52e1a8ced9660b61812c1c334be205bdf1b5ce00af1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-can-phrase.mp3": {
+    "text": "can take your",
+    "signature": "4e52bf1518098d497e215964e70245c7126837eb57c81b4619f1a976040d4a88",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-can-sentence.mp3": {
+    "text": "You can take your break after you finish this task.",
+    "signature": "0c56f20157af010d24095d33de0abce2d5cece26b007ec2202cdfc494186dd22",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-required-word.mp3": {
+    "text": "required",
+    "signature": "332ee5afd65714bbba2753cb176ebb6891dde1c797391816ca4bdeeee6142f15",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-required-sentence.mp3": {
+    "text": "A photo ID is required to enter the building.",
+    "signature": "b61d7a980e888e6161b9002f53285b53183e95d2e1739198792772e88916c89f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-required-phrase.mp3": {
+    "text": "required to enter",
+    "signature": "43d9807ad8260920675e0e7e8bd05a175fb350512ccd05d523e26f56bfe1b284",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-allowed-word.mp3": {
+    "text": "allowed",
+    "signature": "ba16478980c0433aca6000f4734c9788297169221d8df646e197a1c26e300b62",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-allowed-phrase.mp3": {
+    "text": "allowed during the",
+    "signature": "490d1c0d63a2a966dc17bff4c33fe9e39f20d7c0e34352359299dc33fd34853a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-allowed-sentence.mp3": {
+    "text": "Cell phones are not allowed during the test.",
+    "signature": "d1c3eaf0a50c6e751e88e34b707ee82ee1e3e9fecac8a9592be16f7ab16f8a9b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-safety-word.mp3": {
+    "text": "safety",
+    "signature": "f4c3f009c35a124cc5a8114f8e762a3a4b1d9464fcd5027e477b4f11c0147cd9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-safety-phrase.mp3": {
+    "text": "Safety is very",
+    "signature": "17c140d9999a2d29128d2785f5478f6557973b64d559a5fcdf97f75fe423be5a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-10-12-safety-sentence.mp3": {
+    "text": "Safety is very important in the kitchen.",
+    "signature": "55982a7d615e0ad27362c161cb2222b4771605debdd6e5f9dfaf5b8aa323d5c2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-in-word.mp3": {
+    "text": "clock in",
+    "signature": "b10ef40b55d2134a62c0600604a87d0933d81b662c457c228ee6a110d4cc0c8b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-in-phrase.mp3": {
+    "text": "clock in when my",
+    "signature": "60c8dffc8da7e1083ab7ef12236e8761cf95d2ed92c23e33706f1ea415934262",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-in-sentence.mp3": {
+    "text": "I always clock in when my shift starts.",
+    "signature": "5915d70f3242c2ddc8e3be4cf07d1a8913737d765fe029aaa0d583ea6e09a433",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-out-word.mp3": {
+    "text": "clock out",
+    "signature": "82eeb38bec4d777626c0fa389f9811000f7245ba4d804a53aba6072b3879e1a4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-out-phrase.mp3": {
+    "text": "clock out when your",
+    "signature": "3cea4b8da8387ae906d81abf2e0c8cc8e7b3bdff3f25448a9193c1639fdf130e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-clock-out-sentence.mp3": {
+    "text": "Please clock out when your shift ends.",
+    "signature": "6c7f4cc14034dc9dd893a2fcc6c7b7d4605f6c0c1b8aa8a27ae8adedc5bf8cab",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-call-out-word.mp3": {
+    "text": "call out",
+    "signature": "9f4651673af01eb3dc0aa585c5a4fc9f10c37ad181f8a0cdcff5c61519943e83",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-call-out-phrase.mp3": {
+    "text": "call out on Monday",
+    "signature": "739c010740d3df8804ad3f8a2e304f33efc3e5fa15c9a3d1f1d2eb730b424e2d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-shift-word.mp3": {
+    "text": "shift",
+    "signature": "e838b11199ecc24d77d72325a3de1409b4a3bc2521dd1993ca29e4a2214bbc92",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-call-out-sentence.mp3": {
+    "text": "I had to call out on Monday because my son was sick.",
+    "signature": "1aa022116f23a23b0c7bda6d7e57d93ba00281a802a9c4241ccc3152d15f7c8a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-shift-phrase.mp3": {
+    "text": "shift is eight",
+    "signature": "f6dba7f555411ff0b9688a38a3fab72cf55b9af2d22861e2a532130b246cf3cf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-shift-sentence.mp3": {
+    "text": "My shift is eight hours, and it changes every week.",
+    "signature": "2fc3fd4fc0b248cd48206df89dcbaac32e3c8143baccf3174484bf9797f8aa1f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-supervisor-word.mp3": {
+    "text": "supervisor",
+    "signature": "a6544226b6a7e2acbb0aac95813ef450787b2b49dea980f174c725e5f0b6c24c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-supervisor-phrase.mp3": {
+    "text": "supervisor before your",
+    "signature": "b1e2c29f47670e4bcb79aa88e062db3fb974a9b0e96074d882728a3c6ccebb90",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-supervisor-sentence.mp3": {
+    "text": "If you are sick, call your supervisor before your shift.",
+    "signature": "b0c14384e56cca3cabf6b27b3377d2673cd12adf02e48e2dc7ac7e16d5a5ee7d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-follow-up-word.mp3": {
+    "text": "follow up",
+    "signature": "b74ee4880b7e3185b9a48b580e46b0dda95d6d74cc6402586a0302bebf02821e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-follow-up-phrase.mp3": {
+    "text": "follow up with an",
+    "signature": "9ce9d1ecb3c65bb28c3c2f2ab4c144f844df967fb164bd6f0a1d51ccd4a653e4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-10-12-follow-up-sentence.mp3": {
+    "text": "I will follow up with an email after our meeting.",
+    "signature": "6e32e13548d4ea39d856c2cbc36ee9c7721b88447d918ff96819500817562a3e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-experience-word.mp3": {
+    "text": "experience",
+    "signature": "46d392b081f2fd2d8f52f7aaa0d8e812e455cbbb39c0c7520b836d580eb556c3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-experience-phrase.mp3": {
+    "text": "experience",
+    "signature": "46d392b081f2fd2d8f52f7aaa0d8e812e455cbbb39c0c7520b836d580eb556c3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-experience-sentence.mp3": {
+    "text": "Do you have any customer service experience?",
+    "signature": "540aad49a2a81f1995bf57801acdcf411526731a184bdfaee52eb6666c53c3a0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-resume-word.mp3": {
+    "text": "resume",
+    "signature": "a0aeef1eea281aca7cbea3aa3b78f5893be9d6162c9f5214b37e10b06d9f6a6a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-resume-phrase.mp3": {
+    "text": "resume before applying",
+    "signature": "32877cb31f719dc736fe992385dc97b48c2e293b85e108e00ee0532dc1746832",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-resume-sentence.mp3": {
+    "text": "You should update your resume before applying.",
+    "signature": "de02965d962d2598d85b699f401aa1b474d38deb868897e3d4df824644076cf4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-cover-letter-word.mp3": {
+    "text": "cover letter",
+    "signature": "103d8b0b8b3a2d26e52f01a90feb954af9b6297667c2f13a06d6411abe93c42e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-cover-letter-phrase.mp3": {
+    "text": "cover letter explaining why",
+    "signature": "fb0bde57f55930a05364e2d60951ba5884a0df81ce4760bc8397db4bf2958caf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-cover-letter-sentence.mp3": {
+    "text": "Include a cover letter explaining why you are a good fit.",
+    "signature": "e3aea81e517ab5f76fa34d8fd8884920283373b36ff3169045fc64e300fd4226",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-reference-word.mp3": {
+    "text": "reference",
+    "signature": "88c589a3cf6f3393ce075645b3cc2d16a674ac425c51f89b7692bc1f0ec14d52",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-reference-phrase.mp3": {
+    "text": "reference for me",
+    "signature": "4574688cbb554a3008f6ba15f6ed6f70866ec9b050018e5248dfa1deb68647da",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-reference-sentence.mp3": {
+    "text": "My former boss agreed to be a reference for me.",
+    "signature": "1c68980fb8542406289538ada5bbce7852b59ac9542917de26f69c8829141d31",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-submit-phrase.mp3": {
+    "text": "submit your application",
+    "signature": "860d78db976b64d97c9774147b5044577ccb2bc70a461f10243b6e8830c63be6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-submit-sentence.mp3": {
+    "text": "Please submit your application online.",
+    "signature": "4860f98bddc8c7f0a67886e2db7570d568b6368857338c4965ab8375e781f225",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-deadline-word.mp3": {
+    "text": "deadline",
+    "signature": "a9af32b246064087a52fb85185156c2eaeda6f00a52e9e4e3ab1edca5ff61464",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-deadline-phrase.mp3": {
+    "text": "deadline for the",
+    "signature": "00f27d7a38a0be4adbfaea5930420aa3f694f30187202ef1d04b26f7beee5c5d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-promotion-word.mp3": {
+    "text": "promotion",
+    "signature": "73954df8c52d7527e661dc0c924b3f87203873ecb849fb5b9a96be4fe47bf72c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-promotion-phrase.mp3": {
+    "text": "promotion",
+    "signature": "73954df8c52d7527e661dc0c924b3f87203873ecb849fb5b9a96be4fe47bf72c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "feb-24-26-deadline-sentence.mp3": {
+    "text": "The deadline for the project is next Tuesday.",
+    "signature": "b51281eafc6aca03c364af48f9b149901cefef56a3c9dc91ece09b179ae3cd9b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-promotion-sentence.mp3": {
+    "text": "After working hard for two years, he received a promotion.",
+    "signature": "5b6264b31461a7d127911f13dc6bf0218ce4095538e9d1563b881be0df991f81",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-gross-pay-word.mp3": {
+    "text": "gross pay",
+    "signature": "79916f9600fc01a12fc18336c0909ee8e5ad927b57f01d8fadce1010d0036695",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-gross-pay-phrase.mp3": {
+    "text": "gross pay is your",
+    "signature": "b29814fd7186a91f4f3c6fa699bc66d70ce3e94f1dba6e5fc7eccc7aaea3ff98",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-gross-pay-sentence.mp3": {
+    "text": "Your gross pay is your salary before taxes are taken out.",
+    "signature": "6842286bc20111bf8799e0632d9e9ca69c7a182a28f3ec14612df6d01dce7d9f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-deductions-word.mp3": {
+    "text": "deductions",
+    "signature": "e4e302f8bb121798c6d35a7504baeda908fe30368284d7f19f8fcec263fcf0e6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-deductions-phrase.mp3": {
+    "text": "deductions for taxes",
+    "signature": "f1ac7fbf7ef35f4b833232e283e2012970a103ee6bf0f8b7b96cffbbda0cc4be",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-deductions-sentence.mp3": {
+    "text": "Check your pay stub to see the deductions for taxes and insurance.",
+    "signature": "d90766411d97d53e14f440817cd3f8fb9f8b989519a0e25716017c5252ede528",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-benefits-word.mp3": {
+    "text": "benefits",
+    "signature": "b10071fa8e83a784df4965f275dd22bb4dfd0b8e83a1e75c5b9a223d168b0ed5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-benefits-phrase.mp3": {
+    "text": "benefits, including health",
+    "signature": "dde18d2ba213ed4b34c444638e056207e38dfdf21f5cdaba9d8861be30c74dd6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-benefits-sentence.mp3": {
+    "text": "The job offers great benefits, including health insurance and paid time off.",
+    "signature": "dde26f4fcbd2c193ddc3412766a01edd75a6243ba3f032a186e58bfce46b8f17",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-priority-word.mp3": {
+    "text": "priority",
+    "signature": "36e7f43f01cab875d3bb69c3bfeec98d767b01f0747df84ba74940baf33be209",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-priority-phrase.mp3": {
+    "text": "priority for today",
+    "signature": "ce48024fd4135800db33b5bc3a88b5d54f02229f50fbadce8b4122aba35d4f8d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-priority-sentence.mp3": {
+    "text": "Completing this report is my top priority for today.",
+    "signature": "7123fac44e67e71dc222f9cfdcc9666a0808e421120092c14d5561eed3581c98",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-emergency-fund-word.mp3": {
+    "text": "emergency fund",
+    "signature": "872c90e4b0d86c2dbad49e09eea2db472f4f8b2f389dba81eb5d1c26cfb52967",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-emergency-fund-phrase.mp3": {
+    "text": "emergency fund for unexpected",
+    "signature": "48082b006576806b037c61f376254ea20511e58c36e9ff7b9d9eef0b1dc78919",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-3-5-emergency-fund-sentence.mp3": {
+    "text": "It is smart to save money in an emergency fund for unexpected costs.",
+    "signature": "00e10a806688e49643ff4216301ed1106a2044e45c718d79e390cc7dc9863ef7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-right-word.mp3": {
+    "text": "right",
+    "signature": "66f8eff0996454bf69a6091b576ee27de41a6d98e7723815dc3990940be8293c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-right-phrase.mp3": {
+    "text": "right to a",
+    "signature": "9492c9e83b95c21dfc41c069c038b9ef571b2eca417bc2a069799179d561463c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-right-sentence.mp3": {
+    "text": "Workers have the right to a safe workplace.",
+    "signature": "21d69aa7f461388f82b40d8fae41e0cb51baf2cc683ae19127c94f0209c91d54",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-advocate-phrase.mp3": {
+    "text": "advocate for yourself",
+    "signature": "889683e60dcc2439870ed3383bf25df0f3f2410770bfc1bc502e4eea9e308e82",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-advocate-sentence.mp3": {
+    "text": "You need to advocate for yourself if you want a raise.",
+    "signature": "b068fcac599813cf13e760b68860b56dae06edc70978e547600f2dbda467b52e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-courtesy-word.mp3": {
+    "text": "courtesy",
+    "signature": "e3d3ff43e19d30d685a05da7a1a406b12a4f113251c0401fd392031c84cd8097",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-courtesy-phrase.mp3": {
+    "text": "courtesy",
+    "signature": "e3d3ff43e19d30d685a05da7a1a406b12a4f113251c0401fd392031c84cd8097",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-courtesy-sentence.mp3": {
+    "text": "Treat all customers with patience and courtesy.",
+    "signature": "402196b721674bc8571a31a9623ed49fc6de7d01a47eaf14470e1f33e4ff9b82",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-strict-word.mp3": {
+    "text": "strict",
+    "signature": "a09e21b4226e960eacd6fd60e0e3641fb314bb7eaca26b880943ee371531dc89",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-strict-phrase.mp3": {
+    "text": "strict rules about",
+    "signature": "7221418c2357b2d8f8ae3703bfc26ac82a392082b066004488c355f53b2ec74c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-strict-sentence.mp3": {
+    "text": "The company has strict rules about using cell phones at work.",
+    "signature": "05f4e91cd7592e0ac6123639a1508262e33b77c47499f354a0ede2c2456f5323",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-comply-word.mp3": {
+    "text": "comply",
+    "signature": "3426f9ba389da9c3a89d18662c0c8e9cfe7a7ebffefb2e17070e47c79c8fd555",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-comply-phrase.mp3": {
+    "text": "comply with the",
+    "signature": "9309ba3930130f08b1e4797d3c639b847f9101115569aa98f9925283ab7d97f1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-comply-sentence.mp3": {
+    "text": "All employees must comply with the new regulations.",
+    "signature": "5ff9dedbbad6a89498e939972e785a71e99a1d21f7fd84b20ebcc830ffd39b0b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-violate-word.mp3": {
+    "text": "violate",
+    "signature": "82566f8bd83bfd50cee7ed84c49cb9b7354db2828c0e1d1a5be3e8b974ee2b4c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-violate-phrase.mp3": {
+    "text": "violate the policy",
+    "signature": "a571158a807e8c26c4328c2760455c6f80feba99cdd761a52db8020cba179f52",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-violate-sentence.mp3": {
+    "text": "If you violate the policy, you may receive a warning.",
+    "signature": "6a3acf2d128edafe124c247dbc27f2857ef688951242a78666828502fa7dabcb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-feedback-word.mp3": {
+    "text": "feedback",
+    "signature": "d14d909abfd0228422a9636a85ec11ae3f4ed4b8c88d82157d866a45284fb446",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-feedback-phrase.mp3": {
+    "text": "feedback on my",
+    "signature": "a647403569fa052170c01728211afe90999caa1aec42337d555322f99df3061b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-feedback-sentence.mp3": {
+    "text": "I appreciate your honest feedback on my work.",
+    "signature": "d498e2e884bd0d452c84ad5094f0e991bde932a61cc760f8b6ad6d7b4d1c70e5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-advice-word.mp3": {
+    "text": "advice",
+    "signature": "27d774140958776db3afbef9e15c1b3262d97ea878808fd5c2661874e18a3d7c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-advice-phrase.mp3": {
+    "text": "advice on how",
+    "signature": "455b7ec521c50cb2d6b800aa0a7aa6dba0d294516f424673da5a0a03484df8e9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-decision-word.mp3": {
+    "text": "decision",
+    "signature": "b733950b2b48774003e0928b28dc6212b47244e6474a201afcd75148c3758452",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-advice-sentence.mp3": {
+    "text": "Can you give me some advice on how to ask for a promotion?",
+    "signature": "fec0bca35b3d6d3b92474e966792710fde403c52d10b86c6c62a72941dab8936",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-decision-phrase.mp3": {
+    "text": "decision about the",
+    "signature": "250e43ea7611e6200a504fd8bf99e72eca380da0bfbe96fc886759dd40a39593",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-decision-sentence.mp3": {
+    "text": "We need to make a decision about the budget by tomorrow.",
+    "signature": "79838fa7c770a1be676824e757cde0508bcfec0f35acb47e39416effb1b60dd7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-consequence-word.mp3": {
+    "text": "consequence",
+    "signature": "e3a3dd723d7f5b1d8360f271420c2fd0fc186971212776d5f63f8bb8c8fde45d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-consequence-phrase.mp3": {
+    "text": "consequence of violating",
+    "signature": "1fe6d5416f181b99ae06abe4c1a566e59c603c49230ffc1725a987a556178f98",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-consequence-sentence.mp3": {
+    "text": "Losing your job can be a serious consequence of violating safety rules.",
+    "signature": "17138211f8e927d7f8a4d7d4e4e6eac4ae9843950d5f42b2bc8d540335477d0b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-reflect-word.mp3": {
+    "text": "reflect",
+    "signature": "1f7c08bb1239f1da6c137a8279f2e43d05c183cdd5367dcf2fcd3a3233c9946c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-reflect-phrase.mp3": {
+    "text": "reflect on your",
+    "signature": "e24a65292805c908ea63ea255b97fe97f584205341dc2ee87fb4492aac9c434a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-reflect-sentence.mp3": {
+    "text": "Take some time to reflect on your performance this year.",
+    "signature": "c8bed15b162cf371f1df8f86afae90c395efc9bec8c5fcb00dca0e28c0f4c6e1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-recommend-phrase.mp3": {
+    "text": "recommend a good",
+    "signature": "eafeaa51605f1c2f758136600410b7ea0c2d75f2cc469b48c99722040400ebea",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-recommend-sentence.mp3": {
+    "text": "I can recommend a good mechanic if you need one.",
+    "signature": "21b50981e218250dc043470744106cca7447689fab073158ecb18b0e65dfe5c3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-cough-word.mp3": {
+    "text": "cough",
+    "signature": "f3b5cac4d20c818b2285dd9c02edd84426994d9b641f11ad1eece7d84e99e796",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-cough-phrase.mp3": {
+    "text": "cough",
+    "signature": "f3b5cac4d20c818b2285dd9c02edd84426994d9b641f11ad1eece7d84e99e796",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-infected-word.mp3": {
+    "text": "infected",
+    "signature": "82b316a8ac655ffd73d5dcc8f29eb4b976d6d0514ca85b8ac0fd8dc3798165eb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-cough-sentence.mp3": {
+    "text": "Please cover your mouth when you cough.",
+    "signature": "6a46729601c6ff1ef59d85dbb35e9b9684b57125f0b6cc47adf7b178a60e2de3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-infected-phrase.mp3": {
+    "text": "infected because he",
+    "signature": "51b9c5d6a5e46487c8ae80383ae04e8e3a7881196d244ec9415843fa0bbc257c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-infected-sentence.mp3": {
+    "text": "The cut on his finger became infected because he didn't clean it.",
+    "signature": "172be8da71fd120dece5a667d8e86937ce4a3729489cf14ad145392c93848359",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-depressed-word.mp3": {
+    "text": "depressed",
+    "signature": "f8827f1ecc9a78ce73340cea14d97e32d77af039f269cf9aa63b6792eb4b5130",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-depressed-phrase.mp3": {
+    "text": "depressed is a",
+    "signature": "a758b70c5b1f0d3af335190f39dbbcad1feb0b24747c54250200ab68ee36a380",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-depressed-sentence.mp3": {
+    "text": "Feeling depressed is a common reaction to losing a job.",
+    "signature": "01183d100e47dc2749bac8add3fc57431c6569b6c885a7593182c5d9cdefeae3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-habit-word.mp3": {
+    "text": "habit",
+    "signature": "c1bc17bd809c9ca36d727193c67037c54b9ce3669fedc78198cfefae66d88ebe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-habit-phrase.mp3": {
+    "text": "habit that is",
+    "signature": "cef5262b47c70b244f51d4d58928ba8aca0920b2ecd9797ca00e9f86f4c211e2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-habit-sentence.mp3": {
+    "text": "Smoking is a bad habit that is hard to break.",
+    "signature": "04a20f81149c145de8be23ecb68b5809818ca905d505bf3a3bf6dc97756f34a6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-avoid-word.mp3": {
+    "text": "avoid",
+    "signature": "6e982ad547b7fbca71d4ea91c33505fe1a22c67a359d3ec375998dda3a3bfb2c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-avoid-phrase.mp3": {
+    "text": "avoid eating too",
+    "signature": "d0f3a8bc7c44f8c26499c15e2978e8e7afdf69c74f982a3b9fcd6d4ab9a54fe5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-avoid-sentence.mp3": {
+    "text": "You should avoid eating too much sugar.",
+    "signature": "bb0e7bccab717e59817d63e9dd30cbdf998867984306805ffcea6bc3a39cd4fc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-quit-phrase.mp3": {
+    "text": "quit his job",
+    "signature": "4a4dabc9248c64bbbe1383ce992bbaa5d610691554ea55c9d9d4c25adb0da961",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-quit-word.mp3": {
+    "text": "quit",
+    "signature": "1c7a737876027cf2d61a9b5f60af70b1b0e4e70cf94b50fe2dad4f20d92a9d8e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-7-9-quit-sentence.mp3": {
+    "text": "He decided to quit his job and go back to school.",
+    "signature": "aee33af43d71354274a563dbe7070b26a2458ce80dc2e2341e44065ff3f800cc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-recover-word.mp3": {
+    "text": "recover",
+    "signature": "91a94886346fcdd27c6811d7dc01ccd69e988f494ee397a327d4190d5eb8582e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-recover-phrase.mp3": {
+    "text": "recover from the",
+    "signature": "8435a8d9daef1e7864a5864e4d9c6523d7254d38c72a08aa65ba0aa5d1f9b391",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-recover-sentence.mp3": {
+    "text": "It took him a few weeks to fully recover from the surgery.",
+    "signature": "593d96f999ba1e486b2388fec17e78dcae459d78e7fc197e624dd3d8b5379eca",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-improve-word.mp3": {
+    "text": "improve",
+    "signature": "538ed795a3cbdcaa7833673ad2a2065b0ad041ea163edec2ebc37bde4ff4a5b8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-improve-phrase.mp3": {
+    "text": "improve quickly",
+    "signature": "7d64136010ccc5ea93e98cc5db0155a90ab8a2d2b265cfe3c8271b4441f12d3a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-improve-sentence.mp3": {
+    "text": "Rest and fluids will help you improve quickly.",
+    "signature": "ae693cdd8957785ca2a2c725a68f0e279e11b6285003e6da39e0d825cec9196d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-exercise-word.mp3": {
+    "text": "exercise",
+    "signature": "644fc6e49578ccf2be5f2491fd57222426c324b1c45a89082f6a7b83b9da254b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-exercise-phrase.mp3": {
+    "text": "exercise for at",
+    "signature": "a733f2ff03a94d091b2022addcc2963fcb87b2884923de3688b5c59563768a22",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-exercise-sentence.mp3": {
+    "text": "You should exercise for at least 30 minutes every day.",
+    "signature": "4c78391307ac1ef185bb46dc35ffc5afbe6a7ea388cf2b1b80f37c4ad32c1d5d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-lifestyle-word.mp3": {
+    "text": "lifestyle",
+    "signature": "42b96423efcde14649d736d085079caa96e88e6544b66bbf7e41e3e421211951",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-lifestyle-phrase.mp3": {
+    "text": "lifestyle",
+    "signature": "42b96423efcde14649d736d085079caa96e88e6544b66bbf7e41e3e421211951",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-prevent-phrase.mp3": {
+    "text": "prevent the spread",
+    "signature": "6c4f9397aa6d8275a24ad50b55bb23fa70593ed5e138e723b4d99117f38c3b5b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-lifestyle-sentence.mp3": {
+    "text": "Eating healthy and exercising are part of a good lifestyle.",
+    "signature": "e1b736ee4d64ed9215b70f7fb9f601e84a68d48ba39ed7c35151e24fcf7369c3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-adjust-word.mp3": {
+    "text": "adjust",
+    "signature": "2b34823e34a48a8e500e3a18f2d7548185f6736b931433d5f551359a9cb1569b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-prevent-sentence.mp3": {
+    "text": "Washing your hands helps prevent the spread of germs.",
+    "signature": "4b2b79dc0f8562edb650ad32fb26ff15ba027c01b8d6608d452b607abbcbbd8a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-adjust-phrase.mp3": {
+    "text": "adjust to a",
+    "signature": "c2c87fe43d4b0b940740ee754abd51092de14174abdf1cebd19c019e3baf4c93",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-adjust-sentence.mp3": {
+    "text": "It takes time to adjust to a new medication.",
+    "signature": "2ff233690719af70b90f0dbfee8edf458275d3927e1ddee7742660c595e25bee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-appointment-word.mp3": {
+    "text": "appointment",
+    "signature": "fc13ed858a0f2bb10fa625224a1ebb6c7937ccba31f006c15fb54959ca24ea76",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-appointment-phrase.mp3": {
+    "text": "appointment next Tuesday",
+    "signature": "ab044e9f989c572d11218221bc8c216d142919d0e907a063474bc3289cf5f113",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-appointment-sentence.mp3": {
+    "text": "I have a dentist appointment next Tuesday at 2:00.",
+    "signature": "6bf898e2f7d41262fddc50d219562a2f03327b9aeec24006016e3a6144dc6a72",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-checkup-word.mp3": {
+    "text": "checkup",
+    "signature": "b61647ab380cae034f6d45483add4b9f36ded01a03eab504bf77d25230f89c07",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-checkup-phrase.mp3": {
+    "text": "checkup",
+    "signature": "b61647ab380cae034f6d45483add4b9f36ded01a03eab504bf77d25230f89c07",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-checkup-sentence.mp3": {
+    "text": "You should go to the doctor for a yearly checkup.",
+    "signature": "46950703b77a8e195cc1e9b60e7da7b10a784de8ab2f53cb3cc151778f390555",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-diagnosis-word.mp3": {
+    "text": "diagnosis",
+    "signature": "32ea16b947e2ccb4d5578a1588eb9630a74ac5735019ba6d1d4942b9b4562022",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-diagnosis-phrase.mp3": {
+    "text": "diagnosis of strep",
+    "signature": "45bc4bdd17d8a8c9514e9799b8efc45c46bdbc379887ee911fa83e36e25616c6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-diagnosis-sentence.mp3": {
+    "text": "The doctor gave him a diagnosis of strep throat.",
+    "signature": "d4556a8662a70f79ba6f904b4de8bd115bfd9653edffc61f71b47ddff7c21ba9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-prescription-word.mp3": {
+    "text": "prescription",
+    "signature": "826cb00f06414a2a39c9a591b48e48317c88bf1414d8b0e11bc76166cda1a1de",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-prescription-phrase.mp3": {
+    "text": "prescription for pain",
+    "signature": "6f101c6a1ad14ab9850df1c2ccd18cb1d7b556af83351a641b6750179257654e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-prescription-sentence.mp3": {
+    "text": "The doctor wrote a prescription for pain medicine.",
+    "signature": "9683de264d6c0a489371a0626215509570985b033f263e9c5f6e5ed716ff27f1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-fever-word.mp3": {
+    "text": "fever",
+    "signature": "3d849e7eb26e1c50cf40845fdfdedbd8836e5d16393429232cf20fa03fa9c689",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-fever-phrase.mp3": {
+    "text": "fever and needs",
+    "signature": "3eeb4f3b3db097261fa2bf038c8633d12359edf031fb92d43c32d121fd0ca5d2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-fever-sentence.mp3": {
+    "text": "She has a high fever and needs to rest.",
+    "signature": "98ccbbef04c7242026437515a5ddfb94f44b310162e509a7b0d8cc48367178ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-contagious-word.mp3": {
+    "text": "contagious",
+    "signature": "b0de36ac0ddf5a2823c0e1300418fc8bfc7eaed98b3bd42fb1d2dc561e7bdccd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-contagious-phrase.mp3": {
+    "text": "contagious, so stay",
+    "signature": "9bee85eff0d00e587962b377b5edea43b73370dedcba76f016a57a3f924e1a1c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-28-30-contagious-sentence.mp3": {
+    "text": "The flu is very contagious, so stay home from work.",
+    "signature": "c3c2e9bbf83ce51c9664a1faec8a85a88b6a03765ae00de06a732fcb8e429f74",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-symptom-word.mp3": {
+    "text": "symptom",
+    "signature": "9d8f3bc2537528c843bf073e93f17258054a8326c445b04d54a8759392cd3f52",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-symptom-phrase.mp3": {
+    "text": "symptoms of a",
+    "signature": "792c1055bef12803908d2421786a38344dfa54eeb4c9e82a334b36b667ec1483",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-symptom-sentence.mp3": {
+    "text": "A cough and sore throat are common symptoms of a cold.",
+    "signature": "2f550574b31ea83aca12537753f6010835dea7aa0fe027ffacbb731f47290254",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-temperature-word.mp3": {
+    "text": "temperature",
+    "signature": "d9c52bf817f8deefff0549349cece51e886279eff2828f052452b83bdb9dd572",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-temperature-phrase.mp3": {
+    "text": "temperature to check",
+    "signature": "38bd41f9a9bebd52e65d784fe380d28d97235ee99407340f511506038e6ec99d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-temperature-sentence.mp3": {
+    "text": "The nurse took my temperature to check for a fever.",
+    "signature": "6144693d84e987de71cc7746f04040efc853328f84926c3312f669859a8d37f6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-prescribe-word.mp3": {
+    "text": "prescribe",
+    "signature": "58f93287ce34bd82eab78220d7c80bfdf730cca664a6a1aaf1b1dba2deb5b86e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-prescribe-phrase.mp3": {
+    "text": "prescribe antibiotics for",
+    "signature": "a0af4971d6e7439fdf2d1668fd90f851d0c926c8e32b4f09cd39fa99a42d1354",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-prescribe-sentence.mp3": {
+    "text": "The doctor will prescribe antibiotics for the infection.",
+    "signature": "f0d3180dd5dcb2684d51f5d721ab2229e6484d0b7bb4926bc50d72e57999123a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-dose-word.mp3": {
+    "text": "dose",
+    "signature": "e50255f6f4b47a3ce8b8674293444e4ffcdcaae495ece7556fa1838d93a32c46",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-dose-phrase.mp3": {
+    "text": "dose every six",
+    "signature": "38aa404bf2cf161e824f125b4b095a757a9cde8473d1bfcff31bcf18cba9e7a3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-dose-sentence.mp3": {
+    "text": "Take one dose every six hours as directed.",
+    "signature": "6f4c1d426256cc9f9911d1c4f29c6d99538fbafc01f74276f495e703a5850fcc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-chronic-word.mp3": {
+    "text": "chronic",
+    "signature": "cb1ca6647166bf1cee7de5caba3bbfee0345419d20bd2f1e416c720557b93e43",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-chronic-phrase.mp3": {
+    "text": "chronic back pain",
+    "signature": "24f7afddb4172a3c4d90494d60f201486a3c3f5a9ce9b994d10e5fb8758a39d3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-chronic-sentence.mp3": {
+    "text": "She has chronic back pain that never fully goes away.",
+    "signature": "4161e62a9c5cd010b0583a04dde99401a284ed3f8b354624755a24dcad31bce5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-nutrient-word.mp3": {
+    "text": "nutrient",
+    "signature": "459bb42bd933b6b2c0188b5bd14bca8fb62afb83de228e05873e1b3eb42ebe5b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-nutrient-phrase.mp3": {
+    "text": "nutrients",
+    "signature": "c302786ade408d633211d7e3d3e27cc94954bd2a52c81ca9d2253c1812a19c30",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-nutrient-sentence.mp3": {
+    "text": "Fruits and vegetables are full of important nutrients.",
+    "signature": "c397c3c6e1a700b79c5a99ad1af118b93a0a5e9a1cb3359fe2e7a33ad2900595",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-wellness-word.mp3": {
+    "text": "wellness",
+    "signature": "eee33e1d153ecbf8bf5ce1c93d778210d5d31e60ab1d2be44758637ab29f242d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-wellness-phrase.mp3": {
+    "text": "wellness program for",
+    "signature": "d196d04cea25b7fd6b42815cf1e283de83e2cccf050300cdba218e37805f403c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-wellness-sentence.mp3": {
+    "text": "The company offers a wellness program for employees.",
+    "signature": "8b3822ccaf2e4e794c79ef2b3541e8e3f1bf912e7e59956a3da7be6318b2fe4e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-self-care-word.mp3": {
+    "text": "self-care",
+    "signature": "4772768ed57caae6ac521bef6a56c56ad28c1fd6598fdde12ad1ea169da0a48e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-self-care-phrase.mp3": {
+    "text": "self-care",
+    "signature": "4772768ed57caae6ac521bef6a56c56ad28c1fd6598fdde12ad1ea169da0a48e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-relax-word.mp3": {
+    "text": "relax",
+    "signature": "6a90aea819e913d98283c3f03d4804f091183953c42e744443caf7c7713977ab",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-self-care-sentence.mp3": {
+    "text": "Taking time to relax is an important part of self-care.",
+    "signature": "38367d13b1c18a00be0d19c4a96d448a9065634a480671861af20afc0e9a7944",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-relax-phrase.mp3": {
+    "text": "relax with a",
+    "signature": "775b78ca0827ad08d3d76dfce4d7a0696059f7b9594cbef9c14ba0b52d0ff753",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-relax-sentence.mp3": {
+    "text": "I like to relax with a good book after work.",
+    "signature": "eb945e80204e1ace57ce4dd36bfe4093b9387386f65ae9d2a75c38fa1661f146",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-coping-skills-word.mp3": {
+    "text": "coping skills",
+    "signature": "98d4d58def297ae5b9231da6be24218c873c59c73c5dffa35fee2179d9aba1e2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-coping-skills-phrase.mp3": {
+    "text": "coping skills for stress",
+    "signature": "43bc55d28aa899b4bd4cbed44362a2fedc8ddd298227cf5123f59fcb0eb4c340",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-coping-skills-sentence.mp3": {
+    "text": "Deep breathing is one of my coping skills for stress.",
+    "signature": "3b7eee9dc52fa648e461ae1d0efdf786d00d63f84c427b13537beeff8ce55f74",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-balance-word.mp3": {
+    "text": "balance",
+    "signature": "3a145cf373204baf1034c768f34d8e2921ae16fbbb1de9da39ee9124fbdac381",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-balance-phrase.mp3": {
+    "text": "balance of work",
+    "signature": "6b98aa4bec49c98215875ec93c42207b8c7035cc75119e29cdc70ad595bf8455",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-mindful-word.mp3": {
+    "text": "mindful",
+    "signature": "2e11a37dabef36e5fcf916ab9c158695131c2de3fd6d02108415fe0e9f52818f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-balance-sentence.mp3": {
+    "text": "A good balance of work and rest keeps you healthy.",
+    "signature": "fb04f155a3dbcb321d923c30264217a71802f1c6f42d2c94dcb8363c27859a63",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-mindful-phrase.mp3": {
+    "text": "mindful of how",
+    "signature": "5bf29280df317657c0e3b9747506ceb41e9424b70374c80631459e12a06c65fe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-mindful-sentence.mp3": {
+    "text": "Try to be mindful of how much sugar you eat.",
+    "signature": "356f34a8e8f54883de614e8f3c47632c2d55cc59a5aacda9248cd29aa8a73759",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-processed-word.mp3": {
+    "text": "processed",
+    "signature": "e8bb5b8a80338ce11e80577e3d5056568b2537e4958d0a2c03bca05c3421b01d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-processed-phrase.mp3": {
+    "text": "processed food and",
+    "signature": "9dd4b02663f8fe7cc8a2fb1e6ed29671526e55410267242d928b3a31c06a30b0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-processed-sentence.mp3": {
+    "text": "Try to eat less processed food and more fresh vegetables.",
+    "signature": "15c464584a5b44bda1024e5bcb42a142c90870a484961f0c0995a864cbeabfc7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-remedy-word.mp3": {
+    "text": "remedy",
+    "signature": "1f0f80fdec9543fbfab1aaae3d79031a3bf60628978e5d3ed649a4faee765a1a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-remedy-phrase.mp3": {
+    "text": "remedy for a",
+    "signature": "d922d7e998b265a70e000c5cce1f6526beccef248eca37e01355dbe3c2f14dc4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-remedy-sentence.mp3": {
+    "text": "Honey and lemon is a good home remedy for a sore throat.",
+    "signature": "0431f3d03e34c2ea019b5c28f24a037621c9f7aadebf02ae95faeebb20cb761b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-relieve-word.mp3": {
+    "text": "relieve",
+    "signature": "a1e0816d0e9b9eb31237c858eaffa7823855beeec2e3b8a7bb2051779b7f4622",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-relieve-phrase.mp3": {
+    "text": "relieve the pain",
+    "signature": "6888aa443e2b65272241e3494cad5da63b5d25a659849e9c034d53c1a863c1c4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-relieve-sentence.mp3": {
+    "text": "Ice can help relieve the pain of a sprained ankle.",
+    "signature": "55a105688e048e1538eab233d730b6d10c33a549f4f7a298ea5940357ca9c6ed",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-soothe-word.mp3": {
+    "text": "soothe",
+    "signature": "e59cdf06bd56742710da3a53ee1ffdf25877f56fe0fb0cc3b51bb3480de2a2ca",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-soothe-phrase.mp3": {
+    "text": "soothe an upset",
+    "signature": "92cdf80f97557566e9512a3e4bd22672a88bbdf1ecdbcab508d2856c2100b9aa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-soothe-sentence.mp3": {
+    "text": "Warm milk can soothe an upset stomach.",
+    "signature": "8ed7a14212bded100e67450ff9bbd74af1d08c81f74b50cc48e6898adc19baa4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-fluids-word.mp3": {
+    "text": "fluids",
+    "signature": "1b26a99a422f7ce85d0b8f1ce37b244b4793e13597f928193f9a06a1e63ef512",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-fluids-phrase.mp3": {
+    "text": "fluids when you",
+    "signature": "09d61a4dfdd06954f414fef2e80742bb7b1cb0170b46b818234533c4b99849eb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-fluids-sentence.mp3": {
+    "text": "Drink plenty of fluids when you are sick.",
+    "signature": "8e578d90cafa7282dcae0442b6de81afafca2ccb61c82f8128276f0755aa1890",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-ailment-word.mp3": {
+    "text": "ailment",
+    "signature": "4809eacb673a88a2ca5ac01efb1a73cff0715c6deaebef54b57fe8a2e675186d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-ailment-phrase.mp3": {
+    "text": "ailment",
+    "signature": "4809eacb673a88a2ca5ac01efb1a73cff0715c6deaebef54b57fe8a2e675186d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-ailment-sentence.mp3": {
+    "text": "Ginger tea is good for a stomach ailment.",
+    "signature": "ff563be9208ab43fd4832fa351343bd6e4e8c9287464ad3c238083d7998e9e07",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-progress-word.mp3": {
+    "text": "progress",
+    "signature": "f573c9d7a9bb5e7d32f8a35bbf0eb421db2aa0a8a2189f410c5caadbb8780a1c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-progress-phrase.mp3": {
+    "text": "progress in your",
+    "signature": "30cc0815b1c832507e89129976d756acf8e86fbaf02a68b6020f473630d438f4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-progress-sentence.mp3": {
+    "text": "You are making good progress in your English class.",
+    "signature": "108af0c97fd9098403b2eaa54193f1b1d9db121a45eaa5399cb5dcf71772e62e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-challenge-word.mp3": {
+    "text": "challenge",
+    "signature": "2937d7ffce089ba94f8d6251889a0e3a5cbf010c712eda8ada28dee0cb089ea1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-challenge-phrase.mp3": {
+    "text": "challenge",
+    "signature": "2937d7ffce089ba94f8d6251889a0e3a5cbf010c712eda8ada28dee0cb089ea1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-challenge-sentence.mp3": {
+    "text": "Learning a new language is a big challenge.",
+    "signature": "b0bb4327d77ecb3a94324db8833dc5649f9fe3f4c6158cf0bff0c111934ee55d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-success-word.mp3": {
+    "text": "success",
+    "signature": "e1231db5af75ad809deb2dbdbbb29e45f6942354ac2f0f6daf7ffacbc7a11006",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-success-phrase.mp3": {
+    "text": "success",
+    "signature": "e1231db5af75ad809deb2dbdbbb29e45f6942354ac2f0f6daf7ffacbc7a11006",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-success-sentence.mp3": {
+    "text": "Hard work is the key to success.",
+    "signature": "d7e4f6a45c7cecd676214c3938fd68677e0bb72e7e6b5961b902698dfc20734c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-accomplish-word.mp3": {
+    "text": "accomplish",
+    "signature": "92238d4b84c65b2615485bf3d462349fdea14ff7685ba099a460e4e3af7281f0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-accomplish-phrase.mp3": {
+    "text": "accomplished her goal",
+    "signature": "e9da5fb364b4dfb73f40d1934bff59eba20c60a9c7d14c7d8161b92109fc8597",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-accomplish-sentence.mp3": {
+    "text": "She accomplished her goal of running a 5K.",
+    "signature": "e7741b313ec0169f87a3d5bfbbd76f5a299f91957e8629ee14882c7891dd320e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-proud-word.mp3": {
+    "text": "proud",
+    "signature": "71fc39c8683eba447acf61fe25ce95a0a1702632dc6c5da4dc54a6f51b4406f8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-proud-phrase.mp3": {
+    "text": "proud of my",
+    "signature": "3bee4569f424206709869ac6beb59d10c95afd142856216e56660127e64a985a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-proud-sentence.mp3": {
+    "text": "I am very proud of my son for graduating.",
+    "signature": "a21a93ea41c63a8f7e503cfec4f6d2035cf521059ef71a6c24635c81a8b60aef",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-reflection-word.mp3": {
+    "text": "reflection",
+    "signature": "fb6a4820137a93d65fc3b89f7565bfc56395630c87bdcb26c61cfaeff0563524",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-reflection-phrase.mp3": {
+    "text": "reflection helps me",
+    "signature": "c2d056b2ad54c1765946935c3d8b320f77f4a2fd5e1d226d00d871e706a943c6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-reflection-sentence.mp3": {
+    "text": "Quiet reflection helps me solve problems.",
+    "signature": "6335345d7e096f60ff80160e6a1b154453b9e65ab460bbc924d0bf4f99c77f31",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-goal-word.mp3": {
+    "text": "goal",
+    "signature": "aefa51c809850f3de359e915a9fd6cd2dc8430586ed4edd99096fb206daacf55",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-goal-phrase.mp3": {
+    "text": "goal is to",
+    "signature": "7d3dd40fbe7db81da690784a71d98e4265d1f431a620a1c988aee96e89dae87e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-achievement-word.mp3": {
+    "text": "achievement",
+    "signature": "08234944c2a1fb0208f6561e100a1a8305481789b0d583f4fe8535b9d4627664",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-achievement-phrase.mp3": {
+    "text": "achievement",
+    "signature": "08234944c2a1fb0208f6561e100a1a8305481789b0d583f4fe8535b9d4627664",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-goal-sentence.mp3": {
+    "text": "My goal is to save enough money for a car.",
+    "signature": "f4db674947bb35b05193b29e0665ed2db2edc543008ce7bc622ed7eabf83c046",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-achievement-sentence.mp3": {
+    "text": "Winning the award was a great achievement.",
+    "signature": "37a3bb7247c7bca6f95ed544d115a743175bed55b29005248a80bbe91fe7fd7b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-growth-word.mp3": {
+    "text": "growth",
+    "signature": "1a9d0117741b863344d6a053e11ec687e88ac00965da8b344965a0c862ff2d08",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-growth-phrase.mp3": {
+    "text": "growth",
+    "signature": "1a9d0117741b863344d6a053e11ec687e88ac00965da8b344965a0c862ff2d08",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-confident-word.mp3": {
+    "text": "confident",
+    "signature": "ecdb152831ed0dd1bb4f6cf015c24fcc849533e920caa29bb6569bcf26f995e8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-growth-sentence.mp3": {
+    "text": "This job offers many opportunities for personal growth.",
+    "signature": "2bc0a067c16f6d1e7478d2a700c639fa7dbc3ab3c2f1bfa954c1e745a0c5a45e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-confident-phrase.mp3": {
+    "text": "confident that she",
+    "signature": "0e72a454c61535651de46e326df79c4cb311b077f5866647a56d422417a4f1cf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-confident-sentence.mp3": {
+    "text": "She feels confident that she will pass the exam.",
+    "signature": "ca80752fde54f991fa6ae2eeb12abd6bdac3b1808ccc38be184dca62e0f00b32",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-commitment-word.mp3": {
+    "text": "commitment",
+    "signature": "5ddef0db6b82137f2a67b79a692a68f0f9b3efb2b0f4777a0f7433c6f6bf3faa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-commitment-phrase.mp3": {
+    "text": "commitment and practice",
+    "signature": "b71c527ff23d9a56bb15c6bee46ca615a2b1aad53ca401a47819ccdf0e31ea99",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-appreciate-word.mp3": {
+    "text": "appreciate",
+    "signature": "cfae50e00fbd9450d8dc856cceed32763be859f65aab107f4ed23e0775d3d287",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-commitment-sentence.mp3": {
+    "text": "Learning English takes real commitment and practice.",
+    "signature": "01ca49b1a5d2115dd7df78dd0386f627aee21e6de427463e1a4aab4a46acb561",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-appreciate-phrase.mp3": {
+    "text": "appreciate all the",
+    "signature": "7c7d9bb40d7dbfffa7bc96f2b80e78905f4340b2c9e90f1c175c5c79a2b89bc7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jun-2-4-appreciate-sentence.mp3": {
+    "text": "I appreciate all the help my teacher gave me this year.",
+    "signature": "341358bc4d0177738736d4bd1c6289198135756ace4ffc721a35219eea691526",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  }
+}

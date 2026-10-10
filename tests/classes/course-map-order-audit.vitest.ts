@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { auditCourseMapOrder } from "../../scripts/lib/audit-course-map-order";
 
 describe("course map order audit", () => {
-  it("keeps grammar second and verb quiz last on standard vocab weeks", () => {
+  it("keeps Word Rescue first, then vocabulary and grammar, with verb quiz last", () => {
     const findings = auditCourseMapOrder();
     expect(findings, formatFindings(findings)).toEqual([]);
   });

@@ -30,16 +30,19 @@ export function auditCourseMapOrder(): CourseMapOrderFinding[] {
       if (!isStandardVocabWeek(items)) continue;
 
       const issues: string[] = [];
+      const rescue = items.find(item => item.activityId === 'word-rescue');
+      const offset = rescue ? 1 : 0;
+      if (rescue && items[0]?.id !== rescue.id) issues.push('Word Rescue should be first');
       const flashcards = items.find((item) => item.vocabUi === "flashcards");
       const guide = items.find((item) => item.activityType === "guide");
       const verbQuizzes = items.filter((item) => item.id.startsWith("verb-quiz-"));
       const lastItem = items[items.length - 1];
 
-      if (flashcards && items[0]?.id !== flashcards.id) {
-        issues.push(`Flash cards should be first (found "${items[0]?.title}" instead)`);
+      if (flashcards && items[offset]?.id !== flashcards.id) {
+        issues.push(`Flash cards should follow Word Rescue (found "${items[0]?.title}" instead)`);
       }
-      if (guide && items[1]?.id !== guide.id) {
-        issues.push(`Grammar guide should be second (found "${items[1]?.title}" instead)`);
+      if (guide && items[offset + 1]?.id !== guide.id) {
+        issues.push(`Grammar guide should follow flash cards (found "${items[1]?.title}" instead)`);
       }
       const trailingVerbQuiz = verbQuizzes[verbQuizzes.length - 1];
       if (trailingVerbQuiz && lastItem?.id !== trailingVerbQuiz.id) {

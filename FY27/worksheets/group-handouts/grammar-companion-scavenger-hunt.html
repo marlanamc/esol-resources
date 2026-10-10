@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Companion Scavenger Hunt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+
+  @page { size: letter; margin: 0.4in; }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: #000;
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    line-height: 1.35;
+    font-size: 14px;
+  }
+
+  .sheet { max-width: 7.7in; margin: 0 auto; }
+
+  header {
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+
+  h1 { font-size: 1.6rem; margin: 0 0 4px; line-height: 1.15; }
+
+  .names {
+    display: flex;
+    gap: 18px;
+    margin-top: 6px;
+    font-size: 1rem;
+  }
+  .names div { flex: 1; display: flex; align-items: flex-end; gap: 8px; }
+  .names .line { flex: 1; border-bottom: 1.5px solid #000; height: 1.3em; }
+
+  .intro {
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+  .intro p { margin: 0 0 6px; font-weight: 700; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    border: 1.5px solid #000;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .steps li::before {
+    content: counter(step);
+    flex: none;
+    width: 1.6em; height: 1.6em;
+    border-radius: 50%;
+    background: #000; color: #fff;
+    font-weight: 700;
+    display: grid; place-items: center;
+  }
+
+  .q {
+    border: 1.5px solid #000;
+    border-radius: 8px;
+    padding: 7px 12px 9px;
+    margin-bottom: 9px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .q-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  .q-title { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.02em; }
+  .q-num {
+    display: inline-grid; place-items: center;
+    width: 1.75em; height: 1.75em;
+    border-radius: 50%;
+    background: #000; color: #fff;
+    margin-right: 6px;
+    font-size: 0.95rem;
+  }
+  .find { margin-top: 3px; font-size: 0.98rem; }
+
+  .page-box {
+    flex: none;
+    display: flex; align-items: center; gap: 6px;
+    font-weight: 700;
+  }
+  .page-box span {
+    display: inline-block;
+    width: 60px; height: 30px;
+    border: 2px solid #000;
+    border-radius: 4px;
+  }
+
+  .ask { margin: 0 0 6px; }
+  .ask b { font-weight: 700; }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    min-width: 120px;
+    height: 1.2em;
+    vertical-align: bottom;
+  }
+  .blank.sm { min-width: 60px; }
+  .blank.lg { min-width: 150px; }
+  .blank.full { display: block; width: 100%; height: 1.8em; }
+
+  .row { margin: 6px 0 0; font-size: 1.05rem; }
+  .rows div { margin-top: 6px; font-size: 1.05rem; }
+
+  .check { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+  .check.stack { display: block; }
+  .check.stack li { margin-top: 4px; }
+  .check li::before {
+    content: "";
+    display: inline-block;
+    width: 0.95em; height: 0.95em;
+    border: 1.5px solid #000;
+    margin-right: 8px;
+    vertical-align: -0.1em;
+  }
+
+  .quote {
+    border-left: 4px solid #000;
+    padding: 2px 0 2px 10px;
+    margin: 6px 0;
+    font-size: 1.05rem;
+  }
+
+  .find.clue { font-style: normal; }
+  .level-up {
+    border: 2px solid #000; border-radius: 6px;
+    padding: 4px 10px; margin: 9px 0;
+    font-size: 0.98rem;
+    break-after: avoid; page-break-after: avoid;
+  }
+  .level-up b { background: #000; color: #fff; padding: 0 6px; border-radius: 3px; margin-right: 6px; }
+  .two.three { grid-template-columns: 1fr 1fr 1fr; }
+  .two.three .page-box span { width: 46px; }
+  .two.three .blank.sm { min-width: 44px; }
+  .final { border-width: 3px; }
+  .final .tag {
+    display: inline-block;
+    border: 2px solid #000;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .final .page-box span { width: 90px; }
+  .fix-table { width: 100%; border-collapse: collapse; margin-top: 2px; }
+  .fix-table th { text-align: left; font-size: 0.85rem; padding: 0 8px 2px 0; }
+  .fix-table td { padding: 3px 8px 3px 0; vertical-align: bottom; font-size: 1.02rem; border-top: 1px solid #000; }
+  .fix-table td:first-child { width: 40%; }
+  .fix-table td:nth-child(2) { width: 62px; }
+  .fix-table .pg { display: block; width: 52px; height: 24px; border: 2px solid #000; border-radius: 4px; }
+  .fix-table .blank.full { height: 1.4em; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .two .q { margin-bottom: 0; }
+  .two + .q, .two + .two { margin-top: 9px; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media screen { body { padding: 24px 16px; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>Grammar Companion Scavenger Hunt</h1>
+  <div class="names">
+    <div>Names: <span class="line"></span></div>
+    <div style="flex:0.45">Date: <span class="line"></span></div>
+  </div>
+</header>
+
+<div class="intro">
+  <p>Work with your group. You do not need to know the answers! Use your Grammar Companion to find them.</p>
+  <ol class="steps">
+    <li>Find the topic in the Table of Contents.</li>
+    <li>Write the page number.</li>
+    <li>Go to that page.</li>
+    <li>Find the answer.</li>
+  </ol>
+</div>
+
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">1</span>Sentence Order</div>
+        <div class="find">Find: <b>Build a Sentence</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">What are the first TWO parts of a basic sentence?</p>
+    <div class="row"><span class="blank"></span> + <span class="blank"></span></div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">2</span>Pronouns</div>
+        <div class="find">Find: <b>Pronouns &amp; Articles</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Look at the chart. Which pronoun has NO "on its own" form?</p>
+    <div class="row"><span class="blank"></span></div>
+  </section>
+</div>
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">3</span>Adverbs of Frequency</div>
+        <div class="find">Find: <b>Adjectives, Adverbs &amp; Frequency</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Look at <b>Not always -ly</b>. <b>Hardly</b> does NOT mean "with effort." It means:</p>
+    <div class="row"><span class="blank lg"></span></div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">4</span>Prepositions of Place</div>
+        <div class="find">Find: <b>Prepositions of Place</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask"><b>Under</b> and <b>below</b> both mean lower. Which one often means <b>directly beneath</b>?</p>
+    <div class="row"><span class="blank lg"></span></div>
+  </section>
+</div>
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">5</span>Prepositions of Movement</div>
+        <div class="find">Find: <b>Prepositions of Movement</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask"><b>Across</b> goes from one side to the other.</p>
+    <div class="row"><b>Through</b> goes <span class="blank"></span> a space and out.</div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">6</span>Verb Forms</div>
+        <div class="find">Find: <b>The Five Verb Forms</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">What do these mean?</p>
+    <div class="rows">
+      <div><b>V1 =</b> <span class="blank lg"></span></div>
+      <div><b>V2 =</b> <span class="blank lg"></span></div>
+      <div><b>V3 =</b> <span class="blank lg"></span></div>
+    </div>
+  </section>
+</div>
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">7</span>Irregular Verbs</div>
+        <div class="find">Find: <b>How Irregular Verbs Work</b></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Find the verb <b>read</b>. How does it sound?</p>
+    <div class="rows">
+      <div>V1 <b>read</b> sounds like <span class="blank"></span></div>
+      <div>V2 <b>read</b> sounds like <span class="blank"></span></div>
+    </div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">8</span>The Help Box</div>
+        <div class="find clue">Look for: <b>Not sure where to look?</b> on the contents page</div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">You need <b>Past Perfect</b> but forgot the pattern. Which page does the box send you to? Go there.</p>
+    <div class="row"><b>subject + had +</b> <span class="blank"></span></div>
+  </section>
+</div>
+<div class="level-up"><b>LEVEL UP!</b> From here, we don’t tell you the title. Read the clue and decide where to look.</div>
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">9</span>Choosing a Tense</div>
+        <div class="find clue">Look for: help choosing a tense (try the help box!)</div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Which sentence means the keys are a problem <b>NOW</b>?</p>
+    <ul class="check stack">
+      <li>I lost my keys yesterday.</li>
+      <li>I have lost my keys.</li>
+    </ul>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">10</span>Questions</div>
+        <div class="find clue">Look for: how to turn a statement into a question</div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">The guide says: <b style="font-size:1.15rem">MOVE THE</b> <span class="blank"></span></p>
+    <p class="ask" style="margin-top:6px">Change into a question: <b>She is ready.</b></p>
+    <div class="row"><span class="blank" style="min-width:240px"></span> ?</div>
+  </section>
+</div>
+<div class="two">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">11</span>Modals</div>
+        <div class="find clue">Look for: words like <i>must</i>, <i>should</i>, and <i>can</i></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Which one means it is <b>NOT necessary</b> (you can choose)?</p>
+    <ul class="check stack">
+      <li>You must not arrive early.</li>
+      <li>You don’t have to arrive early.</li>
+    </ul>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">12</span>Connectors</div>
+        <div class="find clue">Look for: words like <i>because</i>, <i>however</i>, and <i>so</i></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Find the <b>REASON</b> section. Write the two words:</p>
+    <div class="row"><span class="blank lg"></span> and <span class="blank lg"></span></div>
+  </section>
+</div>
+<div class="two three">
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">13</span>Conditionals</div>
+        <div class="find clue">Look for: sentences with <i>if</i></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Find <b>Avoid the common mix-up</b>. What should you NOT write?</p>
+    <div class="row">"<span class="blank" style="min-width:140px"></span>"</div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">14</span>Comparatives</div>
+        <div class="find clue">Look for: words like <i>taller</i> and <i>the tallest</i></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">The guide shows TWO answers. Complete:</p>
+    <div class="row"><b>far</b> → <span class="blank sm"></span> / <span class="blank sm"></span></div>
+  </section>
+  <section class="q">
+    <div class="q-head">
+      <div>
+        <div class="q-title"><span class="q-num">15</span>Used To</div>
+        <div class="find clue">Look for: expressions with <i>used</i></div>
+      </div>
+      <div class="page-box">Page <span></span></div>
+    </div>
+    <p class="ask">Find <b>Did removes the -d</b>. Complete:</p>
+    <div class="row">Did you <span class="blank sm"></span> to live here?</div>
+  </section>
+</div>
+
+<section class="q final">
+  <div class="q-head" style="display:block">
+    <div class="q-title"><span class="tag" style="margin:0 8px 0 0;vertical-align:middle">FINAL CHALLENGE</span><span class="q-num">16</span>Grammar Detectives</div>
+    <div class="find">No clues this time! Each sentence has ONE mistake. Find a page that helps (a <b>different</b> page for each), then fix it.</div>
+  </div>
+  <table class="fix-table">
+    <thead><tr><th>Mistake</th><th>Page</th><th>Fix the sentence</th></tr></thead>
+    <tbody>
+      <tr><td><b>✗</b> I will call you when I will arrive.</td><td><span class="pg"></span></td><td><span class="blank full"></span></td></tr>
+      <tr><td><b>✗</b> My bike stole yesterday.</td><td><span class="pg"></span></td><td><span class="blank full"></span></td></tr>
+      <tr><td><b>✗</b> She said me she was tired.</td><td><span class="pg"></span></td><td><span class="blank full"></span></td></tr>
+      <tr><td><b>✗</b> I suggest you to take the bus.</td><td><span class="pg"></span></td><td><span class="blank full"></span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+</body>
+</html>

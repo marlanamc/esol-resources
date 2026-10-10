@@ -9,6 +9,7 @@ import type { QuizContent, SlidesContent, WorksheetContent } from "./quiz";
 import type { SpeakingActivityContent } from "./speaking";
 import type { VocabularyContent } from "./vocabulary";
 import type {
+    WordRescueContent,
     EdPronunciationContent,
     MinimalPairsContent,
     PronunciationSentenceListeningContent,
@@ -42,6 +43,7 @@ export type ActivityContent =
     | SlidesContent
     | SpeakingActivityContent
     | VocabularyContent
+    | WordRescueContent
     | EdPronunciationContent
     | MinimalPairsContent
     | PronunciationSentenceListeningContent

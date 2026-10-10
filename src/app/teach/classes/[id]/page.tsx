@@ -10,10 +10,11 @@ import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
+import { ClassRoster } from "@/components/teach/ClassRoster";
 import { RosterStudentActions } from "@/components/teach/RosterStudentActions";
 import {
     Users, Pencil, ChevronRight, BookOpen, Plus,
-    Megaphone, AlertCircle, Clock, CheckCircle2,
+    Megaphone, AlertCircle, Clock,
 } from "lucide-react";
 
 export const metadata = { title: "Class | My ESOL Class" };
@@ -23,7 +24,7 @@ interface Props {
 }
 
 const cutoff = () => Date.now() - 7 * 24 * 60 * 60 * 1000;
-const daysAgo = (date: Date) => Math.floor((Date.now() - date.getTime()) / 86400000);
+
 
 export default async function TeachClassDetailPage({ params }: Props) {
     const session = await getServerSession(authOptions);
@@ -70,6 +71,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
     const isTeacher = admin || cls.teacherId === userId;
     if (!isTeacher) redirect("/teach");
 
+    const now = new Date();
     const activeEnrollments = cls.enrollments.filter((e) => e.status === "active");
     const pastEnrollments = cls.enrollments.filter((e) => e.status !== "active");
 
@@ -82,7 +84,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
     const courseMapStatusByStudentId = new Map(
         await mapWithConcurrencyLimit(activeEnrollments, 8, async (e) => [
             e.student.id,
-            await getStudentCourseMapStatus({ id: e.student.id, role: "student" }),
+            await getStudentCourseMapStatus({ id: e.student.id, role: "student" }, { now }),
         ] as const)
     );
 
@@ -138,121 +140,13 @@ export default async function TeachClassDetailPage({ params }: Props) {
                 )}
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+            <div className="grid gap-6">
                 <div className="space-y-6 min-w-0">
-                    {/* Roster */}
-                    <section>
-                        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
-                            Roster
-                        </h2>
-                        {activeEnrollments.length === 0 ? (
-                            <div className="rounded-xl border p-6 text-center text-sm text-text-muted" style={{ borderColor: "var(--border-subtle)", background: "var(--surface-subtle)" }}>
-                                No students yet. Share code <strong className="text-text font-mono">{cls.code}</strong> to enroll students.
-                            </div>
-                        ) : (
-                            <div className="rounded-xl border bg-surface-elevated overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
-                                <table className="w-full">
-                                    <thead>
-                                        <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
-                                            {["Name", "Username", "Streak", "Pts this wk", "This week", "Course map", "Last active", ""].map((h) => (
-                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
-                                                    {h}
-                                                </th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {activeEnrollments.map((e) => {
-                                            const silent = !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff();
-                                            const courseMapStatus = courseMapStatusByStudentId.get(e.student.id);
-                                            return (
-                                                <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
-                                                    <td className="py-3 px-4">
-                                                        <Link
-                                                            href={`/teach/students/${e.student.id}`}
-                                                            className="text-sm font-semibold hover:underline flex items-center gap-1"
-                                                            style={{ color: "var(--primary)" }}
-                                                        >
-                                                            {e.student.name ?? e.student.username}
-                                                            <ChevronRight className="h-3 w-3 opacity-50" />
-                                                        </Link>
-                                                    </td>
-                                                    <td className="py-3 px-4 text-xs text-text-muted font-mono">{e.student.username}</td>
-                                                    <td className="py-3 px-4 text-sm text-text">
-                                                        {e.student.currentStreak > 0 ? `🔥 ${e.student.currentStreak}` : "—"}
-                                                    </td>
-                                                    <td className="py-3 px-4 text-sm font-semibold" style={{ color: "var(--primary)" }}>
-                                                        {e.student.weeklyPoints > 0 ? `${e.student.weeklyPoints} pts` : "—"}
-                                                    </td>
-                                                    <td className="py-3 px-4 text-sm">
-                                                        {courseMapStatus?.weekComplete ? (
-                                                            <span
-                                                                className="inline-flex items-center gap-1 font-semibold"
-                                                                style={{ color: "var(--success-color)" }}
-                                                                title="Finished every activity in this week's course map"
-                                                            >
-                                                                <CheckCircle2 className="h-3.5 w-3.5" /> Done
-                                                            </span>
-                                                        ) : (
-                                                            <span className="text-text-muted">—</span>
-                                                        )}
-                                                        {courseMapStatus && courseMapStatus.completedWeeksCount > 0 && (
-                                                            <div
-                                                                className="mt-0.5 text-xs font-medium"
-                                                                style={{ color: "var(--text-color-muted)" }}
-                                                                title="Weeks fully finished overall — stays even after the calendar moves to a new week"
-                                                            >
-                                                                {courseMapStatus.completedWeeksCount} wk{courseMapStatus.completedWeeksCount === 1 ? "" : "s"} total
-                                                            </div>
-                                                        )}
-                                                    </td>
-                                                    <td className="py-3 px-4 text-sm">
-                                                        {courseMapStatus && courseMapStatus.overall.total > 0 ? (
-                                                            <div
-                                                                className="flex items-center gap-2"
-                                                                title={`${courseMapStatus.overall.done} of ${courseMapStatus.overall.total} activities completed`}
-                                                            >
-                                                                <div
-                                                                    className="h-1.5 w-16 rounded-full overflow-hidden"
-                                                                    style={{ background: "var(--surface-subtle)" }}
-                                                                >
-                                                                    <div
-                                                                        className="h-full rounded-full"
-                                                                        style={{
-                                                                            width: `${courseMapStatus.overall.percent}%`,
-                                                                            background: "var(--primary)",
-                                                                        }}
-                                                                    />
-                                                                </div>
-                                                                <span className="text-xs font-semibold text-text-muted">
-                                                                    {courseMapStatus.overall.percent}%
-                                                                </span>
-                                                            </div>
-                                                        ) : (
-                                                            <span className="text-text-muted">—</span>
-                                                        )}
-                                                    </td>
-                                                    <td className="py-3 px-4 text-xs" style={{ color: silent ? "var(--error-color)" : "var(--text-color-muted)" }}>
-                                                        {e.student.lastActivityDate
-                                                            ? `${daysAgo(e.student.lastActivityDate)}d ago`
-                                                            : "Never"}
-                                                    </td>
-                                                    <td className="py-3 px-4 text-right">
-                                                        <RosterStudentActions
-                                                            classId={id}
-                                                            studentId={e.student.id}
-                                                            studentName={e.student.name ?? e.student.username}
-                                                            status={e.status}
-                                                        />
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
-                    </section>
+                    <ClassRoster full classId={id} now={now.getTime()} students={activeEnrollments.map(({ student }) => ({
+                        ...student,
+                        lastActivityDate: student.lastActivityDate?.toISOString() ?? null,
+                        courseMap: courseMapStatusByStudentId.get(student.id) ?? null,
+                    }))} />
 
                     {/* Past students — removed or graduated, restorable */}
                     {pastEnrollments.length > 0 && (
@@ -260,7 +154,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                             <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
                                 Past students ({pastEnrollments.length})
                             </h2>
-                            <div className="rounded-xl border bg-surface-elevated overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
+                            <div className="rounded-xl border bg-surface-elevated overflow-x-auto" style={{ borderColor: "var(--border-subtle)" }}>
                                 <table className="w-full">
                                     <thead>
                                         <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
@@ -276,7 +170,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                             <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                                                 <td className="py-3 px-4">
                                                     <Link
-                                                        href={`/teach/students/${e.student.id}`}
+                                                        href={`/teach/students/${e.student.id}?classId=${id}&returnTo=${encodeURIComponent(`/teach/classes/${id}`)}`}
                                                         className="text-sm font-semibold hover:underline flex items-center gap-1"
                                                         style={{ color: "var(--primary)" }}
                                                     >
@@ -330,7 +224,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                         ) : (
                             <div className="space-y-2">
                                 {cls.assignments.map((a) => (
-                                    <div key={a.id} className="rounded-xl border bg-surface-elevated px-4 py-3 flex items-start gap-4" style={{ borderColor: "var(--border-subtle)" }}>
+                                    <div key={a.id} className="rounded-xl border bg-surface-elevated px-4 py-3 flex flex-wrap items-start gap-4" style={{ borderColor: "var(--border-subtle)" }}>
                                         <div className="flex-1 min-w-0">
                                             <p className="text-sm font-semibold text-text truncate">
                                                 {a.title || a.activity.title}
@@ -385,8 +279,8 @@ export default async function TeachClassDetailPage({ params }: Props) {
                     </section>
                 </div>
 
-                {/* Right rail */}
-                <div className="space-y-4">
+                {/* Class preparation */}
+                <div className="grid gap-4 md:grid-cols-2">
                     {/* Announcement */}
                     <div className="rounded-xl border bg-surface-elevated px-4 py-4" style={{ borderColor: "var(--border-subtle)" }}>
                         <div className="flex items-center gap-2 mb-3">

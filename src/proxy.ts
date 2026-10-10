@@ -6,7 +6,7 @@ import { logger } from "@/lib/shared/logger";
  * Add security headers to response
  * Implements OWASP recommended security headers for production
  */
-function addSecurityHeaders(response: NextResponse): NextResponse {
+function addSecurityHeaders(response: NextResponse, pathname = ''): NextResponse {
     // Content Security Policy - Prevents XSS, clickjacking, and other code injection attacks
     // 'unsafe-inline' is required for Next.js styled-jsx; 'unsafe-eval' only in development (HMR)
     const isDev = process.env.NODE_ENV !== 'production';
@@ -41,7 +41,9 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     // Permissions Policy - Restrict access to browser features
     response.headers.set(
         'Permissions-Policy',
-        'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+        pathname === '/activity/word-rescue'
+            ? 'camera=(), microphone=(self), geolocation=(), interest-cohort=()'
+            : 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
     );
 
     // Strict-Transport-Security - Force HTTPS (only in production)
@@ -84,14 +86,14 @@ export default withAuth(
 
             // Return response with security headers
             const response = NextResponse.next();
-            return addSecurityHeaders(response);
+            return addSecurityHeaders(response, req.nextUrl.pathname);
         } catch (error) {
             logger.error('Middleware error', error, {
                 path: req.nextUrl.pathname,
             });
             // If middleware fails, allow request to continue (with security headers)
             const response = NextResponse.next();
-            return addSecurityHeaders(response);
+            return addSecurityHeaders(response, req.nextUrl.pathname);
         }
     },
     {

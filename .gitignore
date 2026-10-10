@@ -147,3 +147,6 @@ deep-research-report.md
 
 # Private recovery snapshots of live quiz content and historical student work
 /.backups/
+
+# Local Word Rescue database recovery snapshots
+/output/word-rescue/release-backup-*.json

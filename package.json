@@ -111,7 +111,11 @@
     "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\"",
     "quizzes:build": "node --import tsx scripts/quizzes/build-weekly-quizzes.ts",
     "quizzes:check": "node --import tsx scripts/quizzes/build-weekly-quizzes.ts --check",
-    "quizzes:sync": "node --import tsx scripts/quizzes/sync-weekly-quizzes.ts"
+    "quizzes:sync": "node --import tsx scripts/quizzes/sync-weekly-quizzes.ts",
+    "db:seed:word-rescue": "npx tsx prisma/seed-word-rescue.ts",
+    "audio:word-rescue:preview": "npx tsx scripts/word-rescue/generate-preview-audio.ts",
+    "audio:word-rescue:words": "node --import tsx scripts/word-rescue/generate-word-audio.ts",
+    "audio:word-rescue:elevenlabs": "node --import tsx scripts/word-rescue/generate-elevenlabs-audio.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

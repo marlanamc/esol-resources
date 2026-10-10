@@ -122,6 +122,9 @@ export async function POST(request: NextRequest) {
     }
 
     const activityGameUi = activity ? resolveActivityGameUi(activity) : "unknown";
+    if (activityId === "word-rescue" || activityGameUi === "word-rescue") {
+        return apiError("Word Rescue practice must be saved through its per-word endpoint.", 400);
+    }
     const isPronunciationPracticeActivity =
         activity?.type === "game" &&
         (activity.category === "pronunciation" ||
