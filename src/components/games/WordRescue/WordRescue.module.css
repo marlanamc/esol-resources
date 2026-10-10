@@ -57,3 +57,33 @@
 @media (prefers-reduced-motion: no-preference) {
   .root button { transition: opacity 160ms ease, background-color 160ms ease, border-color 160ms ease; }
 }
+
+.wordRewardToast {
+  position: fixed;
+  bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  pointer-events: none;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  display: grid;
+  gap: 3px;
+  padding: 14px 24px;
+  border-radius: 16px;
+  border: 1px solid #7f9e91;
+  background: var(--wr-sage);
+  color: var(--wr-green);
+  box-shadow: 0 4px 16px rgb(25 55 42 / 12%);
+  text-align: center;
+}
+.wordRewardToast strong { font-size: 24px; line-height: 1.2; }
+.wordRewardToast span { font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .wordRewardToast { animation: wordRewardRise 2800ms ease-out both; }
+}
+@keyframes wordRewardRise {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  12%, 80% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -18px); }
+}

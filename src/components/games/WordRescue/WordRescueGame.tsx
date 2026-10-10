@@ -10,6 +10,7 @@ import { WORD_RESCUE_POINTS } from '@/lib/word-rescue/types';
 import type { ClipKind, RescueCollection, HelpLanguage, RescueAction, RescueProgress, RescueResult, RescueWord } from '@/lib/word-rescue/types';
 import { useRescueAudio } from './useRescueAudio';
 import styles from './WordRescue.module.css';
+import { WordRewardToast } from './WordRewardToast';
 
 const clipText = (word: RescueWord, clip: ClipKind) => clip === 'word' ? word.term : word[clip];
 export default function WordRescueGame({ preview = false, assignmentId = null }: { preview?: boolean; assignmentId?: string | null }) {
@@ -32,6 +33,8 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [receipt, setReceipt] = useState<string | null>(null);
+  const [wordReward, setWordReward] = useState<{ id: string; points: number } | null>(null);
+  const clearWordReward = useCallback(() => setWordReward(null), []);
   const [menu, setMenu] = useState(false);
   const [weekly, setWeekly] = useState(!!selectedCollection);
   const [week, setWeek] = useState(selectedCollection?.id ?? collections[1]?.id ?? 'everyday');
@@ -83,6 +86,9 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       }
       accept(result.state); savePending(null);
       if (action.type === 'finish') {
+        if (!preview && result.pointsAwarded > 0) {
+          setWordReward({ id: `${action.sessionId}:${action.wordId}`, points: result.pointsAwarded });
+        }
         setReceipt(preview ? 'Practice complete. Preview only — no account points awarded.' : result.pointsAwarded ? 'Practice saved. +2 points.' : 'Practice saved. Your 2 points were already credited.');
         window.dispatchEvent(new Event('activity-progress-updated'));
       }
@@ -181,7 +187,9 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     </div>}
   </section>;
 
-  return <div className={styles.root}><div className={styles.inner}>
+  return <div className={styles.root}>
+    {wordReward && <WordRewardToast key={wordReward.id} points={wordReward.points} onComplete={clearWordReward} />}
+    <div className={styles.inner}>
     {preview && <div className={styles.preview}>Teacher preview · draft audio and language guides · no account points</div>}
     <header className={styles.header}><div className={styles.brand}>
       {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
