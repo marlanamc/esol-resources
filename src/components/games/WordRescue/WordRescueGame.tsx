@@ -18,7 +18,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const requestedCollection = searchParams.get('collection');
   const fromMap = searchParams.get('fromMap') === '1';
   const launched = useRef(false);
-  const returnHref = sanitizeInternalHref(searchParams.get('returnTo')) ?? (requestedCollection ? '/dashboard/map' : '/dashboard/activities?category=pronunciation');
+  const returnHref = sanitizeInternalHref(searchParams.get('returnTo')) ?? (requestedCollection === 'again' ? '/dashboard' : requestedCollection ? '/dashboard/map' : '/dashboard/activities?category=pronunciation');
   const [collections, setCollections] = useState<RescueCollection[]>(preview ? RESCUE_COLLECTIONS : []);
   const selectedCollection = collections.find(set => set.id === requestedCollection);
   const [state, setState] = useState<RescueProgress>(emptyRescueProgress);
@@ -123,7 +123,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
             const selected = available.find(set => set.id === requestedCollection && set.sourceActivityId) ?? available.find(set => set.sourceActivityId);
             setWeek(selected?.id ?? '');
             if (selected && requestedCollection) setWeekly(true);
-            if (requestedCollection && !available.some(set => set.id === requestedCollection)) setNotice('That week is not released for your class yet. Choose an available collection.');
+            if (requestedCollection && requestedCollection !== 'again' && !available.some(set => set.id === requestedCollection)) setNotice('That week is not released for your class yet. Choose an available collection.');
           }
         }
         if (cancelled) return;
@@ -147,9 +147,14 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   }, [send]);
 
   useEffect(() => {
-    const launchCollection = fromMap ? selectedCollection : session?.mode === 'weekly' ? collections.find(item => item.id === session.collectionId) : null;
+    const launchCollection = requestedCollection === 'again' && !fromMap ? { id: 'again' } : fromMap ? selectedCollection : session?.mode === 'weekly' ? collections.find(item => item.id === session.collectionId) : null;
     if (!loaded || disabled || !launchCollection || launched.current) return;
     launched.current = true;
+    if (launchCollection.id === 'again' && !revisitCount && !(session?.collectionId === 'again' && session.index < session.wordIds.length)) {
+      setMenu(true);
+      setNotice('No words saved for later yet. Choose Practice again later after practicing a word.');
+      return;
+    }
     void send({ type: 'start', id: crypto.randomUUID(), collectionId: launchCollection.id, mode: fromMap ? 'weekly' : 'standalone' }).then(ok => {
       if (!ok) return;
       setMenu(false);
@@ -157,7 +162,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       setStage(current?.said ? 2 : current?.heard.includes('word') ? 1 : 0);
       setHelpOpen(false);
     });
-  }, [fromMap, loaded, disabled, selectedCollection, collections, session, send]);
+  }, [fromMap, requestedCollection, revisitCount, loaded, disabled, selectedCollection, collections, session, send]);
 
   const move = (next: 0 | 1 | 2) => { audio.stop(); setStage(next); requestAnimationFrame(() => sectionButtons.current[next]?.focus({ preventScroll: true })); };
   const play = (clip: ClipKind, rate: number, device = false) => {
@@ -195,7 +200,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     <div className={styles.inner}>
     {preview && <div className={styles.preview}>Teacher preview · draft audio and language guides · no account points</div>}
     <header className={styles.header}><div className={styles.brand}>
-      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(session?.said ? 2 : session?.heard.includes('word') ? 1 : 0); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
+      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(session?.said ? 2 : session?.heard.includes('word') ? 1 : 0); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection === 'again' ? "Back to dashboard" : requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
       <span>Word Rescue</span></div><span className={styles.muted}>{active && session ? `${receipt ? session.index : session.index + 1} of ${session.wordIds.length}` : ''}</span></header>
     {loaded && sessionLocked && <p role="status" className={styles.status}>Your saved session is kept safe. Its week must be released before you can continue.</p>}
     {notice && <p role="status" className={styles.status}>{notice}</p>}
@@ -253,7 +258,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
           </div>
           {receipt ? <>
             {roundComplete ? <div className={styles.roundReward} role="status"><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'Round complete. Preview only — no account points awarded.' : `You practiced all ${session.wordIds.length} words. Your points are saved!`}</p></div> : <p className={styles.status} role="status">{receipt}</p>}
-            {roundComplete && fromMap ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight size={20} aria-hidden /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(0); setHelpOpen(false); if (roundComplete) setMenu(true); requestAnimationFrame(() => sectionButtons.current[0]?.focus({ preventScroll: true })); }}>{roundComplete ? 'See my practice' : 'Next word'}<ArrowRight size={20} aria-hidden /></button>}
+            {roundComplete && (fromMap || requestedCollection === 'again') ? <a className={styles.primary} href={returnHref}>{fromMap ? 'Back to course map' : 'Back to dashboard'}<ArrowRight size={20} aria-hidden /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(0); setHelpOpen(false); if (roundComplete) setMenu(true); requestAnimationFrame(() => sectionButtons.current[0]?.focus({ preventScroll: true })); }}>{roundComplete ? 'See my practice' : 'Next word'}<ArrowRight size={20} aria-hidden /></button>}
           </> : <p className={styles.muted} style={{ marginTop: 14 }}>Either choice earns 2 practice points.</p>}
         </div>
       </div>

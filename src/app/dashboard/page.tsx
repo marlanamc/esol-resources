@@ -1,3 +1,4 @@
+import { WordRescuePracticeLater } from '@/components/dashboard/WordRescuePracticeLater';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -441,9 +442,10 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const [studentLeaderboard, momentumSnapshot] = await Promise.all([
+    const [studentLeaderboard, momentumSnapshot, practiceLater] = await Promise.all([
         firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
         getStudentMomentumSnapshot(userId),
+        WordRescuePracticeLater({ user: { id: userId, role: userRole } }),
     ]);
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
@@ -465,6 +467,7 @@ export default async function DashboardPage() {
                             fallback={nextStepFallback}
                             variant="road"
                         />
+                        {practiceLater}
                         {newThisWeekItems.length > 0 ? (
                             <NewThisWeekSection items={newThisWeekItems} variant="list" />
                         ) : null}
@@ -497,6 +500,7 @@ export default async function DashboardPage() {
                                 collapsedLimit={3}
                             />
 
+                            {practiceLater}
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
                             ) : null}
