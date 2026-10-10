@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+import { ClassRosterLoader } from "@/components/teach/ClassRosterLoader";
+import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -91,7 +94,7 @@ export default async function TeachHomePage({
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                     <p className="workspace-eyebrow mb-2">Your classroom</p>
-                    <h1 className="font-display text-3xl sm:text-4xl font-bold">
+                    <h1 className="font-display text-2xl sm:text-3xl font-bold">
                         Ready for class
                     </h1>
                     <p className="mt-2 text-sm text-text-muted">
@@ -108,19 +111,51 @@ export default async function TeachHomePage({
                     Class details <ArrowRight size={16} />
                 </Link>
             </div>
-            <Link
-                href={report}
-                className="xl:hidden flex items-center justify-between gap-3 border-y border-border py-3 text-sm"
-            >
-                <span>
-                    <strong>{counts.active}</strong> active this week{" "}
-                    <span className="text-text-muted">
-                        · {counts.inactive + counts.never} to check in with
-                    </span>
-                </span>
-                <ArrowRight size={18} className="shrink-0" />
-                <span className="sr-only">Open student participation</span>
-            </Link>
+            <nav aria-label="Class shortcuts" className="flex flex-wrap gap-2">
+                <a className="workspace-button" href="#roster">
+                    Roster
+                </a>
+                <a className="workspace-button" href="#recent-activity">
+                    Recent activity
+                </a>
+                <Link
+                    className="workspace-button"
+                    href={`/teach/gradebook?classId=${classId}`}
+                >
+                    Gradebook
+                </Link>
+                <Link
+                    className="workspace-button workspace-button-primary"
+                    href={`/teach/classes/${classId}/assignments/new`}
+                >
+                    Assign work
+                </Link>
+            </nav>
+            <div className="workspace-class-overview">
+                <Suspense
+                    fallback={
+                        <section
+                            id="roster"
+                            className="workspace-panel"
+                            aria-label="Class roster"
+                            aria-busy="true"
+                        >
+                            Loading class roster…
+                        </section>
+                    }
+                >
+                    <ClassRosterLoader key={classId} classId={classId} />
+                </Suspense>
+                <section id="recent-activity" className="min-w-0">
+                    <TeacherReportCard
+                        studentReturnTo={`/teach?classId=${classId}#recent-activity`}
+                        key={classId}
+                        activeClassId={classId}
+                        showClassFilter={false}
+                        compact
+                    />
+                </section>
+            </div>
             <div className="grid xl:grid-cols-[1fr_1.1fr] gap-6 items-start">
                 <section className="workspace-panel space-y-5">
                     <div className="flex flex-wrap items-center justify-between gap-3">

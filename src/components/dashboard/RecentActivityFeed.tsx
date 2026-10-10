@@ -16,6 +16,8 @@ interface RecentActivityEntry {
 interface RecentActivityFeedProps {
   activities: RecentActivityEntry[];
   loading?: boolean;
+  classId?: string;
+  returnTo?: string;
 }
 
 // Activity type emoji mapping
@@ -92,6 +94,8 @@ function EmptyState() {
 export default function RecentActivityFeed({
   activities,
   loading = false,
+  classId,
+  returnTo,
 }: RecentActivityFeedProps) {
   if (loading) {
     return <SkeletonFeed />;
@@ -110,7 +114,7 @@ export default function RecentActivityFeed({
         return (
           <Link
             key={entry.odgerId}
-            href={`/teach/students/${entry.userId}`}
+            href={`/teach/students/${entry.userId}${classId ? `?classId=${encodeURIComponent(classId)}&returnTo=${encodeURIComponent(returnTo || `/teach/reports?classId=${classId}`)}` : ""}`}
             className="flex items-center gap-3 p-3 rounded-xl bg-surface-elevated/80 border border-border/40 hover:bg-surface-elevated hover:shadow-md hover:scale-[1.01] transition-all duration-200"
           >
             {/* Activity Type Icon */}
