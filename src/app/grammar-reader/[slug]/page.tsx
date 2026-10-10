@@ -28,7 +28,7 @@ export default async function GrammarGuidePage({ params }: Props) {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
-    const activity = await getGrammarGuideActivity(guide.activityTitle);
+    const activity = await getGrammarGuideActivity(guide.activityTitle, slug);
 
     // SECURITY: Block student access to unreleased guides. A guide with no
     // activity row (or an unreachable DB) stays viewable, matching the old

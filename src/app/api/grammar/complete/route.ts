@@ -138,11 +138,20 @@ export async function POST(request: Request) {
         }
     }
 
-    // 2. Check if already awarded completion points
+    // 2. Check if already awarded completion points. Awards are written under the
+    // display reason ("<title>|Grammar Guide"); older rows used `grammar:<slug>`.
+    // Check both, or every mini-quiz retake re-awards the completion points.
+    const grammarActivity = await prisma.activity.findUnique({
+        where: { id: canonicalActivityId },
+        select: { title: true },
+    });
+    const displayReason = grammarActivity?.title
+        ? `${grammarActivity.title}|Grammar Guide`
+        : reason;
     const existingCompletion = await prisma.pointsLedger.findFirst({
         where: {
             userId,
-            reason,
+            reason: { in: [reason, displayReason] },
         },
     });
 
@@ -190,14 +199,6 @@ export async function POST(request: Request) {
     // We don't have total exercise count here, so we just award base completion.
     const basePoints = POINTS.GRAMMAR_GUIDE_BASE;
 
-    // Get activity title for better display in Recent Wins
-    const grammarActivity = await prisma.activity.findUnique({
-        where: { id: canonicalActivityId },
-        select: { title: true },
-    });
-    const displayReason = grammarActivity?.title
-        ? `${grammarActivity.title}|Grammar Guide`
-        : reason;
     await applyAwardChain({
         userId,
         points: basePoints,

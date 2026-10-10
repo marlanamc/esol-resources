@@ -13,9 +13,15 @@ export interface GrammarGuideActivity {
 /**
  * Uncached title -> { id, isReleased } lookup for a grammar guide.
  * Exported for tests; app code should use getGrammarGuideActivity.
+ *
+ * When the registry title has drifted from the seeded Activity.title (e.g. a
+ * guide renamed in code but not re-seeded), the slug fallback still finds the
+ * row by id (`slug` / `slug-guide`). Without it the reader gets no activityId
+ * and silently saves no progress, so the guide never counts as done.
  */
 export async function lookupGrammarGuideActivity(
-    title: string
+    title: string,
+    slug?: string
 ): Promise<GrammarGuideActivity | null> {
     // Prefer the canonical released mini-quiz guide when duplicate titles exist.
     const canonicalId = await resolveCanonicalGrammarActivityId({ title });
@@ -31,9 +37,18 @@ export async function lookupGrammarGuideActivity(
         where: { title, type: "guide", category: "grammar" },
         select: { id: true, isReleased: true },
     });
-    return activity
-        ? { id: activity.id, isReleased: activity.isReleased === true }
-        : null;
+    if (activity) {
+        return { id: activity.id, isReleased: activity.isReleased === true };
+    }
+
+    if (!slug) return null;
+    const slugId = await resolveCanonicalGrammarActivityId({ slug });
+    if (!slugId) return null;
+    const slugActivity = await prisma.activity.findUnique({
+        where: { id: slugId },
+        select: { isReleased: true },
+    });
+    return { id: slugId, isReleased: slugActivity?.isReleased === true };
 }
 
 const getCachedGrammarGuideActivity = unstable_cache(
@@ -50,10 +65,11 @@ const getCachedGrammarGuideActivity = unstable_cache(
  * matching the old getActivityIdSafely behavior.
  */
 export async function getGrammarGuideActivity(
-    title: string
+    title: string,
+    slug?: string
 ): Promise<GrammarGuideActivity | null> {
     try {
-        return await getCachedGrammarGuideActivity(title);
+        return await getCachedGrammarGuideActivity(title, slug);
     } catch (error) {
         logger.warn(`Grammar guide activity lookup failed for "${title}"`, { error });
         return null;

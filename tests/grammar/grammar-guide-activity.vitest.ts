@@ -79,6 +79,28 @@ describe("lookupGrammarGuideActivity", () => {
 
         await expect(lookupGrammarGuideActivity("Missing Guide")).resolves.toBeNull();
     });
+
+    it("falls back to the slug when the registry title no longer matches the seeded title", async () => {
+        mockPrisma.activity.findMany
+            .mockResolvedValueOnce([] as never)
+            .mockResolvedValueOnce([
+                {
+                    id: "verb-forms-overview-guide",
+                    title: "Verb Forms Overview",
+                    content: "{}",
+                    isReleased: true,
+                },
+            ] as never);
+        mockPrisma.activity.findFirst.mockResolvedValue(null as never);
+        mockPrisma.activity.findUnique.mockResolvedValue({ isReleased: true } as never);
+
+        const result = await lookupGrammarGuideActivity(
+            "Verb Forms + Your Study Toolkit",
+            "verb-forms-overview"
+        );
+
+        expect(result).toEqual({ id: "verb-forms-overview-guide", isReleased: true });
+    });
 });
 
 describe("getGrammarGuideActivity", () => {
