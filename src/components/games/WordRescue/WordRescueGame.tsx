@@ -195,7 +195,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     <div className={styles.inner}>
     {preview && <div className={styles.preview}>Teacher preview · draft audio and language guides · no account points</div>}
     <header className={styles.header}><div className={styles.brand}>
-      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
+      {active && !fromMap ? <button aria-label="Back to word collections" className={styles.iconButton} onClick={() => { audio.reset(); setReceipt(null); setSavedWordId(null); setStage(session?.said ? 2 : session?.heard.includes('word') ? 1 : 0); setMenu(true); }}><ArrowLeft aria-hidden size={24} /></button> : <a href={returnHref} aria-label={requestedCollection ? "Back to course map" : "Back to pronunciation activities"} className={styles.iconButton}><ArrowLeft aria-hidden size={24} /></a>}
       <span>Word Rescue</span></div><span className={styles.muted}>{active && session ? `${receipt ? session.index : session.index + 1} of ${session.wordIds.length}` : ''}</span></header>
     {loaded && sessionLocked && <p role="status" className={styles.status}>Your saved session is kept safe. Its week must be released before you can continue.</p>}
     {notice && <p role="status" className={styles.status}>{notice}</p>}
@@ -231,7 +231,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       <div className={styles.accordion}>
         <h2 className={styles.sectionHeading}><button ref={node => { sectionButtons.current[1] = node; }} className={styles.sectionToggle} id="rescue-build-heading" aria-expanded={stage === 1} aria-controls="rescue-build" disabled={audio.recording || audio.permissionPending || (!receipt && !session.heard.includes('word'))} onClick={() => move(1)}><span className={styles.stepNumber}>2</span><span>{receipt || session.said ? 'Practiced' : 'Build & say'}</span>{(receipt || session.said) && <Check size={18} aria-hidden />}{stage === 1 ? <ChevronUp size={20} aria-hidden /> : <ChevronDown size={20} aria-hidden />}</button></h2>
         <div id="rescue-build" role="region" aria-labelledby="rescue-build-heading" hidden={stage !== 1} className={styles.sectionBody}>
-          
+
           <div className={styles.practiceLine}><p className={styles.phrase}>{word.phrase}</p>{audioControls('phrase')}</div>
           <div className={styles.practiceLine}><p className={styles.phrase}>{word.sentence}</p>{audioControls('sentence')}</div>
           <div className={styles.recording}><p className={styles.muted}>Optional · hear yourself</p>
@@ -246,7 +246,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
         <h2 className={styles.sectionHeading}><button ref={node => { sectionButtons.current[2] = node; }} className={styles.sectionToggle} id="rescue-reflect-heading" aria-expanded={stage === 2} aria-controls="rescue-reflect" disabled={audio.recording || audio.permissionPending || (!receipt && !session.said)} onClick={() => move(2)}><span className={styles.stepNumber}>3</span><span>How does it feel?</span>{stage === 2 ? <ChevronUp size={20} aria-hidden /> : <ChevronDown size={20} aria-hidden />}</button></h2>
         <div id="rescue-reflect" role="region" aria-labelledby="rescue-reflect-heading" hidden={stage !== 2} className={styles.sectionBody}>
           <div className={styles.reflections}>
-            {(['easier', 'again'] as const).map(confidence => <button key={confidence} className={styles.reflection} aria-pressed={receipt ? session.finished[word.id] === confidence : false} disabled={disabled || !!receipt} onClick={() => { audio.reset(); void send({ type: 'finish', sessionId: session.id, wordId: word.id, confidence }); }}>{receipt && session.finished[word.id] === confidence && <Check size={18} aria-hidden />}{confidence === 'easier' ? 'Feels easier' : 'Practice again'}</button>)}
+            {(['easier', 'again'] as const).map(confidence => <button key={confidence} className={styles.reflection} aria-pressed={receipt ? session.finished[word.id] === confidence : false} disabled={disabled || !!receipt || !session.said} onClick={() => { audio.reset(); void send({ type: 'finish', sessionId: session.id, wordId: word.id, confidence }); }}>{receipt && session.finished[word.id] === confidence && <Check size={18} aria-hidden />}{confidence === 'easier' ? 'Feels easier' : 'Practice again'}</button>)}
           </div>
           {receipt ? <>
             {roundComplete ? <div className={styles.roundReward} role="status"><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'Round complete. Preview only — no account points awarded.' : `You practiced all ${session.wordIds.length} words. Your points are saved!`}</p></div> : <p className={styles.status} role="status">{receipt}</p>}
