@@ -113,6 +113,7 @@
 
 .sectionBody .audio { font-size: 14px; }
 .recording .secondary { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.recording .recordingReady { background: var(--wr-green); color: white; border-color: var(--wr-green); }
 .recordingStatus { display: flex; align-items: center; gap: 9px; min-height: 24px; }
 .recordingActive { color: #a33129; font-weight: 700; }
 .recordingDot { width: 10px; height: 10px; flex: 0 0 10px; border-radius: 50%; background: currentColor; }

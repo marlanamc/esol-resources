@@ -239,7 +239,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
               {audio.recording ? <><span className={styles.recordingDot} aria-hidden="true" />Recording… speak now</> : 'Optional · hear yourself'}
             </p>
             <button className={styles.secondary} disabled={disabled || audio.permissionPending} onClick={() => { if (audio.recording) audio.stopRecording(); else void audio.record(); }}>{audio.recording ? <><Square aria-hidden size={18} /> Stop recording</> : <><Mic aria-hidden size={18} /> {audio.permissionPending ? 'Waiting for microphone…' : audio.hasRecording ? 'Record again' : 'Record myself'}</>}</button>
-            {audio.hasRecording && <button className={styles.secondary} onClick={audio.listenToMe}><Volume2 aria-hidden size={18} /> Listen to me</button>}
+            {audio.hasRecording && <button className={`${styles.secondary} ${styles.recordingReady}`} onClick={audio.listenToMe}><Volume2 aria-hidden size={18} /> Listen to yourself</button>}
             <p className={styles.muted} style={{ marginTop: 8 }}>Only on this device. Deleted when you leave this word. Up to one minute.</p>
           </div>
           <button className={styles.primary} disabled={disabled || audio.recording || audio.permissionPending || (!receipt && !session.heard.includes('sentence'))} onClick={async () => { audio.stop(); if (receipt || session.said) move(2); else if (await send({ type: 'said', sessionId: session.id, wordId: word.id })) move(2); }}>I practiced it<Check aria-hidden size={20} /></button>
