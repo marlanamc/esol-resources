@@ -1,7 +1,6 @@
 'use client';
 
 import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
-import { ClipboardCheck } from 'lucide-react';
 import { TrophyIcon, FlameIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
@@ -25,12 +24,15 @@ function StatusChip({
   title,
   color,
   className = '',
+  iconAfter = false,
 }: {
   icon: ReactNode;
   label: string;
   title: string;
   color?: string;
   className?: string;
+  /** Put the icon after the label, e.g. "Quiz ✓". */
+  iconAfter?: boolean;
 }) {
   return (
     <span
@@ -42,8 +44,9 @@ function StatusChip({
       title={title}
       aria-label={title}
     >
-      {icon}
+      {!iconAfter && icon}
       <span aria-hidden="true">{label}</span>
+      {iconAfter && icon}
     </span>
   );
 }
@@ -293,7 +296,8 @@ export default function LeaderboardPage() {
         )}
         {showQuiz && (
           <StatusChip
-            icon={<ClipboardCheck size={12} aria-hidden="true" />}
+            icon={<CheckCircleIcon size={12} />}
+            iconAfter
             label="Quiz"
             title="Finished this week's quiz"
             className="text-violet-700 dark:text-violet-300"
@@ -302,7 +306,8 @@ export default function LeaderboardPage() {
         {showWeek && (
           <StatusChip
             icon={<CheckCircleIcon size={12} />}
-            label="Week"
+            iconAfter
+            label="Week done"
             title="Finished every activity in this week's course map"
             color="var(--success-color)"
           />
@@ -702,7 +707,7 @@ export default function LeaderboardPage() {
                           </span>
                         )}
                       </div>
-                      {renderStatusChips(entry, 'mt-1 flex-nowrap')}
+                      {renderStatusChips(entry, 'mt-1 flex-wrap gap-y-1')}
                     </div>
                   </div>
                   <div className="shrink-0 text-right">
