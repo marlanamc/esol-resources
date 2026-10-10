@@ -3,7 +3,7 @@ import { readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
-import { isAdmin } from "@/lib/auth/roles";
+import { isAdmin, canUseTeacherTools } from "@/lib/auth/roles";
 import { MAP } from "@/lib/content-kind";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -74,7 +74,7 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
     month: unit.month ?? "",
     levels: unit.weeks.map((week) => {
       const required = week.items.filter((i) => i.slot === "required");
-      const extra = week.items.filter((i) => i.slot === "extra");
+      const extra = week.items.filter((i) => i.slot === "extra" && !i.vocabUi && !i.activityId?.startsWith("vocab-"));
 
       const toActivity = (item: (typeof week.items)[number]): CourseMapActivity => ({
         id: item.id,
@@ -221,7 +221,7 @@ export async function getVisibleMap(
       id: item.id,
       title: item.title,
       activityType: item.activityType as CourseMapActivityType,
-      status: item.href?.startsWith('/activity/word-rescue?') && (!item.activity?.isReleased || !isRescueMapLinkReleased(item.href)) ? "planned" : quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
+      status: item.href?.startsWith('/activity/word-rescue?') && !canUseTeacherTools(user) && (!item.activity?.isReleased || !isRescueMapLinkReleased(item.href)) ? "locked" : quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),
       ...(item.href ? { href: item.href } : {}),
       ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),
@@ -233,7 +233,7 @@ export async function getVisibleMap(
   const extraPracticeFor = (
     week: (typeof allUnitsRaw)[number]["weeks"][number]
   ): CourseMapActivity[] | undefined => {
-    const extras = week.items.filter((i) => i.slot === "extra").map(toActivity);
+    const extras = week.items.filter((i) => i.slot === "extra" && !i.vocabUi && !i.activityId?.startsWith("vocab-")).map(toActivity);
     return extras.length > 0 ? extras : undefined;
   };
 

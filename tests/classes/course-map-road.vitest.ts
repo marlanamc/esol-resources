@@ -142,3 +142,20 @@ describe("formatRoadRowLabels", () => {
             .toEqual({ title: "Verb Forms + Your Study Toolkit", detail: "Read & practice" });
     });
 });
+
+
+it('keeps locked Word Rescue first and removes optional vocabulary, including older sets', () => {
+    const weekly = level(5, ['word-rescue', 'vocab-sep-w3']);
+    weekly.requiredActivities[0].status = 'locked';
+    weekly.requiredActivities[1].vocabUi = 'flashcards';
+    weekly.extraPractice = [
+        {...weekly.requiredActivities[1], id:'duplicate'},
+        {...weekly.requiredActivities[1], id:'old-set', activityId:'vocab-oct-w1'},
+        {id:'bonus', activityId:'bonus', title:'Bonus game', activityType:'game', status:'available'},
+    ];
+    const model = buildCourseMapRoad({outline,units:[{unitNumber:2,unitTitle:'October',month:'October',levels:[weekly]}],progress:{},currentWeek:4});
+    const result = model.weeks.find(item => item.weekNumber === 5)!;
+    expect(result.activities[0].id).toBe('word-rescue');
+    expect(result.activities[0].href).toBeNull();
+    expect(result.extras.map(item => item.id)).toEqual(['bonus']);
+});

@@ -263,8 +263,10 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
         const activities = (level?.requiredActivities ?? [])
             .filter((activity) => activity.status !== "planned")
             .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds));
+        const practiceKey = (activity: CourseMapActivity) => `${activity.activityId ?? activity.href ?? activity.id}:${activity.vocabUi ?? ''}`;
+        const requiredKeys = new Set((level?.requiredActivities ?? []).map(practiceKey));
         const extras = (level?.extraPractice ?? [])
-            .filter((activity) => activity.status !== "planned")
+            .filter((activity) => activity.status !== "planned" && !activity.vocabUi && !activity.activityId?.startsWith("vocab-") && !requiredKeys.has(practiceKey(activity)))
             .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds));
 
         const actionable = activities.filter((activity) => activity.href != null);
