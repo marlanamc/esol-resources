@@ -1,8 +1,7 @@
 'use client';
 
-import { Fragment, useEffect, useState, type CSSProperties } from 'react';
-import { TrophyIcon, FlameIcon, SparklesIcon, CheckCircleIcon } from '@/components/icons/Icons';
-import { WeeklyQuizBadge } from '@/components/dashboard/WeeklyQuizBadge';
+import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { TrophyIcon, FlameIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
@@ -15,6 +14,40 @@ function LeaderboardAvatar({ avatar, avatarColor, size = "sm" }: { avatar: strin
     <div className={`${sizeClass} ${colorClass} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
       <span className="select-none">{emoji}</span>
     </div>
+  );
+}
+
+/** Short status pill for a leaderboard row; the key above the list explains each one. */
+function StatusChip({
+  icon,
+  label,
+  title,
+  color,
+  className = '',
+  iconAfter = false,
+}: {
+  icon: ReactNode;
+  label: string;
+  title: string;
+  color?: string;
+  className?: string;
+  /** Put the icon after the label, e.g. "Quiz ✓". */
+  iconAfter?: boolean;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-0.5 whitespace-nowrap rounded-full px-1.5 py-0.5 text-xs font-semibold leading-none ${className}`}
+      style={{
+        color,
+        backgroundColor: `color-mix(in srgb, ${color ?? 'currentColor'} 12%, transparent)`,
+      }}
+      title={title}
+      aria-label={title}
+    >
+      {!iconAfter && icon}
+      <span aria-hidden="true">{label}</span>
+      {iconAfter && icon}
+    </span>
   );
 }
 
@@ -246,6 +279,48 @@ export default function LeaderboardPage() {
   const isAllTime = timeframe === 'all';
   // Weekly quiz / week-done badges describe the current week, so they only make sense on the weekly board.
   const showWeekBadges = !isAllTime;
+  const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
+    const showStreak = entry.currentStreak > 0;
+    const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
+    const showWeek = showWeekBadges && entry.weekComplete;
+    if (!showStreak && !showQuiz && !showWeek) return null;
+    return (
+      <div className={`flex items-center gap-1.5 ${className}`}>
+        {showStreak && (
+          <StatusChip
+            icon={<FlameIcon size={12} />}
+            label={`${entry.currentStreak} ${entry.currentStreak === 1 ? 'day' : 'days'}`}
+            title={`${entry.currentStreak} day streak`}
+            color="var(--color-primary)"
+          />
+        )}
+        {showQuiz && (
+          <StatusChip
+            icon={<CheckCircleIcon size={12} />}
+            iconAfter
+            label="Quiz"
+            title="Finished this week's quiz"
+            className="text-violet-700 dark:text-violet-300"
+          />
+        )}
+        {showWeek && (
+          <StatusChip
+            icon={<CheckCircleIcon size={12} />}
+            iconAfter
+            label="Week done"
+            title="Finished every activity in this week's course map"
+            color="var(--success-color)"
+          />
+        )}
+      </div>
+    );
+  };
+  const showPodium = hasNonZeroScores && leaderboard.some((entry) => entry.rank <= 3);
+  // The podium already shows the top 3, so the list picks up at #4 to avoid repeating them.
+  const listEntries = [
+    ...leaderboard.filter((entry) => !showPodium || entry.rank > 3),
+    ...(viewerEntry ? [viewerEntry] : []),
+  ];
   const timeframeTabs = (
     <div
       role="tablist"
@@ -431,7 +506,7 @@ export default function LeaderboardPage() {
         <div className="flex justify-center">{timeframeTabs}</div>
 
         {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
-        {leaderboard.some(entry => entry.rank <= 3) && hasNonZeroScores && (() => {
+        {showPodium && (() => {
           // Get all students in top 3 ranks (handles ties)
           const rank1Students = leaderboard.filter(entry => entry.rank === 1);
           const rank2Students = leaderboard.filter(entry => entry.rank === 2);
@@ -441,6 +516,11 @@ export default function LeaderboardPage() {
           // Per-rank glow color feeds the shared .animate-medal-glow utility (--medal-glow-color)
           const glowFor = (rank: number) =>
             rank === 1 ? 'rgba(233,196,106,0.55)' : rank === 2 ? 'rgba(192,192,192,0.45)' : 'rgba(205,127,50,0.45)';
+          const youLabel = (
+            <span className="ml-1 text-[11px] font-bold" style={{ color: 'var(--color-primary)' }}>
+              (You)
+            </span>
+          );
 
           return (
             <>
@@ -491,31 +571,14 @@ export default function LeaderboardPage() {
                           style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}
                         >
                           {student.name}
+                          {student.rank === userRank && youLabel}
                         </p>
                         <div className="mt-2">
                           <Badge variant={isChampion ? 'warning' : 'secondary'}>
                             {student.weeklyPoints} pts
                           </Badge>
                         </div>
-                        {student.currentStreak > 0 && (
-                          <div className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold" style={{ color: 'var(--color-primary)' }}>
-                            <FlameIcon size={14} />
-                            <span>{student.currentStreak} day streak</span>
-                          </div>
-                        )}
-                        {showWeekBadges && student.weeklyQuizComplete && (
-                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
-                        )}
-                        {showWeekBadges && student.weekComplete && (
-                          <div
-                            className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold"
-                            style={{ color: 'var(--success-color)' }}
-                            title="Finished every activity in this week's course map"
-                          >
-                            <CheckCircleIcon size={14} />
-                            <span>Week done</span>
-                          </div>
-                        )}
+                        {renderStatusChips(student, 'mt-3 justify-center')}
                       </div>
                     </div>
                   );
@@ -557,12 +620,15 @@ export default function LeaderboardPage() {
                         <p className="font-bold text-xs truncate" style={{ color: 'var(--color-text)' }}>
                           {student.name}
                         </p>
+                        {student.rank === userRank && (
+                          <p className="text-[10px] font-bold leading-tight" style={{ color: 'var(--color-primary)' }}>
+                            (You)
+                          </p>
+                        )}
                         <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
                           {student.weeklyPoints} pts
                         </p>
-                        {showWeekBadges && student.weeklyQuizComplete && (
-                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge compact /></div>
-                        )}
+                        {renderStatusChips(student, 'mt-1.5 flex-wrap justify-center')}
                       </div>
                     </div>
                   );
@@ -572,13 +638,13 @@ export default function LeaderboardPage() {
           );
         })()}
 
-        {/* Full Leaderboard */}
-        {leaderboard.length > 0 ? (
+        {/* Full Leaderboard — starts at #4 when the podium is showing */}
+        {listEntries.length > 0 && (
           <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
             <div className="border-b p-4" style={{ backgroundColor: 'var(--surface-contrast)', borderColor: 'var(--border-subtle)' }}>
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-                  All Rankings
+                  {showPodium ? 'Everyone else' : 'All Rankings'}
                 </h2>
                 {viewerRole === 'student' ? (
                   <div className="sm:hidden">
@@ -588,7 +654,7 @@ export default function LeaderboardPage() {
               </div>
             </div>
             <div className="divide-y" style={{ borderColor: 'var(--border-subtle)' }}>
-              {[...leaderboard, ...(viewerEntry ? [viewerEntry] : [])].map((entry) => {
+              {listEntries.map((entry) => {
               const rankColors = getRankColor(entry.rank);
               const rankChange = getRankChangeIndicator(entry.rankChange);
               const isUserRow = entry.rank === userRank;
@@ -641,49 +707,33 @@ export default function LeaderboardPage() {
                           </span>
                         )}
                       </div>
-                      <div className="mt-0.5 flex flex-wrap items-center gap-2.5 leading-none">
-                        <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                          <SparklesIcon size={14} />
-                          <span>{entry.weeklyPoints} pts</span>
-                        </div>
-                        {entry.currentStreak > 0 && (
-                          <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-primary)' }}>
-                            <FlameIcon size={14} />
-                            <span>{entry.currentStreak} day streak</span>
-                          </div>
-                        )}
-                        {showWeekBadges && entry.weeklyQuizComplete && <WeeklyQuizBadge />}
-                        {showWeekBadges && entry.weekComplete && (
-                          <div
-                            className="flex items-center gap-1 text-sm font-semibold"
-                            style={{ color: 'var(--success-color)' }}
-                            title="Finished every activity in this week's course map"
-                          >
-                            <CheckCircleIcon size={14} />
-                            <span>Week done</span>
-                          </div>
-                        )}
-                      </div>
+                      {renderStatusChips(entry, 'mt-1 flex-wrap gap-y-1')}
                     </div>
                   </div>
-                  {rankChange && (
-                    <div className="hidden shrink-0 text-right md:block">
-                      <div className="flex items-center justify-end gap-1 text-sm font-bold" style={{ color: rankChange.color }}>
+                  <div className="shrink-0 text-right">
+                    <div className="text-base font-bold tabular-nums leading-none" style={{ color: 'var(--color-text)' }}>
+                      {entry.weeklyPoints}
+                      <span className="ml-1 text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>pts</span>
+                    </div>
+                    {rankChange && (
+                      <div
+                        className="mt-1 flex items-center justify-end gap-0.5 text-xs font-bold leading-none"
+                        style={{ color: rankChange.color }}
+                        title="Change since last week"
+                      >
                         <span>{rankChange.icon}</span>
                         <span>{Math.abs(entry.rankChange || 0)}</span>
                       </div>
-                      <div className="text-[11px] leading-none" style={{ color: 'var(--color-text-light)' }}>
-                        vs last week
-                      </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 </Fragment>
               );
               })}
             </div>
           </div>
-        ) : (
+        )}
+        {leaderboard.length === 0 && (
           <div className="relative overflow-hidden border rounded-2xl text-center py-14 px-6" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
             <div className="relative inline-flex items-center justify-center mb-5">
               <div
