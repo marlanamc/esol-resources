@@ -85,3 +85,7 @@ Unfinished sessions are saved by collection when switching weeks and resume with
 ## Round reward confirmation
 
 The final confirmed word save replaces the per-word receipt with a persistent round-total banner: “+6 points earned” for three words, followed by “Your points are saved!” and the course-map return button. The total uses the completed session’s word count times the existing two-point award, so shorter revisit rounds show their actual total. This is a summary of saved credit, not an extra award. Preview explicitly labels the illustrative total and awards no account points. The banner is announced politely and has no animation or dismissal timer.
+
+## Deployment source reconciliation
+
+The release checkout was brought up to date with GitHub main, restoring the leaderboard commits through PR #84 and the award-chain response fix. Vercel now uses `npx prisma generate && npx next build`, matching the verified narrow deployment. Database migrations and course-map seeding must be run explicitly when needed; publishing a frontend update no longer invokes the wholesale map seed.

@@ -8,5 +8,5 @@ export async function getRescueCollectionsForUser(user: { id: string; role?: str
   const { units } = await getVisibleMap(user);
   const activityIds = new Set(units.flatMap(unit => unit.levels.flatMap(level =>
     [...level.requiredActivities, ...(level.extraPractice ?? [])].map(item => item.activityId))));
-  return RESCUE_COLLECTIONS.filter(set => RELEASED_RESCUE_COLLECTIONS.has(set.id) && (!set.sourceActivityId || activityIds.has(set.sourceActivityId))); 
+  return RESCUE_COLLECTIONS.filter(set => RELEASED_RESCUE_COLLECTIONS.has(set.id) && (!set.sourceActivityId || activityIds.has(set.sourceActivityId)));
 }

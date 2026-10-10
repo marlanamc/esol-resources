@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npx prisma generate && npx next build",
   "functions": {
     "src/app/**/*.{js,ts,jsx,tsx}": {
       "maxDuration": 60
