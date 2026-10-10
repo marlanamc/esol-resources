@@ -276,6 +276,40 @@ export default function LeaderboardPage() {
   const isAllTime = timeframe === 'all';
   // Weekly quiz / week-done badges describe the current week, so they only make sense on the weekly board.
   const showWeekBadges = !isAllTime;
+  const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
+    const showStreak = entry.currentStreak > 0;
+    const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
+    const showWeek = showWeekBadges && entry.weekComplete;
+    if (!showStreak && !showQuiz && !showWeek) return null;
+    return (
+      <div className={`flex items-center gap-1.5 ${className}`}>
+        {showStreak && (
+          <StatusChip
+            icon={<FlameIcon size={12} />}
+            label={`${entry.currentStreak} ${entry.currentStreak === 1 ? 'day' : 'days'}`}
+            title={`${entry.currentStreak} day streak`}
+            color="var(--color-primary)"
+          />
+        )}
+        {showQuiz && (
+          <StatusChip
+            icon={<ClipboardCheck size={12} aria-hidden="true" />}
+            label="Quiz"
+            title="Finished this week's quiz"
+            className="text-violet-700 dark:text-violet-300"
+          />
+        )}
+        {showWeek && (
+          <StatusChip
+            icon={<CheckCircleIcon size={12} />}
+            label="Week"
+            title="Finished every activity in this week's course map"
+            color="var(--success-color)"
+          />
+        )}
+      </div>
+    );
+  };
   const showPodium = hasNonZeroScores && leaderboard.some((entry) => entry.rank <= 3);
   // The podium already shows the top 3, so the list picks up at #4 to avoid repeating them.
   const listEntries = [
@@ -541,6 +575,7 @@ export default function LeaderboardPage() {
                             {student.weeklyPoints} pts
                           </Badge>
                         </div>
+                        {renderStatusChips(student, 'mt-3 justify-center')}
                       </div>
                     </div>
                   );
@@ -590,6 +625,7 @@ export default function LeaderboardPage() {
                         <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
                           {student.weeklyPoints} pts
                         </p>
+                        {renderStatusChips(student, 'mt-1.5 flex-wrap justify-center')}
                       </div>
                     </div>
                   );
@@ -613,22 +649,6 @@ export default function LeaderboardPage() {
                   </div>
                 ) : null}
               </div>
-              {/* Key for the short chips and arrows in each row */}
-              <p
-                className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-tight"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                <span className="inline-flex items-center gap-1">
-                  <FlameIcon size={12} style={{ color: 'var(--color-primary)' }} /> days in a row
-                </span>
-                {showWeekBadges && (
-                  <>
-                    <span><strong className="font-semibold text-violet-700 dark:text-violet-300">Quiz</strong> = weekly quiz done</span>
-                    <span><strong className="font-semibold" style={{ color: 'var(--success-color)' }}>Week</strong> = all activities done</span>
-                  </>
-                )}
-                <span>↑↓ = change since last week</span>
-              </p>
             </div>
             <div className="divide-y" style={{ borderColor: 'var(--border-subtle)' }}>
               {listEntries.map((entry) => {
@@ -636,9 +656,6 @@ export default function LeaderboardPage() {
               const rankChange = getRankChangeIndicator(entry.rankChange);
               const isUserRow = entry.rank === userRank;
               const isDetachedViewerRow = entry === viewerEntry;
-              const showStreak = entry.currentStreak > 0;
-              const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
-              const showWeek = showWeekBadges && entry.weekComplete;
 
               return (
                 <Fragment key={entry.id}>
@@ -687,34 +704,7 @@ export default function LeaderboardPage() {
                           </span>
                         )}
                       </div>
-                      {(showStreak || showQuiz || showWeek) && (
-                        <div className="mt-1 flex flex-nowrap items-center gap-1.5">
-                          {showStreak && (
-                            <StatusChip
-                              icon={<FlameIcon size={12} />}
-                              label={`${entry.currentStreak}`}
-                              title={`${entry.currentStreak} day streak`}
-                              color="var(--color-primary)"
-                            />
-                          )}
-                          {showQuiz && (
-                            <StatusChip
-                              icon={<ClipboardCheck size={12} aria-hidden="true" />}
-                              label="Quiz"
-                              title="Finished this week's quiz"
-                              className="text-violet-700 dark:text-violet-300"
-                            />
-                          )}
-                          {showWeek && (
-                            <StatusChip
-                              icon={<CheckCircleIcon size={12} />}
-                              label="Week"
-                              title="Finished every activity in this week's course map"
-                              color="var(--success-color)"
-                            />
-                          )}
-                        </div>
-                      )}
+                      {renderStatusChips(entry, 'mt-1 flex-nowrap')}
                     </div>
                   </div>
                   <div className="shrink-0 text-right">
