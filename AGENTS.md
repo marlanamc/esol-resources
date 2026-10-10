@@ -24,3 +24,14 @@ Marlana's explicit preference: never deploy an outdated checkout that removes ne
 - An intentional rollback or release excluding newer changes requires an explicit user request; it is not a routine exception to this rule.
 
 Saved at Marlana's request on October 10, 2026, after an older local checkout temporarily omitted already-merged leaderboard updates.
+
+## Batch small changes before deployment
+
+Marlana's explicit preference: reduce Vercel deployment and function storage by batching small changes.
+
+- Keep iterative copy, styling, and small interaction updates local for review, then deploy them together when the user is ready to release. Do not automatically push to the auto-deploying production branch after every small tweak.
+- Continue running appropriate checks and preserve work in Git without triggering unnecessary deployments.
+- For deployment cleanup, keep the current live version and a recent successful production backup. Verify active aliases before removing obsolete deployments; preserve deployments serving active domains.
+- Do not create a deployment solely to save these instructions or cleanup notes.
+
+Saved at Marlana's request on October 10, 2026.
