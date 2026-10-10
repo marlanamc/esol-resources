@@ -24,6 +24,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const latest = useRef(state);
   const [loaded, setLoaded] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showSaving, setShowSaving] = useState(false);
   const sending = useRef(false);
   const [pending, setPending] = useState<RescueAction | null>(null);
   const pendingRef = useRef<RescueAction | null>(null);
@@ -49,6 +50,12 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const active = !!word && !menu && !sessionLocked;
   const disabled = saving || !!pending || !loaded;
   const stepTitle = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    if (!saving) { setShowSaving(false); return; }
+    const timer = setTimeout(() => setShowSaving(true), 600);
+    return () => clearTimeout(timer);
+  }, [saving]);
 
   const accept = useCallback((next: RescueProgress) => { latest.current = next; setState(next); }, []);
   const savePending = useCallback((action: RescueAction | null) => {
@@ -181,7 +188,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       <span>Word Rescue</span></div><span className={styles.muted}>{active && session ? `${session.index + 1} of ${session.wordIds.length}` : ''}</span></header>
     {loaded && sessionLocked && <p role="status" className={styles.status}>Your saved session is kept safe. Its week must be released before you can continue.</p>}
     {notice && <p role="status" className={styles.status}>{notice}</p>}
-    {(error || pending) && <div className={styles.error} role="alert"><p>{error || 'An earlier practice step is waiting to save.'}</p>{pending && <button className={styles.secondary} disabled={saving} onClick={() => void send(pending, true)}>{saving ? 'Saving…' : 'Retry save'}</button>}{!loaded && <button className={styles.secondary} onClick={() => window.location.reload()}>Reload saved practice</button>}</div>}
+    {(error || (pending && !saving)) && <div className={styles.error} role="alert"><p>{error || 'An earlier practice step is waiting to save.'}</p>{pending && <button className={styles.secondary} disabled={saving} onClick={() => void send(pending, true)}>{saving ? 'Saving…' : 'Retry save'}</button>}{!loaded && <button className={styles.secondary} onClick={() => window.location.reload()}>Reload saved practice</button>}</div>}
     {!loaded && !error ? <p role="status">Loading your practice…</p> : receipt ? <section aria-live="polite" aria-atomic="true"><Check aria-hidden size={32} /><h1 className={styles.heading}>{roundComplete ? 'Round complete!' : 'Your practice counts.'}</h1>{roundComplete ? <div className={styles.roundReward}><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'A full round earns these points in the live activity. No account points are awarded in preview.' : `You practiced ${session!.mode === 'weekly' ? 'all ' : ''}${session!.wordIds.length} ${session!.mode === 'weekly' ? 'weekly words' : 'words'}. Your points are saved!`}</p></div> : <p className={styles.status}>{receipt}</p>}{fromMap && !word ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight aria-hidden size={20} /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setStage(0); setBuildStep(0); }}>{word ? 'Next word' : 'See my practice'}<ArrowRight aria-hidden size={20} /></button>}</section> : !active ? <section>
       <h1 className={styles.heading}>{session && session.index >= session.wordIds.length && !menu ? 'A little more confident.' : 'Which words today?'}</h1>
       {selectedCollection && <p className={styles.status}>This week: {selectedCollection.label}</p>}
@@ -226,9 +233,9 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
           <p className={styles.muted} style={{ textAlign: 'center', marginTop: 10 }}>Either choice earns 2 practice points.</p>
         </>}
       </>}
-      {audio.busy && <button className={styles.secondary} onClick={audio.stop}>Stop audio</button>}
+      <button className={`${styles.secondary} ${styles.stopAudio}`} disabled={!audio.busy} onClick={audio.stop}>Stop audio</button>
       {audio.error && <div role="alert" className={styles.error}><p>{audio.error}</p><button className={styles.secondary} disabled={disabled} onClick={() => play(lastClip.clip, lastClip.rate)}>Retry audio</button><button className={styles.secondary} disabled={disabled} onClick={() => play(lastClip.clip, lastClip.rate, true)}>Use device voice</button><p className={styles.muted}>Device voices vary. Listen to your teacher’s model when available.</p></div>}
-      {saving && <p role="status" className={styles.muted}>Saving practice…</p>}
+      <p role="status" className={`${styles.muted} ${styles.saveStatus}`}>{showSaving ? 'Saving practice…' : '\u00a0'}</p>
     </section>}
     {preview && <button className={styles.secondary} style={{ marginTop: 40 }} onClick={() => { audio.reset(); accept(emptyRescueProgress()); savePending(null); setReceipt(null); setMenu(false); setStage(0); setBuildStep(0); setError(''); localStorage.removeItem('word-rescue-preview-state'); }}>Reset preview</button>}
   </div></div>;
