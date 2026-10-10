@@ -511,8 +511,6 @@ export default function LeaderboardPage() {
           // Per-rank glow color feeds the shared .animate-medal-glow utility (--medal-glow-color)
           const glowFor = (rank: number) =>
             rank === 1 ? 'rgba(233,196,106,0.55)' : rank === 2 ? 'rgba(192,192,192,0.45)' : 'rgba(205,127,50,0.45)';
-          // Classic podium order: 2nd on the left, champion in the middle, 3rd on the right
-          const orderFor = (rank: number) => (rank === 1 ? 'order-2' : rank === 2 ? 'order-1' : 'order-3');
           const youLabel = (
             <span className="ml-1 text-[11px] font-bold" style={{ color: 'var(--color-primary)' }}>
               (You)
@@ -529,7 +527,7 @@ export default function LeaderboardPage() {
                   return (
                     <div
                       key={student.id}
-                      className={`flex-shrink-0 animate-medal-reveal ${orderFor(student.rank)}`}
+                      className="flex-shrink-0 animate-medal-reveal"
                       style={{ animationDelay: `${index * 90}ms` }}
                     >
                       <div
@@ -590,12 +588,12 @@ export default function LeaderboardPage() {
                   return (
                     <div
                       key={student.id}
-                      className={`flex-shrink-0 animate-medal-reveal ${orderFor(student.rank)}`}
+                      className="flex-shrink-0 animate-medal-reveal"
                       style={{ animationDelay: `${index * 80}ms` }}
                     >
                       <div
-                        className={`relative overflow-hidden border-2 rounded-2xl px-3 text-center w-[106px] ${
-                          isChampion ? 'pt-5 pb-4 animate-medal-glow' : 'py-3'
+                        className={`relative overflow-hidden border-2 rounded-2xl px-3 py-3 text-center w-[106px] ${
+                          isChampion ? 'animate-medal-glow' : ''
                         }`}
                         style={{
                           backgroundColor: colors.bg,
