@@ -234,7 +234,10 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
 
           <div className={styles.practiceLine}><p className={styles.phrase}>{word.phrase}</p>{audioControls('phrase')}</div>
           <div className={styles.practiceLine}><p className={styles.phrase}>{word.sentence}</p>{audioControls('sentence')}</div>
-          <div className={styles.recording}><p className={styles.muted}>Optional · hear yourself</p>
+          <div className={styles.recording}>
+            <p className={`${styles.recordingStatus} ${audio.recording ? styles.recordingActive : styles.muted}`} role="status" aria-atomic="true">
+              {audio.recording ? <><span className={styles.recordingDot} aria-hidden="true" />Recording… speak now</> : 'Optional · hear yourself'}
+            </p>
             <button className={styles.secondary} disabled={disabled || audio.permissionPending} onClick={() => { if (audio.recording) audio.stopRecording(); else void audio.record(); }}>{audio.recording ? <><Square aria-hidden size={18} /> Stop recording</> : <><Mic aria-hidden size={18} /> {audio.permissionPending ? 'Waiting for microphone…' : audio.hasRecording ? 'Record again' : 'Record myself'}</>}</button>
             {audio.hasRecording && <button className={styles.secondary} onClick={audio.listenToMe}><Volume2 aria-hidden size={18} /> Listen to me</button>}
             <p className={styles.muted} style={{ marginTop: 8 }}>Only on this device. Deleted when you leave this word. Up to one minute.</p>
