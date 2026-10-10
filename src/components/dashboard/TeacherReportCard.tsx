@@ -58,6 +58,7 @@ type LearnerType = 'classroom' | 'independent' | 'all';
 
 interface TeacherReportCardProps {
   compact?: boolean;
+  studentReturnTo?: string;
   initialData?: ReportData;
   classes?: ClassOption[];
   /** Class picked in the Teaching header; seeds and follows the report scope. */
@@ -85,6 +86,7 @@ function timeAgo(dateString: string): string {
 
 export default function TeacherReportCard({
   compact = false,
+  studentReturnTo,
   initialData,
   classes = [],
   activeClassId = null,
@@ -335,6 +337,8 @@ export default function TeacherReportCard({
           Recent Activity
         </h3>
         <RecentActivityFeed
+          classId={selectedClassId !== "all" ? selectedClassId : undefined}
+          returnTo={studentReturnTo}
           activities={compact && !expanded ? (data?.recentActivity || []).slice(0, 5) : data?.recentActivity || []}
           loading={loading}
         />
