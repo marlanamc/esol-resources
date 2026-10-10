@@ -2862,7 +2862,7 @@ for (const unit of COURSE_MAP_UNITS) {
       id: `${week.id}-word-rescue`, activityId: 'word-rescue',
       href: `/activity/word-rescue?collection=${encodeURIComponent(collection.id)}&fromMap=1&returnTo=${encodeURIComponent(`/dashboard/map?week=${week.number}#week-${week.number}`)}`,
       slot: 'required', order,
-      wrappedGame: false, activityType: 'pronunciation', title: 'Word Rescue · 3 words',
+      wrappedGame: false, activityType: 'pronunciation', title: `Word Rescue · ${collection.words.length} words`,
     });
   }
 }
