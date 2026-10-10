@@ -15,7 +15,9 @@ export interface RescueWord {
   help?: Record<HelpLanguage, LanguageHint>;
 }
 export interface RescueCollection { id: string; label: string; sourceActivityId?: string; wordIds: string[] }
+export type RescueMode = 'standalone' | 'weekly';
 export interface RescueSession {
+  mode?: RescueMode;
   id: string;
   collectionId: string;
   wordIds: string[];
@@ -32,7 +34,7 @@ export interface RescueProgress {
   savedSessions?: Record<string, RescueSession>;
 }
 export type RescueAction =
-  | { type: 'start'; id: string; collectionId: string }
+  | { type: 'start'; id: string; collectionId: string; mode?: RescueMode }
   | { type: 'language'; language: HelpLanguage }
   | { type: 'heard'; sessionId: string; wordId: string; clip: ClipKind }
   | { type: 'said'; sessionId: string; wordId: string }

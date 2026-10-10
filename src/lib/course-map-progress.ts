@@ -157,7 +157,7 @@ export function isMapActivityCompleted(
         const collection = RESCUE_COLLECTIONS.find(set => set.id === collectionId);
         const rescue = entry.categoryData?.wordRescue as { words?: Record<string, { attempts?: number }> } | undefined;
         if (!collection) return false;
-        return collection.wordIds.filter(id => (rescue?.words?.[id]?.attempts ?? 0) > 0).length >= Math.min(3, collection.wordIds.length);
+        return collection.wordIds.filter(id => (rescue?.words?.[id]?.attempts ?? 0) > 0).length >= collection.wordIds.length;
     }
 
     // Weekly lessons share the activity but have independent completion records.

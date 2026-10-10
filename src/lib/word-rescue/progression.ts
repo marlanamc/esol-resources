@@ -4,7 +4,7 @@ import type { RescueAction, RescueProgress } from './types';
 
 const target = { sessionId: z.string().uuid(), wordId: z.string().min(1).max(150) };
 export const rescueActionSchema = z.discriminatedUnion('type', [
-  z.object({ type: z.literal('start'), id: z.string().uuid(), collectionId: z.string().max(80) }).strict(),
+  z.object({ type: z.literal('start'), id: z.string().uuid(), collectionId: z.string().max(80), mode: z.enum(['standalone', 'weekly']).optional() }).strict(),
   z.object({ type: z.literal('language'), language: z.enum(['es', 'pt-BR']) }).strict(),
   z.object({ type: z.literal('heard'), ...target, clip: z.enum(['word', 'phrase', 'sentence']) }).strict(),
   z.object({ type: z.literal('said'), ...target }).strict(),
@@ -28,19 +28,33 @@ export function applyRescueAction(previous: RescueProgress, raw: unknown, allowe
     return { state, rewardKey: null };
   }
   if (action.type === 'start') {
-    // A course-map wrapper can switch weeks without discarding unfinished effort.
+    const mode = action.mode ?? 'standalone';
+    const collection = RESCUE_COLLECTIONS.find(item => item.id === action.collectionId);
+    if (mode === 'weekly' && !collection?.sourceActivityId) throw new Error('Choose a weekly vocabulary collection.');
+    const key = (collectionId: string, sessionMode?: string) => sessionMode === 'weekly' ? `${collectionId}:weekly` : collectionId;
+    const requestedKey = key(action.collectionId, mode);
     const active = state.session && state.session.index < state.session.wordIds.length ? state.session : null;
-    const resume = active?.collectionId === action.collectionId ? active : state.savedSessions?.[action.collectionId];
-    if (resume && allowedWordIds && resume.wordIds.some(id => !allowedWordIds.has(id))) {
-      throw new Error('Your saved session belongs to a week that is not currently released.');
-    }
+    const activeKey = active ? key(active.collectionId, active.mode) : null;
+    // Upgrade unfinished pre-mode rounds without discarding evidence or changing award keys.
+    const legacy = mode === 'weekly'
+      ? (active?.collectionId === action.collectionId && !active.mode ? active : state.savedSessions?.[action.collectionId]?.mode === undefined ? state.savedSessions?.[action.collectionId] : null)
+      : null;
+    const resume = activeKey === requestedKey ? active : state.savedSessions?.[requestedKey] ?? legacy;
     if (state.session?.id === action.id) return { state, rewardKey: null };
-    if (active && active.collectionId !== action.collectionId) {
-      state.savedSessions = { ...state.savedSessions, [active.collectionId]: active };
+    if (active && active !== resume) {
+      state.savedSessions = { ...state.savedSessions, [activeKey!]: active };
     }
     if (resume) {
+      if (mode === 'weekly') resume.wordIds = [...resume.wordIds, ...collection!.wordIds.filter(id => !resume.wordIds.includes(id))];
+      if (allowedWordIds && resume.wordIds.some(id => !allowedWordIds.has(id))) {
+        throw new Error('Your saved session belongs to a week that is not currently released.');
+      }
+      resume.mode = mode;
       state.session = resume;
-      if (state.savedSessions) delete state.savedSessions[action.collectionId];
+      if (state.savedSessions) {
+        delete state.savedSessions[requestedKey];
+        if (resume === legacy) delete state.savedSessions[action.collectionId];
+      }
       return { state, rewardKey: null };
     }
     const ids = action.collectionId === 'again'
@@ -48,8 +62,8 @@ export function applyRescueAction(previous: RescueProgress, raw: unknown, allowe
       : RESCUE_COLLECTIONS.find(collection => collection.id === action.collectionId)?.wordIds;
     if (allowedWordIds && ids?.some(id => !allowedWordIds.has(id))) throw new Error('This week is not released.');
     if (!ids?.length) throw new Error('Choose a collection with words to practice.');
-    const wordIds = [...ids].sort((a, b) => (state.words[a]?.attempts ?? 0) - (state.words[b]?.attempts ?? 0)).slice(0, 3);
-    state.session = { id: action.id, collectionId: action.collectionId, wordIds, index: 0, heard: [], said: false, finished: {} };
+    const wordIds = [...ids].sort((a, b) => (state.words[a]?.attempts ?? 0) - (state.words[b]?.attempts ?? 0)).slice(0, mode === 'weekly' ? ids.length : 3);
+    state.session = { mode, id: action.id, collectionId: action.collectionId, wordIds, index: 0, heard: [], said: false, finished: {} };
     return { state, rewardKey: null };
   }
   if (allowedWordIds && !allowedWordIds.has(action.wordId)) throw new Error('This week is not released.');

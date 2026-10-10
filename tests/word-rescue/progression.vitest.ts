@@ -67,3 +67,35 @@ describe('Word Rescue effort', () => {
     expect(getActivityPoints('game', { ui: 'word-rescue' })).toBe(0);
   });
 });
+
+
+describe('weekly and standalone round lengths', () => {
+  const weeklyStart = { type: 'start', id, collectionId: 'oct-learning', mode: 'weekly' };
+  it('uses all six weekly words but three in standalone practice', () => {
+    expect(applyRescueAction(emptyRescueProgress(), weeklyStart).state.session?.wordIds).toHaveLength(6);
+    expect(applyRescueAction(emptyRescueProgress(), {...weeklyStart, mode: 'standalone'}).state.session?.wordIds).toHaveLength(3);
+    expect(() => applyRescueAction(emptyRescueProgress(), {...weeklyStart, collectionId: 'everyday'})).toThrow();
+  });
+  it('keeps unfinished weekly and standalone rounds separate with their evidence', () => {
+    const weekly = ready(applyRescueAction(emptyRescueProgress(), weeklyStart).state);
+    const standalone = applyRescueAction(weekly, {...weeklyStart, id: '22222222-2222-4222-8222-222222222222', mode:'standalone'}).state;
+    expect(standalone.session?.wordIds).toHaveLength(3);
+    const resumed = applyRescueAction(standalone, {...weeklyStart, id:'33333333-3333-4333-8333-333333333333'}).state;
+    expect(resumed.session).toEqual(weekly.session);
+    expect(resumed.savedSessions?.['oct-learning']).toEqual(standalone.session);
+  });
+  it('expands a legacy unfinished round and preserves its credited word and next-word evidence', () => {
+    let legacy = ready(applyRescueAction(emptyRescueProgress(), {...weeklyStart, mode:'standalone'}).state);
+    const wordId = legacy.session!.wordIds[0];
+    legacy = applyRescueAction(legacy, {type:'finish',sessionId:id,wordId,confidence:'again'}).state;
+    legacy = ready(legacy);
+    delete legacy.session!.mode;
+    const upgraded = applyRescueAction(legacy,{...weeklyStart,id:'22222222-2222-4222-8222-222222222222'}).state;
+    expect(upgraded.session?.wordIds).toHaveLength(6);
+    expect(upgraded.session?.id).toBe(id);
+    expect(upgraded.session?.index).toBe(1);
+    expect(upgraded.session?.said).toBe(true);
+    expect(upgraded.words).toEqual(legacy.words);
+    expect(applyRescueAction(upgraded,{type:'finish',sessionId:id,wordId,confidence:'again'}).rewardKey).toBe(`${id}:${wordId}`);
+  });
+});

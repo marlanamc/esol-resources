@@ -59,3 +59,21 @@ describe('Word Rescue credit persistence', () => {
     expect(db.rows.find(row => row.assignmentId === 'assignment-id')?.progress).toBe(33);
   });
 });
+
+
+it('saves twelve points for six weekly words and never duplicates them on retry', async () => {
+  db.rows = [];
+  let result = await saveRescueAction('student',{type:'start',id,collectionId:'oct-learning',mode:'weekly'});
+  expect(result.state.session?.wordIds).toHaveLength(6);
+  for (const wordId of result.state.session!.wordIds) {
+    for (const clip of ['word','sentence']) await saveRescueAction('student',{type:'heard',sessionId:id,wordId,clip});
+    await saveRescueAction('student',{type:'said',sessionId:id,wordId});
+    const action = {type:'finish',sessionId:id,wordId,confidence:'again'};
+    result = await saveRescueAction('student',action);
+    expect(result.pointsAwarded).toBe(2);
+    expect((await saveRescueAction('student',action)).pointsAwarded).toBe(0);
+  }
+  expect(result.state.session?.index).toBe(6);
+  expect(db.balance).toBe(12);
+  expect(db.ledger).toHaveLength(6);
+});

@@ -27,14 +27,16 @@ describe('weekly Word Rescue', () => {
       }
     }
   });
-  it('requires three distinct practiced words in that week, independent of global completion', () => {
+  it('requires all distinct practiced words in that week, independent of global completion', () => {
     const [a,b] = RESCUE_COLLECTIONS.filter(set => set.sourceActivityId);
-    const words = Object.fromEntries(a.wordIds.slice(0,3).map(id => [id,{attempts:1}]));
+    const words = Object.fromEntries(a.wordIds.map(id => [id,{attempts:1}]));
     const progress = { 'word-rescue': { status: 'completed', categoryData: { wordRescue: { words } } } };
     expect(getMapActivityProgressId(item(a.id))).toBe('word-rescue');
     expect(isMapActivityCompleted(item(a.id),progress)).toBe(true);
     expect(isMapActivityCompleted(item(b.id),progress)).toBe(false);
     expect(isMapActivityCompleted(item('unknown'),progress)).toBe(false);
+    for (const id of a.wordIds.slice(3)) words[id].attempts=0;
+    expect(isMapActivityCompleted(item(a.id),progress)).toBe(false);
     words[a.wordIds[2]].attempts=0;
     words[a.wordIds[0]].attempts=10;
     expect(isMapActivityCompleted(item(a.id),progress)).toBe(false);

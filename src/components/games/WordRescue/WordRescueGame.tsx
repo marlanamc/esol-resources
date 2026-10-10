@@ -131,16 +131,17 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   }, [send]);
 
   useEffect(() => {
-    if (!fromMap || !loaded || disabled || !selectedCollection || launched.current) return;
+    const launchCollection = fromMap ? selectedCollection : session?.mode === 'weekly' ? collections.find(item => item.id === session.collectionId) : null;
+    if (!loaded || disabled || !launchCollection || launched.current) return;
     launched.current = true;
-    void send({ type: 'start', id: crypto.randomUUID(), collectionId: selectedCollection.id }).then(ok => {
+    void send({ type: 'start', id: crypto.randomUUID(), collectionId: launchCollection.id, mode: fromMap ? 'weekly' : 'standalone' }).then(ok => {
       if (!ok) return;
       setMenu(false);
       const current = latest.current.session;
       setStage(current?.said ? 2 : current?.heard.includes('word') ? 1 : 0);
       setBuildStep(0);
     });
-  }, [fromMap, loaded, disabled, selectedCollection, send]);
+  }, [fromMap, loaded, disabled, selectedCollection, collections, session, send]);
 
   const move = (next: 0 | 1 | 2) => { audio.stop(); setStage(next); requestAnimationFrame(() => stepTitle.current?.focus()); };
   const play = (clip: ClipKind, rate: number, device = false) => {
@@ -181,10 +182,10 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     {loaded && sessionLocked && <p role="status" className={styles.status}>Your saved session is kept safe. Its week must be released before you can continue.</p>}
     {notice && <p role="status" className={styles.status}>{notice}</p>}
     {(error || pending) && <div className={styles.error} role="alert"><p>{error || 'An earlier practice step is waiting to save.'}</p>{pending && <button className={styles.secondary} disabled={saving} onClick={() => void send(pending, true)}>{saving ? 'Saving…' : 'Retry save'}</button>}{!loaded && <button className={styles.secondary} onClick={() => window.location.reload()}>Reload saved practice</button>}</div>}
-    {!loaded && !error ? <p role="status">Loading your practice…</p> : receipt ? <section aria-live="polite" aria-atomic="true"><Check aria-hidden size={32} /><h1 className={styles.heading}>{roundComplete ? 'Round complete!' : 'Your practice counts.'}</h1>{roundComplete ? <div className={styles.roundReward}><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'A full round earns these points in the live activity. No account points are awarded in preview.' : `You practiced ${session!.wordIds.length} words. Your points are saved!`}</p></div> : <p className={styles.status}>{receipt}</p>}{fromMap && !word ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight aria-hidden size={20} /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setStage(0); setBuildStep(0); }}>{word ? 'Next word' : 'See my practice'}<ArrowRight aria-hidden size={20} /></button>}</section> : !active ? <section>
+    {!loaded && !error ? <p role="status">Loading your practice…</p> : receipt ? <section aria-live="polite" aria-atomic="true"><Check aria-hidden size={32} /><h1 className={styles.heading}>{roundComplete ? 'Round complete!' : 'Your practice counts.'}</h1>{roundComplete ? <div className={styles.roundReward}><strong className={styles.rewardTotal}>{preview ? `${roundPoints} practice points` : `+${roundPoints} points earned`}</strong><p>{preview ? 'A full round earns these points in the live activity. No account points are awarded in preview.' : `You practiced ${session!.mode === 'weekly' ? 'all ' : ''}${session!.wordIds.length} ${session!.mode === 'weekly' ? 'weekly words' : 'words'}. Your points are saved!`}</p></div> : <p className={styles.status}>{receipt}</p>}{fromMap && !word ? <a className={styles.primary} href={returnHref}>Back to course map<ArrowRight aria-hidden size={20} /></a> : <button className={styles.primary} onClick={() => { audio.reset(); setReceipt(null); setStage(0); setBuildStep(0); }}>{word ? 'Next word' : 'See my practice'}<ArrowRight aria-hidden size={20} /></button>}</section> : !active ? <section>
       <h1 className={styles.heading}>{session && session.index >= session.wordIds.length && !menu ? 'A little more confident.' : 'Which words today?'}</h1>
       {selectedCollection && <p className={styles.status}>This week: {selectedCollection.label}</p>}
-      <p className={styles.subtitle}>Three words. A few small steps. Listen, try, and make them your own.</p>
+      <p className={styles.subtitle}>{fromMap ? `Practice all ${selectedCollection?.wordIds.length ?? 6} weekly words. Earn ${(selectedCollection?.wordIds.length ?? 6) * WORD_RESCUE_POINTS} points.` : 'Three words. A few small steps. Listen, try, and make them your own.'}</p>
       {word && !sessionLocked && <button className={styles.primary} disabled={disabled} onClick={() => setMenu(false)}>Continue {word.term}<ArrowRight aria-hidden size={20} /></button>}
       {!fromMap && <div className={styles.collections}>
         <button className={styles.collection} disabled={disabled || !!word} onClick={() => setWeekly(value => !value)} aria-expanded={weekly}>This week’s words<small>Choose the week your class is studying</small></button>

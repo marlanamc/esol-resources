@@ -89,3 +89,9 @@ The final confirmed word save replaces the per-word receipt with a persistent ro
 ## Deployment source reconciliation
 
 The release checkout was brought up to date with GitHub main, restoring the leaderboard commits through PR #84 and the award-chain response fix. Vercel now uses `npx prisma generate && npx next build`, matching the verified narrow deployment. Database migrations and course-map seeding must be run explicitly when needed; publishing a frontend update no longer invokes the wholesale map seed.
+
+## Full weekly rounds — October 10 update
+
+Course-map launches now pass weekly mode and practice the complete vocabulary collection (six words in the released weeks), earning 12 points at two points per word. Standalone starts stay at three words and six points. Weekly and standalone unfinished rounds have separate saved-session keys. Unfinished legacy weekly rounds expand to the full set without changing session IDs, credited words, or current listening/spoken evidence. A completed older three-word round retains its credit; the course-map checkmark now requires all distinct words in that week's collection.
+
+The persistent final receipt reports the actual round total: “+12 points earned” and “You practiced all 6 weekly words. Your points are saved!” for a full weekly round. Both confidence choices still earn equal credit, and retrying any finish request does not add points again.
