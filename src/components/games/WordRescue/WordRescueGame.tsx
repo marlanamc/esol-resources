@@ -36,7 +36,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   const [receipt, setReceipt] = useState<string | null>(null);
   const [wordReward, setWordReward] = useState<{ id: string; points: number } | null>(null);
   const clearWordReward = useCallback(() => setWordReward(null), []);
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(!fromMap && requestedCollection !== 'again');
   const [weekly, setWeekly] = useState(!!selectedCollection);
   const [week, setWeek] = useState(selectedCollection?.id ?? collections[1]?.id ?? 'everyday');
   const [stage, setStage] = useState<0 | 1 | 2>(0);
@@ -148,7 +148,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
   }, [send]);
 
   useEffect(() => {
-    const launchCollection = requestedCollection === 'again' && !fromMap ? { id: 'again' } : fromMap ? selectedCollection : session?.mode === 'weekly' ? collections.find(item => item.id === session.collectionId) : null;
+    const launchCollection = requestedCollection === 'again' && !fromMap ? { id: 'again' } : fromMap ? selectedCollection : null;
     if (!loaded || disabled || !launchCollection || launched.current) return;
     launched.current = true;
     if (launchCollection.id === 'again' && !revisitCount && !(session?.collectionId === 'again' && session.index < session.wordIds.length)) {
@@ -211,7 +211,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       <h1 className={styles.heading}>{session && session.index >= session.wordIds.length && !menu ? 'A little more confident.' : 'Which words today?'}</h1>
       {selectedCollection && <p className={styles.status}>This week: {selectedCollection.label}</p>}
       <p className={styles.subtitle}>{fromMap ? `Practice all ${selectedCollection?.wordIds.length ?? 6} weekly words. Earn ${(selectedCollection?.wordIds.length ?? 6) * WORD_RESCUE_POINTS} points.` : 'Three words. A few small steps. Listen, try, and make them your own.'}</p>
-      {word && !sessionLocked && <button className={styles.primary} disabled={disabled} onClick={() => setMenu(false)}>Continue {word.term}<ArrowRight aria-hidden size={20} /></button>}
+      {word && !sessionLocked && <><p className={styles.muted}>Your practice is saved. Finish this round to choose another collection.</p><button className={styles.primary} disabled={disabled} onClick={() => setMenu(false)}>Resume practice: {word.term}<ArrowRight aria-hidden size={20} /></button></>}
       {!fromMap && <div className={styles.collections}>
         <button className={styles.collection} disabled={disabled || !!word} onClick={() => setWeekly(value => !value)} aria-expanded={weekly}>This week’s words<small>Choose the week your class is studying</small></button>
         {weekly && !collections.some(set => set.sourceActivityId) && <p className={styles.muted}>Your teacher hasn’t released any vocabulary weeks yet. You can practice everyday words.</p>}

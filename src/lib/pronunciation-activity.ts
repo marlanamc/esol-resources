@@ -249,3 +249,19 @@ export function comparePronunciationActivities<T extends PronunciationActivityLi
   if (leftOrder !== rightOrder) return leftOrder - rightOrder;
   return (left.title ?? "").localeCompare(right.title ?? "");
 }
+
+export function buildPronunciationSections<T extends PronunciationActivityLike>(activities: T[]) {
+  const sections = [
+    { name: "Word Practice", activities: [] as T[] },
+    { name: "Similar Sounds", activities: [] as T[] },
+    { name: "Past-Tense Endings", activities: [] as T[] },
+    { name: "Sentence Listening", activities: [] as T[] },
+    { name: "Mixed Review", activities: [] as T[] },
+  ];
+  for (const activity of activities) {
+    const motif = getPronunciationActivityDescriptor(activity).motif;
+    const index = motif === "minimal-pairs" ? 1 : motif === "ed-sounds" ? 2 : motif === "sentence-listening" ? 3 : motif === "mixed-review" ? 4 : 0;
+    sections[index].activities.push(activity);
+  }
+  return sections.filter(section => section.activities.length > 0);
+}
