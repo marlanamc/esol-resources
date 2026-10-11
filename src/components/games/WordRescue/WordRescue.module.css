@@ -121,3 +121,6 @@
   .recordingDot { animation: recordingPulse 1.8s ease-in-out infinite; }
 }
 @keyframes recordingPulse { 50% { opacity: .45; } }
+
+.wordParts { margin: 16px 0; padding: 12px 14px; border-radius: 10px; background: #e7f0e9; }
+.wordParts .soundGuide { margin: 6px 0 0; overflow-wrap: anywhere; }

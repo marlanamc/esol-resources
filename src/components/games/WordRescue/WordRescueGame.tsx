@@ -1,5 +1,6 @@
 'use client';
 
+import { RESCUE_WORD_PARTS } from '@/data/word-rescue-word-parts';
 import { sanitizeInternalHref } from '@/lib/learner/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -186,6 +187,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       <div className={styles.languages} role="group" aria-label="Help language"><button lang="es" disabled={disabled} aria-pressed={state.language === 'es'} onClick={() => chooseLanguage('es')}>Español</button><button lang="pt-BR" disabled={disabled} aria-pressed={state.language === 'pt-BR'} onClick={() => chooseLanguage('pt-BR')}>Português (Brasil)</button></div>
       <div lang={state.language}>
         <p className={styles.muted}>{state.language === 'es' ? 'Guía aproximada · escucha el audio' : 'Guia aproximado · ouça o áudio'}</p>
+        {RESCUE_WORD_PARTS[word.term] && <div className={styles.wordParts}><p className={styles.muted}>{state.language === 'es' ? 'La palabra por partes' : 'A palavra em partes'}</p><p className={styles.soundGuide} lang="en" aria-label={word.term}>{RESCUE_WORD_PARTS[word.term]}</p></div>}
         {hint?.sounds && <p className={styles.soundGuide}>{hint.sounds}</p>}
         <ul className={styles.tips}>{(hint?.tips ?? (state.language === 'es' ? ['Escucha la palabra despacio y después a velocidad normal.', 'Repite con el audio. La guía de sonidos para esta palabra todavía está en preparación.'] : ['Ouça a palavra devagar e depois na velocidade normal.', 'Repita com o áudio. O guia de sons desta palavra ainda está em preparação.'])).map(tip => {
           const colon = tip.indexOf(':');
