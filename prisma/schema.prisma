@@ -48,6 +48,7 @@ model User {
   speakingSubmissions    SpeakingSubmission[]
   submissions            Submission[]
   achievements           UserAchievement[]
+  announcementDismissals AnnouncementDismissal[]
   preferences            UserPreferences?
   vocabReviewStates      UserVocabReviewState[]
   writingClassVotes      WritingClassVote[]      @relation("StudentClassVotes")
@@ -72,6 +73,8 @@ model Class {
   teacherId       String
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
+  announcementId  String              @default(cuid())
+  announcementDismissals AnnouncementDismissal[]
   announcement    String?
   sectionGroupId  String?
   assignments     Assignment[]
@@ -632,4 +635,17 @@ model CourseMapItem {
 
   @@index([weekId, order])
   @@index([activityId])
+}
+
+// Store only the dismissed publication identity, not announcement history.
+model AnnouncementDismissal {
+  studentId      String
+  classId        String
+  announcementId String
+  dismissedAt    DateTime @default(now())
+  student        User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class          Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, classId])
+  @@index([classId])
 }

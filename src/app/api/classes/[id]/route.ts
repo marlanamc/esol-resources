@@ -115,6 +115,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
             const data: {
                 announcement?: string | null;
+                announcementId?: string;
                 name?: string;
                 description?: string | null;
                 sectionGroupId?: string | null;
@@ -122,6 +123,8 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
             if (rawAnnouncement !== undefined) {
                 data.announcement = cleanedAnnouncement || null;
+                // A new publication must appear even when its text is reused.
+                data.announcementId = randomUUID();
             }
             if (cleanedName !== undefined) {
                 data.name = cleanedName;

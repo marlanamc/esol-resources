@@ -42,6 +42,8 @@ type StudentEnrollment = {
     class: {
         name: string;
         announcement: string | null;
+        announcementId: string;
+        announcementDismissals: { announcementId: string }[];
         assignments: {
             id: string;
             title: string | null;
@@ -128,6 +130,10 @@ export default async function DashboardPage() {
                     include: {
                         class: {
                             include: {
+                                announcementDismissals: {
+                                    where: { studentId: userId },
+                                    select: { announcementId: true },
+                                },
                                 assignments: {
                                     select: {
                                         id: true,
@@ -193,10 +199,14 @@ export default async function DashboardPage() {
             }))
     );
     const classAnnouncements: AnnouncementItem[] = enrollments
-        .map((enrollment: StudentEnrollment) => ({
+        .map((enrollment) => ({
+            id: enrollment.class.announcementId,
             className: enrollment.class.name,
             message: enrollment.class.announcement?.trim() || "",
             messageHtml: renderAnnouncementMarkdown(enrollment.class.announcement),
+            dismissed: enrollment.class.announcementDismissals.some(
+                (dismissal) => dismissal.announcementId === enrollment.class.announcementId
+            ),
         }))
         .filter((announcement) => announcement.message.length > 0);
 
@@ -457,10 +467,10 @@ export default async function DashboardPage() {
         <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 md:px-7 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
+                <ClassAnnouncement key={userId} announcements={classAnnouncements} studentId={userId} />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
                     <div className="min-w-0 space-y-5">
-                        <ClassAnnouncement announcements={classAnnouncements} variant="compact" />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                         <ThisWeekPanel
                             user={{ id: userId, role: userRole }}
@@ -477,7 +487,6 @@ export default async function DashboardPage() {
 
                 {/* ── DESKTOP layout (lg+) — Option 2: Card-Based & Focused ── */}
                 <div className="hidden lg:block">
-                    <ClassAnnouncement announcements={classAnnouncements} />
                     {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
 
                     {/* Two-column grid: main left, sidebar right */}

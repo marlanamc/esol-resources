@@ -1,94 +1,99 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Megaphone, ChevronDown, ChevronUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Megaphone, X } from 'lucide-react';
 
 export interface AnnouncementItem {
+    id: string;
     className: string;
     message: string;
     messageHtml: string;
+    dismissed: boolean;
 }
 
 interface ClassAnnouncementProps {
     announcements: AnnouncementItem[];
-    /** `compact` is the mobile home row that sits above the This week card. */
-    variant?: 'panel' | 'compact';
+    /** Omit for anonymous visitors; authenticated dismissals are saved to their account. */
+    studentId?: string;
 }
 
-export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announcements, variant = 'panel' }) => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+const storageKey = (id: string) => `announcement-dismissed:anonymous:${id}`;
+const dismissButtonClass = 'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-text-muted transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40';
 
-    if (!announcements || announcements.length === 0) return null;
+export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncementProps) {
+    const [dismissed, setDismissed] = useState<Set<string>>(() => new Set());
+    const [ready, setReady] = useState(Boolean(studentId));
+    const [error, setError] = useState<string | null>(null);
 
-    if (variant === 'compact') {
-        // Name the class only when there is more than one to tell apart.
-        const showClassName = announcements.length > 1;
-        return (
-            <section
-                className="flex items-start gap-3 rounded-[14px] px-3.5 py-3"
-                style={{ background: 'var(--surface-base)', border: '1px solid var(--border-subtle)' }}
-                aria-label="Announcements"
-            >
-                <span
-                    className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full text-amber-700"
-                    style={{ background: 'color-mix(in srgb, #b45309 12%, transparent)' }}
-                    aria-hidden="true"
-                >
-                    <Megaphone className="h-4 w-4" />
-                </span>
-                <div className="min-w-0 flex-1 divide-y divide-[var(--dashboard-divider)]">
-                    {announcements.map((announcement, index) => (
-                        <div key={`${announcement.className}-${index}`} className="py-1.5 first:pt-0 last:pb-0">
-                            <p className="m-0 text-[11px] font-extrabold uppercase tracking-[.07em] text-text-muted">
-                                {showClassName ? announcement.className : 'From your teacher'}
-                            </p>
-                            <div
-                                className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[15px] leading-snug text-text"
-                                dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
-                            />
-                        </div>
-                    ))}
-                </div>
-            </section>
-        );
-    }
+    useEffect(() => {
+        if (studentId) return;
+        const readDismissals = () => {
+            try {
+                setDismissed(new Set(announcements.filter((item) => localStorage.getItem(storageKey(item.id)) === '1').map((item) => item.id)));
+            } catch {
+                // Storage may be blocked. Announcements remain available for this visit.
+            }
+            setReady(true);
+        };
+        readDismissals();
+        window.addEventListener('storage', readDismissals);
+        return () => window.removeEventListener('storage', readDismissals);
+    }, [announcements, studentId]);
+
+    const visible = ready ? announcements.filter((item) => !item.dismissed && !dismissed.has(item.id)) : [];
+
+    const dismiss = async (id: string) => {
+        setDismissed((previous) => new Set(previous).add(id));
+        setError(null);
+        if (!studentId) {
+            try {
+                localStorage.setItem(storageKey(id), '1');
+            } catch {
+                setError('Hidden for this visit. Your browser could not save the dismissal.');
+            }
+            return;
+        }
+        try {
+            const response = await fetch('/api/announcements/dismiss', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ announcementId: id }),
+            });
+            if (!response.ok) throw new Error('Dismissal failed');
+        } catch {
+            setDismissed((previous) => {
+                const next = new Set(previous);
+                next.delete(id);
+                return next;
+            });
+            setError('Could not save your dismissal. Please try the X again.');
+        }
+    };
+
+    if (visible.length === 0 && !error) return null;
 
     return (
-        <section className="dashboard-panel max-w-4xl rounded-2xl px-4 py-3 sm:px-5" aria-label="Announcements">
-            <div className="flex items-center justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-2.5">
-                    <Megaphone className="h-4 w-4 shrink-0 text-amber-700" aria-hidden="true" />
-                    <h2 className="truncate font-display text-base font-bold text-text">
-                        Announcements
-                    </h2>
-                </div>
-                <button
-                    type="button"
-                    onClick={() => setIsCollapsed((collapsed) => !collapsed)}
-                    className="flex shrink-0 items-center gap-1 rounded-md px-2 py-1.5 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600"
-                    aria-label={isCollapsed ? 'Show announcements' : 'Hide announcements'}
-                    aria-expanded={!isCollapsed}
-                >
-                    <span>{isCollapsed ? 'Show' : 'Hide'}</span>
-                    {isCollapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
-                </button>
-            </div>
-
-            {!isCollapsed && (
-                <div className="mt-2 divide-y divide-[var(--dashboard-divider)]">
-                    {announcements.map((announcement, index) => (
-                        <div key={`${announcement.className}-${index}`} className="flex flex-wrap items-start gap-x-3 gap-y-1.5 py-2.5 first:pt-2">
-                            <span className="shrink-0 rounded-md bg-primary/5 px-2 py-0.5 text-xs font-semibold text-primary">
-                                {announcement.className}
-                            </span>
-                            <div
-                                className="announcement-markdown prose prose-sm min-w-0 flex-1 basis-56 text-sm leading-relaxed text-text/85 sm:text-base"
-                                dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
-                            />
-                        </div>
+        <div className="mb-3 max-w-4xl">
+            {error && <p role="alert" className="mb-2 text-sm text-text-muted">{error}</p>}
+            {visible.length > 0 && (
+                <section aria-label="Teacher announcements" className="space-y-2">
+                    {visible.map((announcement) => (
+                        <article key={announcement.id} className="dashboard-panel flex items-start gap-2 rounded-2xl py-1.5 pl-3.5 pr-1 lg:pl-5">
+                            <Megaphone className="mt-3 h-4 w-4 shrink-0 text-amber-700" aria-hidden />
+                            <div className="min-w-0 flex-1 py-1">
+                                <p className="m-0 text-[11px] font-extrabold uppercase tracking-[.07em] text-text-muted lg:text-xs">
+                                    {announcements.length > 1 ? announcement.className : 'From your teacher'}
+                                </p>
+                                <div className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[15px] leading-snug text-text lg:text-base"
+                                    dangerouslySetInnerHTML={{ __html: announcement.messageHtml }} />
+                            </div>
+                            <button type="button" onClick={() => void dismiss(announcement.id)} aria-label="Dismiss announcement" className={dismissButtonClass}>
+                                <X size={16} aria-hidden />
+                            </button>
+                        </article>
                     ))}
-                </div>
+                </section>
             )}
-        </section>
+        </div>
     );
-};
+}
