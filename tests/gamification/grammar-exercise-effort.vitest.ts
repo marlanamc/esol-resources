@@ -1,5 +1,6 @@
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
+import { questionsRealAnswersContent } from "@/content/grammar/questions-real-answers";
 import { verbFormsOverviewContent } from "@/content/grammar/verb-forms-overview";
 
 vi.mock("react", async (importOriginal) => ({
@@ -50,4 +51,20 @@ describe("overview effort credit", () => {
     other.button.props.onClick();
     expect(other.onExerciseComplete).not.toHaveBeenCalled();
   });
+});
+
+it("recognizes a complete imperfect Week 5 attempt without claiming mastery", () => {
+  const onComplete = vi.fn();
+  const onExerciseComplete = vi.fn();
+  const tree = ExerciseSection({
+    exercise: questionsRealAnswersContent.sections[0].exercises![0],
+    exerciseIndex: 0, sectionId: "questions-open-doors",
+    answers: { 0: "what", 1: "why", 2: "what", 3: "when", 4: "when" },
+    onAnswerChange: vi.fn(), onComplete, onExerciseComplete, rewardAttempts: true,
+  });
+  const button = checkButton(tree)!;
+  expect(button.props.disabled).toBe(false);
+  button.props.onClick();
+  expect(onExerciseComplete).toHaveBeenCalledOnce();
+  expect(onComplete).not.toHaveBeenCalled();
 });

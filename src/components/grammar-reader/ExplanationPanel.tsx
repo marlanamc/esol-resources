@@ -183,7 +183,7 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                         <div className="flex items-center gap-2">
                             <CheckCircle2 className="w-5 h-5 text-success" />
                             <p className="text-sm font-medium text-success">
-                                {showPractice ? "Exercises unlocked — visible on the right →" : "Exercises hidden"}
+                                {showPractice ? "Exercises unlocked — ready to practice" : "Exercises hidden"}
                             </p>
                         </div>
                         {onTogglePractice && (

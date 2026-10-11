@@ -63,7 +63,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
         if (q.type === "word-scramble") {
             return (scramble[q.id]?.selected.length ?? 0) === q.words.length;
         }
-        return !!answers[q.id];
+        return !!answers[q.id]?.trim();
     };
 
     const handleSubmit = () => {

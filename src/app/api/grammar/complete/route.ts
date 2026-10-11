@@ -1,3 +1,4 @@
+import { questionsRealAnswersContent } from "@/content/grammar/questions-real-answers";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -96,6 +97,10 @@ export async function POST(request: Request) {
         slug;
     const reason = `grammar:${slug}`;
 
+    if ((score !== undefined || total !== undefined) &&
+        (!Number.isInteger(score) || !Number.isInteger(total) || total <= 0 || score < 0 || score > total)) {
+        return apiError("Invalid quiz score", 400);
+    }
     // 1. Record the quiz score if provided
     if (score !== undefined && total !== undefined) {
         const activityExists = await prisma.activity.findUnique({
@@ -183,7 +188,9 @@ export async function POST(request: Request) {
     }
 
     // 4. Require at least 1 exercise to get any completion points
-    if (exercisesCompleted === 0) {
+    const completedWeekFiveQuiz = slug === "questions-real-answers" && total === questionsRealAnswersContent.miniQuiz?.length &&
+        Number.isInteger(score) && score >= 0 && score <= total;
+    if (exercisesCompleted === 0 && !completedWeekFiveQuiz) {
         return NextResponse.json({
             ok: true,
             awarded: false,
@@ -199,16 +206,18 @@ export async function POST(request: Request) {
     // We don't have total exercise count here, so we just award base completion.
     const basePoints = POINTS.GRAMMAR_GUIDE_BASE;
 
-    await applyAwardChain({
+    const completionAward = await applyAwardChain({
         userId,
         points: basePoints,
         reason: displayReason,
+        dedupeKey: true,
+        dedupeWindowMs: 100 * 365.25 * 24 * 60 * 60 * 1000,
     });
 
     return NextResponse.json({
         ok: true,
-        awarded: true,
-        points: basePoints,
+        awarded: !completionAward?.deduped,
+        points: completionAward?.deduped ? 0 : basePoints,
         exercisesCompleted,
         scoreRecorded: score !== undefined,
     });

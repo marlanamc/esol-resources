@@ -8,16 +8,17 @@ interface ProgressBarProps {
     total: number;
     current: number;
     completed: number;
+    readingProgress?: boolean;
 }
 
-export const ProgressBar = React.memo(function ProgressBar({ total, current, completed }: ProgressBarProps) {
+export const ProgressBar = React.memo(function ProgressBar({ total, current, completed, readingProgress = false }: ProgressBarProps) {
     const percentage = Math.round((completed / total) * 100);
 
     return (
         <div className="progress-bar">
             <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-text">
-                    Your Progress
+                    {readingProgress ? "Reading progress" : "Your Progress"}
                 </span>
                 <motion.span
                     className="text-sm font-bold text-success"
@@ -90,7 +91,7 @@ export const ProgressBar = React.memo(function ProgressBar({ total, current, com
             </div>
 
             <p className="text-xs text-text-muted text-center">
-                {completed} of {total} sections completed
+                {completed} of {total} sections {readingProgress ? "visited · practice and quiz are separate" : "completed"}
             </p>
         </div>
     );

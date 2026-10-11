@@ -14,7 +14,7 @@ const sceneCard = (
   if (!scene) return "";
   return `
     <div class="gc-bg-white" style="margin: 0 0 1.5rem 0; padding: 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.06)">
-      <img src="${scene.url}" srcset="${scene.url.replace("w=1200", "w=400")} 400w, ${scene.url.replace("w=1200", "w=800")} 800w, ${scene.url} 1200w" sizes="(max-width: 640px) 100vw, 800px" alt="${scene.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover" />
+      <img src="${scene.url}" srcset="${scene.url.replace("w=1200", "w=400")} 400w, ${scene.url.replace("w=1200", "w=800")} 800w, ${scene.url} 1200w" sizes="(max-width: 640px) 100vw, 800px" alt="${scene.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 160px; object-fit: cover" />
       <div style="padding: 0.55rem 0.9rem; font-size: 0.82rem; background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; gap: 0.5rem; align-items: center; flex-wrap: wrap">
         <span><span class="gc-text-${accent}" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Scene</span> &nbsp;${caption}</span>
         <span style="font-size: 0.68rem; opacity: 0.7">Photo: <a href="${scene.credit.url}" rel="noopener" target="_blank">${scene.credit.name}</a> / Unsplash</span>
@@ -83,6 +83,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, use questions to talk about digital habits: checking messages, finding files, protecting your information, and asking for help. Rosa has an email that does not seem right.</p>
 
+        <p style="margin: 0 0 1rem 0">Try every question in a practice set and check your answers. Each set offers <strong>2 effort points</strong>, even with mistakes. Finish the quiz for <strong>5 completion points</strong>. You can correct your answers and try again.</p>
+
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Notice how Rosa and Sarah use questions to understand the message and decide what to do.</p>
 
         ${dialogue([
@@ -90,8 +92,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           { speaker: "Sarah", avatar: "🧑🏽", text: "I don\'t click anything. <strong>Who</strong> is it from?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "It says it\'s from my bank. It wants me to click a link to keep my account open.", side: "right", tone: "terracotta" },
           { speaker: "Sarah", avatar: "🧑🏽", text: "That sounds suspicious. <strong>Where</strong> do you usually check your account?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "In the bank\'s app. I\'ll open that instead.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "🧑🏽", text: "Good idea. If you\'re still worried, call the number on your bank card.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "In the bank\'s app. I\'ll open that instead. If I need help, I can call the number on my bank card.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="display: grid; gap: 0.45rem; margin: 1.25rem 0">
@@ -158,8 +159,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "\"___ is the sender of this email?\" (You want to know the person's name.)",
-              expectedAnswers: ["Who", "who"],
+              label: "___ do you join a video call? (Ask about the method: with an app or a website.)",
+              expectedAnswers: ["How", "how"],
             },
           ],
         },
@@ -173,21 +174,20 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       title: "Who, What, Where: the basics",
       icon: "📍",
       explanation: `
-        ${sceneCard("sceneApartmentHallway", "At a computer. Sarah, Amara's neighbor too, helps her find a downloaded job application.", "sage")}
+        ${sceneCard("sceneApartmentHallway", "At a computer. Sarah helps her neighbor Amara find a downloaded job application.", "sage")}
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "I can\'t find the form I downloaded. <strong>Where</strong> is it?", side: "left", tone: "sage" },
           { speaker: "Sarah", avatar: "🧑🏽", text: "Let\'s look in your Downloads folder. <strong>What</strong> is the file called?", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏿", text: "Job application. There it is! <strong>Who</strong> is the contact person?", side: "left", tone: "sage" },
           { speaker: "Sarah", avatar: "🧑🏽", text: "James in the hiring office. His email address is on the job posting.", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Thanks. I\'ll check the address before I send it.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem">Questions with <strong>Who, What, Where</strong> use two different helpers depending on the verb.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem">For the questions below, choose the pattern that matches the verb.</p>
           <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.8">
             <li>With <strong>be</strong>: <em>Who <strong>is</strong> the sender? Where <strong>are</strong> my downloads?</em></li>
-            <li>With other verbs: <em>What <strong>do</strong> you share online? Where <strong>does</strong> she save her files?</em></li>
+            <li>With most action verbs in the present simple: <em>What <strong>do</strong> you share online? Where <strong>does</strong> she save her files?</em></li>
           </ul>
         </div>
 
@@ -200,9 +200,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Where <strong>is</strong> the file? &nbsp; Who <strong>is</strong> the sender?</p>
           </div>
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #268a82; background: rgba(38,138,130,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #268a82; margin-bottom: 0.3rem">With DO / DOES</div>
-            <p style="margin: 0"><em>Wh- word + <strong>do / does</strong> + subject + base verb</em></p>
-            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">What <strong>do</strong> you do? &nbsp; Where <strong>does</strong> she work?</p>
+            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #268a82; margin-bottom: 0.3rem">With DO / DOES / DID</div>
+            <p style="margin: 0"><em>Wh- word + <strong>do / does / did</strong> + subject + base verb</em></p>
+            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">What <strong>do</strong> you do? &nbsp; Where <strong>does</strong> she work?</p><p style="margin: 0.5rem 0 0">For the past, use <strong>did</strong> with the base verb: <em>When did you download it?</em> Not <em>did you downloaded</em>.</p>
           </div>
         </div>
 
@@ -289,9 +289,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           { speaker: "Tech helper", avatar: "👩‍💼", text: "<strong>When</strong> did you last save a copy of your photos on another device?", side: "left", tone: "blue" },
           { speaker: "Nadine", avatar: "👩🏿", text: "I haven\'t done that. <strong>How</strong> do I copy them to my laptop?", side: "right", tone: "amber" },
           { speaker: "Tech helper", avatar: "👩‍💼", text: "You can connect your phone with a USB cable. Do you have yours?", side: "left", tone: "blue" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "Yes, right here. <strong>How long</strong> does it take?", side: "right", tone: "amber" },
-          { speaker: "Tech helper", avatar: "👩‍💼", text: "It depends on how many photos you have. Let\'s try a few first.", side: "left", tone: "blue" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "Thanks. I don\'t want to lose my family photos if my phone breaks.", side: "right", tone: "amber" },
+          { speaker: "Nadine", avatar: "👩🏿", text: "Yes. <strong>How long</strong> does it take?", side: "right", tone: "amber" },
+          { speaker: "Tech helper", avatar: "👩‍💼", text: "It depends on the number of photos. Let\'s try a few.", side: "left", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -374,7 +373,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         },
       ],
       tipBox: {
-        title: "How + adjective = a specific question",
+        title: "How + another word = a specific question",
         content:
           "How long, how often, how far, how much, how many. Each one narrows the question. You will keep adding to this list all year.",
       },
@@ -398,8 +397,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0 0 0.4rem 0; font-size: 1.05rem"><strong>Why</strong> asks for a reason. The answer almost always starts with <strong>because</strong>.</p>
-          <p style="margin: 0; font-weight: 600; font-size: 0.95rem">Why + do/does/did/is/are + subject + verb?</p>
+          <p style="margin: 0 0 0.4rem 0; font-size: 1.05rem"><strong>Why</strong> asks for a reason. You can begin your answer with <strong>because</strong>.</p>
+          <p style="margin: 0; font-weight: 600; font-size: 0.95rem">Why + do/does/did + subject + base verb? <em>Why did she close the app?</em><br />With be: Why + am/is/are + subject + detail? <em>Why is the app slow?</em></p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0 1.25rem 0">
@@ -503,7 +502,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0; font-size: 1.05rem">All six question words work in the same basic pattern: <strong>Wh- word + helper verb (be/do/does/did) + subject + main verb.</strong> The helper verb changes. The order does not.</p>
+          <p style="margin: 0; font-size: 1.05rem">Choose the pattern that fits your question:<br /><strong>Be:</strong> Where <strong>is</strong> the file?<br /><strong>Do / does / did + base verb:</strong> What <strong>did</strong> you <strong>download</strong>?<br /><strong>Be + verb-ing:</strong> What <strong>are</strong> you <strong>downloading</strong>?<br />Sometimes <strong>who</strong> or <strong>what</strong> is the subject: <em>Who sent this message? What happens?</em> These questions do not need do, does, or did.</p>
         </div>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Two mistakes to watch for:</p>
@@ -583,53 +582,30 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       tipBox: {
         title: "One question leads to another",
         content:
-          "Real conversations work because every answer can become a new question. Practice asking one follow-up question after every answer you hear.",
+          "Your turn: Ask a classmate one question about their phone habits. Try: How often do you ___? Listen to their answer, then ask one follow-up question. You can practice aloud by yourself too.",
       },
     },
   ],
 
   miniQuiz: [
     {
-      id: "qra-q2",
-      question: "You want to find the room for the computer class. Which question do you ask?",
-      options: [
-        { value: "a", label: "Who is the computer class?" },
-        { value: "b", label: "When is the computer class?" },
-        { value: "c", label: "Where is the computer class?" },
-      ],
-      correctAnswer: "c",
-      explanation: "Where asks about a place or location. When asks about time, so it won't tell you the room.",
-      topic: "where",
-      skill: "usage",
-      skillTag: "meaning-where-place",
-      difficulty: "easy",
+      id: "qra-reason", type: "fill-blank" as const,
+      question: "Fill in the question word: ___ did she close the pop-up? Because it asked for her password.",
+      correctAnswer: "Why", acceptedAnswers: ["why"],
+      explanation: "Why asks for a reason. Because introduces a reason.",
+      topic: "why", skill: "usage", skillTag: "meaning-why-reason", difficulty: "easy",
     },
     {
-      id: "qra-qfb1",
-      type: "fill-blank" as const,
-      question: "Fill in the blank: \"___ is the online meeting? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
-      correctAnswer: "When",
-      acceptedAnswers: ["when"],
-      explanation: "When asks about a time. Monday and Wednesday evenings are times.",
-      topic: "when",
-      skill: "usage",
-      skillTag: "meaning-when-time",
-      difficulty: "easy",
+      id: "qra-person", question: "Which question correctly asks about the person who created an app?",
+      options: [{ value: "a", label: "Who created this app?" }, { value: "b", label: "Who did created this app?" }, { value: "c", label: "Who created app this?" }],
+      correctAnswer: "a", explanation: "Who asks about a person. Here, who is the subject, so we do not add did.",
+      topic: "who", skill: "error-detection", skillTag: "form-subject-question", difficulty: "medium",
     },
     {
-      id: "qra-q6",
-      question: "Linh wants to join a video call. Which question is correctly formed?",
-      options: [
-        { value: "a", label: "What time does the call starts?" },
-        { value: "b", label: "What time does the call start?" },
-        { value: "c", label: "What time the call starts?" },
-      ],
-      correctAnswer: "b",
-      explanation: "With most verbs, you need do or does between the Wh- word and the subject. \"What time does the call start?\" is the correct form.",
-      topic: "question-formation",
-      skill: "error-detection",
-      skillTag: "form-do-does-missing",
-      difficulty: "medium",
+      id: "qra-frequency", question: "Your answer is: Twice a day. Which question were you asked?",
+      options: [{ value: "a", label: "How long is the video?" }, { value: "b", label: "How do you open the app?" }, { value: "c", label: "How often do you check email?" }],
+      correctAnswer: "c", explanation: "How often asks about frequency: how many times something happens.",
+      topic: "how-often", skill: "usage", skillTag: "meaning-how-often-frequency", difficulty: "medium",
     },
     {
       id: "qra-qws1",

@@ -80,3 +80,26 @@ describe("grammar completion points", () => {
         );
     });
 });
+
+describe("Week 5 quiz effort", () => {
+    it("credits a completed imperfect quiz without prior exercise credit", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
+        mockPrisma.activityProgress.findFirst.mockResolvedValue(null as never);
+        const response = await grammarCompletePost(completeRequest({ slug: "questions-real-answers", score: 2, total: 5 }));
+        expect((await response.json()).awarded).toBe(true);
+        expect(mockAward).toHaveBeenCalledWith(expect.objectContaining({ dedupeKey: true }));
+    });
+    it("does not credit a partial quiz or navigation alone", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
+        mockPrisma.activityProgress.findFirst.mockResolvedValue(null as never);
+        const response = await grammarCompletePost(completeRequest({ slug: "questions-real-answers", score: 1, total: 2 }));
+        expect((await response.json()).awarded).toBe(false);
+        expect(mockAward).not.toHaveBeenCalled();
+    });
+    it("reports no new points when the transactional award was deduplicated", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
+        mockAward.mockResolvedValue({deduped: true} as never);
+        const response = await grammarCompletePost(completeRequest({ slug: "questions-real-answers", score: 2, total: 5 }));
+        expect(await response.json()).toMatchObject({awarded: false, points: 0});
+    });
+});

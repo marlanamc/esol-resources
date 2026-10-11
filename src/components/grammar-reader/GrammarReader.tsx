@@ -11,6 +11,7 @@ import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
 import { PointsToast } from "@/components/ui/PointsToast";
 import Link from "next/link";
+import { GrammarSaveQueue } from "@/lib/grammar-save-queue";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
@@ -57,12 +58,29 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [showQuiz, setShowQuiz] = useState(false);
     const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
+    const saveQueue = useRef(new GrammarSaveQueue());
+    const [failedSaveCount, setFailedSaveCount] = useState(0);
+    const [retryingSaves, setRetryingSaves] = useState(false);
+    const [saveNotice, setSaveNotice] = useState("");
+    const saveGuideWork = useCallback(async (key: string, operation: () => Promise<void>) => {
+        const ok = await saveQueue.current.run(key, operation);
+        setFailedSaveCount(saveQueue.current.pendingCount);
+        return ok;
+    }, []);
+    const retryGuideSaves = useCallback(async () => {
+        setRetryingSaves(true);
+        const ok = await saveQueue.current.retry();
+        setFailedSaveCount(saveQueue.current.pendingCount);
+        setRetryingSaves(false);
+        return ok;
+    }, []);
     const [awardSent, setAwardSent] = useState(false);
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
     const [showPractice, setShowPractice] = useState(true);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
     const [progressHydrated, setProgressHydrated] = useState(false);
-    const quizSavePromiseRef = useRef<Promise<void> | null>(null);
+    const quizSavedRef = useRef(false);
+    const quizSavePromiseRef = useRef<Promise<boolean | undefined> | null>(null);
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
     const grammarActivitiesHref = "/dashboard/activities?category=grammar";
@@ -187,7 +205,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         // Don't skip if it's a quiz score update, as students can take it multiple times
         if (awardSent && quizScore === undefined) return;
 
-        try {
+        return saveGuideWork("completion", async () => {
             const assignmentId = readAssignmentId();
             const completionResponse = await fetch("/api/grammar/complete", {
                 method: "POST",
@@ -200,9 +218,19 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     responses,
                     assignmentId,
                 }),
+                signal: AbortSignal.timeout(20000),
             });
             if (!completionResponse.ok) {
                 throw new Error(`/api/grammar/complete failed with ${completionResponse.status}`);
+            }
+            const award = await completionResponse.json();
+            if (award.points > 0 && award.awarded) {
+                setPointsToast({ points: award.points, key: Date.now() });
+                setSaveNotice(`Practice saved. +${award.points} completion points.`);
+            } else if (award.message) {
+                setSaveNotice(award.message);
+            } else {
+                setSaveNotice("Practice saved. Any previously earned points are already in your balance.");
             }
             // Also save 100% progress if activityId is provided
             if (activityId) {
@@ -219,18 +247,14 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         completedSectionIds: sectionKeys,
                     }
                 );
+                if (!result?.ok) throw new Error("Completion progress did not save");
                 const savedProgress = typeof result?.progress === "number" ? result.progress : 100;
                 persistedProgressRef.current = Math.max(persistedProgressRef.current, savedProgress);
             }
-        } catch (error) {
-            // Non-blocking; user still reached completion. Keep a console trace for debugging.
-            console.error("Failed to record grammar completion", error);
-        } finally {
-            if (quizScore === undefined) {
-                setAwardSent(true);
-            }
-        }
-    }, [completionKey, awardSent, activityId, content.sections.length, readAssignmentId, sectionKeys]);
+            if (quizScore === undefined) setAwardSent(true);
+            else quizSavedRef.current = true;
+        });
+    }, [completionKey, awardSent, activityId, content.sections.length, readAssignmentId, sectionKeys, saveGuideWork]);
 
     // Track progress as user navigates through sections (and save last section for resume)
     useEffect(() => {
@@ -421,28 +445,17 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const handleExerciseComplete = useCallback(async (info: ExerciseCompletionInfo) => {
         if (!completionKey) return;
 
-        try {
+        await saveGuideWork(`exercise:${info.sectionId}:${info.exerciseId}`, async () => {
             const response = await fetch("/api/grammar/exercise-progress", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    slug: completionKey,
-                    activityId,
-                    exerciseId: info.exerciseId,
-                    sectionId: info.sectionId,
-                }),
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ slug: completionKey, activityId, exerciseId: info.exerciseId, sectionId: info.sectionId }),
+                signal: AbortSignal.timeout(20000),
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.pointsAwarded > 0) {
-                    setPointsToast({ points: data.pointsAwarded, key: Date.now() });
-                }
-            }
-        } catch {
-            // Non-blocking; don't interrupt user experience
-        }
-    }, [completionKey, activityId]);
+            if (!response.ok) throw new Error("Exercise save failed");
+            const data = await response.json();
+            if (data.pointsAwarded > 0) setPointsToast({ points: data.pointsAwarded, key: Date.now() });
+        });
+    }, [completionKey, activityId, saveGuideWork]);
 
     const handleUnlockExercises = useCallback(() => {
         if (!currentSectionKey || !currentHasExercises) return;
@@ -517,6 +530,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     // Save quiz score and responses immediately when student submits (before they click "Finish")
     const handleQuizScoreSubmit = useCallback((score: number, total: number, responses?: QuestionResponse[]) => {
+        quizSavedRef.current = false;
         const savePromise = awardCompletion(score, total, responses);
         quizSavePromiseRef.current = savePromise;
         void savePromise.finally(() => {
@@ -528,26 +542,15 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     // Called when student clicks "Finish" after seeing score.
     const handleQuizComplete = useCallback(async (score: number, total: number) => {
-        const pendingSave = quizSavePromiseRef.current;
-        if (pendingSave) {
-            try {
-                await pendingSave;
-            } catch {
-                // Non-blocking; continue to certificate view.
-            }
-        } else {
-            try {
-                await awardCompletion(score, total);
-            } catch {
-                // Non-blocking; continue to certificate view.
-            }
-        }
-
+        if (quizSavePromiseRef.current) await quizSavePromiseRef.current;
+        if (!(await retryGuideSaves())) return;
+        if (!quizSavedRef.current) await awardCompletion(score, total);
+        if (!(await retryGuideSaves())) return;
         router.push(buildMiniQuizCertificateHref(score, total));
         if (onComplete) {
             onComplete();
         }
-    }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router]);
+    }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router, retryGuideSaves]);
 
     return (
         <div ref={readerContainerRef} className="grammar-reader-container min-h-dvh bg-bg" data-testid="grammar-reader-shell">
@@ -560,6 +563,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                 />
             )}
 
+            {failedSaveCount > 0 && <div role="alert" className="sticky top-0 z-50 border border-red-300 bg-white p-4 text-text">
+                <p>Your practice has not finished saving. Keep this page open and retry so your work and points are saved.</p>
+                <button className="mt-2 min-h-12 rounded-lg bg-primary px-4 text-white" disabled={retryingSaves} onClick={() => void retryGuideSaves()}>{retryingSaves ? "Saving…" : "Retry saving practice"}</button>
+            </div>}
+            {saveNotice && <p role="status" className="bg-secondary/10 p-3 text-text">{saveNotice}</p>}
             {/* Main Content Container - Everything in one card */}
             <main className="w-full px-0 py-0 pb-24 sm:px-4 sm:py-4 md:container md:mx-auto md:pb-4">
                 <div className="grammar-reader-split-screen rounded-none border-y border-text/35 shadow-none overflow-hidden sm:rounded-xl sm:border sm:shadow-lg">
@@ -624,6 +632,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     total={content.sections.length}
                                     current={currentSectionIndex}
                                     completed={completedSections.size}
+                                    readingProgress={completionKey === "questions-real-answers"}
                                 />
                             </div>
                         </div>
@@ -699,7 +708,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                             onAnswerChange={handleAnswerChange}
                                             onSectionComplete={handleSectionComplete}
                                             onExerciseComplete={handleExerciseComplete}
-                                            rewardAttempts={completionKey === "verb-forms-overview"}
+                                            rewardAttempts={completionKey === "verb-forms-overview" || completionKey === "questions-real-answers"}
                                             unlocked={practiceUnlocked}
                                         />
                                     </div>

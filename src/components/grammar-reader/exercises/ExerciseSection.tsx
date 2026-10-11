@@ -203,7 +203,7 @@ export function ExerciseSection({
                         <p className="text-sm text-text-muted font-normal">{displayInstructions}</p>
                     )
                 )}
-                {answerExpectationMessage && (
+                {answerExpectationMessage && exercise.items.every(item => item.type === "text") && (
                     <p className="text-sm font-medium text-text">
                         Expected input: {answerExpectationMessage}
                     </p>
