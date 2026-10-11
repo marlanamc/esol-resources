@@ -16,7 +16,7 @@ import { GrammarGuideVisual, hasGrammarGuideVisual } from './GrammarGuideVisual'
 import { VocabActivityVisual } from './VocabActivityVisual';
 import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
 import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
-import { comparePronunciationActivities } from '@/lib/pronunciation-activity';
+import { buildPronunciationSections, comparePronunciationActivities } from '@/lib/pronunciation-activity';
 import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
 import { buildGameLibrarySections, isGamesLibraryActivity } from '@/lib/games-library';
 import type {
@@ -414,7 +414,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             {
                 name: 'Pronunciation',
                 color: '#ec4899', // pink
-                activities: activityIndex.pronunciation
+                subCategories: buildPronunciationSections(activityIndex.pronunciation),
+                activities: []
             },
             {
                 name: 'Speaking',

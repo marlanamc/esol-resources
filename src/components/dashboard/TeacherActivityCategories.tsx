@@ -9,6 +9,7 @@ import { logger } from '@/lib/shared/logger';
 import { parseActivityContent } from '@/types/activity';
 import { buildGameLibrarySections, isCourseMapOnlyGame, isGamesLibraryActivity } from '@/lib/games-library';
 import { displayTitle, vocabUnits } from '@/components/dashboard/activity-categories-vocab-utils';
+import { buildPronunciationSections } from '@/lib/pronunciation-activity';
 
 interface Activity {
     id: string;
@@ -770,7 +771,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             {
                 name: 'Pronunciation',
                 color: '#6a4c93', // purple
-                activities: activityIndex.pronunciation,
+                subCategories: buildPronunciationSections(activityIndex.pronunciation),
+                activities: [],
             },
             {
                 name: 'Speaking',
