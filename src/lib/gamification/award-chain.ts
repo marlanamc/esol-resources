@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/database/prisma";
 import { awardPoints, checkAndAwardAchievements, updateStreak } from "./gamification";
 import type { DbClient } from "./gamification";
@@ -30,6 +31,8 @@ export async function applyAwardChain(params: {
    */
   dedupeKey?: boolean;
   dedupeWindowMs?: number;
+  /** Join the submission transaction so completion, credit and dedupe commit together. */
+  transaction?: Prisma.TransactionClient;
 }): Promise<AwardChainResult> {
   const {
     userId,
@@ -53,7 +56,7 @@ export async function applyAwardChain(params: {
 
   // Wrap all gamification operations in a single transaction for atomicity.
   // If any step fails, the entire chain rolls back — no partial point awards.
-  return prisma.$transaction(async (tx) => {
+  const run = async (tx: Prisma.TransactionClient): Promise<AwardChainResult> => {
     const db = tx as unknown as DbClient;
 
     if (dedupeKey) {
@@ -101,5 +104,6 @@ export async function applyAwardChain(params: {
       totalPoints: updatedUser.points + streakResult.pointsAwarded,
       currentStreak: streakResult.newStreak,
     };
-  }, { timeout: 10000 });
+  };
+  return params.transaction ? run(params.transaction) : prisma.$transaction(run, { timeout: 10000 });
 }

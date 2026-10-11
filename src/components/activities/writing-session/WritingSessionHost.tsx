@@ -1,5 +1,6 @@
 "use client";
 
+import { startVisiblePoll } from "@/lib/visible-poll";
 import { useEffect, useState } from "react";
 import type { TeacherState } from "./types";
 import type { TimedWritingContent } from "@/types/activity";
@@ -34,18 +35,15 @@ export function WritingSessionHost({ sessionId, content, onSessionEnd, onResetSe
         let active = true;
         const poll = async () => {
             try {
-                const res = await fetch(`/api/writing-session/${sessionId}/state`);
-                if (!res.ok) return;
+                const res = await fetch(`/api/writing-session/${sessionId}/state`, { signal: AbortSignal.timeout(15000) });
+                if (!res.ok) throw new Error("Session unavailable");
                 const data = await res.json() as TeacherState;
                 if (active) setState(data);
-                if (data.status === "finished") onSessionEnd();
-            } catch { /* ignore */ }
+                if (active && data.status === "finished") { onSessionEnd(); return false; }
+            } catch { throw new Error("Retry session later"); }
         };
-        poll();
-        const interval = setInterval(() => {
-            if (document.visibilityState !== "hidden") poll();
-        }, 3000);
-        return () => { active = false; clearInterval(interval); };
+        const stop = startVisiblePoll(poll);
+        return () => { active = false; stop(); };
     }, [sessionId, onSessionEnd]);
 
     const advance = async (extra?: Record<string, unknown>) => {

@@ -125,6 +125,13 @@ export function handleApiError(
             });
         }
 
+        const code = (error as Error & { code?: string }).code;
+        if (code === "P2024" || code === "P2037" || /too many (database )?connections/i.test(error.message)) {
+            const response = apiError("The app is busy. Please try again in a moment.", 503, "SERVICE_UNAVAILABLE");
+            response.headers.set("Retry-After", "10");
+            return response;
+        }
+
         // In development, return detailed error
         if (process.env.NODE_ENV === 'development') {
             return apiError(error.message, 500, 'INTERNAL_ERROR', undefined, {

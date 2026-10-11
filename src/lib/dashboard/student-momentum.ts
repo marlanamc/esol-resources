@@ -1,3 +1,5 @@
+import { cache } from "react";
+import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
@@ -10,7 +12,7 @@ export interface StudentMomentumSnapshot {
     initialWeeklyPoints: number;
 }
 
-export async function getStudentMomentumSnapshot(
+export const getStudentMomentumSnapshot = cache(async function getStudentMomentumSnapshot(
     userId: string
 ): Promise<StudentMomentumSnapshot> {
     const calendarWeekStart = getCalendarWeekStart();
@@ -19,7 +21,7 @@ export async function getStudentMomentumSnapshot(
         withPrismaReadRetry(() =>
             prisma.user.findUnique({
                 where: { id: userId },
-                select: { currentStreak: true, longestStreak: true, points: true, weeklyPoints: true },
+                select: { lastActivityDate: true, currentStreak: true, longestStreak: true, points: true, weeklyPoints: true },
             })
         ),
         withPrismaReadRetry(() =>
@@ -30,11 +32,12 @@ export async function getStudentMomentumSnapshot(
         ),
     ]);
 
+    if (!userStats) throw new Error("Student stats unavailable");
     return {
-        initialStreak: userStats?.currentStreak ?? 0,
+        initialStreak: getEffectiveStreak(userStats.currentStreak, userStats.lastActivityDate),
         initialLongestStreak: userStats?.longestStreak ?? 0,
         initialSevenDayActivity: buildCalendarWeekActivity(ledgerEntries),
         initialTotalPoints: userStats?.points ?? 0,
-        initialWeeklyPoints: userStats?.weeklyPoints ?? 0,
+        initialWeeklyPoints: Math.max(0, ledgerEntries.reduce((sum, entry) => sum + entry.points, 0)),
     };
-}
+});

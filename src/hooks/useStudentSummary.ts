@@ -1,91 +1,101 @@
 "use client";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
+import { useSession } from "next-auth/react";
 
-import { useEffect, useState } from "react";
-
-/**
- * Response shape from the student dashboard summary API (points, streak, weekly points).
- */
 export type StudentSummaryResponse = {
     totalPoints: number;
     effectiveCurrentStreak: number;
     actualWeeklyPoints: number;
-    // 7 booleans for Mon–Sun calendar week (index 0 = Monday, index 6 = Sunday)
     sevenDayActivity: boolean[];
 };
-
-type StudentSummaryCache = {
-    data: StudentSummaryResponse;
-    cachedAt: number;
-};
-
-const STUDENT_SUMMARY_CACHE_TTL_MS = 60_000;
-
-let studentSummaryCache: StudentSummaryCache | null = null;
-let studentSummaryInFlight: Promise<StudentSummaryResponse | null> | null = null;
-
-/**
- * Returns cached student summary if still within TTL (1 minute). Use for initial render before fetch.
- */
-export function getFreshStudentSummaryCache(): StudentSummaryResponse | null {
-    if (!studentSummaryCache) return null;
-    if (Date.now() - studentSummaryCache.cachedAt > STUDENT_SUMMARY_CACHE_TTL_MS) return null;
-    return studentSummaryCache.data;
+type SummaryState = { data: StudentSummaryResponse | null; status: "loading" | "ready" | "stale"; at: number };
+const EMPTY: SummaryState = { data: null, status: "loading", at: 0 };
+const states = new Map<string, SummaryState>();
+const requests = new Map<string, Promise<StudentSummaryResponse | null>>();
+const listeners = new Set<() => void>();
+const retryAfter = new Map<string, number>();
+const TTL = 60000;
+function publish(userId: string, state: SummaryState) {
+    states.set(userId, state);
+    listeners.forEach(notify => notify());
 }
-
-/**
- * Fetches student summary from the API, with in-memory cache and request deduplication.
- * @returns Cached or freshly fetched summary, or null on error
- */
-export async function loadStudentSummary(): Promise<StudentSummaryResponse | null> {
-    const cached = getFreshStudentSummaryCache();
-    if (cached) return cached;
-
-    if (studentSummaryInFlight) return studentSummaryInFlight;
-
-    studentSummaryInFlight = (async () => {
+export function invalidateStudentSummary(userId: string) {
+    const state = states.get(userId);
+    if (state) publish(userId, { ...state, at: 0 });
+}
+export function getFreshStudentSummaryCache(userId?: string): StudentSummaryResponse | null {
+    const state = userId ? states.get(userId) : null;
+    return state && Date.now() - state.at < TTL ? state.data : null;
+}
+export async function loadStudentSummary(userId?: string, force = false): Promise<StudentSummaryResponse | null> {
+    if (!userId) return null;
+    const previous = states.get(userId) ?? EMPTY;
+    if (requests.has(userId)) return requests.get(userId)!;
+    if (!force && Date.now() - previous.at < TTL) return previous.data;
+    if (Date.now() < (retryAfter.get(userId) ?? 0)) return previous.data;
+    const request = (async () => {
+        publish(userId, { ...previous, status: "loading" });
         try {
-            const res = await fetch("/api/dashboard/student-summary", { cache: "no-store" });
-            if (!res.ok) return null;
-
-            const raw = (await res.json()) as Partial<StudentSummaryResponse> & Omit<StudentSummaryResponse, "sevenDayActivity">;
-            const data: StudentSummaryResponse = {
-                ...raw,
-                sevenDayActivity: raw.sevenDayActivity ?? [false, false, false, false, false, false, false],
-            };
-            studentSummaryCache = { data, cachedAt: Date.now() };
-            return data;
+            const response = await fetch("/api/dashboard/student-summary", { cache: "no-store", signal: AbortSignal.timeout(15000) });
+            if (!response.ok) throw new Error("Summary unavailable");
+            const data = await response.json();
+            if (data.userId !== userId || ![data.totalPoints, data.actualWeeklyPoints, data.effectiveCurrentStreak].every(Number.isFinite) || !Array.isArray(data.sevenDayActivity)) throw new Error("Invalid summary");
+            publish(userId, { data, at: Date.now(), status: "ready" });
+            retryAfter.delete(userId);
+            return data as StudentSummaryResponse;
         } catch {
-            return null;
-        } finally {
-            studentSummaryInFlight = null;
-        }
+            // Preserve confirmed numbers. Failed reads never become zero points.
+            retryAfter.set(userId, Date.now() + 15000 + Math.random() * 5000);
+            publish(userId, { ...previous, status: "stale" });
+            return previous.data;
+        } finally { requests.delete(userId); }
     })();
-
-    return studentSummaryInFlight;
+    requests.set(userId, request);
+    return request;
 }
-
-/**
- * Subscribes to student dashboard summary (points, streak, weekly points).
- * Uses a short-lived cache and shared in-flight request to avoid duplicate fetches.
- * @returns Current summary or null while loading / on error
- */
-export function useStudentSummary() {
-    const [summary, setSummary] = useState<StudentSummaryResponse | null>(() => getFreshStudentSummaryCache());
-
+function subscribe(notify: () => void) { listeners.add(notify); return () => { listeners.delete(notify); }; }
+// One resume listener per signed-in learner, regardless of the number of stats widgets.
+const watchers = new Map<string, { count: number; stop: () => void }>();
+function watch(userId: string) {
+    const existing = watchers.get(userId);
+    if (existing) { existing.count++; return; }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const refresh = () => {
+        if (document.visibilityState === "hidden" || !navigator.onLine) return;
+        clearTimeout(timer);
+        timer = setTimeout(() => { void loadStudentSummary(userId); }, 600 + Math.random() * 700);
+    };
+    const saved = () => {
+        const state = states.get(userId);
+        if (state) states.set(userId, { ...state, at: 0 });
+        refresh();
+    };
+    window.addEventListener("online", refresh);
+    window.addEventListener("pageshow", refresh);
+    window.addEventListener("submissionSaved", saved);
+    window.addEventListener("activity-progress-updated", saved);
+    document.addEventListener("visibilitychange", refresh);
+    const interval = setInterval(refresh, TTL);
+    refresh();
+    watchers.set(userId, { count: 1, stop: () => {
+        clearTimeout(timer); clearInterval(interval);
+        window.removeEventListener("online", refresh); window.removeEventListener("pageshow", refresh);
+        window.removeEventListener("submissionSaved", saved); window.removeEventListener("activity-progress-updated", saved); document.removeEventListener("visibilitychange", refresh);
+    } });
+}
+export function useStudentSummaryState() {
+    const { data: session } = useSession();
+    const userId = session?.user?.id;
+    const getSnapshot = useCallback(() => userId ? states.get(userId) ?? EMPTY : EMPTY, [userId]);
+    const state = useSyncExternalStore(subscribe, getSnapshot, () => EMPTY);
     useEffect(() => {
-        let cancelled = false;
-
-        (async () => {
-            const data = await loadStudentSummary();
-            if (!cancelled && data) {
-                setSummary(data);
-            }
-        })();
-
+        if (!userId) return;
+        watch(userId);
         return () => {
-            cancelled = true;
+            const watcher = watchers.get(userId);
+            if (watcher && --watcher.count === 0) { watcher.stop(); watchers.delete(userId); }
         };
-    }, []);
-
-    return summary;
+    }, [userId]);
+    return { ...state, refresh: () => { void loadStudentSummary(userId, true); } };
 }
+export function useStudentSummary() { return useStudentSummaryState().data; }

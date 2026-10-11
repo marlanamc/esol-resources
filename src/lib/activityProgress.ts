@@ -82,7 +82,9 @@ export async function saveActivityProgress(
         });
 
         if (response.ok) {
-            return await response.json();
+            const result = await response.json();
+            if (typeof window !== "undefined") window.dispatchEvent(new Event("activity-progress-updated"));
+            return result;
         }
         return null;
     } catch (err) {

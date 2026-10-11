@@ -1,5 +1,6 @@
 "use client";
 
+import { PointsSyncStatus } from "./PointsSyncStatus";
 import Link from "next/link";
 import { Flame } from "lucide-react";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
@@ -41,18 +42,22 @@ export function MomentumCard({
     initialStreak = 0,
     initialLongestStreak = 0,
     initialSevenDayActivity = EMPTY_WEEK,
-    initialTotalPoints = 0,
-    initialWeeklyPoints = 0,
+    initialTotalPoints,
+    initialWeeklyPoints,
     variant = "default",
     embedded = false,
     borderless = false,
 }: MomentumCardProps) {
     const summary = useStudentSummary();
 
+    if (!summary && initialTotalPoints === undefined) {
+        return <div className="rounded-xl border border-border p-4"><PointsSyncStatus /></div>;
+    }
+
     const streak = summary?.effectiveCurrentStreak ?? initialStreak;
     const longestStreak = initialLongestStreak;
-    const weeklyPoints = summary?.actualWeeklyPoints ?? initialWeeklyPoints;
-    const totalPoints = summary?.totalPoints ?? initialTotalPoints;
+    const weeklyPoints = summary?.actualWeeklyPoints ?? initialWeeklyPoints ?? 0;
+    const totalPoints = summary?.totalPoints ?? initialTotalPoints ?? 0;
     const sevenDayActivity = summary?.sevenDayActivity ?? initialSevenDayActivity;
 
     const todayIndex = getCalendarWeekTodayIndex();
@@ -157,6 +162,8 @@ export function MomentumCard({
     );
 
     return (
+        <>
+        <PointsSyncStatus hasConfirmedPoints={initialTotalPoints !== undefined} />
         <Link
             href="/dashboard/profile"
             className={
@@ -184,5 +191,6 @@ export function MomentumCard({
                 body
             )}
         </Link>
+        </>
     );
 }

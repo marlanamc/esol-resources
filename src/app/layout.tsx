@@ -1,3 +1,4 @@
+import Providers from "@/components/layout/Providers";
 import type { Metadata, Viewport } from "next";
 import { Lora, DM_Sans, Caveat, Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
@@ -156,7 +157,7 @@ export default async function RootLayout({
       >
         <ThemeProvider>
           <FontSizeProvider>
-            <LearnerSearchProvider>{children}</LearnerSearchProvider>
+            <Providers><LearnerSearchProvider>{children}</LearnerSearchProvider></Providers>
           </FontSizeProvider>
         </ThemeProvider>
         <Analytics />

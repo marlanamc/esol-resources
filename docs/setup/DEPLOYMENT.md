@@ -157,6 +157,37 @@ Required GitHub variables:
 
 `DATABASE_URL` remains the app runtime override and takes precedence over `POSTGRES_URL`. This is the correct way to point Vercel at a restored Prisma database when the managed `POSTGRES_URL` cannot be edited.
 
+### Runtime connection pooling and overload recovery
+
+The app's Prisma singleton uses `src/lib/database/runtime-url.ts`. In production,
+Prisma Postgres URLs on `db.prisma.io` are routed to `pooled.db.prisma.io` with
+`pgbouncer=true`; credentials, database, SSL options, and explicit connection
+budgets are preserved. Other database providers are not rewritten. Prisma CLI
+migrations and backups continue to use the original direct environment URL.
+See [Prisma's pooling guidance](https://www.prisma.io/docs/postgres/database/connection-pooling).
+
+The default is three client connections per warm runtime, not three database
+connections globally. The pooler shares backend connections across runtimes.
+On October 11, 2026 the backend role limit was verified as 45 (50 server-wide,
+including reserved capacity), and a read-only transaction through the pooled
+endpoint succeeded. Check the account's pooled-client limit before increasing
+Vercel concurrency; pooling does not make capacity unlimited.
+
+Before releasing these changes, fetch GitHub again, verify the source includes
+current `origin/main`, and run typecheck, lint, and the reliability/award tests.
+After the batched deployment, verify the domain alias and source commit, probe
+`/api/health`, inspect connection errors, and test an iPhone resume and a saved
+activity. A passing health probe alone does not demonstrate peak-load capacity.
+
+The submission outbox saves supported submissions before sending, scopes them
+to the authenticated learner, and reuses request identities for retries. HTTP
+408/429/5xx responses and network failures remain queued, with bounded backoff.
+Legacy entries without an owner remain on the device for teacher-assisted
+review; never automatically attribute them to whoever signs in next. Exhausted
+retries retain their payload. An edited replacement suppresses replay of an older
+failed payload while preserving that evidence. Never clear device storage as a
+routine recovery step while work is pending.
+
 For Neon/Supabase:
 - Enable automatic backups in dashboard
 - Point-in-time recovery recommended

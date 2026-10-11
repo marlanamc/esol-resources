@@ -15,6 +15,10 @@ export function PointsToast({ points, onComplete, message }: PointsToastProps) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        if (points > 0) window.dispatchEvent(new Event("activity-progress-updated"));
+    }, [points]);
+
+    useEffect(() => {
         setIsMounted(true);
         return () => setIsMounted(false);
     }, []);

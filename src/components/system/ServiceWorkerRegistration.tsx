@@ -26,6 +26,9 @@ export default function ServiceWorkerRegistration() {
       let registration: ServiceWorkerRegistration | null = null;
       let updateInterval: NodeJS.Timeout | null = null;
       let hasReloaded = false;
+      let reloadRequested = false;
+      const acceptUpdate = () => { reloadRequested = true; };
+      window.addEventListener("swUpdateAccepted", acceptUpdate);
       const SW_UPDATE_INTERVAL_MS = 3 * 60 * 1000;
       const SW_UPDATE_RETRY_COOLDOWN_MS = 30 * 1000;
       const SW_VISIBILITY_DELAY_MS = 300;
@@ -34,7 +37,7 @@ export default function ServiceWorkerRegistration() {
       let updateRetryBackoffUntil = 0;
 
       const checkForUpdates = () => {
-        if (registration) {
+        if (registration && document.visibilityState === "visible" && navigator.onLine) {
           const now = Date.now();
           if (now < updateRetryBackoffUntil) return;
           if (now - lastUpdateCheckAt < 2000) return;
@@ -77,6 +80,9 @@ export default function ServiceWorkerRegistration() {
 
       const handleControllerChange = () => {
         if (hasReloaded) return;
+        // A controller can change while an activity has unsaved answers/recording.
+        // Only reload automatically on read-only dashboard pages.
+        if (!reloadRequested && !['/dashboard', '/dashboard/independent'].includes(window.location.pathname)) return;
         hasReloaded = true;
         window.location.reload();
       };
@@ -138,6 +144,7 @@ export default function ServiceWorkerRegistration() {
         if (visibilityCheckTimeoutId) {
           clearTimeout(visibilityCheckTimeoutId);
         }
+        window.removeEventListener('swUpdateAccepted', acceptUpdate);
         window.removeEventListener('focus', checkForUpdates);
         window.removeEventListener('online', checkForUpdates);
         document.removeEventListener('visibilitychange', handleVisibilityChange);

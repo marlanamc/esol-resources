@@ -38,29 +38,12 @@ export async function GET() {
                 )
         );
 
+        if (!user) return ApiErrors.notFound("User");
+
         const now = new Date();
         const calendarWeekStart = getCalendarWeekStart(now);
 
-        const [weeklyPointsData, recentLedgerEntries] = await Promise.all([
-            timedQuery(
-                {
-                    route: "/api/dashboard/student-summary",
-                    queryLabel: "pointsLedger.aggregate.weeklyPoints",
-                    userRole,
-                    requestId,
-                },
-                () =>
-                    withPrismaReadRetry(() =>
-                        prisma.pointsLedger.aggregate({
-                            where: {
-                                userId: session.user.id,
-                                createdAt: { gte: calendarWeekStart },
-                            },
-                            _sum: { points: true },
-                        })
-                    )
-            ),
-            timedQuery(
+        const recentLedgerEntries = await timedQuery(
                 {
                     route: "/api/dashboard/student-summary",
                     queryLabel: "pointsLedger.findMany.sevenDayActivity",
@@ -77,21 +60,21 @@ export async function GET() {
                             select: { createdAt: true, points: true },
                         })
                     )
-            ),
-        ]);
+            );
 
         const sevenDayActivity = buildCalendarWeekActivity(recentLedgerEntries, now);
 
         return NextResponse.json({
-            totalPoints: user?.points ?? 0,
+            userId: session.user.id,
+            totalPoints: user.points,
             effectiveCurrentStreak: getEffectiveStreak(user?.currentStreak ?? 0, user?.lastActivityDate ?? null),
             // Floored at 0: a "correction" ledger row (see
             // scripts/gamification/audit-and-reverse-achievement-backfill.ts) can push
             // this week's ledger sum negative. User.weeklyPoints is already floored the
             // same way, so without this the card could show a learner "-615 pts".
-            actualWeeklyPoints: Math.max(0, weeklyPointsData._sum.points ?? 0),
+            actualWeeklyPoints: Math.max(0, recentLedgerEntries.reduce((sum, entry) => sum + entry.points, 0)),
             sevenDayActivity,
-        });
+        }, { headers: { "Cache-Control": "private, no-store" } });
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: "Failed to load student dashboard summary",
