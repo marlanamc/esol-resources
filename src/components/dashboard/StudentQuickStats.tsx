@@ -1,5 +1,6 @@
 "use client";
 
+import { PointsSyncStatus } from "./PointsSyncStatus";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { FlameIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
@@ -29,6 +30,7 @@ export function StudentQuickStats({
     if (!summary) {
         return (
             <div className={`flex ${tight ? "gap-1" : "gap-3"} ${mobile && !tight ? "flex-wrap" : ""}`}>
+                <PointsSyncStatus />
                 <div className={`skeleton rounded-full ${tight ? "h-6 w-14" : mobile ? "h-9 w-24" : "h-12 w-32"}`} />
                 <div className={`skeleton rounded-full ${tight ? "h-6 w-16" : mobile ? "h-9 w-28" : "h-12 w-36"}`} />
                 {!tight && <div className={`skeleton rounded-full ${mobile ? "h-9 w-24" : "h-12 w-32"}`} />}
@@ -181,5 +183,5 @@ export function StudentQuickStats({
         : chips;
     const visibleChips = maxVisible > 0 ? filteredChips.slice(0, maxVisible) : [];
 
-    return <>{visibleChips}</>;
+    return <>{visibleChips}<PointsSyncStatus /></>;
 }

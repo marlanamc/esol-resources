@@ -141,7 +141,7 @@ export default function NetworkStatusBanner() {
 
       offlineTimerRef.current = setTimeout(() => {
         offlineTimerRef.current = null;
-        if (typeof navigator !== "undefined" && navigator.onLine) return;
+        if (document.visibilityState === "hidden" || (typeof navigator !== "undefined" && navigator.onLine)) return;
 
         const fetchAc = new AbortController();
         fetchProbeAbortRef.current = fetchAc;
@@ -155,7 +155,7 @@ export default function NetworkStatusBanner() {
               showOnlineStable(true);
               return;
             }
-            if (typeof navigator !== "undefined" && navigator.onLine) return;
+            if (document.visibilityState === "hidden" || (typeof navigator !== "undefined" && navigator.onLine)) return;
             showOffline();
           })
           .catch(() => {
@@ -206,7 +206,7 @@ export default function NetworkStatusBanner() {
         role="status"
         aria-live="polite"
       >
-        {isOnline ? "Back online. Sending any saved work now." : "You are offline. Work will be saved and sent when reconnected."}
+        {isOnline ? "Back online. Sending any saved work now." : "You are offline. Keep this page open and check your activity’s save message."}
       </div>
     </div>
   );

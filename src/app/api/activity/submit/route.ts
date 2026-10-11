@@ -206,6 +206,10 @@ export async function POST(request: NextRequest) {
         let weeklyQuizResult: WeeklyQuizSubmission | undefined;
 
         const userId = session.user.id;
+        const queuedOwner = request.headers.get("x-outbox-user-id");
+        if (queuedOwner && queuedOwner !== userId) {
+            return ApiErrors.forbidden("Sign in to the account that saved this work.");
+        }
 
         // Fetch activity to calculate points server-side
         const activity = await timedQuery(
@@ -286,13 +290,18 @@ export async function POST(request: NextRequest) {
                     select: { id: true, score: true, pointsAwarded: true },
                 });
 
-                return {
-                    duplicateFromIdempotency: true,
-                    duplicateFromClaim: false,
-                    submissionId: existingSubmission?.id ?? null,
-                    score: existingSubmission?.score ?? null,
-                    totalPointsAwarded: existingSubmission?.pointsAwarded ?? 0,
-                };
+                // Older releases saved completion before awarding points. A failed
+                // award reset the claim to zero but left this request key behind.
+                // Let that confirmed unpaid submission reach the atomic claim below.
+                if (!(existingSubmission?.pointsAwarded === 0 && calculatedPoints > 0)) {
+                    return {
+                        duplicateFromIdempotency: true,
+                        duplicateFromClaim: false,
+                        submissionId: existingSubmission?.id ?? null,
+                        score: existingSubmission?.score ?? null,
+                        totalPointsAwarded: existingSubmission?.pointsAwarded ?? 0,
+                    };
+                }
             }
 
             const submission = await saveActivitySubmission({
@@ -346,6 +355,19 @@ export async function POST(request: NextRequest) {
                 });
                 duplicateFromClaim = !claimResult.claimed;
                 totalPointsAwarded = claimResult.existingPointsAwarded;
+                if (claimResult.claimed) {
+                    await applyAwardChain({
+                        userId,
+                        points: calculatedPoints,
+                        reason: activity.type.toLowerCase() === "quiz"
+                            ? `${activity.title || activityId}|Quiz`
+                            : `Completed: ${activity.title || activityId}`,
+                        source: "activity",
+                        transaction: tx,
+                    });
+                }
+            } else {
+                await checkAndAwardAchievements(userId, tx);
             }
 
             return {
@@ -355,7 +377,7 @@ export async function POST(request: NextRequest) {
                 score: submission.score,
                 totalPointsAwarded,
             };
-        });
+        }, { timeout: 10000 });
 
         if (submissionResult.duplicateFromIdempotency) {
             const responsePayload = {
@@ -379,38 +401,6 @@ export async function POST(request: NextRequest) {
         }
 
         const duplicate = submissionResult.duplicateFromClaim;
-        if (!duplicate && calculatedPoints > 0) {
-            const activityTypeLabel = activity.type.toLowerCase() === "quiz" ? "Quiz" : "";
-            const reason = activityTypeLabel
-                ? `${activity.title || activityId}|${activityTypeLabel}`
-                : `Completed: ${activity.title || activityId}`;
-            try {
-                await applyAwardChain({
-                    userId,
-                    points: calculatedPoints,
-                    reason,
-                    source: 'activity',
-                });
-            } catch (awardError) {
-                await prisma.submission.updateMany({
-                    where: {
-                        id: submissionResult.submissionId ?? "",
-                        userId,
-                        pointsAwarded: calculatedPoints,
-                    },
-                    data: {
-                        pointsAwarded: 0,
-                    },
-                });
-                throw awardError;
-            }
-        } else if (!duplicate && calculatedPoints === 0) {
-            // No points to award, but a new Submission row was still created — check
-            // submission-count achievements now instead of deferring them until the
-            // next point-earning submission silently unlocks a backlog all at once.
-            await checkAndAwardAchievements(userId);
-        }
-
         const responsePayload = {
             ok: true,
             duplicate,

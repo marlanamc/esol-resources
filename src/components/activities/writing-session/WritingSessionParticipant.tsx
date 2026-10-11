@@ -1,5 +1,6 @@
 "use client";
 
+import { startVisiblePoll } from "@/lib/visible-poll";
 import React, { useEffect, useRef, useState } from "react";
 import type { StudentState } from "./types";
 import type { TimedWritingContent } from "@/types/activity";
@@ -19,46 +20,37 @@ export function WritingSessionParticipant({ sessionId, content }: Props) {
     const [error, setError] = useState<string | null>(null);
     const [isOffline, setIsOffline] = useState(false);
     const failCountRef = useRef(0);
-    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
         let active = true;
 
         const poll = async () => {
             try {
-                const res = await fetch(`/api/writing-session/${sessionId}/state`);
+                const res = await fetch(`/api/writing-session/${sessionId}/state`, { signal: AbortSignal.timeout(15000) });
                 if (!res.ok) {
                     const data = await res.json().catch(() => ({})) as { error?: string };
-                    setError(data.error ?? "Failed to load session");
-                    return;
+                    if (res.status >= 500 || res.status === 429) throw new Error("Session temporarily unavailable");
+                    if (active) setError(data.error ?? "Failed to load session");
+                    return false;
                 }
                 const data = await res.json() as StudentState;
                 if (!active) return;
                 failCountRef.current = 0;
                 setIsOffline(false);
+                setError(null);
                 setState(data);
-                // Stop polling once the session is fully finished
-                if (data.status === "finished" && intervalRef.current) {
-                    clearInterval(intervalRef.current);
-                    intervalRef.current = null;
-                }
+                if (data.status === "finished") return false;
             } catch {
                 // Network error — keep showing last known state
                 if (!active) return;
                 failCountRef.current += 1;
                 if (failCountRef.current >= 2) setIsOffline(true);
+                throw new Error("Retry session later");
             }
         };
 
-        poll();
-        intervalRef.current = setInterval(() => {
-            if (document.visibilityState !== "hidden") poll();
-        }, 3000);
-
-        return () => {
-            active = false;
-            if (intervalRef.current) clearInterval(intervalRef.current);
-        };
+        const stop = startVisiblePoll(poll);
+        return () => { active = false; stop(); };
     }, [sessionId]);
 
     if (error) {

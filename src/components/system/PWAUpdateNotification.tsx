@@ -62,6 +62,7 @@ export default function PWAUpdateNotification() {
 
   const handleUpdate = () => {
     if (waitingWorker) {
+      window.dispatchEvent(new Event("swUpdateAccepted"));
       setIsUpdating(true);
       const message: ServiceWorkerMessage = { type: 'SKIP_WAITING' };
       waitingWorker.postMessage(message);

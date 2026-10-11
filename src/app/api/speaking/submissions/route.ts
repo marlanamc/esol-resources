@@ -1,3 +1,4 @@
+import { acquireUserActivityScopeLock } from "@/lib/database/locks";
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth/auth';
@@ -10,6 +11,9 @@ export async function POST(request: NextRequest) {
         if (!session?.user?.username) {
             return ApiErrors.unauthorized();
         }
+
+        const queuedOwner = request.headers.get("x-outbox-user-id");
+        if (queuedOwner && queuedOwner !== session.user.id) return ApiErrors.forbidden("Sign in to the account that saved this work.");
 
         // Get user
         const user = await prisma.user.findUnique({
@@ -30,66 +34,69 @@ export async function POST(request: NextRequest) {
 
         // Create submission record
         const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
-        const submissionWhere = {
-            userId: user.id,
-            activityId,
-            assignmentId: assignmentKey,
-        };
-        const existingSubmission = await prisma.speakingSubmission.findFirst({
-            where: submissionWhere,
-        });
-
-        const submissionPayload = {
-            ...submissionWhere,
-            selectedPromptIds,
-            soloSentences: solo.sentences,
-            soloFollowUpQuestions: solo.followUpQuestions,
-            soloCompletedStepIds: solo.completedStepIds,
-            speakingBestSentence: speaking.bestSentence,
-            speakingCompletedStepIds: speaking.completedStepIds,
-            submittedAt: new Date(),
-            status: 'submitted',
-        };
-
-        const submission = existingSubmission
-            ? await prisma.speakingSubmission.update({
-                  where: { id: existingSubmission.id },
-                  data: submissionPayload,
-              })
-            : await prisma.speakingSubmission.create({
-                  data: submissionPayload,
-              });
-
-        // Update activity progress
-        const progressWhere = {
-            userId: user.id,
-            activityId,
-            assignmentId: assignmentKey,
-        };
-        const existingProgress = await prisma.activityProgress.findFirst({
-            where: progressWhere,
-        });
-
-        if (existingProgress) {
-            await prisma.activityProgress.update({
-                where: { id: existingProgress.id },
-                data: {
-                    progress: 100,
-                    status: 'submitted',
-                    updatedAt: new Date(),
-                },
+        return await prisma.$transaction(async tx => {
+            await acquireUserActivityScopeLock(tx, { userId: user.id, activityId, assignmentId: assignmentKey });
+            const submissionWhere = {
+                userId: user.id,
+                activityId,
+                assignmentId: assignmentKey,
+            };
+            const existingSubmission = await tx.speakingSubmission.findFirst({
+                where: submissionWhere,
             });
-        } else {
-            await prisma.activityProgress.create({
-                data: {
-                    ...progressWhere,
-                    progress: 100,
-                    status: 'submitted',
-                },
-            });
-        }
 
-        return NextResponse.json({ success: true, submission });
+            const submissionPayload = {
+                ...submissionWhere,
+                selectedPromptIds,
+                soloSentences: solo.sentences,
+                soloFollowUpQuestions: solo.followUpQuestions,
+                soloCompletedStepIds: solo.completedStepIds,
+                speakingBestSentence: speaking.bestSentence,
+                speakingCompletedStepIds: speaking.completedStepIds,
+                submittedAt: new Date(),
+                status: 'submitted',
+            };
+
+            const submission = existingSubmission
+                ? await tx.speakingSubmission.update({
+                      where: { id: existingSubmission.id },
+                      data: submissionPayload,
+                  })
+                : await tx.speakingSubmission.create({
+                      data: submissionPayload,
+                  });
+
+            // Update activity progress
+            const progressWhere = {
+                userId: user.id,
+                activityId,
+                assignmentId: assignmentKey,
+            };
+            const existingProgress = await tx.activityProgress.findFirst({
+                where: progressWhere,
+            });
+
+            if (existingProgress) {
+                await tx.activityProgress.update({
+                    where: { id: existingProgress.id },
+                    data: {
+                        progress: 100,
+                        status: 'submitted',
+                        updatedAt: new Date(),
+                    },
+                });
+            } else {
+                await tx.activityProgress.create({
+                    data: {
+                        ...progressWhere,
+                        progress: 100,
+                        status: 'submitted',
+                    },
+                });
+            }
+
+            return NextResponse.json({ success: true, submission });
+        }, { timeout: 10000 });
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: 'Failed to submit speaking warm-up',

@@ -6,7 +6,6 @@ import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 
 export default function ActivityError({
     error,
-    reset,
 }: {
     error: Error & { digest?: string };
     reset: () => void;
@@ -21,15 +20,15 @@ export default function ActivityError({
                 <div className="bg-white dark:bg-[var(--surface-elevated)] border border-border/60 dark:border-white/10 rounded-2xl shadow-sm p-6 space-y-4">
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">This activity couldn’t load</h1>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        It might be temporarily unavailable. You can try again, or go back.
+                        Wait a moment, then tap Reload app. If it still does not open, close the app and open it again.
                     </p>
                     <div className="flex flex-wrap gap-3">
                         <button
                             type="button"
-                            onClick={reset}
+                            onClick={() => window.location.reload()}
                             className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition"
                         >
-                            Reload activity
+                            Reload app
                         </button>
                         <LearnerMenu mode="quiet" />
                         <ContextualBackButton aria-label="Return to previous page">Back</ContextualBackButton>

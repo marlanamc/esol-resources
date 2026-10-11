@@ -3,7 +3,7 @@ type RetryOptions = {
     baseDelayMs?: number;
 };
 
-const RETRYABLE_PRISMA_CODES = new Set(["P2024"]);
+const RETRYABLE_PRISMA_CODES = new Set(["P2024", "P2037"]);
 
 function getErrorCode(error: unknown): string | null {
     if (!error || typeof error !== "object") return null;
@@ -24,7 +24,7 @@ export async function withPrismaReadRetry<T>(
     operation: () => Promise<T>,
     options: RetryOptions = {}
 ): Promise<T> {
-    const maxAttempts = Math.max(1, options.maxAttempts ?? 3);
+    const maxAttempts = Math.max(1, options.maxAttempts ?? 2);
     const baseDelayMs = Math.max(25, options.baseDelayMs ?? 150);
 
     let attempt = 1;
@@ -37,7 +37,7 @@ export async function withPrismaReadRetry<T>(
                 throw error;
             }
 
-            const backoffMs = baseDelayMs * 2 ** (attempt - 1);
+            const backoffMs = baseDelayMs * 2 ** (attempt - 1) + Math.floor(Math.random() * baseDelayMs);
             await sleep(backoffMs);
             attempt += 1;
         }

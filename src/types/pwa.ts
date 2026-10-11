@@ -8,6 +8,10 @@ export interface SwUpdateAvailableDetail {
 }
 
 export interface QueuedSubmission {
+  userId?: string;
+  nextAttemptAt?: number;
+  retryAfterAt?: number;
+  superseded?: boolean;
   id: string;
   idempotencyKey: string;
   endpoint: string;
@@ -20,6 +24,7 @@ export interface QueuedSubmission {
 }
 
 export interface SubmissionOutboxSnapshot {
+  unassigned?: number;
   pending: number;
   failed: number;
   syncing: boolean;

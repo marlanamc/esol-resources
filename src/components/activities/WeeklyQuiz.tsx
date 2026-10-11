@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
 import { useRouter } from 'next/navigation';
 import type { WeeklyQuizContent, WeeklyQuizQuestion, WeeklyQuizSection, WeeklyQuizSubmission, WeeklyQuizVerbForm } from '@/types/weekly-quiz';
-import { submitWithOutbox } from '@/lib/submissionOutbox';
+import { submitWithOutbox, submissionSavedEventName } from '@/lib/submissionOutbox';
 import { displayWeeklyQuizTitle, withVerbFormsTable } from '@/lib/weekly-quiz';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
@@ -92,12 +92,27 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [queued, setQueued] = useState(false);
+  const pendingKey = useRef<string | null>(null);
   const [error, setError] = useState('');
   const [points, setPoints] = useState(existingSubmission?.pointsAwarded ?? 0);
   const [showToast, setShowToast] = useState(false);
   const complete = content.questions.every(q => answers[q.id]?.trim());
   // Table cells are not numbered; the sentence questions below it are.
   const numbered = content.questions.filter(q => !(q.section === 'forms' && q.verb));
+
+  useEffect(() => {
+    const onSaved = (event: Event) => {
+      const { idempotencyKey, result: receipt } = (event as CustomEvent<{ idempotencyKey: string; result: { weeklyQuizResult?: WeeklyQuizSubmission; totalPointsAwarded?: number; points?: number } }>).detail;
+      if (idempotencyKey !== pendingKey.current || !receipt.weeklyQuizResult) return;
+      pendingKey.current = null;
+      setQueued(false);
+      setResult(receipt.weeklyQuizResult);
+      setPoints(receipt.totalPointsAwarded ?? receipt.points ?? 0);
+      setShowToast((receipt.points ?? 0) > 0);
+    };
+    window.addEventListener(submissionSavedEventName, onSaved);
+    return () => window.removeEventListener(submissionSavedEventName, onSaved);
+  }, []);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -108,7 +123,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       const sent = await submitWithOutbox({ endpoint: '/api/activity/submit', method: 'POST', payload: {
         activityId, assignmentId: assignmentId ?? null, content: { type: 'weekly-quiz', version: 1, answers },
       } });
-      if (sent.queued) { setQueued(true); return; }
+      if (sent.queued) { pendingKey.current = sent.idempotencyKey; setQueued(true); return; }
       const data = await sent.response.json();
       if (!sent.response.ok) throw new Error(data.error || 'Your quiz could not be saved. Please try again.');
       if (!data.weeklyQuizResult) { router.refresh(); throw new Error('Your submission was received. Refresh this page to see your saved results.'); }

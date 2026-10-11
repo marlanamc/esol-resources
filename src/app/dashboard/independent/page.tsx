@@ -1,3 +1,4 @@
+import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
@@ -41,6 +42,12 @@ export default async function IndependentDashboardPage() {
     }
 
     const userId = session.user.id;
+    const unavailable = new Set<string>();
+    const unavailableSection = <T,>(title: string, fallback: T) => (error: unknown): T => {
+        logger.error(`Independent dashboard: ${title} unavailable`, error);
+        unavailable.add(title);
+        return fallback;
+    };
 
     // after() keeps the function alive until the login transaction commits (see dashboard/page.tsx).
     after(() =>
@@ -53,7 +60,7 @@ export default async function IndependentDashboardPage() {
 
     // Fetch learner state and user stats
     const [learnerState, userStats, recentLedgerEntries] = await Promise.all([
-        withPrismaReadRetry(() => getLearnerState(prisma, userId)),
+        withPrismaReadRetry(() => getLearnerState(prisma, userId)).catch(unavailableSection("Your dashboard", null)),
         withPrismaReadRetry(() =>
             prisma.user.findUnique({
                 where: { id: userId },
@@ -64,24 +71,25 @@ export default async function IndependentDashboardPage() {
                     weeklyPoints: true,
                 },
             })
-        ),
+        ).catch(unavailableSection("Points", null)),
         withPrismaReadRetry(() =>
             prisma.pointsLedger.findMany({
                 where: { userId, createdAt: { gte: calendarWeekStart } },
                 select: { createdAt: true, points: true },
             })
-        ),
+        ).catch(unavailableSection("Points", [])),
     ]);
 
     const initialSevenDayActivity = buildCalendarWeekActivity(recentLedgerEntries);
 
+    if (!learnerState) return <main id="main-content" className="p-4"><SectionUnavailable title="Your dashboard" /></main>;
     const learnerMode = learnerState.mode;
 
     if (!isAdminPreview && learnerMode !== "independent") {
         redirect("/dashboard");
     }
 
-    await persistLearnerPreview(userId, "independent");
+    await persistLearnerPreview(userId, "independent").catch(unavailableSection("View preference", undefined));
 
     const recentActivitiesRaw = await timedQuery(
         {
@@ -111,7 +119,7 @@ export default async function IndependentDashboardPage() {
                 })
             ),
         (result) => result.length
-    );
+    ).catch(unavailableSection("Featured activities", []));
     const recentActivities = filterIndependentVisibleActivities(recentActivitiesRaw);
     const recentActivityIds = recentActivities.map((activity) => activity.id);
 
@@ -142,7 +150,7 @@ export default async function IndependentDashboardPage() {
                         })
                     ),
                 (result) => result.length
-            ),
+            ).catch(unavailableSection("Activity progress", [])),
         recentActivityIds.length === 0
             ? []
             : timedQuery(
@@ -167,8 +175,8 @@ export default async function IndependentDashboardPage() {
                         })
                     ),
                 (result) => result.length
-                ),
-        getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true }),
+                ).catch(unavailableSection("Activity progress", [])),
+        getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true }).catch(unavailableSection("Leaderboard", [])),
         withPrismaReadRetry(() =>
             prisma.userPreferences.findUnique({
                 where: { userId },
@@ -177,7 +185,7 @@ export default async function IndependentDashboardPage() {
                     weeklyGoalStartDay: true,
                 },
             })
-        ),
+        ).catch(unavailableSection("Weekly goal", null)),
         withPrismaReadRetry(() =>
             prisma.submission.findMany({
                 where: {
@@ -187,7 +195,7 @@ export default async function IndependentDashboardPage() {
                 },
                 select: { activityId: true, completedAt: true },
             })
-        ),
+        ).catch(unavailableSection("Weekly goal", [])),
         withPrismaReadRetry(() =>
             prisma.activityProgress.findMany({
                 where: {
@@ -197,12 +205,12 @@ export default async function IndependentDashboardPage() {
                 },
                 select: { activityId: true, status: true, updatedAt: true },
             })
-        ),
+        ).catch(unavailableSection("Weekly goal", [])),
         withPrismaReadRetry(() =>
             prisma.user.count({
                 where: buildIndependentLeaderboardUserWhere(),
             })
-        ),
+        ).catch(unavailableSection("Leaderboard", 0)),
     ]);
 
     // Deduplicate progress rows by activityId - keep the best record (highest progress or completed)
@@ -241,13 +249,14 @@ export default async function IndependentDashboardPage() {
     const studentEntry = independentLeaderboard.find((entry) => entry.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
-    const dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
+    const dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId).catch(unavailableSection("Daily vocabulary", null));
 
     return (
         <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: session.user.role }} currentView="independent" />
 
+                {[...unavailable].map(title => <SectionUnavailable key={title} title={title} />)}
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
                     <div className="min-w-0 space-y-5">
@@ -302,14 +311,14 @@ export default async function IndependentDashboardPage() {
                                 initialStreak={userStats?.currentStreak ?? 0}
                                 initialLongestStreak={userStats?.longestStreak ?? 0}
                                 initialSevenDayActivity={initialSevenDayActivity}
-                                initialTotalPoints={userStats?.points ?? 0}
-                                initialWeeklyPoints={userStats?.weeklyPoints ?? 0}
+                                initialTotalPoints={unavailable.has("Points") ? undefined : userStats?.points}
+                                initialWeeklyPoints={unavailable.has("Points") ? undefined : Math.max(0, recentLedgerEntries.reduce((sum, entry) => sum + entry.points, 0))}
                             />
 
-                            <IndependentDashboardClient
+                            {!unavailable.has("Weekly goal") && <IndependentDashboardClient
                                 initialGoal={weeklyGoal}
                                 weeklyGoalProgress={weeklyGoalProgress}
-                            />
+                            />}
 
                             {studentLeaderboardRank ? (
                                 <IndependentLeaderboardCard

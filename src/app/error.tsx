@@ -6,7 +6,6 @@ import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 
 export default function GlobalError({
     error,
-    reset,
 }: {
     error: Error & { digest?: string };
     reset: () => void;
@@ -25,7 +24,7 @@ export default function GlobalError({
                     <div>
                         <h1 className="text-xl font-bold text-text">Something went wrong</h1>
                         <p className="text-sm text-text-muted">
-                            Try again, or go back to the dashboard.
+                            The app could not load this page. Wait a moment, then tap Reload app.
                         </p>
                     </div>
                 </div>
@@ -33,15 +32,16 @@ export default function GlobalError({
                 <div className="flex flex-wrap gap-3">
                     <button
                         type="button"
-                        onClick={reset}
+                        onClick={() => window.location.reload()}
                         className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition"
                     >
-                        Try again
+                        Reload app
                     </button>
                     <LearnerMenu mode="quiet" />
                     <ContextualBackButton aria-label="Return to previous page">Back</ContextualBackButton>
                 </div>
 
+                <p className="text-sm text-text-muted">If this keeps happening, tell your teacher which page you were opening.</p>
                 {process.env.NODE_ENV !== "production" ? (
                     <pre className="text-xs bg-bg-gray/40 border border-border/50 rounded-lg p-3 overflow-auto whitespace-pre-wrap">
                         {error.message}

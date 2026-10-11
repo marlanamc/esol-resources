@@ -15,7 +15,9 @@ export class GrammarSaveQueue {
         return result;
     }
     async retry(): Promise<boolean> {
-        const results = await Promise.all([...this.pending].map(([key, operation]) => this.run(key, operation)));
-        return results.every(Boolean) && this.pending.size === 0;
+        for (const [key, operation] of [...this.pending]) {
+            if (!(await this.run(key, operation))) return false;
+        }
+        return this.pending.size === 0;
     }
 }

@@ -1,4 +1,6 @@
-import { WordRescuePracticeLater } from '@/components/dashboard/WordRescuePracticeLater';
+import { Suspense } from "react";
+import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
+import { PracticeLaterSection, MomentumSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -7,7 +9,6 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { timedQuery } from "@/lib/shared/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification/gamification";
-import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
@@ -19,7 +20,6 @@ import {
     HelpfulLinksCard,
     NewThisWeekSection,
     MissedClassCatchUpCard,
-    MomentumCard,
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
 } from "@/components/dashboard";
@@ -91,6 +91,15 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
+    const unavailable = new Set<string>();
+    async function dashboardQuery<T>(context: Parameters<typeof timedQuery>[0], operation: () => Promise<T[]>, count?: (rows: T[]) => number | undefined): Promise<T[]> {
+        try { return await timedQuery(context, operation, count); }
+        catch {
+            unavailable.add(context.queryLabel.includes("classEnrollment") ? "Class announcements and calendar" : "Featured activities");
+            return [];
+        }
+    }
+
 
     if (
         canUseTeacherTools(session.user) &&
@@ -108,7 +117,8 @@ export default async function DashboardPage() {
     );
 
     if (userRole === "student") {
-        const learnerState = await withPrismaReadRetry(() => getLearnerState(prisma, userId));
+        const learnerState = await withPrismaReadRetry(() => getLearnerState(prisma, userId)).catch(() => null);
+        if (!learnerState) return <main id="main-content" className="p-4 space-y-4"><SectionUnavailable title="Your dashboard" /><HelpfulLinksCard /></main>;
         const learnerMode = learnerState.mode;
 
         if (learnerMode === "independent") {
@@ -117,7 +127,7 @@ export default async function DashboardPage() {
     }
 
         // Student Dashboard
-    const enrollments = await timedQuery(
+    const enrollments = await dashboardQuery(
         {
             route: "/dashboard",
             queryLabel: "classEnrollment.findMany.studentDashboard",
@@ -213,8 +223,8 @@ export default async function DashboardPage() {
     const classIds = enrollments.map(e => e.classId);
     const featuredClassIds = await withPrismaReadRetry(() =>
         expandClassIdsToSectionGroupIds(prisma, classIds)
-    );
-    const featuredAssignmentsRawUnfiltered = featuredClassIds.length === 0 ? [] : await timedQuery(
+    ).catch(() => { unavailable.add("Featured activities"); return classIds; });
+    const featuredAssignmentsRawUnfiltered = featuredClassIds.length === 0 ? [] : await dashboardQuery(
         {
             route: "/dashboard",
             queryLabel: "assignment.findMany.featuredStudentDashboard",
@@ -260,7 +270,7 @@ export default async function DashboardPage() {
 
     // Activities featured for every learner in /admin/content. Shown alongside
     // whatever the class has featured, so featuring once reaches everyone.
-    const globalFeaturedRaw = await timedQuery(
+    const globalFeaturedRaw = await dashboardQuery(
         {
             route: "/dashboard",
             queryLabel: "activity.findMany.globalFeatured",
@@ -319,7 +329,7 @@ export default async function DashboardPage() {
     const featuredProgressRows =
         featuredActivityIds.length === 0
             ? []
-            : await timedQuery(
+            : await dashboardQuery(
                 {
                     route: "/dashboard",
                     queryLabel: "activityProgress.findMany.featuredActivities",
@@ -452,11 +462,8 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const [studentLeaderboard, momentumSnapshot, practiceLater] = await Promise.all([
-        firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
-        getStudentMomentumSnapshot(userId),
-        WordRescuePracticeLater({ user: { id: userId, role: userRole } }),
-    ]);
+    const studentLeaderboard = firstClassId ? await getTimeframedLeaderboard("week", 20, firstClassId).catch(() => []) : [];
+    const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -467,16 +474,17 @@ export default async function DashboardPage() {
         <div className="min-h-dvh bg-bg">
             <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 md:px-7 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
+                {[...unavailable].map(title => <SectionUnavailable key={title} title={title} />)}
                 <ClassAnnouncement key={userId} announcements={classAnnouncements} studentId={userId} />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
                     <div className="min-w-0 space-y-5">
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
-                        <ThisWeekPanel
+                        <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                             user={{ id: userId, role: userRole }}
                             fallback={nextStepFallback}
                             variant="road"
-                        />
+                        /></Suspense>
                         {practiceLater}
                         {newThisWeekItems.length > 0 ? (
                             <NewThisWeekSection items={newThisWeekItems} variant="list" />
@@ -503,11 +511,11 @@ export default async function DashboardPage() {
                                 />
                             </div>
 
-                            <ThisWeekPanel
+                            <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                                 user={{ id: userId, role: userRole }}
                                 fallback={nextStepFallback}
                                 collapsedLimit={3}
-                            />
+                            /></Suspense>
 
                             {practiceLater}
                             {newThisWeekItems.length > 0 ? (
@@ -521,7 +529,7 @@ export default async function DashboardPage() {
                         <aside className="space-y-3 sticky top-4">
 
                             {/* Streak / Momentum card — top of sidebar */}
-                            <MomentumCard variant="sidebar" {...momentumSnapshot} />
+                            <Suspense fallback={<p role="status">Loading points…</p>}><MomentumSection userId={userId} /></Suspense>
 
                             <DashboardCalendarCard events={calendarEvents} />
 

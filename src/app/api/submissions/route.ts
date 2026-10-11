@@ -1,3 +1,4 @@
+import { acquireUserActivityScopeLock } from "@/lib/database/locks";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -39,6 +40,8 @@ export async function POST(request: NextRequest) {
             return ApiErrors.unauthorized();
         }
 
+        const queuedOwner = request.headers.get("x-outbox-user-id");
+        if (queuedOwner && queuedOwner !== session.user.id) return ApiErrors.forbidden("Sign in to the account that saved this work.");
         const userRole = session.user?.role;
         if (userRole !== "student") {
             return ApiErrors.forbidden("Only students can submit work");
@@ -77,40 +80,43 @@ export async function POST(request: NextRequest) {
             return ApiErrors.forbidden("You are not enrolled in this class");
         }
 
-        if (idempotencyKey) {
-            const existingSubmission = await prisma.submission.findFirst({
-                where: { userId, activityId, assignmentId },
-            });
+        return await prisma.$transaction(async tx => {
+            await acquireUserActivityScopeLock(tx, { userId, activityId, assignmentId });
+            if (idempotencyKey) {
+                const existingSubmission = await tx.submission.findFirst({
+                    where: { userId, activityId, assignmentId },
+                });
 
-            const existingMeta = extractSubmissionMeta(existingSubmission?.content);
-            if (existingSubmission && existingMeta?.idempotencyKey === idempotencyKey) {
-                return NextResponse.json(existingSubmission);
+                const existingMeta = extractSubmissionMeta(existingSubmission?.content);
+                if (existingSubmission && existingMeta?.idempotencyKey === idempotencyKey) {
+                    return NextResponse.json(existingSubmission);
+                }
             }
-        }
 
-        // Create or update submission
-        const submission = await prisma.submission.upsert({
-            where: {
-                userId_activityId_assignmentId: {
+            // Create or update submission
+            const submission = await tx.submission.upsert({
+                where: {
+                    userId_activityId_assignmentId: {
+                        userId,
+                        activityId,
+                        assignmentId,
+                    },
+                },
+                update: {
+                    content: buildSubmissionContent(contentStr, idempotencyKey),
+                    status: "submitted",
+                },
+                create: {
                     userId,
                     activityId,
                     assignmentId,
+                    content: buildSubmissionContent(contentStr, idempotencyKey),
+                    status: "submitted",
                 },
-            },
-            update: {
-                content: buildSubmissionContent(contentStr, idempotencyKey),
-                status: "submitted",
-            },
-            create: {
-                userId,
-                activityId,
-                assignmentId,
-                content: buildSubmissionContent(contentStr, idempotencyKey),
-                status: "submitted",
-            },
-        });
+            });
 
-        return NextResponse.json(submission);
+            return NextResponse.json(submission);
+        }, { timeout: 10000 });
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: "Failed to create submission",
@@ -126,6 +132,8 @@ export async function PUT(request: NextRequest) {
             return ApiErrors.unauthorized();
         }
 
+        const queuedOwner = request.headers.get("x-outbox-user-id");
+        if (queuedOwner && queuedOwner !== session.user.id) return ApiErrors.forbidden("Sign in to the account that saved this work.");
         const userRole = session.user?.role;
         if (userRole !== "student") {
             return ApiErrors.forbidden("Only students can update submissions");
@@ -142,38 +150,41 @@ export async function PUT(request: NextRequest) {
         const contentStr = typeof content === "string" ? content : JSON.stringify(content);
         const userId = session.user?.id;
 
-        // Verify submission belongs to user
-        const submission = await prisma.submission.findUnique({
-            where: { id: submissionId },
-        });
+        return await prisma.$transaction(async tx => {
+            await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${userId}), hashtext(${submissionId}))`;
+            // Verify submission belongs to user
+            const submission = await tx.submission.findUnique({
+                where: { id: submissionId },
+            });
 
-        if (!submission) {
-            return ApiErrors.notFound("Submission", submissionId);
-        }
+            if (!submission) {
+                return ApiErrors.notFound("Submission", submissionId);
+            }
 
-        if (submission.userId !== userId) {
-            return ApiErrors.forbidden();
-        }
+            if (submission.userId !== userId) {
+                return ApiErrors.forbidden();
+            }
 
-        if (submission.status === "graded") {
-            return apiError("Cannot update graded submission", 400);
-        }
+            if (submission.status === "graded") {
+                return apiError("Cannot update graded submission", 400);
+            }
 
-        const existingMeta = extractSubmissionMeta(submission.content);
-        if (idempotencyKey && existingMeta?.idempotencyKey === idempotencyKey) {
-            return NextResponse.json(submission);
-        }
+            const existingMeta = extractSubmissionMeta(submission.content);
+            if (idempotencyKey && existingMeta?.idempotencyKey === idempotencyKey) {
+                return NextResponse.json(submission);
+            }
 
-        // Update submission
-        const updated = await prisma.submission.update({
-            where: { id: submissionId },
-            data: {
-                content: buildSubmissionContent(contentStr, idempotencyKey),
-                status: "submitted",
-            },
-        });
+            // Update submission
+            const updated = await tx.submission.update({
+                where: { id: submissionId },
+                data: {
+                    content: buildSubmissionContent(contentStr, idempotencyKey),
+                    status: "submitted",
+                },
+            });
 
-        return NextResponse.json(updated);
+            return NextResponse.json(updated);
+        }, { timeout: 10000 });
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: "Failed to update submission",

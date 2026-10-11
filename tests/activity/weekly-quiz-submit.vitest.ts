@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server';
 import quizzes from '@/content/quizzes/weekly-quizzes.json';
 const mocks = vi.hoisted(() => ({
   activity: vi.fn(), createSubmission: vi.fn(), createProgress: vi.fn(), award: vi.fn(),
-  findProgress: vi.fn(), findSubmission: vi.fn(), claim: vi.fn(),
+  findProgress: vi.fn(), findSubmission: vi.fn(), claim: vi.fn(), updateSubmission: vi.fn(), updateProgress: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: async () => ({ user: { id: 'student', role: 'student' } }) }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
@@ -13,8 +13,8 @@ vi.mock('@/lib/gamification/award-chain', () => ({ applyAwardChain: mocks.award 
 vi.mock('@/lib/database/prisma', () => ({ prisma: {
   activity: { findFirst: mocks.activity },
   $transaction: async (fn: (tx: unknown) => unknown) => fn({
-    activityProgress: { findFirst: mocks.findProgress, create: mocks.createProgress },
-    submission: { findFirst: mocks.findSubmission, create: mocks.createSubmission, updateMany: mocks.claim },
+    activityProgress: { findFirst: mocks.findProgress, create: mocks.createProgress, update: mocks.updateProgress },
+    submission: { findFirst: mocks.findSubmission, create: mocks.createSubmission, updateMany: mocks.claim, update: mocks.updateSubmission },
   }),
 } }));
 import { POST } from '@/app/api/activity/submit/route';
@@ -71,4 +71,30 @@ describe('weekly quiz submission', () => {
     expect(data.points).toBe(0);
     expect(mocks.award).not.toHaveBeenCalled();
   });
+});
+
+it('joins the completion transaction when awarding effort points', async () => {
+  await POST(request(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))));
+  expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ transaction: expect.objectContaining({ submission: expect.any(Object), activityProgress: expect.any(Object) }) }));
+});
+it('returns a failed save when an award fails instead of confirming uncredited completion', async () => {
+  mocks.award.mockRejectedValueOnce(new Error('connection exhausted'));
+  const response = await POST(request(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))));
+  expect(response.status).toBe(500);
+  expect((await response.json()).points).toBeUndefined();
+});
+it('rejects replay under another student account before querying activity data', async () => {
+  const req=request({}); req.headers.set('x-outbox-user-id','another-student');
+  expect((await POST(req)).status).toBe(403);
+  expect(mocks.activity).not.toHaveBeenCalled();
+});
+
+it('recovers an older completed request whose point claim was reset after a failed award', async () => {
+  mocks.findProgress.mockResolvedValue({ id: 'progress', categoryData: JSON.stringify({ pwaLastSubmissionIdempotencyKey: 'one-attempt' }) });
+  mocks.findSubmission.mockResolvedValue({ id: 'submission', score: 0, pointsAwarded: 0 });
+  mocks.updateSubmission.mockResolvedValue({ id: 'submission', score: 0 });
+  const response = await POST(request(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))));
+  expect(response.status).toBe(200);
+  expect((await response.json()).points).toBe(2);
+  expect(mocks.award).toHaveBeenCalledTimes(1);
 });

@@ -1,8 +1,12 @@
+import { cache } from "react";
+import { SectionUnavailable } from "./SectionUnavailable";
 import type { ReactNode } from "react";
 import { getDashboardResumeData } from "@/lib/course-map-week";
 import { ThisWeekPanelClient } from "@/components/dashboard/ThisWeekPanelClient";
 import { EarlyWeekBanner } from "@/components/dashboard/EarlyWeekBanner";
 import { ThisWeekRoadCard } from "@/components/dashboard/ThisWeekRoadCard";
+
+const loadResume = cache((id: string, role?: string | null) => getDashboardResumeData({ id, role }));
 
 interface ThisWeekPanelProps {
     user: { id: string; role?: string | null };
@@ -13,7 +17,12 @@ interface ThisWeekPanelProps {
 }
 
 export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, variant = "panel" }: ThisWeekPanelProps) {
-    const data = await getDashboardResumeData(user);
+    let data;
+    try { data = await loadResume(user.id, user.role); }
+    catch (error) {
+        console.error("[Dashboard] Course progress unavailable", error);
+        return <SectionUnavailable title="Course progress" />;
+    }
     if (!data) return fallback;
 
     const panel = variant === "road" ? (

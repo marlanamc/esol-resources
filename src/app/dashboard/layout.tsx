@@ -67,16 +67,16 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     if (session?.user?.id) {
         const [dashboardContext, userPrefs, userAvatar] = await Promise.all([
             session.user.role === "student"
-                ? getStudentDashboardContext(session.user.id)
+                ? getStudentDashboardContext(session.user.id).catch(() => ({ learnerMode: "classroom" as LearnerMode, leaderboardRank: null }))
                 : Promise.resolve({ learnerMode: "classroom" as LearnerMode, leaderboardRank: null }),
             prisma.userPreferences.findUnique({
                 where: { userId: session.user.id },
                 select: { accentColor: true },
-            }),
+            }).catch(() => null),
             prisma.user.findUnique({
                 where: { id: session.user.id },
                 select: { avatar: true, avatarColor: true },
-            }),
+            }).catch(() => null),
         ]);
 
         leaderboardRank = dashboardContext.leaderboardRank;

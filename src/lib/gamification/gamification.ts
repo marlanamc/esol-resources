@@ -64,6 +64,7 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
     });
   } catch (err) {
     logger.error('[Gamification] Failed to log points ledger entry', err);
+    throw err; // A saved balance without its ledger is not a successful award.
   }
 }
 
@@ -71,6 +72,7 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
  * Track user login activity (for activity calendar)
  * Creates a PointsLedger entry with 0 points to track login dates
  */
+const recentLoginMarkers = new Map<string, number>();
 export async function trackLogin(userId: string) {
   try {
     // Check if we already have a login entry for today. Bucketed by learner-local
@@ -79,6 +81,8 @@ export async function trackLogin(userId: string) {
     // UTC days and wrote two rows.
     const now = new Date();
     const todayKey = getLearnerDayKey(now);
+    const loginCacheKey = `${userId}:${todayKey}`;
+    if ((recentLoginMarkers.get(loginCacheKey) ?? 0) > now.getTime()) return;
     const todayStart = getInstantForLearnerDayStart(todayKey);
     const tomorrowStart = getInstantForLearnerDayStart(addDaysToLearnerDayKey(todayKey, 1));
 
@@ -115,6 +119,9 @@ export async function trackLogin(userId: string) {
       // what getEffectiveStreak reads to decide whether a streak is still alive,
       // so touching it here would keep a stale streak from ever lapsing.
     });
+    // Cache only confirmed markers; failed transactions must remain retryable.
+    if (recentLoginMarkers.size >= 512) recentLoginMarkers.delete(recentLoginMarkers.keys().next().value!);
+    recentLoginMarkers.set(loginCacheKey, Date.now() + 5 * 60_000);
   } catch (err) {
     logger.error('[Gamification] Failed to track login', err);
   }
