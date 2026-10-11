@@ -165,6 +165,17 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     });
   }, [fromMap, requestedCollection, revisitCount, loaded, disabled, selectedCollection, collections, session, send]);
 
+  const startCollection = async (collectionId: string) => {
+    audio.reset();
+    if (!await send({ type: 'start', id: crypto.randomUUID(), collectionId })) return;
+    const current = latest.current.session;
+    setReceipt(null);
+    setSavedWordId(null);
+    setMenu(false);
+    setStage(current?.said ? 2 : current?.heard.includes('word') ? 1 : 0);
+    setHelpOpen(false);
+  };
+
   const move = (next: 0 | 1 | 2) => { audio.stop(); setStage(next); requestAnimationFrame(() => sectionButtons.current[next]?.focus({ preventScroll: true })); };
   const play = (clip: ClipKind, rate: number, device = false) => {
     if (!word || !session || disabled) return;
@@ -211,16 +222,16 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
       <h1 className={styles.heading}>{session && session.index >= session.wordIds.length && !menu ? 'A little more confident.' : 'Which words today?'}</h1>
       {selectedCollection && <p className={styles.status}>This week: {selectedCollection.label}</p>}
       <p className={styles.subtitle}>{fromMap ? `Practice all ${selectedCollection?.wordIds.length ?? 6} weekly words. Earn ${(selectedCollection?.wordIds.length ?? 6) * WORD_RESCUE_POINTS} points.` : 'Three words. A few small steps. Listen, try, and make them your own.'}</p>
-      {word && !sessionLocked && <><p className={styles.muted}>Your practice is saved. Finish this round to choose another collection.</p><button className={styles.primary} disabled={disabled} onClick={() => setMenu(false)}>Resume practice: {word.term}<ArrowRight aria-hidden size={20} /></button></>}
+      {word && !sessionLocked && <><p className={styles.muted}>Your practice is saved. Resume below or choose another collection.</p><button className={styles.primary} disabled={disabled} onClick={() => setMenu(false)}>Resume practice: {word.term}<ArrowRight aria-hidden size={20} /></button></>}
       {!fromMap && <div className={styles.collections}>
-        <button className={styles.collection} disabled={disabled || !!word} onClick={() => setWeekly(value => !value)} aria-expanded={weekly}>This week’s words<small>Choose the week your class is studying</small></button>
+        <button className={styles.collection} disabled={disabled} onClick={() => setWeekly(value => !value)} aria-expanded={weekly}>This week’s words<small>Choose the week your class is studying</small></button>
         {weekly && !collections.some(set => set.sourceActivityId) && <p className={styles.muted}>Your teacher hasn’t released any vocabulary weeks yet. You can practice everyday words.</p>}
-        {weekly && collections.some(set => set.sourceActivityId) && <div><label htmlFor="rescue-week">Class vocabulary week</label><select className={styles.select} id="rescue-week" value={week} onChange={event => setWeek(event.target.value)}>{collections.filter(item => item.sourceActivityId).map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select><button disabled={disabled || !!word || !week} className={styles.primary} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: week })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Practice this week<ArrowRight aria-hidden size={20} /></button></div>}
-        <button className={styles.collection} disabled={disabled || !!word} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'everyday' })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Everyday tricky words<small>Through, prohibited, achieve, and more</small></button>
-        <button className={styles.collection} disabled={disabled || !!word || !revisitCount} onClick={async () => { if (await send({ type: 'start', id: crypto.randomUUID(), collectionId: 'again' })) { setMenu(false); setStage(0); setHelpOpen(false); } }}>Practice again<small>{revisitCount} words you chose to revisit</small></button>
+        {weekly && collections.some(set => set.sourceActivityId) && <div><label htmlFor="rescue-week">Class vocabulary week</label><select className={styles.select} id="rescue-week" value={week} onChange={event => setWeek(event.target.value)}>{collections.filter(item => item.sourceActivityId).map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select><button disabled={disabled || !week} className={styles.primary} onClick={() => void startCollection(week)}>Practice this week<ArrowRight aria-hidden size={20} /></button></div>}
+        <button className={styles.collection} disabled={disabled} onClick={() => void startCollection('everyday')}>Everyday tricky words<small>Through, prohibited, achieve, and more</small></button>
+        <button className={styles.collection} disabled={disabled || !revisitCount} onClick={() => void startCollection('again')}>Practice again<small>{revisitCount} words you chose to revisit</small></button>
       </div>}
       {fromMap && <a className={styles.primary} href={returnHref}>Back to course map</a>}
-      <p className={styles.muted} style={{ marginTop: 20 }}>{word ? 'Finish your saved session before starting another collection.' : 'Earn 2 points for each word you practice. Recording is always optional.'}</p>
+      <p className={styles.muted} style={{ marginTop: 20 }}>Earn 2 points for each word you practice. Recording is always optional.</p>
     </section> : word && session && <section>
       <div className={styles.wordHeader}>
         <h1 className={styles.word}>{highlighted(word)}</h1>

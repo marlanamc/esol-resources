@@ -77,3 +77,19 @@ it('saves twelve points for six weekly words and never duplicates them on retry'
   expect(db.balance).toBe(12);
   expect(db.ledger).toHaveLength(6);
 });
+
+
+it('preserves effort and credit when switching collections and returning', async () => {
+  const completed = await saveRescueAction('student', finish);
+  const nextWord = completed.state.session!.wordIds[1];
+  const heard = { type: 'heard', sessionId: id, wordId: nextWord, clip: 'word' };
+  const original = await saveRescueAction('student', heard);
+  await saveRescueAction('student', { type: 'start', id: '22222222-2222-4222-8222-222222222222', collectionId: 'oct-learning' });
+  const resumed = await saveRescueAction('student', { type: 'start', id: '33333333-3333-4333-8333-333333333333', collectionId: 'everyday' });
+  expect(resumed.state.session).toEqual(original.state.session);
+  expect(resumed.state.words).toEqual(original.state.words);
+  expect(resumed.pointsAwarded).toBe(0);
+  expect((await saveRescueAction('student', finish)).pointsAwarded).toBe(0);
+  expect(db.balance).toBe(2);
+  expect(db.ledger).toHaveLength(1);
+});
