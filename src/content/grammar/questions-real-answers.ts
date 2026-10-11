@@ -83,8 +83,6 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">This week, use questions to talk about digital habits: checking messages, finding files, protecting your information, and asking for help. Rosa has an email that does not seem right.</p>
 
-        <p style="margin: 0 0 1rem 0">Try every question in a practice set and check your answers. Each set offers <strong>2 effort points</strong>, even with mistakes. Finish the quiz for <strong>5 completion points</strong>. You can correct your answers and try again.</p>
-
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Notice how Rosa and Sarah use questions to understand the message and decide what to do.</p>
 
         ${dialogue([

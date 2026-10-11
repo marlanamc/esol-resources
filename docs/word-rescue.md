@@ -1,4 +1,6 @@
-# Word Rescue
+# Word Lab
+
+Display name changed locally to Word Lab on October 11, 2026. Existing `word-rescue` URLs, progress IDs, and ledger reasons stay stable to preserve saved work and duplicate-award protection. Course-map display also normalizes previously saved titles. The activity seed carries the new title for the next release; no production database changes were made for the rename.
 
 ## Live release — October 10, 2026
 

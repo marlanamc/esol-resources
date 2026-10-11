@@ -21,7 +21,7 @@ export async function WordRescuePracticeLater({ user }: { user: { id: string; ro
             <Volume2 aria-hidden="true" className="h-6 w-6 shrink-0 text-secondary" />
             <span className="min-w-0 flex-1">
                 <span className="block font-semibold">Words to practice later · {count}</span>
-                <span className="block text-sm text-text-muted">Your saved Word Rescue words. Earn 2 points per word.</span>
+                <span className="block text-sm text-text-muted">Your saved Word Lab words. Earn 2 points per word.</span>
             </span>
             <ArrowRight aria-hidden="true" className="h-5 w-5 shrink-0" />
         </Link>

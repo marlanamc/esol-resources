@@ -17,12 +17,12 @@ async function main() {
   const nodes=desired.filter(node=>weeks.some(w=>w.id===node.weekId));
   console.log(JSON.stringify({apply,activate,weekIds:nodes.map(n=>n.weekId)}));
   if(!apply)return;
-  requireSafeDbTarget('release Word Rescue to already released FY27 weeks');
+  requireSafeDbTarget('release Word Lab to already released FY27 weeks');
   const existing=await prisma.activity.findUnique({where:{id:'word-rescue'}});
   await mkdir('output/word-rescue',{recursive:true});
   await writeFile(`output/word-rescue/release-backup-${Date.now()}.json`,JSON.stringify({activity:existing,nodes:weeks.flatMap(w=>w.items.filter(i=>i.activityId==='word-rescue'))},null,2));
   await prisma.$transaction(async tx=>{
-   const data={title:'Word Rescue',description:'Practice the week’s vocabulary with normal and slow audio, Spanish and Brazilian Portuguese help, and two effort points per word.',type:'game',ui:'word-rescue',category:'pronunciation',level:'beginner',content:JSON.stringify({type:'word-rescue',version:1}),isReleased:activate};
+   const data={title:'Word Lab',description:'Practice the week’s vocabulary with normal and slow audio, Spanish and Brazilian Portuguese help, and two effort points per word.',type:'game',ui:'word-rescue',category:'pronunciation',level:'beginner',content:JSON.stringify({type:'word-rescue',version:1}),isReleased:activate};
    await tx.activity.upsert({where:{id:'word-rescue'},update:data,create:{id:'word-rescue',...data,createdBy:classroom.teacherId}});
    if(activate)for(const {weekId,item} of nodes){
     const current=weeks.find(w=>w.id===weekId)!;
@@ -31,7 +31,7 @@ async function main() {
     await tx.courseMapItem.upsert({where:{id:item.id},update:data,create:{id:item.id,...data}});
    }
   });
-  console.log(activate?'Word Rescue enabled for the listed weeks. Class reveals unchanged.':'Draft activity prepared; no course-map links enabled.');
+  console.log(activate?'Word Lab enabled for the listed weeks. Class reveals unchanged.':'Draft activity prepared; no course-map links enabled.');
  }finally{await prisma.$disconnect();}
 }
 main().catch(e=>{console.error(e.message);process.exitCode=1;});

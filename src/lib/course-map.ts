@@ -77,7 +77,7 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
 
       const toActivity = (item: (typeof week.items)[number]): CourseMapActivity => ({
         id: item.id,
-        title: item.title,
+        title: item.activityId === "word-rescue" || item.href?.startsWith("/activity/word-rescue?") ? item.title.replace(/^Word Rescue\b/, "Word Lab") : item.title,
         activityType: item.activityType as CourseMapActivityType,
         status: !item.activityId && !item.href ? "planned" : "available",
         ...(item.activityId ? { activityId: item.activityId } : {}),
@@ -218,7 +218,7 @@ export async function getVisibleMap(
     const quizLocked = !isAdmin(user) && quizSchedule && new Date() < quizSchedule.opensAt;
     return {
       id: item.id,
-      title: item.title,
+      title: item.activityId === "word-rescue" || item.href?.startsWith("/activity/word-rescue?") ? item.title.replace(/^Word Rescue\b/, "Word Lab") : item.title,
       activityType: item.activityType as CourseMapActivityType,
       status: item.href?.startsWith('/activity/word-rescue?') && !canUseTeacherTools(user) && !item.activity?.isReleased ? "locked" : quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),

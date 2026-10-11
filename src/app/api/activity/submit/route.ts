@@ -230,7 +230,7 @@ export async function POST(request: NextRequest) {
         }
 
         if (activity.id === "word-rescue" || activity.ui === "word-rescue") {
-            return apiError("Save Word Rescue through its per-word practice endpoint.", 400);
+            return apiError("Save Word Lab through its per-word practice endpoint.", 400);
         }
 
         let savedContent: { type?: string } | null = null;
