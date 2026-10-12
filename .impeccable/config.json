@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/components/games/PartsOfSpeechGame/PartsOfSpeechReview.module.css"
+        ],
+        "createdAt": "2026-10-12T01:11:01.412Z",
+        "reason": "User confirmed: .blank is the fill-in-the-blank underline, not a card accent"
+      }
+    ]
+  }
+}
