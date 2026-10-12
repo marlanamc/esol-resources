@@ -156,11 +156,12 @@ export default async function TeachClassDetailPage({ params }: Props) {
                             </h2>
                             <div className="rounded-xl border bg-surface-elevated overflow-x-auto" style={{ borderColor: "var(--border-subtle)" }}>
                                 <table className="w-full">
+                                    <caption className="sr-only">Past students</caption>
                                     <thead>
                                         <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
-                                            {["Name", "Username", "Status", ""].map((h) => (
-                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
-                                                    {h}
+                                            {["Name", "Username", "Status", ""].map((h, i) => (
+                                                <th key={h || `col-${i}`} scope="col" className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
+                                                    {h || <span className="sr-only">Actions</span>}
                                                 </th>
                                             ))}
                                         </tr>
@@ -168,16 +169,16 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                     <tbody>
                                         {pastEnrollments.map((e) => (
                                             <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
-                                                <td className="py-3 px-4">
+                                                <th scope="row" className="py-3 px-4 text-left font-normal">
                                                     <Link
                                                         href={`/teach/students/${e.student.id}?classId=${id}&returnTo=${encodeURIComponent(`/teach/classes/${id}`)}`}
                                                         className="text-sm font-semibold hover:underline flex items-center gap-1"
                                                         style={{ color: "var(--primary)" }}
                                                     >
                                                         {e.student.name ?? e.student.username}
-                                                        <ChevronRight className="h-3 w-3 opacity-50" />
+                                                        <ChevronRight className="h-3 w-3 opacity-50" aria-hidden="true" />
                                                     </Link>
-                                                </td>
+                                                </th>
                                                 <td className="py-3 px-4 text-xs text-text-muted font-mono">{e.student.username}</td>
                                                 <td className="py-3 px-4">
                                                     <span

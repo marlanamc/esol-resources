@@ -82,7 +82,7 @@ export function CourseMapPathBreadcrumb({ units, nextActivity, variant = "deskto
             }}
             aria-live="polite"
         >
-            <p className="text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
+            <p className="text-[0.625rem] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
                 {meta.unitMonth} · Unit {meta.unitNumber}
             </p>
             <p className="mt-0.5 truncate text-sm font-semibold text-text">

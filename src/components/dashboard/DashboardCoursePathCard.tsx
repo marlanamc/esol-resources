@@ -26,12 +26,12 @@ export async function DashboardCoursePathCard({
                 <p className="text-xs font-bold text-text leading-tight">
                     {nextLaunch ? "Continue Your Path" : "Course Map"}
                 </p>
-                <p className="text-[11px] text-text-muted mt-1 leading-snug">
+                <p className="text-[0.6875rem] text-text-muted mt-1 leading-snug">
                     {nextLaunch
                         ? `Next up: ${nextLaunch.title}`
                         : "Browse units and weeks"}
                 </p>
-                <p className="text-[11px] font-semibold mt-2 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>
+                <p className="text-[0.6875rem] font-semibold mt-2 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>
                     {nextLaunch ? "Continue lesson →" : "Open map →"}
                 </p>
             </div>

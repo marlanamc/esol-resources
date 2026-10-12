@@ -64,7 +64,7 @@ export function ScenarioChoiceExercise({ exercise, onAnswer, answered }: Props) 
               placeholder="......"
               autoComplete="off"
               spellCheck={false}
-              className="border-b-4 bg-transparent text-center outline-none text-primary font-bold w-28 sm:w-36 px-2 pb-1 border-primary/30 focus:border-primary"
+              className="border-b-4 bg-transparent text-center outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-dark text-primary font-bold w-28 sm:w-36 px-2 pb-1 border-primary/30 focus:border-primary"
             />
             {baseVerb && (
               <span className="text-xs text-text-muted mt-1">({baseVerb})</span>

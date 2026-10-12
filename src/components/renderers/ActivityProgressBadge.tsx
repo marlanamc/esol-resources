@@ -18,7 +18,7 @@ export function ActivityProgressBadge({ activityId: _activityId, initialProgress
 
     return (
         <div
-            className={`inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold border ${color}`}
+            className={`inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-full text-[0.625rem] sm:text-xs font-semibold border ${color}`}
             aria-label={`Progress ${progress}%`}
         >
             <span>{progress}%</span>

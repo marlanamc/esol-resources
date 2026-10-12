@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Providers from "@/components/layout/Providers";
@@ -15,6 +15,17 @@ function PasswordResetContent() {
     const [success, setSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isReturningToLogin, setIsReturningToLogin] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const errorRef = useRef<HTMLDivElement>(null);
+    const successRef = useRef<HTMLDivElement>(null);
+
+    // Move focus to the result so keyboard and screen-reader users hear it.
+    useEffect(() => {
+        if (error) errorRef.current?.focus();
+    }, [error]);
+    useEffect(() => {
+        if (success) successRef.current?.focus();
+    }, [success]);
 
     useEffect(() => {
         if (status === "loading") return;
@@ -75,7 +86,7 @@ function PasswordResetContent() {
     const inputClasses = "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
 
     return (
-        <div className="min-h-dvh flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 bg-bg">
+        <main className="min-h-dvh flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 bg-bg">
             <div className="max-w-md w-full space-y-6 sm:space-y-8">
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 text-primary">
@@ -87,32 +98,53 @@ function PasswordResetContent() {
                     <p className="text-base sm:text-sm text-[var(--color-text)]">
                         Create your new password.
                     </p>
-                    <p className="text-xs mt-1 leading-5 text-[var(--color-text-muted)]">
-                        Espanol: Paso 2 de 3. Crea una clave nueva.
+                    <p lang="es" className="text-sm mt-1 leading-5 text-[var(--color-text-muted)]">
+                        Español: Paso 2 de 3. Crea una clave nueva.
                     </p>
                 </div>
                 {!success ? (
                     <form onSubmit={handleSubmit} className="space-y-6 w-full">
                         <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
                             <div>
-                                <label className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
+                                <label htmlFor="new-password" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                                     New Password
                                 </label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="At least 8 characters"
-                                    className={inputClasses}
-                                    required
-                                />
+                                <div className="relative">
+                                    <input
+                                        id="new-password"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        autoComplete="new-password"
+                                        aria-invalid={error ? true : undefined}
+                                        aria-describedby={error ? "new-password-hint password-reset-error" : "new-password-hint"}
+                                        className={`${inputClasses} pr-11`}
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                                        aria-controls="new-password confirm-password"
+                                        aria-label={showPassword ? "Hide passwords" : "Show passwords"}
+                                    >
+                                        {showPassword ? "Hide" : "Show"}
+                                    </button>
+                                </div>
+                                <p id="new-password-hint" className="mt-1.5 text-sm text-[var(--color-text-muted)]">
+                                    At least 8 characters
+                                </p>
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
+                                <label htmlFor="confirm-password" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                                     Confirm New Password
                                 </label>
                                 <input
-                                    type="password"
+                                    id="confirm-password"
+                                    type={showPassword ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    aria-invalid={error ? true : undefined}
+                                    aria-describedby={error ? "password-reset-error" : undefined}
                                     value={confirm}
                                     onChange={(e) => setConfirm(e.target.value)}
                                     placeholder="Repeat your password"
@@ -121,7 +153,13 @@ function PasswordResetContent() {
                                 />
                             </div>
                             {error && (
-                                <div className="border-2 rounded-lg p-3 bg-error/10 border-error">
+                                <div
+                                    ref={errorRef}
+                                    id="password-reset-error"
+                                    role="alert"
+                                    tabIndex={-1}
+                                    className="border-2 rounded-lg p-3 bg-error/10 border-error focus:outline-none"
+                                >
                                     <p className="text-sm font-medium text-error">
                                         {error}
                                     </p>
@@ -138,7 +176,12 @@ function PasswordResetContent() {
                     </form>
                 ) : (
                     <div className="border rounded-2xl p-5 sm:p-6 space-y-5 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-secondary/40 shadow-md">
-                        <div className="border rounded-lg p-3 bg-secondary/10 border-secondary">
+                        <div
+                            ref={successRef}
+                            role="status"
+                            tabIndex={-1}
+                            className="border rounded-lg p-3 bg-secondary/10 border-secondary focus:outline-none"
+                        >
                             <p className="text-sm font-semibold text-[var(--color-text)]">
                                 Password updated.
                             </p>
@@ -154,13 +197,13 @@ function PasswordResetContent() {
                         >
                             {isReturningToLogin ? "Returning..." : "Back to Sign In"}
                         </button>
-                        <p className="text-xs text-center leading-5 text-[var(--color-text-muted)]">
-                            Espanol: Vuelve a entrar con tu clave nueva.
+                        <p lang="es" className="text-sm text-center leading-5 text-[var(--color-text-muted)]">
+                            Español: Vuelve a entrar con tu clave nueva.
                         </p>
                     </div>
                 )}
             </div>
-        </div>
+        </main>
     );
 }
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, Lightbulb, AlertCircle, ArrowLeft, ChevronRight } from 'lucide-react';
+import { GameLiveRegion } from '../shared/GameLiveRegion';
 import { useTheme } from '@/components/layout/ThemeProvider';
 import { getExerciseTypeLabel } from '@/data/gerund-infinitive-exercises';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
@@ -194,9 +195,9 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
             <h2 className="font-display text-sm font-semibold text-text truncate leading-tight">
               {group.title}
             </h2>
-            <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+            <div className="flex items-center gap-1.5 text-[0.6875rem] text-text-muted">
               {roundMode && (
-                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold whitespace-nowrap ${getRoundBadgeColor(roundMode)}`}>
+                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[0.5625rem] font-bold whitespace-nowrap ${getRoundBadgeColor(roundMode)}`}>
                   {getRoundLabel(roundMode)}
                 </span>
               )}
@@ -215,12 +216,12 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
                 className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 border border-orange-200 dark:border-orange-600/50"
               >
                 <Zap size={10} className="text-orange-500 dark:text-orange-400" />
-                <span className="text-[10px] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
+                <span className="text-[0.625rem] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
               </motion.div>
             )}
             <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
               <Target size={10} className="text-secondary" />
-              <span className="text-[10px] font-bold text-secondary-dark">{correctCount}</span>
+              <span className="text-[0.625rem] font-bold text-secondary-dark">{correctCount}</span>
             </div>
           </div>
         </div>
@@ -345,6 +346,15 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
 
         {/* Exercise Content */}
         <div className="p-3 sm:p-6">
+          <GameLiveRegion
+            message={
+              showFeedback
+                ? isCorrect
+                  ? (streak >= 2 ? `Correct! ${streak} in a row!` : 'Correct!')
+                  : `Not correct. The answer is ${Array.isArray(currentExercise.correctAnswer) ? currentExercise.correctAnswer.join(' or ') : currentExercise.correctAnswer}.`
+                : null
+            }
+          />
           {/* Feedback flash */}
           <AnimatePresence>
             {showFeedback && (

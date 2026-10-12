@@ -256,13 +256,14 @@ export function ExerciseSection({
 
             {submitted && (
                 <div
+                    role="status"
                     className={`mt-6 p-4 rounded-lg border-l-4 ${correctCount === totalCount
                             ? "bg-success/10 border-success"
                             : "bg-warning/10 border-warning"
                         }`}
                 >
                     <div className="flex items-center gap-2">
-                        <div className="text-2xl">
+                        <div className="text-2xl" aria-hidden="true">
                             {correctCount === totalCount ? "✅" : "💡"}
                         </div>
                         <div className="flex-1">
@@ -273,7 +274,7 @@ export function ExerciseSection({
                             </p>
                             {correctCount !== totalCount && (
                                 <p className="text-sm text-text-muted mt-1">
-                                    Review the red highlighted answers and try again!
+                                    Review the answers marked Not correct and try again!
                                 </p>
                             )}
                         </div>

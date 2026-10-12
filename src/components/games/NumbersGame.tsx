@@ -6,6 +6,7 @@ import { RotateCcw } from "lucide-react";
 import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
 
 interface NumbersGameContent {
     type: "numbers-game";
@@ -503,7 +504,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                                 Number Category
                             </label>
                             <select 
-                                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-[#0d1620] text-gray-900 dark:text-white focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-[#0d1620] text-gray-900 dark:text-white focus:outline-none focus:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 transition-colors"
                                 value={settings.category}
                                 onChange={(e) => setSettings(prev => ({ ...prev, category: e.target.value }))}
                             >
@@ -565,7 +566,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                 </div>
                 {isCourseMapPreset && (
                     <div className="mb-4 rounded-xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-3 py-2">
-                        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+                        <p className="text-[0.6875rem] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
                             Guided Course Map Step
                         </p>
                         <p className="mt-0.5 text-sm font-semibold text-[var(--color-text)]">
@@ -616,7 +617,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                             Number Category
                         </label>
                         <select 
-                            className="w-full px-4 py-3 border-2 border-[var(--color-border)] rounded-lg bg-white dark:bg-[#0d1620] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                            className="w-full px-4 py-3 border-2 border-[var(--color-border)] rounded-lg bg-white dark:bg-[#0d1620] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 transition-colors"
                             value={settings.category}
                             onChange={(e) => {
                                 setSettings(prev => ({ ...prev, category: e.target.value }));
@@ -676,6 +677,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
             {/* Main Content */}
             <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
+                <GameLiveRegion message={showFeedback ? feedback : null} />
                 <div className="bg-white dark:bg-[#162b3d] md:rounded-2xl shadow-lg border-0 md:border border-[var(--color-border)] p-6 sm:p-8 mb-6">
                     {/* Question */}
                     <div className="mb-8 text-center">
@@ -695,7 +697,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                                 onChange={(e) => setUserAnswer(e.target.value)}
                                 onKeyDown={handleKeyPress}
                                 placeholder="Type your answer…"
-                                className="w-full px-6 py-4 text-xl border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:border-[var(--color-primary)] transition-colors text-center text-[var(--color-text)] bg-white dark:bg-[#0d1620]"
+                                className="w-full px-6 py-4 text-xl border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 transition-colors text-center text-[var(--color-text)] bg-white dark:bg-[#0d1620]"
                                 disabled={showFeedback}
                             />
                         </div>

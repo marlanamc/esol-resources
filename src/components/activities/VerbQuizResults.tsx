@@ -113,7 +113,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                   <div className="space-y-3">
                     <div className="flex flex-wrap gap-2">
                       <span
-                        className="inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
+                        className="inline-flex rounded-full border px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.16em]"
                         style={{
                           borderColor: 'var(--tone-vocabulary-border)',
                           backgroundColor: 'var(--tone-vocabulary-chip-bg)',
@@ -124,7 +124,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                       </span>
                       {definition && (
                         <span
-                          className="inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
+                          className="inline-flex rounded-full border px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.16em]"
                           style={{
                             borderColor: 'var(--tone-quizzes-border)',
                             backgroundColor: 'var(--tone-quizzes-chip-bg)',
@@ -180,15 +180,16 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                       >
                         <div className="flex items-center gap-2 mb-2">
                           {isCorrect ? (
-                            <CheckCircle2 className="w-4 h-4 text-[var(--tone-grammar-accent-strong)]" />
+                            <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-[var(--tone-grammar-accent-strong)]" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-[var(--tone-quizzes-accent-strong)]" />
+                            <XCircle aria-hidden="true" className="w-4 h-4 text-[var(--tone-quizzes-accent-strong)]" />
                           )}
                           <span
                             className="text-xs font-semibold uppercase"
                             style={{ color: isCorrect ? 'var(--tone-grammar-accent-strong)' : 'var(--tone-quizzes-accent-strong)' }}
                           >
                             {FORM_LABELS[formKey]}
+                            <span className="sr-only">{isCorrect ? ' (Correct)' : ' (Incorrect)'}</span>
                           </span>
                         </div>
                         <div className="font-mono text-sm">
@@ -199,7 +200,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                           </div>
                           {!isCorrect && (
                             <div className="mt-1 font-semibold text-[var(--tone-grammar-accent-strong)]">
-                              ✓ {correctAnswer}
+                              <span aria-hidden="true">✓ </span><span className="sr-only">Correct answer: </span>{correctAnswer}
                             </div>
                           )}
                         </div>
@@ -232,15 +233,16 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                       >
                         <div className="flex items-center gap-2">
                           {isCorrect ? (
-                            <CheckCircle2 className="w-4 h-4 text-[var(--tone-grammar-accent-strong)]" />
+                            <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-[var(--tone-grammar-accent-strong)]" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-[var(--tone-quizzes-accent-strong)]" />
+                            <XCircle aria-hidden="true" className="w-4 h-4 text-[var(--tone-quizzes-accent-strong)]" />
                           )}
                           <span
                             className="text-xs font-semibold uppercase"
                             style={{ color: isCorrect ? 'var(--tone-grammar-accent-strong)' : 'var(--tone-quizzes-accent-strong)' }}
                           >
                             {FORM_LABELS[formKey]}
+                            <span className="sr-only">{isCorrect ? ' (Correct)' : ' (Incorrect)'}</span>
                           </span>
                         </div>
                         <div className="font-mono text-sm text-right">
@@ -251,7 +253,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                           </div>
                           {!isCorrect && (
                             <div className="font-semibold text-[var(--tone-grammar-accent-strong)]">
-                              ✓ {correctAnswer}
+                              <span aria-hidden="true">✓ </span><span className="sr-only">Correct answer: </span>{correctAnswer}
                             </div>
                           )}
                         </div>

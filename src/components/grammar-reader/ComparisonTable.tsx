@@ -41,7 +41,7 @@ function ComparisonMobileCards({
                     )}
                     <div className="divide-y divide-border">
                         <div className="bg-warning/10 px-3 py-3">
-                            <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-warning">
+                            <p className="mb-1 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-text">
                                 {comparison.leftLabel}
                             </p>
                             <div className="text-sm text-text">
@@ -49,7 +49,7 @@ function ComparisonMobileCards({
                             </div>
                         </div>
                         <div className="bg-success/10 px-3 py-3">
-                            <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-success">
+                            <p className="mb-1 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-text">
                                 {comparison.rightLabel}
                             </p>
                             <div className="text-sm text-text">
@@ -78,14 +78,14 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
                     <thead>
                         <tr>
                             {showLabel && (
-                                <th className="bg-bg-light border border-border p-3 text-left text-sm font-semibold text-text w-[22%]">
+                                <th scope="col" className="bg-bg-light border border-border p-3 text-left text-sm font-semibold text-text w-[22%]">
                                     Category
                                 </th>
                             )}
-                            <th className="bg-warning/10 border border-border p-3 text-left text-sm font-semibold text-warning min-w-0">
+                            <th scope="col" className="bg-warning/10 border border-border p-3 text-left text-sm font-semibold text-warning min-w-0">
                                 {comparison.leftLabel}
                             </th>
-                            <th className="bg-success/10 border border-border p-3 text-left text-sm font-semibold text-success min-w-0">
+                            <th scope="col" className="bg-success/10 border border-border p-3 text-left text-sm font-semibold text-success min-w-0">
                                 {comparison.rightLabel}
                             </th>
                         </tr>

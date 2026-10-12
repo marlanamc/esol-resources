@@ -61,7 +61,7 @@ export function PatternSortingExercise({ exercise, onAnswer, answered }: Props) 
               }`}
             >
               {idx === 0 && (
-                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] text-white shadow-sm ring-2 ring-white dark:ring-[#1c3a52]">
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[0.625rem] text-white shadow-sm ring-2 ring-white dark:ring-[#1c3a52]">
                   ★
                 </span>
               )}
@@ -114,7 +114,7 @@ export function PatternSortingExercise({ exercise, onAnswer, answered }: Props) 
                    <svg className="w-8 h-8 mb-2 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
                    </svg>
-                   <span className="text-[10px] font-bold uppercase tracking-tight">Tap to place</span>
+                   <span className="text-[0.625rem] font-bold uppercase tracking-tight">Tap to place</span>
                 </div>
               )}
             </motion.div>

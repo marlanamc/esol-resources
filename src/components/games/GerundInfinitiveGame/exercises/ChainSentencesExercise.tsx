@@ -74,7 +74,7 @@ export function ChainSentencesExercise({ exercise, onAnswer, answered }: Props) 
                   placeholder="......"
                   autoComplete="off"
                   spellCheck={false}
-                  className={`w-28 sm:w-36 mx-1 border-b-2 bg-transparent text-center outline-none font-bold px-1 ${
+                  className={`w-28 sm:w-36 mx-1 border-b-2 bg-transparent text-center outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-dark font-bold px-1 ${
                     submitted
                       ? correct
                         ? 'border-secondary text-secondary'

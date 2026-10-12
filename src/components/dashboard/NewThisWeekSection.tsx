@@ -90,13 +90,13 @@ export function NewThisWeekSection({
                                 <span className="line-clamp-2 text-balance text-base font-bold leading-snug text-text">
                                     {title}
                                 </span>
-                                <span className="text-[13px] font-bold" style={{ color: tone.chipText }}>
+                                <span className="text-[0.8125rem] font-bold" style={{ color: tone.chipText }}>
                                     {format.label}
                                 </span>
                             </span>
                             {assignment.isNewRelease && (assignment.progress ?? 0) < 100 ? (
                                 <span
-                                    className="shrink-0 self-start rounded-full px-2.5 py-[3px] text-[11px] font-bold uppercase tracking-wide"
+                                    className="shrink-0 self-start rounded-full px-2.5 py-[3px] text-[0.6875rem] font-bold uppercase tracking-wide"
                                     style={{
                                         color: "var(--primary-text)",
                                         background: "color-mix(in srgb, var(--primary) 8%, transparent)",
@@ -118,7 +118,7 @@ const ROW_BORDER = "1px solid color-mix(in srgb, var(--road-rail) 45%, transpare
 function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
     return (
         <section aria-label="Featured" className={`font-legible ${roadStyles.road}`}>
-            <h2 className="mb-2 text-[12px] font-extrabold uppercase tracking-[.07em] text-text-muted">Featured</h2>
+            <h2 className="mb-2 text-[0.75rem] font-extrabold uppercase tracking-[.07em] text-text-muted">Featured</h2>
             <div
                 className="overflow-hidden rounded-2xl"
                 style={{
@@ -161,17 +161,17 @@ function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
                                 ) : null}
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className={`block text-[15px] leading-[1.3] ${done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>
+                                <span className={`block text-[0.9375rem] leading-[1.3] ${done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>
                                     {title}
                                 </span>
-                                <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: done ? "var(--text-muted)" : tone.chipText }}>
+                                <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: done ? "var(--text-muted)" : tone.chipText }}>
                                     {format.label}
                                 </span>
                                 {done ? <span className="sr-only">Done</span> : null}
                             </span>
                             {assignment.isNewRelease && !done ? (
                                 <span
-                                    className="shrink-0 rounded-full px-2 py-[3px] text-[10.5px] font-extrabold uppercase tracking-[.06em] text-text-muted"
+                                    className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] text-text-muted"
                                     style={{ background: "var(--road-neutral-chip)" }}
                                 >
                                     New

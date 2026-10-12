@@ -123,11 +123,11 @@ function ActivityRow({
 
     const rowClass = `${rowBase} ${
         done
-            ? "text-text-muted opacity-60"
+            ? "text-text-muted"
             : isCurrent
             ? "font-semibold text-text"
             : inactive
-            ? "text-text-muted opacity-50 cursor-default"
+            ? "text-text-muted cursor-default"
             : "text-text-muted hover:text-text hover:bg-black/[0.03]"
     }`;
 
@@ -136,20 +136,22 @@ function ActivityRow({
             <span className="shrink-0 mt-0.5 text-sm leading-none" aria-hidden>{icon}</span>
             <span className={`flex-1 leading-snug min-w-0 ${done ? "line-through" : ""}`}>
                 {activity.title}
+                {done && <span className="sr-only"> (Completed)</span>}
+                {inactive && <span className="sr-only"> (Not yet available)</span>}
                 {activity.wrappedGame && !inactive && (
-                    <span className="ml-1.5 text-[9px] font-bold uppercase tracking-wide opacity-60">preset</span>
+                    <span className="ml-1.5 text-[0.6875rem] font-bold uppercase tracking-wide">preset</span>
                 )}
             </span>
             {isCurrent && (
                 <span
-                    className="shrink-0 self-center rounded-full px-2 py-0.5 text-[9px] font-bold leading-none"
+                    className="shrink-0 self-center rounded-full px-2 py-0.5 text-[0.6875rem] font-bold leading-none"
                     style={{ background: accent.chipBg, color: accent.chipText }}
                 >
                     {currentLabel}
                 </span>
             )}
             {isPlanned && (
-                <span className="shrink-0 self-center text-[9px] font-semibold text-text-muted opacity-60 leading-none">soon</span>
+                <span className="shrink-0 self-center text-[0.6875rem] font-semibold text-text-muted leading-none">soon</span>
             )}
         </>
     );
@@ -162,6 +164,7 @@ function ActivityRow({
                 href={activity.href}
                 vocabUi={activity.vocabUi}
                 className={rowClass}
+                aria-current={isCurrent ? "step" : undefined}
             >
                 {inner}
             </ActivityLink>
@@ -169,12 +172,12 @@ function ActivityRow({
     }
     if (!inactive && activity.href) {
         return (
-            <Link href={withReturnTo(activity.href, currentHref)} className={rowClass}>
+            <Link href={withReturnTo(activity.href, currentHref)} className={rowClass} aria-current={isCurrent ? "step" : undefined}>
                 {inner}
             </Link>
         );
     }
-    return <div className={rowClass} aria-disabled="true">{inner}</div>;
+    return <div className={rowClass} aria-disabled="true" aria-current={isCurrent ? "step" : undefined}>{inner}</div>;
 }
 
 // ─── Level card inside an expanded unit ───────────────────────────────────────
@@ -221,11 +224,11 @@ function LevelCard({
             {/* Card header */}
             <div className="px-3 py-2.5 border-b" style={{ borderColor: "var(--border-subtle)" }}>
                 <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wide text-text-muted">
+                    <span className="text-[0.625rem] font-bold uppercase tracking-wide text-text-muted">
                         Lv {level.levelNumber}
                     </span>
                     <span
-                        className="text-[10px] font-bold tabular-nums"
+                        className="text-[0.625rem] font-bold tabular-nums"
                         style={{ color: levelDone ? accent.accent : "var(--text-muted)" }}
                     >
                         {levelDone ? "✓ done" : `${requiredDone}/${totalRequired}`}
@@ -233,7 +236,7 @@ function LevelCard({
                 </div>
                 <p className="text-xs font-bold text-text mt-0.5 leading-snug">{level.levelTitle}</p>
                 {level.levelGoal && (
-                    <p className="text-[10px] text-text-muted mt-1 leading-snug opacity-80">{level.levelGoal}</p>
+                    <p className="text-[0.6875rem] text-text-muted mt-1 leading-snug">{level.levelGoal}</p>
                 )}
             </div>
 
@@ -258,7 +261,7 @@ function LevelCard({
                     className="border-t px-1 py-1.5 space-y-0.5"
                     style={{ borderColor: "var(--border-subtle)" }}
                 >
-                    <p className="px-2 text-[9px] font-bold uppercase tracking-widest text-text-muted opacity-60 mb-1">
+                    <p className="px-2 text-[0.6875rem] font-bold uppercase tracking-widest text-text-muted mb-1">
                         Extra
                     </p>
                     {level.extraPractice.map((activity) => (
@@ -364,7 +367,7 @@ function ChapterStrip({
                             Unit {unit.unitNumber} — {unit.unitTitle}
                         </span>
                         <span
-                            className="text-[10px] font-bold uppercase tracking-widest leading-none"
+                            className="text-[0.625rem] font-bold uppercase tracking-widest leading-none"
                             style={{ color: isFuture ? "var(--text-muted)" : accent.accent }}
                         >
                             {unit.month}
@@ -391,7 +394,7 @@ function ChapterStrip({
                                     />
                                 ))}
                             </div>
-                            <span className="text-[10px] text-text-muted tabular-nums">
+                            <span className="text-[0.625rem] text-text-muted tabular-nums">
                                 {doneCount}/{totalCount} activities
                             </span>
                         </div>
@@ -401,7 +404,7 @@ function ChapterStrip({
                 {/* Done stamp */}
                 {isDone && (
                     <span
-                        className="shrink-0 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded border rotate-[-3deg] leading-none"
+                        className="shrink-0 text-[0.625rem] font-black uppercase tracking-widest px-3 py-1 rounded border rotate-[-3deg] leading-none"
                         style={{
                             color: accent.accent,
                             borderColor: accent.border,

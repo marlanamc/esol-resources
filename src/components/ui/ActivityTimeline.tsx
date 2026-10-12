@@ -83,11 +83,11 @@ export const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
                       {activity.activityName}
                     </p>
                     {vocabChip ? (
-                      <span className={`inline-flex items-center mt-1 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${vocabChip.className}`}>
+                      <span className={`inline-flex items-center mt-1 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide rounded-md border ${vocabChip.className}`}>
                         {vocabChip.icon} {vocabChip.label}
                       </span>
                     ) : activity.activityType ? (
-                      <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-medium text-secondary bg-secondary/10 rounded-full">
+                      <span className="inline-block mt-1 px-2 py-0.5 text-[0.625rem] font-medium text-secondary bg-secondary/10 rounded-full">
                         {activity.activityType}
                       </span>
                     ) : activity.reason ? (

@@ -32,7 +32,7 @@ function PrepositionGrid({ icons }: { icons: NonNullable<ReferenceSection['prepo
 /** Full present/future vs. past modal table (restores the original PDF's main modals table). */
 function ModalsTable({ rows }: { rows: NonNullable<ReferenceSection['modalsTable']> }) {
   return (
-    <div className="my-4 overflow-x-auto rounded-xl border border-border">
+    <div tabIndex={0} role="region" aria-label="Modal verbs table (scrolls sideways)" className="my-4 overflow-x-auto rounded-xl border border-border focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
       <table className="w-full text-sm">
         <thead>
           <tr className="bg-bg-light">

@@ -84,12 +84,12 @@ function ContinueCard({
             </span>
 
             {/* Title */}
-            <p className="line-clamp-2 text-[12.5px] font-semibold leading-tight text-text">
+            <p className="line-clamp-2 text-[0.7813rem] font-semibold leading-tight text-text">
                 {title}
             </p>
 
             {/* Subtitle */}
-            <p className="mt-auto text-[11px] font-medium leading-none text-text-muted">
+            <p className="mt-auto text-[0.6875rem] font-medium leading-none text-text-muted">
                 {subtitle}
             </p>
         </Link>
@@ -160,10 +160,10 @@ export function ContinueLearningRow({ vocabHabit, items }: ContinueLearningRowPr
                             >
                                 <Layers size={20} strokeWidth={2} />
                             </span>
-                            <p className="line-clamp-2 text-[12.5px] font-semibold leading-tight text-text">
+                            <p className="line-clamp-2 text-[0.7813rem] font-semibold leading-tight text-text">
                                 {vocabHabit.title}
                             </p>
-                            <p className="mt-auto text-[11px] font-medium leading-none text-text-muted">
+                            <p className="mt-auto text-[0.6875rem] font-medium leading-none text-text-muted">
                                 {vocabBadge}
                             </p>
                         </Link>

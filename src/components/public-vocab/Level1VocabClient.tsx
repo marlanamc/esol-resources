@@ -51,7 +51,7 @@ export function Level1VocabClient({ units }: Level1VocabClientProps) {
           }}
         >
           <span
-            className="text-[56px] leading-none shrink-0"
+            className="text-[3.5rem] leading-none shrink-0"
             style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.12))" }}
             aria-hidden
           >
@@ -59,15 +59,15 @@ export function Level1VocabClient({ units }: Level1VocabClientProps) {
           </span>
           <div className="min-w-0">
             <h1
-              className="font-display text-[26px] font-black leading-none"
+              className="font-display text-[1.625rem] font-black leading-none"
               style={{ color: "#a64822" }}
             >
               Hello!
             </h1>
-            <p className="mt-1 text-[15px] text-slate-700">
+            <p className="mt-1 text-[0.9375rem] text-slate-700">
               Pick a unit to practice English words.
             </p>
-            <p className="mt-1 text-[13px] font-bold" style={{ color: "#a64822" }}>
+            <p className="mt-1 text-[0.8125rem] font-bold" style={{ color: "#a64822" }}>
               Elige una unidad.
             </p>
           </div>
@@ -75,7 +75,7 @@ export function Level1VocabClient({ units }: Level1VocabClientProps) {
       </section>
 
       {/* Section label */}
-      <p className="mb-3 pl-1 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+      <p className="mb-3 pl-1 text-[0.6875rem] font-black uppercase tracking-[0.14em] text-slate-500">
         Units · Unidades
       </p>
 

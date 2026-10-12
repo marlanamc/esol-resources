@@ -49,7 +49,7 @@ export function AssignmentCard({
                 <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                         <span
-                            className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide"
+                            className="inline-flex px-2 py-0.5 rounded text-[0.625rem] font-bold uppercase tracking-wide"
                             style={{ backgroundColor: categoryStyle.bg, color: categoryStyle.text }}
                         >
                             {categoryStyle.label}
@@ -57,7 +57,7 @@ export function AssignmentCard({
 
                         {isNew && (
                             <span
-                                className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}
+                                className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[0.5625rem] font-semibold uppercase tracking-wide`}
                             >
                                 <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
                                 New
@@ -72,7 +72,7 @@ export function AssignmentCard({
                                 <ActivityLink
                                     activityId={assignment.activityId}
                                     assignmentId={assignment.id}
-                                    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
+                                    className={`inline-flex items-center px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
                                     onClick={(event) => event.stopPropagation()}
                                 >
                                     {chip.icon} {chip.label}
@@ -81,13 +81,13 @@ export function AssignmentCard({
                         })()}
 
                         {assignment.progress != null && assignment.progress > 0 && !isCompleted && (
-                            <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <span className="inline-flex px-2 py-0.5 rounded-full text-[0.625rem] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                                 {Math.round(assignment.progress)}% done
                             </span>
                         )}
 
                         {isCompleted && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-secondary/10 text-[#3d6b47] dark:text-secondary rounded text-[10px] font-bold uppercase tracking-wide">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-secondary/10 text-[#3d6b47] dark:text-secondary rounded text-[0.625rem] font-bold uppercase tracking-wide">
                                 <span className="text-xs">✓</span>
                                 Done
                             </span>

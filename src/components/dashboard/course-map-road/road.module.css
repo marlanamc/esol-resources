@@ -42,3 +42,10 @@
   --road-done-bg: rgba(111, 191, 159, 0.16);
   --road-done-text: #8ed4b8;
 }
+
+/* Keep keyboard-focused rows clear of the sticky top bar and the fixed
+   "Back to this week" pill (WCAG 2.4.11 Focus Not Obscured). */
+.road :is(a, button, [tabindex]) {
+  scroll-margin-top: var(--road-scroll-top, 9rem);
+  scroll-margin-bottom: 7rem;
+}

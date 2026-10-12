@@ -32,6 +32,7 @@ interface Props {
 function UnitWeekListbox({
     weeks,
     unitTitle,
+    unitNumber,
     unitTone,
     activeWeekNumber,
     currentWeekNumber,
@@ -39,6 +40,7 @@ function UnitWeekListbox({
 }: {
     weeks: WeekProgressEntry[];
     unitTitle: string;
+    unitNumber: number;
     unitTone: CourseMapUnitTone;
     activeWeekNumber: number | null;
     currentWeekNumber: number | null;
@@ -50,6 +52,7 @@ function UnitWeekListbox({
     return (
         <div
             ref={listRef}
+            id={`unit-levels-${unitNumber}`}
             role="listbox"
             aria-label={`Levels in ${unitTitle}`}
             onKeyDown={handleKeyDown}
@@ -68,14 +71,14 @@ function UnitWeekListbox({
                         aria-selected={isSelected}
                         tabIndex={isWeekActive ? 0 : -1}
                         onClick={() => onWeekNavigate(week.weekNumber)}
-                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-1 text-left text-[11px] transition-colors ${
+                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-1 text-left text-[0.6875rem] transition-colors ${
                             isSelected
                                 ? "bg-surface-subtle font-semibold text-text"
                                 : "text-text-muted hover:bg-surface-subtle hover:text-text"
                         }`}
                     >
                         <span
-                            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold"
+                            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[0.5625rem] font-bold"
                             style={
                                 week.isDone
                                     ? {
@@ -97,7 +100,7 @@ function UnitWeekListbox({
                             {week.isDone ? <Check size={10} strokeWidth={3} aria-hidden /> : week.weekNumber}
                         </span>
                         <span className="min-w-0 flex-1 truncate leading-tight">{week.title}</span>
-                        <span className="shrink-0 tabular-nums text-[10px]">
+                        <span className="shrink-0 tabular-nums text-[0.625rem]">
                             {week.done}/{week.total}
                         </span>
                     </button>
@@ -168,7 +171,7 @@ export function CourseMapUnitNav({
                 className="dashboard-panel rounded-2xl p-4 space-y-1"
                 aria-label="Course map units and levels"
             >
-                <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted mb-2 px-1" id="course-map-unit-nav-label">
+                <p className="text-[0.6875rem] font-bold uppercase tracking-wide text-text-muted mb-2 px-1" id="course-map-unit-nav-label">
                     Units
                 </p>
                 {units.map((unit) => {
@@ -220,7 +223,7 @@ export function CourseMapUnitNav({
                                     <span className="flex-1 leading-tight font-medium group-hover:text-text truncate">
                                         {unit.unitTitle}
                                     </span>
-                                    <span className="text-[10px] tabular-nums shrink-0">
+                                    <span className="text-[0.625rem] tabular-nums shrink-0">
                                         {progress?.done ?? 0}/{progress?.total ?? 0}
                                     </span>
                                 </a>
@@ -228,8 +231,9 @@ export function CourseMapUnitNav({
                                     <button
                                         type="button"
                                         onClick={() => toggleUnitExpanded(unit.unitNumber)}
-                                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg hover:bg-surface-subtle"
+                                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg hover:bg-surface-subtle"
                                         aria-expanded={isExpanded}
+                                        aria-controls={`unit-levels-${unit.unitNumber}`}
                                         aria-label={`${isExpanded ? "Collapse" : "Expand"} levels for ${unit.unitTitle}`}
                                     >
                                         <ChevronDown
@@ -246,6 +250,7 @@ export function CourseMapUnitNav({
                                 <UnitWeekListbox
                                     weeks={weeks}
                                     unitTitle={unit.unitTitle}
+                                    unitNumber={unit.unitNumber}
                                     unitTone={unitTone}
                                     activeWeekNumber={activeWeekNumber}
                                     currentWeekNumber={currentWeekNumber}
@@ -261,7 +266,7 @@ export function CourseMapUnitNav({
 
     return (
         <div className="mb-5 -mx-1">
-            <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted mb-2.5 px-1">Units</p>
+            <p className="text-[0.6875rem] font-bold uppercase tracking-wide text-text-muted mb-2.5 px-1">Units</p>
             <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {units.map((unit) => {
                     const progress = progressByUnit.get(unit.unitNumber);
@@ -303,7 +308,7 @@ export function CourseMapUnitNav({
                             </span>
                             <span className="min-w-0">
                                 <span
-                                    className="block text-[10px] font-bold uppercase tracking-wide leading-none"
+                                    className="block text-[0.625rem] font-bold uppercase tracking-wide leading-none"
                                     style={{ color: unitTone.accent }}
                                 >
                                     {showUnitMonths ? unit.month : `Unit ${unit.unitNumber}`}

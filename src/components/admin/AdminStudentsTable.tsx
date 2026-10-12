@@ -85,39 +85,28 @@ export function AdminStudentsTable({ students }: Props) {
     return (
         <div className="space-y-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2
-                    className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider"
-                    style={{ color: "#64748b" }}
-                >
-                    <Users className="h-3.5 w-3.5" />
+                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-text-muted">
+                    <Users className="h-3.5 w-3.5" aria-hidden="true" />
                     Students ({filteredStudents.length}
                     {filteredStudents.length !== students.length ? ` of ${students.length}` : ""})
                 </h2>
             </div>
 
-            <div
-                className="rounded-2xl overflow-hidden border bg-white"
-                style={{ borderColor: "rgba(0,0,0,0.08)" }}
-            >
-                <div
-                    className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-3 p-4 border-b"
-                    style={{ borderColor: "rgba(0,0,0,0.06)", background: "#f8f9fc" }}
-                >
+            <div className="rounded-2xl overflow-hidden border border-border-subtle bg-surface-elevated">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-3 p-4 border-b border-border-subtle bg-surface-subtle">
                     <input
                         type="search"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search by name or username…"
                         aria-label="Search students"
-                        className="w-full px-3 py-2 min-h-[44px] rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#b05740]"
-                        style={{ borderColor: "rgba(0,0,0,0.12)", color: "#1e2640" }}
+                        className="w-full px-3 py-2 min-h-[44px] rounded-lg border border-border-strong bg-surface-elevated text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <select
                         value={selectedSectionId}
                         onChange={(e) => setSelectedSectionId(e.target.value)}
                         aria-label="Filter by section"
-                        className="w-full md:w-[220px] px-3 py-2 min-h-[44px] rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#b05740]"
-                        style={{ borderColor: "rgba(0,0,0,0.12)", color: "#1e2640" }}
+                        className="w-full md:w-[220px] px-3 py-2 min-h-[44px] rounded-lg border border-border-strong bg-surface-elevated text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                         <option value="all">All sections ({students.length})</option>
                         {sectionOptions.map((section) => (
@@ -132,8 +121,7 @@ export function AdminStudentsTable({ students }: Props) {
                             setLeaderboardFilter(e.target.value as "all" | "included" | "excluded")
                         }
                         aria-label="Filter by leaderboard status"
-                        className="w-full md:w-[200px] px-3 py-2 min-h-[44px] rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#b05740]"
-                        style={{ borderColor: "rgba(0,0,0,0.12)", color: "#1e2640" }}
+                        className="w-full md:w-[200px] px-3 py-2 min-h-[44px] rounded-lg border border-border-strong bg-surface-elevated text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                         <option value="all">All leaderboard</option>
                         <option value="included">On leaderboard</option>
@@ -143,16 +131,17 @@ export function AdminStudentsTable({ students }: Props) {
 
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[700px]">
+                        <caption className="sr-only">Students and their sections, leaderboard status and activity</caption>
                         <thead>
-                            <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+                            <tr className="border-b border-border-subtle bg-surface-subtle">
                                 {["Username", "Name", "Enrolled In", "Leaderboard", "Last Active", "Joined", ""].map(
-                                    (h) => (
+                                    (h, i) => (
                                         <th
-                                            key={h}
-                                            className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider"
-                                            style={{ color: "#94a3b8" }}
+                                            key={h || `col-${i}`}
+                                            scope="col"
+                                            className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider text-text-muted"
                                         >
-                                            {h}
+                                            {h || <span className="sr-only">Actions</span>}
                                         </th>
                                     )
                                 )}
@@ -161,11 +150,7 @@ export function AdminStudentsTable({ students }: Props) {
                         <tbody>
                             {filteredStudents.length === 0 ? (
                                 <tr>
-                                    <td
-                                        colSpan={7}
-                                        className="py-10 px-4 text-center text-sm"
-                                        style={{ color: "#94a3b8" }}
-                                    >
+                                    <td colSpan={7} className="py-10 px-4 text-center text-sm text-text-muted">
                                         No students match your filters
                                     </td>
                                 </tr>
@@ -173,21 +158,18 @@ export function AdminStudentsTable({ students }: Props) {
                                 filteredStudents.map((u) => {
                                     const classNames = u.classes.map((c) => c.name);
                                     return (
-                                        <tr key={u.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-                                            <td
-                                                className="py-3 px-4 text-sm font-semibold"
-                                                style={{ color: "#1e2640" }}
-                                            >
+                                        <tr key={u.id} className="border-b border-border-subtle">
+                                            <th scope="row" className="py-3 px-4 text-left text-sm font-semibold text-text">
                                                 {u.username}
-                                            </td>
-                                            <td className="py-3 px-4 text-sm" style={{ color: "#475569" }}>
+                                            </th>
+                                            <td className="py-3 px-4 text-sm text-text-muted">
                                                 {u.name || "—"}
                                             </td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#64748b" }}>
+                                            <td className="py-3 px-4 text-sm text-text-muted">
                                                 {classNames.length > 0 ? (
                                                     classNames.join(", ")
                                                 ) : (
-                                                    <em style={{ color: "#94a3b8" }}>independent</em>
+                                                    <em>independent</em>
                                                 )}
                                             </td>
                                             <td className="py-3 px-4">
@@ -196,7 +178,7 @@ export function AdminStudentsTable({ students }: Props) {
                                                     initialExcluded={u.excludeFromLeaderboard}
                                                 />
                                             </td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#94a3b8" }}>
+                                            <td className="py-3 px-4 text-sm text-text-muted">
                                                 {u.lastActivityDate
                                                     ? new Date(u.lastActivityDate).toLocaleDateString("en-US", {
                                                           month: "short",
@@ -204,7 +186,7 @@ export function AdminStudentsTable({ students }: Props) {
                                                       })
                                                     : "Never"}
                                             </td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#94a3b8" }}>
+                                            <td className="py-3 px-4 text-sm text-text-muted">
                                                 {new Date(u.createdAt).toLocaleDateString("en-US", {
                                                     month: "short",
                                                     year: "numeric",

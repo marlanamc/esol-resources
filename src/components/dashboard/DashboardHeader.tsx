@@ -82,7 +82,7 @@ export function DashboardHeader({
                         style={{
                             backgroundColor: "#cf7a5f",
                             borderColor: "#c06d52",
-                            fontSize: "14px",
+                            fontSize: "0.875rem",
                             lineHeight: "20px",
                             minWidth: "132px",
                         }}

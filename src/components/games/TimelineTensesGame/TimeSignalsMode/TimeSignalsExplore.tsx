@@ -191,10 +191,10 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                       className={`border-l-4 pl-4 ${tone.border}`}
                     >
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className={`text-[11px] font-black uppercase tracking-wide ${tone.label}`}>
+                      <span className={`text-[0.6875rem] font-black uppercase tracking-wide ${tone.label}`}>
                         {usage.context}
                       </span>
-                      <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${tone.badge}`}>
+                      <span className={`text-[0.6875rem] px-2 py-0.5 rounded-full font-bold ${tone.badge}`}>
                         {usage.tenseName}
                       </span>
                     </div>
@@ -204,7 +204,7 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                     <div className="rounded-xl border border-border/50 dark:border-white/10 bg-[var(--color-bg-light)]/40 dark:bg-white/[0.03] p-3">
                       <TimelineCanvas elements={contextualTimelineElements} showLabels={false} />
                     </div>
-                    <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted/60">
+                    <p className="mt-2 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-text-muted/60">
                       {getTimeSignalTimelineLabel(contextualTimelineElements)}
                     </p>
                     {usage.note && (

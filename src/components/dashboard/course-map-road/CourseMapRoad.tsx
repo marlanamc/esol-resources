@@ -282,7 +282,11 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     };
 
     return (
-        <div ref={rootRef} className={`-mx-4 font-legible md:-mx-6 lg:mx-0 ${styles.road}`}>
+        <div
+            ref={rootRef}
+            className={`-mx-4 font-legible md:-mx-6 lg:mx-0 ${styles.road}`}
+            style={{ "--road-scroll-top": `calc(${headerHeight}px + 5.5rem)` } as CSSProperties}
+        >
             {/* Desktop shows a visible title in the sidebar. */}
             <h1 className="sr-only lg:hidden">Course Map</h1>
 
@@ -298,23 +302,23 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
             >
                 <div className="flex items-end justify-between gap-3" aria-live="polite">
                     <div className="min-w-0">
-                        <p className="m-0 truncate text-[12px] leading-snug font-extrabold uppercase tracking-[.07em]" style={{ color: viewedTone.accent }}>
+                        <p className="m-0 truncate text-[0.75rem] leading-snug font-extrabold uppercase tracking-[.07em]" style={{ color: viewedTone.accent }}>
                             {eyebrow}
                         </p>
                         <p className="m-0 flex items-baseline gap-1.5 leading-tight whitespace-nowrap">
-                            <span className="font-display text-[21px] font-bold text-text lg:text-[28px]">
+                            <span className="font-display text-[1.3125rem] font-bold text-text lg:text-[1.75rem]">
                                 {weekNoun} {viewedWeek}
                             </span>
-                            {viewed?.dates ? <span className="text-[14px] font-semibold text-text-muted lg:text-[17px]">{viewed.dates}</span> : null}
+                            {viewed?.dates ? <span className="text-[0.875rem] font-semibold text-text-muted lg:text-[1.0625rem]">{viewed.dates}</span> : null}
                         </p>
                     </div>
                     {relation === "this" ? (
-                        <span className="shrink-0 rounded-full px-2.5 py-[5px] text-[12px] font-extrabold whitespace-nowrap" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
+                        <span className="shrink-0 rounded-full px-2.5 py-[5px] text-[0.75rem] font-extrabold whitespace-nowrap" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
                             This {weekNoun.toLowerCase()}
                         </span>
                     ) : (
                         <span
-                            className="shrink-0 rounded-full px-2.5 py-[5px] text-[12px] font-extrabold whitespace-nowrap text-text-muted"
+                            className="shrink-0 rounded-full px-2.5 py-[5px] text-[0.75rem] font-extrabold whitespace-nowrap text-text-muted"
                             style={{ background: "var(--surface-base)", boxShadow: "inset 0 0 0 1px var(--border-subtle)" }}
                         >
                             {relation === "earlier" ? `Earlier ${weekNoun.toLowerCase()}` : "Coming up"}
@@ -376,7 +380,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                                             }}
                                                         >
                                                             {stripNumbers ? (
-                                                                <span aria-hidden className="hidden text-[12px] font-bold lg:inline">
+                                                                <span aria-hidden className="hidden text-[0.75rem] font-bold lg:inline">
                                                                     {week.weekNumber}
                                                                 </span>
                                                             ) : null}
@@ -386,7 +390,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                             })}
                                         </div>
                                         <span
-                                            className="pl-1 text-[10.5px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap lg:pl-1.5 lg:text-[12px] lg:tracking-[.1em]"
+                                            className="pl-1 text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap lg:pl-1.5 lg:text-[0.75rem] lg:tracking-[.1em]"
                                             style={{ color: tone.accent, borderLeft: `2px solid ${tone.accent}` }}
                                         >
                                             {showMonths && unit.month ? unit.month.slice(0, 3) : `Unit ${unit.unitNumber}`}
@@ -453,7 +457,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                 <button
                     type="button"
                     onClick={() => jumpToWeek(currentWeek)}
-                    className="fixed left-1/2 flex min-h-[50px] -translate-x-1/2 items-center gap-2 rounded-full px-5 text-[15.5px] font-bold whitespace-nowrap"
+                    className="fixed left-1/2 flex min-h-[50px] w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full px-5 py-2 text-center text-[0.9688rem] font-bold leading-tight"
                     style={{
                         bottom: "calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + 16px)",
                         zIndex: "var(--z-fixed)",

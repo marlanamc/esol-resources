@@ -349,7 +349,7 @@ function QuizRenderer({
             <h3 className="text-xl font-semibold mb-4">Quiz Questions</h3>
             {questions.map((q: QuizQuestion, index: number) => (
                 <div key={q.id || index} className="border-l-4 border-indigo-500 pl-4 py-2">
-                    <p className="font-medium text-gray-900 mb-2">
+                    <p className="font-medium text-text mb-2">
                         {index + 1}. {q.question}
                     </p>
                     {q.options && (
@@ -362,14 +362,14 @@ function QuizRenderer({
                                         className="mr-2"
                                         disabled
                                     />
-                                    <span className="text-gray-700">{option}</span>
+                                    <span className="text-text">{option}</span>
                                 </label>
                             ))}
                         </div>
                     )}
                     {q.type === "text" && (
                         <textarea
-                            className="w-full mt-2 border border-gray-300 rounded-md px-3 py-2"
+                            className="w-full mt-2 border border-[var(--color-border-subtle)] rounded-md px-3 py-2"
                             placeholder="Your answer…"
                             disabled
                         />
@@ -389,15 +389,15 @@ function WorksheetRenderer({ content }: { content: WorksheetContent }) {
                         <h4 className="text-lg font-semibold mb-2">{section.title}</h4>
                     )}
                     {section.instructions && (
-                        <p className="text-gray-600 mb-3">{section.instructions}</p>
+                        <p className="text-text-muted mb-3">{section.instructions}</p>
                     )}
                     {section.content && (
-                        <div className="whitespace-pre-wrap text-gray-700">{section.content}</div>
+                        <div className="whitespace-pre-wrap text-text">{section.content}</div>
                     )}
                 </div>
             ))}
             {content.content && (
-                <div className="whitespace-pre-wrap text-gray-700">{content.content}</div>
+                <div className="whitespace-pre-wrap text-text">{content.content}</div>
             )}
         </div>
     );
@@ -408,7 +408,7 @@ function SlidesRenderer({ content }: { content: SlidesContent }) {
 
     return (
         <div className="space-y-4">
-            <p className="text-gray-600 mb-4">
+            <p className="text-text-muted mb-4">
                 This is a slide presentation with {slides.length} slide{slides.length !== 1 ? "s" : ""}.
             </p>
             <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
@@ -506,7 +506,7 @@ function LegacyGuideRenderer({ originalFile }: { originalFile: string }) {
 
     if (!html) {
         return (
-            <div className="text-gray-600">
+            <div className="text-text-muted">
                 Loading guide...
             </div>
         );
@@ -515,11 +515,12 @@ function LegacyGuideRenderer({ originalFile }: { originalFile: string }) {
     return (
         <div className="legacy-guide-wrapper">
             {sections.length > 0 && (
-                <div className="bg-white border border-gray-200 rounded-md shadow-sm p-4 mb-4 flex flex-wrap gap-3 items-center">
-                    <div className="text-sm font-semibold text-gray-800">Jump to section:</div>
+                <div className="bg-[var(--color-surface-elevated)] border border-[var(--color-border-subtle)] rounded-md shadow-sm p-4 mb-4 flex flex-wrap gap-3 items-center">
+                    <label htmlFor="legacy-guide-jump" className="text-sm font-semibold text-text">Jump to section:</label>
                     <select
+                        id="legacy-guide-jump"
                         onChange={(e) => e.target.value && handleJump(e.target.value)}
-                        className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900"
+                        className="border border-[var(--color-border-subtle)] rounded-md px-3 py-2 text-sm text-text bg-[var(--color-surface-base)]"
                         defaultValue=""
                     >
                         <option value="" disabled>Select a section</option>
@@ -552,7 +553,7 @@ function ExternalUrlRedirect({ url }: { url: string }) {
         <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                <p className="text-gray-600">Redirecting to activity...</p>
+                <p className="text-text-muted">Redirecting to activity...</p>
             </div>
         </div>
     );
@@ -561,7 +562,7 @@ function ExternalUrlRedirect({ url }: { url: string }) {
 function DefaultRenderer({ content }: { content: ActivityContent }) {
     return (
         <div className="prose max-w-none">
-            <pre className="bg-gray-100 p-4 rounded overflow-auto text-sm">
+            <pre className="bg-[var(--color-surface-base)] p-4 rounded overflow-auto text-sm">
                 {JSON.stringify(content, null, 2)}
             </pre>
         </div>
@@ -592,7 +593,7 @@ function ResourceRenderer({
     if (!entries || entries.length === 0) {
         return (
             <div className="prose max-w-none">
-                <div className="whitespace-pre-wrap text-gray-700">{contentStr}</div>
+                <div className="whitespace-pre-wrap text-text">{contentStr}</div>
             </div>
         );
     }
@@ -602,7 +603,7 @@ function ResourceRenderer({
             {entries.map((entry, idx) => (
                 <div
                     key={`${entry.term}-${idx}`}
-                    className="group relative overflow-hidden rounded-xl bg-white border border-border/60 p-6 shadow-sm transition-[box-shadow,border-color,transform] duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1"
+                    className="group relative overflow-hidden rounded-xl bg-[var(--color-surface-elevated)] border border-border/60 p-6 shadow-sm transition-[box-shadow,border-color,transform] duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1"
                 >
                     {/* Decorative Background Elements */}
                     <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150" />
@@ -615,7 +616,7 @@ function ResourceRenderer({
                     <div className="relative z-10">
                         {/* Term & POS */}
                         <div className="flex items-baseline gap-3 mb-2 flex-wrap">
-                            <h3 className="text-2xl font-bold text-gray-900 font-display tracking-tight group-hover:text-primary transition-colors">
+                            <h3 className="text-2xl font-bold text-text font-display tracking-tight group-hover:text-primary transition-colors">
                                 {entry.term}
                             </h3>
                             {entry.pos && (
@@ -627,7 +628,7 @@ function ResourceRenderer({
 
                         {/* Definition */}
                         <div className="mb-6">
-                            <p className="text-gray-600 leading-relaxed font-medium">
+                            <p className="text-text-muted leading-relaxed font-medium">
                                 {entry.definition}
                             </p>
                         </div>
@@ -646,7 +647,7 @@ function ResourceRenderer({
                                         <p className="text-xs font-bold text-orange-800 uppercase tracking-wide mb-1 opacity-70">
                                             Usage Example
                                         </p>
-                                        <p className="text-sm text-gray-700 italic">
+                                        <p className="text-sm text-text italic">
                                             "{entry.example}"
                                         </p>
                                     </div>

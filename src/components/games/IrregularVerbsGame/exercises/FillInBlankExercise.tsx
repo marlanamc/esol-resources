@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { GameLiveRegion } from '../../shared/GameLiveRegion';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -89,7 +90,7 @@ export function FillInBlankExercise({
         <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-md mx-auto">
           {/* V1 - Always shown */}
           <div className="flex flex-col items-center gap-1">
-            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V1</span>
+            <span className="text-[0.625rem] sm:text-xs text-text-muted font-medium">V1</span>
             <span className={`w-full rounded-lg border px-2 py-2 text-center font-display text-lg font-semibold text-text sm:py-2.5 sm:text-xl ${valueSurfaceClassName}`}>
               {exercise.verb.base}
             </span>
@@ -97,7 +98,7 @@ export function FillInBlankExercise({
 
           {/* V2 */}
           <div className="flex flex-col items-center gap-1">
-            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V2</span>
+            <span className="text-[0.625rem] sm:text-xs text-text-muted font-medium">V2</span>
             {promptParts[1]?.includes('____') ? (
               <input
                 type="text"
@@ -129,7 +130,7 @@ export function FillInBlankExercise({
 
           {/* V3 */}
           <div className="flex flex-col items-center gap-1">
-            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V3</span>
+            <span className="text-[0.625rem] sm:text-xs text-text-muted font-medium">V3</span>
             {promptParts[2]?.includes('____') ? (
               <input
                 type="text"
@@ -175,6 +176,7 @@ export function FillInBlankExercise({
         )}
       </motion.div>
 
+      <GameLiveRegion message={submitted ? feedback : null} />
       {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div

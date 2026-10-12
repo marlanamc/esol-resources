@@ -78,7 +78,7 @@ export function DialogueCompletionExercise({ exercise, onAnswer, answered }: Pro
                   placeholder="..."
                   autoComplete="off"
                   spellCheck={false}
-                  className={`w-24 sm:w-28 border-b-2 bg-transparent text-center outline-none font-bold px-1 ${
+                  className={`w-24 sm:w-28 border-b-2 bg-transparent text-center outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-dark font-bold px-1 ${
                     submitted
                       ? correct
                         ? 'border-secondary text-secondary'

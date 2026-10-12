@@ -468,7 +468,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
             and "Conjunction" in caps does not fit the rail at 320px once the
             Large Text setting is on. Sizes here and below are rem-based on
             purpose: that setting scales the root font size (globals.css,
-            html[data-font-size="large"]), which an absolute text-[11px]
+            html[data-font-size="large"]), which an absolute text-[0.6875rem]
             silently ignored.
           */}
           <span className="flex w-auto min-w-[88px] max-w-[48%] shrink-0 flex-col items-center justify-center gap-0.5 border-r-2 sm:min-w-0 sm:max-w-none sm:flex-row sm:gap-1.5 border-solid border-current/20 px-2 py-2 text-center text-sm font-black leading-tight sm:w-auto sm:border-r-0 sm:border-b-2 sm:px-2 sm:py-2.5 sm:text-sm sm:uppercase sm:tracking-widest">

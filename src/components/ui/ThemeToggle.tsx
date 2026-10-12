@@ -66,7 +66,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
             <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted">
+                <span className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-text-muted">
                     Theme
                 </span>
                 <span className="text-xs text-text-muted">
@@ -103,7 +103,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
                     );
                 })}
             </div>
-            <p className="text-[11px] text-text-muted mt-0.5">
+            <p className="text-[0.6875rem] text-text-muted mt-0.5">
                 {theme === "light" ? "Always use light theme" : "Always use dark theme"}
             </p>
         </div>

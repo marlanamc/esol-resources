@@ -86,6 +86,8 @@ export function ForgotPasswordForm() {
                     <input
                         id="email"
                         type="email"
+                        aria-invalid={errors.email ? true : undefined}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                         {...register("email")}
                         placeholder="you@example.com"
                         className={inputClassName}
@@ -93,7 +95,7 @@ export function ForgotPasswordForm() {
                         autoFocus
                     />
                     {errors.email && (
-                        <p className="mt-1.5 text-sm text-error">{errors.email.message}</p>
+                        <p id="email-error" role="alert" className="mt-1.5 text-sm text-error">{errors.email.message}</p>
                     )}
                 </div>
 

@@ -337,7 +337,7 @@ export default async function MapPage({
                                             <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
                                         </div>
                                     </div>
-                                    <div className="relative h-2 w-full overflow-hidden rounded" style={{ background: "var(--surface-subtle)" }}>
+                                    <div aria-hidden="true" className="relative h-2 w-full overflow-hidden rounded" style={{ background: "var(--surface-subtle)" }}>
                                         <div
                                             className="absolute inset-y-0 left-0 rounded transition-[width] duration-700 ease-out"
                                             style={{

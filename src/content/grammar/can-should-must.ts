@@ -404,24 +404,24 @@ export const canShouldMustContent: InteractiveGuideContent = {
           <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
             <thead>
               <tr style="background: rgba(106,141,115,0.12)">
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Modal</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Meaning</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Example</th>
+                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Modal</th>
+                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Meaning</th>
+                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Example</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">can / can't</td>
+                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">can / can't</td>
                 <td style="padding: 0.6rem 0.75rem">ability or possibility</td>
                 <td style="padding: 0.6rem 0.75rem"><em>Scammers <strong>can</strong> pretend to be your family.</em></td>
               </tr>
               <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">should / shouldn't</td>
+                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">should / shouldn't</td>
                 <td style="padding: 0.6rem 0.75rem">advice, recommendation</td>
                 <td style="padding: 0.6rem 0.75rem"><em>You <strong>should</strong> call the real number.</em></td>
               </tr>
               <tr>
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">must / must not</td>
+                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">must / must not</td>
                 <td style="padding: 0.6rem 0.75rem">strong rule, prohibition</td>
                 <td style="padding: 0.6rem 0.75rem"><em>You <strong>must not</strong> share your PIN.</em></td>
               </tr>

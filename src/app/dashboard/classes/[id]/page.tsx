@@ -155,22 +155,23 @@ export default async function ClassDetailPage({ params }: Props) {
                             {classItem.enrollments.length === 0 ? (
                                 <div className="bg-white shadow rounded-lg p-6 text-center">
                                     <p className="text-gray-500">No students enrolled yet.</p>
-                                    <p className="text-sm text-gray-400 mt-2">
+                                    <p className="text-sm text-gray-600 mt-2">
                                         Share the class code <strong>{classItem.code}</strong> with students to join.
                                     </p>
                                 </div>
                             ) : (
                                 <div className="bg-white shadow rounded-lg overflow-hidden">
                                     <table className="min-w-full divide-y divide-gray-200">
+                                        <caption className="sr-only">Enrolled students</caption>
                                         <thead className="bg-gray-50">
                                             <tr>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                                     Name
                                                 </th>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                                     Username
                                                 </th>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                                     Joined
                                                 </th>
                                             </tr>
@@ -188,15 +189,15 @@ export default async function ClassDetailPage({ params }: Props) {
                                                 joinedAt: Date;
                                             }) => (
                                                 <tr key={enrollment.id} className="hover:bg-gray-50">
-                                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                    <th scope="row" className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
                                                         <Link
                                                             href={`/teach/students/${enrollment.student.id}`}
                                                             className="text-indigo-600 hover:text-indigo-900 hover:underline"
                                                         >
                                                             {enrollment.student.name || "No name"}
                                                         </Link>
-                                                    </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    </th>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                                         {enrollment.student.username}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

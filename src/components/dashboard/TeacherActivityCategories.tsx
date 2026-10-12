@@ -164,7 +164,7 @@ const ActivityCard = React.memo(function ActivityCard({
                         <div className="flex flex-wrap gap-1.5 mb-3">
                             <Link
                                 href={`/activity/${activity.id}`}
-                                className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                                className={`inline-flex items-center px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide rounded-md border transition-colors ${VOCAB_CHIP_CONFIG[vocabType].className}`}
                             >
                                 {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
                             </Link>
@@ -247,7 +247,7 @@ const ActivityCard = React.memo(function ActivityCard({
                         )}
                     </div>
                     {assignError && (
-                        <p className="text-[11px] text-red-600 mt-2">{assignError}</p>
+                        <p className="text-[0.6875rem] text-red-600 mt-2">{assignError}</p>
                     )}
                 </div>
             </div>

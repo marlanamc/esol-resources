@@ -307,7 +307,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <Ear className="h-5 w-5 shrink-0 text-teal-700" aria-hidden />
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Sound Workshop</p>
+                <p className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-slate-600">Sound Workshop</p>
               </div>
               <h2 className="mt-2 text-2xl font-black leading-tight text-slate-950 sm:text-3xl">
                 {descriptor.friendlyTitle}
@@ -324,7 +324,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
                 <Headphones className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" aria-hidden />
                 <div className="leading-snug">
                   <p className="font-bold text-slate-900">How it works</p>
-                  <ol className="mt-1.5 list-decimal space-y-0.5 pl-4 text-[11px] text-slate-600 sm:text-xs">
+                  <ol className="mt-1.5 list-decimal space-y-0.5 pl-4 text-[0.6875rem] text-slate-600 sm:text-xs">
                     <li>Learn how to make the sounds.</li>
                     <li>Hear each sound in a real sentence.</li>
                     <li>Say the sentence yourself.</li>
@@ -335,7 +335,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
           </div>
 
           {availableSets.length > 1 ? (
-            <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+            <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-slate-500">
               {availableSets.length} sound contrasts — choose one to start
             </p>
           ) : null}
@@ -351,7 +351,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
                   className="group flex w-full flex-col rounded-xl border border-slate-200/90 bg-white/95 px-3.5 py-3 text-left shadow-sm transition hover:border-teal-400/80 hover:bg-white hover:shadow-md"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <span className="inline-flex shrink-0 items-center rounded-md bg-teal-50 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-teal-800">
+                    <span className="inline-flex shrink-0 items-center rounded-md bg-teal-50 px-2 py-0.5 text-[0.625rem] font-black uppercase tracking-wider text-teal-800">
                       {index + 1}
                     </span>
                     <ChevronRight
@@ -359,7 +359,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
                       aria-hidden
                     />
                   </div>
-                  <p className="mt-2 text-sm font-bold leading-snug text-slate-900 sm:text-[15px]">
+                  <p className="mt-2 text-sm font-bold leading-snug text-slate-900 sm:text-[0.9375rem]">
                     {entry.content.meta?.targetLabel ?? entry.content.targetSound}
                   </p>
                   <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-600">
@@ -394,7 +394,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
 
           <div className="mt-5 flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-teal-600" aria-hidden />
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Before you listen</p>
+            <p className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-slate-500">Before you listen</p>
           </div>
           <h2 className="mt-1 text-2xl font-black text-slate-900 sm:text-3xl">
             How to make these sounds
@@ -454,7 +454,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
 
           {/* Transcript (always shown upfront) */}
           <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 sm:px-5">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Read this sentence</p>
+            <p className="text-[0.625rem] font-black uppercase tracking-[0.16em] text-slate-400">Read this sentence</p>
             <p className="mt-2 text-lg font-semibold leading-snug text-slate-900 sm:text-xl">
               {highlightWord(currentQuestion.transcript, targetWord)}
             </p>
@@ -610,7 +610,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
           {/* Sentence review list */}
           {state.questions.length > 0 ? (
             <div className="mt-6">
-              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Sentences you practiced</p>
+              <p className="text-[0.625rem] font-black uppercase tracking-[0.16em] text-slate-400">Sentences you practiced</p>
               <ul className="mt-3 flex flex-col gap-2">
                 {state.questions.map((q) => {
                   const word = extractTargetWord(q.prompt);

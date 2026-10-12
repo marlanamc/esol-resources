@@ -12,7 +12,7 @@ export function WeeklyQuizBadge({ compact = false }: { compact?: boolean }) {
   return (
     <span
       className={`inline-flex items-center whitespace-nowrap font-semibold leading-none text-violet-700 dark:text-violet-300 ${
-        compact ? 'gap-0.5 text-[11px]' : 'gap-1 text-sm'
+        compact ? 'gap-0.5 text-[0.6875rem]' : 'gap-1 text-sm'
       }`}
       title="Finished this week's quiz"
     >

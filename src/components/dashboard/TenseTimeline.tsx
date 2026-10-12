@@ -99,7 +99,7 @@ export function TenseTimeline({
     const parts = example.text.split(example.highlight);
     return (
       <div
-        className={`text-center font-medium ${isSmall ? 'text-[11px]' : 'text-xs'}`}
+        className={`text-center font-medium ${isSmall ? 'text-[0.6875rem]' : 'text-xs'}`}
         style={{ color: 'var(--text-color)' }}
       >
         {parts[0]}

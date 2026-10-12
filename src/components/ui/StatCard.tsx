@@ -43,7 +43,7 @@ export const StatCard: React.FC<StatCardProps> = ({
           <div className="w-6 h-6">{icon}</div>
         </div>
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted opacity-80 mb-0.5">{label}</p>
+          <p className="text-[0.625rem] font-bold uppercase tracking-widest text-text-muted opacity-80 mb-0.5">{label}</p>
           <div className="flex items-baseline gap-2">
             <p className={`text-3xl font-bold font-display tracking-tight text-[var(--color-${themeColor})]`}>{value}</p>
             {trend && (

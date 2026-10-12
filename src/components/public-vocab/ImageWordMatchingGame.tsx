@@ -61,6 +61,7 @@ export function ImageWordMatchingGame({
   const [correctFlash, setCorrectFlash] = useState<number | null>(null);
   const [wrongImageFlash, setWrongImageFlash] = useState<number | null>(null);
   const [wrongWordFlash, setWrongWordFlash] = useState<number | null>(null);
+  const [announcement, setAnnouncement] = useState("");
   const [showRoundTransition, setShowRoundTransition] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
   const [roundKey, setRoundKey] = useState(0);
@@ -193,6 +194,7 @@ export function ImageWordMatchingGame({
       if (!imageId || !wordId) return;
 
       if (imageId === wordId) {
+        setAnnouncement("Match!");
         setCorrectFlash(imageId);
         setSelectedImageId(null);
         setSelectedWordId(null);
@@ -207,6 +209,7 @@ export function ImageWordMatchingGame({
           setCorrectFlash(null);
         }, 500);
       } else {
+        setAnnouncement("Not a match, try again");
         setWrongImageFlash(imageId);
         setWrongWordFlash(wordId);
         setTimeout(() => {
@@ -275,6 +278,7 @@ export function ImageWordMatchingGame({
 
   return (
     <div className="relative rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-contrast)] shadow-[var(--shadow-md)] overflow-hidden">
+      <p className="sr-only" role="status" aria-live="polite">{announcement}</p>
       {/* Progress Header */}
       <div className="px-4 pt-4 pb-3 sm:px-5">
         <div className="flex items-center justify-between gap-3 mb-2.5">
@@ -285,7 +289,7 @@ export function ImageWordMatchingGame({
             <button
               type="button"
               onClick={handleToggleHints}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold border transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] font-bold border transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95 ${
                 showHints
                   ? "bg-amber-100 border-amber-300 text-amber-800 hover:bg-amber-200"
                   : "bg-white/80 border-slate-200 text-slate-600 hover:bg-white hover:border-slate-300"
@@ -322,7 +326,7 @@ export function ImageWordMatchingGame({
         >
           {/* Images */}
           <div className="md:flex-1">
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted/70 mb-2">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.12em] text-text-muted/70 mb-2">
               {audioMatchMode ? "Then tap the picture" : "Tap a picture"}
             </p>
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
@@ -337,6 +341,7 @@ export function ImageWordMatchingGame({
                     key={`${roundKey}-img-${pair.id}`}
                     type="button"
                     disabled={isMatched}
+                    aria-pressed={isSelected}
                     aria-label={
                       audioMatchMode
                         ? `Picture ${idx + 1} — choose the sound that matches`
@@ -405,7 +410,7 @@ export function ImageWordMatchingGame({
                 : "mt-4 md:mt-0 md:flex-1 md:flex md:flex-col md:justify-center"
             }
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted/70 mb-2">
+            <p className="text-[0.625rem] font-bold uppercase tracking-[0.12em] text-text-muted/70 mb-2">
               {audioMatchMode ? "Tap a sound" : "Then tap the word"}
             </p>
             <div className="flex flex-col gap-2">
@@ -423,9 +428,10 @@ export function ImageWordMatchingGame({
                     key={`${roundKey}-word-${entry.id}`}
                     type="button"
                     disabled={isMatched}
+                    aria-pressed={isSelected}
                     aria-label={
                       showHiddenWord
-                        ? `${listenLabel}, hear: ${entry.term}`
+                        ? `Listen to sound ${idx + 1}`
                         : entry.term
                     }
                     onClick={() => {
@@ -576,17 +582,17 @@ function CompletionScreen({
           <div className="grid grid-cols-3 gap-3 mb-8 max-w-xs mx-auto animate-match-card-enter">
             <div className="rounded-xl bg-[var(--color-surface-base)] p-3 border border-[var(--color-border-subtle)]">
               <p className="text-xl font-bold text-[var(--primary-color)] tabular-nums">{totalPairs}</p>
-              <p className="text-[10px] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Matches</p>
+              <p className="text-[0.625rem] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Matches</p>
             </div>
             <div className="rounded-xl bg-[var(--color-surface-base)] p-3 border border-[var(--color-border-subtle)]">
               <p className="text-xl font-bold text-[var(--secondary-color)] tabular-nums">{rounds}</p>
-              <p className="text-[10px] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Rounds</p>
+              <p className="text-[0.625rem] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Rounds</p>
             </div>
             <div className="rounded-xl bg-[var(--color-surface-base)] p-3 border border-[var(--color-border-subtle)]">
               <p className="text-xl font-bold text-[var(--accent-color-dark)] tabular-nums">
                 {minutes > 0 ? `${minutes}m` : ""}{seconds}s
               </p>
-              <p className="text-[10px] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Time</p>
+              <p className="text-[0.625rem] uppercase tracking-wider font-semibold text-text-muted mt-0.5">Time</p>
             </div>
           </div>
         )}

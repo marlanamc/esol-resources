@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
 
@@ -22,6 +22,18 @@ export function DeleteStudentButton({
     const [confirming, setConfirming] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+    const confirmRef = useRef<HTMLButtonElement>(null);
+    const wasConfirming = useRef(false);
+
+    useEffect(() => {
+        if (confirming) {
+            confirmRef.current?.focus();
+        } else if (wasConfirming.current) {
+            triggerRef.current?.focus();
+        }
+        wasConfirming.current = confirming;
+    }, [confirming]);
 
     if (!deletable) {
         return (
@@ -56,12 +68,16 @@ export function DeleteStudentButton({
 
     if (confirming) {
         return (
-            <span className="inline-flex items-center gap-1.5">
+            <span role="group" aria-label={`Confirm deleting ${username}`} className="inline-flex items-center gap-1.5">
+                <span role="status" className="sr-only">
+                    {loading ? "Deleting account…" : `Confirm permanently deleting ${username}?`}
+                </span>
                 <button
+                    ref={confirmRef}
                     type="button"
                     onClick={handleDelete}
                     disabled={loading}
-                    className="inline-flex min-h-8 items-center rounded-full border border-red-200 bg-red-100 px-2.5 text-xs font-bold text-red-800 transition-colors hover:bg-red-200 disabled:opacity-50"
+                    className="inline-flex min-h-9 items-center rounded-full border border-red-200 bg-red-100 px-2.5 text-xs font-bold text-red-800 dark:border-red-400/40 dark:bg-red-950/50 dark:text-red-200 transition-colors hover:bg-red-200 disabled:opacity-50"
                 >
                     {loading ? "Deleting…" : "Delete forever"}
                 </button>
@@ -69,7 +85,7 @@ export function DeleteStudentButton({
                     type="button"
                     onClick={() => setConfirming(false)}
                     disabled={loading}
-                    className="inline-flex min-h-8 items-center rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle disabled:opacity-50"
+                    className="inline-flex min-h-9 items-center rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle disabled:opacity-50"
                     style={{ borderColor: "var(--border-subtle)" }}
                 >
                     Cancel
@@ -81,9 +97,10 @@ export function DeleteStudentButton({
     return (
         <span className="inline-flex items-center gap-2">
             <button
+                ref={triggerRef}
                 type="button"
                 onClick={() => setConfirming(true)}
-                className="inline-flex min-h-8 items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2.5 text-xs font-semibold text-red-700 transition-colors hover:bg-red-100"
+                className="inline-flex min-h-9 items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2.5 text-xs font-semibold text-red-700 dark:border-red-400/40 dark:bg-red-950/40 dark:text-red-300 transition-colors hover:bg-red-100"
                 title={`Permanently delete ${username}. This account has no activity.`}
                 aria-label={`Permanently delete ${username}`}
             >
@@ -91,7 +108,7 @@ export function DeleteStudentButton({
                 Delete
             </button>
             {error ? (
-                <span role="alert" className="text-xs font-medium text-red-700">
+                <span role="alert" className="text-xs font-medium text-red-700 dark:text-red-300">
                     {error}
                 </span>
             ) : null}

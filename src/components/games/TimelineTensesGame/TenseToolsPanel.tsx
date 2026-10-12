@@ -187,7 +187,7 @@ function TenseToolStation({
         <div className="min-w-0 flex-1 pt-0.5">
           <p className="font-display text-base font-black text-slate-900 dark:text-slate-50">{title}</p>
           <p className="mt-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200/92">{description}</p>
-          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary/90 group-hover:text-primary dark:text-sky-200 dark:group-hover:text-sky-100">
+          <p className="mt-2 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-primary/90 group-hover:text-primary dark:text-sky-200 dark:group-hover:text-sky-100">
             Open station →
           </p>
         </div>
@@ -222,7 +222,7 @@ export function TenseToolsExerciseMenu({
           transition={{ duration: 0.2 }}
           className="absolute right-0 top-full z-[60] mt-2 w-[min(100vw-2rem,20rem)] rounded-2xl border border-border/80 bg-white/95 p-2 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-[#122433]/95"
         >
-          <p className="border-b border-border/50 px-2 pb-2 text-center text-[11px] font-medium leading-snug text-text-muted dark:border-white/10 dark:text-slate-400">
+          <p className="border-b border-border/50 px-2 pb-2 text-center text-[0.6875rem] font-medium leading-snug text-text-muted dark:border-white/10 dark:text-slate-400">
             You can open this anytime — your round is saved.
           </p>
           <div className="mt-1 space-y-0.5">

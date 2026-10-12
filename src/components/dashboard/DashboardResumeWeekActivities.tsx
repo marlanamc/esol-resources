@@ -46,12 +46,12 @@ export function DashboardResumeWeekActivities({
             >
                 <span className="flex items-center gap-2 min-w-0">
                     <span
-                        className="text-[11px] font-extrabold uppercase tracking-[0.14em]"
+                        className="text-[0.6875rem] font-extrabold uppercase tracking-[0.14em]"
                         style={{ color: toneButton }}
                     >
                         This week
                     </span>
-                    <span className="text-[11px] font-medium text-text-muted">· {summary}</span>
+                    <span className="text-[0.6875rem] font-medium text-text-muted">· {summary}</span>
                 </span>
                 <ChevronDown
                     size={15}

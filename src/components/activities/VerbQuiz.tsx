@@ -109,12 +109,12 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
           <table className="w-full">
             <thead className="bg-[var(--color-bg-light)] border-b border-[var(--color-border-subtle)]">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">Verb</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Base Form)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1-s<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(He / She / It Form)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V-ing<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(-ing Form)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V2<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Form)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V3<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Participle)</span></th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">Verb</th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Base Form)</span></th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1-s<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(He / She / It Form)</span></th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V-ing<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(-ing Form)</span></th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V2<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Form)</span></th>
+                <th scope="col" className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V3<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Past Participle)</span></th>
               </tr>
             </thead>
             <tbody>
@@ -143,6 +143,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                     </td>
                     <td className="px-6 py-4">
                       <input
+                        aria-label={`${verb} V1-s (He / She / It Form)`}
                         type="text"
                         value={answers[verb].v1_3rd}
                         onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
@@ -155,6 +156,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                     </td>
                     <td className="px-6 py-4">
                       <input
+                        aria-label={`${verb} V-ing (-ing Form)`}
                         type="text"
                         value={answers[verb].v1_ing}
                         onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
@@ -167,6 +169,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                     </td>
                     <td className="px-6 py-4">
                       <input
+                        aria-label={`${verb} V2 (Past Form)`}
                         type="text"
                         value={answers[verb].v2}
                         onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
@@ -179,6 +182,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                     </td>
                     <td className="px-6 py-4">
                       <input
+                        aria-label={`${verb} V3 (Past Participle)`}
                         type="text"
                         value={answers[verb].v3}
                         onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
@@ -213,7 +217,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-3 capitalize">To {verb}</h3>
               {definition && (
                 <div className="mb-3 rounded-xl border border-[var(--tone-vocabulary-border)] bg-[var(--tone-vocabulary-surface)] px-3 py-2">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--tone-vocabulary-chip-text)]">
+                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[var(--tone-vocabulary-chip-text)]">
                     Meaning
                   </p>
                   <p className="mt-1 text-sm leading-relaxed text-[var(--color-text)]">
@@ -224,19 +228,20 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
 
               <div className="space-y-3">
                 <div className="bg-[var(--color-bg-light)] rounded-lg p-3 border border-[var(--color-border-subtle)]">
-                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                  <p className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                     V1 (Base Form)
-                  </label>
+                  </p>
                   <div className="px-3 py-2 bg-[var(--color-surface-elevated)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
                     {verbData.v1}
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                  <label htmlFor={`vq-m-${idx}-v1_3rd`} className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                     V1-s (He / She / It Form)
                   </label>
                   <input
+                    id={`vq-m-${idx}-v1_3rd`}
                     type="text"
                     value={answers[verb].v1_3rd}
                     onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
@@ -249,10 +254,11 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                  <label htmlFor={`vq-m-${idx}-v1_ing`} className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                     V-ing (-ing Form)
                   </label>
                   <input
+                    id={`vq-m-${idx}-v1_ing`}
                     type="text"
                     value={answers[verb].v1_ing}
                     onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
@@ -265,10 +271,11 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                  <label htmlFor={`vq-m-${idx}-v2`} className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                     V2 (Past Form)
                   </label>
                   <input
+                    id={`vq-m-${idx}-v2`}
                     type="text"
                     value={answers[verb].v2}
                     onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
@@ -281,10 +288,11 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                  <label htmlFor={`vq-m-${idx}-v3`} className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                     V3 (Past Participle)
                   </label>
                   <input
+                    id={`vq-m-${idx}-v3`}
                     type="text"
                     value={answers[verb].v3}
                     onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}

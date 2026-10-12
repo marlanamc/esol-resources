@@ -149,9 +149,9 @@ export function ExerciseScreen({
             <h2 className="font-display text-sm font-semibold text-text truncate leading-tight">
               {group.title}
             </h2>
-            <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+            <div className="flex items-center gap-1.5 text-[0.6875rem] text-text-muted">
               {roundMode && (
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-blue-500/10 border border-blue-500/20 text-blue-700 dark:text-blue-300 whitespace-nowrap">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[0.5625rem] font-bold bg-blue-500/10 border border-blue-500/20 text-blue-700 dark:text-blue-300 whitespace-nowrap">
                   {getRoundLabel(roundMode)}
                 </span>
               )}
@@ -170,12 +170,12 @@ export function ExerciseScreen({
               className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 border border-orange-200 dark:border-orange-600/50"
             >
               <Zap size={10} className="text-orange-500 dark:text-orange-400" />
-              <span className="text-[10px] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
+              <span className="text-[0.625rem] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
             </motion.div>
             )}
             <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
               <Target size={10} className="text-secondary" />
-              <span className="text-[10px] font-bold text-secondary-dark">{correctCount}</span>
+              <span className="text-[0.625rem] font-bold text-secondary-dark">{correctCount}</span>
             </div>
           </div>
         </div>

@@ -239,7 +239,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                       initial={{ scaleX: 0 }}
                       whileFocus={{ scaleX: 1 }}
                     />
-                    <div className="absolute top-full mt-1.5 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-text-muted/50 whitespace-nowrap pointer-events-none">
+                    <div className="absolute top-full mt-1.5 left-1/2 -translate-x-1/2 text-[0.625rem] sm:text-xs font-black uppercase tracking-widest text-text-muted/50 whitespace-nowrap pointer-events-none">
                       {part.content}
                     </div>
                   </span>

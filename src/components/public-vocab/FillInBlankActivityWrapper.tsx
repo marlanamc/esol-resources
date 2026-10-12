@@ -229,6 +229,8 @@ export function FillInBlankActivityWrapper({
               className={`relative flex min-h-[56px] items-center justify-between rounded-2xl px-5 text-left text-lg font-semibold shadow-[0_4px_12px_-6px_rgba(20,60,70,0.18)] transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/60 disabled:cursor-not-allowed ${stateClass}`}
             >
               <span>{display}</span>
+              {answered && correct ? <span className="sr-only">Correct answer</span> : null}
+              {answered && active && !correct ? <span className="sr-only">Not correct</span> : null}
               {answered && correct ? (
                 <Check size={20} strokeWidth={3} className="text-emerald-600" />
               ) : answered && active && !correct ? (
@@ -243,6 +245,8 @@ export function FillInBlankActivityWrapper({
       {answered ? (
         <GlassCard
           raised
+          role="status"
+          aria-live="polite"
           className="p-5 text-center"
           style={{
             background: isCorrect

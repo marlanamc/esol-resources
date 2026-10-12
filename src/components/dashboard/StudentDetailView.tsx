@@ -222,7 +222,7 @@ function InterventionCategoryCard({
 
             {summary.assignedCount > 0 ? (
                 <div className="mt-4">
-                    <div className="h-2.5 overflow-hidden rounded-full bg-bg">
+                    <div aria-hidden="true" className="h-2.5 overflow-hidden rounded-full bg-bg">
                         <div
                             className={`h-full transition-[width] duration-300 ${meta.bar}`}
                             style={{ width: `${summary.completionRate}%` }}
@@ -639,7 +639,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                                                     {activityName}
                                                 </div>
                                                 {activityType && (
-                                                    <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-medium text-secondary bg-secondary/10 rounded-full">
+                                                    <span className="inline-block mt-1 px-2 py-0.5 text-[0.625rem] font-medium text-secondary bg-secondary/10 rounded-full">
                                                         {activityType}
                                                     </span>
                                                 )}

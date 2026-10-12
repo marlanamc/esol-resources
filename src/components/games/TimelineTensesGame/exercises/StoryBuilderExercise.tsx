@@ -309,7 +309,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
 
             <div className="space-y-5">
               <div className="rounded-[2rem] border border-white/20 bg-white/30 dark:bg-white/5 p-4 sm:p-5">
-                <div className="mb-3 text-[11px] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                <div className="mb-3 text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
                   Read The Sentence
                 </div>
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-3 text-2xl sm:text-3xl font-display font-black text-text leading-relaxed">
@@ -330,10 +330,10 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
 
               <div className="rounded-[2rem] border border-primary/15 bg-[#0f2231]/30 dark:bg-[#0f2231]/40 p-4 sm:p-5">
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <div className="text-[11px] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                  <div className="text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
                     Fill In The Blanks
                   </div>
-                  <div className="text-[11px] sm:text-xs font-bold text-text-muted">
+                  <div className="text-[0.6875rem] sm:text-xs font-bold text-text-muted">
                     Type the full verb phrase
                   </div>
                 </div>
@@ -349,16 +349,16 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                         className="rounded-2xl border border-white/15 bg-white/40 dark:bg-white/5 p-3 sm:p-4"
                       >
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-primary">
+                          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[0.6875rem] font-black uppercase tracking-[0.18em] text-primary">
                             Blank {blankOrder + 1}
                           </span>
                           <span className="text-xs font-bold text-text-muted">
                             Use the base verb {blankHint || 'verb'}
                           </span>
-                          <span className="inline-flex items-center rounded-full bg-white/50 dark:bg-white/10 px-2 py-1 text-[11px] font-bold text-text-muted">
+                          <span className="inline-flex items-center rounded-full bg-white/50 dark:bg-white/10 px-2 py-1 text-[0.6875rem] font-bold text-text-muted">
                             {blankHint || 'verb'}
                           </span>
-                          <span className="text-[11px] font-bold text-text-muted/80">
+                          <span className="text-[0.6875rem] font-bold text-text-muted/80">
                             {wordCount} word{wordCount === 1 ? '' : 's'}
                           </span>
                         </div>

@@ -49,7 +49,7 @@ export function AdminDiagnosticsPicker({
                 <select
                     value={selectedClassId}
                     onChange={(e) => updateSelection(e.target.value, selectedActivityId)}
-                    className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20"
+                    className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20"
                 >
                     <option value="">Choose a class…</option>
                     {classes.map((cls) => (
@@ -68,7 +68,7 @@ export function AdminDiagnosticsPicker({
                     value={selectedActivityId}
                     onChange={(e) => updateSelection(selectedClassId, e.target.value)}
                     disabled={!selectedClassId}
-                    className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 disabled:cursor-not-allowed disabled:bg-[var(--color-bg-light)] disabled:text-[var(--color-text-light)]"
+                    className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 disabled:cursor-not-allowed disabled:bg-[var(--color-bg-light)] disabled:text-[var(--color-text-light)]"
                 >
                     <option value="">Choose a grammar guide…</option>
                     {guides.map((guide) => (

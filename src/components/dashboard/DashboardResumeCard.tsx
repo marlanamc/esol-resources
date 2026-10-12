@@ -52,7 +52,7 @@ export function DashboardResumeCard({ data }: DashboardResumeCardProps) {
             </span>
 
             <span className="min-w-0 flex-1">
-                <span className="block text-[10px] font-extrabold uppercase tracking-[0.14em] text-primary">
+                <span className="block text-[0.625rem] font-extrabold uppercase tracking-[0.14em] text-primary">
                     Continue
                 </span>
                 <span className="mt-0.5 block font-display text-base font-bold leading-snug text-text sm:text-lg">

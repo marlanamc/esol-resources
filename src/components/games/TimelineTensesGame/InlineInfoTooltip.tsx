@@ -18,7 +18,7 @@ export function InlineInfoTooltip({ text, className = '' }: InlineInfoTooltipPro
         >
           <Info size={14} />
         </button>
-        <div className="pointer-events-none absolute bottom-full right-0 z-20 mb-2 w-52 sm:w-60 rounded-2xl border border-white/15 bg-slate-950/95 px-2.5 py-2 text-[10px] sm:text-[11px] font-medium leading-relaxed text-white opacity-0 shadow-2xl transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="pointer-events-none absolute bottom-full right-0 z-20 mb-2 w-52 sm:w-60 rounded-2xl border border-white/15 bg-slate-950/95 px-2.5 py-2 text-[0.625rem] sm:text-[0.6875rem] font-medium leading-relaxed text-white opacity-0 shadow-2xl transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
           {text}
         </div>
       </div>

@@ -36,7 +36,7 @@ export function VocabReviewLaunchCard({ summary }: VocabReviewLaunchCardProps) {
 
         <div className="flex flex-col gap-6 relative z-10 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 pr-2">
-            <p className="flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase text-text-muted mb-2">
+            <p className="flex items-center gap-2 text-[0.6875rem] font-bold tracking-widest uppercase text-text-muted mb-2">
               <span className="h-[2px] w-8 rounded-full" style={{ background: `linear-gradient(90deg, ${tone.accent} 0%, transparent 100%)` }} />
               <Sparkles className="h-3 w-3" style={{ color: tone.accent }} />
               Daily Vocab

@@ -11,6 +11,8 @@ import {
   deterministicShuffle,
 } from "./matching-game-parse";
 import { InteractionMode } from "./matching-game-shared";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
+import { isActivationKey } from "./shared/activateOnKey";
 
 export function TimeIndicatorSortingUI({
     contentStr,
@@ -121,17 +123,23 @@ export function TimeIndicatorSortingUI({
                 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); }
             }
 
-            .animate-bounce-back {
+            @media (prefers-reduced-motion: no-preference) {
+.animate-bounce-back {
                 animation: bounce-back 0.5s ease-out;
             }
+}
 
-            .animate-success-pulse {
+            @media (prefers-reduced-motion: no-preference) {
+.animate-success-pulse {
                 animation: success-pulse 0.6s ease-in-out;
             }
+}
 
-            .drop-zone-ready {
+            @media (prefers-reduced-motion: no-preference) {
+.drop-zone-ready {
                 animation: drop-zone-pulse 1.5s ease-in-out infinite;
             }
+}
 
             .drop-zone-correct {
                 border-color: #22c55e !important;
@@ -475,6 +483,15 @@ export function TimeIndicatorSortingUI({
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
+<GameLiveRegion message={gameState.showExplanation
+                        ? `Not correct. "${currentWord?.word}" uses ${currentWord?.category === "specified" ? "Specified Time (Past Simple)" : "Unspecified Time (Present Perfect)"}.`
+                        : dropZoneFeedback?.isCorrect
+                        ? "Correct!"
+                        : isRoundComplete
+                        ? isGameComplete
+                            ? "You did it! You completed all rounds."
+                            : `Great job! Round ${currentRound.roundNumber} complete.`
+                        : null} />
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -538,10 +555,20 @@ export function TimeIndicatorSortingUI({
                             onDragStart={handleWordDragStart}
                             onDragEnd={handleWordDragEnd}
                             onClick={handleWordTap}
+role="button"
+tabIndex={0}
+aria-pressed={interactionMode === InteractionMode.WordSelected}
+aria-label={`Word to sort: ${currentWord.word}. Press Enter to select, then choose a category.`}
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleWordTap();
+}
+}}
                             className={`
                                 p-6 md:p-8 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
                                 text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
-                                touch-manipulation select-none
+                                touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
                                 ${
                                     interactionMode ===
@@ -575,6 +602,15 @@ export function TimeIndicatorSortingUI({
                                 onDragOver={handleDropZoneDragOver}
                                 onDrop={(e) => handleDropZoneDrop(e, "specified")}
                                 onClick={() => handleDropZoneTap("specified")}
+role="button"
+tabIndex={0}
+aria-label="Specified Time. Use Past Simple"
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("specified");
+}
+}}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -597,7 +633,7 @@ export function TimeIndicatorSortingUI({
                                     }
                                 `}
                             >
-                                <div className="text-4xl md:text-5xl mb-2">
+                                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">
                                     📅
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
@@ -613,6 +649,15 @@ export function TimeIndicatorSortingUI({
                                 onDragOver={handleDropZoneDragOver}
                                 onDrop={(e) => handleDropZoneDrop(e, "unspecified")}
                                 onClick={() => handleDropZoneTap("unspecified")}
+role="button"
+tabIndex={0}
+aria-label="Unspecified Time. Use Present Perfect"
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("unspecified");
+}
+}}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -635,7 +680,7 @@ export function TimeIndicatorSortingUI({
                                     }
                                 `}
                             >
-                                <div className="text-4xl md:text-5xl mb-2">
+                                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">
                                     ⏳
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
@@ -649,7 +694,7 @@ export function TimeIndicatorSortingUI({
                     ) : (
                         /* Round Completion Message */
                         <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl">
-                            <div className="text-6xl md:text-7xl mb-4">🎉</div>
+                            <div className="text-6xl md:text-7xl mb-4" aria-hidden="true">🎉</div>
                             {isGameComplete ? (
                                 <>
                                     <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -692,7 +737,7 @@ export function TimeIndicatorSortingUI({
                     <div className="w-full max-w-md">
                         <div className="bg-red-50 border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
                             <div className="flex items-start gap-3 mb-3">
-                                <span className="text-2xl">❌</span>
+                                <span className="text-2xl" aria-hidden="true">❌</span>
                                 <div className="flex-1">
                                     <h3 className="font-bold text-red-900 text-base md:text-lg">
                                         Not quite!

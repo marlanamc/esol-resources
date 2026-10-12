@@ -66,7 +66,7 @@ export function StudentQuickStats({
     const pad = tight ? "px-2.5 py-1 gap-1" : compact ? "px-3 py-1.5 gap-1.5" : mobile ? "pl-2 pr-3 py-1.5 gap-2" : "pl-2.5 pr-4 py-2 gap-2";
     const iconBox = tight ? "w-4 h-4" : compact ? "w-5 h-5" : mobile ? "w-7 h-7" : "w-8 h-8";
     const iconSz = tight ? 10 : compact ? 12 : mobile ? 14 : 16;
-    const textSz = tight ? "text-[12px]" : compact ? "text-[13px]" : "";
+    const textSz = tight ? "text-[0.75rem]" : compact ? "text-[0.8125rem]" : "";
 
     if (summary.effectiveCurrentStreak > 0) {
         chips.push(
@@ -97,14 +97,14 @@ export function StudentQuickStats({
                     <FlameIcon className={(compact || tight) ? "text-[var(--tone-quizzes-accent)]" : isHotStreak ? "text-[var(--tone-speaking-accent)]" : "text-[var(--tone-quizzes-accent)]"} size={iconSz} />
                 </div>
                 {(compact || tight) ? (
-                    <span className={`${textSz || "text-[13px]"} font-bold text-text leading-none`}>{summary.effectiveCurrentStreak}</span>
+                    <span className={`${textSz || "text-[0.8125rem]"} font-bold text-text leading-none`}>{summary.effectiveCurrentStreak}</span>
                 ) : (
                 <div>
-                    <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide leading-none ${
+                    <div className={`${mobile ? "text-[0.5625rem]" : "text-[0.625rem]"} font-bold uppercase tracking-wide leading-none ${
                         isHotStreak ? 'text-[var(--tone-speaking-chip-text)]' : 'text-text-muted'
                     }`}>Streak</div>
                     <div className={`${mobile ? "text-base" : "text-base"} font-semibold text-text leading-tight`}>
-                        {summary.effectiveCurrentStreak} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-medium text-text-muted`}>days</span>
+                        {summary.effectiveCurrentStreak} <span className={`${mobile ? "text-[0.625rem]" : "text-xs"} font-medium text-text-muted`}>days</span>
                     </div>
                 </div>
                 )}
@@ -132,14 +132,14 @@ export function StudentQuickStats({
                     <StarIcon className="text-[var(--tone-speaking-accent)]" size={tight ? 10 : compact ? 12 : mobile ? 15 : 17} />
                 </div>
                 {(compact || tight) ? (
-                    <span className={`${textSz || "text-[13px]"} font-bold text-text leading-none`}>
-                        {summary.actualWeeklyPoints} <span className="text-[10px] font-semibold text-text-muted">this week</span>
+                    <span className={`${textSz || "text-[0.8125rem]"} font-bold text-text leading-none`}>
+                        {summary.actualWeeklyPoints} <span className="text-[0.625rem] font-semibold text-text-muted">this week</span>
                     </span>
                 ) : (
                 <div>
-                    <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide leading-none text-[var(--tone-speaking-chip-text)]`}>This Week</div>
+                    <div className={`${mobile ? "text-[0.5625rem]" : "text-[0.625rem]"} font-bold uppercase tracking-wide leading-none text-[var(--tone-speaking-chip-text)]`}>This Week</div>
                     <div className={`${mobile ? "text-lg" : "text-xl"} font-bold text-text leading-tight`}>
-                        {summary.actualWeeklyPoints} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-semibold text-text-muted`}>pts</span>
+                        {summary.actualWeeklyPoints} <span className={`${mobile ? "text-[0.625rem]" : "text-xs"} font-semibold text-text-muted`}>pts</span>
                     </div>
                 </div>
                 )}
@@ -165,9 +165,9 @@ export function StudentQuickStats({
                     <TrophyIcon className="text-[var(--tone-grammar-accent)]" size={mobile ? 14 : 16} />
                 </div>
                 <div>
-                    <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide text-text-muted leading-none`}>Total</div>
+                    <div className={`${mobile ? "text-[0.5625rem]" : "text-[0.625rem]"} font-bold uppercase tracking-wide text-text-muted leading-none`}>Total</div>
                     <div className="text-base font-semibold text-text leading-tight">
-                        {summary.totalPoints} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-medium text-text-muted`}>pts</span>
+                        {summary.totalPoints} <span className={`${mobile ? "text-[0.625rem]" : "text-xs"} font-medium text-text-muted`}>pts</span>
                     </div>
                 </div>
                 </>,

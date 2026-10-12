@@ -88,12 +88,15 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                         <input
                             type="text"
                             id="name"
+                            aria-required="true"
+                            aria-invalid={errors.name ? true : undefined}
+                            aria-describedby={errors.name ? "name-error" : undefined}
                             autoComplete="off"
                             {...register("name")}
                             className="form-field mt-1"
                         />
                         {errors.name && (
-                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
+                            <p id="name-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
                         )}
                     </div>
 
@@ -103,6 +106,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                         </label>
                         <select
                             id="sourceClassId"
+                            aria-describedby="sourceClassId-hint"
                             {...register("sourceClassId")}
                             className="form-field mt-1"
                         >
@@ -113,7 +117,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                                 </option>
                             ))}
                         </select>
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                        <p id="sourceClassId-hint" className="mt-2 text-sm text-text-muted">
                             Pick a class to create another section that syncs future activities.
                         </p>
                     </div>
@@ -152,6 +156,8 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             <input
                                 type="text"
                                 id="code"
+                                aria-invalid={errors.code ? true : undefined}
+                                aria-describedby={errors.code ? "code-error code-hint" : "code-hint"}
                                 {...register("code", { onChange: (e) => { e.target.value = e.target.value.toUpperCase(); } })}
                                 placeholder="Leave empty to auto-generate"
                                 maxLength={6}
@@ -160,21 +166,22 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             <button
                                 type="button"
                                 onClick={generateCode}
+                                aria-label="Generate class code"
                                 className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/20 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20"
                             >
                                 Generate
                             </button>
                         </div>
                         {errors.code && (
-                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.code.message}</p>
+                            <p id="code-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.code.message}</p>
                         )}
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                        <p id="code-hint" className="mt-2 text-sm text-text-muted">
                             Students will use this 6-character code to join your class.
                         </p>
                     </div>
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

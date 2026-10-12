@@ -1,7 +1,8 @@
 'use client';
 
 import type { ExerciseItem } from "@/types/activity";
-import { motion, AnimatePresence } from "framer-motion";
+import { useId } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { CheckCircle2, XCircle, Sparkles } from "lucide-react";
 import { sanitizeHtml } from "@/utils/sanitize";
 import { getSafeExercisePlaceholder } from "@/utils/exercisePlaceholder";
@@ -27,6 +28,10 @@ export function TextInputExercise({
     itemNumber,
     defaultPlaceholder,
 }: TextInputExerciseProps) {
+    const baseId = useId();
+    const inputId = `${baseId}-input`;
+    const feedbackId = `${baseId}-feedback`;
+    const reduceMotion = useReducedMotion();
     return (
         <motion.div
             className="text-input-exercise"
@@ -34,17 +39,19 @@ export function TextInputExercise({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
         >
-            <label className="block mb-2">
+            <label htmlFor={inputId} className="block mb-2">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
                     <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
                 </span>
             </label>
             <motion.div
-                animate={submitted && isIncorrect ? { x: [-10, 10, -10, 10, 0] } : {}}
+                animate={submitted && isIncorrect && !reduceMotion ? { x: [-10, 10, -10, 10, 0] } : {}}
                 transition={{ duration: 0.4 }}
             >
                 <input
+                    id={inputId}
+                    aria-describedby={submitted ? feedbackId : undefined}
                     type="text"
                     value={userAnswer}
                     onChange={(e) => onChange(e.target.value)}
@@ -59,6 +66,7 @@ export function TextInputExercise({
                 />
             </motion.div>
 
+            <div id={feedbackId} role="status">
             <AnimatePresence mode="wait">
                 {submitted && isCorrect && (
                     <motion.div
@@ -73,7 +81,7 @@ export function TextInputExercise({
                             animate={{ scale: 1, rotate: 0 }}
                             transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                         >
-                            <CheckCircle2 className="w-4 h-4" />
+                            <CheckCircle2 aria-hidden="true" className="w-4 h-4" />
                         </motion.div>
                         <span className="font-medium">Correct!</span>
                         <motion.div
@@ -83,7 +91,7 @@ export function TextInputExercise({
                             }}
                             transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            <Sparkles className="w-4 h-4" />
+                            <Sparkles aria-hidden="true" className="w-4 h-4" />
                         </motion.div>
                     </motion.div>
                 )}
@@ -102,9 +110,9 @@ export function TextInputExercise({
                                 animate={{ scale: 1 }}
                                 transition={{ delay: 0.1, type: "spring" }}
                             >
-                                <XCircle className="w-4 h-4" />
+                                <XCircle aria-hidden="true" className="w-4 h-4" />
                             </motion.div>
-                            <span className="font-medium">Not quite right</span>
+                            <span className="font-medium"><span className="sr-only">Not correct. </span>Not quite right</span>
                         </div>
                         {item.expectedAnswer && (
                             <p className="pl-6">
@@ -114,6 +122,7 @@ export function TextInputExercise({
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </motion.div>
     );
 }

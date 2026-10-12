@@ -86,9 +86,9 @@ export function ResetPasswordForm() {
 
     if (mode === "invalid") {
         return (
-            <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
+            <div role="status" className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
                 <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-error/10 flex items-center justify-center">
+                    <div aria-hidden="true" className="w-16 h-16 mx-auto mb-4 rounded-full bg-error/10 flex items-center justify-center">
                         <svg className="w-8 h-8 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -110,9 +110,9 @@ export function ResetPasswordForm() {
 
     if (mode === "success") {
         return (
-            <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
+            <div role="status" className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
                 <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/10 flex items-center justify-center">
+                    <div aria-hidden="true" className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/10 flex items-center justify-center">
                         <svg className="w-8 h-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -145,21 +145,23 @@ export function ResetPasswordForm() {
                             placeholder="••••••••"
                             className={`${inputClassName} pr-11`}
                             autoComplete="new-password"
+                            aria-invalid={errors.password ? true : undefined}
+                            aria-describedby="password-msg"
                         />
                         <button
                             type="button"
                             onClick={() => setShowPassword((prev) => !prev)}
                             className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
-                            aria-pressed={showPassword}
-                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            aria-controls="password confirmPassword"
+                            aria-label={showPassword ? "Hide passwords" : "Show passwords"}
                         >
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
                     {errors.password ? (
-                        <p className="mt-1.5 text-sm text-error">{errors.password.message}</p>
+                        <p id="password-msg" role="alert" className="mt-1.5 text-sm text-error">{errors.password.message}</p>
                     ) : (
-                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                        <p id="password-msg" className="mt-1.5 text-sm text-[var(--color-text-muted)]">At least 8 characters</p>
                     )}
                 </div>
 
@@ -174,9 +176,11 @@ export function ResetPasswordForm() {
                         placeholder="••••••••"
                         className={inputClassName}
                         autoComplete="new-password"
+                        aria-invalid={errors.confirmPassword ? true : undefined}
+                        aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
                     />
                     {errors.confirmPassword && (
-                        <p className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
+                        <p id="confirmPassword-error" role="alert" className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
                     )}
                 </div>
 

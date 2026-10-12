@@ -703,7 +703,7 @@ export default async function ProfilePage() {
                                         <Trophy className="h-4 w-4" />
                                         <div className="text-right leading-none">
                                             <div className="text-lg font-bold tabular-nums">{user.points.toLocaleString()}</div>
-                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Points</div>
+                                            <div className="mt-0.5 text-[0.6875rem] font-medium text-text-muted">Points</div>
                                         </div>
                                     </div>
                                     <div className="h-8 w-px bg-border/60" />
@@ -711,7 +711,7 @@ export default async function ProfilePage() {
                                         <Flame className="h-4 w-4" />
                                         <div className="text-right leading-none">
                                             <div className="text-lg font-bold tabular-nums">{effectiveCurrentStreak}</div>
-                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Day streak</div>
+                                            <div className="mt-0.5 text-[0.6875rem] font-medium text-text-muted">Day streak</div>
                                         </div>
                                     </div>
                                     <div className="h-8 w-px bg-border/60" />
@@ -719,7 +719,7 @@ export default async function ProfilePage() {
                                         <BookOpen className="h-4 w-4" />
                                         <div className="text-right leading-none">
                                             <div className="text-lg font-bold tabular-nums">{totalCompleted}</div>
-                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Explored</div>
+                                            <div className="mt-0.5 text-[0.6875rem] font-medium text-text-muted">Explored</div>
                                         </div>
                                     </div>
                                     {weekCompletion.completedWeeksCount > 0 && (
@@ -729,7 +729,7 @@ export default async function ProfilePage() {
                                                 <Award className="h-4 w-4" />
                                                 <div className="text-right leading-none">
                                                     <div className="text-lg font-bold tabular-nums">{weekCompletion.completedWeeksCount}</div>
-                                                    <div className="mt-0.5 text-[11px] font-medium text-text-muted">Weeks done</div>
+                                                    <div className="mt-0.5 text-[0.6875rem] font-medium text-text-muted">Weeks done</div>
                                                 </div>
                                             </div>
                                         </>
@@ -744,21 +744,21 @@ export default async function ProfilePage() {
                                         <Trophy className="h-4 w-4" />
                                         <span className="text-lg font-bold tabular-nums sm:text-xl">{user.points.toLocaleString()}</span>
                                     </div>
-                                    <div className="text-[11px] font-medium text-text-muted">Points</div>
+                                    <div className="text-[0.6875rem] font-medium text-text-muted">Points</div>
                                 </div>
                                 <div className="flex flex-col items-center border-x border-border/40 text-center leading-none">
                                     <div className="mb-1 flex items-center gap-1.5 text-amber-500">
                                         <Flame className="h-4 w-4" />
                                         <span className="text-lg font-bold tabular-nums sm:text-xl">{effectiveCurrentStreak}</span>
                                     </div>
-                                    <div className="text-[11px] font-medium text-text-muted">Day streak</div>
+                                    <div className="text-[0.6875rem] font-medium text-text-muted">Day streak</div>
                                 </div>
                                 <div className={`flex flex-col items-center text-center leading-none ${weekCompletion.completedWeeksCount > 0 ? 'border-r border-border/40' : ''}`}>
                                     <div className="mb-1 flex items-center gap-1.5 text-success">
                                         <BookOpen className="h-4 w-4" />
                                         <span className="text-lg font-bold tabular-nums sm:text-xl">{totalCompleted}</span>
                                     </div>
-                                    <div className="text-[11px] font-medium text-text-muted">Explored</div>
+                                    <div className="text-[0.6875rem] font-medium text-text-muted">Explored</div>
                                 </div>
                                 {weekCompletion.completedWeeksCount > 0 && (
                                     <div className="flex flex-col items-center text-center leading-none">
@@ -766,7 +766,7 @@ export default async function ProfilePage() {
                                             <Award className="h-4 w-4" />
                                             <span className="text-lg font-bold tabular-nums sm:text-xl">{weekCompletion.completedWeeksCount}</span>
                                         </div>
-                                        <div className="text-[11px] font-medium text-text-muted">Weeks done</div>
+                                        <div className="text-[0.6875rem] font-medium text-text-muted">Weeks done</div>
                                     </div>
                                 )}
                             </div>

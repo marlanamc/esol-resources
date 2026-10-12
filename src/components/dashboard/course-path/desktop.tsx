@@ -144,7 +144,7 @@ export function DesktopUnitSection({
                         const groupLabel = (label: string) => (
                             <p
                                 key={label}
-                                className="mt-1 text-[11px] font-bold uppercase tracking-wide text-text-muted"
+                                className="mt-1 text-[0.6875rem] font-bold uppercase tracking-wide text-text-muted"
                             >
                                 {label}
                             </p>
@@ -399,7 +399,7 @@ export function DesktopWeekPanel({
                         </span>
                         {isScheduled && weekPrefix ? (
                             <span
-                                className="rounded-full px-2.5 py-[3px] text-[11px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                                className="rounded-full px-2.5 py-[3px] text-[0.6875rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
                                 style={{ background: tone.button, color: "var(--road-on-accent)" }}
                             >
                                 You are here

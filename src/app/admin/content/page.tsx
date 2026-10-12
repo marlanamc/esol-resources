@@ -77,10 +77,10 @@ export default async function AdminContentPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "#1e2640" }}>
+                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "var(--color-text)" }}>
                     Content Health
                 </h1>
-                <p className="text-sm mt-1" style={{ color: "#64748b" }}>
+                <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
                     Release status, content kinds, and activity inventory
                 </p>
             </div>
@@ -88,15 +88,15 @@ export default async function AdminContentPage() {
             {/* Summary cards */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
                 <div className="rounded-2xl border bg-surface-elevated p-4" style={{ borderColor: "var(--border-subtle)" }}>
-                    <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{activities.length}</p>
+                    <p className="text-2xl font-bold tabular-nums" style={{ color: "var(--color-text)" }}>{activities.length}</p>
                     <p className="text-xs font-semibold text-text-muted mt-0.5">Total activities</p>
                 </div>
                 <div className="rounded-2xl border bg-surface-elevated p-4" style={{ borderColor: "var(--border-subtle)" }}>
                     <div className="flex items-center gap-2 mb-1">
-                        <Star className="h-3.5 w-3.5" style={{ color: "#d97706", fill: "#f59e0b" }} />
-                        <p className="text-xs font-semibold" style={{ color: "#d97706" }}>Featured (Indep.)</p>
+                        <Star className="h-3.5 w-3.5" style={{ color: "#d97706", fill: "#f59e0b" }} aria-hidden="true" />
+                        <p className="text-xs font-semibold text-amber-700 dark:text-amber-400">Featured (Indep.)</p>
                     </div>
-                    <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{featuredIndependentCount}</p>
+                    <p className="text-2xl font-bold tabular-nums" style={{ color: "var(--color-text)" }}>{featuredIndependentCount}</p>
                 </div>
                 {["practice", "map", "assignment"].map((kind) => {
                     const Icon = KIND_ICONS[kind] ?? BookOpen;
@@ -107,7 +107,7 @@ export default async function AdminContentPage() {
                                 <Icon className="h-3.5 w-3.5" style={{ color: KIND_COLORS[kind] }} />
                                 <p className="text-xs font-semibold" style={{ color: KIND_COLORS[kind] }}>{KIND_LABELS[kind]}</p>
                             </div>
-                            <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{count}</p>
+                            <p className="text-2xl font-bold tabular-nums" style={{ color: "var(--color-text)" }}>{count}</p>
                         </div>
                     );
                 })}
@@ -144,10 +144,10 @@ export default async function AdminContentPage() {
                                 style={{ background: color }}>
                                 <Icon className="h-3.5 w-3.5" />
                             </span>
-                            <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#64748b" }}>
+                            <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-muted)" }}>
                                 {KIND_LABELS[kind]}
                             </h2>
-                            <span className="text-xs" style={{ color: "#94a3b8" }}>
+                            <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                                 {released}/{rows.length} released
                             </span>
                         </div>
@@ -155,11 +155,12 @@ export default async function AdminContentPage() {
                         <div className="rounded-2xl overflow-hidden border bg-surface-elevated" style={{ borderColor: "var(--border-subtle)" }}>
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[640px]">
+                                    <caption className="sr-only">{KIND_LABELS[kind]} activities</caption>
                                     <thead>
-                                        <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+                                        <tr style={{ background: "var(--color-surface-subtle)", borderBottom: "1px solid var(--color-border-subtle)" }}>
                                             {["Title", "Type", "Category", "Released", "Featured", "Created"].map((h) => (
-                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider"
-                                                    style={{ color: "#94a3b8" }}>
+                                                <th key={h} scope="col" className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider"
+                                                    style={{ color: "var(--color-text-muted)" }}>
                                                     {h}
                                                 </th>
                                             ))}
@@ -167,21 +168,27 @@ export default async function AdminContentPage() {
                                     </thead>
                                     <tbody>
                                         {rows.map((a) => (
-                                            <tr key={a.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-                                                <td className="py-2.5 px-4 text-sm font-medium max-w-[280px]" style={{ color: "#1e2640" }}>
-                                                    <span className="line-clamp-1">{a.title}</span>
-                                                </td>
-                                                <td className="py-2.5 px-4 text-xs" style={{ color: "#64748b" }}>
+                                            <tr key={a.id} style={{ borderBottom: "1px solid var(--color-border-subtle)" }}>
+                                                <th scope="row" className="py-2.5 px-4 text-left text-sm font-medium max-w-[280px]" style={{ color: "var(--color-text)" }}>
+                                                    <span className="line-clamp-1" title={a.title}>{a.title}</span>
+                                                </th>
+                                                <td className="py-2.5 px-4 text-xs" style={{ color: "var(--color-text-muted)" }}>
                                                     {a.type ?? "—"}
                                                 </td>
-                                                <td className="py-2.5 px-4 text-xs" style={{ color: "#64748b" }}>
+                                                <td className="py-2.5 px-4 text-xs" style={{ color: "var(--color-text-muted)" }}>
                                                     {a.category ?? "—"}
                                                 </td>
                                                 <td className="py-2.5 px-4">
                                                     {a.isReleased ? (
-                                                        <CheckCircle className="h-4 w-4" style={{ color: "#16a34a" }} />
+                                                        <>
+                                                            <CheckCircle className="h-4 w-4 text-green-700 dark:text-green-400" aria-hidden="true" />
+                                                            <span className="sr-only">Released</span>
+                                                        </>
                                                     ) : (
-                                                        <XCircle className="h-4 w-4" style={{ color: "#cbd5e1" }} />
+                                                        <>
+                                                            <XCircle className="h-4 w-4 text-text-muted" aria-hidden="true" />
+                                                            <span className="sr-only">Not released</span>
+                                                        </>
                                                     )}
                                                 </td>
                                                 <td className="py-2.5 px-4">
@@ -190,7 +197,7 @@ export default async function AdminContentPage() {
                                                         initial={a.isFeaturedForIndependent}
                                                     />
                                                 </td>
-                                                <td className="py-2.5 px-4 text-xs" style={{ color: "#94a3b8" }}>
+                                                <td className="py-2.5 px-4 text-xs" style={{ color: "var(--color-text-muted)" }}>
                                                     {new Date(a.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                                                 </td>
                                             </tr>

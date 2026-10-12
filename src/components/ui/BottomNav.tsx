@@ -271,7 +271,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
         }}
       />
       
-      <nav
+      <nav aria-label="Main"
         className={`fixed bottom-0 left-0 right-0 w-full border-t md:hidden bottom-nav bottom-nav-motion touch-manipulation ${
           isKeyboardVisible ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}
@@ -321,7 +321,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                       <IconComponent />
                     </div>
                   </div>
-                  <span className="text-[10px] font-bold tracking-tight">
+                  <span className="text-[0.6875rem] font-bold tracking-tight">
                     {item.label}
                   </span>
                 </div>

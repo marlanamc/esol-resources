@@ -59,7 +59,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                         }}
                     >
                         <div className="absolute top-4 left-4 z-10 flex gap-2">
-                            <Badge variant={isBadgeVariant(activity.type) ? activity.type : "default"} size="sm" className="shadow-sm uppercase tracking-wider text-[10px] font-bold">
+                            <Badge variant={isBadgeVariant(activity.type) ? activity.type : "default"} size="sm" className="shadow-sm uppercase tracking-wider text-[0.625rem] font-bold">
                                 {activity.type}
                             </Badge>
                         </div>
@@ -78,7 +78,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                             </span>
                             {typeof progressMap?.[activity.id] === "number" && progressMap[activity.id] > 0 && (
                                 <span
-                                    className="text-[11px] px-2 py-1 rounded-full border"
+                                    className="text-[0.6875rem] px-2 py-1 rounded-full border"
                                     style={{
                                         backgroundColor: tone.chipBg,
                                         color: tone.chipText,

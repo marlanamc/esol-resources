@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { GameLiveRegion } from '../../shared/GameLiveRegion';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -79,15 +80,15 @@ export function MultipleChoiceExercise({
           {exercise.prompt}
         </p>
         <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-          <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium sm:px-2 sm:py-1 sm:text-xs ${baseVerbChipClassName}`}>
+          <span className={`rounded-full px-1.5 py-0.5 text-[0.625rem] font-medium sm:px-2 sm:py-1 sm:text-xs ${baseVerbChipClassName}`}>
             V1: {exercise.verb.base}
           </span>
           {isAskingV2 ? (
-            <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-primary/20 text-primary-dark font-medium">
+            <span className="text-[0.625rem] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-primary/20 text-primary-dark font-medium">
               Find V2
             </span>
           ) : (
-            <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-secondary/20 text-secondary-dark font-medium">
+            <span className="text-[0.625rem] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-secondary/20 text-secondary-dark font-medium">
               Find V3
             </span>
           )}
@@ -157,6 +158,7 @@ export function MultipleChoiceExercise({
         </AnimatePresence>
       </div>
 
+      <GameLiveRegion message={submitted ? feedback : null} />
       {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div

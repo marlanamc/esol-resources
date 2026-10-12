@@ -51,14 +51,14 @@ export function UnitCard({
         >
           {unitNum && (
             <div
-              className="absolute top-2 left-2 text-[11px] font-black text-white px-2 py-0.5 rounded-full"
+              className="absolute top-2 left-2 text-[0.6875rem] font-black text-white px-2 py-0.5 rounded-full"
               style={{ background: "rgba(0,0,0,0.50)", letterSpacing: "0.04em" }}
             >
               {unitNum}
             </div>
           )}
           <span
-            className="text-[44px] leading-none"
+            className="text-[2.75rem] leading-none"
             style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}
             aria-hidden
           >
@@ -68,16 +68,16 @@ export function UnitCard({
 
         {/* Text body */}
         <div className="flex flex-1 flex-col p-3">
-          <p className="font-black text-[16px] leading-[1.15] text-slate-900">{title}</p>
+          <p className="font-black text-[1rem] leading-[1.15] text-slate-900">{title}</p>
           {titleEs && (
-            <p className="mt-0.5 text-[12px] italic text-slate-500">{titleEs}</p>
+            <p className="mt-0.5 text-[0.75rem] italic text-slate-500">{titleEs}</p>
           )}
 
           <div className="flex-1" />
 
           <div className="flex items-center justify-between mt-2 pt-2 border-t border-dashed border-slate-200">
             {wordCount != null ? (
-              <span className="text-[12px] font-bold text-[#0a6b62]">{wordCount} words</span>
+              <span className="text-[0.75rem] font-bold text-[#0a6b62]">{wordCount} words</span>
             ) : (
               <span />
             )}

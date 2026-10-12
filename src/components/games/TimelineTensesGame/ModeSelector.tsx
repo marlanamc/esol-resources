@@ -132,7 +132,7 @@ export function ModeSelector({
         >
           Challenge Modes
           {!anyUnlocked ? (
-            <span className="inline-flex items-center gap-0.5 text-[10px] font-black uppercase tracking-wider opacity-60">
+            <span className="inline-flex items-center gap-0.5 text-[0.625rem] font-black uppercase tracking-wider opacity-60">
               <Lock size={10} />
               Tier 2
             </span>
@@ -255,7 +255,7 @@ export function ModeSelector({
                         <div className="absolute inset-0 flex items-center justify-center rounded-3xl bg-white/10 dark:bg-black/10 backdrop-blur-[1px] z-10">
                           <div className="flex flex-col items-center gap-1">
                             <Lock size={18} className="text-text-muted/50" />
-                            <span className="text-[10px] font-black text-text-muted/40 uppercase tracking-widest">
+                            <span className="text-[0.625rem] font-black text-text-muted/40 uppercase tracking-widest">
                               Lvl {mode.unlockLevel}
                             </span>
                           </div>

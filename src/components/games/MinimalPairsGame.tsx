@@ -21,6 +21,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
 import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { GameLiveRegion } from './shared/GameLiveRegion';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import {
   type MinimalPairContrastId,
@@ -437,22 +438,22 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Target className="w-6 h-6 mx-auto mb-2 text-cyan-600" />
                 <div className="text-2xl font-black text-text">{accuracy}%</div>
-                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Accuracy</div>
+                <div className="text-[0.625rem] uppercase font-black tracking-widest text-muted">Accuracy</div>
               </div>
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
                 <div className="text-2xl font-black text-text">{state.maxStreak}</div>
-                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Best Streak</div>
+                <div className="text-[0.625rem] uppercase font-black tracking-widest text-muted">Best Streak</div>
               </div>
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
                 <div className="text-2xl font-black text-text">{state.score}/{total}</div>
-                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Correct</div>
+                <div className="text-[0.625rem] uppercase font-black tracking-widest text-muted">Correct</div>
               </div>
               <div className="rounded-2xl border border-cyan-300/40 bg-cyan-100 p-4 text-center shadow-sm">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-cyan-700" />
                 <div className="text-2xl font-black text-cyan-700">6</div>
-                <div className="text-[10px] text-cyan-700 uppercase font-black tracking-widest">Points</div>
+                <div className="text-[0.625rem] text-cyan-700 uppercase font-black tracking-widest">Points</div>
               </div>
             </div>
 
@@ -567,12 +568,12 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Question</span>
+            <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Question</span>
             <span className="text-xl font-bold text-text">{state.currentIndex + 1} / {state.questions.length}</span>
           </div>
           <div className="h-8 w-px bg-border/40" />
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Streak</span>
+            <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Streak</span>
             <div className="flex items-center gap-1">
               <Zap className={`w-4 h-4 ${state.streak > 0 ? 'fill-amber-500 text-amber-500' : 'text-white/20'}`} />
               <span className="text-xl font-bold text-text">{state.streak}</span>
@@ -581,7 +582,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         </div>
 
         <div className="text-right">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Score</span>
+          <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Score</span>
           <div className="text-xl font-bold text-cyan-300">{state.score}</div>
         </div>
       </div>
@@ -642,6 +643,15 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
           })}
         </div>
 
+        <GameLiveRegion
+          message={
+            state.showFeedback
+              ? state.answers[state.answers.length - 1]?.correct
+                ? `Correct! You heard "${targetWord}".`
+                : `Not correct. The correct answer was "${targetWord}".`
+              : null
+          }
+        />
         <AnimatePresence>
           {state.showFeedback && (
             <motion.div

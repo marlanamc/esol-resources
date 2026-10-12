@@ -143,7 +143,7 @@ export function LearnTensesWalkthrough({
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <GraduationCap size={24} />
           </div>
-          <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] ${style.chip}`}>
+          <span className={`inline-flex rounded-full border px-3 py-1 text-[0.625rem] font-black uppercase tracking-[0.22em] ${style.chip}`}>
             {lesson.badge}
           </span>
         </div>
@@ -177,7 +177,7 @@ export function LearnTensesWalkthrough({
 
         <div className="mt-6 rounded-[1.6rem] border border-border/25 bg-white/55 dark:bg-white/5 px-4 py-4 sm:px-5 sm:py-5 shadow-sm">
           <div className="flex flex-wrap items-center gap-3">
-            <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] ${style.chip}`}>
+            <span className={`inline-flex rounded-full border px-3 py-1 text-[0.625rem] font-black uppercase tracking-[0.22em] ${style.chip}`}>
               {lesson.badge}
             </span>
             <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight text-text">
@@ -188,7 +188,7 @@ export function LearnTensesWalkthrough({
             <div className="flex items-start gap-3 rounded-2xl bg-white/70 px-3 py-3 dark:bg-white/5">
               <span className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${style.dot}`} />
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted/45">
+                <div className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-text-muted/45">
                   What It Shows
                 </div>
                 <p className="mt-1 text-sm sm:text-base font-semibold leading-relaxed text-text">
@@ -199,7 +199,7 @@ export function LearnTensesWalkthrough({
             <div className="flex items-start gap-3 rounded-2xl bg-white/70 px-3 py-3 dark:bg-white/5">
               <span className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${style.dot}`} />
               <div>
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted/45">
+                <div className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-text-muted/45">
                   Use It For
                 </div>
                 <p className="mt-1 text-sm font-medium leading-relaxed text-text-muted/72">
@@ -238,7 +238,7 @@ export function LearnTensesWalkthrough({
                 </p>
 
                 <div className="mt-3 rounded-2xl border border-border/30 bg-white/55 dark:bg-white/5 px-4 py-3 sm:mt-4 sm:py-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted/45">
+                  <div className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-text-muted/45">
                     Formula
                   </div>
                   <div className="mt-2.5 space-y-1.5 sm:mt-3 sm:space-y-2">
@@ -251,10 +251,10 @@ export function LearnTensesWalkthrough({
                         key={label}
                         className="grid grid-cols-[2.8rem_minmax(0,1fr)] items-start gap-2.5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-3"
                       >
-                        <div className="pt-0.5 text-[10px] font-black uppercase tracking-[0.18em] text-text-muted/45">
+                        <div className="pt-0.5 text-[0.625rem] font-black uppercase tracking-[0.18em] text-text-muted/45">
                           {label}
                         </div>
-                        <div className="text-[15px] sm:text-base font-bold leading-snug text-text">
+                        <div className="text-[0.9375rem] sm:text-base font-bold leading-snug text-text">
                           {formula}
                         </div>
                       </div>
@@ -263,7 +263,7 @@ export function LearnTensesWalkthrough({
                 </div>
 
                 <div className="mt-3 rounded-2xl border border-border/30 bg-white/55 dark:bg-white/5 px-4 py-3 sm:mt-4 sm:py-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted/45">
+                  <div className="text-[0.625rem] font-black uppercase tracking-[0.2em] text-text-muted/45">
                     Examples
                   </div>
                   <div className="mt-2.5 space-y-2 sm:mt-3 sm:space-y-3">
@@ -278,7 +278,7 @@ export function LearnTensesWalkthrough({
                         key={label}
                         className="grid grid-cols-[2.8rem_minmax(0,1fr)] items-start gap-2.5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-3"
                       >
-                        <div className="pt-1 text-[10px] font-black uppercase tracking-[0.18em] text-text-muted/45">
+                        <div className="pt-1 text-[0.625rem] font-black uppercase tracking-[0.18em] text-text-muted/45">
                           {label}
                         </div>
                         <p className="text-[1.02rem] sm:text-lg font-display font-black leading-snug tracking-tight text-text">
@@ -291,7 +291,7 @@ export function LearnTensesWalkthrough({
               </div>
 
               <div className="rounded-[1.75rem] border border-slate-200/80 bg-white/75 p-4 sm:p-5 shadow-inner dark:border-white/15 dark:bg-[#132738]">
-                <div className="text-center text-[10px] font-black uppercase tracking-[0.24em] text-slate-500 dark:text-white/45">
+                <div className="text-center text-[0.625rem] font-black uppercase tracking-[0.24em] text-slate-500 dark:text-white/45">
                   Timeline Shape
                 </div>
                 <div className="mt-4">

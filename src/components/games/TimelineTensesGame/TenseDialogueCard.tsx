@@ -78,7 +78,7 @@ export function TenseDialogueCard({ tenseName, dialogue }: TenseDialogueCardProp
     >
       <div className="flex items-center gap-2 mb-3">
         <MessageCircle size={14} className="text-text-muted/40" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-text-muted/40">
+        <span className="text-[0.625rem] font-black uppercase tracking-widest text-text-muted/40">
           In real life
         </span>
       </div>

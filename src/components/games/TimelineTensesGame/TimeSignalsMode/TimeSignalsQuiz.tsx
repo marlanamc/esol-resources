@@ -436,10 +436,10 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
             </p>
             {question.source.contextLabel && (
               <div className="mb-3 flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-wide text-secondary">
+                <span className="text-[0.6875rem] font-black uppercase tracking-wide text-secondary">
                   {question.source.contextLabel}
                 </span>
-                <span className="text-[11px] px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">
+                <span className="text-[0.6875rem] px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">
                   Context shift
                 </span>
               </div>
@@ -491,7 +491,7 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
                     </div>
                   )}
                   <TimelineCanvas elements={option.elements} showLabels={false} />
-                  <p className="text-[10px] text-text-muted mt-2 font-medium">{option.label}</p>
+                  <p className="text-[0.625rem] text-text-muted mt-2 font-medium">{option.label}</p>
                 </motion.button>
               );
             })}

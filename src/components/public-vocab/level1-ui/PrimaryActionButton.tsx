@@ -26,7 +26,7 @@ export function PrimaryActionButton({
     "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50";
   const skin =
     variant === "primary"
-      ? "bg-[#0f9b8e] text-white shadow-[0_10px_24px_-10px_rgba(15,155,142,0.6)] hover:bg-[#0c8a7d] focus-visible:ring-emerald-400/60"
+      ? "bg-[#0a6b62] text-[#ffffff] shadow-[0_10px_24px_-10px_rgba(10,107,98,0.6)] hover:bg-[#085a53] focus-visible:ring-emerald-400/60"
       : "bg-white/70 backdrop-blur border border-white/70 text-[#0a6b62] hover:bg-white focus-visible:ring-emerald-400/60";
 
   return (

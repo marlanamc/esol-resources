@@ -280,15 +280,20 @@ export function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps)
         }
     };
 
+    const getStatusLabel = (topic: GrammarTopic): string => {
+        const status = getTopicStatus(topic);
+        return status === 'completed' ? 'completed' : status === 'in-progress' ? 'in progress' : 'not started';
+    };
+
     // Get status icon
     const getStatusIcon = (topic: GrammarTopic) => {
         const status = getTopicStatus(topic);
 
         switch (status) {
             case 'completed':
-                return <Check className="w-6 h-6" />;
+                return <Check aria-hidden="true" className="w-6 h-6" />;
             case 'in-progress':
-                return <Loader2 className="w-6 h-6" />;
+                return <Loader2 aria-hidden="true" className="w-6 h-6" />;
             default:
                 return null;
         }
@@ -326,6 +331,7 @@ export function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps)
                 <div className="flex items-start justify-between gap-2 mb-2">
                     <h4 className="font-semibold text-[var(--text)] flex-1">
                         {topic.title}
+                        <span className="sr-only"> ({getStatusLabel(topic)})</span>
                     </h4>
                     {getStatusIcon(topic) && (
                         <div style={{ color }}>{getStatusIcon(topic)}</div>
@@ -690,11 +696,23 @@ export function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps)
                                         transition={{ delay: index * 0.05 }}
                                         onMouseEnter={() => setHoveredTopic(topic.id)}
                                         onMouseLeave={() => setHoveredTopic(null)}
+                                        role="link"
+                                        tabIndex={0}
+                                        aria-label={`${topic.title}, ${getStatusLabel(topic)}`}
+                                        onFocus={() => setHoveredTopic(topic.id)}
+                                        onBlur={() => setHoveredTopic(null)}
+                                        onKeyDown={(e: { key: string; preventDefault: () => void }) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                setSelectedTopic(topic.id);
+                                                handleTopicClick(topic.id);
+                                            }
+                                        }}
                                         onClick={() => {
                                             setSelectedTopic(topic.id);
                                             handleTopicClick(topic.id);
                                         }}
-                                        className="cursor-pointer"
+                                        className="cursor-pointer focus-visible:outline-none"
                                         whileHover={{ scale: zoom * 1.05 }}
                                         whileTap={{ scale: zoom * 0.95 }}
                                         style={{ transformOrigin: `${pos.x + nodeWidth / 2}px ${pos.y + nodeHeight / 2}px` }}

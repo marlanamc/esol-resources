@@ -336,15 +336,6 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
     setIsFlipped((value) => !value);
   }, []);
 
-  const handleFlipKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key !== "Enter" && event.key !== " ") {
-      return;
-    }
-
-    event.preventDefault();
-    handleToggleFlip();
-  }, [handleToggleFlip]);
-
   // Keyboard shortcuts for ratings
   useEffect(() => {
     if (!isFlipped || isBusy) return;
@@ -390,7 +381,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
           />
         </div>
 
-        <span className="shrink-0 text-xs font-bold tabular-nums text-text/65 sm:text-sm">
+        <span className="shrink-0 text-xs font-bold tabular-nums text-text-muted sm:text-sm">
           {reviewedCount} <span className="opacity-40">/</span> {sessionCards.length}
         </span>
 
@@ -449,25 +440,33 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
       {!isBusy && currentCard ? (
         <section className="flex flex-1 flex-col gap-5">
           <div
-            role="button"
-            tabIndex={0}
-            onClick={handleToggleFlip}
-            onKeyDown={handleFlipKeyDown}
-            aria-label={isFlipped ? "Show vocab prompt" : "Show vocab answer"}
             className="group relative flex min-h-[380px] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[32px] border bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface-subtle)] p-6 text-center shadow-xl transition-all duration-500 hover:shadow-2xl active:scale-[0.99] sm:p-10"
             style={{ 
               borderColor: tone.border,
             }}
           >
+            {/* Flip target: a real button covering the card so the visible term/definition stays readable */}
+            <button
+              type="button"
+              onClick={handleToggleFlip}
+              aria-pressed={isFlipped}
+              aria-label="Flip card"
+              className="absolute inset-0 z-[1] cursor-pointer rounded-[32px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-primary/60"
+            />
+            <p className="sr-only" role="status" aria-live="polite">
+              {isFlipped
+                ? `Definition: ${currentCard.definition}${currentCard.example ? `. Example: ${currentCard.example}` : ""}`
+                : `Term: ${currentCard.term}`}
+            </p>
             {/* Background flourish */}
             <div 
               className="absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-5 blur-3xl transition-opacity group-hover:opacity-10"
               style={{ background: tone.accent }}
             />
             {/* Top Bar (Chip + Audio) */}
-            <div className="absolute left-4 top-4 z-10 flex items-center gap-2 sm:left-8 sm:top-8">
+            <div className="pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 sm:left-8 sm:top-8">
               <span 
-                className={`rounded-full border px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] shadow-sm transition-all duration-500 sm:text-xs ${
+                className={`rounded-full border px-4 py-1.5 text-[0.75rem] font-black uppercase tracking-[0.14em] shadow-sm transition-all duration-500 sm:text-xs ${
                   !isFlipped
                     ? "bg-primary text-white border-primary-dark"
                     : "bg-secondary text-white border-secondary-dark"
@@ -494,7 +493,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             ) : null}
 
             {/* Card Content – with transition wrap */}
-            <div className="relative flex w-full max-w-lg flex-col items-center gap-6 mt-4 transition-all duration-300">
+            <div className="pointer-events-none relative flex w-full max-w-lg flex-col items-center gap-6 mt-4 transition-all duration-300">
               {!isFlipped ? (
                 <div className="animate-in fade-in zoom-in-95 duration-500">
                   <h2 className="font-display text-4xl font-extrabold leading-[1.1] text-text sm:text-6xl" style={{ textWrap: "balance" }}>
@@ -527,8 +526,8 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             </div>
 
             {/* Flip hint */}
-            <div className="absolute bottom-6 left-0 w-full animate-pulse transition-opacity duration-300">
-               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text/25 sm:text-[11px]">
+            <div aria-hidden="true" className="pointer-events-none absolute bottom-6 left-0 w-full motion-safe:animate-pulse transition-opacity duration-300">
+               <p className="text-[0.75rem] font-black uppercase tracking-[0.3em] text-text-muted">
                 {isFlipped ? "Tap to return" : "Tap to reveal"}
               </p>
             </div>
@@ -546,13 +545,13 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   className="group/btn relative flex min-h-[76px] items-center justify-center overflow-hidden rounded-2xl border-2 px-3 py-3.5 transition-all duration-200 focus-visible:ring-2 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                   style={RATING_STYLES[button.rating]}
                 >
-                  <span className="text-[13px] font-black uppercase tracking-wider sm:text-[14px]">{button.label}</span>
+                  <span className="text-[0.8125rem] font-black uppercase tracking-wider sm:text-[0.875rem]">{button.label}</span>
                 </button>
               ))}
             </div>
           ) : (
             <div className="flex h-[72px] items-center justify-center">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-text/20 sm:text-[11px]">
+              <p className="text-[0.75rem] font-black uppercase tracking-[0.25em] text-text-muted">
                 Reveal to rate
               </p>
             </div>
@@ -679,7 +678,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />
             <div className="relative flex items-start justify-between gap-3">
               <div>
-                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text/50">
+                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text-muted">
                   <Sparkles className="h-3.5 w-3.5" style={{ color: tone.accent }} />
                   Study filters
                 </p>
@@ -704,7 +703,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
               ].map((section) =>
                 section.filters.length > 0 ? (
                   <div key={section.title} className="mt-8 space-y-3">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-text/50">{section.title}</h3>
+                    <h3 className="text-[0.6875rem] font-black uppercase tracking-[0.2em] text-text-muted">{section.title}</h3>
                     <div className="space-y-2">
                       {section.filters.map((filter) => {
                         const isActive = filter.key === selectedSource;
@@ -727,8 +726,8 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                             )}
                             
                             <div className="relative z-10">
-                              <div className="text-[15px] font-bold tracking-tight text-text">{filter.label}</div>
-                              <div className="mt-1 flex items-center gap-1.5 text-[12px] font-medium text-text/60">
+                              <div className="text-[0.9375rem] font-bold tracking-tight text-text">{filter.label}</div>
+                              <div className="mt-1 flex items-center gap-1.5 text-[0.75rem] font-medium text-text-muted">
                                 <span>{filter.dueCount > 0 ? "Cards ready" : "All caught up"}</span>
                                 <span className="opacity-40">•</span>
                                 <span>{filter.totalCount} words</span>
@@ -736,7 +735,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                             </div>
                             {isActive ? (
                               <span 
-                                className="relative z-10 rounded-full px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.15em] shadow-sm transform transition-transform group-hover:scale-105" 
+                                className="relative z-10 rounded-full px-3.5 py-1 text-[0.6875rem] font-black uppercase tracking-[0.15em] shadow-sm transform transition-transform group-hover:scale-105" 
                                 style={{ 
                                   background: tone.chipBg, 
                                   color: tone.chipText,
@@ -779,7 +778,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />
             <div className="relative flex items-start justify-between gap-3">
               <div>
-                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text/50">
+                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text-muted">
                   <Sparkles className="h-3.5 w-3.5" style={{ color: tone.accent }} />
                   Quick help
                 </p>
@@ -810,13 +809,13 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
 
                 <div className="relative flex items-center gap-3">
                   <span
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-display text-[15px] font-black shadow-sm ring-1 ring-inset"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-display text-[0.9375rem] font-black shadow-sm ring-1 ring-inset"
                     style={{ background: tone.chipBg, color: tone.chipText, border: `1px solid color-mix(in srgb, white 20%, transparent)` }}
                   >
                     6
                   </span>
-                  <p className="text-[15px] font-bold tracking-tight text-text">Study a few words each day.<br />
-                    <span className="text-xs font-semibold text-text/60">A quick, focused session.</span>
+                  <p className="text-[0.9375rem] font-bold tracking-tight text-text">Study a few words each day.<br />
+                    <span className="text-xs font-semibold text-text-muted">A quick, focused session.</span>
                   </p>
                 </div>
 
@@ -841,7 +840,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                       >
                         {n}
                       </span>
-                      <p className="text-[13px] font-bold text-text/90 tracking-tight">{text}</p>
+                      <p className="text-[0.8125rem] font-bold text-text/90 tracking-tight">{text}</p>
                       {icon}
                     </div>
                   ))}
@@ -858,7 +857,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 }}
               >
                 <div className="mb-3.5 flex items-center justify-between">
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-text/65">Rating the Words</h3>
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-text-muted">Rating the Words</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
                   {[
@@ -876,9 +875,9 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                         }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300 group-hover:opacity-100" />
-                        <span className="relative z-10 text-[13px] font-black uppercase tracking-wider sm:text-[14px]" style={{ color: textColor }}>{label}</span>
+                        <span className="relative z-10 text-[0.8125rem] font-black uppercase tracking-wider sm:text-[0.875rem]" style={{ color: textColor }}>{label}</span>
                       </div>
-                      <span className="text-[11px] font-bold text-center leading-tight" style={{ color: textColor, opacity: 0.85 }}>{hint}</span>
+                      <span className="text-[0.6875rem] font-bold text-center leading-tight" style={{ color: textColor, opacity: 0.85 }}>{hint}</span>
                     </div>
                   ))}
                 </div>
@@ -896,10 +895,10 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 >
                   <div className="flex items-center gap-1.5 mb-1.5">
                     <CalendarSync className="h-4 w-4 opacity-50 text-text" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/50">Due Words</p>
+                    <p className="text-[0.75rem] font-black uppercase tracking-[0.2em] text-text-muted">Due Words</p>
                   </div>
-                  <p className="text-[15px] font-bold tracking-tight text-text">Ready now</p>
-                  <p className="mt-1 text-[12px] font-medium leading-relaxed text-text/65">Words you studied before that need review.</p>
+                  <p className="text-[0.9375rem] font-bold tracking-tight text-text">Ready now</p>
+                  <p className="mt-1 text-[0.75rem] font-medium leading-relaxed text-text-muted">Words you studied before that need review.</p>
                 </div>
                 <div 
                   className="group rounded-[28px] border px-4 py-4 transition-transform hover:scale-[1.02]" 
@@ -911,24 +910,24 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 >
                    <div className="flex items-center gap-1.5 mb-1.5">
                     <Sparkles className="h-4 w-4 opacity-50 text-[color:var(--tone-vocabulary-accentStrong)]" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/50">New Words</p>
+                    <p className="text-[0.75rem] font-black uppercase tracking-[0.2em] text-text-muted">New Words</p>
                   </div>
-                  <p className="text-[15px] font-bold tracking-tight text-text">First time</p>
-                  <p className="mt-1 text-[12px] font-medium leading-relaxed text-text/65">Fresh words you haven&apos;t seen yet.</p>
+                  <p className="text-[0.9375rem] font-bold tracking-tight text-text">First time</p>
+                  <p className="mt-1 text-[0.75rem] font-medium leading-relaxed text-text-muted">Fresh words you haven&apos;t seen yet.</p>
                 </div>
               </div>
 
               {/* Filter tip */}
               {/* Filter tip */}
               <div className="mt-2 flex items-center justify-center gap-2 rounded-[20px] bg-black/5 px-4 py-3 dark:bg-white/5">
-                <span className="text-[13px] font-semibold text-text/75">
+                <span className="text-[0.8125rem] font-semibold text-text/75">
                   Want to practice one unit? <span className="font-bold text-text">Tap Filters.</span>
                 </span>
               </div>
 
               {/* Daily Habit tip */}
               <div className="flex items-center justify-center px-4 pt-2">
-                <p className="text-center text-[12px] font-medium leading-relaxed text-text/60">
+                <p className="text-center text-[0.75rem] font-medium leading-relaxed text-text-muted">
                   Make this a daily habit. <br className="sm:hidden" />
                   We&apos;ll choose the best words for you to review each day.
                 </p>

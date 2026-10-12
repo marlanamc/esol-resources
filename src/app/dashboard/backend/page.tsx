@@ -117,7 +117,7 @@ export default async function BackendUsersPage() {
             </header>
 
             <main className="container mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-6">
-                <div className="border rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
+                <div className="border rounded-2xl bg-surface-elevated p-4 sm:p-6 shadow-sm">
                     <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
                         <h2 className="text-xl font-bold text-text">Accounts ({users.length})</h2>
                         <p className="text-sm text-text-muted">Access: admin only</p>
@@ -125,16 +125,17 @@ export default async function BackendUsersPage() {
 
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-[1200px]">
+                            <caption className="sr-only">Accounts with role, leaderboard exclusion, permissions and classes</caption>
                             <thead>
                                 <tr className="border-b border-border/60">
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Username</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Name</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Role</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Excluded</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Permissions</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Classes</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Sections</th>
-                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Created</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Username</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Name</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Role</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Excluded</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Permissions</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Classes</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Sections</th>
+                                    <th scope="col" className="text-left py-3 px-3 text-sm font-semibold text-text">Created</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -152,7 +153,7 @@ export default async function BackendUsersPage() {
 
                                     return (
                                         <tr key={user.id} className="border-b border-border/30 hover:bg-bg-light/40">
-                                            <td className="py-3 px-3 text-sm font-semibold text-text">{user.username}</td>
+                                            <th scope="row" className="py-3 px-3 text-left text-sm font-semibold text-text">{user.username}</th>
                                             <td className="py-3 px-3 text-sm text-text">{user.name || "—"}</td>
                                             <td className="py-3 px-3 text-sm">
                                                 <span className={`inline-flex px-2 py-1 rounded-full border text-xs font-semibold ${roleBadgeClasses(user.role)}`}>

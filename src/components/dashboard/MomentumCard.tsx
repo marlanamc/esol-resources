@@ -105,7 +105,7 @@ export function MomentumCard({
                         <div className="font-display text-[1.5rem] font-bold leading-none tabular-nums text-text">
                             {streak}
                         </div>
-                        <div className="mt-0.5 text-[10px] font-bold leading-none tracking-tight text-text">
+                        <div className="mt-0.5 text-[0.625rem] font-bold leading-none tracking-tight text-text">
                             day streak
                         </div>
                     </div>
@@ -114,10 +114,10 @@ export function MomentumCard({
                 {/* Label both numbers: an unlabeled weekly figure read as "I lost points"
                     to learners who remembered their (much larger) total. */}
                 <div className="ml-auto shrink-0 text-right leading-none">
-                    <div className="text-[13px] font-bold tabular-nums text-text">
-                        {weeklyPoints.toLocaleString()} pts <span className="text-[10px] font-semibold text-text-muted">this week</span>
+                    <div className="text-[0.8125rem] font-bold tabular-nums text-text">
+                        {weeklyPoints.toLocaleString()} pts <span className="text-[0.625rem] font-semibold text-text-muted">this week</span>
                     </div>
-                    <div className="mt-1 text-[10px] font-semibold tabular-nums text-text-muted">
+                    <div className="mt-1 text-[0.625rem] font-semibold tabular-nums text-text-muted">
                         {totalPoints.toLocaleString()} total
                     </div>
                 </div>
@@ -154,7 +154,7 @@ export function MomentumCard({
                                 ) : null}
                             </div>
                             <span
-                                className="text-[9px] font-bold leading-none"
+                                className="text-[0.5625rem] font-bold leading-none"
                                 style={{ color: isToday ? streakAccent : "var(--text-muted)" }}
                             >
                                 {CALENDAR_WEEK_DAY_LABELS[i]}

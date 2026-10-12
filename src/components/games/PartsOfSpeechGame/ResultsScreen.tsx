@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Repeat, CheckCircle, ChevronRight, BookOpen, Star } from 'lucide-react';
 import Image from 'next/image';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
+import { useModalFocus } from '@/hooks/useModalFocus';
 import type { POSGroup, POSRoundResults } from '@/types/parts-of-speech';
 import { POS_UNLOCK_THRESHOLD, POS_MASTERY_THRESHOLD, POS_ROUND_LABELS, POS_COLORS, POS_LABELS } from '@/types/parts-of-speech';
 import { SpeakButton } from './SpeakButton';
@@ -39,6 +40,12 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
     (group.photoGallery?.length ?? 0) > 0;
   const [memoryCardDismissed, setMemoryCardDismissed] = useState(false);
   const showMemoryCard = isMemoryCardMoment && !memoryCardDismissed;
+  const memoryCardRef = useRef<HTMLDivElement>(null);
+  const memoryCardDismissRef = useRef<HTMLButtonElement>(null);
+  useModalFocus(showMemoryCard, memoryCardRef, {
+    onEscape: () => setMemoryCardDismissed(true),
+    initialFocusRef: memoryCardDismissRef,
+  });
   const mastered = results.masteryAchieved;
   const nextRoundMode = results.nextStep && results.nextStep in POS_ROUND_LABELS
     ? results.nextStep as keyof typeof POS_ROUND_LABELS
@@ -74,6 +81,10 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
           >
             <motion.div
+              ref={memoryCardRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="memory-card-title"
               initial={{ opacity: 0, scale: 0.85, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -91,7 +102,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
                   {group.icon ?? '📚'}
                 </motion.div>
                 <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-1">You earned</p>
-                <h2 className="font-display text-2xl font-bold text-text leading-tight">
+                <h2 id="memory-card-title" className="font-display text-2xl font-bold text-text leading-tight">
                   The {group.shortTitle} Card!
                 </h2>
                 <div className="flex flex-wrap justify-center gap-2 mt-3">
@@ -142,6 +153,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
               {/* Dismiss button */}
               <div className="px-4 pb-5">
                 <motion.button
+                  ref={memoryCardDismissRef}
                   type="button"
                   onClick={() => setMemoryCardDismissed(true)}
                   whileHover={{ scale: 1.02 }}

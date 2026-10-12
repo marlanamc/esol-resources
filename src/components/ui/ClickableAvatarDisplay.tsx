@@ -68,10 +68,11 @@ export function ClickableAvatarDisplay({
     }
 
     return (
-        <div
+        <button
+            type="button"
             onClick={handleClick}
-            className={`cursor-pointer hover:scale-105 transition-transform ${className}`}
-            title="Change your avatar"
+            className={`cursor-pointer rounded-full hover:scale-105 transition-transform ${className}`}
+            aria-label="Change your avatar"
         >
             <SelectedAvatarDisplay
                 avatarId={avatarId}
@@ -79,6 +80,6 @@ export function ClickableAvatarDisplay({
                 size={size}
                 className="pointer-events-none"
             />
-        </div>
+        </button>
     );
 }

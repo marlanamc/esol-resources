@@ -10,16 +10,16 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             icon: "🔄",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.1) 0%, rgba(123, 168, 132, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
-                    <h3 style="margin-top: 0; color: #f4d35e; font-size: 1.25rem">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0">English has TWO types of conditionals for <strong style="color: #f4d35e">REAL situations</strong>: <strong>Zero Conditional</strong> for things that are always true (like science facts and habits), and <strong>First Conditional</strong> for real future possibilities and plans. Understanding which to use helps you talk about cause and effect clearly!</p>
+                    <h3 style="margin-top: 0; color: #b45309; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">English has TWO types of conditionals for <strong style="color: #b45309">REAL situations</strong>: <strong>Zero Conditional</strong> for things that are always true (like science facts and habits), and <strong>First Conditional</strong> for real future possibilities and plans. Understanding which to use helps you talk about cause and effect clearly!</p>
                 </div>
 
                 <h3>The Big Difference</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
                     <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e">
-                        <h4 style="color: #ca8a04; margin-top: 0">Zero Conditional</h4>
+                        <h4 style="color: #b45309; margin-top: 0">Zero Conditional</h4>
                         <p><strong>Always true</strong> (facts, habits, natural laws)</p>
-                        <p style="font-weight: bold; color: #ca8a04">If + present, present</p>
+                        <p style="font-weight: bold; color: #b45309">If + present, present</p>
                         <p style="margin: 0">"If you heat water to 100°C, it <strong>boils</strong>."</p>
                     </div>
                     <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem; ">
@@ -96,8 +96,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 </ul>
 
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem; border: 2px solid #f4d35e">
-                    <h4 style="color: #ca8a04">Formula:</h4>
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #ca8a04; text-align: center; margin: 1rem 0">If + present simple, present simple</p>
+                    <h4 style="color: #b45309">Formula:</h4>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #b45309; text-align: center; margin: 1rem 0">If + present simple, present simple</p>
                     <p style="text-align: center; font-style: italic">(Both clauses use present simple!)</p>
                 </div>
 
@@ -502,9 +502,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
                     <thead>
                         <tr style="background: rgba(244, 211, 94, 0.15)">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Situation</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Question</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Answer → Conditional</th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Situation</th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Question</th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Answer → Conditional</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -580,7 +580,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
                     <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem">
-                        <h4 style="color: #ca8a04">Zero (Always True Habit)</h4>
+                        <h4 style="color: #b45309">Zero (Always True Habit)</h4>
                         <p style="font-weight: bold">"If I have free time, I read books."</p>
                         <p style="margin: 0">Meaning: This is my general habit. Every time I have free time, I always do this.</p>
                     </div>
@@ -595,8 +595,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
                         <tr style="background: rgba(244, 211, 94, 0.15)">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">Zero (Always True)</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">First (Future Plan)</th>
+                            <th scope="col" style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">Zero (Always True)</th>
+                            <th scope="col" style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">First (Future Plan)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -678,9 +678,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
                         <tr style="background: rgba(244, 211, 94, 0.15)">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"></th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Zero Conditional</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">First Conditional</th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"></th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Zero Conditional</th>
+                            <th scope="col" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">First Conditional</th>
                         </tr>
                     </thead>
                     <tbody>

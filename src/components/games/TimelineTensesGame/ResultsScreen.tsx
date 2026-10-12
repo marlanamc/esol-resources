@@ -344,7 +344,7 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
               >
                 {tenseName}
                 {count > 1 && (
-                  <span className="w-5 h-5 rounded-full bg-white/40 dark:bg-white/10 flex items-center justify-center text-[10px]">
+                  <span className="w-5 h-5 rounded-full bg-white/40 dark:bg-white/10 flex items-center justify-center text-[0.625rem]">
                     {count}
                   </span>
                 )}

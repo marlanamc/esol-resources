@@ -327,7 +327,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         </div>
 
                                         {/* Title & Description */}
-                                        <h3 className="font-display text-[15px] md:text-xl font-bold text-text mb-0.5 md:mb-1.5 tracking-tight leading-tight">
+                                        <h3 className="font-display text-[0.9375rem] md:text-xl font-bold text-text mb-0.5 md:mb-1.5 tracking-tight leading-tight">
                                             {config.name}
                                         </h3>
                                         <p className="text-xs md:text-sm text-text-muted mb-auto leading-snug line-clamp-2">
@@ -614,7 +614,7 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
                                 <button
                                     type="button"
                                     onClick={() => playTermAudio(entry.term)}
-                                    className="inline-flex items-center justify-center rounded-full bg-bg-light text-text-muted hover:bg-border hover:text-text shadow-sm p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                    className="inline-flex items-center justify-center min-h-11 min-w-11 -my-2 rounded-full bg-bg-light text-text-muted hover:bg-border hover:text-text shadow-sm p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                     aria-label={`Play pronunciation for ${entry.term}`}
                                 >
                                     <svg
@@ -634,7 +634,7 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
                                 </button>
                             </div>
                             {entry.pos && (
-                                <span className={`px-2 py-0.5 rounded-full text-[10px] md:text-xs font-semibold italic border ${POS_COLORS[entry.pos as keyof typeof POS_COLORS] ?? "bg-bg-light text-text-muted border-border"}`}>
+                                <span className={`px-2 py-0.5 rounded-full text-[0.625rem] md:text-xs font-semibold italic border ${POS_COLORS[entry.pos as keyof typeof POS_COLORS] ?? "bg-bg-light text-text-muted border-border"}`}>
                                     {entry.pos}
                                 </span>
                             )}

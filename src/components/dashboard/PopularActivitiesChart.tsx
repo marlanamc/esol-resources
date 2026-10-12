@@ -92,7 +92,7 @@ export default function PopularActivitiesChart({
             </div>
 
             {/* Progress Bar */}
-            <div className="relative h-2 bg-secondary/10 rounded-full overflow-hidden">
+            <div aria-hidden="true" className="relative h-2 bg-secondary/10 rounded-full overflow-hidden">
               <div
                 className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-primary/80 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${percentage}%` }}

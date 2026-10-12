@@ -86,17 +86,17 @@ export function ActivityPickerClient({
           }}
         >
           <div
-            className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-[18px] bg-white text-[44px] leading-none"
+            className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-[18px] bg-white text-[2.75rem] leading-none"
             style={{ boxShadow: "0 1px 2px rgba(20,35,30,0.06)" }}
             aria-hidden
           >
             {themeIcon}
           </div>
           <div className="min-w-0">
-            <h1 className="font-display text-[22px] font-black leading-none text-slate-900">
+            <h1 className="font-display text-[1.375rem] font-black leading-none text-slate-900">
               {themeTitle}
             </h1>
-            <p className="mt-1 text-[12px] text-slate-500">
+            <p className="mt-1 text-[0.75rem] text-slate-500">
               Choose an activity below
             </p>
           </div>
@@ -105,10 +105,10 @@ export function ActivityPickerClient({
 
       {/* Section label */}
       <div className="mb-3 pl-1">
-        <p className="text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+        <p className="text-[0.6875rem] font-black uppercase tracking-[0.14em] text-slate-500">
           Choose an activity
         </p>
-        <p className="text-[12px] italic text-slate-500">Elige una actividad</p>
+        <p className="text-[0.75rem] italic text-slate-500">Elige una actividad</p>
       </div>
 
       {/* Activity tiles */}
@@ -140,20 +140,20 @@ export function ActivityPickerClient({
               {/* Labels */}
               <div className="flex-1 min-w-0">
                 <p
-                  className="font-black text-[18px] leading-[1.15]"
+                  className="font-black text-[1.125rem] leading-[1.15]"
                   style={{ color: token.accentStrong }}
                 >
                   {token.label}
                 </p>
                 <p
-                  className="text-[13px] italic"
+                  className="text-[0.8125rem] italic"
                   style={{ color: token.accentStrong, opacity: 0.75 }}
                 >
                   {token.labelEs}
                 </p>
-                <p className="mt-1 text-[12px] text-slate-500">{token.description}</p>
+                <p className="mt-1 text-[0.75rem] text-slate-500">{token.description}</p>
                 {disabled && (
-                  <p className="mt-1 text-[12px] text-slate-500">
+                  <p className="mt-1 text-[0.75rem] text-slate-500">
                     Play from the topic list
                   </p>
                 )}
@@ -214,8 +214,8 @@ export function ActivityPickerClient({
         className="mt-5 flex items-start gap-2.5 rounded-2xl border p-3"
         style={{ background: "#effaf7", borderColor: "#d4f0e8" }}
       >
-        <span className="text-[22px] leading-none shrink-0 mt-0.5" aria-hidden>💡</span>
-        <p className="text-[13px] leading-relaxed" style={{ color: "#0e3d33" }}>
+        <span className="text-[1.375rem] leading-none shrink-0 mt-0.5" aria-hidden>💡</span>
+        <p className="text-[0.8125rem] leading-relaxed" style={{ color: "#0e3d33" }}>
           <strong>New?</strong> Start with <strong>See the Words</strong>. Then try <strong>Flashcards</strong>.
           <span className="mt-1 block italic" style={{ color: "#196a5b" }}>
             ¿Nuevo? Empieza con &ldquo;Ver las palabras&rdquo;.

@@ -42,7 +42,7 @@ export function CourseMapNextUpHeroCard({
             }}
         >
             <p
-                className="mb-5 text-[11px] font-extrabold uppercase tracking-[0.16em]"
+                className="mb-5 text-[0.6875rem] font-extrabold uppercase tracking-[0.16em]"
                 style={{ color: tone.button }}
             >
                 Your Next Step
@@ -68,7 +68,7 @@ export function CourseMapNextUpHeroCard({
                 </span>
                     <div className="min-w-0 flex-1">
                     <span
-                        className="inline-flex rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide"
+                        className="inline-flex rounded-full border px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-wide"
                         style={{
                             background: `color-mix(in srgb, ${tone.chipBg} 78%, #ffffff)`,
                             borderColor: `color-mix(in srgb, ${tone.accent} 18%, transparent)`,
@@ -77,7 +77,7 @@ export function CourseMapNextUpHeroCard({
                     >
                         {tone.month} · {currentLabel}
                     </span>
-                    <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-text sm:text-[28px]">
+                    <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-text sm:text-[1.75rem]">
                         {title}
                     </h2>
                     <p className="mt-2 flex items-center gap-2 text-sm font-semibold text-text-muted">

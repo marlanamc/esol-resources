@@ -115,7 +115,7 @@ export function SentenceFormFilter({
               }`}
             >
               {isSelected && (
-                <div className="absolute right-4 top-4 rounded-full border border-primary/25 bg-primary px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white">
+                <div className="absolute right-4 top-4 rounded-full border border-primary/25 bg-primary px-2 py-1 text-[0.625rem] font-black uppercase tracking-[0.16em] text-white">
                   Selected
                 </div>
               )}

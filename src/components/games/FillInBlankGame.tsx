@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
 
 interface FillInBlankQuestion {
     id: number;
@@ -142,6 +143,15 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+            <GameLiveRegion
+                message={
+                    selectedAnswer
+                        ? isCorrect
+                            ? "Correct!"
+                            : `Not correct. The correct answer is ${currentQuestion.correctAnswer}.`
+                        : null
+                }
+            />
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast

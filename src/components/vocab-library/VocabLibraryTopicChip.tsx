@@ -31,7 +31,7 @@ export function VocabLibraryTopicChip({
       <span className="whitespace-nowrap sm:hidden">{displayShort}</span>
       <span className="hidden whitespace-nowrap sm:inline">{label}</span>
       <span
-        className={`rounded-full px-1.5 py-0.5 text-[11px] leading-none sm:text-xs ${
+        className={`rounded-full px-1.5 py-0.5 text-[0.6875rem] leading-none sm:text-xs ${
           isActive ? "bg-white/20" : "bg-bg-light text-text/70"
         }`}
       >

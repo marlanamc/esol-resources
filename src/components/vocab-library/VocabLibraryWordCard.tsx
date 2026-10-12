@@ -98,7 +98,7 @@ export function VocabLibraryWordCard({
             ) : null}
           </div>
           {pos ? (
-            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold italic md:text-xs ${POS_COLORS[pos as keyof typeof POS_COLORS] ?? "border-border bg-bg-light text-text-muted"}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-[0.625rem] font-semibold italic md:text-xs ${POS_COLORS[pos as keyof typeof POS_COLORS] ?? "border-border bg-bg-light text-text-muted"}`}>
               {pos}
             </span>
           ) : null}
@@ -125,7 +125,7 @@ export function VocabLibraryWordCard({
               <Link
                 key={topic.slug}
                 href={buildVocabLibraryHref({ topic: topic.slug, sort })}
-                className="rounded-full bg-bg-light px-2 py-0.5 text-[11px] text-text/70 hover:bg-bg hover:brightness-95 md:text-xs"
+                className="rounded-full bg-bg-light px-2 py-0.5 text-[0.6875rem] text-text/70 hover:bg-bg hover:brightness-95 md:text-xs"
               >
                 <span className="md:hidden">{topic.shortLabel}</span>
                 <span className="hidden md:inline">{topic.label}</span>

@@ -103,7 +103,7 @@ export function ClassAnnouncementEditor({
                 {remaining} / {MAX_ANNOUNCEMENT_LENGTH}
             </div>
 
-            {error && <p role="alert" className="mt-2 text-xs text-red-600">{error}</p>}
+            {error && <p role="alert" className="mt-2 text-xs text-red-700 dark:text-red-300">{error}</p>}
             {isSaved && !error && <p role="status" className="mt-2 text-xs text-secondary font-semibold">Saved.</p>}
 
             <div className="mt-3 flex items-center gap-2">

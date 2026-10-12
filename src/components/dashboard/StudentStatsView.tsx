@@ -122,7 +122,7 @@ export function StudentStatsView({ activities }: Props) {
                 </div>
                 <div className={`flex w-fit max-w-full items-center gap-2 self-start rounded-full border px-3 py-1 text-sm font-semibold ${statusClasses(progress)}`}>
                     {progress >= 100 ? (
-                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-600 text-white text-[10px]">
+                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-600 text-white text-[0.625rem]">
                             ✓
                         </span>
                     ) : null}

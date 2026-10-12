@@ -3,6 +3,7 @@
 import type { ExerciseItem } from "@/types/activity";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { useId } from "react";
 import { sanitizeHtml } from "@/utils/sanitize";
 
 interface RadioExerciseProps {
@@ -25,6 +26,7 @@ export function RadioExercise({
     itemNumber,
 }: RadioExerciseProps) {
     void isIncorrect;
+    const groupName = useId();
     return (
         <motion.div
             className="radio-exercise"
@@ -32,12 +34,13 @@ export function RadioExercise({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="mb-3">
+            <fieldset className="min-w-0 border-0 p-0 m-0">
+            <legend className="mb-3 p-0">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
                     <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label, { allowStyles: true }) }} />
                 </span>
-            </div>
+            </legend>
             <div className="space-y-2">
                 {item.options.map((option, index) => {
                     const isSelected = userAnswer === option.value;
@@ -63,7 +66,7 @@ export function RadioExercise({
                         >
                             <input
                                 type="radio"
-                                name={`radio-${item.label}`}
+                                name={groupName}
                                 value={option.value}
                                 checked={isSelected}
                                 onChange={(e) => onChange(e.target.value)}
@@ -74,6 +77,8 @@ export function RadioExercise({
                                 className="ml-3 text-sm text-text flex-1"
                                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(option.label) }}
                             />
+                            {submitted && isCorrectOption && <span className="sr-only">Correct</span>}
+                            {submitted && isWrongSelection && <span className="sr-only">Not correct</span>}
 
                             <AnimatePresence>
                                 {submitted && isCorrectOption && (
@@ -84,7 +89,7 @@ export function RadioExercise({
                                         exit={{ scale: 0 }}
                                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
                                     >
-                                        <CheckCircle2 className="w-5 h-5 text-success" />
+                                        <CheckCircle2 aria-hidden="true" className="w-5 h-5 text-success" />
                                     </motion.div>
                                 )}
                                 {submitted && isWrongSelection && (
@@ -95,7 +100,7 @@ export function RadioExercise({
                                         exit={{ scale: 0 }}
                                         transition={{ duration: 0.4 }}
                                     >
-                                        <XCircle className="w-5 h-5 text-error" />
+                                        <XCircle aria-hidden="true" className="w-5 h-5 text-error" />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -103,6 +108,7 @@ export function RadioExercise({
                     );
                 })}
             </div>
+            </fieldset>
         </motion.div>
     );
 }

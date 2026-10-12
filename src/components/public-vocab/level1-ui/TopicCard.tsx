@@ -48,7 +48,7 @@ export function TopicCard({
       >
         {/* Colored icon tile */}
         <div
-          className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-[34px]"
+          className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-[2.125rem]"
           style={{
             background: gradient,
             boxShadow: "inset 0 -2px 6px rgba(0,0,0,0.06)",
@@ -61,12 +61,12 @@ export function TopicCard({
 
         {/* Text */}
         <div className="flex min-w-0 flex-1 flex-col">
-          <p className="font-black text-[16px] leading-[1.15] text-slate-900">{title}</p>
+          <p className="font-black text-[1rem] leading-[1.15] text-slate-900">{title}</p>
           {titleEs && (
-            <p className="mt-0.5 text-[12px] italic text-slate-500">{titleEs}</p>
+            <p className="mt-0.5 text-[0.75rem] italic text-slate-500">{titleEs}</p>
           )}
           {sampleWords && sampleWords.length > 0 && (
-            <p className="mt-1 truncate text-[12px] text-slate-600">
+            <p className="mt-1 truncate text-[0.75rem] text-slate-600">
               {sampleWords.slice(0, 3).join(" · ")}…
             </p>
           )}
@@ -75,7 +75,7 @@ export function TopicCard({
         {/* Badge + arrow */}
         <div className="flex shrink-0 flex-col items-center gap-1">
           <span
-            className="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-[12px] font-black"
+            className="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-[0.75rem] font-black"
             style={{
               minWidth: 36,
               height: 24,

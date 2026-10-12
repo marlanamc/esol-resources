@@ -64,7 +64,7 @@ export function SentenceCompletionExercise({ exercise, onAnswer }: Props) {
             // Only auto-capitalize for sentence-initial blanks (subject gerunds)
             // For mid-sentence blanks, disable to avoid unwanted capitalization
             autoCapitalize={isSentenceInitial ? "sentences" : "off"}
-            className={`border-b-4 bg-transparent text-center outline-none text-primary font-bold w-32 sm:w-48 px-2 pb-1 transition-all duration-300 ${
+            className={`border-b-4 bg-transparent text-center outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-dark text-primary font-bold w-32 sm:w-48 px-2 pb-1 transition-all duration-300 ${
               submitted
                 ? correct
                   ? 'border-emerald-500 text-emerald-600'

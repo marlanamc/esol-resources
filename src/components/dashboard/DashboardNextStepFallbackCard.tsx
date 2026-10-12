@@ -66,7 +66,7 @@ export function DashboardNextStepFallbackCard({
                 }}
             >
                 <p
-                    className="mb-4 text-[10px] font-extrabold uppercase tracking-[0.16em]"
+                    className="mb-4 text-[0.625rem] font-extrabold uppercase tracking-[0.16em]"
                     style={{ color: "var(--primary)" }}
                 >
                     Today's Next Step
@@ -97,7 +97,7 @@ export function DashboardNextStepFallbackCard({
                     </div>
                     <Link
                         href={href}
-                        className="inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-6 text-[15px] font-extrabold text-[color:var(--text-on-accent)] [box-shadow:var(--elevation-button,0_6px_16px_rgba(40,31,23,0.12))] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 sm:w-auto"
+                        className="inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-6 text-[0.9375rem] font-extrabold text-[color:var(--text-on-accent)] [box-shadow:var(--elevation-button,0_6px_16px_rgba(40,31,23,0.12))] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 sm:w-auto"
                     >
                         Start
                         <ArrowRight size={18} aria-hidden />

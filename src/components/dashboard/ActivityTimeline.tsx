@@ -207,14 +207,14 @@ function TimelineMeta({
       <span style={{ color: "var(--text-muted)" }}>{typeLabelText}</span>
       {badge ? (
         <span
-          className="inline-flex items-center rounded-full bg-accent/25 px-2 py-0.5 text-[10px] font-bold leading-none text-text"
+          className="inline-flex items-center rounded-full bg-accent/25 px-2 py-0.5 text-[0.625rem] font-bold leading-none text-text"
         >
           {badge}
         </span>
       ) : null}
       {isCurrent ? (
         <span
-          className="inline-flex items-center rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-bold leading-none text-primary"
+          className="inline-flex items-center rounded-full bg-primary/12 px-2 py-0.5 text-[0.625rem] font-bold leading-none text-primary"
         >
           you are here
         </span>
@@ -288,8 +288,8 @@ export function ActivityTimeline({
                 )}
               </span>
               <span className="min-w-0 flex-1">
-                {isCurrent ? <span className="mb-1 block text-[10px] font-bold uppercase tracking-wide text-primary">{courseMapActionLabel}</span> : null}
-                <span className="block break-words text-[15px] font-semibold leading-snug text-text">{item.title}</span>
+                {isCurrent ? <span className="mb-1 block text-[0.625rem] font-bold uppercase tracking-wide text-primary">{courseMapActionLabel}</span> : null}
+                <span className="block break-words text-[0.9375rem] font-semibold leading-snug text-text">{item.title}</span>
                 <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-text-muted">
                   <CourseMapActivityFormatChip type={item.type} vocabUi={item.vocabUi} title={item.title} />
                   {isDone ? <span className="font-semibold">Done</span> : isLocked ? <span className="font-semibold">Locked</span> : null}

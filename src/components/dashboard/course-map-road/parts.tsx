@@ -80,7 +80,7 @@ export function WeekNode({ week, accent }: { week: RoadWeek; accent: string }) {
     if (week.isCurrent) {
         return (
             <span
-                className="flex h-[42px] w-[42px] items-center justify-center rounded-full text-[18px] font-extrabold"
+                className="flex h-[42px] w-[42px] items-center justify-center rounded-full text-[1.125rem] font-extrabold"
                 style={{
                     ...base,
                     background: accent,
@@ -119,7 +119,7 @@ export function WeekNode({ week, accent }: { week: RoadWeek; accent: string }) {
     }
     return (
         <span
-            className="flex h-[30px] w-[30px] items-center justify-center rounded-full text-[13px] font-extrabold"
+            className="flex h-[30px] w-[30px] items-center justify-center rounded-full text-[0.8125rem] font-extrabold"
             style={{
                 ...base,
                 background: "var(--bg-color)",
@@ -158,9 +158,9 @@ export function CycleBanner({
     const body = (
         <>
             <span className="min-w-0 flex-1">
-                <span className="block text-[11.5px] font-extrabold uppercase tracking-[.1em] opacity-75">{label}</span>
-                <span className="block font-display text-[18px] font-bold leading-tight">{cycle.range}</span>
-                {cycle.summary ? <span className="mt-0.5 block text-[13px] opacity-85">{cycle.summary}</span> : null}
+                <span className="block text-[0.7188rem] font-extrabold uppercase tracking-[.1em] opacity-75">{label}</span>
+                <span className="block font-display text-[1.125rem] font-bold leading-tight">{cycle.range}</span>
+                {cycle.summary ? <span className="mt-0.5 block text-[0.8125rem] opacity-85">{cycle.summary}</span> : null}
             </span>
             {onToggle ? <ChevronDown size={20} aria-hidden className="shrink-0 transition-transform motion-reduce:transition-none" style={{ transform: open ? "rotate(180deg)" : "none" }} /> : null}
         </>
@@ -200,12 +200,12 @@ export function UnitSign({
     const body = (
         <>
             <span className="min-w-0 flex-1">
-                <span className="block text-[11.5px] font-extrabold uppercase tracking-[.08em]" style={{ color: accent }}>
+                <span className="block text-[0.7188rem] font-extrabold uppercase tracking-[.08em]" style={{ color: accent }}>
                     {eyebrow}
                 </span>
-                <span className="block font-display text-[17px] font-bold leading-tight text-text">{unit.title}</span>
+                <span className="block font-display text-[1.0625rem] font-bold leading-tight text-text">{unit.title}</span>
                 {unit.summary ? (
-                    <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: "var(--road-summary)" }}>
+                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: "var(--road-summary)" }}>
                         {unit.summary}
                     </span>
                 ) : null}
@@ -275,9 +275,9 @@ export function ActivityRow({
         <>
             {ring}
             <span className="min-w-0 flex-1">
-                <span className={`block text-[15px] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{labels.title}</span>
+                <span className={`block text-[0.9375rem] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{labels.title}</span>
                 {labels.detail ? (
-                    <span className="mt-0.5 block text-[13px] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
+                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
                         {labels.detail}
                     </span>
                 ) : null}
@@ -286,7 +286,7 @@ export function ActivityRow({
                 {locked ? <span className="sr-only">Opens later</span> : null}
             </span>
             {isNext ? (
-                <span className="shrink-0 rounded-full px-3 py-1.5 text-[13px] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
+                <span className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
                     Start
                 </span>
             ) : null}
@@ -392,8 +392,8 @@ function OptionalPractice({
                     <Plus size={18} aria-hidden />
                 </span>
                 <span className="min-w-0 flex-1">
-                    <span className="block text-[11px] font-extrabold uppercase tracking-[.06em] text-text-muted">Extra · not required</span>
-                    <span className="block text-[15px] font-semibold text-text">More games for this week</span>
+                    <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.06em] text-text-muted">Extra · not required</span>
+                    <span className="block text-[0.9375rem] font-semibold text-text">More games for this week</span>
                 </span>
                 <Chevron open={open} />
             </button>
@@ -447,10 +447,10 @@ export function CompactWeekRow({
                 className="flex min-h-[60px] w-full items-center gap-2 py-2.5 text-left"
             >
                 <span className="min-w-0 flex-1">
-                    <span className="block text-[13px] font-bold text-text-muted">{weekLine(week, weekNoun)}</span>
-                    <span className="block text-[16.5px] font-bold leading-snug text-text">{week.title}</span>
+                    <span className="block text-[0.8125rem] font-bold text-text-muted">{weekLine(week, weekNoun)}</span>
+                    <span className="block text-[1.0313rem] font-bold leading-snug text-text">{week.title}</span>
                     <span
-                        className="block text-[13.5px]"
+                        className="block text-[0.8438rem]"
                         style={{ color: week.isDone ? "var(--success-color)" : "var(--text-muted)" }}
                     >
                         {status}
@@ -475,13 +475,13 @@ export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: st
         <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={week.isFuture} node={<WeekNode week={week} accent="" />}>
             <WeekHeading week={week} weekNoun={weekNoun} />
             <div className="flex min-h-[58px] flex-col justify-center py-2.5">
-                <span className="block text-[13px] font-bold" style={{ color: "var(--road-future-meta)" }}>
+                <span className="block text-[0.8125rem] font-bold" style={{ color: "var(--road-future-meta)" }}>
                     {weekLine(week, weekNoun)}
                 </span>
-                <span className="block text-[16px] font-bold leading-snug" style={{ color: "var(--road-future-title)" }}>
+                <span className="block text-[1rem] font-bold leading-snug" style={{ color: "var(--road-future-title)" }}>
                     {week.title}
                 </span>
-                {week.note ? <span className="block text-[13.5px] text-text-muted">{week.note}</span> : null}
+                {week.note ? <span className="block text-[0.8438rem] text-text-muted">{week.note}</span> : null}
             </div>
         </RoadRow>
     );
@@ -516,17 +516,17 @@ export function CurrentWeekCard({
             >
                 <div className="px-4 pt-3.5 pb-3">
                     <div className="flex items-center justify-between gap-2">
-                        <span className="text-[13.5px] font-bold whitespace-nowrap text-text-muted">
+                        <span className="text-[0.8438rem] font-bold whitespace-nowrap text-text-muted">
                             {weekNoun} {week.weekNumber}
                         </span>
                         <span
-                            className="shrink-0 rounded-full px-2 py-[3px] text-[10.5px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                            className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
                             style={{ background: tone.button, color: "var(--road-on-accent)" }}
                         >
                             You are here
                         </span>
                     </div>
-                    <p className="mt-2 mb-0 font-display text-[24px] font-bold leading-tight text-text">{week.title}</p>
+                    <p className="mt-2 mb-0 font-display text-[1.5rem] font-bold leading-tight text-text">{week.title}</p>
                     {week.total > 0 ? (
                         <div className="mt-2.5 flex items-center gap-3">
                             <div className="flex flex-1 gap-1" aria-hidden>
@@ -546,7 +546,7 @@ export function CurrentWeekCard({
                                         />
                                     ))}
                             </div>
-                            <span className="text-[13.5px] font-bold whitespace-nowrap text-text-muted">
+                            <span className="text-[0.8438rem] font-bold whitespace-nowrap text-text-muted">
                                 {week.done} of {week.total} done
                             </span>
                         </div>
@@ -567,15 +567,15 @@ export function CurrentWeekCard({
                             <Play size={15} fill="currentColor" aria-hidden />
                         </span>
                         <span className="min-w-0 flex-1">
-                            <span className="block text-[11px] font-extrabold uppercase tracking-[.06em] opacity-90">
+                            <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.06em] opacity-90">
                                 {week.done > 0 ? "Continue" : "Start"}
                             </span>
-                            <span className="block text-[15px] font-bold leading-snug">{formatRoadCtaTitle(next.title)}</span>
+                            <span className="block text-[0.9375rem] font-bold leading-snug">{formatRoadCtaTitle(next.title)}</span>
                         </span>
                         <ChevronRight size={18} aria-hidden className="shrink-0" />
                     </Link>
                 ) : week.isDone ? (
-                    <p className="mx-3 mt-0 mb-3 rounded-2xl px-4 py-3 text-[15px] leading-snug font-bold" style={{ background: "var(--road-done-bg)", color: "var(--road-done-text)" }}>
+                    <p className="mx-3 mt-0 mb-3 rounded-2xl px-4 py-3 text-[0.9375rem] leading-snug font-bold" style={{ background: "var(--road-done-bg)", color: "var(--road-done-text)" }}>
                         You finished this week! You can review anything below
                         {nextWeekOpen ? " or start next week early." : "."}
                     </p>
@@ -583,7 +583,7 @@ export function CurrentWeekCard({
 
                 {week.activities.length > 0 ? (
                     <>
-                        <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
+                        <p className="m-0 px-4 pt-1 pb-1.5 text-[0.75rem] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
                             This week&apos;s activities
                         </p>
                         <ActivityList activities={week.activities} showNext />

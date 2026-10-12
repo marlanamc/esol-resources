@@ -7,6 +7,7 @@ import { gradeErrorRepair, gradeFillInBlank } from "@/lib/comparison-battle/grad
 import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import { useMapReturnCountdown } from "@/hooks/useMapReturnCountdown";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
 
 const MAX_ATTEMPTS_BEFORE_REVEAL = 2;
 
@@ -20,6 +21,14 @@ const COLORS = {
     yellow: "#c97b00",
     yellowBg: "#fff5cc",
 };
+
+// Darker variants for colours used as TEXT (or behind white text): >= 4.5:1 on white and on the light fills.
+const TEXT_COLORS: Record<string, string> = {
+    [COLORS.green]: "#1e7a3a",
+    [COLORS.yellow]: "#8a5300",
+    [COLORS.red]: "#b42318",
+};
+const ink = (color: string) => TEXT_COLORS[color] ?? color;
 
 const LESSON_STEPS = [
     {
@@ -402,7 +411,7 @@ function PrimaryButton({
             onClick={onClick}
             disabled={disabled}
             className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-base font-black shadow-[0_4px_0_rgba(0,0,0,0.25)] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-55 ${className}`}
-            style={{ backgroundColor: color, color: "#ffffff" }}
+            style={{ backgroundColor: ink(color), color: "#ffffff" }}
         >
             {children}
         </button>
@@ -425,7 +434,7 @@ function ProgressDots({ current, total }: { current: number; total: number }) {
 
 function PhaseBadge({ children, color = COLORS.blue, bg = COLORS.blueBg }: { children: React.ReactNode; color?: string; bg?: string }) {
     return (
-        <div className="inline-flex rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest" style={{ backgroundColor: bg, color }}>
+        <div className="inline-flex rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest" style={{ backgroundColor: bg, color: ink(color) }}>
             {children}
         </div>
     );
@@ -445,25 +454,25 @@ function CheckpointScreen({
 
     return (
         <section className="space-y-5 py-3 text-center sm:py-6">
-            <div className="text-6xl">{checkpoint.emoji}</div>
+            <div className="text-6xl" aria-hidden="true">{checkpoint.emoji}</div>
             <div>
                 <h2 className="text-3xl font-black leading-tight text-slate-900">{checkpoint.title}</h2>
                 <p className="mt-2 text-base font-bold text-slate-600">{checkpoint.subtitle}</p>
             </div>
             <Card color={COLORS.blue} bg={COLORS.blueBg}>
-                <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.blue }}>
+                <div className="text-sm font-black uppercase tracking-widest" style={{ color: ink(COLORS.blue) }}>
                     This Round
                 </div>
-                <div className="mt-2 text-5xl font-black" style={{ color: COLORS.blue }}>
+                <div className="mt-2 text-5xl font-black" style={{ color: ink(COLORS.blue) }}>
                     {roundScore}/{checkpoint.total}
                 </div>
                 <p className="mt-1 font-bold text-slate-600">{roundAccuracy}% correct</p>
             </Card>
             <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
-                <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.yellow }}>
+                <div className="text-sm font-black uppercase tracking-widest" style={{ color: ink(COLORS.yellow) }}>
                     Total So Far
                 </div>
-                <div className="mt-1 text-3xl font-black" style={{ color: COLORS.yellow }}>
+                <div className="mt-1 text-3xl font-black" style={{ color: ink(COLORS.yellow) }}>
                     ⭐ {score}
                 </div>
             </Card>
@@ -526,18 +535,18 @@ function AdjectiveList({
                                     <div className="font-black text-slate-900">{word.adj}</div>
                                 </div>
                                 <div className="rounded-xl p-3 text-center" style={{ backgroundColor: COLORS.blueBg }}>
-                                    <div className="text-xs font-bold uppercase" style={{ color: COLORS.blue }}>
+                                    <div className="text-xs font-bold uppercase" style={{ color: ink(COLORS.blue) }}>
                                         comparative
                                     </div>
-                                    <div className="font-black" style={{ color: COLORS.blue }}>
+                                    <div className="font-black" style={{ color: ink(COLORS.blue) }}>
                                         {word.comp}
                                     </div>
                                 </div>
                                 <div className="rounded-xl p-3 text-center" style={{ backgroundColor: COLORS.greenBg }}>
-                                    <div className="text-xs font-bold uppercase" style={{ color: COLORS.green }}>
+                                    <div className="text-xs font-bold uppercase" style={{ color: ink(COLORS.green) }}>
                                         superlative
                                     </div>
-                                    <div className="font-black" style={{ color: COLORS.green }}>
+                                    <div className="font-black" style={{ color: ink(COLORS.green) }}>
                                         {word.sup}
                                     </div>
                                 </div>
@@ -695,16 +704,38 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
         setShowToast(false);
     };
 
+    const liveMessage = (() => {
+        if (screen === "practice" && practiceChoice !== null) {
+            const q = PRACTICE_QUESTIONS[practiceIndex];
+            return practiceChoice === q.correct ? "Correct!" : `Not correct. The answer is ${q.options[q.correct]}.`;
+        }
+        if (screen === "errors" && errorSubmitted) {
+            const item = ERROR_QUESTIONS[errorIndex];
+            return gradeErrorRepair(errorInput, item) ? "Correct!" : `Not correct. Try again. ${errorAttempts >= MAX_ATTEMPTS_BEFORE_REVEAL ? `The answer is ${item.answer}.` : ""}`;
+        }
+        if (screen === "speed" && speedChoice !== null) {
+            const q = SPEED_QUESTIONS[speedIndex];
+            if (speedChoice === q.a) return "Correct!";
+            return `${speedChoice === "__timeout__" ? "Time is up." : "Not correct."} The answer is ${q.a}.`;
+        }
+        if (screen === "writing" && writingResult) {
+            return `${writingResult.correct ? "Correct!" : "Not correct."} ${writingResult.feedback}`;
+        }
+        if (screen === "checkpoint" && checkpoint) return `${checkpoint.title}. Score ${Math.max(0, score - checkpoint.startScore)} of ${checkpoint.total}.`;
+        return null;
+    })();
+
     return (
         <div className="game-light-mode min-h-full bg-[#f3f8ff]">
+            <GameLiveRegion message={liveMessage} />
             <main className="mx-auto max-w-2xl px-4 py-4 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] sm:px-5 sm:py-5 sm:pb-24">
                 {screen === "welcome" ? (
                     <section className="flex flex-col items-center justify-center py-4 text-center sm:min-h-[calc(100svh-6rem)] sm:py-8">
-                        <div className="text-6xl sm:text-7xl">⚔️</div>
-                        <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl" style={{ color: COLORS.blue }}>
+                        <div className="text-6xl sm:text-7xl" aria-hidden="true">⚔️</div>
+                        <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl" style={{ color: ink(COLORS.blue) }}>
                             Comparison Battle
                         </h1>
-                        <p className="mt-2 text-lg font-black sm:text-xl" style={{ color: COLORS.green }}>
+                        <p className="mt-2 text-lg font-black sm:text-xl" style={{ color: ink(COLORS.green) }}>
                             Comparative vs. Superlative
                         </p>
                         <div className="mt-4 rounded-2xl border-2 border-yellow-300 bg-yellow-50 px-4 py-3 shadow-sm sm:mt-5 sm:px-6 sm:py-4">
@@ -747,7 +778,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                             const lesson = LESSON_STEPS[lessonStep];
                             return (
                                 <Card color={lesson.color} bg={lesson.bg}>
-                                    <div className="text-2xl font-black" style={{ color: lesson.color }}>
+                                    <div className="text-2xl font-black" style={{ color: ink(lesson.color) }}>
                                         {lesson.icon} {lesson.title}
                                     </div>
                                     <p className="mt-2 text-lg font-bold">{lesson.rule}</p>
@@ -761,7 +792,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                     <div className="rounded-xl border-2 bg-white p-3 text-center text-lg font-black" style={{ borderColor: lesson.color }}>
                                         “{lesson.example}”
                                     </div>
-                                    <p className="mt-3 rounded-xl p-3 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
+                                    <p className="mt-3 rounded-xl p-3 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: ink(COLORS.yellow) }}>
                                         {lesson.remember}
                                     </p>
                                 </Card>
@@ -828,11 +859,11 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                         <div className="text-xs font-bold uppercase text-slate-500">adjective</div>
                                         <div className="font-black">{word.adj}</div>
                                     </div>
-                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.blueBg, color: ink(COLORS.blue) }}>
                                         <div className="text-xs font-bold uppercase">comparative</div>
                                         <div className="font-black">{word.comp}</div>
                                     </div>
-                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.greenBg, color: COLORS.green }}>
+                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.greenBg, color: ink(COLORS.green) }}>
                                         <div className="text-xs font-bold uppercase">superlative</div>
                                         <div className="font-black">{word.sup}</div>
                                     </div>
@@ -847,7 +878,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
 
                 {screen === "gameStart" ? (
                     <section className="space-y-5 py-3 text-center sm:py-6">
-                        <div className="text-7xl">🎯</div>
+                        <div className="text-7xl" aria-hidden="true">🎯</div>
                         <div>
                             <PhaseBadge color={COLORS.green} bg={COLORS.greenBg}>
                                 Intro Complete
@@ -858,7 +889,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                             </p>
                         </div>
                         <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
-                            <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.yellow }}>
+                            <div className="text-sm font-black uppercase tracking-widest" style={{ color: ink(COLORS.yellow) }}>
                                 First Scored Round
                             </div>
                             <p className="mt-2 text-lg font-black text-slate-800">3 choice questions, then a score stop.</p>
@@ -1069,23 +1100,23 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
 
                 {screen === "final" ? (
                     <section className="space-y-5 text-center">
-                        <div className="text-7xl">🏆</div>
-                        <h2 className="text-4xl font-black" style={{ color: COLORS.blue }}>
+                        <div className="text-7xl" aria-hidden="true">🏆</div>
+                        <h2 className="text-4xl font-black" style={{ color: ink(COLORS.blue) }}>
                             Amazing Job!
                         </h2>
-                        <p className="text-lg font-black" style={{ color: COLORS.green }}>
+                        <p className="text-lg font-black" style={{ color: ink(COLORS.green) }}>
                             You practiced comparatives and superlatives.
                         </p>
                         <Card>
-                            <div className="text-5xl font-black" style={{ color: COLORS.blue }}>
+                            <div className="text-5xl font-black" style={{ color: ink(COLORS.blue) }}>
                                 {score}/{SCORABLE_COUNT}
                             </div>
                             <p className="font-bold text-slate-500">correct answers</p>
-                            <p className="mt-2 text-sm font-black" style={{ color: accuracy >= 70 ? COLORS.green : COLORS.yellow }}>
+                            <p className="mt-2 text-sm font-black" style={{ color: ink(accuracy >= 70 ? COLORS.green : COLORS.yellow) }}>
                                 {accuracy}% accuracy
                             </p>
                             {pointsAwarded && pointsAwarded > 0 ? (
-                                <p className="mt-3 rounded-xl px-3 py-2 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
+                                <p className="mt-3 rounded-xl px-3 py-2 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: ink(COLORS.yellow) }}>
                                     +{pointsAwarded} Class Companion points
                                 </p>
                             ) : null}
@@ -1093,14 +1124,14 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         <div className="grid gap-3 sm:grid-cols-2">
                             <Card color={COLORS.blue} bg={COLORS.blueBg}>
                                 <div className="text-3xl">🔵</div>
-                                <div className="font-black" style={{ color: COLORS.blue }}>
+                                <div className="font-black" style={{ color: ink(COLORS.blue) }}>
                                     Comparative
                                 </div>
                                 <p className="text-sm font-semibold text-slate-700">two things: -er than, more ... than</p>
                             </Card>
                             <Card color={COLORS.green} bg={COLORS.greenBg}>
                                 <div className="text-3xl">🟢</div>
-                                <div className="font-black" style={{ color: COLORS.green }}>
+                                <div className="font-black" style={{ color: ink(COLORS.green) }}>
                                     Superlative
                                 </div>
                                 <p className="text-sm font-semibold text-slate-700">a group: the -est, the most</p>
@@ -1109,7 +1140,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         {mapReturn.isActive ? (
                             <p className="text-sm font-semibold text-slate-600">
                                 Continuing to {mapReturn.destinationLabel} in {mapReturn.secondsLeft}s…{" "}
-                                <button type="button" onClick={mapReturn.goNow} className="font-black underline" style={{ color: COLORS.blue }}>
+                                <button type="button" onClick={mapReturn.goNow} className="font-black underline" style={{ color: ink(COLORS.blue) }}>
                                     Go now
                                 </button>
                             </p>
@@ -1142,7 +1173,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                         if (unlocked) goTo(item);
                                     }}
                                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black transition sm:h-11 sm:min-w-10 sm:px-2 sm:text-lg disabled:cursor-not-allowed disabled:opacity-40"
-                                    style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: item === screen ? COLORS.blue : "#64748b" }}
+                                    style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: ink(item === screen ? COLORS.blue : "#64748b") }}
                                     aria-label={`Go to step ${index + 1}`}
                                     aria-current={item === screen ? "step" : undefined}
                                 >
@@ -1153,8 +1184,8 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         </div>
                         {score > 0 ? (
                             <div
-                                className="shrink-0 rounded-full px-2 py-1 text-[11px] font-black sm:px-2.5 sm:text-xs"
-                                style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}
+                                className="shrink-0 rounded-full px-2 py-1 text-[0.6875rem] font-black sm:px-2.5 sm:text-xs"
+                                style={{ backgroundColor: COLORS.yellowBg, color: ink(COLORS.yellow) }}
                                 aria-label={`${score} correct answers so far`}
                             >
                                 ⭐ {score}
@@ -1188,7 +1219,7 @@ function QuestionScreen({
         <section className="space-y-4">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="text-base font-black sm:text-xl">{question.title}</h2>
-                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: ink(COLORS.blue) }}>
                     {index + 1}/{total}
                 </div>
             </div>
@@ -1221,7 +1252,7 @@ function QuestionScreen({
                             style={{
                                 borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
                                 backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",
-                                color: correct ? COLORS.green : wrong ? COLORS.red : "#1e293b",
+                                color: ink(correct ? COLORS.green : wrong ? COLORS.red : "#1e293b"),
                             }}
                         >
                             <span>
@@ -1235,7 +1266,7 @@ function QuestionScreen({
             {choice !== null ? (
                 <>
                     <Card color={choice === question.correct ? COLORS.green : COLORS.red} bg={choice === question.correct ? COLORS.greenBg : COLORS.redBg}>
-                        <div className="font-black" style={{ color: choice === question.correct ? COLORS.green : COLORS.red }}>
+                        <div className="font-black" style={{ color: ink(choice === question.correct ? COLORS.green : COLORS.red) }}>
                             {choice === question.correct ? "Great job!" : "Not quite."}
                         </div>
                         <p className="mt-1 text-sm font-semibold text-slate-700">{question.why}</p>
@@ -1280,13 +1311,13 @@ function ErrorFixScreen({
         <section className="space-y-4">
             <div className="text-center">
                 <h2 className="text-2xl font-black">Fix the Mistake</h2>
-                <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                <p className="text-sm font-black" style={{ color: ink(COLORS.blue) }}>
                     {item.round}
                 </p>
                 <p className="text-sm font-semibold text-slate-600">Type the correct word or words.</p>
             </div>
             <ProgressDots current={index + 1} total={total} />
-            <div className="text-center text-5xl">{item.emoji}</div>
+            <div className="text-center text-5xl" aria-hidden="true">{item.emoji}</div>
             <Card color={COLORS.red} bg={COLORS.redBg}>
                 <p className="text-center text-lg font-black leading-relaxed">
                     {parts[0]}
@@ -1296,17 +1327,25 @@ function ErrorFixScreen({
                     {parts[1]}
                 </p>
             </Card>
-            <input
-                value={input}
-                disabled={submitted && canAdvance}
-                onChange={(event) => setInput(event.target.value)}
-                onKeyDown={(event) => {
-                    if (event.key === "Enter" && !(submitted && canAdvance)) onSubmit();
-                }}
-                className="min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-3 text-lg font-bold outline-none"
-                style={{ borderColor: submitted ? (correct ? COLORS.green : COLORS.red) : COLORS.blue }}
-                placeholder={`Replace "${item.error}"`}
-            />
+            <div className="relative">
+                <input
+                    value={input}
+                    disabled={submitted && canAdvance}
+                    onChange={(event) => setInput(event.target.value)}
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter" && !(submitted && canAdvance)) onSubmit();
+                    }}
+                    className="min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-3 pr-12 text-lg font-bold outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1a6fcd]"
+                    style={{ borderColor: submitted ? (correct ? COLORS.green : COLORS.red) : COLORS.blue }}
+                    aria-label={`Correction for "${item.error}"`}
+                    placeholder={`Replace "${item.error}"`}
+                />
+                {submitted ? (
+                    <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" aria-hidden="true">
+                        {correct ? <Check size={22} color={ink(COLORS.green)} /> : <X size={22} color={ink(COLORS.red)} />}
+                    </span>
+                ) : null}
+            </div>
             {!submitted ? (
                 <PrimaryButton onClick={onSubmit} className="w-full" disabled={!input.trim()}>
                     <Check size={18} /> Check My Answer
@@ -1314,20 +1353,20 @@ function ErrorFixScreen({
             ) : (
                 <>
                     <Card color={correct ? COLORS.green : COLORS.red} bg={correct ? COLORS.greenBg : COLORS.redBg}>
-                        <div className="font-black" style={{ color: correct ? COLORS.green : COLORS.red }}>
+                        <div className="font-black" style={{ color: ink(correct ? COLORS.green : COLORS.red) }}>
                             {correct ? "Perfect." : revealed ? "Here is the correct answer." : "Not quite."}
                         </div>
                         {!correct ? (
                             <p className="mt-1 font-bold">
-                                Correct answer: <span style={{ color: COLORS.green }}>{item.answer}</span>
+                                Correct answer: <span style={{ color: ink(COLORS.green) }}>{item.answer}</span>
                             </p>
                         ) : null}
-                        <p className="mt-2 rounded-xl bg-white p-3 font-bold" style={{ color: COLORS.green }}>
+                        <p className="mt-2 rounded-xl bg-white p-3 font-bold" style={{ color: ink(COLORS.green) }}>
                             {item.correct}
                         </p>
                     </Card>
                     <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
-                        <p className="text-sm font-bold" style={{ color: COLORS.yellow }}>
+                        <p className="text-sm font-bold" style={{ color: ink(COLORS.yellow) }}>
                             {item.rule}
                         </p>
                     </Card>
@@ -1374,8 +1413,8 @@ function SpeedScreen({
     if (done) {
         return (
             <section className="space-y-5 text-center">
-                <div className="text-7xl">⚡</div>
-                <h2 className="text-3xl font-black" style={{ color: COLORS.blue }}>
+                <div className="text-7xl" aria-hidden="true">⚡</div>
+                <h2 className="text-3xl font-black" style={{ color: ink(COLORS.blue) }}>
                     Speed Round Complete
                 </h2>
                 <PrimaryButton onClick={onContinue} className="w-full">
@@ -1394,18 +1433,18 @@ function SpeedScreen({
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h2 className="text-base font-black sm:text-xl">Speed Round</h2>
-                    <p className="text-sm font-black sm:text-base" style={{ color: COLORS.blue }}>
+                    <p className="text-sm font-black sm:text-base" style={{ color: ink(COLORS.blue) }}>
                         {question.round}
                     </p>
                 </div>
-                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: ink(COLORS.blue) }}>
                     {index + 1}/{total}
                 </div>
             </div>
             <div className="h-3 overflow-hidden rounded-full bg-slate-200">
                 <div className="h-full transition-all duration-1000" style={{ width: `${Math.max(0, (time / 12) * 100)}%`, backgroundColor: barColor }} />
             </div>
-            <div className="text-center text-4xl font-black" style={{ color: barColor }}>
+            <div className="text-center text-4xl font-black" style={{ color: ink(barColor) }}>
                 {timedOut ? "Time!" : `${time}s`}
             </div>
             <Card>
@@ -1425,7 +1464,7 @@ function SpeedScreen({
                             style={{
                                 borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
                                 backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",
-                                color: correct ? COLORS.green : wrong ? COLORS.red : "#1e293b",
+                                color: ink(correct ? COLORS.green : wrong ? COLORS.red : "#1e293b"),
                             }}
                         >
                             {option}
@@ -1437,7 +1476,7 @@ function SpeedScreen({
             {answered ? (
                 <>
                     <Card color={choice === question.a ? COLORS.green : COLORS.red} bg={choice === question.a ? COLORS.greenBg : COLORS.redBg}>
-                        <div className="font-black" style={{ color: choice === question.a ? COLORS.green : COLORS.red }}>
+                        <div className="font-black" style={{ color: ink(choice === question.a ? COLORS.green : COLORS.red) }}>
                             {choice === question.a ? "Correct!" : timedOut ? "Time is up." : "Not quite."}
                         </div>
                         <p className="mt-1 text-sm font-semibold text-slate-700">{question.why}</p>
@@ -1481,14 +1520,14 @@ function FillBlankScreen({
         <section className="space-y-4">
             <div className="text-center">
                 <h2 className="text-2xl font-black">Complete the Sentence</h2>
-                <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                <p className="text-sm font-black" style={{ color: ink(COLORS.blue) }}>
                     {prompt.round}
                 </p>
                 <p className="text-sm font-semibold text-slate-600">Fill in the missing comparison phrase.</p>
             </div>
             <ProgressDots current={index + 1} total={total} />
             <Card color={COLORS.blue}>
-                <div className="text-center text-5xl">{prompt.emoji}</div>
+                <div className="text-center text-5xl" aria-hidden="true">{prompt.emoji}</div>
                 <p className="mt-3 text-center text-lg font-black">{prompt.prompt}</p>
             </Card>
             <Card>
@@ -1501,7 +1540,7 @@ function FillBlankScreen({
                         onKeyDown={(event) => {
                             if (event.key === "Enter" && !result) onCheck();
                         }}
-                        className="min-w-[8rem] flex-1 rounded-xl border-2 bg-white px-3 py-2 text-center text-lg font-black outline-none sm:min-w-[10rem] sm:text-xl"
+                        className="min-w-[8rem] flex-1 rounded-xl border-2 bg-white px-3 py-2 text-center text-lg font-black outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1a6fcd] sm:min-w-[10rem] sm:text-xl"
                         style={{
                             borderColor: result ? (result.correct ? COLORS.green : COLORS.red) : COLORS.blue,
                             maxWidth: "14rem",
@@ -1509,6 +1548,11 @@ function FillBlankScreen({
                         placeholder="..."
                         aria-label="Missing comparison phrase"
                     />
+                    {result ? (
+                        <span aria-hidden="true">
+                            {result.correct ? <Check size={22} color={ink(COLORS.green)} /> : <X size={22} color={ink(COLORS.red)} />}
+                        </span>
+                    ) : null}
                     <span>{prompt.templateAfter}</span>
                 </div>
             </Card>
@@ -1519,7 +1563,7 @@ function FillBlankScreen({
             ) : (
                 <>
                     <Card color={result.correct ? COLORS.green : COLORS.red} bg={result.correct ? COLORS.greenBg : COLORS.redBg}>
-                        <div className="font-black" style={{ color: result.correct ? COLORS.green : COLORS.red }}>
+                        <div className="font-black" style={{ color: ink(result.correct ? COLORS.green : COLORS.red) }}>
                             {result.correct ? "Correct!" : revealed ? "Here is the correct answer." : "Not quite."}
                         </div>
                         <p className="mt-1 font-semibold text-slate-700">{result.feedback}</p>
@@ -1527,7 +1571,7 @@ function FillBlankScreen({
                     </Card>
                     {result.rule ? (
                         <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
-                            <p className="text-sm font-bold" style={{ color: COLORS.yellow }}>
+                            <p className="text-sm font-bold" style={{ color: ink(COLORS.yellow) }}>
                                 {result.rule}
                             </p>
                         </Card>

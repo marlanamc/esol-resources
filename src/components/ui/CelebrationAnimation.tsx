@@ -82,7 +82,7 @@ export function CelebrationAnimation({
         <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
             {renderAnimation()}
             {message ? (
-                <div className="absolute top-20 sm:top-24 px-4 py-2 rounded-full bg-white/90 border border-amber-200 text-amber-800 text-sm sm:text-base font-bold shadow-md">
+                <div className="absolute top-20 sm:top-24 px-4 py-2 rounded-full bg-[#fffdfa]/95 border border-amber-200 text-amber-800 text-sm sm:text-base font-bold shadow-md">
                     {message}
                 </div>
             ) : null}
@@ -191,8 +191,8 @@ function MilestoneAnimation() {
                 </div>
             </div>
             <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold text-gray-900 animate-fade-in-up">Milestone Reached!</h2>
-                <p className="text-lg text-gray-600 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <h2 className="text-3xl font-bold text-text animate-fade-in-up">Milestone Reached!</h2>
+                <p className="text-lg text-text-muted animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
                     Great job on your progress!
                 </p>
             </div>

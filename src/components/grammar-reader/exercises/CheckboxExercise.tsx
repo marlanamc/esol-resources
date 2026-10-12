@@ -57,13 +57,14 @@ export function CheckboxExercise({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="mb-3">
+            <fieldset className="min-w-0 border-0 p-0 m-0">
+            <legend className="mb-3 p-0">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
                     <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label, { allowStyles: true }) }} />
                 </span>
-                <p className="text-xs text-text-muted mt-1 italic">Select all that apply.</p>
-            </div>
+                <span className="block text-xs text-text-muted mt-1 italic">Select all that apply.</span>
+            </legend>
             <div className="space-y-2">
                 {item.options.map((option, index) => {
                     const isChecked = selected.has(option.value);
@@ -100,6 +101,9 @@ export function CheckboxExercise({
                                 className="ml-3 text-sm text-text flex-1"
                                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(option.label) }}
                             />
+                            {submitted && isCorrectOption && isChecked && <span className="sr-only">Correct</span>}
+                            {submitted && isWrongChecked && <span className="sr-only">Not correct</span>}
+                            {submitted && isMissedCorrect && <span className="sr-only">Correct answer you missed</span>}
 
                             <AnimatePresence>
                                 {submitted && isCorrectOption && isChecked && (
@@ -110,7 +114,7 @@ export function CheckboxExercise({
                                         exit={{ scale: 0 }}
                                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
                                     >
-                                        <CheckCircle2 className="w-5 h-5 text-success" />
+                                        <CheckCircle2 aria-hidden="true" className="w-5 h-5 text-success" />
                                     </motion.div>
                                 )}
                                 {submitted && (isWrongChecked || isMissedCorrect) && (
@@ -121,7 +125,7 @@ export function CheckboxExercise({
                                         exit={{ scale: 0 }}
                                         transition={{ duration: 0.4 }}
                                     >
-                                        <XCircle className="w-5 h-5 text-error" />
+                                        <XCircle aria-hidden="true" className="w-5 h-5 text-error" />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -129,6 +133,7 @@ export function CheckboxExercise({
                     );
                 })}
             </div>
+            </fieldset>
         </motion.div>
     );
 }

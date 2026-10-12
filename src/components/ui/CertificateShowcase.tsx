@@ -129,10 +129,11 @@ export function CertificateShowcase({
 
             {/* Header */}
             <div className="text-center mb-8 animate-fade-in">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80 mb-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-800 dark:text-amber-400 mb-2">
                     Certificate of Achievement
                 </p>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+                {/* Title sits on the light top of the gradient in light mode, so it uses theme ink, not white. */}
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text drop-shadow-sm">
                     {certificate.title}
                 </h1>
             </div>
@@ -230,7 +231,7 @@ export function CertificateShowcase({
                 </Link>
                 <Link
                     href={continueHref}
-                    className="rounded-xl border border-white/30 bg-white/10 backdrop-blur px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                    className="rounded-xl border border-[#fffdfa]/30 bg-[#fffdfa]/10 backdrop-blur px-6 py-3 text-center text-sm font-semibold text-[#fffdfa] hover:bg-[#fffdfa]/20 transition-colors"
                 >
                     {continueLabel}
                 </Link>
