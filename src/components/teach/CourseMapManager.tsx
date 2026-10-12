@@ -127,7 +127,7 @@ export function CourseMapManager({ classId, className, allWeeks, revealedWeekIds
                 </div>
 
                 {error && (
-                    <p className="mt-3 text-sm text-red-600">{error}</p>
+                    <p className="mt-3 text-sm text-red-600 dark:text-red-300">{error}</p>
                 )}
             </div>
 
