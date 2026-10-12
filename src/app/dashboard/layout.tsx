@@ -97,7 +97,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         <div className="min-h-dvh bg-bg relative">
             <AccentColorInitializer accentKey={accentKey} />
             <a
-                href="#main-content"
+                href="#dashboard-content"
                 className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg"
             >
                 Skip to main content
@@ -114,7 +114,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                     initialAvatarColor={initialAvatarColor}
                 />
             )}
-            {children}
+            {/* Skip-link target that exists on every dashboard page; pages may also mark their own <main>. */}
+            <div id="dashboard-content" tabIndex={-1} className="outline-none">
+                {children}
+            </div>
             <ServiceWorkerRegistration />
             {session?.user?.role === "student" && (
                 <>

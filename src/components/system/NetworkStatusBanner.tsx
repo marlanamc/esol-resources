@@ -201,7 +201,7 @@ export default function NetworkStatusBanner() {
     <div className="fixed top-0 left-0 right-0 z-[9998] px-3 pt-2">
       <div
         className={`mx-auto max-w-2xl rounded-lg px-3 py-2 text-sm font-semibold text-white shadow-md ${
-          isOnline ? "bg-secondary" : "bg-warning"
+          isOnline ? "bg-secondary-dark dark:bg-secondary" : "bg-[#a8472f] dark:bg-warning"
         }`}
         role="status"
         aria-live="polite"

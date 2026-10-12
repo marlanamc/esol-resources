@@ -354,7 +354,7 @@ export default function LeaderboardPage() {
   ];
   const timeframeTabs = (
     <div
-      role="tablist"
+      role="group"
       aria-label="Leaderboard time range"
       className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
       style={{
@@ -368,10 +368,9 @@ export default function LeaderboardPage() {
           <button
             key={value}
             type="button"
-            role="tab"
-            aria-selected={selected}
+            aria-pressed={selected}
             onClick={() => void onTimeframeChange(value)}
-            className="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-full sm:rounded-md transition-all duration-200"
+            className="min-h-11 px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-full sm:rounded-md transition-all duration-200"
             style={
               selected
                 ? { backgroundColor: 'var(--color-primary)', color: 'var(--text-on-accent)' }
@@ -397,7 +396,7 @@ export default function LeaderboardPage() {
         type="button"
         onClick={() => void onScopeChange('independent')}
         aria-pressed={scope === 'independent'}
-        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
+        className="min-h-11 px-3 py-1 text-xs leading-none sm:px-4 sm:py-1.5 font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
         style={{
           backgroundColor: 'var(--color-primary)',
           color: 'var(--text-on-accent)',
@@ -418,7 +417,7 @@ export default function LeaderboardPage() {
       }}
     >
       <span
-        className="inline-flex items-center px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md"
+        className="inline-flex items-center px-3 py-1 text-[0.625rem] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md"
         style={{
           backgroundColor: 'var(--color-primary)',
           color: 'var(--text-on-accent)',
@@ -444,7 +443,7 @@ export default function LeaderboardPage() {
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
                   {scope === 'independent' ? 'Self-paced Leaderboard' : isAllTime ? 'All-Time Leaderboard' : `${isLastWeek ? previousWeekLabel : currentWeekLabel} Leaderboard`}
                 </h1>
-                <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
+                <p className="text-[0.8125rem] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
                   {isAllTime
                     ? 'Every effort adds up'
                     : isLastWeek ? 'Celebrating last week’s effort' : 'A fresh chance to learn and earn'}
@@ -515,7 +514,7 @@ export default function LeaderboardPage() {
                         id="leaderboard-class"
                         value={selectedClassId || ''}
                         onChange={(e) => void onClassChange(e.target.value)}
-                        className="border-none bg-transparent text-sm font-bold focus:outline-none cursor-pointer"
+                        className="border-none bg-transparent text-sm font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
                         style={{ color: 'var(--color-text-muted)' }}
                       >
                         {classOptions.map((cls) => (
@@ -577,7 +576,7 @@ export default function LeaderboardPage() {
           const glowFor = (rank: number) =>
             rank === 1 ? 'rgba(233,196,106,0.55)' : rank === 2 ? 'rgba(192,192,192,0.45)' : 'rgba(205,127,50,0.45)';
           const youLabel = (
-            <span className="ml-1 text-[11px] font-bold" style={{ color: 'var(--color-primary)' }}>
+            <span className="ml-1 text-[0.6875rem] font-bold" style={{ color: 'var(--color-primary)' }}>
               (You)
             </span>
           );
@@ -598,8 +597,8 @@ export default function LeaderboardPage() {
                       <div
                         className={`relative overflow-hidden border-2 rounded-3xl px-5 text-center ${
                           isChampion
-                            ? 'min-w-[210px] py-6 animate-medal-glow animate-shine-sweep'
-                            : 'min-w-[180px] py-4'
+                            ? 'min-w-0 max-w-full sm:min-w-[210px] py-6 animate-medal-glow animate-shine-sweep'
+                            : 'min-w-0 max-w-full sm:min-w-[180px] py-4'
                         }`}
                         style={{
                           backgroundColor: colors.bg,
@@ -612,7 +611,7 @@ export default function LeaderboardPage() {
                       >
                         {isChampion && (
                           <span
-                            className="block text-[11px] font-bold tracking-[0.18em] uppercase mb-1"
+                            className="block text-[0.6875rem] font-bold tracking-[0.18em] uppercase mb-1"
                             style={{ fontFamily: 'var(--font-display)', color: 'color-mix(in srgb, #e9c46a 78%, var(--color-text))' }}
                           >
                             Champion
@@ -681,11 +680,11 @@ export default function LeaderboardPage() {
                           {student.name}
                         </p>
                         {student.rank === userRank && (
-                          <p className="text-[10px] font-bold leading-tight" style={{ color: 'var(--color-primary)' }}>
+                          <p className="text-[0.625rem] font-bold leading-tight" style={{ color: 'var(--color-primary)' }}>
                             (You)
                           </p>
                         )}
-                        <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
+                        <p className="text-[0.6875rem] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
                           {student.weeklyPoints} pts
                         </p>
                         {renderStatusChips(student, 'mt-1.5 flex-wrap justify-center')}
@@ -752,8 +751,8 @@ export default function LeaderboardPage() {
                     {entry.avatar ? (
                       <LeaderboardAvatar avatar={entry.avatar} avatarColor={entry.avatarColor} size="sm" />
                     ) : (
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200">
-                        <span className="text-sm font-semibold text-gray-400">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface-subtle)]">
+                        <span className="text-sm font-semibold text-text-muted">
                           {entry.name.charAt(0).toUpperCase()}
                         </span>
                       </div>

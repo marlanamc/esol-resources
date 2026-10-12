@@ -54,7 +54,7 @@ export function DashboardWelcomeHero({
         >
             <div className="flex w-full min-w-0 flex-col gap-4 xl:flex-row xl:items-center xl:justify-between xl:gap-8">
                 <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 px-6 py-4 xl:px-8 xl:py-4.5 xl:pr-4">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted flex items-center gap-2">
+                    <p className="text-[0.625rem] font-bold uppercase tracking-[0.14em] text-text-muted flex items-center gap-2">
                         <span
                             className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-sm leading-none bg-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
                             aria-hidden
@@ -149,7 +149,7 @@ function TeacherWelcomeStats({ stats }: { stats: DashboardWelcomeHeroTeacherStat
                         <BarChartIcon size={16} />
                     </span>
                     <span className="min-w-0 leading-tight">
-                        <span className="block text-[10px] font-bold uppercase tracking-wider text-text-muted">Admin</span>
+                        <span className="block text-[0.625rem] font-bold uppercase tracking-wider text-text-muted">Admin</span>
                         <span className="block text-sm font-bold text-primary">Backend Users</span>
                     </span>
                 </Link>
@@ -181,7 +181,7 @@ function TeacherStatTile({
                 {icon}
             </span>
             <span className="min-w-0 leading-tight">
-                <span className="block text-[10px] font-bold uppercase tracking-wider text-text-muted">{label}</span>
+                <span className="block text-[0.625rem] font-bold uppercase tracking-wider text-text-muted">{label}</span>
                 <span className="block text-lg font-bold text-text tabular-nums">
                     {value} <span className="text-xs font-semibold text-text-muted">{suffix}</span>
                 </span>

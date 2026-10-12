@@ -37,7 +37,7 @@ export function IndependentLeaderboardCard({
                         You&apos;re{" "}
                         <span className="text-primary">#{rank}</span> this week
                     </p>
-                    <p className="mt-0.5 text-[11.5px] font-medium text-text-muted">
+                    <p className="mt-0.5 text-[0.7188rem] font-medium text-text-muted">
                         Self-paced leaderboard · {learnerCount.toLocaleString()} learner{learnerCount === 1 ? "" : "s"}
                     </p>
                 </div>

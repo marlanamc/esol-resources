@@ -55,7 +55,7 @@ export function CourseMapJumpToWeek({ currentWeek, variant, showUnitMonths = tru
                     <CourseMapUnitIcon unitNumber={currentWeek.unitNumber} size={16} />
                 </span>
                 <span className="min-w-0 flex-1">
-                    <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
+                    <span className="block text-[0.625rem] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
                         {showUnitMonths ? "Jump to this week" : "Jump to my level"}
                     </span>
                     <span className="mt-0.5 block text-sm font-bold text-text leading-tight">
@@ -78,7 +78,7 @@ export function CourseMapJumpToWeek({ currentWeek, variant, showUnitMonths = tru
             }}
         >
             <span className="min-w-0">
-                <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
+                <span className="block text-[0.625rem] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
                     {showUnitMonths ? "This week" : "Your level"}
                 </span>
                 <span className="mt-0.5 block text-sm font-bold text-text">

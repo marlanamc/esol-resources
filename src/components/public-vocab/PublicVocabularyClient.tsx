@@ -404,7 +404,7 @@ function CategorySwitcher({
     <div className="space-y-4">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--tone-vocabulary-chip-text)]">{modeLabel}</p>
+          <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-[var(--tone-vocabulary-chip-text)]">{modeLabel}</p>
           <p className="mt-1 text-sm font-medium text-text">{title}</p>
         </div>
         {selectedMeta ? (
@@ -570,13 +570,13 @@ function WordListMode({ unit }: { unit: PublicLevel1VocabularyUnit }) {
 
                   <div className="space-y-3">
                     <div className="rounded-xl border border-primary/35 bg-primary/10 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-primary/40 dark:bg-primary/15 dark:shadow-none md:px-4 md:py-3.5">
-                      <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-primary">English</p>
+                      <p className="mb-1 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-primary">English</p>
                       <p className="text-sm font-medium leading-relaxed text-text md:text-base">{card.englishDefinition}</p>
                     </div>
 
                     <div>
-                      <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted">Español</p>
-                      <p className="text-sm leading-relaxed text-text-muted md:text-[15px]">{card.spanishDefinition}</p>
+                      <p className="mb-1 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-text-muted">Español</p>
+                      <p className="text-sm leading-relaxed text-text-muted md:text-[0.9375rem]">{card.spanishDefinition}</p>
                     </div>
 
                     {card.example ? (

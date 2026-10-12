@@ -7,6 +7,7 @@ import { z } from "zod";
 import { signIn, type SignInResponse } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { clearServiceWorkerCache } from "@/lib/clearCache";
+import { LOGIN_RATE_LIMITED_ERROR } from "@/lib/auth/login-errors";
 
 const schema = z.object({
     username: z.string().min(1, "Username is required"),
@@ -41,7 +42,9 @@ export default function LoginForm() {
 
             const result = await Promise.race([signInPromise, timeoutPromise]);
 
-            if (result?.error) {
+            if (result?.error === LOGIN_RATE_LIMITED_ERROR) {
+                setError("root", { message: "Too many sign-in tries. Wait 1 minute, then try again." });
+            } else if (result?.error) {
                 setError("root", { message: "Invalid credentials. Please check your username and password." });
             } else if (result?.ok) {
                 await Promise.race([
@@ -73,12 +76,14 @@ export default function LoginForm() {
                         id="username"
                         type="text"
                         autoComplete="username"
+                        aria-invalid={errors.username ? true : undefined}
+                        aria-describedby={errors.username ? "username-error" : undefined}
                         {...register("username")}
                         placeholder="username…"
                         className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]"
                     />
                     {errors.username && (
-                        <p className="mt-1.5 text-sm text-error">{errors.username.message}</p>
+                        <p id="username-error" role="alert" className="mt-1.5 text-sm text-error">{errors.username.message}</p>
                     )}
                 </div>
                 <div>
@@ -90,6 +95,8 @@ export default function LoginForm() {
                             id="password"
                             type={showPassword ? "text" : "password"}
                             autoComplete="current-password"
+                            aria-invalid={errors.password ? true : undefined}
+                            aria-describedby={errors.password ? "password-error" : undefined}
                             {...register("password")}
                             placeholder="••••••••"
                             className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)] pr-11"
@@ -98,12 +105,15 @@ export default function LoginForm() {
                             type="button"
                             onClick={() => setShowPassword((prev) => !prev)}
                             className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
-                            aria-pressed={showPassword}
+                            aria-controls="password"
                             aria-label={showPassword ? "Hide password" : "Show password"}
                         >
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
+                    {errors.password && (
+                        <p id="password-error" role="alert" className="mt-1.5 text-sm text-error">{errors.password.message}</p>
+                    )}
                 </div>
                 {errors.root && (
                     <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">
@@ -111,7 +121,7 @@ export default function LoginForm() {
                     </div>
                 )}
                 {passwordUpdated && !errors.root && (
-                    <div className="border-2 rounded-lg p-3 bg-secondary/10 border-secondary">
+                    <div role="status" className="border-2 rounded-lg p-3 bg-secondary/10 border-secondary">
                         <p className="text-sm font-medium text-[var(--color-text)]">
                             Password updated. Sign in with your new password.
                         </p>

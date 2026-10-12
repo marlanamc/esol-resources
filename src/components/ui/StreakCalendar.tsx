@@ -98,11 +98,18 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  // The grid shows activity by color only; give screen readers the same information as text.
+  const activeDayCount = activityMap.size;
+  const isActiveToday = activityMap.has(todayKey);
+
   return (
     <div className={`${className} w-full`}>
-      <div className="flex gap-2 sm:gap-4">
+      <p className="sr-only">
+        {`Active on ${activeDayCount} ${activeDayCount === 1 ? 'day' : 'days'} since ${appLaunchDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}. ${isActiveToday ? 'You practiced today.' : 'No practice yet today.'}`}
+      </p>
+      <div className="flex gap-2 sm:gap-4" aria-hidden="true">
         {/* Fixed Day labels */}
-        <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 text-[10px] md:text-sm text-text-muted justify-start pt-[20px] md:pt-[24px]">
+        <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 text-[0.625rem] md:text-sm text-text-muted justify-start pt-[20px] md:pt-[24px]">
           {dayLabels.map((day, i) => (
             <div key={i} className="h-3.5 md:h-4 lg:h-5 xl:h-6 flex items-center pr-1 sm:pr-2">
               {day.slice(0, 3)}
@@ -123,7 +130,7 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
                 const firstDayOfWeek = week[0];
                 const showMonth = firstDayOfWeek.getDate() <= 7 || weekIndex === 0;
                 return (
-                  <div key={weekIndex} className="w-3.5 md:w-4 lg:w-5 xl:w-6 text-[10px] md:text-sm text-text-muted font-medium shrink-0">
+                  <div key={weekIndex} className="w-3.5 md:w-4 lg:w-5 xl:w-6 text-[0.625rem] md:text-sm text-text-muted font-medium shrink-0">
                     {showMonth ? monthLabels[firstDayOfWeek.getMonth()].slice(0, 3) : ''}
                   </div>
                 );
@@ -159,7 +166,7 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
                           ${getColorClass(level)}
                           ${isToday ? 'ring-2 ring-primary ring-offset-1 ring-offset-background z-10' : ''}
                           hover:ring-2 hover:ring-gray-400 hover:ring-offset-1 hover:ring-offset-background
-                          cursor-pointer shrink-0
+                          shrink-0
                         `}
                         title={`${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}: ${activityCount} ${activityCount === 1 ? 'activity' : 'activities'}`}
                       />

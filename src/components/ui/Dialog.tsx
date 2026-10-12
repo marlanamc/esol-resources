@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useId, useRef, type ReactNode } from 'react';
+import { useId, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useModalFocus } from '@/hooks/useModalFocus';
 
 export interface DialogProps {
   isOpen: boolean;
@@ -30,22 +31,11 @@ export function Dialog({
 }: DialogProps) {
   const titleId = useId();
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const isSheet = variant === 'sheet';
 
-  const handleEscape = useCallback(
-    (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
-    [onClose]
-  );
-
-  useEffect(() => {
-    if (!isOpen) return;
-    document.addEventListener('keydown', handleEscape);
-    const t = window.setTimeout(() => closeBtnRef.current?.focus(), 50);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      window.clearTimeout(t);
-    };
-  }, [isOpen, handleEscape]);
+  // Focus the close button, trap Tab inside, Escape closes, focus returns to the opener.
+  useModalFocus(isOpen, panelRef, { onEscape: onClose, initialFocusRef: closeBtnRef });
 
   const header = (
     <div className="flex items-center justify-between p-6 border-b border-border dark:border-white/10 shrink-0">
@@ -60,7 +50,7 @@ export function Dialog({
             {title}
           </h2>
           {subtitle && (
-            <p className="text-xs text-text-muted/60 font-medium mt-0.5">{subtitle}</p>
+            <p className="text-xs text-text-muted font-medium mt-0.5">{subtitle}</p>
           )}
         </div>
       </div>
@@ -68,10 +58,10 @@ export function Dialog({
         ref={closeBtnRef}
         type="button"
         onClick={onClose}
-        className="w-10 h-10 rounded-full hover:bg-surface-elevated flex items-center justify-center transition-colors text-text-muted hover:text-text shrink-0"
+        className="w-11 h-11 rounded-full hover:bg-surface-elevated flex items-center justify-center transition-colors text-text-muted hover:text-text shrink-0"
         aria-label="Close"
       >
-        <X size={24} />
+        <X size={24} aria-hidden="true" />
       </button>
     </div>
   );
@@ -105,6 +95,7 @@ export function Dialog({
           {isSheet ? (
             <motion.div
               key="dialog-panel"
+              ref={panelRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
@@ -114,7 +105,6 @@ export function Dialog({
               exit={{ opacity: 0, y: 40 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className={`fixed bottom-0 left-0 right-0 z-[201] sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:${maxWidth} sm:w-full`}
-              onKeyDown={(e) => { if (e.key === 'Escape') onClose(); }}
             >
               <div className="bg-white dark:bg-[var(--surface-base)] rounded-t-[2rem] sm:rounded-[2rem] border border-white/20 shadow-2xl max-h-[90dvh] flex flex-col pb-[env(safe-area-inset-bottom,0px)] sm:pb-0">
                 {header}
@@ -126,6 +116,7 @@ export function Dialog({
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 pointer-events-none">
               <motion.div
                 key="dialog-panel"
+                ref={panelRef}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
@@ -134,7 +125,6 @@ export function Dialog({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 className={`relative w-full ${maxWidth} pointer-events-auto`}
-                onKeyDown={(e) => { if (e.key === 'Escape') onClose(); }}
               >
                 <div className="bg-white dark:bg-[var(--surface-base)] rounded-3xl shadow-2xl overflow-hidden border border-border dark:border-white/10">
                   {header}

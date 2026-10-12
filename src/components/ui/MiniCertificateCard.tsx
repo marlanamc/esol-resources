@@ -79,7 +79,7 @@ export function MiniCertificateCard({ certificate, className = "" }: MiniCertifi
             {/* Tier Badge */}
             <div
                 className={`
-                    mb-2 px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider
+                    mb-2 px-2.5 py-0.5 rounded-full text-[0.625rem] font-semibold uppercase tracking-wider
                     border ${tierBadgeStyle}
                 `}
             >
@@ -181,7 +181,7 @@ export function NeedsImprovementCard({
             </div>
 
             {/* Badge */}
-            <div className="mb-2 rounded-full border border-rose-200 bg-rose-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-rose-600 dark:border-rose-700 dark:bg-rose-950 dark:text-rose-300">
+            <div className="mb-2 rounded-full border border-rose-200 bg-rose-100 px-2.5 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-rose-600 dark:border-rose-700 dark:bg-rose-950 dark:text-rose-300">
                 Try Again
             </div>
 
@@ -200,14 +200,14 @@ export function NeedsImprovementCard({
                 <p className="text-xs leading-snug text-text-muted">
                     Keep practicing! You need 70% to earn a medal.
                 </p>
-                <p className="flex items-center justify-center gap-1 text-[10px] text-rose-500/80 dark:text-rose-400/80">
+                <p className="flex items-center justify-center gap-1 text-[0.625rem] text-rose-500/80 dark:text-rose-400/80">
                     <HelpCircle className="h-3 w-3" />
                     Ask your teacher for help
                 </p>
             </div>
 
             {/* Click hint */}
-            <div className="mt-2 text-[10px] text-text-muted opacity-0 transition-opacity group-hover:opacity-100">
+            <div className="mt-2 text-[0.625rem] text-text-muted opacity-0 transition-opacity group-hover:opacity-100">
                 Click to retry
             </div>
         </ActivityLink>

@@ -66,7 +66,7 @@ export function PersonalResponseExercise({ exercise, onAnswer, answered }: Props
               ? isCorrect
                 ? 'border-secondary bg-secondary/10'
                 : 'border-error bg-error/10'
-              : 'border-border bg-white dark:bg-[#162b3d] focus:border-primary focus:outline-none'
+              : 'border-border bg-white dark:bg-[#162b3d] focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-dark'
           }`}
           rows={3}
           onKeyDown={(e) => {

@@ -518,7 +518,7 @@ function CardFace({
         >
             {/* Top Label + optional audio button */}
             <div className="absolute top-4 sm:top-6 left-4 right-4 sm:left-6 sm:right-6 flex items-center justify-between gap-3">
-                <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
+                <span className={`px-3 py-1.5 text-[0.625rem] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
                     {content.type}
                 </span>
                 {content.type === "Term" && typeof onPlayTerm === "function" && (
@@ -549,7 +549,7 @@ function CardFace({
                         <div className="w-full max-w-2xl shrink-0 pt-6 border-t border-[var(--color-border-subtle)] text-left mt-4 sm:mt-6">
                             <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-0">
                                 <div>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
+                                    <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
                                         Example
                                     </p>
                                     {content.example && (
@@ -559,7 +559,7 @@ function CardFace({
                                     )}
                                 </div>
                                 <div lang="es" className="min-w-0 sm:text-right">
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
+                                    <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
                                         Español
                                     </p>
                                     <p className="flashcard-example m-0 text-[1.0625rem] sm:text-lg leading-relaxed text-[var(--color-text)]">
@@ -576,7 +576,7 @@ function CardFace({
                         </h3>
                         {content.example && (
                             <div className="w-full max-w-2xl shrink-0 pt-6 border-t border-[var(--color-border-subtle)] text-left mt-4 sm:mt-6">
-                                <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                                <p className="mb-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                                     Example
                                 </p>
                                 <p className="flashcard-example m-0 text-[1.0625rem] sm:text-lg leading-relaxed text-[var(--color-text)]">
@@ -589,7 +589,7 @@ function CardFace({
             </div>
 
             {/* Click Hint */}
-            <div className="absolute bottom-4 sm:bottom-6 text-[10px] sm:text-xs font-bold tracking-widest uppercase opacity-40">
+            <div className="absolute bottom-4 sm:bottom-6 text-[0.625rem] sm:text-xs font-bold tracking-widest uppercase opacity-40">
                 {variant === "front" ? "Tap to Flip" : ""}
             </div>
         </div>

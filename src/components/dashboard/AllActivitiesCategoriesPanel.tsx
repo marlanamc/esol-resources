@@ -49,7 +49,7 @@ export function AllActivitiesCategoriesPanel() {
                             >
                                 <Icon size={19} aria-hidden />
                             </span>
-                            <span className="text-[13px] font-bold leading-tight" style={{ color: tone.chipText }}>
+                            <span className="text-[0.8125rem] font-bold leading-tight" style={{ color: tone.chipText }}>
                                 {chip.label}
                             </span>
                         </Link>

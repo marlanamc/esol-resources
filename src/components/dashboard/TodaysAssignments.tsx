@@ -109,7 +109,7 @@ function RequirementBadge({ isRequired }: { isRequired?: boolean }) {
 
     return (
         <span
-            className="inline-flex items-center rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+            className="inline-flex items-center rounded-full border px-2 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wide"
             style={{
                 backgroundColor: 'color-mix(in srgb, var(--secondary) 14%, transparent)',
                 borderColor: 'color-mix(in srgb, var(--secondary) 28%, transparent)',
@@ -253,7 +253,7 @@ function DueBadge({ dueMeta }: { dueMeta: DueMeta }) {
 
     return (
         <span
-            className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold whitespace-nowrap"
+            className="inline-flex items-center rounded-full border px-2 py-0.5 text-[0.625rem] font-semibold whitespace-nowrap"
             style={style}
         >
             {dueMeta.label}
@@ -263,7 +263,7 @@ function DueBadge({ dueMeta }: { dueMeta: DueMeta }) {
 
 function CompactVocabTracker({ vocabProgress }: { vocabProgress: VocabProgressInfo }) {
     return (
-        <div className="inline-flex items-center gap-1.5 rounded-[14px] border px-3 py-1 text-[11px] font-bold shadow-sm" style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', color: 'var(--tone-speaking-chip-text)', borderColor: 'var(--tone-speaking-border)' }}>
+        <div className="inline-flex items-center gap-1.5 rounded-[14px] border px-3 py-1 text-[0.6875rem] font-bold shadow-sm" style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', color: 'var(--tone-speaking-chip-text)', borderColor: 'var(--tone-speaking-border)' }}>
             <span className="tracking-tight">{vocabProgress.completed} / {vocabProgress.total}</span>
             <div className="flex items-center gap-1">
                 {vocabProgress.types.map((type) => {
@@ -470,7 +470,7 @@ function ChecklistAssignments({
             <div className="flex items-center gap-3 min-w-0">
                 <div className="shrink-0 flex items-center justify-center w-5 h-5">
                     {isGameGroup ? (
-                        <div className="w-5 h-5 flex items-center justify-center text-[18px] leading-none">
+                        <div className="w-5 h-5 flex items-center justify-center text-[1.125rem] leading-none">
                             {getGameEmojiForActivity({ activityId: row.assignment.activityId, title: row.assignment.title || row.assignment.activity.title })}
                         </div>
                     ) : (
@@ -490,26 +490,26 @@ function ChecklistAssignments({
                 </div>
 
                 {row.isNew && (
-                    <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} shrink-0 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
+                    <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} shrink-0 px-1.5 py-0.5 text-[0.5rem] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
                         <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
                         New
                     </span>
                 )}
 
                 {row.assignment.sectionCount && row.assignment.sectionCount > 1 && (
-                    <span className="shrink-0 inline-flex items-center rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-subtle)', color: 'var(--text-color-muted)' }}>
+                    <span className="shrink-0 inline-flex items-center rounded-full border px-2 py-0.5 text-[0.5625rem] font-semibold" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-subtle)', color: 'var(--text-color-muted)' }}>
                         {row.assignment.sectionCount} sections
                     </span>
                 )}
 
                 <div className="min-w-0 flex-1">
-                    <div className={`text-[13px] sm:text-sm font-semibold leading-tight truncate transition-colors ${row.isCompleted ? 'text-text/85' : 'text-text'}`}>
+                    <div className={`text-[0.8125rem] sm:text-sm font-semibold leading-tight truncate transition-colors ${row.isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {row.displayTitle}
                     </div>
                     <div className="mt-1.5 flex flex-wrap items-center gap-2">
                         {showCategoryChip && (
                             <span
-                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                className="inline-flex px-2 py-0.5 rounded text-[0.5625rem] font-bold uppercase tracking-wide"
                                 style={{ backgroundColor: showCategoryChip.bg, color: showCategoryChip.text }}
                             >
                                 {showCategoryChip.label}
@@ -521,14 +521,14 @@ function ChecklistAssignments({
                             if (!vocabType) return null;
                             const chip = VOCAB_CHIP_CONFIG[vocabType];
                             return (
-                                <span className={`inline-flex items-center px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${chip.className.replace('text-[10px]', '')} opacity-90`}>
+                                <span className={`inline-flex items-center px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider rounded border ${chip.className.replace('text-[0.625rem]', '')} opacity-90`}>
                                     {chip.label}
                                 </span>
                             );
                         })()}
 
                         {!isGameGroup && row.dueMeta?.tone === 'overdue' && !row.isCompleted && (
-                            <span className="text-[9px] font-semibold text-red-500">
+                            <span className="text-xs font-semibold text-red-700 dark:text-red-300">
                                 {row.dueMeta.label}
                             </span>
                         )}
@@ -541,6 +541,11 @@ function ChecklistAssignments({
                     ) : !row.isCompleted && row.progressValue > 0 ? (
                         <div className="mt-2">
                             <div
+                                role="progressbar"
+                                aria-label={`${row.displayTitle} progress`}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                                aria-valuenow={Math.round(row.progressValue)}
                                 className="dashboard-progress-track h-1.5 w-24 max-w-full"
                                 style={{ '--dashboard-progress-accent': categoryStyle.accent } as React.CSSProperties}
                             >
@@ -561,7 +566,7 @@ function ChecklistAssignments({
                         activityId={row.assignment.activityId}
                         assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                         href={row.assignment.href}
-                        className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[13px] font-semibold tracking-tight whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                        className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-11 rounded-full px-3 text-[0.8125rem] font-semibold tracking-tight whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 sm:min-w-[92px] sm:h-11 sm:px-4 sm:text-sm"
                         style={{
                             '--dashboard-button-accent': categoryStyle.accent,
                             '--dashboard-button-text': isGameGroup || row.isCompleted ? categoryStyle.text : categoryStyle.accent,
@@ -617,13 +622,13 @@ function ChecklistAssignments({
                     </div>
 
                     <div className="min-w-0 flex-1">
-                        <h3 className="text-[14px] leading-snug font-semibold text-text">
+                        <h3 className="text-[0.875rem] leading-snug font-semibold text-text">
                             {row.displayTitle}
                         </h3>
 
                         <div className="mt-1 flex flex-wrap items-center gap-1.5">
                             <span
-                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+                                className="inline-flex px-2 py-0.5 rounded text-[0.5625rem] font-bold uppercase tracking-wider"
                                 style={{
                                     backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 20%, transparent)`,
                                     color: row.categoryStyle.accent,
@@ -632,12 +637,12 @@ function ChecklistAssignments({
                                 {row.categoryStyle.label}
                             </span>
                             {vocabChip && (
-                                <span className={`inline-flex items-center rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide ${vocabChip.className.replace('rounded-md', 'rounded').replace('text-[10px]', 'text-[9px]')}`}>
+                                <span className={`inline-flex items-center rounded border px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wide ${vocabChip.className.replace('rounded-md', 'rounded').replace('text-[0.625rem]', 'text-[0.5625rem]')}`}>
                                     {vocabChip.label}
                                 </span>
                             )}
                             {row.isNew && (
-                                <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
+                                <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[0.5rem] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
                                     <Sparkles className="h-2 w-2 text-amber-700" aria-hidden />
                                     New
                                 </span>
@@ -645,7 +650,7 @@ function ChecklistAssignments({
                             <RequirementBadge isRequired={row.assignment.isRequired} />
                             {!row.isCompleted && row.dueMeta && row.dueMeta.tone !== 'makeup' ? <DueBadge dueMeta={row.dueMeta} /> : null}
                             {showProgressSummary ? (
-                                <span className="text-[10px] font-medium text-text-muted">{row.progressSummary}</span>
+                                <span className="text-[0.625rem] font-medium text-text-muted">{row.progressSummary}</span>
                             ) : null}
                         </div>
 
@@ -660,7 +665,7 @@ function ChecklistAssignments({
                         activityId={row.assignment.activityId}
                         assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                         href={row.assignment.href}
-                        className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                        className="dashboard-accent-button shrink-0 inline-flex min-h-11 items-center gap-1.5 rounded-full px-3.5 py-1 text-[0.8125rem] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         style={{
                             '--dashboard-button-accent': row.categoryStyle.accent,
                             '--dashboard-button-text': row.isCompleted || row.isGameRow ? row.categoryStyle.text : row.categoryStyle.accent,
@@ -695,21 +700,21 @@ function ChecklistAssignments({
                 </div>
 
                 <div className="min-w-0 flex-1">
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-text-muted">Resume</span>
+                    <span className="text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-text-muted">Resume</span>
 
-                    <h3 className="text-[14px] leading-snug font-display font-bold text-text">
+                    <h3 className="text-[0.875rem] leading-snug font-display font-bold text-text">
                         {row.displayTitle}
                     </h3>
 
                     <div className="mt-1 flex flex-wrap items-center gap-1.5">
                         <span
-                            className="inline-flex rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                            className="inline-flex rounded px-2 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider"
                             style={{ backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 20%, transparent)`, color: row.categoryStyle.accent }}
                         >
                             {row.categoryStyle.label}
                         </span>
                         {row.isNew && (
-                            <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
+                            <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[0.5rem] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
                                 <Sparkles className="h-2 w-2 text-amber-700" aria-hidden />
                                 New
                             </span>
@@ -724,6 +729,7 @@ function ChecklistAssignments({
                     ) : !row.isCompleted && row.progressValue > 0 ? (
                         <div className="mt-1 flex items-center gap-1.5">
                             <div
+                                aria-hidden="true"
                                 className="dashboard-progress-track h-1 w-16"
                                 style={{ '--dashboard-progress-accent': row.categoryStyle.accent } as React.CSSProperties}
                             >
@@ -735,7 +741,7 @@ function ChecklistAssignments({
                                     } as React.CSSProperties}
                                 />
                             </div>
-                            <span className="text-[10px] font-medium text-text-muted whitespace-nowrap">{row.progressSummary}</span>
+                            <span className="text-[0.625rem] font-medium text-text-muted whitespace-nowrap">{row.progressSummary}</span>
                         </div>
                     ) : null}
                 </div>
@@ -744,7 +750,7 @@ function ChecklistAssignments({
                     activityId={row.assignment.activityId}
                     assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                     href={row.assignment.href}
-                    className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="dashboard-accent-button shrink-0 inline-flex min-h-11 items-center gap-1.5 rounded-full px-3.5 py-1 text-[0.8125rem] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
                         '--dashboard-button-accent': row.categoryStyle.accent,
                         '--dashboard-button-text': row.categoryStyle.accent,
@@ -799,7 +805,7 @@ function ChecklistAssignments({
                                         {resolvedTitle}
                                     </h2>
                                     {weeklyRangeLabel && !weekHub ? (
-                                        <p className="text-[11px] sm:text-xs font-medium text-text-muted">
+                                        <p className="text-[0.6875rem] sm:text-xs font-medium text-text-muted">
                                             {weeklyRangeLabel}
                                         </p>
                                     ) : null}
@@ -818,7 +824,7 @@ function ChecklistAssignments({
                     {!hideProgressBar && (
                         <div className="relative z-20 flex items-center gap-2.5">
                             <div className="min-w-0 flex-1">
-                                <div className={`relative z-20 w-full overflow-hidden rounded-full border h-4 ${
+                                <div aria-hidden="true" className={`relative z-20 w-full overflow-hidden rounded-full border h-4 ${
                                     isFullyComplete
                                         ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
                                         : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
@@ -845,7 +851,7 @@ function ChecklistAssignments({
 
                                     {percent > 0 && (
                                         <div
-                                            className={`absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[12px] transition-all duration-300 ${
+                                            className={`absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[0.75rem] transition-all duration-300 ${
                                                 isFullyComplete
                                                     ? 'border-amber-300 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_16px_rgba(245,158,11,0.4),0_2px_6px_rgba(93,67,46,0.2)] animate-bounce-subtle'
                                                     : 'border-white bg-gradient-to-b from-white to-gray-50 shadow-[0_2px_8px_rgba(93,67,46,0.18),inset_0_1px_0_rgba(255,255,255,1)]'
@@ -859,7 +865,7 @@ function ChecklistAssignments({
                             </div>
 
                             <span
-                                className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums transition-all duration-300 ${
+                                className={`shrink-0 px-2.5 py-1 rounded-full border text-[0.75rem] font-bold leading-none tabular-nums transition-all duration-300 ${
                                     isFullyComplete
                                         ? 'bg-gradient-to-b from-[#faf6f0] to-[#f4ebe0] border-[#d7c09a]/70 text-[#8a5b3d] shadow-[0_1px_2px_rgba(138,91,61,0.1),inset_0_1px_0_rgba(255,255,255,0.8)]'
                                         : 'bg-gradient-to-b from-[#fffdfa] to-[#f6efe6] border-[#dcccbc]/80 text-[#8f5d4e] shadow-[0_1px_2px_rgba(78,57,39,0.08),inset_0_1px_0_rgba(255,255,255,0.7)]'
@@ -876,10 +882,10 @@ function ChecklistAssignments({
                         <button
                             onClick={() => setActiveFilter('all')}
                             className={`shrink-0 !min-h-0 !min-w-0 px-3 py-1 rounded-full font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1.5 ${activeFilter === 'all' ? 'shadow-sm' : 'text-text/70 hover:shadow-sm'}`}
-                            style={{ fontSize: '11px', WebkitTextSizeAdjust: '100%', backgroundColor: activeFilter === 'all' ? 'var(--surface-base)' : 'var(--surface-overlay)', color: activeFilter === 'all' ? 'var(--text-color)' : undefined, borderColor: activeFilter === 'all' ? 'var(--color-primary)' : 'var(--border-subtle)' }}
+                            style={{ fontSize: '0.6875rem', WebkitTextSizeAdjust: '100%', backgroundColor: activeFilter === 'all' ? 'var(--surface-base)' : 'var(--surface-overlay)', color: activeFilter === 'all' ? 'var(--text-color)' : undefined, borderColor: activeFilter === 'all' ? 'var(--color-primary)' : 'var(--border-subtle)' }}
                         >
                             ALL
-                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
+                            <span className={`px-1.5 py-0.5 rounded text-[0.5625rem] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
                                 {taskRows.length}
                             </span>
                         </button>
@@ -894,7 +900,7 @@ function ChecklistAssignments({
                                     onClick={() => setActiveFilter(group.key)}
                                     className="shrink-0 !min-h-0 !min-w-0 px-3 py-1 rounded-full font-bold uppercase leading-none transition-all duration-200 border flex items-center gap-1.5"
                                     style={{
-                                        fontSize: '11px',
+                                        fontSize: '0.6875rem',
                                         WebkitTextSizeAdjust: '100%',
                                         backgroundColor: isActive ? groupStyle.accent : 'var(--surface-overlay)',
                                         color: isActive ? 'var(--text-on-accent)' : groupStyle.text,
@@ -905,7 +911,7 @@ function ChecklistAssignments({
                                         {group.renderIcon('w-3.5 h-3.5')}
                                     </span>
                                     {group.label}
-                                    <span className={`ml-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold leading-none ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
+                                    <span className={`ml-0.5 px-1.5 py-0.5 rounded text-[0.5625rem] font-bold leading-none ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
                                         {group.items.length}
                                     </span>
                                 </button>
@@ -922,12 +928,12 @@ function ChecklistAssignments({
                         {showResumeCard ? renderResumeCard(resumeRow!) : null}
 
                         <div className="flex items-center justify-between gap-3 px-0.5 pt-1">
-                            <h3 className="text-[17px] font-bold text-text tracking-tight">Your tasks</h3>
+                            <h3 className="text-[1.0625rem] font-bold text-text tracking-tight">Your tasks</h3>
                             <div className="flex items-center gap-3">
                                 {mobileSecondaryLinkHref ? (
                                     <Link
                                         href={mobileSecondaryLinkHref}
-                                        className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-text-muted transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded"
+                                        className="inline-flex shrink-0 items-center gap-1 text-[0.8125rem] font-semibold text-text-muted transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded"
                                     >
                                         <Users className="h-3.5 w-3.5" aria-hidden />
                                         <span>{mobileSecondaryLinkLabel ?? 'Invite'}</span>
@@ -936,7 +942,7 @@ function ChecklistAssignments({
                                 {mobileTasksLinkHref ? (
                                     <Link
                                         href={mobileTasksLinkHref}
-                                        className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-text-muted transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded"
+                                        className="inline-flex shrink-0 items-center gap-1 text-[0.8125rem] font-semibold text-text-muted transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded"
                                     >
                                         <span>{mobileTasksLinkLabel ?? 'All Activities'}</span>
                                         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -1025,13 +1031,13 @@ function ChecklistAssignments({
                                             </span>
                                             <Link
                                                 href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
-                                                className="font-bold text-[15px] tracking-tight hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
+                                                className="font-bold text-[0.9375rem] tracking-tight hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
                                                 style={{ color: groupStyle.text }}
                                             >
                                                 {group.label}
                                             </Link>
                                             <span
-                                                className="text-[11px] font-bold px-2.5 py-1 rounded-lg tabular-nums"
+                                                className="text-[0.6875rem] font-bold px-2.5 py-1 rounded-lg tabular-nums"
                                                 style={{
                                                     backgroundColor: `color-mix(in srgb, ${groupStyle.accent} 12%, var(--dashboard-surface-start))`,
                                                     color: groupStyle.text,
@@ -1160,7 +1166,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     {resolvedTitle}
                                 </h2>
                                 {weeklyRangeLabel ? (
-                                    <p className="mt-0.5 text-[11px] sm:text-xs font-medium text-text-muted">
+                                    <p className="mt-0.5 text-[0.6875rem] sm:text-xs font-medium text-text-muted">
                                         {weeklyRangeLabel}
                                     </p>
                                 ) : null}

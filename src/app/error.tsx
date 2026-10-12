@@ -15,10 +15,10 @@ export default function GlobalError({
     }, [error]);
 
     return (
-        <div className="min-h-dvh bg-bg flex items-center justify-center px-4 py-12">
-            <div className="w-full max-w-xl bg-white border border-border/60 rounded-2xl shadow-sm p-6 space-y-4">
+        <main className="min-h-dvh bg-bg flex items-center justify-center px-4 py-12">
+            <div role="alert" className="w-full max-w-xl bg-white border border-border/60 rounded-2xl shadow-sm p-6 space-y-4">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-bold">
+                    <div aria-hidden="true" className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-700 font-bold">
                         !
                     </div>
                     <div>
@@ -33,7 +33,7 @@ export default function GlobalError({
                     <button
                         type="button"
                         onClick={() => window.location.reload()}
-                        className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition"
+                        className="min-h-[44px] px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition"
                     >
                         Reload app
                     </button>
@@ -49,6 +49,6 @@ export default function GlobalError({
                     </pre>
                 ) : null}
             </div>
-        </div>
+        </main>
     );
 }

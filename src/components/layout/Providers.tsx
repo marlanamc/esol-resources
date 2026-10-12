@@ -4,6 +4,7 @@ import { SessionProvider, useSession } from "next-auth/react";
 import { invalidateStudentSummary } from "@/hooks/useStudentSummary";
 import { setActiveLearnerId } from "@/lib/learner-session";
 import { ReactNode, useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 
 function LearnerSessionBridge() {
     const { data, status } = useSession();
@@ -33,7 +34,8 @@ export default function Providers({ children }: { children: ReactNode }) {
             refetchOnWindowFocus={true} // Refetch when app comes into focus (important for PWA)
         >
             <LearnerSessionBridge />
-            {children}
+            {/* Honor the OS "reduce motion" setting for every framer-motion animation. */}
+            <MotionConfig reducedMotion="user">{children}</MotionConfig>
         </SessionProvider>
     );
 }

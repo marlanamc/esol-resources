@@ -411,7 +411,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 px-1">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-                          <p className="text-[11px] font-black uppercase tracking-[0.25em] text-text-muted/40">
+                          <p className="text-[0.6875rem] font-black uppercase tracking-[0.25em] text-text-muted/40">
                             Sentence Form
                           </p>
                         </div>
@@ -424,7 +424,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 px-1">
                           <div className="w-1.5 h-1.5 rounded-full bg-secondary/40" />
-                          <p className="text-[11px] font-black uppercase tracking-[0.25em] text-text-muted/40">
+                          <p className="text-[0.6875rem] font-black uppercase tracking-[0.25em] text-text-muted/40">
                             Time Frame
                           </p>
                         </div>

@@ -153,7 +153,7 @@ export function GroupCard({
               <h3 className="font-display text-lg text-text font-semibold leading-tight">
                 {group.title}
               </h3>
-              <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wide ${statusTone}`}>
+              <span className={`px-2 py-0.5 rounded-full text-[0.6875rem] font-semibold uppercase tracking-wide ${statusTone}`}>
                 {statusLabel}
               </span>
             </div>

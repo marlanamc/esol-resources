@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { GameLiveRegion } from '../../shared/GameLiveRegion';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 import { getVerbGroupById } from '@/data/irregular-verbs-groups';
@@ -135,6 +136,7 @@ export function PatternSortingExercise({
         </AnimatePresence>
       </div>
 
+      <GameLiveRegion message={submitted ? feedback : null} />
       {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div

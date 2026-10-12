@@ -13,6 +13,8 @@ import {
   deterministicShuffle,
 } from "./matching-game-parse";
 import { InteractionMode } from "./matching-game-shared";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
+import { isActivationKey } from "./shared/activateOnKey";
 import { VocabMatchingUI } from "./VocabMatchingUI";
 import { TimeIndicatorSortingUI } from "./TimeIndicatorSortingUI";
 import { VerbSoundsRightSortingUI } from "./VerbSoundsRightSortingUI";
@@ -127,16 +129,18 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); }
             }
 
-            .animate-bounce-back {
-                animation: bounce-back 0.5s ease-out;
-            }
+            @media (prefers-reduced-motion: no-preference) {
+                .animate-bounce-back {
+                    animation: bounce-back 0.5s ease-out;
+                }
 
-            .animate-success-pulse {
-                animation: success-pulse 0.6s ease-in-out;
-            }
+                .animate-success-pulse {
+                    animation: success-pulse 0.6s ease-in-out;
+                }
 
-            .drop-zone-ready {
-                animation: drop-zone-pulse 1.5s ease-in-out infinite;
+                .drop-zone-ready {
+                    animation: drop-zone-pulse 1.5s ease-in-out infinite;
+                }
             }
 
             .drop-zone-correct {
@@ -538,6 +542,23 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
+            <GameLiveRegion
+                message={
+                    gameState.showExplanation
+                        ? `Not correct. "${currentWord?.word}" is ${
+                              currentWord?.category === "countable"
+                                  ? "a countable noun"
+                                  : "an uncountable noun"
+                          }.`
+                        : dropZoneFeedback?.isCorrect
+                        ? "Correct!"
+                        : isRoundComplete
+                        ? isGameComplete
+                            ? "You did it! You completed all rounds."
+                            : `Great job! Round ${currentRound.roundNumber} complete.`
+                        : null
+                }
+            />
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -595,14 +616,24 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 {!isRoundComplete && currentWord && (
                     <div className="w-full max-w-md">
                         <div
+                            role="button"
+                            tabIndex={0}
+                            aria-pressed={interactionMode === InteractionMode.WordSelected}
+                            aria-label={`Word to sort: ${currentWord.word}. Press Enter to select, then choose a group.`}
                             draggable
                             onDragStart={handleWordDragStart}
                             onDragEnd={handleWordDragEnd}
                             onClick={handleWordTap}
+                            onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleWordTap();
+}
+}}
                             className={`
                                 p-6 md:p-8 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
                                 text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
-                                touch-manipulation select-none
+                                touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
                                 ${
                                     interactionMode ===
@@ -637,11 +668,20 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                         >
                             {/* Countable Zone */}
                             <div
+                                role="button"
+                                tabIndex={0}
+                                aria-label="Countable. You can count these"
                                 onDragOver={handleDropZoneDragOver}
                                 onDrop={(e) => handleDropZoneDrop(e, "countable")}
                                 onClick={() =>
                                     handleDropZoneTap("countable")
                                 }
+                                onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("countable");
+}
+}}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -664,7 +704,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                     }
                                 `}
                             >
-                                <div className="text-4xl md:text-5xl mb-2">
+                                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">
                                     📦
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
@@ -677,6 +717,9 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
                             {/* Uncountable Zone */}
                             <div
+                                role="button"
+                                tabIndex={0}
+                                aria-label="Uncountable. You can't count this"
                                 onDragOver={handleDropZoneDragOver}
                                 onDrop={(e) =>
                                     handleDropZoneDrop(e, "uncountable")
@@ -684,6 +727,12 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                 onClick={() =>
                                     handleDropZoneTap("uncountable")
                                 }
+                                onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("uncountable");
+}
+}}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -706,7 +755,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                     }
                                 `}
                             >
-                                <div className="text-4xl md:text-5xl mb-2">
+                                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">
                                     ∞
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
@@ -720,7 +769,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                     ) : (
                         /* Round Completion Message */
                         <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl">
-                            <div className="text-6xl md:text-7xl mb-4">🎉</div>
+                            <div className="text-6xl md:text-7xl mb-4" aria-hidden="true">🎉</div>
                             {isGameComplete ? (
                                 <>
                                     <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -761,7 +810,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                     <div className="w-full max-w-md">
                         <div className="bg-red-50 border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
                             <div className="flex items-start gap-3 mb-3">
-                                <span className="text-2xl">❌</span>
+                                <span className="text-2xl" aria-hidden="true">❌</span>
                                 <div className="flex-1">
                                     <h3 className="font-bold text-red-900 text-base md:text-lg">
                                         Not quite!

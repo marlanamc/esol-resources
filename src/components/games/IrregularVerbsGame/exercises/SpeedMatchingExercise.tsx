@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { GameLiveRegion } from '../../shared/GameLiveRegion';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -21,6 +22,7 @@ export function SpeedMatchingExercise({
 }: SpeedMatchingExerciseProps) {
   void showPattern;
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
@@ -104,11 +106,11 @@ export function SpeedMatchingExercise({
           <p className={`text-xs sm:text-sm ${promptTextClassName}`}>Find the correct forms for:</p>
           <motion.div
             animate={{
-              scale: timeLeft <= 5 ? [1, 1.1, 1] : 1
+              scale: timeLeft <= 5 && !prefersReducedMotion ? [1, 1.1, 1] : 1
             }}
             transition={{
-              duration: timeLeft <= 5 ? 0.6 : 0,
-              repeat: timeLeft <= 5 ? Infinity : 0
+              duration: timeLeft <= 5 && !prefersReducedMotion ? 0.6 : 0,
+              repeat: timeLeft <= 5 && !prefersReducedMotion ? Infinity : 0
             }}
             className={`text-xl sm:text-2xl font-bold ${timerColor}`}
           >
@@ -150,6 +152,7 @@ export function SpeedMatchingExercise({
         </AnimatePresence>
       </div>
 
+      <GameLiveRegion message={submitted || !timerActive ? feedback : null} />
       {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div

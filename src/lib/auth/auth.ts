@@ -9,6 +9,7 @@ import { after } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/api/rate-limit";
 import { SESSION } from "@/lib/constants";
 import { normalizeUserRole } from "./roles";
+import { LOGIN_RATE_LIMITED_ERROR } from "./login-errors";
 
 function isMobileUserAgent(userAgent: string | null): boolean {
     if (!userAgent) return false;
@@ -46,7 +47,9 @@ export const authOptions: NextAuthOptions = {
                     const key = `auth:login:${ip}`;
                     if (!(await checkRateLimit(key))) {
                         logger.warn('Login rate limit exceeded', { ip });
-                        return null;
+                        // Thrown (not null) so the login form can tell the learner to wait
+                        // instead of showing "Invalid credentials" for a correct password.
+                        throw new Error(LOGIN_RATE_LIMITED_ERROR);
                     }
 
                     const username = credentials.username.trim().toLowerCase();
@@ -103,6 +106,9 @@ export const authOptions: NextAuthOptions = {
                         isMobile,
                     };
                 } catch (error) {
+                    if (error instanceof Error && error.message === LOGIN_RATE_LIMITED_ERROR) {
+                        throw error;
+                    }
                     logger.error('Authentication error', error);
                     return null;
                 }

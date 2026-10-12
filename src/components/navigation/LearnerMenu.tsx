@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -10,6 +10,7 @@ import { getHelpfulLinkColors, getHelpfulLinks, type HelpfulLink, type HelpfulLi
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { handleExternalLinkClick } from "@/lib/shared/open-external-link";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
+import { useModalFocus } from "@/hooks/useModalFocus";
 import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
@@ -121,7 +122,12 @@ export function LearnerMenu({
     const searchKey = useSearchParams().toString();
     const mobileName = userName.trim().split(/\s+/)[0] || "Student";
 
+    const panelRef = useRef<HTMLDivElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+
     useDocumentScrollLock(isOpen);
+    // Move focus into the drawer, keep Tab inside it, and return focus to the trigger on close.
+    useModalFocus(isOpen, panelRef, { initialFocusRef: closeButtonRef });
 
     useEffect(() => {
         setIsMounted(true);
@@ -201,7 +207,7 @@ export function LearnerMenu({
                 )}
             </div>
             <div className="hidden sm:flex flex-col text-left">
-                <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
+                <span className="text-[0.6875rem] sm:text-xs font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
                     ESOL
                 </span>
                 <span
@@ -239,6 +245,7 @@ export function LearnerMenu({
                   ) : null}
 
                   <div
+                      ref={panelRef}
                       className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] shadow-2xl border-r flex flex-col transform transition-transform duration-300 ease-in-out ${
                           isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
                       }`}
@@ -259,7 +266,7 @@ export function LearnerMenu({
                                   <BookOpenIcon className="w-5 h-5 text-[var(--text-on-accent)]" />
                               </div>
                               <div className="flex flex-col text-left">
-                                  <span className="text-[11px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
+                                  <span className="text-[0.6875rem] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
                                       ESOL
                                   </span>
                                   <span
@@ -271,9 +278,10 @@ export function LearnerMenu({
                               </div>
                           </Link>
                           <button
+                              ref={closeButtonRef}
                               type="button"
                               onClick={closeMenu}
-                              className="p-2 -mr-2 text-text-muted hover:text-text rounded-full active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                              className="flex h-11 w-11 items-center justify-center -mr-2 text-text-muted hover:text-text rounded-full active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                               style={{ backgroundColor: 'transparent' }}
                               aria-label="Close menu"
                           >
@@ -302,7 +310,7 @@ export function LearnerMenu({
                                   <>
                                       <div className="h-px my-3 mx-2" style={{ backgroundColor: "var(--border-subtle)" }} />
                                       <p
-                                          className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2"
+                                          className="px-4 text-[0.8125rem] font-bold text-text-muted uppercase tracking-wider mb-2"
                                           style={{ letterSpacing: "0.1em" }}
                                       >
                                           Class resources
@@ -316,7 +324,7 @@ export function LearnerMenu({
                               <div className="h-px my-3 mx-2" style={{ backgroundColor: 'var(--border-subtle)' }} />
 
                               {Object.values(availableSubjects).some(Boolean) ? (
-                                  <p className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2" style={{ letterSpacing: "0.1em" }}>
+                                  <p className="px-4 text-[0.8125rem] font-bold text-text-muted uppercase tracking-wider mb-2" style={{ letterSpacing: "0.1em" }}>
                                       Subjects
                                   </p>
                               ) : null}

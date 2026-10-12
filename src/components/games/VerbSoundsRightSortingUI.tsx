@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress, fetchActivityProgress } from "@/lib/activityProgress";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
 import {
   VERB_TENSE_HINTS,
   buildVerbOptions,
@@ -176,9 +177,11 @@ export function VerbSoundsRightSortingUI({
             @keyframes drop-zone-pulse { 0%, 100% { border-width: 4px; box-shadow: 0 0 0 0 rgba(217, 119, 87, 0.3); } 50% { border-width: 4px; box-shadow: 0 0 0 6px rgba(217, 119, 87, 0.1); } }
             @keyframes drop-zone-correct-flash { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); } 20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.18); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); } }
             @keyframes drop-zone-wrong-flash { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); } 20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.18); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); } }
+            @media (prefers-reduced-motion: no-preference) {
             .animate-bounce-back { animation: bounce-back 0.5s ease-out; }
             .animate-success-pulse { animation: success-pulse 0.6s ease-in-out; }
             .drop-zone-ready { animation: drop-zone-pulse 1.5s ease-in-out infinite; }
+            }
             .drop-zone-correct { border-color: #22c55e !important; background-color: rgba(34, 197, 94, 0.15) !important; animation: drop-zone-correct-flash 450ms ease-out; }
             .drop-zone-wrong { border-color: #ef4444 !important; background-color: rgba(239, 68, 68, 0.15) !important; animation: drop-zone-wrong-flash 450ms ease-out; }
             .touch-manipulation { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
@@ -376,6 +379,19 @@ export function VerbSoundsRightSortingUI({
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
+            <GameLiveRegion
+                message={
+                    gameState.showExplanation && currentBlank
+                        ? `Not correct. The correct answer is ${currentBlank.correctWord}.`
+                        : gameState.selectedCorrect
+                        ? "Correct!"
+                        : isRoundComplete
+                        ? isGameComplete
+                            ? "You did it! You completed all rounds."
+                            : `Great job! Round ${currentRound.roundNumber} complete.`
+                        : null
+                }
+            />
             {pointsToast && <PointsToast key={pointsToast.key} points={pointsToast.points} onComplete={() => setPointsToast(null)} />}
             <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-3 md:p-4">
                 <div className="flex items-start gap-3">
@@ -466,7 +482,7 @@ export function VerbSoundsRightSortingUI({
                                         disabled={gameState.selectedCorrect || gameState.showExplanation}
                                         className={`
                                             relative p-6 md:p-8 rounded-xl border-4 border-dashed
-                                            transition-all duration-200 cursor-pointer touch-manipulation
+                                            transition-all duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                             min-h-[140px] flex flex-col items-center justify-center gap-2
                                             ${showWrong ? "drop-zone-wrong" : ""}
                                             ${isSelectedCorrect ? "drop-zone-correct" : ""}
@@ -476,7 +492,7 @@ export function VerbSoundsRightSortingUI({
                                             ${gameState.selectedCorrect || gameState.showExplanation ? "cursor-not-allowed opacity-75" : ""}
                                         `}
                                     >
-                                        <div className="text-4xl md:text-5xl mb-2">
+                                        <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">
                                             {isSelectedCorrect ? "✅" : showWrong ? "❌" : colors.emoji}
                                         </div>
                                         <div className="font-bold text-[var(--color-text)] text-2xl md:text-3xl">
@@ -497,7 +513,7 @@ export function VerbSoundsRightSortingUI({
 
                 {isRoundComplete && (
                     <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl w-full max-w-md">
-                        <div className="text-6xl md:text-7xl mb-4">🎉</div>
+                        <div className="text-6xl md:text-7xl mb-4" aria-hidden="true">🎉</div>
                         {isGameComplete ? (
                             <>
                                 <h2 className="text-3xl md:text-4xl font-bold mb-3">You did it!</h2>
@@ -524,7 +540,7 @@ export function VerbSoundsRightSortingUI({
                     <div className="w-full max-w-md">
                         <div className="bg-[var(--color-surface-elevated)] border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
                             <div className="flex items-start gap-3 mb-3">
-                                <span className="text-2xl">❌</span>
+                                <span className="text-2xl" aria-hidden="true">❌</span>
                                 <div className="flex-1">
                                     <h3 className="font-bold text-red-300 text-base md:text-lg">Not quite!</h3>
                                     <p className="text-sm text-[var(--color-text)] mt-1">The correct answer is: <strong>{currentBlank.correctWord}</strong></p>

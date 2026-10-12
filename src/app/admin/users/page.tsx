@@ -131,26 +131,27 @@ export default async function AdminUsersPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "#1e2640" }}>
+                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "var(--color-text)" }}>
                     Manage Users
                 </h1>
-                <p className="text-sm mt-1" style={{ color: "#64748b" }}>
+                <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
                     Roles, leaderboard exclusions, and password resets
                 </p>
             </div>
 
             {/* Staff table */}
             <section>
-                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#64748b" }}>
+                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--color-text-muted)" }}>
                     <Users className="h-3.5 w-3.5" />
                     Teachers &amp; Admins ({teachers.length})
                 </h2>
                 <div className="rounded-2xl overflow-hidden border bg-surface-elevated" style={{ borderColor: "var(--border-subtle)" }}>
                     <table className="w-full min-w-[600px]">
+                        <caption className="sr-only">Teachers and admins</caption>
                         <thead>
-                            <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+                            <tr style={{ background: "var(--color-surface-subtle)", borderBottom: "1px solid var(--color-border-subtle)" }}>
                                 {["Username", "Name", "Role", "Classes", "Joined"].map((h) => (
-                                    <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                                    <th key={h} scope="col" className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-muted)" }}>
                                         {h}
                                     </th>
                                 ))}
@@ -160,19 +161,19 @@ export default async function AdminUsersPage() {
                             {teachers.map((u) => {
                                 const badge = roleBadge(u.role);
                                 return (
-                                    <tr key={u.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-                                        <td className="py-3 px-4 text-sm font-semibold" style={{ color: "#1e2640" }}>{u.username}</td>
-                                        <td className="py-3 px-4 text-sm" style={{ color: "#475569" }}>{u.name || "—"}</td>
+                                    <tr key={u.id} style={{ borderBottom: "1px solid var(--color-border-subtle)" }}>
+                                        <th scope="row" className="py-3 px-4 text-left text-sm font-semibold" style={{ color: "var(--color-text)" }}>{u.username}</th>
+                                        <td className="py-3 px-4 text-sm" style={{ color: "var(--color-text-muted)" }}>{u.name || "—"}</td>
                                         <td className="py-3 px-4">
                                             <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-semibold border"
                                                 style={{ background: badge.bg, color: badge.text, borderColor: badge.border }}>
                                                 {u.role}
                                             </span>
                                         </td>
-                                        <td className="py-3 px-4 text-sm" style={{ color: "#64748b" }}>
+                                        <td className="py-3 px-4 text-sm" style={{ color: "var(--color-text-muted)" }}>
                                             {u._count.createdClasses} teaching
                                         </td>
-                                        <td className="py-3 px-4 text-sm" style={{ color: "#94a3b8" }}>
+                                        <td className="py-3 px-4 text-sm" style={{ color: "var(--color-text-muted)" }}>
                                             {new Date(u.createdAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
                                         </td>
                                     </tr>
@@ -190,7 +191,7 @@ export default async function AdminUsersPage() {
 
             {/* Password reset */}
             <section>
-                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#64748b" }}>
+                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--color-text-muted)" }}>
                     <KeyRound className="h-3.5 w-3.5" />
                     Password Reset
                 </h2>

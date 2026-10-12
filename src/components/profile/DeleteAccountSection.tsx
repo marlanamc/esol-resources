@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { signOut } from "next-auth/react";
 import { Trash2 } from "lucide-react";
+import { useModalFocus } from "@/hooks/useModalFocus";
 
 const SUPPORT_EMAIL = "mcreed@ebhcs.org";
 
@@ -32,6 +33,9 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
     setError("");
     setPassword("");
   };
+
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useModalFocus(showModal, dialogRef, { onEscape: loading ? undefined : handleClose });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,7 +103,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
         <button
           type="button"
           onClick={handleOpen}
-          className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-red-600 dark:hover:text-red-400 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-red-700 dark:hover:text-red-300 transition-colors"
           aria-label="Delete my account"
         >
           <Trash2 className="w-4 h-4" aria-hidden />
@@ -109,7 +113,11 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
 
       {showModal && (
         <div
+          ref={dialogRef}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+          onClick={() => {
+            if (!loading) handleClose();
+          }}
           role="dialog"
           aria-modal="true"
           aria-labelledby="delete-account-title"
@@ -135,7 +143,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
                   htmlFor="delete-reason"
                   className="block text-sm font-medium text-[var(--color-text)] mb-1"
                 >
-                  Why are you leaving? <span className="text-red-500">*</span>
+                  Why are you leaving? <span className="text-red-700 dark:text-red-300" aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="delete-reason"
@@ -156,7 +164,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
                   htmlFor="delete-password"
                   className="block text-sm font-medium text-[var(--color-text)] mb-1"
                 >
-                  Password <span className="text-red-500">*</span>
+                  Password <span className="text-red-700 dark:text-red-300" aria-hidden="true">*</span>
                 </label>
                 <input
                   id="delete-password"
@@ -185,7 +193,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
               </label>
 
               {error && (
-                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+                <p role="alert" className="text-sm text-red-700 dark:text-red-300">{error}</p>
               )}
 
               <div className="flex gap-3 pt-2">

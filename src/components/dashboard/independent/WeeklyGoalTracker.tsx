@@ -77,7 +77,7 @@ export function WeeklyGoalTracker({
                 </div>
                 <div className="flex items-center gap-1.5">
                     <span
-                        className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-text-muted"
+                        className="rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold text-text-muted"
                         style={{ background: "color-mix(in srgb, var(--dashboard-border) 42%, var(--dashboard-surface-start))" }}
                     >
                         {getDaysLeftLabel(daysRemaining)}
@@ -132,7 +132,7 @@ export function WeeklyGoalTracker({
                 <>
                     <div className="mb-2 flex items-baseline gap-1.5">
                         <span
-                            className="font-display text-[26px] font-bold leading-none tabular-nums"
+                            className="font-display text-[1.625rem] font-bold leading-none tabular-nums"
                             style={{
                                 background: BRAND_PROGRESS_GRADIENT,
                                 WebkitBackgroundClip: "text",
@@ -142,7 +142,7 @@ export function WeeklyGoalTracker({
                         >
                             {completed}
                         </span>
-                        <span className="text-[13px] font-semibold text-text-muted">
+                        <span className="text-[0.8125rem] font-semibold text-text-muted">
                             of {goal} activities
                         </span>
                     </div>
@@ -168,7 +168,7 @@ export function WeeklyGoalTracker({
                         })}
                     </div>
 
-                    <p className="mt-2.5 text-[11.5px] font-medium text-text-muted">
+                    <p className="mt-2.5 text-[0.7188rem] font-medium text-text-muted">
                         {getFooterMessage(completed, goal, isGoalMet)}
                     </p>
                 </>

@@ -3,6 +3,8 @@
 import { resolveAudioUrl } from "@/lib/audio/url";
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GameLiveRegion } from './shared/GameLiveRegion';
+import { useModalFocus } from '@/hooks/useModalFocus';
 import {
   Volume2,
   VolumeX,
@@ -113,6 +115,12 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   });
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
+  const infoModalRef = useRef<HTMLDivElement>(null);
+  const infoCloseRef = useRef<HTMLButtonElement>(null);
+  useModalFocus(state.showInfo, infoModalRef, {
+    onEscape: () => setState(prev => ({ ...prev, showInfo: false })),
+    initialFocusRef: infoCloseRef,
+  });
   const autoStartedRef = useRef(false);
   const countdown = useMapReturnCountdown({ active: state.phase === 'results' });
   const isDark = resolvedTheme === 'dark';
@@ -402,15 +410,15 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             <div className="relative z-10 grid grid-cols-3 gap-3 rounded-2xl border border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] p-4 text-center shadow-lg md:border-0 md:shadow-none">
               <div className="p-3 md:p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-700/60">
                 <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.d.label }}>/d/</div>
-                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.d.example }}>played</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.d.example }}>played</div>
               </div>
               <div className="p-3 md:p-4 rounded-2xl bg-sky-50 dark:bg-sky-900/30 border border-sky-100 dark:border-sky-700/60">
                 <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.t.label }}>/t/</div>
-                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.t.example }}>walked</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.t.example }}>walked</div>
               </div>
               <div className="p-3 md:p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-700/60">
                 <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.id.label }}>/ɪd/</div>
-                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.id.example }}>decided</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.id.example }}>decided</div>
               </div>
             </div>
 
@@ -419,6 +427,10 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               {state.showInfo && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
                   <motion.div
+                    ref={infoModalRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="ed-info-title"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
@@ -429,9 +441,12 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                         <div className="p-2 bg-white dark:bg-white/10 rounded-full shadow-sm">
                           <Lightbulb className="w-5 h-5 text-violet-600 dark:text-violet-400 fill-violet-100 dark:fill-violet-900/50" />
                         </div>
-                        <h2 className="text-xl font-bold" style={{ color: '#2e1065' }}>How to Pronounce -ed</h2>
+                        <h2 id="ed-info-title" className="text-xl font-bold" style={{ color: '#2e1065' }}>How to Pronounce -ed</h2>
                       </div>
                       <button 
+                        ref={infoCloseRef}
+                        type="button"
+                        aria-label="Close"
                         onClick={() => setState(prev => ({ ...prev, showInfo: false }))}
                         className="p-2 hover:bg-violet-100 dark:hover:bg-violet-800/50 rounded-full transition-colors text-violet-400 dark:text-violet-300 hover:text-violet-700 dark:hover:text-violet-100"
                       >
@@ -606,22 +621,22 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Target className="w-6 h-6 mx-auto mb-2 text-rose-500" />
                 <div className="text-2xl font-black tracking-tight text-text">{accuracy}%</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Accuracy</div>
+                <div className="text-[0.625rem] font-black uppercase tracking-widest text-muted">Accuracy</div>
               </div>
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
                 <div className="text-2xl font-black tracking-tight text-text">{state.maxStreak}</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Best Streak</div>
+                <div className="text-[0.625rem] font-black uppercase tracking-widest text-muted">Best Streak</div>
               </div>
               <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
                 <div className="text-2xl font-black tracking-tight text-text">{state.score}/{state.verbs.length}</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Correct</div>
+                <div className="text-[0.625rem] font-black uppercase tracking-widest text-muted">Correct</div>
               </div>
               <div className="p-4 bg-violet-50 rounded-2xl border border-violet-100 shadow-sm text-center">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-violet-600" />
                 <div className="text-2xl font-black text-violet-600 tracking-tight">6</div>
-                <div className="text-[10px] text-violet-600 uppercase font-black tracking-widest">Points</div>
+                <div className="text-[0.625rem] text-violet-600 uppercase font-black tracking-widest">Points</div>
               </div>
             </div>
 
@@ -754,14 +769,14 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         </button>
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Question</span>
+            <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Question</span>
             <span className="text-xl font-bold text-text">
               {state.currentIndex + 1} / {state.verbs.length}
             </span>
           </div>
           <div className="h-8 w-px bg-border/40" />
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Streak</span>
+            <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Streak</span>
             <div className="flex items-center gap-1">
               <Zap className={`w-4 h-4 ${state.streak > 0 ? 'fill-amber-500 text-amber-500' : 'text-white/20'}`} />
               <span className="text-xl font-bold text-text">{state.streak}</span>
@@ -769,7 +784,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
           </div>
         </div>
         <div className="text-right">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Score</span>
+          <span className="text-[0.625rem] font-bold uppercase tracking-widest text-muted">Score</span>
           <div className="text-xl font-bold text-violet-300">{state.score}</div>
         </div>
       </div>
@@ -905,6 +920,17 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         )}
 
         {/* Feedback */}
+        <GameLiveRegion
+          message={
+            state.showFeedback
+              ? state.mode === 'sorting'
+                ? getFeedbackMessage(currentVerb, state.answers[state.answers.length - 1]?.correct)
+                : state.answers[state.answers.length - 1]?.correct
+                  ? 'Correct!'
+                  : `Not correct. It was "${minimalPairTargetWord}".`
+              : null
+            }
+        />
         <AnimatePresence>
           {state.showFeedback && (
             <motion.div

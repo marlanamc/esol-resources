@@ -81,10 +81,10 @@ export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncemen
                         <article key={announcement.id} className="dashboard-panel flex items-start gap-2 rounded-2xl py-1.5 pl-3.5 pr-1 lg:pl-5">
                             <Megaphone className="mt-3 h-4 w-4 shrink-0 text-amber-700" aria-hidden />
                             <div className="min-w-0 flex-1 py-1">
-                                <p className="m-0 text-[11px] font-extrabold uppercase tracking-[.07em] text-text-muted lg:text-xs">
+                                <p className="m-0 text-[0.6875rem] font-extrabold uppercase tracking-[.07em] text-text-muted lg:text-xs">
                                     {announcements.length > 1 ? announcement.className : 'From your teacher'}
                                 </p>
-                                <div className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[15px] leading-snug text-text lg:text-base"
+                                <div className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[0.9375rem] leading-snug text-text lg:text-base"
                                     dangerouslySetInnerHTML={{ __html: announcement.messageHtml }} />
                             </div>
                             <button type="button" onClick={() => void dismiss(announcement.id)} aria-label="Dismiss announcement" className={dismissButtonClass}>

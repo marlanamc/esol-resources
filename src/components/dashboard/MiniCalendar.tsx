@@ -230,8 +230,8 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
                         <div key={`${day}-${idx}`} className={`font-semibold uppercase ${
                             compact
-                                ? "text-[9px] tracking-wide text-text-muted"
-                                : `text-[10px] tracking-[0.16em] ${resolvedTheme === "dark" ? "text-gray-500" : "text-text-muted/80"}`
+                                ? "text-[0.5625rem] tracking-wide text-text-muted"
+                                : `text-[0.625rem] tracking-[0.16em] ${resolvedTheme === "dark" ? "text-gray-500" : "text-text-muted/80"}`
                         }`}>
                             {day}
                         </div>
@@ -287,7 +287,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 }}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
-                                    <span className={`leading-none ${compact ? "text-[11px]" : "text-xs"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
+                                    <span className={`leading-none ${compact ? "text-[0.6875rem]" : "text-xs"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
                                         {day}
                                     </span>
                                     {dayLabel && <span className="sr-only">{dayLabel}</span>}
@@ -307,7 +307,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
             </div>
 
             <div
-                className={`flex flex-wrap items-center ${compact ? "mt-2 gap-1 text-[9px]" : "mt-4 gap-2 text-[11px]"}`}
+                className={`flex flex-wrap items-center ${compact ? "mt-2 gap-1 text-[0.5625rem]" : "mt-4 gap-2 text-[0.6875rem]"}`}
                 aria-hidden="true"
             >
                 {(() => {

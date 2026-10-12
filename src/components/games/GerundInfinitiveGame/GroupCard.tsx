@@ -74,7 +74,7 @@ export function GroupCard({ group, progress, onClick }: GroupCardProps) {
           {/* Round indicator; checkpoints have single round */}
           {!group.isCheckpoint && (
             <div className="flex items-center gap-1.5 mt-2">
-              <span className="text-[10px] font-medium text-text-muted">2 Rounds:</span>
+              <span className="text-[0.625rem] font-medium text-text-muted">2 Rounds:</span>
               {/* Round 1 dot */}
               <div
                 className={`w-2 h-2 rounded-full transition-colors ${
@@ -93,7 +93,7 @@ export function GroupCard({ group, progress, onClick }: GroupCardProps) {
           )}
           {group.isCheckpoint && (
             <div className="flex items-center gap-1.5 mt-2">
-              <span className="text-[10px] font-medium text-text-muted">Review</span>
+              <span className="text-[0.625rem] font-medium text-text-muted">Review</span>
             </div>
           )}
 

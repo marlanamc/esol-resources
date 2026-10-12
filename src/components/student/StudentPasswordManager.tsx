@@ -95,6 +95,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                         <button
                             type="button"
                             onClick={() => setSelectedSectionId("all")}
+                            aria-pressed={selectedSectionId === "all"}
                             className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
                                 selectedSectionId === "all"
                                     ? "bg-primary text-white border-primary"
@@ -108,6 +109,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 key={section.id}
                                 type="button"
                                 onClick={() => setSelectedSectionId(section.id)}
+                                aria-pressed={selectedSectionId === section.id}
                                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
                                     selectedSectionId === section.id
                                         ? "bg-primary text-white border-primary"
@@ -135,7 +137,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                     <span className="ml-2 text-xs text-text-muted">@{s.username}</span>
                                 </p>
                                 {s.mustChangePassword && (
-                                    <p className="text-[11px] text-amber-600 font-semibold mt-1">
+                                    <p className="text-sm text-amber-800 dark:text-amber-300 font-semibold mt-1">
                                         Currently flagged to change password
                                     </p>
                                 )}
@@ -143,6 +145,8 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                             <div className="flex flex-1 flex-col md:flex-row md:items-center gap-2">
                                 <input
                                     type="password"
+                                    aria-label={`New password for ${s.name || s.username}`}
+                                    autoComplete="new-password"
                                     placeholder="New password"
                                     className="w-full md:w-auto flex-1 px-3 py-2 border border-gray-300 dark:border-white/20 rounded-lg text-sm bg-white dark:bg-white/5 text-text"
                                     value={passwords[s.id] || ""}
@@ -152,6 +156,8 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 />
                                 <div className="flex gap-2">
                                     <button
+                                        type="button"
+                                        aria-label={`Save password for ${s.name || s.username}`}
                                         onClick={() => handleSubmit(s.id, passwords[s.id] || "")}
                                         disabled={entry.state === "saving"}
                                         className="px-3 py-2 rounded-lg text-sm font-semibold text-white bg-primary hover:brightness-110 active:scale-95 disabled:opacity-60"
@@ -161,11 +167,11 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 </div>
                             </div>
                             {entry.state === "error" && (
-                                <p className="text-xs text-red-600">{entry.message}</p>
+                                <p role="alert" className="text-sm text-red-700 dark:text-red-300">{entry.message}</p>
                             )}
-                            {entry.state === "success" && (
-                                <p className="text-xs text-green-700">Password updated</p>
-                            )}
+                            <p role="status" className={entry.state === "success" ? "text-sm text-green-800 dark:text-green-300" : "sr-only"}>
+                                {entry.state === "success" ? `Password updated for ${s.name || s.username}` : ""}
+                            </p>
                         </div>
                     );
                 })}

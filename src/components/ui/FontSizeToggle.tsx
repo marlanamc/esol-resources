@@ -63,7 +63,7 @@ export function FontSizeToggle({ compact = false, className = "" }: FontSizeTogg
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
             <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted">
+                <span className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-text-muted">
                     Text Size
                 </span>
                 <span className="text-xs text-text-muted">
@@ -100,7 +100,7 @@ export function FontSizeToggle({ compact = false, className = "" }: FontSizeTogg
                     );
                 })}
             </div>
-            <p className="text-[11px] text-text-muted mt-0.5">
+            <p className="text-[0.6875rem] text-text-muted mt-0.5">
                 {fontSize === "normal" ? "Always use normal text size" : "Always use large text size"}
             </p>
         </div>

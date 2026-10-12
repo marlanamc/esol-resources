@@ -31,12 +31,12 @@ function MetricCell({
 }) {
     return (
         <div className="rounded-lg border border-border bg-bg-light/40 p-3">
-            <p className="text-[11px] uppercase tracking-wide font-semibold text-text-muted">{label}</p>
+            <p className="text-[0.6875rem] uppercase tracking-wide font-semibold text-text-muted">{label}</p>
             <div className="mt-1 flex items-end gap-3">
                 <p className="text-lg font-bold text-text">{p50}ms</p>
                 <p className="text-xs text-text-muted">p95 {p95}ms</p>
             </div>
-            <p className="text-[11px] text-text-muted mt-1">avg {avg}ms</p>
+            <p className="text-[0.6875rem] text-text-muted mt-1">avg {avg}ms</p>
         </div>
     );
 }

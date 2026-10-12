@@ -133,7 +133,7 @@ export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSigna
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className={`font-bold text-base ${group.tone}`}>{group.label}</h3>
                       {hasContextualUsages && (
-                        <span className="text-[10px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">
+                        <span className="text-[0.625rem] font-black uppercase tracking-wide px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">
                           Context-dependent
                         </span>
                       )}

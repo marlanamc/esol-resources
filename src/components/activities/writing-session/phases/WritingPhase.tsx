@@ -82,7 +82,7 @@ export function WritingPhase({
     const hasVocab = (suggestions?.vocab?.length ?? 0) > 0;
     const progress = Math.max(0, Math.min(1, secondsLeft / initialSecondsRef.current));
     const dashoffset = CIRC * (1 - progress);
-    const timerColor = secondsLeft <= 30 ? "#ef4444" : secondsLeft <= 60 ? "#f97316" : groupColor;
+    const timerColor = secondsLeft <= 30 ? "#b91c1c" : secondsLeft <= 60 ? "#c2410c" : groupColor;
 
     useEffect(() => {
         if (submitted) return;
@@ -233,10 +233,12 @@ export function WritingPhase({
                         </svg>
                         <div className={`absolute inset-0 flex items-center justify-center ${isWarning ? "wf-timer-warn" : ""}`}>
                             <span
+                                role="timer"
                                 className="font-handwritten text-xl font-bold leading-none"
                                 style={{ color: timerColor }}
                             >
                                 {formatTime(secondsLeft)}
+                                {isWarning && <span className="sr-only"> Time almost up</span>}
                             </span>
                         </div>
                     </div>
@@ -256,7 +258,7 @@ export function WritingPhase({
                             <img src={promptImageUrl} alt="Writing prompt" className="w-full h-full object-cover" />
                         </div>
                     )}
-                    <p className="text-[var(--text)] leading-relaxed">{promptText}</p>
+                    <p id="writing-phase-prompt" className="text-[var(--text)] leading-relaxed">{promptText}</p>
                 </div>
 
                 {/* Suggestion toggles */}
@@ -302,7 +304,7 @@ export function WritingPhase({
                             border: `1.5px solid ${groupColor}30`,
                         }}
                     >
-                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                        <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">
                             Tap to insert:
                         </p>
                         {suggestions.starters.map((s) => (
@@ -357,13 +359,16 @@ export function WritingPhase({
                 >
                     <textarea
                         ref={textareaRef}
+                        aria-labelledby={promptText ? "writing-phase-prompt" : undefined}
+                        aria-label={promptText ? undefined : "Your writing"}
+                        aria-describedby={showWordCount ? "writing-phase-wordcount" : undefined}
                         value={text}
                         onChange={(e) => {
                             setText(e.target.value);
                             if (!submitted) localStorage.setItem(draftKey, e.target.value);
                         }}
                         placeholder="Start writing here…"
-                        className="w-full px-5 text-[var(--text)] text-base resize-none focus:outline-none rounded-2xl"
+                        className="w-full px-5 text-[var(--text)] text-base resize-none focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#b4532f] rounded-2xl"
                         style={{
                             minHeight: "420px",
                             backgroundImage:
@@ -383,7 +388,7 @@ export function WritingPhase({
                 {/* Word count + submit button */}
                 <div className="flex items-center justify-between pr-1">
                     {showWordCount ? (
-                        <span className="font-handwritten text-lg" style={{ color: groupColor + "bb" }}>
+                        <span id="writing-phase-wordcount" className="font-handwritten text-lg text-text-muted">
                             {wordCount} {wordCount === 1 ? "word" : "words"}
                         </span>
                     ) : <span />}

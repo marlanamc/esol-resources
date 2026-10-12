@@ -43,7 +43,7 @@ const atkinson = Atkinson_Hyperlegible({
 });
 
 export const metadata: Metadata = {
-  title: APP_NAME,
+  title: { default: APP_NAME, template: `%s | ${APP_NAME}` },
   description: APP_DESCRIPTION,
   manifest: "/manifest.json",
   appleWebApp: {

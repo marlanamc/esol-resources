@@ -33,7 +33,7 @@ export function BottomModeNav({ active, hrefFor }: BottomModeNavProps) {
 
           const inner = (
             <span
-              className={`flex h-12 w-full flex-col items-center justify-center gap-0.5 rounded-full text-[11px] font-semibold transition-all ${
+              className={`flex h-12 w-full flex-col items-center justify-center gap-0.5 rounded-full text-[0.6875rem] font-semibold transition-all ${
                 isActive ? "text-white shadow-sm" : "text-slate-600"
               } ${disabled ? "opacity-40" : ""}`}
               style={isActive ? { background: token.accent } : undefined}

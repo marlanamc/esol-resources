@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GraduationCap, UserMinus, Undo2 } from "lucide-react";
 
@@ -39,6 +39,19 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
     const [pending, setPending] = useState<RosterAction | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const confirmRef = useRef<HTMLButtonElement>(null);
+    const triggerRefs = useRef<Partial<Record<RosterAction, HTMLButtonElement | null>>>({});
+    const lastAction = useRef<RosterAction | null>(null);
+
+    useEffect(() => {
+        if (pending) {
+            lastAction.current = pending;
+            confirmRef.current?.focus();
+        } else if (lastAction.current) {
+            triggerRefs.current[lastAction.current]?.focus();
+            lastAction.current = null;
+        }
+    }, [pending]);
 
     async function run(action: RosterAction) {
         setLoading(true);
@@ -77,13 +90,14 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
         const copy = COPY[pending];
         return (
             <span className="inline-flex flex-col items-end gap-1">
-                <span className="text-xs text-text-muted">{copy.explain}</span>
-                <span className="inline-flex items-center gap-1.5">
+                <span role="status" className="text-xs text-text-muted">{copy.explain}</span>
+                <span role="group" aria-label={`Confirm ${copy.verb.toLowerCase()} ${studentName}`} className="inline-flex items-center gap-1.5">
                     <button
+                        ref={confirmRef}
                         type="button"
                         onClick={() => run(pending)}
                         disabled={loading}
-                        className="inline-flex min-h-8 items-center rounded-full border px-3 text-xs font-bold transition-colors disabled:opacity-50"
+                        className="inline-flex min-h-10 items-center rounded-full border px-3 text-xs font-bold transition-colors disabled:opacity-50"
                         style={{
                             borderColor: "var(--primary)",
                             background: "var(--primary)",
@@ -96,7 +110,7 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
                         type="button"
                         onClick={() => setPending(null)}
                         disabled={loading}
-                        className="inline-flex min-h-8 items-center rounded-full border px-3 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle disabled:opacity-50"
+                        className="inline-flex min-h-10 items-center rounded-full border px-3 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle disabled:opacity-50"
                         style={{ borderColor: "var(--border-subtle)" }}
                     >
                         Cancel
@@ -119,9 +133,10 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
             {isActive ? (
                 <>
                     <button
+                        ref={(el) => { triggerRefs.current.graduate = el; }}
                         type="button"
                         onClick={() => setPending("graduate")}
-                        className="inline-flex min-h-8 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle"
+                        className="inline-flex min-h-10 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle"
                         style={{ borderColor: "var(--border-subtle)" }}
                         title={`Graduate ${studentName} from this class`}
                     >
@@ -129,9 +144,10 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
                         Graduate
                     </button>
                     <button
+                        ref={(el) => { triggerRefs.current.remove = el; }}
                         type="button"
                         onClick={() => setPending("remove")}
-                        className="inline-flex min-h-8 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle"
+                        className="inline-flex min-h-10 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold text-text-muted transition-colors hover:bg-surface-subtle"
                         style={{ borderColor: "var(--border-subtle)" }}
                         title={`Remove ${studentName} from this class`}
                     >
@@ -141,9 +157,10 @@ export function RosterStudentActions({ classId, studentId, studentName, status }
                 </>
             ) : (
                 <button
+                    ref={(el) => { triggerRefs.current.restore = el; }}
                     type="button"
                     onClick={() => setPending("restore")}
-                    className="inline-flex min-h-8 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold transition-colors hover:bg-surface-subtle"
+                    className="inline-flex min-h-10 items-center gap-1 rounded-full border px-2.5 text-xs font-semibold transition-colors hover:bg-surface-subtle"
                     style={{ borderColor: "var(--border-subtle)", color: "var(--primary)" }}
                     title={`Restore ${studentName} to this class`}
                 >

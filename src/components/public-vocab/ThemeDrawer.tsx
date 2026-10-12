@@ -109,7 +109,7 @@ export function ThemeDrawer({ isOpen, onClose, unit }: ThemeDrawerProps) {
                         <p className="line-clamp-1 text-sm text-text-muted">
                           {theme.description}
                         </p>
-                        <div className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[var(--tone-vocabulary-accent-strong)]">
+                        <div className="mt-1 inline-flex items-center gap-1 text-[0.625rem] font-bold uppercase tracking-wider text-[var(--tone-vocabulary-accent-strong)]">
                           <span>{theme.cards.length} words</span>
                         </div>
                       </div>

@@ -117,7 +117,7 @@ export function WorkspaceShell({
             <aside className="workspace-sidebar">
                 <Link href={scopedHref("/teach")} className="workspace-brand">
                     <span className="workspace-brand-mark">
-                        <BookOpen size={22} />
+                        <BookOpen size={22} aria-hidden="true" />
                     </span>
                     <span>
                         Class Companion<small>Teaching workspace</small>
@@ -139,7 +139,7 @@ export function WorkspaceShell({
                                 pathname === "/admin" ? "page" : undefined
                             }
                         >
-                            Overview <ArrowUpRight size={16} />
+                            Overview <ArrowUpRight size={16} aria-hidden="true" />
                         </Link>
                     </nav>
                 )}
@@ -234,11 +234,12 @@ export function WorkspaceShell({
                     ),
                 )}
                 <button
+                    type="button"
                     aria-label="More navigation"
                     aria-haspopup="dialog"
                     onClick={() => dialog.current?.showModal()}
                 >
-                    <MoreHorizontal size={20} />
+                    <MoreHorizontal size={20} aria-hidden="true" />
                     <span>More</span>
                 </button>
             </nav>
@@ -258,11 +259,12 @@ export function WorkspaceShell({
                         Your workspace
                     </h2>
                     <button
+                        type="button"
                         className="workspace-icon-button"
                         aria-label="Close navigation"
                         onClick={() => dialog.current?.close()}
                     >
-                        <X size={22} />
+                        <X size={22} aria-hidden="true" />
                     </button>
                 </div>
                 <nav

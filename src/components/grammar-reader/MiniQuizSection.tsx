@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles, RotateCcw } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, XCircle, Sparkles, RotateCcw } from "lucide-react";
 import type { MiniQuizQuestion, QuestionResponse } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 
@@ -37,6 +37,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
     const scoreCardRef = useRef<HTMLDivElement | null>(null);
+    const reduceMotion = useReducedMotion();
 
     const getUserAnswer = (q: MiniQuizQuestion): string => {
         if (q.type === "word-scramble") return (scramble[q.id]?.selected ?? []).join(" ");
@@ -196,6 +197,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                         {submitted && (
                             <motion.div
                                 ref={scoreCardRef}
+                                role="status"
                                 className={`relative overflow-hidden p-4 sm:p-6 rounded-xl mb-6 ${percentage >= 80
                                     ? "bg-success/10 border-2 border-success"
                                     : percentage >= 60
@@ -223,8 +225,8 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                         )}
                                     </motion.div>
 
-                                    {percentage >= 80 && (
-                                        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                                    {percentage >= 80 && !reduceMotion && (
+                                        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
                                             {[...Array(20)].map((_, i) => (
                                                 <motion.div
                                                     key={i}
@@ -310,14 +312,14 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                         >
                                             {index + 1}
                                         </motion.div>
-                                        <h4 className="text-base font-semibold text-text flex-1 leading-relaxed min-w-0 pt-1">
+                                        <h4 id={`${question.id}-question`} className="text-base font-semibold text-text flex-1 leading-relaxed min-w-0 pt-1">
                                             {question.question}
                                         </h4>
                                     </div>
 
                                     {/* Radio question */}
                                     {(!question.type || question.type === "radio") && (
-                                        <div className="space-y-2 ml-0 sm:ml-11">
+                                        <div role="radiogroup" aria-labelledby={`${question.id}-question`} className="space-y-2 ml-0 sm:ml-11">
                                             {question.options.map((option) => (
                                                 <label
                                                     key={option.value}
@@ -340,6 +342,8 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                                         className="w-5 h-5 text-primary focus:ring-primary focus:ring-2 flex-shrink-0"
                                                     />
                                                     <span className="text-sm sm:text-base text-text flex-1">{option.label}</span>
+                                                    {showFeedback && option.value === question.correctAnswer && <span className="sr-only">Correct</span>}
+                                                    {showFeedback && option.value === userAnswer && !isCorrect && <span className="sr-only">Not correct</span>}
                                                     <AnimatePresence>
                                                         {showFeedback && option.value === question.correctAnswer && (
                                                             <motion.div
@@ -348,7 +352,17 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                                                 animate={{ scale: 1, rotate: 0 }}
                                                                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
                                                             >
-                                                                <CheckCircle2 className="w-5 h-5 text-success" />
+                                                                <CheckCircle2 aria-hidden="true" className="w-5 h-5 text-success" />
+                                                            </motion.div>
+                                                        )}
+                                                        {showFeedback && option.value === userAnswer && !isCorrect && (
+                                                            <motion.div
+                                                                className="flex-shrink-0"
+                                                                initial={{ scale: 0 }}
+                                                                animate={{ scale: 1 }}
+                                                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                                            >
+                                                                <XCircle aria-hidden="true" className="w-5 h-5 text-error" />
                                                             </motion.div>
                                                         )}
                                                     </AnimatePresence>
@@ -362,6 +376,8 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                         <div className="ml-0 sm:ml-11">
                                             <input
                                                 type="text"
+                                                aria-labelledby={`${question.id}-question`}
+                                                aria-describedby={showFeedback ? `${question.id}-feedback` : undefined}
                                                 value={answers[question.id] ?? ""}
                                                 onChange={(e) => setAnswers({ ...answers, [question.id]: e.target.value })}
                                                 disabled={submitted}
@@ -373,6 +389,9 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                                     : "border-border hover:border-primary/40"
                                                     }`}
                                             />
+                                            <div id={`${question.id}-feedback`} role="status">
+                                                {showFeedback && <span className="sr-only">{isCorrect ? "Correct" : "Not correct"}</span>}
+                                            </div>
                                             <AnimatePresence>
                                                 {showFeedback && !isCorrect && (
                                                     <motion.p
@@ -390,13 +409,16 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
 
                                     {/* Word-scramble question */}
                                     {question.type === "word-scramble" && (
-                                        <div className="ml-0 sm:ml-11 space-y-3">
+                                        <div role="group" aria-labelledby={`${question.id}-question`} className="ml-0 sm:ml-11 space-y-3">
                                             {question.hint && !submitted && (
                                                 <p className="text-xs text-text-muted italic">Hint: {question.hint}</p>
                                             )}
 
                                             {/* Selected tray */}
                                             <div
+                                                aria-live="polite"
+                                                aria-label="Your sentence"
+                                                role="group"
                                                 className={`flex flex-wrap gap-2 min-h-[52px] p-3 rounded-lg border-2 border-dashed transition-colors ${submitted
                                                     ? isCorrect
                                                         ? "border-success bg-success/5"
@@ -465,7 +487,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                                         ...prev,
                                                         [question.id]: initScramble(questions)[question.id] ?? prev[question.id],
                                                     }))}
-                                                    className="flex items-center gap-1 text-xs text-text-muted hover:text-text transition-colors"
+                                                    className="flex items-center gap-1 min-h-6 min-w-6 py-1 px-1 text-xs text-text-muted hover:text-text transition-colors"
                                                 >
                                                     <RotateCcw className="w-3 h-3" />
                                                     Reset

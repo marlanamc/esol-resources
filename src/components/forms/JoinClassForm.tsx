@@ -41,7 +41,7 @@ export default function JoinClassForm() {
             <div className="px-4 py-5 sm:p-6">
                 <div className="mb-6">
                     <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Enter Class Code</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-text-muted">
                         Ask your teacher for the class code to join their class.
                     </p>
                 </div>
@@ -54,18 +54,21 @@ export default function JoinClassForm() {
                         <input
                             type="text"
                             id="code"
+                            aria-required="true"
+                            aria-invalid={errors.code ? true : undefined}
+                            aria-describedby={errors.code ? "code-error" : undefined}
                             {...register("code", { onChange: (e) => { e.target.value = e.target.value.toUpperCase(); } })}
                             placeholder="ABC123"
                             className="form-field mt-1 text-center text-2xl font-mono tracking-wider"
                             maxLength={6}
                         />
                         {errors.code && (
-                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.code.message}</p>
+                            <p id="code-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.code.message}</p>
                         )}
                     </div>
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

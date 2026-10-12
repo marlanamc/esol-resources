@@ -79,7 +79,7 @@ export function ThisWeekPanelClient({
                             {weekLabel}
                         </span>
                         <span
-                            className="shrink-0 rounded-full px-2.5 py-[3px] text-[11px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                            className="shrink-0 rounded-full px-2.5 py-[3px] text-[0.6875rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
                             style={{ background: tone.button, color: "var(--road-on-accent)" }}
                         >
                             You are here
@@ -107,7 +107,7 @@ export function ThisWeekPanelClient({
                 <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3" style={{ borderTop: divider }}>
                     <Link
                         href={continueHref}
-                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-bold transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[0.9375rem] font-bold transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         style={{
                             background: tone.button,
                             color: "var(--road-on-accent)",

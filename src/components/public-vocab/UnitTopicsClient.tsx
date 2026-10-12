@@ -101,7 +101,7 @@ export function UnitTopicsClient({ unit }: UnitTopicsClientProps) {
           style={{ background: gradient, aspectRatio: "2.4" }}
         >
           <span
-            className="text-[72px] leading-none"
+            className="text-[4.5rem] leading-none"
             style={{ filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.18))" }}
             aria-hidden
           >
@@ -109,23 +109,23 @@ export function UnitTopicsClient({ unit }: UnitTopicsClientProps) {
           </span>
           {num && (
             <div
-              className="absolute bottom-3 left-3 text-[12px] font-black text-white px-3 py-1 rounded-full"
+              className="absolute bottom-3 left-3 text-[0.75rem] font-black text-white px-3 py-1 rounded-full"
               style={{ background: "rgba(0,0,0,0.60)", letterSpacing: "0.06em" }}
             >
               UNIT {num}
             </div>
           )}
         </div>
-        <p className="mt-3 px-1 text-[15px] text-slate-700 leading-relaxed">{unit.theme}</p>
+        <p className="mt-3 px-1 text-[0.9375rem] text-slate-700 leading-relaxed">{unit.theme}</p>
         {titleEs && (
-          <p className="mt-1 px-1 text-[13px] italic font-semibold" style={{ color: "#a64822" }}>
+          <p className="mt-1 px-1 text-[0.8125rem] italic font-semibold" style={{ color: "#a64822" }}>
             {titleEs}
           </p>
         )}
       </section>
 
       {/* Section label */}
-      <p className="mb-3 pl-1 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500">
+      <p className="mb-3 pl-1 text-[0.6875rem] font-black uppercase tracking-[0.14em] text-slate-500">
         Pick a topic · Elige un tema
       </p>
 
@@ -159,14 +159,14 @@ export function UnitTopicsClient({ unit }: UnitTopicsClientProps) {
               border: "2px dashed #b9a4ee",
             }}
           >
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[26px]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[1.625rem]">
               🧩
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-black text-[15px]" style={{ color: "#4d3697" }}>
+              <p className="font-black text-[0.9375rem]" style={{ color: "#4d3697" }}>
                 Play the matching game
               </p>
-              <p className="text-[12px] text-slate-500">
+              <p className="text-[0.75rem] text-slate-500">
                 Match pictures to words · Juego
               </p>
             </div>

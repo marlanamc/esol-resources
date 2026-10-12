@@ -27,20 +27,21 @@ export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' | 'pill' }
   size = 'md',
   className = ''
 }) => {
+  // Light mode uses deep inks for badge text: the base tones on their /15 tints are below 4.5:1.
   const variantClasses: Record<BadgeVariant, string> = {
     default: 'bg-bg-gray text-text border-border/40',
-    primary: 'bg-primary/15 text-primary border-primary/30 font-semibold',
-    secondary: 'bg-secondary/15 text-secondary border-secondary/30 font-semibold',
+    primary: 'bg-primary/15 text-primary-dark dark:text-primary border-primary/30 font-semibold',
+    secondary: 'bg-secondary/15 text-secondary-dark dark:text-secondary border-secondary/30 font-semibold',
     success: 'bg-success/15 text-success border-success/30 font-semibold',
-    warning: 'bg-warning/15 text-warning border-warning/30 font-semibold',
-    error: 'bg-error/15 text-error border-error/30 font-semibold',
-    quiz: 'bg-warning/15 text-warning border-warning/30 font-semibold',
-    worksheet: 'bg-primary/15 text-primary border-primary/30 font-semibold',
-    slides: 'bg-accent/20 text-accent-dark border-accent/40 font-semibold',
+    warning: 'bg-warning/15 text-[#8e3a26] dark:text-warning border-warning/30 font-semibold',
+    error: 'bg-error/15 text-[#a3262b] dark:text-error border-error/30 font-semibold',
+    quiz: 'bg-warning/15 text-[#8e3a26] dark:text-warning border-warning/30 font-semibold',
+    worksheet: 'bg-primary/15 text-primary-dark dark:text-primary border-primary/30 font-semibold',
+    slides: 'bg-accent/20 text-[#6e5110] dark:text-accent-dark border-accent/40 font-semibold',
     guide: 'bg-success/15 text-success border-success/30 font-semibold',
-    game: 'bg-warning/15 text-warning border-warning/30 font-semibold',
-    resource: 'bg-info/15 text-info border-info/30 font-semibold',
-    speaking: 'bg-secondary/15 text-secondary border-secondary/30 font-semibold',
+    game: 'bg-warning/15 text-[#8e3a26] dark:text-warning border-warning/30 font-semibold',
+    resource: 'bg-info/15 text-[#2f6a7d] dark:text-info border-info/30 font-semibold',
+    speaking: 'bg-secondary/15 text-secondary-dark dark:text-secondary border-secondary/30 font-semibold',
   };
 
   const sizeStyles = {

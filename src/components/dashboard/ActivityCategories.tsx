@@ -600,7 +600,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                             <p className="text-xs font-bold text-secondary">
                                 {completedCount} / {totalCount} done
                             </p>
-                            <div className="w-24 h-1.5 bg-border/20 rounded-full overflow-hidden">
+                            <div aria-hidden="true" className="w-24 h-1.5 bg-border/20 rounded-full overflow-hidden">
                                 <div 
                                     className="h-full bg-secondary transition-all duration-500"
                                     style={{ width: `${(completedCount / totalCount) * 100}%` }}
@@ -663,7 +663,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                         </p>
                                         {filterCategory !== 'games' && filterCategory !== 'pronunciation' && (
                                             <span
-                                                className="text-[10px] font-medium px-2 py-0.5 rounded-full border"
+                                                className="text-[0.625rem] font-medium px-2 py-0.5 rounded-full border"
                                                 style={{
                                                     backgroundColor: sectionTexture ? `${sectionTexture.color}08` : 'white',
                                                     borderColor: sectionTexture ? `${sectionTexture.color}20` : 'rgba(243, 244, 246, 1)',
@@ -784,7 +784,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                             {/* Top row: Tense badge + completion check */}
                                                             <div className="flex items-start justify-between mb-1">
                                                                 <span
-                                                                    className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                                                                    className="px-2 py-0.5 rounded-full text-[0.625rem] font-bold uppercase tracking-wide"
                                                                     style={{
                                                                         backgroundColor: `${texture?.color ?? '#d97757'}14`,
                                                                         color: texture?.color ?? '#d97757',
@@ -930,12 +930,12 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                             {/* Bottom row: Progress / Points */}
                                                             <div className="flex items-center justify-between mt-2 pt-2 border-t border-border-subtle/50">
                                                                 {showCompletedState ? (
-                                                                    <span className="text-[11px] font-semibold text-secondary">
+                                                                    <span className="text-[0.6875rem] font-semibold text-secondary">
                                                                         Completed
                                                                     </span>
                                                                 ) : showProgressState ? (
                                                                     <div className="flex items-center gap-2">
-                                                                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                                        <div aria-hidden="true" className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                                                                             <div
                                                                                 className="h-full rounded-full transition-all"
                                                                                 style={{
@@ -944,19 +944,19 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                 }}
                                                                             />
                                                                         </div>
-                                                                        <span className="text-[10px] font-medium text-text-muted">
+                                                                        <span className="text-[0.625rem] font-medium text-text-muted">
                                                                             {progress}%
                                                                         </span>
                                                                     </div>
                                                                 ) : !isGameCard ? (
-                                                                    <span className="text-[11px] font-medium text-text-muted">
+                                                                    <span className="text-[0.6875rem] font-medium text-text-muted">
                                                                         Not started
                                                                     </span>
                                                                 ) : <span />}
 
                                                                 {!showCompletedState && points > 0 && (
                                                                     <span
-                                                                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                                                                        className="px-2 py-0.5 rounded-full text-[0.625rem] font-semibold"
                                                                         style={{
                                                                             backgroundColor: 'rgba(244, 211, 94, 0.15)',
                                                                             color: '#92400e',
@@ -1082,7 +1082,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                     {/* Section Header - Dual line */}
                                                                                     <div className="mb-3">
                                                                                         <div
-                                                                                            className="text-[10px] font-bold tracking-widest uppercase"
+                                                                                            className="text-[0.625rem] font-bold tracking-widest uppercase"
                                                                                             style={{ color: sectionTexture?.color ?? 'var(--text-color-muted)' }}
                                                                                         >
                                                                                             {subSubCategory.name}
@@ -1153,7 +1153,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                             {/* Top row: Tense badge + completion check */}
                                                                                                             <div className="flex items-start justify-between mb-2">
                                                                                                                 <span
-                                                                                                                    className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                                                                                                                    className="px-2 py-0.5 rounded-full text-[0.625rem] font-bold uppercase tracking-wide"
                                                                                                                     style={{
                                                                                                                         backgroundColor: showCompletedState
                                                                                                                             ? 'rgba(123, 168, 132, 0.12)'
@@ -1306,12 +1306,12 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                             {/* Bottom row: Progress / Points */}
                                                                                                            <div className="flex items-center justify-between mt-3 pt-2 border-t border-border-subtle/50">
                                                                 {showCompletedState ? (
-                                                                    <span className="text-[11px] font-semibold text-secondary">
+                                                                    <span className="text-[0.6875rem] font-semibold text-secondary">
                                                                         Completed
                                                                     </span>
                                                                 ) : showProgressState ? (
                                                                     <div className="flex items-center gap-2">
-                                                                                                                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                                                                                        <div aria-hidden="true" className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                                                                                                                             <div
                                                                                                                                 className="h-full rounded-full transition-all"
                                                                                                                                 style={{
@@ -1320,19 +1320,19 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                                                 }}
                                                                                                                             />
                                                                                                                         </div>
-                                                                                                                        <span className="text-[10px] font-medium text-text-muted">
+                                                                                                                        <span className="text-[0.625rem] font-medium text-text-muted">
                                                                                                                             {progress}%
                                                                                                                         </span>
                                                                                                                     </div>
                                                                                                                 ) : filterCategory !== 'games' ? (
-                                                                                                                    <span className="text-[11px] font-medium text-text-muted">
+                                                                                                                    <span className="text-[0.6875rem] font-medium text-text-muted">
                                                                                                                         Not started
                                                                                                                     </span>
                                                                                                                 ) : <span />}
 
                                                                 {!showCompletedState && points > 0 && (
                                                                     <span
-                                                                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                                                                        className="px-2 py-0.5 rounded-full text-[0.625rem] font-semibold"
                                                                         style={{
                                                                             backgroundColor: 'rgba(244, 211, 94, 0.15)',
                                                                             color: '#92400e',

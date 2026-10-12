@@ -61,7 +61,7 @@ export default function StudentAccountSettingsClient() {
     };
 
     const inputClasses =
-        "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
+        "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[1rem] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 w-full mb-6">
@@ -133,7 +133,7 @@ export default function StudentAccountSettingsClient() {
                     {isSubmitting ? "Updating..." : "Update Password"}
                 </button>
             </div>
-            <p className="text-[11px] sm:text-xs text-[var(--color-text-muted)]">
+            <p className="text-[0.6875rem] sm:text-xs text-[var(--color-text-muted)]">
                 If you need help changing your password, please ask your teacher.
             </p>
         </form>

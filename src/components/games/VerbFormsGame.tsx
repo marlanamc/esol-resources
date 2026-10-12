@@ -20,6 +20,7 @@ import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { logger } from '@/lib/shared/logger';
+import { GameLiveRegion } from './shared/GameLiveRegion';
 
 interface VerbData {
   v1: string;
@@ -362,7 +363,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     }`}>
                       {level}
                     </span>
-                    <span className={`text-[10px] font-bold uppercase tracking-tight ${
+                    <span className={`text-[0.75rem] font-bold uppercase tracking-tight ${
                       state.difficulty === level ? 'text-terracotta/60' : 'text-neutral-400 dark:text-neutral-400'
                     }`}>
                       {level === 'easy' ? '1 form missing' : level === 'medium' ? '3 forms missing' : 'Only 1 form given'}
@@ -428,7 +429,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     );
                   })}
                 </div>
-                <p className="text-[10px] text-center text-neutral-400 dark:text-neutral-300 mt-3 font-medium">
+                <p className="text-[0.625rem] text-center text-neutral-400 dark:text-neutral-300 mt-3 font-medium">
                   {state.difficulty === 'custom' 
                     ? 'Custom mode active: Selected forms will be hidden for the quiz.' 
                     : 'Select any form above to switch to Custom Mode and choose what to hide.'}
@@ -464,7 +465,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     }`}>
                       Irregular Verbs only
                     </span>
-                    <span className={`text-[10px] uppercase font-bold tracking-widest ${
+                    <span className={`text-[0.625rem] uppercase font-bold tracking-widest ${
                       state.irregularOnly ? 'text-amber-600/70 dark:text-amber-300/90' : 'text-neutral-400 dark:text-neutral-400'
                     }`}>
                       {state.irregularOnly ? 'Focusing on irregulars' : 'Practicing all verbs'}
@@ -537,22 +538,22 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
               <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
                 <Target className="w-6 h-6 mx-auto mb-2 text-rose-500" />
                 <div className="text-2xl font-black text-neutral-800 tracking-tight">{accuracy}%</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Accuracy</div>
+                <div className="text-[0.625rem] text-neutral-400 uppercase font-black tracking-widest">Accuracy</div>
               </div>
               <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
                 <div className="text-2xl font-black text-neutral-800 tracking-tight">{state.maxStreak}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Best Streak</div>
+                <div className="text-[0.625rem] text-neutral-400 uppercase font-black tracking-widest">Best Streak</div>
               </div>
               <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
                 <div className="text-2xl font-black text-neutral-800 tracking-tight">{state.score}/{state.verbs.length}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Correct</div>
+                <div className="text-[0.625rem] text-neutral-400 uppercase font-black tracking-widest">Correct</div>
               </div>
               <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100 shadow-sm">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-amber-600" />
                 <div className="text-2xl font-black text-amber-600 tracking-tight">4</div>
-                <div className="text-[10px] text-amber-600 uppercase font-black tracking-widest">Round Points</div>
+                <div className="text-[0.625rem] text-amber-600 uppercase font-black tracking-widest">Round Points</div>
               </div>
             </div>
 
@@ -605,25 +606,34 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-8">
+      <GameLiveRegion
+        message={
+          state.validation
+            ? Object.values(state.validation).every(Boolean)
+              ? 'Correct! All forms are right.'
+              : `Not correct. The answers are ${[currentVerb.v1, currentVerb.v1_3rd, currentVerb.v1_ing, currentVerb.v2, currentVerb.v3].join(', ')}.`
+            : null
+        }
+      />
       {/* Header Stats */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-6">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Round</span>
+            <span className="text-[0.625rem] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Round</span>
             <span className="text-2xl font-display font-bold text-neutral-800 dark:text-gray-100">
               {state.round}
             </span>
           </div>
           <div className="h-10 w-px bg-neutral-200 dark:bg-white/20" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Verb</span>
+            <span className="text-[0.625rem] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Verb</span>
             <span className="text-2xl font-display font-bold text-neutral-800 dark:text-gray-100">
               {state.currentIndex + 1} <span className="text-neutral-300 dark:text-gray-500 font-light mx-1">/</span> {state.verbs.length}
             </span>
           </div>
           <div className="h-10 w-px bg-neutral-200 dark:bg-white/20" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Streak</span>
+            <span className="text-[0.625rem] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Streak</span>
             <div className="flex items-center gap-1.5">
               <Zap className={`w-5 h-5 ${state.streak > 0 ? 'text-amber-500 fill-amber-500 dark:text-amber-400 dark:fill-amber-400 animate-pulse' : 'text-neutral-300 dark:text-gray-500'}`} />
               <span className="text-2xl font-bold text-neutral-800 dark:text-gray-100">{state.streak}</span>
@@ -632,7 +642,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         </div>
 
         <div className="flex-1 max-w-xs min-w-[200px]">
-          <div className="flex justify-between text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-2">
+          <div className="flex justify-between text-[0.625rem] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-2">
             <span>Session Progress</span>
             <span>{Math.round(progress)}%</span>
           </div>
@@ -772,7 +782,7 @@ function InputCard({
     >
       <div className="flex flex-col items-center gap-1 mb-6">
         <span className="text-2xl font-black text-neutral-800 tracking-tight">{label}</span>
-        <span className="text-[10px] uppercase font-bold text-neutral-600/60 tracking-wider leading-none">{sub}</span>
+        <span className="text-[0.625rem] uppercase font-bold text-neutral-600/60 tracking-wider leading-none">{sub}</span>
       </div>
 
       <div className="w-full relative">
@@ -782,9 +792,10 @@ function InputCard({
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onEnter?.()}
           disabled={showValidation || isGiven}
+          aria-label={`${label}, ${sub}`}
           placeholder={isGiven ? '' : '...'}
           className={`
-            w-full bg-white/40 backdrop-blur-sm border-2 rounded-xl py-4 px-2 text-center text-xl font-black transition-all outline-none
+            w-full bg-white/40 backdrop-blur-sm border-2 rounded-xl py-4 px-2 text-center text-xl font-black transition-all outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:ring-offset-2
             ${showValidation 
               ? (isValid ? 'border-emerald-500 text-emerald-700 bg-emerald-50/50' : 'border-rose-500 text-rose-700 bg-rose-50/50')
               : isGiven
@@ -794,12 +805,15 @@ function InputCard({
           `}
         />
         
+        {showValidation && !isGiven && (
+          <span className="sr-only">{isValid ? 'Correct' : `Try again. Correct answer: ${correctValue}`}</span>
+        )}
         {showValidation && (
           <div className="absolute -top-2 -right-2">
             {isValid ? (
-              <CheckCircle2 className="w-6 h-6 text-emerald-600 fill-white" />
+              <CheckCircle2 className="w-6 h-6 text-emerald-600 fill-white" aria-hidden="true" />
             ) : (
-              <XCircle className="w-6 h-6 text-rose-600 fill-white" />
+              <XCircle className="w-6 h-6 text-rose-600 fill-white" aria-hidden="true" />
             )}
           </div>
         )}

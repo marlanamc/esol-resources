@@ -227,7 +227,7 @@ export function ActivityCategoryPicker({
                                 <span className="text-base sm:text-lg font-bold font-display" style={{ color: tone.accentStrong, textShadow: '0 1px 0 rgba(0,0,0,0.12)' }}>
                                     {card.name}
                                 </span>
-                                <span className="text-[11px] sm:text-xs font-medium tracking-wide" style={{ color: 'var(--text-color-muted)' }}>
+                                <span className="text-[0.6875rem] sm:text-xs font-medium tracking-wide" style={{ color: 'var(--text-color-muted)' }}>
                                     {card.subtitle}
                                 </span>
                             </div>
@@ -310,7 +310,7 @@ export function ActivityCategoryPicker({
                                 <h3 className="font-display text-base font-bold text-text sm:text-lg">
                                     Vocab Library
                                 </h3>
-                                <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">
+                                <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-primary sm:text-xs">
                                     New
                                 </span>
                             </div>

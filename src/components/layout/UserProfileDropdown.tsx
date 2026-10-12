@@ -44,6 +44,7 @@ export default function UserProfileDropdown({
     const [colorId, setColorId] = useState<string>(serverAvatar.avatarColor);
     const [accentKey, setAccentKey] = useState<AccentKey | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -54,12 +55,22 @@ export default function UserProfileDropdown({
             }
         }
 
+        // Escape closes the menu and puts focus back on the avatar button (WCAG 2.1.1).
+        function handleKeyDown(event: KeyboardEvent) {
+            if (event.key === "Escape") {
+                setIsOpen(false);
+                triggerRef.current?.focus();
+            }
+        }
+
         if (isOpen) {
             document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("keydown", handleKeyDown);
         }
 
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleKeyDown);
         };
     }, [isOpen]);
 
@@ -156,7 +167,7 @@ export default function UserProfileDropdown({
 
     const accentSection = (
         <div className="px-4 py-2">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-text-muted">
+            <p className="mb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-text-muted">
                 Accent Color
             </p>
             {accentKey ? (
@@ -181,15 +192,16 @@ export default function UserProfileDropdown({
     return (
         <div className="relative" ref={dropdownRef}>
             <button
+                ref={triggerRef}
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 shadow-md transition-[border-color,background-color] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 sm:h-10 sm:w-10"
+                className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 shadow-md transition-[border-color,background-color] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 "
                 style={{
                     backgroundColor: 'var(--surface-elevated)',
                     borderColor: 'var(--border-strong)',
                 }}
                 aria-label="User menu"
                 aria-expanded={isOpen}
-                aria-haspopup="true"
             >
                 <SelectedAvatarDisplay
                     avatarId={avatarId}
@@ -219,7 +231,7 @@ export default function UserProfileDropdown({
                                     size="md"
                                 />
                                 <div>
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-text-muted">
+                                    <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-text-muted">
                                         Your Space
                                     </p>
                                     <p className="text-sm font-semibold text-text truncate">{userName}</p>
@@ -299,7 +311,7 @@ export default function UserProfileDropdown({
                                     <Calendar className="h-4 w-4" />
                                 </span>
                                 <span className="flex flex-col">
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-text-muted">
+                                    <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-text-muted">
                                         Quick Access
                                     </span>
                                     <span>Open Calendar</span>

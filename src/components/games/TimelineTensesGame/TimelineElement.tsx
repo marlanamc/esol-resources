@@ -356,7 +356,7 @@ export function StampPreview({
     >
       {/* Keyboard shortcut badge */}
       {shortcut && (
-        <span className="absolute top-1 right-1 w-4 h-4 rounded bg-border/40 text-text-muted text-[10px] font-mono flex items-center justify-center">
+        <span className="absolute top-1 right-1 w-4 h-4 rounded bg-border/40 text-text-muted text-[0.625rem] font-mono flex items-center justify-center">
           {shortcut}
         </span>
       )}
@@ -364,7 +364,7 @@ export function StampPreview({
         {getPreviewSVG()}
       </svg>
       <div className="text-center">
-        <div className="text-[11px] sm:text-xs font-bold leading-tight uppercase tracking-wider">{label}</div>
+        <div className="text-[0.6875rem] sm:text-xs font-bold leading-tight uppercase tracking-wider">{label}</div>
       </div>
     </button>
   );

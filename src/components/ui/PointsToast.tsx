@@ -27,15 +27,15 @@ export function PointsToast({ points, onComplete, message }: PointsToastProps) {
         // Trigger entrance animation
         const showTimer = setTimeout(() => setIsVisible(true), 50);
 
-        // Start exit animation after 2 seconds
+        // Stay up long enough for slower readers (WCAG 2.2.1), then exit
         const hideTimer = setTimeout(() => {
             setIsLeaving(true);
-        }, 2000);
+        }, 4500);
 
         // Clean up after exit animation
         const cleanupTimer = setTimeout(() => {
             if (onComplete) onComplete();
-        }, 2500);
+        }, 5000);
 
         return () => {
             clearTimeout(showTimer);
@@ -60,19 +60,25 @@ export function PointsToast({ points, onComplete, message }: PointsToastProps) {
             role="status"
             aria-live="polite"
         >
+            {/* Filled after mount so screen readers announce it; the visual pill is hidden from AT. */}
+            <span className="sr-only">
+                {isVisible ? `Plus ${points} points.${message ? ` ${message}` : ""}` : ""}
+            </span>
             <div
+                aria-hidden="true"
                 className="mx-4 flex min-w-[11rem] max-w-[calc(100vw-2rem)] items-center justify-center gap-2 rounded-full border px-5 py-3 font-bold shadow-[0_14px_36px_rgba(13,22,32,0.22)] backdrop-blur-sm sm:px-6"
                 style={{
                     background:
                         "linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 68%, var(--accent-color)) 0%, var(--accent-color) 55%, color-mix(in srgb, var(--accent-color-dark) 80%, #8a5a12) 100%)",
-                    color: "var(--text-on-accent)",
-                    borderColor: "color-mix(in srgb, var(--text-on-accent) 24%, transparent)",
+                    // Dark ink on the gold pill in both themes (white on gold is ~1.7:1).
+                    color: "#1a202c",
+                    borderColor: "color-mix(in srgb, #1a202c 18%, transparent)",
                 }}
             >
-                <span className="text-2xl leading-none drop-shadow-[0_1px_1px_rgba(8,16,24,0.28)]">+{points}</span>
+                <span className="text-2xl leading-none">+{points}</span>
                 <div className="flex flex-col leading-none">
                     <span className="text-sm opacity-95">points!</span>
-                    {message ? <span className="text-[10px] opacity-85 mt-1">{message}</span> : null}
+                    {message ? <span className="text-xs mt-1">{message}</span> : null}
                 </div>
             </div>
         </div>,

@@ -71,7 +71,7 @@ export function ActivityCarousel({
       <div className="flex items-end justify-between mb-3 px-1">
         <div>
           <div
-            className="text-[10px] font-bold tracking-widest uppercase"
+            className="text-[0.625rem] font-bold tracking-widest uppercase"
             style={{ color: 'var(--text-color-muted)' }}
           >
             {sectionTitle}
@@ -149,7 +149,7 @@ export function ActivityCarousel({
                   <div className="flex items-start justify-between mb-2">
                     {/* Tense/Type badge */}
                     <span
-                      className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                      className="px-2 py-0.5 rounded-full text-[0.625rem] font-bold uppercase tracking-wide"
                       style={{
                         backgroundColor: isCompleted
                           ? 'rgba(123, 168, 132, 0.12)'
@@ -227,12 +227,12 @@ export function ActivityCarousel({
                   <div className="flex items-center justify-between mt-3 pt-2 border-t border-border-subtle/50">
                     {/* Progress indicator */}
                     {isCompleted ? (
-                      <span className="text-[11px] font-semibold text-secondary">
+                      <span className="text-[0.6875rem] font-semibold text-secondary">
                         Completed
                       </span>
                     ) : hasProgress ? (
                       <div className="flex items-center gap-2">
-                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                        <div aria-hidden="true" className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
                             style={{
@@ -241,12 +241,12 @@ export function ActivityCarousel({
                             }}
                           />
                         </div>
-                        <span className="text-[10px] font-medium text-text-muted">
+                        <span className="text-[0.625rem] font-medium text-text-muted">
                           {progress}%
                         </span>
                       </div>
                     ) : (
-                      <span className="text-[11px] font-medium text-text-muted">
+                      <span className="text-[0.6875rem] font-medium text-text-muted">
                         Not started
                       </span>
                     )}
@@ -254,7 +254,7 @@ export function ActivityCarousel({
                     {/* Points badge (only show if not completed) */}
                     {!isCompleted && (
                       <span
-                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                        className="px-2 py-0.5 rounded-full text-[0.625rem] font-semibold"
                         style={{
                           backgroundColor: 'rgba(244, 211, 94, 0.15)',
                           color: '#92400e',
@@ -291,7 +291,7 @@ export function ActivityCarouselHeader({
     <div className="flex items-end justify-between mb-3 px-1">
       <div>
         <div
-          className="text-[10px] font-bold tracking-widest uppercase"
+          className="text-[0.625rem] font-bold tracking-widest uppercase"
           style={{ color: 'var(--text-color-muted)' }}
         >
           {title}

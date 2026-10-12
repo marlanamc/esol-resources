@@ -116,6 +116,9 @@ export function WordSelectExercise({
                             aria-pressed={isSelected}
                         >
                             <span>{token.text}</span>
+                            {state === "correct" && <span className="sr-only"> (correct)</span>}
+                            {state === "missed" && <span className="sr-only"> (missed)</span>}
+                            {state === "wrong" && <span className="sr-only"> (not correct)</span>}
                             <span className="whitespace-pre">{token.after ?? " "}</span>
                         </button>
                     );
@@ -136,12 +139,12 @@ export function WordSelectExercise({
                         >
                             {isCorrect ? (
                                 <>
-                                    <CheckCircle2 className="w-4 h-4 text-success" />
+                                    <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-success" />
                                     <span className="text-success font-medium">Correct</span>
                                 </>
                             ) : isIncorrect ? (
                                 <>
-                                    <XCircle className="w-4 h-4 text-error" />
+                                    <XCircle aria-hidden="true" className="w-4 h-4 text-error" />
                                     <span className="text-error font-medium">Not quite</span>
                                 </>
                             ) : null}

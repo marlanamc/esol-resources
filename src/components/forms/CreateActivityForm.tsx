@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useId } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -28,6 +28,7 @@ type QuizQuestion = {
 
 export default function CreateActivityForm() {
     const router = useRouter();
+    const uid = useId();
     const {
         register,
         handleSubmit,
@@ -182,11 +183,14 @@ export default function CreateActivityForm() {
                                 type="text"
                                 id="title"
                                 autoComplete="off"
+                                aria-required="true"
+                                aria-invalid={errors.title ? true : undefined}
+                                aria-describedby={errors.title ? "title-error" : undefined}
                                 {...register("title")}
                                 className="form-field mt-1"
                             />
                             {errors.title && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
+                                <p id="title-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
                             )}
                         </div>
 
@@ -259,12 +263,14 @@ export default function CreateActivityForm() {
                                                 {writingPrompts.length > 1 ? `Prompt ${index + 1}` : "Writing Prompt"}
                                             </h4>
                                             {writingPrompts.length > 1 && (
-                                                <button type="button" onClick={() => removeWritingPrompt(index)} className="text-red-500 text-sm hover:text-red-700">Remove</button>
+                                                <button type="button" onClick={() => removeWritingPrompt(index)} aria-label={`Remove prompt ${index + 1}`} className="text-red-500 text-sm hover:text-red-700">Remove</button>
                                             )}
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Prompt Text *</label>
+                                            <label htmlFor={`${uid}-wp-${index}-text`} className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Prompt Text *</label>
                                             <textarea
+                                                id={`${uid}-wp-${index}-text`}
+                                                aria-required="true"
                                                 value={prompt.text}
                                                 onChange={(e) => updateWritingPrompt(index, "text", e.target.value)}
                                                 rows={3}
@@ -274,16 +280,17 @@ export default function CreateActivityForm() {
                                         </div>
                                         <div>
                                             <div className="flex items-center justify-between mb-1.5">
-                                                <label className="block text-xs font-medium text-gray-600 dark:text-gray-400">
-                                                    Image <span className="font-normal text-gray-400">(optional)</span>
-                                                </label>
-                                                <div className="flex rounded-md overflow-hidden border border-gray-200 dark:border-white/10 text-xs">
+                                                <span id={`${uid}-wp-${index}-image-label`} className="block text-xs font-medium text-gray-600 dark:text-gray-400">
+                                                    Image <span className="font-normal text-text-muted">(optional)</span>
+                                                </span>
+                                                <div role="group" aria-label="Image source" className="flex rounded-md overflow-hidden border border-gray-200 dark:border-white/10 text-xs">
                                                     {(["upload", "url"] as const).map((mode) => (
                                                         <button
                                                             key={mode}
                                                             type="button"
                                                             onClick={() => setImageMode(index, mode)}
-                                                            className={`px-2.5 py-1 transition-colors ${getImageMode(index) === mode ? "bg-indigo-500 text-white" : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5"}`}
+                                                            aria-pressed={getImageMode(index) === mode}
+                                                            className={`px-2.5 py-1 transition-colors ${getImageMode(index) === mode ? "bg-indigo-600 text-white" : "text-text-muted hover:bg-gray-50 dark:hover:bg-white/5"}`}
                                                         >
                                                             {mode === "upload" ? "📎 Upload" : "🔗 URL"}
                                                         </button>
@@ -292,33 +299,34 @@ export default function CreateActivityForm() {
                                             </div>
 
                                             {getImageMode(index) === "upload" ? (
-                                                <div
-                                                    className="relative flex flex-col items-center justify-center gap-1.5 rounded-md border-2 border-dashed border-gray-300 dark:border-white/20 px-4 py-4 text-sm text-gray-500 dark:text-gray-400 hover:border-indigo-400 hover:text-indigo-600 transition-colors cursor-pointer"
-                                                    onClick={() => fileInputRefs.current[index]?.click()}
+                                                <label
+                                                    className="relative flex flex-col items-center justify-center gap-1.5 rounded-md border-2 border-dashed border-gray-300 dark:border-white/20 px-4 py-4 text-sm text-text-muted hover:border-indigo-400 hover:text-indigo-600 focus-within:ring-2 focus-within:ring-primary transition-colors cursor-pointer"
                                                 >
                                                     <input
                                                         ref={(el) => { fileInputRefs.current[index] = el; }}
                                                         type="file"
                                                         accept="image/jpeg,image/png,image/webp,image/gif"
                                                         className="sr-only"
+                                                        aria-label="Upload a photo (JPEG, PNG, WebP or GIF, max 5 MB)"
                                                         onChange={(e) => {
                                                             const file = e.target.files?.[0];
                                                             if (file) handleImageUpload(index, file);
                                                         }}
                                                     />
                                                     {uploadingIndex === index ? (
-                                                        <span className="text-indigo-500">Uploading…</span>
+                                                        <span role="status" className="text-indigo-600 dark:text-indigo-300">Uploading…</span>
                                                     ) : (
                                                         <>
-                                                            <span className="text-xl">🖼️</span>
+                                                            <span className="text-xl" aria-hidden="true">🖼️</span>
                                                             <span>Click to upload a photo</span>
-                                                            <span className="text-xs text-gray-400">JPEG, PNG, WebP or GIF · max 5 MB</span>
+                                                            <span className="text-xs text-text-muted">JPEG, PNG, WebP or GIF · max 5 MB</span>
                                                         </>
                                                     )}
-                                                </div>
+                                                </label>
                                             ) : (
                                                 <input
                                                     type="url"
+                                                    aria-labelledby={`${uid}-wp-${index}-image-label`}
                                                     value={prompt.imageUrl}
                                                     onChange={(e) => updateWritingPrompt(index, "imageUrl", e.target.value)}
                                                     className="form-field text-sm"
@@ -326,29 +334,31 @@ export default function CreateActivityForm() {
                                                 />
                                             )}
 
-                                            {uploadError && <p className="mt-1 text-xs text-red-500">{uploadError}</p>}
+                                            {uploadError && <p role="alert" className="mt-1 text-xs text-red-600 dark:text-red-400">{uploadError}</p>}
 
                                             {prompt.imageUrl && (
                                                 <div className="mt-2 relative">
                                                     <img
                                                         src={prompt.imageUrl}
-                                                        alt="Prompt preview"
+                                                        alt="Prompt image preview"
                                                         className="w-full h-40 object-cover rounded-lg"
                                                     />
                                                     <button
                                                         type="button"
                                                         onClick={() => updateWritingPrompt(index, "imageUrl", "")}
+                                                        aria-label="Remove image"
                                                         className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs transition-colors"
                                                     >
-                                                        ×
+                                                        <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
                                             )}
                                         </div>
                                         <div className="grid grid-cols-2 gap-3">
                                             <div>
-                                                <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Sentence starters <span className="font-normal text-gray-400">(comma-separated)</span></label>
+                                                <label htmlFor={`${uid}-wp-${index}-starters`} className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Sentence starters <span className="font-normal text-text-muted">(comma-separated)</span></label>
                                                 <input
+                                                    id={`${uid}-wp-${index}-starters`}
                                                     type="text"
                                                     value={prompt.starters}
                                                     onChange={(e) => updateWritingPrompt(index, "starters", e.target.value)}
@@ -357,8 +367,9 @@ export default function CreateActivityForm() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Vocabulary hints <span className="font-normal text-gray-400">(comma-separated)</span></label>
+                                                <label htmlFor={`${uid}-wp-${index}-vocab`} className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Vocabulary hints <span className="font-normal text-text-muted">(comma-separated)</span></label>
                                                 <input
+                                                    id={`${uid}-wp-${index}-vocab`}
                                                     type="text"
                                                     value={prompt.vocab}
                                                     onChange={(e) => updateWritingPrompt(index, "vocab", e.target.value)}
@@ -376,8 +387,9 @@ export default function CreateActivityForm() {
                                 )}
                                 <div className="grid grid-cols-2 gap-4 pt-2">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Timer Duration (per round)</label>
+                                        <label htmlFor="writingTimer" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Timer Duration (per round)</label>
                                         <select
+                                            id="writingTimer"
                                             value={writingTimerSeconds}
                                             onChange={(e) => setWritingTimerSeconds(Number(e.target.value))}
                                             className="form-field"
@@ -398,10 +410,10 @@ export default function CreateActivityForm() {
                             </div>
                         ) : (
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <div id="contentFormatLabel" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Content Format
-                                </label>
-                                <div className="flex gap-4">
+                                </div>
+                                <div role="radiogroup" aria-labelledby="contentFormatLabel" className="flex gap-4">
                                     <label className="flex items-center">
                                         <input
                                             type="radio"
@@ -438,6 +450,7 @@ export default function CreateActivityForm() {
                                                 <button
                                                     type="button"
                                                     onClick={() => removeQuizQuestion(index)}
+                                                    aria-label={`Remove question ${index + 1}`}
                                                     className="text-red-600 hover:text-red-800 text-sm"
                                                 >
                                                     Remove
@@ -446,8 +459,9 @@ export default function CreateActivityForm() {
                                         </div>
                                         <div className="space-y-3">
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question</label>
+                                                <label htmlFor={`${uid}-q-${question.id}-text`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question</label>
                                                 <input
+                                                    id={`${uid}-q-${question.id}-text`}
                                                     type="text"
                                                     value={question.question}
                                                     onChange={(e) => updateQuizQuestion(index, "question", e.target.value)}
@@ -456,8 +470,9 @@ export default function CreateActivityForm() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question Type</label>
+                                                <label htmlFor={`${uid}-q-${question.id}-type`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question Type</label>
                                                 <select
+                                                    id={`${uid}-q-${question.id}-type`}
                                                     value={question.type}
                                                     onChange={(e) => {
                                                         const newType = e.target.value as QuizQuestionType;
@@ -476,12 +491,13 @@ export default function CreateActivityForm() {
                                                 </select>
                                             </div>
                                             {(question.type === "single" || question.type === "multiple") && (
-                                                <div>
-                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Options</label>
+                                                <div role="group" aria-labelledby={`${uid}-q-${question.id}-opts`}>
+                                                    <div id={`${uid}-q-${question.id}-opts`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Options</div>
                                                     {question.options.map((option, optIndex) => (
                                                         <input
                                                             key={optIndex}
                                                             type="text"
+                                                            aria-label={`Question ${index + 1} option ${optIndex + 1}`}
                                                             value={option}
                                                             onChange={(e) => {
                                                                 const newOptions = [...question.options];
@@ -512,13 +528,15 @@ export default function CreateActivityForm() {
                                 </label>
                                 <textarea
                                     id="content"
+                                    aria-required="true"
+                                    aria-describedby="content-hint"
                                     value={content}
                                     onChange={(e) => setContent(e.target.value)}
                                     rows={12}
                                     className="form-field font-mono text-sm"
                                     placeholder="Enter activity content…"
                                 />
-                                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                <p id="content-hint" className="mt-2 text-sm text-text-muted">
                                     You can use markdown-style formatting or plain text.
                                 </p>
                             </div>
@@ -526,7 +544,7 @@ export default function CreateActivityForm() {
                     </div>
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

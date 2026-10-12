@@ -121,7 +121,6 @@ export function FlashcardsActivityWrapper({
         <button
           type="button"
           onClick={() => setRevealed((v) => !v)}
-          aria-pressed={revealed}
           className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl bg-white/85 backdrop-blur border border-white/80 shadow-[0_4px_12px_-4px_rgba(20,60,70,0.20)] text-[#a04f1a] hover:bg-white active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/60"
         >
           <span aria-hidden className="text-xl leading-none">
@@ -135,7 +134,7 @@ export function FlashcardsActivityWrapper({
         <button
           type="button"
           onClick={goNext}
-          className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl bg-[#e07a3b] text-white shadow-[0_8px_18px_-8px_rgba(224,122,59,0.6)] hover:bg-[#cc6a2e] active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/60"
+          className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl bg-[#b4531a] text-[#ffffff] shadow-[0_8px_18px_-8px_rgba(180,83,26,0.6)] hover:bg-[#9a4515] active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/60"
         >
           <span aria-hidden className="text-xl leading-none">
             →

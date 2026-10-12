@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronDown, MapPin, X } from "lucide-react";
 import type { CourseMapUnit } from "@/lib/course-map";
 import type { CurrentMapWeekMeta, WeekProgressEntry } from "@/lib/course-map-navigation";
@@ -8,6 +8,7 @@ import {
     dispatchOpenMapWeek,
     scrollToMapTarget,
 } from "@/lib/course-map-navigation";
+import { useModalFocus } from "@/hooks/useModalFocus";
 import { useCourseMapScrollSpy } from "@/hooks/useCourseMapScrollSpy";
 import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
@@ -74,6 +75,8 @@ export function CourseMapMobileDrawerPanel({
     }, [open]);
 
     const close = useCallback(() => onOpenChange(false), [onOpenChange]);
+    const dialogRef = useRef<HTMLDivElement>(null);
+    useModalFocus(open, dialogRef, { onEscape: close });
 
     const handleUnitNavigate = useCallback((unit: CourseMapUnit) => {
         scrollToMapTarget(`unit-${unit.unitNumber}`);
@@ -105,10 +108,11 @@ export function CourseMapMobileDrawerPanel({
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-[280] lg:hidden" role="dialog" aria-modal="true" aria-label="Course map">
+        <div ref={dialogRef} className="fixed inset-0 z-[280] lg:hidden" role="dialog" aria-modal="true" aria-label="Course map">
             <button
                 type="button"
                 className="absolute inset-0 bg-black/40"
+                tabIndex={-1}
                 aria-label="Close course map"
                 onClick={close}
             />
@@ -118,7 +122,7 @@ export function CourseMapMobileDrawerPanel({
                     <button
                         type="button"
                         onClick={close}
-                        className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-surface-subtle"
+                        className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-surface-subtle"
                         aria-label="Close"
                     >
                         <X size={18} aria-hidden />
@@ -147,7 +151,7 @@ export function CourseMapMobileDrawerPanel({
                             </span>
                             <span className="min-w-0 flex-1">
                                 <span
-                                    className="block text-[10px] font-bold uppercase tracking-wide"
+                                    className="block text-[0.625rem] font-bold uppercase tracking-wide"
                                     style={{ color: getCourseMapUnitTone(currentWeek.unitNumber).accent }}
                                 >
                                     Go to my next lesson
@@ -163,7 +167,7 @@ export function CourseMapMobileDrawerPanel({
                     ) : null}
 
                     <div className="space-y-1">
-                        <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted px-1">Units</p>
+                        <p className="text-[0.6875rem] font-bold uppercase tracking-wide text-text-muted px-1">Units</p>
                         {units.map((unit) => {
                             const progress = progressByUnit.get(unit.unitNumber);
                             const isUnitDone = progress?.isDone ?? false;
@@ -204,7 +208,7 @@ export function CourseMapMobileDrawerPanel({
                                             <span className="flex-1 truncate font-medium text-text leading-tight">
                                                 {unit.unitTitle}
                                             </span>
-                                            <span className="text-[10px] tabular-nums shrink-0 text-text-muted">
+                                            <span className="text-[0.625rem] tabular-nums shrink-0 text-text-muted">
                                                 {progress?.done ?? 0}/{progress?.total ?? 0}
                                             </span>
                                         </button>
@@ -212,7 +216,7 @@ export function CourseMapMobileDrawerPanel({
                                             <button
                                                 type="button"
                                                 onClick={() => toggleUnitExpanded(unit.unitNumber)}
-                                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg hover:bg-surface-subtle"
+                                                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg hover:bg-surface-subtle"
                                                 aria-expanded={isExpanded}
                                                 aria-label={`${isExpanded ? "Collapse" : "Expand"} weeks for ${unit.unitTitle}`}
                                             >
@@ -238,14 +242,14 @@ export function CourseMapMobileDrawerPanel({
                                                         key={week.weekNumber}
                                                         type="button"
                                                         onClick={() => handleWeekNavigate(week.weekNumber)}
-                                                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[11px] transition-colors ${
+                                                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[0.6875rem] transition-colors ${
                                                             isCurrent
                                                                 ? "bg-surface-subtle font-semibold text-text"
                                                                 : "text-text-muted hover:bg-surface-subtle hover:text-text"
                                                         }`}
                                                     >
                                                         <span
-                                                            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold"
+                                                            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[0.5625rem] font-bold"
                                                             style={
                                                                 week.isDone
                                                                     ? {
@@ -267,7 +271,7 @@ export function CourseMapMobileDrawerPanel({
                                                             {week.isDone ? <Check size={10} strokeWidth={3} aria-hidden /> : week.weekNumber}
                                                         </span>
                                                         <span className="min-w-0 flex-1 truncate leading-tight">{week.title}</span>
-                                                        <span className="shrink-0 tabular-nums text-[10px]">
+                                                        <span className="shrink-0 tabular-nums text-[0.625rem]">
                                                             {week.done}/{week.total}
                                                         </span>
                                                     </button>

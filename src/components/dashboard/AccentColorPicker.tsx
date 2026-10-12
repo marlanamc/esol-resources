@@ -81,7 +81,7 @@ export function AccentColorPicker({ initialAccent, onAccentChange }: AccentColor
                                     </svg>
                                 )}
                             </span>
-                            <span className="w-full text-center text-[9px] font-medium leading-tight text-text-muted">
+                            <span className="w-full text-center text-[0.5625rem] font-medium leading-tight text-text-muted">
                                 {preset.label}
                             </span>
                         </button>

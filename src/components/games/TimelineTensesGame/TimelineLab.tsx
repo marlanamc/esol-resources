@@ -295,10 +295,10 @@ export function TimelineLab({ onBack, onOpenFormulas }: TimelineLabProps) {
                                   <div
                                     className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 shadow-sm ${categoryStyle.badge}`}
                                   >
-                                    <span className="text-[10px] font-black uppercase tracking-[0.24em]">
+                                    <span className="text-[0.625rem] font-black uppercase tracking-[0.24em]">
                                       {category}
                                     </span>
-                                    <span className="text-[10px] font-semibold normal-case tracking-normal opacity-70">
+                                    <span className="text-[0.625rem] font-semibold normal-case tracking-normal opacity-70">
                                       {categoryStyle.label}
                                     </span>
                                   </div>

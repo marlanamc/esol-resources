@@ -157,7 +157,7 @@ export function TenseFilterBar({
 
               {hasNewChallenges && (
                 <div className="mt-3">
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wide bg-accent/20 text-primary-dark border border-primary/20">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[0.625rem] font-black uppercase tracking-wide bg-accent/20 text-primary-dark border border-primary/20">
                     New challenges available
                   </span>
                 </div>

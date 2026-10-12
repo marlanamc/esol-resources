@@ -76,21 +76,21 @@ export function ThisWeekRoadCard({
             >
                 <div className="px-4 pt-3.5 pb-3">
                     <div className="flex items-center justify-between gap-2">
-                        <span className="min-w-0 truncate text-[13.5px] font-bold text-text-muted">
+                        <span className="min-w-0 truncate text-[0.8438rem] font-bold text-text-muted">
                             <span style={{ color: tone.accent }}>{unitLabel}</span> · {weekLabel}
                         </span>
                         <span
-                            className="shrink-0 rounded-full px-2 py-[3px] text-[10.5px] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                            className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
                             style={{ background: tone.button, color: "var(--road-on-accent)" }}
                         >
                             You are here
                         </span>
                     </div>
-                    <h2 className="mt-2 mb-0 font-display text-[24px] font-bold leading-tight text-text">{weekTitle}</h2>
+                    <h2 className="mt-2 mb-0 font-display text-[1.5rem] font-bold leading-tight text-text">{weekTitle}</h2>
                     {items.length > 0 ? (
                         <div className="mt-2.5 flex items-center gap-3">
                             <SegmentedProgress activities={activities} accent={tone.accent} />
-                            <span className="text-[13.5px] font-bold whitespace-nowrap text-text-muted">
+                            <span className="text-[0.8438rem] font-bold whitespace-nowrap text-text-muted">
                                 {progress.done} of {progress.total} done
                             </span>
                         </div>
@@ -99,7 +99,7 @@ export function ThisWeekRoadCard({
 
                 {weekDone ? (
                     <p
-                        className="mx-3 mt-0 mb-3 rounded-2xl px-4 py-3 text-[15px] leading-snug font-bold"
+                        className="mx-3 mt-0 mb-3 rounded-2xl px-4 py-3 text-[0.9375rem] leading-snug font-bold"
                         style={{ background: "var(--road-done-bg)", color: "var(--road-done-text)" }}
                     >
                         You finished this {showUnitMonths ? "week" : "level"}! You can review anything on the map.
@@ -121,10 +121,10 @@ export function ThisWeekRoadCard({
                             <Play size={15} fill="currentColor" aria-hidden />
                         </span>
                         <span className="min-w-0 flex-1">
-                            <span className="block text-[11px] font-extrabold uppercase tracking-[.06em] opacity-90">
+                            <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.06em] opacity-90">
                                 {continueLabel === "Start here" ? "Start" : "Continue"}
                             </span>
-                            <span className="block text-[15px] font-bold leading-snug">{currentTitle}</span>
+                            <span className="block text-[0.9375rem] font-bold leading-snug">{currentTitle}</span>
                         </span>
                         <ChevronRight size={18} aria-hidden className="shrink-0" />
                     </Link>
@@ -132,7 +132,7 @@ export function ThisWeekRoadCard({
 
                 {/* Always mounted so the toggle's aria-controls points at a real element. */}
                 <div id={listId} hidden={!expanded}>
-                    <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
+                    <p className="m-0 px-4 pt-1 pb-1.5 text-[0.75rem] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
                         This {showUnitMonths ? "week" : "level"}&apos;s activities
                     </p>
                     {activities.map((activity) => (
@@ -147,7 +147,7 @@ export function ThisWeekRoadCard({
                             aria-expanded={expanded}
                             aria-controls={listId}
                             onClick={() => setExpanded((open) => !open)}
-                            className="flex min-h-12 flex-1 items-center justify-center gap-1 text-[14px] font-bold text-text-muted"
+                            className="flex min-h-12 flex-1 items-center justify-center gap-1 text-[0.875rem] font-bold text-text-muted"
                         >
                             {expanded ? "Show less" : `See all ${activities.length}`}
                             <ChevronDown
@@ -160,7 +160,7 @@ export function ThisWeekRoadCard({
                     ) : null}
                     <Link
                         href={mapHref}
-                        className="flex min-h-12 flex-1 items-center justify-center gap-1 text-[14px] font-bold"
+                        className="flex min-h-12 flex-1 items-center justify-center gap-1 text-[0.875rem] font-bold"
                         style={{
                             color: tone.accent,
                             borderLeft: canExpand

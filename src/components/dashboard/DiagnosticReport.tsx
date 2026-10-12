@@ -289,7 +289,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                                             </div>
                                         </div>
 
-                                        <div className="w-full h-3 bg-white/60 rounded-full mb-3 overflow-hidden">
+                                        <div aria-hidden="true" className="w-full h-3 bg-white/60 rounded-full mb-3 overflow-hidden">
                                             <div
                                                 className={`h-full ${getProgressBarColor(skill.percentCorrect)} transition-[width] duration-500 ease-out`}
                                                 style={{ width: `${skill.percentCorrect}%` }}

@@ -11,8 +11,10 @@ interface ErrorToastProps {
   duration?: number;
 }
 
-export function ErrorToast({ message, onDismiss, onRetry, duration = 6000 }: ErrorToastProps) {
+export function ErrorToast({ message, onDismiss, onRetry, duration = 10000 }: ErrorToastProps) {
   const [isVisible, setIsVisible] = useState(false);
+  // Pause auto-dismiss while the learner is pointing at or tabbed into the toast (WCAG 2.2.1).
+  const [isPaused, setIsPaused] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export function ErrorToast({ message, onDismiss, onRetry, duration = 6000 }: Err
 
   useEffect(() => {
     const showTimer = setTimeout(() => setIsVisible(true), 50);
-    const hideTimer = duration > 0 ? setTimeout(() => {
+    const hideTimer = duration > 0 && !isPaused ? setTimeout(() => {
       setIsVisible(false);
       setTimeout(onDismiss, 300);
     }, duration) : undefined;
@@ -30,7 +32,7 @@ export function ErrorToast({ message, onDismiss, onRetry, duration = 6000 }: Err
       clearTimeout(showTimer);
       if (hideTimer) clearTimeout(hideTimer);
     };
-  }, [duration, onDismiss]);
+  }, [duration, onDismiss, isPaused]);
 
   if (!isMounted) return null;
 
@@ -42,16 +44,23 @@ export function ErrorToast({ message, onDismiss, onRetry, duration = 6000 }: Err
       role="alert"
       aria-live="assertive"
     >
-      <div className="mx-4 flex min-w-[18rem] max-w-[calc(100vw-2rem)] items-center gap-3 rounded-xl border-2 border-error/30 bg-error/10 px-4 py-3 shadow-lg backdrop-blur-sm">
-        <AlertCircle size={20} className="flex-shrink-0 text-error" />
-        <p className="flex-1 text-sm font-medium text-error">{message}</p>
+      <div
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocus={() => setIsPaused(true)}
+        onBlur={() => setIsPaused(false)}
+        className="mx-4 flex min-w-[18rem] max-w-[calc(100vw-2rem)] items-center gap-3 rounded-xl border-2 border-error/40 bg-[var(--color-surface-base)] px-4 py-3 shadow-lg"
+      >
+        <AlertCircle size={20} aria-hidden="true" className="flex-shrink-0 text-error" />
+        <p className="flex-1 text-sm font-medium text-text">{message}</p>
         {onRetry && (
           <button
             onClick={() => {
               setIsVisible(false);
               setTimeout(onRetry, 300);
             }}
-            className="flex-shrink-0 rounded px-2 py-1 text-xs font-bold text-error border border-error/30 hover:bg-error/20 transition-colors"
+            type="button"
+            className="flex-shrink-0 min-h-[44px] rounded-lg px-3 text-sm font-bold text-text border border-error/40 hover:bg-error/10 transition-colors"
           >
             Retry
           </button>
@@ -61,10 +70,11 @@ export function ErrorToast({ message, onDismiss, onRetry, duration = 6000 }: Err
             setIsVisible(false);
             setTimeout(onDismiss, 300);
           }}
+          type="button"
           aria-label="Dismiss"
-          className="flex-shrink-0 rounded p-1 text-error hover:bg-error/20 transition-colors"
+          className="flex-shrink-0 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-text hover:bg-error/10 transition-colors"
         >
-          <X size={18} />
+          <X size={18} aria-hidden="true" />
         </button>
       </div>
     </div>,

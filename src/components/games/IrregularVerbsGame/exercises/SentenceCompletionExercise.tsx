@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { GameLiveRegion } from '../../shared/GameLiveRegion';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -123,21 +124,22 @@ export function SentenceCompletionExercise({
           </p>
           <div className="grid grid-cols-3 gap-1.5">
             <div className="text-center p-1.5 rounded-lg bg-bg-light">
-              <span className="text-[10px] text-text-muted block">V1</span>
+              <span className="text-[0.625rem] text-text-muted block">V1</span>
               <span className="font-semibold text-sm text-text">{exercise.verb.base}</span>
             </div>
             <div className="text-center p-1.5 rounded-lg bg-bg-light">
-              <span className="text-[10px] text-text-muted block">V2</span>
+              <span className="text-[0.625rem] text-text-muted block">V2</span>
               <span className="font-semibold text-sm text-text">{exercise.verb.past}</span>
             </div>
             <div className="text-center p-1.5 rounded-lg bg-bg-light">
-              <span className="text-[10px] text-text-muted block">V3</span>
+              <span className="text-[0.625rem] text-text-muted block">V3</span>
               <span className="font-semibold text-sm text-text">{exercise.verb.pastParticiple}</span>
             </div>
           </div>
         </motion.div>
       )}
 
+      <GameLiveRegion message={submitted ? feedback : null} />
       {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div

@@ -3,7 +3,7 @@ import { LoginCtaLink } from "@/components/ui/LoginCtaLink";
 
 export default function Home() {
     return (
-        <div className="min-h-dvh relative overflow-hidden" style={{
+        <main className="min-h-dvh relative overflow-hidden" style={{
             background: "linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg) 50%, var(--color-bg-gradient-end) 100%)"
         }}>
             {/* Decorative elements */}
@@ -59,6 +59,6 @@ export default function Home() {
                     </p>
                 </header>
             </div>
-        </div>
+        </main>
     );
 }

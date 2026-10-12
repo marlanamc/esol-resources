@@ -163,7 +163,7 @@ function SoloWritingRenderer({
     const hasStarters = (suggestions?.starters?.length ?? 0) > 0;
     const hasVocab = (suggestions?.vocab?.length ?? 0) > 0;
     const hasSuggestions = hasStarters || hasVocab;
-    const timerColor = secondsLeft <= 30 ? "#ef4444" : secondsLeft <= 60 ? "#f97316" : SOLO_COLOR;
+    const timerColor = secondsLeft <= 30 ? "#b91c1c" : secondsLeft <= 60 ? "#c2410c" : SOLO_COLOR;
     const soloProgress = Math.max(0, Math.min(1, secondsLeft / content.timerSeconds));
     const soloDashoffset = SOLO_CIRC * (1 - soloProgress);
 
@@ -312,7 +312,7 @@ function SoloWritingRenderer({
                                 className="rounded-xl p-3"
                                 style={{ backgroundColor: "var(--wr-card)", borderLeft: `4px solid ${SOLO_COLOR}`, boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}
                             >
-                                <p className="text-sm leading-snug" style={{ color: "var(--wr-prompt-text)" }}>{firstPrompt?.text}</p>
+                                <p id="timed-writing-prompt" className="text-sm leading-snug" style={{ color: "var(--wr-prompt-text)" }}>{firstPrompt?.text}</p>
                             </div>
                         </div>
 
@@ -332,8 +332,9 @@ function SoloWritingRenderer({
                                 />
                             </svg>
                             <div className={`absolute inset-0 flex items-center justify-center ${isWarning ? "sw-timer-warn" : ""}`}>
-                                <span className="font-handwritten text-xl font-bold leading-none" style={{ color: timerColor }}>
+                                <span role="timer" className="font-handwritten text-xl font-bold leading-none" style={{ color: timerColor }}>
                                     {formatTime(secondsLeft)}
+                                    {isWarning && <span className="sr-only"> Time almost up</span>}
                                 </span>
                             </div>
                         </div>
@@ -362,7 +363,7 @@ function SoloWritingRenderer({
                                     >
                                         <span className="text-base">💡</span>
                                         <span
-                                            className="text-xs font-semibold text-gray-400 uppercase tracking-wider select-none"
+                                            className="text-xs font-semibold text-text-muted uppercase tracking-wider select-none"
                                             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                                         >
                                             Help
@@ -453,11 +454,14 @@ function SoloWritingRenderer({
                         >
                             <textarea
                                 ref={textareaRef}
+                                aria-labelledby={firstPrompt?.text ? "timed-writing-prompt" : undefined}
+                                aria-label={firstPrompt?.text ? undefined : "Your writing"}
+                                aria-describedby={showWordCount ? "timed-writing-wordcount" : undefined}
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
                                 disabled={isSubmitting}
                                 placeholder="Start writing here…"
-                                className="w-full px-5 text-[var(--text)] text-base resize-none focus:outline-none disabled:opacity-60 rounded-2xl"
+                                className="w-full px-5 text-[var(--text)] text-base resize-none focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#b4532f] disabled:opacity-60 rounded-2xl"
                                 style={{
                                     minHeight: "580px",
                                     backgroundImage:
@@ -476,7 +480,7 @@ function SoloWritingRenderer({
 
                     {showWordCount && (
                         <div className="flex justify-end pr-1">
-                            <span className="font-handwritten text-lg" style={{ color: SOLO_COLOR + "bb" }}>
+                            <span id="timed-writing-wordcount" className="font-handwritten text-lg text-text-muted">
                                 {wordCount} {wordCount === 1 ? "word" : "words"}
                             </span>
                         </div>

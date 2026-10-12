@@ -24,7 +24,7 @@ function VerbTableMobileCards({ table }: { table: VerbTable }) {
                 >
                     {row.map((cell, cellIndex) => (
                         <div key={cellIndex} className="px-3 py-3">
-                            <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-primary">
+                            <p className="mb-1 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-primary">
                                 {table.headers[cellIndex] ?? `Column ${cellIndex + 1}`}
                             </p>
                             <div className="text-sm text-text">
@@ -51,6 +51,7 @@ export function VerbTableDisplay({ table }: VerbTableDisplayProps) {
                         <tr>
                             {table.headers.map((header, index) => (
                                 <th
+                                    scope="col"
                                     key={index}
                                     className="bg-primary text-white border border-primary/20 p-3 text-left text-sm font-semibold min-w-0"
                                 >

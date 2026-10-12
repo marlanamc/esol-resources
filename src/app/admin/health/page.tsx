@@ -109,7 +109,7 @@ function StatusPill({ status }: { status: EnvStatus | "ok" | "fail" }) {
         fail: { bg: "#fee2e2", fg: "#991b1b", label: "Fail" },
         "missing-required": { bg: "#fee2e2", fg: "#991b1b", label: "Missing" },
         invalid: { bg: "#fef3c7", fg: "#92400e", label: "Invalid" },
-        "missing-optional": { bg: "#f1f5f9", fg: "#64748b", label: "Not set" },
+        "missing-optional": { bg: "var(--color-surface-subtle)", fg: "var(--color-text-muted)", label: "Not set" },
     };
     const s = styles[status];
     return (
@@ -135,10 +135,10 @@ export default async function AdminHealthPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "#1e2640" }}>
+                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "var(--color-text)" }}>
                     Site Health
                 </h1>
-                <p className="text-sm mt-1" style={{ color: "#64748b" }}>
+                <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
                     Quick checks for database connectivity and required environment variables
                 </p>
             </div>
@@ -188,7 +188,7 @@ export default async function AdminHealthPage() {
                     </span>
                     <h2
                         className="text-sm font-semibold uppercase tracking-wider"
-                        style={{ color: "#64748b" }}
+                        style={{ color: "var(--color-text-muted)" }}
                     >
                         Database
                     </h2>
@@ -198,20 +198,20 @@ export default async function AdminHealthPage() {
                     style={{ borderColor: "var(--border-subtle)" }}
                 >
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium" style={{ color: "#1e2640" }}>
+                        <span className="text-sm font-medium" style={{ color: "var(--color-text)" }}>
                             Connectivity (SELECT 1)
                         </span>
                         <StatusPill status={db.status} />
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                        <span style={{ color: "#64748b" }}>Latency</span>
-                        <span className="font-mono tabular-nums" style={{ color: "#1e2640" }}>
+                        <span style={{ color: "var(--color-text-muted)" }}>Latency</span>
+                        <span className="font-mono tabular-nums" style={{ color: "var(--color-text)" }}>
                             {db.latencyMs} ms
                         </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                        <span style={{ color: "#64748b" }}>Host</span>
-                        <span className="font-mono text-xs" style={{ color: "#1e2640" }}>
+                        <span style={{ color: "var(--color-text-muted)" }}>Host</span>
+                        <span className="font-mono text-xs" style={{ color: "var(--color-text)" }}>
                             {dbHost}
                         </span>
                     </div>
@@ -237,11 +237,11 @@ export default async function AdminHealthPage() {
                     </span>
                     <h2
                         className="text-sm font-semibold uppercase tracking-wider"
-                        style={{ color: "#64748b" }}
+                        style={{ color: "var(--color-text-muted)" }}
                     >
                         Environment variables
                     </h2>
-                    <span className="text-xs" style={{ color: "#94a3b8" }}>
+                    <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                         keys only · values are never displayed
                     </span>
                 </div>
@@ -251,18 +251,20 @@ export default async function AdminHealthPage() {
                 >
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-[520px]">
+                            <caption className="sr-only">Environment variables and their status</caption>
                             <thead>
                                 <tr
                                     style={{
-                                        background: "#f8f9fc",
-                                        borderBottom: "1px solid rgba(0,0,0,0.06)",
+                                        background: "var(--color-surface-subtle)",
+                                        borderBottom: "1px solid var(--color-border-subtle)",
                                     }}
                                 >
                                     {["Key", "Status", "Description"].map((h) => (
                                         <th
                                             key={h}
+                                            scope="col"
                                             className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider"
-                                            style={{ color: "#94a3b8" }}
+                                            style={{ color: "var(--color-text-muted)" }}
                                         >
                                             {h}
                                         </th>
@@ -273,25 +275,26 @@ export default async function AdminHealthPage() {
                                 {rows.map((r) => (
                                     <tr
                                         key={r.key}
-                                        style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}
+                                        style={{ borderBottom: "1px solid var(--color-border-subtle)" }}
                                     >
-                                        <td
-                                            className="py-2.5 px-4 text-sm font-mono"
-                                            style={{ color: "#1e2640" }}
+                                        <th
+                                            scope="row"
+                                            className="py-2.5 px-4 text-left text-sm font-mono font-normal"
+                                            style={{ color: "var(--color-text)" }}
                                         >
                                             {r.key}
-                                        </td>
+                                        </th>
                                         <td className="py-2.5 px-4">
                                             {r.status === "missing-optional" ? (
-                                                <span className="inline-flex items-center gap-1.5 text-xs" style={{ color: "#94a3b8" }}>
-                                                    <Circle className="h-3 w-3" />
+                                                <span className="inline-flex items-center gap-1.5 text-xs" style={{ color: "var(--color-text-muted)" }}>
+                                                    <Circle className="h-3 w-3" aria-hidden="true" />
                                                     Not set
                                                 </span>
                                             ) : (
                                                 <StatusPill status={r.status} />
                                             )}
                                         </td>
-                                        <td className="py-2.5 px-4 text-xs" style={{ color: "#64748b" }}>
+                                        <td className="py-2.5 px-4 text-xs" style={{ color: "var(--color-text-muted)" }}>
                                             {r.description}
                                         </td>
                                     </tr>

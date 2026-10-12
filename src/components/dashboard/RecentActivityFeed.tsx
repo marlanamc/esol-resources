@@ -140,7 +140,7 @@ export default function RecentActivityFeed({
               <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-xs font-bold">
                 +{entry.points}
               </span>
-              <span className="text-[10px] text-text-light mt-1">
+              <span className="text-[0.625rem] text-text-light mt-1">
                 {relativeTime}
               </span>
             </div>

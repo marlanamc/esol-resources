@@ -23,9 +23,9 @@ export function TeacherPendingReviewsStat({ pendingReviews, mobile = false }: Te
                 <ClipboardIcon className="text-[var(--tone-speaking-accent)]" />
             </div>
             <div>
-                <div className="text-[9px] font-bold uppercase tracking-wide text-text-muted leading-none">Reviews</div>
+                <div className="text-[0.5625rem] font-bold uppercase tracking-wide text-text-muted leading-none">Reviews</div>
                 <div className="text-base font-semibold text-text leading-tight">
-                    {pendingReviews} <span className="text-[10px] font-medium text-text-muted">new</span>
+                    {pendingReviews} <span className="text-[0.625rem] font-medium text-text-muted">new</span>
                 </div>
             </div>
         </Link>
@@ -42,7 +42,7 @@ export function TeacherPendingReviewsStat({ pendingReviews, mobile = false }: Te
                 <ClipboardIcon className="text-warning" size={16} />
             </div>
             <div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Reviews</div>
+                <div className="text-[0.625rem] font-bold uppercase tracking-wider text-text-muted leading-none">Reviews</div>
                 <div className="text-lg font-bold text-text leading-tight">
                     {pendingReviews} <span className="text-xs font-semibold text-text-muted">new</span>
                 </div>

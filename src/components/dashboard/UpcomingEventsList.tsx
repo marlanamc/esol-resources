@@ -123,8 +123,8 @@ export default function UpcomingEventsList({
         <div>
             {(showSyncedLabel || error) && (
                 <div className="flex items-center justify-between mb-2">
-                    {showSyncedLabel && <span className="text-[11px] font-medium text-text-muted/70">Synced to students</span>}
-                    {error && <p className="text-xs text-red-600" role="alert">{error}</p>}
+                    {showSyncedLabel && <span className="text-[0.6875rem] font-medium text-text-muted/70">Synced to students</span>}
+                    {error && <p className="text-xs text-red-700 dark:text-red-300" role="alert">{error}</p>}
                 </div>
             )}
             {events.length === 0 ? (
@@ -176,7 +176,7 @@ export default function UpcomingEventsList({
                                     </div>
                                     <div className="mt-2 ml-4 flex flex-wrap items-center gap-2">
                                         <span
-                                            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-medium"
+                                            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[0.75rem] font-medium"
                                             style={{
                                                 backgroundColor: colors.bg,
                                                 borderColor: colors.border,
@@ -201,7 +201,7 @@ export default function UpcomingEventsList({
                                             <span>{dateLabel}</span>
                                         </span>
                                         <span
-                                            className="inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold"
+                                            className="inline-flex items-center rounded-full border px-2.5 py-1 text-[0.6875rem] font-semibold"
                                             style={{
                                                 backgroundColor: colors.bg,
                                                 borderColor: colors.border,
@@ -217,7 +217,7 @@ export default function UpcomingEventsList({
                                         <button
                                             type="button"
                                             onClick={() => startEditing(ev)}
-                                            className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-sky-100 bg-sky-50 px-2.5 py-1.5 text-[11px] font-medium text-sky-700 hover:text-sky-800"
+                                            className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-sky-100 bg-sky-50 px-2.5 py-1.5 text-[0.6875rem] font-medium text-sky-700 hover:text-sky-800"
                                             aria-label={`Edit ${ev.title}`}
                                         >
                                             Edit
@@ -227,7 +227,7 @@ export default function UpcomingEventsList({
                                 {canManage && editingId === ev.id && (
                                     <div className="dashboard-panel mt-4 ml-5 space-y-3 rounded-2xl p-4" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>
                                         <div className="space-y-1">
-                                            <label htmlFor={`event-title-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Title</label>
+                                            <label htmlFor={`event-title-${ev.id}`} className="text-[0.6875rem] font-semibold text-text-muted uppercase tracking-wide">Title</label>
                                             <input
                                                 type="text"
                                                 value={editTitle}
@@ -238,7 +238,7 @@ export default function UpcomingEventsList({
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                             <div className="space-y-1">
-                                                <label htmlFor={`event-start-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
+                                                <label htmlFor={`event-start-${ev.id}`} className="text-[0.6875rem] font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
                                                 <input
                                                     type="date"
                                                     value={editDate}
@@ -248,7 +248,7 @@ export default function UpcomingEventsList({
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label htmlFor={`event-end-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">End Date</label>
+                                                <label htmlFor={`event-end-${ev.id}`} className="text-[0.6875rem] font-semibold text-text-muted uppercase tracking-wide">End Date</label>
                                                 <input
                                                     type="date"
                                                     value={editEndDate}
@@ -259,7 +259,7 @@ export default function UpcomingEventsList({
                                             </div>
                                         </div>
                                         <div className="space-y-1">
-                                            <label htmlFor={`event-type-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Type</label>
+                                            <label htmlFor={`event-type-${ev.id}`} className="text-[0.6875rem] font-semibold text-text-muted uppercase tracking-wide">Type</label>
                                             <select
                                                 id={`event-type-${ev.id}`}
                                                 value={editType}
@@ -278,7 +278,7 @@ export default function UpcomingEventsList({
                                             </select>
                                         </div>
                                         <div className="space-y-1">
-                                            <label htmlFor={`event-desc-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Description</label>
+                                            <label htmlFor={`event-desc-${ev.id}`} className="text-[0.6875rem] font-semibold text-text-muted uppercase tracking-wide">Description</label>
                                             <textarea
                                                 rows={2}
                                                 value={editDescription}
@@ -292,7 +292,7 @@ export default function UpcomingEventsList({
                                                 type="button"
                                                 onClick={() => handleSave(ev.id)}
                                                 disabled={isSaving === ev.id}
-                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-primary bg-primary px-2.5 py-1.5 text-[11px] font-medium text-white disabled:opacity-50"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-primary bg-primary px-2.5 py-1.5 text-[0.6875rem] font-medium text-white disabled:opacity-50"
                                             >
                                                 {isSaving === ev.id ? "Saving\u2026" : "Save"}
                                             </button>
@@ -302,7 +302,7 @@ export default function UpcomingEventsList({
                                                     setEditingId(null);
                                                     setError("");
                                                 }}
-                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-border px-2.5 py-1.5 text-[0.6875rem] font-medium text-text"
                                                 style={{ backgroundColor: 'var(--dashboard-surface-start)' }}
                                             >
                                                 Cancel
@@ -311,7 +311,7 @@ export default function UpcomingEventsList({
                                                 type="button"
                                                 onClick={() => handleDelete(ev.id)}
                                                 disabled={isDeleting === ev.id}
-                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-red-100 bg-red-50 px-2.5 py-1.5 text-[11px] font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-red-100 bg-red-50 px-2.5 py-1.5 text-[0.6875rem] font-medium text-red-700 dark:text-red-300 hover:text-red-800 disabled:opacity-50"
                                             >
                                                 {isDeleting === ev.id ? "Deleting\u2026" : "Delete"}
                                             </button>

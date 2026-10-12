@@ -16,9 +16,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles: Record<ButtonVariant, string> = {
       primary: 'bg-primary text-white shadow-sm hover:shadow-md hover:brightness-90',
-      secondary: 'bg-secondary text-white shadow-sm hover:shadow-md hover:brightness-90',
+      // Light mode uses the deep fills: white on mid sage / warning clay is below 4.5:1.
+      secondary: 'bg-secondary-dark dark:bg-secondary text-white shadow-sm hover:shadow-md hover:brightness-90',
       success: 'bg-success text-white hover:brightness-90 shadow-sm hover:shadow-md',
-      warning: 'bg-warning text-white hover:brightness-90 shadow-sm hover:shadow-md',
+      warning: 'bg-[#a8472f] dark:bg-warning text-white hover:brightness-90 shadow-sm hover:shadow-md',
       outline: 'bg-transparent border-2 border-border text-text hover:brightness-90',
       ghost: 'bg-transparent text-text hover:brightness-90 hover:bg-bg-light',
     };

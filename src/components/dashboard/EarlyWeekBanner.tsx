@@ -48,7 +48,7 @@ export function EarlyWeekBanner({ weekNumber }: EarlyWeekBannerProps) {
             }}
         >
             <CalendarPlus size={20} aria-hidden className="shrink-0 text-primary" />
-            <p className="m-0 min-w-0 flex-1 text-[15px] leading-snug text-text">
+            <p className="m-0 min-w-0 flex-1 text-[0.9375rem] leading-snug text-text">
                 <strong>Week {weekNumber} is open!</strong>{" "}
                 <Link
                     href={`/dashboard/map?week=${weekNumber}#week-${weekNumber}`}

@@ -122,7 +122,7 @@ export default function ActiveStudentsList({
                 {student.activitiesCompleted} activities • {student.pointsEarned} pts
               </p>
               {student.lastActivityReason && (
-                <p className="text-[11px] text-text-light mt-1 truncate">
+                <p className="text-[0.6875rem] text-text-light mt-1 truncate">
                   {student.lastActivityReason}
                   {student.lastActivityTime && (
                     <span className="ml-1 opacity-70">• {timeAgo(student.lastActivityTime)}</span>

@@ -259,6 +259,7 @@ export default async function IndependentDashboardPage() {
                 {[...unavailable].map(title => <SectionUnavailable key={title} title={title} />)}
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
+                    <h1 className="sr-only">Dashboard</h1>
                     <div className="min-w-0 space-y-5">
                         <IndependentWelcomeCard />
                         <ThisWeekPanel

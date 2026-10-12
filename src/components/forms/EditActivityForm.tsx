@@ -116,11 +116,14 @@ export default function EditActivityForm({ activity }: Props) {
                             <input
                                 type="text"
                                 id="title"
+                                aria-required="true"
+                                aria-invalid={errors.title ? true : undefined}
+                                aria-describedby={errors.title ? "title-error" : undefined}
                                 {...register("title")}
                                 className="form-field mt-1"
                             />
                             {errors.title && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
+                                <p id="title-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
                             )}
                         </div>
 
@@ -186,21 +189,24 @@ export default function EditActivityForm({ activity }: Props) {
                             </label>
                             <textarea
                                 id="content"
+                                aria-required="true"
+                                aria-invalid={errors.content ? true : undefined}
+                                aria-describedby={errors.content ? "content-error content-hint" : "content-hint"}
                                 {...register("content")}
                                 rows={15}
                                 className="form-field font-mono text-sm"
                             />
                             {errors.content && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.content.message}</p>
+                                <p id="content-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.content.message}</p>
                             )}
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p id="content-hint" className="mt-2 text-sm text-text-muted">
                                 Edit the activity content. For JSON-based activities, maintain the JSON structure.
                             </p>
                         </div>
                     </div>
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

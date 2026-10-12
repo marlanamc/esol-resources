@@ -81,13 +81,16 @@ export default function EditClassForm({
                         </label>
                         <input
                             id="name"
+                            aria-required="true"
+                            aria-invalid={errors.name ? true : undefined}
+                            aria-describedby={errors.name ? "name-error" : undefined}
                             type="text"
                             autoComplete="off"
                             {...register("name")}
                             className="form-field mt-1"
                         />
                         {errors.name && (
-                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
+                            <p id="name-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
                         )}
                     </div>
 
@@ -110,6 +113,7 @@ export default function EditClassForm({
                         </label>
                         <select
                             id="sectionSourceClassId"
+                            aria-describedby="sectionSourceClassId-hint"
                             {...register("sectionSourceClassId")}
                             className="form-field mt-1"
                         >
@@ -120,7 +124,7 @@ export default function EditClassForm({
                                 </option>
                             ))}
                         </select>
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                        <p id="sectionSourceClassId-hint" className="mt-2 text-sm text-text-muted">
                             {isInSectionGroup
                                 ? "Change this if you want to move the class to a different section group."
                                 : "Choose a source class to turn this into a synced section."}
@@ -128,7 +132,7 @@ export default function EditClassForm({
                     </div>
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

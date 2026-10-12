@@ -159,21 +159,27 @@ export function JoinForm() {
                         className={`${inputClassName(!!errors.inviteCode)} font-mono tracking-wider text-center uppercase`}
                         maxLength={8}
                         autoComplete="off"
+                        aria-invalid={errors.inviteCode || (inviteValidation && !inviteValidation.valid) ? true : undefined}
+                        aria-describedby="inviteCode-status inviteCode-error"
                     />
-                    {isValidatingCode && (
-                        <p className="mt-2 text-xs text-[var(--color-text-muted)]">Validating code...</p>
-                    )}
-                    {inviteValidation?.valid && (
-                        <p className="mt-2 text-xs text-secondary font-medium">
-                            Invited by {inviteValidation.invitedBy}
-                        </p>
-                    )}
-                    {inviteValidation && !inviteValidation.valid && (
-                        <p className="mt-2 text-xs text-error font-medium">{inviteValidation.error}</p>
-                    )}
-                    {errors.inviteCode && (
-                        <p className="mt-1.5 text-sm text-error">{errors.inviteCode.message}</p>
-                    )}
+                    <div id="inviteCode-status" role="status" aria-live="polite">
+                        {isValidatingCode && (
+                            <p className="mt-2 text-sm text-[var(--color-text-muted)]">Checking code...</p>
+                        )}
+                        {inviteValidation?.valid && (
+                            <p className="mt-2 text-sm text-secondary-dark font-medium">
+                                Invited by {inviteValidation.invitedBy}
+                            </p>
+                        )}
+                        {inviteValidation && !inviteValidation.valid && (
+                            <p className="mt-2 text-sm text-error font-medium">{inviteValidation.error}</p>
+                        )}
+                    </div>
+                    <div id="inviteCode-error">
+                        {errors.inviteCode && (
+                            <p role="alert" className="mt-1.5 text-sm text-error">{errors.inviteCode.message}</p>
+                        )}
+                    </div>
                 </div>
 
                 {/* Username */}
@@ -190,11 +196,13 @@ export function JoinForm() {
                         className={inputClassName(!!errors.username)}
                         maxLength={30}
                         autoComplete="username"
+                        aria-invalid={errors.username ? true : undefined}
+                        aria-describedby="username-msg"
                     />
                     {errors.username ? (
-                        <p className="mt-1.5 text-sm text-error">{errors.username.message}</p>
+                        <p id="username-msg" role="alert" className="mt-1.5 text-sm text-error">{errors.username.message}</p>
                     ) : (
-                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">
+                        <p id="username-msg" className="mt-1.5 text-sm text-[var(--color-text-muted)]">
                             Letters, numbers, underscores, and hyphens only
                         </p>
                     )}
@@ -212,11 +220,13 @@ export function JoinForm() {
                         placeholder="you@example.com"
                         className={inputClassName(!!errors.email)}
                         autoComplete="email"
+                        aria-invalid={errors.email ? true : undefined}
+                        aria-describedby="email-msg"
                     />
                     {errors.email ? (
-                        <p className="mt-1.5 text-sm text-error">{errors.email.message}</p>
+                        <p id="email-msg" role="alert" className="mt-1.5 text-sm text-error">{errors.email.message}</p>
                     ) : (
-                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">Used for password recovery</p>
+                        <p id="email-msg" className="mt-1.5 text-sm text-[var(--color-text-muted)]">Used for password recovery</p>
                     )}
                 </div>
 
@@ -233,21 +243,23 @@ export function JoinForm() {
                             placeholder="••••••••"
                             className={`${inputClassName(!!errors.password)} pr-11`}
                             autoComplete="new-password"
+                            aria-invalid={errors.password ? true : undefined}
+                            aria-describedby="password-msg"
                         />
                         <button
                             type="button"
                             onClick={() => setShowPassword((prev) => !prev)}
                             className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
-                            aria-pressed={showPassword}
-                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            aria-controls="password confirmPassword"
+                            aria-label={showPassword ? "Hide passwords" : "Show passwords"}
                         >
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
                     {errors.password ? (
-                        <p className="mt-1.5 text-sm text-error">{errors.password.message}</p>
+                        <p id="password-msg" role="alert" className="mt-1.5 text-sm text-error">{errors.password.message}</p>
                     ) : (
-                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                        <p id="password-msg" className="mt-1.5 text-sm text-[var(--color-text-muted)]">At least 8 characters</p>
                     )}
                 </div>
 
@@ -263,9 +275,11 @@ export function JoinForm() {
                         placeholder="••••••••"
                         className={inputClassName(!!errors.confirmPassword)}
                         autoComplete="new-password"
+                        aria-invalid={errors.confirmPassword ? true : undefined}
+                        aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
                     />
                     {errors.confirmPassword && (
-                        <p className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
+                        <p id="confirmPassword-error" role="alert" className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
                     )}
                 </div>
 
@@ -280,6 +294,7 @@ export function JoinForm() {
                 <button
                     type="submit"
                     disabled={isDisabled}
+                    aria-describedby={inviteValidation && !inviteValidation.valid ? "inviteCode-status" : undefined}
                     className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${
                         isDisabled
                             ? "bg-[var(--color-text-muted)] cursor-not-allowed pointer-events-none"

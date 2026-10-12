@@ -40,7 +40,7 @@ export function PinnedDailyHabitRow({
             <span
                 className={`dashboard-accent-button inline-flex items-center justify-center gap-1.5 !min-h-0 rounded-full font-semibold tracking-tight whitespace-nowrap transition-transform duration-200 group-hover:translate-x-0.5 ${
                     condensed
-                        ? "min-w-[82px] h-9 px-3 text-[13px] sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                        ? "min-w-[82px] h-9 px-3 text-[0.8125rem] sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
                         : "min-w-[96px] h-10 px-4 text-sm"
                 }`}
                 style={{
@@ -79,28 +79,28 @@ export function PinnedDailyHabitRow({
                     </div>
 
                     <div className="min-w-0 flex-1">
-                        <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-text-muted">
+                        <div className="text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-text-muted">
                             Daily Habit
                         </div>
-                        <div className="mt-1 text-[13px] sm:text-sm font-semibold leading-tight text-text">
+                        <div className="mt-1 text-[0.8125rem] sm:text-sm font-semibold leading-tight text-text">
                             {habit.title}
                         </div>
                         <div className="mt-1.5 flex flex-wrap items-center gap-2">
                             {isDoneToday ? (
                                 <span
-                                    className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                    className="inline-flex px-2 py-0.5 rounded text-[0.5625rem] font-bold uppercase tracking-wide"
                                     style={{ backgroundColor: tone.chipBg, color: tone.chipText }}
                                 >
                                     Done today
                                 </span>
                             ) : null}
                             {!isDoneToday && habit.newCount > 0 ? (
-                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[0.5625rem] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
                                     {visibleNewCount} new
                                 </span>
                             ) : null}
                             {!isDoneToday && habit.dueCount > 0 ? (
-                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[0.5625rem] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
                                     {habit.dueCount} due
                                 </span>
                             ) : null}
@@ -109,7 +109,7 @@ export function PinnedDailyHabitRow({
 
                     <div className="shrink-0 pl-1">
                         <span
-                            className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[13px] font-semibold tracking-tight whitespace-nowrap sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                            className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[0.8125rem] font-semibold tracking-tight whitespace-nowrap sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
                             style={{
                                 "--dashboard-button-accent": tone.accent,
                                 "--dashboard-button-text": tone.chipText,
@@ -148,12 +148,12 @@ export function PinnedDailyHabitRow({
                     </div>
 
                     <div className="min-w-0 flex-1">
-                        <h3 className="text-[14px] font-semibold leading-snug text-text">
+                        <h3 className="text-[0.875rem] font-semibold leading-snug text-text">
                             {habit.title}
                         </h3>
                         <div className="mt-1 flex flex-wrap items-center gap-1.5">
                             <span
-                                className="inline-flex rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                                className="inline-flex rounded px-2 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider"
                                 style={{
                                     backgroundColor: tone.chipBg,
                                     color: tone.chipText,
@@ -161,7 +161,7 @@ export function PinnedDailyHabitRow({
                             >
                                 Vocabulary
                             </span>
-                            <span className="text-[10px] font-medium text-text-muted">
+                            <span className="text-[0.625rem] font-medium text-text-muted">
                                 Completed today
                             </span>
                         </div>
@@ -204,7 +204,7 @@ export function PinnedDailyHabitRow({
                             <div className="flex flex-wrap items-center gap-2">
                                 {!useCondensedDoneLayout && isDoneToday ? (
                                     <span
-                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
+                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[0.625rem] font-semibold"
                                         style={{
                                             backgroundColor: `color-mix(in srgb, ${tone.accent} 18%, var(--surface-elevated))`,
                                             borderColor: `color-mix(in srgb, ${tone.accent} 30%, var(--border-subtle))`,
@@ -216,16 +216,16 @@ export function PinnedDailyHabitRow({
                                 ) : null}
                             </div>
 
-                            <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-text-muted">
+                            <div className="text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-text-muted">
                                 Daily Habit
                             </div>
-                            <h3 className={`${useCondensedDoneLayout ? "mt-1 text-[14px] sm:text-[15px]" : "mt-2 text-[15px] sm:text-base"} font-display font-bold leading-tight text-text`}>
+                            <h3 className={`${useCondensedDoneLayout ? "mt-1 text-[0.875rem] sm:text-[0.9375rem]" : "mt-2 text-[0.9375rem] sm:text-base"} font-display font-bold leading-tight text-text`}>
                                 {habit.title}
                             </h3>
                             {useCondensedDoneLayout && isDoneToday ? (
                                 <div className="mt-1">
                                     <span
-                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
+                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[0.625rem] font-semibold"
                                         style={{
                                             backgroundColor: `color-mix(in srgb, ${tone.accent} 18%, var(--surface-elevated))`,
                                             borderColor: `color-mix(in srgb, ${tone.accent} 30%, var(--border-subtle))`,
@@ -244,12 +244,12 @@ export function PinnedDailyHabitRow({
 
                             <div className={`${useCondensedDoneLayout ? "mt-1" : "mt-2"} flex flex-wrap items-center gap-2`}>
                                 {!isDoneToday && habit.dueCount > 0 ? (
-                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[0.6875rem] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
                                         {habit.dueCount} due today
                                     </span>
                                 ) : null}
                                 {!isDoneToday && habit.newCount > 0 ? (
-                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[0.6875rem] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
                                         {visibleNewCount} new
                                     </span>
                                 ) : null}

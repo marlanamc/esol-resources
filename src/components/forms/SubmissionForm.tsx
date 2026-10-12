@@ -95,24 +95,27 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                 <div>
                     <textarea
                         {...register("submissionContent")}
+                        aria-label="Your answers"
+                        aria-invalid={errors.submissionContent ? true : undefined}
+                        aria-describedby={errors.submissionContent ? "submissionContent-error" : undefined}
                         onFocus={handleTextareaFocus}
                         className="form-field resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
                         placeholder="Type your answers, responses, or work here…"
                         disabled={existingSubmission?.status === "graded"}
                     />
                     {errors.submissionContent && (
-                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.submissionContent.message}</p>
+                        <p id="submissionContent-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.submissionContent.message}</p>
                     )}
                 </div>
 
                 {errors.root && (
-                    <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                    <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                         <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                     </div>
                 )}
 
                 {submitted && existingSubmission?.status === "submitted" && (
-                    <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 p-4">
+                    <div role="status" className="rounded-md bg-blue-50 dark:bg-blue-900/30 p-4">
                         <p className="text-sm text-blue-800 dark:text-blue-200">
                             ✓ Your submission has been submitted. Waiting for teacher review.
                         </p>

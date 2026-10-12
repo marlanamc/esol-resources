@@ -190,14 +190,14 @@ export default async function AdminDiagnosticsPage({
     const reportsWithGaps = quickReports.filter((report) => report.strugglingSkills > 0);
 
     return (
-        <div className="space-y-6 text-[#2d261f]">
+        <div className="space-y-6 text-text">
             <div className="space-y-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#dddeda] px-3 py-1.5 text-xs font-bold text-[#345476]">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-subtle px-3 py-1.5 text-xs font-bold text-text">
                     <BarChart3 className="h-3.5 w-3.5" />
                     Admin · Skill diagnostics
                 </span>
                 <h1 className="font-display text-2xl font-bold sm:text-3xl">Where is the class struggling?</h1>
-                <p className="max-w-2xl text-sm text-[#64748b]">
+                <p className="max-w-2xl text-sm text-text-muted">
                     See which grammar skills need reteaching after students complete grammar guide mini-quizzes.
                     Pick a class and guide below to open a skill-by-skill breakdown.
                 </p>
@@ -208,7 +208,7 @@ export default async function AdminDiagnosticsPage({
                 style={{ borderColor: "var(--border-subtle)" }}
             >
                 <h2 className="mb-1 text-sm font-semibold">Choose a report</h2>
-                <p className="mb-4 text-xs text-[#8b8174]">
+                <p className="mb-4 text-xs text-text-muted">
                     Reports are built from tagged mini-quiz answers. Students must finish a grammar guide quiz first.
                 </p>
                 <AdminDiagnosticsPicker
@@ -236,7 +236,7 @@ export default async function AdminDiagnosticsPage({
                             <h2 className="font-display text-lg font-bold">
                                 {activityData.title.replace(/ Guide$/i, "")}
                             </h2>
-                            <p className="text-sm text-[#64748b]">
+                            <p className="text-sm text-text-muted">
                                 {classData.name} · {enrollmentCount} enrolled student{enrollmentCount === 1 ? "" : "s"}
                             </p>
                         </div>
@@ -254,34 +254,34 @@ export default async function AdminDiagnosticsPage({
                             className="rounded-xl border bg-surface-elevated p-4"
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
-                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
+                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-text-muted">
                                 <Users className="h-3.5 w-3.5" />
                                 Classes
                             </div>
                             <p className="mt-2 text-2xl font-bold">{classes.length}</p>
-                            <p className="text-xs text-[#94a3b8]">with active enrollments</p>
+                            <p className="text-xs text-text-muted">with active enrollments</p>
                         </div>
                         <div
                             className="rounded-xl border bg-surface-elevated p-4"
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
-                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
+                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-text-muted">
                                 <BookOpen className="h-3.5 w-3.5" />
                                 Mini-quizzes
                             </div>
                             <p className="mt-2 text-2xl font-bold">{guides.length}</p>
-                            <p className="text-xs text-[#94a3b8]">released grammar guides</p>
+                            <p className="text-xs text-text-muted">released grammar guides</p>
                         </div>
                         <div
                             className="rounded-xl border bg-surface-elevated p-4"
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
-                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
+                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-text-muted">
                                 <BarChart3 className="h-3.5 w-3.5" />
                                 Reports ready
                             </div>
                             <p className="mt-2 text-2xl font-bold">{quickReports.length}</p>
-                            <p className="text-xs text-[#94a3b8]">class + guide combos with data</p>
+                            <p className="text-xs text-text-muted">class + guide combos with data</p>
                         </div>
                     </div>
 
@@ -291,7 +291,7 @@ export default async function AdminDiagnosticsPage({
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <h2 className="mb-1 text-sm font-semibold">Recent reports with data</h2>
-                            <p className="mb-4 text-xs text-[#8b8174]">
+                            <p className="mb-4 text-xs text-text-muted">
                                 Jump straight to a class guide that already has student answers.
                             </p>
                             <div className="space-y-2">
@@ -299,14 +299,14 @@ export default async function AdminDiagnosticsPage({
                                     <Link
                                         key={`${report.classId}-${report.activityId}`}
                                         href={`/admin/diagnostics?classId=${report.classId}&activityId=${report.activityId}`}
-                                        className="flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 transition-colors hover:bg-[#faf8f4]"
+                                        className="flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 transition-colors hover:bg-surface-subtle"
                                         style={{ borderColor: "var(--border-subtle)" }}
                                     >
                                         <div>
                                             <p className="text-sm font-semibold">
                                                 {report.className} · {report.activityTitle}
                                             </p>
-                                            <p className="text-xs text-[#94a3b8]">
+                                            <p className="text-xs text-text-muted">
                                                 {report.responseCount} answers · last activity{" "}
                                                 {report.lastAttemptAt.toLocaleDateString()}
                                             </p>
@@ -344,9 +344,9 @@ export default async function AdminDiagnosticsPage({
                             className="rounded-xl border bg-surface-elevated px-5 py-8 text-center"
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
-                            <BarChart3 className="mx-auto mb-3 h-8 w-8 text-[#cbd5e1]" />
-                            <p className="text-sm font-semibold text-[#475569]">No skill data yet</p>
-                            <p className="mx-auto mt-1 max-w-md text-xs text-[#94a3b8]">
+                            <BarChart3 className="mx-auto mb-3 h-8 w-8 text-text-muted" />
+                            <p className="text-sm font-semibold text-text">No skill data yet</p>
+                            <p className="mx-auto mt-1 max-w-md text-xs text-text-muted">
                                 Once students complete grammar guide mini-quizzes, reports will appear here automatically.
                                 You can also pick a class and guide above to check a specific combo.
                             </p>
@@ -373,7 +373,7 @@ export default async function AdminDiagnosticsPage({
                 style={{ borderColor: "var(--border-subtle)" }}
             >
                 <h3 className="mb-3 text-sm font-semibold">How to use this page</h3>
-                <ol className="space-y-2 text-sm text-[#64748b] list-decimal list-inside">
+                <ol className="space-y-2 text-sm text-text-muted list-decimal list-inside">
                     <li>Students finish a grammar guide and take its end-of-guide mini-quiz.</li>
                     <li>Select their class and the matching grammar guide to load the report.</li>
                     <li>Review skills below 60% and the students who need extra support on each skill.</li>

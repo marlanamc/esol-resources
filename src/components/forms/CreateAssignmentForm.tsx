@@ -83,6 +83,9 @@ export default function CreateAssignmentForm({
                         </label>
                         <select
                             id="activityId"
+                            aria-required="true"
+                            aria-invalid={errors.activityId ? true : undefined}
+                            aria-describedby={errors.activityId ? "activityId-error" : selectedActivity?.description ? "activityId-desc" : undefined}
                             {...register("activityId", {
                                 onChange: (e) => {
                                     const activity = activities.find((a) => a.id === e.target.value);
@@ -102,10 +105,10 @@ export default function CreateAssignmentForm({
                             ))}
                         </select>
                         {errors.activityId && (
-                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.activityId.message}</p>
+                            <p id="activityId-error" role="alert" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.activityId.message}</p>
                         )}
                         {selectedActivity && (
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{selectedActivity.description}</p>
+                            <p id="activityId-desc" className="mt-2 text-sm text-text-muted">{selectedActivity.description}</p>
                         )}
                     </div>
 
@@ -161,7 +164,7 @@ export default function CreateAssignmentForm({
                     )}
 
                     {errors.root && (
-                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <div role="alert" className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
                             <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}

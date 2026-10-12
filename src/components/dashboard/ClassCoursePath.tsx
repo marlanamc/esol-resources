@@ -356,7 +356,7 @@ function LegacyCoursePath({ assignments }: { assignments: PathActivity[] }) {
                                 aria-expanded={isOpen}
                             >
                                 <span
-                                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold transition-colors ${
+                                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[0.625rem] font-bold transition-colors ${
                                         isUnitDone
                                             ? "border-[var(--tone-grammar-accent,#b05740)] bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--tone-grammar-accent,#b05740)]"
                                             : hasNextUp
@@ -433,7 +433,7 @@ function LegacyCoursePath({ assignments }: { assignments: PathActivity[] }) {
                                                             {label}
                                                         </span>
                                                         {isNext && (
-                                                            <span className="shrink-0 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--tone-vocab-accent,#6a8d73)]">
+                                                            <span className="shrink-0 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] px-2 py-0.5 text-[0.625rem] font-bold text-[var(--tone-vocab-accent,#6a8d73)]">
                                                                 Next up
                                                             </span>
                                                         )}
@@ -451,7 +451,7 @@ function LegacyCoursePath({ assignments }: { assignments: PathActivity[] }) {
 
             {unsequenced.length > 0 && (
                 <div className="mt-4 border-t pt-4" style={{ borderColor: "var(--border-subtle, #ddd6ca)" }}>
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-text-muted">
+                    <p className="mb-2 text-[0.6875rem] font-semibold uppercase tracking-wide text-text-muted">
                         More Activities
                     </p>
                     <div className="space-y-1">

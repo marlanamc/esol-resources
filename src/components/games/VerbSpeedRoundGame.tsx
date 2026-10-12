@@ -12,6 +12,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { GameLiveRegion } from './shared/GameLiveRegion';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 import {
   DEFAULT_VERBS_PER_ROUND,
@@ -387,6 +388,15 @@ function PlayingScreen({
       exit={{ opacity: 0 }}
       className="mx-auto flex max-w-xl flex-col px-4 py-6"
     >
+      <GameLiveRegion
+        message={
+          feedback
+            ? feedback.v2Correct && feedback.v3Correct
+              ? 'Correct!'
+              : `Not correct. The answers are ${feedback.expectedV2} and ${feedback.expectedV3}.`
+            : null
+        }
+      />
       {/* HUD */}
       <div className="mb-4 grid grid-cols-3 gap-2 text-center">
         <HudStat
@@ -495,7 +505,7 @@ function VerbFormField({
     <div>
       <div className="mb-2 flex items-center gap-2">
         <span
-          className={`inline-flex items-center rounded-full border-2 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] shadow-sm ${theme.badgeBg}`}
+          className={`inline-flex items-center rounded-full border-2 px-3 py-1 text-[0.625rem] font-bold uppercase tracking-[0.18em] shadow-sm ${theme.badgeBg}`}
         >
           {theme.label}
         </span>
@@ -552,7 +562,7 @@ function HudStat({
           : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)]'
       }`}
     >
-      <div className="flex items-center justify-center gap-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+      <div className="flex items-center justify-center gap-1 text-[0.625rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
         {icon}
         {label}
       </div>
@@ -702,7 +712,7 @@ function ResultStat({ label, value, highlight }: { label: string; value: string;
           : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)]'
       }`}
     >
-      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+      <p className="text-[0.625rem] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
         {label}
       </p>
       <p className="text-lg font-bold leading-tight">{value}</p>
@@ -733,7 +743,7 @@ function ResultCell({
           <XCircle className="h-3.5 w-3.5 text-[#b05740]" />
         )}
         <span
-          className={`text-[10px] font-bold uppercase tracking-wider ${theme.accentText}`}
+          className={`text-[0.625rem] font-bold uppercase tracking-wider ${theme.accentText}`}
         >
           {theme.label}
         </span>

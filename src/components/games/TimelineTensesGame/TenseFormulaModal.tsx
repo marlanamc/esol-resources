@@ -221,10 +221,10 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
           const rows = TENSES.filter((t) => t.category === category);
           return (
             <div key={category}>
-              <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${CATEGORY_BADGE[category]}`}>
+              <span className={`inline-block px-3 py-1 rounded-full text-[0.625rem] font-black uppercase tracking-[0.2em] ${CATEGORY_BADGE[category]}`}>
                 {category}
               </span>
-              <p className="text-[11px] text-text-muted/50 font-medium mt-1 mb-2 ml-0.5">
+              <p className="text-[0.6875rem] text-text-muted/50 font-medium mt-1 mb-2 ml-0.5">
                 {CATEGORY_USE_CASE[category]}
               </p>
               <div className="overflow-x-auto -mx-1 px-1">
@@ -236,17 +236,17 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
                       return (
                         <tr key={tense} className="border-b border-border/15 last:border-0">
                           <td className="py-2.5 pr-4 w-px">
-                            <div className={`font-black text-[11px] uppercase tracking-wide whitespace-nowrap ${color}`}>
+                            <div className={`font-black text-[0.6875rem] uppercase tracking-wide whitespace-nowrap ${color}`}>
                               {tense}
                             </div>
-                            <div className="text-[10px] text-text-muted/50 font-medium whitespace-nowrap mt-0.5">
+                            <div className="text-[0.625rem] text-text-muted/50 font-medium whitespace-nowrap mt-0.5">
                               {meaning}
                             </div>
                           </td>
                           <td className="py-2.5 pr-4 text-text-muted font-medium whitespace-nowrap">
                             <FormulaText text={formula} />
                           </td>
-                          <td className="py-2.5 pl-4 text-text-muted/75 italic text-[11px] whitespace-nowrap">
+                          <td className="py-2.5 pl-4 text-text-muted/75 italic text-[0.6875rem] whitespace-nowrap">
                             {ex}
                           </td>
                         </tr>
@@ -260,7 +260,7 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
         })}
         {/* Legend */}
         <div className="pt-4 pb-6 border-t border-border/20">
-          <p className="text-[10px] font-black uppercase tracking-widest text-text-muted/40 mb-2">Verb Form Key</p>
+          <p className="text-[0.625rem] font-black uppercase tracking-widest text-text-muted/40 mb-2">Verb Form Key</p>
           <div className="flex flex-wrap gap-2">
             {LEGEND.map(({ code, desc, eg }) => (
               <div key={code} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-border/30 text-xs">

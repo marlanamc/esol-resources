@@ -12,6 +12,8 @@ import {
   deterministicShuffle,
 } from "./matching-game-parse";
 import { InteractionMode } from "./matching-game-shared";
+import { GameLiveRegion } from "./shared/GameLiveRegion";
+import { isActivationKey } from "./shared/activateOnKey";
 
 type SortCategory = "action" | "description";
 
@@ -156,21 +158,29 @@ export function ActionDescriptionSortingUI({
                 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); }
             }
 
-            .animate-bounce-back {
+            @media (prefers-reduced-motion: no-preference) {
+.animate-bounce-back {
                 animation: bounce-back 0.5s ease-out;
             }
+}
 
-            .animate-success-pulse {
+            @media (prefers-reduced-motion: no-preference) {
+.animate-success-pulse {
                 animation: success-pulse 0.6s ease-in-out;
             }
+}
 
-            .animate-sentence-reveal {
+            @media (prefers-reduced-motion: no-preference) {
+.animate-sentence-reveal {
                 animation: sentence-reveal-in 0.3s ease-out;
             }
+}
 
-            .drop-zone-ready {
+            @media (prefers-reduced-motion: no-preference) {
+.drop-zone-ready {
                 animation: drop-zone-pulse 1.5s ease-in-out infinite;
             }
+}
 
             .drop-zone-correct {
                 border-color: #22c55e !important;
@@ -533,6 +543,17 @@ export function ActionDescriptionSortingUI({
 
   return (
     <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
+<GameLiveRegion message={gameState.showExplanation && currentWord
+                        ? `Not correct. "${currentWord.word}" is ${CATEGORY_LABELS[currentWord.category]}.`
+                        : reveal
+                        ? `Correct! ${reveal.sentence.replace(/[*_]/g, "")}`
+                        : dropZoneFeedback?.isCorrect
+                        ? "Correct!"
+                        : isRoundComplete
+                        ? isGameComplete
+                            ? "You did it! You completed all rounds."
+                            : `Great job! Round ${currentRound.roundNumber} complete.`
+                        : null} />
       {/* Points Toast */}
       {pointsToast && (
         <PointsToast
@@ -603,10 +624,20 @@ export function ActionDescriptionSortingUI({
               onDragStart={handleWordDragStart}
               onDragEnd={handleWordDragEnd}
               onClick={handleWordTap}
+role="button"
+tabIndex={0}
+aria-pressed={interactionMode === InteractionMode.WordSelected}
+aria-label={`Word to sort: ${currentWord.word}. Press Enter to select, then choose a category.`}
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleWordTap();
+}
+}}
               className={`
                                 p-6 md:p-8 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
                                 text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
-                                touch-manipulation select-none
+                                touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
                                 ${
                                   interactionMode === InteractionMode.WordSelected
@@ -634,7 +665,7 @@ export function ActionDescriptionSortingUI({
           <div className="w-full max-w-md animate-sentence-reveal">
             <div className="rounded-2xl border-4 border-green-400 bg-green-50 p-5 md:p-6 shadow-lg dark:border-green-500/70 dark:bg-green-500/10">
               <div className="mb-3 flex items-center gap-2">
-                <span className="text-2xl">✅</span>
+                <span className="text-2xl" aria-hidden="true">✅</span>
                 <span className="text-sm font-bold uppercase tracking-wide text-green-800 dark:text-green-300">
                   {CATEGORY_LABELS[reveal.category]}
                 </span>
@@ -664,6 +695,15 @@ export function ActionDescriptionSortingUI({
                 onDragOver={handleDropZoneDragOver}
                 onDrop={(e) => handleDropZoneDrop(e, "action")}
                 onClick={() => handleDropZoneTap("action")}
+role="button"
+tabIndex={0}
+aria-label="Action. Use a verb"
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("action");
+}
+}}
                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -684,7 +724,7 @@ export function ActionDescriptionSortingUI({
                                     }
                                 `}
               >
-                <div className="text-4xl md:text-5xl mb-2">🏃</div>
+                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">🏃</div>
                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                   Action
                 </div>
@@ -698,6 +738,15 @@ export function ActionDescriptionSortingUI({
                 onDragOver={handleDropZoneDragOver}
                 onDrop={(e) => handleDropZoneDrop(e, "description")}
                 onClick={() => handleDropZoneTap("description")}
+role="button"
+tabIndex={0}
+aria-label="Description. Use am, is, are"
+onKeyDown={(e) => {
+if (isActivationKey(e)) {
+e.preventDefault();
+handleDropZoneTap("description");
+}
+}}
                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
@@ -718,7 +767,7 @@ export function ActionDescriptionSortingUI({
                                     }
                                 `}
               >
-                <div className="text-4xl md:text-5xl mb-2">🪞</div>
+                <div className="text-4xl md:text-5xl mb-2" aria-hidden="true">🪞</div>
                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                   Description
                 </div>
@@ -730,7 +779,7 @@ export function ActionDescriptionSortingUI({
           ) : (
             /* Round Completion Message */
             <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl">
-              <div className="text-6xl md:text-7xl mb-4">🎉</div>
+              <div className="text-6xl md:text-7xl mb-4" aria-hidden="true">🎉</div>
               {isGameComplete ? (
                 <>
                   <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -771,7 +820,7 @@ export function ActionDescriptionSortingUI({
           <div className="w-full max-w-md">
             <div className="bg-red-50 border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg dark:border-red-500/60 dark:bg-red-500/10">
               <div className="flex items-start gap-3 mb-3">
-                <span className="text-2xl">❌</span>
+                <span className="text-2xl" aria-hidden="true">❌</span>
                 <div className="flex-1">
                   <h3 className="font-bold text-red-900 text-base md:text-lg dark:text-red-200">
                     Not quite!

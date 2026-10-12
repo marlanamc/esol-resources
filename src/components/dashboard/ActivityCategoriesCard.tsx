@@ -229,6 +229,7 @@ export const ActivityCard = React.memo(function ActivityCard({
             {/* Progress background fill */}
             {showProgressState && (
                 <div
+                    aria-hidden="true"
                     className="absolute inset-0 rounded-xl pointer-events-none"
                     style={{
                         background: tenseTexture
@@ -300,7 +301,7 @@ export const ActivityCard = React.memo(function ActivityCard({
                         <div className="flex flex-1 min-w-0 flex-wrap items-center gap-2">
                             {vocabThemeChip && (
                                 <span
-                                    className="px-2 py-0.5 rounded-full border font-medium text-[11px]"
+                                    className="px-2 py-0.5 rounded-full border font-medium text-[0.6875rem]"
                                     style={{
                                         backgroundColor: `${tenseTexture?.color ?? '#2563eb'}08`,
                                         borderColor: `${tenseTexture?.color ?? '#2563eb'}2A`,
@@ -312,7 +313,7 @@ export const ActivityCard = React.memo(function ActivityCard({
                             )}
                             {vocabWordsChip && (
                                 <span
-                                    className="px-2 py-0.5 rounded-full border font-medium text-[11px]"
+                                    className="px-2 py-0.5 rounded-full border font-medium text-[0.6875rem]"
                                     style={{
                                         backgroundColor: `${tenseTexture?.color ?? '#2563eb'}12`,
                                         borderColor: `${tenseTexture?.color ?? '#2563eb'}30`,
@@ -324,7 +325,7 @@ export const ActivityCard = React.memo(function ActivityCard({
                             )}
                             {verbQuizWordsChip && (
                                 <span
-                                    className="px-2 py-0.5 rounded-full border font-medium text-[11px]"
+                                    className="px-2 py-0.5 rounded-full border font-medium text-[0.6875rem]"
                                     style={{
                                         backgroundColor: `${tenseTexture?.color ?? '#15803d'}12`,
                                         borderColor: `${tenseTexture?.color ?? '#15803d'}30`,
@@ -336,7 +337,7 @@ export const ActivityCard = React.memo(function ActivityCard({
                             )}
                             {grammarChipCopy && (
                                 <span
-                                    className="px-2 py-0.5 rounded-full font-semibold text-[11px]"
+                                    className="px-2 py-0.5 rounded-full font-semibold text-[0.6875rem]"
                                     style={{
                                         backgroundColor: `${tenseTexture?.color ?? '#64748b'}14`,
                                         color: tenseTexture?.color ?? '#475569',
@@ -348,24 +349,24 @@ export const ActivityCard = React.memo(function ActivityCard({
                             {!hideTypeChip && (
                                 vocabType ? (
                                     <span
-                                        className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                                        className={`inline-flex items-center px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
                                     >
                                         {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
                                     </span>
                                 ) : (
-                                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 font-semibold rounded-full text-[10px] uppercase tracking-wide">
+                                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 font-semibold rounded-full text-[0.625rem] uppercase tracking-wide">
                                         {activity.type}
                                     </span>
                                 )
                             )}
                             {points !== undefined && points > 0 && !showCompletedState && (
-                                <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold text-[11px]">
+                                <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold text-[0.6875rem]">
                                     +{points} pts
                                 </span>
                             )}
                         </div>
                         {showProgressState && (
-                            <span className="ml-auto shrink-0 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[11px]">
+                            <span className="ml-auto shrink-0 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[0.6875rem]">
                                 {progressChipLabel}
                             </span>
                         )}
@@ -375,7 +376,7 @@ export const ActivityCard = React.memo(function ActivityCard({
 
             {/* Progress bar - now more subtle and integrated */}
             {showProgressState && (
-                <div className="mt-3 h-1.5 bg-gray-200/50 rounded-full overflow-hidden relative z-10 border border-gray-200/30">
+                <div role="progressbar" aria-label="Activity progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(Math.min(progressValue, 100))} className="mt-3 h-1.5 bg-gray-200/50 rounded-full overflow-hidden relative z-10 border border-gray-200/30">
                     <div
                         className="h-full bg-primary/80 rounded-full transition-all duration-500 shadow-[0_0_8px_rgba(var(--primary-rgb),0.2)]"
                         style={{ width: `${Math.min(progressValue, 100)}%` }}

@@ -136,7 +136,7 @@ function FormulaChain({ group }: { group: GerundInfinitiveGroup }) {
       transition={{ delay: 0.1 }}
       className="p-5 rounded-2xl bg-gradient-to-br from-bg to-border/10 border-2 border-border shadow-sm"
     >
-      <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-4">Pattern formula</p>
+      <p className="text-[0.625rem] font-bold uppercase tracking-widest text-text-muted mb-4">Pattern formula</p>
       <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
         {tokens.map((token, i) => {
           if (token.kind === 'break') {
@@ -211,7 +211,7 @@ function PatternExampleDiagram({ group }: { group: GerundInfinitiveGroup }) {
       transition={{ delay: 0.2 }}
       className="p-5 rounded-2xl bg-white dark:bg-[#162b3d] border-2 border-border shadow-sm"
     >
-      <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-4">Example</p>
+      <p className="text-[0.625rem] font-bold uppercase tracking-widest text-text-muted mb-4">Example</p>
       <div className="space-y-4">
         <p className="text-xl font-semibold text-text leading-relaxed">
           {renderedExample}
@@ -618,11 +618,11 @@ export function GerundInfinitiveWalkthroughScreen({
                     >
                       <div className="flex-shrink-0 flex flex-col items-center gap-1 pt-0.5">
                         {/* Trigger badge */}
-                        <span className="px-2 py-0.5 rounded-md text-[10px] font-black border bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-700 whitespace-nowrap max-w-[9rem] text-center leading-tight">
+                        <span className="px-2 py-0.5 rounded-md text-[0.625rem] font-black border bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-700 whitespace-nowrap max-w-[9rem] text-center leading-tight">
                           {getTriggerBadgeLabel(ex.category, ex.trigger, ex.sentence)}
                         </span>
                         {/* Form badge */}
-                        <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${badgeClass}`}>
+                        <span className={`px-2 py-0.5 rounded-md text-[0.625rem] font-bold border ${badgeClass}`}>
                           {isGerund ? '-ing' : isInfinitive ? 'to +' : 'both'}
                         </span>
                       </div>
@@ -888,7 +888,7 @@ function GICheckpointQuestionCard({
                 {isAnswered && isSelected && !isThisCorrect && <XCircle size={16} className="flex-shrink-0" />}
                 <span className="text-base font-bold">{option.label}</span>
               </span>
-              <span className="text-[11px] font-medium text-text-muted uppercase tracking-wide">{option.hint}</span>
+              <span className="text-[0.6875rem] font-medium text-text-muted uppercase tracking-wide">{option.hint}</span>
             </button>
           );
         })}

@@ -157,6 +157,7 @@ export function AvatarSelector({
                     
                     <button
                         onClick={() => setSelectionMode("avatar")}
+                        aria-pressed={selectionMode === "avatar"}
                         className={`
                             relative z-10 px-6 py-3 rounded-full text-sm font-semibold
                             transition-all duration-300 flex items-center gap-2
@@ -171,6 +172,7 @@ export function AvatarSelector({
                     </button>
                     <button
                         onClick={() => setSelectionMode("color")}
+                        aria-pressed={selectionMode === "color"}
                         className={`
                             relative z-10 px-6 py-3 rounded-full text-sm font-semibold
                             transition-all duration-300 flex items-center gap-2
@@ -205,6 +207,7 @@ export function AvatarSelector({
                                 <button
                                     key={category.id}
                                     onClick={() => setSelectedCategory(category.id as AvatarCategory)}
+                                    aria-pressed={selectedCategory === category.id}
                                     className={`
                                         flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium
                                         transition-all duration-200 flex items-center gap-1.5
@@ -236,6 +239,8 @@ export function AvatarSelector({
                                 <button
                                     key={avatar.id}
                                     onClick={() => handleAvatarSelect(avatar.id)}
+                                    aria-pressed={selectedAvatar === avatar.id}
+                                    aria-label={avatar.name}
                                     className={`
                                         group relative aspect-square rounded-xl
                                         flex items-center justify-center
@@ -278,6 +283,8 @@ export function AvatarSelector({
                                     <button
                                         key={color.id}
                                         onClick={() => handleColorSelect(color.id)}
+                                        aria-pressed={selectedColor === color.id}
+                                        aria-label={`${color.name} background`}
                                         className={`
                                             group relative w-12 h-12 sm:w-11 sm:h-11 rounded-full
                                             transition-all duration-200

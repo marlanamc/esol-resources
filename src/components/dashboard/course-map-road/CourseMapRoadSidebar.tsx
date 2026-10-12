@@ -38,14 +38,14 @@ export function CourseMapRoadSidebar({ model, showMonths = true }: Props) {
                     >
                         <span aria-hidden className="h-8 w-2.5 shrink-0 rounded" style={{ background: tone.accent, opacity: unit.isLocked ? 0.45 : 1 }} />
                         <span className="min-w-0 flex-1">
-                            <span className="block text-[11px] font-extrabold uppercase tracking-[.08em]" style={{ color: tone.accent }}>
+                            <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.08em]" style={{ color: tone.accent }}>
                                 {eyebrow}
                             </span>
-                            <span className={`block truncate text-[15px] leading-tight font-bold ${unit.isLocked ? "text-text-muted" : "text-text"}`}>
+                            <span className={`block truncate text-[0.9375rem] leading-tight font-bold ${unit.isLocked ? "text-text-muted" : "text-text"}`}>
                                 {unit.title}
                             </span>
                         </span>
-                        <span className="flex shrink-0 items-center gap-1 text-[13px] font-bold whitespace-nowrap text-text-muted">
+                        <span className="flex shrink-0 items-center gap-1 text-[0.8125rem] font-bold whitespace-nowrap text-text-muted">
                             {unit.doneWeeks}/{unit.weeks.length}
                             {allDone ? <Check size={14} aria-label="Done" style={{ color: "var(--success-color)" }} /> : null}
                         </span>
