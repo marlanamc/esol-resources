@@ -181,9 +181,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({
       leaderboard,
       userRank: viewerEntry?.rank ?? null,
+      viewerPoints: viewerEntry?.weeklyPoints ?? 0,
+      viewerCompletedWeeks: viewerEntry?.completedWeeksCount ?? 0,
       viewerEntry: viewerOutsideList ? viewerEntry : null,
       timeframe,
       periodLabel: period.label,
+      // Lets the learner card count down days left in the week.
+      periodEnd: period.end ? period.end.toISOString() : null,
       currentWeekLabel: leaderboardOptions?.independentOnly ? 'This week' : getLeaderboardWeekLabel(now),
       previousWeekLabel: leaderboardOptions?.independentOnly ? 'Last week' : getLeaderboardWeekLabel(now, true),
       lastWeekPoints: lastWeekTotal?._sum.points ?? 0,
