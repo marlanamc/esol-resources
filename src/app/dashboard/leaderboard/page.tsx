@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { TrophyIcon, FlameIcon, CheckCircleIcon } from '@/components/icons/Icons';
+import Link from 'next/link';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
@@ -72,6 +73,9 @@ const TROPHY_TILE_BG =
 type LeaderboardPayload = {
   leaderboard: LeaderboardEntry[];
   userRank: number | null;
+  viewerPoints: number;
+  viewerCompletedWeeks: number;
+  periodEnd: string | null;
   /** The viewer's own row when they rank below the visible all-time list. */
   viewerEntry: LeaderboardEntry | null;
   classId: string | null;
@@ -123,6 +127,9 @@ async function fetchLeaderboard({
   return {
     leaderboard: data.leaderboard || [],
     userRank: data.userRank || null,
+    viewerPoints: data.viewerPoints ?? 0,
+    viewerCompletedWeeks: data.viewerCompletedWeeks ?? 0,
+    periodEnd: data.periodEnd ?? null,
     viewerEntry: data.viewerEntry || null,
     classId: data.classId || null,
     periodLabel: data.periodLabel,
@@ -137,6 +144,9 @@ export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [viewerPoints, setViewerPoints] = useState(0);
+  const [viewerCompletedWeeks, setViewerCompletedWeeks] = useState(0);
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [periodLabel, setPeriodLabel] = useState('');
   const [currentWeekLabel, setCurrentWeekLabel] = useState('This week');
   const [previousWeekLabel, setPreviousWeekLabel] = useState('Last week');
@@ -154,6 +164,11 @@ export default function LeaderboardPage() {
   const applyPayload = (payload: LeaderboardPayload) => {
     setLeaderboard(payload.leaderboard);
     setUserRank(payload.userRank);
+    setViewerPoints(payload.viewerPoints);
+    setViewerCompletedWeeks(payload.viewerCompletedWeeks);
+    setDaysLeft(payload.periodEnd
+      ? Math.max(1, Math.ceil((new Date(payload.periodEnd).getTime() - Date.now()) / 86_400_000))
+      : null);
     setViewerEntry(payload.viewerEntry);
     setPeriodLabel(payload.periodLabel);
     setCurrentWeekLabel(payload.currentWeekLabel);
@@ -310,6 +325,12 @@ export default function LeaderboardPage() {
   // Historical chips describe the selected course week, never the whole unit.
   const isLastWeek = timeframe === 'last-week';
   const showWeekBadges = !isAllTime;
+  // Once the learner has points this week, a compact this-week / last-week card replaces the saved row.
+  const showWeekCard = timeframe === 'week' && viewerRole === 'student' && viewerPoints > 0;
+  // All time gets the same card shape: total points and weeks finished.
+  const showAllTimeCard = isAllTime && viewerRole === 'student' && viewerPoints > 0;
+  // Students see last week's saved points as one line; it doubles as the "see last week" link.
+  const showSavedRow = timeframe === 'week' && viewerRole === 'student' && lastWeekPoints > 0 && !showWeekCard;
   const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
     const showStreak = !isLastWeek && entry.currentStreak > 0;
     const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
@@ -443,11 +464,11 @@ export default function LeaderboardPage() {
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
                   {scope === 'independent' ? 'Self-paced Leaderboard' : isAllTime ? 'All-Time Leaderboard' : `${isLastWeek ? previousWeekLabel : currentWeekLabel} Leaderboard`}
                 </h1>
-                <p className="text-[0.8125rem] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
-                  {isAllTime
-                    ? 'Every effort adds up'
-                    : isLastWeek ? 'Celebrating last week’s effort' : 'A fresh chance to learn and earn'}
-                </p>
+                {isLastWeek && (
+                  <p className="text-[0.8125rem] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
+                    Celebrating last week’s effort
+                  </p>
+                )}
               </div>
             </div>
 
@@ -535,17 +556,18 @@ export default function LeaderboardPage() {
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
         <div className="flex justify-center">{timeframeTabs}</div>
 
+        {!isAllTime && (
         <section className="text-center space-y-2" aria-label="Scoring period">
-          <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>{periodLabel}</p>
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-            {isAllTime ? 'Your earned points stay with you.' : 'New standings every Monday at midnight, Eastern time. Your earned points stay with you.'}
+            <span className="font-semibold" style={{ color: 'var(--color-text)' }}>{periodLabel}</span>
+            <span title="Monday at 12:00 a.m., Eastern time"> · New week every Monday</span>
           </p>
           {isLastWeek && scope !== 'independent' && previousWeekLabel.startsWith('Week ') && (
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               Quiz and Week done show saved completion for {previousWeekLabel}, including catch-up work.
             </p>
           )}
-          {!isAllTime && (
+          {!showSavedRow && !showWeekCard && (
             <button type="button" className="min-h-11 px-3 text-sm font-semibold underline underline-offset-4"
               style={{ color: 'var(--color-primary)' }}
               onClick={() => void onTimeframeChange(isLastWeek ? 'week' : 'last-week')}>
@@ -553,14 +575,144 @@ export default function LeaderboardPage() {
             </button>
           )}
         </section>
-        {timeframe === 'week' && viewerRole === 'student' && (
-          <section className="rounded-2xl border px-5 py-4" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }} aria-label="Your weekly recap">
-            <h2 className="font-bold" style={{ color: 'var(--color-text)' }}>{currentWeekLabel}: a fresh start!</h2>
-            <p className="mt-1 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              {lastWeekPoints > 0
-                ? `You earned ${lastWeekPoints.toLocaleString()} points last week. Your effort counts, and those points are saved. Keep building on your progress!`
-                : 'Every meaningful attempt counts. Practice and earn points at your own pace—your total keeps growing across weeks.'}
-            </p>
+        )}
+        {showAllTimeCard && (
+          <section
+            className="grid grid-cols-2 overflow-hidden rounded-2xl border"
+            style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}
+            aria-label="Your total points"
+          >
+            <div className="flex min-w-0 flex-col gap-0.5 px-3 py-2 sm:px-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>All time</span>
+                {userRank && (
+                  <span
+                    className="rounded-full px-2 text-xs font-bold tabular-nums"
+                    style={{ color: 'var(--color-primary)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 12%, var(--surface-elevated))' }}
+                    aria-label={`Rank ${userRank}`}
+                  >
+                    #{userRank}
+                  </span>
+                )}
+              </div>
+              <span className="text-xl font-bold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+                {viewerPoints.toLocaleString()}
+                <span className="ml-1 text-sm font-semibold" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text-muted)' }}>pts</span>
+              </span>
+            </div>
+            <div className="flex min-w-0 flex-col gap-0.5 border-l px-3 py-2 sm:px-4" style={{ backgroundColor: 'var(--surface-contrast)', borderColor: 'var(--border-subtle)' }}>
+              <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>Weeks done</span>
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl font-bold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+                  {viewerCompletedWeeks}
+                  <span className="ml-1 text-sm font-semibold" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text-muted)' }}>
+                    {viewerCompletedWeeks === 1 ? 'week' : 'weeks'}
+                  </span>
+                </span>
+                {viewerCompletedWeeks > 0 && (
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--success-color)', color: 'var(--surface-elevated)' }} aria-hidden>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12l5 5 9-10" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+        {showWeekCard && (
+          <section
+            className="grid grid-cols-2 overflow-hidden rounded-2xl border"
+            style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}
+            aria-label="Your points"
+          >
+            <div className="flex min-w-0 flex-col gap-0.5 px-3 py-2 sm:px-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>{currentWeekLabel}</span>
+                {userRank && (
+                  <span
+                    className="rounded-full px-2 text-xs font-bold tabular-nums"
+                    style={{ color: 'var(--color-primary)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 12%, var(--surface-elevated))' }}
+                    aria-label={`Rank ${userRank}`}
+                  >
+                    #{userRank}
+                  </span>
+                )}
+              </div>
+              <div className="flex min-w-0 items-center gap-2.5">
+                <span className="text-xl font-bold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+                  {viewerPoints.toLocaleString()}
+                  <span className="ml-1 text-sm font-semibold" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text-muted)' }}>pts</span>
+                </span>
+                {daysLeft !== null && (
+                  <span className="flex min-w-0 flex-1 items-center gap-1.5 whitespace-nowrap text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    <span className="hidden h-1.5 max-w-28 min-w-7 flex-1 overflow-hidden rounded-full sm:block" style={{ backgroundColor: 'var(--border-subtle)' }} aria-hidden>
+                      <span className="block h-full rounded-full" style={{ width: `${Math.round(((7 - daysLeft) / 7) * 100)}%`, minWidth: '6%', backgroundColor: 'var(--color-primary)' }} />
+                    </span>
+                    {daysLeft} {daysLeft === 1 ? 'day' : 'days'} left
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="flex min-w-0 flex-col gap-0.5 border-l px-3 py-2 sm:px-4" style={{ backgroundColor: 'var(--surface-contrast)', borderColor: 'var(--border-subtle)' }}>
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>{previousWeekLabel}</span>
+                <button
+                  type="button"
+                  className="-my-2 min-h-11 px-1 text-sm font-bold"
+                  style={{ color: 'var(--color-primary)' }}
+                  onClick={() => void onTimeframeChange('last-week')}
+                  aria-label={`See ${previousWeekLabel}`}
+                >
+                  See →
+                </button>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl font-bold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+                  {lastWeekPoints.toLocaleString()}
+                  <span className="ml-1 text-sm font-semibold" style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text-muted)' }}>pts</span>
+                </span>
+                {lastWeekPoints > 0 && (
+                  <span className="flex items-center gap-1 text-xs font-bold" style={{ color: 'var(--success-color)' }}>
+                    <span className="flex h-4 w-4 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--success-color)', color: 'var(--surface-elevated)' }} aria-hidden>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12l5 5 9-10" />
+                      </svg>
+                    </span>
+                    Saved
+                  </span>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+        {showSavedRow && (
+          <section
+            className="flex items-center gap-3 rounded-2xl py-1.5 pl-4 pr-3 text-sm sm:text-base"
+            style={{ backgroundColor: 'color-mix(in srgb, var(--success-color) 16%, var(--surface-elevated))', color: 'var(--color-text)' }}
+            aria-label="Your points from last week"
+          >
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+              style={{ backgroundColor: 'var(--success-color)', color: 'var(--surface-elevated)' }}
+              aria-hidden
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12l5 5 9-10" />
+              </svg>
+            </span>
+            <span className="m-0 min-w-0 flex-1 leading-snug">
+              <span className="font-bold">{previousWeekLabel === 'Last week' ? 'Last week' : previousWeekLabel}:</span>{' '}
+              {lastWeekPoints.toLocaleString()} points saved
+            </span>
+            <button
+              type="button"
+              className="min-h-11 shrink-0 whitespace-nowrap px-1 font-bold"
+              style={{ color: 'var(--color-primary)' }}
+              onClick={() => void onTimeframeChange('last-week')}
+            >
+              {previousWeekLabel === 'Last week' ? 'See last week' : `See ${previousWeekLabel}`} →
+            </button>
           </section>
         )}
 
@@ -792,7 +944,55 @@ export default function LeaderboardPage() {
             </div>
           </div>
         )}
-        {leaderboard.length === 0 && (
+        {leaderboard.length === 0 && !isLastWeek && (
+          <section
+            className="flex flex-col items-center gap-6 rounded-2xl border px-4 pt-10 pb-8 text-center sm:px-6"
+            style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}
+            aria-label="No points yet this week"
+          >
+            {/* Empty podium in 2-1-3 order, matching the real podium */}
+            <div className="flex items-end justify-center gap-2.5 sm:gap-4" aria-hidden>
+              {([2, 1, 3] as const).map((place) => {
+                const isFirst = place === 1;
+                return (
+                  <div key={place} className="flex w-[84px] flex-col items-center gap-2 sm:w-28">
+                    <span
+                      className={`flex items-center justify-center rounded-full border-2 border-dashed font-bold ${isFirst ? 'h-14 w-14 text-sm animate-medal-float' : 'h-11 w-11 text-lg'}`}
+                      style={isFirst
+                        ? { borderColor: 'var(--color-primary)', color: 'var(--color-primary)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 12%, var(--surface-elevated))' }
+                        : { borderColor: 'var(--border-subtle)', color: 'var(--color-text-muted)' }}
+                    >
+                      {isFirst && viewerRole === 'student' ? 'You?' : '?'}
+                    </span>
+                    <span
+                      className={`flex w-full items-center justify-center rounded-t-xl rounded-b-sm border-2 border-dashed text-2xl font-bold ${isFirst ? 'h-[86px] sm:h-28' : place === 2 ? 'h-16 sm:h-20' : 'h-12 sm:h-[60px]'}`}
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        borderColor: isFirst ? 'rgba(217,169,60,0.75)' : 'var(--border-subtle)',
+                        color: isFirst ? 'rgb(217,169,60)' : 'var(--color-text-muted)',
+                      }}
+                    >
+                      {place}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-xl font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+              Who will be first?
+            </p>
+            {viewerRole === 'student' && (
+              <Link
+                href="/dashboard/activities"
+                className="inline-flex min-h-11 items-center rounded-xl px-5 font-bold"
+                style={{ background: 'var(--color-primary)', color: 'var(--text-on-accent)' }}
+              >
+                Start an activity
+              </Link>
+            )}
+          </section>
+        )}
+        {leaderboard.length === 0 && isLastWeek && (
           <div className="relative overflow-hidden border rounded-2xl text-center py-14 px-6" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
             <div className="relative inline-flex items-center justify-center mb-5">
               <div
@@ -808,10 +1008,10 @@ export default function LeaderboardPage() {
               </div>
             </div>
             <p className="text-xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-              {isLastWeek ? 'No points recorded last week' : 'The podium is wide open'}
+              No points recorded last week
             </p>
             <p className="text-sm max-w-sm mx-auto leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              {isLastWeek ? 'There is a new chance to practice and earn points this week.' : 'Practice an activity to earn points. Meaningful effort counts, even while you are still learning.'}
+              There is a new chance to practice and earn points this week.
             </p>
           </div>
         )}

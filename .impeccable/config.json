@@ -11,6 +11,39 @@
         ],
         "createdAt": "2026-10-12T01:11:01.412Z",
         "reason": "User confirmed: .blank is the fill-in-the-blank underline, not a card accent"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/app/dashboard/leaderboard/page.tsx"
+        ],
+        "createdAt": "2026-10-12T04:54:50.365Z",
+        "reason": "Medal colors are intentional"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/app/dashboard/leaderboard/page.tsx"
+        ],
+        "createdAt": "2026-10-12T04:54:50.431Z",
+        "reason": "User confirmed existing leaderboard styling is intentional"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/dashboard/leaderboard/page.tsx"
+        ],
+        "createdAt": "2026-10-12T04:54:50.505Z",
+        "reason": "Current-user row highlight is intentional"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "animate-bounce",
+        "createdAt": "2026-10-12T04:54:50.577Z",
+        "reason": "Loading trophy bounce is intentional"
       }
     ]
   }
