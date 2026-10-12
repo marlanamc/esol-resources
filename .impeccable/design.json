@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T00:00:00.000Z",
+  "title": "Design System: My ESOL Class",
+  "extensions": {
+    "colorMeta": {
+      "terracotta": { "role": "primary", "displayName": "Academic Terracotta", "canonical": "#b05740", "tonalRamp": ["#3a1a12", "#5c281c", "#8e4432", "#b05740", "#c4735f", "#d08b78", "#e6bcb0", "#f7e6e1"] },
+      "sage": { "role": "secondary", "displayName": "Garden Sage", "canonical": "#6a8d73", "tonalRamp": ["#1f2c22", "#33473a", "#4d6b53", "#6a8d73", "#7d9b85", "#8da693", "#bfd0c3", "#eaf1ec"] },
+      "mustard": { "role": "tertiary", "displayName": "Warm Mustard", "canonical": "#e9c46a", "tonalRamp": ["#3d3112", "#6b5420", "#a07f30", "#cba342", "#e9c46a", "#efd38e", "#f4e4a8", "#fbf4dc"] },
+      "ink": { "role": "neutral", "displayName": "Classroom Ink", "canonical": "#1a202c", "tonalRamp": ["#1a202c", "#2d3748", "#4a5568", "#5e6b7d", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9"] },
+      "cream-paper": { "role": "neutral", "displayName": "Cream Paper", "canonical": "#fdf9f0", "tonalRamp": ["#3a3326", "#6b604c", "#a89878", "#d9cbb0", "#f2ead3", "#f7f2e8", "#fdf9f0", "#fffdfa"] },
+      "dark-bg": { "role": "neutral", "displayName": "Harbor Night", "canonical": "#0d1620", "tonalRamp": ["#0d1620", "#162b3d", "#1e3a4d", "#2c4f66", "#4a6f88", "#6b8199", "#a0afc0", "#e8f1f8"] },
+      "dark-primary-sky": { "role": "primary", "displayName": "Harbor Sky (dark mode primary)", "canonical": "#7fb3d5" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Lora Display", "purpose": "All headings via the base h1-h6 rule; size set per use." },
+      "body": { "displayName": "DM Sans Body", "purpose": "Running text and UI; rem-based so Large Text can scale it." },
+      "legible": { "displayName": "Atkinson Hyperlegible", "purpose": "Reading-heavy learner content." },
+      "handwritten": { "displayName": "Caveat", "purpose": "Sparing handwritten accents." }
+    },
+    "shadows": [
+      { "name": "dashboard-shadow-rest", "value": "inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 1px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(40,31,23,0.10), 0 14px 32px rgba(40,31,23,0.08)", "purpose": "Default resting card." },
+      { "name": "dashboard-shadow-hover", "value": "inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 1px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.08), 0 10px 24px rgba(40,31,23,0.12), 0 20px 42px rgba(40,31,23,0.10)", "purpose": "Clickable card on hover, with translateY(-2px)." },
+      { "name": "dashboard-button-shadow", "value": "inset 0 1px 0 rgba(255,255,255,0.62), 0 1px 2px rgba(0,0,0,0.05), 0 8px 18px rgba(40,31,23,0.08)", "purpose": "Lifted buttons and pills." },
+      { "name": "elevation-card", "value": "0 6px 20px rgba(40,31,23,0.06)", "purpose": "Single-layer card elevation for components." },
+      { "name": "elevation-raised", "value": "0 12px 28px rgba(40,31,23,0.12)", "purpose": "Raised overlays and emphasized cards." }
+    ],
+    "motion": [
+      { "name": "transition-fast", "value": "150ms", "purpose": "Color and input focus changes." },
+      { "name": "button", "value": "300ms", "purpose": "Button color/shadow/scale transitions; active scale 0.95." },
+      { "name": "bottom-nav", "value": "120-140ms ease-out", "purpose": "Bottom nav indicator and show/hide." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action; terracotta fill, 48px tall.",
+      "html": "<button class=\"ds-btn-primary\">Start activity</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 20px; border: none; border-radius: var(--radius-md, 8px); background: var(--color-primary, #b05740); color: #fffdfa; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 1rem; font-weight: 500; box-shadow: 0 2px 4px rgba(26,32,44,0.04), 0 1px 2px rgba(26,32,44,0.02); cursor: pointer; transition: filter 300ms, box-shadow 300ms, transform 300ms; } .ds-btn-primary:hover { filter: brightness(0.9); box-shadow: 0 4px 12px rgba(26,32,44,0.05), 0 2px 4px rgba(26,32,44,0.03); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #fdf9f0, 0 0 0 4px rgba(176,87,64,0.5); } .ds-btn-primary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supportive or positive action; sage-deep fill for AA contrast.",
+      "html": "<button class=\"ds-btn-secondary\">Practice again</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 20px; border: none; border-radius: var(--radius-md, 8px); background: #4d6b53; color: #fffdfa; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 1rem; font-weight: 500; box-shadow: 0 2px 4px rgba(26,32,44,0.04); cursor: pointer; transition: filter 300ms, box-shadow 300ms, transform 300ms; } .ds-btn-secondary:hover { filter: brightness(0.9); box-shadow: 0 4px 12px rgba(26,32,44,0.05); } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 2px #fdf9f0, 0 0 0 4px rgba(176,87,64,0.5); } .ds-btn-secondary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Low-emphasis action with a 2px warm border.",
+      "html": "<button class=\"ds-btn-outline\">See all</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 20px; border: 2px solid rgba(207,191,171,0.65); border-radius: var(--radius-md, 8px); background: transparent; color: #1a202c; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 300ms, transform 300ms; } .ds-btn-outline:hover { background: #f7f2e8; } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #fdf9f0, 0 0 0 4px rgba(176,87,64,0.5); } .ds-btn-outline:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Dashboard Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Linen card on layered warm shadow; lifts on hover when clickable.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">This week</h3><p class=\"ds-card-body\">3 activities left. Next up: Present Simple review.</p></div>",
+      "css": ".ds-card { max-width: 340px; padding: 24px; border-radius: 20px; background: #fcfbf9; border: 1px solid rgba(0,0,0,0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 1px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(40,31,23,0.10), 0 14px 32px rgba(40,31,23,0.08); transition: box-shadow 200ms, transform 200ms; cursor: pointer; } .ds-card:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 1px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.08), 0 10px 24px rgba(40,31,23,0.12), 0 20px 42px rgba(40,31,23,0.10); } .ds-card-title { margin: 0 0 8px; font-family: var(--font-display, Lora, Georgia, serif); font-weight: 700; letter-spacing: -0.02em; font-size: 1.25rem; color: #1a202c; } .ds-card-body { margin: 0; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); line-height: 1.6; color: #5e6b7d; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Standard form field with terracotta focus.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Your answer\" />",
+      "css": ".ds-input { display: block; width: 100%; max-width: 320px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; background: #ffffff; color: #111827; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: border-color 150ms, box-shadow 150ms; } .ds-input::placeholder { color: #9ca3af; } .ds-input:focus, .ds-input:focus-visible { outline: none; border-color: #b05740; box-shadow: 0 0 0 1px rgba(176,87,64,0.3); }"
+    },
+    {
+      "name": "Activity Tone Chips",
+      "kind": "chip",
+      "refersTo": "chip-grammar",
+      "description": "Pill chips colored by activity tone family.",
+      "html": "<span class=\"ds-chip ds-chip-grammar\">Grammar</span> <span class=\"ds-chip ds-chip-vocab\">Vocabulary</span> <span class=\"ds-chip ds-chip-quiz\">Quiz</span> <span class=\"ds-chip ds-chip-games\">Game</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; border: 1px solid; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 0.8125rem; font-weight: 600; box-shadow: 0 1px 2px rgba(26,32,44,0.04); } .ds-chip-grammar { background: #eef4ec; color: #2d6930; border-color: rgba(111,155,102,0.32); } .ds-chip-vocab { background: #edf5f4; color: #1a6560; border-color: rgba(74,140,154,0.28); } .ds-chip-quiz { background: #fff7ed; color: #923a25; border-color: rgba(196,74,40,0.24); } .ds-chip-games { background: #f5f0fa; color: #5c2d7a; border-color: rgba(125,63,166,0.24); }"
+    },
+    {
+      "name": "Mobile Bottom Nav",
+      "kind": "nav",
+      "refersTo": "bottom-nav",
+      "description": "Fixed 56px tab bar with icon over 10px bold label.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a class=\"ds-nav-item ds-nav-active\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/></svg><span>Home</span></a><a class=\"ds-nav-item\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/></svg><span>Learn</span></a><a class=\"ds-nav-item\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21a8 8 0 0 1 16 0\"/></svg><span>Me</span></a></nav>",
+      "css": ".ds-nav { display: grid; grid-template-columns: repeat(3, 1fr); height: 56px; max-width: 375px; padding: 0 8px; background: #fffdfa; border-top: 1px solid rgba(207,191,171,0.65); } .ds-nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 12px; color: #5e6b7d; text-decoration: none; font-family: var(--font-body, 'DM Sans', system-ui, sans-serif); font-size: 10px; font-weight: 700; letter-spacing: -0.025em; transition: color 150ms; } .ds-nav-item:hover { color: #1a202c; } .ds-nav-item:focus-visible { outline: none; box-shadow: inset 0 0 0 2px #b05740; } .ds-nav-active { color: #b05740; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Warm Educational Modernism",
+    "overview": "The app feels like a good classroom handout printed on warm cream paper: terracotta ink, sage and mustard highlights, and serif headings with a bookish, human feel. It is a modern, phone-first interface, but every surface is tinted warm. Pure white and cold gray are avoided on purpose: backgrounds are cream (`cream-paper`), cards are linen (`card-linen`), and even \"white\" is an off-white (`off-white`). The result is calm and adult. It respects tired learners instead of shouting at them.\n\nDensity is moderate. Cards hold one idea each, there's generous padding (24px), and touch targets are big (48px buttons, 56px bottom nav). Color carries meaning more than decoration. Each activity type (grammar, vocabulary, quizzes, games, speaking, pronunciation) has its own tone family, and each course unit has its own accent. Learners can find things by color before they read the words.\n\nThe confirmed anti-references are **cold corporate SaaS** (sterile gray/blue enterprise dashboards) and **kiddie or cartoonish** styling (bubbly, childish game-app visuals). Gamification lives inside the same warm, grown-up material.",
+    "keyCharacteristics": [
+      "Warm cream paper ground, never pure white or cool gray",
+      "Terracotta primary, sage secondary, mustard accent",
+      "Lora serif headings over DM Sans body; Atkinson Hyperlegible available for reading-heavy content",
+      "Color-coded tone families per activity type and per unit",
+      "Soft, layered, warm-brown shadows; cards lift gently on hover",
+      "A separate dark mode on deep navy with a soft sky-blue primary",
+      "Phone-first: fixed bottom nav, 44px+ targets, a Large Text option"
+    ],
+    "rules": [
+      { "name": "The No Cold White Rule", "body": "Surfaces are cream, linen or off-white. Pure `#fff` appears only inside form inputs and checkboxes.", "section": "colors" },
+      { "name": "The Color Means Something Rule", "body": "Tone families mark activity type and unit accents mark course units. Never borrow a tone color just for decoration, or it stops working as a signal.", "section": "colors" },
+      { "name": "The Text-On-Fill Rule", "body": "Filled buttons with text use `terracotta`, `sage-deep` or darker. Mid `sage` (#6a8d73) and `warning-clay` fall below 4.5:1 with white text.", "section": "colors" },
+      { "name": "The Large Text Rule", "body": "All type is rem-based. The Large Text setting (`html[data-font-size=\"large\"]`) scales the root to 118.75%, so never use fixed px font sizes for readable text.", "section": "typography" },
+      { "name": "The Serif Is For Headings Rule", "body": "Lora is for headings only. Body, controls and labels stay in DM Sans or Atkinson.", "section": "typography" },
+      { "name": "The Warm Shadow Rule", "body": "Shadows are tinted warm brown (`rgba(40,31,23,…)` / `rgba(52,43,34,…)`), never neutral black at high opacity.", "section": "elevation" },
+      { "name": "The Fallback Rule", "body": "New components pass the light shadow value as a `var()` fallback, and component-specific tokens live in a CSS module next to the component. A missing variable fails silently in production.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** build on the tokens in `src/app/globals.css` (`--color-*`, `--tone-*`, `--unit-*`, `--dashboard-*`), and put new component-specific tokens in a CSS module next to the component.",
+      "**Do** use the activity's tone family whenever you show an activity type, and unit accents for course units.",
+      "**Do** keep touch targets at 44px or more (buttons 48px by default) and keep the visible terracotta focus ring.",
+      "**Do** check every new surface in both light and dark mode, at 320px wide, and with Large Text on.",
+      "**Do** respect `prefers-reduced-motion`; the global guard in `globals.css` covers decorative motion."
+    ],
+    "donts": [
+      "**Don't** make it look like cold corporate SaaS: no pure white surfaces, no cool gray backgrounds, no sterile blue-gray dashboards in light mode.",
+      "**Don't** make it kiddie or cartoonish: no bubbly display fonts, no childish mascots, no candy-colored reward explosions. Learners are adults.",
+      "**Don't** put white text on mid `sage` or `warning-clay`, or use `ink-faint` / mustard as text on cream.",
+      "**Don't** use fixed px font sizes for readable text; they break Large Text.",
+      "**Don't** add new design tokens only to `globals.css` without a `var()` fallback. Stale builds have shipped CSS without the new variables before."
+    ]
+  }
+}
