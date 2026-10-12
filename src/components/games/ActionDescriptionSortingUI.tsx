@@ -554,7 +554,7 @@ export function ActionDescriptionSortingUI({
                 Action or Description?
               </h2>
               <div className="text-sm font-medium text-text-muted whitespace-nowrap">
-                <span className="text-green-600 font-bold">
+                <span className="text-green-700 dark:text-green-300 font-bold">
                   {gameState.correctCount}
                 </span>{" "}
                 / {shuffledWords.length} correct
@@ -610,7 +610,7 @@ export function ActionDescriptionSortingUI({
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
                                 ${
                                   interactionMode === InteractionMode.WordSelected
-                                    ? "border-yellow-400 bg-yellow-50 scale-105"
+                                    ? "border-yellow-400 bg-yellow-50 dark:bg-yellow-400/15 scale-105"
                                     : interactionMode === InteractionMode.Dragging
                                     ? "border-blue-400 opacity-75"
                                     : "border-[var(--color-border-subtle)] hover:border-blue-300"
@@ -677,9 +677,9 @@ export function ActionDescriptionSortingUI({
                                     }
                                     ${
                                       interactionMode === InteractionMode.WordSelected
-                                        ? "drop-zone-ready border-blue-500 bg-blue-50"
+                                        ? "drop-zone-ready border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-400/15"
                                         : interactionMode === InteractionMode.Dragging
-                                        ? "border-green-500 bg-green-50"
+                                        ? "border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-400/15"
                                         : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
@@ -688,7 +688,7 @@ export function ActionDescriptionSortingUI({
                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                   Action
                 </div>
-                <p className="text-xs font-semibold text-blue-600 mt-1">
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mt-1">
                   → Use a verb
                 </p>
               </div>
@@ -711,9 +711,9 @@ export function ActionDescriptionSortingUI({
                                     }
                                     ${
                                       interactionMode === InteractionMode.WordSelected
-                                        ? "drop-zone-ready border-blue-500 bg-blue-50"
+                                        ? "drop-zone-ready border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-400/15"
                                         : interactionMode === InteractionMode.Dragging
-                                        ? "border-green-500 bg-green-50"
+                                        ? "border-green-500 bg-green-50 dark:border-green-400 dark:bg-green-400/15"
                                         : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
@@ -722,7 +722,7 @@ export function ActionDescriptionSortingUI({
                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                   Description
                 </div>
-                <p className="text-xs font-semibold text-purple-600 mt-1">
+                <p className="text-xs font-semibold text-purple-700 dark:text-purple-300 mt-1">
                   → Use am · is · are
                 </p>
               </div>
