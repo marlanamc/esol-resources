@@ -316,7 +316,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Click the button to _____ your homework before the deadline.",
+        "prompt": "Your homework is finished. Click \"Send\" to _____ it to your teacher.",
         "options": [
           "access",
           "complete",
@@ -347,28 +347,28 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "You want to find the room for the computer class. Which question do you ask?",
-        "options": [
-          "Who is the computer class?",
-          "When is the computer class?",
-          "Where is the computer class?"
-        ],
+        "prompt": "Fill in the question word: ___ did she close the pop-up? Because it asked for her password.",
         "answers": [
-          "Where is the computer class?"
+          "Why",
+          "why"
         ],
-        "explanation": "Where asks about a place or location. When asks about time, so it won't tell you the room.",
-        "source": "questions-real-answers/qra-q2"
+        "explanation": "Why asks for a reason. Because introduces a reason.",
+        "source": "questions-real-answers/qra-reason"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"___ is the online meeting? On Monday and Wednesday evenings.\" (Which question word asks about time?)",
-        "answers": [
-          "When",
-          "when"
+        "prompt": "Which question correctly asks about the person who created an app?",
+        "options": [
+          "Who created this app?",
+          "Who did created this app?",
+          "Who created app this?"
         ],
-        "explanation": "When asks about a time. Monday and Wednesday evenings are times.",
-        "source": "questions-real-answers/qra-qfb1"
+        "answers": [
+          "Who created this app?"
+        ],
+        "explanation": "Who asks about a person. Here, who is the subject, so we do not add did.",
+        "source": "questions-real-answers/qra-person"
       }
     ]
   },
