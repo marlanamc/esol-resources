@@ -146,7 +146,7 @@ export function ParticipationList({
                                     {when(s.lastActive)}
                                 </span>
                                 <span
-                                    className={`text-xs ${participationStatus(s.lastActive, now) === "inactive" ? "text-amber-800" : "text-text-muted"}`}
+                                    className={`text-xs ${participationStatus(s.lastActive, now) === "inactive" ? "text-amber-800 dark:text-amber-300" : "text-text-muted"}`}
                                 >
                                     {participationStatus(s.lastActive, now) ===
                                     "active"

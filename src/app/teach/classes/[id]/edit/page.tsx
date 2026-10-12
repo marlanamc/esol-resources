@@ -64,7 +64,7 @@ export default async function EditClassPage({ params }: Props) {
             <header className="border-b border-border pb-5">
                 <div className="space-y-2">
                     <BackButton href={`/teach/classes/${id}`} className="mb-4">Back to Class</BackButton>
-                    <h1 className="text-3xl font-bold text-gray-900">Edit Class</h1>
+                    <h1 className="text-3xl font-bold text-text">Edit Class</h1>
                 </div>
             </header>
             <section className="max-w-3xl">

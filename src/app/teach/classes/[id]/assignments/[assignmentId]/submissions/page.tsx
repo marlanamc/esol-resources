@@ -84,10 +84,10 @@ export default async function SubmissionsPage({ params }: Props) {
                 <div className="space-y-2">
                     <div>
                         <BackButton href={`/teach/classes/${id}`} className="mb-2">Back to Class</BackButton>
-                        <h1 className="text-2xl font-bold text-gray-900">
+                        <h1 className="text-2xl font-bold text-text">
                             Submissions: {assignment.title || assignment.activity.title}
                         </h1>
-                        <p className="text-gray-600 text-sm mt-1">
+                        <p className="text-text-muted text-sm mt-1">
                             {assignment.submissions.length} submission{assignment.submissions.length !== 1 ? "s" : ""}
                         </p>
                     </div>

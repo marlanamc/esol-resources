@@ -4754,14 +4754,17 @@ button.vocab-match-word-btn {
     --workspace-muted: var(--text-color-muted);
     --workspace-active-bg: rgba(127, 179, 213, 0.15);
     --workspace-active-fg: var(--primary-color-light);
-    --workspace-brand-bg: var(--primary-color-dark);
-    --workspace-brand-fg: var(--text-color);
+    /* Light fill + dark text: light text on --primary-color-dark is under 4:1 for every accent. */
+    --workspace-brand-bg: var(--primary-color);
+    --workspace-brand-fg: var(--bg-color);
     --workspace-tabs-active: var(--primary-color-light);
     --workspace-focus-ring: var(--primary-color-light);
-    --workspace-btn-primary-bg: var(--primary-color-dark);
-    --workspace-btn-primary-fg: var(--text-color);
-    --workspace-btn-primary-hover: var(--primary-color);
+    --workspace-btn-primary-bg: var(--primary-color);
+    --workspace-btn-primary-fg: var(--bg-color);
+    --workspace-btn-primary-hover: color-mix(in srgb, var(--primary-color) 85%, white);
     color-scheme: dark;
+    /* --bg is never defined, so the light rule's cream fallback would show through. */
+    background: var(--bg-color);
 }
 .workspace-sidebar {
     display: none;
