@@ -28,7 +28,7 @@ function gridColumnsClass(count: number): string {
     if (count === 1) return "grid-cols-1";
     if (count === 2) return "grid-cols-2";
     if (count === 3) return "grid-cols-3";
-    return "grid-cols-2 xl:grid-cols-4";
+    return "grid-cols-2 2xl:grid-cols-4";
 }
 
 function resolveDisplayTitle(assignment: FeaturedAssignment): string {
@@ -74,37 +74,37 @@ export function NewThisWeekSection({
                             activityId={assignment.activityId}
                             assignmentId={assignment.assignmentId ?? assignment.id}
                             href={assignment.href}
-                            className="group flex min-h-[148px] flex-col gap-2.5 rounded-2xl border border-[color:var(--dashboard-border)] p-4 [box-shadow:var(--dashboard-shadow-rest)] transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-[color:var(--featured-hover-border)] hover:[box-shadow:var(--dashboard-shadow-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-primary motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                            className="group flex items-center gap-3 rounded-2xl border border-[color:var(--dashboard-border)] py-3.5 pl-4 pr-4 [box-shadow:var(--dashboard-shadow-rest)] transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-[color:var(--featured-hover-border)] hover:[box-shadow:var(--dashboard-shadow-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-primary motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                             style={{
                                 background: "var(--surface-elevated)",
                                 ["--featured-hover-border" as string]: `color-mix(in srgb, ${tone.accent} 45%, var(--dashboard-border))`,
                             }}
                         >
-                            <div className="flex items-start justify-between gap-2">
-                                <span
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                                    style={{ border: `2px solid ${tone.accent}`, color: tone.accent }}
-                                >
-                                    <Icon size={19} aria-hidden />
+                            <span
+                                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                                style={{ border: `2px solid ${tone.accent}`, color: tone.accent }}
+                            >
+                                <Icon size={19} aria-hidden />
+                            </span>
+                            <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                                <span className="line-clamp-2 text-balance text-base font-bold leading-snug text-text">
+                                    {title}
                                 </span>
-                                {assignment.isNewRelease && (assignment.progress ?? 0) < 100 ? (
-                                    <span
-                                        className="rounded-full px-2.5 py-[3px] text-[11px] font-bold uppercase tracking-wide"
-                                        style={{
-                                            color: "var(--primary-text)",
-                                            background: "color-mix(in srgb, var(--primary) 8%, transparent)",
-                                        }}
-                                    >
-                                        {resolveBadgeLabel(assignment)}
-                                    </span>
-                                ) : null}
-                            </div>
-                            <p className="line-clamp-2 flex-1 text-balance text-base font-bold leading-snug text-text">
-                                {title}
-                            </p>
-                            <p className="text-[13px] font-bold" style={{ color: tone.chipText }}>
-                                {format.label}
-                            </p>
+                                <span className="text-[13px] font-bold" style={{ color: tone.chipText }}>
+                                    {format.label}
+                                </span>
+                            </span>
+                            {assignment.isNewRelease && (assignment.progress ?? 0) < 100 ? (
+                                <span
+                                    className="shrink-0 self-start rounded-full px-2.5 py-[3px] text-[11px] font-bold uppercase tracking-wide"
+                                    style={{
+                                        color: "var(--primary-text)",
+                                        background: "color-mix(in srgb, var(--primary) 8%, transparent)",
+                                    }}
+                                >
+                                    {resolveBadgeLabel(assignment)}
+                                </span>
+                            ) : null}
                         </ActivityLink>
                     );
                 })}

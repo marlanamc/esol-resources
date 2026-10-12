@@ -52,7 +52,7 @@ export function EarlyWeekBanner({ weekNumber }: EarlyWeekBannerProps) {
                 <strong>Week {weekNumber} is open!</strong>{" "}
                 <Link
                     href={`/dashboard/map?week=${weekNumber}#week-${weekNumber}`}
-                    className="rounded font-bold text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                    className="-my-3 -ml-1.5 inline-flex min-h-11 items-center rounded-lg px-1.5 font-bold text-[color:var(--primary-text)] underline decoration-from-font underline-offset-[3px] hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                     Start early →
                 </Link>

@@ -71,7 +71,7 @@ export function ThisWeekRoadCard({
                 style={{
                     background: "var(--surface-base)",
                     border: `1px solid color-mix(in srgb, ${tone.accent} 30%, transparent)`,
-                    boxShadow: "0 12px 28px rgba(40,31,23,.12)",
+                    boxShadow: "var(--elevation-raised, 0 12px 28px rgba(40,31,23,.12))",
                 }}
             >
                 <div className="px-4 pt-3.5 pb-3">
@@ -130,18 +130,15 @@ export function ThisWeekRoadCard({
                     </Link>
                 )}
 
-                {expanded ? (
-                    <>
-                        <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
-                            This {showUnitMonths ? "week" : "level"}&apos;s activities
-                        </p>
-                        <div id={listId}>
-                            {activities.map((activity) => (
-                                <ActivityRow key={activity.id} activity={activity} showNext />
-                            ))}
-                        </div>
-                    </>
-                ) : null}
+                {/* Always mounted so the toggle's aria-controls points at a real element. */}
+                <div id={listId} hidden={!expanded}>
+                    <p className="m-0 px-4 pt-1 pb-1.5 text-[12px] leading-normal font-extrabold uppercase tracking-[.06em] text-text-muted">
+                        This {showUnitMonths ? "week" : "level"}&apos;s activities
+                    </p>
+                    {activities.map((activity) => (
+                        <ActivityRow key={activity.id} activity={activity} showNext />
+                    ))}
+                </div>
 
                 <div className="flex" style={{ borderTop: "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)" }}>
                     {canExpand ? (

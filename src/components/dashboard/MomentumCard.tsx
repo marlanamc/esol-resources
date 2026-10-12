@@ -6,6 +6,7 @@ import { Flame } from "lucide-react";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
 import {
     CALENDAR_WEEK_DAY_LABELS,
+    CALENDAR_WEEK_DAY_NAMES,
     getCalendarWeekTodayIndex,
 } from "@/lib/gamification/calendar-week";
 
@@ -68,6 +69,11 @@ export function MomentumCard({
     const isHeader = variant === "header";
     const isRail = isSidebar || isHeader;
     const streakAccent = isHotStreak ? "var(--tone-speaking-accent)" : "var(--primary)";
+    // The Link's aria-label replaces its children, so the week has to be spoken here.
+    const weekSummary = sevenDayActivity
+        .slice(0, todayIndex + 1)
+        .map((active, i) => `${CALENDAR_WEEK_DAY_NAMES[i]}, ${active ? "done" : i === todayIndex ? "not yet" : "missed"}`)
+        .join(". ");
 
     const cardGradient = isRail
         ? "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)"
@@ -117,13 +123,13 @@ export function MomentumCard({
                 </div>
             </div>
 
-            <div className="grid grid-cols-7" role="list" aria-label="This week's activity">
+            <div className="grid grid-cols-7" aria-hidden>
                 {sevenDayActivity.map((active, i) => {
                     const isToday = i === todayIndex;
                     const isFuture = i > todayIndex;
                     const isMissed = !active && !isToday && !isFuture;
                     return (
-                        <div key={i} className="flex min-w-0 flex-col items-center gap-0.5" role="listitem">
+                        <div key={i} className="flex min-w-0 flex-col items-center gap-0.5">
                             <div
                                 className="flex h-5 w-5 items-center justify-center rounded-full"
                                 style={{
@@ -140,7 +146,6 @@ export function MomentumCard({
                                                 ? "2px dashed color-mix(in srgb, var(--text-muted) 45%, transparent)"
                                                 : "2px solid transparent",
                                 }}
-                                aria-label={`${CALENDAR_WEEK_DAY_LABELS[i]}${active ? ", completed" : isToday ? ", today" : isFuture ? ", upcoming" : ", missed"}`}
                             >
                                 {active ? (
                                     <span style={{ color: "var(--text-on-accent)" }}>
@@ -178,7 +183,7 @@ export function MomentumCard({
                     ? undefined
                     : { background: cardGradient, borderColor: cardBorder }
             }
-            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${weeklyPoints} points this week, ${totalPoints} points total.`}
+            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${weeklyPoints} points this week, ${totalPoints} points total. This week: ${weekSummary}.`}
         >
             {isHeader && embedded ? (
                 <div

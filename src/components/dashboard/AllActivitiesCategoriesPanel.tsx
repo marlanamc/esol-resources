@@ -18,7 +18,7 @@ export function AllActivitiesCategoriesPanel() {
                 <h2 id="all-activities-heading" className="font-display text-base font-bold text-text">All Activities</h2>
                 <Link
                     href="/dashboard/activities"
-                    className="rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="-my-2 inline-flex min-h-11 items-center rounded-lg px-2.5 text-xs font-semibold transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     style={{ color: "var(--primary-text)" }}
                 >
                     Browse all →

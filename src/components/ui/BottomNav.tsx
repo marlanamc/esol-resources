@@ -307,7 +307,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                 onTouchStart={() => handleTouchStart(item.href)}
                 aria-label={item.label}
                 aria-current={isActive ? 'page' : undefined}
-                className="relative flex h-full w-full items-center justify-center rounded-xl focus-visible:outline-none"
+                className="relative flex h-full w-full items-center justify-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
                 style={{
                   WebkitTapHighlightColor: 'transparent'
                 }}

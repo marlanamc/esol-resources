@@ -32,7 +32,7 @@ export function DashboardResumeCard({ data }: DashboardResumeCardProps) {
     return (
         <Link
             href={data.continueHref}
-            className="dashboard-panel group flex items-center gap-3 overflow-hidden rounded-[20px] border px-4 py-3 shadow-[0_6px_20px_rgba(40,31,23,0.06)] transition-transform hover:scale-[1.005] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="dashboard-panel group flex items-center gap-3 overflow-hidden rounded-[20px] border px-4 py-3 [box-shadow:var(--elevation-card,0_6px_20px_rgba(40,31,23,0.06))] transition-transform hover:scale-[1.005] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             style={{
                 background: "var(--dashboard-surface-start)",
                 borderColor: "color-mix(in srgb, var(--dashboard-border) 80%, transparent)",

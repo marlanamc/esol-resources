@@ -247,6 +247,7 @@ export function LearnerMenu({
                       aria-modal={isOpen}
                       aria-label="Navigation Menu"
                       aria-hidden={!isOpen}
+                      inert={!isOpen}
                   >
                       <div className="safe-area-top-offset p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border-subtle)' }}>
                           <Link

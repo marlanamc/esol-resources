@@ -65,7 +65,7 @@ export function ThisWeekPanelClient({
                 style={{
                     background: "var(--surface-base)",
                     border: `1px solid color-mix(in srgb, ${tone.accent} 30%, transparent)`,
-                    boxShadow: "0 12px 28px rgba(40,31,23,.08)",
+                    boxShadow: "var(--elevation-raised, 0 12px 28px rgba(40,31,23,.12))",
                 }}
             >
                 <div className="px-5 pt-4 pb-3.5">

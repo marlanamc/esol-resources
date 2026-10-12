@@ -40,12 +40,13 @@ export async function AdminViewSwitcher({ user, currentView }: AdminViewSwitcher
                     {isClassroom ? "Classroom" : "Independent"} view
                 </strong>
             </span>
-            <span style={{ color: "var(--dashboard-border)" }}>·</span>
+            <span style={{ color: "var(--dashboard-border)" }} aria-hidden>·</span>
             <Link
                 href={switchHref}
                 style={{
-                    color: "var(--primary)",
+                    color: "var(--primary-text)",
                     textDecoration: "none",
+                    minHeight: 24,
                     fontWeight: 700,
                     display: "inline-flex",
                     alignItems: "center",
