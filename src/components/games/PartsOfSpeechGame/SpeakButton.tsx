@@ -6,7 +6,7 @@ import { useTTS } from '@/hooks/useTTS';
 
 interface SpeakButtonProps {
   text: string;
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
@@ -22,8 +22,8 @@ export function SpeakButton({ text, size = 'sm', className = '' }: SpeakButtonPr
   const isLoading = state === 'loading';
   const isError = state === 'error';
 
-  const dim = size === 'sm' ? 'w-8 h-8' : 'w-10 h-10';
-  const iconSize = size === 'sm' ? 14 : 18;
+  const dim = size === 'sm' ? 'w-8 h-8' : size === 'md' ? 'w-10 h-10' : 'w-12 h-12';
+  const iconSize = size === 'sm' ? 14 : size === 'md' ? 18 : 20;
 
   const handleClick = () => {
     if (isPlaying) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 
 export type TTSState = 'idle' | 'loading' | 'playing' | 'error';
 
@@ -11,6 +11,7 @@ const audioCache = new Map<string, string>();
 export function useTTS() {
   const [state, setState] = useState<TTSState>('idle');
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const alive = useRef(true);
 
   const cancel = useCallback(() => {
     if (audioRef.current) {
@@ -19,6 +20,16 @@ export function useTTS() {
       audioRef.current = null;
     }
     setState('idle');
+  }, []);
+
+  // Leaving a question must not let its sentence keep talking over the next one.
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
   }, []);
 
   const speak = useCallback(async (text: string) => {
@@ -51,6 +62,7 @@ export function useTTS() {
         audioCache.set(cacheKey, objectUrl);
       }
 
+      if (!alive.current) return;
       const audio = new Audio(objectUrl);
       audioRef.current = audio;
 

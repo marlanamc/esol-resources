@@ -9,6 +9,7 @@ export function useRescueAudio() {
   const recordingUrl = useRef<string | null>(null);
   const recordingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const generation = useRef(0);
+  const warm = useRef<HTMLAudioElement[]>([]);
   const alive = useRef(true);
   const [busy, setBusy] = useState(false);
   const [recording, setRecording] = useState(false);
@@ -92,6 +93,10 @@ export function useRescueAudio() {
       if (alive.current && token === generation.current) setError('Microphone access was not available. Say it aloud instead — your practice still counts.');
     } finally { if (alive.current && token === generation.current) setPermissionPending(false); }
   }, [reset, stopRecording]);
-  return { busy, recording, permissionPending, hasRecording, error, play, speak, stop, reset, record, stopRecording,
+  /** Warms the HTTP cache so the first tap on slow wifi plays without a dead pause. */
+  const preload = useCallback((urls: string[]) => {
+    warm.current = urls.map(url => { const clip = new Audio(); clip.preload = 'auto'; clip.src = url; return clip; });
+  }, []);
+  return { busy, recording, permissionPending, hasRecording, error, play, speak, stop, reset, record, stopRecording, preload,
     listenToMe: () => { if (recordingUrl.current) void play(recordingUrl.current, 1); } };
 }
