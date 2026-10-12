@@ -2,6 +2,8 @@ import { getLearnerDayKey, LEARNER_DAY_TIME_ZONE } from "@/lib/daily-habits";
 
 /** Mon–Sun labels; index 0 = Monday, index 6 = Sunday. */
 export const CALENDAR_WEEK_DAY_LABELS = ["M", "T", "W", "T", "F", "S", "S"] as const;
+/** Spoken names for the same days; single letters are ambiguous (T, S) to screen readers. */
+export const CALENDAR_WEEK_DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
 
 const LEARNER_WEEKDAY_INDEX: Record<string, number> = {
     Monday: 0,

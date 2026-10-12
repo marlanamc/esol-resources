@@ -96,6 +96,11 @@
   /* Card-specific shadows */
   --shadow-card: 0 2px 12px rgba(52, 43, 34, 0.05), 0 1px 3px rgba(52, 43, 34, 0.03);
   --shadow-card-hover: 0 8px 24px rgba(52, 43, 34, 0.08), 0 2px 6px rgba(52, 43, 34, 0.04);
+  /* Dashboard elevation. Components pass the light value as a var() fallback,
+     so a stale globals.css build degrades to today's look instead of no shadow. */
+  --elevation-card: 0 6px 20px rgba(40, 31, 23, 0.06);
+  --elevation-raised: 0 12px 28px rgba(40, 31, 23, 0.12);
+  --elevation-button: 0 6px 16px rgba(40, 31, 23, 0.12);
 
   /* Z-Index Layers */
   --z-fixed: 100;
@@ -469,6 +474,9 @@ html[data-accent="ember"][data-theme="dark"] {
 
 .dark, [data-theme="dark"] {
   /* Glacial dark blue mode - cool, sophisticated, fresh */
+  --elevation-card: 0 6px 20px rgba(6, 12, 18, 0.28);
+  --elevation-raised: 0 12px 28px rgba(6, 12, 18, 0.4);
+  --elevation-button: 0 6px 16px rgba(6, 12, 18, 0.35);
   --primary-color: #7fb3d5;
   --primary-color-dark: #5a92b8;
   --primary-color-light: #a8d5f7;

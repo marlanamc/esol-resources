@@ -34,7 +34,7 @@ export function CourseMapNextUpHeroCard({
 
     return (
         <div
-            className="course-map-hero-card rounded-[26px] border p-5 shadow-[0_10px_32px_rgba(40,31,23,0.07)] sm:p-7"
+            className="course-map-hero-card rounded-[26px] border p-5 [box-shadow:var(--elevation-card,0_6px_20px_rgba(40,31,23,0.06))] sm:p-7"
             style={{
                 background: `linear-gradient(135deg, ${tone.surface} 0%, color-mix(in srgb, ${tone.chipBg} 58%, var(--dashboard-surface-start)) 56%, var(--dashboard-surface-start) 100%)`,
                 borderColor: `color-mix(in srgb, ${tone.accent} 18%, var(--dashboard-border))`,
@@ -92,7 +92,7 @@ export function CourseMapNextUpHeroCard({
                 {cta ?? (
                     <Link
                         href={href}
-                        className="inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl px-7 text-base font-extrabold text-white shadow-[0_8px_20px_rgba(40,31,23,0.12)] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:w-auto"
+                        className="inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl px-7 text-base font-extrabold text-white [box-shadow:var(--elevation-button,0_6px_16px_rgba(40,31,23,0.12))] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:w-auto"
                         style={{
                             background: `linear-gradient(180deg, color-mix(in srgb, ${tone.button} 88%, #ffffff) 0%, ${tone.button} 100%)`,
                             "--tw-ring-color": tone.accent,
