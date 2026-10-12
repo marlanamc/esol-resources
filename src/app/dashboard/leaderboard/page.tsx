@@ -75,6 +75,10 @@ type LeaderboardPayload = {
   /** The viewer's own row when they rank below the visible all-time list. */
   viewerEntry: LeaderboardEntry | null;
   classId: string | null;
+  periodLabel: string;
+  currentWeekLabel: string;
+  previousWeekLabel: string;
+  lastWeekPoints: number;
 };
 
 interface ClassOption {
@@ -83,7 +87,7 @@ interface ClassOption {
 }
 
 type LeaderboardScope = 'section' | 'all' | 'independent';
-type LeaderboardTimeframe = 'week' | 'all';
+type LeaderboardTimeframe = 'week' | 'last-week' | 'all';
 type ViewerRole = 'student' | 'teacher' | 'admin' | null;
 type LearnerMode = 'classroom' | 'independent' | null;
 type IsAdmin = boolean;
@@ -121,6 +125,10 @@ async function fetchLeaderboard({
     userRank: data.userRank || null,
     viewerEntry: data.viewerEntry || null,
     classId: data.classId || null,
+    periodLabel: data.periodLabel,
+    currentWeekLabel: data.currentWeekLabel,
+    previousWeekLabel: data.previousWeekLabel,
+    lastWeekPoints: data.lastWeekPoints ?? 0,
     scope: data.scope === 'all' || data.scope === 'independent' ? data.scope : 'section',
   };
 }
@@ -128,6 +136,11 @@ async function fetchLeaderboard({
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [periodLabel, setPeriodLabel] = useState('');
+  const [currentWeekLabel, setCurrentWeekLabel] = useState('This week');
+  const [previousWeekLabel, setPreviousWeekLabel] = useState('Last week');
+  const [lastWeekPoints, setLastWeekPoints] = useState(0);
   const [userRank, setUserRank] = useState<number | null>(null);
   const [viewerEntry, setViewerEntry] = useState<LeaderboardEntry | null>(null);
   const [timeframe, setTimeframe] = useState<LeaderboardTimeframe>('week');
@@ -137,6 +150,17 @@ export default function LeaderboardPage() {
   const [viewerRole, setViewerRole] = useState<ViewerRole>(null);
   const [learnerMode, setLearnerMode] = useState<LearnerMode>(null);
   const [isAdmin, setIsAdmin] = useState<IsAdmin>(false);
+
+  const applyPayload = (payload: LeaderboardPayload) => {
+    setLeaderboard(payload.leaderboard);
+    setUserRank(payload.userRank);
+    setViewerEntry(payload.viewerEntry);
+    setPeriodLabel(payload.periodLabel);
+    setCurrentWeekLabel(payload.currentWeekLabel);
+    setPreviousWeekLabel(payload.previousWeekLabel);
+    setLastWeekPoints(payload.lastWeekPoints);
+    setErrorMessage(null);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -151,9 +175,7 @@ export default function LeaderboardPage() {
         }
         const contextData = await contextResponse.json();
         if (cancelled) return;
-        setLeaderboard(payload.leaderboard);
-        setUserRank(payload.userRank);
-        setViewerEntry(payload.viewerEntry);
+        applyPayload(payload);
         setClassOptions(contextData.classes || []);
         setViewerRole(contextData.viewerRole || null);
         setLearnerMode(contextData.learnerMode || null);
@@ -166,6 +188,8 @@ export default function LeaderboardPage() {
         );
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
+        if (cancelled) return;
+        setErrorMessage('We couldn’t load these standings. Your earned points are still saved.');
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -181,11 +205,10 @@ export default function LeaderboardPage() {
     setLoading(true);
     try {
       const payload = await fetchLeaderboard({ classId: normalizedClassId, scope, timeframe });
-      setLeaderboard(payload.leaderboard);
-      setUserRank(payload.userRank);
-      setViewerEntry(payload.viewerEntry);
+      applyPayload(payload);
     } catch (error) {
       console.error('Failed to fetch leaderboard:', error);
+      setErrorMessage('We couldn’t load these standings. Your earned points are still saved.');
     } finally {
       setLoading(false);
     }
@@ -197,11 +220,10 @@ export default function LeaderboardPage() {
     setLoading(true);
     try {
       const payload = await fetchLeaderboard({ classId: selectedClassId, scope: nextScope, timeframe });
-      setLeaderboard(payload.leaderboard);
-      setUserRank(payload.userRank);
-      setViewerEntry(payload.viewerEntry);
+      applyPayload(payload);
     } catch (error) {
       console.error('Failed to fetch leaderboard:', error);
+      setErrorMessage('We couldn’t load these standings. Your earned points are still saved.');
     } finally {
       setLoading(false);
     }
@@ -213,11 +235,10 @@ export default function LeaderboardPage() {
     setLoading(true);
     try {
       const payload = await fetchLeaderboard({ classId: selectedClassId, scope, timeframe: nextTimeframe });
-      setLeaderboard(payload.leaderboard);
-      setUserRank(payload.userRank);
-      setViewerEntry(payload.viewerEntry);
+      applyPayload(payload);
     } catch (error) {
       console.error('Failed to fetch leaderboard:', error);
+      setErrorMessage('We couldn’t load these standings. Your earned points are still saved.');
     } finally {
       setLoading(false);
     }
@@ -275,12 +296,22 @@ export default function LeaderboardPage() {
     );
   }
 
+  if (errorMessage) {
+    return (
+      <main className="min-h-dvh flex flex-col items-center justify-center gap-4 px-6 text-center">
+        <p role="alert">{errorMessage}</p>
+        <button type="button" className="min-h-11 px-4 underline" onClick={() => window.location.reload()}>Try again</button>
+      </main>
+    );
+  }
+
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
   const isAllTime = timeframe === 'all';
-  // Weekly quiz / week-done badges describe the current week, so they only make sense on the weekly board.
+  // Historical chips describe the selected course week, never the whole unit.
+  const isLastWeek = timeframe === 'last-week';
   const showWeekBadges = !isAllTime;
   const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
-    const showStreak = entry.currentStreak > 0;
+    const showStreak = !isLastWeek && entry.currentStreak > 0;
     const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
     const showWeek = showWeekBadges && entry.weekComplete;
     if (!showStreak && !showQuiz && !showWeek) return null;
@@ -299,7 +330,7 @@ export default function LeaderboardPage() {
             icon={<CheckCircleIcon size={12} />}
             iconAfter
             label="Quiz"
-            title="Finished this week's quiz"
+            title={`Finished the quiz for ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
             className="text-violet-700 dark:text-violet-300"
           />
         )}
@@ -308,7 +339,7 @@ export default function LeaderboardPage() {
             icon={<CheckCircleIcon size={12} />}
             iconAfter
             label="Week done"
-            title="Finished every activity in this week's course map"
+            title={`Finished every required activity for ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
             color="var(--success-color)"
           />
         )}
@@ -331,7 +362,7 @@ export default function LeaderboardPage() {
         backgroundColor: 'var(--surface-contrast)',
       }}
     >
-      {([['week', 'This Week'], ['all', 'All Time']] as const).map(([value, label]) => {
+      {([['week', currentWeekLabel], ['all', 'All time']] as const).map(([value, label]) => {
         const selected = timeframe === value;
         return (
           <button
@@ -411,12 +442,12 @@ export default function LeaderboardPage() {
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-                  {scope === 'independent' ? 'Self-paced Leaderboard' : isAllTime ? 'All-Time Leaderboard' : 'Weekly Leaderboard'}
+                  {scope === 'independent' ? 'Self-paced Leaderboard' : isAllTime ? 'All-Time Leaderboard' : `${isLastWeek ? previousWeekLabel : currentWeekLabel} Leaderboard`}
                 </h1>
                 <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
                   {isAllTime
-                    ? 'Total points since you joined'
-                    : scope === 'independent' ? 'Top self-paced learners this week' : 'Top performers this week'}
+                    ? 'Every effort adds up'
+                    : isLastWeek ? 'Celebrating last week’s effort' : 'A fresh chance to learn and earn'}
                 </p>
               </div>
             </div>
@@ -504,6 +535,35 @@ export default function LeaderboardPage() {
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
         <div className="flex justify-center">{timeframeTabs}</div>
+
+        <section className="text-center space-y-2" aria-label="Scoring period">
+          <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>{periodLabel}</p>
+          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+            {isAllTime ? 'Your earned points stay with you.' : 'New standings every Monday at midnight, Eastern time. Your earned points stay with you.'}
+          </p>
+          {isLastWeek && scope !== 'independent' && previousWeekLabel.startsWith('Week ') && (
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              Quiz and Week done show saved completion for {previousWeekLabel}, including catch-up work.
+            </p>
+          )}
+          {!isAllTime && (
+            <button type="button" className="min-h-11 px-3 text-sm font-semibold underline underline-offset-4"
+              style={{ color: 'var(--color-primary)' }}
+              onClick={() => void onTimeframeChange(isLastWeek ? 'week' : 'last-week')}>
+              {isLastWeek ? `Back to ${currentWeekLabel}` : previousWeekLabel === 'Last week' ? 'View last week' : `View last week · ${previousWeekLabel}`}
+            </button>
+          )}
+        </section>
+        {timeframe === 'week' && viewerRole === 'student' && (
+          <section className="rounded-2xl border px-5 py-4" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }} aria-label="Your weekly recap">
+            <h2 className="font-bold" style={{ color: 'var(--color-text)' }}>{currentWeekLabel}: a fresh start!</h2>
+            <p className="mt-1 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+              {lastWeekPoints > 0
+                ? `You earned ${lastWeekPoints.toLocaleString()} points last week. Your effort counts, and those points are saved. Keep building on your progress!`
+                : 'Every meaningful attempt counts. Practice and earn points at your own pace—your total keeps growing across weeks.'}
+            </p>
+          </section>
+        )}
 
         {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
         {showPodium && (() => {
@@ -749,10 +809,10 @@ export default function LeaderboardPage() {
               </div>
             </div>
             <p className="text-xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-              The podium is wide open
+              {isLastWeek ? 'No points recorded last week' : 'The podium is wide open'}
             </p>
             <p className="text-sm max-w-sm mx-auto leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              Be the first to claim a spot. Complete an activity to earn points and watch your name climb the ranks.
+              {isLastWeek ? 'There is a new chance to practice and earn points this week.' : 'Practice an activity to earn points. Meaningful effort counts, even while you are still learning.'}
             </p>
           </div>
         )}

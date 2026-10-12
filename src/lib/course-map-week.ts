@@ -89,7 +89,7 @@ interface CurrentWeekSnapshot {
 
 async function buildCurrentWeekSnapshot(
     user: { id: string; role?: string | null },
-    options?: { mode?: VisibleMapMode; now?: Date }
+    options?: { mode?: VisibleMapMode; now?: Date; weekNumber?: number }
 ): Promise<CurrentWeekSnapshot | null> {
     const learnerMode = options?.mode ?? (await getEffectiveLearnerMode(user.id, user));
     const { units: rawUnits } = await getVisibleMap(user, { mode: learnerMode });
@@ -110,7 +110,7 @@ async function buildCurrentWeekSnapshot(
     });
     if (!resolved) return null;
 
-    const targetWeekNumber = resolved.weekNumber;
+    const targetWeekNumber = options?.weekNumber ?? resolved.weekNumber;
     const currentUnit = units.find((u) =>
         u.levels.some((l) => l.levelNumber === targetWeekNumber)
     );
@@ -194,10 +194,10 @@ async function loadAssignmentByActivityId(userId: string): Promise<
     return assignmentByActivityId;
 }
 
-/** Completion markers share one snapshot and the same current-week selection. */
+/** Completion markers for the current week, or an explicit course week (including catch-up work). */
 export async function getCurrentWeekCompletion(
     user: { id: string; role?: string | null },
-    options?: { now?: Date }
+    options?: { now?: Date; weekNumber?: number }
 ): Promise<{ weekComplete: boolean; weeklyQuizComplete: boolean; completedWeeksCount: number }> {
     const snapshot = await buildCurrentWeekSnapshot(user, options);
     if (!snapshot) return { weekComplete: false, weeklyQuizComplete: false, completedWeeksCount: 0 };

@@ -2,10 +2,11 @@ import { revalidateTag } from 'next/cache';
 import { prisma } from '@/lib/database/prisma';
 import type { PrismaClient, Prisma } from "@prisma/client";
 import { logger } from '@/lib/shared/logger';
+import { getLeaderboardPeriod, getLeaderboardWeekNumber, type LeaderboardRange } from './leaderboard-period';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
-import { addDaysToDayKey as addDaysToLearnerDayKey, getCalendarWeekStart, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
+import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
 import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
@@ -243,28 +244,7 @@ export function calculateQuizPoints(score: number | null): number {
   return POINTS.QUIZ_COMPLETION;
 }
 
-export type LeaderboardRange = 'day' | 'week' | 'month' | 'all';
-
-/** Start of the ledger window for a range; null means all time (no lower bound). */
-function getRangeStart(range: LeaderboardRange): Date | null {
-  if (range === 'all') return null;
-
-  const now = new Date();
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-  switch (range) {
-    case 'day':
-      return startOfToday;
-    case 'week':
-      // Monday 00:00 learner time -- the same week the dashboard's "this week"
-      // points and the Monday weekly-points reset use, so the numbers agree.
-      return getCalendarWeekStart(now);
-    case 'month':
-    default: {
-      return new Date(now.getFullYear(), now.getMonth(), 1); // beginning of current month
-    }
-  }
-}
+export type { LeaderboardRange } from './leaderboard-period';
 
 /**
  * Get leaderboard for a given timeframe using the points ledger.
@@ -275,7 +255,7 @@ export async function getTimeframedLeaderboard(
   limit: number = 10,
   classId?: string,
   classIds?: string[],
-  options?: { independentOnly?: boolean }
+  options?: { independentOnly?: boolean; referenceDate?: Date }
 ) {
   // SECURITY: Input validation
   if (classId !== undefined && typeof classId !== 'string') {
@@ -291,7 +271,7 @@ export async function getTimeframedLeaderboard(
   // Sanitize limit to prevent excessive queries (1-100)
   const safeLimit = Math.min(Math.max(1, Math.floor(limit)), 100);
 
-  const since = getRangeStart(range);
+  const period = getLeaderboardPeriod(range, options?.referenceDate);
 
   const classFilter = classIds && classIds.length > 0
     ? { classes: { some: { classId: { in: classIds }, status: 'active' } } }
@@ -306,7 +286,7 @@ export async function getTimeframedLeaderboard(
   // so we look up student metadata for just those users below, instead of
   // pulling the entire roster into memory on every leaderboard render.
   const whereLedger: Prisma.PointsLedgerWhereInput = {
-    ...(since ? { createdAt: { gte: since } } : {}),
+    ...(period.start ? { createdAt: { gte: period.start, ...(period.end ? { lt: period.end } : {}) } } : {}),
     user: { ...studentWhere },
   };
 
@@ -370,10 +350,16 @@ export async function getTimeframedLeaderboard(
 
   // Bounded concurrency: each check is its own course-map snapshot lookup, so
   // keep only a handful in flight at once rather than firing them all together.
+  const historicalWeek = range === 'last-week' && !options?.independentOnly
+    ? getLeaderboardWeekNumber(options?.referenceDate, true)
+    : null;
   const completionByUserId = new Map(
-    await mapWithConcurrencyLimit(limitedRankings, 8, async (r) => [
+    await mapWithConcurrencyLimit(range === 'last-week' && historicalWeek === null ? [] : limitedRankings, 8, async (r) => [
       r.userId,
-      await getCurrentWeekCompletion({ id: r.userId, role: 'student' }),
+      await getCurrentWeekCompletion(
+        { id: r.userId, role: 'student' },
+        historicalWeek === null ? undefined : { weekNumber: historicalWeek }
+      ),
     ] as const)
   );
 

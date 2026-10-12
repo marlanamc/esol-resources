@@ -6,6 +6,8 @@ import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification/g
 import { prisma } from '@/lib/database/prisma';
 import { classOwnershipWhere, ensureTeacher } from '@/lib/auth/policies';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
+import { getLearnerDayKey, getInstantForLearnerDayStart } from '@/lib/gamification/calendar-week';
+import { getLeaderboardPeriod, getLeaderboardWeekLabel } from '@/lib/gamification/leaderboard-period';
 import { getLearnerState } from '@/lib/learner-mode';
 
 /**
@@ -20,14 +22,15 @@ const getCachedLeaderboard = unstable_cache(
     limit: number,
     classId: string | undefined,
     classIds: string[] | undefined,
-    independentOnly: boolean
+    independentOnly: boolean,
+    referenceDay: string
   ) =>
     getTimeframedLeaderboard(
       timeframe,
       limit,
       classId,
       classIds,
-      independentOnly ? { independentOnly: true } : undefined
+      { independentOnly, referenceDate: new Date(referenceDay) }
     ),
   ['gamification-leaderboard'],
   { revalidate: 60, tags: ['leaderboard'] }
@@ -35,7 +38,7 @@ const getCachedLeaderboard = unstable_cache(
 
 /**
  * GET /api/gamification/leaderboard
- * Get the leaderboard for a timeframe (day, week, month, all)
+ * Get the leaderboard for a timeframe (day, week, last-week, month, all)
  */
 /** All-time shows only the top few plus the viewer's own place, so long-tail ranks stay private. */
 const ALL_TIME_VISIBLE = 10;
@@ -54,7 +57,7 @@ export async function GET(req: NextRequest) {
     const scope = scopeParam === 'all' || scopeParam === 'independent' ? scopeParam : 'section';
     const limit = parseInt(searchParams.get('limit') || '20');
     const timeframeParam = (searchParams.get('timeframe') || 'week').toLowerCase() as LeaderboardRange;
-    const timeframe: LeaderboardRange = ['day', 'week', 'month', 'all'].includes(timeframeParam) ? timeframeParam : 'week';
+    const timeframe: LeaderboardRange = ['day', 'week', 'last-week', 'month', 'all'].includes(timeframeParam) ? timeframeParam : 'week';
     const user = session.user;
     if (!user.id) {
       return ApiErrors.unauthorized();
@@ -151,14 +154,26 @@ export async function GET(req: NextRequest) {
       }
     }
 
+    const now = new Date();
+    const period = getLeaderboardPeriod(timeframe, now);
+    const previousWeek = getLeaderboardPeriod('last-week', now);
     const isAllTime = timeframe === 'all';
-    const ranked = await getCachedLeaderboard(
-      timeframe,
-      isAllTime ? ALL_TIME_RANK_LIMIT : limit,
-      resolvedClassId,
-      resolvedClassIds,
-      leaderboardOptions?.independentOnly === true
-    );
+    const [ranked, lastWeekTotal] = await Promise.all([
+      getCachedLeaderboard(
+        timeframe,
+        isAllTime ? ALL_TIME_RANK_LIMIT : limit,
+        resolvedClassId,
+        resolvedClassIds,
+        leaderboardOptions?.independentOnly === true,
+        // Include the date in the key so Monday never serves Sunday's cached board.
+        getInstantForLearnerDayStart(getLearnerDayKey(now)).toISOString()
+      ),
+      user.role === 'student' ? prisma.pointsLedger.aggregate({
+        // Personal recognition must not depend on making the visible top ranks.
+        where: { userId: user.id, createdAt: { gte: previousWeek.start!, lt: previousWeek.end! } },
+        _sum: { points: true },
+      }) : Promise.resolve(null),
+    ]);
     const viewerEntry = ranked.find((entry) => entry.id === user.id) ?? null;
     const leaderboard = isAllTime ? ranked.slice(0, ALL_TIME_VISIBLE) : ranked;
     const viewerOutsideList = viewerEntry && !leaderboard.some((entry) => entry.id === user.id);
@@ -168,6 +183,10 @@ export async function GET(req: NextRequest) {
       userRank: viewerEntry?.rank ?? null,
       viewerEntry: viewerOutsideList ? viewerEntry : null,
       timeframe,
+      periodLabel: period.label,
+      currentWeekLabel: leaderboardOptions?.independentOnly ? 'This week' : getLeaderboardWeekLabel(now),
+      previousWeekLabel: leaderboardOptions?.independentOnly ? 'Last week' : getLeaderboardWeekLabel(now, true),
+      lastWeekPoints: lastWeekTotal?._sum.points ?? 0,
       classId: resolvedClassId || null,
       scope: leaderboardOptions?.independentOnly ? 'independent' : scope,
     });

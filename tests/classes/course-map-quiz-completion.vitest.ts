@@ -75,6 +75,25 @@ describe('current-week quiz recognition', () => {
     expect((await getCurrentWeekCompletion({ id: 'student' })).weeklyQuizComplete).toBe(false);
   });
 
+  it('shows the selected past week even if the current week is unfinished', async () => {
+    mocks.progress.mockResolvedValue({ old: { status: 'completed', categoryData: null } });
+    expect(await getCurrentWeekCompletion({ id: 'student' }, { weekNumber: 1 })).toEqual({
+      weekComplete: true, weeklyQuizComplete: true, completedWeeksCount: 1,
+    });
+  });
+
+  it('does not copy current-week completion onto an unfinished past week', async () => {
+    expect(await getCurrentWeekCompletion({ id: 'student' }, { weekNumber: 1 })).toMatchObject({
+      weekComplete: false, weeklyQuizComplete: false,
+    });
+  });
+
+  it('does not fall back to current-week chips if the requested week is unavailable', async () => {
+    expect(await getCurrentWeekCompletion({ id: 'student' }, { weekNumber: 99 })).toMatchObject({
+      weekComplete: false, weeklyQuizComplete: false,
+    });
+  });
+
   it('returns no markers when no week is visible', async () => {
     mocks.visibleMap.mockResolvedValue({ units: [] });
     expect(await getCurrentWeekCompletion({ id: 'student' })).toEqual({
