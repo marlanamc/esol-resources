@@ -128,6 +128,8 @@
   --primary-color-dark: #8e4432;
   --primary-color-light: #d08b78;
   --primary: var(--primary-color);
+  /* Primary for small text: the base accent is tuned for fills and misses 4.5:1 as text on light surfaces. */
+  --primary-text: var(--primary-color-dark);
   --secondary-color: #6a8d73;
   --secondary-color-dark: #4d6b53;
   --secondary-color-light: #8da693;
@@ -427,6 +429,7 @@ html[data-accent="ember"] {
   --primary-color-dark: #9a5e28;
   --primary-color-light: #e0a870;
   --primary: #c07840;
+  --primary-text: #86501f;
 }
 
 /* ── Accent color overrides (dark mode) ── */
@@ -461,6 +464,7 @@ html[data-accent="ember"][data-theme="dark"] {
   --primary-color-dark: #c07840;
   --primary-color-light: #f0c090;
   --primary: #e0a060;
+  --primary-text: var(--primary-color);
 }
 
 .dark, [data-theme="dark"] {
@@ -469,6 +473,7 @@ html[data-accent="ember"][data-theme="dark"] {
   --primary-color-dark: #5a92b8;
   --primary-color-light: #a8d5f7;
   --primary: var(--primary-color);
+  --primary-text: var(--primary-color);
   --secondary-color: #6fbf9f;
   --secondary-color-dark: #4fa07f;
   --secondary-color-light: #8ed4b8;
@@ -748,6 +753,8 @@ html[data-accent="ember"][data-theme="dark"] {
   --primary-color-dark: #8e4432;
   --primary-color-light: #d08b78;
   --primary: var(--primary-color);
+  /* Primary for small text: the base accent is tuned for fills and misses 4.5:1 as text on light surfaces. */
+  --primary-text: var(--primary-color-dark);
   --secondary-color: #6a8d73;
   --secondary-color-dark: #4d6b53;
   --secondary-color-light: #8da693;
