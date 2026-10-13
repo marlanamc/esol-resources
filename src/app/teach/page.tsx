@@ -12,6 +12,7 @@ import { resolveTeachClassId } from "@/lib/teach/active-class";
 import { getClassParticipation } from "@/lib/teach/participation";
 import { participationStatus } from "@/lib/teach/participation-status";
 import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
+import { getClassQuizCompletion } from "@/lib/teach/quiz-completion";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 
 export default async function TeachHomePage({
@@ -75,11 +76,14 @@ export default async function TeachHomePage({
         getVisibleWeekIdsForClasses([classId]),
     ]);
     if (!cls) redirect("/teach/classes");
-    const week = await prisma.courseWeek.findFirst({
-        where: { id: { in: [...visibleWeekIds] } },
-        orderBy: { number: "desc" },
-        select: { number: true, title: true },
-    });
+    const [week, quizCompletion] = await Promise.all([
+        prisma.courseWeek.findFirst({
+            where: { id: { in: [...visibleWeekIds] } },
+            orderBy: { number: "desc" },
+            select: { number: true, title: true },
+        }),
+        getClassQuizCompletion(classId, students, new Date(now)),
+    ]);
     const counts = { active: 0, inactive: 0, never: 0 };
     students.forEach((s) => counts[participationStatus(s.lastActive, now)]++);
     const report = `/teach/reports?classId=${encodeURIComponent(classId)}`;
@@ -186,6 +190,72 @@ export default async function TeachHomePage({
                             <Map size={16} />
                             Manage course releases <ArrowRight size={15} />
                         </Link>
+                    </div>
+                    <div className="border-b border-border pb-5">
+                        <h3 className="text-sm font-semibold">
+                            Released quizzes
+                        </h3>
+                        {quizCompletion.length ? (
+                            <ul className="divide-y divide-border">
+                                {quizCompletion.map((q) => (
+                                    <li key={q.id} className="py-4 text-sm">
+                                        <div className="flex items-start justify-between gap-4">
+                                            <span className="font-medium">
+                                                {q.title}
+                                            </span>
+                                            <span className="shrink-0 text-text-muted">
+                                                {now > q.dueAt.getTime()
+                                                    ? "Was due"
+                                                    : "Due"}{" "}
+                                                {q.dueAt.toLocaleDateString(
+                                                    "en-US",
+                                                    {
+                                                        weekday: "short",
+                                                        month: "short",
+                                                        day: "numeric",
+                                                        timeZone:
+                                                            "America/New_York",
+                                                    },
+                                                )}
+                                            </span>
+                                        </div>
+                                        {q.missing.length ? (
+                                            <details className="mt-1">
+                                                <summary className="min-h-11 flex items-center cursor-pointer">
+                                                    <span className="font-display text-xl font-bold tabular-nums mr-2">
+                                                        {q.missing.length}
+                                                    </span>
+                                                    of {q.expected} students
+                                                    still need to finish
+                                                </summary>
+                                                <ul className="pb-1">
+                                                    {q.missing.map((s) => (
+                                                        <li key={s.id}>
+                                                            <Link
+                                                                className="flex min-h-11 items-center break-words"
+                                                                href={`/teach/students/${s.id}?classId=${classId}`}
+                                                            >
+                                                                {s.name ||
+                                                                    s.username}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </details>
+                                        ) : (
+                                            <p className="mt-1 text-text-muted">
+                                                All {q.expected} students
+                                                finished
+                                            </p>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-sm text-text-muted py-4">
+                                No quizzes are open for this class yet.
+                            </p>
+                        )}
                     </div>
                     <div>
                         <div className="flex items-center justify-between gap-3">

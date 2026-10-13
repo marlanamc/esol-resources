@@ -15,6 +15,7 @@ export async function getClassParticipation(classId: string) {
                 },
             },
             select: {
+                joinedAt: true,
                 student: {
                     select: {
                         id: true,
@@ -60,10 +61,11 @@ export async function getClassParticipation(classId: string) {
     const practiceById = new Map(
         latestPractice.map((r) => [r.userId, r.activity.title]),
     );
-    return enrollments.map(({ student }) => ({
+    return enrollments.map(({ joinedAt, student }) => ({
         id: student.id,
         name: student.name,
         username: student.username,
+        joinedAt,
         weeklyPoints: student.weeklyPoints,
         lastActive: latestActivityDate(
             student.lastActivityDate,
