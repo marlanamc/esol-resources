@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
     BE_OR_DO_GROUPS,
+    beOrDoTense,
     detectMatchingGameMode,
     findBeOrDoGroup,
     parseBeOrDoRounds,
@@ -13,7 +14,7 @@ const SAMPLE = `GAME: be-or-do
 NOTE: Find the verb.
 ___ you tired? :: Are :: reply: Yes, I am. :: hint: No verb.
 ___ you feel tired? :: Do :: verb: feel :: twin: Are you tired? :: why: Feel is a verb.
-___ you happy? :: Was :: reply: unknown form, skipped
+___ you happy? :: Will :: reply: unknown form, skipped
 no blank here :: Do
 
 [ROUND 2]
@@ -31,6 +32,13 @@ describe("Be or Do? detection", () => {
         const verbSoundsRight = `[ROUND 1]\nShe _____ happy. :: is :: are :: present-simple :: She takes is.\n`;
         expect(detectMatchingGameMode(verbSoundsRight)).toBe("verb-sounds-right");
         expect(parseBeOrDoRounds(verbSoundsRight)).toEqual([]);
+    });
+});
+
+describe("beOrDoTense", () => {
+    it("tells past forms from present forms", () => {
+        expect(["Was", "were", "Did"].map(beOrDoTense)).toEqual(["past", "past", "past"]);
+        expect(["Am", "is", "Are", "do", "Does"].map(beOrDoTense)).toEqual(Array(5).fill("present"));
     });
 });
 
@@ -60,8 +68,10 @@ describe("Week 5 Be or Do? content", () => {
     const cards = rounds.flatMap((r) => r.cards);
     const cardLines = BE_OR_DO_CONTENT.split("\n").filter((line) => line.includes("::"));
 
-    it("has two BE-or-DO rounds, then a pick-the-form round", () => {
-        expect(rounds.map((r) => r.mode)).toEqual(["group", "group", "form"]);
+    it("teaches present, then past, then mixes them", () => {
+        expect(rounds.map((r) => r.mode)).toEqual(["group", "group", "form", "group", "form", "form"]);
+        const tenses = rounds.map((r) => [...new Set(r.cards.map((c) => beOrDoTense(c.answer)))].sort().join("+"));
+        expect(tenses).toEqual(["present", "present", "present", "past", "past", "past+present"]);
     });
 
     it("parses every card line", () => {

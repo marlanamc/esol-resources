@@ -6,6 +6,8 @@ import { ContextualBackButton } from "@/components/navigation/ContextualBackButt
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
   BE_OR_DO_GROUPS,
+  BE_OR_DO_TENSE_HINT,
+  beOrDoTense,
   type BeOrDoCard,
   type BeOrDoGroup,
   parseBeOrDoRounds,
@@ -44,11 +46,22 @@ function fillBlank(question: string, word: string): { before: string; word: stri
  */
 function brokenWord(card: BeOrDoCard, picked: BeOrDoGroup): string {
   const answer = card.answer.toLowerCase();
+  const subject = card.question.split("___")[1]?.trim().split(/\s+/).slice(0, 2).join(" ") ?? "";
+  const firstWord = subject.split(" ")[0] ?? "";
+  if (beOrDoTense(answer) === "past") {
+    if (picked.id === "do") return "Did";
+    if (picked.id === "be") {
+      // "you / we / they" or a plural noun ("the kids") takes were.
+      const plural = /^(you|we|they)$/i.test(firstWord) || /s$/i.test(subject.split(" ")[1] ?? "");
+      return plural ? "Were" : "Was";
+    }
+    return picked.pastForms[0] ?? picked.forms[0] ?? "";
+  }
   const thirdPerson = answer === "is" || answer === "does";
   if (picked.id === "do") return thirdPerson ? "Does" : "Do";
   if (picked.id === "be") {
     if (thirdPerson) return "Is";
-    return /^\s*___\s+I\b/.test(card.question) ? "Am" : "Are";
+    return firstWord === "I" ? "Am" : "Are";
   }
   return picked.forms[0] ?? "";
 }
@@ -124,6 +137,10 @@ export function BeOrDoQuestionsUI({
     const used = new Set(rounds.flatMap((r) => r.cards.map((c) => c.groupId)));
     return BE_OR_DO_GROUPS.filter((g) => used.has(g.id));
   }, [rounds]);
+
+  // Show only the forms for the tenses this round uses (present, past, or both).
+  const roundTenses = useMemo(() => new Set(roundCards.map((c) => beOrDoTense(c.answer))), [roundCards]);
+  const formsFor = (group: BeOrDoGroup) => group.forms.filter((f) => roundTenses.has(beOrDoTense(f)));
 
   const totalCards = useMemo(() => rounds.reduce((sum, r) => sum + r.cards.length, 0), [rounds]);
   const cardsBeforeRound = useMemo(
@@ -282,7 +299,14 @@ export function BeOrDoQuestionsUI({
     if (form.toLowerCase() === card.answer.toLowerCase()) {
       markRight();
     } else if (group.id === card.groupId) {
-      markWrong(form, { kind: "wrong-form", word: form, hint: group.agreementHint });
+      const answerTense = beOrDoTense(card.answer);
+      const hint =
+        beOrDoTense(form) !== answerTense
+          ? BE_OR_DO_TENSE_HINT
+          : answerTense === "past"
+          ? group.pastAgreementHint
+          : group.agreementHint;
+      markWrong(form, { kind: "wrong-form", word: form, hint });
     } else {
       markWrong(form, {
         kind: "wrong-group",
@@ -389,7 +413,7 @@ export function BeOrDoQuestionsUI({
               <>
                 <h2 className="text-3xl md:text-4xl font-bold mb-3">You did it!</h2>
                 <p className="text-lg md:text-xl text-white/90 mb-2">You completed all {rounds.length} rounds!</p>
-                <p className="text-sm text-white/80">Find the verb. BE goes first, or DO helps. 🏆</p>
+                <p className="text-sm text-white/80">Find the verb. BE jumps to the front, or DO comes to help. 🏆</p>
               </>
             ) : (
               <>
@@ -418,7 +442,7 @@ export function BeOrDoQuestionsUI({
               <div className="flex items-center gap-2">
                 <span className="text-2xl" aria-hidden="true">✅</span>
                 <span className="text-sm font-bold uppercase tracking-wide text-green-800 dark:text-green-300">
-                  {cardGroup ? `${cardGroup.label} · ${cardGroup.rule}` : "Correct"}
+                  {cardGroup ? `${cardGroup.icon} ${cardGroup.label} · ${cardGroup.rule}` : "Correct"}
                 </span>
               </div>
               <p className="text-2xl md:text-3xl font-bold leading-snug text-[var(--color-text)]">
@@ -508,10 +532,10 @@ export function BeOrDoQuestionsUI({
                   return (
                     <div key={group.id} className="flex flex-col gap-1.5">
                       <span className={`text-xs font-bold uppercase tracking-wide ${style.text}`}>
-                        {group.label} · {group.rule}
+                        <span aria-hidden="true">{group.icon}</span> {group.label} · {group.rule}
                       </span>
                       <div className="flex gap-2 sm:gap-3">
-                        {group.forms.map((form) => (
+                        {formsFor(group).map((form) => (
                           <button
                             key={form}
                             onClick={() => pickForm(form, group)}
@@ -543,8 +567,9 @@ export function BeOrDoQuestionsUI({
                           : "!border-[var(--color-border-subtle)] !bg-[var(--color-surface-elevated)] hover:!border-[var(--color-border-strong)]"
                       }`}
                     >
+                      <span className="text-3xl md:text-4xl leading-none mb-1" aria-hidden="true">{group.icon}</span>
                       <span className="font-bold text-[var(--color-text)] text-base md:text-lg">{group.label}</span>
-                      <span className={`text-lg md:text-xl font-bold ${style.text}`}>{group.forms.join(" · ")}</span>
+                      <span className={`text-lg md:text-xl font-bold ${style.text}`}>{formsFor(group).join(" · ")}</span>
                       <span className={`text-xs font-semibold ${style.text}`}>{group.rule}</span>
                     </button>
                   );

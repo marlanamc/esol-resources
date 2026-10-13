@@ -490,21 +490,21 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Questions That Get Real Answers"
           },
           {
-            "id": "question-word-practice",
+            "id": "be-or-do-questions",
+            "activityId": "be-or-do-questions",
             "slot": "required",
             "order": 2,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Question Word Practice Game"
+            "title": "Be or Do?"
           },
           {
-            "id": "be-or-do-questions",
-            "activityId": "be-or-do-questions",
+            "id": "question-word-practice",
             "slot": "required",
             "order": 3,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Be or Do?"
+            "title": "Question Word Practice Game"
           },
           {
             "id": "vocab-sep-w3-matching",

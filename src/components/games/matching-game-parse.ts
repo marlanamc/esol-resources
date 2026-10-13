@@ -77,28 +77,51 @@ export interface BeOrDoGroup {
   label: string;
   /** One-line rule under the box title. */
   rule: string;
+  /** Picture cue for the rule, shown on the box and the answer card. */
+  icon: string;
   /** Exact forms, capitalized as they start a question. */
   forms: string[];
-  /** Shown when the learner picks the right family but the wrong form. */
+  /** The subset of `forms` that are past tense. */
+  pastForms: string[];
+  /** Shown when the learner picks the right family and tense but the wrong form. */
   agreementHint: string;
+  pastAgreementHint: string;
 }
 
 export const BE_OR_DO_GROUPS: BeOrDoGroup[] = [
   {
     id: "be",
     label: "The verb is BE",
-    rule: "BE goes first",
-    forms: ["Am", "Is", "Are"],
+    rule: "BE jumps to the front",
+    icon: "🦘",
+    forms: ["Am", "Is", "Are", "Was", "Were"],
+    pastForms: ["Was", "Were"],
     agreementHint: "BE is right! Now match the subject: I → am · he / she / it → is · you / we / they → are.",
+    pastAgreementHint: "BE is right! Now match the subject: I / he / she / it → was · you / we / they → were.",
   },
   {
     id: "do",
     label: "Another verb",
     rule: "DO comes to help",
-    forms: ["Do", "Does"],
+    icon: "🤝",
+    forms: ["Do", "Does", "Did"],
+    pastForms: ["Did"],
     agreementHint: "DO is right! Now match the subject: he / she / it → does · I / you / we / they → do.",
+    pastAgreementHint: "DO is right! In the past, use did with every subject.",
   },
 ];
+
+/** Shown when the learner picks the right family but the wrong time. */
+export const BE_OR_DO_TENSE_HINT =
+  "Right verb, wrong time! Look for the time words. Past (yesterday, last night) → was / were / did. Now or every day → am / is / are / do / does.";
+
+export type BeOrDoTense = "present" | "past";
+
+export function beOrDoTense(form: string): BeOrDoTense {
+  const lower = form.trim().toLowerCase();
+  const isPast = BE_OR_DO_GROUPS.some((g) => g.pastForms.some((f) => f.toLowerCase() === lower));
+  return isPast ? "past" : "present";
+}
 
 export function findBeOrDoGroup(form: string): BeOrDoGroup | undefined {
   const lower = form.trim().toLowerCase();
@@ -131,7 +154,7 @@ export interface BeOrDoCard {
 
 export interface BeOrDoRound {
   roundNumber: number;
-  /** "group": pick BE or DO. "form": pick the exact word (am / is / are / do / does). */
+  /** "group": pick BE or DO. "form": pick the exact word (am / is / are / was / were / do / does / did). */
   mode: "group" | "form";
   note?: string;
   cards: BeOrDoCard[];
