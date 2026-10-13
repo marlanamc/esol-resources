@@ -5,6 +5,7 @@ import { prisma } from "@/lib/database/prisma";
 import { POINTS } from "@/lib/gamification/gamification";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { ApiErrors, apiError } from "@/lib/api/response";
+import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -156,35 +157,43 @@ export async function GET(request: Request) {
 
     const userId = session.user.id;
     const progressActivityId = activityId || `grammar:${slug}`;
+    // Mini-quiz scores are saved under the canonical guide id (see /api/grammar/complete).
+    const quizActivityId = (await resolveCanonicalGrammarActivityId({ activityId, slug })) || progressActivityId;
 
-    const existing = await prisma.activityProgress.findFirst({
-        where: {
-            userId,
-            activityId: progressActivityId,
-            assignmentId: null,
-        },
-        select: {
-            categoryData: true,
-        },
+    const [existing, quizSubmission] = await Promise.all([
+        prisma.activityProgress.findFirst({
+            where: {
+                userId,
+                activityId: progressActivityId,
+                assignmentId: null,
+            },
+            select: {
+                categoryData: true,
+            },
+        }),
+        prisma.submission.findFirst({
+            where: {
+                userId,
+                activityId: quizActivityId,
+                content: { contains: '"type":"mini-quiz"' },
+            },
+            select: { id: true },
+        }),
+    ]);
+    const miniQuizSubmitted = Boolean(quizSubmission);
+
+    let categoryData: Partial<GrammarExerciseCategoryData> = {};
+    if (existing?.categoryData) {
+        try {
+            categoryData = JSON.parse(existing.categoryData) as GrammarExerciseCategoryData;
+        } catch {
+            // Treat unreadable progress as no exercises finished.
+        }
+    }
+
+    return NextResponse.json({
+        exercises: categoryData.exercises || {},
+        totalExercisePoints: categoryData.totalExercisePoints || 0,
+        miniQuizSubmitted,
     });
-
-    if (!existing?.categoryData) {
-        return NextResponse.json({
-            exercises: {},
-            totalExercisePoints: 0,
-        });
-    }
-
-    try {
-        const categoryData = JSON.parse(existing.categoryData) as GrammarExerciseCategoryData;
-        return NextResponse.json({
-            exercises: categoryData.exercises || {},
-            totalExercisePoints: categoryData.totalExercisePoints || 0,
-        });
-    } catch {
-        return NextResponse.json({
-            exercises: {},
-            totalExercisePoints: 0,
-        });
-    }
 }

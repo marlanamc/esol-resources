@@ -13,6 +13,7 @@ import { PointsToast } from "@/components/ui/PointsToast";
 import Link from "next/link";
 import { GrammarSaveQueue } from "@/lib/grammar-save-queue";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { getGuideWorkRemaining } from "@/lib/grammar-guide-completion";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
@@ -83,6 +84,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const quizSavePromiseRef = useRef<Promise<boolean | undefined> | null>(null);
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
+    // The checkmark needs every exercise plus the mini-quiz; refs keep save callbacks current.
+    const finishedExercisesRef = useRef<Set<string>>(new Set());
+    const quizSubmittedRef = useRef(false);
+    const guideCompletedRef = useRef(false);
     const grammarActivitiesHref = "/dashboard/activities?category=grammar";
     const returnHref = useResolvedLearnerReturnHref({ fallbackHref: grammarActivitiesHref });
     const isFromMap = returnHref.startsWith("/dashboard/map");
@@ -130,6 +135,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         ? Math.max(0, Math.min(100, Math.round(data.progress)))
                         : 0;
                 persistedProgressRef.current = fetchedProgress;
+                guideCompletedRef.current = data.status === "completed";
 
                 let restoredLastSectionIndex: number | null = null;
                 let restoredCompletedSectionIds: string[] = [];
@@ -186,6 +192,53 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         return () => { cancelled = true; };
     }, [activityId, completionKey, content.sections.length, readAssignmentId, sectionKeys]);
 
+    useEffect(() => {
+        if (!completionKey) return;
+        let cancelled = false;
+        (async () => {
+            try {
+                const params = new URLSearchParams({ slug: completionKey });
+                if (activityId) params.set("activityId", activityId);
+                const res = await fetch(`/api/grammar/exercise-progress?${params.toString()}`, { cache: "no-store" });
+                if (!res.ok || cancelled) return;
+                const data = await res.json() as {
+                    exercises?: Record<string, { completed?: boolean }>;
+                    miniQuizSubmitted?: boolean;
+                };
+                if (cancelled) return;
+                for (const [key, exercise] of Object.entries(data.exercises ?? {})) {
+                    if (exercise?.completed) finishedExercisesRef.current.add(key);
+                }
+                if (data.miniQuizSubmitted) quizSubmittedRef.current = true;
+            } catch {
+                // non-blocking; work done this visit still counts
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [activityId, completionKey]);
+
+    /** Saves 100% (the checkmark) once all guide work is done; otherwise reports what is left. */
+    const saveCompletionIfDone = useCallback(async () => {
+        const remaining = getGuideWorkRemaining(content, finishedExercisesRef.current, quizSubmittedRef.current);
+        if (!remaining.done || !activityId || guideCompletedRef.current) return remaining;
+        const result = await saveActivityProgress(
+            activityId,
+            100,
+            "completed",
+            undefined,
+            undefined,
+            readAssignmentId(),
+            {
+                lastSectionIndex: Math.max(0, content.sections.length - 1),
+                completedSectionIds: sectionKeys,
+            }
+        );
+        if (!result?.ok) throw new Error("Completion progress did not save");
+        guideCompletedRef.current = true;
+        persistedProgressRef.current = 100;
+        return remaining;
+    }, [activityId, content, readAssignmentId, sectionKeys]);
+
     // Fallback title if a page didn't provide completionKey.
     useEffect(() => {
         if (completionKey) {
@@ -224,37 +277,25 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                 throw new Error(`/api/grammar/complete failed with ${completionResponse.status}`);
             }
             const award = await completionResponse.json();
+            if (quizScore !== undefined) quizSubmittedRef.current = true;
+            const remaining = await saveCompletionIfDone();
             if (award.points > 0 && award.awarded) {
                 setPointsToast({ points: award.points, key: Date.now() });
+            }
+            if (remaining.exercisesLeft > 0) {
+                const exercises = remaining.exercisesLeft === 1 ? "1 more practice exercise" : `${remaining.exercisesLeft} more practice exercises`;
+                setSaveNotice(`Saved. Finish ${exercises} to complete this guide.`);
+            } else if (award.points > 0 && award.awarded) {
                 setSaveNotice(`Practice saved. +${award.points} completion points.`);
             } else if (award.message) {
                 setSaveNotice(award.message);
             } else {
                 setSaveNotice("Practice saved. Any previously earned points are already in your balance.");
             }
-            // Also save 100% progress if activityId is provided
-            if (activityId) {
-                const assignmentId = readAssignmentId();
-                const result = await saveActivityProgress(
-                    activityId,
-                    100,
-                    "completed",
-                    undefined,
-                    undefined,
-                    assignmentId,
-                    {
-                        lastSectionIndex: Math.max(0, content.sections.length - 1),
-                        completedSectionIds: sectionKeys,
-                    }
-                );
-                if (!result?.ok) throw new Error("Completion progress did not save");
-                const savedProgress = typeof result?.progress === "number" ? result.progress : 100;
-                persistedProgressRef.current = Math.max(persistedProgressRef.current, savedProgress);
-            }
             if (quizScore === undefined) setAwardSent(true);
             else quizSavedRef.current = true;
         });
-    }, [completionKey, awardSent, activityId, content.sections.length, readAssignmentId, sectionKeys, saveGuideWork]);
+    }, [completionKey, awardSent, activityId, readAssignmentId, saveGuideWork, saveCompletionIfDone]);
 
     // Track progress as user navigates through sections (and save last section for resume)
     useEffect(() => {
@@ -274,7 +315,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         const viewProgress = (sectionsViewed / totalSections) * 20;
         const completionProgress = (sectionsCompleted / totalSections) * 80;
         const totalProgress = Math.round(viewProgress + completionProgress);
-        const progressToSave = Math.max(totalProgress, persistedProgressRef.current);
+        // Reading every section is not enough for the checkmark; stay below 100 until the work is done.
+        const workDone = guideCompletedRef.current ||
+            getGuideWorkRemaining(content, finishedExercisesRef.current, quizSubmittedRef.current).done;
+        const progressToSave = Math.max(workDone ? totalProgress : Math.min(totalProgress, 99), persistedProgressRef.current);
         const assignmentId = readAssignmentId();
 
         let cancelled = false;
@@ -303,7 +347,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         return () => {
             cancelled = true;
         };
-    }, [activityId, currentSectionIndex, completedSections, content.sections.length, progressHydrated, readAssignmentId]);
+    }, [activityId, content, currentSectionIndex, completedSections, progressHydrated, readAssignmentId]);
 
     useEffect(() => {
         try {
@@ -454,8 +498,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             if (!response.ok) throw new Error("Exercise save failed");
             const data = await response.json();
             if (data.pointsAwarded > 0) setPointsToast({ points: data.pointsAwarded, key: Date.now() });
+            finishedExercisesRef.current.add(`${info.sectionId}:${info.exerciseId}`);
+            // Finishing the last exercise after the quiz completes the guide.
+            if (quizSubmittedRef.current || !content.miniQuiz?.length) await saveCompletionIfDone();
         });
-    }, [completionKey, activityId, saveGuideWork]);
+    }, [completionKey, activityId, content.miniQuiz, saveGuideWork, saveCompletionIfDone]);
 
     const handleUnlockExercises = useCallback(() => {
         if (!currentSectionKey || !currentHasExercises) return;
