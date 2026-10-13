@@ -397,7 +397,8 @@ export function BeOrDoQuestionsUI({
         className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:overflow-visible md:overscroll-auto md:px-0 md:py-6 flex flex-col items-center justify-start gap-5"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {round.note && !isRoundComplete && (
+        {/* The round tip shows on the first card only, so it does not crowd every question. */}
+        {round.note && !isRoundComplete && cardIndex === 0 && (
           <div className="w-full max-w-2xl">
             <div className="flex items-start gap-2 rounded-xl border-2 border-amber-300 bg-amber-50 p-3 dark:border-amber-500/60 dark:bg-amber-500/10">
               <span className="text-lg leading-none" aria-hidden="true">💡</span>
