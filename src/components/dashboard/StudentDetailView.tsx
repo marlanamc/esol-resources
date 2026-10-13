@@ -1,664 +1,501 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import type {
-    StudentAnalyticsCategoryKey,
-    StudentAnalyticsCategorySummary,
-    StudentAnalyticsNextAction,
-    StudentAnalyticsResponse,
-} from '@/lib/teacher-student-analytics';
+import Link from 'next/link';
+import styles from './StudentDetailView.module.css';
+import { useEffect, useState } from 'react';
+import type { RequiredQuiz, StudentEvaluation } from '@/lib/teacher-student-evaluation';
 
-const CATEGORY_ORDER: StudentAnalyticsCategoryKey[] = ['vocab', 'grammar', 'numbers', 'other'];
-const CATEGORY_META: Record<
-    StudentAnalyticsCategoryKey,
-    {
-        label: string;
-        icon: string;
-        accent: string;
-        accentBg: string;
-        bar: string;
-        cardBorder: string;
-    }
-> = {
-    vocab: {
-        label: 'Vocabulary',
-        icon: '📚',
-        accent: 'text-emerald-700 dark:text-emerald-300',
-        accentBg: 'bg-emerald-50 dark:bg-emerald-950/25',
-        bar: 'bg-emerald-500',
-        cardBorder: 'border-emerald-200/70 dark:border-emerald-900/50',
-    },
-    grammar: {
-        label: 'Grammar',
-        icon: '✍️',
-        accent: 'text-orange-700 dark:text-orange-300',
-        accentBg: 'bg-orange-50 dark:bg-orange-950/25',
-        bar: 'bg-orange-500',
-        cardBorder: 'border-orange-200/70 dark:border-orange-900/50',
-    },
-    numbers: {
-        label: 'Numbers',
-        icon: '🔢',
-        accent: 'text-sky-700 dark:text-sky-300',
-        accentBg: 'bg-sky-50 dark:bg-sky-950/25',
-        bar: 'bg-sky-500',
-        cardBorder: 'border-sky-200/70 dark:border-sky-900/50',
-    },
-    other: {
-        label: 'Other',
-        icon: '🧩',
-        accent: 'text-slate-700 dark:text-slate-300',
-        accentBg: 'bg-slate-100 dark:bg-slate-800/40',
-        bar: 'bg-slate-500',
-        cardBorder: 'border-slate-200/80 dark:border-slate-700/60',
-    },
+function date(value: string, time = false) {
+    return new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        month: 'short',
+        day: 'numeric',
+        ...(time ? ({ hour: 'numeric', minute: '2-digit', timeZoneName: 'short' } as const) : {}),
+    }).format(new Date(value.length === 10 ? `${value}T12:00:00Z` : value));
+}
+const statusLabels: Record<RequiredQuiz['status'], string> = {
+    completed: 'Completed',
+    due: 'Due soon',
+    overdue: 'Past due',
+    upcoming: 'Not open yet',
 };
-
-const STATUS_META: Record<
-    StudentAnalyticsCategorySummary['status'],
-    { label: string; className: string }
-> = {
-    'on-track': {
-        label: 'On track',
-        className: 'bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900/60',
-    },
-    'needs-attention': {
-        label: 'Needs attention',
-        className: 'bg-rose-100 text-rose-800 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60',
-    },
-    'not-started': {
-        label: 'Not started',
-        className: 'bg-amber-100 text-amber-800 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900/60',
-    },
-    'no-assigned-work': {
-        label: 'No assigned work',
-        className: 'bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:border-slate-700/60',
-    },
-};
-
-function getRelativeTimeLabel(value: string | null) {
-    if (!value) return 'Never';
-    const date = new Date(value);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMs / 3600000);
-    const diffDays = Math.floor(diffMs / 86400000);
-
-    if (diffMins < 1) return 'Just now';
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    if (diffDays === 1) return 'Yesterday';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    return date.toLocaleDateString();
-}
-
-function getActionLabel(action: StudentAnalyticsNextAction | null) {
-    if (!action) return null;
-    if (action.actionType === 'resume') return `Resume ${action.title}`;
-    if (action.actionType === 'start') return `Start ${action.title}`;
-    return `Review ${action.title}`;
-}
-
-function getActionMeta(summary: StudentAnalyticsCategorySummary) {
-    const actionLabel = getActionLabel(summary.nextAction);
-    const dueDateLabel = summary.nextAction?.dueDate
-        ? new Date(summary.nextAction.dueDate).toLocaleDateString()
-        : null;
-
-    if (actionLabel) {
-        return {
-            title: actionLabel,
-            detail:
-                summary.nextAction?.actionType === 'review'
-                    ? 'Latest scored work needs review.'
-                    : dueDateLabel
-                        ? `Due ${dueDateLabel}`
-                        : 'Most relevant next assignment to follow up on.',
-        };
-    }
-
-    if (summary.status === 'no-assigned-work') {
-        return {
-            title: 'No assigned work in this category',
-            detail:
-                summary.historicalActivityCount > 0
-                    ? 'This student has older activity here, but nothing currently assigned.'
-                    : 'No follow-up needed until work is assigned.',
-        };
-    }
-
-    if (summary.status === 'not-started') {
-        return {
-            title: 'No activity yet',
-            detail: 'The student has assigned work here but has not started it.',
-        };
-    }
-
-    if (summary.status === 'needs-attention') {
-        return {
-            title: 'Follow up soon',
-            detail: 'This category includes overdue or stalled work.',
-        };
-    }
-
-    return {
-        title: 'Momentum is healthy',
-        detail: 'Recent work is moving forward with no immediate blockers.',
-    };
-}
-
-function shouldShowCategory(
-    categoryKey: StudentAnalyticsCategoryKey,
-    summary: StudentAnalyticsCategorySummary
-) {
-    if (categoryKey !== 'other') {
-        return true;
-    }
-
+function QuizRow({ quiz }: { quiz: RequiredQuiz }) {
     return (
-        summary.assignedCount > 0 ||
-        summary.historicalActivityCount > 0 ||
-        summary.lastActiveAt !== null ||
-        summary.latestScore !== null
+        <li className="grid gap-3 border-b border-border py-5 last:border-0 sm:grid-cols-[minmax(0,1fr)_auto]">
+            <div>
+                <Link
+                    className="font-semibold text-text underline decoration-border underline-offset-4 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
+                    href={`/activity/${encodeURIComponent(quiz.id)}`}
+                >
+                    {quiz.title}
+                </Link>
+                <p className="mt-1 text-sm text-text-muted">
+                    {quiz.status === 'upcoming'
+                        ? `Opens ${date(quiz.opensAt, true)}`
+                        : `Due ${date(quiz.dueAt, true)}`}
+                </p>
+                {quiz.submittedAt ? (
+                    <p className="mt-1 text-xs text-text-muted">
+                        Recorded {date(quiz.submittedAt, true)}
+                    </p>
+                ) : null}
+            </div>
+            <div className="flex flex-wrap items-center gap-4 sm:justify-end">
+                <span
+                    className={`rounded-full px-3 py-1 text-xs font-semibold ${quiz.status === 'overdue' ? 'bg-rose-100 text-rose-900 dark:bg-rose-950 dark:text-rose-200' : quiz.status === 'completed' ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200' : 'bg-bg text-text-muted'}`}
+                >
+                    {statusLabels[quiz.status]}
+                </span>
+                {quiz.status === 'completed' ? (
+                    <div className="text-right text-sm">
+                        <p className="font-semibold text-text">
+                            {quiz.credit === null ? 'Credit recorded' : `${quiz.credit}% credit`}
+                        </p>
+                        <p className="text-text-muted">
+                            {quiz.accuracy === null
+                                ? 'No answer-level score saved'
+                                : `${quiz.accuracy}% answer accuracy`}
+                        </p>
+                        {quiz.adjusted ? (
+                            <p className="mt-1 text-xs text-text-muted">Teacher-adjusted credit</p>
+                        ) : null}
+                    </div>
+                ) : null}
+            </div>
+        </li>
     );
 }
 
-function InterventionCategoryCard({
-    categoryKey,
-    summary,
-}: {
-    categoryKey: StudentAnalyticsCategoryKey;
-    summary: StudentAnalyticsCategorySummary;
-}) {
-    const meta = CATEGORY_META[categoryKey];
-    const statusMeta = STATUS_META[summary.status];
-    const actionMeta = getActionMeta(summary);
-
+/** Rendered separately so the complete view can also be previewed with safe fixtures. */
+export function StudentEvaluationContent({ data }: { data: StudentEvaluation }) {
+    const [category, setCategory] = useState('All practice');
+    const open = data.quizzes.filter((q) => q.status !== 'upcoming');
+    const completed = open.filter((q) => q.status === 'completed');
+    const overdue = open.filter((q) => q.status === 'overdue');
+    const due = open.filter((q) => q.status === 'due');
+    const upcoming = data.quizzes.filter((q) => q.status === 'upcoming');
+    const rows = data.practice.filter(
+        (p) => category === 'All practice' || p.category === category,
+    );
     return (
-        <div className={`rounded-2xl border bg-surface-elevated p-5 shadow-sm ${meta.cardBorder}`}>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0">
-                    <div className="flex items-center gap-3">
-                        <span className={`flex h-10 w-10 items-center justify-center rounded-xl text-lg ${meta.accentBg}`}>
-                            {meta.icon}
-                        </span>
-                        <div>
-                            <h3 className="text-lg font-semibold text-text">{meta.label}</h3>
-                            <p className="text-sm text-text-muted">
-                                {summary.completedCount} of {summary.assignedCount} assigned completed
-                            </p>
+        <div className="space-y-10">
+            <section aria-labelledby="quiz-heading">
+                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                            Required work
+                        </p>
+                        <h2 id="quiz-heading" className="mt-2 text-2xl font-bold text-text">
+                            Weekly quizzes
+                        </h2>
+                        <p className="mt-2 text-sm text-text-muted">
+                            Quizzes are required before class. All other activities are optional
+                            practice.
+                        </p>
+                    </div>
+                    <div className="text-right">
+                        <p className="text-3xl font-bold tabular-nums text-text">
+                            {completed.length}
+                            <span className="text-lg font-normal text-text-muted">
+                                {' '}
+                                / {open.length}
+                            </span>
+                        </p>
+                        <p className="text-sm text-text-muted">open quizzes completed</p>
+                    </div>
+                </div>
+                <p className="mt-4 text-sm text-text" role="status">
+                    {overdue.length
+                        ? `${overdue.length} past-due ${overdue.length === 1 ? 'quiz needs' : 'quizzes need'} a reminder.`
+                        : due.length
+                          ? `${due.length} ${due.length === 1 ? 'quiz is' : 'quizzes are'} open. Next deadline: ${date(due[0].dueAt, true)}.`
+                          : open.length
+                            ? 'All open quizzes are completed.'
+                            : 'No required quizzes are open for this class yet.'}
+                </p>
+                <ul>
+                    {[...overdue, ...due, ...completed.slice().reverse()].map((q) => (
+                        <QuizRow key={q.id} quiz={q} />
+                    ))}
+                </ul>
+                {upcoming.length ? (
+                    <details className="mt-4 rounded-lg bg-bg px-4 py-3">
+                        <summary className="cursor-pointer text-sm font-semibold text-text">
+                            Upcoming quizzes ({upcoming.length})
+                        </summary>
+                        <ul>
+                            {upcoming.map((q) => (
+                                <QuizRow key={q.id} quiz={q} />
+                            ))}
+                        </ul>
+                    </details>
+                ) : null}
+            </section>
+
+            <section aria-labelledby="practice-heading">
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                            Student choice
+                        </p>
+                        <h2 id="practice-heading" className="mt-2 text-2xl font-bold text-text">
+                            Optional practice
+                        </h2>
+                        <p className="mt-2 text-sm text-text-muted">
+                            Recognize exploration and effort. Unfinished practice is not missing
+                            work.
+                        </p>
+                    </div>
+                </div>
+                <dl className="mt-6 grid grid-cols-2 gap-y-5 border-y border-border py-5 lg:grid-cols-4">
+                    {[
+                        [data.practice.length, 'Activities explored'],
+                        [data.engagement.activeDays, 'Recorded practice days'],
+                        [data.engagement.weekendDays, 'Weekend practice days'],
+                        [data.student.points, 'Total points balance'],
+                    ].map(([value, label]) => (
+                        <div key={label} className="pr-4">
+                            <dt className="text-sm text-text-muted">{label}</dt>
+                            <dd className="mt-1 text-2xl font-bold tabular-nums text-text">
+                                {value}
+                            </dd>
+                        </div>
+                    ))}
+                </dl>
+                <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_1fr]">
+                    <div>
+                        <h3 className="font-semibold text-text">Practice rhythm</h3>
+                        <p className="mt-1 text-xs text-text-muted">
+                            Recorded days per week, including quizzes. Current week is partial.
+                        </p>
+                        <div className="mt-4 space-y-3">
+                            {data.engagement.weeks.map((w) => (
+                                <div
+                                    key={w.start}
+                                    className="grid grid-cols-[6.5rem_1fr_2rem] items-center gap-3 text-sm"
+                                >
+                                    <span className="text-text-muted">
+                                        {date(w.start)}
+                                        {w.current ? ' · now' : ''}
+                                    </span>
+                                    <div className="h-2 rounded-full bg-bg" aria-hidden="true">
+                                        <div
+                                            className="h-2 rounded-full bg-primary motion-safe:transition-[width]"
+                                            style={{ width: `${(w.activeDays / 7) * 100}%` }}
+                                        />
+                                    </div>
+                                    <span className="text-right tabular-nums text-text">
+                                        {w.activeDays}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2">
-                    {summary.latestScore !== null ? (
-                        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${meta.accentBg} ${meta.accent}`}>
-                            Latest score {summary.latestScore}%
-                        </span>
-                    ) : null}
-                    <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusMeta.className}`}>
-                        {statusMeta.label}
-                    </span>
-                </div>
-            </div>
-
-            <div className="mt-5 flex items-end justify-between gap-4">
-                <div>
-                    <div className="text-3xl font-black tracking-tight text-text">
-                        {summary.completedCount}
-                        <span className="ml-1 text-lg font-semibold text-text-muted">/ {summary.assignedCount}</span>
-                    </div>
-                    <p className="text-sm text-text-muted">Completed assignments</p>
-                </div>
-                <div className="text-right">
-                    <div className={`text-2xl font-black ${meta.accent}`}>
-                        {summary.assignedCount > 0 ? `${summary.completionRate}%` : '—'}
-                    </div>
-                    <p className="text-sm text-text-muted">Completion rate</p>
-                </div>
-            </div>
-
-            {summary.assignedCount > 0 ? (
-                <div className="mt-4">
-                    <div aria-hidden="true" className="h-2.5 overflow-hidden rounded-full bg-bg">
-                        <div
-                            className={`h-full transition-[width] duration-300 ${meta.bar}`}
-                            style={{ width: `${summary.completionRate}%` }}
-                        />
+                    <div className="text-sm text-text-muted">
+                        <h3 className="font-semibold text-text">What these records tell us</h3>
+                        <p className="mt-2">
+                            {data.engagement.lastPracticedAt
+                                ? `Latest saved practice: ${date(data.engagement.lastPracticedAt, true)}.`
+                                : 'No practice recorded in this class period yet.'}
+                        </p>
+                        <p className="mt-2">
+                            Saved actions show participation, not minutes spent or independent
+                            mastery. Points recognize effort and may include bonuses or teacher
+                            adjustments.
+                        </p>
+                        <p className="mt-2">
+                            {data.engagement.pointsEarned >= 0 ? '+' : ''}
+                            {data.engagement.pointsEarned} net points recorded during this class
+                            period.
+                        </p>
                     </div>
                 </div>
-            ) : null}
+                <div
+                    className="mt-7 flex flex-wrap gap-2"
+                    role="group"
+                    aria-label="Filter optional practice"
+                >
+                    {['All practice', ...data.categories.map((c) => c.category)].map((c) => (
+                        <button
+                            key={c}
+                            type="button"
+                            aria-pressed={category === c}
+                            onClick={() => setCategory(c)}
+                            className={`${styles.control} rounded-full border px-3 py-2 text-sm motion-safe:transition-colors ${category === c ? 'border-primary bg-primary text-white' : 'border-border text-text hover:border-primary'}`}
+                        >
+                            {c}
+                        </button>
+                    ))}
+                </div>
+                {rows.length ? (
+                    <ul className="mt-3 divide-y divide-border">
+                        {rows.map((p) => (
+                            <li
+                                key={p.id}
+                                className="flex flex-wrap items-center justify-between gap-3 py-4"
+                            >
+                                <div className="min-w-0">
+                                    <Link
+                                        href={`/activity/${encodeURIComponent(p.id)}`}
+                                        className="font-medium text-text hover:text-primary"
+                                    >
+                                        {p.title}
+                                    </Link>
+                                    <p className="mt-1 text-xs text-text-muted">
+                                        {p.category} · Last saved {date(p.lastPracticedAt)}
+                                    </p>
+                                    {p.modes.length ? (
+                                        <p className="mt-1 text-sm text-text-muted">
+                                            Completed: {p.modes.join(', ')}
+                                        </p>
+                                    ) : null}
+                                </div>
+                                <span className="text-sm text-text-muted">
+                                    {p.completed
+                                        ? 'Completion recorded'
+                                        : p.progress > 0
+                                          ? `${p.progress}% saved progress`
+                                          : 'Explored'}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="mt-5 rounded-lg bg-bg p-5 text-sm text-text-muted">
+                        No optional practice recorded here yet. There is no practice requirement to
+                        catch up on.
+                    </p>
+                )}
+                <p className="mt-3 text-xs text-text-muted">
+                    Progress is the latest saved state; a returning student may retain earlier
+                    completions.
+                </p>
+            </section>
 
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                <div className="rounded-xl bg-bg px-3 py-3">
-                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Started</div>
-                    <div className="mt-1 text-lg font-bold text-text">{summary.startedCount}</div>
-                </div>
-                <div className="rounded-xl bg-bg px-3 py-3">
-                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Stalled</div>
-                    <div className="mt-1 text-lg font-bold text-text">{summary.stalledCount}</div>
-                </div>
-                <div className="rounded-xl bg-bg px-3 py-3">
-                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Overdue</div>
-                    <div className="mt-1 text-lg font-bold text-text">{summary.overdueCount}</div>
-                </div>
-                <div className="rounded-xl bg-bg px-3 py-3">
-                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Last active</div>
-                    <div className="mt-1 text-sm font-semibold text-text">
-                        {getRelativeTimeLabel(summary.lastActiveAt)}
+            <section aria-labelledby="learning-heading">
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                    Learning evidence
+                </p>
+                <h2 id="learning-heading" className="mt-2 text-2xl font-bold text-text">
+                    Practice checks & growth
+                </h2>
+                <p className="mt-2 text-sm text-text-muted">
+                    First and latest saved answers on optional guide quizzes. Retrying the same
+                    questions shows correction, not necessarily lasting learning.
+                </p>
+                {data.learning.length ? (
+                    <div className="mt-5 overflow-x-auto">
+                        <table className="w-full text-left text-sm">
+                            <thead className="border-b border-border text-text-muted">
+                                <tr>
+                                    <th scope="col" className="py-3 pr-4 font-medium">
+                                        Practice check
+                                    </th>
+                                    <th scope="col" className="p-3 font-medium">
+                                        First
+                                    </th>
+                                    <th scope="col" className="p-3 font-medium">
+                                        Latest
+                                    </th>
+                                    <th scope="col" className="p-3 font-medium">
+                                        Evidence
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border">
+                                {data.learning.map((l) => (
+                                    <tr key={l.id}>
+                                        <th scope="row" className="py-4 pr-4 font-medium text-text">
+                                            {l.title}
+                                            <span className="mt-1 block text-xs font-normal text-text-muted">
+                                                {date(l.lastAttemptAt)} · {l.questions} questions
+                                            </span>
+                                        </th>
+                                        <td className="p-3 tabular-nums text-text">{l.first}%</td>
+                                        <td className="p-3 tabular-nums text-text">{l.latest}%</td>
+                                        <td className="p-3 text-text-muted">
+                                            {l.attempts === 1
+                                                ? 'One recorded attempt'
+                                                : !l.comparable
+                                                  ? 'Question sets differ'
+                                                  : `${l.attempts} attempts · ${l.daysBetween ? `${l.daysBetween} days apart` : 'retries within 24h'}`}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            </div>
-
-            <div className={`mt-5 rounded-2xl border px-4 py-4 ${meta.accentBg} ${meta.cardBorder}`}>
-                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
-                    Next action
-                </div>
-                <div className="mt-1 text-sm font-semibold text-text">{actionMeta.title}</div>
-                <div className="mt-1 text-sm text-text-muted">{actionMeta.detail}</div>
-            </div>
+                ) : (
+                    <p className="mt-5 rounded-lg bg-bg p-5 text-sm text-text-muted">
+                        No question-level practice checks recorded in this class period. Quiz credit
+                        alone does not establish learning growth.
+                    </p>
+                )}
+                {data.review.length ? (
+                    <details className="mt-5 border-y border-border py-4">
+                        <summary className="cursor-pointer font-semibold text-text">
+                            Possible review topics
+                        </summary>
+                        <p className="mt-2 text-sm text-text-muted">
+                            Based on first saved answers only. Small samples are conversation
+                            starters, not a diagnosis.
+                        </p>
+                        <ul className="mt-3 space-y-2">
+                            {data.review.map((r) => (
+                                <li key={r.skill} className="flex justify-between gap-4 text-sm">
+                                    <span className="capitalize text-text">{r.skill}</span>
+                                    <span className="shrink-0 text-text-muted">
+                                        {r.correct}/{r.total} correct
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
+                ) : null}
+            </section>
+            <details className="border-t border-border pt-5">
+                <summary className="cursor-pointer font-semibold text-text">
+                    Recent points & effort record
+                </summary>
+                <p className="mt-2 text-sm text-text-muted">
+                    The latest 30 ledger entries in this class period, including adjustments. These
+                    are awards, not counts of games played.
+                </p>
+                <ul className="mt-4 divide-y divide-border">
+                    {data.timeline.map((e) => (
+                        <li
+                            key={e.id}
+                            className="flex items-start justify-between gap-4 py-3 text-sm"
+                        >
+                            <div>
+                                <p className="break-words text-text">
+                                    {e.title.replace(/\|/g, ' · ')}
+                                </p>
+                                <p className="mt-1 text-xs text-text-muted">
+                                    {date(e.at, true)} · {e.source || 'Points'}
+                                </p>
+                            </div>
+                            <span className="shrink-0 font-semibold tabular-nums text-text">
+                                {e.points > 0 ? '+' : ''}
+                                {e.points}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+                {!data.timeline.length ? (
+                    <p className="mt-3 text-sm text-text-muted">
+                        No points recorded in this period.
+                    </p>
+                ) : null}
+            </details>
         </div>
     );
 }
 
 export function StudentDetailView({ studentId }: { studentId: string }) {
-    const [data, setData] = useState<StudentAnalyticsResponse | null>(null);
+    const [data, setData] = useState<StudentEvaluation | null>(null);
+    const [selection, setSelection] = useState({ studentId, classId: '' });
+    const classId = selection.studentId === studentId ? selection.classId : '';
+    const [revision, setRevision] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
     useEffect(() => {
-        let cancelled = false;
-
-        fetch(`/api/teacher/student-analytics/${studentId}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch student data');
-                return res.json();
+        const controller = new AbortController();
+        setLoading(true);
+        setError(null);
+        setData(null);
+        const query = classId ? `?classId=${encodeURIComponent(classId)}` : '';
+        fetch(`/api/teacher/student-analytics/${encodeURIComponent(studentId)}${query}`, {
+            signal: controller.signal,
+            cache: 'no-store',
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw new Error(
+                        response.status === 404
+                            ? 'No active class enrollment is available for this student.'
+                            : 'Unable to load this evaluation. Please try again.',
+                    );
+                return response.json() as Promise<StudentEvaluation>;
             })
-            .then((nextData: StudentAnalyticsResponse) => {
-                if (cancelled) return;
-                setData(nextData);
-                setLoading(false);
+            .then((result) => {
+                if (!controller.signal.aborted) {
+                    setData(result);
+                    setLoading(false);
+                }
             })
             .catch((err: unknown) => {
-                if (cancelled) return;
-                setError(err instanceof Error ? err.message : 'Failed to fetch student data');
-                setLoading(false);
+                if (!controller.signal.aborted) {
+                    setError(
+                        err instanceof Error ? err.message : 'Unable to load this evaluation.',
+                    );
+                    setLoading(false);
+                }
             });
-
-        return () => {
-            cancelled = true;
-        };
-    }, [studentId]);
-
-    if (loading) {
+        return () => controller.abort();
+    }, [studentId, classId, revision]);
+    if (loading)
         return (
-            <div className="flex items-center justify-center py-12">
-                <div className="text-text-muted">Loading student data...</div>
+            <div role="status" className="py-16 text-center text-text-muted">
+                Loading current-class evaluation…
             </div>
         );
-    }
-
-    if (error || !data) {
+    if (error || !data)
         return (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 dark:bg-red-950/30 dark:border-red-900/50">
-                <p className="text-red-900">Error loading student data: {error}</p>
+            <div role="alert" className="rounded-lg border border-border p-6">
+                <p className="text-text">{error}</p>
+                <button
+                    type="button"
+                    className="mt-4 font-semibold text-primary underline"
+                    onClick={() => setRevision((r) => r + 1)}
+                >
+                    Try again
+                </button>
             </div>
         );
-    }
-
     return (
-        <div className="space-y-6">
-            {/* Engagement Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {/* Current Streak */}
-                <div className="bg-surface-elevated rounded-lg border border-border p-4">
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-text-muted">Current Streak</span>
-                        <span className="text-2xl">🔥</span>
-                    </div>
-                    <div className="text-3xl font-bold text-text">
-                        {data.student.currentStreak}
-                    </div>
-                    <div className="text-xs text-text-muted mt-1">
-                        Longest: {data.student.longestStreak} days
-                    </div>
+        <div className="rounded-2xl border border-border bg-surface-elevated p-5 sm:p-8">
+            <header className="mb-9 flex flex-wrap items-start justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-text">
+                        {data.student.name || data.student.username}
+                    </h1>
+                    <p className="mt-1 text-sm text-text-muted">
+                        {data.scope.className} · Since {date(data.scope.since)} · Eastern time
+                    </p>
+                    <p className="mt-1 text-xs text-text-muted">
+                        Updated {date(data.scope.asOf, true)} · Previous-class quizzes excluded
+                    </p>
                 </div>
-
-                {/* Total Points */}
-                <div className="bg-surface-elevated rounded-lg border border-border p-4">
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-text-muted">Total Points</span>
-                        <span className="text-2xl">⭐</span>
-                    </div>
-                    <div className="text-3xl font-bold text-text">
-                        {data.student.points}
-                    </div>
-                    <div className="text-xs text-text-muted mt-1">
-                        +{data.student.weeklyPoints} this week
-                    </div>
-                </div>
-
-                {/* Activities Completed */}
-                <div className="bg-surface-elevated rounded-lg border border-border p-4">
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-text-muted">Completed</span>
-                        <span className="text-2xl">✅</span>
-                    </div>
-                    <div className="text-3xl font-bold text-text">
-                        {data.engagement.totalActivitiesCompleted}
-                    </div>
-                    <div className="text-xs text-text-muted mt-1">
-                        {data.engagement.activitiesInProgress} in progress
-                    </div>
-                </div>
-
-                {/* Days Active */}
-                <div className="bg-surface-elevated rounded-lg border border-border p-4">
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-text-muted">Days Active</span>
-                        <span className="text-2xl">📅</span>
-                    </div>
-                    <div className="text-3xl font-bold text-text">
-                        {data.student.daysActiveThisMonth}
-                    </div>
-                    <div className="text-xs text-text-muted mt-1">
-                        This month · Last: {getRelativeTimeLabel(data.student.lastActive)}
-                    </div>
-                </div>
-            </div>
-
-            {/* Two Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Left Column - Favorite Activities & Progress */}
-                <div className="lg:col-span-2 space-y-6">
-                    {/* Favorite Activities */}
-                    <div className="bg-surface-elevated rounded-lg border border-border p-6">
-                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span>❤️</span>
-                            Favorite Activities
-                        </h2>
-                        {data.engagement.favoriteActivities.length === 0 ? (
-                            <p className="text-text-muted">No activities completed yet</p>
-                        ) : (
-                            <div className="space-y-2">
-                                {data.engagement.favoriteActivities.map((activity, idx) => (
-                                    <div
-                                        key={activity.key}
-                                        className="flex items-center justify-between p-3 bg-bg rounded-lg"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-lg font-semibold text-text-muted">
-                                                #{idx + 1}
-                                            </span>
-                                            <div>
-                                                <div className="font-medium text-text">
-                                                    {activity.title}
-                                                </div>
-                                                <div className="text-xs text-text-muted capitalize">
-                                                    {activity.category}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                                                {activity.count}x played
-                                            </span>
-                                            {activity.count > 1 && (
-                                                <span className="text-sm">🔁</span>
-                                            )}
-                                        </div>
-                                    </div>
+                <div className="flex flex-wrap items-center gap-3">
+                    {data.classes.length > 1 ? (
+                        <label className="text-sm text-text">
+                            Class{' '}
+                            <select
+                                value={data.scope.classId}
+                                onChange={(e) =>
+                                    setSelection({ studentId, classId: e.target.value })
+                                }
+                                className="ml-2 rounded border border-border bg-bg p-2"
+                            >
+                                {data.classes.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                        {c.name}
+                                    </option>
                                 ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Grammar Guide Quiz Results */}
-                    <div className="bg-surface-elevated rounded-lg border border-border p-6 shadow-sm">
-                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                            </span>
-                            Grammar Guide Quiz Scores
-                        </h2>
-                        {data.grammarQuizResults.length === 0 ? (
-                            <div className="text-center py-8 bg-bg rounded-lg border border-dashed border-border/60">
-                                <p className="text-text-muted">No grammar guide quizzes completed yet.</p>
-                                <p className="text-xs text-text-muted/60 mt-1 italic">Scores will appear here once the student finishes a guide's mini-quiz.</p>
-                            </div>
-                        ) : (
-                            <div className="grid grid-cols-1 gap-3">
-                                {data.grammarQuizResults.map((quiz) => (
-                                    <div
-                                        key={quiz.id}
-                                        className={`flex items-center justify-between p-4 rounded-xl transition-all border ${
-                                            quiz.completed
-                                                ? quiz.score !== null && quiz.score >= 80
-                                                    ? 'bg-emerald-50/50 border-emerald-100 hover:bg-emerald-50 dark:bg-emerald-950/25 dark:border-emerald-900/50 dark:hover:bg-emerald-950/40'
-                                                    : quiz.score !== null && quiz.score >= 60
-                                                    ? 'bg-amber-50/50 border-amber-100 hover:bg-amber-50 dark:bg-amber-950/25 dark:border-amber-900/50 dark:hover:bg-amber-950/40'
-                                                    : 'bg-rose-50/50 border-rose-100 hover:bg-rose-50 dark:bg-rose-950/25 dark:border-rose-900/50 dark:hover:bg-rose-950/40'
-                                                : 'bg-bg border-border/40'
-                                        }`}
-                                    >
-                                        <div className="flex-1 min-w-0 pr-4">
-                                            <div className="font-semibold text-text truncate">
-                                                {quiz.title}
-                                            </div>
-                                            {quiz.submittedAt && (
-                                                <div className="text-xs text-text-muted flex items-center gap-1.5 mt-1">
-                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                    </svg>
-                                                    Last attempted: {new Date(quiz.submittedAt).toLocaleDateString()}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="flex items-center gap-4">
-                                            {quiz.completed && quiz.score !== null ? (
-                                                <div className="flex items-center gap-3">
-                                                    <div className="text-right">
-                                                        <div className={`text-2xl font-black ${
-                                                            quiz.score >= 80 ? 'text-emerald-700' :
-                                                            quiz.score >= 60 ? 'text-amber-700' :
-                                                            'text-rose-700'
-                                                        }`}>
-                                                            {quiz.score}%
-                                                        </div>
-                                                    </div>
-                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                                                        quiz.score >= 80 ? 'bg-emerald-200 text-emerald-800' :
-                                                        quiz.score >= 60 ? 'bg-amber-200 text-amber-800' :
-                                                        'bg-rose-200 text-rose-800'
-                                                    }`}>
-                                                        {quiz.score >= 80 ? 'A' : quiz.score >= 60 ? 'B' : 'C'}
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <span className="text-xs font-medium text-text-muted bg-surface-elevated/50 px-2 py-1 rounded border border-border/40">Not Started</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Verb Quiz Results */}
-                    <div className="bg-surface-elevated rounded-lg border border-border p-6 shadow-sm">
-                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span className="p-2 bg-amber-50 rounded-lg text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                            </span>
-                            Verb Quiz Scores
-                        </h2>
-                        {data.verbQuizResults.length === 0 ? (
-                            <p className="text-text-muted">No verb quizzes available</p>
-                        ) : (
-                            <div className="space-y-2">
-                                {data.verbQuizResults.map((quiz) => (
-                                    <div
-                                        key={quiz.id}
-                                        className={`flex items-center justify-between p-3 rounded-lg border ${
-                                            quiz.completed
-                                                ? quiz.score !== null && quiz.score >= 80
-                                                    ? 'bg-green-50/50 border-green-100 dark:bg-green-950/25 dark:border-green-900/50'
-                                                    : quiz.score !== null && quiz.score >= 60
-                                                    ? 'bg-yellow-50/50 border-yellow-100 dark:bg-yellow-950/25 dark:border-yellow-900/50'
-                                                    : 'bg-red-50/50 border-red-100 dark:bg-red-950/25 dark:border-red-900/50'
-                                                : 'bg-bg border-border/40'
-                                        }`}
-                                    >
-                                        <div className="flex-1">
-                                            <div className="font-medium text-text">
-                                                {quiz.title}
-                                            </div>
-                                            {quiz.submittedAt && (
-                                                <div className="text-xs text-text-muted">
-                                                    Submitted {new Date(quiz.submittedAt).toLocaleDateString()}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            {quiz.completed && quiz.score !== null ? (
-                                                <>
-                                                    <div className="text-right">
-                                                        <div className={`text-lg font-bold ${
-                                                            quiz.score >= 80 ? 'text-green-700' :
-                                                            quiz.score >= 60 ? 'text-yellow-700' :
-                                                            'text-red-700'
-                                                        }`}>
-                                                            {quiz.score}%
-                                                        </div>
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                <span className="text-sm text-text-muted">Not completed</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Progress by Category */}
-                    <div className="bg-surface-elevated rounded-2xl border border-border p-6 shadow-sm">
-                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span>📊</span>
-                            Category Intervention
-                        </h2>
-                        <p className="mb-5 text-sm text-text-muted">
-                            Assigned-work status by category, with stalled and overdue work surfaced first.
-                        </p>
-                        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                            {CATEGORY_ORDER.filter((categoryKey) =>
-                                shouldShowCategory(categoryKey, data.progress.byCategory[categoryKey])
-                            ).map((categoryKey) => (
-                                <InterventionCategoryCard
-                                    key={categoryKey}
-                                    categoryKey={categoryKey}
-                                    summary={data.progress.byCategory[categoryKey]}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                            </select>
+                        </label>
+                    ) : null}
+                    <button
+                        type="button"
+                        onClick={() => setRevision((r) => r + 1)}
+                        className={`${styles.control} rounded-lg px-4 py-2`}
+                    >
+                        Refresh
+                    </button>
                 </div>
-
-                {/* Right Column - Recent Activity Timeline */}
-                <div className="space-y-6">
-                    <div className="bg-surface-elevated rounded-lg border border-border p-6">
-                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span>⏱️</span>
-                            Recent Activity
-                        </h2>
-                        <div className="space-y-3 max-h-[600px] overflow-y-auto">
-                            {data.timeline.length === 0 ? (
-                                <p className="text-text-muted text-sm">No activity yet</p>
-                            ) : (
-                                data.timeline.map(entry => {
-                                    // Parse the new format: "Title|Type" or legacy formats
-                                    let activityName = entry.activity;
-                                    let activityType: string | undefined = entry.activityType;
-
-                                    if (!activityType && entry.activity.includes('|')) {
-                                        // New format: "Title|Type"
-                                        const [title, type] = entry.activity.split('|');
-                                        activityName = title.trim();
-                                        activityType = type?.trim();
-                                    } else if (!activityType && entry.activity.startsWith('Completed: ')) {
-                                        // Legacy format
-                                        activityName = entry.activity.replace('Completed: ', '');
-                                    } else if (!activityType && entry.activity.includes(':')) {
-                                        // Legacy grammar format: "grammar:slug"
-                                        const formatted = entry.activity.split(':')[1]
-                                            ?.replace(/-/g, ' ')
-                                            .split(' ')
-                                            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                                            .join(' ') || entry.activity;
-                                        activityName = formatted;
-                                        if (entry.activity.startsWith('grammar:')) {
-                                            activityType = 'Grammar Guide';
-                                        }
-                                    }
-
-                                    // Special handling for streak and achievement entries
-                                    if (entry.activity === 'Streak bonus' || entry.activity === 'Streak + weekly bonus') {
-                                        activityType = 'Streak Bonus';
-                                    } else if (entry.activity.startsWith('Achievement:')) {
-                                        activityType = 'Achievement';
-                                        activityName = entry.activity.replace('Achievement: ', '');
-                                    } else if (entry.source === 'progress') {
-                                        activityType = 'In progress';
-                                    }
-
-                                    return (
-                                        <div
-                                            key={entry.id}
-                                            className="flex items-start gap-3 p-3 bg-bg rounded-lg"
-                                        >
-                                            {entry.points > 0 ? (
-                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                    <span className="text-sm font-bold text-primary">
-                                                        +{entry.points}
-                                                    </span>
-                                                </div>
-                                            ) : (
-                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
-                                                    <span className="text-sm font-bold text-secondary">↻</span>
-                                                </div>
-                                            )}
-                                            <div className="flex-1 min-w-0">
-                                                <div className="text-sm font-medium text-text">
-                                                    {activityName}
-                                                </div>
-                                                {activityType && (
-                                                    <span className="inline-block mt-1 px-2 py-0.5 text-[0.625rem] font-medium text-secondary bg-secondary/10 rounded-full">
-                                                        {activityType}
-                                                    </span>
-                                                )}
-                                                <div className="text-xs text-text-muted mt-1">
-                                                    {new Date(entry.timestamp).toLocaleDateString()} at{' '}
-                                                    {new Date(entry.timestamp).toLocaleTimeString([], {
-                                                        hour: '2-digit',
-                                                        minute: '2-digit'
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </header>
+            <StudentEvaluationContent key={`${studentId}:${data.scope.classId}`} data={data} />
         </div>
     );
 }

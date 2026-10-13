@@ -77,7 +77,6 @@ export default async function StudentDetailPage({
     }
 
     const studentDisplayName = student.name ?? student.username;
-    const studentLabel = enrollment?.class.name ?? "Independent learner";
 
     return (
         <div className="min-h-dvh bg-bg">
@@ -99,14 +98,7 @@ export default async function StudentDetailPage({
                     </nav>
 
                     <div className="flex items-center justify-between">
-                        <div>
-                            <h1 className="text-3xl font-bold text-text mb-1">
-                                {studentDisplayName}
-                            </h1>
-                            <p className="text-text-muted">
-                                @{student.username} · {studentLabel}
-                            </p>
-                        </div>
+                        <p className="text-sm text-text-muted">Student evaluation</p>
                         <BackButton href="/dashboard/stats">Back to Stats</BackButton>
                     </div>
                 </div>

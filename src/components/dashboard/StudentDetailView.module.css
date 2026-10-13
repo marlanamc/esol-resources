@@ -1,0 +1,24 @@
+/* The app's unlayered button reset overrides Tailwind utilities. Keep the
+   evaluation controls explicit so selected filters remain visible. */
+.control {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.control:hover {
+    border-color: var(--color-primary);
+}
+.control[aria-pressed='true'] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+.control:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+:global(.dark) .control[aria-pressed='true'] {
+    color: var(--color-bg);
+}
