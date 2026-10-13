@@ -16,6 +16,7 @@ import {
 } from "@/lib/exercise-answer-expectation";
 import { normalizeExerciseAnswer } from "@/lib/exercise-answer-normalization";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { getGuideExerciseId } from "@/lib/grammar-guide-completion";
 
 export interface ExerciseCompletionInfo {
     exerciseId: string;
@@ -148,11 +149,8 @@ export function ExerciseSection({
         // A complete attempt earns effort credit in the Week 4 overview.
         if (allCorrect || (rewardAttempts && allAnswered)) {
             if (onExerciseComplete) {
-                const exerciseId = exercise.title
-                    ? exercise.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-                    : `exercise-${exerciseIndex}`;
                 onExerciseComplete({
-                    exerciseId,
+                    exerciseId: getGuideExerciseId(exercise, exerciseIndex),
                     sectionId,
                 });
             }
