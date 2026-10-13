@@ -100,7 +100,8 @@ const GAME_LIBRARY_SECTION_DEFS: Array<{ name: string; match: GameLibraryMatcher
       title.includes("countable") ||
       title.includes("uncountable") ||
       activity.id === "action-or-description" ||
-      title.includes("action or description"),
+      title.includes("action or description") ||
+      activity.id === "be-or-do-questions",
   },
   {
     name: "Gerunds & Infinitives",

@@ -95,6 +95,7 @@
     "import:simple-tenses": "node scripts/import/import-simple-tenses.mjs",
     "import:countable-uncountable": "npx tsx scripts/import/import-countable-uncountable-game.ts",
     "import:action-description": "npx tsx scripts/import/import-action-description-game.ts",
+    "import:be-or-do": "npx tsx scripts/import/import-be-or-do-game.ts",
     "import:gerund-infinitive": "npx tsx scripts/import/import-gerund-infinitive-game.ts",
     "import:parts-of-speech": "npx tsx scripts/import/import-parts-of-speech-game.ts",
     "import:cafe-catch-up": "npx tsx scripts/import/import-cafe-catch-up.ts",

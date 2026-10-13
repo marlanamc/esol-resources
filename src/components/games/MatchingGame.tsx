@@ -19,6 +19,7 @@ import { VocabMatchingUI } from "./VocabMatchingUI";
 import { TimeIndicatorSortingUI } from "./TimeIndicatorSortingUI";
 import { VerbSoundsRightSortingUI } from "./VerbSoundsRightSortingUI";
 import { ActionDescriptionSortingUI } from "./ActionDescriptionSortingUI";
+import { BeOrDoQuestionsUI } from "./BeOrDoQuestionsUI";
 
 interface Props {
     contentStr: string;
@@ -482,6 +483,17 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     if (gameMode === "action-description") {
         return (
             <ActionDescriptionSortingUI
+                contentStr={contentStr}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                vocabType={vocabType}
+            />
+        );
+    }
+
+    if (gameMode === "be-or-do") {
+        return (
+            <BeOrDoQuestionsUI
                 contentStr={contentStr}
                 activityId={activityId}
                 assignmentId={assignmentId}

@@ -498,13 +498,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Question Word Practice Game"
           },
           {
+            "id": "be-or-do-questions",
+            "activityId": "be-or-do-questions",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Be or Do?"
+          },
+          {
             "id": "vocab-sep-w3-matching",
             "activityId": "vocab-sep-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 4,
             "title": "Digital Habits: Matching"
           },
           {
@@ -514,7 +523,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 5,
             "title": "Digital Habits: Fill in the Blank"
           },
           {
@@ -522,7 +531,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "parts-of-speech-game",
             "href": "/activity/parts-of-speech-game?lesson=week-5-subjects",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Week 5: Subjects and Verbs"
@@ -531,7 +540,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-2",
             "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 6,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 5 Quiz"
@@ -543,7 +552,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
-            "order": 7,
+            "order": 8,
             "title": "Schedule Verbs: Flash Cards"
           },
           {
@@ -553,7 +562,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 8,
+            "order": 9,
             "title": "Schedule Verbs: Matching"
           },
           {
@@ -563,7 +572,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 9,
+            "order": 10,
             "title": "Schedule Verbs: Fill in the Blank"
           }
         ],

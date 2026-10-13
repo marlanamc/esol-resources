@@ -66,6 +66,140 @@ export interface ActionDescriptionRound {
   words: ActionDescriptionCard[];
 }
 
+/**
+ * A helper-verb family the "Be or Do?" game can ask about. Adding a family here
+ * (e.g. HAVE: have / has for "Have you ever…?") is all the UI needs: the boxes
+ * and form buttons are built from the families the content actually uses.
+ */
+export interface BeOrDoGroup {
+  id: string;
+  /** Box title in the BE-or-DO rounds. */
+  label: string;
+  /** One-line rule under the box title. */
+  rule: string;
+  /** Exact forms, capitalized as they start a question. */
+  forms: string[];
+  /** Shown when the learner picks the right family but the wrong form. */
+  agreementHint: string;
+}
+
+export const BE_OR_DO_GROUPS: BeOrDoGroup[] = [
+  {
+    id: "be",
+    label: "The verb is BE",
+    rule: "BE goes first",
+    forms: ["Am", "Is", "Are"],
+    agreementHint: "BE is right! Now match the subject: I → am · he / she / it → is · you / we / they → are.",
+  },
+  {
+    id: "do",
+    label: "Another verb",
+    rule: "DO comes to help",
+    forms: ["Do", "Does"],
+    agreementHint: "DO is right! Now match the subject: he / she / it → does · I / you / we / they → do.",
+  },
+];
+
+export function findBeOrDoGroup(form: string): BeOrDoGroup | undefined {
+  const lower = form.trim().toLowerCase();
+  return BE_OR_DO_GROUPS.find((group) => group.forms.some((f) => f.toLowerCase() === lower));
+}
+
+/**
+ * One question card in the "Be or Do?" game. The question holds a `___` blank
+ * where the helper verb goes.
+ */
+export interface BeOrDoCard {
+  id: number;
+  question: string;
+  /** The exact helper form that fills the blank, as written in the content. */
+  answer: string;
+  groupId: string;
+  /** The main verb to underline in the finished question (DO and -ing cards). */
+  verb?: string;
+  /** Short answer shown after a correct pick, e.g. "Yes, I do." */
+  reply?: string;
+  /** Why the answer is right, shown after a correct pick. */
+  why?: string;
+  /** Nudge shown after a wrong pick. */
+  hint?: string;
+  /** Small scene line above the question. */
+  context?: string;
+  /** The same-meaning question with the other helper, for twin cards. */
+  twin?: string;
+}
+
+export interface BeOrDoRound {
+  roundNumber: number;
+  /** "group": pick BE or DO. "form": pick the exact word (am / is / are / do / does). */
+  mode: "group" | "form";
+  note?: string;
+  cards: BeOrDoCard[];
+}
+
+const BE_OR_DO_MARKER = /^\s*GAME:\s*be-or-do\s*$/im;
+const BE_OR_DO_FIELDS = new Set(["verb", "reply", "why", "hint", "context", "twin"]);
+
+/**
+ * Parses "Be or Do?" content. The content must start with a `GAME: be-or-do`
+ * line so it can never be mistaken for another sorting game. Card lines:
+ *
+ *   ___ you feel tired? :: Do :: verb: feel :: reply: Yes, I do. :: twin: Are you tired?
+ *
+ * Fields after the answer are `key: value` pairs in any order. A round with a
+ * `MODE: form` line asks for the exact form instead of BE vs DO.
+ */
+export function parseBeOrDoRounds(content: string): BeOrDoRound[] {
+  if (!BE_OR_DO_MARKER.test(content)) return [];
+  const rounds: BeOrDoRound[] = [];
+  const roundBlocks = content.split(/\[ROUND\s*\d+(?:\s*-\s*[^\]]+)?\]/).slice(1);
+
+  let roundNumber = 1;
+  let globalId = 1;
+
+  for (const block of roundBlocks) {
+    const cards: BeOrDoCard[] = [];
+    let note: string | undefined;
+    let mode: BeOrDoRound["mode"] = "group";
+
+    for (const rawLine of block.split("\n")) {
+      const line = rawLine.trim();
+      if (!line) continue;
+
+      if (!line.includes("::")) {
+        const noteMatch = line.match(/^NOTE:\s*(.+)$/i);
+        if (noteMatch && !note) note = noteMatch[1].trim();
+        if (/^MODE:\s*form\s*$/i.test(line)) mode = "form";
+        continue;
+      }
+
+      const [question = "", answer = "", ...rest] = line.split("::").map((s) => s.trim());
+      if (!question.includes("___") || !answer) continue;
+      const group = findBeOrDoGroup(answer);
+      if (!group) continue;
+
+      const card: BeOrDoCard = { id: globalId++, question, answer, groupId: group.id };
+      for (const field of rest) {
+        const colon = field.indexOf(":");
+        if (colon <= 0) continue;
+        const key = field.slice(0, colon).trim().toLowerCase();
+        const value = field.slice(colon + 1).trim();
+        if (value && BE_OR_DO_FIELDS.has(key)) {
+          card[key as "verb" | "reply" | "why" | "hint" | "context" | "twin"] = value;
+        }
+      }
+      cards.push(card);
+    }
+
+    if (cards.length > 0) {
+      rounds.push({ roundNumber, mode, ...(note ? { note } : {}), cards });
+      roundNumber++;
+    }
+  }
+
+  return rounds;
+}
+
 export const VERB_TENSE_HINTS: Record<
   string,
   { emoji: string; label: string; bgClass: string; textClass: string }
@@ -138,9 +272,11 @@ export type MatchingGameMode =
   | "countable"
   | "time-indicators"
   | "verb-sounds-right"
-  | "action-description";
+  | "action-description"
+  | "be-or-do";
 
 export function detectMatchingGameMode(content: string): MatchingGameMode {
+  if (BE_OR_DO_MARKER.test(content)) return "be-or-do";
   const hasRoundMarkers = /\[ROUND\s*\d+/.test(content);
   const lines = content.split("\n");
   let hasCountableUncountableLine = false;

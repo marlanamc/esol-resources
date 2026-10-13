@@ -142,6 +142,7 @@ export const MONTHLY_CONTENT_MAP: Record<number, MonthlyContentConfig> = {
     ],
     games: [
       "countable-uncountable-nouns",
+      "be-or-do-questions",
     ],
   },
 
