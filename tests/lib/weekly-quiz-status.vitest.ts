@@ -8,8 +8,8 @@ const week5 = getWeeklyQuizSchedule(5)!;
 const quiz = (n: number) => ({ id: `q${n}`, content: JSON.stringify({ type: "weekly-quiz", weekNumber: n }) });
 const joinedAt = new Date("2026-09-01T00:00:00Z");
 const after = (date: Date, hours: number) => new Date(date.getTime() + hours * 3_600_000);
-const pick = (now: Date, done: string[] = [], quizzes: { id: string; content: string; assignmentId?: string }[] = [quiz(4), quiz(5)]) =>
-    pickWeeklyQuizStatus({ quizzes, doneActivityIds: new Set(done), joinedAt, now });
+const pick = (now: Date, done: [string, Date][] = [], quizzes: { id: string; content: string; assignmentId?: string }[] = [quiz(4), quiz(5)]) =>
+    pickWeeklyQuizStatus({ quizzes, completedAtById: new Map(done), joinedAt, now });
 
 describe("weekly quiz home bar status", () => {
     it("is open from Thursday until Tuesday's due time", () => {
@@ -24,15 +24,18 @@ describe("weekly quiz home bar status", () => {
         expect(pick(after(week5.opensAt, 1))).toMatchObject({ state: "open", activityId: "q5" });
     });
 
-    it("is done once submitted and points at the next quiz", () => {
-        const status = pick(after(week4.dueAt, 1), ["q4"]);
+    it("shows done for a day after submitting, then goes away until the next quiz", () => {
+        const finished = after(week4.opensAt, 2);
+        const status = pick(after(finished, 23), [["q4", finished]]);
         expect(status?.state).toBe("done");
         expect(status?.nextOpensAt).toEqual(week5.opensAt);
+        expect(pick(after(finished, 25), [["q4", finished]])).toBeNull();
+        expect(pick(after(week5.opensAt, 1), [["q4", finished]])?.activityId).toBe("q5");
     });
 
     it("shows nothing before any quiz opens or for students who joined after it was due", () => {
         expect(pick(after(week4.opensAt, -1))).toBeNull();
-        expect(pickWeeklyQuizStatus({ quizzes: [quiz(4)], doneActivityIds: new Set(), joinedAt: after(week4.dueAt, 1), now: after(week4.dueAt, 2) })).toBeNull();
+        expect(pickWeeklyQuizStatus({ quizzes: [quiz(4)], completedAtById: new Map(), joinedAt: after(week4.dueAt, 1), now: after(week4.dueAt, 2) })).toBeNull();
     });
 
     it("links through the class assignment when there is one", () => {

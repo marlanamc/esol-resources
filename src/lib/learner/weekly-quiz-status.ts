@@ -6,6 +6,8 @@ import { getWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { CLASS_TIME_ZONE } from "@/data/school-calendar-2026-27";
 
 const DONE_STATUSES = ["submitted", "graded", "completed"];
+/** How long the green "You finished the quiz!" bar stays before it goes away. */
+export const DONE_BAR_MS = 24 * 60 * 60 * 1000;
 
 export type WeeklyQuizStatus = {
     state: "open" | "late" | "done";
@@ -30,12 +32,15 @@ function readWeekNumber(content: string): number | null {
 
 /**
  * The quiz that opened most recently is "this week's" quiz: open until it is due
- * Tuesday, late until the next one opens Thursday, done once submitted. Students
- * who joined after it was due are not expected to take it, so they see no bar.
+ * Tuesday, late until the next one opens Thursday, done once submitted. The done
+ * bar shows for a day after submitting, then the bar goes away until the next
+ * quiz opens. Students who joined after it was due are not expected to take it,
+ * so they see no bar.
  */
 export function pickWeeklyQuizStatus(input: {
     quizzes: QuizCandidate[];
-    doneActivityIds: Set<string>;
+    /** When each finished quiz was submitted, by activity id. */
+    completedAtById: Map<string, Date>;
     joinedAt: Date;
     now: Date;
 }): WeeklyQuizStatus | null {
@@ -48,9 +53,10 @@ export function pickWeeklyQuizStatus(input: {
         .sort((a, b) => b.opensAt.getTime() - a.opensAt.getTime())[0];
     if (!current || input.joinedAt > current.dueAt) return null;
 
-    const done = input.doneActivityIds.has(current.quiz.id);
+    const completedAt = input.completedAtById.get(current.quiz.id);
+    if (completedAt && input.now.getTime() - completedAt.getTime() > DONE_BAR_MS) return null;
     return {
-        state: done ? "done" : input.now >= current.dueAt ? "late" : "open",
+        state: completedAt ? "done" : input.now >= current.dueAt ? "late" : "open",
         activityId: current.quiz.id,
         href: buildActivityHref(current.quiz.id, current.quiz.assignmentId),
         weekNumber: current.weekNumber,
@@ -102,7 +108,11 @@ export async function getStudentWeeklyQuizStatus(userId: string, now = new Date(
     const assignmentByActivityId = new Map(assignments.map((a) => [a.activityId, a.id]));
     return pickWeeklyQuizStatus({
         quizzes: quizzes.map((q) => ({ ...q, assignmentId: assignmentByActivityId.get(q.id) ?? null })),
-        doneActivityIds: new Set(submissions.filter((s) => (s.completedAt ?? s.updatedAt) >= since).map((s) => s.activityId)),
+        completedAtById: new Map(
+            submissions
+                .map((s) => [s.activityId, s.completedAt ?? s.updatedAt] as const)
+                .filter(([, at]) => at >= since),
+        ),
         joinedAt: since,
         now,
     });
