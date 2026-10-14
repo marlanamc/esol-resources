@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { PracticeLaterSection, MomentumSection } from "@/components/dashboard/ResilientDashboardSections";
+import { PracticeLaterSection, MomentumSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -463,6 +463,8 @@ export default async function DashboardPage() {
 
     const firstClassId = enrollments[0]?.classId;
     const studentLeaderboard = firstClassId ? await getTimeframedLeaderboard("week", 20, firstClassId).catch(() => []) : [];
+    // Accounts without an active class enrollment get no bar.
+    const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
     const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
@@ -481,6 +483,7 @@ export default async function DashboardPage() {
                     <h1 className="sr-only">Dashboard</h1>
                     <div className="min-w-0 space-y-5">
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
+                        {weeklyQuiz}
                         <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                             user={{ id: userId, role: userRole }}
                             fallback={nextStepFallback}
@@ -512,6 +515,7 @@ export default async function DashboardPage() {
                                 />
                             </div>
 
+                            {weeklyQuiz}
                             <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                                 user={{ id: userId, role: userRole }}
                                 fallback={nextStepFallback}
