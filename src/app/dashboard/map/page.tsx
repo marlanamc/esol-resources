@@ -34,6 +34,7 @@ import {
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import { buildCourseMapRoad, type RoadScheduleWeek } from "@/lib/course-map-road";
 import { buildTeachingWeeks } from "@/lib/course-map-schedule";
+import { readWeeklyQuizScore, type WeeklyQuizScore } from "@/lib/weekly-quiz";
 
 export const metadata = {
     title: "Course Map | My ESOL Class",
@@ -128,6 +129,29 @@ export default async function MapPage({
                 select: { activityId: true, status: true },
             })
         );
+
+    const quizActivityIds = courseMapUnits
+        .flatMap((unit) => unit.levels)
+        .flatMap((level) => [...level.requiredActivities, ...(level.extraPractice ?? [])])
+        .filter((activity) => activity.activityType === "quiz" && activity.activityId)
+        .map((activity) => activity.activityId!);
+    const quizSubmissions = quizActivityIds.length === 0
+        ? []
+        : await withPrismaReadRetry(() =>
+            prisma.submission.findMany({
+                where: { userId, activityId: { in: quizActivityIds } },
+                select: { activityId: true, content: true },
+            })
+        );
+    // Best score per quiz, across practice and assignment submissions.
+    const quizScores: Record<string, WeeklyQuizScore> = {};
+    for (const row of quizSubmissions) {
+        const score = readWeeklyQuizScore(row.content);
+        const best = quizScores[row.activityId];
+        if (score && (!best || score.correct / score.total > best.correct / best.total)) {
+            quizScores[row.activityId] = score;
+        }
+    }
 
     const progressMap = new Map(progressRows.map((r) => [r.activityId, r.status]));
     const assignmentByActivityId = new Map<string, typeof allAssignments[number]>();
@@ -245,6 +269,7 @@ export default async function MapPage({
                   progress: guidedProgress,
                   currentWeek: currentWeekMeta.weekNumber,
                   assignmentIds: guidedAssignments,
+                  quizScores,
                   schedule: roadSchedule,
               })
             : null;

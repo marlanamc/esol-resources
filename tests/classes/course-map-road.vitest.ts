@@ -121,6 +121,18 @@ describe("course map road", () => {
     });
 });
 
+describe("quiz scores on the road", () => {
+    it("attaches a best score only to submitted (done) activities", () => {
+        const scored = buildCourseMapRoad({
+            outline, units, progress, currentWeek: 4, schedule,
+            quizScores: { "w4-guide": { correct: 8, total: 10 }, "w5-a": { correct: 3, total: 10 } },
+        });
+        const activity = (n: number, id: string) => scored.weeks.find((w) => w.weekNumber === n)!.activities.find((a) => a.id === id)!;
+        expect(activity(4, "w4-guide").quizScore).toEqual({ correct: 8, total: 10 });
+        expect(activity(5, "w5-a").quizScore).toBeUndefined();
+    });
+});
+
 describe("formatRoadRowLabels", () => {
     it("leads vocab rounds with the round and names the week's words", () => {
         expect(formatRoadRowLabels({ title: "Learning English: Flash Cards", vocabUi: "flashcards", weekNumber: 4 }, "Flash cards"))

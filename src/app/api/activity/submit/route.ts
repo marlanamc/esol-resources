@@ -1,5 +1,5 @@
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
-import { gradeWeeklyQuiz } from "@/lib/weekly-quiz";
+import { gradeWeeklyQuiz, readWeeklyQuizScore } from "@/lib/weekly-quiz";
 import type { WeeklyQuizContent, WeeklyQuizSubmission } from "@/types/weekly-quiz";
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
@@ -304,13 +304,29 @@ export async function POST(request: NextRequest) {
                 }
             }
 
+            // Weekly quizzes can be retaken; keep the best attempt so trying
+            // again never lowers a learner's saved score.
+            let storedContent: unknown = content;
+            let storedScore = score;
+            if (weeklyQuizResult) {
+                const previous = await tx.submission.findFirst({
+                    where: progressWhere,
+                    orderBy: { updatedAt: "desc" },
+                    select: { content: true, score: true },
+                });
+                if (previous?.score != null && previous.score > weeklyQuizResult.score && readWeeklyQuizScore(previous.content)) {
+                    storedContent = JSON.parse(previous.content);
+                    storedScore = previous.score;
+                }
+            }
+
             const submission = await saveActivitySubmission({
                 submission: tx.submission,
                 userId,
                 activityId,
                 assignmentId: assignmentKey,
-                content,
-                score: typeof score === "number" ? score : null,
+                content: storedContent,
+                score: typeof storedScore === "number" ? storedScore : null,
             });
 
             // Update activity progress to completed.

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import quizzes from '@/content/quizzes/weekly-quizzes.json';
-import { gradeWeeklyQuiz, normalizeQuizAnswer, withVerbFormsTable } from '@/lib/weekly-quiz';
+import { gradeWeeklyQuiz, normalizeQuizAnswer, readWeeklyQuizScore, withVerbFormsTable } from '@/lib/weekly-quiz';
 import type { WeeklyQuizContent } from '@/types/weekly-quiz';
 import { COURSE_MAP_UNITS } from '@/lib/course-map-data';
 
@@ -78,5 +78,19 @@ describe('older saved quizzes without the forms table', () => {
   });
   it('leaves quizzes that already have the table alone', () => {
     expect(withVerbFormsTable(first)).toBe(first);
+  });
+});
+
+describe('readWeeklyQuizScore', () => {
+  it('reads correct/total from a saved submission', () => {
+    const first = (quizzes as Record<string, WeeklyQuizContent>)['verb-quiz-1'];
+    const answers = Object.fromEntries(first.questions.map((q, i) => [q.id, i === 0 ? 'wrong' : q.answers[0]]));
+    const result = gradeWeeklyQuiz(first, { answers });
+    expect(readWeeklyQuizScore(JSON.stringify(result))).toEqual({ correct: result.totalQuestions - 1, total: result.totalQuestions });
+  });
+  it('ignores other content', () => {
+    expect(readWeeklyQuizScore(null)).toBeNull();
+    expect(readWeeklyQuizScore('not json')).toBeNull();
+    expect(readWeeklyQuizScore(JSON.stringify({ type: 'quiz', score: 80 }))).toBeNull();
   });
 });

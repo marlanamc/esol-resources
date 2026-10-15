@@ -67,3 +67,17 @@ export function gradeWeeklyQuiz(saved: WeeklyQuizContent, input: unknown): Weekl
   const correctCount = results.filter(result => result.correct).length;
   return { type: 'weekly-quiz', version: 1, answers, results, correctCount, totalQuestions: results.length, score: Math.round(correctCount / results.length * 100) };
 }
+
+export interface WeeklyQuizScore { correct: number; total: number }
+
+/** Correct/total from a saved weekly-quiz submission; null for anything else. */
+export function readWeeklyQuizScore(raw: string | null | undefined): WeeklyQuizScore | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as Partial<WeeklyQuizSubmission> | null;
+    if (parsed?.type !== 'weekly-quiz' || typeof parsed.correctCount !== 'number' || !parsed.totalQuestions) return null;
+    return { correct: parsed.correctCount, total: parsed.totalQuestions };
+  } catch {
+    return null;
+  }
+}

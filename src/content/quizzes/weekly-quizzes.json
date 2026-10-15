@@ -306,11 +306,11 @@
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "She ___ a study plan every Sunday. (make)",
+        "prompt": "Last Sunday, she ___ a study plan for the week. (make)",
         "answers": [
-          "makes"
+          "made"
         ],
-        "explanation": "She makes a study plan every Sunday. (make)",
+        "explanation": "Last Sunday, she made a study plan for the week. (make)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -335,8 +335,8 @@
         "prompt": "Which word means “to open or enter a file, website, or building”?",
         "options": [
           "access",
-          "log in",
-          "navigate"
+          "submit",
+          "review"
         ],
         "answers": [
           "access"
