@@ -90,9 +90,16 @@ test.describe("Mobile PWA smoke", () => {
       waitForNetworkIdle: true,
     });
 
-    await page.goto("/dashboard/map");
+    // Login resolves once the URL says /dashboard, while the dashboard may still
+    // be navigating; a goto fired then can be aborted (net::ERR_ABORTED). Let it
+    // settle, and retry the map navigation if it is still cut off.
+    await page.waitForLoadState("networkidle");
+    await expect(async () => {
+      await page.goto("/dashboard/map");
+    }).toPass({ timeout: 30000 });
     await expect(page).toHaveURL(/\/dashboard\/map/, { timeout: 15000 });
-    await expect(page.locator("#main-content")).toBeVisible({ timeout: 15000 });
+    // Mid-transition the outgoing and incoming page can both be mounted.
+    await expect(page.locator("#main-content").first()).toBeVisible({ timeout: 15000 });
   });
 
   test("learner menu opens, exposes course map, and releases document locks", async ({
