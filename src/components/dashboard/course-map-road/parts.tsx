@@ -303,7 +303,8 @@ export function ActivityRow({
                     style={perfect ? { background: "var(--road-done-bg)", color: "var(--road-done-text)" } : { background: tone.chipBg, color: tone.chipText }}
                 >
                     <span className="sr-only">Best score: </span>
-                    {score.correct}/{score.total}
+                    {Math.round((score.correct / score.total) * 100)}%
+                    {perfect ? <span aria-hidden> 🎉</span> : null}
                 </span>
             ) : null}
         </>
