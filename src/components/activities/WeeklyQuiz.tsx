@@ -87,6 +87,8 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
   const schedule = getWeeklyQuizSchedule(savedContent.weekNumber);
   const saved = existingSubmission?.content as WeeklyQuizSubmission | undefined;
   const [result, setResult] = useState<WeeklyQuizSubmission | null>(saved?.type === 'weekly-quiz' ? saved : null);
+  // The server keeps the best attempt; this mirrors it so a lower retake can say so.
+  const [best, setBest] = useState<WeeklyQuizSubmission | null>(saved?.type === 'weekly-quiz' ? saved : null);
   // Results saved before the table existed point at the old question ids.
   const content = result && !result.results.every(r => tableContent.questions.some(q => q.id === r.id)) ? savedContent : tableContent;
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -106,13 +108,25 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       if (idempotencyKey !== pendingKey.current || !receipt.weeklyQuizResult) return;
       pendingKey.current = null;
       setQueued(false);
-      setResult(receipt.weeklyQuizResult);
+      showResult(receipt.weeklyQuizResult);
       setPoints(receipt.totalPointsAwarded ?? receipt.points ?? 0);
       setShowToast((receipt.points ?? 0) > 0);
     };
     window.addEventListener(submissionSavedEventName, onSaved);
     return () => window.removeEventListener(submissionSavedEventName, onSaved);
   }, []);
+
+  function showResult(next: WeeklyQuizSubmission) {
+    setResult(next);
+    setBest(previous => previous && previous.score > next.score ? previous : next);
+  }
+
+  function tryAgain() {
+    setResult(null);
+    setAnswers({});
+    setError('');
+    window.scrollTo({ top: 0 });
+  }
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -127,7 +141,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       const data = await sent.response.json();
       if (!sent.response.ok) throw new Error(data.error || 'Your quiz could not be saved. Please try again.');
       if (!data.weeklyQuizResult) { router.refresh(); throw new Error('Your submission was received. Refresh this page to see your saved results.'); }
-      setResult(data.weeklyQuizResult);
+      showResult(data.weeklyQuizResult);
       setPoints(data.totalPointsAwarded ?? data.points ?? 0);
       setShowToast((data.points ?? 0) > 0);
       router.refresh();
@@ -150,6 +164,11 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
         <p className="text-text">{result.correctCount} of {result.totalQuestions} correct · {result.score}%</p>
         <p className="font-semibold text-primary">{points} points awarded</p>
         <p className="text-sm text-text-muted">Use the explanations to choose one thing to practice next.</p>
+        {best && best.score > result.score && <p className="mt-2 text-text">Your best score is still {best.correctCount} of {best.totalQuestions}.</p>}
+        {result.score < 100 && <div className="mt-4 flex flex-wrap items-center gap-3">
+          <button type="button" onClick={tryAgain} className="min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white">Try again</button>
+          <span className="text-sm text-text-muted">Take it as many times as you want. We keep your best score.</span>
+        </div>}
       </div>
       <FormsTable questions={content.questions} renderCell={q => {
         const item = result.results.find(r => r.id === q.id);

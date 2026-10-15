@@ -98,3 +98,25 @@ it('recovers an older completed request whose point claim was reset after a fail
   expect((await response.json()).points).toBe(2);
   expect(mocks.award).toHaveBeenCalledTimes(1);
 });
+
+describe('weekly quiz retakes', () => {
+  const allRight = () => Object.fromEntries(quiz.questions.map(q => [q.id, q.answers[0]]));
+  const allWrong = () => Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']));
+  const saved = (score: number, correctCount: number) => ({ id: 'submission', score, content: JSON.stringify({ type: 'weekly-quiz', version: 1, answers: {}, results: [], correctCount, totalQuestions: quiz.questions.length, score }) });
+  beforeEach(() => {
+    mocks.findProgress.mockResolvedValue({ id: 'progress', categoryData: null });
+    mocks.updateSubmission.mockImplementation(async ({ data }) => ({ id: 'submission', score: data.score }));
+  });
+  it('keeps the best saved score when a retake scores lower, but shows this attempt', async () => {
+    mocks.findSubmission.mockResolvedValue(saved(90, 9));
+    const data = await (await POST(request(allWrong()))).json();
+    expect(data.weeklyQuizResult.score).toBe(0);
+    expect(mocks.updateSubmission.mock.calls[0][0].data.score).toBe(90);
+    expect(JSON.parse(mocks.updateSubmission.mock.calls[0][0].data.content).correctCount).toBe(9);
+  });
+  it('replaces the saved score when a retake does better', async () => {
+    mocks.findSubmission.mockResolvedValue(saved(50, 5));
+    await POST(request(allRight()));
+    expect(mocks.updateSubmission.mock.calls[0][0].data.score).toBe(100);
+  });
+});

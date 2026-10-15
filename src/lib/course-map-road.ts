@@ -5,6 +5,7 @@ import type {
     CourseMapUnit,
 } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
+import type { WeeklyQuizScore } from "@/lib/weekly-quiz";
 import { formatNextUpActivityTitle } from "@/lib/course-map-hero";
 import {
     buildMapActivityHref,
@@ -97,6 +98,8 @@ export interface RoadActivity {
     href: string | null;
     done: boolean;
     isNext: boolean;
+    /** Best weekly-quiz score, once submitted. */
+    quizScore?: WeeklyQuizScore;
 }
 
 /**
@@ -166,6 +169,8 @@ export interface BuildCourseMapRoadOptions {
     progress: CourseMapProgressState;
     currentWeek: number;
     assignmentIds?: Record<string, { assignmentId: string }>;
+    /** Best weekly-quiz score by activity id. */
+    quizScores?: Record<string, WeeklyQuizScore>;
     /** Teaching calendar by week number; omit for learners without a class calendar. */
     schedule?: Map<number, RoadScheduleWeek>;
 }
@@ -214,7 +219,8 @@ function toRoadActivity(
     activity: CourseMapActivity,
     weekNumber: number,
     progress: CourseMapProgressState,
-    assignmentIds: Record<string, { assignmentId: string }>
+    assignmentIds: Record<string, { assignmentId: string }>,
+    quizScores: Record<string, WeeklyQuizScore>
 ): RoadActivity {
     let href: string | null = null;
     if (isMapActivityActionable(activity)) {
@@ -222,6 +228,8 @@ function toRoadActivity(
         const base = buildMapActivityHref(activity, assignmentId);
         if (base) href = withReturnTo(base, buildMapReturnHref(weekNumber));
     }
+    const done = isMapActivityCompleted(activity, progress);
+    const quizScore = done && activity.activityId ? quizScores[activity.activityId] : undefined;
     return {
         id: activity.id,
         title: formatNextUpActivityTitle(activity.title),
@@ -229,8 +237,9 @@ function toRoadActivity(
         ...(activity.vocabUi ? { vocabUi: activity.vocabUi } : {}),
         weekNumber,
         href,
-        done: isMapActivityCompleted(activity, progress),
+        done,
         isNext: false,
+        ...(quizScore ? { quizScore } : {}),
     };
 }
 
@@ -241,6 +250,7 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
         progress,
         currentWeek,
         assignmentIds = {},
+        quizScores = {},
         schedule,
     } = options;
 
@@ -262,12 +272,12 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
 
         const activities = (level?.requiredActivities ?? [])
             .filter((activity) => activity.status !== "planned")
-            .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds));
+            .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds, quizScores));
         const practiceKey = (activity: CourseMapActivity) => `${activity.activityId ?? activity.href ?? activity.id}:${activity.vocabUi ?? ''}`;
         const requiredKeys = new Set((level?.requiredActivities ?? []).map(practiceKey));
         const extras = (level?.extraPractice ?? [])
             .filter((activity) => activity.status !== "planned" && !activity.vocabUi && !activity.activityId?.startsWith("vocab-") && !requiredKeys.has(practiceKey(activity)))
-            .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds));
+            .map((activity) => toRoadActivity(activity, weekNumber, progress, assignmentIds, quizScores));
 
         const actionable = activities.filter((activity) => activity.href != null);
         const done = actionable.filter((activity) => activity.done).length;

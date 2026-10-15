@@ -242,6 +242,8 @@ export function ActivityRow({
     const Icon = format.icon;
     const labels = formatRoadRowLabels(activity, format.label);
     const locked = !activity.done && activity.href == null;
+    const score = activity.quizScore;
+    const perfect = score != null && score.correct >= score.total;
 
     // The circle wears the activity's color: soft when done, outlined when waiting, filled when next.
     const ring = locked ? (
@@ -281,6 +283,11 @@ export function ActivityRow({
                         {labels.detail}
                     </span>
                 ) : null}
+                {score && !perfect ? (
+                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: tone.chipText }}>
+                        Try again! We keep your best score.
+                    </span>
+                ) : null}
                 {/* The check badge, lock and Start label carry these visually. */}
                 {activity.done ? <span className="sr-only">Done</span> : null}
                 {locked ? <span className="sr-only">Opens later</span> : null}
@@ -288,6 +295,15 @@ export function ActivityRow({
             {isNext ? (
                 <span className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
                     Start
+                </span>
+            ) : null}
+            {score ? (
+                <span
+                    className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold tabular-nums"
+                    style={perfect ? { background: "var(--road-done-bg)", color: "var(--road-done-text)" } : { background: tone.chipBg, color: tone.chipText }}
+                >
+                    <span className="sr-only">Best score: </span>
+                    {score.correct}/{score.total}
                 </span>
             ) : null}
         </>
