@@ -6,7 +6,7 @@ import { getWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { CLASS_TIME_ZONE } from "@/data/school-calendar-2026-27";
 
 const DONE_STATUSES = ["submitted", "graded", "completed"];
-/** How long the green "You finished the quiz!" bar stays before it goes away. */
+/** Longest the green "You finished the quiz!" bar can stay; the bar itself hides on the next app open. */
 export const DONE_BAR_MS = 24 * 60 * 60 * 1000;
 
 export type WeeklyQuizStatus = {

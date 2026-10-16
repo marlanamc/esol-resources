@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Check, ClipboardCheck, Clock } from "lucide-react";
+import { ShowUntilNextAppOpen } from "./ShowUntilNextAppOpen";
 import { calendarDaysUntil, formatQuizDay, formatQuizTime, type WeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
 
 const tones = {
@@ -34,7 +35,7 @@ function dueLine(status: WeeklyQuizStatus, now: Date): string {
 /**
  * The weekly quiz is the one required task each week, so it sits above the
  * week card in a slim bar that changes color: open (Thu–Tue), late (Tue–Thu)
- * and done.
+ * and done. The done bar shows until the next app open (24 hours at most).
  */
 export function WeeklyQuizBar({ status, now = new Date() }: { status: WeeklyQuizStatus; now?: Date }) {
     const tone = tones[status.state];
@@ -60,7 +61,11 @@ export function WeeklyQuizBar({ status, now = new Date() }: { status: WeeklyQuiz
     const box = `flex min-h-16 items-center gap-3 rounded-[20px] border-2 py-3 pl-3.5 pr-3 ${tone.box}`;
 
     if (status.state === "done") {
-        return <div role="status" className={box}>{body}</div>;
+        return (
+            <ShowUntilNextAppOpen id={status.activityId}>
+                <div role="status" className={box}>{body}</div>
+            </ShowUntilNextAppOpen>
+        );
     }
     return (
         <Link
