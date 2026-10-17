@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { allFourConditionalsQuickTourImages as img } from "@/data/all-four-conditionals-quick-tour-images.generated";
+import { scheduleChart, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -184,16 +185,20 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneEarlyMorning", "Yemi's kitchen, Chelsea. Saturday, 6:30 AM.", "amber")}
+        <p>Two days before her first night shift, Yemi needs a follow-up visit for her knee. Her coworker <strong>Rachel</strong> goes to the same clinic and tells her that walk-ins start at 8. Yemi writes her Saturday plan on her phone.</p>
 
-        <p>Two days before her first night shift, Yemi needs a follow-up visit for her knee. She texts her coworker <strong>Rachel</strong>, who goes to the same clinic.</p>
-
-        ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If the clinic opens</strong> at 8, <strong>I'll go</strong> first thing.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If the line is</strong> short, <strong>I'll be</strong> back by noon.", side: "right", tone: "terracotta" },
-          { speaker: "Rachel", avatar: "👩🏻", text: "Walk-ins start at 8. Bring your ID and your insurance card.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If they can't see</strong> me, <strong>I'll try</strong> the walk-in downtown.", side: "right", tone: "terracotta" },
-        ])}
+        ${stepsCard({
+          kicker: "Yemi's phone note",
+          title: "Saturday plan for my knee",
+          accent: "amber",
+          steps: [
+            "Plan A: <strong>If</strong> the clinic <strong>opens</strong> at 8, <strong>I'll go</strong> first thing.",
+            "Plan A: <strong>If</strong> the line <strong>is</strong> short, <strong>I'll be</strong> back by noon.",
+            "Plan B: <strong>If</strong> they <strong>can't see</strong> me, <strong>I'll try</strong> the walk-in downtown.",
+            "<strong>If</strong> the doctor <strong>gives</strong> me a note, <strong>I'll bring</strong> it to work on Monday.",
+          ],
+          note: "Bring: ID and insurance card.",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>First conditional</strong> = a real situation that might happen. The result is in the future.<br/><em>If + present, will + base verb.</em></p>
@@ -202,7 +207,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("real plan", "amber")}
-            <span><em><strong>If</strong> the clinic <strong>opens</strong> at 8, I <strong>'ll go</strong> first thing.</em></span>
+            <span><em><strong>If</strong> the clinic <strong>opens</strong> at 8, <strong>I'll go</strong> first thing.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
             ${labelPill("not zero", "terracotta")}
@@ -213,6 +218,33 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s2-ex1",
+          title: "Read Yemi's plan",
+          instructions: "Look at Yemi's phone note above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Which place is Yemi's Plan B?",
+              options: [
+                { value: "a", label: "The walk-in clinic downtown" },
+                { value: "b", label: "Her warehouse" },
+                { value: "c", label: "Rachel's apartment" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "When will Yemi bring the doctor's note to work?",
+              options: [
+                { value: "a", label: "On Saturday" },
+                { value: "b", label: "On Monday" },
+                { value: "c", label: "At noon" },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "s2-ex2",
           title: "First or zero?",
           instructions: "Pick the correct form.",
           items: [
@@ -239,26 +271,26 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s2-ex2",
+          id: "s2-ex3",
           title: "Fill in the blank",
-          instructions: "Write'll or will.",
+          instructions: "Write 'll or will.",
           items: [
             {
               type: "text",
-              label: "If the line is short, I ___ be back by noon.",
+              label: "If the bus is late, I ___ call my sister.",
               expectedAnswers: ["'ll", "will"],
             },
           ],
         },
         {
-          id: "s2-ex3",
+          id: "s2-ex4",
           title: "Unscramble",
           items: [
             {
               type: "word-scramble",
-              label: "Build Yemi's plan for her follow-up visit:",
-              words: ["If", "the", "clinic", "opens", "early,", "I'll", "go", "before", "my", "shift"],
-              correctAnswer: "If the clinic opens early, I'll go before my shift",
+              label: "Build a plan for a rainy Saturday:",
+              words: ["If", "it", "rains", "tomorrow,", "I'll", "take", "the", "bus"],
+              correctAnswer: "If it rains tomorrow, I'll take the bus",
             },
           ],
         },
@@ -280,15 +312,18 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBreakRoomNight", "Warehouse break room. Tuesday, 2 AM.", "blue")}
+        <p>Yemi's night shift starts at 7 PM, but her kids go to bed at 8:30 PM. On break, <strong>Rachel</strong> asks about her schedule. Here is Yemi's real week.</p>
 
-        <p>On their break, Yemi and <strong>Rachel</strong> compare schedules. Yemi works nights and misses her kids' bedtime. Rachel also finds it hard to balance work and time with her kids.</p>
-
-        ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "<strong>If I had</strong> day shifts, I <strong>would sleep</strong> more.", side: "right", tone: "terracotta" },
-          { speaker: "Rachel", avatar: "👩🏻", text: "I know. <strong>If my schedule were</strong> different, I <strong>wouldn’t miss</strong> bedtime with my kids. Are you thinking about changing shifts?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Night shifts pay more, but I'm already so tired.", side: "right", tone: "terracotta" },
-        ])}
+        ${scheduleChart({
+          kicker: "Yemi's week",
+          title: "Night shifts and kids' bedtime",
+          rows: [
+            { label: "Night shift starts", cells: [{ text: "7pm", accent: "blue" }, { text: "7pm", accent: "blue" }, { text: "7pm", accent: "blue" }, { text: "7pm", accent: "blue" }, { text: "7pm", accent: "blue" }, { text: "7pm", accent: "blue" }, null] },
+            { label: "Kids' bedtime", cells: Array.from({ length: 7 }, () => ({ text: "8:30", accent: "amber" as const })) },
+            { label: "Home at bedtime?", cells: [{ text: "No" }, { text: "No" }, { text: "No" }, { text: "No" }, { text: "No" }, { text: "No" }, { text: "Yes", accent: "sage" }] },
+          ],
+          note: "Yemi works Monday to Saturday. She is home at bedtime only on Sunday.",
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Second conditional</strong> = an imaginary situation now. The verb after <em>if</em> looks like past tense, but it is not about the real past.<br/><em>If + past simple, would + base verb.</em></p>
@@ -308,12 +343,40 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s3-ex1",
+          title: "Read Yemi's week",
+          instructions: "Look at the schedule above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "On which day is Yemi home at bedtime?",
+              options: [
+                { value: "a", label: "Monday" },
+                { value: "b", label: "Wednesday" },
+                { value: "c", label: "Saturday" },
+                { value: "d", label: "Sunday" },
+              ],
+              expectedAnswer: "d",
+            },
+            {
+              type: "radio",
+              label: "Yemi works on Saturday. Which imaginary sentence is correct?",
+              options: [
+                { value: "a", label: "If Yemi had Saturday off, she would be home at bedtime." },
+                { value: "b", label: "If Yemi has Saturday off, she would be home at bedtime." },
+                { value: "c", label: "If Yemi would have Saturday off, she is home at bedtime." },
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "s3-ex2",
           title: "Second or first?",
           instructions: "Choose the best form.",
           items: [
             {
               type: "radio",
-              label: "Rachel wishes she lived closer to the warehouse. She does not. Which sentence fits?",
+              label: "Yemi lives an hour from the warehouse. She does not live closer. Which sentence fits her wish?",
               options: [
                 { value: "a", label: "If I live closer, I'll save an hour every day." },
                 { value: "b", label: "If I had lived closer, I would have saved an hour." },
@@ -334,26 +397,26 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s3-ex2",
+          id: "s3-ex3",
           title: "Fill in the blank",
-          instructions: "Write would or were.",
+          instructions: "Write the verb.",
           items: [
             {
               type: "text",
-              label: "If my schedule ___ different, I wouldn't miss bedtime.",
-              expectedAnswers: ["were"],
+              label: "If Yemi ___ (have) Saturday off, she would be home at bedtime.",
+              expectedAnswers: ["had"],
             },
           ],
         },
         {
-          id: "s3-ex3",
+          id: "s3-ex4",
           title: "Unscramble",
           items: [
             {
               type: "word-scramble",
-              label: "Build Yemi's wish about her weekends:",
-              words: ["If", "I", "had", "weekends", "off,", "I", "would", "see", "my", "kids", "more"],
-              correctAnswer: "If I had weekends off, I would see my kids more",
+              label: "Build Yemi's wish about her Saturdays:",
+              words: ["If", "I", "had", "Saturdays", "off,", "I", "would", "see", "my", "kids", "more"],
+              correctAnswer: "If I had Saturdays off, I would see my kids more",
             },
           ],
         },
@@ -463,25 +526,54 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       title: "One Bad Week: All Four Together",
       icon: "📚",
       explanation: `
-        ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
+        <p>Yemi's hard week had all four conditionals: a sore knee, a clinic visit, and her first night shifts. Here are her sentences in one table. Read it from top to bottom.</p>
 
-        <p>Yemi tells classmate <strong>Djamila</strong> about her hard week: a sore knee, a clinic visit, and her first night shifts.</p>
-
-        ${dialogue([
-          { speaker: "Djamila", avatar: "👩🏾", text: "Rough week? How’s your knee?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Better. But <strong>if I lift</strong> wrong, my knee <strong>hurts</strong>. So I use my legs now.", side: "right", tone: "terracotta" },
-          { speaker: "Djamila", avatar: "👩🏾", text: "Did you go back to the clinic?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Yes, on Saturday. <strong>If I had gone</strong> sooner, I <strong>wouldn’t have missed</strong> three shifts last month.", side: "right", tone: "terracotta" },
-          { speaker: "Djamila", avatar: "👩🏾", text: "And the night shifts?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "I’m tired. <strong>If I had</strong> day shifts, I <strong>would sleep</strong> more. <strong>If my knee hurts</strong> again, <strong>I’ll call</strong> the nurse line first.", side: "right", tone: "terracotta" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-sage" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Compare</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Yemi's week: four conditionals</div>
+          </div>
+          <div style="padding: 0 0.5rem 0.75rem 0.5rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead>
+                <tr>
+                  <th class="gc-table-divider" scope="col" style="width: 30%; padding: 0.4rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Type</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">If part</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong class="gc-text-terracotta">Zero</strong><br/><span style="font-size: 0.75rem">always true</span></td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>If I lift</strong> wrong,</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)">my knee <strong>hurts</strong>.</td>
+                </tr>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong class="gc-text-amber">First</strong><br/><span style="font-size: 0.75rem">real plan</span></td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>If the clinic opens</strong> at 8,</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>I'll go</strong> first thing.</td>
+                </tr>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong class="gc-text-blue">Second</strong><br/><span style="font-size: 0.75rem">imaginary now</span></td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>If I had</strong> day shifts,</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top; border-bottom: 1px solid rgba(128,128,128,0.25)">I <strong>would sleep</strong> more.</td>
+                </tr>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top"><strong class="gc-text-sage">Third</strong><br/><span style="font-size: 0.75rem">imaginary past</span></td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top"><strong>If I had gone</strong> sooner,</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.85rem; vertical-align: top">I <strong>wouldn't have missed</strong> three shifts.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
-            <strong>Zero</strong> = always true &nbsp;|&nbsp;
-            <strong>First</strong> = real future &nbsp;|&nbsp;
-            <strong>Second</strong> = imaginary now &nbsp;|&nbsp;
-            <strong>Third</strong> = imaginary past
+            <strong>Zero</strong> = <em>if + present, present</em><br/>
+            <strong>First</strong> = <em>if + present, will</em><br/>
+            <strong>Second</strong> = <em>if + past, would</em><br/>
+            <strong>Third</strong> = <em>if + had + V3, would have + V3</em>
           </p>
         </div>
       `,
@@ -492,12 +584,52 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s5-ex1",
-          title: "Pick the right conditional",
-          instructions: "Read each new situation and match the meaning.",
+          title: "Read the table",
+          instructions: "Look at the table above. Then answer.",
           items: [
             {
               type: "radio",
-              label: "Djamila works in a kitchen. A safety rule that is always true.",
+              label: "Which row is a real plan for the future?",
+              options: [
+                { value: "a", label: "Zero" },
+                { value: "b", label: "First" },
+                { value: "c", label: "Second" },
+                { value: "d", label: "Third" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Which row has a result with \"would have\" + V3?",
+              options: [
+                { value: "a", label: "Zero" },
+                { value: "b", label: "First" },
+                { value: "c", label: "Second" },
+                { value: "d", label: "Third" },
+              ],
+              expectedAnswer: "d",
+            },
+            {
+              type: "radio",
+              label: "Which sentence has the same pattern as the Second row?",
+              options: [
+                { value: "a", label: "If I lived closer, I would walk to work." },
+                { value: "b", label: "If I live closer, I'll walk to work." },
+                { value: "c", label: "If I had lived closer, I would have walked to work." },
+                { value: "d", label: "If I live closer, I walk to work." },
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "s5-ex2",
+          title: "Pick the right conditional",
+          instructions: "Read each situation and match the meaning.",
+          items: [
+            {
+              type: "radio",
+              label: "In a kitchen, a safety rule that is always true.",
               options: [
                 { value: "a", label: "If you touched the grill, you would burn your hand." },
                 { value: "b", label: "If you touch the grill, you will burn your hand." },
@@ -508,7 +640,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Djamila's real plan for payday on Friday.",
+              label: "A real plan for payday on Friday.",
               options: [
                 { value: "a", label: "If I get paid Friday, I'll buy my monthly bus pass." },
                 { value: "b", label: "If I got paid Friday, I would buy my monthly bus pass." },
@@ -519,7 +651,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Djamila's apartment is an hour from work. Her wish (not real now).",
+              label: "Your apartment is an hour from work. Your wish (not real now).",
               options: [
                 { value: "a", label: "If I live near work, I'll walk every day." },
                 { value: "b", label: "If I live near work, I walk every day." },
@@ -530,7 +662,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Last winter Djamila skipped the flu shot and got sick. Her regret.",
+              label: "Last winter you skipped the flu shot and got sick. Your regret.",
               options: [
                 { value: "a", label: "If I get the flu shot, I don't get sick." },
                 { value: "b", label: "If I had gotten the flu shot, I wouldn't have been sick for a week." },
@@ -542,29 +674,29 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s5-ex2",
+          id: "s5-ex3",
           title: "Spot the error",
           items: [
             {
               type: "radio",
               label: "Which sentence has an error?",
               options: [
-                { value: "a", label: "If I lift wrong, my knee hurts." },
-                { value: "b", label: "If the clinic opens at 8, I'll go." },
-                { value: "c", label: "If I would have day shifts, I would sleep more." },
-                { value: "d", label: "If I had gone sooner, I would have paid less." },
+                { value: "a", label: "If you touch a hot pan, you get burned." },
+                { value: "b", label: "If I get paid Friday, I'll pay the rent." },
+                { value: "c", label: "If I would have a car, I would drive to work." },
+                { value: "d", label: "If I had left earlier, I would have caught the bus." },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "Past regret: If I ___ (go) sooner, I would have paid less.",
-              expectedAnswers: ["had gone"],
+              label: "Past regret: If I ___ (study) more, I would have passed the test.",
+              expectedAnswers: ["had studied"],
             },
           ],
         },
         {
-          id: "s5-ex3",
+          id: "s5-ex4",
           title: "Unscramble",
           items: [
             {
@@ -598,7 +730,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
     },
     {
       id: "afc-q5",
-      question: "Rachel says: 'If I earned more, I would move to a bigger apartment.' What do we know about Rachel?",
+      question: "Yemi says: 'If I earned more, I would move to a bigger apartment.' What do we know about Yemi?",
       options: [
         { value: "a", label: "She earns enough and is moving soon." },
         { value: "b", label: "She moved to a bigger apartment last year." },
