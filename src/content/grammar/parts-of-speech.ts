@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { partsOfSpeechImages as img } from "@/data/parts-of-speech-images.generated";
+import { frequencyBar, readingCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (standard toolkit. copy from welcome-back-tenses-review.ts)
@@ -261,19 +262,37 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Verbs: action verbs and state verbs",
       icon: "⚙️",
       explanation: `
-        ${sceneCard("sceneFormTable", "Community center. Samuel helps Amara with the registration form at the desk.", "sage")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Samuel lives in Amara's building and volunteers at the center on Tuesdays. He helps Amara with her registration form. Look at what each of them does, and what is true about each of them.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara gets stuck on the form. A man at the next desk offers to help. She knows his face, but from where?</p>
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-sage" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Sort</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Action verbs and state verbs</div>
+          </div>
+          <div style="padding: 0 0.75rem 0.75rem 0.75rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead><tr>
+                <th scope="col" style="padding: 0.3rem !important; width: 24%"></th>
+                <th scope="col" class="gc-text-sage" style="padding: 0.3rem !important; font-size: 0.78rem; text-align: left; text-transform: uppercase; border-bottom: 1px solid rgba(128,128,128,0.4)">Action</th>
+                <th scope="col" class="gc-text-terracotta" style="padding: 0.3rem !important; font-size: 0.78rem; text-align: left; text-transform: uppercase; border-bottom: 1px solid rgba(128,128,128,0.4)">State</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <th scope="row" style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important">Samuel</th>
+                  <td style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important"><strong>helps</strong>, <strong>fixes</strong></td>
+                  <td style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important"><strong>knows</strong>, <strong>understands</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row" style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important">Amara</th>
+                  <td style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important"><strong>fills out</strong>, <strong>writes</strong></td>
+                  <td style="padding: 0.4rem 0.35rem !important; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25); font-size: 0.9rem; overflow-wrap: normal !important"><strong>wants</strong>, <strong>needs</strong>, <strong>has</strong>, <strong>knows</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        ${dialogue([
-          { speaker: "Samuel", avatar: "👨🏽", text: "Do you <strong>need</strong> help with the form?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Yes, thanks. Wait, I <strong>know</strong> you. You <strong>work</strong> in my building, right?", side: "right", tone: "terracotta" },
-          { speaker: "Samuel", avatar: "👨🏽", text: "That's right, I'm Samuel. I fix things there. I <strong>help</strong> here on Tuesdays. Which class do you <strong>want</strong>?", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "The evening class on Tuesday and Thursday. I <strong>remember</strong> it from a flyer, but I can't <strong>find</strong> it on this form.", side: "right", tone: "terracotta" },
-          { speaker: "Samuel", avatar: "👨🏽", text: "They added it late. <strong>Write</strong> \"Tuesday and Thursday evening\" at the bottom. The room is on the board by the door.", side: "left", tone: "sage" },
-        ])}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The words in bold are <strong>verbs</strong>. But they are not all the same kind. Some are things you do. Some are things that are true about you.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The words in bold in the table are <strong>verbs</strong>. But they are not all the same kind. Some are things you do. Some are things that are true about you.</p>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
           <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you, such as what you feel, know, have, or think.</p>
@@ -399,6 +418,28 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           ],
         },
         {
+          id: "pos-v-table",
+          title: "Read the table",
+          instructions: "Look at the table about Samuel and Amara.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at the table. Which verb is an action verb for Amara?",
+              options: [
+                { value: "fills out", label: "fills out" },
+                { value: "needs", label: "needs" },
+                { value: "has", label: "has" },
+              ],
+              expectedAnswer: "fills out",
+            },
+            {
+              type: "text",
+              label: "Look at the table. How many state verbs does Amara have in her row? Write a number.",
+              expectedAnswers: ["4", "four"],
+            },
+          ],
+        },
+        {
           id: "pos-v-3",
           title: "Fill in the verb",
           instructions: "Write the correct form of the verb in parentheses.",
@@ -447,18 +488,21 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adjectives: describing words",
       icon: "🎨",
       explanation: `
-        ${sceneCard("sceneAdjectivesFriends", "Community center, by the window. Amara and Dilnoza laugh over the \"About You\" part of the form.", "amber")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to <strong>describe</strong> their lives. Dilnoza reads a short story about a man who moved to a new country. Look at the words that describe.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to <strong>describe</strong> their lives.</p>
-
-        ${dialogue([
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "This part asks us to describe our lives. What are you writing?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "I have a <strong>full-time</strong> job. I work <strong>long</strong> hours. I have <strong>two</strong> children.", side: "right", tone: "terracotta" },
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "My schedule is <strong>busy</strong> too. What did you write about your home?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "It's a <strong>new</strong> building, but it's a <strong>small</strong> space for three people.", side: "right", tone: "terracotta" },
-          { speaker: "Dilnoza", avatar: "👩🏻", text: "I live with my sister in a <strong>small</strong> apartment. We fight about the bathroom every morning.", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Ha! Three people, one bathroom. I win.", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Hamdi Ulukaya: A New Country",
+          paragraphs: [
+            "Hamdi Ulukaya grew up on a mountain in <strong>eastern</strong> Turkey, near the Euphrates River. Later, he moved to the United States, a <strong>new</strong> country. In 2005, he started Chobani, a yogurt company.",
+            "In 2016, he started Tent. Tent helps <strong>large</strong> businesses hire refugees. Today, it works with more than <strong>500</strong> of the world's <strong>largest</strong> employers. Ulukaya says, \"The minute a refugee gets a job is the minute they stop being a refugee.\"",
+          ],
+          sources: [
+            { name: "Tent: Hamdi Ulukaya", url: "https://www.tent.org/our-founder/hamdi-ulukaya/" },
+            { name: "Tent: About", url: "https://www.tent.org/about/" },
+          ],
+          accent: "amber",
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Adjectives</strong> describe nouns. They answer <em>what kind?</em> or <em>how many?</em> Adjectives usually come right before the noun they describe.</p>
@@ -524,6 +568,38 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 { value: "brothers", label: "brothers" },
               ],
               expectedAnswer: "three",
+            },
+          ],
+        },
+        {
+          id: "pos-adj-read",
+          title: "Read about Hamdi Ulukaya",
+          instructions: "Look at the reading.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at the reading. Where did Hamdi Ulukaya grow up?",
+              options: [
+                { value: "eastern", label: "In eastern Turkey" },
+                { value: "us", label: "In the United States" },
+                { value: "river", label: "In a city on the coast" },
+              ],
+              expectedAnswer: "eastern",
+            },
+            {
+              type: "text",
+              label: "Look at the reading. In what year did he start Tent? Write the year.",
+              expectedAnswers: ["2016"],
+            },
+            {
+              type: "radio",
+              label: "Look at the reading. Which word describes the noun \"country\"?",
+              options: [
+                { value: "new", label: "new" },
+                { value: "started", label: "started" },
+                { value: "later", label: "later" },
+              ],
+              expectedAnswer: "new",
             },
           ],
         },
@@ -609,19 +685,17 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adverbs: how, when, how often",
       icon: "⚡",
       explanation: `
-        ${sceneCard("sceneVolunteer", "Saturday morning, cleanup day at Amara's building. Samuel writes repairs on his clipboard.", "blue")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing repairs on a clipboard. Amara asks him how his week works. This is what he tells her.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing down repairs on a clipboard. Amara stops to talk.</p>
+        ${frequencyBar([
+          { word: "always", percent: 100, example: "Samuel <strong>always</strong> helps at the center on Tuesdays.", accent: "terracotta" },
+          { word: "usually", percent: 80, example: "He <strong>usually</strong> fixes a leak in one visit.", accent: "terracotta" },
+          { word: "sometimes", percent: 40, example: "He <strong>sometimes</strong> eats lunch at his desk.", accent: "amber" },
+          { word: "rarely", percent: 10, example: "He <strong>rarely</strong> takes a day off.", accent: "sage" },
+          { word: "never", percent: 0, example: "He <strong>never</strong> leaves a job unfinished.", accent: "sage" },
+        ], { kicker: "Chart", title: "Samuel's week: how often?" })}
 
-        ${dialogue([
-          { speaker: "Amara", avatar: "👩🏾", text: "Thanks again for Tuesday. How do you get to the center by four? I'm still at work then.", side: "right", tone: "terracotta" },
-          { speaker: "Samuel", avatar: "👨🏽", text: "<strong>Every Tuesday</strong>, I leave work <strong>early</strong>. Then I make up the hours on Saturday, like today.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Your English is so good. How did you learn?", side: "right", tone: "terracotta" },
-          { speaker: "Samuel", avatar: "👨🏽", text: "Same class. I speak <strong>pretty well</strong> now, but if people talk <strong>too quickly</strong>, I still ask them to slow down.", side: "left", tone: "sage" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Good to know. And while you have that clipboard, my kitchen sink is leaking <strong>again</strong>.", side: "right", tone: "terracotta" },
-        ])}
-
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Samuel writes it down. "Monday," he says. The words in bold tell us <em>when</em>, <em>how</em> and <em>how often</em>. They are <strong>adverbs</strong>.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">"Monday," he says, and writes down Amara's leaking sink. Words like <em>always</em> tell us <em>how often</em>. Other words tell us <em>when</em> and <em>how</em>. They are all <strong>adverbs</strong>.</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A <strong>group of words</strong> can do the same job: <em>every Tuesday, last year, after work</em>.</p>
@@ -646,19 +720,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           <p style="margin: 0 0 0.6rem 0; font-weight: 600">Adjective or adverb? The question is: what does it describe?</p>
           <div style="display: flex; flex-direction: column; gap: 0.4rem">
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
-              <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #b05740; text-transform: uppercase">Adjective</span>
+              <span class="gc-text-terracotta" style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Adjective</span>
               <span><em>Samuel is a <strong>quick</strong> worker.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the noun "worker")</span></span>
             </div>
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
-              <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #268a82; text-transform: uppercase">Adverb</span>
+              <span class="gc-text-blue" style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Adverb</span>
               <span><em>Samuel works <strong>quickly</strong>.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the verb "works")</span></span>
             </div>
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
-              <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #b05740; text-transform: uppercase">Adjective</span>
+              <span class="gc-text-terracotta" style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Adjective</span>
               <span><em>His English is <strong>good</strong>.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the noun "English")</span></span>
             </div>
             <div style="display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap">
-              <span style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; color: #268a82; text-transform: uppercase">Adverb</span>
+              <span class="gc-text-blue" style="min-width: 7rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Adverb</span>
               <span><em>He speaks English <strong>well</strong>.</em> <span style="font-size: 0.85rem; color: var(--color-text-muted)">(describes the verb "speaks")</span></span>
             </div>
           </div>
@@ -721,6 +795,28 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           ],
         },
         {
+          id: "pos-adv-chart",
+          title: "Read the chart",
+          instructions: "Look at Samuel's chart.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at Samuel's chart. Which sentence is true?",
+              options: [
+                { value: "a", label: "Samuel never takes a day off." },
+                { value: "b", label: "Samuel rarely takes a day off." },
+                { value: "c", label: "Samuel always takes a day off." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Look at Samuel's chart. He ___ eats lunch at his desk. (not often, not rare: about 40%)",
+              expectedAnswers: ["sometimes"],
+            },
+          ],
+        },
+        {
           id: "pos-adv-2",
           title: "Fill in the adverb",
           instructions: "Write the adverb form of the word in parentheses.",
@@ -766,7 +862,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         <div style="padding: 1.1rem 1.25rem; border-radius: 0.5rem; background: rgba(106,141,115,0.08); border: 1px solid rgba(106,141,115,0.2); margin: 1.25rem 0">
           <p style="margin: 0 0 0.75rem 0; font-weight: 600; font-size: 0.95rem">The notice on the bulletin board:</p>
-          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span style="color:#b05740;font-weight:700">English</span> classes <span style="color:#268a82;font-weight:700">start</span> in September. Classes <span style="color:#268a82;font-weight:700">meet</span> every Tuesday and Thursday evening in the <span style="color:#b56e1a;font-weight:700">large</span> room. <span style="color:#268a82;font-weight:700">Bring</span> a pencil and a <span style="color:#b56e1a;font-weight:700">small</span> notebook.</em></p>
+          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span class="gc-text-terracotta" style="font-weight:700">English</span> classes <span class="gc-text-sage" style="font-weight:700">start</span> in September. Classes <span class="gc-text-sage" style="font-weight:700">meet</span> every Tuesday and Thursday evening in the <span class="gc-text-amber" style="font-weight:700">large</span> room. <span class="gc-text-sage" style="font-weight:700">Bring</span> a pencil and a <span class="gc-text-amber" style="font-weight:700">small</span> notebook.</em></p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem">
             ${labelPill("nouns", "terracotta")}
             <span style="font-size: 0.88rem; align-self: center">English, classes, September, room, pencil, notebook</span>
