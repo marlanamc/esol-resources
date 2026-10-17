@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { howLongForSinceImages as img } from "@/data/how-long-for-since-images.generated";
+import { readingCard, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -206,16 +207,18 @@ export const howLongForSinceContent: InteractiveGuideContent = {
       title: "For vs. Since: What's the Difference?",
       icon: "⚖️",
       explanation: `
-        ${sceneCard("sceneApartmentHallway", "Apartment hallway, East Boston. The same Tuesday, after work, by the mailboxes.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">It is October 2026. Later on Tuesday, Yesenia comes home from work and finds a letter from her landlord in the mailbox. The landlord is not renewing leases in the spring. Look at Yesenia's years in East Boston.</p>
 
-        <p style="margin: 0 0 1rem 0; font-size: 1rem">Later on Tuesday, Yesenia comes home from work and gets her mail. Her neighbor Gloria lives on the same floor. They both just got a letter from the landlord.</p>
-
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏾", text: "Did you hear? Our landlord is not renewing leases in the spring.", side: "left", tone: "terracotta" },
-          { speaker: "Yesenia", avatar: "👩🏽", text: "I know. We got the letter today. We <strong>have lived</strong> here <strong>for five years</strong>. I do not want to move.", side: "right", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏾", text: "I <strong>have been</strong> here <strong>since I moved</strong> from Chelsea. My kids know this school.", side: "left", tone: "terracotta" },
-          { speaker: "Yesenia", avatar: "👩🏽", text: "My little brother loves his school too. We need to find something before spring.", side: "right", tone: "sage" },
-        ])}
+        ${timeline({
+          kicker: "Timeline",
+          title: "Yesenia in East Boston",
+          items: [
+            { when: "2021", text: "The family moves into the apartment. <strong>Since 2021</strong> is the starting point.", accent: "sage" },
+            { span: "<strong>for</strong> five years", accent: "terracotta" },
+            { when: "Oct 2026", text: "Today. The letter from the landlord arrives. Yesenia <strong>has lived</strong> here <strong>for five years</strong>.", accent: "sage" },
+          ],
+          note: "<strong>For</strong> = the whole bar (a length of time). <strong>Since</strong> = where the bar starts (a starting point).",
+        })}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">
           <div style="padding: 0.9rem 1rem; background: rgba(176,87,64,0.07); border-radius: 0.5rem; border-top: 3px solid #b05740">
@@ -233,19 +236,19 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("for", "terracotta")}
-            <span><em>I <strong>have lived</strong> here <strong>for</strong> four years.</em> (= a length of time)</span>
+            <span><em>I <strong>have lived</strong> here <strong>for</strong> five years.</em> (= a length of time)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("since", "sage")}
-            <span><em>I <strong>have lived</strong> here <strong>since</strong> 2020.</em> (= a starting point)</span>
+            <span><em>I <strong>have lived</strong> here <strong>since</strong> 2021.</em> (= a starting point)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("for", "terracotta")}
-            <span><em>She <strong>has had</strong> the same phone plan <strong>for</strong> three years.</em></span>
+            <span><em>She <strong>has had</strong> the same phone company <strong>for</strong> three years.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("since", "sage")}
-            <span><em>She <strong>has had</strong> the same plan <strong>since</strong> she moved here.</em></span>
+            <span><em>She <strong>has had</strong> the same job <strong>since</strong> 2024.</em></span>
           </div>
         </div>
       `,
@@ -266,12 +269,13 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Gloria has been in East Boston ___ she moved from Chelsea.",
+              label: "Look at the timeline. Which sentence is true?",
               options: [
-                { value: "for", label: "for (length of time)" },
-                { value: "since", label: "since (starting point)" },
+                { value: "a", label: "Yesenia has lived in East Boston since five years." },
+                { value: "b", label: "Yesenia has lived in East Boston since 2021." },
+                { value: "c", label: "Yesenia has lived in East Boston for 2021." },
               ],
-              expectedAnswer: "since",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -359,17 +363,44 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePhoneStore", "Phone store on Meridian Street. The next Saturday. Yesenia asks about a cheaper plan.", "amber")}
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">The landlord's letter asks every tenant to fill out a move-out form. Kevin in the leasing office gives Yesenia the form. Yesenia also needs to save money before the family moves, so last Saturday she switched to a cheaper phone plan. She writes it on the form too. Today is October 2026. Look at what she wrote.</p>
 
-        <p style="margin: 0 0 1rem 0; font-size: 1rem">Yesenia needs to save money before the family moves. On Saturday she stops at a phone store to ask about her phone bill. Kevin works at the counter.</p>
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Form</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Yesenia's move-out form</div>
+          </div>
+          <div style="padding: 0 0.5rem 0.75rem 0.5rem">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+              <thead>
+                <tr>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Line</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Yesenia wrote</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Since</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                  <td class="gc-text-sage" style="padding: 0.5rem 0.3rem !important; font-weight: 700; vertical-align: top">🏠 Home</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top">East Boston apartment</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top"><strong>2021</strong></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                  <td class="gc-text-sage" style="padding: 0.5rem 0.3rem !important; font-weight: 700; vertical-align: top">🧺 Job</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top">Hotel laundry room</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top"><strong>2024</strong></td>
+                </tr>
+                <tr>
+                  <td class="gc-text-sage" style="padding: 0.5rem 0.3rem !important; font-weight: 700; vertical-align: top">📱 Phone</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top">Same company. New plan: $40 (was $65).</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top"><strong>2023</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        ${dialogue([
-          { speaker: "Kevin", avatar: "🧑🏻", text: "<strong>How long have</strong> you <strong>had</strong> your current plan?", side: "left", tone: "amber" },
-          { speaker: "Yesenia", avatar: "👩🏽", text: "I <strong>have had</strong> it <strong>for</strong> three years. I pay $65 a month.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Three years at $65? You can get the same data for $40.", side: "left", tone: "amber" },
-          { speaker: "Yesenia", avatar: "👩🏽", text: "Really? I <strong>have paid</strong> too much <strong>for</strong> three years! We need to save money for the move. I'm switching today.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Smart. That plan <strong>has been</strong> our best deal <strong>since</strong> last summer.", side: "left", tone: "amber" },
-        ])}
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">Kevin reads the form and asks questions with <em>How long...?</em></p>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>How long have you...?</strong> is the question. The answer uses <em>for</em> or <em>since</em>.</p>
@@ -392,7 +423,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("answer", "terracotta")}
-            <span><em>I <strong>have lived</strong> here <strong>for</strong> four years. / <strong>Since</strong> 2022.</em></span>
+            <span><em>I <strong>have lived</strong> here <strong>for</strong> five years. / <strong>Since</strong> 2021.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.07); border-radius: 0.4rem">
             ${labelPill("question", "amber")}
@@ -422,11 +453,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"How long has Yesenia lived in East Boston?\"",
+              label: "Look at Yesenia's form. Kevin asks: \"How long has Yesenia worked at the hotel?\"",
               options: [
-                { value: "a", label: "She has lived there since five years." },
-                { value: "b", label: "She lived there for 2021." },
-                { value: "c", label: "She has lived there since 2021." },
+                { value: "a", label: "She has worked there since two years." },
+                { value: "b", label: "She has worked there for 2024." },
+                { value: "c", label: "She has worked there for two years." },
               ],
               expectedAnswer: "c",
             },
@@ -463,8 +494,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Yesenia ___ (know) her landlord since 2021.",
-              expectedAnswers: ["has known"],
+              label: "Look at the form. Yesenia ___ (have) the same phone company since 2023.",
+              expectedAnswers: ["has had"],
             },
           ],
         },
@@ -499,18 +530,22 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantKitchen", "Restaurant kitchen on Maverick Street. The next Tuesday. Two cooks talk during a break.", "blue")}
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">Some things are finished. Some things are still true now. Read about Luis von Ahn. Which verbs are finished? Which verbs are still true now?</p>
 
-        <p style="margin: 0 0 1rem 0; font-size: 1rem">Yesenia's mother, Lupe, is a line cook at a restaurant on Maverick Street. On her break, she talks with Hector. He is a cook who has worked there since the restaurant opened.</p>
-
-        ${dialogue([
-          { speaker: "Hector", avatar: "👨🏽", text: "How long <strong>have</strong> you <strong>worked</strong> here?", side: "left", tone: "blue" },
-          { speaker: "Lupe", avatar: "👩🏾", text: "I <strong>have worked</strong> here <strong>for</strong> two years. You?", side: "right", tone: "terracotta" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I <strong>have been</strong> here <strong>since</strong> the restaurant opened in 2015.", side: "left", tone: "blue" },
-          { speaker: "Lupe", avatar: "👩🏾", text: "That’s a long time! When did you last take a day off?", side: "right", tone: "terracotta" },
-          { speaker: "Hector", avatar: "👨🏽", text: "I <strong>took</strong> one day off last month. And Kofi, our dishwasher, <strong>left</strong> last Tuesday, so now we're short.", side: "left", tone: "blue" },
-          { speaker: "Lupe", avatar: "👩🏾", text: "I can work extra shifts. My family needs to save money for a new apartment.", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Real person",
+          title: "Luis von Ahn",
+          accent: "sage",
+          paragraphs: [
+            "Luis von Ahn <strong>was</strong> born in Guatemala City, Guatemala. He <strong>came</strong> to the United States at 18 to study math at Duke University. He <strong>finished</strong> his degree in 2000. In 2009, he <strong>sold</strong> a website security tool called reCAPTCHA to Google.",
+            "In 2011, he and Severin Hacker <strong>started</strong> Duolingo, an app for learning languages. Von Ahn <strong>has worked</strong> on Duolingo <strong>since</strong> then, and he is still its CEO today.",
+          ],
+          sources: [
+            { name: "Carnegie Corporation of New York", url: "https://carnegie.org/great-immigrants/luis-von-ahn/" },
+            { name: "National Inventors Hall of Fame", url: "https://www.invent.org/inductees/luis-von-ahn" },
+            { name: "Lemelson-MIT", url: "https://lemelson.mit.edu/resources/luis-von-ahn" },
+          ],
+        })}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">
           <div style="padding: 0.9rem 1rem; background: rgba(106,141,115,0.07); border-radius: 0.5rem; border-top: 3px solid #6a8d73">
@@ -556,30 +591,30 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Lupe ___ at this restaurant for two years. (She still works there.)",
+              label: "Read about Luis von Ahn. In 2009, he ___ reCAPTCHA to Google.",
               options: [
-                { value: "worked", label: "worked (past simple. finished)" },
-                { value: "has worked", label: "has worked (present perfect. still true now)" },
+                { value: "sold", label: "sold" },
+                { value: "has sold", label: "has sold" },
+              ],
+              expectedAnswer: "sold",
+            },
+            {
+              type: "radio",
+              label: "Read about Luis von Ahn. He ___ on Duolingo since 2011. (He still works on it.)",
+              options: [
+                { value: "worked", label: "worked" },
+                { value: "has worked", label: "has worked" },
               ],
               expectedAnswer: "has worked",
             },
             {
               type: "radio",
-              label: "Kofi, the dishwasher, ___ the restaurant last Tuesday. (He is not there anymore.)",
+              label: "Yesenia ___ at the hotel for two years. (She still works there.)",
               options: [
-                { value: "left", label: "left (past simple. finished)" },
-                { value: "has left", label: "has left (present perfect)" },
+                { value: "worked", label: "worked" },
+                { value: "has worked", label: "has worked" },
               ],
-              expectedAnswer: "left",
-            },
-            {
-              type: "radio",
-              label: "They ___ the same manager since the restaurant opened. (Still the same manager now.)",
-              options: [
-                { value: "had", label: "had (past simple. finished)" },
-                { value: "have had", label: "have had (present perfect. still true now)" },
-              ],
-              expectedAnswer: "have had",
+              expectedAnswer: "has worked",
             },
           ],
         },
@@ -607,13 +642,13 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Hector ___ (work) at this restaurant since it opened.",
+              label: "Claudette ___ (work) at the hotel for five years. She still works there.",
               expectedAnswers: ["has worked"],
             },
             {
               type: "text",
-              label: "Lupe ___ (start) this job two years ago.",
-              expectedAnswers: ["started"],
+              label: "Read about Luis von Ahn. He ___ (finish) his degree at Duke in 2000.",
+              expectedAnswers: ["finished"],
             },
           ],
         },
@@ -631,7 +666,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneHolidayDinner", "Yesenia's apartment, East Boston. Sunday dinner, three weeks later.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; font-size: 1rem">Yesenia found an apartment nearby, and the new landlord sent a rental application. On Sunday, Yesenia, her mother Lupe, and her little brother Mateo sit down to dinner. After dinner, Yesenia and Lupe fill out the form.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">Yesenia is saving money with her cheaper phone plan. She found an apartment nearby, and the new landlord sent a rental application. On Sunday, Yesenia, her mother Lupe, and her little brother Mateo sit down to dinner. After dinner, Yesenia and Lupe fill out the form.</p>
 
         ${dialogue([
           { speaker: "Yesenia", avatar: "👩🏽", text: "Mami, this rental application asks how long we <strong>have lived</strong> here. Five years, right?", side: "right", tone: "terracotta" },
@@ -646,7 +681,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8; font-size: 0.95rem">
             <li>I <strong>have lived</strong> here <strong>for</strong> five years.</li>
             <li>I <strong>have worked</strong> this shift <strong>since</strong> October.</li>
-            <li>She <strong>has had</strong> the same phone plan <strong>for</strong> three years.</li>
+            <li>She <strong>has had</strong> the same phone company <strong>for</strong> three years.</li>
             <li>We <strong>have known</strong> our landlord <strong>since</strong> we moved in.</li>
             <li>How long <strong>has</strong> it <strong>been</strong> since you saw your family?</li>
           </ul>
@@ -669,12 +704,12 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Lupe has worked at the restaurant ___ two years.",
+              label: "Yesenia has had the same phone company ___ 2023. (She wrote it on her move-out form.)",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
               ],
-              expectedAnswer: "for",
+              expectedAnswer: "since",
             },
             {
               type: "radio",
@@ -764,11 +799,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "hlfs-q2",
-      question: "Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
+      question: "Yesenia chose her phone company three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
       options: [
-        { value: "a", label: "I have had this plan for since three years." },
-        { value: "b", label: "I have had this plan for three years." },
-        { value: "c", label: "I have had this plan for 2023." },
+        { value: "a", label: "I have had this company for since three years." },
+        { value: "b", label: "I have had this company for three years." },
+        { value: "c", label: "I have had this company for 2023." },
       ],
       correctAnswer: "b",
       explanation: "'For' takes a length of time (three years), not a starting year (2023).",
@@ -818,14 +853,14 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
     {
       id: "hlfs-q7",
-      question: "Kofi, a dishwasher at Lupe's restaurant, had his last day on Tuesday of last week. He does not work there anymore. Which sentence is correct?",
+      question: "Luis von Ahn sold reCAPTCHA to Google in 2009. He does not own reCAPTCHA now. Which sentence is correct?",
       options: [
-        { value: "a", label: "Kofi has left the restaurant since last Tuesday." },
-        { value: "b", label: "Kofi has worked at the restaurant for last Tuesday." },
-        { value: "c", label: "Kofi left the restaurant last Tuesday." },
+        { value: "a", label: "He has sold reCAPTCHA since 2009." },
+        { value: "b", label: "He has sold reCAPTCHA for 2009." },
+        { value: "c", label: "He sold reCAPTCHA to Google in 2009." },
       ],
       correctAnswer: "c",
-      explanation: "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",
+      explanation: "A finished action with a specific past time (2009) needs past simple, not present perfect.",
       topic: "present-perfect-vs-past-simple",
       skill: "usage",
       skillTag: "finished-action-past-simple",

@@ -230,3 +230,51 @@ export const stepsCard = ({
     ${note ? `<div style="padding: 0 1rem 0.8rem 1rem; font-size: 0.85rem; opacity: 0.85">${note}</div>` : ""}
   `);
 };
+
+// ---------------------------------------------------------------------------
+// Timeline: a vertical line of dated events, with optional "span" bars between
+// them that show a length of time ("for five years"). Sets up for / since.
+// Vertical so it fits a phone: a narrow date column, a line, then the text.
+// ---------------------------------------------------------------------------
+
+export type TimelineItem =
+  | { when: string; text: string; accent?: Accent }
+  | { span: string; accent?: Accent };
+
+export const timeline = ({
+  kicker = "Timeline",
+  title,
+  items,
+  note,
+}: {
+  kicker?: string;
+  title: string;
+  items: TimelineItem[];
+  note?: string;
+}): string => {
+  const rows = items
+    .map((item) => {
+      const accent = item.accent ?? "sage";
+      if ("span" in item) {
+        return `
+        <div style="display: grid; grid-template-columns: 4.25rem 1.25rem 1fr; gap: 0.5rem; align-items: stretch">
+          <div></div>
+          <div style="display: flex; justify-content: center"><div class="gc-text-${accent}" style="width: 0.3rem; min-height: 2.5rem; background: currentColor; border-radius: 999px; opacity: 0.55"></div></div>
+          <div style="display: flex; align-items: center; padding: 0.3rem 0"><span class="gc-bg-${accent}-alpha gc-text-${accent}" style="padding: 0.25rem 0.65rem; border-radius: 0.4rem; font-size: 0.9rem; font-weight: 700">${item.span}</span></div>
+        </div>`;
+      }
+      return `
+        <div style="display: grid; grid-template-columns: 4.25rem 1.25rem 1fr; gap: 0.5rem; align-items: center">
+          <strong class="gc-text-${accent}" style="font-size: 0.9rem; text-align: right">${item.when}</strong>
+          <div style="display: flex; justify-content: center"><div class="gc-text-${accent}" style="width: 0.85rem; height: 0.85rem; background: currentColor; border-radius: 999px"></div></div>
+          <span style="font-size: 0.95rem; line-height: 1.45">${item.text}</span>
+        </div>`;
+    })
+    .join("");
+
+  return frame(`
+    ${header(kicker, title, "sage")}
+    <div style="display: grid; gap: 0.1rem; padding: 0.25rem 1rem 0.9rem 1rem">${rows}</div>
+    ${note ? `<div style="padding: 0 1rem 0.8rem 1rem; font-size: 0.85rem; opacity: 0.85">${note}</div>` : ""}
+  `);
+};

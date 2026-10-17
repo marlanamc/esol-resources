@@ -1,4 +1,5 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { stepsCard } from "@/content/grammar/_shared/guide-visuals";
 import { whatAreYouGoodAtImages as img } from "@/data/what-are-you-good-at-images.generated";
 
 // ---------------------------------------------------------------------------
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -203,66 +204,86 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       title: "Outside the Meeting",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneJobTalk", "Thursday, 6:50 PM. Marta and Bruno talk outside the library before the meeting.", "sage")}
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Thursday, 7:15 PM, inside the library. The meeting has started. Marta cleans rooms at a hotel. Bruno paints houses. The first idea is a morning crossing watch: neighbors in orange vests help kids cross from 7:30 to 8:00. Bruno signs up for Tuesdays. Marta takes Thursdays. Ms. Patel asks everyone how they feel and writes it down.</p>
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Marta cleans rooms at a hotel. Bruno paints houses. They both came straight from work. The sign on the door says: <em>Saratoga Street Crosswalk Meeting, 7:00, Room B.</em> The first idea is a morning crossing watch: neighbors in orange vests who help kids cross from 7:30 to 8:00.</p>
-
-        ${dialogue([
-          { speaker: "Marta", avatar: "👩🏾", text: "I'm <strong>tired of</strong> looking for a safe place to cross with my kids. That corner is the only way.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Same. I want to sign up for the crossing watch on Tuesdays. I start work at nine.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "By yourself? Aren't you <strong>nervous about</strong> working that corner alone? Those drivers don't stop.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "A little. But my daughter is <strong>excited about</strong> seeing me in an orange vest.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏾", text: "Put me down for Thursdays. Then you're not the only one in a vest.", side: "left", tone: "sage" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-sage" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Neighbor survey</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">How do you feel about the crossing watch?</div>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem">
+            <thead>
+              <tr>
+                <th scope="col" style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Neighbor</th>
+                <th scope="col" style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Feeling</th>
+                <th scope="col" style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">About</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">Marta</td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>tired of</strong></td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">look<strong>ing</strong> for a safe place to cross</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">Bruno</td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>nervous about</strong></td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">work<strong>ing</strong> the corner alone</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">Bruno's daughter</td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>excited about</strong></td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">see<strong>ing</strong> him in a vest</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">The neighbors</td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>proud of</strong></td>
+                <td style="padding: 0.5rem 0.6rem !important; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">start<strong>ing</strong> the crossing watch</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">More adjective + preposition pairs. They all follow the same rule: add <strong>-ing</strong> after the preposition.</p>
+          <p style="margin: 0; font-size: 1.05rem">Look at the <strong>Feeling</strong> column. Every feeling has a preposition (<em>of</em>, <em>about</em>), and the next verb ends in <strong>-ing</strong>.</p>
         </div>
 
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("excited about", "sage")}
-            <span>His daughter is <strong>excited about</strong> see<strong>ing</strong> him in a vest.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("nervous about", "sage")}
-            <span>He is <strong>nervous about</strong> work<strong>ing</strong> the corner alone.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("tired of", "sage")}
-            <span>I am <strong>tired of</strong> look<strong>ing</strong> for a safe place to cross.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("proud of", "sage")}
-            <span>They are <strong>proud of</strong> start<strong>ing</strong> the crossing watch.</span>
-          </div>
-        </div>
       `,
       exercises: [
         {
           id: "s2-ex1",
-          title: "Exercise 1: Choose the correct form",
-          instructions: "Pick the answer that completes the sentence correctly.",
+          title: "Exercise 1: Read the survey",
+          instructions: "Look at the Neighbor survey. Pick the best answer.",
           items: [
             {
               type: "radio",
-              label: "Marta is tired of ___ for a safe place to cross.",
+              label: "Who is nervous about working the corner alone?",
               options: [
-                { value: "looking", label: "looking" },
-                { value: "look", label: "look" },
-                { value: "looks", label: "looks" },
+                { value: "marta", label: "Marta" },
+                { value: "bruno", label: "Bruno" },
+                { value: "daughter", label: "Bruno's daughter" },
               ],
-              expectedAnswer: "looking",
+              expectedAnswer: "bruno",
             },
             {
               type: "radio",
-              label: "Bruno is nervous about ___ alone at the corner.",
+              label: "The neighbors are ___ starting the crossing watch.",
               options: [
-                { value: "working", label: "working" },
-                { value: "work", label: "work" },
-                { value: "to work", label: "to work" },
+                { value: "tired", label: "tired of" },
+                { value: "proud", label: "proud of" },
+                { value: "nervous", label: "nervous about" },
               ],
-              expectedAnswer: "working",
+              expectedAnswer: "proud",
+            },
+            {
+              type: "radio",
+              label: "Look at the survey. Which sentence is true?",
+              options: [
+                { value: "a", label: "Marta is nervous about helping the kids." },
+                { value: "b", label: "Bruno's daughter is excited about seeing her dad at the corner." },
+                { value: "c", label: "Bruno is proud of finding a safe place to cross." },
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -283,14 +304,14 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["He", "is", "proud", "of", "learning", "English", "every", "day"],
-              correctAnswer: "He is proud of learning English every day",
+              words: ["She","is","nervous","about","driving","in","snow"],
+              correctAnswer: "She is nervous about driving in snow",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "am", "tired", "of", "standing", "all", "day"],
-              correctAnswer: "I am tired of standing all day",
+              words: ["They","are","tired","of","waiting","for","the","bus"],
+              correctAnswer: "They are tired of waiting for the bus",
             },
           ],
         },
@@ -301,13 +322,13 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Bruno is nervous about ___ (work) the corner alone.",
-              expectedAnswers: ["working"],
+              label: "My son is excited about ___ (ride) the school bus.",
+              expectedAnswers: ["riding"],
             },
             {
               type: "text",
-              label: "Marta is tired of ___ (look) for a safe place to cross.",
-              expectedAnswers: ["looking"],
+              label: "Bruno is nervous about ___ (stand) in traffic.",
+              expectedAnswers: ["standing"],
             },
           ],
         },
@@ -323,47 +344,52 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       title: "Suggestions for the City",
       icon: "🗣️",
       explanation: `
-        ${sceneCard("sceneCounselor", "Thursday, 7:30 PM, Room B. Neighbors listen while Diego gives Ms. Patel his suggestions for the city.", "blue")}
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Diego comes in late, still in his kitchen shoes, with a tray of empanadas. Ms. Patel writes the plan on the board.</p>
 
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Ms. Patel runs the neighborhood group. Next Tuesday, she takes a letter to the city's traffic office. Tonight, everyone gets to add a suggestion. Diego comes in late, still in his kitchen shoes, with a tray of empanadas.</p>
-
-        ${dialogue([
-          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Thank you <strong>for coming</strong>, Diego. And for the food. What should we ask the city for?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "A real light, not just new paint. Paint is gone after one winter.", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Good. And we can show them how bad it is <strong>by sending</strong> photos of cars that don't stop.", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "I walk my son there every day. I can take those. Can I also ask <strong>about getting</strong> a morning crossing guard?", side: "right", tone: "terracotta" },
-          { speaker: "Ms. Patel", avatar: "👩‍💼", text: "Yes. Just don't leave <strong>without signing</strong> the letter. We need every name.", side: "left", tone: "blue" },
-        ])}
+        ${stepsCard({
+          kicker: "On the board",
+          title: "Ms. Patel's plan for the letter",
+          steps: [
+            "Thank people <strong>for coming</strong> to the meeting.",
+            "Show the city the problem <strong>by sending</strong> photos of cars that don't stop.",
+            "Ask <strong>about getting</strong> a morning crossing guard.",
+            "Don't leave <strong>without signing</strong> the letter.",
+          ],
+          note: "Diego takes the photos. He walks his son to school there every day.",
+          accent: "sage",
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">Prepositions also come after verbs and in phrases. Same rule: preposition + <strong>-ing</strong>.</p>
+          <p style="margin: 0; font-size: 1.05rem">Look at the bold words in the plan. <strong>for</strong>, <strong>by</strong>, <strong>about</strong>, and <strong>without</strong> are prepositions too. Same rule: preposition + <strong>-ing</strong>.</p>
         </div>
 
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
-            ${labelPill("for + -ing", "blue")}
-            <span>Thank you <strong>for com</strong><strong>ing</strong>.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
-            ${labelPill("by + -ing", "blue")}
-            <span>We can show them <strong>by send</strong><strong>ing</strong> photos.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
-            ${labelPill("without + -ing", "blue")}
-            <span>Don't leave <strong>without sign</strong><strong>ing</strong> the letter.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
-            ${labelPill("about + -ing", "blue")}
-            <span>I want to ask <strong>about get</strong><strong>ting</strong> a crossing guard.</span>
-          </div>
-        </div>
       `,
       exercises: [
         {
           id: "s3-ex1",
-          title: "Exercise 1: Correct form after the preposition",
-          instructions: "Choose the correct form to complete each sentence.",
+          title: "Exercise 1: Read the plan",
+          instructions: "Look at Ms. Patel's plan on the board. Pick the best answer.",
           items: [
+            {
+              type: "radio",
+              label: "How does the group show the city the problem?",
+              options: [
+                { value: "a", label: "By sending photos" },
+                { value: "b", label: "By writing a song" },
+                { value: "c", label: "By waiting a year" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "What should people NOT do?",
+              options: [
+                { value: "a", label: "Go home without writing their name" },
+                { value: "b", label: "Thank people for coming" },
+                { value: "c", label: "Ask about a crossing guard" },
+              ],
+              expectedAnswer: "a",
+            },
             {
               type: "radio",
               label: "Marta got a seat in the front by ___ early.",
@@ -384,16 +410,6 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "reading",
             },
-            {
-              type: "radio",
-              label: "Thank you for ___ me with the letter.",
-              options: [
-                { value: "helping", label: "helping" },
-                { value: "help", label: "help" },
-                { value: "helped", label: "helped" },
-              ],
-              expectedAnswer: "helping",
-            },
           ],
         },
         {
@@ -408,8 +424,8 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Don't leave without ___ (ask) about the crossing watch schedule.",
-              expectedAnswers: ["asking"],
+              label: "Diego helps the group by ___ (bring) food.",
+              expectedAnswers: ["bringing"],
             },
           ],
         },
@@ -538,7 +554,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
   ],
 
   // ===========================================================================
-  // MINI QUIZ. 10 questions
+  // MINI QUIZ. 5 questions
   // ===========================================================================
   miniQuiz: [
     {

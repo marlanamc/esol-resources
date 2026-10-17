@@ -63,7 +63,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -82,14 +82,37 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
       title: "Which One Is Cheaper?",
       icon: "🛒",
       explanation: `
-        ${sceneCard("sceneGroceryStore", "Market Basket, Chelsea Street. After work, Rosa and Amara stop to compare prices.", "terracotta")}
+        <p style="margin: 0 0 0.75rem 0">After work, Rosa and her friend Amara compare two stores. Rosa saved her receipts. Look at the example prices.</p>
 
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "Beans are <strong>cheaper</strong> here than at the dollar store.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Really? But the cooking oil is <strong>more expensive</strong> here.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "True. The rice is <strong>better</strong> quality here, though.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "And the walk is <strong>shorter</strong>. My feet hurt.", side: "left", tone: "sage" },
-        ])}
+        <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+            <thead>
+              <tr style="background: rgba(128,128,128,0.12)">
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Rosa's receipts</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Market Basket</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Dollar store</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td class="gc-text-terracotta" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">Beans</td>
+                <td style="padding: 0.6rem 0.5rem">$1.20</td>
+                <td style="padding: 0.6rem 0.5rem">$1.80</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td class="gc-text-terracotta" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">Oil</td>
+                <td style="padding: 0.6rem 0.5rem">$5.00</td>
+                <td style="padding: 0.6rem 0.5rem">$3.50</td>
+              </tr>
+              <tr>
+                <td class="gc-text-terracotta" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">Walk</td>
+                <td style="padding: 0.6rem 0.5rem">8 min</td>
+                <td style="padding: 0.6rem 0.5rem">15 min</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin: -0.5rem 0 1.25rem 0; font-size: 0.88rem; opacity: 0.8"><strong>Beans</strong> are <strong>cheaper</strong> at Market Basket. The <strong>oil</strong> is <strong>more expensive</strong> there. The <strong>walk</strong> is <strong>shorter</strong>.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Comparatives</strong> compare two things. Use them with <em>than</em>: Market Basket is <strong>cheaper than</strong> the dollar store.</p>
@@ -134,7 +157,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Market Basket is ___ than the dollar store for beans. (cheap)",
+              label: "Look at Rosa's receipts. Market Basket is ___ than the dollar store for beans. (cheap)",
               options: [
                 { value: "more cheap", label: "more cheap" },
                 { value: "cheaper", label: "cheaper" },
@@ -144,7 +167,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The cooking oil at the dollar store is ___ than here. (affordable)",
+              label: "Look at Rosa's receipts. The oil at the dollar store is ___ than the oil at Market Basket. (affordable)",
               options: [
                 { value: "affordabler", label: "affordabler" },
                 { value: "more affordabler", label: "more affordabler" },
@@ -154,7 +177,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The walk to Market Basket is ___ than the bus ride. (short)",
+              label: "Look at Rosa's receipts. The walk to Market Basket is ___ than the walk to the dollar store. (short)",
               options: [
                 { value: "more short", label: "more short" },
                 { value: "shorter", label: "shorter" },
@@ -182,14 +205,14 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "beans", "are", "cheaper", "here", "than", "at", "the", "dollar", "store"],
-              correctAnswer: "The beans are cheaper here than at the dollar store",
+              words: ["The", "oil", "is", "cheaper", "at", "the", "dollar", "store"],
+              correctAnswer: "The oil is cheaper at the dollar store",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "oil", "is", "more", "expensive", "at", "Market", "Basket"],
-              correctAnswer: "The oil is more expensive at Market Basket",
+              words: ["The", "walk", "to", "Market", "Basket", "is", "shorter"],
+              correctAnswer: "The walk to Market Basket is shorter",
             },
           ],
         },
@@ -198,6 +221,11 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           title: "Write the comparative",
           instructions: "Fill in the blank with the comparative form of the adjective.",
           items: [
+            {
+              type: "text",
+              label: "Look at Rosa's receipts. How many minutes longer is the walk to the dollar store? Write a number.",
+              expectedAnswers: ["7"],
+            },
             {
               type: "text",
               label: "The dollar store is ___ (far) from my apartment than Market Basket.",
@@ -359,17 +387,40 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "more-rooms-less-noise",
       stepNumber: 3,
-      title: "More Rooms, Less Noise",
+      title: "More Rooms, Less Rent",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneApartmentSearch", "Kitchen table, East Boston. Fernanda and Diego compare apartment listings on their phones.", "sage")}
+        <p style="margin: 0 0 0.75rem 0">Rosa's friends Fernanda and Diego need a new apartment. They look at three listings. The bars show the rent.</p>
 
-        ${dialogue([
-          { speaker: "Fernanda", avatar: "👩🏽", text: "This one on Bremen Street has <strong>more</strong> rooms but <strong>fewer</strong> closets.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "And it costs <strong>more</strong>. $200 <strong>more</strong> a month than the one on Maverick.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "The Maverick one is <strong>smaller</strong>, but it has <strong>less</strong> noise. It’s not on the main street.", side: "left", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏾", text: "Before we decide, let’s ask about the landlord. I want <strong>fewer</strong> problems than we had last time.", side: "right", tone: "terracotta" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-sage" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Listings</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Rent, bedrooms, and trip to work</div>
+          </div>
+          <div style="display: grid; gap: 0.35rem; padding: 0.25rem 1rem 0.9rem 1rem">
+            <div style="display: grid; grid-template-columns: 1fr 4.5rem; gap: 0.2rem 0.6rem; align-items: center">
+              <strong class="gc-text-terracotta">Bremen St</strong>
+              <span style="font-size: 0.85rem; text-align: right; font-weight: 700">$1,800</span>
+              <div style="height: 0.8rem; border-radius: 999px; background: rgba(128,128,128,0.18); overflow: hidden"><div class="gc-text-terracotta" style="height: 100%; width: 100%; background: currentColor; border-radius: 999px; opacity: 0.85"></div></div>
+              <span style="font-size: 0.8rem; text-align: right; opacity: 0.8">a month</span>
+              <span style="grid-column: 1 / -1; font-size: 0.9rem; margin-bottom: 0.4rem"><em>3 bedrooms | 40 minutes to work</em></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 4.5rem; gap: 0.2rem 0.6rem; align-items: center">
+              <strong class="gc-text-sage">Maverick St</strong>
+              <span style="font-size: 0.85rem; text-align: right; font-weight: 700">$1,600</span>
+              <div style="height: 0.8rem; border-radius: 999px; background: rgba(128,128,128,0.18); overflow: hidden"><div class="gc-text-sage" style="height: 100%; width: 89%; background: currentColor; border-radius: 999px; opacity: 0.85"></div></div>
+              <span style="font-size: 0.8rem; text-align: right; opacity: 0.8">a month</span>
+              <span style="grid-column: 1 / -1; font-size: 0.9rem; margin-bottom: 0.4rem"><em>2 bedrooms | 30 minutes to work</em></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 4.5rem; gap: 0.2rem 0.6rem; align-items: center">
+              <strong class="gc-text-amber">Chelsea St</strong>
+              <span style="font-size: 0.85rem; text-align: right; font-weight: 700">$1,300</span>
+              <div style="height: 0.8rem; border-radius: 999px; background: rgba(128,128,128,0.18); overflow: hidden"><div class="gc-text-amber" style="height: 100%; width: 72%; background: currentColor; border-radius: 999px; opacity: 0.85"></div></div>
+              <span style="font-size: 0.8rem; text-align: right; opacity: 0.8">a month</span>
+              <span style="grid-column: 1 / -1; font-size: 0.9rem; margin-bottom: 0.4rem"><em>1 bedroom | 20 minutes to work</em></span>
+            </div>
+          </div>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>more</strong> for both countable and uncountable things. Use <strong>less</strong> for uncountable things. Use <strong>fewer</strong> for countable things you can count one by one.</p>
@@ -393,7 +444,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("less", "sage")}
-            <span><em>The Maverick listing has <strong>less</strong> noise.</em></span>
+            <span><em>Chelsea Street costs <strong>less</strong> money than Bremen Street.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.07); border-radius: 0.4rem">
             ${labelPill("fewer", "amber")}
@@ -409,37 +460,37 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The Bremen Street apartment has ___ closets than the Maverick listing.",
+              label: "Look at the listings. The Chelsea Street apartment has ___ bedrooms than the Maverick Street apartment.",
               options: [
-                { value: "less", label: "less (uncountable)" },
-                { value: "fewer", label: "fewer (countable. you can count closets)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "fewer",
             },
             {
               type: "radio",
-              label: "The Maverick apartment has ___ noise from the street.",
+              label: "Look at the listings. The Chelsea Street apartment costs ___ money than the Bremen Street apartment.",
               options: [
-                { value: "less", label: "less (uncountable. noise is not countable)" },
-                { value: "fewer", label: "fewer (countable)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "less",
             },
             {
               type: "radio",
-              label: "Diego wants ___ stress with the landlord this year.",
+              label: "Look at the listings. The trip from Maverick Street takes ___ time than the trip from Bremen Street.",
               options: [
-                { value: "less", label: "less (uncountable. stress is not countable)" },
-                { value: "fewer", label: "fewer (countable)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "less",
             },
             {
               type: "radio",
-              label: "The new building has ___ maintenance problems than the old one.",
+              label: "Diego wants ___ problems with the landlord than last time.",
               options: [
-                { value: "less", label: "less (uncountable)" },
-                { value: "fewer", label: "fewer (countable. you can count problems)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "fewer",
             },
@@ -453,8 +504,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "Maverick", "apartment", "has", "less", "noise", "than", "the", "Bremen", "one"],
-              correctAnswer: "The Maverick apartment has less noise than the Bremen one",
+              words: ["Chelsea", "Street", "costs", "less", "than", "Bremen", "Street"],
+              correctAnswer: "Chelsea Street costs less than Bremen Street",
             },
             {
               type: "word-scramble",
@@ -471,8 +522,13 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The Bremen Street apartment has ___ rooms, but it costs $200 ___ a month.",
-              expectedAnswers: ["more, more"],
+              label: "Look at the rent bars. Bremen Street costs $___ more a month than Maverick Street. Write a number.",
+              expectedAnswers: ["200", "$200"],
+            },
+            {
+              type: "text",
+              label: "Write more, less, or fewer. Maverick Street takes ___ minutes to get to work than Bremen Street.",
+              expectedAnswers: ["fewer"],
             },
             {
               type: "text",
@@ -585,7 +641,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Fernanda found ___ 2-bedroom on the list, but also ___ one near the bus. (small, cheap)",
+              label: "Look at the listings on page 3. Chelsea Street is ___ apartment and also ___ one. (small, cheap)",
               options: [
                 { value: "a", label: "the smallest / the cheapest" },
                 { value: "b", label: "smaller / cheaper" },
@@ -640,7 +696,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
   ],
 
   // ===========================================================================
-  // MINI QUIZ. 10 questions
+  // MINI QUIZ. 5 questions
   // ===========================================================================
   miniQuiz: [
     {
@@ -660,7 +716,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     },
     {
       id: "mlm-q2",
-      question: "Fernanda compares three ways to get to work. Which sentence is correct?",
+      question: "Rosa compares three ways to get to work. Which sentence is correct?",
       options: [
         { value: "a", label: "The Blue Line is the most fastest." },
         { value: "b", label: "The Blue Line is fastest." },
@@ -687,7 +743,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "mlm-qws1",
       type: "word-scramble" as const,
-      question: "Amara compares the markets near her apartment. Put the words in order.",
+      question: "Rosa compares the markets near her apartment. Put the words in order.",
       words: ["This", "market", "is", "the", "closest", "to", "my", "apartment"],
       correctAnswer: "This market is the closest to my apartment",
       hint: "superlatives need 'the'",
@@ -699,7 +755,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     },
     {
       id: "mlm-q5",
-      question: "Diego says: \"We need fewer problems with the landlord.\" Why is 'fewer' correct here?",
+      question: "Diego says: \"I want fewer problems with the landlord.\" Why is 'fewer' correct here?",
       options: [
         { value: "a", label: "Because problems are uncountable." },
         { value: "b", label: "Because problems are countable. You can count one problem, two problems." },
