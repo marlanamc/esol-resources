@@ -42,6 +42,9 @@ unconverted guide in course-map order (see "Finding the next guide").
    and a recommendation. Favor people tied to the month or the unit theme (for
    example Hispanic Heritage Month, Black History Month, women in science), and
    people adult immigrant learners can relate to.
+   **Never repeat a person.** Before offering anyone, check they aren't
+   already in another guide (see "No repeats" below), and don't offer them
+   if they are.
 
 ## Step 2: Write the pages
 
@@ -97,8 +100,39 @@ Plan for a content width of about **300px (~19rem)**:
   Library of Congress, the person's official bio, Britannica). Use WebFetch.
   **Cut any claim you can't find on the page**, even if you "know" it.
 - Cite every source in the `sources` array.
-- No photo unless you have a clearly licensed URL that loads (public-domain
-  NASA or Wikimedia). A reading with no photo is fine.
+
+### Every reading gets a photo of the person
+- Find one on Wikimedia Commons with a **public-domain, CC BY or CC BY-SA**
+  license. Check the license with the Commons API, not the search page:
+  `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url|extmetadata&format=json&titles=File:<name>`
+  (look at `LicenseShortName` and `Artist`). Official US government
+  portraits are public domain. A photo that shows the story (Escalante at
+  his chalkboard) beats a plain headshot.
+- The site's CSP (`img-src` in `src/proxy.ts`) blocks Wikimedia, so **don't
+  hotlink**. Download it to `public/images/guide-people/<first-last>.jpg`,
+  shrink it (`sips --resampleWidth 600 -s formatOptions 75 <file>`), and
+  commit it with the guide.
+- Pass it to `readingCard`:
+  ```ts
+  photo: {
+    url: "/images/guide-people/jaime-escalante.jpg",
+    alt: "Jaime Escalante points at math on a chalkboard in his classroom, 1983",
+    credit: "Los Angeles Times, 1983, CC BY 4.0",   // short: author or agency, year, license
+    creditUrl: "https://commons.wikimedia.org/wiki/File:...", // the Commons file page
+  },
+  ```
+  The credit renders as a link to `creditUrl`, so keep `credit` short.
+- Look at the photo with the Read tool. The card crops it to 260px tall
+  from the top, so the face must be in the top part.
+- `audit:guide-mobile` renders without a server, so the local image shows as
+  broken in its screenshots. That's expected. Check the photo itself instead.
+
+### No repeats
+A real person, and a photo, appear in only one guide. Before choosing:
+```bash
+grep -l "<Last name>" src/content/grammar/*.ts   # want no hits
+ls public/images/guide-people/                     # photo not already there
+```
 
 ## Step 3: Rewrite the exercises
 
@@ -192,12 +226,17 @@ slug are yours.
 Then count what's left: `grep -c "dialogue(\[" src/content/grammar/<slug>.ts`
 should be 1 or 2.
 
+Every `readingCard` must have a `photo` whose file exists in
+`public/images/guide-people/`, with a `credit` and `creditUrl`, and the
+person must not appear in any other guide (see "No repeats").
+
 Don't start a dev server to check the page: the local `.env` points at the
 **production database**. Ask Marlana to look at it on her phone and on desktop.
 
 ## Step 6: Hand off
 
-- Commit only the guide file (plus `guide-visuals.ts` if you changed it) on a
+- Commit only the guide file (plus `guide-visuals.ts` if you changed it, and
+  any new `public/images/guide-people/*.jpg`) on a
   branch from `origin/main`. Her working tree usually has unrelated
   uncommitted classroom files, so never use `git add -A`.
 - Commit or push only when she asks.
