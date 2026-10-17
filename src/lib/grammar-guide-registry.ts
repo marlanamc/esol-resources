@@ -525,7 +525,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "your-week-in-english": {
         activityTitle: "Your Week in English",
         metaTitle: "Your Week in English - Interactive Guide | Class Companion",
-        metaDescription: "Learn adverbs of frequency, present simple for routines, and time expressions to talk about your weekly schedule in English.",
+        metaDescription: "Learn adverbs of frequency, present simple for routines, and time expressions to talk about your weekly schedule, plus imperatives for following a bus alert.",
         loadContent: () =>
             import("@/content/grammar/your-week-in-english").then((m) => m.yourWeekInEnglishContent),
     },
