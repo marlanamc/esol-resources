@@ -1,4 +1,5 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { stepsCard } from "@/content/grammar/_shared/guide-visuals";
 import { secondConditionalWhatWouldYouDoImages as img } from "@/data/second-conditional-what-would-you-do-images.generated";
 
 // ---------------------------------------------------------------------------
@@ -65,6 +66,20 @@ const dialogue = (turns: Turn[]): string => {
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
   `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
+
+const TH = "padding: 0.5rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1)";
+const TD = "padding: 0.5rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.1)";
+
+const condTable = (kicker: string, heads: [string, string], rows: [string, string][]): string => `
+  <div style="margin: 0 0 1.25rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08)">
+    <div class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.5rem 0.9rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase">${kicker}</div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem">
+      <thead><tr><th class="gc-table-divider" style="${TH}">${heads[0]}</th><th class="gc-table-divider" style="${TH}">${heads[1]}</th></tr></thead>
+      <tbody>${rows.map(([a, b]) => `<tr><td class="gc-table-divider" style="${TD}">${a}</td><td class="gc-table-divider" style="${TD}">${b}</td></tr>`).join("")}</tbody>
+    </table>
+  </div>
+`;
+
 // ---------------------------------------------------------------------------
 // Guide content
 // ---------------------------------------------------------------------------
@@ -119,7 +134,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p style="margin: 0.75rem 0; font-size: 0.95rem; color: #555">The verb after <em>if</em> looks like past tense, but it does not talk about the past. It shows the situation is imaginary.</p>
+        <p style="margin: 0.75rem 0; font-size: 0.95rem; opacity: 0.8">The verb after <em>if</em> looks like past tense, but it does not talk about the past. It shows the situation is imaginary.</p>
       `,
       exercises: [
         {
@@ -190,15 +205,12 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneWarehouse", "Chelsea Street warehouse. Friday morning, the next day.", "sage")}
+        <p style="margin: 0.75rem 0">Carmen's husband, Ramon, works at a warehouse. Look at Ramon's real life next to what he imagines.</p>
 
-        <p style="margin: 0.75rem 0">The next morning, Carmen calls her husband, Ramon. Ramon works at a warehouse on Chelsea Street. He is on his break. Carmen tells him about the Sunday schedule, and they imagine other options.</p>
-
-        ${dialogue([
-          { speaker: "Carmen", avatar: "👩🏽", text: "Sundays are the only day our family is together. What can we do?", side: "left", tone: "sage" },
-          { speaker: "Ramon", avatar: "👨🏾", text: "If I <strong>didn't work</strong> Saturdays, we <strong>would have</strong> one day together. But the warehouse needs me on Saturdays.", side: "right", tone: "terracotta" },
-          { speaker: "Carmen", avatar: "👩🏽", text: "What would you do if they moved you to a different site?", side: "left", tone: "sage" },
-          { speaker: "Ramon", avatar: "👨🏾", text: "If the new site <strong>were</strong> far, I <strong>wouldn't take</strong> it. Two buses is too much.", side: "right", tone: "terracotta" },
+        ${condTable("Ramon's real life and his imagination", ["Real life", "Imagine"], [
+          ["Ramon works Saturdays.", "If Ramon <strong>didn't work</strong> Saturdays, the family <strong>would have</strong> one day together."],
+          ["Ramon has no car.", "Ramon <strong>would get</strong> to work faster if he <strong>had</strong> a car."],
+          ["Carmen works Sundays.", "If Carmen <strong>had</strong> Sundays off, they <strong>would eat</strong> dinner together."],
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -234,6 +246,16 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
               label: "Unscramble to make a second conditional sentence:",
               words: ["If", "I", "had", "a", "car,", "I", "would", "take", "the", "early", "shift"],
               correctAnswer: "If I had a car, I would take the early shift",
+            },
+            {
+              type: "radio",
+              label: "Look at the table. Which sentence is true in real life?",
+              options: [
+                { value: "a", label: "Ramon has a car." },
+                { value: "b", label: "Carmen has Sundays off." },
+                { value: "c", label: "Ramon works Saturdays." },
+              ],
+              expectedAnswer: "c",
             },
           ],
         },
@@ -281,16 +303,19 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
       id: "advice-at-work",
       title: "What Would You Do? Advice at Work",
       explanation: `
-        ${sceneCard("sceneAgency", "Home health agency office, East Boston. Friday afternoon, the same day.", "blue")}
+        <p style="margin: 0.75rem 0">Carmen stops by the home health agency where her friend Nadine is a scheduler. Marta can't work Carmen's Sundays, and Ramon can't change his schedule. Carmen asks, "What would you do?" Here is Nadine's advice.</p>
 
-        <p style="margin: 0.75rem 0">After lunch, Carmen stops by the home health agency where her friend Nadine works. Nadine is a scheduler there, and she gives good advice about work problems.</p>
-
-        ${dialogue([
-          { speaker: "Carmen", avatar: "👩🏽", text: "Marta can't work my Sundays, and Ramon can't change his schedule. I don't know what to do. What would you do?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "If I <strong>were</strong> you, I <strong>would talk</strong> to Jennifer soon, not wait.", side: "left", tone: "sage" },
-          { speaker: "Carmen", avatar: "👩🏽", text: "And if she <strong>cut</strong> my hours because I asked?", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "If she <strong>did</strong> that, I <strong>would ask</strong> for a meeting and write down what she said.", side: "left", tone: "sage" },
-        ])}
+        ${stepsCard({
+          kicker: "Advice",
+          title: "Nadine's advice for Carmen",
+          accent: "sage",
+          steps: [
+            "If I <strong>were</strong> you, I <strong>would talk</strong> to Jennifer soon.",
+            "I <strong>wouldn't wait</strong> for a perfect time.",
+            "I <strong>would write</strong> down what you want to ask for.",
+            "If she <strong>cut</strong> your hours, I <strong>would ask</strong> for a meeting.",
+          ],
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>"If I were you..."</strong> is the most common way to give advice in English. Use <em>were</em> (not <em>was</em>) in formal and standard written English for all subjects in the if-clause when the situation is imaginary.</p>
@@ -339,6 +364,22 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
           ],
         },
         {
+          id: "advice-ex1b",
+          title: "Read Nadine's advice",
+          items: [
+            {
+              type: "radio",
+              label: "Look at Nadine's advice. Which advice is NOT in her list?",
+              options: [
+                { value: "a", label: "Talk to Jennifer soon." },
+                { value: "b", label: "Quit the job today." },
+                { value: "c", label: "Write down what you want to ask for." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
           id: "advice-ex2",
           title: "Give advice",
           instructions: "Fill in the blank to complete the advice.",
@@ -372,15 +413,12 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneHotel", "Hotel hallway, East Boston. Monday morning.", "amber")}
+        <p style="margin: 0.75rem 0">Marta cleans rooms at a hotel before her restaurant shift. The hotel may have overtime tomorrow. Carmen can't take it because it is her son's birthday. Compare their sentences.</p>
 
-        <p style="margin: 0.75rem 0">On Monday morning, Carmen visits Marta at the hotel where Marta has her second job. Marta cleans rooms here before her restaurant shift. The hotel has extra hours tomorrow, and Marta wants to ask Carmen about them.</p>
-
-        ${dialogue([
-          { speaker: "Marta", avatar: "👩🏾", text: "If there's overtime here tomorrow, I'll take it. I need the money. Do you want to come too?", side: "right", tone: "terracotta" },
-          { speaker: "Carmen", avatar: "👩🏽", text: "I wish I could. If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", side: "left", tone: "sage" },
-          { speaker: "Marta", avatar: "👩🏾", text: "If they <strong>offered</strong> Friday night instead, <strong>would</strong> you <strong>do</strong> it?", side: "right", tone: "terracotta" },
-          { speaker: "Carmen", avatar: "👩🏽", text: "Maybe. If the pay <strong>were</strong> double, I definitely <strong>would</strong>.", side: "left", tone: "sage" },
+        ${condTable("Overtime at the hotel", ["Sentence", "Type"], [
+          ["Marta: If there <strong>is</strong> overtime tomorrow, I <strong>will take</strong> it.", "Real and possible. First conditional."],
+          ["Carmen: If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", "Not real. Second conditional."],
+          ["Carmen: If the pay <strong>were</strong> double, I <strong>would</strong> do Friday night.", "Not real. Second conditional."],
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -433,6 +471,21 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
                 { value: "incorrect", label: "Not correct. Mixing tenses: should be 'calls...will go' or 'called...would go'" },
               ],
               expectedAnswer: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "real-vs-ex1b",
+          title: "Read the table",
+          items: [
+            {
+              type: "radio",
+              label: "Look at the table. Whose sentence is a real, possible situation?",
+              options: [
+                { value: "marta", label: "Marta's sentence" },
+                { value: "carmen", label: "Carmen's sentences" },
+              ],
+              expectedAnswer: "marta",
             },
           ],
         },
