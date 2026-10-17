@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { needToFindAPlaceInfinitivesImages as img } from "@/data/need-to-find-a-place-infinitives-images.generated";
+import { readingCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex: none; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -88,9 +89,9 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "My lease ends at the end of February. I <strong>need to find</strong> something fast.", side: "right", tone: "terracotta" },
-          { speaker: "Javier", avatar: "👨🏽", text: "I know. You <strong>need to call</strong> those listings tomorrow before they\'re gone.", side: "left", tone: "sage" },
+          { speaker: "Javier", avatar: "👨🏿", text: "I know. You <strong>need to call</strong> those listings tomorrow before they\'re gone.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>need to get</strong> the deposit together. I don't have it yet.", side: "right", tone: "terracotta" },
-          { speaker: "Javier", avatar: "👨🏽", text: "You\'ll <strong>need to talk</strong> to your manager about the extra shifts.", side: "left", tone: "sage" },
+          { speaker: "Javier", avatar: "👨🏿", text: "You\'ll <strong>need to talk</strong> to your manager about the extra shifts.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -182,16 +183,24 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Want to Stay Near the Bus",
       icon: "🚌",
       explanation: `
-        <p>The next day at work, Rosa tells her coworker Marta about her search. Marta is a housekeeper at the airport hotel too.</p>
+        <p>Rosa has two apartments to compare. She <strong>wants to stay</strong> near the 116 bus because she doesn't have a car. She also <strong>wants to keep</strong> the rent under $1,400. Look at the table. These are Rosa's examples.</p>
 
-        ${sceneCard("sceneApartmentSearch", "The break room at the hotel. Thursday lunch, the next day.", "blue")}
-
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>want to stay</strong> near the 116 bus. I don't have a car, and two buses to work is too much.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏻", text: "I get it. Do you <strong>want to see</strong> that listing on Bremen Street? My cousin said it's good.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yeah, but I <strong>want to keep</strong> it under fourteen hundred. Does she know the price?", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏻", text: "I’ll ask her before we arrange a visit. I <strong>want to make</strong> sure it’s in your budget.", side: "left", tone: "blue" },
-        ])}
+        <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+            <thead>
+              <tr style="background: rgba(128,128,128,0.12)">
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)"></th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Bremen St.</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Maverick St.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th class="gc-table-divider" scope="row" style="padding: 0.5rem; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">💵 Rent</th><td class="gc-table-divider" style="padding: 0.5rem; border-bottom: 1px solid rgba(128,128,128,0.25)">$1,350</td><td class="gc-table-divider" style="padding: 0.5rem; border-bottom: 1px solid rgba(128,128,128,0.25)">$1,550</td></tr>
+              <tr><th class="gc-table-divider" scope="row" style="padding: 0.5rem; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.25)">🚌 Walk to bus</th><td class="gc-table-divider" style="padding: 0.5rem; border-bottom: 1px solid rgba(128,128,128,0.25)">3 min</td><td class="gc-table-divider" style="padding: 0.5rem; border-bottom: 1px solid rgba(128,128,128,0.25)">15 min</td></tr>
+              <tr><th class="gc-table-divider" scope="row" style="padding: 0.5rem; text-align: left">🛏️ Bedrooms</th><td style="padding: 0.5rem">1</td><td style="padding: 0.5rem">2</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>want to</strong> + base verb = a desire or preference. Something you would like to do.</p>
@@ -236,6 +245,16 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
+              label: "Look at the table. Rosa <strong>wants to keep</strong> the rent under $1,400. Which sentence is true?",
+              options: [
+                { value: "a", label: "The Bremen Street apartment is under her budget." },
+                { value: "b", label: "The Maverick Street apartment is under her budget." },
+                { value: "c", label: "Both apartments are under her budget." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
               label: "\"I want finding a place near the bus.\" Is this correct?",
               options: [
                 { value: "correct", label: "Correct" },
@@ -265,8 +284,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "wants", "to", "keep", "the", "rent", "under", "fourteen", "hundred"],
-              correctAnswer: "She wants to keep the rent under fourteen hundred",
+              words: ["She", "wants", "to", "compare", "both", "apartments", "tonight"],
+              correctAnswer: "She wants to compare both apartments tonight",
             },
           ],
         },
@@ -282,16 +301,18 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Hope to Find Something Before Rent Goes Up",
       icon: "📋",
       explanation: `
-        <p>Rosa does not work on Saturday. Her sister Teresa comes over with her phone. Teresa helps Rosa with her daughter, and now she helps with the apartment search too.</p>
+        <p>Rosa reads about a teacher who also came to a new country to build a new life. Look at <strong>wanted to</strong> and <strong>needed to</strong>. They are the same pattern as <em>want to</em> and <em>need to</em>, only in the past.</p>
 
-        ${sceneCard("scenePhoneCall", "Rosa's kitchen. Saturday morning. Her sister Teresa came over to help her look for apartments.", "sage")}
-
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>hope to find</strong> something before spring. If we wait, the prices go up.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "I <strong>plan to call</strong> that place on Maverick Street for you today. Two bedrooms, laundry inside.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Good. I <strong>plan to ask</strong> about the heat. In my building now, it breaks every winter.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏾", text: "Good idea. I <strong>hope to hear</strong> back from them by tonight.", side: "left", tone: "sage" },
-        ])}
+        ${readingCard({
+          kicker: "Real person",
+          title: "Jaime Escalante, math teacher",
+          paragraphs: [
+            "Jaime Escalante was born in La Paz, Bolivia. In the 1960s he <strong>wanted to</strong> find a better life, so he moved to the United States. He worked many odd jobs and taught himself English. He also <strong>needed to</strong> earn another college degree before he could teach again.",
+            "In 1974 he began teaching math at Garfield High School in East Los Angeles. In 1982, his largest class took the AP Calculus test and passed. Some scores were questioned, and many students took the test again and passed.",
+          ],
+          sources: [{ name: "Biography.com", url: "https://www.biography.com/educator/jaime-escalante" }],
+          accent: "sage",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>hope to</strong> = you want it, but you are not sure it will happen.<br/><strong>plan to</strong> = you have decided to do it. It is your intention.</p>
@@ -334,7 +355,27 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Teresa has already decided to call the landlord at 5 PM. Which sentence fits?",
+              label: "Read about Jaime Escalante. Which sentence is correct?",
+              options: [
+                { value: "a", label: "He wanted moving to the United States." },
+                { value: "b", label: "He wanted to move to the United States." },
+                { value: "c", label: "He wanted to moving to the United States." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "How did Escalante learn English?",
+              options: [
+                { value: "a", label: "He taught himself." },
+                { value: "b", label: "He learned it in Bolivia." },
+                { value: "c", label: "He learned it at Garfield High School." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Rosa has already decided to call the landlord at 5 PM. Which sentence fits?",
               options: [
                 { value: "a", label: "She hopes to call at 5 PM." },
                 { value: "b", label: "She plans to call at 5 PM." },
@@ -479,10 +520,10 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "Mini Review + Building the Sentence",
       icon: "✅",
       explanation: `
-        <p>It is Wednesday evening in early February. Rosa just got home from the hotel. Her daughter is doing homework. Rosa's lease ends in three weeks. She has talked to Javier, Marta, Teresa, and Brian. Now she opens her notes app and writes everything down.</p>
+        <p>It is Wednesday evening in early February. Rosa just got home from the hotel. Her daughter is doing homework. Rosa's lease ends in three weeks. She has talked to her cousin Javier and to Brian the landlord. Now she opens her notes app and writes everything down.</p>
 
         <div style="background: rgba(106,141,115,0.08); border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin: 1.25rem 0; border: 1px solid rgba(106,141,115,0.2)">
-          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73">Rosa's list</p>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em" class="gc-text-sage">Rosa's list</p>
           <ul style="margin: 0; padding-left: 1.25rem; line-height: 2">
             <li>I <strong>need to call</strong> the listing on Breed Street before 5 PM.</li>
             <li>I <strong>want to find</strong> something with a second bedroom for my daughter.</li>
