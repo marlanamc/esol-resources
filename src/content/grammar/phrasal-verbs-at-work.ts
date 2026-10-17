@@ -289,9 +289,9 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the list. What has Gabriela already done?",
               options: [
-                { value: "a", label: "She filled out the correction form" },
-                { value: "b", label: "She handed in the timesheet" },
-                { value: "c", label: "Jennifer signed off on the new hours" },
+                { value: "a", label: "She has filled out the correction form." },
+                { value: "b", label: "She has handed in the timesheet." },
+                { value: "c", label: "Jennifer has signed off on the new hours." },
               ],
               expectedAnswer: "a",
             },
