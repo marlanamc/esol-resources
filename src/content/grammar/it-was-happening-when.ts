@@ -282,8 +282,8 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             creditUrl: "https://commons.wikimedia.org/wiki/File:Karik%C3%B3_Katalin_Szegeden_(cropped).jpg",
           },
           paragraphs: [
-            "Katalin Karikó was born in Hungary in 1955. In 1989, she started a job at the University of Pennsylvania. For many years she <strong>was working</strong> on mRNA, but it was hard to convince people to pay for her research.",
-            "<strong>While</strong> she <strong>was working</strong> at the university, a new colleague, Drew Weissman, <strong>was</strong> interested in the immune system. They <strong>started</strong> working together, and in 2005 they <strong>discovered</strong> a way to stop unwanted reactions to mRNA. In 2023, they <strong>won</strong> the Nobel Prize.",
+            "Katalin Karikó was born in Hungary in 1955. In 1989, she started a job at the University of Pennsylvania. She wanted to use mRNA as medicine, but it was hard to get money for her research.",
+            "She <strong>was</strong> still <strong>working</strong> on mRNA <strong>when</strong> Drew Weissman <strong>started</strong> a research group at the same university in 1997. <strong>While</strong> they <strong>were working</strong> together, they <strong>discovered</strong> a way to stop unwanted reactions to mRNA. That was in 2005. In 2023, they <strong>won</strong> the Nobel Prize.",
           ],
           sources: [
             { name: "Nobel Prize: Press release 2023", url: "https://www.nobelprize.org/prizes/medicine/2023/press-release/" },
@@ -334,9 +334,9 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the reading. Which sentence about Karikó is correct?",
               options: [
-                { value: "a", label: "She was winning the Nobel Prize while she discovered mRNA." },
-                { value: "b", label: "She was working at Penn while a new colleague started a project with her." },
-                { value: "c", label: "She was working at Penn when she was born." },
+                { value: "a", label: "Weissman started his group while Karikó was living in Hungary." },
+                { value: "b", label: "Weissman started his group while Karikó was working on mRNA." },
+                { value: "c", label: "Karikó was winning the Nobel Prize when Weissman started his group." },
               ],
               expectedAnswer: "b",
             },
