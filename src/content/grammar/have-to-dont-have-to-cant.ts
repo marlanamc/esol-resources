@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { haveToDontHaveToCantImages as img } from "@/data/have-to-dont-have-to-cant-images.generated";
+import { stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex: none; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -83,13 +84,13 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneHotline", "East Boston Housing Hotline, January. Rosa's heat stopped working three days ago.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Lisa at the hotline answers calls like Rosa\'s every winter.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Lisa at the hotline answers calls like Rosa's every winter.</p>
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "My heat stopped working on Monday. It's freezing in my apartment. What can I do?", side: "right", tone: "terracotta" },
-          { speaker: "Lisa", avatar: "👩🏾", text: "The landlord <strong>has to</strong> provide heat. It's the law in Massachusetts.", side: "left", tone: "sage" },
+          { speaker: "Lisa", avatar: "👩🏾", text: "In most apartments, the landlord <strong>has to</strong> provide heat. It's in the state sanitary code.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And if he doesn't fix it?", side: "right", tone: "terracotta" },
-          { speaker: "Lisa", avatar: "👩🏾", text: "He <strong>has to</strong> fix it fast. You don't <strong>have to</strong> wait. Call the city inspector.", side: "left", tone: "sage" },
+          { speaker: "Lisa", avatar: "👩🏾", text: "He <strong>has to</strong> fix it. You <strong>don't have to</strong> wait. You can call the health inspector. Check mass.gov for the rules.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -99,11 +100,11 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("landlord's duty", "sage")}
-            <span><em>The landlord <strong>has to</strong> fix the heat.</em></span>
+            <span><em>The landlord <strong>has to</strong> provide heat.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("landlord's duty", "sage")}
-            <span><em>Rosa's lease says he <strong>has to</strong> give 24 hours' notice before entering.</em></span>
+            <span><em>He <strong>has to</strong> fix the heater.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("tenant's duty", "terracotta")}
@@ -127,11 +128,11 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The smoke detector is broken. What does the law say about the landlord?",
+              label: "The heater in Rosa's building is broken. Which sentence is correct?",
               options: [
-                { value: "a", label: "He have to replace it." },
-                { value: "b", label: "He has to replace it." },
-                { value: "c", label: "He to replace it." },
+                { value: "a", label: "The landlord have to fix it." },
+                { value: "b", label: "The landlord has to fix it." },
+                { value: "c", label: "The landlord has to fixes it." },
               ],
               expectedAnswer: "b",
             },
@@ -147,7 +148,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"The landlord <strong>have to</strong> give notice before coming in.\" Is this correct?",
+              label: "\"The landlord <strong>have to</strong> provide heat.\" Is this correct?",
               options: [
                 { value: "correct", label: "Yes, correct." },
                 { value: "incorrect", label: "No, should be 'has to' because landlord = he." },
@@ -163,12 +164,12 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The inspector ___ come before Friday.",
+              label: "Lisa ___ answer the phone all day. It's her job.",
               expectedAnswers: ["has to"],
             },
             {
               type: "text",
-              label: "Tenants ___ report problems in writing.",
+              label: "Tenants ___ report problems in writing. (Rosa's lease)",
               expectedAnswers: ["have to"],
             },
           ],
@@ -181,8 +182,8 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "landlord", "has", "to", "fix", "the", "heat", "right", "away"],
-              correctAnswer: "The landlord has to fix the heat right away",
+              words: ["Rosa's", "landlord", "has", "to", "repair", "the", "heater"],
+              correctAnswer: "Rosa's landlord has to repair the heater",
             },
           ],
         },
@@ -197,14 +198,40 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       title: "Don't have to. You're not required",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneLease", "Rosa's kitchen table. She and her cousin Javier are reading her lease.", "blue")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">After the call, Rosa sits at her kitchen table with her lease. She checks what she has to do and what is her choice.</p>
 
-        ${dialogue([
-          { speaker: "Javier", avatar: "👨🏽", text: "Look at this part. It says you're responsible for cleaning. But what about painting?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I don't know. Do I <strong>have to</strong> paint the walls when I leave?", side: "right", tone: "terracotta" },
-          { speaker: "Javier", avatar: "👨🏽", text: "No. You <strong>don't have to</strong> repaint. That's the landlord's job if it's normal wear.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>don't have to</strong> pay for the broken stair either, right? That was already broken.", side: "right", tone: "terracotta" },
-        ])}
+        <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+            <thead>
+              <tr style="background: rgba(128,128,128,0.12)">
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Rosa's lease</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td style="padding: 0.6rem 0.5rem; vertical-align: top">pay rent on the 1st</td>
+                <td style="padding: 0.6rem 0.5rem"><strong>✅ has to</strong><br><span style="font-size: 0.85rem">required</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td style="padding: 0.6rem 0.5rem; vertical-align: top">tell the landlord about repairs in writing</td>
+                <td style="padding: 0.6rem 0.5rem"><strong>✅ has to</strong><br><span style="font-size: 0.85rem">required</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td style="padding: 0.6rem 0.5rem; vertical-align: top">renew in February</td>
+                <td style="padding: 0.6rem 0.5rem"><strong>🔓 doesn't have to</strong><br><span style="font-size: 0.85rem">her choice</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td style="padding: 0.6rem 0.5rem; vertical-align: top">repaint when she leaves</td>
+                <td style="padding: 0.6rem 0.5rem"><strong>🔓 doesn't have to</strong><br><span style="font-size: 0.85rem">her choice</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.6rem 0.5rem; vertical-align: top">buy a parking sticker (she has no car)</td>
+                <td style="padding: 0.6rem 0.5rem"><strong>🔓 doesn't have to</strong><br><span style="font-size: 0.85rem">not needed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Don't have to / Doesn't have to</strong> = something is NOT required. You have a choice. It is allowed, but not obligatory.</p>
@@ -217,24 +244,35 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("not required", "sage")}
-            <span><em>Rosa <strong>doesn't have to</strong> pay for old-building repairs.</em></span>
+            <span><em>Rosa <strong>doesn't have to</strong> renew.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("not required", "sage")}
-            <span><em>She <strong>doesn't have to</strong> renew the lease.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("not required", "sage")}
-            <span><em>Tenants <strong>don't have to</strong> give a reason when they leave at the end of the lease.</em></span>
+            <span><em>Her neighbors <strong>don't have to</strong> repaint either.</em></span>
           </div>
         </div>
       `,
       exercises: [
         {
           id: "dont-have-to-ex1",
-          title: "Don't have to or Can't?",
-          instructions: "Choose the correct meaning for each sentence.",
+          title: "Read Rosa's lease table",
+          instructions: "Look at the table above. Then answer.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the table. Which sentence is true?",
+              options: [
+                { value: "a", label: "Rosa doesn't have to pay rent on the 1st." },
+                { value: "b", label: "Rosa doesn't have to repaint when she leaves." },
+                { value: "c", label: "Rosa has to renew in February." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Look at the table. How many things on Rosa's list does she have to do? (Write a number.)",
+              expectedAnswers: ["2", "two"],
+            },
             {
               type: "radio",
               label: "\"You don't have to pay a pet fee if you don't have a pet.\" What does this mean?",
@@ -244,26 +282,6 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
                 { value: "c", label: "You must not have a pet." },
               ],
               expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "The landlord ___ come into your apartment without notice unless it's an emergency. (it is not allowed)",
-              options: [
-                { value: "a", label: "doesn't have to" },
-                { value: "b", label: "can't" },
-                { value: "c", label: "don't have to" },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "\"You <strong>don't have to</strong> renew your lease\" means you ___ renew if you don't want to.",
-              options: [
-                { value: "a", label: "must" },
-                { value: "b", label: "can't" },
-                { value: "c", label: "can choose not to" },
-              ],
-              expectedAnswer: "c",
             },
           ],
         },
@@ -275,8 +293,8 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Rosa", "doesn't", "have", "to", "pay", "for", "the", "broken", "stairs"],
-              correctAnswer: "Rosa doesn't have to pay for the broken stairs",
+              words: ["Rosa", "doesn't", "have", "to", "buy", "a", "parking", "pass"],
+              correctAnswer: "Rosa doesn't have to buy a parking pass",
             },
           ],
         },
@@ -287,12 +305,12 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The tenant ___ repaint the walls if it's normal wear.",
+              label: "Rosa's cousin lives in the same building. He ___ renew his lease. It's his choice.",
               expectedAnswers: ["doesn't have to"],
             },
             {
               type: "text",
-              label: "We ___ give a reason when we move out at the end of the lease.",
+              label: "We ___ buy a parking sticker. We take the bus.",
               expectedAnswers: ["don't have to"],
             },
           ],
@@ -308,73 +326,73 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       title: "Can't. This is not allowed",
       icon: "🚫",
       explanation: `
-        ${sceneCard("sceneDoor", "Apartment building hallway. Rosa's neighbor Amara stops her at the door.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Lisa at the hotline tells Rosa three things a landlord can't do. Rosa writes them in her notebook. These are her notes.</p>
 
-        ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Rosa, the landlord left a note. He wants to show your apartment next week.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I know. My lease ends in February. But <strong>can</strong> he just walk in?", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "No, he <strong>can't</strong> just walk in. Our leases say he has to give 24 hours' notice first.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And that extra fee on my bill? The one for 'building costs'?", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "He <strong>can't</strong> charge fees that aren't in your lease. That's illegal.", side: "left", tone: "sage" },
-        ])}
+        ${stepsCard({
+          kicker: "Rosa's notebook",
+          title: "What a landlord can't do",
+          accent: "terracotta",
+          steps: [
+            "A landlord <strong>can't</strong> stop the heat or hot water on purpose when he has to provide it.",
+            "He <strong>can't</strong> punish a tenant for reporting a problem in writing.",
+            "He <strong>can't</strong> ask for a security deposit bigger than the first month's rent.",
+          ],
+          note: "Rules can change. Check mass.gov for the rules.",
+        })}
 
-        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
           <p style="margin: 0; font-size: 1.05rem"><strong>Can't</strong> = it is not allowed. It is against the rules or the law. It is prohibited.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
-            <span><em>The landlord <strong>can't</strong> enter without notice, except in an emergency.</em></span>
+            <span><em>He <strong>can't</strong> stop the hot water on purpose.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
-            <span><em>He <strong>can't</strong> charge fees that are not in the lease.</em></span>
+            <span><em>Landlords <strong>can't</strong> punish tenants for complaining in writing.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
-            ${labelPill("not allowed", "terracotta")}
-            <span><em>He <strong>can't</strong> evict a tenant without a court order.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.06); border-radius: 0.4rem">
-            ${labelPill("not allowed", "terracotta")}
-            <span><em>A landlord <strong>can't</strong> shut off heat in winter.</em></span>
-          </div>
+        </div>
+
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.85rem 1.1rem; border-radius: 0.5rem; margin: 1rem 0">
+          <p style="margin: 0; font-size: 0.95rem"><strong>Form:</strong> <strong>can't</strong> + base verb, with no <em>to</em>. He <strong>can't stop</strong> the heat. (not <em>can't to stop</em>)</p>
         </div>
       `,
       exercises: [
         {
           id: "cant-ex1",
-          title: "Spot the error",
-          instructions: "Is the underlined word correct? Choose the right answer.",
+          title: "Read Rosa's notebook",
+          instructions: "Look at Rosa's notes above. Choose the right answer.",
           items: [
             {
               type: "radio",
-              label: "\"The landlord <strong>don't have to</strong> enter without notice.\" Is this correct?",
+              label: "Rosa asks about a deposit. What do her notes say?",
               options: [
-                { value: "correct", label: "Yes, correct." },
-                { value: "incorrect", label: "No, should be 'can't'. Entering without notice is not allowed." },
+                { value: "a", label: "He can't ask for more than the first month's rent." },
+                { value: "b", label: "He has to ask for two months." },
+                { value: "c", label: "He doesn't have to give it back." },
               ],
-              expectedAnswer: "incorrect",
+              expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Which sentence means it is against the law?",
+              label: "Which sentence means it is against the rules?",
               options: [
-                { value: "a", label: "You don't have to pay that fee." },
-                { value: "b", label: "You can't be evicted without a court order." },
+                { value: "a", label: "You don't have to pay a pet fee." },
+                { value: "b", label: "A landlord can't punish you for reporting a problem." },
                 { value: "c", label: "You have to sign the lease." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "The landlord called. He wants to come in tomorrow morning with no warning. What do you say?",
+              label: "\"The landlord <strong>don't have to</strong> stop the hot water on purpose.\" Is this correct?",
               options: [
-                { value: "a", label: "You don't have to give notice." },
-                { value: "b", label: "You can't come in without notice. My lease says 24 hours." },
-                { value: "c", label: "You have to come in tomorrow." },
+                { value: "correct", label: "Yes, correct." },
+                { value: "incorrect", label: "No, should be 'can't'. Stopping it on purpose is not allowed." },
               ],
-              expectedAnswer: "b",
+              expectedAnswer: "incorrect",
             },
           ],
         },
@@ -385,12 +403,12 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "The landlord ___ turn off the heat in January.",
+              label: "A landlord ___ punish you for complaining in writing.",
               expectedAnswers: ["can't"],
             },
             {
               type: "text",
-              label: "He ___ add fees that are not in the lease.",
+              label: "He ___ turn off the hot water on purpose.",
               expectedAnswers: ["can't"],
             },
           ],
@@ -412,9 +430,10 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏾", text: "Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says landlords <strong>have to</strong> keep the heat at 68 degrees or more during the day.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏾", text: "So he has no choice. And this one: 'Tenants <strong>don't have to</strong> pay for repairs caused by normal use.'", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> retaliate if you file a complaint.' Good. Then I'm calling the inspector today.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says owners <strong>have to</strong> heat rooms to 68 degrees or more from 7 a.m. to 11 p.m.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏾", text: "So he has no choice. And this one: 'Tenants <strong>don't have to</strong> pay a deposit bigger than the first month's rent.'", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> punish you for reporting a problem in writing.' Good. Then I'm calling the inspector today.", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "👨🏾", text: "Good idea. Check mass.gov for the full rules too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0">
@@ -426,7 +445,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p style="font-size: 0.85rem; color: rgba(0,0,0,0.55); margin: 0.5rem 0 1.25rem 0">The federal Fair Housing Act of 1968 made it illegal to discriminate in rental housing. These rights protect every tenant.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin: 0.5rem 0 1.25rem 0">Rules are from Massachusetts law and the state sanitary code (105 CMR 410). They can change, so check mass.gov.</p>
       `,
       exercises: [
         {
@@ -436,41 +455,41 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"The landlord must provide hot water at all times.\"",
+              label: "\"The owner is required to provide heat.\"",
               options: [
-                { value: "a", label: "have to. it is required" },
-                { value: "b", label: "don't have to. it is not required" },
-                { value: "c", label: "can't. it is not allowed" },
+                { value: "a", label: "has to (required)" },
+                { value: "b", label: "doesn't have to (your choice)" },
+                { value: "c", label: "can't (prohibited)" },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "\"Tenants are not required to repaint walls when they leave.\"",
+              label: "\"A deposit bigger than the first month's rent is not allowed.\"",
               options: [
-                { value: "a", label: "have to. it is required" },
-                { value: "b", label: "don't have to. it is not required" },
-                { value: "c", label: "can't. it is not allowed" },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "\"Landlords are prohibited from punishing tenants who file a complaint.\"",
-              options: [
-                { value: "a", label: "have to" },
-                { value: "b", label: "don't have to" },
-                { value: "c", label: "can't" },
+                { value: "a", label: "has to (required)" },
+                { value: "b", label: "doesn't have to (your choice)" },
+                { value: "c", label: "can't (prohibited)" },
               ],
               expectedAnswer: "c",
             },
             {
               type: "radio",
-              label: "\"You are not obligated to accept a rent increase mid-lease.\"",
+              label: "\"Rosa is not required to renew in February.\"",
               options: [
-                { value: "a", label: "have to. it is required" },
-                { value: "b", label: "don't have to. it is not required" },
-                { value: "c", label: "can't. it is not allowed" },
+                { value: "a", label: "has to" },
+                { value: "b", label: "doesn't have to" },
+                { value: "c", label: "can't" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Diego says: \"Check mass.gov for the full rules.\" What kind of sentence is this?",
+              options: [
+                { value: "a", label: "A rule from the law: Rosa has to check mass.gov." },
+                { value: "b", label: "Good advice: it helps, but Rosa doesn't have to." },
+                { value: "c", label: "A prohibition: Rosa can't check mass.gov." },
               ],
               expectedAnswer: "b",
             },
@@ -484,8 +503,8 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["A", "landlord", "can't", "evict", "you", "without", "a", "court", "order"],
-              correctAnswer: "A landlord can't evict you without a court order",
+              words: ["A", "landlord", "can't", "punish", "you", "for", "a", "complaint"],
+              correctAnswer: "A landlord can't punish you for a complaint",
             },
           ],
         },
@@ -501,7 +520,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "You ___ pay fees that are not in your lease. (not allowed)",
+              label: "A landlord ___ ask for a very large deposit. (not allowed)",
               expectedAnswers: ["can't"],
             },
           ],
@@ -548,9 +567,9 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
     {
       id: "have-to-dont-have-to-cant-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Three words: not required.)",
+      question: "Fill in the blank: \"You ___ renew your lease. It is your choice.\" (Three words: not required.)",
       correctAnswer: "don't have to",
-      explanation: "'Don't have to' means it is not your responsibility. 'Can't' would mean it is forbidden, which is different.",
+      explanation: "'Don't have to' means it is not required. 'Can't' would mean it is forbidden, which is different.",
       topic: "dont-have-to",
       skill: "usage",
       skillTag: "no-obligation-housing",
@@ -559,11 +578,11 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
     {
       id: "have-to-dont-have-to-cant-qws1",
       type: "word-scramble" as const,
-      question: "The lease explains what the landlord must do before entering. Put the words in order.",
-      words: ["The", "landlord", "has", "to", "give", "notice"],
-      correctAnswer: "The landlord has to give notice",
+      question: "The sanitary code says who must provide heat. Put the words in order.",
+      words: ["The", "owner", "has", "to", "provide", "heat"],
+      correctAnswer: "The owner has to provide heat",
       hint: "has to = required",
-      explanation: "'Has to' shows the lease requires the landlord to give notice before entering.",
+      explanation: "'Has to' shows the owner is required to provide heat.",
       topic: "have-to",
       skill: "usage",
       skillTag: "obligation-tenant-rights",
@@ -573,7 +592,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       id: "have-to-dont-have-to-cant-q8",
       question: "Which sentence is NOT correct?",
       options: [
-        { value: "a", label: "The landlord has to keep the heat at 68 degrees or more." },
+        { value: "a", label: "The landlord has to provide heat." },
         { value: "b", label: "She doesn't have to pay for normal wear." },
         { value: "c", label: "Tenants can't to call the inspector." },
       ],
