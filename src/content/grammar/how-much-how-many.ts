@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { howMuchHowManyImages as img } from "@/data/how-much-how-many-images.generated";
+import { checklist } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -185,18 +186,18 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "How Many or How Much?",
       icon: "🛒",
       explanation: `
-        ${sceneCard("sceneMarketBasket", "Still at Market Basket. Claudette calls her sister Sarah from the produce section.", "sage")}
+<p style="margin: 0 0 1rem 0">Thursday evening, Claudette is still at the store. She has a <strong>$40</strong> budget and twelve people are coming on Saturday, so she writes a list. Sarah, her sister, will bring the cooking oil.</p>
 
-        <p style="margin: 0 0 1rem 0">Later that evening, Claudette is still shopping. She calls Sarah, who lives nearby, to plan the Saturday dinner.</p>
-
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏿", text: "<strong>How many</strong> people are coming on Saturday?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏿", text: "We’re twelve with the kids. Do you have enough food?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Not yet. <strong>How much</strong> rice do I need for twelve people?", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏿", text: "Check the serving size on the bag. I’ll bring the cooking oil.", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Thanks. I only have $40 for the food, so I’m getting the store brand.", side: "right", tone: "terracotta" },
-        ])}
-
+        ${checklist({
+          kicker: "Shopping list",
+          title: "Saturday dinner for 12 ($40)",
+          items: [
+            { text: "Milk: 2 bottles", done: true },
+            { text: "Eggs: 24", done: true },
+            { text: "Rice: 1 big bag", done: false },
+            { text: "Onions: 3", done: false },
+          ],
+        })}
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>How many</strong> with countable nouns. Use <strong>How much</strong> with uncountable nouns.</p>
         </div>
@@ -226,6 +227,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           title: "How many or how much?",
           instructions: "Choose the correct question word.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the shopping list. Claudette still needs the onions. Which question is correct?",
+              options: [
+                { value: "many", label: "How many onions does she need?" },
+                { value: "much", label: "How much onions does she need?" },
+              ],
+              expectedAnswer: "many",
+            },
             {
               type: "radio",
               label: "Complete the question: \"___ bags of rice do we need?\"",
@@ -266,6 +276,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
+              label: "Look at the shopping list. How many eggs did Claudette buy? Type the number.",
+              expectedAnswers: ["24", "twenty-four", "twenty four"],
+            },
+            {
+              type: "text",
               label: "___ milk is in the fridge?",
               expectedAnswers: ["how much", "How much"],
             },
@@ -283,17 +298,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "A Lot Of, A Few, A Little",
       icon: "🍚",
       explanation: `
-        ${sceneCard("sceneBudgetShopping", "Friday after work. Claudette finishes her shopping with a big bag of rice in the cart.", "amber")}
+<p style="margin: 0 0 1rem 0">On Friday after work, Claudette finishes the shopping. Back in the kitchen, she checks what is at home before she cooks.</p>
 
-        <p style="margin: 0 0 1rem 0">On Friday after work, Claudette goes back to the store for the rest of the food. Fabienne texts her from home.</p>
-
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏿", text: "I got <strong>a lot of</strong> rice. Should last the week.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏽", text: "Nice. Did you get vegetables?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Just <strong>a few</strong> onions. And <strong>a little</strong> salt.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏽", text: "OK. We can make rice and onions tonight. There are some beans at home, too.", side: "left", tone: "sage" },
-        ])}
-
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Kitchen check</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">What Claudette has at home</div>
+          </div>
+          <div style="overflow-x: auto; padding: 0 0.5rem 0.75rem 0.5rem"><table style="width: 100%; border-collapse: collapse; font-size: 0.93rem"><thead><tr style="background: rgba(128,128,128,0.12)"><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Food</th><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">At home</th></tr></thead><tbody><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🥚 Eggs</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">24 eggs</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧅 Onions</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">3 onions</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🍚 Rice</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">a big bag, full</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧂 Salt</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">almost empty</td></tr></tbody></table></div>
+        </div>
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>A lot of</strong> works with both countable and uncountable nouns. <strong>A few</strong> is for countable nouns only. <strong>A little</strong> is for uncountable nouns only.</p>
         </div>
@@ -312,7 +325,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             <span><em>I have <strong>a little</strong> oil.</em> / <em>I have <strong>a little</strong> money.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(200,50,50,0.07); border-radius: 0.4rem">
-            <span style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(200,50,50,0.12); color: #c03030">not correct</span>
+            <span class="gc-bg-terracotta-alpha gc-text-terracotta" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">not correct</span>
             <span><em>I have a few oil.</em> &nbsp; <em>I have a little onions.</em></span>
           </div>
         </div>
@@ -323,6 +336,16 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           title: "A few or a little?",
           instructions: "Choose the correct quantifier.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the kitchen check. Which sentence is true?",
+              options: [
+                { value: "a", label: "Claudette has a few onions." },
+                { value: "b", label: "Claudette has a little onions." },
+                { value: "c", label: "Claudette has a few salt." },
+              ],
+              expectedAnswer: "a",
+            },
             {
               type: "radio",
               label: "Claudette has some money left. Which is correct?",
@@ -365,6 +388,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
+              label: "Look at the kitchen check. There is salt, but it is almost empty. Claudette has ___ salt.",
+              expectedAnswers: ["a little"],
+            },
+            {
+              type: "text",
               label: "I only have ___ oil left.",
               expectedAnswers: ["a little"],
             },
@@ -382,19 +410,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Reading the Label",
       icon: "📦",
       explanation: `
-        ${sceneCard("sceneNutritionLabel", "Market Basket cereal aisle, Friday evening. Claudette reads the nutrition label.", "terracotta")}
+<p style="margin: 0 0 1rem 0">Friday evening, Fabienne meets Claudette in the cereal aisle. Sarah's children will stay for breakfast on Sunday, so Claudette compares two boxes of cereal (the labels are made up for this lesson).</p>
 
-        <p style="margin: 0 0 1rem 0">Fabienne finishes work and meets Claudette at the store to help carry the bags. Sarah's children will stay for breakfast on Sunday, so Claudette wants cereal that is cheap and good for them.</p>
-
-        ${dialogue([
-          { speaker: "Fabienne", avatar: "👩🏽", text: "Claudette, can we get this one?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "It’s cheaper, but let me check how <strong>much</strong> sugar it has.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏽", text: "Is it a lot?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "Yes. And there isn’t <strong>much</strong> protein. Only 2 grams.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏽", text: "What about the other ones?", side: "left", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏿", text: "There aren’t <strong>many</strong> at this price. Let’s check the store brand.", side: "right", tone: "terracotta" },
-        ])}
-
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Nutrition label</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Two cereals, one serving each</div>
+          </div>
+          <div style="overflow-x: auto; padding: 0 0.5rem 0.75rem 0.5rem"><table style="width: 100%; border-collapse: collapse; font-size: 0.93rem"><thead><tr style="background: rgba(128,128,128,0.12)"><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)"></th><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Store brand</th><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Name brand</th></tr></thead><tbody><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">Sugar</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">14 g</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">6 g</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">Protein</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">2 g</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">5 g</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">Ingredients</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">12</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">5</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">Price</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">$3</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">$5</td></tr></tbody></table></div>
+        </div>
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">In negative sentences and questions, use <strong>much</strong> with uncountable nouns and <strong>many</strong> with countable nouns.</p>
         </div>
@@ -402,19 +426,19 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("uncountable", "sage")}
-            <span><em>There isn't <strong>much</strong> sugar in this cereal.</em></span>
+            <span><em>There isn't <strong>much</strong> protein in the store brand.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("uncountable", "sage")}
-            <span><em>Is there <strong>much</strong> fat in this cereal?</em></span>
+            <span><em>Is there <strong>much</strong> sugar in the store brand?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("countable", "terracotta")}
-            <span><em>There aren't <strong>many</strong> ingredients I can't read.</em></span>
+            <span><em>There aren't <strong>many</strong> ingredients in the name brand.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("countable", "terracotta")}
-            <span><em>There aren't <strong>many</strong> snacks left for the weekend.</em></span>
+            <span><em>There aren't <strong>many</strong> boxes of cereal on the shelf.</em></span>
           </div>
         </div>
       `,
@@ -424,6 +448,16 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           title: "Much or many?",
           instructions: "Choose the correct sentence.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the labels. Which sentence is true about the store brand?",
+              options: [
+                { value: "a", label: "It doesn't have much protein." },
+                { value: "b", label: "It doesn't have many ingredients." },
+                { value: "c", label: "It doesn't have much sugar." },
+              ],
+              expectedAnswer: "a",
+            },
             {
               type: "radio",
               label: "The box has very little salt. Which sentence is correct?",
@@ -454,8 +488,8 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Is", "there", "much", "sugar", "in", "this", "cereal"],
-              correctAnswer: "Is there much sugar in this cereal",
+              words: ["How", "much", "protein", "is", "in", "the", "name", "brand"],
+              correctAnswer: "How much protein is in the name brand",
             },
           ],
         },
@@ -464,6 +498,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           title: "Write your answer",
           instructions: "Write 'much' or 'many.'",
           items: [
+            {
+              type: "text",
+              label: "Look at the labels. How many grams of protein does the name brand have? Type the number.",
+              expectedAnswers: ["5", "five"],
+            },
             {
               type: "text",
               label: "There aren't ___ cans of beans left.",
@@ -489,9 +528,9 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏿", text: "I bought <strong>too many</strong> cans of beans. They were on sale, but we can't eat all this.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏿", text: "Let’s use some of them for dinner tonight.", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏾", text: "Let’s use some of them for dinner tonight.", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏿", text: "Good idea. But I don’t have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
-          { speaker: "Sarah", avatar: "👩🏿", text: "I have plates in my car. Just don’t cook <strong>too much</strong> food. We brought some food too.", side: "left", tone: "sage" },
+          { speaker: "Sarah", avatar: "👩🏾", text: "I have plates in my car. Just don’t cook <strong>too much</strong> food. We brought some food too.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -642,13 +681,13 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       id: "how-much-how-many-qws1",
       type: "word-scramble" as const,
       question: "Claudette calls Fabienne from the grocery store. Put her question in order.",
-      words: ["How", "many", "eggs", "do", "we", "have"],
-      correctAnswer: "How many eggs do we have",
-      hint: "How many + plural countable noun",
-      explanation: "Eggs are countable, so use 'how many' and the plural form.",
-      topic: "how-many",
+      words: ["How", "much", "milk", "do", "we", "need"],
+      correctAnswer: "How much milk do we need",
+      hint: "How much + uncountable noun",
+      explanation: "Milk is uncountable, so use 'how much.'",
+      topic: "how-much",
       skill: "usage",
-      skillTag: "how-many-countable",
+      skillTag: "how-much-uncountable",
       difficulty: "medium",
     },
     {
