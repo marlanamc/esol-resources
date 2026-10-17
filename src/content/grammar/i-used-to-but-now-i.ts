@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { iUsedToButNowIImages as img } from "@/data/i-used-to-but-now-i-images.generated";
+import { readingCard, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -167,16 +168,36 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       title: "I Didn't Use To...",
       icon: "☕",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Hotel housekeeping break room. Tuesday, 9 AM.", "blue")}
+        <p>Linh's coworker Michelle asks how her mornings changed since she moved to Boston. Linh writes it down for her.</p>
 
-        <p>Linh's coworker Michelle sits down with her coffee. She asks about life since moving to Boston.</p>
-
-        ${dialogue([
-          { speaker: "Michelle", avatar: "👩🏼", text: "Did you always work mornings?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "No. I <strong>didn't use to</strong> wake up at 4. Back home I <strong>used to</strong> start work at 8.", side: "right", tone: "terracotta" },
-          { speaker: "Michelle", avatar: "👩🏼", text: "That’s early! How do you find time to cook?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>didn’t use to</strong> plan meals ahead. Now I cook on Sunday so I can get to bed early during the week.", side: "right", tone: "terracotta" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-blue" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Then and now</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Linh's day: Vietnam and Boston</div>
+          </div>
+          <div style="padding: 0 0.75rem 0.75rem 0.75rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead><tr><th scope="col" class="gc-table-divider" style="padding: 0.4rem 0.4rem !important; font-size: 0.8rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.12)"></th><th scope="col" class="gc-table-divider" style="padding: 0.4rem 0.4rem !important; font-size: 0.8rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.12)">Back home</th><th scope="col" class="gc-table-divider" style="padding: 0.4rem 0.4rem !important; font-size: 0.8rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.12)">Boston now</th></tr></thead>
+              <tbody>
+              <tr>
+                <th scope="row" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; vertical-align: top" class="gc-table-divider">Wake up</th>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider">6:30</td>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider"><strong>4:00</strong></td>
+              </tr>
+              <tr>
+                <th scope="row" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; vertical-align: top" class="gc-table-divider">Work starts</th>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider">8:00</td>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider"><strong>5:00</strong></td>
+              </tr>
+              <tr>
+                <th scope="row" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; vertical-align: top" class="gc-table-divider">Dinner</th>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider">cook at 11 pm</td>
+                <td style="padding: 0.5rem 0.4rem !important; font-size: 0.95rem; vertical-align: top" class="gc-table-divider"><strong>meal-prep on Sunday</strong></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Negative:</strong> didn't use to + base verb. No <strong>-d</strong> on <em>use</em>.<br/><strong>Question:</strong> Did you use to + base verb?</p>
@@ -201,11 +222,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Linh shops at the big market now. Before, she did not. Which sentence is correct?",
+              label: "Look at the table. What time did Linh use to wake up back home?",
               options: [
-                { value: "a", label: "I didn't used to shop at the big market." },
-                { value: "b", label: "I didn't use to shop at the big market." },
-                { value: "c", label: "I don't use to shop at the big market." },
+                { value: "a", label: "4:00" },
+                { value: "b", label: "6:30" },
+                { value: "c", label: "8:00" },
               ],
               expectedAnswer: "b",
             },
@@ -218,6 +239,16 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
                 { value: "c", label: "Do you use to wake up at 4?" },
               ],
               expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Look at the table. Which sentence about Linh is correct?",
+              options: [
+                { value: "a", label: "I didn't use to start work at 5:00." },
+                { value: "b", label: "I didn't used to start work at 5:00." },
+                { value: "c", label: "I didn't use to start work at 8:00." },
+              ],
+              expectedAnswer: "a",
             },
           ],
         },
@@ -267,16 +298,27 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartment", "Linh's street in East Boston. Tuesday, 3 PM.", "amber")}
+        <p>Linh's classmate Edwin shows her a short reading about a man who also changed his life after moving to the United States.</p>
 
-        <p>Linh runs into her classmate Edwin outside her building. They talk about life before and after Boston.</p>
-
-        ${dialogue([
-          { speaker: "Edwin", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> live on Meridian Street with my two kids.", side: "right", tone: "terracotta" },
-          { speaker: "Edwin", avatar: "👨🏽", text: "How did you get to work back home?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to walk</strong> to work. <strong>But now I</strong> take two buses.", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Dalip Singh Saund: From India to Congress",
+          photo: {
+            url: "/images/guide-people/dalip-singh-saund.jpg",
+            alt: "Painted portrait of Dalip Singh Saund standing in the U.S. Capitol",
+            credit: "Jon R. Friedman, U.S. House of Representatives, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Dalip_Singh_Saund_Portrait_(HR).jpg",
+          },
+          paragraphs: [
+            "Dalip Singh Saund was born in India in 1899. In 1920, he sailed to the United States to study at the University of California. He planned to stay only three years. Later, he worked on farms in California's Imperial Valley. At first he was a field foreman on a cotton farm. While the workers picked cotton, he <strong>used to read</strong> books about American history.",
+            "In those years, Indian immigrants could not become U.S. citizens. Saund worked to change the law, and he became a citizen in 1949. In 1956, voters elected him to Congress. He was the first Asian American in Congress.",
+          ],
+          sources: [
+            { name: "PBS: Roots in the Sand", url: "https://www.pbs.org/rootsinthesand/i_dalip1.html" },
+            { name: "Encyclopedia of World Biography", url: "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/saund-dalip-singh" },
+          ],
+          accent: "blue",
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Used to</strong> works for past <em>states</em> (live, have, be) and <em>actions</em> (walk, cook, work). Pair it with <strong>but now I...</strong> to show the change.</p>
@@ -312,6 +354,26 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
                 { value: "c", label: "used to living" },
               ],
               expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Look at the reading. While the workers picked cotton, Saund ___ books about American history.",
+              options: [
+                { value: "a", label: "used to read" },
+                { value: "b", label: "used to reading" },
+                { value: "c", label: "is used to read" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Look at the reading. In what year did Saund become a U.S. citizen?",
+              options: [
+                { value: "a", label: "1920" },
+                { value: "b", label: "1949" },
+                { value: "c", label: "1956" },
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -358,18 +420,20 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     {
       id: "dont-mix-up",
       title: "Don't Mix Them Up",
-      icon: "🥪",
+      icon: "⏳",
       explanation: `
-        ${sceneCard("sceneKitchenLunch", "Linh's kitchen. Wednesday, 6:30 AM.", "terracotta")}
+        <p>Linh draws a timeline of her life for Ms. Tran's class. It shows what changed, and what she is still learning.</p>
 
-        <p>School morning rush. Linh packs lunch for her two kids. Her son asks for a different lunch today.</p>
-
-        ${dialogue([
-          { speaker: "Son", avatar: "👦🏻", text: "Mom, can I have PB&amp;J today?", side: "left", tone: "amber" },
-          { speaker: "Linh", avatar: "👩🏻", text: "PB&amp;J? I <strong>used to pack</strong> rice for you every day. You loved it!", side: "right", tone: "terracotta" },
-          { speaker: "Son", avatar: "👦🏻", text: "I <strong>used to like</strong> rice. Now everyone at school eats sandwiches.", side: "left", tone: "amber" },
-          { speaker: "Linh", avatar: "👩🏻", text: "OK, PB&amp;J it is. I’m still <strong>getting used to</strong> that!", side: "right", tone: "terracotta" },
-        ])}
+        ${timeline({
+          kicker: "Timeline",
+          title: "Linh's life: Vietnam to Boston",
+          items: [
+            { when: "Vietnam", text: "Linh lives with her parents and walks to work.", accent: "terracotta" },
+            { span: "Four years ago she moves", accent: "sage" },
+            { when: "Boston", text: "She lives with her two kids and takes two buses.", accent: "blue" },
+            { when: "Now", text: "She is <strong>getting used to</strong> the cold winters.", accent: "amber" },
+          ],
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -381,11 +445,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("past habit", "terracotta")}
-            <span><em>I <strong>used to pack</strong> rice every day.</em> (I don't anymore.)</span>
+            <span><em>I <strong>used to walk</strong> to work.</em> (I don't anymore.)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("accustomed now", "blue")}
-            <span><em>He is <strong>getting used to</strong> PB&amp;J.</em> (Preview for next week. Not the same as used to.)</span>
+            <span><em>I am <strong>getting used to</strong> the cold.</em> (Preview for next week. Not the same as used to.)</span>
           </div>
         </div>
       `,
@@ -397,13 +461,13 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Linh packed rice every day in the past. She doesn't anymore.",
+              label: "Look at the timeline. Which sentence about Linh is true?",
               options: [
-                { value: "a", label: "I used to pack rice in lunchboxes." },
-                { value: "b", label: "I am used to pack rice in lunchboxes." },
-                { value: "c", label: "I used to packing rice in lunchboxes." },
+                { value: "a", label: "I used to take two buses in Vietnam." },
+                { value: "b", label: "I used to walk to work in Vietnam." },
+                { value: "c", label: "I used to live with my kids in Vietnam." },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -424,7 +488,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I ___ to pack rice every day. (past habit, not true now)",
+              label: "I ___ to live with my parents in Vietnam. (past state, not true now)",
               expectedAnswers: ["used"],
             },
           ],
@@ -435,11 +499,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"I used to packing PB&amp;J in lunchboxes.\" What is wrong?",
+              label: "\"I used to walking to work in Vietnam.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
-                { value: "b", label: "Error: should be \"used to pack\" (base verb, not -ing)." },
-                { value: "c", label: "Error: should be \"am used to packing\"." },
+                { value: "b", label: "Error: should be \"used to walk\" (base verb, not -ing)." },
+                { value: "c", label: "Error: should be \"am used to walk\"." },
               ],
               expectedAnswer: "b",
             },
@@ -519,8 +583,8 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "used", "to", "pack", "rice,", "but", "now", "I", "pack", "PB&J"],
-              correctAnswer: "I used to pack rice, but now I pack PB&J",
+              words: ["I", "used", "to", "cook", "at", "11", "pm,", "but", "now", "I", "meal-prep", "on", "Sunday"],
+              correctAnswer: "I used to cook at 11 pm, but now I meal-prep on Sunday",
             },
           ],
         },
@@ -588,14 +652,14 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     },
     {
       id: "ut-q7",
-      question: "Find the error: \"I used to packing PB&J in lunchboxes.\"",
+      question: "Find the error: \"I used to lives with my parents.\"",
       options: [
         { value: "a", label: "No error." },
-        { value: "b", label: "Error: should be \"used to pack\" (base verb, not -ing)." },
-        { value: "c", label: "Error: should be \"didn't use to pack\"." },
+        { value: "b", label: "Error: should be \"used to live\" (base verb, no -s)." },
+        { value: "c", label: "Error: should be \"didn't use to live\"." },
       ],
       correctAnswer: "b",
-      explanation: "After used to, use the base verb: pack, not packing.",
+      explanation: "After used to, use the base verb: live, not lives.",
       topic: "used-to",
       skill: "error-detection",
       skillTag: "error-used-to-plus-ing",
