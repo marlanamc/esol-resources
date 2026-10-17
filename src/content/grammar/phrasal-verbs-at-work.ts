@@ -357,7 +357,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p style="margin: 0.75rem 0; font-size: 0.95rem; color: #555">The same rule applies to <em>hand in it</em> (wrong) vs. <em>hand it in</em> (correct), and <em>turn in it</em> (wrong) vs. <em>turn it in</em> (correct).</p>
+        <p style="margin: 0.75rem 0; font-size: 0.95rem; opacity: 0.8">The same rule applies to <em>hand in it</em> (wrong) vs. <em>hand it in</em> (correct), and <em>turn in it</em> (wrong) vs. <em>turn it in</em> (correct).</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(239,68,68,0.07); border-radius: 0.4rem">

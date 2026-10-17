@@ -193,12 +193,12 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         <div style="display: grid; gap: 0.5rem; margin: 0 0 1.25rem 0">
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #6a8d73; background: rgba(106,141,115,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73; margin-bottom: 0.3rem">With BE</div>
+            <div class="gc-text-sage" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem">With BE</div>
             <p style="margin: 0"><em>Wh- word + <strong>am / is / are</strong> + subject</em></p>
             <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Where <strong>is</strong> the file? &nbsp; Who <strong>is</strong> the sender?</p>
           </div>
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #268a82; background: rgba(38,138,130,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #268a82; margin-bottom: 0.3rem">With DO / DOES / DID</div>
+            <div class="gc-text-blue" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem">With DO / DOES / DID</div>
             <p style="margin: 0"><em>Wh- word + <strong>do / does / did</strong> + subject + base verb</em></p>
             <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">What <strong>do</strong> you do? &nbsp; Where <strong>does</strong> she work?</p><p style="margin: 0.5rem 0 0">For the past, use <strong>did</strong> with the base verb: <em>When did you download it?</em> Not <em>did you downloaded</em>.</p>
           </div>

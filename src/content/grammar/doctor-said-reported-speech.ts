@@ -104,11 +104,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.6rem; margin-bottom: 1.5rem">
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.12); border-radius: 0.5rem">
             <span style="flex: 1"><strong>Direct:</strong> Kelly says, "The pharmacy <strong>can</strong> refill it."</span>
             ${labelPill("exact words", "blue")}
           </div>
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.12); border-radius: 0.5rem">
             <span style="flex: 1"><strong>Reported:</strong> Kelly <strong>said that</strong> the pharmacy <strong>could</strong> refill it.</span>
             ${labelPill("reported", "sage")}
           </div>

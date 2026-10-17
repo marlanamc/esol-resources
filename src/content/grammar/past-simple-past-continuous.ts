@@ -116,7 +116,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             <span>yesterday, last night, this morning, an hour ago, in 2019</span>
           </div>
         </div>
-        <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">Notice: each action is a single dot on the timeline. They happened, they finished, we move on.</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin: 0.5rem 0 0">Notice: each action is a single dot on the timeline. They happened, they finished, we move on.</p>
       `,
       exercises: [
         {
@@ -197,7 +197,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             <span><em>He <strong>was thinking</strong> about work.</em></span>
           </div>
         </div>
-        <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">On the timeline, past continuous is a line, not a dot. It was already going when the moment arrived.</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin: 0.5rem 0 0">On the timeline, past continuous is a line, not a dot. It was already going when the moment arrived.</p>
       `,
       exercises: [
         {
@@ -279,7 +279,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
             <span><em>Diego <strong>was telling</strong> a story about his first job back home <strong>when</strong> his neighbor <strong>asked</strong> how long he had lived in Boston.</em></span>
           </div>
         </div>
-        <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">Quick tip: the continuous action (line) is the background. The simple action (dot) is the event that happened inside it or interrupted it.</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin: 0.5rem 0 0">Quick tip: the continuous action (line) is the background. The simple action (dot) is the event that happened inside it or interrupted it.</p>
       `,
       exercises: [
         {
