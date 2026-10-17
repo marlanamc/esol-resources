@@ -64,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -217,7 +217,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           <div style="padding: 0.75rem 1rem 0.25rem 1rem"><span class="gc-text-amber" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Listing</span><div style="font-weight: 700; font-size: 1.05rem">Brian's apartment on Leyden Street</div></div>
           <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
             <thead><tr><th style="padding: 0.5rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.8rem" scope="col">Rosa asks</th><th style="padding: 0.5rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.8rem" scope="col">Brian says</th></tr></thead>
-            <tbody><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How much</strong> is the rent?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">$1,400 a month</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How many</strong> bedrooms does it have?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">2</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> heat included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes (and hot water)</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> electricity included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No, it is extra</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> there laundry in the building?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Are</strong> pets allowed?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No</td></tr></tbody>
+            <tbody><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How much</strong> is the rent?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">$1,400 a month</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How many</strong> bedrooms does it have?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">2</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> heat included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes (and hot water)</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> electricity included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No, it's extra</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> there laundry in the building?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Are</strong> pets allowed?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No</td></tr></tbody>
           </table>
         </div>
 
@@ -275,7 +275,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa must pay for the electricity herself. Which question tells you that?",
+              label: "Which question has the answer \"No, it's extra\"?",
               options: [
                 { value: "a", label: "Is electricity included?" },
                 { value: "b", label: "How many bedrooms does it have?" },
@@ -598,7 +598,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa wants to be polite about the deposit, because she hasn't asked yet. Which question is correct?",
+              label: "Rosa hasn't asked about the deposit yet. She wants to be polite. Which question is correct?",
               options: [
                 { value: "a", label: "Can you tell me how much the deposit is?" },
                 { value: "b", label: "Can you tell me how much is the deposit?" },
