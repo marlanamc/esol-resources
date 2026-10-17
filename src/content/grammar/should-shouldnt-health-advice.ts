@@ -359,7 +359,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       title: "Asking for Advice",
       icon: "🙋",
       explanation: `
-        <p>Before she leaves, Yolanda writes her questions for the doctor on her phone. She has already asked two. Two questions are still open.</p>
+        <p>Before she leaves, Yolanda checks the questions she wrote on her phone. She has already asked two. Two questions are still open.</p>
 
         ${checklist({
           kicker: "Checklist",
@@ -367,7 +367,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             { text: "<strong>Should I</strong> rest at home?", done: true },
             { text: "<strong>What should I</strong> do about the pain?", done: true },
-            { text: "<strong>Should I</strong> go back to work on Thursday?", done: false },
+            { text: "<strong>Should I</strong> do stretches at home?", done: false },
             { text: "<strong>What should I</strong> do if it gets worse?", done: false },
           ],
         })}
@@ -436,10 +436,10 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
               label: "Which topic has Yolanda NOT asked about yet?",
               options: [
                 { value: "rest", label: "Resting at home" },
-                { value: "work", label: "Going back to work" },
+                { value: "stretch", label: "Stretches at home" },
                 { value: "pain", label: "The pain" },
               ],
-              expectedAnswer: "work",
+              expectedAnswer: "stretch",
             },
             {
               type: "radio",
