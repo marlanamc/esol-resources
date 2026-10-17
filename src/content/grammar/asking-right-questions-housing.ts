@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { askingRightQuestionsHousingImages as img } from "@/data/asking-right-questions-housing-images.generated";
+import { checklist } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -210,15 +211,15 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "How Much Is the Rent?",
       icon: "💵",
       explanation: `
-        ${sceneCard("scenePhoneCall", "Rosa outside the laundromat, still on the phone with Brian.", "amber")}
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">Rosa is still outside the laundromat, on the phone with Brian. She writes his answers on the back of the flyer. Look at her notes.</p>
 
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>How much</strong> is the rent?", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏻", text: "Fourteen hundred a month.", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Is</strong> heat included?", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏻", text: "Heat and hot water are included. Electricity is extra.", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Is</strong> there laundry in the building?", side: "right", tone: "terracotta" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.25rem 1rem"><span class="gc-text-amber" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Listing</span><div style="font-weight: 700; font-size: 1.05rem">Brian's apartment on Leyden Street</div></div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
+            <thead><tr><th style="padding: 0.5rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.8rem" scope="col">Rosa asks</th><th style="padding: 0.5rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.8rem" scope="col">Brian says</th></tr></thead>
+            <tbody><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How much</strong> is the rent?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">$1,400 a month</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>How many</strong> bedrooms does it have?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">2</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> heat included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes (and hot water)</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> electricity included?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No, it's extra</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Is</strong> there laundry in the building?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes</td></tr><tr><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Are</strong> pets allowed?</td><td class="gc-table-divider" style="padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25)">No</td></tr></tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>How much</strong> asks about price or an uncountable amount. <strong>How many</strong> asks about a countable number. Both follow the same inversion rule: verb before subject.</p>
@@ -257,6 +258,38 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
         </div>
       `,
       exercises: [
+        {
+          id: "arqh-s2-ex0",
+          title: "Read the listing",
+          instructions: "Look at Rosa's notes about Brian's apartment.",
+          items: [
+            {
+              type: "radio",
+              label: "Which question gets the answer \"No\" in Rosa's notes?",
+              options: [
+                { value: "a", label: "Is heat included?" },
+                { value: "b", label: "Are pets allowed?" },
+                { value: "c", label: "Is there laundry in the building?" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Which question has the answer \"No, it's extra\"?",
+              options: [
+                { value: "a", label: "Is electricity included?" },
+                { value: "b", label: "How many bedrooms does it have?" },
+                { value: "c", label: "How much is the rent?" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "How many bedrooms does Brian's apartment have? (Write a number.)",
+              expectedAnswers: ["2", "two"],
+            },
+          ],
+        },
         {
           id: "arqh-s2-ex1",
           title: "Correct or not correct?",
@@ -515,16 +548,20 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
       title: "Questions to Ask Before You Waste a Trip",
       icon: "📞",
       explanation: `
-        ${sceneCard("sceneAfterWork", "Outside the hotel, East Boston. Rosa and Nadine compare calls after their shift.", "blue")}
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">After their shift at the hotel, Rosa and Nadine compare calls. Nadine's apartment with Scott is $1,350. Rosa looks at her list for Brian's apartment on Leyden Street. Nadine says, "Call him back before you go."</p>
 
-        ${dialogue([
-          { speaker: "Nadine", avatar: "👩🏾", text: "Scott's apartment is $1,350, with heat and parking. How was Brian's place on Leyden Street?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "It's $1,400, but it's near my bus stop. I forgot to ask about the lease.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "Call him back and ask: <em>Can you tell me <strong>when</strong> the lease starts?</em>", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Good idea. I want to see it on Saturday. I don't work weekends.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "Then ask him: <em><strong>Do you know when</strong> I can see it?</em> I'll go with you.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Thanks. I'll call him now.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Checklist",
+          title: "Rosa's call-back list for Brian",
+          items: [
+            { text: "Rosa has already asked about the rent", done: true },
+            { text: "Rosa has already asked about heat", done: true },
+            { text: "Rosa has already asked about bedrooms", done: true },
+            { text: "Rosa hasn't asked when the lease starts", done: false },
+            { text: "Rosa hasn't asked about the security deposit", done: false },
+            { text: "Rosa hasn't asked when she can see it", done: false },
+          ],
+        })}
 
         <div style="padding: 0.85rem 1rem; background: rgba(59,130,246,0.06); border-left: 3px solid #3b82f6; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
           <p style="margin: 0 0 0.3rem 0; font-weight: 700; font-size: 0.93rem">Questions every renter should ask, direct and indirect:</p>
@@ -544,6 +581,37 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
         </div>
       `,
       exercises: [
+        {
+          id: "arqh-s4-ex0",
+          title: "Read the checklist",
+          instructions: "Look at Rosa's call-back list.",
+          items: [
+            {
+              type: "radio",
+              label: "Which question is still on Rosa's list?",
+              options: [
+                { value: "a", label: "How much is the rent?" },
+                { value: "b", label: "When does the lease start?" },
+                { value: "c", label: "Is heat included?" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Rosa hasn't asked about the deposit yet. She wants to be polite. Which question is correct?",
+              options: [
+                { value: "a", label: "Can you tell me how much the deposit is?" },
+                { value: "b", label: "Can you tell me how much is the deposit?" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "How many questions has Rosa already asked? (Write a number.)",
+              expectedAnswers: ["3", "three"],
+            },
+          ],
+        },
         {
           id: "arqh-s4-ex1",
           title: "Which question fits?",

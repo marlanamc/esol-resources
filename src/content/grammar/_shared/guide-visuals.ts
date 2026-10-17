@@ -143,14 +143,16 @@ export const readingCard = ({
   kicker?: string;
   title: string;
   paragraphs: string[];
-  photo?: { url: string; alt: string; credit: string };
+  photo?: { url: string; alt: string; credit: string; creditUrl?: string };
   sources: { name: string; url: string }[];
   accent?: Accent;
 }): string => {
   const img = photo
     ? `<img src="${photo.url}" alt="${photo.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover; object-position: top" />`
     : "";
-  const credit = photo ? `Photo: ${photo.credit}. ` : "";
+  const credit = photo
+    ? `Photo: ${photo.creditUrl ? `<a href="${photo.creditUrl}" rel="noopener" target="_blank">${photo.credit}</a>` : photo.credit}. `
+    : "";
   const body = paragraphs
     .map((p) => `<p style="margin: 0 0 0.75rem 0; line-height: 1.7; font-size: 0.98rem">${p}</p>`)
     .join("");

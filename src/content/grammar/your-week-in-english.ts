@@ -329,6 +329,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Famous person",
           title: "Ellen Ochoa: A Routine in Space",
+          photo: {
+            url: "/images/guide-people/ellen-ochoa.jpg",
+            alt: "Ellen Ochoa on the International Space Station in 1999",
+            credit: "NASA, 1999, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:STS096-383-005_-_STS-096_-_Portrait_view_of_MS_Ochoa_in_the_Node_1-Unity_module_-_DPLA_-_c43a537fccee43de94f10635c6080103.jpg",
+          },
           paragraphs: [
             "In 1993, Ellen Ochoa became the first Hispanic woman in space. She flew on the space shuttle <em>Discovery</em>. She went to space four times, and on her first trip, she played her flute in space! Later, she became the director of NASA's Johnson Space Center in Houston.",
             "Today, astronauts live and work on the International Space Station. They have a routine, just like us. They exercise for at least two hours <strong>every day</strong> because life in space makes muscles and bones weak. The station goes around the Earth <strong>16 times a day</strong>, so astronauts see a sunrise about <strong>every 90 minutes</strong>.",
