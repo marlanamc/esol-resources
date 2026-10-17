@@ -175,7 +175,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
 
         ${checklist({
           kicker: "Fabienne's first winter",
-          title: "Things I'm used to (January)",
+          title: "Used to it yet? (January)",
           items: [
             { text: "Working nights (since October)", done: true },
             { text: "Sleeping in the afternoon", done: true },
@@ -411,7 +411,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           title: "Mazie Hirono: From a Rice Farm to the Senate",
           paragraphs: [
             "Mazie Hirono <strong>used to live</strong> in Fukushima, Japan. Her early childhood was spent on her grandparents' rice farm. When she was nearly eight years old, she, her mother, and her brother crossed the Pacific by ship and came to Hawaii.",
-            "When she began elementary school, she neither spoke nor read English. She studied in Hawaii's public schools, went to the University of Hawaii, and later went to law school at Georgetown. In 2013, she was sworn in as a U.S. senator. She was the first Asian American woman senator.",
+            "When she began elementary school, she neither spoke nor read English. She studied in Hawaii's public schools, went to the University of Hawaii, and later went to law school at Georgetown. In 2013, she was sworn in as a U.S. senator. She became the first Asian American woman in the Senate.",
           ],
           photo: {
             url: "/images/guide-people/mazie-hirono.jpg",
