@@ -355,7 +355,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("as soon as = immediately", "amber")}
-            <span><em><strong>As soon as</strong> he <strong>votes</strong> on Saturday, he will go to work.</em></span>
+            <span><em><strong>As soon as</strong> he <strong>votes</strong> on Saturday, he will text Ana a photo of his sticker.</em></span>
           </div>
         </div>
 
