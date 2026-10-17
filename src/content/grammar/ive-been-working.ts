@@ -308,7 +308,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           },
           paragraphs: [
             "Dolores Huerta was born in 1930 in Dawson, New Mexico. She was a teacher, and she said she could not stand to see kids come to class hungry. In 1960, she started the Agricultural Workers Association. In 1962, she and César Chávez started the National Farm Workers Association. In 2012, President Obama gave her the Presidential Medal of Freedom.",
-            "Dolores Huerta is 96 years old now, and she is still busy. She <strong>has been working</strong> for workers' rights <strong>since</strong> 1960. She <strong>has been traveling</strong> and speaking to students, and she is the president of the Dolores Huerta Foundation. <strong>How long has she been working</strong> for workers? For more than 60 years!",
+            "Dolores Huerta is 96 years old now, and she is still busy. She <strong>has been working</strong> for workers' rights <strong>since</strong> the 1950s. She <strong>has been traveling</strong> and speaking to students, and she is the president of the Dolores Huerta Foundation. <strong>How long has she been working</strong> for workers? For more than 60 years!",
           ],
           sources: [
             { name: "Dolores Huerta Foundation", url: "https://doloreshuerta.org/dolores-huerta/" },
