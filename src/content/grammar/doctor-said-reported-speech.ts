@@ -313,7 +313,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           steps: [
             "<strong>Shake</strong> the inhaler before each use.",
             "<strong>Keep</strong> it at room temperature. <strong>Don't leave</strong> it in a cold car.",
-            "<strong>Don't use</strong> the old nebulizer.",
+            "<strong>Don't use</strong> the old inhaler. It is expired.",
             "<strong>Call</strong> the clinic if her breathing gets worse.",
           ],
           note: "Marco reads this sheet to Gloria. He says: \"The pharmacist told me to...\"",
@@ -363,7 +363,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
               options: [
                 { value: "a", label: "The pharmacist told us to keep the inhaler in the car." },
                 { value: "b", label: "The pharmacist told us to keep the inhaler at room temperature." },
-                { value: "c", label: "The pharmacist told us to use the old nebulizer." },
+                { value: "c", label: "The pharmacist told us to use the old inhaler." },
               ],
               expectedAnswer: "b",
             },
@@ -381,7 +381,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Look at step 3 on the sheet. The pharmacist told us ___ to use the old nebulizer.",
+              label: "Look at step 3 on the sheet. The pharmacist told us ___ to use the old inhaler.",
               expectedAnswers: ["not"],
             },
           ],
@@ -546,11 +546,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The pharmacist said: \"Don't use the old nebulizer.\"",
+              label: "The pharmacist said: \"Don't use the old inhaler.\"",
               options: [
-                { value: "a", label: "The pharmacist said that we don't use the old nebulizer." },
-                { value: "b", label: "The pharmacist told us not to use the old nebulizer." },
-                { value: "c", label: "The pharmacist asked if we use the old nebulizer." },
+                { value: "a", label: "The pharmacist said that we don't use the old inhaler." },
+                { value: "b", label: "The pharmacist told us not to use the old inhaler." },
+                { value: "c", label: "The pharmacist asked if we use the old inhaler." },
               ],
               expectedAnswer: "b",
             },
