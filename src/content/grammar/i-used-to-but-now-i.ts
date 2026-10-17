@@ -168,7 +168,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       title: "I Didn't Use To...",
       icon: "☕",
       explanation: `
-        <p>Linh's coworker Michelle asks how her mornings changed since she moved to Boston. Linh writes it down for her.</p>
+        <p>Linh's coworker Michelle asks how her days changed after she moved to Boston. Linh writes it down for her.</p>
 
         <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
           <div style="padding: 0.75rem 1rem 0.5rem 1rem">
@@ -310,7 +310,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
             creditUrl: "https://commons.wikimedia.org/wiki/File:Dalip_Singh_Saund_Portrait_(HR).jpg",
           },
           paragraphs: [
-            "Dalip Singh Saund was born in India in 1899. In 1920, he sailed to the United States to study at the University of California. He planned to stay only three years. Later, he worked on farms in California's Imperial Valley. At first he was a field foreman on a cotton farm. While the workers picked cotton, he <strong>used to read</strong> books about American history.",
+            "Dalip Singh Saund was born in India in 1899. In 1920, he sailed to the United States to study at the University of California. He planned to stay only three years. Later, he worked on farms in California's Imperial Valley. At first he was a field foreman on a cotton farm. While the workers picked cotton, he <strong>used to read</strong> books about poetry and American history.",
             "In those years, Indian immigrants could not become U.S. citizens. Saund worked to change the law, and he became a citizen in 1949. In 1956, voters elected him to Congress. He was the first Asian American in Congress.",
           ],
           sources: [
@@ -357,7 +357,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Look at the reading. While the workers picked cotton, Saund ___ books about American history.",
+              label: "Look at the reading. While the workers picked cotton, Saund ___ books about poetry and American history.",
               options: [
                 { value: "a", label: "used to read" },
                 { value: "b", label: "used to reading" },
@@ -429,7 +429,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           title: "Linh's life: Vietnam to Boston",
           items: [
             { when: "Vietnam", text: "Linh lives with her parents and walks to work.", accent: "terracotta" },
-            { span: "Four years ago she moves", accent: "sage" },
+            { span: "She moves (4 years ago)", accent: "sage" },
             { when: "Boston", text: "She lives with her two kids and takes two buses.", accent: "blue" },
             { when: "Now", text: "She is <strong>getting used to</strong> the cold winters.", accent: "amber" },
           ],
@@ -438,7 +438,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
             <strong>Used to + verb</strong> = past habit, not true now.<br/>
-            <strong>Am used to + -ing</strong> = accustomed now (different grammar). You will learn be/get used to next week.
+            <strong>Be / get used to</strong> = normal now, or becoming normal (different grammar). You will learn be/get used to next week.
           </p>
         </div>
 
@@ -448,7 +448,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
             <span><em>I <strong>used to walk</strong> to work.</em> (I don't anymore.)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("accustomed now", "blue")}
+            ${labelPill("still changing", "blue")}
             <span><em>I am <strong>getting used to</strong> the cold.</em> (Preview for next week. Not the same as used to.)</span>
           </div>
         </div>
