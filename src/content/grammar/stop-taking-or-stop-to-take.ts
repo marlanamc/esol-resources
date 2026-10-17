@@ -422,7 +422,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       title: "Remember to Take It / I Remember Taking It",
       icon: "🔔",
       explanation: `
-        <p>Saturday morning, 7:00 AM. Marisol's phone alarm goes off. She checks her list. Some things are done. Some things are still ahead.</p>
+        <p>Saturday morning, 8:30 AM. Marisol checks her list. Some things are done. Some things are still ahead.</p>
 
         ${checklist({
           kicker: "Marisol's Saturday",
