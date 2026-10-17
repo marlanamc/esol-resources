@@ -207,11 +207,11 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        <p>Gloria reads the ad with a pen. Safety training <strong>is provided</strong> and a uniform <strong>is included</strong>, so she doesn't have to pay for them. Then she makes a list of what she still needs to do.</p>
+        <p>Gloria reads the ad with a pen. Safety training <strong>is provided</strong> and a uniform <strong>is included</strong>, so she doesn't have to pay for them. The hotel also sends her two more rules. She makes a list of everything the job needs.</p>
 
         ${checklist({
           kicker: "Gloria's list",
-          title: "The housekeeper job: what the ad says",
+          title: "The housekeeper job: what is needed",
           items: [
             { text: "Experience in hospitality <strong>is required</strong>. (Gloria has three years.)", done: true },
             { text: "References <strong>are expected</strong>. (She sent two.)", done: true },
