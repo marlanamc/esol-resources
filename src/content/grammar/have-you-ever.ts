@@ -504,6 +504,12 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Famous person",
           title: "José Andrés: A Cook Who Feeds Communities",
+          photo: {
+            url: "/images/guide-people/jose-andres.jpg",
+            alt: "José Andrés smiling, in a dark suit and orange tie",
+            credit: "U.S. Department of State, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Jose_Andres.jpg",
+          },
           paragraphs: [
             "José Andrés <strong>was born</strong> in Spain. In the early 1990s, he <strong>moved</strong> to the United States. He <strong>arrived</strong> in New York City at age 21. In 2013, he <strong>became</strong> a U.S. citizen.",
             "He <strong>has worked</strong> as a chef in restaurants, but he <strong>has</strong> also <strong>helped</strong> many people in a crisis. His group, World Central Kitchen, <strong>has served</strong> chef-prepared meals to communities after natural disasters. It <strong>has helped</strong> people in places like Guam, Panama, and Ukraine.",

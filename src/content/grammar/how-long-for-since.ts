@@ -535,6 +535,12 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Real person",
           title: "Luis von Ahn",
+          photo: {
+            url: "/images/guide-people/luis-von-ahn.jpg",
+            alt: "Luis von Ahn giving a talk",
+            credit: "Jarek Tuszyński, 2015, CC BY 4.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Wikimania_2015_-_Luis_von_Ahn_-_1.JPG",
+          },
           accent: "sage",
           paragraphs: [
             "Luis von Ahn <strong>was</strong> born in Guatemala City, Guatemala. He <strong>came</strong> to the United States at 18 to study math at Duke University. He <strong>finished</strong> his degree in 2000. In 2009, he <strong>sold</strong> a website security tool called reCAPTCHA to Google.",

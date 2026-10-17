@@ -294,6 +294,12 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Famous person",
           title: "Sonia Sotomayor: From the Bronx to the Supreme Court",
+          photo: {
+            url: "/images/guide-people/sonia-sotomayor.jpg",
+            alt: "Justice Sonia Sotomayor in her black judge's robe",
+            credit: "Supreme Court of the United States, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Sonia_Sotomayor_in_SCOTUS_robe.jpg",
+          },
           paragraphs: [
             "Sonia Sotomayor was born in the Bronx, New York, in 1954. Her parents were born in Puerto Rico. Her father worked with tools and metal, and her mother worked as a telephone operator before she became a nurse. The family lived in public housing. Sonia's father died when she was nine years old.",
             "Her mother valued education and bought an encyclopedia set for her children. Sonia studied at Princeton University and Yale Law School. In 2009, President Obama chose her for the Supreme Court. She is the first Hispanic person to serve on it.",
