@@ -185,7 +185,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        <p>Two days before her first night shift, Yemi needs a follow-up visit for her knee. Her coworker <strong>Rachel</strong> goes to the same clinic and tells her that walk-ins start at 8. Yemi writes her Saturday plan on her phone.</p>
+        <p>After her first week of night shifts, Yemi needs a follow-up visit for her knee. Her coworker <strong>Rachel</strong> goes to the same clinic and tells her that walk-ins start at 8. Yemi writes her Saturday plan on her phone.</p>
 
         ${stepsCard({
           kicker: "Yemi's phone note",
