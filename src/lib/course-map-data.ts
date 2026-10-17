@@ -605,8 +605,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "getting-there-directions",
             "href": "/grammar-reader/getting-there-directions",
-            "slot": "required",
-            "order": 2,
+            "slot": "extra",
+            "order": 6,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Getting There: Directions + Imperatives"
@@ -618,7 +618,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 2,
             "title": "Movement Verbs: Matching"
           },
           {
@@ -628,7 +628,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 3,
             "title": "Movement Verbs: Fill in the Blank"
           },
           {
@@ -636,7 +636,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "parts-of-speech-game",
             "href": "/activity/parts-of-speech-game?lesson=week-6-objects",
             "slot": "required",
-            "order": 5,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Week 6: Actions and Descriptions"
@@ -645,7 +645,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-3",
             "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 6 Quiz"

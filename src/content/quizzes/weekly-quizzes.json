@@ -548,11 +548,11 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fatima describes her trip to class. Put the words in order. Words: She / usually / leaves / home / at / 5:30",
+        "prompt": "Fatima gives a new classmate directions to the classroom. Put the words in order. Words: Take / the / stairs / and / turn / left",
         "answers": [
-          "She usually leaves home at 5:30"
+          "Take the stairs and turn left"
         ],
-        "explanation": "Usually goes before the main verb: She usually leaves.",
+        "explanation": "Imperatives start with the base verb: Take..., turn...",
         "source": "your-week-in-english/your-week-qws1"
       }
     ]

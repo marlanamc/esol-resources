@@ -62,7 +62,10 @@ export const frequencyBar = (
 };
 
 // ---------------------------------------------------------------------------
-// Weekly schedule: a Mon-Sun grid. Scrolls inside its own box on phones.
+// Weekly schedule: a Mon-Sun grid that fits a phone with no sideways scroll.
+// Each activity gets its own label line above a full-width row of 7 days, so
+// the day columns share the whole width instead of losing a third of it to
+// the labels. Keep cell text short (5 characters or fewer: "6:15", "7-3").
 // ---------------------------------------------------------------------------
 
 export type ScheduleCell = { text: string; accent?: Accent } | null;
@@ -88,7 +91,7 @@ export const scheduleChart = ({
   const head = days
     .map(
       (d) =>
-        `<th class="gc-table-divider" style="padding: 0.4rem 0.3rem; font-size: 0.78rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.12)">${d}</th>`
+        `<th class="gc-table-divider" scope="col" style="padding: 0.3rem 0; font-size: 0.72rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.12)">${d}</th>`
     )
     .join("");
 
@@ -97,21 +100,23 @@ export const scheduleChart = ({
       const cells = row.cells
         .map((cell) => {
           if (!cell) {
-            return `<td style="padding: 0.3rem; text-align: center; opacity: 0.35">·</td>`;
+            return `<td style="padding: 0.15rem; text-align: center; opacity: 0.35">·</td>`;
           }
           const accent = cell.accent ?? "terracotta";
-          return `<td style="padding: 0.25rem"><div class="gc-bg-${accent}-alpha gc-text-${accent}" style="padding: 0.3rem 0.2rem; border-radius: 0.4rem; font-size: 0.74rem; font-weight: 700; text-align: center; line-height: 1.25">${cell.text}</div></td>`;
+          return `<td style="padding: 0.15rem"><div class="gc-bg-${accent}-alpha gc-text-${accent}" style="padding: 0.3rem 0; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 700; text-align: center; line-height: 1.25; white-space: nowrap">${cell.text}</div></td>`;
         })
         .join("");
-      return `<tr><th scope="row" style="padding: 0.3rem 0.5rem 0.3rem 0; font-size: 0.8rem; text-align: left; white-space: nowrap">${row.label}</th>${cells}</tr>`;
+      return `
+        <tr><th scope="rowgroup" colspan="${days.length}" style="padding: 0.55rem 0 0.1rem 0; font-size: 0.85rem; text-align: left">${row.label}</th></tr>
+        <tr>${cells}</tr>`;
     })
     .join("");
 
   return frame(`
     ${header(kicker, title, "sage")}
-    <div style="overflow-x: auto; padding: 0 0.75rem 0.75rem 1rem">
-      <table style="width: 100%; min-width: 30rem; border-collapse: collapse; table-layout: fixed">
-        <thead><tr><th style="width: 5.5rem"></th>${head}</tr></thead>
+    <div style="padding: 0 0.75rem 0.75rem 0.75rem">
+      <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+        <thead><tr>${head}</tr></thead>
         <tbody>${body}</tbody>
       </table>
     </div>
@@ -184,5 +189,41 @@ export const checklist = ({
   return frame(`
     ${header(kicker, title, "amber")}
     <div style="display: grid; gap: 0.4rem; padding: 0.25rem 1rem 0.9rem 1rem">${rows}</div>
+  `);
+};
+
+// ---------------------------------------------------------------------------
+// Steps card: numbered instructions (a sign, an app alert, a text with
+// directions). Sets up imperatives: "Walk...", "Don't wait...".
+// ---------------------------------------------------------------------------
+
+export const stepsCard = ({
+  kicker = "Steps",
+  title,
+  steps,
+  note,
+  accent = "blue",
+}: {
+  kicker?: string;
+  title: string;
+  steps: string[];
+  note?: string;
+  accent?: Accent;
+}): string => {
+  const rows = steps
+    .map(
+      (text, i) => `
+        <div style="display: flex; gap: 0.65rem; align-items: baseline; padding: 0.4rem 0">
+          <span class="gc-bg-${accent}-alpha gc-text-${accent}" style="flex: none; width: 1.5rem; height: 1.5rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700">${i + 1}</span>
+          <span style="font-size: 0.95rem; line-height: 1.5">${text}</span>
+        </div>
+      `
+    )
+    .join("");
+
+  return frame(`
+    ${header(kicker, title, accent)}
+    <div style="padding: 0 1rem 0.6rem 1rem">${rows}</div>
+    ${note ? `<div style="padding: 0 1rem 0.8rem 1rem; font-size: 0.85rem; opacity: 0.85">${note}</div>` : ""}
   `);
 };

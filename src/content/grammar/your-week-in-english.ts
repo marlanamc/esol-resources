@@ -1,6 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { yourWeekInEnglishImages as img } from "@/data/your-week-in-english-images.generated";
-import { checklist, frequencyBar, readingCard, scheduleChart } from "@/content/grammar/_shared/guide-visuals";
+import { frequencyBar, readingCard, scheduleChart, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -443,115 +443,120 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
 
     // -----------------------------------------------------------------------
-    // SECTION 4. Present Perfect callback: "I've already..."
+    // SECTION 4. Imperatives: following a bus alert
     // -----------------------------------------------------------------------
     {
-      id: "already-this-week",
+      id: "imperatives-bus-alert",
       stepNumber: 4,
-      title: "This week I've already...",
-      icon: "✅",
+      title: "Walk one block. Don't wait here.",
+      icon: "🚏",
       explanation: `
-        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">It's Friday afternoon. Rosa looks at her to-do list for the week. What has she already done?</p>
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">On Tuesday, Jessica helped Rosa download the bus app. On Wednesday morning, this alert is on her phone.</p>
 
-        ${checklist({
-          kicker: "Checklist",
-          title: "Rosa's list: this week",
-          items: [
-            { text: "Download the MBTA bus app", done: true },
-            { text: "Find the new bus stop next to the pharmacy", done: true },
-            { text: "Delete the fake toll text", done: true },
-            { text: "Go to English class on Tuesday and Thursday", done: true },
-            { text: "Reload my CharlieCard", done: false },
+        ${stepsCard({
+          kicker: "Bus app alert",
+          title: "Route 116: detour this week",
+          steps: [
+            "<strong>Don't wait</strong> at the stop on Meridian Street. The 116 doesn't stop there this week.",
+            "<strong>Walk</strong> one block to the pharmacy.",
+            "<strong>Wait</strong> at the temporary stop next to the pharmacy.",
+            "<strong>Check</strong> the app for bus times.",
+            "<strong>Don't run</strong> after the bus. The next one comes in 15 minutes.",
           ],
+          note: "Valentina, Rosa's neighbor, doesn't have the app.",
         })}
 
-        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">You saw <strong>already</strong> in the Week 5 guide. Here it shows up again. When something is finished <em>this week</em> or <em>today</em>, English uses <strong>have/has + already + V3</strong>.</p>
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem">An <strong>imperative</strong> tells someone what to do. Start with the <strong>base verb</strong>. There is no subject: <em><strong>Walk</strong> one block.</em> (not <em>You walk one block.</em>)</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("already done", "sage")}
-            <span><em>Rosa <strong>has already downloaded</strong> the bus app.</em></span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
+            ${labelPill("do", "sage")}
+            <span><em><strong>Take</strong> the 116. <strong>Turn</strong> left at the corner.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("already done", "sage")}
-            <span><em>She <strong>has already deleted</strong> the fake toll text.</em></span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.07); border-radius: 0.4rem">
+            ${labelPill("don't", "terracotta")}
+            <span><em><strong>Don't</strong> + base verb: <strong>Don't click</strong> the link. <strong>Don't pay</strong>.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("already done", "sage")}
-            <span><em>I <strong>have already gone</strong> to class twice this week.</em></span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(74,111,165,0.07); border-radius: 0.4rem">
+            ${labelPill("polite", "blue")}
+            <span><em><strong>Please</strong> + imperative: <strong>Please sit</strong> down.</em></span>
           </div>
         </div>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 0.9rem 1.1rem; border-radius: 0.5rem; margin: 1rem 0">
-          <p style="margin: 0; font-weight: 700; font-size: 0.9rem">Remember from Week 5</p>
-          <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem">I / You / We / They use <strong>have</strong>. He / She / It uses <strong>has</strong>. The main verb is always V3 (worked, gone, done, finished).</p>
+          <p style="margin: 0; font-weight: 700; font-size: 0.9rem">Watch out</p>
+          <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem">Say <strong>Don't</strong> + base verb. Not <em>Not go</em>, not <em>Don't to go</em>, not <em>Don't going</em>.</p>
         </div>
       `,
-      tenseDiagram: {
-        title: "Already: finished before now, still relevant",
-        elements: [
-          { id: "pp-arc", type: "arc", zone: "past", position: 55, verbLabel: "already finished (before NOW)" },
-        ],
-      },
       exercises: [
         {
-          id: "already-1",
-          title: "Have or has?",
+          id: "imperatives-1",
+          title: "Read the alert",
           items: [
             {
               type: "radio",
-              label: "Look at the checklist. Rosa ___ already deleted the fake toll text.",
+              label: "Look at the bus alert. Where does Rosa get the 116 this week?",
               options: [
-                { value: "have", label: "have" },
-                { value: "has", label: "has" },
-                { value: "is", label: "is" },
-              ],
-              expectedAnswer: "has",
-            },
-            {
-              type: "radio",
-              label: "Look at the checklist. Which sentence is true?",
-              options: [
-                { value: "a", label: "Rosa has already reloaded her CharlieCard." },
-                { value: "b", label: "Rosa has already found the new bus stop." },
-                { value: "c", label: "Rosa has already deleted the bus app." },
+                { value: "a", label: "At her usual stop on Meridian Street" },
+                { value: "b", label: "One block away, by the pharmacy" },
+                { value: "c", label: "At the hotel by the airport" },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "\"I have already went to class today.\" What is wrong?",
+              label: "Look at the bus alert. Rosa misses a bus. How many minutes until the next one?",
+              options: [
+                { value: "5", label: "5" },
+                { value: "15", label: "15" },
+                { value: "60", label: "60" },
+              ],
+              expectedAnswer: "15",
+            },
+            {
+              type: "radio",
+              label: "Which sentence is a correct imperative?",
+              options: [
+                { value: "a", label: "You turn right at the bank." },
+                { value: "b", label: "Turn right at the bank." },
+                { value: "c", label: "Turning right at the bank." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "\"Not stand near the door.\" What is wrong?",
               options: [
                 { value: "correct", label: "Nothing is wrong." },
-                { value: "incorrect", label: "Not correct. V3 of 'go' is 'gone', not 'went'. Should be: 'I have already gone.'" },
+                { value: "incorrect", label: "Not correct. Use don't + base verb: 'Don't stand near the door.'" },
               ],
               expectedAnswer: "incorrect",
             },
             {
               type: "text",
-              label: "Look at the checklist. Rosa has already ___ the bus app. (download)",
-              expectedAnswers: ["downloaded"],
+              label: "A sign on the bus says: \"Please ___ your seat to older people.\" (give)",
+              expectedAnswers: ["give"],
             },
           ],
         },
         {
-          id: "already-2",
+          id: "imperatives-2",
           title: "Build the sentence",
           items: [
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "has", "already", "finished", "her", "homework", "this", "week"],
-              correctAnswer: "She has already finished her homework this week",
+              words: ["Please", "don't", "eat", "on", "the", "bus"],
+              correctAnswer: "Please don't eat on the bus",
             },
           ],
         },
       ],
       tipBox: {
-        title: "Want to go deeper?",
-        content: "This was a quick look at the present perfect with <em>already</em>. For the full guide with more examples, more exercises, and the complete explanation, open the <a href=\"/grammar-reader/present-perfect\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Guide</a>.",
+        title: "Want more directions practice?",
+        content: "For more ways to give directions (turn left, go straight, across from), open the optional <a href=\"/grammar-reader/getting-there-directions\" style=\"font-weight:700;text-decoration:underline\">Getting There guide</a>. You can find it in the Week 6 extras.",
       },
     },
 
@@ -572,11 +577,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           { speaker: "Valentina", avatar: "👩🏾", text: "No. I <strong>always</strong> take the bus. And I missed class Thursday. The 116 <strong>never</strong> came.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "It's detoured. The stop is next to the pharmacy this week. I <strong>usually</strong> check the app now.", side: "right", tone: "terracotta" },
           { speaker: "Valentina", avatar: "👩🏾", text: "You? The app? On Tuesday you didn't even have it.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "A lot can change in a week. And that text is fake. I <strong>have already deleted</strong> mine.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "A lot can change in a week. And that text is fake. <strong>Don't pay</strong> it. <strong>Delete</strong> it.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">Put it all together: <strong>adverbs of frequency</strong> + <strong>present simple</strong> + <strong>time expressions</strong> + <strong>already</strong> = a full picture of your week.</p>
+          <p style="margin: 0; font-size: 1.05rem">Put it all together: <strong>adverbs of frequency</strong> + <strong>present simple</strong> + <strong>time expressions</strong> tell people about your week. <strong>Imperatives</strong> help a friend.</p>
         </div>
 
         <div style="margin: 1rem 0; padding: 1rem 1.25rem; background: rgba(176,87,64,0.05); border-radius: 0.5rem; border: 1px solid rgba(176,87,64,0.15)">
@@ -584,8 +589,8 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           <p style="margin: 0; line-height: 1.75; font-size: 0.95rem">
             I work five days a week at a hotel by the airport. I <strong>always</strong> take the 116 <strong>in the morning</strong>.
             I come to English class <strong>twice a week</strong>, <strong>on Tuesdays and Thursdays</strong>.
-            This week the bus was detoured, but I <strong>have already gone</strong> to class twice.
-            Now I <strong>usually</strong> check the app before I leave. I <strong>never</strong> click links in texts about tolls. I don't even have a car.
+            This week the bus stop is next to the pharmacy. Now I <strong>usually</strong> check the app before I leave.
+            I <strong>never</strong> click links in texts about tolls. I don't even have a car. My advice? <strong>Get</strong> the app, and <strong>don't pay</strong> fake tolls.
           </p>
         </div>
       `,
@@ -606,28 +611,28 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Valentina missed class Thursday. She has already ___ to class once this week, on Tuesday. (go)",
+              label: "Valentina waited at the old bus stop on Thursday. What can Rosa tell her?",
               options: [
-                { value: "gone", label: "gone (V3)" },
-                { value: "went", label: "went (past simple)" },
-                { value: "go", label: "go (base form)" },
+                { value: "a", label: "Not wait at the Meridian Street stop." },
+                { value: "b", label: "Don't wait at the Meridian Street stop." },
+                { value: "c", label: "You don't waiting at the Meridian Street stop." },
               ],
-              expectedAnswer: "gone",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "\"This week she has already finished her homework.\" Which part of this sentence uses present perfect?",
+              label: "Valentina got a text about a $6.95 toll. She doesn't have a car. What is the best advice?",
               options: [
-                { value: "a", label: "This week" },
-                { value: "b", label: "has already finished" },
-                { value: "c", label: "her homework" },
+                { value: "a", label: "Pay it today." },
+                { value: "b", label: "Delete it. It's fake." },
+                { value: "c", label: "Click the link and check." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "This week Valentina ___ already gone to class once.",
-              expectedAnswers: ["has"],
+              label: "Valentina doesn't have a car. She ___ the bus. (always / take)",
+              expectedAnswers: ["always takes"],
             },
           ],
         },
@@ -644,15 +649,15 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["He", "has", "already", "worked", "three", "shifts", "this", "week"],
-              correctAnswer: "He has already worked three shifts this week",
+              words: ["Don't", "wait", "for", "the", "bus", "in", "the", "street"],
+              correctAnswer: "Don't wait for the bus in the street",
             },
           ],
         },
       ],
       tipBox: {
         title: "Great work this week",
-        content: "You now know how to talk about your weekly routine in English using adverbs of frequency, present simple, time expressions, and already. Next: giving directions and using imperatives.",
+        content: "You now know how to talk about your weekly routine in English using adverbs of frequency, present simple, and time expressions. You can also give simple instructions with imperatives. Next week: making suggestions.",
       },
     },
   ],
@@ -702,14 +707,14 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "your-week-qws1",
       type: "word-scramble" as const,
-      question: "Fatima describes her trip to class. Put the words in order.",
-      words: ["She", "usually", "leaves", "home", "at", "5:30"],
-      correctAnswer: "She usually leaves home at 5:30",
-      hint: "Adverbs of frequency go before the main verb",
-      explanation: "Usually goes before the main verb: She usually leaves.",
-      topic: "adverbs-of-frequency",
+      question: "Fatima gives a new classmate directions to the classroom. Put the words in order.",
+      words: ["Take", "the", "stairs", "and", "turn", "left"],
+      correctAnswer: "Take the stairs and turn left",
+      hint: "Imperatives start with the base verb. There is no subject.",
+      explanation: "Imperatives start with the base verb: Take..., turn...",
+      topic: "imperatives",
       skill: "usage",
-      skillTag: "adverb-position",
+      skillTag: "imperative-form",
       difficulty: "medium",
     },
     {
