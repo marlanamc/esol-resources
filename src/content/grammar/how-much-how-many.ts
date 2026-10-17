@@ -64,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -305,7 +305,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             <div class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Kitchen check</div>
             <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">What Claudette has at home</div>
           </div>
-          <div style="overflow-x: auto; padding: 0 0.5rem 0.75rem 0.5rem"><table style="width: 100%; border-collapse: collapse; font-size: 0.93rem"><thead><tr style="background: rgba(128,128,128,0.12)"><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Food</th><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">At home</th></tr></thead><tbody><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🥚 Eggs</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">24 eggs</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧅 Onions</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">3 onions</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🍚 Rice</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">a big bag, full</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧂 Salt</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">almost empty</td></tr></tbody></table></div>
+          <div style="overflow-x: auto; padding: 0 0.5rem 0.75rem 0.5rem"><table style="width: 100%; border-collapse: collapse; font-size: 0.93rem"><thead><tr style="background: rgba(128,128,128,0.12)"><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Food</th><th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">At home</th></tr></thead><tbody><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🥚 Eggs</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">27 eggs</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧅 Onions</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">3 onions</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🍚 Rice</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">a big bag, full</td></tr><tr style="border-bottom: 1px solid rgba(128,128,128,0.2)"><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">🧂 Salt</td><td style="padding: 0.5rem 0.4rem !important; vertical-align: top">almost empty</td></tr></tbody></table></div>
         </div>
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>A lot of</strong> works with both countable and uncountable nouns. <strong>A few</strong> is for countable nouns only. <strong>A little</strong> is for uncountable nouns only.</p>
@@ -317,15 +317,15 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             <span><em>I have <strong>a lot of</strong> rice.</em> / <em>I have <strong>a lot of</strong> cans.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("a few (countable)", "terracotta")}
+            ${labelPill("a few", "terracotta")}
             <span><em>I have <strong>a few</strong> onions.</em> / <em>I have <strong>a few</strong> apples.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
-            ${labelPill("a little (uncountable)", "sage")}
+            ${labelPill("a little", "sage")}
             <span><em>I have <strong>a little</strong> oil.</em> / <em>I have <strong>a little</strong> money.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(200,50,50,0.07); border-radius: 0.4rem">
-            <span class="gc-bg-terracotta-alpha gc-text-terracotta" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">not correct</span>
+            <span class="gc-bg-terracotta-alpha gc-text-terracotta" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">not correct</span>
             <span><em>I have a few oil.</em> &nbsp; <em>I have a little onions.</em></span>
           </div>
         </div>
@@ -410,7 +410,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Reading the Label",
       icon: "📦",
       explanation: `
-<p style="margin: 0 0 1rem 0">Friday evening, Fabienne meets Claudette in the cereal aisle. Sarah's children will stay for breakfast on Sunday, so Claudette compares two boxes of cereal (the labels are made up for this lesson).</p>
+<p style="margin: 0 0 1rem 0">Earlier on Friday, Fabienne meets Claudette in the cereal aisle. Sarah's children will stay for breakfast on Sunday, so Claudette compares two boxes of cereal (the labels are made up for this lesson).</p>
 
         <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
           <div style="padding: 0.75rem 1rem 0.5rem 1rem">
@@ -547,11 +547,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             <span><em>I don't have <strong>enough</strong> plates.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("too many (countable)", "terracotta")}
+            ${labelPill("too many", "terracotta")}
             <span><em>I bought <strong>too many</strong> bags. / <strong>too many</strong> cans.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.10); border-radius: 0.4rem">
-            ${labelPill("too much (uncountable)", "amber")}
+            ${labelPill("too much", "amber")}
             <span><em>There's <strong>too much</strong> food. / <strong>too much</strong> salt.</em></span>
           </div>
         </div>
