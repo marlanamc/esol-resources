@@ -361,7 +361,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           },
           paragraphs: [
             "When Sylvia Mendez was eight years old, her parents <strong>tried to enroll</strong> her at a school in California. The school was for white children, so she was sent to the school for Mexican children. Her family went to court. In 1946, a federal judge ruled for them, and a higher court agreed a year later.",
-            "Sylvia later became a nurse. She became Assistant Nursing Director of the Pediatric Pavilion at a Los Angeles hospital. After <strong>retiring</strong>, she taught students about the case. Today she travels the country, <strong>giving</strong> speeches about education. In 2011, she received the Presidential Medal of Freedom.",
+            "The case <strong>helped to end</strong> school segregation in California. Years later, Sylvia <strong>enjoyed talking</strong> to students about it. She traveled around the country, <strong>giving</strong> speeches about the value of a good education. In 2011, she received the Presidential Medal of Freedom.",
           ],
           sources: [
             { name: "The White House (Obama archives): 2010 Presidential Medal of Freedom recipient Sylvia Mendez", url: "https://obamawhitehouse.archives.gov/node/26318" },
@@ -463,7 +463,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Sylvia travels the country, ___ speeches about education.",
+              label: "Sylvia traveled the country, ___ speeches about education.",
               options: [
                 { value: "a", label: "to give" },
                 { value: "b", label: "giving" },
