@@ -294,7 +294,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
             <tbody>
               <tr>
                 <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>have to</strong> turn in your time sheet on Friday.</td>
-                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>should</strong> tell Jennifer before you leave the line.</td>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>should</strong> drink water during a long shift.</td>
               </tr>
               <tr>
                 <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>must not</strong> leave the stove on when you go home.</td>
@@ -392,7 +392,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "Hey Sagal. A few things for tomorrow.", side: "left", tone: "terracotta" },
           { speaker: "Sagal", avatar: "👩🏿", text: "OK, what's up?", side: "right", tone: "sage" },
           { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "First, you <strong>must</strong> be here by 10. The health inspector is coming back at 10:30. No exceptions.", side: "left", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "You also <strong>have to</strong> cover Diego's lunch shift because he called out sick. I’m arranging someone to help you.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "You also <strong>have to</strong> cover Diego's lunch shift because he called out sick. I’m finding someone to help you.", side: "left", tone: "terracotta" },
           { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "And you <strong>should</strong> bring something to eat. It’ll be a long day.", side: "left", tone: "terracotta" },
         ])}
 
