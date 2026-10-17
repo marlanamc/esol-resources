@@ -621,7 +621,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
               <tbody>
                 <tr class="gc-row-stripe" style="background: rgba(0,0,0,0.02)">
                   <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">✅ Pay rent</td>
-                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">Monday</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">earlier this week</td>
                   <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem"><strong>already</strong></td>
                 </tr>
                 <tr>
