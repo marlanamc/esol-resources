@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { mustHaveToShouldAtWorkImages as img } from "@/data/must-have-to-should-at-work-images.generated";
+import { stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; min-width: min-content; max-width: 45%; overflow-wrap: normal">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -83,12 +84,12 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneKitchen", "A restaurant kitchen in East Boston, Monday morning. Sagal's first day.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Sagal just got a job as a prep cook. Before she touches any food, the manager, Jennifer, goes through the rules that come from the health code.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Sagal just got a job as a prep cook. Before she touches any food, the manager, Jennifer, goes through the kitchen's safety rules.</p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Before we start, you <strong>must</strong> wash your hands every time you come into the kitchen. It's the health code. No exceptions.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "Before we start, you <strong>must</strong> wash your hands every time you come into the kitchen. It's our kitchen safety rule. No exceptions.", side: "left", tone: "terracotta" },
           { speaker: "Sagal", avatar: "👩🏿", text: "Even when I just come back from my break?", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Every time. And you <strong>must not</strong> touch ready-to-eat food with your bare hands. Use gloves for the salads and sandwiches.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "Every time. And you <strong>must not</strong> touch ready-to-eat food with your bare hands. Use gloves for the salads and sandwiches.", side: "left", tone: "terracotta" },
           { speaker: "Sagal", avatar: "👩🏿", text: "Got it. Wash my hands, gloves for ready-to-eat food.", side: "right", tone: "sage" },
         ])}
 
@@ -128,7 +129,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jennifer says: \"You ___ wash your hands. It's the health code.\"",
+              label: "Jennifer says: \"You ___ wash your hands. It's a kitchen safety rule.\"",
               options: [
                 { value: "should", label: "should" },
                 { value: "must", label: "must" },
@@ -183,36 +184,22 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
       title: "Have to. Your employer's rules",
       icon: "🕐",
       explanation: `
-        ${sceneCard("sceneKitchen", "The same kitchen, Friday evening. Dinner rush starts in 30 minutes.", "sage")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Diego is a line cook here. He works double shifts most weeks, and Jennifer asked him to train Sagal. On Friday, before the dinner rush, he gives her a shift sheet. Look at what Sagal has to do.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Diego is a line cook here. He works double shifts most weeks, and Jennifer asked him to train Sagal. Before service, he explains how the restaurant runs.</p>
-
-        ${dialogue([
-          { speaker: "Diego", avatar: "👨🏽", text: "You <strong>have to</strong> clock in before your shift, not after. Jennifer checks the system every day.", side: "left", tone: "sage" },
-          { speaker: "Sagal", avatar: "👩🏿", text: "What if I'm running late?", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏽", text: "You <strong>have to</strong> text her if you’re going to be late. Do you have her number?", side: "left", tone: "sage" },
-          { speaker: "Sagal", avatar: "👩🏿", text: "Yes, I have it. What else?", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏽", text: "You <strong>have to</strong> wear the full uniform on the line. She checks that too.", side: "left", tone: "sage" },
-          { speaker: "Sagal", avatar: "👩🏿", text: "Got it. Clock in, text if I'm late, uniform always.", side: "right", tone: "terracotta" },
-        ])}
+        ${stepsCard({
+          kicker: "Shift sheet",
+          title: "Sagal's rules for every shift",
+          accent: "sage",
+          steps: [
+            "Sagal <strong>has to</strong> clock in before her shift, not after.",
+            "She <strong>has to</strong> text Jennifer if she is going to be late.",
+            "She <strong>has to</strong> wear the full uniform on the line.",
+          ],
+          note: "Jennifer checks the clock-in system every day.",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Have to / Has to</strong> = required by your employer's rules or procedures. Not optional, but less formal than a law.</p>
-        </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("required", "sage")}
-            <span><em>You <strong>have to</strong> clock in before your shift starts.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("required", "sage")}
-            <span><em>She <strong>has to</strong> wear her uniform on the line.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("required", "sage")}
-            <span><em>He <strong>has to</strong> text the manager before coming in late.</em></span>
-          </div>
         </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -226,6 +213,16 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           title: "Choose the correct form",
           instructions: "Pick the right answer for each sentence.",
           items: [
+            {
+              type: "radio",
+              label: "Look at Diego's shift sheet. Which sentence is true?",
+              options: [
+                { value: "a", label: "Sagal has to clock in after her shift starts." },
+                { value: "b", label: "Sagal has to text Jennifer if she is late." },
+                { value: "c", label: "Sagal has to bring her own uniform to the line." },
+              ],
+              expectedAnswer: "b",
+            },
             {
               type: "radio",
               label: "\"She ___ wear her uniform on the line.\" What is the correct form for she?",
@@ -283,38 +280,36 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
       title: "Should. What good workers do",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "The restaurant's back room. The next Tuesday, on break.", "amber")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Yesterday Sagal went out back for a phone call in the middle of the lunch rush, and nobody knew where she was. On their break, Diego gives her his first-week notes. Some are rules. Some are only advice, because they are not written down.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Yesterday Sagal went out back for a phone call in the middle of the lunch rush, and nobody knew where she was. On their break, Diego gives her some advice.</p>
-
-        ${dialogue([
-          { speaker: "Diego", avatar: "👨🏽", text: "You <strong>should</strong> tell Jennifer before you leave the line, even for a minute. She notices when people just disappear.", side: "left", tone: "amber" },
-          { speaker: "Sagal", avatar: "👩🏿", text: "Is that the rule?", side: "right", tone: "sage" },
-          { speaker: "Diego", avatar: "👨🏽", text: "It’s not written down, but you <strong>should</strong> let her know so someone can cover your station. You <strong>shouldn’t</strong> leave her guessing.", side: "left", tone: "amber" },
-          { speaker: "Sagal", avatar: "👩🏿", text: "I didn't know that. Thanks for telling me.", side: "right", tone: "sage" },
-        ])}
+        <div style="margin: 1.25rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08)">
+          <div style="padding: 0.65rem 1rem 0.2rem 1rem"><span class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Table</span><div style="font-weight: 700; font-size: 1.05rem">Rule or advice? Diego's first-week notes</div></div>
+          <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+            <thead>
+              <tr>
+                <th class="gc-bg-sage-alpha gc-text-sage" style="padding: 0.55rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.85rem; vertical-align: top">Rule<br>(must / have to)</th>
+                <th class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.55rem 0.6rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35); font-size: 0.85rem; vertical-align: top">Advice<br>(should / shouldn't)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>have to</strong> turn in your time sheet on Friday.</td>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>should</strong> drink water during a long shift.</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>must not</strong> leave the stove on when you go home.</td>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>shouldn't</strong> leave your station without telling anyone.</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>must</strong> wear non-slip shoes on the line.</td>
+                <td style="padding: 0.55rem 0.6rem; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: top; line-height: 1.45; font-size: 0.92rem">You <strong>should</strong> ask before you swap shifts.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Should / Shouldn't</strong> = strong advice. It's not a written rule, but problems happen if you ignore it.</p>
-        </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
-            ${labelPill("advice", "amber")}
-            <span><em>You <strong>should</strong> tell your manager before you leave the line.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
-            ${labelPill("advice", "amber")}
-            <span><em>You <strong>should</strong> ask before swapping shifts with a coworker.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
-            ${labelPill("avoid", "terracotta")}
-            <span><em>You <strong>shouldn't</strong> leave your station without checking in first.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.08); border-radius: 0.4rem">
-            ${labelPill("avoid", "terracotta")}
-            <span><em>She <strong>shouldn't</strong> swap stations without asking the manager.</em></span>
-          </div>
         </div>
       `,
       exercises: [
@@ -325,13 +320,23 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Sagal wants to step outside for a phone call. Which sentence gives the best advice?",
+              label: "Look at Diego's notes. Which sentence is advice, not a rule?",
               options: [
-                { value: "a", label: "She must tell her manager." },
-                { value: "b", label: "She should tell her manager." },
-                { value: "c", label: "She has to tells her manager." },
+                { value: "a", label: "Sagal should check with Jennifer before she changes shifts." },
+                { value: "b", label: "Sagal has to hand in her time sheet on Friday." },
+                { value: "c", label: "Sagal must turn off the stove before she goes home." },
               ],
-              expectedAnswer: "b",
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Look at Diego's notes. Which word does he use for the stove?",
+              options: [
+                { value: "must not", label: "must not" },
+                { value: "shouldn't", label: "shouldn't" },
+                { value: "don't have to", label: "don't have to" },
+              ],
+              expectedAnswer: "must not",
             },
             {
               type: "radio",
@@ -384,11 +389,11 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">The restaurant has a health re-inspection on Monday, and Diego has called out sick. Jennifer texts Sagal about the busy day ahead.</p>
 
         ${dialogue([
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Hey Sagal. A few things for tomorrow.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "Hey Sagal. A few things for tomorrow.", side: "left", tone: "terracotta" },
           { speaker: "Sagal", avatar: "👩🏿", text: "OK, what's up?", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "First, you <strong>must</strong> be here by 10. The health inspector is coming back at 10:30. No exceptions.", side: "left", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "You also <strong>have to</strong> cover Diego's lunch shift because he called out sick. I’m arranging someone to help you.", side: "left", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "And you <strong>should</strong> bring something to eat. It’ll be a long day.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "First, you <strong>must</strong> be here by 10. The health inspector is coming back at 10:30. No exceptions.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "You also <strong>have to</strong> cover Diego's lunch shift because he called out sick. I’m finding someone to help you.", side: "left", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩🏼‍💼", text: "And you <strong>should</strong> bring something to eat. It’ll be a long day.", side: "left", tone: "terracotta" },
         ])}
 
         <p style="margin: 1rem 0; line-height: 1.6">Three messages. Three different words. Here's why:</p>
@@ -396,7 +401,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.75rem; margin: 1rem 0">
           <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.07); border-radius: 0.5rem; border-left: 3px solid rgba(176,87,64,0.4)">
             <div style="font-weight: 700; margin-bottom: 0.3rem">${labelPill("must", "terracotta")} Health re-inspection at 10:30</div>
-            <p style="margin: 0; font-size: 0.95rem; line-height: 1.5">A city re-inspection. Official, non-negotiable, serious consequences. <strong>Must</strong> is correct.</p>
+            <p style="margin: 0; font-size: 0.95rem; line-height: 1.5">An inspector's visit. The restaurant cannot change it, and everyone has to be ready. A safety and cleanliness rule for all. <strong>Must</strong> is correct.</p>
           </div>
           <div style="padding: 0.75rem 1rem; background: rgba(106,141,115,0.07); border-radius: 0.5rem; border-left: 3px solid rgba(106,141,115,0.4)">
             <div style="font-weight: 700; margin-bottom: 0.3rem">${labelPill("have to", "sage")} Cover the lunch shift</div>
@@ -430,7 +435,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The city health inspector is coming. Jennifer says: \"You ___ be here by 10.\" Which word fits best?",
+              label: "The health inspector is coming back. Jennifer says: \"You ___ be here by 10.\" Which word fits best?",
               options: [
                 { value: "should", label: "should" },
                 { value: "must", label: "must" },
@@ -489,24 +494,24 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
             <thead>
               <tr style="background: rgba(106,141,115,0.1)">
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(0,0,0,0.1)">Modal</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(0,0,0,0.1)">Meaning</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(0,0,0,0.1)">Example</th>
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Modal</th>
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Meaning</th>
+                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Example</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid rgba(0,0,0,0.06)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #b05740">must</td>
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700" class="gc-text-terracotta">must</td>
                 <td style="padding: 0.6rem 0.75rem">Law or safety rule. No exceptions.</td>
                 <td style="padding: 0.6rem 0.75rem"><em>You must wash your hands.</em></td>
               </tr>
               <tr style="border-bottom: 1px solid rgba(0,0,0,0.06)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">have to</td>
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700" class="gc-text-sage">have to</td>
                 <td style="padding: 0.6rem 0.75rem">Employer's requirement.</td>
                 <td style="padding: 0.6rem 0.75rem"><em>She has to clock in on time.</em></td>
               </tr>
               <tr>
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #b08040">should</td>
+                <td style="padding: 0.6rem 0.75rem; font-weight: 700" class="gc-text-amber">should</td>
                 <td style="padding: 0.6rem 0.75rem">Strong advice. Good judgment.</td>
                 <td style="padding: 0.6rem 0.75rem"><em>You should tell your manager.</em></td>
               </tr>

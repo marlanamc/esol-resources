@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { itWasHappeningWhenImages as img } from "@/data/it-was-happening-when-images.generated";
+import { readingCard, scheduleChart, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (standard toolkit)
@@ -63,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; min-width: min-content; max-width: 45%; overflow-wrap: normal">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -172,13 +173,20 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneKitchen", "Lucia's apartment kitchen. Wednesday, 7:00 AM. Brian comes up to look at the damage.", "blue")}
-        ${dialogue([
-          { speaker: "Brian", avatar: "👨🏻", text: "Was anyone else awake when it happened?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "My younger kids <strong>were sleeping</strong>. I <strong>was mopping</strong> the kitchen when the water <strong>started</strong> coming through.", side: "right", tone: "blue" },
-          { speaker: "Brian", avatar: "👨🏻", text: "Was your older daughter in the kitchen too?", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Yes. She <strong>was finishing</strong> her homework. She <strong>was writing</strong> an essay for school at the table.", side: "right", tone: "blue" },
-        ])}
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">Wednesday, 7:00 AM. Brian comes up to look at the damage and asks: "What was everyone doing?" Lucia wrote down what each person was doing the night of the leak.</p>
+        ${scheduleChart({
+          kicker: "Chart",
+          title: "Tuesday night at Lucia's apartment",
+          days: ["11:00", "11:30", "11:45"],
+          rows: [
+            { label: "🛌 Younger kids", cells: [{ text: "sleep", accent: "blue" }, { text: "sleep", accent: "blue" }, { text: "sleep", accent: "blue" }] },
+            { label: "📝 Older daughter", cells: [{ text: "read", accent: "blue" }, { text: "write", accent: "blue" }, { text: "write", accent: "blue" }] },
+            { label: "🧹 Lucia", cells: [{ text: "wash", accent: "blue" }, { text: "mop", accent: "blue" }, { text: "mop", accent: "blue" }] },
+            { label: "🍚 Rice cooker", cells: [{ text: "run", accent: "blue" }, { text: "run", accent: "blue" }, { text: "run", accent: "blue" }] },
+            { label: "💥 Pipe", cells: [null, null, { text: "burst", accent: "amber" }] },
+          ],
+          note: "Look for the actions in progress. The pipe burst is the event that interrupted them.",
+        })}
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Continuous</strong> = an action already in progress at a moment in the past. It was running in the background. Form: <strong>was / were + verb-ing</strong>.</p>
         </div>
@@ -196,7 +204,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             <span><em>She <strong>was mopping</strong> the floor when the water came through.</em></span>
           </div>
         </div>
-        <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">On the timeline, past continuous is a line. The pipe burst (past simple) is the dot that interrupted it.</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin: 0.5rem 0 0">On the timeline, past continuous is a line. The pipe burst (past simple) is the dot that interrupted it.</p>
       `,
       exercises: [
         {
@@ -206,13 +214,23 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The kids ___ when the pipe burst. Which form fits?",
+              label: "Look at the chart. Which sentence is true?",
               options: [
-                { value: "slept", label: "slept (past simple)" },
-                { value: "were sleeping", label: "were sleeping (past continuous)" },
-                { value: "sleep", label: "sleep (present simple)" },
+                { value: "a", label: "At 11:30 the younger kids were writing." },
+                { value: "b", label: "At 11:30 Lucia was mopping." },
+                { value: "c", label: "At 11:45 the younger kids were mopping." },
               ],
-              expectedAnswer: "were sleeping",
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Look at the chart. Who was writing at 11:45?",
+              options: [
+                { value: "lucia", label: "Lucia" },
+                { value: "kids", label: "The younger kids" },
+                { value: "daughter", label: "The older daughter" },
+              ],
+              expectedAnswer: "daughter",
             },
             {
               type: "radio",
@@ -226,13 +244,13 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "rice", "cooker", "was", "still", "running", "at", "midnight"],
-              correctAnswer: "The rice cooker was still running at midnight",
+              words: ["Her", "daughter", "was", "reading", "at", "11:00"],
+              correctAnswer: "Her daughter was reading at 11:00",
             },
             {
               type: "text",
-              label: "Her daughter ___ (write) an essay for school when the pipe burst.",
-              expectedAnswers: ["was writing"],
+              label: "Look at the chart. At 11:00, Lucia ___ (wash) the dishes.",
+              expectedAnswers: ["was washing"],
             },
           ],
         },
@@ -253,12 +271,26 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${dialogue([
-          { speaker: "Amina", avatar: "👩🏿", text: "Lucia, what happened last night? I heard noise from upstairs.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "I <strong>was mopping</strong> the kitchen <strong>when</strong> the pipe <strong>burst</strong>. Water went everywhere.", side: "right", tone: "terracotta" },
-          { speaker: "Amina", avatar: "👩🏿", text: "<strong>While</strong> you <strong>were calling</strong> the landlord, I heard you on the phone. I almost knocked.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "I wish you had! The kids <strong>woke up while</strong> I <strong>was moving</strong> furniture away from the water.", side: "right", tone: "terracotta" },
-        ])}
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">Lucia's story uses <strong>when</strong> and <strong>while</strong>. So does the story of a real scientist. Read it and look for the line (in progress) and the dot (interruption).</p>
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Katalin Karikó: A Long Road to a Nobel Prize",
+          photo: {
+            url: "/images/guide-people/katalin-kariko.jpg",
+            alt: "Katalin Karikó smiling outside a university building, 2021",
+            credit: "Szeged University, 2021, CC BY-SA 4.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Karik%C3%B3_Katalin_Szegeden_(cropped).jpg",
+          },
+          paragraphs: [
+            "Katalin Karikó was born in Hungary in 1955. In 1989, she started a job at the University of Pennsylvania. She wanted to use mRNA as medicine, but it was hard to get money for her research.",
+            "She <strong>was</strong> still <strong>working</strong> on mRNA <strong>when</strong> Drew Weissman <strong>started</strong> a research group at the same university in 1997. <strong>While</strong> they <strong>were working</strong> together, they <strong>discovered</strong> a way to stop unwanted reactions to mRNA. That was in 2005. In 2023, they <strong>won</strong> the Nobel Prize.",
+          ],
+          sources: [
+            { name: "Nobel Prize: Press release 2023", url: "https://www.nobelprize.org/prizes/medicine/2023/press-release/" },
+            { name: "Nobel Prize: Katalin Karikó facts", url: "https://www.nobelprize.org/prizes/medicine/2023/kariko/facts/" },
+          ],
+          accent: "blue",
+        })}
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>when</strong> + past simple for the interruption. Use <strong>while</strong> + past continuous for the action that was in progress.</p>
         </div>
@@ -269,7 +301,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("while", "blue")}
-            <span><em><strong>While</strong> she <strong>was calling</strong> the landlord, Amina heard her voice.</em></span>
+            <span><em><strong>While</strong> she <strong>was calling</strong> the landlord, the kids woke up.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("when", "terracotta")}
@@ -280,7 +312,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             <span><em>The rice cooker <strong>was running while</strong> everyone <strong>slept</strong>.</em></span>
           </div>
         </div>
-        <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">Quick tip: the continuous action is the background (line). The simple action is the event that cut into it or happened during it (dot).</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin: 0.5rem 0 0">Quick tip: the continuous action is the background (line). The simple action is the event that cut into it or happened during it (dot).</p>
       `,
       exercises: [
         {
@@ -290,12 +322,23 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "She ___ the floor when the pipe burst. Which form fits in the blank?",
+              label: "Look at the reading. When did Karikó and Weissman make their discovery?",
               options: [
-                { value: "mopped", label: "mopped" },
-                { value: "was mopping", label: "was mopping" },
+                { value: "1989", label: "1989" },
+                { value: "2005", label: "2005" },
+                { value: "2023", label: "2023" },
               ],
-              expectedAnswer: "was mopping",
+              expectedAnswer: "2005",
+            },
+            {
+              type: "radio",
+              label: "Look at the reading. Which sentence about Karikó is correct?",
+              options: [
+                { value: "a", label: "Weissman started his group while Karikó was living in Hungary." },
+                { value: "b", label: "Weissman started his group while Karikó was working on mRNA." },
+                { value: "c", label: "Karikó was winning the Nobel Prize when Weissman started his group." },
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -318,8 +361,8 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["While", "Lucia", "was", "calling", "the", "landlord", "Amina", "listened"],
-              correctAnswer: "While Lucia was calling the landlord Amina listened",
+              words: ["The", "kids", "were", "sleeping", "when", "Lucia", "called", "Brian"],
+              correctAnswer: "The kids were sleeping when Lucia called Brian",
             },
             {
               type: "text",
@@ -408,12 +451,20 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
       id: "your-turn-what-happened",
       title: "Your Turn: What Happened?",
       explanation: `
-        ${sceneCard("sceneInspector", "Building hallway. Wednesday afternoon. Ms. Rivera from Inspectional Services visits.", "sage")}
-        ${dialogue([
-          { speaker: "Ms. Rivera", avatar: "👩‍💼", text: "Lucia, please look over this written statement. Tell me if anything is wrong.", side: "left", tone: "sage" },
-          { speaker: "Lucia", avatar: "👩🏽", text: "Sure. I want to get it right.", side: "right", tone: "terracotta" },
-        ])}
-        <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Help Lucia check her written statement. Correct the errors and build accurate sentences for the inspector's report.</p>
+        <p style="margin: 0 0 0.75rem 0; font-size: 1rem; line-height: 1.6">Ms. Rivera from Inspectional Services asked Lucia to check her written statement. Lucia wrote a first draft, but it has mistakes. Find the mistakes. Do not copy these sentences.</p>
+        ${stepsCard({
+          kicker: "Find the mistakes",
+          title: "Lucia's first draft (some sentences are wrong)",
+          accent: "amber",
+          steps: [
+            "The kids were sleep in the back room when the pipe burst.",
+            "I was mopping the kitchen when I heard a crack.",
+            "While the water came down, I was grabbing a bucket and called the landlord.",
+            "My older daughter was writing an essay at the table.",
+          ],
+          note: "Read each sentence. Is the tense right for the meaning?",
+        })}
+        <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Help Lucia fix her statement for the inspector's report.</p>
       `,
       exercises: [
         {
@@ -423,7 +474,17 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"The kids were sleep in the back room when the pipe burst.\"",
+              label: "Look at the statement. Which sentences have a mistake?",
+              options: [
+                { value: "a", label: "Sentence 1 only" },
+                { value: "b", label: "Sentences 1 and 3" },
+                { value: "c", label: "Sentences 2 and 3" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Sentence 1: \"The kids were sleep in the back room when the pipe burst.\"",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. Should be 'were sleeping' (was/were + verb-ing)." },
@@ -432,7 +493,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"I was mopping the kitchen when I heard a crack.\"",
+              label: "Sentence 2: \"I was mopping the kitchen when I heard a crack.\"",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct." },
@@ -441,7 +502,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"While the water came down, I was grabbing a bucket and called the landlord.\"",
+              label: "Sentence 3: \"While the water came down, I was grabbing a bucket and called the landlord.\"",
               options: [
                 { value: "correct", label: "Correct" },
                 { value: "incorrect", label: "Not correct. 'Was grabbing' should be 'grabbed' for the quick finished action." },
@@ -509,7 +570,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
     {
       id: "iwh-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"While Lucia ___ the landlord, Amina heard her voice.\" (Action in progress: past continuous.)",
+      question: "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
       correctAnswer: "was calling",
       explanation: "'While' introduces the action that was in progress, so past continuous (was calling) is needed. 'Called' would use past simple.",
       topic: "when-while",
