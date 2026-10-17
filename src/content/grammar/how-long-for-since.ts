@@ -64,7 +64,7 @@ const dialogue = (turns: Turn[]): string => {
 };
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
 
 // ---------------------------------------------------------------------------
 // Guide content
@@ -236,19 +236,19 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("for", "terracotta")}
-            <span><em>I <strong>have lived</strong> here <strong>for</strong> four years.</em> (= a length of time)</span>
+            <span><em>I <strong>have lived</strong> here <strong>for</strong> five years.</em> (= a length of time)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("since", "sage")}
-            <span><em>I <strong>have lived</strong> here <strong>since</strong> 2020.</em> (= a starting point)</span>
+            <span><em>I <strong>have lived</strong> here <strong>since</strong> 2021.</em> (= a starting point)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("for", "terracotta")}
-            <span><em>She <strong>has had</strong> the same phone plan <strong>for</strong> three years.</em></span>
+            <span><em>She <strong>has had</strong> the same phone company <strong>for</strong> three years.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("since", "sage")}
-            <span><em>She <strong>has had</strong> the same plan <strong>since</strong> she moved here.</em></span>
+            <span><em>She <strong>has had</strong> the same job <strong>since</strong> 2024.</em></span>
           </div>
         </div>
       `,
@@ -363,20 +363,20 @@ export const howLongForSinceContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        <p style="margin: 0 0 1rem 0; font-size: 1rem">The landlord's letter says tenants must fill out a form. Kevin in the leasing office gives Yesenia the form. Yesenia also needs to save money before the family moves, so last Saturday she switched to a cheaper phone plan. She writes it on the form too. Today is October 2026. Look at what she wrote.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 1rem">The landlord's letter asks every tenant to fill out a move-out form. Kevin in the leasing office gives Yesenia the form. Yesenia also needs to save money before the family moves, so last Saturday she switched to a cheaper phone plan. She writes it on the form too. Today is October 2026. Look at what she wrote.</p>
 
         <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
           <div style="padding: 0.75rem 1rem 0.5rem 1rem">
             <div class="gc-text-amber" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Form</div>
-            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Yesenia's tenant form</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Yesenia's move-out form</div>
           </div>
           <div style="padding: 0 0.5rem 0.75rem 0.5rem">
-            <table style="width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 0.93rem">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
               <thead>
                 <tr>
-                  <th class="gc-table-divider" scope="col" style="width: 4.6rem; padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Line</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Line</th>
                   <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Yesenia wrote</th>
-                  <th class="gc-table-divider" scope="col" style="width: 3.4rem; padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Since</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Since</th>
                 </tr>
               </thead>
               <tbody>
@@ -392,7 +392,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
                 </tr>
                 <tr>
                   <td class="gc-text-sage" style="padding: 0.5rem 0.3rem !important; font-weight: 700; vertical-align: top">📱 Phone</td>
-                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top">Same company. New plan $40 (was $65). Switched last Saturday to save for the move.</td>
+                  <td style="padding: 0.5rem 0.3rem !important; vertical-align: top">Same company. New plan: $40 (was $65).</td>
                   <td style="padding: 0.5rem 0.3rem !important; vertical-align: top"><strong>2023</strong></td>
                 </tr>
               </tbody>
@@ -593,8 +593,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
               type: "radio",
               label: "Read about Luis von Ahn. In 2009, he ___ reCAPTCHA to Google.",
               options: [
-                { value: "sold", label: "sold (past simple. finished)" },
-                { value: "has sold", label: "has sold (present perfect)" },
+                { value: "sold", label: "sold" },
+                { value: "has sold", label: "has sold" },
               ],
               expectedAnswer: "sold",
             },
@@ -602,8 +602,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
               type: "radio",
               label: "Read about Luis von Ahn. He ___ on Duolingo since 2011. (He still works on it.)",
               options: [
-                { value: "worked", label: "worked (past simple. finished)" },
-                { value: "has worked", label: "has worked (present perfect. still true now)" },
+                { value: "worked", label: "worked" },
+                { value: "has worked", label: "has worked" },
               ],
               expectedAnswer: "has worked",
             },
@@ -611,8 +611,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
               type: "radio",
               label: "Yesenia ___ at the hotel for two years. (She still works there.)",
               options: [
-                { value: "worked", label: "worked (past simple. finished)" },
-                { value: "has worked", label: "has worked (present perfect. still true now)" },
+                { value: "worked", label: "worked" },
+                { value: "has worked", label: "has worked" },
               ],
               expectedAnswer: "has worked",
             },
@@ -681,7 +681,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8; font-size: 0.95rem">
             <li>I <strong>have lived</strong> here <strong>for</strong> five years.</li>
             <li>I <strong>have worked</strong> this shift <strong>since</strong> October.</li>
-            <li>She <strong>has had</strong> the same phone plan <strong>for</strong> three years.</li>
+            <li>She <strong>has had</strong> the same phone company <strong>for</strong> three years.</li>
             <li>We <strong>have known</strong> our landlord <strong>since</strong> we moved in.</li>
             <li>How long <strong>has</strong> it <strong>been</strong> since you saw your family?</li>
           </ul>
@@ -704,7 +704,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Yesenia has had the same phone company ___ 2023. (She wrote it on her tenant form.)",
+              label: "Yesenia has had the same phone company ___ 2023. (She wrote it on her move-out form.)",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
@@ -799,11 +799,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "hlfs-q2",
-      question: "Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
+      question: "Yesenia chose her phone company three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
       options: [
-        { value: "a", label: "I have had this plan for since three years." },
-        { value: "b", label: "I have had this plan for three years." },
-        { value: "c", label: "I have had this plan for 2023." },
+        { value: "a", label: "I have had this company for since three years." },
+        { value: "b", label: "I have had this company for three years." },
+        { value: "c", label: "I have had this company for 2023." },
       ],
       correctAnswer: "b",
       explanation: "'For' takes a length of time (three years), not a starting year (2023).",
