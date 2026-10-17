@@ -505,11 +505,12 @@ export const haveYouEverContent: InteractiveGuideContent = {
           kicker: "Famous person",
           title: "José Andrés: A Cook Who Feeds Communities",
           paragraphs: [
-            "José Andrés <strong>was born</strong> in Spain. In 1990, he <strong>moved</strong> to the United States, and he <strong>arrived</strong> in New York City at age 21. In December 2013, he <strong>became</strong> a U.S. citizen.",
+            "José Andrés <strong>was born</strong> in Spain. In the early 1990s, he <strong>moved</strong> to the United States. He <strong>arrived</strong> in New York City at age 21. In 2013, he <strong>became</strong> a U.S. citizen.",
             "He <strong>has worked</strong> as a chef in restaurants, but he <strong>has</strong> also <strong>helped</strong> many people in a crisis. His group, World Central Kitchen, <strong>has served</strong> chef-prepared meals to communities after natural disasters. It <strong>has helped</strong> people in places like Guam, Panama, and Ukraine.",
           ],
           sources: [
             { name: "World Central Kitchen", url: "https://wck.org/" },
+            { name: "The Washington Post (2013)", url: "https://www.washingtonpost.com/news/reliable-source/wp/2013/11/14/jose-andres-becomes-a-u-s-citizen-after-23-years-in-the-country/" },
             { name: "Wikipedia: José Andrés", url: "https://en.wikipedia.org/wiki/Jos%C3%A9_Andr%C3%A9s" },
           ],
           accent: "blue",
@@ -562,9 +563,9 @@ export const haveYouEverContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "José Andrés ___ to the United States in 1990.",
+              label: "José Andrés ___ to the United States in the early 1990s.",
               options: [
-                { value: "moved", label: "moved (past simple. specific time: 1990)" },
+                { value: "moved", label: "moved (past simple. specific time: the early 1990s)" },
                 { value: "has moved", label: "has moved (present perfect)" },
               ],
               expectedAnswer: "moved",
