@@ -418,7 +418,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ${condTable("Overtime at the hotel", ["Sentence", "Type"], [
           ["Marta: If there <strong>is</strong> overtime tomorrow, I <strong>will take</strong> it.", "Real and possible. First conditional."],
           ["Carmen: If it <strong>weren't</strong> my son's birthday, I <strong>would take</strong> it too.", "Not real. Second conditional."],
-          ["Carmen: If the pay <strong>were</strong> double, I <strong>would</strong> do Friday night.", "Not real. Second conditional."],
+          ["Carmen: If the hotel <strong>paid</strong> double, I <strong>would work</strong> on Friday night.", "Not real. Second conditional."],
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
