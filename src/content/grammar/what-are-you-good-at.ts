@@ -204,7 +204,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
       title: "Outside the Meeting",
       icon: "💬",
       explanation: `
-        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Thursday, 6:50 PM, outside the library. Marta cleans rooms at a hotel. Bruno paints houses. The first idea at the meeting is a morning crossing watch: neighbors in orange vests help kids cross from 7:30 to 8:00. Bruno signs up for Tuesdays. Marta takes Thursdays. Ms. Patel asks everyone how they feel and writes it down.</p>
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Thursday, 7:15 PM, inside the library. The meeting has started. Marta cleans rooms at a hotel. Bruno paints houses. The first idea is a morning crossing watch: neighbors in orange vests help kids cross from 7:30 to 8:00. Bruno signs up for Tuesdays. Marta takes Thursdays. Ms. Patel asks everyone how they feel and writes it down.</p>
 
         <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
           <div style="padding: 0.75rem 1rem 0.5rem 1rem">
@@ -277,13 +277,13 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Marta is tired of ___ for a safe place to cross.",
+              label: "Look at the survey. Which sentence is true?",
               options: [
-                { value: "looking", label: "looking" },
-                { value: "look", label: "look" },
-                { value: "looks", label: "looks" },
+                { value: "a", label: "Marta is nervous about helping the kids." },
+                { value: "b", label: "Bruno's daughter is excited about seeing her dad at the corner." },
+                { value: "c", label: "Bruno is proud of finding a safe place to cross." },
               ],
-              expectedAnswer: "looking",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
