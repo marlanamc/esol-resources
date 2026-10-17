@@ -538,7 +538,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           accent: "terracotta",
           paragraphs: [
             "Sarah Breedlove was born in Louisiana in 1867. She lost her parents when she was seven. Before she started her own business, she <strong>had worked</strong> as a farm laborer and a laundress.",
-            "In the 1890s, she lost much of her hair because of a scalp problem. In 1905, she moved to Denver and began her own business as &ldquo;Madam&rdquo; C. J. Walker. Before she <strong>settled</strong> in Indianapolis in 1910, she <strong>had traveled</strong> through the South and Southeast, selling door to door. In Indianapolis, she built a factory and a training school.",
+            "In the 1890s, she lost much of her hair because of a scalp problem. In 1905, she moved to Denver. There, she began her own business as &ldquo;Madam&rdquo; C. J. Walker. Before she <strong>settled</strong> in Indianapolis in 1910, she <strong>had traveled</strong> through the South and Southeast, selling door to door. In Indianapolis, she built a factory and a training school.",
           ],
           photo: {
             url: "/images/guide-people/madam-cj-walker.jpg",
