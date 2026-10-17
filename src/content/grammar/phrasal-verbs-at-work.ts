@@ -480,7 +480,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           note: "No sign-off, no swap. Jennifer needs the form before the end of her shift.",
         })}
 
-        <p style="margin: 0.75rem 0">Gabriela and Marta use a lot of phrasal verbs in one short swap. This is normal at work. Here is the full review list.</p>
+        <p style="margin: 0.75rem 0">Five short steps use six phrasal verbs. This is normal at work. Here is the full review list.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
