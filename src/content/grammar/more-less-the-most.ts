@@ -387,7 +387,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "more-rooms-less-noise",
       stepNumber: 3,
-      title: "More Rooms, Less Noise",
+      title: "More Rooms, Less Rent",
       icon: "🏠",
       explanation: `
         <p style="margin: 0 0 0.75rem 0">Rosa's friends Fernanda and Diego need a new apartment. They look at three listings. The bars show the rent.</p>
@@ -462,8 +462,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the listings. The Chelsea Street apartment has ___ bedrooms than the Maverick Street apartment.",
               options: [
-                { value: "less", label: "less (uncountable)" },
-                { value: "fewer", label: "fewer (countable. you can count bedrooms)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "fewer",
             },
@@ -471,8 +471,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the listings. The Chelsea Street apartment costs ___ money than the Bremen Street apartment.",
               options: [
-                { value: "less", label: "less (uncountable. money is not countable)" },
-                { value: "fewer", label: "fewer (countable)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "less",
             },
@@ -480,8 +480,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the listings. The trip from Maverick Street takes ___ time than the trip from Bremen Street.",
               options: [
-                { value: "less", label: "less (uncountable. time is not countable)" },
-                { value: "fewer", label: "fewer (countable)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "less",
             },
@@ -489,8 +489,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
               type: "radio",
               label: "Diego wants ___ problems with the landlord than last time.",
               options: [
-                { value: "less", label: "less (uncountable)" },
-                { value: "fewer", label: "fewer (countable. you can count problems)" },
+                { value: "less", label: "less" },
+                { value: "fewer", label: "fewer" },
               ],
               expectedAnswer: "fewer",
             },
