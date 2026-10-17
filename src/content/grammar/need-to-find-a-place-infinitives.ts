@@ -301,14 +301,14 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "I Hope to Find Something Before Rent Goes Up",
       icon: "📋",
       explanation: `
-        <p>Rosa reads about a teacher who also came to a new country to build a new life. Look at <strong>wanted to</strong> and <strong>needed to</strong>. They are the same pattern as <em>want to</em> and <em>need to</em>, only in the past.</p>
+        <p>Rosa <strong>hopes to find</strong> a place before spring, when prices go up. She <strong>plans to ask</strong> every landlord about the heat. On Saturday, she reads about a teacher who also came to a new country to build a new life. Look at <strong>wanted to</strong> and <strong>needed to</strong>. They are the same pattern as <em>want to</em> and <em>need to</em>, only in the past.</p>
 
         ${readingCard({
           kicker: "Real person",
           title: "Jaime Escalante, math teacher",
           paragraphs: [
             "Jaime Escalante was born in La Paz, Bolivia. In the 1960s he <strong>wanted to</strong> find a better life, so he moved to the United States. He worked many odd jobs and taught himself English. He also <strong>needed to</strong> earn another college degree before he could teach again.",
-            "In 1974 he began teaching math at Garfield High School in East Los Angeles. In 1982, his largest class took the AP Calculus test and passed. Some scores were questioned, and many students took the test again and passed.",
+            "In 1974 he took a job at Garfield High School in East Los Angeles. In 1982, his largest class took the AP Calculus test and passed. Some scores were questioned, and many students took the test again and passed.",
           ],
           sources: [{ name: "Biography.com", url: "https://www.biography.com/educator/jaime-escalante" }],
           accent: "sage",
