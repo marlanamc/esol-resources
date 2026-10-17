@@ -66,6 +66,9 @@ export const frequencyBar = (
 // Each activity gets its own label line above a full-width row of 7 days, so
 // the day columns share the whole width instead of losing a third of it to
 // the labels. Keep cell text short (5 characters or fewer: "6:15", "7-3").
+// The reader's phone CSS forces `padding: 0.5rem 0.6rem !important` and
+// `overflow-wrap: anywhere` on every th/td, which split "Mon" into "Mo/n" in a
+// 7-day row, so these cells set their own padding with !important.
 // ---------------------------------------------------------------------------
 
 export type ScheduleCell = { text: string; accent?: Accent } | null;
@@ -91,7 +94,7 @@ export const scheduleChart = ({
   const head = days
     .map(
       (d) =>
-        `<th class="gc-table-divider" scope="col" style="padding: 0.3rem 0; font-size: 0.72rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.12)">${d}</th>`
+        `<th class="gc-table-divider" scope="col" style="padding: 0.3rem 0 !important; font-size: 0.72rem; text-align: center; white-space: nowrap !important; overflow-wrap: normal !important; border-bottom: 1px solid rgba(0,0,0,0.12)">${d}</th>`
     )
     .join("");
 
@@ -100,14 +103,14 @@ export const scheduleChart = ({
       const cells = row.cells
         .map((cell) => {
           if (!cell) {
-            return `<td style="padding: 0.15rem; text-align: center; opacity: 0.35">·</td>`;
+            return `<td style="padding: 0.15rem !important; text-align: center; opacity: 0.35">·</td>`;
           }
           const accent = cell.accent ?? "terracotta";
-          return `<td style="padding: 0.15rem"><div class="gc-bg-${accent}-alpha gc-text-${accent}" style="padding: 0.3rem 0; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 700; text-align: center; line-height: 1.25; white-space: nowrap">${cell.text}</div></td>`;
+          return `<td style="padding: 0.15rem !important"><div class="gc-bg-${accent}-alpha gc-text-${accent}" style="padding: 0.3rem 0; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 700; text-align: center; line-height: 1.25; white-space: nowrap">${cell.text}</div></td>`;
         })
         .join("");
       return `
-        <tr><th scope="rowgroup" colspan="${days.length}" style="padding: 0.55rem 0 0.1rem 0; font-size: 0.85rem; text-align: left">${row.label}</th></tr>
+        <tr><th scope="rowgroup" colspan="${days.length}" style="padding: 0.55rem 0.35rem 0.1rem 0.35rem !important; font-size: 0.85rem; text-align: left">${row.label}</th></tr>
         <tr>${cells}</tr>`;
     })
     .join("");
@@ -156,7 +159,7 @@ export const readingCard = ({
     ${img}
     ${header(kicker, title, accent)}
     <div style="padding: 0 1rem 0.25rem 1rem">${body}</div>
-    <div style="padding: 0 1rem 0.75rem 1rem; font-size: 0.7rem; opacity: 0.7">${credit}Source${sources.length > 1 ? "s" : ""}: ${sources
+    <div style="padding: 0 1rem 0.75rem 1rem; font-size: 0.7rem; opacity: 0.9">${credit}Source${sources.length > 1 ? "s" : ""}: ${sources
       .map((src) => `<a href="${src.url}" rel="noopener" target="_blank">${src.name}</a>`)
       .join(", ")}</div>
   `);

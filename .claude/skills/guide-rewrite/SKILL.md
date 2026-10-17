@@ -139,7 +139,7 @@ npx vitest run mini-guides grammar
 npm run audit:mini-guides 2>&1 | grep <slug>
 npm run audit:grammar-dark-mode -- --static-only --slug <slug>   # want 0 uncovered
 npm run audit:scene-images
-npm run audit:guide-mobile -- <slug>   # phone fit at 375px and 320px, want no ✗
+npm run audit:guide-mobile -- <slug>   # phone fit at 375px/320px + dark mode, want no ✗
 ```
 
 `audit:guide-mobile` renders each section's explanation in headless Chromium
@@ -155,6 +155,35 @@ screenshots** for every page with a visual
 table can pass and still look cramped or leave rows looking empty. The
 wrapper only approximates the reader's gutters, so Marlana's phone check
 still counts.
+
+### Dark mode
+
+`audit:guide-mobile` also runs a **dark-mode pass** at the first width. It
+loads the reader's real CSS from `globals.css` with `<html class="dark">` and
+fails on:
+- `dark-contrast`: text under 4.5:1 (3:1 for large/bold text) against what is
+  really behind it, after opacity and translucent backgrounds
+- `dark-light-box`: a light surface behind text left over in dark mode
+
+Then **look at every `dark-375-<section>.png`** too. The static
+`audit:grammar-dark-mode` only checks that inline styles have an override.
+It passed Week 6 while the schedule headers were breaking ("Mo / n").
+
+Rules that keep dark mode working:
+- Only `gc-*` classes carry color. Inline colors are translucent neutrals only
+  (`rgba(0,0,0,x)`, `rgba(128,128,128,x)`).
+- In dark mode, `gc-bg-{terracotta,sage,amber}-alpha` all become the **same
+  navy**. Never let background color alone carry meaning; label it.
+- Don't put `gc-bg-blue-alpha` and `gc-text-blue` on one element. The bg rule
+  wins in dark and the text turns plain. `stepsCard` defaults to blue, so pass
+  another `accent` when the badge color matters.
+- The reader's phone CSS forces `padding: 0.5rem 0.6rem !important` and
+  `overflow-wrap: anywhere` on every `th`/`td`. A narrow column needs its own
+  `padding: ... !important` (see `scheduleChart`).
+- **Never run `audit:grammar-dark-mode` without `--static-only`.** Rendered
+  mode runs `scripts/e2e-seed.ts`, which upserts `e2e-teacher` /
+  `e2e-student` with `password123` into whatever `DATABASE_URL` points at,
+  and locally that's production.
 
 `audit:scene-images` may fail on `phrasal-verbs-at-work#sceneWarehouseClockout`.
 That was already failing before this rollout started. Only failures in *your*
