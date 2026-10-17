@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { phrasalVerbsAtWorkImages as img } from "@/data/phrasal-verbs-at-work-images.generated";
+import { checklist, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -177,6 +178,10 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           <p style="margin: 0; font-size: 1.05rem">These four phrasal verbs come up every week at almost every job.</p>
         </div>
 
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem"><strong>Good to know:</strong> In Massachusetts, workers earn 1 hour of sick time for every 30 hours they work, up to 40 hours a year. You can use it after your first 90 days at a job.</p>
+        </div>
+
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("call in sick", "sage")}
@@ -246,16 +251,18 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "paperwork-before-payday",
       title: "Paperwork Before Payday",
       explanation: `
-        ${sceneCard("sceneRestaurantPaperwork", "Jennifer's small office behind the laundry room. Thursday, 2:30 PM. Payday tomorrow.", "amber")}
+        <p style="margin: 0.75rem 0">It's Thursday, 2:30 PM, and payday is tomorrow. Gabriela's timesheet is missing the hours she worked on Tuesday, when she covered for Marta. Jennifer, her supervisor, handles the laundry room timesheets. Payroll closes at 3, so Gabriela makes a to-do list.</p>
 
-        <p style="margin: 0.75rem 0">Two days later, Gabriela has a problem. Her timesheet is missing the hours she worked on Tuesday, when she covered for Marta. Jennifer also handles the timesheets for the laundry room, so Gabriela goes to her office.</p>
-
-        ${dialogue([
-          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "Gabriela, you need to <strong>hand in</strong> your timesheet today. Payroll closes at 3.", side: "left", tone: "amber" },
-          { speaker: "Gabriela", avatar: "👩🏽", text: "I have it, but there's an error on Tuesday. Do I need to <strong>fill out</strong> a new one?", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer (supervisor)", avatar: "👩‍💼", text: "Yeah, grab a correction form, <strong>fill it out</strong>, and <strong>turn it in</strong> to me. I'll <strong>sign off on</strong> it before 3.", side: "left", tone: "amber" },
-          { speaker: "Gabriela", avatar: "👩🏽", text: "OK. I worked those hours, so I want to get paid for them. I'll be right back.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "To-do list",
+          title: "Gabriela's timesheet fix (payroll closes at 3 PM)",
+          items: [
+            { text: "<strong>Fill out</strong> the correction form", done: true },
+            { text: "<strong>Hand</strong> the timesheet <strong>in</strong> to Jennifer", done: false },
+            { text: "Jennifer <strong>signs off on</strong> the new hours", done: false },
+            { text: "Get paid for Tuesday on Friday", done: false },
+          ],
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Hand in</strong> and <strong>turn in</strong> mean the same thing: give a completed document to the person who asked for it. <strong>Sign off on</strong> = officially approve something by signing.</p>
@@ -273,6 +280,28 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
         </div>
       `,
       exercises: [
+        {
+          id: "paperwork-ex0",
+          title: "Read the to-do list",
+          instructions: "Look at Gabriela's list above.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at the list. What has Gabriela already done?",
+              options: [
+                { value: "a", label: "She has filled out the correction form." },
+                { value: "b", label: "She has handed in the timesheet." },
+                { value: "c", label: "Jennifer has signed off on the new hours." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "Look at the list. How many things are not done yet? (Write a number.)",
+              expectedAnswers: ["3", "three"],
+            },
+          ],
+        },
         {
           id: "paperwork-ex1",
           title: "Unscramble",
@@ -336,28 +365,36 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           <p style="margin: 0; font-size: 1.05rem"><strong>Separable phrasal verbs</strong> let you put the object in the middle OR at the end. But when you use a pronoun (it, them, me), it must go in the middle.</p>
         </div>
 
-        <p style="margin: 0.75rem 0">Compare these three sentences. They all mean the same thing:</p>
+        <p style="margin: 0.75rem 0">Compare how the same three verbs work with a noun and with a pronoun.</p>
 
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
-            ${labelPill("correct", "sage")}
-            <span><em>Please <strong>fill out</strong> the form.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
-            ${labelPill("correct", "sage")}
-            <span><em>Please <strong>fill</strong> the form <strong>out</strong>.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
-            ${labelPill("correct", "sage")}
-            <span><em>Please <strong>fill it out</strong>.</em> (pronoun goes in the middle)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(239,68,68,0.07); border-radius: 0.4rem">
-            ${labelPill("wrong", "terracotta")}
-            <span><em style="text-decoration: line-through">Please <strong>fill out it</strong>.</em> (pronoun can't go at the end)</span>
-          </div>
+        <div class="gc-border-black-alpha" style="margin: 1rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+            <thead>
+              <tr>
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Verb</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">With a noun (2 ways)</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.5rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">With <em>it</em> (1 way)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>fill out</strong></td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">fill out the form<br />fill the form out</td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>fill it out</strong></td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>hand in</strong></td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">hand in the form<br />hand the form in</td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>hand it in</strong></td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem"><strong>turn in</strong></td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem">turn in the form<br />turn the form in</td>
+                <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem"><strong>turn it in</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <p style="margin: 0.75rem 0; font-size: 0.95rem; opacity: 0.8">The same rule applies to <em>hand in it</em> (wrong) vs. <em>hand it in</em> (correct), and <em>turn in it</em> (wrong) vs. <em>turn it in</em> (correct).</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(239,68,68,0.07); border-radius: 0.4rem">
@@ -427,19 +464,23 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       id: "end-of-shift",
       title: "End of Shift",
       explanation: `
-        ${sceneCard("sceneWarehouseClockout", "Near the time clock by the laundry room door. The next Thursday, 2:55 PM, almost the end of the shift.", "terracotta")}
+        <p style="margin: 0.75rem 0">The next week, Gabriela needs a favor. She has a clinic appointment next Thursday that she can't move. Marta is back at work and feeling better, so Marta agrees to cover. Jennifer has to approve every shift swap, so Gabriela follows the shift-swap steps on the wall.</p>
 
-        <p style="margin: 0.75rem 0">The next week, Gabriela needs a favor. Marta is back at work and feeling better, and she still wants to help. Jennifer has to approve every shift swap.</p>
+        ${stepsCard({
+          kicker: "Steps",
+          title: "How to swap a shift at the hotel laundry",
+          accent: "sage",
+          steps: [
+            "<strong>Fill out</strong> the shift-swap form.",
+            "Ask a coworker to <strong>cover for</strong> you.",
+            "<strong>Hand</strong> the form <strong>in</strong> to your supervisor.",
+            "Your supervisor <strong>signs off on</strong> it.",
+            "Your coworker <strong>shows up</strong> and <strong>clocks in</strong> at your usual time.",
+          ],
+          note: "No sign-off, no swap. Jennifer needs the form before the end of her shift.",
+        })}
 
-        ${dialogue([
-          { speaker: "Gabriela", avatar: "👩🏽", text: "Hey Marta, can you <strong>cover for</strong> me next Thursday? I have a clinic appointment I can't move.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏿", text: "Next Thursday I can do it. What time do you <strong>clock in</strong>?", side: "left", tone: "sage" },
-          { speaker: "Gabriela", avatar: "👩🏽", text: "7 AM. I'll <strong>fill out</strong> the shift-swap form tonight and <strong>hand it in</strong> to Jennifer tomorrow morning.", side: "right", tone: "terracotta" },
-          { speaker: "Marta", avatar: "👩🏿", text: "Good. Make sure she <strong>signs off on</strong> it before the end of her shift or it won't go through.", side: "left", tone: "sage" },
-          { speaker: "Gabriela", avatar: "👩🏽", text: "I will. And I can <strong>pick up</strong> your Friday shift if you want. Should I put that on the form too?", side: "right", tone: "terracotta" },
-        ])}
-
-        <p style="margin: 0.75rem 0">Look at how many phrasal verbs Gabriela and Marta used in one short conversation. This is normal at work. Knowing these verbs means you can handle a real shift-swap without any confusion.</p>
+        <p style="margin: 0.75rem 0">Five short steps use six phrasal verbs. This is normal at work. Here is the full review list.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
@@ -479,26 +520,26 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "end-of-shift-ex1",
-          title: "Choose the right word",
-          instructions: "Pick the phrasal verb that fits.",
+          title: "Read the steps",
+          instructions: "Look at the shift-swap steps above.",
           items: [
             {
               type: "radio",
-              label: "Gabriela can't work next Thursday. She needs someone to ___ for her.",
+              label: "Look at the steps. What happens right after you hand the form in?",
               options: [
-                { value: "a", label: "cover" },
-                { value: "b", label: "clock" },
-                { value: "c", label: "sign" },
+                { value: "a", label: "Your coworker clocks in" },
+                { value: "b", label: "The supervisor signs off on the form" },
+                { value: "c", label: "You fill out the form" },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "After the swap, the manager needs to ___ off on the form.",
+              label: "Look at the steps. Who covers for you?",
               options: [
-                { value: "a", label: "hand" },
-                { value: "b", label: "sign" },
-                { value: "c", label: "fill" },
+                { value: "a", label: "Your supervisor" },
+                { value: "b", label: "Your coworker" },
+                { value: "c", label: "Nobody" },
               ],
               expectedAnswer: "b",
             },
@@ -511,19 +552,20 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "filled", "out", "the", "shift-swap", "form", "and", "handed", "it", "in"],
-              correctAnswer: "She filled out the shift-swap form and handed it in",
+              words: ["Marta", "will", "cover", "for", "Gabriela", "on", "Thursday", "morning"],
+              correctAnswer: "Marta will cover for Gabriela on Thursday morning",
             },
           ],
         },
         {
           id: "end-of-shift-ex3",
           title: "Fill in the blank",
+          instructions: "Use a pronoun.",
           items: [
             {
               type: "text",
-              label: "Gabriela will ___ in at 7 AM on Friday to cover Marta's shift.",
-              expectedAnswers: ["clock"],
+              label: "Gabriela has the swap form. She will hand ___ in to Jennifer tomorrow morning.",
+              expectedAnswers: ["it"],
             },
           ],
         },

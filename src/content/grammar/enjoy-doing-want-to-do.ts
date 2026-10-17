@@ -1,4 +1,5 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { checklist, readingCard, scheduleChart } from "@/content/grammar/_shared/guide-visuals";
 import { enjoyDoingWantToDoImages as img } from "@/data/enjoy-doing-want-to-do-images.generated";
 
 // ---------------------------------------------------------------------------
@@ -205,16 +206,19 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "infinitives-after-verbs",
       title: "\"I Want to Try Something New\"",
       explanation: `
-        ${sceneCard("sceneBus", "The 116 bus. Tuesday evening. Elena and her cousin Bruno ride home.", "sage")}
+        <p style="margin-bottom: 1rem">Elena rides the 116 bus home with her cousin Bruno. He works at a warehouse and says the pay is better there. That night, Elena writes her plan on a list.</p>
 
-        ${dialogue([
-          { speaker: "Bruno", avatar: "👨🏽", text: "So are you really thinking about leaving housekeeping?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "Yeah. I <strong>want to try</strong> warehouse work. You said the pay is better.", side: "right", tone: "terracotta" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "It is. But you <strong>need to save</strong> a little first. Boots, gear. It adds up.", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "I know. I <strong>decided to stay</strong> through May. Then I'm going to look.", side: "right", tone: "terracotta" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Smart. I can <strong>help you find</strong> a contact at my place.", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "I <strong>would like to talk</strong> to someone there. That would really help.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Checklist",
+          title: "Elena's plan",
+          items: [
+            { text: "I <strong>decided to stay</strong> at the hotel through May.", done: true },
+            { text: "I <strong>asked</strong> Bruno about the warehouse pay.", done: true },
+            { text: "I <strong>need to save</strong> money for boots and gear.", done: false },
+            { text: "I <strong>plan to apply</strong> for warehouse jobs in June.", done: false },
+            { text: "I <strong>would like to talk</strong> to Bruno's contact.", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Some verbs are always followed by an infinitive (<strong>to + base verb</strong>). You cannot use a gerund after them.</p>
@@ -267,13 +271,35 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Bruno <strong>decided</strong> ___ his cousin about a job opening.",
+              label: "Elena <strong>decided</strong> ___ at the hotel through May.",
               options: [
-                { value: "a", label: "telling" },
-                { value: "b", label: "to tell" },
-                { value: "c", label: "tell" },
+                { value: "a", label: "staying" },
+                { value: "b", label: "to stay" },
+                { value: "c", label: "stay" },
               ],
               expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "inf-s2-ex4",
+          title: "Look at Elena's plan",
+          instructions: "Read the checklist above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at Elena's plan. What has she already done?",
+              options: [
+                { value: "a", label: "She chose how long to keep her hotel job." },
+                { value: "b", label: "She applied for warehouse jobs." },
+                { value: "c", label: "She saved money for boots." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "Look at Elena's plan. How many things does she still need to do? (write a number)",
+              expectedAnswers: ["3", "three"],
             },
           ],
         },
@@ -321,9 +347,27 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "two-lists",
       title: "Gerund or Infinitive? The Two Lists",
       explanation: `
-        ${sceneCard("sceneCareerCenter", "East Boston Career Center. Thursday morning, before the afternoon shift.", "amber")}
+        <p style="margin-bottom: 1rem">Thursday morning, Elena stops at the East Boston Career Center before her shift. While she waits for a job-skills form, she reads a short story about a woman who spoke up for her family.</p>
 
-        <p style="margin-bottom: 1rem">Elena stops at the career center to pick up a job-skills form before she clocks in. She fills it out at a table by the door. Every question makes her think about what she actually does and wants.</p>
+        ${readingCard({
+          kicker: "Did you know?",
+          title: "Sylvia Mendez",
+          accent: "amber",
+          photo: {
+            url: "/images/guide-people/sylvia-mendez.jpg",
+            alt: "Sylvia Mendez smiles as she speaks at a podium, 2014",
+            credit: "USDA / Bob Nichols, 2014, CC BY 2.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:20140924-DM-RBN-0574.jpg",
+          },
+          paragraphs: [
+            "When Sylvia Mendez was eight years old, her parents <strong>tried to enroll</strong> her at a school in California. The school was for white children, so she was sent to the school for Mexican children. Her family went to court. In 1946, a federal judge ruled for them, and a higher court agreed a year later.",
+            "The case <strong>helped to end</strong> school segregation in California. Years later, Sylvia <strong>enjoyed talking</strong> to students about it. She traveled around the country, <strong>giving</strong> speeches about the value of a good education. In 2011, she received the Presidential Medal of Freedom.",
+          ],
+          sources: [
+            { name: "The White House (Obama archives): 2010 Presidential Medal of Freedom recipient Sylvia Mendez", url: "https://obamawhitehouse.archives.gov/node/26318" },
+            { name: "U.S. Courts: Background, Mendez v. Westminster Re-Enactment", url: "https://www.uscourts.gov/about-federal-courts/educational-resources/educational-activities/mendez-v-westminster-re-enactment/background-mendez-v-westminster-re-enactment" },
+          ],
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
           <p style="margin: 0; font-size: 1.05rem">The key question: <strong>which verb comes first?</strong> Check the list. Some verbs always take a gerund. Some always take an infinitive.</p>
@@ -398,6 +442,38 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           ],
         },
         {
+          id: "tl-s3-ex4",
+          title: "Read about Sylvia Mendez",
+          instructions: "Read the story above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Her parents tried to enroll Sylvia at a school. What happened?",
+              options: [
+                { value: "a", label: "The school was full, so she waited a year." },
+                { value: "b", label: "She was sent to a different school for Mexican children." },
+                { value: "c", label: "She went to class, but she left early." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "How old was Sylvia when her parents tried to enroll her? (write a number)",
+              expectedAnswers: ["8", "eight"],
+            },
+            {
+              type: "radio",
+              label: "Sylvia traveled the country, ___ speeches about education.",
+              options: [
+                { value: "a", label: "to give" },
+                { value: "b", label: "giving" },
+                { value: "c", label: "give" },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
           id: "tl-s3-ex2",
           title: "Build the sentence",
           instructions: "Unscramble Elena's words from the career form.",
@@ -437,14 +513,19 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "both-are-right",
       title: "Both Are Right: start, like, love, hate",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Hotel break room. Kevin checks the weekly schedule with Elena.", "blue")}
+        <p style="margin-bottom: 1rem">In the hotel break room, Kevin, her supervisor, posts next week's schedule. Elena has the early shift. She tells Kevin that she likes working mornings, but she hates rushing to pickup on Tuesdays.</p>
 
-        ${dialogue([
-          { speaker: "Kevin (supervisor)", avatar: "🧑‍💼", text: "I'm putting you on mornings next week. I know you said you <strong>like working</strong> the early shift.", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "Yes, I <strong>like to start</strong> early. It gives me time for the kids after school.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin (supervisor)", avatar: "🧑‍💼", text: "Good. I personally <strong>hate staying</strong> past 5, so I get it.", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩🏽", text: "Same. I <strong>hate to miss</strong> pickup. It's already tight on Tuesdays.", side: "right", tone: "terracotta" },
-        ])}
+        ${scheduleChart({
+          kicker: "Schedule",
+          title: "Elena's week",
+          days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+          rows: [
+            { label: "🏨 Work", cells: [{ text: "6-2" }, { text: "6-3", accent: "amber" }, { text: "6-2" }, { text: "6-2" }, { text: "6-2" }] },
+            { label: "🎒 Pickup", cells: [{ text: "3 pm", accent: "sage" }, { text: "3:15", accent: "amber" }, { text: "3 pm", accent: "sage" }, { text: "3 pm", accent: "sage" }, { text: "3 pm", accent: "sage" }] },
+            { label: "📚 Class", cells: [null, { text: "6 pm", accent: "blue" }, null, null, null] },
+          ],
+          note: "Tuesday is the tight day: work ends at 3, and pickup is at 3:15.",
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">A few verbs can take either a gerund or an infinitive. The meaning is the same at this level. Both are correct.</p>
@@ -498,6 +579,28 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
                 { value: "c", label: "both are correct" },
               ],
               expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "bar-s4-ex4",
+          title: "Look at Elena's week",
+          instructions: "Read the schedule above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Look at Elena's week. Which day is the tight day?",
+              options: [
+                { value: "a", label: "Monday" },
+                { value: "b", label: "Tuesday" },
+                { value: "c", label: "Friday" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Elena hates ___ (rush) to pickup on Tuesdays. (write the to + verb form)",
+              expectedAnswers: ["to rush"],
             },
           ],
         },

@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { iveBeenWorkingImages as img } from "@/data/ive-been-working-images.generated";
+import { readingCard, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -190,16 +191,24 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneBusStop", "Meridian Street bus stop, Friday evening, 6:15 PM. Amara and Rosa wait for the bus home.", "blue")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">It is Friday evening. Amara and Rosa wait for the bus home. Amara wants a job closer to home, so she writes her work story on a timeline. Look at it. Each label on the line shows <strong>how long</strong>.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">In February, the hospital moved Amara's unit to a new building. Her trip home now takes twice as long, and she wants a job closer to home. At the bus stop, Rosa asks about it.</p>
-
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏽", text: "You still taking two buses?", side: "left", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yeah. I <strong>have been taking</strong> two buses since the hospital moved my unit in February.", side: "right", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "How long <strong>have</strong> you <strong>been looking</strong> for a job closer to home?", side: "left", tone: "blue" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Three weeks. Our teacher, Ms. Tran, told us about a job fair on Saturday. I’m going.", side: "right", tone: "sage" },
-        ])}
+        ${timeline({
+          kicker: "Amara's timeline",
+          title: "Work, buses, and a job search",
+          items: [
+            { when: "3 yrs ago", text: "Amara starts cleaning patient rooms at the hospital." },
+            { span: "<strong>for</strong> almost 3 years", accent: "sage" },
+            { when: "January", text: "She starts working six days a week.", accent: "blue" },
+            { span: "<strong>since</strong> January", accent: "blue" },
+            { when: "February", text: "The hospital moves her unit. Now she takes two buses home.", accent: "amber" },
+            { span: "<strong>since</strong> February", accent: "amber" },
+            { when: "3 weeks ago", text: "She starts looking for a job closer to home.", accent: "terracotta" },
+            { span: "<strong>for</strong> 3 weeks", accent: "terracotta" },
+            { when: "Now", text: "Job fair tomorrow at the community school!", accent: "sage" },
+          ],
+          note: "Everything on this line started in the past and is still true now.",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>for</strong> with a length of time. Use <strong>since</strong> with a starting point.</p>
@@ -232,21 +241,22 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Amara has been taking two buses ___ the hospital moved her unit.",
+              label: "Look at Amara's timeline. Which sentence is true?",
+              options: [
+                { value: "a", label: "She has been looking for a new job since February." },
+                { value: "b", label: "She has been looking for a new job for three weeks." },
+                { value: "c", label: "She has been cleaning at the hospital for one month." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Look at the timeline. Amara has been working six days a week ___ January.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
               ],
               expectedAnswer: "since",
-            },
-            {
-              type: "radio",
-              label: "Amara has been looking for a new job ___ three weeks.",
-              options: [
-                { value: "for", label: "for" },
-                { value: "since", label: "since" },
-              ],
-              expectedAnswer: "for",
             },
           ],
         },
@@ -257,20 +267,20 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["She", "has", "been", "looking", "for", "a", "new", "job", "for", "three", "weeks"],
-              correctAnswer: "She has been looking for a new job for three weeks",
+              words: ["Amara", "has", "been", "taking", "two", "buses", "since", "February"],
+              correctAnswer: "Amara has been taking two buses since February",
             },
           ],
         },
         {
           id: "buses-ex3",
           title: "Fill in the blank",
-          instructions: "Write 'for' or 'since.'",
+          instructions: "Read the timeline again. Write the answer.",
           items: [
             {
               type: "text",
-              label: "Rosa has been studying every night ___ three weeks. (one word)",
-              expectedAnswers: ["for"],
+              label: "Look at the timeline. How many weeks has Amara been looking for a closer job? (a number)",
+              expectedAnswers: ["3", "three"],
             },
           ],
         },
@@ -285,17 +295,27 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       title: "How long have you been working here?",
       icon: "💬",
       explanation: `
-        ${sceneCard("sceneJobFair", "East Boston Community School gym, Saturday morning. The job fair has just opened.", "amber")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">At the job fair, Jennifer, the HR manager for a hotel, invites Amara to an interview on Monday. On the bus home, Amara reads about a woman who never stops working. Read it. Then notice the <strong>How long</strong> question at the end.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara arrives early. Jennifer is the HR manager for a hotel on Meridian Street, and she has a table at the fair. Amara is the first person in her line.</p>
-
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "How long <strong>have</strong> you <strong>been working</strong> in housekeeping?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have been cleaning</strong> patient rooms at the hospital for almost three years.", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Good. <strong>Have</strong> you <strong>been using</strong> the big floor machines there?", side: "left", tone: "amber" },
-          { speaker: "Amara", avatar: "👩🏿", text: "Yes, I have. I've been using them since my first month.", side: "right", tone: "sage" },
-          { speaker: "Jennifer", avatar: "🧑‍💼", text: "Great. Please come to the hotel on Monday for your interview.", side: "left", tone: "amber" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Dolores Huerta: Still Working",
+          photo: {
+            url: "/images/guide-people/dolores-huerta.jpg",
+            alt: "Dolores Huerta smiles during a talk at the LBJ Presidential Library, 2019",
+            credit: "Jay Godwin, LBJ Library, 2019, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Dolores_Huerta_2019_cropped.jpg",
+          },
+          paragraphs: [
+            "Dolores Huerta was born in 1930 in Dawson, New Mexico. She was a teacher, and she said she could not stand to see kids come to class hungry. In 1960, she started the Agricultural Workers Association. In 1962, she and César Chávez started the National Farm Workers Association. In 2012, President Obama gave her the Presidential Medal of Freedom.",
+            "Dolores Huerta is 96 years old now, and she is still busy. She <strong>has been working</strong> for workers' rights <strong>since</strong> the 1950s. She <strong>has been traveling</strong> and speaking to students, and she is the president of the Dolores Huerta Foundation. <strong>How long has she been working</strong> for workers? For more than 60 years!",
+          ],
+          sources: [
+            { name: "Dolores Huerta Foundation", url: "https://doloreshuerta.org/dolores-huerta/" },
+            { name: "National Park Service: Dolores Huerta", url: "https://www.nps.gov/people/dolores-huerta.htm" },
+          ],
+          accent: "amber",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Question form:</strong> How long + <em>have / has</em> + subject + <em>been</em> + verb-ing?</p>
@@ -312,7 +332,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("yes/no", "sage")}
-            <span><em><strong>Have</strong> you <strong>been using</strong> the machines? Yes, I have. / No, I haven't.</em></span>
+            <span><em><strong>Have</strong> you <strong>been studying</strong> English? Yes, I have. / No, I haven't.</em></span>
           </div>
         </div>
       `,
@@ -334,13 +354,32 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Amara asks Jennifer about the head housekeeper at the hotel. Which is correct?",
+              label: "Amara asks Rosa about Dolores Huerta. Which question is correct?",
               options: [
-                { value: "a", label: "How long has she been manage the team?" },
-                { value: "b", label: "How long she has been managing the team?" },
-                { value: "c", label: "How long has she been managing the team?" },
+                { value: "a", label: "How long has she been help workers?" },
+                { value: "b", label: "How long she has been helping workers?" },
+                { value: "c", label: "How long has she been helping workers?" },
               ],
               expectedAnswer: "c",
+            },
+            {
+              type: "radio",
+              label: "Read about Dolores Huerta. Has she been speaking to students?",
+              options: [
+                { value: "a", label: "Yes, she has." },
+                { value: "b", label: "No, she hasn't." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Read about Dolores Huerta. Which sentence is true?",
+              options: [
+                { value: "a", label: "Dolores Huerta has been helping workers for about six years." },
+                { value: "b", label: "Dolores Huerta has been helping workers for more than sixty years." },
+                { value: "c", label: "Dolores Huerta has been helping workers for about sixteen years." },
+              ],
+              expectedAnswer: "b",
             },
           ],
         },
@@ -363,7 +402,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "How long ___ she ___ working at the hotel? (has ... been)",
+              label: "How long ___ Dolores Huerta ___ working for workers' rights? (has ... been)",
               expectedAnswers: ["has been", "has / been"],
             },
           ],
@@ -381,7 +420,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneHotel", "Hotel hallway, third floor. Amara’s first morning at the hotel.", "sage")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara got the job. Today is her first morning at the hotel. Marta is a housekeeper who has worked there for four years, and Jennifer asked her to train Amara. They stop in the hallway for a minute.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Jennifer liked Amara's interview, and Amara got the job. Today is her first morning at the hotel. Marta is a housekeeper who has worked there for four years, and Jennifer asked her to train Amara. They stop in the hallway for a minute.</p>
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "I <strong>have cleaned</strong> six rooms already. The third floor is done.", side: "right", tone: "terracotta" },
@@ -470,8 +509,8 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Marta is still training. She ___ new people for three hours. (has been training)",
-              expectedAnswers: ["has been training"],
+              label: "It is 11:00. Amara started cleaning rooms at 8:00 and she is still cleaning. She ___ rooms for three hours. (has been cleaning)",
+              expectedAnswers: ["has been cleaning"],
             },
           ],
         },
@@ -501,7 +540,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     },
     {
       id: "ive-been-working-q3",
-      question: "Jennifer asks Amara a question about her experience. Which question is correct?",
+      question: "Rosa asks Amara a question about her job. Which question is correct?",
       options: [
         { value: "a", label: "How long you have been working the day shift?" },
         { value: "b", label: "How long have you been working the day shift?" },
@@ -543,7 +582,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     {
       id: "ive-been-working-qws1",
       type: "word-scramble" as const,
-      question: "Jennifer asks Amara about her cleaning experience. Put the words in order.",
+      question: "Rosa asks Amara about her work at the hospital. Put the words in order.",
       words: ["How", "long", "have", "you", "been", "cleaning", "patient", "rooms"],
       correctAnswer: "How long have you been cleaning patient rooms",
       hint: "How long + have/has + subject + been + verb-ing",
