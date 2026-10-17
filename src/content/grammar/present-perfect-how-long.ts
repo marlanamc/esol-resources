@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { presentPerfectHowLongImages as img } from "@/data/present-perfect-how-long-images.generated";
+import { checklist, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -165,15 +166,19 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       id: "for-vs-since",
       title: "For vs. Since: Which One?",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Hotel break room. Claudette and Maria eat lunch before the afternoon shift.", "amber")}
+        <p style="margin-bottom: 0.75rem">Jennifer in HR has Rosa's resume. Look at the timeline. It is 2026 now, so Rosa's story is still going.</p>
 
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏾", text: "How long have you been at this hotel?", side: "left", tone: "sage" },
-          { speaker: "Maria", avatar: "👩🏽", text: "I've been here <strong>since November</strong>. About four months.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I've been here <strong>for five years</strong>. Started in the laundry, now housekeeping.", side: "left", tone: "sage" },
-          { speaker: "Maria", avatar: "👩🏽", text: "Nice. How long have you had this shift?", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "Only <strong>since January</strong>. Before that I had nights.", side: "left", tone: "sage" },
-        ])}
+        ${timeline({
+          kicker: "Rosa's resume",
+          title: "Rosa's life and work in East Boston",
+          items: [
+            { when: "2021", text: "Rosa <strong>moves</strong> to East Boston.", accent: "terracotta" },
+            { when: "2023", text: "She <strong>starts</strong> in hotel housekeeping.", accent: "sage" },
+            { when: "2025", text: "She <strong>joins</strong> the morning team.", accent: "blue" },
+            { when: "Now", text: "It is 2026. All three are <strong>still true</strong>.", accent: "amber" },
+          ],
+          note: "Each year is a starting point. Count from that year to now to get a length of time.",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -203,6 +208,33 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "hl-s2-ex1",
+          title: "Read Rosa's timeline",
+          instructions: "Look at the timeline above. Choose the true sentence.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence about Rosa is true?",
+              options: [
+                { value: "a", label: "She has lived in East Boston since 2023." },
+                { value: "b", label: "She has lived in East Boston since 2021." },
+                { value: "c", label: "She has lived in East Boston for 2021." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Which sentence about Rosa is true?",
+              options: [
+                { value: "a", label: "She has been on the morning team since 2025." },
+                { value: "b", label: "She has been on the morning team since 2021." },
+                { value: "c", label: "She has been on the morning team for 2025." },
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "hl-s2-ex2",
           title: "For or since?",
           instructions: "Choose the correct word.",
           items: [
@@ -226,22 +258,6 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "He has lived in East Boston ___ three years.",
-              options: [
-                { value: "a", label: "for" },
-                { value: "b", label: "since" },
-              ],
-              expectedAnswer: "a",
-            },
-          ],
-        },
-        {
-          id: "hl-s2-ex2",
-          title: "Spot the error",
-          instructions: "Which sentence has a mistake?",
-          items: [
-            {
-              type: "radio",
               label: "Which sentence is NOT correct?",
               options: [
                 { value: "a", label: "She has worked here for two years." },
@@ -255,16 +271,16 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         {
           id: "hl-s2-ex3",
           title: "Fill in the blank",
-          instructions: "Write for or since.",
+          instructions: "Write for or since. Use the timeline when you need it.",
           items: [
             {
               type: "text",
-              label: "Claudette has had the day shift ___ January. (for or since?)",
+              label: "Rosa started housekeeping in 2023. She has worked there ___ 2023. (for or since?)",
               expectedAnswers: ["since"],
             },
             {
               type: "text",
-              label: "Maria has been at this hotel ___ four months. (for or since?)",
+              label: "It is 2026. Rosa moved to East Boston in 2021. She has lived there ___ five years. (for or since?)",
               expectedAnswers: ["for"],
             },
           ],
@@ -285,7 +301,19 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneJobApplication", "Hotel HR office. Jennifer calls Rosa's current job to check her work history.", "terracotta")}
+        <p style="margin-bottom: 0.75rem">Jennifer checks Rosa's application against the job list. Look at what Rosa has done and what she hasn't done yet.</p>
+
+        ${checklist({
+          kicker: "Job list",
+          title: "Jennifer's list for Rosa",
+          items: [
+            { text: "Work in housekeeping for two years", done: true },
+            { text: "Train new workers", done: true },
+            { text: "Bring a reference letter", done: true },
+            { text: "Supervise a team", done: false },
+            { text: "Work a night shift", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -301,11 +329,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("he / she / it", "sage")}
-            <span><em>She <strong>has cleaned</strong> rooms since January.</em></span>
+            <span><em>Rosa <strong>has trained</strong> two cleaners.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("negative", "amber")}
-            <span><em>He <strong>hasn't worked</strong> a day shift before.</em></span>
+            <span><em>She <strong>hasn't supervised</strong> a team.</em></span>
           </div>
         </div>
 
@@ -326,6 +354,28 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "hl-s3-ex1",
+          title: "Read Jennifer's list",
+          instructions: "Look at the checklist above.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence about Rosa is true?",
+              options: [
+                { value: "a", label: "She has supervised a team." },
+                { value: "b", label: "She has worked a night shift." },
+                { value: "c", label: "She has trained new workers." },
+              ],
+              expectedAnswer: "c",
+            },
+            {
+              type: "text",
+              label: "Rosa ___ (work) a night shift. Check the list. Use the negative.",
+              expectedAnswers: ["hasn't worked", "has not worked"],
+            },
+          ],
+        },
+        {
+          id: "hl-s3-ex2",
           title: "Have or has?",
           instructions: "Choose the correct form.",
           items: [
@@ -347,13 +397,6 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "a",
             },
-          ],
-        },
-        {
-          id: "hl-s3-ex2",
-          title: "Correct or not?",
-          instructions: "Is the form right?",
-          items: [
             {
               type: "radio",
               label: "\"She have worked here since March.\"",
@@ -372,13 +415,13 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Rosa ___ (work) in housekeeping for three years.",
-              expectedAnswers: ["has worked"],
+              label: "Look at the list. Rosa ___ (bring) a reference letter.",
+              expectedAnswers: ["has brought"],
             },
             {
               type: "text",
-              label: "I ___ (live) in East Boston since 2021.",
-              expectedAnswers: ["have lived"],
+              label: "They ___ (clean) twenty rooms since noon.",
+              expectedAnswers: ["have cleaned"],
             },
           ],
         },
@@ -386,7 +429,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4 — Still Going: Present Perfect vs. Past Simple
+    // SECTION 4 — Still Going vs. Finished
     // =========================================================================
     {
       id: "still-going-vs-finished",
@@ -399,13 +442,41 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneHROffice", "HR office. Jennifer reviews two applications before the final interview.", "blue")}
+        <p style="margin-bottom: 0.75rem">Jennifer reads four lines from resumes. Look at the table. The verb tells her if the person is still there.</p>
 
-        ${dialogue([
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "The first candidate wrote, “I <strong>worked</strong> at the Marriott for two years.” She’s available to start Monday.", side: "left", tone: "sage" },
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "The second wrote, “I <strong>have worked</strong> at the Marriott for two years.” She would need to give notice.", side: "left", tone: "sage" },
-          { speaker: "Mark (Manager)", avatar: "👨🏻", text: "So the second candidate still works there. Let’s ask when she could start.", side: "right", tone: "terracotta" },
-        ])}
+        <div style="overflow-x: auto; margin: 0 0 1.5rem 0; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.08)">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem">
+            <thead>
+              <tr>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Resume line</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Still true?</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Tense</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">A: I <strong>have worked</strong> at the Marriott for two years.</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes, still there</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Present perfect</td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">B: I <strong>worked</strong> at the Hilton for one year.</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">No, she left</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Past simple</td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">C: I <strong>have lived</strong> in East Boston since 2021.</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Yes, still there</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Present perfect</td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">D: I <strong>lived</strong> in Chelsea for a year.</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">No, I moved away</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">Past simple</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -414,28 +485,42 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           </p>
         </div>
 
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("still true now", "sage")}
-            <span><em>She <strong>has worked</strong> at the Marriott for two years. (still working there)</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("finished", "amber")}
-            <span><em>She <strong>worked</strong> at the Marriott for two years. (she left)</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("still true now", "sage")}
-            <span><em>I <strong>have lived</strong> in East Boston since 2021. (still live there)</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("finished", "amber")}
-            <span><em>I <strong>lived</strong> in Chelsea for a year. (I moved away)</em></span>
-          </div>
+        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(239,68,68,0.06); border-left: 3px solid #ef4444">
+          <p style="margin: 0; font-size: 0.95rem"><strong>Watch out:</strong> do not use present perfect with a finished time.<br>
+          <span style="color: #ef4444">✗</span> "I have worked at the Hilton last year."<br>
+          <span style="color: #059669">✓</span> "I worked at the Hilton last year."</p>
         </div>
       `,
       exercises: [
         {
           id: "hl-s4-ex1",
+          title: "Read the table",
+          instructions: "Look at the four resume lines above.",
+          items: [
+            {
+              type: "radio",
+              label: "Which line shows a person who still works at the Marriott?",
+              options: [
+                { value: "a", label: "A" },
+                { value: "b", label: "B" },
+                { value: "c", label: "D" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Which two lines use the past simple, because the person left?",
+              options: [
+                { value: "a", label: "A and C" },
+                { value: "b", label: "B and D" },
+                { value: "c", label: "A and D" },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "hl-s4-ex2",
           title: "Still true or finished?",
           instructions: "Choose the tense that fits the meaning.",
           items: [
@@ -450,28 +535,21 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Claudette's old apartment was in Dorchester, but she moved. She ___ there for one year.",
+              label: "Dalia's old apartment was in Dorchester, but she moved. She ___ there for one year.",
               options: [
                 { value: "a", label: "has lived (still there)" },
                 { value: "b", label: "lived (she moved away)" },
               ],
               expectedAnswer: "b",
             },
-          ],
-        },
-        {
-          id: "hl-s4-ex2",
-          title: "Spot the error",
-          instructions: "One of these sentences has the wrong tense for the meaning.",
-          items: [
             {
               type: "radio",
-              label: "The first candidate left the Marriott last month. Which sentence describes this correctly?",
+              label: "Which sentence is correct?",
               options: [
-                { value: "a", label: "She worked there for two years. (Past Simple, finished)" },
-                { value: "b", label: "She has worked there for two years. (Present Perfect, still going)" },
+                { value: "a", label: "She has worked at the Hilton last year." },
+                { value: "b", label: "She worked at the Hilton last year." },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
           ],
         },
@@ -487,7 +565,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Before housekeeping, Claudette ___ (work) in the hotel laundry for two years.",
+              label: "Before housekeeping, Dalia ___ (work) in a hotel laundry for two years. She left that job.",
               expectedAnswers: ["worked"],
             },
           ],
@@ -504,17 +582,6 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneInterview", "Hotel HR office. Rosa's final interview round. Tuesday, 3:30 PM, right after her shift.", "terracotta")}
 
-        <p style="margin-bottom: 0.5rem">Before the interview, Rosa practices with Yemi, a coworker at her current job, during their break.</p>
-
-        ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "They'll ask how long you've been in housekeeping. Don't be nervous. Just tell the truth.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "OK. How long <strong>have</strong> I worked in housekeeping? Three years. <strong>Since 2023</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Perfect. And how long in East Boston?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have lived</strong> here for five years. I know this neighborhood.", side: "right", tone: "terracotta" },
-        ])}
-
-        <p style="margin: 1rem 0 0.5rem 0">At the interview with Jennifer:</p>
-
         ${dialogue([
           { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "How long have you worked in hotel housekeeping?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have worked</strong> in housekeeping for three years, since 2023.", side: "right", tone: "terracotta" },
@@ -527,10 +594,6 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
           <p style="margin: 0; font-size: 1.05rem">The negative is simple: <strong>haven't</strong> or <strong>hasn't</strong> + past participle.<br>
           "I <strong>haven't worked</strong> a night shift before, but I can." That's an honest answer that still sounds professional.</p>
-        </div>
-
-        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(233,196,106,0.1); border-left: 3px solid #e9c46a; margin-top: 0.75rem">
-          <p style="margin: 0; font-size: 0.9rem; font-style: italic">In the break room at Rosa's job, there's a flyer from the hotel workers union. One question on it reads: "How long have you worked without a raise?" Yemi reads it out loud and laughs. "Too long," she says.</p>
         </div>
       `,
       tipBox: {
@@ -572,8 +635,8 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "have", "worked", "in", "housekeeping", "since", "2023"],
-              correctAnswer: "I have worked in housekeeping since 2023",
+              words: ["Rosa", "has", "lived", "in", "East", "Boston", "since", "2021"],
+              correctAnswer: "Rosa has lived in East Boston since 2021",
             },
           ],
         },
