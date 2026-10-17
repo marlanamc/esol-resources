@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { canShouldMustImages as img } from "@/data/can-should-must-images.generated";
+import { checklist, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -99,16 +100,16 @@ export const canShouldMustContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("ability", "sage")}
             <span><em>Claudette <strong>can</strong> video-call her daughter now.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("possibility", "sage")}
             <span><em>You <strong>can</strong> make the letters bigger in Settings.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("not able", "blue")}
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
+            ${labelPill("not able", "terracotta")}
             <span><em>She <strong>can't</strong> read the small letters.</em></span>
           </div>
         </div>
@@ -175,43 +176,43 @@ export const canShouldMustContent: InteractiveGuideContent = {
       title: "Should. Advice From a Neighbor",
       icon: "💡",
       explanation: `
-        ${sceneCard("scenePhoneScam", "Wednesday, 10:40 PM. Claudette reads a text from a number she doesn't know.", "amber")}
-
-        <p style="margin: 0 0 0.75rem 0; line-height: 1.6">The next night, a text comes from a new number:</p>
+        <p style="margin: 0 0 0.75rem 0; line-height: 1.6">On Wednesday night, Claudette gets a text from a new number:</p>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 0.95rem"><em>"Hi Mom, it's me. I dropped my phone, so this is my new number. I need $200 for a new phone. Can you send it tonight?"</em></p>
         </div>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette calls her neighbor Bruno.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette calls her neighbor Bruno. He writes her a list of advice. A ✅ means Claudette already did it.</p>
 
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏾", text: "Bruno, sorry it's late. Nadège says she has a new number. She needs $200 tonight.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Wait. You <strong>shouldn't</strong> send anything yet. Scammers send texts like this all the time.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "But what if it's really her? What <strong>should</strong> I do?", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "You <strong>should</strong> call her old number first. The one Ryan saved for you.", side: "right", tone: "terracotta" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I tried. No answer. Maybe she's sleeping.", side: "left", tone: "sage" },
-          { speaker: "Bruno", avatar: "👨🏽", text: "Then you <strong>should</strong> text the new number a question only Nadège knows. Ask the name of your old dog.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Bruno's advice",
+          title: "What Claudette should do tonight",
+          items: [
+            { text: "She <strong>should</strong> call Nadège's old number first.", done: true },
+            { text: "She <strong>should</strong> ask a question only Nadège knows.", done: false },
+            { text: "She <strong>shouldn't</strong> send $200 tonight.", done: false },
+            { text: "She <strong>shouldn't</strong> click any links in the text.", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Should</strong> = advice or a recommendation. It is a good idea. <strong>Shouldn't</strong> = advice against something. It is not a good idea.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("good idea", "sage")}
             <span><em>You <strong>should</strong> call your daughter's old number first.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("good idea", "sage")}
             <span><em>You <strong>should</strong> ask a question only your family knows.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}
             <span><em>You <strong>shouldn't</strong> send money to a new number before you check.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}
             <span><em>You <strong>shouldn't</strong> click on links in texts from numbers you don't know.</em></span>
           </div>
@@ -229,11 +230,21 @@ export const canShouldMustContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Bruno says: \"___ send money before you call Nadège.\"",
+              label: "Look at Bruno's list. What has Claudette already done?",
               options: [
-                { value: "a", label: "You should" },
-                { value: "b", label: "You shouldn't" },
-                { value: "c", label: "You must" },
+                { value: "a", label: "She called Nadège's old number." },
+                { value: "b", label: "She asked about the old dog." },
+                { value: "c", label: "She sent $200." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Look at Bruno's list. Claudette ___ send $200 tonight.",
+              options: [
+                { value: "a", label: "should" },
+                { value: "b", label: "shouldn't" },
+                { value: "c", label: "can't" },
               ],
               expectedAnswer: "b",
             },
@@ -241,15 +252,15 @@ export const canShouldMustContent: InteractiveGuideContent = {
               type: "radio",
               label: "Claudette wants to check the text. Which advice is correct?",
               options: [
-                { value: "a", label: "She should calling Nadège's old number." },
-                { value: "b", label: "She should call Nadège's old number." },
-                { value: "c", label: "She should to call Nadège's old number." },
+                { value: "a", label: "She should calling her daughter on the old phone." },
+                { value: "b", label: "She should call her daughter on the old phone." },
+                { value: "c", label: "She should to call her daughter on the old phone." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "Fill in: If the new number sends a link, Claudette ___ (should / shouldn't) click on it.",
+              label: "Look at Bruno's list. Claudette ___ (should / shouldn't) click any links in the text.",
               expectedAnswers: ["shouldn't", "should not"],
             },
           ],
@@ -278,37 +289,39 @@ export const canShouldMustContent: InteractiveGuideContent = {
       title: "Must and Must Not. Rules That Protect You",
       icon: "🔒",
       explanation: `
-        ${sceneCard("sceneLibraryFlyer", "Claudette's bank, Thursday, 8:10 AM, before work. She reads a fraud notice in the lobby.", "sage")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette asked the new number about the old dog. It never answered. At 2 AM, one more text came: <em>"Mom, just send me your card number and PIN."</em> Before work, Claudette stops at her bank. Jessica at the front desk points to this notice.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Claudette asked the new number about the dog. It didn't answer the question. But at 2 AM, one more text came: <em>"Mom, just send me your card number and PIN. I'll do it myself."</em> Before work, Claudette stops at her bank. A notice on the board says: <strong>We will NEVER ask for your PIN by text, email, or phone.</strong></p>
-
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏾", text: "Your sign says you never ask for a PIN. Someone texted me for mine last night.", side: "left", tone: "sage" },
-          { speaker: "Jessica", avatar: "👩🏼", text: "That wasn't us. You <strong>must not</strong> share your PIN with anyone. Not even family.", side: "right", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I didn't send it. I didn't send any money either.", side: "left", tone: "sage" },
-          { speaker: "Jessica", avatar: "👩🏼", text: "Good. If you ever share your card number by mistake, you <strong>must</strong> call us right away.", side: "right", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "Do I have to come here, or can I call?", side: "left", tone: "sage" },
-          { speaker: "Jessica", avatar: "👩🏼", text: "You don't have to come in. You can call the number on the back of your card.", side: "right", tone: "blue" },
-        ])}
+        ${stepsCard({
+          kicker: "Bank notice",
+          title: "Card safety rules",
+          accent: "sage",
+          steps: [
+            "You <strong>must not</strong> share your PIN with anyone, not even family.",
+            "You <strong>must not</strong> give your card number to a stranger by text.",
+            "If you share your card number by mistake, you <strong>must</strong> call us right away.",
+            "You <strong>don't have to</strong> come to the bank. You <strong>can</strong> call the number on the back of your card.",
+          ],
+          note: "We will NEVER ask for your PIN by text, email, or phone.",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Must</strong> = strong obligation. It is required, not just a good idea. <strong>Must not</strong> (mustn't) = prohibition. It is not allowed. Do not do this.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("required", "sage")}
             <span><em>You <strong>must</strong> keep your PIN private.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("required", "sage")}
             <span><em>You <strong>must</strong> call the bank right away if someone has your card number.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
             <span><em>You <strong>must not</strong> share your PIN with anyone, not even family.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("not allowed", "terracotta")}
             <span><em>You <strong>must not</strong> give your card number to a stranger by text.</em></span>
           </div>
@@ -328,7 +341,7 @@ export const canShouldMustContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jessica at the bank says: \"You ___ share your PIN with anyone, not even family.\"",
+              label: "Look at the bank notice. You ___ share your PIN with anyone.",
               options: [
                 { value: "a", label: "must" },
                 { value: "b", label: "must not" },
@@ -348,18 +361,18 @@ export const canShouldMustContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"You don't have to come to the bank. You can call.\" What does this mean?",
+              label: "Look at the bank notice. Claudette has a cold and wants to stay home. Does she have to go to the bank?",
               options: [
-                { value: "a", label: "It is forbidden to come to the bank." },
-                { value: "b", label: "Coming in is not required. Calling is OK too." },
-                { value: "c", label: "You must come to the bank." },
+                { value: "a", label: "Yes. She must go to the bank." },
+                { value: "b", label: "No. She can call instead." },
+                { value: "c", label: "No. Going to the bank is forbidden." },
               ],
               expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "Fill in: If someone has your card number, you ___ call the bank right away. (must / must not)",
-              expectedAnswers: ["must"],
+              label: "Look at the bank notice. You ___ give your card number to a stranger by text. (must / must not)",
+              expectedAnswers: ["must not", "mustn't"],
             },
           ],
         },
@@ -403,27 +416,23 @@ export const canShouldMustContent: InteractiveGuideContent = {
         <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
           <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
             <thead>
-              <tr style="background: rgba(106,141,115,0.12)">
-                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Modal</th>
-                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Meaning</th>
-                <th scope="col" style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Example</th>
+              <tr style="background: rgba(128,128,128,0.12)">
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Modal</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.6rem 0.5rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Meaning and example</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">can / can't</td>
-                <td style="padding: 0.6rem 0.75rem">ability or possibility</td>
-                <td style="padding: 0.6rem 0.75rem"><em>Scammers <strong>can</strong> pretend to be your family.</em></td>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td class="gc-text-sage" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">can / can't</td>
+                <td style="padding: 0.6rem 0.5rem">ability or possibility<br><em>Scammers <strong>can</strong> pretend to be your family.</em></td>
               </tr>
-              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">should / shouldn't</td>
-                <td style="padding: 0.6rem 0.75rem">advice, recommendation</td>
-                <td style="padding: 0.6rem 0.75rem"><em>You <strong>should</strong> call the real number.</em></td>
+              <tr style="border-bottom: 1px solid rgba(128,128,128,0.2)">
+                <td class="gc-text-sage" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">should / shouldn't</td>
+                <td style="padding: 0.6rem 0.5rem">advice, recommendation<br><em>You <strong>should</strong> call the real number.</em></td>
               </tr>
               <tr>
-                <td class="gc-text-sage" style="padding: 0.6rem 0.75rem; font-weight: 700; color: #4d6b53">must / must not</td>
-                <td style="padding: 0.6rem 0.75rem">strong rule, prohibition</td>
-                <td style="padding: 0.6rem 0.75rem"><em>You <strong>must not</strong> share your PIN.</em></td>
+                <td class="gc-text-sage" style="padding: 0.6rem 0.5rem; font-weight: 700; vertical-align: top">must / must not</td>
+                <td style="padding: 0.6rem 0.5rem">strong rule, prohibition<br><em>You <strong>must not</strong> share your PIN.</em></td>
               </tr>
             </tbody>
           </table>

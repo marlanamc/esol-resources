@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { haveYouEverImages as img } from "@/data/have-you-ever-images.generated";
+import { checklist, readingCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -224,14 +225,19 @@ export const haveYouEverContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneClassroom", "After class, Thursday evening, three weeks later. Claudette talks with her classmate Amara, who volunteered at the pantry before.", "terracotta")}
+        <p style="margin: 0 0 1rem 0">Three weeks later, after class. Amara shows Claudette her list of things she did in East Boston. Look at the list. Some things she <strong>did</strong> at a specific time. Some things she has <strong>never</strong> done.</p>
 
-        ${dialogue([
-          { speaker: "Claudette", avatar: "👩🏾", text: "Amara, <strong>did</strong> you <strong>go</strong> to the food pantry near Maverick Square last Saturday?", side: "left", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "Yes, I did. I dropped off some cans. <strong>Have</strong> you <strong>ever been</strong> inside?", side: "right", tone: "sage" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven't</strong>. I only got food at the front table. Jean and I will volunteer there.", side: "left", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏾", text: "You will like it! My son <strong>went</strong> with me last Friday and he loved sorting the cans.", side: "right", tone: "sage" },
-        ])}
+        ${checklist({
+          kicker: "Amara's list",
+          title: "East Boston: what Amara has done",
+          items: [
+            { text: "Pantry: <strong>went</strong> last Saturday", done: true },
+            { text: "Library: <strong>took</strong> a class in 2023", done: true },
+            { text: "Health clinic: <strong>visited</strong> in March", done: true },
+            { text: "City hall: <strong>has never been</strong>", done: false },
+            { text: "311: <strong>has never called</strong>", done: false },
+          ],
+        })}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">
           <div style="padding: 0.9rem 1rem; background: rgba(176,87,64,0.07); border-radius: 0.5rem; border-top: 3px solid #b05740">
@@ -276,6 +282,25 @@ export const haveYouEverContent: InteractiveGuideContent = {
           title: "Which question fits?",
           instructions: "Choose the correct question for each situation.",
           items: [
+            {
+              type: "radio",
+              label: "Look at Amara's list. Which sentence is true?",
+              options: [
+                { value: "a", label: "Amara has been to the health clinic." },
+                { value: "b", label: "Amara has called 311." },
+                { value: "c", label: "Amara has visited city hall." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Amara's list says she took a library class in 2023. Which question asks about that exact year?",
+              options: [
+                { value: "a", label: "Did you take a class at the library in 2023?" },
+                { value: "b", label: "Have you ever taken a class at the library?" },
+              ],
+              expectedAnswer: "a",
+            },
             {
               type: "radio",
               label: "You want to know if your classmate went to a cultural event at any point in her life.",
@@ -335,6 +360,11 @@ export const haveYouEverContent: InteractiveGuideContent = {
           title: "Fill in the blank",
           instructions: "Write the correct verb form.",
           items: [
+            {
+              type: "text",
+              label: "Look at Amara's list. Has Amara ever called 311? Write the short answer: \"No, she ___.\"",
+              expectedAnswers: ["hasn't", "has not"],
+            },
             {
               type: "text",
               label: "Have you ever ___ (see) a free concert in Boston?",
@@ -469,14 +499,22 @@ export const haveYouEverContent: InteractiveGuideContent = {
       title: "Real Practice: Your Community",
       icon: "🏘️",
       explanation: `
-        ${sceneCard("sceneVolunteering", "The pantry, Saturday morning. Claudette and Jean sign in at the volunteer table for their first shift. Kevin is checking names.", "sage")}
+        <p style="margin: 0 0 1rem 0">Saturday morning. Before their first shift, Claudette and Jean read about a man who feeds people in a crisis. Notice how the reading says what he <strong>has done</strong>, then gives details in the past.</p>
 
-        ${dialogue([
-          { speaker: "Kevin", avatar: "🧑🏻", text: "Good morning! Jean, <strong>have</strong> you ever <strong>attended</strong> a neighborhood meeting? We have one for volunteers next month.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏽", text: "Yes, I <strong>have</strong>. I <strong>went</strong> to one about a community garden last spring.", side: "right", tone: "terracotta" },
-          { speaker: "Kevin", avatar: "🧑🏻", text: "<strong>Have</strong> you ever <strong>done</strong> translation work for your community?", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨🏽", text: "No, I <strong>haven't</strong>. But Claudette and I speak Creole and English, and many families here need help.", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "José Andrés: A Cook Who Feeds Communities",
+          paragraphs: [
+            "José Andrés <strong>was born</strong> in Spain. In the early 1990s, he <strong>moved</strong> to the United States. He <strong>arrived</strong> in New York City at age 21. In 2013, he <strong>became</strong> a U.S. citizen.",
+            "He <strong>has worked</strong> as a chef in restaurants, but he <strong>has</strong> also <strong>helped</strong> many people in a crisis. His group, World Central Kitchen, <strong>has served</strong> chef-prepared meals to communities after natural disasters. It <strong>has helped</strong> people in places like Guam, Panama, and Ukraine.",
+          ],
+          sources: [
+            { name: "World Central Kitchen", url: "https://wck.org/" },
+            { name: "The Washington Post (2013)", url: "https://www.washingtonpost.com/news/reliable-source/wp/2013/11/14/jose-andres-becomes-a-u-s-citizen-after-23-years-in-the-country/" },
+            { name: "Wikipedia: José Andrés", url: "https://en.wikipedia.org/wiki/Jos%C3%A9_Andr%C3%A9s" },
+          ],
+          accent: "blue",
+        })}
 
         <div style="padding: 0.85rem 1rem; background: rgba(106,141,115,0.08); border-left: 3px solid #6a8d73; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">
           <p style="margin: 0 0 0.3rem 0; font-weight: 700">Common East Boston community questions:</p>
@@ -525,12 +563,22 @@ export const haveYouEverContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jean ___ boxes at his church last winter.",
+              label: "José Andrés ___ to the United States in the early 1990s.",
               options: [
-                { value: "packed", label: "packed (past simple. specific time: last winter)" },
-                { value: "has packed", label: "has packed (present perfect)" },
+                { value: "moved", label: "moved (past simple. specific time: the early 1990s)" },
+                { value: "has moved", label: "has moved (present perfect)" },
               ],
-              expectedAnswer: "packed",
+              expectedAnswer: "moved",
+            },
+            {
+              type: "radio",
+              label: "Look at the reading. Which sentence is true?",
+              options: [
+                { value: "a", label: "José Andrés has helped people after disasters." },
+                { value: "b", label: "José Andrés has never worked as a chef." },
+                { value: "c", label: "José Andrés has not become a U.S. citizen." },
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -571,6 +619,11 @@ export const haveYouEverContent: InteractiveGuideContent = {
               type: "text",
               label: "Have you ever ___ (speak) at a community meeting?",
               expectedAnswers: ["spoken"],
+            },
+            {
+              type: "text",
+              label: "In what year did José Andrés become a U.S. citizen?",
+              expectedAnswers: ["2013"],
             },
           ],
         },

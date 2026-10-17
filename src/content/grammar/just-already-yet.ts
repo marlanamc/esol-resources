@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { justAlreadyYetImages as img } from "@/data/just-already-yet-images.generated";
+import { checklist, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -73,7 +74,7 @@ const placementDiagram = (parts: { text: string; highlight?: boolean; dim?: bool
   const spans = parts
     .map((p) => {
       if (p.highlight) {
-        return `<span style="background: #e9c46a; color: #1a202c; padding: 0.15rem 0.55rem; border-radius: 0.3rem; font-weight: 800; font-size: 1rem">${p.text}</span>`;
+        return `<span class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.15rem 0.55rem; border-radius: 0.3rem; font-weight: 800; font-size: 1rem">${p.text}</span>`;
       }
       if (p.dim) {
         return `<span style="opacity: 0.55; font-size: 0.95rem">${p.text}</span>`;
@@ -83,7 +84,7 @@ const placementDiagram = (parts: { text: string; highlight?: boolean; dim?: bool
     .join(`<span style="opacity: 0.35; margin: 0 0.2rem">+</span>`);
 
   return `
-    <div style="background: rgba(106,141,115,0.08); border: 1px solid rgba(106,141,115,0.2); border-radius: 0.5rem; padding: 0.85rem 1.1rem; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-family: inherit; line-height: 1.8">
+    <div style="background: rgba(128,128,128,0.08); border: 1px solid rgba(128,128,128,0.25); border-radius: 0.5rem; padding: 0.85rem 1.1rem; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-family: inherit; line-height: 1.8">
       ${spans}
     </div>
   `;
@@ -127,7 +128,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           <p style="margin: 0; font-size: 1.05rem"><strong>ALREADY</strong> = done before now, sooner than expected, or to confirm something is finished. It does <strong>not</strong> tell you when it happened.</p>
         </div>
 
-        <p style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6a8d73">Where does ALREADY go?</p>
+        <p class="gc-text-sage" style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em">Where does ALREADY go?</p>
         <p style="margin: 0 0 0.5rem; font-size: 0.95rem">ALREADY sits between <strong>have / has</strong> and the <strong>past participle (V3)</strong>. This is the usual place. (You will also hear it at the end: <em>I did it already.</em> That is OK too.)</p>
 
         ${placementDiagram([
@@ -147,22 +148,22 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ])}
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("done", "sage")}
             <span><em>Rosa <strong>has already signed</strong> up for the food pantry.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("sooner than expected", "sage")}
             <span><em>The appointment <strong>has already started</strong>. You are late.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("confirming", "sage")}
             <span><em>"Do you need help?" "No thanks, someone <strong>has already helped</strong> me."</em></span>
           </div>
         </div>
 
-        <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
-          <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Common mistake</p>
+        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
+          <p class="gc-text-terracotta" style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 0.25rem">Common mistake</p>
           <p style="margin: 0; font-size: 0.95rem">✗ &nbsp;<em>She has signed <strong>already</strong> the form.</em> &nbsp; (already between the verb and the object = wrong)</p>
           <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✓ &nbsp;<em>She <strong>has already signed</strong> the form.</em></p>
         </div>
@@ -251,22 +252,25 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePharmacy", "Outside the pharmacy on Chelsea Street. Wednesday afternoon. Rosa runs into Amara.", "amber")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Wednesday, Rosa walks out of the pharmacy on Chelsea Street. Her neighbor Amara texts to ask about her day. Read the three phone alerts. The newest one is first.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The next day, Rosa goes to the pharmacy after work. Outside, she meets Amara, her neighbor from Meridian Street. Amara works at the hospital.</p>
-
-        ${dialogue([
-          { speaker: "Amara", avatar: "👩🏿", text: "Hey Rosa, coming back from the pharmacy?", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Yeah, I <strong>have just picked</strong> up my prescription. The line was crazy.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩🏿", text: "I know. I\'ve <strong>just gotten</strong> back from there too. Did they have everything?", side: "left", tone: "amber" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Yes, thankfully. They <strong>have just restocked</strong> my medicine, so I didn’t have to come back.", side: "right", tone: "terracotta" },
-        ])}
+        ${stepsCard({
+          kicker: "Rosa's phone",
+          title: "Wednesday, newest first",
+          accent: "amber",
+          steps: [
+            "<strong>2 min ago:</strong> Rosa picked up her medicine. <em>She <strong>has just picked</strong> up her medicine.</em>",
+            "<strong>Monday:</strong> Rosa went to the pharmacy. <em>She <strong>has already been</strong> there this week.</em>",
+            "<strong>Not yet:</strong> The refill text did not come. <em>The text <strong>hasn't come yet</strong>.</em>",
+          ],
+          note: "Three alerts, three times: moments ago, earlier, and still waiting.",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>JUST</strong> = very recently, a short time ago. The action finished moments ago or today.</p>
         </div>
 
-        <p style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; color: #b56e1a">Where does JUST go?</p>
+        <p class="gc-text-amber" style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em">Where does JUST go?</p>
         <p style="margin: 0 0 0.5rem; font-size: 0.95rem">Like ALREADY, JUST sits between <strong>have / has</strong> and the <strong>past participle (V3)</strong>.</p>
 
         ${placementDiagram([
@@ -286,15 +290,15 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ])}
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(181,110,26,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("moments ago", "amber")}
             <span><em>The pharmacist <strong>has just called</strong> my name.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(181,110,26,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("very recently", "amber")}
             <span><em>I <strong>have just gotten</strong> back from the store.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(181,110,26,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("today", "amber")}
             <span><em>She <strong>has just started</strong> her new shift.</em></span>
           </div>
@@ -302,18 +306,18 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
 
         <p style="margin: 1rem 0 0.5rem; font-weight: 700; font-size: 0.9rem">JUST vs. ALREADY</p>
         <div style="display: grid; gap: 0.4rem; margin: 0 0 1rem">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("already", "sage")}
             <span><em>She <strong>has already picked</strong> up her card.</em> &nbsp;<span style="font-size: 0.88rem; opacity: 0.7">(done before. she might have done it days ago)</span></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(181,110,26,0.06); border-radius: 0.4rem; flex-wrap: wrap">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("just", "amber")}
             <span><em>She <strong>has just picked</strong> up her card.</em> &nbsp;<span style="font-size: 0.88rem; opacity: 0.7">(done moments ago or very recently)</span></span>
           </div>
         </div>
 
-        <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
-          <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Common mistake</p>
+        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
+          <p class="gc-text-terracotta" style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 0.25rem">Common mistake</p>
           <p style="margin: 0; font-size: 0.95rem">✗ &nbsp;<em>I <strong>just have</strong> picked up my prescription.</em> &nbsp; (just before have = wrong)</p>
           <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✓ &nbsp;<em>I <strong>have just picked</strong> up my prescription.</em></p>
         </div>
@@ -324,6 +328,16 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           title: "JUST or ALREADY?",
           instructions: "Choose the word that matches the meaning clue in each sentence.",
           items: [
+            {
+              type: "radio",
+              label: "Look at Rosa's phone. Which alert needs the word YET?",
+              options: [
+                { value: "a", label: "The alert from 2 minutes ago" },
+                { value: "b", label: "The alert from Monday" },
+                { value: "c", label: "The refill text that did not come" },
+              ],
+              expectedAnswer: "c",
+            },
             {
               type: "radio",
               label: "Rosa is still on the stairs. She got back from the pharmacy two minutes ago. Which fits?",
@@ -414,22 +428,24 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneKitchenTable", "Rosa's kitchen table, East Boston. Wednesday evening, the same day.", "blue")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">That evening, Rosa's daughter looks at the list on the fridge. Rosa signed the pantry form already. The other jobs are still open.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">That evening, Rosa sits at the kitchen table with her daughter. Rosa has a few things to do around the apartment, like calling the landlord about the kitchen faucet.</p>
-
-        ${dialogue([
-          { speaker: "Rosa's daughter", avatar: "👧🏽", text: "Mom, have you called the landlord <strong>yet</strong>?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "No, I <strong>haven't called</strong> him <strong>yet</strong>. I will do it tomorrow.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa's daughter", avatar: "👧🏽", text: "OK. Have you paid the electric bill <strong>yet</strong>? It’s due tomorrow.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Not <strong>yet</strong>. Let me do that now, before I forget.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Fridge list",
+          title: "Rosa's jobs this week",
+          items: [
+            { text: "Sign up for the food pantry", done: true },
+            { text: "Call the landlord about the faucet", done: false },
+            { text: "Pay the electric bill (due tomorrow)", done: false },
+            { text: "Return the library books", done: false },
+          ],
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>YET</strong> = something expected or planned, but not done so far. Used in questions and negative sentences.</p>
         </div>
 
-        <p style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; color: #268a82">Where does YET go?</p>
+        <p class="gc-text-blue" style="margin: 0.75rem 0 0.4rem; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em">Where does YET go?</p>
         <p style="margin: 0 0 0.5rem; font-size: 0.95rem">YET usually goes at the <strong>end</strong> of the sentence, after the object. Do not put it between <em>have</em> and V3.</p>
 
         ${placementDiagram([
@@ -447,18 +463,18 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
 
         <p style="margin: 1rem 0 0.5rem; font-weight: 700; font-size: 0.9rem">YET appears in two patterns only:</p>
         <div style="display: grid; gap: 0.4rem; margin: 0 0 1rem">
-          <div style="padding: 0.65rem 1rem; background: rgba(100,149,237,0.06); border-radius: 0.45rem; border-left: 3px solid #268a82">
-            <p style="margin: 0 0 0.2rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #268a82">Negative</p>
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.65rem 1rem; border-radius: 0.45rem">
+            <p class="gc-text-blue" style="margin: 0 0 0.2rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Negative</p>
             <em>I <strong>haven't</strong> signed the form <strong>yet</strong>.</em>
           </div>
-          <div style="padding: 0.65rem 1rem; background: rgba(100,149,237,0.06); border-radius: 0.45rem; border-left: 3px solid #268a82">
-            <p style="margin: 0 0 0.2rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #268a82">Question</p>
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.65rem 1rem; border-radius: 0.45rem">
+            <p class="gc-text-blue" style="margin: 0 0 0.2rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase">Question</p>
             <em><strong>Have</strong> you called the landlord <strong>yet</strong>?</em>
           </div>
         </div>
 
-        <div style="background: rgba(176,87,64,0.07); border-left: 3px solid #b05740; border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
-          <p style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; color: #b05740; margin-bottom: 0.25rem">Common mistakes</p>
+        <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="border-radius: 0 0.4rem 0.4rem 0; padding: 0.75rem 1rem; margin: 1rem 0">
+          <p class="gc-text-terracotta" style="margin: 0; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 0.25rem">Common mistakes</p>
           <p style="margin: 0; font-size: 0.95rem">✗ &nbsp;<em>She has <strong>yet</strong> called the landlord.</em> &nbsp; (yet between have and V3 = wrong)</p>
           <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✗ &nbsp;<em>She has called the landlord yet.</em> &nbsp; (yet in an affirmative sentence = wrong)</p>
           <p style="margin: 0.35rem 0 0; font-size: 0.95rem">✓ &nbsp;<em>She <strong>hasn't</strong> called the landlord <strong>yet</strong>.</em></p>
@@ -470,6 +486,16 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           title: "Where does YET go?",
           instructions: "Choose the sentence where YET is correct.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the fridge list. How many jobs has Rosa NOT done yet?",
+              options: [
+                { value: "2", label: "2" },
+                { value: "3", label: "3" },
+                { value: "4", label: "4" },
+              ],
+              expectedAnswer: "3",
+            },
             {
               type: "radio",
               label: "Which sentence is correct?",
@@ -576,65 +602,64 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       title: "Reading a To-Do List: All Three Together",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneToDoList", "Rosa's kitchen, Thursday, 4 PM.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">It's Thursday, 4 PM. Rosa checks her list before class. Each word tells you something different about when the job happened.</p>
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The next day, Rosa is home from work. She checks her to-do list before she leaves for class.</p>
-
-        ${dialogue([
-          { speaker: "Rosa", avatar: "👩🏾", text: "OK, let me check my list before I leave for class tonight.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already taken</strong> my daughter to the clinic. We went Monday after my shift.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already paid</strong> the rent. Done.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have just called</strong> the school about her checkup form. They'll call me back.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "But I <strong>haven't picked up</strong> the groceries <strong>yet</strong>. That one has to wait.", side: "right", tone: "terracotta" },
-        ])}
-
-        <p style="margin: 0 0 0.75rem; font-weight: 700; font-size: 0.95rem">Rosa's to-do list:</p>
-
-        <div style="background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 0.65rem; padding: 1rem 1.25rem; margin: 0 0 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05)">
-          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.07)">
-            <span style="font-size: 1.1rem; flex-shrink: 0">✅</span>
-            <div>
-              <span style="font-size: 0.95rem"><em>Pay rent</em></span>
-              <span style="display: block; font-size: 0.82rem; color: #6a8d73; font-weight: 600">I have <strong>already</strong> paid the rent. (done before)</span>
-            </div>
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-terracotta" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">To-do list</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Rosa's Thursday</div>
           </div>
-          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.07)">
-            <span style="font-size: 1.1rem; flex-shrink: 0">⚡</span>
-            <div>
-              <span style="font-size: 0.95rem"><em>Call the school</em></span>
-              <span style="display: block; font-size: 0.82rem; color: #b56e1a; font-weight: 600">I have <strong>just</strong> called the school. (moments ago)</span>
-            </div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0">
-            <span style="font-size: 1.1rem; flex-shrink: 0">⏳</span>
-            <div>
-              <span style="font-size: 0.95rem"><em>Pick up groceries</em></span>
-              <span style="display: block; font-size: 0.82rem; color: #268a82; font-weight: 600">I haven't picked up the groceries <strong>yet</strong>. (not done)</span>
-            </div>
+          <div style="padding: 0 0.5rem 0.75rem 0.5rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead>
+                <tr>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem; font-size: 0.78rem; text-align: left; width: 38%">Job</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem; font-size: 0.78rem; text-align: left; width: 34%">When</th>
+                  <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem; font-size: 0.78rem; text-align: left">Word</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="gc-row-stripe" style="background: rgba(0,0,0,0.02)">
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">✅ Pay rent</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">earlier this week</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem"><strong>already</strong></td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">⚡ Call the school</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">5 min ago</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem"><strong>just</strong></td>
+                </tr>
+                <tr class="gc-row-stripe" style="background: rgba(0,0,0,0.02)">
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">⏳ Buy groceries</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem">not done</td>
+                  <td style="padding: 0.5rem 0.4rem; font-size: 0.9rem"><strong>yet</strong></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <p style="margin: 0 0 0.6rem; font-weight: 700; font-size: 0.95rem">The placement cheat sheet:</p>
 
         <div style="display: flex; flex-direction: column; gap: 0.4rem; margin: 0 0 1.25rem">
-          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(106,141,115,0.08); border-radius: 0.45rem; flex-wrap: wrap">
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem; flex-wrap: wrap">
             <span style="font-size: 1rem">✅</span>
-            <code style="font-family: monospace; font-size: 0.92rem">have + <span style="background:#e9c46a; padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">ALREADY</span> + V3</code>
+            <code style="font-family: monospace; font-size: 0.92rem">have + <span class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">ALREADY</span> + V3</code>
             <span style="font-size: 0.85rem; opacity: 0.7; margin-left: auto">done before now</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(181,110,26,0.08); border-radius: 0.45rem; flex-wrap: wrap">
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem; flex-wrap: wrap">
             <span style="font-size: 1rem">⚡</span>
-            <code style="font-family: monospace; font-size: 0.92rem">have + <span style="background:#e9c46a; padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">JUST</span> + V3</code>
+            <code style="font-family: monospace; font-size: 0.92rem">have + <span class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">JUST</span> + V3</code>
             <span style="font-size: 0.85rem; opacity: 0.7; margin-left: auto">very recently</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(100,149,237,0.08); border-radius: 0.45rem; flex-wrap: wrap">
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem; flex-wrap: wrap">
             <span style="font-size: 1rem">⏳</span>
-            <code style="font-family: monospace; font-size: 0.92rem">haven't + V3 + <span style="background:#e9c46a; padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">YET</span></code>
+            <code style="font-family: monospace; font-size: 0.92rem">haven't + V3 + <span class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">YET</span></code>
             <span style="font-size: 0.85rem; opacity: 0.7; margin-left: auto">not done (negative)</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(100,149,237,0.08); border-radius: 0.45rem; flex-wrap: wrap">
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem; flex-wrap: wrap">
             <span style="font-size: 1rem">❓</span>
-            <code style="font-family: monospace; font-size: 0.92rem">Have + subject + V3 + <span style="background:#e9c46a; padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">YET</span>?</code>
+            <code style="font-family: monospace; font-size: 0.92rem">Have + subject + V3 + <span class="gc-bg-amber-alpha gc-text-amber" style="padding: 0.1rem 0.4rem; border-radius: 0.2rem; font-weight: 800">YET</span>?</code>
             <span style="font-size: 0.85rem; opacity: 0.7; margin-left: auto">not done (question)</span>
           </div>
         </div>
@@ -645,6 +670,16 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
           title: "Which word fits?",
           instructions: "Choose the word that fits both the meaning and the position.",
           items: [
+            {
+              type: "radio",
+              label: "Look at Rosa's Thursday table. Which job did she finish five minutes ago?",
+              options: [
+                { value: "a", label: "Pay rent" },
+                { value: "b", label: "Call the school" },
+                { value: "c", label: "Buy groceries" },
+              ],
+              expectedAnswer: "b",
+            },
             {
               type: "radio",
               label: "\"I have ___ paid the rent. I did it on Monday.\" (Monday was several days ago)",
@@ -743,16 +778,16 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
         <p style="margin: 1rem 0 0.6rem; font-weight: 700; font-size: 0.9rem">Quick summary before the quiz:</p>
 
         <div style="display: grid; gap: 0.4rem">
-          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(106,141,115,0.06); border-radius: 0.45rem">
-            <span style="font-weight: 800; font-size: 1rem; color: #6a8d73; flex-shrink: 0">ALREADY</span>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem">
+            <span class="gc-text-sage" style="font-weight: 800; font-size: 1rem; flex-shrink: 0">ALREADY</span>
             <span style="font-size: 0.92rem">Between <em>have</em> and V3. Done before now. Affirmative.</span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(181,110,26,0.06); border-radius: 0.45rem">
-            <span style="font-weight: 800; font-size: 1rem; color: #b56e1a; flex-shrink: 0">JUST</span>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem">
+            <span class="gc-text-amber" style="font-weight: 800; font-size: 1rem; flex-shrink: 0">JUST</span>
             <span style="font-size: 0.92rem">Between <em>have</em> and V3. Very recently. Affirmative.</span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(100,149,237,0.06); border-radius: 0.45rem">
-            <span style="font-weight: 800; font-size: 1rem; color: #268a82; flex-shrink: 0">YET</span>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 1rem; background: rgba(128,128,128,0.08); border-radius: 0.45rem">
+            <span class="gc-text-blue" style="font-weight: 800; font-size: 1rem; flex-shrink: 0">YET</span>
             <span style="font-size: 0.92rem">At the end of the sentence. Not done. Negative and questions only.</span>
           </div>
         </div>
