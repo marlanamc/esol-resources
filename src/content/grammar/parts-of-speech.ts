@@ -262,7 +262,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Verbs: action verbs and state verbs",
       icon: "⚙️",
       explanation: `
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Samuel lives in Amara's building and volunteers at the center on Tuesdays. He helps Amara with her registration form. Look at what each of them does, and what is true about each of them.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Samuel fixes things in Amara's building, and he volunteers at the center on Tuesdays. He helps Amara with her registration form. Look at what each of them does, and what is true about each of them.</p>
 
         <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
           <div style="padding: 0.75rem 1rem 0.5rem 1rem">
@@ -488,7 +488,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adjectives: describing words",
       icon: "🎨",
       explanation: `
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to <strong>describe</strong> their lives. Dilnoza reads a short story about a man who moved to a new country. Look at the words that describe.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Dilnoza sits down next to Amara. She is a cashier at a supermarket, and she is signing up for the same class. The last part of the form is called "About You." Names of things are not enough here. They need to <strong>describe</strong> their lives. First, Dilnoza reads about a real person who moved to a new country. Look at the words that describe.</p>
 
         ${readingCard({
           kicker: "Famous person",
@@ -685,7 +685,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       title: "Adverbs: how, when, how often",
       icon: "⚡",
       explanation: `
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing repairs on a clipboard. Amara asks him how his week works. This is what he tells her.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">On Saturday, it's cleanup day at Amara's building. Samuel is outside in work gloves, writing repairs on a clipboard. Amara tells him her kitchen sink is leaking again. Then she asks how his week works. This is what he tells her.</p>
 
         ${frequencyBar([
           { word: "always", percent: 100, example: "Samuel <strong>always</strong> helps at the center on Tuesdays.", accent: "terracotta" },
@@ -695,7 +695,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           { word: "never", percent: 0, example: "He <strong>never</strong> leaves a job unfinished.", accent: "sage" },
         ], { kicker: "Chart", title: "Samuel's week: how often?" })}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">"Monday," he says, and writes down Amara's leaking sink. Words like <em>always</em> tell us <em>how often</em>. Other words tell us <em>when</em> and <em>how</em>. They are all <strong>adverbs</strong>.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">"I can fix the sink on Monday," he says, and writes it down. Words like <em>always</em> tell us <em>how often</em>. Other words tell us <em>when</em> and <em>how</em>. They are all <strong>adverbs</strong>.</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A <strong>group of words</strong> can do the same job: <em>every Tuesday, last year, after work</em>.</p>
@@ -811,7 +811,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Look at Samuel's chart. He ___ eats lunch at his desk. (not often, not rare: about 40%)",
+              label: "Look at Samuel's chart. He ___ eats lunch at his desk. (Write one word.)",
               expectedAnswers: ["sometimes"],
             },
           ],
