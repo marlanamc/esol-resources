@@ -513,7 +513,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "both-are-right",
       title: "Both Are Right: start, like, love, hate",
       explanation: `
-        <p style="margin-bottom: 1rem">In the hotel break room, Kevin, her supervisor, posts next week's schedule. Elena has the early shift. She tells Kevin that she likes working mornings, but she hates missing pickup on Tuesdays.</p>
+        <p style="margin-bottom: 1rem">In the hotel break room, Kevin, her supervisor, posts next week's schedule. Elena has the early shift. She tells Kevin that she likes working mornings, but she hates rushing to pickup on Tuesdays.</p>
 
         ${scheduleChart({
           kicker: "Schedule",
@@ -599,8 +599,8 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Elena hates ___ (miss) pickup on Tuesdays. (write the to + verb form)",
-              expectedAnswers: ["to miss"],
+              label: "Elena hates ___ (rush) to pickup on Tuesdays. (write the to + verb form)",
+              expectedAnswers: ["to rush"],
             },
           ],
         },
