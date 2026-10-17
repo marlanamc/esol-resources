@@ -431,7 +431,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Diego", avatar: "👨🏾", text: "Look at this flyer. It says 'Your rights as a tenant.' Let's go through it.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "OK. It says owners <strong>have to</strong> heat rooms to 68 degrees or more from 7 a.m. to 11 p.m.", side: "right", tone: "terracotta" },
-          { speaker: "Diego", avatar: "👨🏾", text: "So he has no choice. And this one: 'Tenants <strong>don't have to</strong> pay a deposit bigger than the first month's rent.'", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏾", text: "He has no choice. And this one: 'Tenants <strong>don't have to</strong> wait. They can ask the board of health to inspect.'", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "And this: 'Landlords <strong>can't</strong> punish you for reporting a problem in writing.' Good. Then I'm calling the inspector today.", side: "right", tone: "terracotta" },
           { speaker: "Diego", avatar: "👨🏾", text: "Good idea. Check mass.gov for the full rules too.", side: "left", tone: "sage" },
         ])}
