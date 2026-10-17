@@ -191,7 +191,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 0.75rem 0">Amara gets to the clinic at 7:07. The front door is locked. Jean always comes in the daytime, so she didn't know. There are notes on a board next to the door.</p>
 
-        <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(233,196,106,0.4); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: inherit">
+        <div style="background: rgba(128,128,128,0.08); border: 2px solid rgba(233,196,106,0.4); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: inherit">
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Evening patients: from Marie, Office Manager</p>
           <ul style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 1.9">
             <li>The front door locks at 7 PM. <strong>Don't knock</strong>. Nobody can hear you.</li>
@@ -388,7 +388,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 0.75rem 0">Amara opens the green door at 7:13 and signs in. Laura at the front desk looks at the clock. "Two minutes early," she says. After the appointment, Amara texts her neighbor Elena. Elena has an appointment at the same clinic next Wednesday at 7:30, and she comes by bus.</p>
 
-        <div style="background: rgba(255,255,255,0.9); border: 2px solid rgba(106,141,115,0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0">
+        <div style="background: rgba(128,128,128,0.08); border: 2px solid rgba(106,141,115,0.3); border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0">
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Amara's text to Elena</p>
           <ol style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 2">
             <li><strong>First,</strong> <strong>walk</strong> straight on Meridian Street for two blocks.</li>
