@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { letsMakeASuggestionImages as img } from "@/data/lets-make-a-suggestion-images.generated";
+import { readingCard, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -83,7 +84,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneHallway", "Apartment building hallway, East Boston. Tuesday evening. No heat for two days.", "sage")}
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Gloria, Jean, and Marta meet in the hallway. The building has no heat.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.85"><em>Gloria, Jean, and Marta meet in the hallway. The building has no heat.</em></p>
 
         ${dialogue([
           { speaker: "Gloria", avatar: "👩🏾", text: "<strong>Let's</strong> call the landlord right now. It's freezing in here.", side: "right", tone: "terracotta" },
@@ -98,20 +99,20 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("direct", "sage")}
             <span><em><strong>Let's</strong> call the landlord tonight.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("direct", "sage")}
             <span><em><strong>Let's</strong> write down the date so we have a record.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("softer option", "blue")}
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
+            ${labelPill("softer option", "amber")}
             <span><em><strong>We could</strong> leave a message and also send a text.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("softer option", "blue")}
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
+            ${labelPill("softer option", "amber")}
             <span><em><strong>We could</strong> ask the other tenants if they have the same problem.</em></span>
           </div>
         </div>
@@ -178,16 +179,20 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "You Should and You Could. Suggesting to One Person",
       icon: "👂",
       explanation: `
-        ${sceneCard("sceneHallwayKevin", "Outside the apartment building. Marta talks to Kevin, a neighbor who has lived here for twenty years.", "amber")}
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.85"><em>Marta asks Kevin for help. Kevin has lived in the building for twenty years. He writes a list for her.</em></p>
 
-        ${dialogue([
-          { speaker: "Marta", avatar: "👩🏽", text: "Kevin, the heat has been off for two days. What do we do?", side: "right", tone: "amber" },
-          { speaker: "Kevin", avatar: "👨🏽", text: "You <strong>should</strong> send a written complaint to the landlord. Text is not enough.", side: "left", tone: "blue" },
-          { speaker: "Marta", avatar: "👩🏽", text: "And if he doesn't answer?", side: "right", tone: "amber" },
-          { speaker: "Kevin", avatar: "👨🏽", text: "You <strong>could</strong> call Inspectional Services. It's the city. They can force him to fix it.", side: "left", tone: "blue" },
-          { speaker: "Marta", avatar: "👩🏽", text: "He <strong>must</strong> fix it by law, right?", side: "right", tone: "amber" },
-          { speaker: "Kevin", avatar: "👨🏽", text: "Yes. He <strong>must</strong> keep apartments at 68 degrees or warmer during the day. That's the law.", side: "left", tone: "blue" },
-        ])}
+        ${stepsCard({
+          kicker: "Kevin's list",
+          title: "No heat: what Marta can do",
+          steps: [
+            "You <strong>should</strong> send a written complaint to the landlord. A text is not enough.",
+            "You <strong>should</strong> save every letter and receipt.",
+            "You <strong>could</strong> call Inspectional Services. It's the city.",
+            "You <strong>could</strong> wait one more day and then call the city.",
+          ],
+          note: "The landlord <strong>must</strong> keep the apartment at 68°F or warmer from 7 a.m. to 11 p.m., and 64°F or warmer at night. That's the law from September 15 to June 15.",
+          accent: "amber",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>You should</strong> = stronger advice. The speaker thinks this is the right thing to do.<br>
@@ -195,26 +200,26 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("stronger advice", "amber")}
             <span><em>You <strong>should</strong> send a written complaint.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.1); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("stronger advice", "amber")}
-            <span><em>You <strong>should</strong> keep a record of every call.</em></span>
+            <span><em>You <strong>should</strong> save every letter and receipt.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("softer option", "blue")}
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
+            ${labelPill("softer option", "amber")}
             <span><em>You <strong>could</strong> call Inspectional Services.</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("softer option", "blue")}
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
+            ${labelPill("softer option", "amber")}
             <span><em>You <strong>could</strong> wait one more day and then call the city.</em></span>
           </div>
         </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 0.75rem 1rem; border-radius: 0.5rem; margin-top: 0.75rem">
-          <p style="margin: 0; font-size: 0.95rem"><strong>Should vs. Must:</strong> Kevin says the landlord <em>must</em> keep the heat on. That's the law. He says Marta <em>should</em> send a complaint. That's advice. <em>Must</em> is stronger than <em>should</em>.</p>
+          <p style="margin: 0; font-size: 0.95rem"><strong>Should vs. Must:</strong> The landlord <em>must</em> keep the heat on. That's the law. Marta <em>should</em> send a complaint. That's advice. <em>Must</em> is stronger than <em>should</em>.</p>
         </div>
       `,
       exercises: [
@@ -225,11 +230,11 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kevin thinks saving every letter is the right and necessary step. Which fits?",
+              label: "Look at Kevin's list. Which step is a softer option, not strong advice?",
               options: [
-                { value: "a", label: "You could keep copies of every letter." },
-                { value: "b", label: "You should keep copies of every letter." },
-                { value: "c", label: "You should to keep copies of every letter." },
+                { value: "a", label: "Send a written complaint to the landlord." },
+                { value: "b", label: "Call Inspectional Services." },
+                { value: "c", label: "Save every letter and receipt." },
               ],
               expectedAnswer: "b",
             },
@@ -242,6 +247,16 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
                 { value: "c", label: "You could visit the housing office downtown." },
               ],
               expectedAnswer: "c",
+            },
+            {
+              type: "text",
+              label: "Look at Kevin's list. How many steps use should? (write a number)",
+              expectedAnswers: ["2", "two"],
+            },
+            {
+              type: "text",
+              label: "At night, the apartment must be at least ___ degrees. (write a number)",
+              expectedAnswers: ["64"],
             },
             {
               type: "text",
@@ -258,8 +273,8 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["You", "should", "keep", "a", "record", "of", "every", "call", "you", "make"],
-              correctAnswer: "You should keep a record of every call you make",
+              words: ["You", "should", "keep", "every", "letter", "from", "the", "landlord"],
+              correctAnswer: "You should keep every letter from the landlord",
             },
           ],
         },
@@ -274,18 +289,23 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "Could We and Should We. Suggestions as Questions",
       icon: "🍽️",
       explanation: `
-        ${sceneCard("sceneRestaurantBreak", "Restaurant kitchen, East Boston. Friday, on break. Diego's building still has no heat.", "terracotta")}
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.85"><em>Diego lives in Gloria and Jean's building. His coworkers Halima and Brian want to help. Halima says, "<strong>Why don't we</strong> read about someone who started with a hard life? It's Hispanic Heritage Month." <strong>Could we</strong> learn something from her? Read her story.</em></p>
 
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: rgba(0,0,0,0.65)"><em>Diego lives in Gloria and Jean's building. On his break, he tells his coworkers Halima and Brian about the heat.</em></p>
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Sonia Sotomayor: From the Bronx to the Supreme Court",
+          paragraphs: [
+            "Sonia Sotomayor was born in the Bronx, New York, in 1954. Her parents were born in Puerto Rico. Her father worked with tools and metal, and her mother worked as a telephone operator before she became a nurse. The family lived in public housing. Sonia's father died when she was nine years old.",
+            "Her mother valued education and bought an encyclopedia set for her children. Sonia studied at Princeton University and Yale Law School. In 2009, President Obama chose her for the Supreme Court. She is the first Hispanic person to serve on it.",
+          ],
+          sources: [
+            { name: "Supreme Court of the United States: Biographies", url: "https://www.supremecourt.gov/about/biographies.aspx" },
+            { name: "Wikipedia: Sonia Sotomayor", url: "https://en.wikipedia.org/wiki/Sonia_Sotomayor" },
+          ],
+          accent: "terracotta",
+        })}
 
-        ${dialogue([
-          { speaker: "Diego", avatar: "👨🏽", text: "Day three with no heat. My son slept in his coat last night.", side: "right", tone: "sage" },
-          { speaker: "Halima", avatar: "👩🏿", text: "<strong>Could we</strong> help? My cousin called the city councilor's office last winter. They called her landlord the same day.", side: "left", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏽", text: "<strong>Should we</strong> call 311 first? They send an inspector.", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "👨🏽", text: "Good idea. But my English on the phone isn't great.", side: "right", tone: "sage" },
-          { speaker: "Halima", avatar: "👩🏿", text: "<strong>Why don't we</strong> call together on our break tomorrow? I'll help you explain.", side: "left", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏽", text: "And <strong>could we</strong> write down what to say first? Your address, how many days, the temperature.", side: "left", tone: "blue" },
-        ])}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6"><strong>Your turn:</strong> What advice would you give a student with a hard start? <em>You <strong>should</strong> ask for help. You <strong>could</strong> read a little every day.</em></p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Could we...?</strong> = a suggestion in question form. Softer and more polite.<br>
@@ -294,15 +314,15 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("polite option", "terracotta")}
             <span><em><strong>Could we</strong> write down what to say first?</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("checking agreement", "terracotta")}
             <span><em><strong>Should we</strong> call 311 before we call the councilor?</em></span>
           </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("informal", "amber")}
             <span><em><strong>Why don't we</strong> call together on our break?</em></span>
           </div>
@@ -321,23 +341,28 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Halima wants to offer a polite option: emailing the councilor's office too. Which fits?",
+              label: "Halima wants to suggest reading the article about Sotomayor together, in an informal way. Which fits?",
               options: [
-                { value: "a", label: "Could we email the councilor's office too?" },
-                { value: "b", label: "Could we emailing the councilor's office too?" },
-                { value: "c", label: "Let's to email the councilor's office too." },
+                { value: "a", label: "Why don't we read it together?" },
+                { value: "b", label: "Why don't we reads it together?" },
+                { value: "c", label: "Why don't we to read it together?" },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Brian wants to check if asking for an inspection on Monday is a good idea. Which fits?",
+              label: "Read about Sonia Sotomayor. Which sentence is true?",
               options: [
-                { value: "a", label: "Why don't we asked for a Monday inspection?" },
-                { value: "b", label: "Should we ask for a Monday inspection?" },
-                { value: "c", label: "Should we to ask for a Monday inspection?" },
+                { value: "a", label: "She was born in Puerto Rico." },
+                { value: "b", label: "Both of her parents were born in Puerto Rico." },
+                { value: "c", label: "She studied at Yale before Princeton." },
               ],
               expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Sonia was born in 1954 (in June). She joined the Supreme Court in August 2009. How old was she? (write a number)",
+              expectedAnswers: ["55", "fifty-five", "fifty five"],
             },
             {
               type: "text",
@@ -382,37 +407,36 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">The next morning, Jean texts the group: <em>"I called the city. An inspector is coming Thursday."</em></p>
 
-        <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">All four suggestion forms side by side:</p>
+        <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">All the suggestion forms side by side:</p>
 
-        <div style="overflow-x: auto; margin: 0.5rem 0 1.25rem">
+        <div style="margin: 0.5rem 0 1.25rem">
           <table style="width: 100%; border-collapse: collapse; font-size: 0.93rem">
             <thead>
-              <tr style="background: rgba(106,141,115,0.12)">
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Form</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Meaning</th>
-                <th style="padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid rgba(106,141,115,0.3)">Example</th>
+              <tr>
+                <th class="gc-text-dark gc-table-divider" style="padding: 0.55rem 0.6rem; text-align: left; border-bottom: 2px solid transparent">Form</th>
+                <th class="gc-text-dark gc-table-divider" style="padding: 0.55rem 0.6rem; text-align: left; border-bottom: 2px solid transparent">Example</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #b05740">Let's</td>
-                <td style="padding: 0.6rem 0.75rem">group proposal, direct</td>
-                <td style="padding: 0.6rem 0.75rem"><em><strong>Let's</strong> call the landlord together.</em></td>
+              <tr class="gc-row-stripe">
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><strong>Let's</strong><br><span style="font-size: 0.8rem; opacity: 0.8">group proposal, direct</span></td>
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><em><strong>Let's</strong> call the landlord together.</em></td>
               </tr>
-              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">We / You could</td>
-                <td style="padding: 0.6rem 0.75rem">soft option, not a command</td>
-                <td style="padding: 0.6rem 0.75rem"><em><strong>We could</strong> text him too.</em></td>
+              <tr class="gc-row-stripe">
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><strong>We / You could</strong><br><span style="font-size: 0.8rem; opacity: 0.8">soft option</span></td>
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><em><strong>We could</strong> text him too.</em></td>
               </tr>
-              <tr style="border-bottom: 1px solid rgba(0,0,0,0.07)">
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #6a8d73">You should</td>
-                <td style="padding: 0.6rem 0.75rem">stronger advice</td>
-                <td style="padding: 0.6rem 0.75rem"><em><strong>You should</strong> send a written complaint.</em></td>
+              <tr class="gc-row-stripe">
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><strong>You should</strong><br><span style="font-size: 0.8rem; opacity: 0.8">stronger advice</span></td>
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><em><strong>You should</strong> send a written complaint.</em></td>
               </tr>
-              <tr>
-                <td style="padding: 0.6rem 0.75rem; font-weight: 700; color: #e9c46a; text-shadow: 0 0 1px rgba(0,0,0,0.3)">Why don't we</td>
-                <td style="padding: 0.6rem 0.75rem">informal group suggestion</td>
-                <td style="padding: 0.6rem 0.75rem"><em><strong>Why don't we</strong> knock on Marta's door?</em></td>
+              <tr class="gc-row-stripe">
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><strong>Could we / Should we</strong><br><span style="font-size: 0.8rem; opacity: 0.8">question form</span></td>
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><em><strong>Should we</strong> call 311 first?</em></td>
+              </tr>
+              <tr class="gc-row-stripe">
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><strong>Why don't we</strong><br><span style="font-size: 0.8rem; opacity: 0.8">informal group</span></td>
+                <td style="padding: 0.55rem 0.6rem; vertical-align: top"><em><strong>Why don't we</strong> knock on Marta's door?</em></td>
               </tr>
             </tbody>
           </table>
@@ -452,7 +476,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Diego gives a polite option to his coworker Brian. Which fits?",
+              label: "A coworker gives a polite option to another coworker. Which fits?",
               options: [
                 { value: "a", label: "Let's share the Saturday hours." },
                 { value: "b", label: "You must share the Saturday hours." },
