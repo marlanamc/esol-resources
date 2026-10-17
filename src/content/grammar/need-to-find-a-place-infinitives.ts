@@ -306,6 +306,12 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Real person",
           title: "Jaime Escalante, math teacher",
+          photo: {
+            url: "/images/guide-people/jaime-escalante.jpg",
+            alt: "Jaime Escalante points at math on a chalkboard in his classroom, 1983",
+            credit: "Los Angeles Times, 1983, CC BY 4.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Jaime_Escalante_teaching,_1983_(cropped).jpg",
+          },
           paragraphs: [
             "Jaime Escalante was born in La Paz, Bolivia. In the 1960s he <strong>wanted to</strong> find a better life, so he moved to the United States. He worked many odd jobs and taught himself English. He also <strong>needed to</strong> earn another college degree before he could teach again.",
             "In 1974 he took a job at Garfield High School in East Los Angeles. In 1982, his largest class took the AP Calculus test and passed. Some scores were questioned, and many students took the test again and passed.",

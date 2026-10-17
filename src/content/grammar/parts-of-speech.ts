@@ -493,6 +493,12 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         ${readingCard({
           kicker: "Famous person",
           title: "Hamdi Ulukaya: A New Country",
+          photo: {
+            url: "/images/guide-people/hamdi-ulukaya.jpg",
+            alt: "Hamdi Ulukaya, a man with curly gray hair and glasses, in a dark jacket",
+            credit: "U.S. Department of Homeland Security, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Hamdi_Ulukaya,_official_portrait,_Homeland_Security_Council.jpg",
+          },
           paragraphs: [
             "Hamdi Ulukaya grew up on a mountain in <strong>eastern</strong> Turkey, near the Euphrates River. Later, he moved to the United States, a <strong>new</strong> country. In 2005, he started Chobani, a yogurt company.",
             "In 2016, he started Tent. Tent helps <strong>large</strong> businesses hire refugees. Today, it works with more than <strong>500</strong> of the world's <strong>largest</strong> employers. Ulukaya says, \"The minute a refugee gets a job is the minute they stop being a refugee.\"",
