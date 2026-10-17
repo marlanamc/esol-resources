@@ -461,7 +461,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
               </tr>
               <tr>
                 <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">B: I <strong>worked</strong> at the Hilton for one year.</td>
-                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">No, she left</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">No, I left</td>
                 <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Past simple</td>
               </tr>
               <tr>
