@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { pastPerfectImages as img } from "@/data/past-perfect-images.generated";
+import { checklist, readingCard, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -169,13 +170,19 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "had-plus-v3-form",
       title: "had + V3: Putting It in Order",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Break room, 10 AM. Before her interview, Gloria meets James, a forklift operator.", "sage")}
+        <p>It is Wednesday morning in East Boston. Gloria sits in the warehouse break room before her interview and checks her list. A green check means she <strong>had done</strong> it before today.</p>
 
-        ${dialogue([
-          { speaker: "James", avatar: "👨🏿", text: "So what did you put on your application?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "I wrote that I <strong>had cleaned</strong> hotel rooms and <strong>had handled</strong> supply orders. Never drove a forklift, though.", side: "right", tone: "terracotta" },
-          { speaker: "James", avatar: "👨🏿", text: "Same. I <strong>hadn't driven</strong> one either before they trained me here.", side: "left", tone: "sage" },
-        ])}
+        ${checklist({
+          kicker: "Before the interview",
+          title: "Gloria's application checklist",
+          items: [
+            { text: "Gloria <strong>had cleaned</strong> hotel rooms for two years.", done: true },
+            { text: "She <strong>had handled</strong> supply orders at the hotel.", done: true },
+            { text: "She <strong>had sent</strong> her application online.", done: true },
+            { text: "She <strong>hadn't driven</strong> a forklift.", done: false },
+            { text: "She <strong>hadn't worked</strong> in a warehouse.", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -192,7 +199,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("negative", "terracotta")}
-            <span><em>He <strong>hadn't driven</strong> a forklift before the training.</em></span>
+            <span><em>Gloria <strong>hadn't driven</strong> a forklift before the training.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("negative", "terracotta")}
@@ -238,6 +245,16 @@ export const pastPerfectContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "correct",
             },
+            {
+              type: "radio",
+              label: "Look at Gloria's checklist. Which sentence is true?",
+              options: [
+                { value: "a", label: "Before the interview, she had sent her application, but she hadn't worked in a warehouse." },
+                { value: "b", label: "Before the interview, she hadn't sent her application." },
+                { value: "c", label: "Before the interview, she had driven a forklift." },
+              ],
+              expectedAnswer: "a",
+            },
           ],
         },
         {
@@ -247,13 +264,13 @@ export const pastPerfectContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "James ___ (never use) a pallet jack before the safety training.",
+              label: "Before the safety training, Gloria ___ (never use) a pallet jack.",
               expectedAnswers: ["had never used", "hadn't used"],
             },
             {
               type: "text",
-              label: "Before she applied here, Gloria ___ (clean) hotel rooms for two years.",
-              expectedAnswers: ["had cleaned"],
+              label: "Before the interview, Gloria ___ (send) her application online.",
+              expectedAnswers: ["had sent"],
             },
           ],
         },
@@ -387,16 +404,20 @@ export const pastPerfectContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("scenePromotion", "Outside the warehouse, Wednesday evening. After the interview, Gloria calls a friend.", "terracotta")}
+        <p>Marta used to clean rooms with Gloria at the hotel. She still works there. Gloria calls her on Wednesday evening with the good news. Here is Gloria's day.</p>
 
-        <p>Marta used to clean rooms with Gloria at the hotel. She still works there. Gloria calls her with the good news.</p>
+        ${timeline({
+          kicker: "Wednesday",
+          title: "Gloria's big day",
+          items: [
+            { when: "8:00 AM", text: "Gloria <strong>arrived</strong> at the warehouse.", accent: "amber" },
+            { when: "9:00 AM", text: "The interview <strong>started</strong>.", accent: "sage" },
+            { when: "10:00 AM", text: "Jennifer <strong>offered</strong> her the job.", accent: "terracotta" },
+            { when: "6:00 PM", text: "Gloria <strong>called</strong> Marta.", accent: "blue" },
+          ],
+        })}
 
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏽", text: "I got the warehouse job! Jennifer <strong>offered</strong> it to me today.", side: "right", tone: "terracotta" },
-          { speaker: "Marta (phone)", avatar: "🧑🏽", text: "No way! What did you tell her?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "I told her I <strong>had cleaned</strong> hotel rooms for two years, <strong>had trained</strong> two new cleaners, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
-        ])}
-
+        
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
             Use <strong>Past Simple</strong> for one finished action in the past.<br>
@@ -412,6 +433,10 @@ export const pastPerfectContent: InteractiveGuideContent = {
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("two actions", "amber")}
             <span><em>Before she <strong>got</strong> the job, she <strong>had trained</strong> two new cleaners.</em> (1st: trained; 2nd: got the job)</span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("two actions", "amber")}
+            <span><em>When Gloria <strong>called</strong> Marta, Jennifer <strong>had already offered</strong> her the job.</em> (1st: offered; 2nd: called)</span>
           </div>
         </div>
 
@@ -447,10 +472,10 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "When Gloria called Marta, Marta ___ her shift at the hotel already.",
+              label: "Look at the timeline. When Gloria called Marta, Jennifer ___ her the job.",
               options: [
-                { value: "a", label: "finished (Past Simple)" },
-                { value: "b", label: "had already finished (Past Perfect)" },
+                { value: "a", label: "offered (Past Simple)" },
+                { value: "b", label: "had already offered (Past Perfect)" },
               ],
               expectedAnswer: "b",
             },
@@ -488,6 +513,11 @@ export const pastPerfectContent: InteractiveGuideContent = {
               label: "She ___ (call) Marta right after Jennifer offered her the job.",
               expectedAnswers: ["called"],
             },
+            {
+              type: "text",
+              label: "Look at the timeline. By the time the interview started, Gloria ___ (arrive) at the warehouse.",
+              expectedAnswers: ["had arrived"],
+            },
           ],
         },
       ],
@@ -500,18 +530,26 @@ export const pastPerfectContent: InteractiveGuideContent = {
       id: "your-work-story",
       title: "Your Work Story",
       explanation: `
-        ${sceneCard("sceneWorkStory", "Break room, Gloria's first week. Gloria and James swap work histories.", "sage")}
+        <p>Work histories use Past Perfect all the time. Gloria reads about a woman who had worked very hard jobs before she started a business. Look for the two actions in each sentence.</p>
 
-        <p>It is Gloria's first week at the warehouse. At lunch, James, the forklift operator she met before her interview, sits down with her. They talk about their old jobs.</p>
+        ${readingCard({
+          kicker: "A real work story",
+          title: "Madam C. J. Walker",
+          accent: "terracotta",
+          paragraphs: [
+            "Sarah Breedlove was born in Louisiana in 1867. She lost her parents when she was seven. Before she started her own business, she <strong>had worked</strong> as a farm laborer and a laundress.",
+            "In the 1890s, she lost much of her hair because of a scalp problem. In 1905, she moved to Denver and began her own business as &ldquo;Madam&rdquo; C. J. Walker. Before she <strong>settled</strong> in Indianapolis in 1910, she <strong>had traveled</strong> through the South and Southeast, selling door to door. In Indianapolis, she built a factory and a training school.",
+          ],
+          photo: {
+            url: "/images/guide-people/madam-cj-walker.jpg",
+            alt: "Portrait of Madam C. J. Walker, about 1914, looking to the side",
+            credit: "Addison N. Scurlock, c. 1914, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Madam_C._J._Walker_by_Addison_N._Scurlock.jpg",
+          },
+          sources: [{ name: "Madam C. J. Walker official site", url: "https://madamcjwalker.com/about/" }],
+        })}
 
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏽", text: "Before I came here, I <strong>had cleaned</strong> hotel rooms for two years. Mornings mostly.", side: "right", tone: "terracotta" },
-          { speaker: "James", avatar: "👨🏿", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "That sounds hard. By the time I found this job, I <strong>had already saved</strong> enough to move. Now I walk here.", side: "right", tone: "terracotta" },
-          { speaker: "James", avatar: "👨🏿", text: "Lucky you. And the pay is better here. By the time I quit, the restaurant <strong>hadn’t paid</strong> me overtime, not once.", side: "left", tone: "sage" },
-        ])}
-
-        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
           <p style="margin: 0; font-size: 1.05rem">Past Perfect is natural in work histories: you talk about what you had done <em>before</em> the current job, and what had already happened before a key moment.</p>
         </div>
 
@@ -531,47 +569,47 @@ export const pastPerfectContent: InteractiveGuideContent = {
         </div>
       `,
       tipBox: {
-        title: "February at the warehouse",
-        content: "A break-room poster near Gloria's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
+        title: "Tell your own work story",
+        content: "Before her interview, Gloria had never told her work history in English. Practice yours: say what you had done before your last job, and what you had never done.",
       },
       exercises: [
         {
           id: "pp-s5-ex1",
-          title: "Gloria's story",
-          instructions: "Fill in the blanks to complete Gloria's work history.",
+          title: "Madam C. J. Walker's story",
+          instructions: "Look at the reading about Madam C. J. Walker.",
           items: [
             {
-              type: "text",
-              label: "Before she found this job, Gloria ___ (clean) hotel rooms for two years.",
-              expectedAnswers: ["had cleaned"],
+              type: "radio",
+              label: "Which happened first?",
+              options: [
+                { value: "a", label: "Walker settled in Indianapolis" },
+                { value: "b", label: "Walker traveled through the South and Southeast" },
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "text",
-              label: "By the time she found this job, she ___ (already save) enough to move.",
-              expectedAnswers: ["had already saved"],
+              label: "Walker ___ (be) a laundress before she started her own business.",
+              expectedAnswers: ["had been"],
+            },
+            {
+              type: "text",
+              label: "By the time Walker settled in Indianapolis, she ___ (already begin) her business in Denver.",
+              expectedAnswers: ["had already begun"],
             },
           ],
         },
         {
           id: "pp-s5-ex2",
-          title: "James's story",
-          instructions: "Choose the correct form for each blank.",
+          title: "Gloria's story",
+          instructions: "Choose the correct form.",
           items: [
             {
               type: "radio",
-              label: "Before James found this job, he ___ in a restaurant for years.",
+              label: "Before Gloria started at the warehouse, she ___ a forklift.",
               options: [
-                { value: "a", label: "had worked (Past Perfect)" },
-                { value: "b", label: "worked (Past Simple)" },
-              ],
-              expectedAnswer: "a",
-            },
-            {
-              type: "radio",
-              label: "By the time James quit, the restaurant ___ him overtime even once.",
-              options: [
-                { value: "a", label: "hadn't paid (Past Perfect, negative)" },
-                { value: "b", label: "didn't pay (Past Simple, negative)" },
+                { value: "a", label: "had never driven" },
+                { value: "b", label: "has never driven" },
               ],
               expectedAnswer: "a",
             },
@@ -612,7 +650,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     },
     {
       id: "past-perfect-q3",
-      question: "James hadn't driven a forklift before he ___.",
+      question: "Gloria hadn't driven a forklift before she ___.",
       options: [
         { value: "a", label: "starts at this warehouse" },
         { value: "b", label: "started at this warehouse" },
