@@ -5,7 +5,7 @@ import type { InteractiveGuideContent } from "@/types/activity";
 // ---------------------------------------------------------------------------
 
 const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber" | "green" | "red"): string =>
-  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; min-width: min-content; max-width: 45%; overflow-wrap: normal">${text}</span>`;
 
 /** A fake news-site headline card, styled like a simple phone news app. */
 const fakeHeadlineCard = (opts: {
