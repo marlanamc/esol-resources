@@ -426,9 +426,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the table. Which verb is an action verb for Amara?",
               options: [
-                { value: "fills out", label: "fills out" },
                 { value: "needs", label: "needs" },
                 { value: "has", label: "has" },
+                { value: "fills out", label: "fills out" },
               ],
               expectedAnswer: "fills out",
             },
@@ -586,8 +586,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the reading. Where did Hamdi Ulukaya grow up?",
               options: [
-                { value: "eastern", label: "In eastern Turkey" },
                 { value: "us", label: "In the United States" },
+                { value: "eastern", label: "In eastern Turkey" },
                 { value: "river", label: "In a city on the coast" },
               ],
               expectedAnswer: "eastern",
@@ -601,9 +601,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Look at the reading. Which word describes the noun \"country\"?",
               options: [
-                { value: "new", label: "new" },
                 { value: "started", label: "started" },
                 { value: "later", label: "later" },
+                { value: "new", label: "new" },
               ],
               expectedAnswer: "new",
             },
