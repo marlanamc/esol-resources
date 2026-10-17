@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { passiveVoiceWhatWasDoneImages as img } from "@/data/passive-voice-what-was-done-images.generated";
+import { checklist, readingCard, scheduleChart } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -173,9 +174,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       title: "Is Required / Is Provided: Reading the Job Ad",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneJobAd", "Job posting at the East Boston Career Center, Tuesday morning.", "sage")}
-
-        <p>Before she was hired, Gloria saw this job posting at the Career Center. Job ads almost always use passive voice. Look at the language:</p>
+        <p>Before she was hired, Gloria saw this job posting at the East Boston Career Center. Job ads almost always use passive voice. Look at the language:</p>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem; font-weight: 700">Hotel Housekeeper, Full-Time</p>
@@ -208,12 +207,42 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           </div>
         </div>
 
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏽", text: "It says safety training <strong>is provided</strong>. So I don't have to pay for it?", side: "right", tone: "terracotta" },
-          { speaker: "Marcos", avatar: "👨🏾", text: "Right. And a uniform <strong>is included</strong> too. You don't buy that either.", side: "left", tone: "sage" },
-        ])}
+        <p>Gloria reads the ad with a pen. Safety training <strong>is provided</strong> and a uniform <strong>is included</strong>, so she doesn't have to pay for them. The hotel also sends her two more rules. She makes a list of everything the job needs.</p>
+
+        ${checklist({
+          kicker: "Gloria's list",
+          title: "The housekeeper job: what is needed",
+          items: [
+            { text: "Experience in hospitality <strong>is required</strong>. (Gloria has three years.)", done: true },
+            { text: "References <strong>are expected</strong>. (She sent two.)", done: true },
+            { text: "A background check <strong>is completed</strong> before the first day. (Waiting.)", done: false },
+            { text: "Non-slip shoes <strong>are required</strong>. (She needs to buy them.)", done: false },
+          ],
+        })}
       `,
       exercises: [
+        {
+          id: "jobad-list",
+          title: "Read Gloria's list",
+          instructions: "Look at the checklist above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence about Gloria's list is true?",
+              options: [
+                { value: "a", label: "Non-slip shoes are required, and Gloria still needs to buy them." },
+                { value: "b", label: "The background check is already finished." },
+                { value: "c", label: "Gloria did not send references." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "How many things on Gloria's list are NOT done yet? (write a number)",
+              expectedAnswers: ["2", "two"],
+            },
+          ],
+        },
         {
           id: "jobad-ex1",
           title: "Choose the correct form",
@@ -286,18 +315,30 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       title: "Was Told / Was Given: First Day at Work",
       icon: "🗝️",
       explanation: `
-        ${sceneCard("sceneFirstDay", "Hotel front desk, Monday morning. Gloria's first day.", "blue")}
+        <p>Monday is Gloria's first day. Jennifer, the floor supervisor, shows her around. Gloria <strong>was given</strong> a locker and a uniform, she <strong>was told</strong> her schedule, and she <strong>was asked</strong> to sign a form. On the bus home, she reads about another woman who started a new life in a new country.</p>
 
-        <p>Monday is Gloria's first day. A lot happens. That night she calls her cousin to explain everything that happened to her.</p>
+        ${readingCard({
+          kicker: "Women's History Month",
+          title: "Chien-Shiung Wu: The First Lady of Physics",
+          photo: {
+            url: "/images/guide-people/chien-shiung-wu.jpg",
+            alt: "Chien-Shiung Wu smiles at a table in a restaurant",
+            credit: "AIP Emilio Segr&egrave; Visual Archives, CC BY 4.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Informal_portrait_of_Chien-shiung_Wu.jpg",
+          },
+          paragraphs: [
+            "Chien-Shiung Wu <strong>was born</strong> near Shanghai, China, in 1912. In 1936, she traveled to the United States to study physics, and she earned her doctorate at the University of California, Berkeley, in 1940. In 1944, she took a job at Columbia University in New York and joined the Manhattan Project.",
+            "In 1956, she <strong>was asked</strong> by two physicists, Tsung-Dao Lee and Chen Ning Yang, to test their idea. Her results supported it. Lee and Yang <strong>were awarded</strong> the Nobel Prize in Physics in 1957, but Wu did not share it. In 1975, she became the first woman president of the American Physical Society. In 1978, she <strong>was awarded</strong> the Wolf Prize in Physics.",
+          ],
+          sources: [
+            { name: "National Park Service", url: "https://www.nps.gov/people/dr-chien-shiung-wu-the-first-lady-of-physics.htm" },
+            { name: "Atomic Heritage Foundation", url: "https://ahf.nuclearmuseum.org/ahf/profile/chien-shiung-wu/" },
+            { name: "National Women's History Museum", url: "https://www.womenshistory.org/education-resources/biographies/chien-shiung-wu" },
+          ],
+          accent: "blue",
+        })}
 
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>was given</strong> a locker and a uniform. Then I <strong>was told</strong> my schedule for the week.", side: "right", tone: "terracotta" },
-          { speaker: "Marcos", avatar: "👨🏾", text: "Did they show you the break room?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "Yes. Jennifer, the floor supervisor, showed me around. And I <strong>was asked</strong> to sign a form about the uniform.", side: "right", tone: "terracotta" },
-          { speaker: "Marcos", avatar: "👨🏾", text: "Jennifer is good. You'll be fine.", side: "left", tone: "sage" },
-        ])}
-
-        <p>These are all <strong>past passive</strong>. Something happened to Gloria. She received the action. The person who did it (Jennifer, HR) isn't always important.</p>
+        <p>The sentences in bold are all <strong>past passive</strong>. Something happened to Wu or to Lee and Yang. They received the action. The person who did it isn't always important.</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past passive:</strong> was/were + V3 (past participle)</p>
@@ -324,6 +365,28 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
         </div>
       `,
       exercises: [
+        {
+          id: "firstday-read",
+          title: "Read about Chien-Shiung Wu",
+          instructions: "Look at the reading above. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "When was Wu asked to test the idea of Lee and Yang?",
+              options: [
+                { value: "a", label: "1936" },
+                { value: "b", label: "1956" },
+                { value: "c", label: "1978" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Lee and Yang ___ ___ (give) the Nobel Prize in 1957. Write the past passive.",
+              expectedAnswers: ["were given"],
+            },
+          ],
+        },
         {
           id: "firstday-ex1",
           title: "Choose the correct past passive form",
@@ -394,16 +457,17 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       title: "The Schedule Was Changed",
       icon: "📅",
       explanation: `
-        ${sceneCard("sceneScheduleChange", "Break room at the hotel, Thursday afternoon.", "amber")}
+        <p>Three weeks later, Gloria has Friday off for a family appointment. On Thursday she sees the new schedule on the break room wall. Her Saturday shift <strong>was changed</strong> to Friday, and she <strong>wasn't told</strong>. Compare the two schedules.</p>
 
-        <p>Three weeks later, Gloria arranged to have Friday off for a family appointment. On Thursday she sees something on the break room wall: the schedule was changed. She texts her supervisor, Jennifer.</p>
-
-        ${dialogue([
-          { speaker: "Gloria", avatar: "👩🏽", text: "Did you see this? My Saturday shift <strong>was changed</strong> to Friday. I <strong>wasn't told</strong> anything.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏿", text: "I know. Several shifts <strong>were moved</strong> without any notice. Can you work Friday?", side: "left", tone: "sage" },
-          { speaker: "Gloria", avatar: "👩🏽", text: "No. My time off <strong>was approved</strong> two weeks ago. I have the email.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏿", text: "Send it to HR and ask them to check. The procedure <strong>is posted</strong> in the handbook.", side: "left", tone: "sage" },
-        ])}
+        ${scheduleChart({
+          kicker: "Schedule",
+          title: "Gloria's week: old and new",
+          rows: [
+            { label: "Old schedule", cells: [{ text: "7-3" }, { text: "7-3" }, null, { text: "7-3" }, { text: "OFF", accent: "sage" }, { text: "7-3" }, null] },
+            { label: "New schedule", cells: [{ text: "7-3" }, { text: "7-3" }, null, { text: "7-3" }, { text: "7-3", accent: "amber" }, { text: "OFF", accent: "sage" }, null] },
+          ],
+          note: "OFF = day off. Hours are 7 a.m. to 3 p.m.",
+        })}
 
         <p>Passive voice comes up a lot in workplace problems. When something happens without explanation, workers often describe it passively: <em>My schedule was changed. I wasn't told. We were moved.</em></p>
 
@@ -428,6 +492,28 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
         </div>
       `,
       exercises: [
+        {
+          id: "schedule-read",
+          title: "Read the schedules",
+          instructions: "Look at Gloria's old and new schedule. Then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence is true?",
+              options: [
+                { value: "a", label: "Gloria's Friday shift was changed to Saturday." },
+                { value: "b", label: "Gloria's Saturday shift was changed to Friday." },
+                { value: "c", label: "Gloria's Wednesday shift was changed to Friday." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "On the new schedule, a 7-3 shift ___ ___ (add) on Friday. Write the past passive.",
+              expectedAnswers: ["was added"],
+            },
+          ],
+        },
         {
           id: "schedule-ex1",
           title: "What does it mean?",
@@ -617,7 +703,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
   ],
 
   // ===========================================================================
-  // MINI QUIZ — 10 questions
+  // MINI QUIZ — 5 questions
   // ===========================================================================
   miniQuiz: [
     {
@@ -653,9 +739,9 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
     {
       id: "pvwwd-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"My overtime ___ not paid.\" (Overtime is singular: was or were?)",
-      correctAnswer: "was",
-      explanation: "'Overtime' is singular, so the correct passive form is 'was not paid,' not 'were not paid.'",
+      question: "Fill in the blank: \"Two shifts ___ moved without notice.\" (was or were?)",
+      correctAnswer: "were",
+      explanation: "'Two shifts' is plural, so the passive form is 'were moved.'",
       topic: "passive-voice",
       skill: "usage",
       skillTag: "was-were-agreement",
@@ -666,11 +752,11 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
       question: "Which sentence has an error?",
       options: [
         { value: "a", label: "My check was short last Friday." },
-        { value: "b", label: "Safety training is provided to all workers." },
-        { value: "c", label: "My overtime were not paid." },
+        { value: "b", label: "A uniform is included." },
+        { value: "c", label: "Three shifts was moved." },
       ],
       correctAnswer: "c",
-      explanation: "'Overtime' is singular, so the correct form is 'was not paid,' not 'were not paid.'",
+      explanation: "'Three shifts' is plural, so the correct form is 'were moved,' not 'was moved.'",
       topic: "passive-voice",
       skill: "error-detection",
       skillTag: "was-were-agreement",

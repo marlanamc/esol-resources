@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { doctorSaidReportedSpeechImages as img } from "@/data/doctor-said-reported-speech-images.generated";
+import { checklist, readingCard, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -176,16 +177,27 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantShift", "Marco's restaurant on Meridian Street. Tuesday, 4:45 PM.", "terracotta")}
+        <p>People report famous words all the time. Read what Lupita Nyong'o said when she won an Oscar. Then see how Luz uses the same pattern in a text to Marco.</p>
 
-        <p>Marco is wiping down the prep station when Luz texts him. He reads it between orders.</p>
-
-        ${dialogue([
-          { speaker: "Luz", avatar: "👩🏿", text: "Kelly <strong>said that</strong> we <strong>could</strong> get the inhaler refilled today.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Good. Is there enough left for now?", side: "right", tone: "terracotta" },
-          { speaker: "Luz", avatar: "👩🏿", text: "A little, but it’s almost empty. She <strong>said that</strong> we <strong>had</strong> to get there before 6.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "OK. I’ll try to leave early. Did she <strong>say</strong> anything else?", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Lupita Nyong'o: Her Oscar Speech",
+          photo: {
+            url: "/images/guide-people/lupita-nyongo.jpg",
+            alt: "Lupita Nyong'o smiles on a stage at a 2016 event",
+            credit: "Gage Skidmore, 2016, CC BY-SA 3.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Lupita_Nyong%27o_by_Gage_Skidmore.jpg",
+          },
+          paragraphs: [
+            "Lupita Nyong'o was born in Mexico and grew up in Kenya. She came to the United States to study, and she graduated from the Yale School of Drama in 2012. On March 2, 2014, she won an Oscar for the film <em>12 Years a Slave</em>.",
+            "In her speech, she said that she <strong>wanted</strong> to thank her family and her drama school for their training. She told her brother that he <strong>was</strong> her best friend. At the end, she said that no matter where children <strong>were</strong> from, their dreams <strong>were</strong> valid.",
+          ],
+          sources: [
+            { name: "Academy Awards Acceptance Speeches Database", url: "https://aaspeechesdb.oscars.org/link/086-4/" },
+            { name: "Yale: Lupita Nyong'o", url: "https://oiss.yale.edu/lupita-nyongo-kenya-and-mexico" },
+          ],
+          accent: "terracotta",
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
           <p style="margin: 0; font-size: 1rem">When you report a statement, the verb often moves back one step: <strong>is → was</strong>, <strong>can → could</strong>, <strong>will → would</strong>. Use <strong>said that</strong> + subject + verb.</p>
@@ -194,7 +206,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0 1.5rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("is → was", "terracotta")}
-            <span><em>Direct: "It <strong>is</strong> almost empty." → Reported: She said it <strong>was</strong> almost empty.</em></span>
+            <span><em>Direct: "You <strong>are</strong> my best friend." → Reported: She told him he <strong>was</strong> her best friend.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("can → could", "sage")}
@@ -205,6 +217,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             <span><em>Direct: "The doctor <strong>will</strong> call tomorrow." → Reported: She said the doctor <strong>would</strong> call tomorrow.</em></span>
           </div>
         </div>
+
+        <p>Back at the clinic call, Luz uses this pattern. Marco is wiping down the prep station at the restaurant when she texts him: "Kelly <strong>said that</strong> we <strong>could</strong> get the inhaler refilled today." A little later: "She <strong>said that</strong> we <strong>had</strong> to get there before 6."</p>
       `,
       exercises: [
         {
@@ -212,6 +226,16 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           title: "Change to Reported Speech",
           instructions: "Choose the correct reported sentence.",
           items: [
+            {
+              type: "radio",
+              label: "Lupita Nyong'o said: \"No matter where you're from, your dreams are valid.\" How do you report this?",
+              options: [
+                { value: "a", label: "She said that no matter where children were from, their dreams were valid." },
+                { value: "b", label: "She said that no matter where children from, their dreams valid." },
+                { value: "c", label: "She said that were their dreams valid no matter where children were from." },
+              ],
+              expectedAnswer: "a",
+            },
             {
               type: "radio",
               label: "Kelly said: \"The pharmacy closes at 6.\" How does Luz report this?",
@@ -222,20 +246,32 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "b",
             },
-            {
-              type: "radio",
-              label: "Kelly said: \"We can refill it today.\" How does Luz report this?",
-              options: [
-                { value: "a", label: "Kelly said that they could to refill it today." },
-                { value: "b", label: "Kelly said that they could refill it today." },
-                { value: "c", label: "Kelly said that can they refill it today." },
-              ],
-              expectedAnswer: "b",
-            },
           ],
         },
         {
           id: "s2-ex2",
+          title: "Read the Card",
+          instructions: "Look at the reading about Lupita Nyong'o.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence is true?",
+              options: [
+                { value: "a", label: "Lupita grew up in Mexico." },
+                { value: "b", label: "Lupita grew up in Kenya." },
+                { value: "c", label: "Lupita grew up in the United States." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "In what year did Lupita graduate from the Yale School of Drama? Write the year.",
+              expectedAnswers: ["2012"],
+            },
+          ],
+        },
+        {
+          id: "s2-ex3",
           title: "Fill in the Blank",
           instructions: "Write the back-shifted verb.",
           items: [
@@ -247,7 +283,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s2-ex3",
+          id: "s2-ex4",
           title: "Unscramble",
           items: [
             {
@@ -269,17 +305,20 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "He Told Me To…",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneBabysitter", "Luz and Marco's apartment. Wednesday morning.", "blue")}
+        <p>Wednesday morning. Marco picked up the new inhaler before 6, and the pharmacist gave him this sheet. Their cousin Gloria is watching Amina before school, so Marco tells her what the pharmacist said.</p>
 
-        <p>Marco left work early and picked up the new inhaler before 6. Their cousin Gloria is watching Amina before school. Marco needs to pass on the pharmacist's instructions.</p>
-
-        ${dialogue([
-          { speaker: "Marco", avatar: "👨🏽", text: "The pharmacist <strong>told me to</strong> keep the inhaler at room temperature, not in the cold car.", side: "right", tone: "terracotta" },
-          { speaker: "Gloria", avatar: "👩🏾", text: "OK. I'll keep it in the kitchen drawer.", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "He <strong>asked us to</strong> call the clinic if Amina's breathing gets worse.", side: "right", tone: "terracotta" },
-          { speaker: "Gloria", avatar: "👩🏾", text: "And the old nebulizer?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "He <strong>told us not to</strong> use it. It's too old.", side: "right", tone: "terracotta" },
-        ])}
+        ${stepsCard({
+          kicker: "Pharmacy sheet",
+          title: "Amina's inhaler",
+          steps: [
+            "<strong>Shake</strong> the inhaler before each use.",
+            "<strong>Keep</strong> it at room temperature. <strong>Don't leave</strong> it in a cold car.",
+            "<strong>Don't use</strong> the old inhaler. It is expired.",
+            "<strong>Call</strong> the clinic if her breathing gets worse.",
+          ],
+          note: "Marco reads this sheet to Gloria. He says: \"The pharmacist told me to...\"",
+          accent: "sage",
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
           <p style="margin: 0; font-size: 1rem">For commands and advice, use <strong>told / asked + person + to + verb</strong>. For negative commands: <strong>told + person + not to + verb</strong>.</p>
@@ -296,7 +335,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem">
             ${labelPill("told me not to", "terracotta")}
-            <span><em>Direct: "Don't use the old nebulizer." → He told us not to use the old nebulizer.</em></span>
+            <span><em>Direct: "Don't leave it in a cold car." → He told us not to leave it in a cold car.</em></span>
           </div>
         </div>
 
@@ -320,25 +359,30 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The pharmacist said: \"Don't use the old nebulizer.\" How does Marco report this?",
+              label: "Look at the pharmacy sheet. Which sentence is true?",
               options: [
-                { value: "a", label: "The pharmacist told us not to use the old nebulizer." },
-                { value: "b", label: "The pharmacist told us don't use the old nebulizer." },
-                { value: "c", label: "The pharmacist told us not use the old nebulizer." },
+                { value: "a", label: "The pharmacist told us to keep the inhaler in the car." },
+                { value: "b", label: "The pharmacist told us to keep the inhaler at room temperature." },
+                { value: "c", label: "The pharmacist told us to use the old inhaler." },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
           ],
         },
         {
           id: "s3-ex2",
           title: "Fill in the Blank",
-          instructions: "Write to or not to.",
+          instructions: "Write to or not.",
           items: [
             {
               type: "text",
               label: "Direct: \"Call if her breathing gets worse.\" Reported: He asked us ___ call if her breathing got worse.",
               expectedAnswers: ["to"],
+            },
+            {
+              type: "text",
+              label: "Look at step 3 on the sheet. The pharmacist told us ___ to use the old inhaler.",
+              expectedAnswers: ["not"],
             },
           ],
         },
@@ -349,8 +393,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["The", "pharmacist", "told", "us", "not", "to", "use", "the", "old", "nebulizer"],
-              correctAnswer: "The pharmacist told us not to use the old nebulizer",
+              words: ["The", "pharmacist", "told", "us", "not", "to", "leave", "it", "in", "the", "car"],
+              correctAnswer: "The pharmacist told us not to leave it in the car",
             },
           ],
         },
@@ -365,17 +409,18 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
       title: "She Asked If…",
       icon: "❓",
       explanation: `
-        ${sceneCard("sceneTextingMarco", "Wednesday, 2 PM. Sarah from the clinic calls about the follow-up. Luz is at work, so Marco answers.", "sage")}
+        <p>Wednesday, 2 PM. Clinic receptionist <strong>Sarah</strong> called back about Amina's follow-up. Luz was at work, so Marco answered. He wrote Sarah's questions on a list. A ✅ means he answered it. A ⬜ means he must ask Luz.</p>
 
-        <p>Clinic receptionist <strong>Sarah</strong> called back to confirm Amina's follow-up. Marco answered because Luz was at work. Now he is telling Luz what Sarah asked.</p>
-
-        ${dialogue([
-          { speaker: "Marco", avatar: "👨🏽", text: "Sarah from the clinic called. She <strong>asked if</strong> Amina <strong>was</strong> feeling better.", side: "right", tone: "terracotta" },
-          { speaker: "Luz", avatar: "👩🏿", text: "What else?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "She <strong>asked when</strong> we <strong>could</strong> come for the follow-up.", side: "right", tone: "terracotta" },
-          { speaker: "Luz", avatar: "👩🏿", text: "Did she ask about the insurance card?", side: "left", tone: "sage" },
-          { speaker: "Marco", avatar: "👨🏽", text: "Yes. She <strong>asked if</strong> we <strong>had</strong> brought the new card last time. They can't find a copy.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Clinic call",
+          title: "Sarah's questions for Marco",
+          items: [
+            { text: "<strong>Is</strong> Amina feeling better?", done: true },
+            { text: "<strong>When</strong> can you come for the follow-up?", done: false },
+            { text: "<strong>What time</strong> does Amina finish school?", done: false },
+            { text: "<strong>Did</strong> you bring the new insurance card last time?", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
           <p style="margin: 0; font-size: 1rem">Yes/no questions become <strong>asked if</strong> + statement (no question word order). Wh-questions keep the question word: <strong>asked when / what / where</strong> + statement.</p>
@@ -400,16 +445,6 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Sarah asked: \"Is Amina feeling better?\" How does Marco report this?",
-              options: [
-                { value: "a", label: "Sarah asked if is Amina feeling better." },
-                { value: "b", label: "Sarah asked if Amina was feeling better." },
-                { value: "c", label: "Sarah asked if Amina is feeling better?" },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
               label: "Sarah asked: \"What time does Amina finish school?\" How does Marco report this?",
               options: [
                 { value: "a", label: "Sarah asked what time does Amina finish school." },
@@ -418,17 +453,32 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "b",
             },
+            {
+              type: "radio",
+              label: "Look at the list. Marco must ask Luz about the follow-up. How does he report Sarah's question?",
+              options: [
+                { value: "a", label: "Sarah asked when could we come for the follow-up." },
+                { value: "b", label: "Sarah asked when we could come for the follow-up." },
+                { value: "c", label: "Sarah asked if when we could come for the follow-up." },
+              ],
+              expectedAnswer: "b",
+            },
           ],
         },
         {
           id: "s4-ex2",
           title: "Fill in the Blank",
-          instructions: "Write if or when.",
+          instructions: "Write if or a number.",
           items: [
             {
               type: "text",
               label: "Direct: \"Did you bring the insurance card?\" Reported: She asked ___ we had brought the insurance card.",
               expectedAnswers: ["if"],
+            },
+            {
+              type: "text",
+              label: "Look at the list. How many of Sarah's questions did Marco already answer? Write a number.",
+              expectedAnswers: ["1", "one"],
             },
           ],
         },
@@ -496,11 +546,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The pharmacist said: \"Don't use the old nebulizer.\"",
+              label: "The pharmacist said: \"Don't use the old inhaler.\"",
               options: [
-                { value: "a", label: "The pharmacist said that we don't use the old nebulizer." },
-                { value: "b", label: "The pharmacist told us not to use the old nebulizer." },
-                { value: "c", label: "The pharmacist asked if we use the old nebulizer." },
+                { value: "a", label: "The pharmacist said that we don't use the old inhaler." },
+                { value: "b", label: "The pharmacist told us not to use the old inhaler." },
+                { value: "c", label: "The pharmacist asked if we use the old inhaler." },
               ],
               expectedAnswer: "b",
             },

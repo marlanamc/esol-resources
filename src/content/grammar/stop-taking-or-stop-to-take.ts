@@ -1,8 +1,9 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { checklist, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 import { stopTakingOrStopToTakeImages as img } from "@/data/stop-taking-or-stop-to-take-images.generated";
 
 // ---------------------------------------------------------------------------
-// Visual helpers (copied from passive-voice-what-was-done.ts)
+// Visual helpers
 // ---------------------------------------------------------------------------
 
 const sceneCard = (
@@ -91,14 +92,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           { speaker: "Jennifer", avatar: "👩🏾", text: "Yes. <strong>Stop taking</strong> them completely. Don't mix the two medications.", side: "left", tone: "sage" },
         ])}
 
-        <p>Marisol texts her daughter on the bus home.</p>
-
-        ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "Mija, the doctor changed my pills because of the dizziness. I need to <strong>stop taking</strong> the old white ones.", side: "right", tone: "terracotta" },
-          { speaker: "Daughter", avatar: "👧🏽", text: "OK Mamá. I hope you feel better soon.", side: "left", tone: "amber" },
-        ])}
-
-        <p>In both messages, <strong>stop taking</strong> refers to Marisol’s old pills. That means: she <em>was</em> taking the pills before, and now she needs to end that habit.</p>
+        <p>Here, <strong>stop taking</strong> refers to Marisol’s old pills. That means: she <em>was</em> taking the pills before, and now she needs to end that habit.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>stop + -ing</strong> = end an ongoing action. You were doing it. Now you stop.</p>
@@ -292,18 +286,21 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       title: "Try Taking the Generic / Try to Get Covered",
       icon: "🔄",
       explanation: `
-        ${sceneCard("sceneTryGeneric", "Pharmacy aisle, Friday evening. Marisol looks at the name-brand and generic medicine.", "blue")}
+        <p>It's Friday evening. Marisol gets a text from the East Boston Pharmacy. It explains why her new bottle says "generic." Look at the three steps.</p>
 
-        <p>After work on Friday, Marisol stops at the pharmacy again. Her receipt from last night says "generic," and she wants to know why. Jennifer explains.</p>
+        ${stepsCard({
+          kicker: "Text message",
+          title: "East Boston Pharmacy: your refill",
+          accent: "sage",
+          steps: [
+            "Your <strong>generic</strong> refill is ready. <strong>Try taking</strong> it at the same time every day.",
+            "Your insurance does not cover the name brand. You can <strong>try to get</strong> it covered. Ask your doctor's office about a prior authorization.",
+            "Their phone line is busy on Mondays. <strong>Try to call</strong> before 10 AM.",
+          ],
+          note: "Questions about your medicine? Ask your pharmacist or doctor.",
+        })}
 
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏾", text: "Your insurance doesn't cover the name brand, so I gave you the generic. <strong>Try taking</strong> it. It's the same medicine.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "OK. I'll <strong>try taking</strong> it for a month and see.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "You can also <strong>try to get</strong> the name brand covered. Ask your doctor's office to request a prior authorization.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I'll <strong>try to call</strong> them on Monday, but those calls are hard. You're on hold for an hour.", side: "right", tone: "terracotta" },
-        ])}
-
-        <p>Notice the two different uses: <strong>try taking</strong> (try the generic, it's an experiment, easy to do) and <strong>try to call</strong> (try to reach the doctor's office, it's difficult, may not succeed).</p>
+        <p>Notice the two uses: <strong>try taking</strong> (an experiment, easy to do) and <strong>try to get / try to call</strong> (an effort, it may be difficult and may not work).</p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem; font-size: 1.05rem"><strong>try + -ing</strong> = experiment with something to see if it works. Low effort, worth trying.</p>
@@ -313,7 +310,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
             ${labelPill("try + -ing", "blue")}
-            <span><em>Try <strong>taking</strong> it with food and see if the nausea goes away.</em> (experiment)</span>
+            <span><em>Try <strong>taking</strong> your pill at the same time every day.</em> (experiment)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.05); border-radius: 0.4rem">
             ${labelPill("try + to", "sage")}
@@ -332,26 +329,37 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "sti-s3-ex1",
-          title: "Experiment or effort?",
-          instructions: "Read each sentence. Is it an experiment (try + -ing) or an effort that may fail (try + to)?",
+          title: "Read the text message",
+          instructions: "Look at the pharmacy text. Choose the best answer.",
           items: [
             {
               type: "radio",
-              label: "\"Try taking a smaller dose if the side effects are bad.\"",
+              label: "Which step asks Marisol to experiment with something easy?",
               options: [
-                { value: "experiment", label: "Experiment, try this and see if it helps" },
-                { value: "effort", label: "Effort, something difficult to accomplish" },
+                { value: "1", label: "Step 1" },
+                { value: "2", label: "Step 2" },
+                { value: "3", label: "Step 3" },
               ],
-              expectedAnswer: "experiment",
+              expectedAnswer: "1",
             },
             {
               type: "radio",
-              label: "\"She tried to get the insurance to cover it, but they refused.\"",
+              label: "Step 2 is about the name brand. What kind of action is it?",
               options: [
-                { value: "experiment", label: "Experiment, easy to try" },
-                { value: "effort", label: "Effort, she made an attempt but it was hard / didn't work" },
+                { value: "experiment", label: "An experiment: easy, just see what happens" },
+                { value: "effort", label: "An effort: it may be hard and may not work" },
               ],
               expectedAnswer: "effort",
+            },
+            {
+              type: "radio",
+              label: "Which sentence is a good report of Step 3?",
+              options: [
+                { value: "a", label: "The pharmacy told her to try calling Mondays." },
+                { value: "b", label: "The pharmacy told her to try to call early." },
+                { value: "c", label: "The pharmacy told her to stop to call." },
+              ],
+              expectedAnswer: "b",
             },
           ],
         },
@@ -361,7 +369,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The pharmacist said, \"___ the generic. It works just as well.\" (suggestion to experiment)",
+              label: "The pharmacist said, \"___ the generic. It is the same medicine.\" (suggestion to experiment)",
               options: [
                 { value: "Try taking", label: "Try taking" },
                 { value: "Try to take", label: "Try to take" },
@@ -386,7 +394,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I tried ___ the generic pill, and it worked fine. (I experimented, use -ing form)",
+              label: "I tried ___ the generic pill for a month, and it worked fine. (I experimented, use -ing form)",
               expectedAnswers: ["taking"],
             },
           ],
@@ -414,18 +422,20 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       title: "Remember to Take It / I Remember Taking It",
       icon: "🔔",
       explanation: `
-        ${sceneCard("sceneAlarm", "Saturday morning, 7:00 AM. Marisol's phone alarm goes off.", "amber")}
+        <p>Saturday morning, 8:30 AM. Marisol checks her list. Some things are done. Some things are still ahead.</p>
 
-        <p>Marisol set a phone alarm so she doesn't forget her morning pill. Her husband Julio walks into the kitchen and asks if she already took it.</p>
+        ${checklist({
+          kicker: "Marisol's Saturday",
+          title: "Done and not done yet",
+          items: [
+            { text: "I remember <strong>taking</strong> my pill at 7:00 with breakfast.", done: true },
+            { text: "I remember <strong>setting</strong> the alarm last night.", done: true },
+            { text: "Remember <strong>to take</strong> the pill before the early shift tomorrow.", done: false },
+            { text: "Remember <strong>to call</strong> the clinic on Monday.", done: false },
+          ],
+        })}
 
-        ${dialogue([
-          { speaker: "Julio", avatar: "👨🏽", text: "Did you take your pill this morning?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I <strong>remember taking</strong> it at seven. I had it with my breakfast.", side: "right", tone: "terracotta" },
-          { speaker: "Julio", avatar: "👨🏽", text: "Good. And tomorrow, <strong>remember to take</strong> it before you leave. You have the early shift.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I know. The alarm is set. Don't worry. I always <strong>remember to take</strong> it now.", side: "right", tone: "terracotta" },
-        ])}
-
-        <p>Two uses, two meanings. <strong>Remember taking it</strong> means she's looking back at something she already did. <strong>Remember to take it</strong> means she's looking forward at something she must not forget.</p>
+        <p>Two uses, two meanings. <strong>Remember taking it</strong> means she's looking back at something she already did (✅). <strong>Remember to take it</strong> means she's looking forward at something she must not forget (⬜).</p>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.5rem; font-size: 1.05rem"><strong>remember + to + verb</strong> = don't forget to do it (future / task). Looking forward.</p>
@@ -454,6 +464,32 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "sti-s4-ex1",
+          title: "Read the checklist",
+          instructions: "Look at Marisol's Saturday list.",
+          items: [
+            {
+              type: "radio",
+              label: "Which thing does Marisol still need to do?",
+              options: [
+                { value: "a", label: "Set the alarm" },
+                { value: "b", label: "Call the clinic" },
+                { value: "c", label: "Eat breakfast with her pill" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "The checked items (✅) use which pattern?",
+              options: [
+                { value: "gerund", label: "remember + -ing (past memory)" },
+                { value: "infinitive", label: "remember + to (future task)" },
+              ],
+              expectedAnswer: "gerund",
+            },
+          ],
+        },
+        {
+          id: "sti-s4-ex2",
           title: "Future task or past memory?",
           instructions: "Decide what each sentence means.",
           items: [
@@ -475,12 +511,6 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "past",
             },
-          ],
-        },
-        {
-          id: "sti-s4-ex2",
-          title: "Choose the correct form",
-          items: [
             {
               type: "radio",
               label: "Don't forget, ___ your pill before the shift. (looking forward: task)",
@@ -490,21 +520,12 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "remember to take",
             },
-            {
-              type: "radio",
-              label: "I ___ the form at the clinic. I signed it myself. (looking back: memory)",
-              options: [
-                { value: "remember filling out", label: "remember filling out" },
-                { value: "remember to fill out", label: "remember to fill out" },
-              ],
-              expectedAnswer: "remember filling out",
-            },
           ],
         },
         {
           id: "sti-s4-ex3",
           title: "Fill in the blank",
-          instructions: "Write 'to take' or 'taking'.",
+          instructions: "Write the correct form.",
           items: [
             {
               type: "text",
@@ -520,8 +541,8 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "remember", "taking", "the", "pill", "before", "I", "left", "for", "work"],
-              correctAnswer: "I remember taking the pill before I left for work",
+              words: ["I", "remember", "locking", "the", "locker", "before", "I", "left", "for", "work"],
+              correctAnswer: "I remember locking the locker before I left for work",
             },
           ],
         },
@@ -529,25 +550,50 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 5 — The Pairs Together
+    // SECTION 5 — Stop Taking vs Stop to Take
     // =========================================================================
     {
       id: "the-pairs-together",
-      title: "The Pairs Together",
+      title: "Stop Taking vs Stop to Take",
       icon: "⚖️",
       explanation: `
-        ${sceneCard("sceneNeighbors", "Marisol's kitchen, Sunday afternoon. Her neighbor Fatuma comes over.", "sage")}
+        <p>Jennifer, the pharmacist, gives Marisol one last tip: the two <strong>stop</strong> patterns look almost the same, but the meaning is very different. Compare them side by side.</p>
 
-        <p>Marisol’s neighbor Fatuma has questions about her new prescription and remembering her pills. They read the instructions and decide to call the pharmacist.</p>
-
-        ${dialogue([
-          { speaker: "Fatuma", avatar: "👩🏿", text: "It says: 'Stop taking ibuprofen while on this medication.' What does that mean?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "It says to <strong>stop taking</strong> ibuprofen while you’re on this medicine. Let’s call the pharmacist to check.", side: "right", tone: "terracotta" },
-          { speaker: "Fatuma", avatar: "👩🏿", text: "Yes, please. I also keep forgetting my pills when I’m busy.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I used to forget too. Now I <strong>stop to take</strong> mine when my phone alarm goes off.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "<strong>Try setting</strong> an alarm. It helps me <strong>remember to take</strong> them.", side: "right", tone: "terracotta" },
-          { speaker: "Fatuma", avatar: "👩🏿", text: "I’ll do that. First, let’s call and check the instructions.", side: "left", tone: "sage" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-terracotta" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Compare</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">stop + -ing or stop + to?</div>
+          </div>
+          <div style="padding: 0 0.75rem 0.75rem 0.75rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead>
+                <tr>
+                  <th class="gc-text-terracotta gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.8rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.12)">stop + -ing</th>
+                  <th class="gc-text-sage gc-table-divider" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.8rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.12)">stop + to</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)"><strong>End it.</strong><br />You do it no more.</td>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)"><strong>Pause.</strong><br />Then do something new.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)">She <strong>stopped smoking</strong> last year.</td>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)">She <strong>stopped to buy</strong> water.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)">Marisol <strong>stopped taking</strong> the old pills.</td>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.08)">Marisol <strong>stopped to take</strong> a pill at noon.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top">Kevin <strong>stopped working</strong> at the warehouse.</td>
+                  <td style="padding: 0.45rem 0.4rem !important; font-size: 0.9rem; vertical-align: top">Kevin <strong>stopped working to answer</strong> his phone.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 0 1rem 0.8rem 1rem; font-size: 0.85rem; opacity: 0.85">Left: the habit is over. Right: one short stop, then the first activity may continue.</div>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0 0 0.4rem; font-weight: 700; font-size: 0.95rem">Quick reference:</p>
@@ -558,57 +604,29 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           <p style="margin: 0 0 0.25rem; font-size: 0.95rem"><strong>remember + to</strong> = don't forget (future task)</p>
           <p style="margin: 0; font-size: 0.95rem"><strong>remember + -ing</strong> = recall a past action (memory)</p>
         </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("stop + -ing", "terracotta")}
-            <span><em>Stop <strong>taking</strong> ibuprofen.</em> (end it)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("stop + to", "sage")}
-            <span><em>Stop <strong>to take</strong> it with water.</em> (pause, then do it)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("try + -ing", "blue")}
-            <span><em>Try <strong>taking</strong> it at the same time each day.</em> (experiment)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("try + to", "blue")}
-            <span><em>Try <strong>to get</strong> the refill before Friday.</em> (effort, may be hard)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("remember + to", "amber")}
-            <span><em>Remember <strong>to take</strong> it with food.</em> (daily reminder)</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
-            ${labelPill("remember + -ing", "terracotta")}
-            <span><em>I remember <strong>taking</strong> it this morning.</em> (I recall, past)</span>
-          </div>
-        </div>
       `,
       exercises: [
         {
           id: "sti-s5-ex1",
-          title: "Match the meaning",
-          instructions: "Choose the sentence that matches what Fatuma's label means.",
+          title: "Use the table",
+          instructions: "Look at the comparison table.",
           items: [
             {
               type: "radio",
-              label: "The label says: 'Stop taking aspirin.' This means:",
+              label: "In which column does the habit end completely?",
               options: [
-                { value: "a", label: "Pause and take the aspirin." },
-                { value: "b", label: "End the aspirin habit completely." },
-                { value: "c", label: "Try aspirin to see if it works." },
+                { value: "ing", label: "The stop + -ing column" },
+                { value: "to", label: "The stop + to column" },
               ],
-              expectedAnswer: "b",
+              expectedAnswer: "ing",
             },
             {
               type: "radio",
-              label: "The label says: 'Try taking one tablet at bedtime.' This means:",
+              label: "\"Kevin stopped working to answer his phone.\" What happened?",
               options: [
-                { value: "a", label: "It's very hard to take this tablet." },
-                { value: "b", label: "Experiment, take it at night and see if that works better." },
-                { value: "c", label: "You must take it at bedtime or it won't work." },
+                { value: "a", label: "Kevin lost his job." },
+                { value: "b", label: "Kevin paused work for a moment to use the phone." },
+                { value: "c", label: "Kevin will answer the phone tomorrow." },
               ],
               expectedAnswer: "b",
             },
@@ -616,26 +634,44 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         },
         {
           id: "sti-s5-ex2",
+          title: "Match the meaning",
+          instructions: "Choose the sentence that matches what the label means.",
+          items: [
+            {
+              type: "radio",
+              label: "A label says: 'Stop taking this medicine and call your doctor.' This means:",
+              options: [
+                { value: "a", label: "Pause and take the medicine now." },
+                { value: "b", label: "End the habit. If you are not sure, ask your pharmacist or doctor." },
+                { value: "c", label: "Experiment with the medicine to see if it works." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "A tip says: 'Try taking your pill with breakfast.' This means:",
+              options: [
+                { value: "a", label: "It's very hard to take this pill." },
+                { value: "b", label: "Experiment: do it at breakfast and see if it is easier." },
+                { value: "c", label: "You must take it at breakfast or it won't work." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "sti-s5-ex3",
           title: "Spot the error",
           instructions: "One sentence has a grammar mistake. Find it.",
           items: [
             {
               type: "radio",
-              label: "\"She stopped to smoke last year.\" (She quit the smoking habit)",
+              label: "\"Marisol stopped to take the old pills last week.\" (She ended that habit)",
               options: [
                 { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'stopped smoking'. She ended the habit, not paused to do it." },
+                { value: "incorrect", label: "Not correct. Should be 'stopped taking'. She ended the habit, not paused to do it." },
               ],
               expectedAnswer: "incorrect",
-            },
-            {
-              type: "radio",
-              label: "\"Remember to call the clinic on Monday.\"",
-              options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct" },
-              ],
-              expectedAnswer: "correct",
             },
             {
               type: "radio",
@@ -649,7 +685,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "sti-s5-ex3",
+          id: "sti-s5-ex4",
           title: "Fill in the blank",
           instructions: "Write the correct form: -ing or to + verb.",
           items: [
@@ -661,7 +697,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "sti-s5-ex4",
+          id: "sti-s5-ex5",
           title: "Unscramble",
           items: [
             {
@@ -710,7 +746,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     {
       id: "sti-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
+      question: "Fill in the blank: \"Jennifer asks: 'Did you take your pill this morning?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
       correctAnswer: "taking",
       explanation: "'Remember taking' = recalling a past event. Something that already happened.",
       topic: "gerunds-infinitives-meaning-change",
@@ -736,7 +772,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     {
       id: "sti-ws1",
       type: "word-scramble" as const,
-      question: "Kelly's doctor told her to change an evening habit. Put the words in order.",
+      question: "Marisol's doctor told her to change an evening habit. Put the words in order.",
       words: ["She", "stopped", "drinking", "coffee", "at", "night"],
       correctAnswer: "She stopped drinking coffee at night",
       hint: "stop + gerund = end the habit",

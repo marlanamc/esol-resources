@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { shouldShouldntHealthAdviceImages as img } from "@/data/should-shouldnt-health-advice-images.generated";
+import { checklist, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -34,7 +35,7 @@ const dialogue = (
       <span style="font-size: 1.6rem; line-height: 1; flex-shrink: 0">${t.avatar}</span>
       <div>
         <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; margin-bottom: 0.2rem">${t.speaker}</div>
-        <div style="background: #f5f0e8; border-radius: 0 0.75rem 0.75rem 0.75rem; padding: 0.6rem 0.9rem; font-size: 0.97rem; line-height: 1.5">${t.text}</div>
+        <div style="background: rgba(128,128,128,0.14); border-radius: 0 0.75rem 0.75rem 0.75rem; padding: 0.6rem 0.9rem; font-size: 0.97rem; line-height: 1.5">${t.text}</div>
       </div>
     </div>
   `).join("");
@@ -79,7 +80,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           { speaker: "Yolanda", avatar: "👩🏽", text: "My back. I hurt it lifting boxes at work yesterday. It's really bad." },
           { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Okay. You <strong>should</strong> rest for at least two days. And you <strong>shouldn't</strong> lift anything over ten pounds until your follow-up." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "Two days? I have a shift today..." },
-          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "I know it's hard. But if you don't rest now, it will get a lot worse." },
+          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "I know it's hard. But resting now is the best way to get better." },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
@@ -87,19 +88,19 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.6rem; margin-bottom: 1.5rem">
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="flex: 1">You <strong>should</strong> rest for two days.</span>
             ${labelPill("good advice", "sage")}
           </div>
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="flex: 1">You <strong>shouldn't</strong> lift anything over ten pounds.</span>
             ${labelPill("bad idea", "terracotta")}
           </div>
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="flex: 1">She <strong>should</strong> see a doctor.</span>
             ${labelPill("good advice", "sage")}
           </div>
-          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="flex: 1">He <strong>shouldn't</strong> ignore the pain.</span>
             ${labelPill("bad idea", "terracotta")}
           </div>
@@ -169,12 +170,10 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
               label: "Yolanda's back hurts. She ___ (your advice).",
               expectedAnswers: [
                 "should rest",
-                "should rest at home",
                 "shouldn't work",
                 "shouldn't lift",
                 "should see a doctor",
-                "should take medicine",
-                "should take ibuprofen",
+                "should take a break",
                 "should use ice",
                 "should call her supervisor",
               ],
@@ -193,27 +192,32 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       title: "A Little Stronger: Ought To and Had Better",
       icon: "⚠️",
       explanation: `
-        <p>The doctor comes in after the nurse. He has more to say.</p>
+        <p>After Nurse Sandra, Dr. Mitchell sees Yolanda. He gives her an after-visit sheet. Look at what it says.</p>
 
-        ${dialogue([
-          { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "Hi Yolanda. The nurse told me about your back. You <strong>ought to</strong> take anti-inflammatory medicine with food for the next five days." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "Okay. Can I still go to work?" },
-          { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "You <strong>had better</strong> not go back until Thursday. If you do, you could make this a lot worse. I'm serious." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "I understand. I'll text my supervisor." },
-          { speaker: "Dr. Mitchell", avatar: "👨🏾", text: "Good. And come back next week for a follow-up. No lifting over ten pounds until then." },
-        ])}
+        ${stepsCard({
+          kicker: "After-visit sheet",
+          title: "Yolanda's back: Dr. Mitchell's advice",
+          accent: "amber",
+          steps: [
+            "You <strong>ought to</strong> take your medicine the way the label says.",
+            "You <strong>ought to</strong> drink water during the day.",
+            "You <strong>had better not</strong> go back to work until Thursday.",
+            "You <strong>had better not</strong> lift anything over ten pounds before your follow-up.",
+          ],
+          note: "Follow-up visit: next week. Questions? Call the clinic.",
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
           <p style="margin: 0; font-size: 1rem"><strong>Ought to</strong> is similar to should. It means "this is a good idea." <strong>Had better</strong> is stronger. It means "do this or something bad will happen."</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin-bottom: 1.5rem">
-          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="font-size: 1.2rem">💬</span>
             <span>You <strong>should</strong> rest.</span>
             ${labelPill("advice", "sage")}
           </div>
-          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="font-size: 1.2rem">💬</span>
             <span>You <strong>ought to</strong> rest.</span>
             ${labelPill("advice", "sage")}
@@ -232,7 +236,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           <p style="margin: 0.4rem 0 0 0; font-family: monospace; font-size: 0.95rem">Subject + <strong>had better not</strong> + base verb</p>
         </div>
 
-        <p style="font-size: 0.92rem; color: #555">Note: <em>Had better</em> is common in everyday conversation, but it sounds strong. It is a warning. Doctors, supervisors, and parents use it when something is really important. Don't use it for small everyday advice.</p>
+        <p style="font-size: 0.92rem">Note: <em>Had better</em> is common in everyday conversation, but it sounds strong. It is a warning. Doctors, supervisors, and parents use it when something is really important. Don't use it for small everyday advice.</p>
       `,
       exercises: [
         {
@@ -260,12 +264,39 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: '"She <strong>ought to</strong> take the medicine with food."',
+              label: '"She <strong>ought to</strong> take a walk after dinner."',
               options: [
                 { value: "advice", label: "Advice (good idea, not urgent)" },
                 { value: "warning", label: "Warning (do this or something bad happens)" },
               ],
               expectedAnswer: "advice",
+            },
+          ],
+        },
+        {
+          id: "s2-ex5",
+          title: "Read the Sheet",
+          instructions: "Look at Dr. Mitchell's after-visit sheet above.",
+          items: [
+            {
+              type: "radio",
+              label: "On which day can Yolanda go back to work, according to the sheet?",
+              options: [
+                { value: "tuesday", label: "Tuesday" },
+                { value: "thursday", label: "Thursday" },
+                { value: "friday", label: "Friday" },
+              ],
+              expectedAnswer: "thursday",
+            },
+            {
+              type: "radio",
+              label: "Which sentence on the sheet is a warning (not just a good idea)?",
+              options: [
+                { value: "water", label: "Drink water during the day." },
+                { value: "work", label: "Don't go back to work until Thursday." },
+                { value: "label", label: "Take your medicine the way the label says." },
+              ],
+              expectedAnswer: "work",
             },
           ],
         },
@@ -328,32 +359,35 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       title: "Asking for Advice",
       icon: "🙋",
       explanation: `
-        <p>In the next curtained area, Rami is also at the clinic. He has had a bad cough for a week. When he hears Yolanda struggling to understand the nurse's fast instructions, he helps her ask again.</p>
+        <p>Before she leaves, Yolanda checks the questions she wrote on her phone. She has already asked two. Two questions are still open.</p>
 
-        ${dialogue([
-          { speaker: "Yolanda", avatar: "👩🏽", text: "Excuse me. <strong>Should</strong> I take ibuprofen or just rest?" },
-          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "You can take ibuprofen every six hours. But check with the pharmacist about your other medicines first." },
-          { speaker: "Rami", avatar: "👨🏽", text: "Before you go, you <strong>should</strong> ask about physical therapy too." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "Good idea. Excuse me, <strong>should</strong> I see a physical therapist too?" },
-          { speaker: "Nurse Sandra", avatar: "👩🏻", text: "Yes. You <strong>ought to</strong> call this number. They take MassHealth." },
-        ])}
+        ${checklist({
+          kicker: "Checklist",
+          title: "Questions to ask your doctor",
+          items: [
+            { text: "<strong>Should I</strong> rest at home?", done: true },
+            { text: "<strong>What should I</strong> do about the pain?", done: true },
+            { text: "<strong>Should I</strong> do stretches at home?", done: false },
+            { text: "<strong>What should I</strong> do if it gets worse?", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="margin: 1rem 0 1.5rem 0; padding: 1.1rem 1.25rem; border-radius: 0.6rem">
           <p style="margin: 0; font-size: 1rem">To ask for advice, put <strong>Should</strong> at the beginning of the question: <strong>Should I</strong> + base verb? Or ask an open question: <strong>What should I</strong> + base verb?</p>
         </div>
 
         <div style="display: grid; gap: 0.6rem; margin-bottom: 1.5rem">
-          <div style="padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
-            <strong>Should I</strong> take ibuprofen? ${labelPill("yes/no question", "blue")}
+          <div style="padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
+            <strong>Should I</strong> take this medicine? ${labelPill("yes/no question", "blue")}
           </div>
-          <div style="padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
-            <strong>Should I</strong> see a specialist? ${labelPill("yes/no question", "blue")}
+          <div style="padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
+            <strong>Should I</strong> call the clinic? ${labelPill("yes/no question", "blue")}
           </div>
-          <div style="padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <strong>What should I</strong> do about the pain? ${labelPill("open question", "amber")}
           </div>
-          <div style="padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
-            <strong>What should I</strong> eat while I'm taking this medicine? ${labelPill("open question", "amber")}
+          <div style="padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
+            <strong>What should I</strong> ask the pharmacist? ${labelPill("open question", "amber")}
           </div>
         </div>
       `,
@@ -393,6 +427,33 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           ],
         },
         {
+          id: "s3-ex4",
+          title: "Read the Checklist",
+          instructions: "Look at Yolanda's checklist above.",
+          items: [
+            {
+              type: "radio",
+              label: "Which topic has Yolanda NOT asked about yet?",
+              options: [
+                { value: "rest", label: "Resting at home" },
+                { value: "stretch", label: "Stretches at home" },
+                { value: "pain", label: "The pain" },
+              ],
+              expectedAnswer: "stretch",
+            },
+            {
+              type: "radio",
+              label: "How many questions does Yolanda still need to ask?",
+              options: [
+                { value: "one", label: "1" },
+                { value: "two", label: "2" },
+                { value: "four", label: "4" },
+              ],
+              expectedAnswer: "two",
+            },
+          ],
+        },
+        {
           id: "s3-ex2",
           title: "Form the Question",
           instructions: "Put the words in the correct order.",
@@ -400,8 +461,8 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Arrange the words to form a question:",
-              words: ["Should", "I", "call", "the", "physical", "therapist", "today"],
-              correctAnswer: "Should I call the physical therapist today",
+              words: ["Should", "I", "drink", "more", "water", "today"],
+              correctAnswer: "Should I drink more water today",
             },
           ],
         },
@@ -412,14 +473,14 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "Yolanda wants to know if she can go back to work on Thursday. Write her question.",
+              label: "Yolanda wants to know if she should walk every day. Write her question for the doctor.",
               expectedAnswers: [
-                "Should I go back to work on Thursday",
-                "Should I go back to work on Thursday?",
-                "Should I work on Thursday",
-                "Should I work on Thursday?",
-                "What should I do about work on Thursday",
-                "When should I go back to work",
+                "Should I walk every day",
+                "Should I walk every day?",
+                "Should I walk each day",
+                "Should I walk each day?",
+                "Should I walk every day for exercise",
+                "Should I walk every day for exercise?",
               ],
             },
           ],
@@ -438,12 +499,12 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("scenePharmacyCounter", "Pharmacy counter, 8:30 a.m.", "sage")}
 
-        <p>Yolanda brings her ibuprofen prescription to the pharmacy. Before he fills it, the pharmacist, James, checks her other medicines.</p>
+        <p>Yolanda brings her pain medicine prescription to the pharmacy. Before he fills it, the pharmacist, James, asks about her other medicines.</p>
 
         ${dialogue([
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You're on blood pressure medicine, right? Ibuprofen can raise your blood pressure and make that medicine work less well." },
-          { speaker: "Yolanda", avatar: "👩🏽", text: "Can I take them at different times?" },
-          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "No, that doesn't fix it. You <strong>must not</strong> take this until your doctor says it's okay." },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "You take other medicine too, right? Some pain medicines don't mix well with other medicines." },
+          { speaker: "Yolanda", avatar: "👩🏽", text: "Is it okay if I just take them at different times?" },
+          { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "Please don't guess. You <strong>must not</strong> take this until your doctor says it's okay." },
           { speaker: "Yolanda", avatar: "👩🏽", text: "But my back really hurts. What should I do?" },
           { speaker: "James (Pharmacist)", avatar: "👨🏻", text: "I'll call Dr. Mitchell now. Until he calls back, you <strong>shouldn't</strong> take anything else for the pain." },
         ])}
@@ -453,14 +514,14 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin-bottom: 1.5rem">
-          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: #f5f0e8; border-radius: 0.5rem">
+          <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(128,128,128,0.14); border-radius: 0.5rem">
             <span style="font-size: 1.2rem">💬</span>
-            <span>You <strong>shouldn't</strong> stay up late. Rest helps.</span>
+            <span>You <strong>shouldn't</strong> stay up late. Rest is better.</span>
             ${labelPill("bad idea", "amber")}
           </div>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(176,87,64,0.1); border-radius: 0.5rem">
             <span style="font-size: 1.2rem">🚫</span>
-            <span>You <strong>must not</strong> take this on an empty stomach.</span>
+            <span>You <strong>must not</strong> take more medicine than the label says.</span>
             ${labelPill("hard rule", "terracotta")}
           </div>
           <div style="display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; background: rgba(176,87,64,0.1); border-radius: 0.5rem">
@@ -478,7 +539,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           </ul>
         </div>
 
-        <p>Twenty minutes later, Dr. Mitchell calls back. He changes her prescription to acetaminophen (Tylenol). Tip: always tell the pharmacist about every medicine you take.</p>
+        <p>Later, Dr. Mitchell calls back and gives Yolanda a safe plan. Tip: always tell the pharmacist about every medicine you take, and ask before you take something new.</p>
 
         <p>Back home, Yolanda texts her supervisor, Mark: "The doctor says I <strong>had better</strong> not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You <strong>shouldn't</strong> lift anything over ten pounds until your follow-up. And you <strong>should</strong> fill out an injury report when you're back."</p>
       `,
@@ -494,7 +555,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "You ___ take ibuprofen with your blood pressure medicine until your doctor says it's okay. The pharmacist was very clear.",
+              label: "You ___ take this pain medicine until your doctor says it's okay. The pharmacist was very clear.",
               options: [
                 { value: "shouldnt", label: "shouldn't" },
                 { value: "must-not", label: "must not" },
@@ -524,15 +585,15 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
         {
           id: "s4-ex2",
           title: "Error Detection",
-          instructions: "One sentence uses the wrong modal. Which one?",
+          instructions: "One sentence has a grammar mistake. Which one?",
           items: [
             {
               type: "radio",
-              label: "Which sentence uses the wrong modal for the situation?",
+              label: "Which sentence has a mistake?",
               options: [
-                { value: "a", label: '"You shouldn\'t take this medicine on an empty stomach." (the pharmacist\'s hard rule)' },
-                { value: "b", label: '"You shouldn\'t stay up too late tonight. Rest is important." (general advice)' },
-                { value: "c", label: '"You ought to drink more water during the day." (general advice)' },
+                { value: "a", label: '"You must not to drive after this medicine."' },
+                { value: "b", label: '"You must not drive after this medicine."' },
+                { value: "c", label: '"You shouldn\'t stay up too late tonight."' },
               ],
               expectedAnswer: "a",
             },
@@ -547,12 +608,11 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
               type: "text",
               label: "Write a hard rule about taking medicine. Start with: You must not ...",
               expectedAnswers: [
-                "You must not take this on an empty stomach",
+                "You must not take more than the label says",
                 "You must not mix these medicines",
-                "You must not take more than the dose",
                 "You must not drive after taking this",
-                "You must not take ibuprofen with your blood pressure medicine",
-                "You must not take more than three times a day",
+                "You must not take this until your doctor says it's okay",
+                "You must not take this medicine with other medicines",
               ],
             },
           ],
@@ -620,7 +680,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
       id: "mq-error-detection",
       question: "Which sentence has an error?",
       options: [
-        { value: "a", label: "You must not take this on an empty stomach." },
+        { value: "a", label: "You must not drive after this medicine." },
         { value: "b", label: "You should rest for two days." },
         { value: "c", label: "You should to call your supervisor." },
       ],
