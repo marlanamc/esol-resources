@@ -113,13 +113,31 @@ const weeklyVocabData = {
       "term": "commute",
       "pos": "verb",
       "def": "to travel regularly between home and work or school",
-      "ex": "I commute by train three days a week."
+      "ex": "I commute by train three days a week.",
+      "fillBlank": {
+        "text": "I _____ by train three days a week. (Meaning: to travel regularly between home and work or school.)",
+        "options": [
+          "commute",
+          "delay",
+          "transfer",
+          "detour"
+        ]
+      }
     },
     {
       "term": "delay",
       "pos": "noun",
       "def": "a wait because something happens later than expected",
-      "ex": "There is a twenty-minute delay on the bus route."
+      "ex": "There is a twenty-minute delay on the bus route.",
+      "fillBlank": {
+        "text": "There is a twenty-minute _____ on the bus route. (Meaning: a wait because something happens later than expected.)",
+        "options": [
+          "commute",
+          "transfer",
+          "detour",
+          "delay"
+        ]
+      }
     },
     {
       "term": "transfer",
@@ -127,25 +145,61 @@ const weeklyVocabData = {
       "ex": "Transfer to the Red Line at Downtown Station.",
       "topics": [
         "transportation"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ to the Red Line at Downtown Station. (Meaning: to change from one bus, train, or route to another.)",
+        "options": [
+          "delay",
+          "detour",
+          "transfer",
+          "commute"
+        ]
+      }
     },
     {
       "term": "detour",
       "pos": "noun",
       "def": "a different route used when the usual route is blocked",
-      "ex": "The bus takes a detour because of road work."
+      "ex": "The bus takes a detour because of road work.",
+      "fillBlank": {
+        "text": "The bus takes a _____ because of road work. (Meaning: a different route used when the usual route is blocked.)",
+        "options": [
+          "transfer",
+          "detour",
+          "commute",
+          "delay"
+        ]
+      }
     },
     {
       "term": "miss a connection",
       "pos": "verb phrase",
       "def": "to arrive too late to catch the next bus, train, or flight",
-      "ex": "If the bus is late, I might miss a connection."
+      "ex": "If the bus is late, I might miss a connection.",
+      "fillBlank": {
+        "text": "If the bus is late, I might _____. (Meaning: to arrive too late to catch the next bus, train, or flight.)",
+        "options": [
+          "miss a connection",
+          "commute",
+          "delay",
+          "transfer"
+        ]
+      }
     },
     {
       "term": "get off at",
       "pos": "verb phrase",
       "def": "to leave a bus or train at a particular stop",
-      "ex": "Get off at Central Square and walk one block."
+      "ex": "Get off at Central Square and walk one block.",
+      "fillBlank": {
+        "text": "_____ Central Square and walk one block. (Meaning: to leave a bus or train at a particular stop.)",
+        "options": [
+          "commute",
+          "delay",
+          "transfer",
+          "get off at"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -229,7 +283,16 @@ const weeklyVocabData = {
       "ex": "Contact the school if your child will be absent.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ the school if your child will be absent. (Meaning: to reach someone by phone, email, or message.)",
+        "options": [
+          "contact",
+          "respond",
+          "confirm",
+          "turn down"
+        ]
+      }
     },
     {
       "term": "respond",
@@ -237,7 +300,16 @@ const weeklyVocabData = {
       "ex": "Please respond to the email within 24 hours.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Please _____ to the email within 24 hours. (Meaning: to answer or react to a message or question.)",
+        "options": [
+          "contact",
+          "confirm",
+          "turn down",
+          "respond"
+        ]
+      }
     },
     {
       "term": "confirm",
@@ -245,7 +317,16 @@ const weeklyVocabData = {
       "ex": "Call to confirm your appointment the day before.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Call to _____ your appointment the day before. (Meaning: to say that something is definitely true or agreed upon.)",
+        "options": [
+          "respond",
+          "turn down",
+          "confirm",
+          "contact"
+        ]
+      }
     },
     {
       "term": "turn down",
@@ -254,7 +335,16 @@ const weeklyVocabData = {
       "pos": "phrasal verb",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I had to _____ the extra shift. (Meaning: to say no to an offer or request.)",
+        "options": [
+          "confirm",
+          "turn down",
+          "contact",
+          "respond"
+        ]
+      }
     },
     {
       "term": "reschedule",
@@ -263,13 +353,31 @@ const weeklyVocabData = {
       "pos": "verb",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I need to _____ my appointment. (Meaning: to change a planned event to a different time.)",
+        "options": [
+          "reschedule",
+          "contact",
+          "respond",
+          "confirm"
+        ]
+      }
     },
     {
       "term": "put someone through",
       "pos": "verb phrase",
       "def": "to connect a caller to another person on the phone",
-      "ex": "Can the receptionist put someone through to the billing office?"
+      "ex": "Can the receptionist put someone through to the billing office?",
+      "fillBlank": {
+        "text": "A receptionist can _____ to another department on the phone. (Meaning: to connect a caller to another person on the phone.)",
+        "options": [
+          "contact",
+          "respond",
+          "confirm",
+          "put someone through"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -307,7 +415,16 @@ const weeklyVocabData = {
       "term": "register to vote",
       "pos": "verb phrase",
       "def": "to add your name to the official list of voters",
-      "ex": "Where can eligible residents register to vote?"
+      "ex": "Where can eligible residents register to vote?",
+      "fillBlank": {
+        "text": "Where can eligible residents _____? (Meaning: to add your name to the official list of voters.)",
+        "options": [
+          "register to vote",
+          "elect",
+          "advocate",
+          "petition"
+        ]
+      }
     },
     {
       "term": "elect",
@@ -315,7 +432,16 @@ const weeklyVocabData = {
       "ex": "Citizens elect leaders to represent them in government.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Citizens _____ leaders to represent them in government. (Meaning: to choose a person for a position by voting.)",
+        "options": [
+          "register to vote",
+          "advocate",
+          "petition",
+          "elect"
+        ]
+      }
     },
     {
       "term": "advocate",
@@ -323,13 +449,31 @@ const weeklyVocabData = {
       "ex": "She advocates for better schools in her neighborhood.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "At the meeting, residents can _____ for better bus service. (Meaning: to publicly support a cause or group of people.)",
+        "options": [
+          "elect",
+          "petition",
+          "advocate",
+          "register to vote"
+        ]
+      }
     },
     {
       "term": "petition",
       "pos": "noun",
       "def": "a written request for change, often signed by many people",
-      "ex": "We started a petition to improve the bus service."
+      "ex": "We started a petition to improve the bus service.",
+      "fillBlank": {
+        "text": "We started a _____ to improve the bus service. (Meaning: a written request for change, often signed by many people.)",
+        "options": [
+          "advocate",
+          "petition",
+          "register to vote",
+          "elect"
+        ]
+      }
     },
     {
       "term": "represent",
@@ -337,7 +481,16 @@ const weeklyVocabData = {
       "ex": "Your city council member represents your neighborhood.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "City council members _____ the people in their districts. (Meaning: to speak or act on behalf of others.)",
+        "options": [
+          "represent",
+          "register to vote",
+          "elect",
+          "advocate"
+        ]
+      }
     },
     {
       "term": "campaign",
@@ -345,7 +498,16 @@ const weeklyVocabData = {
       "ex": "Many volunteers campaign for better housing in our city.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Many volunteers _____ for better housing in our city. (Meaning: to work to get support for a cause or candidate.)",
+        "options": [
+          "register to vote",
+          "elect",
+          "petition",
+          "campaign"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -379,7 +541,16 @@ const weeklyVocabData = {
       "ex": "She volunteers at the food bank every Saturday.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I _____ at the food bank without being paid. (Meaning: to offer to do something without being paid.)",
+        "options": [
+          "volunteer",
+          "help out",
+          "support",
+          "contribute"
+        ]
+      }
     },
     {
       "term": "help out",
@@ -389,7 +560,15 @@ const weeklyVocabData = {
       "topics": [
         "civic-life",
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you _____ at the front desk while I answer this call? (Meaning: to help with a task or problem.)",
+        "options": [
+          "volunteer",
+          "sign up for",
+          "help out"
+        ]
+      }
     },
     {
       "term": "support",
@@ -397,7 +576,15 @@ const weeklyVocabData = {
       "ex": "Our community supports local families in need.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Our neighbors _____ families who need encouragement and help. (Meaning: to help or encourage someone or a cause.)",
+        "options": [
+          "sign up for",
+          "support",
+          "volunteer"
+        ]
+      }
     },
     {
       "term": "contribute",
@@ -405,7 +592,15 @@ const weeklyVocabData = {
       "ex": "Everyone can contribute in a small way to make things better.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Each person can _____ time or effort to the community project. (Meaning: to give time, money, or effort to help something.)",
+        "options": [
+          "contribute",
+          "volunteer",
+          "sign up for"
+        ]
+      }
     },
     {
       "term": "donate",
@@ -413,13 +608,30 @@ const weeklyVocabData = {
       "ex": "We donate clothing to the shelter twice a year.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "We will _____ these coats to the shelter as a gift. (Meaning: to give something (money, food, clothing) to help others.)",
+        "options": [
+          "volunteer",
+          "sign up for",
+          "donate"
+        ]
+      }
     },
     {
       "term": "sign up for",
       "pos": "verb phrase",
       "def": "to put your name on a list to take part in something",
-      "ex": "I want to sign up for the Saturday volunteer shift."
+      "ex": "I want to sign up for the Saturday volunteer shift.",
+      "fillBlank": {
+        "text": "I want to _____ the Saturday volunteer shift. (Meaning: to put your name on a list to take part in something.)",
+        "options": [
+          "volunteer",
+          "help out",
+          "support",
+          "sign up for"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -451,7 +663,16 @@ const weeklyVocabData = {
       "ex": "Everyone is welcome to participate in the town meeting.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Everyone is welcome to _____ in the town meeting. (Meaning: to take part in an activity or event.)",
+        "options": [
+          "participate",
+          "suggest",
+          "propose",
+          "recommend"
+        ]
+      }
     },
     {
       "term": "suggest",
@@ -460,7 +681,16 @@ const weeklyVocabData = {
       "topics": [
         "civic-life",
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Could you _____ an idea for making the meeting more useful? (Meaning: to offer an idea for others to consider.)",
+        "options": [
+          "participate",
+          "reach an agreement",
+          "raise a concern",
+          "suggest"
+        ]
+      }
     },
     {
       "term": "propose",
@@ -468,7 +698,16 @@ const weeklyVocabData = {
       "ex": "The committee will propose a new community garden.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "At the hearing, the committee will _____ a formal plan for a new park. (Meaning: to formally put forward an idea or plan.)",
+        "options": [
+          "reach an agreement",
+          "raise a concern",
+          "propose",
+          "participate"
+        ]
+      }
     },
     {
       "term": "recommend",
@@ -476,19 +715,46 @@ const weeklyVocabData = {
       "ex": "The teacher recommended that we study for at least one hour.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you _____ a reliable repair company based on your experience? (Meaning: to advise that something is a good choice.)",
+        "options": [
+          "raise a concern",
+          "recommend",
+          "participate",
+          "reach an agreement"
+        ]
+      }
     },
     {
       "term": "reach an agreement",
       "pos": "verb phrase",
       "def": "to make a decision that everyone involved accepts",
-      "ex": "We hope to reach an agreement about the meeting time."
+      "ex": "We hope to reach an agreement about the meeting time.",
+      "fillBlank": {
+        "text": "After discussing different meeting times, we hope to _____ everyone accepts. (Meaning: to make a decision that everyone involved accepts.)",
+        "options": [
+          "reach an agreement",
+          "participate",
+          "suggest",
+          "propose"
+        ]
+      }
     },
     {
       "term": "raise a concern",
       "pos": "verb phrase",
       "def": "to tell others about something you think may be a problem",
-      "ex": "I would like to raise a concern about the bus schedule."
+      "ex": "I would like to raise a concern about the bus schedule.",
+      "fillBlank": {
+        "text": "I want to _____ about the broken lights before someone gets hurt. (Meaning: to tell others about something you think may be a problem.)",
+        "options": [
+          "participate",
+          "suggest",
+          "propose",
+          "raise a concern"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -560,13 +826,31 @@ const weeklyVocabData = {
       "term": "purchase price",
       "pos": "noun phrase",
       "def": "the amount paid to buy something",
-      "ex": "The purchase price does not include delivery."
+      "ex": "The purchase price does not include delivery.",
+      "fillBlank": {
+        "text": "The _____ does not include delivery. (Meaning: the amount paid to buy something.)",
+        "options": [
+          "purchase price",
+          "comparison shop",
+          "budget",
+          "set aside"
+        ]
+      }
     },
     {
       "term": "comparison shop",
       "pos": "verb phrase",
       "def": "to compare prices or features at different stores before buying",
-      "ex": "I comparison shop before buying an appliance."
+      "ex": "I comparison shop before buying an appliance.",
+      "fillBlank": {
+        "text": "I _____ before buying an appliance. (Meaning: to compare prices or features at different stores before buying.)",
+        "options": [
+          "purchase price",
+          "budget",
+          "set aside",
+          "comparison shop"
+        ]
+      }
     },
     {
       "term": "budget",
@@ -574,25 +858,61 @@ const weeklyVocabData = {
       "ex": "Budget your money so you can pay all your bills.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ your money so you can pay all your bills. (Meaning: to plan how much money to spend.)",
+        "options": [
+          "comparison shop",
+          "set aside",
+          "budget",
+          "purchase price"
+        ]
+      }
     },
     {
       "term": "set aside",
       "pos": "verb phrase",
       "def": "to keep money, time, or something else for a particular purpose",
-      "ex": "I set aside a little money each payday."
+      "ex": "I set aside a little money each payday.",
+      "fillBlank": {
+        "text": "I _____ a little money each payday. (Meaning: to keep money, time, or something else for a particular purpose.)",
+        "options": [
+          "budget",
+          "set aside",
+          "purchase price",
+          "comparison shop"
+        ]
+      }
     },
     {
       "term": "keep track of",
       "pos": "verb phrase",
       "def": "to record or pay attention to something as it changes",
-      "ex": "I use an app to keep track of my spending."
+      "ex": "I use an app to keep track of my spending.",
+      "fillBlank": {
+        "text": "I use an app to _____ my spending. (Meaning: to record or pay attention to something as it changes.)",
+        "options": [
+          "keep track of",
+          "purchase price",
+          "comparison shop",
+          "budget"
+        ]
+      }
     },
     {
       "term": "total cost",
       "pos": "noun phrase",
       "def": "the full amount to pay, including extra charges",
-      "ex": "What is the total cost with tax and delivery?"
+      "ex": "What is the total cost with tax and delivery?",
+      "fillBlank": {
+        "text": "What is the _____ with tax and delivery? (Meaning: the full amount to pay, including extra charges.)",
+        "options": [
+          "purchase price",
+          "comparison shop",
+          "budget",
+          "total cost"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -692,13 +1012,31 @@ const weeklyVocabData = {
       "ex": "I want to exchange this shirt for a larger size.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The shirt is too small, so I want to _____ it for a larger one. (Meaning: to return one item and get a different one.)",
+        "options": [
+          "exchange",
+          "refund",
+          "withdraw",
+          "deposit"
+        ]
+      }
     },
     {
       "term": "refund",
       "pos": "noun",
       "def": "money returned to a customer after a purchase",
-      "ex": "The store gave me a full refund for the broken item."
+      "ex": "The store gave me a full refund for the broken item.",
+      "fillBlank": {
+        "text": "The store returned my money and gave me a full _____. (Meaning: money returned to a customer after a purchase.)",
+        "options": [
+          "exchange",
+          "withdraw",
+          "deposit",
+          "refund"
+        ]
+      }
     },
     {
       "term": "withdraw",
@@ -706,7 +1044,16 @@ const weeklyVocabData = {
       "ex": "I need to withdraw cash from the ATM.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I need to _____ cash from the ATM. (Meaning: to take money out of a bank account.)",
+        "options": [
+          "refund",
+          "deposit",
+          "withdraw",
+          "exchange"
+        ]
+      }
     },
     {
       "term": "deposit",
@@ -714,7 +1061,16 @@ const weeklyVocabData = {
       "ex": "Deposit your check before the end of the business day.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ your check before the end of the business day. (Meaning: to put money into a bank account.)",
+        "options": [
+          "withdraw",
+          "deposit",
+          "exchange",
+          "refund"
+        ]
+      }
     },
     {
       "term": "charge",
@@ -722,7 +1078,16 @@ const weeklyVocabData = {
       "ex": "The store will charge your card when the item ships.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The store will _____ your card when the item ships. (Meaning: to ask for payment; to add to a credit card bill.)",
+        "options": [
+          "charge",
+          "exchange",
+          "refund",
+          "withdraw"
+        ]
+      }
     },
     {
       "term": "dispute",
@@ -731,7 +1096,16 @@ const weeklyVocabData = {
       "topics": [
         "money",
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "If there is an error on your bill, call to _____ it. (Meaning: to say that something is wrong and ask for a correction.)",
+        "options": [
+          "exchange",
+          "refund",
+          "withdraw",
+          "dispute"
+        ]
+      }
     }
   ],
   "bonusWords": []
@@ -743,7 +1117,16 @@ const weeklyVocabData = {
       "term": "cost of living",
       "pos": "noun phrase",
       "def": "the money needed for basic expenses such as housing, food, and transportation",
-      "ex": "The cost of living has increased in our area."
+      "ex": "The cost of living has increased in our area.",
+      "fillBlank": {
+        "text": "The _____ has increased in our area. (Meaning: the money needed for basic expenses such as housing, food, and transportation.)",
+        "options": [
+          "cost of living",
+          "inflation",
+          "wages",
+          "unemployed"
+        ]
+      }
     },
     {
       "term": "inflation",
@@ -751,7 +1134,16 @@ const weeklyVocabData = {
       "ex": "Inflation means your paycheck doesn't go as far as it used to.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ means your paycheck doesn't go as far as it used to. (Meaning: when prices rise and money buys less than before.)",
+        "options": [
+          "cost of living",
+          "wages",
+          "unemployed",
+          "inflation"
+        ]
+      }
     },
     {
       "term": "wages",
@@ -760,25 +1152,61 @@ const weeklyVocabData = {
       "topics": [
         "money",
         "work"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Many workers are asking for higher _____ this year. (Meaning: the money a worker earns for their work.)",
+        "options": [
+          "inflation",
+          "unemployed",
+          "wages",
+          "cost of living"
+        ]
+      }
     },
     {
       "term": "unemployed",
       "pos": "adjective",
       "def": "without a paid job and looking for work",
-      "ex": "She was unemployed for two months before finding a new job."
+      "ex": "She was unemployed for two months before finding a new job.",
+      "fillBlank": {
+        "text": "She was _____ for two months before finding a new job. (Meaning: without a paid job and looking for work.)",
+        "options": [
+          "wages",
+          "unemployed",
+          "cost of living",
+          "inflation"
+        ]
+      }
     },
     {
       "term": "interest rate",
       "pos": "noun phrase",
       "def": "the percentage used to calculate interest on money borrowed or saved",
-      "ex": "What is the interest rate on this loan?"
+      "ex": "What is the interest rate on this loan?",
+      "fillBlank": {
+        "text": "What is the _____ on this loan? (Meaning: the percentage used to calculate interest on money borrowed or saved.)",
+        "options": [
+          "interest rate",
+          "cost of living",
+          "inflation",
+          "wages"
+        ]
+      }
     },
     {
       "term": "economy",
       "pos": "noun",
       "def": "the system of producing, buying, and selling goods and services in a place",
-      "ex": "The news discussed jobs and the local economy."
+      "ex": "The news discussed jobs and the local economy.",
+      "fillBlank": {
+        "text": "The news discussed jobs and the local _____. (Meaning: the system of producing, buying, and selling goods and services in a place.)",
+        "options": [
+          "cost of living",
+          "inflation",
+          "wages",
+          "economy"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -810,13 +1238,31 @@ const weeklyVocabData = {
       "term": "security deposit",
       "pos": "noun phrase",
       "def": "money held by a landlord to cover certain damage or unpaid charges under a rental agreement",
-      "ex": "How much is the security deposit for this apartment?"
+      "ex": "How much is the security deposit for this apartment?",
+      "fillBlank": {
+        "text": "How much is the _____ for this apartment? (Meaning: money held by a landlord to cover certain damage or unpaid charges under a rental agreement.)",
+        "options": [
+          "security deposit",
+          "lease",
+          "move in",
+          "utilities included"
+        ]
+      }
     },
     {
       "term": "lease",
       "pos": "noun",
       "def": "an agreement allowing someone to rent property for a set time",
-      "ex": "We signed a twelve-month lease for the apartment."
+      "ex": "We signed a twelve-month lease for the apartment.",
+      "fillBlank": {
+        "text": "We signed a twelve-month _____ for the apartment. (Meaning: an agreement allowing someone to rent property for a set time.)",
+        "options": [
+          "security deposit",
+          "move in",
+          "utilities included",
+          "lease"
+        ]
+      }
     },
     {
       "term": "move in",
@@ -825,25 +1271,61 @@ const weeklyVocabData = {
       "pos": "phrasal verb",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "When can we _____? (Meaning: to start living in a home.)",
+        "options": [
+          "lease",
+          "utilities included",
+          "move in",
+          "security deposit"
+        ]
+      }
     },
     {
       "term": "utilities included",
       "pos": "phrase",
       "def": "basic services, such as heat or water, covered by the rent",
-      "ex": "The listing says utilities included, but which services does that cover?"
+      "ex": "The listing says utilities included, but which services does that cover?",
+      "fillBlank": {
+        "text": "The listing says _____, but which services does that cover? (Meaning: basic services, such as heat or water, covered by the rent.)",
+        "options": [
+          "move in",
+          "utilities included",
+          "security deposit",
+          "lease"
+        ]
+      }
     },
     {
       "term": "qualify for",
       "pos": "verb phrase",
       "def": "to meet the requirements for something",
-      "ex": "Do I qualify for this housing program?"
+      "ex": "Do I qualify for this housing program?",
+      "fillBlank": {
+        "text": "Do I _____ this housing program? (Meaning: to meet the requirements for something.)",
+        "options": [
+          "qualify for",
+          "security deposit",
+          "lease",
+          "move in"
+        ]
+      }
     },
     {
       "term": "rental application",
       "pos": "noun phrase",
       "def": "a form used to ask to rent a home",
-      "ex": "What documents do I need for the rental application?"
+      "ex": "What documents do I need for the rental application?",
+      "fillBlank": {
+        "text": "What documents do I need for the _____? (Meaning: a form used to ask to rent a home.)",
+        "options": [
+          "security deposit",
+          "lease",
+          "move in",
+          "rental application"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -897,7 +1379,16 @@ const weeklyVocabData = {
       "term": "weigh your options",
       "pos": "verb phrase",
       "def": "to compare possible choices carefully before deciding",
-      "ex": "It helps to weigh your options before signing a lease."
+      "ex": "It helps to weigh your options before signing a lease.",
+      "fillBlank": {
+        "text": "It helps to _____ before signing a lease. (Meaning: to compare possible choices carefully before deciding.)",
+        "options": [
+          "weigh your options",
+          "afford",
+          "check out",
+          "trade-off"
+        ]
+      }
     },
     {
       "term": "afford",
@@ -906,7 +1397,16 @@ const weeklyVocabData = {
       "topics": [
         "housing",
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I can't _____ an apartment in that area. (Meaning: to have enough money to pay for something.)",
+        "options": [
+          "weigh your options",
+          "check out",
+          "trade-off",
+          "afford"
+        ]
+      }
     },
     {
       "term": "check out",
@@ -915,13 +1415,31 @@ const weeklyVocabData = {
       "pos": "phrasal verb",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Let’s _____ the apartment before we decide. (Meaning: to look at something to decide what you think of it.)",
+        "options": [
+          "afford",
+          "trade-off",
+          "check out",
+          "weigh your options"
+        ]
+      }
     },
     {
       "term": "trade-off",
       "pos": "noun",
       "def": "a situation in which you give up one advantage to get another",
-      "ex": "A smaller apartment near work may be a good trade-off."
+      "ex": "A smaller apartment near work may be a good trade-off.",
+      "fillBlank": {
+        "text": "A smaller apartment near work may be a good _____. (Meaning: a situation in which you give up one advantage to get another.)",
+        "options": [
+          "check out",
+          "trade-off",
+          "weigh your options",
+          "afford"
+        ]
+      }
     },
     {
       "term": "negotiate",
@@ -930,13 +1448,31 @@ const weeklyVocabData = {
       "topics": [
         "housing",
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "You can _____ the rent with the landlord. (Meaning: to talk with someone to reach an agreement.)",
+        "options": [
+          "negotiate",
+          "weigh your options",
+          "afford",
+          "check out"
+        ]
+      }
     },
     {
       "term": "within your budget",
       "pos": "phrase",
       "def": "costing no more than the amount you have planned to spend",
-      "ex": "Is this apartment within your budget?"
+      "ex": "Is this apartment within your budget?",
+      "fillBlank": {
+        "text": "Is this apartment _____? (Meaning: costing no more than the amount you have planned to spend.)",
+        "options": [
+          "weigh your options",
+          "afford",
+          "check out",
+          "within your budget"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -990,13 +1526,31 @@ const weeklyVocabData = {
       "term": "request a repair",
       "pos": "verb phrase",
       "def": "to ask for something broken to be fixed",
-      "ex": "I need to request a repair for the heater."
+      "ex": "I need to request a repair for the heater.",
+      "fillBlank": {
+        "text": "I need to _____ for the heater. (Meaning: to ask for something broken to be fixed.)",
+        "options": [
+          "request a repair",
+          "inspect",
+          "leak",
+          "clogged"
+        ]
+      }
     },
     {
       "term": "report a problem",
       "pos": "verb phrase",
       "def": "to tell the responsible person that something is wrong",
-      "ex": "How can I report a problem with the elevator?"
+      "ex": "How can I report a problem with the elevator?",
+      "fillBlank": {
+        "text": "How can I _____ with the elevator? (Meaning: to tell the responsible person that something is wrong.)",
+        "options": [
+          "inspect",
+          "leak",
+          "clogged",
+          "report a problem"
+        ]
+      }
     },
     {
       "term": "inspect",
@@ -1004,13 +1558,31 @@ const weeklyVocabData = {
       "ex": "The landlord will inspect the apartment next Monday.",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The landlord will _____ the apartment next Monday. (Meaning: to look at something carefully to check its condition.)",
+        "options": [
+          "report a problem",
+          "maintenance request",
+          "inspect",
+          "request a repair"
+        ]
+      }
     },
     {
       "term": "maintenance request",
       "pos": "noun phrase",
       "def": "a message or form asking for a building or appliance to be checked or fixed",
-      "ex": "I submitted a maintenance request for the broken lock."
+      "ex": "I submitted a maintenance request for the broken lock.",
+      "fillBlank": {
+        "text": "I submitted a _____ for the broken lock. (Meaning: a message or form asking for a building or appliance to be checked or fixed.)",
+        "options": [
+          "clogged",
+          "maintenance request",
+          "inspect",
+          "leak"
+        ]
+      }
     },
     {
       "term": "leak",
@@ -1018,13 +1590,31 @@ const weeklyVocabData = {
       "ex": "The ceiling is leaking after the heavy rain.",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Water can _____ through the crack in this pipe. (Meaning: (of liquid) to drip or flow through a crack or hole.)",
+        "options": [
+          "leak",
+          "request a repair",
+          "report a problem",
+          "inspect"
+        ]
+      }
     },
     {
       "term": "clogged",
       "pos": "adjective",
       "def": "blocked so that water or something else cannot pass through",
-      "ex": "The kitchen sink is clogged and the water will not drain."
+      "ex": "The kitchen sink is clogged and the water will not drain.",
+      "fillBlank": {
+        "text": "The kitchen sink is _____ and the water will not drain. (Meaning: blocked so that water or something else cannot pass through.)",
+        "options": [
+          "request a repair",
+          "report a problem",
+          "inspect",
+          "clogged"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1095,7 +1685,16 @@ const weeklyVocabData = {
       "term": "resolve",
       "pos": "verb",
       "def": "to find a solution to a problem or disagreement",
-      "ex": "Can we resolve the problem before the next rent payment?"
+      "ex": "Can we resolve the problem before the next rent payment?",
+      "fillBlank": {
+        "text": "Can we _____ the problem before the next rent payment? (Meaning: to find a solution to a problem or disagreement.)",
+        "options": [
+          "resolve",
+          "maintain",
+          "notify",
+          "document"
+        ]
+      }
     },
     {
       "term": "maintain",
@@ -1103,13 +1702,31 @@ const weeklyVocabData = {
       "ex": "Tenants must maintain a clean and safe apartment.",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Tenants must _____ a clean and safe apartment. (Meaning: to keep something in good condition.)",
+        "options": [
+          "resolve",
+          "notify",
+          "document",
+          "maintain"
+        ]
+      }
     },
     {
       "term": "notify",
       "pos": "verb",
       "def": "to tell someone information they need, often formally",
-      "ex": "Please notify the landlord about the leak."
+      "ex": "Please notify the landlord about the leak.",
+      "fillBlank": {
+        "text": "Please _____ the landlord about the leak. (Meaning: to tell someone information they need, often formally.)",
+        "options": [
+          "maintain",
+          "document",
+          "notify",
+          "resolve"
+        ]
+      }
     },
     {
       "term": "document",
@@ -1117,19 +1734,46 @@ const weeklyVocabData = {
       "ex": "Document the damage with photos before the landlord visits.",
       "topics": [
         "housing"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ the damage with photos before the landlord visits. (Meaning: to write down or photograph something as a record.)",
+        "options": [
+          "notify",
+          "document",
+          "resolve",
+          "maintain"
+        ]
+      }
     },
     {
       "term": "prevent",
       "pos": "verb",
       "def": "to stop something from happening",
-      "ex": "What steps can help prevent this problem from happening again?"
+      "ex": "What steps can help prevent this problem from happening again?",
+      "fillBlank": {
+        "text": "What steps can help _____ this problem from happening again? (Meaning: to stop something from happening.)",
+        "options": [
+          "prevent",
+          "resolve",
+          "maintain",
+          "notify"
+        ]
+      }
     },
     {
       "term": "reimburse",
       "pos": "verb",
       "def": "to pay someone back for money they spent on an expense",
-      "ex": "Will the landlord reimburse me for the approved repair?"
+      "ex": "Will the landlord reimburse me for the approved repair?",
+      "fillBlank": {
+        "text": "Will the landlord _____ me for the approved repair? (Meaning: to pay someone back for money they spent on an expense.)",
+        "options": [
+          "resolve",
+          "maintain",
+          "notify",
+          "reimburse"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1173,25 +1817,61 @@ const weeklyVocabData = {
       "term": "availability",
       "pos": "noun",
       "def": "the times when someone is free to work or meet",
-      "ex": "My availability changes when my class schedule changes."
+      "ex": "My availability changes when my class schedule changes.",
+      "fillBlank": {
+        "text": "My _____ changes when my class schedule changes. (Meaning: the times when someone is free to work or meet.)",
+        "options": [
+          "availability",
+          "responsibility",
+          "time off",
+          "work independently"
+        ]
+      }
     },
     {
       "term": "responsibility",
       "pos": "noun",
       "def": "a duty or task someone is expected to take care of",
-      "ex": "Checking the supplies is my responsibility."
+      "ex": "Checking the supplies is my responsibility.",
+      "fillBlank": {
+        "text": "Checking the supplies is my _____. (Meaning: a duty or task someone is expected to take care of.)",
+        "options": [
+          "availability",
+          "time off",
+          "work independently",
+          "responsibility"
+        ]
+      }
     },
     {
       "term": "time off",
       "pos": "noun phrase",
       "def": "time away from work, such as leave or vacation",
-      "ex": "I requested time off for a family visit."
+      "ex": "I requested time off for a family visit.",
+      "fillBlank": {
+        "text": "I requested _____ for a family visit. (Meaning: time away from work, such as leave or vacation.)",
+        "options": [
+          "responsibility",
+          "work independently",
+          "time off",
+          "availability"
+        ]
+      }
     },
     {
       "term": "work independently",
       "pos": "verb phrase",
       "def": "to do a task without needing someone to guide every step",
-      "ex": "I can work independently after the training."
+      "ex": "I can work independently after the training.",
+      "fillBlank": {
+        "text": "I can _____ after the training. (Meaning: to do a task without needing someone to guide every step.)",
+        "options": [
+          "time off",
+          "work independently",
+          "availability",
+          "responsibility"
+        ]
+      }
     },
     {
       "term": "reliable",
@@ -1200,7 +1880,16 @@ const weeklyVocabData = {
       "topics": [
         "soft-skills",
         "career-job-search"
-      ]
+      ],
+      "fillBlank": {
+        "text": "He is a _____ worker who always shows up on time. (Meaning: dependable; you can count on this person.)",
+        "options": [
+          "reliable",
+          "availability",
+          "responsibility",
+          "time off"
+        ]
+      }
     },
     {
       "term": "flexible",
@@ -1209,7 +1898,16 @@ const weeklyVocabData = {
       "topics": [
         "soft-skills",
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you be _____ with your hours next week? (Meaning: able to change, adjust to new situations.)",
+        "options": [
+          "availability",
+          "responsibility",
+          "time off",
+          "flexible"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1325,7 +2023,16 @@ const weeklyVocabData = {
       "ex": "I always clock in when my shift starts.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I always _____ when my shift starts. (Meaning: to arrive at work and record your start time.)",
+        "options": [
+          "clock in",
+          "clock out",
+          "call in sick",
+          "shift"
+        ]
+      }
     },
     {
       "term": "clock out",
@@ -1333,13 +2040,31 @@ const weeklyVocabData = {
       "ex": "Please clock out when your shift ends.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Please _____ when your shift ends. (Meaning: to leave work and record your end time.)",
+        "options": [
+          "clock in",
+          "call in sick",
+          "shift",
+          "clock out"
+        ]
+      }
     },
     {
       "term": "call in sick",
       "pos": "verb phrase",
       "def": "to contact your workplace to say you cannot work because you are sick",
-      "ex": "I had to call in sick yesterday."
+      "ex": "I had to call in sick yesterday.",
+      "fillBlank": {
+        "text": "I had to _____ yesterday. (Meaning: to contact your workplace to say you cannot work because you are sick.)",
+        "options": [
+          "clock out",
+          "shift",
+          "call in sick",
+          "clock in"
+        ]
+      }
     },
     {
       "term": "shift",
@@ -1347,7 +2072,16 @@ const weeklyVocabData = {
       "ex": "My shift is eight hours, and it changes every week.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "My _____ is eight hours, and it changes every week. (Meaning: your scheduled hours of work.)",
+        "options": [
+          "call in sick",
+          "shift",
+          "clock in",
+          "clock out"
+        ]
+      }
     },
     {
       "term": "supervisor",
@@ -1355,13 +2089,31 @@ const weeklyVocabData = {
       "ex": "If you are sick, call your supervisor before your shift.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "If you are sick, call your _____ before your shift. (Meaning: the person who manages you at work.)",
+        "options": [
+          "supervisor",
+          "clock in",
+          "clock out",
+          "call in sick"
+        ]
+      }
     },
     {
       "term": "cover a shift",
       "pos": "verb phrase",
       "def": "to work during another employee's scheduled hours",
-      "ex": "Can you cover a shift for me on Friday?"
+      "ex": "Can you cover a shift for me on Friday?",
+      "fillBlank": {
+        "text": "Can you _____ for me on Friday? (Meaning: to work during another employee's scheduled hours.)",
+        "options": [
+          "clock in",
+          "clock out",
+          "call in sick",
+          "cover a shift"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1463,7 +2215,16 @@ const weeklyVocabData = {
       "ex": "Do you have any customer service experience?",
       "topics": [
         "career-job-search"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Do you have any customer service _____? (Meaning: knowledge or skills from doing something.)",
+        "options": [
+          "experience",
+          "resume",
+          "cover letter",
+          "reference"
+        ]
+      }
     },
     {
       "term": "resume",
@@ -1471,7 +2232,16 @@ const weeklyVocabData = {
       "ex": "You should update your resume before applying.",
       "topics": [
         "career-job-search"
-      ]
+      ],
+      "fillBlank": {
+        "text": "You should update your _____ before applying. (Meaning: a document listing your work history and skills.)",
+        "options": [
+          "experience",
+          "cover letter",
+          "reference",
+          "resume"
+        ]
+      }
     },
     {
       "term": "cover letter",
@@ -1479,7 +2249,16 @@ const weeklyVocabData = {
       "ex": "Include a cover letter explaining why you are a good fit.",
       "topics": [
         "career-job-search"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Include a _____ explaining why you are a good fit. (Meaning: a letter explaining why you want the job.)",
+        "options": [
+          "resume",
+          "reference",
+          "cover letter",
+          "experience"
+        ]
+      }
     },
     {
       "term": "reference",
@@ -1487,7 +2266,16 @@ const weeklyVocabData = {
       "ex": "My former boss agreed to be a reference for me.",
       "topics": [
         "career-job-search"
-      ]
+      ],
+      "fillBlank": {
+        "text": "My former boss agreed to be a _____ for me. (Meaning: a person who can speak about your work or character.)",
+        "options": [
+          "cover letter",
+          "reference",
+          "experience",
+          "resume"
+        ]
+      }
     },
     {
       "term": "submit",
@@ -1496,7 +2284,16 @@ const weeklyVocabData = {
       "topics": [
         "career-job-search",
         "digital-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Please _____ your application online. (Meaning: to send or give something officially.)",
+        "options": [
+          "submit",
+          "experience",
+          "resume",
+          "cover letter"
+        ]
+      }
     },
     {
       "term": "deadline",
@@ -1504,7 +2301,16 @@ const weeklyVocabData = {
       "ex": "The deadline for the project is next Tuesday.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The _____ for the project is next Tuesday. (Meaning: the date or time when something is due.)",
+        "options": [
+          "experience",
+          "resume",
+          "cover letter",
+          "deadline"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1570,7 +2376,16 @@ const weeklyVocabData = {
       "ex": "After working hard for two years, he received a promotion.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "After working hard for two years, he received a _____. (Meaning: moving to a higher position at work.)",
+        "options": [
+          "promotion",
+          "gross pay",
+          "deductions",
+          "benefits"
+        ]
+      }
     },
     {
       "term": "gross pay",
@@ -1579,7 +2394,16 @@ const weeklyVocabData = {
       "topics": [
         "career-on-the-job",
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Your _____ is your salary before taxes are taken out. (Meaning: the total money you earn before taxes or deductions.)",
+        "options": [
+          "promotion",
+          "deductions",
+          "benefits",
+          "gross pay"
+        ]
+      }
     },
     {
       "term": "deductions",
@@ -1588,7 +2412,16 @@ const weeklyVocabData = {
       "topics": [
         "career-on-the-job",
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Check your pay stub to see the _____ for taxes and insurance. (Meaning: money taken out of your paycheck for taxes or other costs.)",
+        "options": [
+          "gross pay",
+          "benefits",
+          "deductions",
+          "promotion"
+        ]
+      }
     },
     {
       "term": "benefits",
@@ -1598,13 +2431,31 @@ const weeklyVocabData = {
         "career-on-the-job",
         "career-job-search",
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The job offers great _____, including health insurance and paid time off. (Meaning: things your job gives you besides pay (e.g. health insurance).)",
+        "options": [
+          "deductions",
+          "benefits",
+          "promotion",
+          "gross pay"
+        ]
+      }
     },
     {
       "term": "priority",
       "pos": "noun",
       "def": "something treated as more important or urgent than other things",
-      "ex": "Finishing the application is my top priority today."
+      "ex": "Finishing the application is my top priority today.",
+      "fillBlank": {
+        "text": "Finishing the application is my top _____ today. (Meaning: something treated as more important or urgent than other things.)",
+        "options": [
+          "priority",
+          "promotion",
+          "gross pay",
+          "deductions"
+        ]
+      }
     },
     {
       "term": "emergency fund",
@@ -1612,7 +2463,16 @@ const weeklyVocabData = {
       "ex": "It is smart to save money in an emergency fund for unexpected costs.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "It is smart to save money in an _____ for unexpected costs. (Meaning: money saved for unexpected problems.)",
+        "options": [
+          "promotion",
+          "gross pay",
+          "deductions",
+          "emergency fund"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1673,19 +2533,46 @@ const weeklyVocabData = {
       "term": "previous position",
       "pos": "noun phrase",
       "def": "a job someone had before their current job",
-      "ex": "In my previous position, I trained new employees."
+      "ex": "In my previous position, I trained new employees.",
+      "fillBlank": {
+        "text": "In my _____, I trained new employees. (Meaning: a job someone had before their current job.)",
+        "options": [
+          "previous position",
+          "job duties",
+          "work overtime",
+          "required"
+        ]
+      }
     },
     {
       "term": "job duties",
       "pos": "noun phrase",
       "def": "the tasks a person is expected to do at work",
-      "ex": "My job duties used to include answering phones."
+      "ex": "My job duties used to include answering phones.",
+      "fillBlank": {
+        "text": "My _____ used to include answering phones. (Meaning: the tasks a person is expected to do at work.)",
+        "options": [
+          "previous position",
+          "work overtime",
+          "required",
+          "job duties"
+        ]
+      }
     },
     {
       "term": "work overtime",
       "pos": "verb phrase",
       "def": "to work more than your usual scheduled hours",
-      "ex": "I used to work overtime during the busy season."
+      "ex": "I used to work overtime during the busy season.",
+      "fillBlank": {
+        "text": "I used to _____ during the busy season. (Meaning: to work more than your usual scheduled hours.)",
+        "options": [
+          "job duties",
+          "required",
+          "work overtime",
+          "previous position"
+        ]
+      }
     },
     {
       "term": "required",
@@ -1693,7 +2580,16 @@ const weeklyVocabData = {
       "ex": "A photo ID is required to enter the building.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "A photo ID is _____ to enter the building. (Meaning: necessary; must be done.)",
+        "options": [
+          "work overtime",
+          "required",
+          "previous position",
+          "job duties"
+        ]
+      }
     },
     {
       "term": "allowed",
@@ -1701,13 +2597,31 @@ const weeklyVocabData = {
       "ex": "Cell phones are not allowed during the test.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Cell phones are not _____ during the test. (Meaning: permitted; okay to do.)",
+        "options": [
+          "allowed",
+          "previous position",
+          "job duties",
+          "work overtime"
+        ]
+      }
     },
     {
       "term": "safety procedure",
       "pos": "noun phrase",
       "def": "a set of steps used to reduce the risk of injury or harm",
-      "ex": "We practiced the safety procedure during training."
+      "ex": "We practiced the safety procedure during training.",
+      "fillBlank": {
+        "text": "We practiced the _____ during training. (Meaning: a set of steps used to reduce the risk of injury or harm.)",
+        "options": [
+          "previous position",
+          "job duties",
+          "work overtime",
+          "safety procedure"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1839,7 +2753,16 @@ const weeklyVocabData = {
       "term": "right",
       "pos": "noun",
       "def": "something a person is entitled to do or have",
-      "ex": "Workers discussed their right to a safe workplace."
+      "ex": "Workers discussed their right to a safe workplace.",
+      "fillBlank": {
+        "text": "Workers discussed their _____ to a safe workplace. (Meaning: something a person is entitled to do or have.)",
+        "options": [
+          "right",
+          "advocate",
+          "raise a concern",
+          "workplace policy"
+        ]
+      }
     },
     {
       "term": "advocate",
@@ -1849,31 +2772,76 @@ const weeklyVocabData = {
         "soft-skills",
         "civic-life",
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "At the meeting, residents can _____ for better bus service. (Meaning: to speak up for yourself or others.)",
+        "options": [
+          "right",
+          "raise a concern",
+          "workplace policy",
+          "advocate"
+        ]
+      }
     },
     {
       "term": "raise a concern",
       "pos": "verb phrase",
       "def": "to tell others about something you think may be a problem",
-      "ex": "I would like to raise a concern about the bus schedule."
+      "ex": "I would like to raise a concern about the bus schedule.",
+      "fillBlank": {
+        "text": "I want to _____ about the broken lights before someone gets hurt. (Meaning: to tell others about something you think may be a problem.)",
+        "options": [
+          "advocate",
+          "workplace policy",
+          "raise a concern",
+          "right"
+        ]
+      }
     },
     {
       "term": "workplace policy",
       "pos": "noun phrase",
       "def": "an official rule or guideline at a job",
-      "ex": "The workplace policy explains how to request time off."
+      "ex": "The workplace policy explains how to request time off.",
+      "fillBlank": {
+        "text": "The _____ explains how to request time off. (Meaning: an official rule or guideline at a job.)",
+        "options": [
+          "raise a concern",
+          "workplace policy",
+          "right",
+          "advocate"
+        ]
+      }
     },
     {
       "term": "file a complaint",
       "pos": "verb phrase",
       "def": "to formally report a problem and ask for it to be addressed",
-      "ex": "Where can I file a complaint about this issue?"
+      "ex": "Where can I file a complaint about this issue?",
+      "fillBlank": {
+        "text": "Where can I _____ about this issue? (Meaning: to formally report a problem and ask for it to be addressed.)",
+        "options": [
+          "file a complaint",
+          "right",
+          "advocate",
+          "raise a concern"
+        ]
+      }
     },
     {
       "term": "violation",
       "pos": "noun",
       "def": "an action that breaks a rule, agreement, or law",
-      "ex": "Blocking the emergency exit is a safety violation."
+      "ex": "Blocking the emergency exit is a safety violation.",
+      "fillBlank": {
+        "text": "Blocking the emergency exit is a safety _____. (Meaning: an action that breaks a rule, agreement, or law.)",
+        "options": [
+          "right",
+          "advocate",
+          "raise a concern",
+          "violation"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -1999,19 +2967,46 @@ const weeklyVocabData = {
       "topics": [
         "career-on-the-job",
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I appreciate your honest _____ on my work. (Meaning: comments or advice about your work.)",
+        "options": [
+          "feedback",
+          "constructive criticism",
+          "make a decision",
+          "consequence"
+        ]
+      }
     },
     {
       "term": "constructive criticism",
       "pos": "noun phrase",
       "def": "feedback that identifies a problem and helps someone improve",
-      "ex": "I appreciate constructive criticism that includes a useful suggestion."
+      "ex": "I appreciate constructive criticism that includes a useful suggestion.",
+      "fillBlank": {
+        "text": "I appreciate _____ that includes a useful suggestion. (Meaning: feedback that identifies a problem and helps someone improve.)",
+        "options": [
+          "feedback",
+          "make a decision",
+          "consequence",
+          "constructive criticism"
+        ]
+      }
     },
     {
       "term": "make a decision",
       "pos": "verb phrase",
       "def": "to choose what to do after considering the options",
-      "ex": "We need to make a decision about the schedule."
+      "ex": "We need to make a decision about the schedule.",
+      "fillBlank": {
+        "text": "We need to _____ about the schedule. (Meaning: to choose what to do after considering the options.)",
+        "options": [
+          "constructive criticism",
+          "consequence",
+          "make a decision",
+          "feedback"
+        ]
+      }
     },
     {
       "term": "consequence",
@@ -2019,13 +3014,31 @@ const weeklyVocabData = {
       "ex": "Losing your job can be a serious consequence of violating safety rules.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Losing your job can be a serious _____ of violating safety rules. (Meaning: a result or effect of an action.)",
+        "options": [
+          "make a decision",
+          "consequence",
+          "feedback",
+          "constructive criticism"
+        ]
+      }
     },
     {
       "term": "take into account",
       "pos": "verb phrase",
       "def": "to consider something when making a judgment or decision",
-      "ex": "We need to take into account the cost of transportation."
+      "ex": "We need to take into account the cost of transportation.",
+      "fillBlank": {
+        "text": "We need to _____ the cost of transportation. (Meaning: to consider something when making a judgment or decision.)",
+        "options": [
+          "take into account",
+          "feedback",
+          "constructive criticism",
+          "make a decision"
+        ]
+      }
     },
     {
       "term": "recommend",
@@ -2033,7 +3046,16 @@ const weeklyVocabData = {
       "ex": "I can recommend a good mechanic if you need one.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you _____ a reliable repair company based on your experience? (Meaning: to suggest something is good.)",
+        "options": [
+          "feedback",
+          "constructive criticism",
+          "make a decision",
+          "recommend"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2131,7 +3153,16 @@ const weeklyVocabData = {
       "topics": [
         "communication",
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you _____ what time the meeting starts? (Meaning: to make something clearer or easier to understand.)",
+        "options": [
+          "clarify",
+          "show up",
+          "follow up",
+          "help out"
+        ]
+      }
     },
     {
       "term": "show up",
@@ -2139,7 +3170,16 @@ const weeklyVocabData = {
       "ex": "I usually show up a few minutes early for work.",
       "topics": [
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I usually _____ a few minutes early for work. (Meaning: to arrive at a place.)",
+        "options": [
+          "clarify",
+          "follow up",
+          "find out",
+          "show up"
+        ]
+      }
     },
     {
       "term": "follow up",
@@ -2148,7 +3188,16 @@ const weeklyVocabData = {
       "topics": [
         "career-on-the-job",
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I will _____ with an email after our meeting. (Meaning: to check in later about something.)",
+        "options": [
+          "show up",
+          "find out",
+          "follow up",
+          "clarify"
+        ]
+      }
     },
     {
       "term": "find out",
@@ -2156,7 +3205,16 @@ const weeklyVocabData = {
       "ex": "I need to find out what time the training starts.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I need to _____ what time the training starts. (Meaning: to learn or discover information.)",
+        "options": [
+          "help out",
+          "find out",
+          "show up",
+          "follow up"
+        ]
+      }
     },
     {
       "term": "help out",
@@ -2165,7 +3223,16 @@ const weeklyVocabData = {
       "topics": [
         "soft-skills",
         "career-on-the-job"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Can you _____ at the front desk while I answer this call? (Meaning: to help someone with something.)",
+        "options": [
+          "help out",
+          "clarify",
+          "show up",
+          "follow up"
+        ]
+      }
     },
     {
       "term": "look forward to",
@@ -2173,7 +3240,16 @@ const weeklyVocabData = {
       "ex": "We are looking forward to the long weekend.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I _____ meeting my new coworkers. (Meaning: to feel excited about something in the future.)",
+        "options": [
+          "clarify",
+          "show up",
+          "follow up",
+          "look forward to"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2243,37 +3319,91 @@ const weeklyVocabData = {
       "term": "symptom",
       "pos": "noun",
       "def": "a change in how someone feels or functions that may indicate a health problem",
-      "ex": "I wrote down each symptom before my appointment."
+      "ex": "I wrote down each symptom before my appointment.",
+      "fillBlank": {
+        "text": "I wrote down each _____ before my appointment. (Meaning: a change in how someone feels or functions that may indicate a health problem.)",
+        "options": [
+          "symptom",
+          "persistent",
+          "diagnosis",
+          "contagious"
+        ]
+      }
     },
     {
       "term": "persistent",
       "pos": "adjective",
       "def": "continuing for a long time or repeatedly returning",
-      "ex": "I want to ask the clinic about this persistent cough."
+      "ex": "I want to ask the clinic about this persistent cough.",
+      "fillBlank": {
+        "text": "I want to ask the clinic about this _____ cough. (Meaning: continuing for a long time or repeatedly returning.)",
+        "options": [
+          "symptom",
+          "diagnosis",
+          "contagious",
+          "persistent"
+        ]
+      }
     },
     {
       "term": "diagnosis",
       "pos": "noun",
       "def": "a healthcare professional's identification of a health condition",
-      "ex": "The doctor explained the diagnosis and answered my questions."
+      "ex": "The doctor explained the diagnosis and answered my questions.",
+      "fillBlank": {
+        "text": "The doctor explained the _____ and answered my questions. (Meaning: a healthcare professional's identification of a health condition.)",
+        "options": [
+          "persistent",
+          "contagious",
+          "diagnosis",
+          "symptom"
+        ]
+      }
     },
     {
       "term": "contagious",
       "pos": "adjective",
       "def": "able to spread from one person to another",
-      "ex": "I asked the clinic whether the illness was contagious."
+      "ex": "I asked the clinic whether the illness was contagious.",
+      "fillBlank": {
+        "text": "I asked the clinic whether the illness was _____. (Meaning: able to spread from one person to another.)",
+        "options": [
+          "diagnosis",
+          "contagious",
+          "symptom",
+          "persistent"
+        ]
+      }
     },
     {
       "term": "seek care",
       "pos": "verb phrase",
       "def": "to try to get help from a healthcare professional",
-      "ex": "I called the clinic to ask where I could seek care."
+      "ex": "I called the clinic to ask where I could seek care.",
+      "fillBlank": {
+        "text": "I called the clinic to ask where I could _____. (Meaning: to try to get help from a healthcare professional.)",
+        "options": [
+          "seek care",
+          "symptom",
+          "persistent",
+          "diagnosis"
+        ]
+      }
     },
     {
       "term": "follow-up appointment",
       "pos": "noun phrase",
       "def": "a later visit to check progress or discuss what happens next",
-      "ex": "When is my follow-up appointment?"
+      "ex": "When is my follow-up appointment?",
+      "fillBlank": {
+        "text": "When is my _____? (Meaning: a later visit to check progress or discuss what happens next.)",
+        "options": [
+          "symptom",
+          "persistent",
+          "diagnosis",
+          "follow-up appointment"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2426,37 +3556,91 @@ const weeklyVocabData = {
       "term": "recover from",
       "pos": "verb phrase",
       "def": "to get better after an illness, injury, or difficult experience",
-      "ex": "It took me several weeks to recover from the surgery."
+      "ex": "It took me several weeks to recover from the surgery.",
+      "fillBlank": {
+        "text": "It took me several weeks to _____ the surgery. (Meaning: to get better after an illness, injury, or difficult experience.)",
+        "options": [
+          "recover from",
+          "ease up",
+          "cut back on",
+          "build up"
+        ]
+      }
     },
     {
       "term": "ease up",
       "pos": "verb phrase",
       "def": "to become less strong or severe",
-      "ex": "The pain began to ease up yesterday."
+      "ex": "The pain began to ease up yesterday.",
+      "fillBlank": {
+        "text": "The pain began to _____ yesterday. (Meaning: to become less strong or severe.)",
+        "options": [
+          "recover from",
+          "cut back on",
+          "build up",
+          "ease up"
+        ]
+      }
     },
     {
       "term": "cut back on",
       "pos": "verb phrase",
       "def": "to reduce how much you use, do, or consume",
-      "ex": "I am trying to cut back on soda."
+      "ex": "I am trying to cut back on soda.",
+      "fillBlank": {
+        "text": "I am trying to _____ soda. (Meaning: to reduce how much you use, do, or consume.)",
+        "options": [
+          "ease up",
+          "build up",
+          "cut back on",
+          "recover from"
+        ]
+      }
     },
     {
       "term": "build up",
       "pos": "verb phrase",
       "def": "to increase something gradually over time",
-      "ex": "I want to build up my strength gradually."
+      "ex": "I want to build up my strength gradually.",
+      "fillBlank": {
+        "text": "I want to _____ my strength gradually. (Meaning: to increase something gradually over time.)",
+        "options": [
+          "cut back on",
+          "build up",
+          "recover from",
+          "ease up"
+        ]
+      }
     },
     {
       "term": "prevent",
       "pos": "verb",
       "def": "to stop something from happening",
-      "ex": "What steps can help prevent this problem from happening again?"
+      "ex": "What steps can help prevent this problem from happening again?",
+      "fillBlank": {
+        "text": "What steps can help _____ this problem from happening again? (Meaning: to stop something from happening.)",
+        "options": [
+          "prevent",
+          "recover from",
+          "ease up",
+          "cut back on"
+        ]
+      }
     },
     {
       "term": "adjust to",
       "pos": "verb phrase",
       "def": "to become used to a new situation or change",
-      "ex": "It takes time to adjust to a new routine."
+      "ex": "It takes time to adjust to a new routine.",
+      "fillBlank": {
+        "text": "It takes time to _____ a new routine. (Meaning: to become used to a new situation or change.)",
+        "options": [
+          "recover from",
+          "ease up",
+          "cut back on",
+          "adjust to"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2566,37 +3750,91 @@ const weeklyVocabData = {
       "term": "refill",
       "pos": "noun",
       "def": "another supply of a medicine prescribed before",
-      "ex": "I need to ask the pharmacy for a refill."
+      "ex": "I need to ask the pharmacy for a refill.",
+      "fillBlank": {
+        "text": "I need to ask the pharmacy for a _____. (Meaning: another supply of a medicine prescribed before.)",
+        "options": [
+          "refill",
+          "over-the-counter",
+          "dosage",
+          "prescription"
+        ]
+      }
     },
     {
       "term": "over-the-counter",
       "pos": "adjective",
       "def": "sold without a prescription",
-      "ex": "Can I ask you about this over-the-counter medicine?"
+      "ex": "Can I ask you about this over-the-counter medicine?",
+      "fillBlank": {
+        "text": "Can I ask you about this _____ medicine? (Meaning: sold without a prescription.)",
+        "options": [
+          "refill",
+          "dosage",
+          "prescription",
+          "over-the-counter"
+        ]
+      }
     },
     {
       "term": "dosage",
       "pos": "noun",
       "def": "instructions for the amount of medicine to take and how often to take it",
-      "ex": "Could you explain the dosage on this label?"
+      "ex": "Could you explain the dosage on this label?",
+      "fillBlank": {
+        "text": "Could you explain the _____ on this label? (Meaning: instructions for the amount of medicine to take and how often to take it.)",
+        "options": [
+          "over-the-counter",
+          "prescription",
+          "dosage",
+          "refill"
+        ]
+      }
     },
     {
       "term": "prescription",
       "pos": "noun",
       "def": "an order from an authorized healthcare professional for medicine or treatment",
-      "ex": "The clinic sent my prescription to the pharmacy."
+      "ex": "The clinic sent my prescription to the pharmacy.",
+      "fillBlank": {
+        "text": "The clinic sent my _____ to the pharmacy. (Meaning: an order from an authorized healthcare professional for medicine or treatment.)",
+        "options": [
+          "dosage",
+          "prescription",
+          "refill",
+          "over-the-counter"
+        ]
+      }
     },
     {
       "term": "pharmacist",
       "pos": "noun",
       "def": "a healthcare professional who prepares medicines and explains their use",
-      "ex": "The pharmacist answered my questions about the label."
+      "ex": "The pharmacist answered my questions about the label.",
+      "fillBlank": {
+        "text": "The _____ answered my questions about the label. (Meaning: a healthcare professional who prepares medicines and explains their use.)",
+        "options": [
+          "pharmacist",
+          "refill",
+          "over-the-counter",
+          "dosage"
+        ]
+      }
     },
     {
       "term": "interaction",
       "pos": "noun",
       "def": "a change in a medicine's effect when it is taken with another substance",
-      "ex": "Could there be an interaction between these medicines?"
+      "ex": "Could there be an interaction between these medicines?",
+      "fillBlank": {
+        "text": "Could there be an _____ between these medicines? (Meaning: a change in a medicine's effect when it is taken with another substance.)",
+        "options": [
+          "refill",
+          "over-the-counter",
+          "dosage",
+          "interaction"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2720,31 +3958,76 @@ const weeklyVocabData = {
       "term": "symptom",
       "pos": "noun",
       "def": "a change in how someone feels or functions that may indicate a health problem",
-      "ex": "I wrote down each symptom before my appointment."
+      "ex": "I wrote down each symptom before my appointment.",
+      "fillBlank": {
+        "text": "I wrote down each _____ before my appointment. (Meaning: a change in how someone feels or functions that may indicate a health problem.)",
+        "options": [
+          "symptom",
+          "treatment plan",
+          "prescribe",
+          "dose"
+        ]
+      }
     },
     {
       "term": "treatment plan",
       "pos": "noun phrase",
       "def": "the agreed steps for managing a health condition",
-      "ex": "At my next visit, I will ask about my treatment plan."
+      "ex": "At my next visit, I will ask about my treatment plan.",
+      "fillBlank": {
+        "text": "At my next visit, I will ask about my _____. (Meaning: the agreed steps for managing a health condition.)",
+        "options": [
+          "symptom",
+          "prescribe",
+          "dose",
+          "treatment plan"
+        ]
+      }
     },
     {
       "term": "prescribe",
       "pos": "verb",
       "def": "to order medicine or treatment for a patient",
-      "ex": "Will the clinician prescribe a medicine or suggest another treatment?"
+      "ex": "Will the clinician prescribe a medicine or suggest another treatment?",
+      "fillBlank": {
+        "text": "Will the clinician _____ a medicine or suggest another treatment? (Meaning: to order medicine or treatment for a patient.)",
+        "options": [
+          "treatment plan",
+          "dose",
+          "prescribe",
+          "symptom"
+        ]
+      }
     },
     {
       "term": "dose",
       "pos": "noun",
       "def": "one measured amount of medicine taken at one time",
-      "ex": "Where does the label show the amount for one dose?"
+      "ex": "Where does the label show the amount for one dose?",
+      "fillBlank": {
+        "text": "Where does the label show the amount for one _____? (Meaning: one measured amount of medicine taken at one time.)",
+        "options": [
+          "prescribe",
+          "dose",
+          "symptom",
+          "treatment plan"
+        ]
+      }
     },
     {
       "term": "chronic",
       "pos": "adjective",
       "def": "lasting a long time or repeatedly returning",
-      "ex": "She asked about treatment options for chronic pain."
+      "ex": "She asked about treatment options for chronic pain.",
+      "fillBlank": {
+        "text": "She asked about treatment options for _____ pain. (Meaning: lasting a long time or repeatedly returning.)",
+        "options": [
+          "chronic",
+          "symptom",
+          "treatment plan",
+          "prescribe"
+        ]
+      }
     },
     {
       "term": "side effect",
@@ -2753,7 +4036,16 @@ const weeklyVocabData = {
       "pos": "noun",
       "topics": [
         "health"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Is feeling sleepy a _____ of this medicine? (Meaning: an unwanted effect a medicine can have.)",
+        "options": [
+          "symptom",
+          "treatment plan",
+          "prescribe",
+          "side effect"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2832,7 +4124,16 @@ const weeklyVocabData = {
       "ex": "The company offers a wellness program for employees.",
       "topics": [
         "health"
-      ]
+      ],
+      "fillBlank": {
+        "text": "The company offers a _____ program for employees. (Meaning: overall health and well-being.)",
+        "options": [
+          "wellness",
+          "self-care",
+          "unwind",
+          "coping skills"
+        ]
+      }
     },
     {
       "term": "self-care",
@@ -2841,13 +4142,31 @@ const weeklyVocabData = {
       "topics": [
         "health",
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Taking time to relax is an important part of _____. (Meaning: taking care of your own needs.)",
+        "options": [
+          "wellness",
+          "unwind",
+          "coping skills",
+          "self-care"
+        ]
+      }
     },
     {
       "term": "unwind",
       "pos": "verb",
       "def": "to relax after work, stress, or activity",
-      "ex": "I listen to music to unwind after work."
+      "ex": "I listen to music to unwind after work.",
+      "fillBlank": {
+        "text": "I listen to music to _____ after work. (Meaning: to relax after work, stress, or activity.)",
+        "options": [
+          "self-care",
+          "coping skills",
+          "unwind",
+          "wellness"
+        ]
+      }
     },
     {
       "term": "coping skills",
@@ -2856,19 +4175,46 @@ const weeklyVocabData = {
       "topics": [
         "health",
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Deep breathing is one of my _____ for stress. (Meaning: ways to handle stress or problems.)",
+        "options": [
+          "unwind",
+          "coping skills",
+          "wellness",
+          "self-care"
+        ]
+      }
     },
     {
       "term": "work-life balance",
       "pos": "noun phrase",
       "def": "a manageable balance between work and the rest of your life",
-      "ex": "A predictable schedule helps my work-life balance."
+      "ex": "A predictable schedule helps my work-life balance.",
+      "fillBlank": {
+        "text": "A predictable schedule helps my _____. (Meaning: a manageable balance between work and the rest of your life.)",
+        "options": [
+          "work-life balance",
+          "wellness",
+          "self-care",
+          "unwind"
+        ]
+      }
     },
     {
       "term": "set boundaries",
       "pos": "verb phrase",
       "def": "to make clear limits about what you can accept or do",
-      "ex": "I am learning to set boundaries with my time."
+      "ex": "I am learning to set boundaries with my time.",
+      "fillBlank": {
+        "text": "I am learning to _____ with my time. (Meaning: to make clear limits about what you can accept or do.)",
+        "options": [
+          "wellness",
+          "self-care",
+          "unwind",
+          "set boundaries"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -2965,7 +4311,16 @@ const weeklyVocabData = {
       "term": "processed",
       "pos": "adjective",
       "def": "changed during preparation or manufacturing, for example by cooking, freezing, or adding ingredients",
-      "ex": "The class compared labels on different processed foods."
+      "ex": "The class compared labels on different processed foods.",
+      "fillBlank": {
+        "text": "The class compared labels on different _____ foods. (Meaning: changed during preparation or manufacturing, for example by cooking, freezing, or adding ingredients.)",
+        "options": [
+          "processed",
+          "home remedy",
+          "relieve",
+          "recover your energy"
+        ]
+      }
     },
     {
       "term": "home remedy",
@@ -2974,31 +4329,76 @@ const weeklyVocabData = {
       "pos": "noun",
       "topics": [
         "health"
-      ]
+      ],
+      "fillBlank": {
+        "text": "My aunt told me about a _____ for a cough. (Meaning: something people use at home to try to feel better.)",
+        "options": [
+          "processed",
+          "relieve",
+          "recover your energy",
+          "home remedy"
+        ]
+      }
     },
     {
       "term": "relieve",
       "pos": "verb",
       "def": "to make pain, discomfort, or worry less severe",
-      "ex": "I asked what might relieve the discomfort."
+      "ex": "I asked what might relieve the discomfort.",
+      "fillBlank": {
+        "text": "I asked what might _____ the discomfort. (Meaning: to make pain, discomfort, or worry less severe.)",
+        "options": [
+          "home remedy",
+          "recover your energy",
+          "relieve",
+          "processed"
+        ]
+      }
     },
     {
       "term": "recover your energy",
       "pos": "verb phrase",
       "def": "to regain strength or feel less tired",
-      "ex": "What helps you recover your energy after a busy week?"
+      "ex": "What helps you recover your energy after a busy week?",
+      "fillBlank": {
+        "text": "After a tiring week, what helps you _____? (Meaning: to regain strength or feel less tired.)",
+        "options": [
+          "relieve",
+          "recover your energy",
+          "processed",
+          "home remedy"
+        ]
+      }
     },
     {
       "term": "fluids",
       "pos": "noun",
       "def": "liquids, including drinks such as water, tea, or broth",
-      "ex": "The nurse asked whether I had been drinking enough fluids."
+      "ex": "The nurse asked whether I had been drinking enough fluids.",
+      "fillBlank": {
+        "text": "The nurse asked whether I had been drinking enough _____. (Meaning: liquids, including drinks such as water, tea, or broth.)",
+        "options": [
+          "fluids",
+          "processed",
+          "home remedy",
+          "relieve"
+        ]
+      }
     },
     {
       "term": "wear off",
       "pos": "verb phrase",
       "def": "to gradually stop having an effect",
-      "ex": "I asked the pharmacist when the effect might wear off."
+      "ex": "I asked the pharmacist when the effect might wear off.",
+      "fillBlank": {
+        "text": "I asked the pharmacist when the effect might _____. (Meaning: to gradually stop having an effect.)",
+        "options": [
+          "processed",
+          "home remedy",
+          "relieve",
+          "wear off"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -3101,19 +4501,46 @@ const weeklyVocabData = {
       "term": "make progress",
       "pos": "verb phrase",
       "def": "to improve or move closer to a goal",
-      "ex": "I make progress when I practice regularly."
+      "ex": "I make progress when I practice regularly.",
+      "fillBlank": {
+        "text": "I _____ when I practice regularly. (Meaning: to improve or move closer to a goal.)",
+        "options": [
+          "make progress",
+          "overcome a challenge",
+          "take pride in",
+          "look back"
+        ]
+      }
     },
     {
       "term": "overcome a challenge",
       "pos": "verb phrase",
       "def": "to successfully deal with something difficult",
-      "ex": "Support from classmates can help you overcome a challenge."
+      "ex": "Support from classmates can help you overcome a challenge.",
+      "fillBlank": {
+        "text": "Support from classmates can help you _____. (Meaning: to successfully deal with something difficult.)",
+        "options": [
+          "make progress",
+          "milestone",
+          "accomplish",
+          "overcome a challenge"
+        ]
+      }
     },
     {
       "term": "milestone",
       "pos": "noun",
       "def": "an important point or achievement in a process",
-      "ex": "Finishing this course will be a milestone for me."
+      "ex": "Finishing this course will be a milestone for me.",
+      "fillBlank": {
+        "text": "Finishing this course will be a _____ for me. (Meaning: an important point or achievement in a process.)",
+        "options": [
+          "take pride in",
+          "look back",
+          "milestone",
+          "overcome a challenge"
+        ]
+      }
     },
     {
       "term": "accomplish",
@@ -3121,13 +4548,31 @@ const weeklyVocabData = {
       "ex": "She accomplished her goal of running a 5K.",
       "topics": [
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I hope to _____ my goal of completing the training. (Meaning: to finish something successfully.)",
+        "options": [
+          "look back",
+          "accomplish",
+          "overcome a challenge",
+          "take pride in"
+        ]
+      }
     },
     {
       "term": "take pride in",
       "pos": "verb phrase",
       "def": "to feel pleased about something you do or achieve",
-      "ex": "I take pride in the progress I have made."
+      "ex": "I take pride in the progress I have made.",
+      "fillBlank": {
+        "text": "I _____ the progress I have made. (Meaning: to feel pleased about something you do or achieve.)",
+        "options": [
+          "take pride in",
+          "make progress",
+          "overcome a challenge",
+          "milestone"
+        ]
+      }
     },
     {
       "term": "look back",
@@ -3136,7 +4581,16 @@ const weeklyVocabData = {
       "pos": "phrasal verb",
       "topics": [
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "When I _____, I can see my progress. (Meaning: to think about something that happened before.)",
+        "options": [
+          "make progress",
+          "overcome a challenge",
+          "milestone",
+          "look back"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -3235,7 +4689,16 @@ const weeklyVocabData = {
       "term": "set a goal",
       "pos": "verb phrase",
       "def": "to decide on something you want to achieve",
-      "ex": "I want to set a goal for my next English class."
+      "ex": "I want to set a goal for my next English class.",
+      "fillBlank": {
+        "text": "I want to _____ for my next English class. (Meaning: to decide on something you want to achieve.)",
+        "options": [
+          "set a goal",
+          "achievement",
+          "growth",
+          "confident"
+        ]
+      }
     },
     {
       "term": "achievement",
@@ -3243,7 +4706,16 @@ const weeklyVocabData = {
       "ex": "Winning the award was a great achievement.",
       "topics": [
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Winning the award was a great _____. (Meaning: something you did well or completed.)",
+        "options": [
+          "set a goal",
+          "confident",
+          "commitment",
+          "achievement"
+        ]
+      }
     },
     {
       "term": "growth",
@@ -3252,7 +4724,16 @@ const weeklyVocabData = {
       "topics": [
         "career-on-the-job",
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "This job offers many opportunities for personal _____. (Meaning: getting better over time.)",
+        "options": [
+          "confident",
+          "commitment",
+          "growth",
+          "set a goal"
+        ]
+      }
     },
     {
       "term": "confident",
@@ -3260,7 +4741,16 @@ const weeklyVocabData = {
       "ex": "She feels confident that she will pass the exam.",
       "topics": [
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "She feels _____ that she will pass the exam. (Meaning: feeling sure of yourself.)",
+        "options": [
+          "growth",
+          "confident",
+          "set a goal",
+          "achievement"
+        ]
+      }
     },
     {
       "term": "commitment",
@@ -3268,7 +4758,16 @@ const weeklyVocabData = {
       "ex": "Learning English takes real commitment and practice.",
       "topics": [
         "soft-skills"
-      ]
+      ],
+      "fillBlank": {
+        "text": "Learning English takes real _____ and practice. (Meaning: a promise to keep doing something.)",
+        "options": [
+          "commitment",
+          "set a goal",
+          "achievement",
+          "growth"
+        ]
+      }
     },
     {
       "term": "appreciate",
@@ -3276,7 +4775,16 @@ const weeklyVocabData = {
       "ex": "I appreciate all the help my teacher gave me this year.",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I _____ all the help my teacher gave me this year. (Meaning: to be thankful for something.)",
+        "options": [
+          "set a goal",
+          "achievement",
+          "growth",
+          "appreciate"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -3339,37 +4847,91 @@ const weeklyVocabData = {
       "term": "run out of",
       "pos": "verb phrase",
       "def": "to use all of something so that none is left",
-      "ex": "We often run out of coffee before Friday."
+      "ex": "We often run out of coffee before Friday.",
+      "fillBlank": {
+        "text": "We often _____ coffee before Friday. (Meaning: to use all of something so that none is left.)",
+        "options": [
+          "run out of",
+          "stock up on",
+          "buy in bulk",
+          "unit price"
+        ]
+      }
     },
     {
       "term": "stock up on",
       "pos": "verb phrase",
       "def": "to buy extra supplies to use later",
-      "ex": "I stock up on rice when it is on sale."
+      "ex": "I stock up on rice when it is on sale.",
+      "fillBlank": {
+        "text": "I _____ rice when it is on sale. (Meaning: to buy extra supplies to use later.)",
+        "options": [
+          "run out of",
+          "buy in bulk",
+          "unit price",
+          "stock up on"
+        ]
+      }
     },
     {
       "term": "buy in bulk",
       "pos": "verb phrase",
       "def": "to buy a large amount of something at one time",
-      "ex": "Is it cheaper to buy in bulk?"
+      "ex": "Is it cheaper to buy in bulk?",
+      "fillBlank": {
+        "text": "Is it cheaper to _____? (Meaning: to buy a large amount of something at one time.)",
+        "options": [
+          "stock up on",
+          "unit price",
+          "buy in bulk",
+          "run out of"
+        ]
+      }
     },
     {
       "term": "unit price",
       "pos": "noun phrase",
       "def": "the cost for one standard amount, such as one ounce or one pound",
-      "ex": "Compare the unit price before choosing a package."
+      "ex": "Compare the unit price before choosing a package.",
+      "fillBlank": {
+        "text": "Compare the _____ before choosing a package. (Meaning: the cost for one standard amount, such as one ounce or one pound.)",
+        "options": [
+          "buy in bulk",
+          "unit price",
+          "run out of",
+          "stock up on"
+        ]
+      }
     },
     {
       "term": "serving size",
       "pos": "noun phrase",
       "def": "the amount of food counted as one serving on a label",
-      "ex": "The serving size on this label is one cup."
+      "ex": "The serving size on this label is one cup.",
+      "fillBlank": {
+        "text": "The _____ on this label is one cup. (Meaning: the amount of food counted as one serving on a label.)",
+        "options": [
+          "serving size",
+          "run out of",
+          "stock up on",
+          "buy in bulk"
+        ]
+      }
     },
     {
       "term": "go bad",
       "pos": "verb phrase",
       "def": "to spoil and no longer be good to eat",
-      "ex": "How much food will go bad if we buy too much?"
+      "ex": "How much food will go bad if we buy too much?",
+      "fillBlank": {
+        "text": "How much food will _____ if we buy too much? (Meaning: to spoil and no longer be good to eat.)",
+        "options": [
+          "run out of",
+          "stock up on",
+          "buy in bulk",
+          "go bad"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -3421,19 +4983,46 @@ const weeklyVocabData = {
       "pos": "verb",
       "topics": [
         "communication"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I need to _____ my appointment. (Meaning: to change a planned event to a different time.)",
+        "options": [
+          "reschedule",
+          "raise a concern",
+          "set aside",
+          "volunteer"
+        ]
+      }
     },
     {
       "term": "raise a concern",
       "pos": "verb phrase",
       "def": "to tell others about something you think may be a problem",
-      "ex": "I would like to raise a concern about the bus schedule."
+      "ex": "I would like to raise a concern about the bus schedule.",
+      "fillBlank": {
+        "text": "I want to _____ about the broken lights before someone gets hurt. (Meaning: to tell others about something you think may be a problem.)",
+        "options": [
+          "reschedule",
+          "set aside",
+          "volunteer",
+          "raise a concern"
+        ]
+      }
     },
     {
       "term": "set aside",
       "pos": "verb phrase",
       "def": "to keep money, time, or something else for a particular purpose",
-      "ex": "I set aside a little money each payday."
+      "ex": "I set aside a little money each payday.",
+      "fillBlank": {
+        "text": "I _____ a little money each payday. (Meaning: to keep money, time, or something else for a particular purpose.)",
+        "options": [
+          "raise a concern",
+          "volunteer",
+          "set aside",
+          "reschedule"
+        ]
+      }
     },
     {
       "term": "volunteer",
@@ -3441,7 +5030,16 @@ const weeklyVocabData = {
       "ex": "She volunteers at the food bank every Saturday.",
       "topics": [
         "civic-life"
-      ]
+      ],
+      "fillBlank": {
+        "text": "I _____ at the food bank without being paid. (Meaning: to offer to do something without being paid.)",
+        "options": [
+          "set aside",
+          "volunteer",
+          "reschedule",
+          "raise a concern"
+        ]
+      }
     },
     {
       "term": "budget",
@@ -3449,13 +5047,31 @@ const weeklyVocabData = {
       "ex": "Budget your money so you can pay all your bills.",
       "topics": [
         "money"
-      ]
+      ],
+      "fillBlank": {
+        "text": "_____ your money so you can pay all your bills. (Meaning: to plan how much money to spend.)",
+        "options": [
+          "budget",
+          "reschedule",
+          "raise a concern",
+          "set aside"
+        ]
+      }
     },
     {
       "term": "unit price",
       "pos": "noun phrase",
       "def": "the cost for one standard amount, such as one ounce or one pound",
-      "ex": "Compare the unit price before choosing a package."
+      "ex": "Compare the unit price before choosing a package.",
+      "fillBlank": {
+        "text": "Compare the _____ before choosing a package. (Meaning: the cost for one standard amount, such as one ounce or one pound.)",
+        "options": [
+          "reschedule",
+          "raise a concern",
+          "set aside",
+          "unit price"
+        ]
+      }
     }
   ],
   "bonusWords": [
@@ -3527,37 +5143,91 @@ const weeklyVocabData = {
       "term": "persistent",
       "pos": "adjective",
       "def": "continuing for a long time or repeatedly returning",
-      "ex": "I want to ask the clinic about this persistent cough."
+      "ex": "I want to ask the clinic about this persistent cough.",
+      "fillBlank": {
+        "text": "I want to ask the clinic about this _____ cough. (Meaning: continuing for a long time or repeatedly returning.)",
+        "options": [
+          "persistent",
+          "follow-up appointment",
+          "recover from",
+          "cut back on"
+        ]
+      }
     },
     {
       "term": "follow-up appointment",
       "pos": "noun phrase",
       "def": "a later visit to check progress or discuss what happens next",
-      "ex": "When is my follow-up appointment?"
+      "ex": "When is my follow-up appointment?",
+      "fillBlank": {
+        "text": "When is my _____? (Meaning: a later visit to check progress or discuss what happens next.)",
+        "options": [
+          "persistent",
+          "recover from",
+          "cut back on",
+          "follow-up appointment"
+        ]
+      }
     },
     {
       "term": "recover from",
       "pos": "verb phrase",
       "def": "to get better after an illness, injury, or difficult experience",
-      "ex": "It took me several weeks to recover from the surgery."
+      "ex": "It took me several weeks to recover from the surgery.",
+      "fillBlank": {
+        "text": "It took me several weeks to _____ the surgery. (Meaning: to get better after an illness, injury, or difficult experience.)",
+        "options": [
+          "follow-up appointment",
+          "cut back on",
+          "recover from",
+          "persistent"
+        ]
+      }
     },
     {
       "term": "cut back on",
       "pos": "verb phrase",
       "def": "to reduce how much you use, do, or consume",
-      "ex": "I am trying to cut back on soda."
+      "ex": "I am trying to cut back on soda.",
+      "fillBlank": {
+        "text": "I am trying to _____ soda. (Meaning: to reduce how much you use, do, or consume.)",
+        "options": [
+          "recover from",
+          "cut back on",
+          "persistent",
+          "follow-up appointment"
+        ]
+      }
     },
     {
       "term": "prevent",
       "pos": "verb",
       "def": "to stop something from happening",
-      "ex": "What steps can help prevent this problem from happening again?"
+      "ex": "What steps can help prevent this problem from happening again?",
+      "fillBlank": {
+        "text": "What steps can help _____ this problem from happening again? (Meaning: to stop something from happening.)",
+        "options": [
+          "prevent",
+          "persistent",
+          "follow-up appointment",
+          "recover from"
+        ]
+      }
     },
     {
       "term": "adjust to",
       "pos": "verb phrase",
       "def": "to become used to a new situation or change",
-      "ex": "It takes time to adjust to a new routine."
+      "ex": "It takes time to adjust to a new routine.",
+      "fillBlank": {
+        "text": "It takes time to _____ a new routine. (Meaning: to become used to a new situation or change.)",
+        "options": [
+          "persistent",
+          "follow-up appointment",
+          "recover from",
+          "adjust to"
+        ]
+      }
     }
   ],
   "bonusWords": [

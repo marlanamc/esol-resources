@@ -81,24 +81,11 @@ function escapeRegex(s) {
 
 function findTermInExample(term, example) {
   if (!example) return null;
-  const termLower = term.toLowerCase();
-  const exLower = example.toLowerCase();
-  const firstIndex = exLower.indexOf(termLower);
-  if (firstIndex !== -1) {
-    return { start: firstIndex, end: firstIndex + term.length, original: example.substring(firstIndex, firstIndex + term.length) };
-  }
-  // Try inflection-aware match for phrasal verbs (e.g. "clock out" -> "clocked out")
-  const parts = term.split(/\s+/);
-  if (parts.length >= 2) {
-    const first = escapeRegex(parts[0]);
-    const rest = parts.slice(1).join("\\s+");
-    const inflectionPattern = new RegExp(`\\b(${first}(?:ed|ing|s)?)\\s+(${rest})\\b`, "i");
-    const match = example.match(inflectionPattern);
-    if (match) {
-      const fullMatch = match[0];
-      const start = exLower.indexOf(fullMatch.toLowerCase());
-      return { start, end: start + fullMatch.length, original: example.substring(start, start + fullMatch.length) };
-    }
+  // A partial match can leave an ending outside the blank (support + s).
+  // A changed verb form cannot be answered with the exact vocabulary label.
+  const match = new RegExp(`\\b${escapeRegex(term)}\\b`, "i").exec(example);
+  if (match) {
+    return { start: match.index, end: match.index + match[0].length, original: match[0] };
   }
   return null;
 }
@@ -116,7 +103,7 @@ function generateFillBlankContent(slug, data) {
         const after = word.ex.substring(found.end);
         sentence = before + "_____" + after;
       } else {
-        sentence = `Fill in the blank: ${word.term} means ${word.def}.`;
+        sentence = `_____ means ${word.def}.`;
       }
     }
 
