@@ -363,7 +363,7 @@ td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space
     <h2>When a guide changes</h2>
     <ul>
       <li><strong>Rebuild the quizzes</strong> with <code>npm run quizzes:build</code>. CI fails if a guide changes without it (<code>check:generated</code>). Students see the new questions after <code>quizzes:sync -- --apply</code>.</li>
-      <li><strong>The course map syncs on deploy.</strong> Edits to <code>src/lib/course-map-data.ts</code> reach students when the PR deploys.</li>
+      <li><strong>The course map does not sync on deploy.</strong> <code>vercel.json</code> uses its own build command, so after merging an edit to <code>src/lib/course-map-data.ts</code>, run <code>node --env-file=.env --import tsx prisma/seed-course-map.ts</code>. It writes immediately and removes map items that are no longer in the code.</li>
       <li><strong>A new guide needs a released activity row</strong>, or the finished-guide checkmark won't save. Run <code>scripts/course-map/ensure-guide-activities.ts</code>; it previews first and is safe to re-run.</li>
       <li>Production writes need <code>ALLOW_PROD_DB_MUTATION=yes CONFIRM_DB_HOST=db.prisma.io</code> and <code>node --env-file=.env --import tsx ...</code>.</li>
     </ul>
