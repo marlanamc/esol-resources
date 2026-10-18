@@ -1,4 +1,5 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { checklist, readingCard } from "@/content/grammar/_shared/guide-visuals";
 import { thirdConditionalWhatWouldHaveHappenedImages as img } from "@/data/third-conditional-what-would-have-happened-images.generated";
 
 // ---------------------------------------------------------------------------
@@ -159,6 +160,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       ],
     },
 
+
     // =========================================================================
     // SECTION 2 - Building the Sentence
     // =========================================================================
@@ -174,15 +176,18 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         ],
       },
       explanation: `
-        ${sceneCard("sceneWritingNotes", "Yemi's kitchen table. Saturday afternoon.", "terracotta")}
+        <p>On Saturday afternoon, Yemi sits at her kitchen table and makes a list. The list shows four things she did <em>not</em> do in the last three weeks. Every box is empty.</p>
 
-        <p>After the clinic visit, Yemi writes notes for herself. She texts her coworker Jennifer what she wishes she had done three weeks ago.</p>
-
-        ${dialogue([
-          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> the clinic three weeks ago, they <strong>would have told</strong> me to rest.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "Yeah. If you <strong>had iced</strong> it every night, it <strong>would have gotten</strong> better.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "I know. I <strong>would have saved</strong> money too.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Yemi's list",
+          title: "Things I did NOT do",
+          items: [
+            { text: "Rest my knee", done: false },
+            { text: "Ice it every night", done: false },
+            { text: "Call the clinic", done: false },
+            { text: "Take a day off work", done: false },
+          ],
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>If + had + past participle, would have + past participle</strong>. The word <strong>had</strong> is required in the if-clause. Do not skip it.</p>
@@ -191,11 +196,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("if-clause", "terracotta")}
-            <span><em>If I <strong>had called</strong> the clinic...</em> (call → called is wrong here; use <strong>had called</strong>)</span>
+            <span><em>If I <strong>had called</strong> the clinic...</em> (not "If I called")</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("result", "blue")}
-            <span><em>...they <strong>would have told</strong> me to rest.</em> (tell → told = past participle after would have)</span>
+            <span><em>...they <strong>would have told</strong> me to rest.</em> (tell → told = past participle)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("formula", "sage")}
@@ -206,40 +211,35 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       exercises: [
         {
           id: "s2-ex1",
-          title: "Choose the correct form",
-          instructions: "Pick the correct third conditional sentence.",
+          title: "Look at Yemi's list",
+          instructions: "Read the list, then answer.",
           items: [
             {
-              type: "radio",
-              label: "Yemi did not call the clinic three weeks ago. Which sentence is correct?",
-              options: [
-                { value: "a", label: "If I called the clinic, they would have told me to rest." },
-                { value: "b", label: "If I had called the clinic, they would have told me to rest." },
-                { value: "c", label: "If I had called the clinic, they would tell me to rest." },
-              ],
-              expectedAnswer: "b",
+              type: "text",
+              label: "How many boxes on Yemi's list are checked?",
+              expectedAnswers: ["0", "zero", "none"],
             },
             {
               type: "radio",
-              label: "Yemi did not ice her knee. Which sentence is correct?",
+              label: "Look at the list. Yemi did not ice her knee. Which sentence is correct?",
               options: [
-                { value: "a", label: "If I had iced it, it would have gotten better." },
-                { value: "b", label: "If I iced it, it would have gotten better." },
-                { value: "c", label: "If I had ice it, it would have gotten better." },
+                { value: "a", label: "If I iced it every night, it might have gotten better." },
+                { value: "b", label: "If I had iced it every night, it might have gotten better." },
+                { value: "c", label: "If I had ice it every night, it might have gotten better." },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
           ],
         },
         {
           id: "s2-ex2",
-          title: "Fill in the blank",
-          instructions: "Write would have.",
+          title: "Use the list",
+          instructions: "Look at the third box. Write two words.",
           items: [
             {
               type: "text",
-              label: "If I had rested my knee, I ___ have kept working normal shifts.",
-              expectedAnswers: ["would"],
+              label: "If I ___ the clinic, they would have told me to rest. (call)",
+              expectedAnswers: ["had called"],
             },
           ],
         },
@@ -259,6 +259,18 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
           ],
         },
+        {
+          id: "s2-ex4",
+          title: "Unscramble",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Unscramble:",
+              words: ["If", "I", "had", "taken", "a", "day", "off,", "my", "knee", "would", "have", "felt", "better"],
+              correctAnswer: "If I had taken a day off, my knee would have felt better",
+            },
+          ],
+        },
       ],
     },
 
@@ -270,17 +282,38 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       title: "Three Shifts and a Bigger Bill",
       icon: "💸",
       explanation: `
-        ${sceneCard("sceneBreakRoom", "Warehouse break room. Monday morning.", "blue")}
+        <p>Because Yemi waited, her knee got worse. Look at the table. The left side is what <strong>really happened</strong>. The right side is what <strong>would have happened</strong> if she had gone to the clinic sooner.</p>
 
-        <p>Because Yemi waited, her knee got worse. She missed three shifts last week. The clinic visit cost more than she expected.</p>
-
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏻", text: "How much did you lose from missing those shifts?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Almost $400. If I <strong>had gone</strong> to the clinic sooner, I <strong>wouldn't have missed</strong> three shifts.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "And the bill?", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Eighty dollars. If I <strong>had rested</strong> when it started, I <strong>wouldn't have paid</strong> this much.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "You <strong>could have called</strong> the nurse line. It might have been free.", side: "left", tone: "sage" },
-        ])}
+        <div class="gc-border-black-alpha" style="margin: 0 0 1.5rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02)">
+          <div style="padding: 0.75rem 1rem 0.5rem 1rem">
+            <div class="gc-text-sage" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">Table</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-top: 0.1rem">Yemi: real life and a different past</div>
+          </div>
+          <div style="padding: 0 0.75rem 0.75rem 0.75rem">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed">
+              <thead>
+                <tr>
+                  <th class="gc-table-divider gc-text-terracotta" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Really happened</th>
+                  <th class="gc-table-divider gc-text-sage" scope="col" style="padding: 0.4rem 0.4rem !important; font-size: 0.78rem; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Would have happened</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">She missed <strong>3 shifts</strong>.</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">She <strong>wouldn't have missed</strong> 3 shifts.</td>
+                </tr>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">She lost almost <strong>$400</strong>.</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">She <strong>would have kept</strong> that money.</td>
+                </tr>
+                <tr>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">The clinic bill was <strong>$80</strong>.</td>
+                  <td class="gc-table-divider" style="padding: 0.5rem 0.4rem !important; font-size: 0.9rem; border-bottom: 1px solid rgba(128,128,128,0.25)">The bill <strong>might have been</strong> smaller.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Negative results: <strong>wouldn't have + past participle</strong>. You can also use <strong>could have</strong> or <strong>might have</strong> for a less certain result.</p>
@@ -300,40 +333,40 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       exercises: [
         {
           id: "s3-ex1",
-          title: "Complete the negative sentence",
-          instructions: "Choose the correct form.",
+          title: "Look at the table",
+          instructions: "Read the table, then choose.",
           items: [
             {
               type: "radio",
-              label: "Yemi missed three shifts. \"If I had gone to the clinic sooner, I ___ three shifts.\"",
+              label: "Look at the table. How many shifts did Yemi really miss?",
               options: [
-                { value: "a", label: "wouldn't miss" },
-                { value: "b", label: "wouldn't have missed" },
-                { value: "c", label: "won't have missed" },
+                { value: "a", label: "0" },
+                { value: "b", label: "3" },
+                { value: "c", label: "80" },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "The copay was $80. \"If I had rested early, I ___ this much.\"",
+              label: "Look at the table. \"If Yemi had gone sooner, she ___ almost $400.\"",
               options: [
-                { value: "a", label: "wouldn't have paid" },
-                { value: "b", label: "wouldn't pay" },
-                { value: "c", label: "didn't pay" },
+                { value: "a", label: "wouldn't lose" },
+                { value: "b", label: "wouldn't have lost" },
+                { value: "c", label: "didn't lose" },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
             },
           ],
         },
         {
           id: "s3-ex2",
           title: "Fill in the blank",
-          instructions: "Write wouldn't have.",
+          instructions: "Write one word.",
           items: [
             {
               type: "text",
-              label: "If I had called the nurse line, I ___ have paid $80 at the clinic.",
-              expectedAnswers: ["wouldn't"],
+              label: "Yemi lost almost $400. \"If I had gone sooner, I wouldn't ___ lost that money.\"",
+              expectedAnswers: ["have"],
             },
           ],
         },
@@ -344,8 +377,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "I", "had", "rested", "my", "knee,", "I", "wouldn't", "have", "missed", "three", "shifts"],
-              correctAnswer: "If I had rested my knee, I wouldn't have missed three shifts",
+              words: ["If", "Yemi", "had", "gone", "sooner,", "she", "would", "have", "kept", "her", "money"],
+              correctAnswer: "If Yemi had gone sooner, she would have kept her money",
             },
           ],
         },
@@ -368,14 +401,30 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         ],
       },
       explanation: `
-        ${sceneCard("sceneBreakRoomTalk", "Warehouse break room. Tuesday lunch.", "amber")}
+        <p>On the bus, Yemi reads about a scientist who left home to study in another country. His story is all in the past, so we can only imagine a different past for it. Yemi's bill is different: she can still call the clinic today.</p>
 
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏻", text: "If you <strong>called</strong> the clinic now, they <strong>would help</strong> you figure out the bill.", side: "left", tone: "sage" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "Do you think so? I’ve been putting it off.", side: "right", tone: "terracotta" },
-          { speaker: "Yemi", avatar: "👩🏿", text: "If I <strong>had called</strong> three weeks ago, I <strong>would have saved</strong> myself a lot of worry.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏻", text: "You can still call today. I can sit with you while you do it.", side: "left", tone: "sage" },
-        ])}
+        ${readingCard({
+          kicker: "Earth Day",
+          title: "Mario Molina: The Scientist Who Warned About the Ozone Layer",
+          photo: {
+            url: "/images/guide-people/mario-molina.jpg",
+            alt: "Mario Molina, wearing glasses and a gray suit, 2011",
+            credit: "Janwikifoto, 2011, CC BY-SA 3.0",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Mario_Molina_1c389_8387.jpg",
+          },
+          paragraphs: [
+            "Mario Molina <strong>was born</strong> in Mexico City. He studied chemical engineering at the National Autonomous University of Mexico (UNAM), then went to the University of California, Berkeley, for graduate school. Later, he joined F. Sherwood Rowland's research group at UC Irvine.",
+            "In 1974, Molina and Rowland <strong>wrote</strong> an article that warned about gases called CFCs. They said CFCs could damage the ozone layer. In 1995, Molina, Rowland, and Paul Crutzen <strong>won</strong> the Nobel Prize in Chemistry. In 2013, President Obama <strong>gave</strong> Molina the Presidential Medal of Freedom. Molina died in 2020.",
+          ],
+          sources: [
+            { name: "University of California Academic Senate", url: "https://senate.universityofcalifornia.edu/in-memoriam/files/mario-molina.html" },
+            { name: "Science History Institute", url: "https://www.sciencehistory.org/education/scientific-biographies/mario-molina/" },
+            { name: "UC San Diego Today", url: "https://today.ucsd.edu/story/mario_j_molina_chemistry_1995" },
+          ],
+          accent: "sage",
+        })}
+
+        <p>Molina's past cannot change, so a different past is only imagination. Here is the grammar:</p>
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -387,17 +436,39 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("second (now)", "amber")}
-            <span><em>If I <strong>called</strong> the clinic now, they <strong>would help</strong> me.</em> (Still possible.)</span>
+            <span><em>If Yemi <strong>called</strong> the clinic now, they <strong>would help</strong> her.</em> (Still possible.)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("third (past)", "blue")}
-            <span><em>If I <strong>had called</strong> three weeks ago, I <strong>wouldn't have missed</strong> three shifts.</em> (Too late.)</span>
+            <span><em>If Yemi <strong>had called</strong> three weeks ago, she <strong>wouldn't have missed</strong> three shifts.</em> (Too late.)</span>
           </div>
         </div>
       `,
       exercises: [
         {
           id: "s4-ex1",
+          title: "Read about Mario Molina",
+          instructions: "Read the card, then answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence about Mario Molina is true?",
+              options: [
+                { value: "a", label: "He was born in Germany." },
+                { value: "b", label: "He went to Berkeley for graduate school." },
+                { value: "c", label: "He won the Nobel Prize in 1974." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "How many years passed between the 1974 article and the Nobel Prize? (number)",
+              expectedAnswers: ["21", "twenty-one", "twenty one"],
+            },
+          ],
+        },
+        {
+          id: "s4-ex2",
           title: "Second or third?",
           instructions: "Choose the correct conditional based on the situation.",
           items: [
@@ -412,26 +483,18 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "radio",
-              label: "Yemi missed three shifts last week. That cannot change. \"If I ___ sooner, I wouldn't have missed three shifts.\"",
+              label: "Imagine a different past (our guess, not history). Which sentence is correct?",
               options: [
-                { value: "a", label: "went (second conditional)" },
-                { value: "b", label: "had gone (third conditional)" },
+                { value: "a", label: "If Molina and Rowland hadn't written the article in 1974, people might not have learned about CFCs so soon." },
+                { value: "b", label: "If Molina and Rowland didn't write the article in 1974, people might not have learned about CFCs so soon." },
+                { value: "c", label: "If Molina and Rowland hadn't written the article in 1974, people might not learn about CFCs so soon." },
               ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "\"If I called three weeks ago, I wouldn't have missed three shifts.\" Is this correct?",
-              options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'had called' for a past regret" },
-              ],
-              expectedAnswer: "incorrect",
+              expectedAnswer: "a",
             },
           ],
         },
         {
-          id: "s4-ex2",
+          id: "s4-ex3",
           title: "Fill in the blank",
           instructions: "Write would or would have.",
           items: [
@@ -442,8 +505,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "text",
-              label: "If I had rested three weeks ago, I ___ have saved $400. (past regret)",
-              expectedAnswers: ["would"],
+              label: "If I had rested three weeks ago, I ___ saved almost $400. (past regret)",
+              expectedAnswers: ["would have"],
             },
           ],
         },
@@ -507,13 +570,18 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         },
         {
           id: "s5-ex2",
-          title: "Fill in the blank",
-          instructions: "Write had or would.",
+          title: "What really happened?",
+          instructions: "Choose the best meaning.",
           items: [
             {
-              type: "text",
-              label: "If I ___ called the clinic three weeks ago, I wouldn't have missed three shifts.",
-              expectedAnswers: ["had"],
+              type: "radio",
+              label: "Jennifer says: \"If Kevin had used the lift, he wouldn't have hurt his back.\" What is true?",
+              options: [
+                { value: "a", label: "Kevin used the lift and did not get hurt." },
+                { value: "b", label: "Kevin did not use the lift, and he got hurt." },
+                { value: "c", label: "Kevin will use the lift tomorrow." },
+              ],
+              expectedAnswer: "b",
             },
           ],
         },
@@ -594,17 +662,17 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     },
     {
       id: "tc-q6",
-      question: "Find the error: \"If I called the clinic last week, I wouldn't have missed three shifts.\"",
+      question: "Find the error: \"If Yemi had went to the clinic sooner, she would have paid less.\"",
       options: [
         { value: "a", label: "No error." },
-        { value: "b", label: "Error: should be \"If I had called\" (missing had)." },
-        { value: "c", label: "Error: should be \"I wouldn't miss\" not \"wouldn't have missed\"." },
+        { value: "b", label: "Error: should be \"had gone\" (the past participle of go is gone)." },
+        { value: "c", label: "Error: should be \"she would pay\" not \"she would have paid\"." },
       ],
       correctAnswer: "b",
-      explanation: "Last week is in the past. The if-clause needs had + past participle.",
+      explanation: "After had, use the past participle: had gone, not had went.",
       topic: "third-conditional",
       skill: "error-detection",
-      skillTag: "error-missing-had",
+      skillTag: "error-past-participle",
       difficulty: "medium",
     },
     {

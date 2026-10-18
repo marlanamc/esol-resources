@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { beUsedToGetUsedToImages as img } from "@/data/be-used-to-get-used-to-images.generated";
+import { checklist, readingCard, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -170,16 +171,19 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       title: "I'm Not Used to the Cold Yet",
       icon: "❄️",
       explanation: `
-        ${sceneCard("sceneWinterBus", "Bus stop near Maverick Square. A Wednesday in January, 12:30 AM.", "blue")}
+        <p>It is January, and it is <strong>Fabienne</strong>'s first winter in Boston. After closing, she waits for the bus at 12:30 AM and makes a list on her phone. A checked box means she <strong>is used to</strong> it. An empty box means she is <strong>not used to</strong> it yet.</p>
 
-        <p>Two months later, it is January. After closing, <strong>Fabienne</strong> waits for the bus home with <strong>Nadine</strong>, a server at the restaurant who is also in her ESOL class. It is Fabienne's first winter in Boston, and the wind is sharp.</p>
-
-        ${dialogue([
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>not used to waiting</strong> outside this long. My hands are freezing.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "Same. I moved here in August. This is my first winter.", side: "left", tone: "sage" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm also <strong>not used to switching</strong> buses in the dark. Back home I walked to work.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "Me too. I <strong>used to walk</strong> everywhere. Let’s wait inside until the bus is closer.", side: "left", tone: "blue" },
-        ])}
+        ${checklist({
+          kicker: "Fabienne's first winter",
+          title: "Used to it yet? (January)",
+          items: [
+            { text: "Working nights (since October)", done: true },
+            { text: "Sleeping in the afternoon", done: true },
+            { text: "Finishing at midnight", done: true },
+            { text: "Waiting outside for the bus", done: false },
+            { text: "Switching buses in the dark", done: false },
+          ],
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Negative:</strong> am / is / are + <strong>not</strong> + used to + gerund. Something still feels uncomfortable or unfamiliar <em>now</em>.</p>
@@ -199,26 +203,31 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s2-ex1",
-          title: "Choose the correct negative",
-          instructions: "Pick the correct form.",
+          title: "Read Fabienne's list",
+          instructions: "Look at the checklist. Choose the sentence that is true.",
           items: [
             {
               type: "radio",
-              label: "Fabienne still finds the cold hard. Which sentence is correct?",
+              label: "Which sentence is true in January?",
               options: [
-                { value: "a", label: "I'm not used to wait outside in January." },
-                { value: "b", label: "I'm not used to waiting outside in January." },
-                { value: "c", label: "I didn't use to waiting outside in January." },
+                { value: "a", label: "Fabienne is used to waiting outside for the bus." },
+                { value: "b", label: "Fabienne is not used to waiting outside for the bus yet." },
+                { value: "c", label: "Fabienne is not used to sleeping in the afternoon." },
               ],
               expectedAnswer: "b",
             },
             {
+              type: "text",
+              label: "How many things on the list is Fabienne used to? Write a number.",
+              expectedAnswers: ["3", "three"],
+            },
+            {
               type: "radio",
-              label: "Nadine walked everywhere back home, even to the market. Which sentence is correct?",
+              label: "In Haiti, Fabienne walked to work every day. She does not do that now. Which sentence is correct?",
               options: [
-                { value: "a", label: "I'm used to walk to the market every day." },
-                { value: "b", label: "I used to walk to the market every day." },
-                { value: "c", label: "I used to walking to the market every day." },
+                { value: "a", label: "I'm used to walk to work." },
+                { value: "b", label: "I used to walk to work." },
+                { value: "c", label: "I used to walking to work." },
               ],
               expectedAnswer: "b",
             },
@@ -231,8 +240,8 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "I'm not used to ___ (switch) buses in the dark.",
-              expectedAnswers: ["switching"],
+              label: "Fabienne is not used to ___ (ride) the bus at night.",
+              expectedAnswers: ["riding"],
             },
           ],
         },
@@ -269,15 +278,23 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneSchoolPhone", "Bus stop after a double shift. A Thursday in February, 6:45 PM.", "sage")}
+        <p>Here are <strong>Fabienne</strong>'s first six months in East Boston. Some things became normal. Some things are still changing. In February, her kids' school sends a health form on ParentSquare, and she reads it on her phone at the bus stop.</p>
 
-        <p>A few weeks later, <strong>Fabienne</strong> works a double shift at the restaurant. At the bus stop, she checks ParentSquare on her phone. Her kids’ school sent a health form, and she is still learning to read the notices in English. She texts her friend <strong>Nadine</strong>.</p>
-
-        ${dialogue([
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I'm <strong>getting used to reading</strong> school emails in English.", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I still have to read some of them twice, especially the ones about school health forms.", side: "right", tone: "terracotta" },
-          { speaker: "Nadine", avatar: "👩🏿", text: "Same here. I’m <strong>getting used to</strong> the vocabulary, but I still ask the teacher when I’m not sure.", side: "left", tone: "sage" },
-        ])}
+        ${timeline({
+          kicker: "Fabienne's first months",
+          title: "From August to February",
+          items: [
+            { when: "Aug", text: "Fabienne moves to East Boston from Haiti.", accent: "terracotta" },
+            { span: "2 months", accent: "terracotta" },
+            { when: "Oct", text: "She starts her first night shift at the restaurant.", accent: "terracotta" },
+            { span: "1 month", accent: "sage" },
+            { when: "Nov", text: "She <strong>is used to finishing</strong> at midnight. It feels normal.", accent: "sage" },
+            { span: "2 months", accent: "blue" },
+            { when: "Jan", text: "First winter. She is <strong>not used to waiting</strong> outside for the bus.", accent: "blue" },
+            { span: "1 month", accent: "amber" },
+            { when: "Feb", text: "She reads some school emails twice. She is <strong>getting used to reading</strong> them in English.", accent: "amber" },
+          ],
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Get used to + gerund</strong> = the process of adapting. It is getting easier, but you are not fully comfortable yet.</p>
@@ -297,6 +314,28 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s3-ex1",
+          title: "Read the timeline",
+          instructions: "Look at Fabienne's timeline. Choose the best answer.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence is true about February?",
+              options: [
+                { value: "a", label: "Fabienne is getting used to reading school emails." },
+                { value: "b", label: "Fabienne is used to reading school emails and never reads them twice." },
+                { value: "c", label: "Fabienne used to read school emails." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "How many months are there between her first night shift and January? Write a number.",
+              expectedAnswers: ["3", "three"],
+            },
+          ],
+        },
+        {
+          id: "s3-ex2",
           title: "Getting used to or be used to?",
           instructions: "Choose the best form for the meaning.",
           items: [
@@ -323,7 +362,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s3-ex2",
+          id: "s3-ex3",
           title: "Fill in the blank",
           instructions: "Write getting.",
           items: [
@@ -335,7 +374,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           ],
         },
         {
-          id: "s3-ex3",
+          id: "s3-ex4",
           title: "Unscramble",
           items: [
             {
@@ -365,15 +404,26 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneChurch", "Haitian church, East Boston. Sunday, 9 AM.", "amber")}
+        <p>May is Asian American and Pacific Islander Heritage Month. Many adult learners know a story like Fabienne's: a new country, a new language, a new life. Read about Mazie Hirono. The bold words are a <strong>past situation</strong>.</p>
 
-        <p>The next Sunday, <strong>Fabienne</strong> goes to her Haitian church. Her friend <strong>Frantz</strong> sits with her after service. They are figuring out which service fits around their work schedules.</p>
-
-        ${dialogue([
-          { speaker: "Frantz", avatar: "👨🏾", text: "I’m <strong>getting used to</strong> the early service here. Can you come next Sunday?", side: "right", tone: "terracotta" },
-          { speaker: "Fabienne", avatar: "👩🏾", text: "I’ll try. I’m <strong>used to working</strong> nights, but Saturday nights end late. Getting up is hard.", side: "left", tone: "sage" },
-          { speaker: "Frantz", avatar: "👨🏾", text: "I know. I <strong>used to work</strong> only days. Now I work nights too. We could try a later service.", side: "right", tone: "terracotta" },
-        ])}
+        ${readingCard({
+          kicker: "Asian American and Pacific Islander Heritage Month",
+          title: "Mazie Hirono: From a Rice Farm to the Senate",
+          paragraphs: [
+            "Mazie Hirono <strong>used to live</strong> in Fukushima, Japan. Her early childhood was spent on her grandparents' rice farm. When she was nearly eight years old, she, her mother, and her brother crossed the Pacific by ship and came to Hawaii.",
+            "When she began elementary school, she neither spoke nor read English. She studied in Hawaii's public schools, went to the University of Hawaii, and later went to law school at Georgetown. In 2013, she was sworn in as a U.S. senator. She became the first Asian American woman in the Senate.",
+          ],
+          photo: {
+            url: "/images/guide-people/mazie-hirono.jpg",
+            alt: "Official Senate portrait of Mazie Hirono, smiling in a red jacket in front of bookshelves",
+            credit: "U.S. Senate, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Mazie_Hirono,_official_portrait,_113th_Congress_(cropped).jpg",
+          },
+          sources: [
+            { name: "Senator Hirono's official biography", url: "https://www.hirono.senate.gov/about" },
+          ],
+          accent: "amber",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -386,7 +436,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("past", "terracotta")}
-            <span><em>I <strong>used to work</strong> only days.</em></span>
+            <span><em>Fabienne <strong>used to sleep</strong> at night.</em> (Not now. She works nights.)</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("familiar", "sage")}
@@ -394,23 +444,45 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("adapting", "blue")}
-            <span><em>I'm <strong>getting used to</strong> the Creole hymns.</em></span>
+            <span><em>She's <strong>getting used to reading</strong> school emails.</em></span>
           </div>
         </div>
       `,
       exercises: [
         {
           id: "s4-ex1",
+          title: "Read about Mazie Hirono",
+          instructions: "Look at the reading. Answer the questions.",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence is correct? Mazie Hirono does not live in Japan now.",
+              options: [
+                { value: "a", label: "She used to live in Japan." },
+                { value: "b", label: "She is used to live in Japan." },
+                { value: "c", label: "She used to living in Japan." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "How old was Mazie when her family came to Hawaii? She was nearly ___ years old. Write a number.",
+              expectedAnswers: ["8", "eight"],
+            },
+          ],
+        },
+        {
+          id: "s4-ex2",
           title: "Pick the right pattern",
           instructions: "Choose the sentence that matches the meaning.",
           items: [
             {
               type: "radio",
-              label: "Frantz worked only days before, so his nights were free. Not anymore.",
+              label: "Before Fabienne moved to the night shift, she slept at night. Not anymore.",
               options: [
-                { value: "a", label: "I used to have my nights free." },
-                { value: "b", label: "I'm used to have my nights free." },
-                { value: "c", label: "I'm getting used to have my nights free." },
+                { value: "a", label: "She used to sleep at night." },
+                { value: "b", label: "She is used to sleep at night." },
+                { value: "c", label: "She is getting used to sleep at night." },
               ],
               expectedAnswer: "a",
             },
@@ -426,27 +498,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Frantz is new to the early service. He is still learning the hymns.",
+              label: "Fabienne reads some school emails twice. She is still learning.",
               options: [
-                { value: "a", label: "He is used to the Creole hymns already." },
-                { value: "b", label: "He is getting used to the Creole hymns." },
-                { value: "c", label: "He used to the Creole hymns." },
-              ],
-              expectedAnswer: "b",
-            },
-          ],
-        },
-        {
-          id: "s4-ex2",
-          title: "Spot the error",
-          items: [
-            {
-              type: "radio",
-              label: "\"She is used to work nights.\" What is wrong?",
-              options: [
-                { value: "a", label: "No error." },
-                { value: "b", label: "Error: should be \"used to working\" (-ing after be used to)." },
-                { value: "c", label: "Error: should be \"used to work\" (past habit)." },
+                { value: "a", label: "She is used to reading school emails already." },
+                { value: "b", label: "She is getting used to reading school emails." },
+                { value: "c", label: "She used to reading school emails." },
               ],
               expectedAnswer: "b",
             },
@@ -454,12 +510,28 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         },
         {
           id: "s4-ex3",
+          title: "Spot the error",
+          items: [
+            {
+              type: "radio",
+              label: "\"I'm used to wake up at 3 PM.\" What is wrong?",
+              options: [
+                { value: "a", label: "No error." },
+                { value: "b", label: "Error: should be \"used to waking up\" (-ing after be used to)." },
+                { value: "c", label: "Error: should be \"used to wake up\" (past habit)." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "s4-ex4",
           title: "Fill in the blank",
           instructions: "Write used, used to, or getting.",
           items: [
             {
               type: "text",
-              label: "I ___ to work only days, but now I work nights too. (past habit)",
+              label: "Fabienne ___ to sleep at night, but now she sleeps in the afternoon. (past habit)",
               expectedAnswers: ["used"],
             },
           ],
@@ -509,11 +581,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The late bus feels normal to Fabienne now.",
+              label: "Closing the restaurant at midnight feels normal to Fabienne now.",
               options: [
-                { value: "a", label: "I'm used to taking the late bus." },
-                { value: "b", label: "I used to taking the late bus." },
-                { value: "c", label: "I'm getting used to take the late bus." },
+                { value: "a", label: "I'm used to closing the restaurant at midnight." },
+                { value: "b", label: "I used to closing the restaurant at midnight." },
+                { value: "c", label: "I'm getting used to close the restaurant at midnight." },
               ],
               expectedAnswer: "a",
             },
@@ -643,7 +715,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Frantz describes his friend Fabienne's routine. Put the words in order.",
+      question: "Mark describes Fabienne's routine. Put the words in order.",
       words: ["She", "is", "used", "to", "working", "nights"],
       correctAnswer: "She is used to working nights",
       hint: "be used to + gerund",
