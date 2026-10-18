@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { gerundsInfinitivesFullReviewImages as img } from "@/data/gerunds-infinitives-full-review-images.generated";
+import { checklist, readingCard, stepsCard } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -170,17 +171,21 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "I Need to Call the Landlord",
       icon: "🏠",
       explanation: `
-        ${sceneCard("sceneKitchenLetter", "Marisol's kitchen, East Boston. Tuesday, 10 PM, after class.", "amber")}
+        <p>A lease renewal letter arrived in the mail, and the rent is going up. It's too late to call her landlord <strong>Mark</strong>, so Marisol writes a list on her phone. Her cousin <strong>Paola</strong> helps her think about what to ask.</p>
 
-        <p>A lease renewal letter arrived in the mail. The rent is going up. It's too late to call her landlord <strong>Mark</strong>, so Marisol texts her cousin <strong>Paola</strong>.</p>
-
-        ${dialogue([
-          { speaker: "Marisol", avatar: "👩🏽", text: "My rent is going up. I <strong>need to call</strong> Mark tomorrow.", side: "right", tone: "terracotta" },
-          { speaker: "Paola", avatar: "👩🏾", text: "Ugh. Are you going to move?", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>hope to find</strong> a cheaper place, but I <strong>plan to stay</strong> until fall if I can.", side: "right", tone: "terracotta" },
-          { speaker: "Paola", avatar: "👩🏾", text: "Then ask him about month-to-month.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "Yes, I'd <strong>like to ask</strong> about that. I <strong>want to change</strong> jobs in the fall.", side: "right", tone: "terracotta" },
-        ])}
+        ${checklist({
+          kicker: "Marisol's phone",
+          title: "The rent letter: my list",
+          items: [
+            { text: "Read the whole letter", done: true },
+            { text: "Text Paola", done: true },
+            { text: "I <strong>need to call</strong> Mark tomorrow", done: false },
+            { text: "I <strong>would like to ask</strong> about month-to-month", done: false },
+            { text: "I <strong>hope to find</strong> a cheaper place", done: false },
+            { text: "I <strong>plan to stay</strong> until fall", done: false },
+            { text: "I <strong>want to change</strong> jobs in the fall", done: false },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>After need, want, hope, plan, would like:</strong> use <strong>to + base verb</strong>. need <em>to call</em>, plan <em>to change</em>, hope <em>to find</em>.</p>
@@ -200,18 +205,28 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "s2-ex1",
-          title: "Infinitive or gerund?",
-          instructions: "Pick the correct form after need/want/plan.",
+          title: "Read the list, then choose",
+          instructions: "Look at Marisol's list first.",
           items: [
             {
               type: "radio",
-              label: "Marisol has a question for Mark, the landlord. Which sentence is correct?",
+              label: "Look at the list. What has Marisol already done?",
               options: [
-                { value: "a", label: "I need to ask Mark about the parking." },
-                { value: "b", label: "I need asking Mark about the parking." },
-                { value: "c", label: "I need ask Mark about the parking." },
+                { value: "a", label: "She called Mark." },
+                { value: "b", label: "She read the letter and texted Paola." },
+                { value: "c", label: "She found a cheaper place." },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Marisol wants a bigger kitchen in her next apartment. Which sentence is correct?",
+              options: [
+                { value: "a", label: "I hope finding a bigger kitchen." },
+                { value: "b", label: "I hope to find a bigger kitchen." },
+                { value: "c", label: "I hope find a bigger kitchen." },
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -228,11 +243,16 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
         {
           id: "s2-ex2",
           title: "Fill in the blank",
-          instructions: "Write to.",
+          instructions: "Use the list, or write to.",
           items: [
             {
               type: "text",
-              label: "I hope ___ find a cheaper place.",
+              label: "Look at the list. How many things are NOT done yet? (write a number)",
+              expectedAnswers: ["5", "five"],
+            },
+            {
+              type: "text",
+              label: "I need ___ pay the rent on Friday.",
               expectedAnswers: ["to"],
             },
           ],
@@ -264,16 +284,27 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Keep Working Overtime",
       icon: "📦",
       explanation: `
-        ${sceneCard("sceneWarehouseFloor", "Warehouse floor, Chelsea. Wednesday, 4 PM.", "terracotta")}
+        <p>Wednesday, 4 PM, at the warehouse. Supervisor <strong>Brian</strong> asks who can stay late. Marisol says she doesn't <strong>mind staying</strong>, because she is saving for a deposit. Big goals need patience. Here is a scientist who kept going for a very long time.</p>
 
-        <p>Double shift week. Supervisor <strong>Brian</strong> asks who can stay late. Marisol needs the extra money for a deposit.</p>
-
-        ${dialogue([
-          { speaker: "Brian", avatar: "🧑🏼", text: "Who can stay an extra hour tonight?", side: "left", tone: "blue" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I can. I’m saving for a deposit.", side: "right", tone: "terracotta" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I don’t <strong>mind staying</strong> an extra hour tonight. My sister is picking up my kid.", side: "right", tone: "terracotta" },
-          { speaker: "Brian", avatar: "🧑🏼", text: "OK. <strong>Finish scanning</strong> those pallets first.", side: "left", tone: "blue" },
-        ])}
+        ${readingCard({
+          kicker: "Famous person",
+          title: "Jane Goodall: She Kept Going",
+          photo: {
+            url: "/images/guide-people/jane-goodall.jpg",
+            alt: "Jane Goodall in a teal shawl and an Africa necklace, 2015",
+            credit: "U.S. Department of State, 2015, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Dr._Jane_Goodall_in_Washington_(22365513310)_(portrait).jpg",
+          },
+          paragraphs: [
+            "Jane Goodall loved animals from early childhood, and she read many books about nature. Her dream was to go to Africa. She worked as a waitress and saved money for a ship to Kenya. There she met the scientist Louis Leakey. He saw her patience and asked her to study wild chimpanzees in Gombe, Tanzania.",
+            "Jane arrived at Gombe on 14 July 1960. She discovered that chimpanzees make and use tools. Her first study was only three months long, but she <strong>kept studying</strong> the chimpanzees, and the work lasted decades. She also <strong>kept traveling</strong> nearly 300 days a year to talk about animals and nature. Jane died in October 2025, at the age of 91.",
+          ],
+          sources: [
+            { name: "Jane Goodall Institute: Jane Goodall's Story", url: "https://janegoodall.org/jane-goodalls-story/" },
+            { name: "Jane Goodall Institute: Remembering Jane", url: "https://janegoodall.org/remembering-jane/" },
+          ],
+          accent: "sage",
+        })}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Some verbs take a gerund:</strong> enjoy, avoid, keep, finish, mind + <strong>-ing</strong>. Not an infinitive.</p>
@@ -316,29 +347,49 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "b",
             },
+            {
+              type: "radio",
+              label: "Jane's first study was short, but her work lasted decades. Which sentence is correct?",
+              options: [
+                { value: "a", label: "Jane kept to watch the chimpanzees." },
+                { value: "b", label: "Jane kept watch the chimpanzees." },
+                { value: "c", label: "Jane kept watching the chimpanzees." },
+              ],
+              expectedAnswer: "c",
+            },
           ],
         },
         {
           id: "s3-ex2",
-          title: "Fill in the blank",
-          instructions: "Write the -ing form.",
+          title: "Read Jane's card",
+          instructions: "Look at the reading card. Write a number.",
           items: [
             {
               type: "text",
-              label: "I don't mind ___ (stay) an extra hour.",
-              expectedAnswers: ["staying"],
+              label: "In what year did Jane arrive at Gombe?",
+              expectedAnswers: ["1960"],
+            },
+            {
+              type: "text",
+              label: "How old was Jane when she died?",
+              expectedAnswers: ["91"],
             },
           ],
         },
         {
           id: "s3-ex3",
-          title: "Unscramble",
+          title: "Fill in and unscramble",
           items: [
+            {
+              type: "text",
+              label: "I don't mind ___ (work) on Saturday.",
+              expectedAnswers: ["working"],
+            },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "keep", "working", "overtime", "to", "save", "money"],
-              correctAnswer: "I keep working overtime to save money",
+              words: ["Marisol", "keeps", "saving", "money", "for", "a", "deposit"],
+              correctAnswer: "Marisol keeps saving money for a deposit",
             },
           ],
         },
@@ -353,16 +404,21 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Stop Forgetting Your Refills",
       icon: "💊",
       explanation: `
-        ${sceneCard("scenePharmacyPickup", "East Boston Pharmacy, Meridian Street. Wednesday, 9:55 PM.", "sage")}
+        <p>Wednesday, 9:55 PM. Marisol runs to the pharmacy. Her refill has been ready since Monday. The pharmacist, <strong>Jennifer</strong>, knows her well. On Monday, Jennifer sent Marisol this text, and Marisol forgot about it until tonight.</p>
 
-        <p>After her long shift, Marisol runs to the pharmacy. It closes at 10, and she gets there at 9:55. Her refill has been ready since Monday. The pharmacist, <strong>Jennifer</strong>, knows her well.</p>
-
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏾", text: "Marisol, you <strong>need to stop forgetting</strong> your refills. This is the second time.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I know. I <strong>stopped to read</strong> your text at lunch, but then I forgot again.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏾", text: "<strong>Try setting</strong> a phone alarm. We close at 10, so <strong>remember to come</strong> before 9 next time.", side: "left", tone: "sage" },
-          { speaker: "Marisol", avatar: "👩🏽", text: "I’ll set one now. Thanks for waiting for me.", side: "right", tone: "terracotta" },
-        ])}
+        ${stepsCard({
+          kicker: "Text message",
+          title: "East Boston Pharmacy",
+          accent: "sage",
+          steps: [
+            "Your refill is ready for pickup.",
+            "Please <strong>remember to come</strong> before 9 PM. We close at 10.",
+            "<strong>Try setting</strong> a phone alarm for 8 PM.",
+            "<strong>Stop missing</strong> your refill days. It is bad for your health.",
+            "When you pick up, <strong>stop to ask</strong> the pharmacist any questions.",
+          ],
+          note: "Sent by Jennifer, pharmacist.",
+        })}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
@@ -414,11 +470,11 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Next time, Jennifer wants Marisol to come before 9. What does Jennifer say?",
+              label: "Look at the text. What time does Jennifer want Marisol to come before?",
               options: [
-                { value: "a", label: "Remember coming earlier." },
-                { value: "b", label: "Remember to come earlier." },
-                { value: "c", label: "Remember come earlier." },
+                { value: "a", label: "8 PM" },
+                { value: "b", label: "9 PM" },
+                { value: "c", label: "10 PM" },
               ],
               expectedAnswer: "b",
             },
@@ -430,11 +486,11 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"You need to stop to forgetting your refills.\" What is wrong?",
+              label: "\"You need to stop to missing your refill days.\" What is wrong?",
               options: [
                 { value: "a", label: "No error." },
-                { value: "b", label: "Error: quit a habit = \"stop forgetting\" (no to)." },
-                { value: "c", label: "Error: should be \"stop to forget\"." },
+                { value: "b", label: "Error: quit a habit = \"stop missing\" (no to)." },
+                { value: "c", label: "Error: should be \"stop to miss\"." },
               ],
               expectedAnswer: "b",
             },
@@ -443,12 +499,17 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
         {
           id: "s4-ex3",
           title: "Fill in the blank",
-          instructions: "Write to or -ing.",
+          instructions: "Write -ing, or a number from the text.",
           items: [
             {
               type: "text",
-              label: "Try ___ (set) a phone alarm for your refill.",
-              expectedAnswers: ["setting"],
+              label: "Try ___ (write) the date on your hand.",
+              expectedAnswers: ["writing"],
+            },
+            {
+              type: "text",
+              label: "Look at the text. The pharmacy closes at ___ PM.",
+              expectedAnswers: ["10", "ten"],
             },
           ],
         },
