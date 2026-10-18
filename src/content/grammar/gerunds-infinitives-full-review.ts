@@ -404,7 +404,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       title: "Stop Forgetting Your Refills",
       icon: "💊",
       explanation: `
-        <p>Wednesday, 9:55 PM. Marisol runs to the pharmacy. Her refill has been ready since Monday. The pharmacist, <strong>Jennifer</strong>, knows her well. Earlier that day, Jennifer sent Marisol this text, and Marisol did not read it in time.</p>
+        <p>Wednesday, 9:55 PM. Marisol runs to the pharmacy. Her refill has been ready since Monday. The pharmacist, <strong>Jennifer</strong>, knows her well. On Monday, Jennifer sent Marisol this text, and Marisol forgot about it until tonight.</p>
 
         ${stepsCard({
           kicker: "Text message",
@@ -415,7 +415,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
             "Please <strong>remember to come</strong> before 9 PM. We close at 10.",
             "<strong>Try setting</strong> a phone alarm for 8 PM.",
             "<strong>Stop missing</strong> your refill days. It is bad for your health.",
-            "<strong>Stop to ask</strong> the pharmacist at the counter if you have a question.",
+            "When you pick up, <strong>stop to ask</strong> the pharmacist any questions.",
           ],
           note: "Sent by Jennifer, pharmacist.",
         })}
