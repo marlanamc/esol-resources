@@ -1,5 +1,7 @@
 # Grammar Guide Year Plan — Level 3 ESOL
 
+> **Superseded (October 2026).** The current week-by-week sequence is in [grammar-progression.html](grammar-progression.html). This file is the June 2026 plan, kept for history.
+
 One grammar guide per week, 34 weeks. Every guide follows the new spec: 4–5 sections, real-world theme, timeline diagram where relevant, 10-question mini quiz.
 
 ---
