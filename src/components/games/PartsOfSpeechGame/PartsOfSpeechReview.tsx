@@ -327,7 +327,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
               })}
             </div>
           </fieldset>}
-          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className={`${styles.verdict} ${selection === correctAnswer ? styles.correctText : styles.incorrectText}`}>{selection === correctAnswer ? <CheckCircle2 size={22} aria-hidden="true" /> : <XCircle size={22} aria-hidden="true" />}{selection === correctAnswer ? 'Correct!' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
+          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className={`${styles.verdict} ${selection === correctAnswer ? styles.verdictOk : styles.verdictMiss}`}>{selection === correctAnswer ? <CheckCircle2 size={22} aria-hidden="true" /> : <XCircle size={22} aria-hidden="true" />}{selection === correctAnswer ? 'Correct!' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
           {(stage === 'example' || selection) && <div className="mt-6 flex justify-end"><button ref={nextButton} className={`${primary} ${styles.big} w-full sm:min-w-40 sm:w-auto`} onClick={() => {
             if (stage === 'question') nextQuestion();
             else if (index + 1 < lesson.examples.length) setIndex(index + 1);
