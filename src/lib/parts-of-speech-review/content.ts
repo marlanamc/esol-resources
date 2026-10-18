@@ -436,6 +436,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "prepositions": {
     id: "prepositions", title: "Prepositions", categories: ["Preposition", "Noun"],
+    bridge: {
+      title: 'Where, when, how',
+      lead: 'A preposition comes before a noun.',
+      rows: [
+        { category: 'Preposition', before: 'The keys are ', target: 'on', after: ' the table.', heading: 'On shows where the keys are.', detail: 'A preposition shows how two things connect.' },
+        { category: 'Noun', before: 'The keys are on the ', target: 'table', after: '.', heading: 'Table is a noun.', detail: 'The noun comes after the preposition: on the table.' },
+      ],
+      note: 'Prepositions show place (in, on, under), time (at, after), or how (by, with).',
+    },
     examples: [
       item("prepositions-examples-1", "The keys are ", "on", " the table.", "Preposition", "On shows the relationship between the keys and the table."),
       item("prepositions-examples-2", "The keys are on the ", "table", ".", "Noun", "Table names a thing."),
@@ -466,6 +475,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "conjunctions": {
     id: "conjunctions", title: "Joining ideas", categories: ["Conjunction", "Preposition"],
+    bridge: {
+      title: 'Joining words',
+      lead: 'Look at what comes next.',
+      rows: [
+        { category: 'Conjunction', before: 'I like tea ', target: 'and', after: ' coffee.', heading: 'And joins tea and coffee.', detail: 'A conjunction joins two words or two ideas.' },
+        { category: 'Preposition', before: 'I drink tea ', target: 'with', after: ' milk.', heading: 'With comes before the noun milk.', detail: 'A preposition does not join two ideas. It comes before a noun.' },
+      ],
+      note: 'And, but, or, and so are conjunctions. They join words or ideas.',
+    },
     examples: [
       item("conjunctions-examples-1", "I like tea ", "and", " coffee.", "Conjunction", "And joins tea and coffee."),
       item("conjunctions-examples-2", "I drink tea ", "with", " milk.", "Preposition", "With introduces what goes with the tea."),
@@ -481,6 +499,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "dependent-clauses": {
     id: "dependent-clauses", title: "Because, when, and if", categories: ["Conjunction", "Preposition"],
+    bridge: {
+      title: 'Same word, two jobs',
+      lead: 'Look at what comes after it.',
+      rows: [
+        { category: 'Preposition', before: 'We ate ', target: 'after', after: ' class.', heading: 'After + a noun.', detail: 'Class is a noun, so after is a preposition here.' },
+        { category: 'Conjunction', before: 'We ate ', target: 'after', after: ' class ended.', heading: 'After + a subject and a verb.', detail: 'Class ended has a subject and a verb, so after is a conjunction here.' },
+      ],
+      note: 'Because, when, if, and although come before a subject and a verb: because it rained.',
+    },
     examples: [
       item("dependent-clauses-examples-1", "We stayed home ", "because", " it rained.", "Conjunction", "Because introduces a clause that gives a reason."),
       item("dependent-clauses-examples-2", "We stayed home ", "during", " the storm.", "Preposition", "During introduces a noun phrase, the storm."),
@@ -496,6 +523,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "gerunds": {
     id: "gerunds", title: "When an -ing form names an activity", categories: ["Gerund", "Verb"],
+    bridge: {
+      title: 'Two jobs for -ing words',
+      lead: 'Look at the word before it.',
+      rows: [
+        { category: 'Verb', before: 'She is ', target: 'swimming', after: '.', heading: 'Is + swimming.', detail: 'After is, am, are, was, or were, the -ing word is part of the verb.' },
+        { category: 'Gerund', before: '', target: 'Swimming', after: ' is fun.', heading: 'Swimming names an activity.', detail: 'Here it works like a noun. This is a gerund.' },
+      ],
+      note: 'After at, of, or about, use -ing: good at drawing.',
+    },
     prompt: "How is the highlighted -ing form used here?",
     examples: [
       item("gerunds-examples-1", "", "Swimming", " is fun.", "Gerund", "Swimming names an activity and works as the subject. This use is called a gerund."),
@@ -512,6 +548,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "verb-patterns": {
     id: "verb-patterns", title: "What comes after a verb?", categories: ["Gerund", "Infinitive"],
+    bridge: {
+      title: 'Word partners',
+      lead: 'Some verbs go with -ing. Some go with to.',
+      rows: [
+        { category: 'Gerund', before: 'I enjoy ', target: 'reading', after: '.', heading: 'Enjoy + -ing.', detail: 'Enjoy goes with an -ing word.' },
+        { category: 'Infinitive', before: 'I want ', target: 'to read', after: '.', heading: 'Want + to.', detail: 'Want goes with to and the base verb.' },
+      ],
+      note: 'With -ing: enjoy, finish, avoid, keep. With to: want, need, decide, hope. Learn each verb with its partner.',
+    },
     prompt: "Which verb pattern is highlighted?",
     examples: [
       item("verb-patterns-examples-1", "I enjoy ", "reading", ".", "Gerund", "Enjoy is followed by an -ing form: enjoy reading."),

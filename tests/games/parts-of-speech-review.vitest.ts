@@ -129,7 +129,7 @@ describe('Weekly Parts of Speech curriculum', () => {
       expect(scoreReviewAttempt(attempt(id)).correct).toBe(18);
     }
     expect(REVIEW_LESSONS['week-4-describing'].categories).toEqual(['Adjective', 'Article']);
-    for (const id of ['week-4-describing', 'week-5-subjects', 'week-7-adverbs'] as const) expect(REVIEW_LESSONS[id].bridge, id).toBeTruthy();
+    for (const id of ['week-4-describing', 'week-5-subjects', 'week-7-adverbs', 'prepositions', 'conjunctions', 'dependent-clauses', 'gerunds', 'verb-patterns'] as const) expect(REVIEW_LESSONS[id].bridge, id).toBeTruthy();
   });
   it('authors intro screens whose highlighted words sit in a real sentence', () => {
     for (const lesson of Object.values(REVIEW_LESSONS)) {
