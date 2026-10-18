@@ -1,6 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { presentPerfectHowLongImages as img } from "@/data/present-perfect-how-long-images.generated";
-import { checklist, timeline } from "@/content/grammar/_shared/guide-visuals";
+import { checklist } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers (copied from welcome-back-tenses-review.ts)
@@ -75,353 +75,326 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 — "How Long Have You Worked Here?"
+    // SECTION 1 — I've Already Sent It: ALREADY
     // =========================================================================
     {
-      id: "how-long-have-you",
-      title: "How Long Have You Worked Here?",
-      explanation: `
-        ${sceneCard("sceneHotelHallway", "East Boston. A hotel on Meridian Street. Thursday, 3:30 PM, after Rosa's shift.", "sage")}
-
-        ${dialogue([
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Thanks for coming in, Rosa. So, <strong>how long have you worked</strong> in housekeeping?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have worked</strong> in housekeeping for three years.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "And how long have you lived in East Boston?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have lived</strong> here since 2021.", side: "right", tone: "terracotta" },
-        ])}
-
-        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>How long have you...?</strong> asks about something that started in the past and is still true right now. You answer with <strong>for</strong> or <strong>since</strong>.</p>
-        </div>
-
-        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("for", "terracotta")}
-            <span><em>I <strong>have worked</strong> here <strong>for</strong> three years.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("since", "sage")}
-            <span><em>I <strong>have lived</strong> here <strong>since</strong> 2021.</em></span>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
-            ${labelPill("question", "blue")}
-            <span><em><strong>How long have you been</strong> cleaning hotel rooms?</em></span>
-          </div>
-        </div>
-
-        <p style="margin-top: 1rem">This is the same present perfect you have seen before. "How long" just focuses it on duration, on asking how much time has passed.</p>
-      `,
-      exercises: [
-        {
-          id: "hl-s1-ex1",
-          title: "Choose the right answer",
-          instructions: "Pick the answer that fits the question.",
-          items: [
-            {
-              type: "radio",
-              label: "How long have you had your library card?",
-              options: [
-                { value: "a", label: "I had my library card for two years." },
-                { value: "b", label: "I have had my library card for two years." },
-                { value: "c", label: "I have my library card two years." },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "How long has she lived in East Boston?",
-              options: [
-                { value: "a", label: "She has lived here since 2021." },
-                { value: "b", label: "She lived here since 2021." },
-                { value: "c", label: "She is living here since 2021." },
-              ],
-              expectedAnswer: "a",
-            },
-          ],
-        },
-        {
-          id: "hl-s1-ex2",
-          title: "Fill in the blank",
-          instructions: "Write the missing words.",
-          items: [
-            {
-              type: "text",
-              label: "___ long has Rosa worked in housekeeping? (one word)",
-              expectedAnswers: ["How"],
-            },
-            {
-              type: "text",
-              label: "I ___ worked at my hotel for three years. (one word)",
-              expectedAnswers: ["have", "'ve"],
-            },
-          ],
-        },
-      ],
-    },
-
-    // =========================================================================
-    // SECTION 2 — For vs. Since: Which One?
-    // =========================================================================
-    {
-      id: "for-vs-since",
-      title: "For vs. Since: Which One?",
-      explanation: `
-        <p style="margin-bottom: 0.75rem">Jennifer in HR has Rosa's resume. Look at the timeline. It is 2026 now, so Rosa's story is still going.</p>
-
-        ${timeline({
-          kicker: "Rosa's resume",
-          title: "Rosa's life and work in East Boston",
-          items: [
-            { when: "2021", text: "Rosa <strong>moves</strong> to East Boston.", accent: "terracotta" },
-            { when: "2023", text: "She <strong>starts</strong> in hotel housekeeping.", accent: "sage" },
-            { when: "2025", text: "She <strong>joins</strong> the morning team.", accent: "blue" },
-            { when: "Now", text: "It is 2026. All three are <strong>still true</strong>.", accent: "amber" },
-          ],
-          note: "Each year is a starting point. Count from that year to now to get a length of time.",
-        })}
-
-        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">
-            <strong>for</strong> = a length of time (how many days, months, years)<br>
-            <strong>since</strong> = a starting point (a date, a month, a year, an event)
-          </p>
-        </div>
-
-        <div style="display: grid; gap: 0.75rem; margin: 1rem 0">
-          <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; border-left: 3px solid #b05740">
-            ${labelPill("for", "terracotta")}
-            <p style="margin: 0.4rem 0 0 0"><em>for <strong>six months</strong>, for <strong>two years</strong>, for <strong>a long time</strong>, for <strong>three weeks</strong></em></p>
-          </div>
-          <div style="padding: 0.75rem 1rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem; border-left: 3px solid #6a8d73">
-            ${labelPill("since", "sage")}
-            <p style="margin: 0.4rem 0 0 0"><em>since <strong>March</strong>, since <strong>2021</strong>, since <strong>I moved here</strong>, since <strong>last summer</strong></em></p>
-          </div>
-        </div>
-
-        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(239,68,68,0.06); border-left: 3px solid #ef4444; margin-top: 0.75rem">
-          <p style="margin: 0; font-size: 0.95rem"><strong>Common mistake:</strong><br>
-          <span style="color: #ef4444">✗</span> "I have worked here <strong>since</strong> two years."<br>
-          <span style="color: #059669">✓</span> "I have worked here <strong>for</strong> two years."<br>
-          <span style="color: #059669">✓</span> "I have worked here <strong>since</strong> 2022."</p>
-        </div>
-      `,
-      exercises: [
-        {
-          id: "hl-s2-ex1",
-          title: "Read Rosa's timeline",
-          instructions: "Look at the timeline above. Choose the true sentence.",
-          items: [
-            {
-              type: "radio",
-              label: "Which sentence about Rosa is true?",
-              options: [
-                { value: "a", label: "She has lived in East Boston since 2023." },
-                { value: "b", label: "She has lived in East Boston since 2021." },
-                { value: "c", label: "She has lived in East Boston for 2021." },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "Which sentence about Rosa is true?",
-              options: [
-                { value: "a", label: "She has been on the morning team since 2025." },
-                { value: "b", label: "She has been on the morning team since 2021." },
-                { value: "c", label: "She has been on the morning team for 2025." },
-              ],
-              expectedAnswer: "a",
-            },
-          ],
-        },
-        {
-          id: "hl-s2-ex2",
-          title: "For or since?",
-          instructions: "Choose the correct word.",
-          items: [
-            {
-              type: "radio",
-              label: "I have cleaned rooms ___ six months.",
-              options: [
-                { value: "a", label: "for" },
-                { value: "b", label: "since" },
-              ],
-              expectedAnswer: "a",
-            },
-            {
-              type: "radio",
-              label: "She has worked the morning shift ___ January.",
-              options: [
-                { value: "a", label: "for" },
-                { value: "b", label: "since" },
-              ],
-              expectedAnswer: "b",
-            },
-            {
-              type: "radio",
-              label: "Which sentence is NOT correct?",
-              options: [
-                { value: "a", label: "She has worked here for two years." },
-                { value: "b", label: "She has worked here since two years." },
-                { value: "c", label: "She has worked here since 2022." },
-              ],
-              expectedAnswer: "b",
-            },
-          ],
-        },
-        {
-          id: "hl-s2-ex3",
-          title: "Fill in the blank",
-          instructions: "Write for or since. Use the timeline when you need it.",
-          items: [
-            {
-              type: "text",
-              label: "Rosa started housekeeping in 2023. She has worked there ___ 2023. (for or since?)",
-              expectedAnswers: ["since"],
-            },
-            {
-              type: "text",
-              label: "It is 2026. Rosa moved to East Boston in 2021. She has lived there ___ five years. (for or since?)",
-              expectedAnswers: ["for"],
-            },
-          ],
-        },
-      ],
-    },
-
-    // =========================================================================
-    // SECTION 3 — The Form: have/has + past participle
-    // =========================================================================
-    {
-      id: "have-has-v3",
-      title: "The Form: have/has + past participle",
+      id: "already-sent-it",
+      title: "I've Already Sent It: ALREADY",
       tenseDiagram: {
-        title: "Where Present Perfect lives on the timeline",
+        title: "Present perfect: a past action that matters now",
         elements: [
-          { id: "pp-arc", type: "arc", zone: "past", position: 50, verbLabel: "Present Perfect (links to NOW)" },
+          { id: "pp-arc", type: "arc", zone: "past", position: 50, verbLabel: "have/has + V3 (done, and it matters now)" },
         ],
       },
       explanation: `
-        <p style="margin-bottom: 0.75rem">Jennifer checks Rosa's application against the job list. Look at what Rosa has done and what she hasn't done yet.</p>
+        ${sceneCard("sceneJobApplication", "A hotel HR office in East Boston. Monday, 10 AM. Jennifer takes a call from Rosa.", "sage")}
 
-        ${checklist({
-          kicker: "Job list",
-          title: "Jennifer's list for Rosa",
-          items: [
-            { text: "Work in housekeeping for two years", done: true },
-            { text: "Train new workers", done: true },
-            { text: "Bring a reference letter", done: true },
-            { text: "Supervise a team", done: false },
-            { text: "Work a night shift", done: false },
-          ],
-        })}
+        <p>Rosa wants a better job. She applied for a housekeeping supervisor job at a big hotel on the waterfront. Jennifer works in HR. She calls Rosa to check her application.</p>
+
+        ${dialogue([
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Hi Rosa, this is Jennifer from the hotel. Have you filled out the online application <strong>yet</strong>?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, I <strong>have already filled</strong> it out. I sent it on Friday.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Great. And your reference letter?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "My manager <strong>hasn't written</strong> it <strong>yet</strong>. She is going to send it this week.", side: "right", tone: "terracotta" },
+        ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem">
-            <strong>I / you / we / they</strong> + <strong>have</strong> + past participle (V3)<br>
-            <strong>he / she / it</strong> + <strong>has</strong> + past participle (V3)
-          </p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>already</strong> = it is done. Often it is done sooner than someone expected. Put <strong>already</strong> between <strong>have/has</strong> and the past participle (V3).</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("I / you / we / they", "terracotta")}
-            <span><em>I <strong>have worked</strong> here for three years.</em></span>
+            <span><em>I <strong>have already sent</strong> my resume.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("he / she / it", "sage")}
-            <span><em>Rosa <strong>has trained</strong> two cleaners.</em></span>
+            <span><em>Rosa <strong>has already filled</strong> out the application.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("short form", "blue")}
+            <span><em>I<strong>'ve already</strong> applied. She<strong>'s already</strong> called.</em></span>
+          </div>
+        </div>
+
+        <p style="margin-top: 1rem">This is the same present perfect you learned in November: <strong>have/has + V3</strong>. Now you add one small word to say <em>when</em>.</p>
+      `,
+      exercises: [
+        {
+          id: "jay-w24-s1-ex1",
+          title: "What does it mean?",
+          instructions: "Choose the best meaning.",
+          items: [
+            {
+              type: "radio",
+              label: "Rosa says, \"I have already filled it out.\" What is true?",
+              options: [
+                { value: "a", label: "The application is done." },
+                { value: "b", label: "Rosa is going to fill it out tomorrow." },
+                { value: "c", label: "Rosa can't find the application." },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Where does already go?",
+              options: [
+                { value: "a", label: "She already has sent her resume." },
+                { value: "b", label: "She has already sent her resume." },
+                { value: "c", label: "She has sent already her resume." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "jay-w24-s1-ex2",
+          title: "Fill in the blank",
+          instructions: "Write the missing words.",
+          items: [
+            {
+              type: "text",
+              label: "Rosa ___ already applied for the job. (have or has?)",
+              expectedAnswers: ["has"],
+            },
+            {
+              type: "text",
+              label: "We have already ___ (send) the forms to HR.",
+              expectedAnswers: ["sent"],
+            },
+          ],
+        },
+      ],
+    },
+
+    // =========================================================================
+    // SECTION 2 — I've Just Gotten an Email: JUST
+    // =========================================================================
+    {
+      id: "just-got-email",
+      title: "I've Just Gotten an Email: JUST",
+      explanation: `
+        <p style="margin-bottom: 0.75rem">On Wednesday, Rosa's phone buzzes on the bus. She looks at her inbox. Look at the times.</p>
+
+        <div style="overflow-x: auto; margin: 0 0 1.5rem 0; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.08)">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem">
+            <thead>
+              <tr>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">From</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">Subject</th>
+                <th class="gc-table-divider" scope="col" style="padding: 0.4rem 0.3rem !important; text-align: left; border-bottom: 2px solid rgba(128,128,128,0.35)">When</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Jennifer (HR)</strong></td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>Interview on Thursday?</strong></td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)"><strong>2 min ago</strong></td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Library</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Free resume class</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important; border-bottom: 1px solid rgba(128,128,128,0.25)">Monday</td>
+              </tr>
+              <tr>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">Bank</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">Your statement</td>
+                <td class="gc-table-divider" style="padding: 0.4rem 0.3rem !important">Last week</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Rosa texts her sister: <em>"I<strong>'ve just gotten</strong> an email from the hotel! They want an interview!"</em></p>
+
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem"><strong>just</strong> = a very short time ago. It is new news. Like <strong>already</strong>, it goes between <strong>have/has</strong> and the V3.</p>
+        </div>
+
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("just", "terracotta")}
+            <span><em>The hotel <strong>has just called</strong> me back!</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("just", "terracotta")}
+            <span><em>I<strong>'ve just finished</strong> my shift. Can I call you back?</em></span>
+          </div>
+        </div>
+
+        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(239,68,68,0.06); border-left: 3px solid #ef4444; margin-top: 0.75rem">
+          <p style="margin: 0; font-size: 0.95rem"><strong>Watch out:</strong> <em>just</em> is for new news. An email from last week is not "just".<br>
+          <span style="color: #ef4444">✗</span> "The bank has just sent my statement last week."<br>
+          <span style="color: #059669">✓</span> "The bank sent my statement last week."</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "jay-w24-s2-ex1",
+          title: "Read Rosa's inbox",
+          instructions: "Look at the inbox above.",
+          items: [
+            {
+              type: "radio",
+              label: "Which email has Rosa just gotten?",
+              options: [
+                { value: "a", label: "The email from the bank" },
+                { value: "b", label: "The email from the library" },
+                { value: "c", label: "The email from Jennifer" },
+              ],
+              expectedAnswer: "c",
+            },
+            {
+              type: "radio",
+              label: "Which sentence about the inbox is true?",
+              options: [
+                { value: "a", label: "The library has just sent an email." },
+                { value: "b", label: "Jennifer has just sent an email." },
+                { value: "c", label: "The bank has just sent an email." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "jay-w24-s2-ex2",
+          title: "Build the sentence",
+          instructions: "Write have/has + just + V3.",
+          items: [
+            {
+              type: "text",
+              label: "Rosa walked in the door one minute ago. She ___ (just / get) home.",
+              expectedAnswers: ["has just gotten", "'s just gotten", "has just got", "'s just got"],
+            },
+            {
+              type: "text",
+              label: "I ___ (just / finish) the interview. I'm leaving the hotel now.",
+              expectedAnswers: ["have just finished", "'ve just finished"],
+            },
+          ],
+        },
+      ],
+    },
+
+    // =========================================================================
+    // SECTION 3 — I Haven't Heard Back Yet: YET
+    // =========================================================================
+    {
+      id: "not-yet",
+      title: "I Haven't Heard Back Yet: YET",
+      explanation: `
+        <p style="margin-bottom: 0.75rem">On Wednesday night, Rosa checks her job search list. Some things are done. Some things are not done <em>yet</em>.</p>
+
+        ${checklist({
+          kicker: "Job search",
+          title: "Rosa's list for the new job",
+          items: [
+            { text: "Fill out the online application", done: true },
+            { text: "Send my resume", done: true },
+            { text: "Answer Jennifer's email", done: true },
+            { text: "Get a reference letter", done: false },
+            { text: "Buy black work shoes", done: false },
+          ],
+        })}
+
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem"><strong>yet</strong> = up to now, but we expect it. Use <strong>yet</strong> in <strong>questions</strong> and <strong>negatives</strong>. It goes at the <strong>end</strong> of the sentence.</p>
+        </div>
+
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("negative", "amber")}
-            <span><em>She <strong>hasn't supervised</strong> a team.</em></span>
+            <span><em>She <strong>hasn't bought</strong> work shoes <strong>yet</strong>.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("question", "blue")}
+            <span><em><strong>Have</strong> you <strong>heard</strong> back from the hotel <strong>yet</strong>?</em></span>
           </div>
         </div>
 
         <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
-          <strong>Common irregular V3 forms for work history:</strong>
+          <strong>Common irregular V3 forms for a job search:</strong>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem">
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">be → been</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">send → sent</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">get → gotten</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">hear → heard</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">buy → bought</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">write → written</span>
             <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">do → done</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">have → had</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">work → worked</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">live → lived</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">know → known</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">take → taken</span>
-            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">clean → cleaned</span>
           </div>
         </div>
       `,
       exercises: [
         {
-          id: "hl-s3-ex1",
-          title: "Read Jennifer's list",
+          id: "jay-w24-s3-ex1",
+          title: "Read Rosa's list",
           instructions: "Look at the checklist above.",
           items: [
             {
               type: "radio",
               label: "Which sentence about Rosa is true?",
               options: [
-                { value: "a", label: "She has supervised a team." },
-                { value: "b", label: "She has worked a night shift." },
-                { value: "c", label: "She has trained new workers." },
+                { value: "a", label: "She has already gotten a reference letter." },
+                { value: "b", label: "She hasn't sent her resume yet." },
+                { value: "c", label: "She has already answered Jennifer's email." },
               ],
               expectedAnswer: "c",
             },
             {
               type: "text",
-              label: "Rosa ___ (work) a night shift. Check the list. Use the negative.",
-              expectedAnswers: ["hasn't worked", "has not worked"],
+              label: "How many things on Rosa's list are not done yet? (number)",
+              expectedAnswers: ["2", "two"],
             },
           ],
         },
         {
-          id: "hl-s3-ex2",
-          title: "Have or has?",
-          instructions: "Choose the correct form.",
+          id: "jay-w24-s3-ex2",
+          title: "Already or yet?",
+          instructions: "Choose the word that fits.",
           items: [
             {
               type: "radio",
-              label: "She ___ worked at this hotel for two years.",
+              label: "Rosa hasn't bought work shoes ___.",
               options: [
-                { value: "a", label: "have" },
-                { value: "b", label: "has" },
+                { value: "a", label: "already" },
+                { value: "b", label: "yet" },
               ],
               expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "We ___ cleaned fifteen rooms since 8 AM.",
+              label: "She has ___ sent her resume.",
               options: [
-                { value: "a", label: "have" },
-                { value: "b", label: "has" },
+                { value: "a", label: "already" },
+                { value: "b", label: "yet" },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "\"She have worked here since March.\"",
+              label: "\"I haven't yet heard back from the hotel.\" In everyday English, where does yet usually go?",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be: She has worked here since March." },
+                { value: "a", label: "Correct. Keep it there." },
+                { value: "b", label: "At the end: I haven't heard back from the hotel yet." },
               ],
-              expectedAnswer: "incorrect",
+              expectedAnswer: "b",
             },
           ],
         },
         {
-          id: "hl-s3-ex3",
-          title: "Build the sentence",
-          instructions: "Fill in the correct present perfect form.",
+          id: "jay-w24-s3-ex3",
+          title: "Write the sentence",
+          instructions: "Use the checklist. Write the negative with yet.",
           items: [
             {
               type: "text",
-              label: "Look at the list. Rosa ___ (bring) a reference letter.",
-              expectedAnswers: ["has brought"],
+              label: "Rosa ___ (not / get) a reference letter yet.",
+              expectedAnswers: ["hasn't gotten", "has not gotten", "hasn't got", "has not got"],
             },
             {
               type: "text",
-              label: "They ___ (clean) twenty rooms since noon.",
-              expectedAnswers: ["have cleaned"],
+              label: "Her sister asks: \"___ you bought your work shoes yet?\" (one word)",
+              expectedAnswers: ["Have"],
             },
           ],
         },
@@ -580,50 +553,54 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       id: "interview-practice",
       title: "Putting It All Together",
       explanation: `
-        ${sceneCard("sceneInterview", "Hotel HR office. Rosa's final interview round. Tuesday, 3:30 PM, right after her shift.", "terracotta")}
+        ${sceneCard("sceneInterview", "Hotel HR office. Rosa's interview. Thursday, 3:30 PM, right after her shift.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "How long have you worked in hotel housekeeping?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>have worked</strong> in housekeeping for three years, since 2023.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "And have you ever supervised other cleaners?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>haven't</strong> been a supervisor, but I've trained two new workers at my current job.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Good. We'd like to offer you the job. When could you start?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Thank you! I'll give my notice tomorrow, so in two weeks.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Thanks for coming in, Rosa. Have you ever trained new workers?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>have already trained</strong> two new workers at my current job.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Good. Has your reference letter come <strong>yet</strong>?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Yes! My manager <strong>has just emailed</strong> it to you. She sent it an hour ago.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer (HR)", avatar: "👩‍💼", text: "Perfect. We'd like to offer you the job. When could you start?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Thank you! I <strong>haven't told</strong> my boss <strong>yet</strong>, but I'll give my notice tomorrow.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
-          <p style="margin: 0; font-size: 1.05rem">The negative is simple: <strong>haven't</strong> or <strong>hasn't</strong> + past participle.<br>
-          "I <strong>haven't worked</strong> a night shift before, but I can." That's an honest answer that still sounds professional.</p>
+          <p style="margin: 0; font-size: 1.05rem">
+            <strong>already</strong> = done (have <strong>already</strong> + V3)<br>
+            <strong>just</strong> = done a very short time ago (have <strong>just</strong> + V3)<br>
+            <strong>yet</strong> = not done, but expected (questions and negatives, at the <strong>end</strong>)
+          </p>
         </div>
       `,
       tipBox: {
         title: "Want to go deeper?",
-        content: "This guide covers the most important patterns. For more examples, more exercises, and a full grammar breakdown, open the <a href=\"/grammar-reader/present-perfect\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Full Guide</a>.",
+        content: "For more practice with these three words, open <a href=\"/grammar-reader/just-already-yet\" style=\"font-weight:700;text-decoration:underline\">Just, Already, Yet</a>. For a full grammar breakdown, open the <a href=\"/grammar-reader/present-perfect\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Full Guide</a>.",
       },
       exercises: [
         {
           id: "hl-s5-ex1",
-          title: "Interview questions",
+          title: "Interview answers",
           instructions: "Choose the best answer for each interview question.",
           items: [
             {
               type: "radio",
-              label: "How long have you driven a delivery van?",
+              label: "\"Have you finished the safety training yet?\" You finished it last month.",
               options: [
-                { value: "a", label: "I drove it for four years." },
-                { value: "b", label: "I have driven a delivery van for four years." },
-                { value: "c", label: "I driving for four years." },
+                { value: "a", label: "Yes, I have already finished it." },
+                { value: "b", label: "Yes, I have finished it yet." },
+                { value: "c", label: "No, I already haven't." },
               ],
-              expectedAnswer: "b",
+              expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "\"I haven't worked a night shift before, but I'm available.\" Is this correct?",
+              label: "\"Have you gotten your work badge yet?\" HR is still making it.",
               options: [
-                { value: "correct", label: "Correct. This is a good negative form." },
-                { value: "incorrect", label: "Not correct." },
+                { value: "a", label: "Yes, I have just gotten it." },
+                { value: "b", label: "No, I haven't gotten it yet." },
+                { value: "c", label: "No, I haven't yet gotten it already." },
               ],
-              expectedAnswer: "correct",
+              expectedAnswer: "b",
             },
           ],
         },
@@ -635,25 +612,25 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Rosa", "has", "lived", "in", "East", "Boston", "since", "2021"],
-              correctAnswer: "Rosa has lived in East Boston since 2021",
+              words: ["The", "new", "manager", "has", "just", "called", "me"],
+              correctAnswer: "The new manager has just called me",
             },
           ],
         },
         {
           id: "hl-s5-ex3",
           title: "Complete Rosa's answers",
-          instructions: "Write the correct present perfect form.",
+          instructions: "Write the correct present perfect form with the word in brackets.",
           items: [
             {
               type: "text",
-              label: "A neighbor asks, “Are you new here?” -- No. I ___ (live) here for five years.",
-              expectedAnswers: ["have lived"],
+              label: "Her sister asks, “Did you tell your boss?” -- No, I ___ (not / tell) him yet.",
+              expectedAnswers: ["haven't told", "have not told"],
             },
             {
               type: "text",
-              label: "At an interview, someone asks, “Do you have any experience as a supervisor?” -- I ___ (not / supervise) a team, but I've trained two people.",
-              expectedAnswers: ["haven't supervised", "have not supervised"],
+              label: "Jennifer asks, “Can you send your bank form?” -- I ___ (already / send) it. Check your inbox.",
+              expectedAnswers: ["have already sent", "'ve already sent"],
             },
           ],
         },
@@ -664,71 +641,71 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "pperf-how-long-q1",
-      question: "Jennifer asks: 'How long have you been on the morning team?' Rosa is still on the team. Which answer is correct?",
+      question: "Rosa sent her resume on Friday. Today Jennifer asks if she wants to send it. What does Rosa say?",
       options: [
-        { value: "a", label: "I was on the morning team for one year." },
-        { value: "b", label: "I have been on the morning team for one year." },
-        { value: "c", label: "I am being on the morning team for one year." },
+        { value: "a", label: "I have already sent it." },
+        { value: "b", label: "I haven't sent it yet." },
+        { value: "c", label: "I have sent it yet." },
       ],
-      correctAnswer: "b",
-      explanation: "Present perfect (have been) is correct because Rosa is still on the team. Past simple would mean she left.",
+      correctAnswer: "a",
+      explanation: "Already means it is done. Rosa sent it on Friday, so: I have already sent it.",
       topic: "present-perfect",
       skill: "usage",
-      skillTag: "how-long-still-true",
+      skillTag: "already-done",
       difficulty: "easy",
     },
     {
       id: "pperf-how-long-q4",
-      question: "Which sentence has a mistake?",
+      question: "Rosa's phone buzzed 30 seconds ago. It's an email from HR. Which sentence fits?",
       options: [
-        { value: "a", label: "I have lived here since January." },
-        { value: "b", label: "She has worked here for two years." },
-        { value: "c", label: "He have worked here since March." },
+        { value: "a", label: "HR sent an email last week." },
+        { value: "b", label: "HR has just sent an email." },
+        { value: "c", label: "HR hasn't sent an email yet." },
       ],
-      correctAnswer: "c",
-      explanation: "With he/she/it, use 'has', not 'have'. Correct form: He has worked here since March.",
+      correctAnswer: "b",
+      explanation: "Just means a very short time ago. The email is new news: HR has just sent an email.",
       topic: "present-perfect",
-      skill: "error-detection",
-      skillTag: "have-vs-has",
+      skill: "usage",
+      skillTag: "just-very-recent",
       difficulty: "easy",
     },
     {
       id: "pperf-how-long-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I have worked here ___ 2022.\" (Starting point in time: for or since?)",
-      correctAnswer: "since",
-      explanation: "'Since' goes with a starting point like a year, month, or date. 'For' goes with a length of time like 'two years'.",
-      topic: "for-since",
+      question: "Fill in the blank: \"I haven't heard back from the hotel ___.\" (Not done, but expected.)",
+      correctAnswer: "yet",
+      explanation: "Yet goes at the end of a negative or a question. It means up to now, but we expect it.",
+      topic: "present-perfect",
       skill: "usage",
-      skillTag: "since-starting-point",
+      skillTag: "yet-negative-end",
       difficulty: "easy",
     },
     {
       id: "pperf-how-long-q7",
-      question: "Which pair uses 'for' and 'since' correctly?",
+      question: "Which sentence has a mistake?",
       options: [
-        { value: "a", label: "I've worked here for March. / I've worked here since six months." },
-        { value: "b", label: "I've worked here for six months. / I've worked here since March." },
-        { value: "c", label: "I've worked here for 2022. / I've worked here since two years." },
+        { value: "a", label: "She has already filled out the form." },
+        { value: "b", label: "Have you called HR yet?" },
+        { value: "c", label: "He has yet finished the training." },
       ],
-      correctAnswer: "b",
-      explanation: "For goes with a length of time (six months). Since goes with a starting point (March).",
-      topic: "for-since",
-      skill: "usage",
-      skillTag: "for-vs-since-contrast",
+      correctAnswer: "c",
+      explanation: "Yet goes in negatives and questions, at the end: He hasn't finished the training yet.",
+      topic: "present-perfect",
+      skill: "error-detection",
+      skillTag: "yet-position",
       difficulty: "medium",
     },
     {
       id: "pperf-how-long-qws1",
       type: "word-scramble" as const,
-      question: "Amara tells her neighbor how long she has lived in the building. Put the words in order.",
-      words: ["I", "have", "lived", "here", "for", "six", "months"],
-      correctAnswer: "I have lived here for six months",
-      hint: "have/has + past participle + for + length of time",
-      explanation: "Present perfect (have lived) with 'for' shows an ongoing situation: she still lives there.",
+      question: "Amara got a job offer five minutes ago. Put the words in order.",
+      words: ["I", "have", "just", "gotten", "a", "job", "offer"],
+      correctAnswer: "I have just gotten a job offer",
+      hint: "have/has + just + past participle",
+      explanation: "Just goes between have and the past participle. It shows the news is very new.",
       topic: "present-perfect",
       skill: "usage",
-      skillTag: "how-long-still-true",
+      skillTag: "just-word-order",
       difficulty: "medium",
     },
   ],

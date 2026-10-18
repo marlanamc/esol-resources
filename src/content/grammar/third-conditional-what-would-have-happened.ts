@@ -75,11 +75,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 - I Should Have Called Sooner
+    // SECTION 1 - If I Had Come Sooner
     // =========================================================================
     {
       id: "called-sooner",
-      title: "I Should Have Called Sooner",
+      title: "If I Had Come Sooner",
       icon: "🏥",
       tenseDiagram: {
         title: "Third conditional: a different past that did not happen",
@@ -152,8 +152,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "I", "had", "taken", "the", "medicine,", "I", "would", "feel", "better", "now"],
-              correctAnswer: "If I had taken the medicine, I would feel better now",
+              words: ["If", "she", "had", "asked", "for", "help,", "she", "would", "have", "missed", "less", "work"],
+              correctAnswer: "If she had asked for help, she would have missed less work",
             },
           ],
         },
@@ -582,6 +582,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
                 { value: "c", label: "Kevin will use the lift tomorrow." },
               ],
               expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "Last month a coworker did not wear gloves, and he cut his hand. If he ___ (wear) gloves, he wouldn't have cut his hand.",
+              expectedAnswers: ["had worn", "'d worn"],
             },
           ],
         },

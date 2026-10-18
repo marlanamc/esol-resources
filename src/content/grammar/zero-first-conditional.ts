@@ -140,9 +140,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Scott says this is always true at the restaurant. Which sentence fits the Zero Conditional?",
               options: [
-                { value: "a", label: "If you need a day off, you will ask two weeks ahead." },
-                { value: "b", label: "If you need a day off, you ask two weeks ahead." },
-                { value: "c", label: "If you need a day off, you asked two weeks ahead." },
+                { value: "a", label: "If you want a weekend off, you will tell Scott a month ahead." },
+                { value: "b", label: "If you want a weekend off, you tell Scott a month ahead." },
+                { value: "c", label: "If you want a weekend off, you told Scott a month ahead." },
               ],
               expectedAnswer: "b",
             },
@@ -152,7 +152,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               options: [
                 { value: "a", label: "If Carlos goes at 7, he will be at work by 11." },
                 { value: "b", label: "If Carlos went at 7, he would be at work by 11." },
-                { value: "c", label: "If you go early, the line is short." },
+                { value: "c", label: "If you bring your ID, check-in is faster." },
               ],
               expectedAnswer: "c",
             },
@@ -171,8 +171,8 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "you", "need", "a", "day", "off", "you", "ask", "two", "weeks", "ahead"],
-              correctAnswer: "If you need a day off you ask two weeks ahead",
+              words: ["If", "you", "work", "on", "Sunday", "you", "get", "a", "free", "meal"],
+              correctAnswer: "If you work on Sunday you get a free meal",
             },
           ],
         },
@@ -497,7 +497,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               label: "Which sentence is Zero Conditional?",
               options: [
                 { value: "a", label: "If I vote Saturday morning, I will make the night shift." },
-                { value: "b", label: "If you are in line by 8 PM, you get to vote." },
+                { value: "b", label: "If you vote by mail, you sign the envelope." },
                 { value: "c", label: "If Miguel switches with me, I will vote on Tuesday." },
               ],
               expectedAnswer: "b",
@@ -576,11 +576,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Ana is talking about the real plan for tomorrow. Which sentence fits?",
+              label: "Ana makes a real plan with her neighbor for tomorrow. Which sentence fits?",
               options: [
-                { value: "a", label: "If you're ready at 9, he picks you up." },
-                { value: "b", label: "If you're ready at 9, he'll pick you up." },
-                { value: "c", label: "If you will be ready at 9, he'll pick you up." },
+                { value: "a", label: "If you're free at 8:30, Carlos drives you to the polls." },
+                { value: "b", label: "If you're free at 8:30, Carlos will drive you to the polls." },
+                { value: "c", label: "If you will be free at 8:30, Carlos will drive you to the polls." },
               ],
               expectedAnswer: "b",
             },
@@ -668,7 +668,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
       type: "fill-blank" as const,
       question: "Fill in the blank: \"If you work Saturday nights, you ___ double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
       correctAnswer: "earn",
-      explanation: "Zero Conditional uses If + present simple, present simple. The rule is always true at this job.",
+      explanation: "Zero Conditional uses If + present simple, present simple. Double pay on Saturday nights is always true at this job.",
       topic: "zero-conditional",
       skill: "usage",
       skillTag: "meaning-always-true",

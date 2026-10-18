@@ -417,9 +417,134 @@ export const readingEconNewsContent: InteractiveGuideContent = {
           ],
         },
       ],
+    },
+
+    // =================================================================
+    // 4. WHAT WILL HAPPEN NEXT? WILL AND GOING TO
+    // =================================================================
+    {
+      id: "future-in-the-news",
+      stepNumber: 4,
+      title: "What will happen next? Will and going to",
+      icon: "🔮",
+      explanation: `
+        <p>On Friday, Sarah checks the news again. Many economy headlines are about the <strong>future</strong>: what <strong>will</strong> happen, or what a city or a company <strong>is going to</strong> do.</p>
+
+        ${fakeHeadlineCard({
+          source: "Local News",
+          headline: "Experts Say Egg Prices <strong>Will Fall</strong> This Spring",
+          summary: "Farm groups expect more eggs in stores by April, but they say nobody can be sure.",
+          accent: "sage",
+        })}
+
+        ${fakeHeadlineCard({
+          source: "City Hall",
+          headline: "City <strong>Is Going to Raise</strong> Bus Fares on July 1",
+          summary: "The city council voted last night. A one-way ride will cost 25 cents more.",
+          accent: "red",
+        })}
+
+        ${fakeHeadlineCard({
+          source: "Local News",
+          headline: "If Gas Prices Keep Rising, Families <strong>Will Drive</strong> Less",
+          summary: "Some families say they will take the bus or walk more if gas goes over $4.50.",
+          accent: "amber",
+        })}
+
+        <div style="display: grid; gap: 0.6rem; margin: 1rem 0">
+          <div class="gc-bg-sage-alpha" style="padding: 0.8rem 1rem; border-radius: 0.5rem">
+            ${labelPill("will", "sage")}
+            <p style="margin: 0.4rem 0 0">A <strong>prediction</strong>: a guess about the future. Look for <em>experts say, I think, probably</em>.<br><em>Egg prices <strong>will fall</strong> this spring.</em></p>
+          </div>
+          <div class="gc-bg-blue-alpha" style="padding: 0.8rem 1rem; border-radius: 0.5rem">
+            ${labelPill("going to", "blue")}
+            <p style="margin: 0.4rem 0 0">A <strong>plan</strong> that is already decided, often with a date.<br><em>The city <strong>is going to raise</strong> bus fares on July 1.</em></p>
+          </div>
+          <div class="gc-bg-amber-alpha" style="padding: 0.8rem 1rem; border-radius: 0.5rem">
+            ${labelPill("if + will", "amber")}
+            <p style="margin: 0.4rem 0 0">A <strong>real possible future</strong>: if + present, will + verb.<br><em>If gas prices <strong>go</strong> up, families <strong>will drive</strong> less.</em></p>
+          </div>
+        </div>
+
+        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(239,68,68,0.06); border-left: 3px solid #ef4444; margin-top: 0.75rem">
+          <p style="margin: 0; font-size: 0.95rem"><strong>Watch out:</strong> no <em>will</em> after <em>if</em>.<br>
+          <span style="color: #ef4444">✗</span> "If gas prices <strong>will go</strong> up, we will drive less."<br>
+          <span style="color: #059669">✓</span> "If gas prices <strong>go</strong> up, we will drive less."</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "future-headlines-1",
+          title: "Read the headlines",
+          instructions: "Look at the three headlines above. Answer the questions.",
+          items: [
+            {
+              type: "radio",
+              label: "What did the city council already decide?",
+              options: [
+                { value: "a", label: "Egg prices are going down in April." },
+                { value: "b", label: "Bus fares are going up on July 1." },
+                { value: "c", label: "Gas will cost $4.50." },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "Which headline is a guess, not a decided plan?",
+              options: [
+                { value: "a", label: "The egg prices headline" },
+                { value: "b", label: "The bus fares headline" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "text",
+              label: "Look at the bus fares headline. How many cents more will a one-way ride cost? (number)",
+              expectedAnswers: ["25", "twenty-five", "twenty five"],
+            },
+          ],
+        },
+        {
+          id: "future-will-going-to-1",
+          title: "Will or going to?",
+          instructions: "Read the clue, then choose or write the future form.",
+          items: [
+            {
+              type: "radio",
+              label: "The bank sent a letter: a new fee starts June 1. The bank ___ charge a new fee.",
+              options: [
+                { value: "a", label: "is going to" },
+                { value: "b", label: "is going" },
+                { value: "c", label: "going to" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Sarah is guessing: \"I think rent ___ go up again next year.\"",
+              options: [
+                { value: "a", label: "is" },
+                { value: "b", label: "has" },
+                { value: "c", label: "will" },
+              ],
+              expectedAnswer: "c",
+            },
+            {
+              type: "text",
+              label: "If prices go up, we ___ (buy) less meat.",
+              expectedAnswers: ["will buy", "'ll buy"],
+            },
+            {
+              type: "text",
+              label: "If the city ___ (raise) bus fares, I will walk to work. (no will after if)",
+              expectedAnswers: ["raises"],
+            },
+          ],
+        },
+      ],
       tipBox: {
         title: "Bring it to class",
-        content: "Find one real headline about prices or jobs this week, from a phone, a newspaper, or something you heard. Bring one sentence about it to share with the class.",
+        content: "Find one real headline about prices or jobs this week, from a phone, a newspaper, or something you heard. Bring one sentence about it to share with the class. Bonus: find a headline with <strong>will</strong> or <strong>going to</strong>.",
       },
     },
   ],
@@ -487,17 +612,17 @@ export const readingEconNewsContent: InteractiveGuideContent = {
     },
     {
       id: "ren-q5",
-      question: "A classmate reads a chart where the bars get shorter each year and says: \"This means prices are going up every year.\" What is wrong with that reading?",
+      question: "Which sentence is correct?",
       options: [
-        { value: "a", label: "Shorter bars mean a smaller number, so this chart is actually going down, not up" },
-        { value: "b", label: "Nothing is wrong. Shorter bars always mean prices" },
-        { value: "c", label: "The chart has too few years to read it correctly" },
+        { value: "a", label: "If gas prices will rise, we will drive less." },
+        { value: "b", label: "If gas prices rise, we will drive less." },
+        { value: "c", label: "If gas prices rise, we drove less." },
       ],
-      correctAnswer: "a",
-      explanation: "Shorter bars mean a smaller number. The classmate mixed up the direction of the chart.",
-      topic: "reading-charts",
+      correctAnswer: "b",
+      explanation: "After if, use the present: if gas prices rise. The result uses will: we will drive less.",
+      topic: "first-conditional",
       skill: "error-detection",
-      skillTag: "bar-direction-mistake",
+      skillTag: "no-will-after-if",
       difficulty: "medium",
     },
   ],
