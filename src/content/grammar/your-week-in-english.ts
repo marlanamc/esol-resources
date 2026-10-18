@@ -120,17 +120,17 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       exercises: [
         {
           id: "freq-1",
-          title: "Adverb position",
+          title: "How often?",
           items: [
             {
               type: "radio",
-              label: "The 116 bus <strong>is always</strong> crowded at 5:30. Where does 'always' go in this sentence?",
+              label: "Rosa takes the 116 to class at 5:15 every Tuesday and Thursday. Which sentence is true?",
               options: [
-                { value: "correct", label: "Correct. After 'is' because 'be' comes first." },
-                { value: "before", label: "Wrong. It should go before 'is'." },
-                { value: "end", label: "Wrong. It should go at the end." },
+                { value: "always", label: "Rosa always takes the 116 to class." },
+                { value: "sometimes", label: "Rosa sometimes takes the 116 to class." },
+                { value: "never", label: "Rosa never takes the 116 to class." },
               ],
-              expectedAnswer: "correct",
+              expectedAnswer: "always",
             },
             {
               type: "radio",
@@ -144,12 +144,13 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"She sometimes is late.\" Is this sentence correct?",
+              label: "Rosa says, \"I never check it.\" What does she mean about the bus app?",
               options: [
-                { value: "correct", label: "Yes, it is correct." },
-                { value: "incorrect", label: "No. With 'be', the adverb comes after: 'She is sometimes late.'" },
+                { value: "every", label: "She checks it every day." },
+                { value: "most", label: "She checks it most days." },
+                { value: "not", label: "She does not check it." },
               ],
-              expectedAnswer: "incorrect",
+              expectedAnswer: "not",
             },
           ],
         },
@@ -719,17 +720,17 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
     {
       id: "your-week-q9",
-      question: "Rosa says about the 116 this week: \"It is always late.\" Where does 'always' go in this sentence?",
+      question: "Rosa checks the bus app on some days, but not on most days. Which word fits?",
       options: [
-        { value: "a", label: "It should go before 'is': It always is late." },
-        { value: "b", label: "It should go at the end: It is late always." },
-        { value: "c", label: "It is in the right place. With 'be', the adverb comes after." },
+        { value: "a", label: "usually" },
+        { value: "b", label: "never" },
+        { value: "c", label: "sometimes" },
       ],
       correctAnswer: "c",
-      explanation: "After the verb 'be', adverbs of frequency follow it: It is always late.",
+      explanation: "Sometimes means on some days, not most days. Usually means most of the time. Never means not at all.",
       topic: "adverbs-of-frequency",
       skill: "usage",
-      skillTag: "adverb-position-be",
+      skillTag: "frequency-sometimes",
       difficulty: "medium",
     },
   ],
