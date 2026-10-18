@@ -75,11 +75,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 - One Year, Eleven Tenses
+    // SECTION 1 - One Year, One Timeline
     // =========================================================================
     {
       id: "one-year-eleven-tenses",
-      title: "One Year, Eleven Tenses",
+      title: "One Year, One Timeline",
       icon: "📅",
       tenseDiagram: {
         title: "Where your tenses live on the timeline",
@@ -91,10 +91,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           { id: "pres-cont", type: "solid-line", zone: "present", position: 52, verbLabel: "Pres. Cont." },
           { id: "pres-perf", type: "arc", zone: "past", position: 46, verbLabel: "Pres. Perfect" },
           { id: "ppc-line", type: "solid-to-now", zone: "past", position: 30, verbLabel: "Pres. Perf. Cont." },
-          { id: "fut-simp", type: "single-dot", zone: "future", position: 62, verbLabel: "Future Simple" },
-          { id: "fut-cont", type: "solid-line", zone: "future", position: 72, verbLabel: "Future Cont." },
-          { id: "fut-perf", type: "arc-dashed", zone: "future", position: 82, verbLabel: "Future Perfect" },
-          { id: "fpc-line", type: "solid-to-point", zone: "future", position: 90, verbLabel: "Fut. Perf. Cont." },
+          { id: "fut-simp", type: "single-dot", zone: "future", position: 70, verbLabel: "will / going to" },
         ],
       },
       explanation: `
@@ -106,12 +103,12 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "It's our last night together. What <strong>will</strong> you do in the fall?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>will enroll</strong> in Level 4 in September. I just need to make sure it fits around my work schedule.", side: "right", tone: "terracotta" },
           { speaker: "David", avatar: "👨🏻", text: "Same here. I <strong>work</strong> construction all day. Two evenings a week is all I can do.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And we're both taking the free online summer course. By August we <strong>will have finished</strong> it.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "And we're both <strong>going to take</strong> the free online summer course in July.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Eleven tenses, one timeline.</strong> Here is the whole year on one timeline.</p>
-          <p style="margin: 0; font-size: 0.95rem"><strong>Simple</strong> = fact or finished. <strong>Continuous</strong> = in progress. <strong>Perfect</strong> = connected to a reference point. <strong>Past perfect</strong> = before another past event. <strong>Future perfect</strong> = done <em>by</em> a future date.</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Your year, one timeline.</strong> Every tense on this timeline is one you practiced this year.</p>
+          <p style="margin: 0; font-size: 0.95rem"><strong>Simple</strong> = fact or finished. <strong>Continuous</strong> = in progress. <strong>Perfect</strong> = connected to a reference point. <strong>Past perfect</strong> = before another past event. <strong>Will / going to</strong> = the future.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -124,8 +121,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             <span><em>I <strong>am sitting</strong> in class right now.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("by August", "amber")}
-            <span><em>By August I <strong>will have finished</strong> the summer course.</em></span>
+            ${labelPill("in July", "amber")}
+            <span><em>I <strong>am going to take</strong> the summer course in July.</em></span>
           </div>
         </div>
       `,
@@ -157,8 +154,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "By August, Rosa ___ (finish) the online summer course.",
-              expectedAnswers: ["will have finished"],
+              label: "Rosa has a plan. In July, she ___ (take) the online summer course. Use going to.",
+              expectedAnswers: ["is going to take", "'s going to take"],
             },
           ],
         },
@@ -474,19 +471,17 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 5 - What's Next: All Four Future Tenses
+    // SECTION 5 - What's Next: Will, Going To, and a Sneak Peek
     // =========================================================================
     {
       id: "whats-next-four-futures",
-      title: "What's Next: All Four Future Tenses",
+      title: "What's Next: Will, Going To, and a Sneak Peek",
       icon: "➡️",
       tenseDiagram: {
-        title: "All four future tenses",
+        title: "Talking about the future",
         elements: [
-          { id: "fs-dot", type: "single-dot", zone: "future", position: 55, verbLabel: "Future Simple" },
-          { id: "fc-line", type: "solid-line", zone: "future", position: 65, verbLabel: "Future Continuous" },
-          { id: "fp-dot", type: "arc-dashed", zone: "future", position: 78, verbLabel: "Future Perfect" },
-          { id: "fpc-line", type: "solid-to-point", zone: "future", position: 88, verbLabel: "Fut. Perf. Cont." },
+          { id: "fs-dot", type: "single-dot", zone: "future", position: 55, verbLabel: "will (decision, prediction)" },
+          { id: "gt-dot", type: "single-dot", zone: "future", position: 78, verbLabel: "going to (plan)" },
         ],
       },
       explanation: `
@@ -496,88 +491,101 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "David", avatar: "👨🏻", text: "Level 4 in the fall?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>will be taking</strong> evening classes while I keep working at the hotel.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "By August I <strong>will have finished</strong> the summer course. It feels good to keep moving.", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "👨🏻", text: "It does. By tonight we <strong>will have been studying</strong> together for a full year. I <strong>will ask</strong> Ms. Tran about Level 4.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "That’s the plan. I <strong>am going to take</strong> evening classes. I already filled out the form.", side: "right", tone: "terracotta" },
+          { speaker: "David", avatar: "👨🏻", text: "I think Level 4 <strong>will be</strong> harder. More reading.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Maybe. Oh, I know! I<strong>'ll ask</strong> Ms. Tran for the reading list tonight.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Future Simple</strong> = plan or prediction. <strong>Future Continuous</strong> = in progress at a future time. <strong>Future Perfect</strong> = done by a future date. <strong>Future Perfect Continuous</strong> = duration by a future date.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>going to</strong> = a plan you already made. <strong>will</strong> = a prediction ("I think...") or a decision you make right now.</p>
         </div>
-
-        <p style="margin: 1rem 0; line-height: 1.6; font-size: 0.98rem">Rosa looks out the window and thinks about her year. She <strong>was</strong> so tired when class <strong>started</strong> in September. She <strong>has been studying</strong> after work ever since, and she <strong>is</strong> still tired. But tonight she <strong>is smiling</strong>.</p>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("plan", "amber")}
-            <span><em>I <strong>will enroll</strong> in Level 4 in September.</em></span>
+            <span><em>I <strong>am going to take</strong> evening classes in the fall.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("by August", "amber")}
-            <span><em>By August I <strong>will have finished</strong> the summer course.</em></span>
+            ${labelPill("prediction", "amber")}
+            <span><em>I think Level 4 <strong>will be</strong> harder.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(245,158,11,0.08); border-radius: 0.4rem; flex-wrap: wrap">
-            ${labelPill("by tonight", "amber")}
-            <span><em>By tonight I <strong>will have been studying</strong> for a full year.</em></span>
+            ${labelPill("decide now", "amber")}
+            <span><em>Oh, I know! I<strong>'ll ask</strong> Ms. Tran tonight.</em></span>
           </div>
+        </div>
+
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0 1rem 0">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Sneak peek: Level 4.</strong> You do not need to use these yet. Just notice them. Next year you will learn three more future tenses.</p>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6">
+            <em>At 7 PM in September, I <strong>will be sitting</strong> in class.</em> (in progress at a future time)<br>
+            <em>By August, I <strong>will have finished</strong> the summer course.</em> (done before a future date)<br>
+            <em>By tonight, we <strong>will have been studying</strong> together for a full year.</em> (how long, up to a future time)
+          </p>
         </div>
       `,
       tipBox: {
-        title: "Want to go deeper?",
+        title: "Want a head start?",
         content:
-          "This was the quick review. For more examples and exercises, open the <a href=\"/grammar-reader/future-simple\" style=\"font-weight:700;text-decoration:underline\">Future Simple</a>, <a href=\"/grammar-reader/future-continuous\" style=\"font-weight:700;text-decoration:underline\">Future Continuous</a>, <a href=\"/grammar-reader/future-perfect\" style=\"font-weight:700;text-decoration:underline\">Future Perfect</a>, or <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Tenses Overview</a> full guides.",
+          "Curious about the sneak-peek tenses? Open the <a href=\"/grammar-reader/future-simple\" style=\"font-weight:700;text-decoration:underline\">Future Simple</a>, <a href=\"/grammar-reader/future-continuous\" style=\"font-weight:700;text-decoration:underline\">Future Continuous</a>, <a href=\"/grammar-reader/future-perfect\" style=\"font-weight:700;text-decoration:underline\">Future Perfect</a>, or <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Tenses Overview</a> full guides.",
       },
       exercises: [
         {
           id: "s5-ex1",
-          title: "Pick the future form",
-          instructions: "Match each time indicator to the correct future tense.",
+          title: "Will or going to?",
+          instructions: "Read the clue in each sentence, then choose.",
           items: [
             {
               type: "radio",
-              label: "Rosa's plan: she ___ in Level 4 in September. (enroll)",
+              label: "Rosa filled out the Level 4 form last week. In September she ___ evening classes. (take)",
               options: [
-                { value: "will enroll", label: "will enroll" },
-                { value: "has enrolled", label: "has enrolled" },
-                { value: "will have enrolled", label: "will have enrolled" },
+                { value: "is going to take", label: "is going to take" },
+                { value: "takes", label: "takes" },
+                { value: "has taken", label: "has taken" },
               ],
-              expectedAnswer: "will enroll",
+              expectedAnswer: "is going to take",
             },
             {
               type: "radio",
-              label: "In September she ___ class twice a week while she still works. (take)",
+              label: "David is guessing. \"I think Level 4 ___ harder.\" (be)",
               options: [
-                { value: "has taken", label: "has taken" },
-                { value: "will be taking", label: "will be taking" },
-                { value: "will have taken", label: "will have taken" },
+                { value: "is being", label: "is being" },
+                { value: "will be", label: "will be" },
+                { value: "was", label: "was" },
               ],
-              expectedAnswer: "will be taking",
+              expectedAnswer: "will be",
             },
             {
               type: "text",
-              label: "By August she ___ (finish) the summer course.",
-              expectedAnswers: ["will have finished"],
+              label: "Rosa decides right now: \"Oh, I know! I ___ (ask) Ms. Tran tonight.\" Use a short form.",
+              expectedAnswers: ["'ll ask", "will ask"],
             },
           ],
         },
         {
           id: "s5-ex2",
-          title: "Future perfect continuous",
+          title: "Sneak peek: read the meaning",
+          instructions: "You don't need to make these tenses yet. Just read them.",
           items: [
             {
               type: "radio",
-              label: "By the last class tonight, Rosa ___ evening ESOL for a full year. (attend)",
+              label: "\"By August, I will have finished the summer course.\" When does Rosa finish the course?",
               options: [
-                { value: "will attend", label: "will attend" },
-                { value: "will be attending", label: "will be attending" },
-                { value: "will have been attending", label: "will have been attending" },
+                { value: "a", label: "Before the end of August" },
+                { value: "b", label: "In September" },
+                { value: "c", label: "She never finishes it" },
               ],
-              expectedAnswer: "will have been attending",
+              expectedAnswer: "a",
             },
             {
-              type: "text",
-              label: "By tonight I ___ (attend) evening ESOL for a full year.",
-              expectedAnswers: ["will have been attending"],
+              type: "radio",
+              label: "\"At 7 PM in September, I will be sitting in class.\" What will Rosa be doing at 7 PM?",
+              options: [
+                { value: "a", label: "Leaving class" },
+                { value: "b", label: "Sitting in class, in the middle of the lesson" },
+                { value: "c", label: "Taking the bus to class" },
+              ],
+              expectedAnswer: "b",
             },
           ],
         },
@@ -587,13 +595,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"By August I <strong>will have finish</strong> the summer course.\" Time word: <strong>By August</strong>.",
+              label: "\"I <strong>going to</strong> enroll in Level 4 in September.\"",
               options: [
                 { value: "correct", label: "Correct as written" },
-                { value: "will have finished", label: "Should be 'will have finished'" },
-                { value: "will be finishing", label: "Should be 'will be finishing'" },
+                { value: "am going to", label: "Should be 'I am going to enroll'" },
+                { value: "will going to", label: "Should be 'I will going to enroll'" },
               ],
-              expectedAnswer: "will have finished",
+              expectedAnswer: "am going to",
             },
           ],
         },
@@ -661,14 +669,14 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     {
       id: "atyr-ws1",
       type: "word-scramble" as const,
-      question: "Rosa plans to finish her summer course by August. Put the words in order.",
-      words: ["She", "will", "have", "finished", "the", "course", "by", "August"],
-      correctAnswer: "She will have finished the course by August",
-      hint: "future perfect with 'by' = done before that future date",
-      explanation: "Future perfect: will have + past participle. Used with 'by' to show something completed before a future point.",
-      topic: "future-perfect",
+      question: "Rosa already filled out the Level 4 form. Put the words in order.",
+      words: ["She", "is", "going", "to", "take", "evening", "classes", "in", "September"],
+      correctAnswer: "She is going to take evening classes in September",
+      hint: "be + going to + base verb = a plan you already made",
+      explanation: "Going to is for a plan that is already decided. Rosa filled out the form, so the plan is made.",
+      topic: "future-going-to",
       skill: "usage",
-      skillTag: "by-future-perfect-word-order",
+      skillTag: "going-to-plan-word-order",
       difficulty: "medium",
     },
   ],

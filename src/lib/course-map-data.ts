@@ -694,7 +694,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-11",
         "number": 7,
         "title": "Our Voice, Our Vote",
-        "goal": "Register key civic verbs, make a suggestion, and practice contacting an official, timed with the November elections.",
+        "goal": "Register key civic verbs, use if to talk about what happens when people vote, and practice contacting an official, timed with the November elections.",
         "items": [
           {
             "id": "vocab-oct-w5-flashcards",
@@ -707,13 +707,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Civic Verbs: Flash Cards"
           },
           {
-            "id": "lets-make-a-suggestion",
-            "href": "/grammar-reader/lets-make-a-suggestion",
+            "id": "zero-first-conditional",
+            "href": "/grammar-reader/zero-first-conditional",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Let's Make a Suggestion"
+            "title": "Zero + First Conditional: If This, Then That"
           },
           {
             "id": "contact-official-practice",
@@ -761,13 +761,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Political Ads: Fact or Opinion?"
           },
           {
-            "id": "zero-first-conditional",
-            "href": "/grammar-reader/zero-first-conditional",
+            "id": "lets-make-a-suggestion",
+            "href": "/grammar-reader/lets-make-a-suggestion",
             "slot": "extra",
             "order": 7,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Zero + First Conditional: If This, Then That"
+            "title": "Let's Make a Suggestion"
           },
           {
             "id": "community-issue-discussion",
@@ -878,11 +878,12 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "just-already-yet",
             "href": "/grammar-reader/just-already-yet",
-            "slot": "required",
+            "slot": "extra",
             "order": 2,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Just, Already, Yet"
+            "title": "Just, Already, Yet",
+            "badge": "Challenge"
           },
           {
             "id": "volunteering-scenario-practice",
@@ -922,7 +923,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 9 Quiz"
           }
         ],
-        "goal": "Talk about life experiences with Have you ever...? Then use just, already, and yet to describe recent actions and what is still unfinished."
+        "goal": "Talk about life experiences with Have you ever...? Want a challenge? Try just, already, and yet. You will practice them again in March."
       },
       {
         "id": "week-10",
@@ -1189,7 +1190,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-16-econ",
         "number": 14,
         "title": "Understanding the News for Econ",
-        "goal": "Use comparatives and quantity words to talk about prices, jobs, and the economy in the news.",
+        "goal": "Read prices, jobs, and the economy in the news, and talk about what will happen next with will, going to, and if.",
         "items": [
           {
             "id": "vocab-dec-w3-flashcards",
@@ -1255,13 +1256,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "goal": "Review the fall semester together, finish any missing quizzes, and celebrate the end of the fall term.",
         "items": [
           {
-            "id": "all-verb-tenses-overview-review",
-            "href": "/grammar-reader/all-verb-tenses-overview",
+            "id": "fall-review-six-tenses",
+            "href": "/grammar-reader/fall-review-six-tenses",
             "slot": "required",
             "order": 0,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "All Verb Tenses Overview"
+            "title": "Fall Review: Six Tenses You Know"
+          },
+          {
+            "id": "all-verb-tenses-overview-review",
+            "href": "/grammar-reader/all-verb-tenses-overview",
+            "slot": "extra",
+            "order": 6,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "All Verb Tenses Overview",
+            "badge": "Challenge"
           },
           {
             "id": "catch-up-path-december",
@@ -1885,7 +1896,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Present Perfect + How Long"
+            "title": "Just, Already, Yet: The Job Search"
           },
           {
             "id": "interview-language-practice",

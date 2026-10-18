@@ -53,9 +53,9 @@ function preview(findings: AuditFinding[]): string {
 describe("mini guides audit (weeks 1–18)", () => {
     it("runs without throwing and audits the expected guide count", async () => {
         const result = await runMiniGuidesAudit();
-        // Week 4 past-tense work and Week 6 Getting There are now optional,
-        // leaving 19 required guides.
-        expect(result.guides.length).toBe(19);
+        // Week 4 past-tense work, Week 6 Getting There, and Week 9 Just,
+        // Already, Yet (taught in Week 24) are optional, leaving 18 required guides.
+        expect(result.guides.length).toBe(18);
         expect(result.guides.map(({ guide }) => guide.slug)).not.toContain("welcome-how-to-use-app");
     });
 

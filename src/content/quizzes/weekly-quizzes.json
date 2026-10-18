@@ -1227,21 +1227,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Let’s ___ a letter to the council. (write)",
+        "prompt": "If you ___ a letter to the council, they will read it. (write)",
         "answers": [
           "write"
         ],
-        "explanation": "Let’s write a letter to the council. (write)",
+        "explanation": "If you write a letter to the council, they will read it. (write)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "Why don’t we ___ an email? (send)",
+        "prompt": "If I ___ an email to the mayor, her office will answer me. (send)",
         "answers": [
           "send"
         ],
-        "explanation": "Why don’t we send an email? (send)",
+        "explanation": "If I send an email to the mayor, her office will answer me. (send)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -1278,32 +1278,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Gloria wants the whole group to act together. Which sentence fits?",
+        "prompt": "Carlos tells Ana about the extra Saturday night shift and the electric bill. Which if-part is correct?",
         "options": [
-          "Let's meet in the lobby at six.",
-          "Let's to meet in the lobby at six.",
-          "Let's meeting in the lobby at six."
+          "If I will take the extra shift...",
+          "If I take the extra shift...",
+          "If I took the extra shift..."
         ],
         "answers": [
-          "Let's meet in the lobby at six."
+          "If I take the extra shift..."
         ],
-        "explanation": "'Let's' is always followed by the base verb with no changes.",
-        "source": "lets-make-a-suggestion/lets-make-a-suggestion-q1"
+        "explanation": "In First Conditional, the if-part uses present simple. Never use 'will' in the if-part.",
+        "source": "zero-first-conditional/zero-first-conditional-q2"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Kevin tells Marta that saving the repair receipts is the right and necessary step. Which fits?",
+        "prompt": "Which sentence has an error?",
         "options": [
-          "You could save the repair receipts.",
-          "You should save the repair receipts.",
-          "Let's save the repair receipts."
+          "If your name is on the list, you get a ballot.",
+          "If Carlos will work Saturday, he will pay the bill.",
+          "If I don't see you by 5, I will call you."
         ],
         "answers": [
-          "You should save the repair receipts."
+          "If Carlos will work Saturday, he will pay the bill."
         ],
-        "explanation": "'You should' gives stronger advice. 'You could' is a softer option, and 'Let's' suggests doing it together.",
-        "source": "lets-make-a-suggestion/lets-make-a-suggestion-q3"
+        "explanation": "'Will' cannot appear in the if-part of a conditional. It should be: 'If Carlos works Saturday...'",
+        "source": "zero-first-conditional/zero-first-conditional-q4"
       }
     ]
   },
@@ -1652,29 +1652,29 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Kofi, a dishwasher at Lupe's restaurant, had his last day on Tuesday of last week. He does not work there anymore. Which sentence is correct?",
+        "prompt": "Luis von Ahn sold reCAPTCHA to Google in 2009. He does not own reCAPTCHA now. Which sentence is correct?",
         "options": [
-          "Kofi has left the restaurant since last Tuesday.",
-          "Kofi has worked at the restaurant for last Tuesday.",
-          "Kofi left the restaurant last Tuesday."
+          "He has sold reCAPTCHA since 2009.",
+          "He has sold reCAPTCHA for 2009.",
+          "He sold reCAPTCHA to Google in 2009."
         ],
         "answers": [
-          "Kofi left the restaurant last Tuesday."
+          "He sold reCAPTCHA to Google in 2009."
         ],
-        "explanation": "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",
+        "explanation": "A finished action with a specific past time (2009) needs past simple, not present perfect.",
         "source": "how-long-for-since/hlfs-q7"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Yesenia got her phone plan three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
+        "prompt": "Yesenia chose her phone company three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
         "options": [
-          "I have had this plan for since three years.",
-          "I have had this plan for three years.",
-          "I have had this plan for 2023."
+          "I have had this company for since three years.",
+          "I have had this company for three years.",
+          "I have had this company for 2023."
         ],
         "answers": [
-          "I have had this plan for three years."
+          "I have had this company for three years."
         ],
         "explanation": "'For' takes a length of time (three years), not a starting year (2023).",
         "source": "how-long-for-since/hlfs-q2"
@@ -1842,7 +1842,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fernanda compares three ways to get to work. Which sentence is correct?",
+        "prompt": "Rosa compares three ways to get to work. Which sentence is correct?",
         "options": [
           "The Blue Line is the most fastest.",
           "The Blue Line is fastest.",
@@ -2027,11 +2027,11 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette calls Fabienne from the grocery store. Put her question in order. Words: How / many / eggs / do / we / have",
+        "prompt": "Claudette calls Fabienne from the grocery store. Put her question in order. Words: How / much / milk / do / we / need",
         "answers": [
-          "How many eggs do we have"
+          "How much milk do we need"
         ],
-        "explanation": "Eggs are countable, so use 'how many' and the plural form.",
+        "explanation": "Milk is uncountable, so use 'how much.'",
         "source": "how-much-how-many/how-much-how-many-qws1"
       },
       {
@@ -2402,21 +2402,21 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Three words: not required.)",
+        "prompt": "Fill in the blank: \"You ___ renew your lease. It is your choice.\" (Three words: not required.)",
         "answers": [
           "don't have to"
         ],
-        "explanation": "'Don't have to' means it is not your responsibility. 'Can't' would mean it is forbidden, which is different.",
+        "explanation": "'Don't have to' means it is not required. 'Can't' would mean it is forbidden, which is different.",
         "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "The lease explains what the landlord must do before entering. Put the words in order. Words: The / landlord / has / to / give / notice",
+        "prompt": "The sanitary code says who must provide heat. Put the words in order. Words: The / owner / has / to / provide / heat",
         "answers": [
-          "The landlord has to give notice"
+          "The owner has to provide heat"
         ],
-        "explanation": "'Has to' shows the lease requires the landlord to give notice before entering.",
+        "explanation": "'Has to' shows the owner is required to provide heat.",
         "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qws1"
       }
     ]
@@ -2782,7 +2782,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"While Lucia ___ the landlord, Amina heard her voice.\" (Action in progress: past continuous.)",
+        "prompt": "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
         "answers": [
           "was calling"
         ],
@@ -3842,11 +3842,11 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "I have ___ the safety rules since orientation. (understand)",
+        "prompt": "I have already ___ the safety rules. (understand)",
         "answers": [
           "understood"
         ],
-        "explanation": "I have understood the safety rules since orientation. (understand)",
+        "explanation": "I have already understood the safety rules. (understand)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -3893,26 +3893,26 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Which sentence has a mistake?",
+        "prompt": "Rosa's phone buzzed 30 seconds ago. It's an email from HR. Which sentence fits?",
         "options": [
-          "I have lived here since January.",
-          "She has worked here for two years.",
-          "He have worked here since March."
+          "HR sent an email last week.",
+          "HR has just sent an email.",
+          "HR hasn't sent an email yet."
         ],
         "answers": [
-          "He have worked here since March."
+          "HR has just sent an email."
         ],
-        "explanation": "With he/she/it, use 'has', not 'have'. Correct form: He has worked here since March.",
+        "explanation": "Just means a very short time ago. The email is new news: HR has just sent an email.",
         "source": "present-perfect-how-long/pperf-how-long-q4"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"I have worked here ___ 2022.\" (Starting point in time: for or since?)",
+        "prompt": "Fill in the blank: \"I haven't heard back from the hotel ___.\" (Not done, but expected.)",
         "answers": [
-          "since"
+          "yet"
         ],
-        "explanation": "'Since' goes with a starting point like a year, month, or date. 'For' goes with a length of time like 'two years'.",
+        "explanation": "Yet goes at the end of a negative or a question. It means up to now, but we expect it.",
         "source": "present-perfect-how-long/pperf-how-long-qfb1"
       }
     ]
@@ -4142,7 +4142,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Jennifer asks Amara about her cleaning experience. Put the words in order. Words: How / long / have / you / been / cleaning / patient / rooms",
+        "prompt": "Rosa asks Amara about her work at the hospital. Put the words in order. Words: How / long / have / you / been / cleaning / patient / rooms",
         "answers": [
           "How long have you been cleaning patient rooms"
         ],
@@ -4600,11 +4600,11 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"My overtime ___ not paid.\" (Overtime is singular: was or were?)",
+        "prompt": "Fill in the blank: \"Two shifts ___ moved without notice.\" (was or were?)",
         "answers": [
-          "was"
+          "were"
         ],
-        "explanation": "'Overtime' is singular, so the correct passive form is 'was not paid,' not 'were not paid.'",
+        "explanation": "'Two shifts' is plural, so the passive form is 'were moved.'",
         "source": "passive-voice-what-was-done/pvwwd-qfb1"
       },
       {
@@ -4613,13 +4613,13 @@
         "prompt": "Which sentence has an error?",
         "options": [
           "My check was short last Friday.",
-          "Safety training is provided to all workers.",
-          "My overtime were not paid."
+          "A uniform is included.",
+          "Three shifts was moved."
         ],
         "answers": [
-          "My overtime were not paid."
+          "Three shifts was moved."
         ],
-        "explanation": "'Overtime' is singular, so the correct form is 'was not paid,' not 'were not paid.'",
+        "explanation": "'Three shifts' is plural, so the correct form is 'were moved,' not 'was moved.'",
         "source": "passive-voice-what-was-done/pvwwd-q5"
       }
     ]
@@ -4836,7 +4836,7 @@
         "section": "grammar",
         "prompt": "Which sentence has an error?",
         "options": [
-          "You must not take this on an empty stomach.",
+          "You must not drive after this medicine.",
           "You should rest for two days.",
           "You should to call your supervisor."
         ],
@@ -5088,7 +5088,7 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Julio asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
+        "prompt": "Fill in the blank: \"Jennifer asks: 'Did you take your pill this morning?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
         "answers": [
           "taking"
         ],
@@ -5736,16 +5736,16 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Find the error: \"I used to packing PB&J in lunchboxes.\"",
+        "prompt": "Find the error: \"I used to lives with my parents.\"",
         "options": [
           "No error.",
-          "Error: should be \"used to pack\" (base verb, not -ing).",
-          "Error: should be \"didn't use to pack\"."
+          "Error: should be \"used to live\" (base verb, no -s).",
+          "Error: should be \"didn't use to live\"."
         ],
         "answers": [
-          "Error: should be \"used to pack\" (base verb, not -ing)."
+          "Error: should be \"used to live\" (base verb, no -s)."
         ],
-        "explanation": "After used to, use the base verb: pack, not packing.",
+        "explanation": "After used to, use the base verb: live, not lives.",
         "source": "i-used-to-but-now-i/ut-q7"
       }
     ]
@@ -5960,7 +5960,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Frantz describes his friend Fabienne's routine. Put the words in order. Words: She / is / used / to / working / nights",
+        "prompt": "Mark describes Fabienne's routine. Put the words in order. Words: She / is / used / to / working / nights",
         "answers": [
           "She is used to working nights"
         ],
@@ -6194,7 +6194,7 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rachel says: 'If I earned more, I would move to a bigger apartment.' What do we know about Rachel?",
+        "prompt": "Yemi says: 'If I earned more, I would move to a bigger apartment.' What do we know about Yemi?",
         "options": [
           "She earns enough and is moving soon.",
           "She moved to a bigger apartment last year.",
@@ -6615,14 +6615,14 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa is texting the sitter at work right now. Which sentence fits?",
+        "prompt": "Rosa is texting the babysitter at work right now. Which sentence fits?",
         "options": [
-          "She texts the sitter at work.",
-          "She is texting the sitter at work.",
-          "She has texted the sitter at work."
+          "She texts the babysitter at work.",
+          "She is texting the babysitter at work.",
+          "She has texted the babysitter at work."
         ],
         "answers": [
-          "She is texting the sitter at work."
+          "She is texting the babysitter at work."
         ],
         "explanation": "Present continuous for an action in progress right now.",
         "source": "all-the-tenses-year-in-review/atyr-q2"
@@ -6815,14 +6815,14 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa saved some money before her lease ended in February. Which sentence fits?",
+        "prompt": "Rosa finished her homework, and then the bus came. Which sentence fits?",
         "options": [
-          "She had already saved some money when the lease ended.",
-          "She already saved some money when the lease ended.",
-          "She has already saved some money when the lease ended."
+          "She had already finished her homework when the bus came.",
+          "She already finishes her homework when the bus came.",
+          "She has already finished her homework when the bus came."
         ],
         "answers": [
-          "She had already saved some money when the lease ended."
+          "She had already finished her homework when the bus came."
         ],
         "explanation": "Past perfect for something finished before another past event.",
         "source": "all-the-tenses-year-in-review/atyr-q6"
@@ -6990,24 +6990,24 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa plans to finish her summer course by August. Put the words in order. Words: She / will / have / finished / the / course / by / August",
+        "prompt": "Rosa already filled out the Level 4 form. Put the words in order. Words: She / is / going / to / take / evening / classes / in / September",
         "answers": [
-          "She will have finished the course by August"
+          "She is going to take evening classes in September"
         ],
-        "explanation": "Future perfect: will have + past participle. Used with 'by' to show something completed before a future point.",
+        "explanation": "Going to is for a plan that is already decided. Rosa filled out the form, so the plan is made.",
         "source": "all-the-tenses-year-in-review/atyr-ws1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa is texting the sitter at work right now. Which sentence fits?",
+        "prompt": "Rosa is texting the babysitter at work right now. Which sentence fits?",
         "options": [
-          "She texts the sitter at work.",
-          "She is texting the sitter at work.",
-          "She has texted the sitter at work."
+          "She texts the babysitter at work.",
+          "She is texting the babysitter at work.",
+          "She has texted the babysitter at work."
         ],
         "answers": [
-          "She is texting the sitter at work."
+          "She is texting the babysitter at work."
         ],
         "explanation": "Present continuous for an action in progress right now.",
         "source": "all-the-tenses-year-in-review/atyr-q2"

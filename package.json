@@ -40,7 +40,7 @@
     "audit:answer-position:update-baseline": "node scripts/checks/audit-answer-position-bias.js --update-baseline",
     "check:nullable-upserts": "node scripts/checks/check-null-assignment-upserts.mjs",
     "check:repo-hygiene": "node scripts/check-repo-hygiene.mjs",
-    "check:generated": "npm run sync:gerund-csv:check && npm run check:vocab-duplicates",
+    "check:generated": "npm run sync:gerund-csv:check && npm run check:vocab-duplicates && npm run quizzes:build -- --check",
     "check:vocab-duplicates": "node --import tsx scripts/vocab/check-vocab-duplicates.js",
     "check:vocab-duplicates:update-baseline": "node --import tsx scripts/vocab/check-vocab-duplicates.js --update-baseline",
     "report:maintenance": "node scripts/checks/report-maintenance.mjs",

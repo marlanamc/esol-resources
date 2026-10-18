@@ -28,7 +28,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "all-the-tenses-year-in-review": {
         activityTitle: "All the Tenses: A Year in Review",
         metaTitle: "All the Tenses: A Year in Review - Interactive Guide | Class Companion",
-        metaDescription: "Review all eleven Level 3 tenses through Rosa's real year of restaurant shifts, evening class, kids' school, and the 121 bus home.",
+        metaDescription: "Review every tense from this year, plus a sneak peek at Level 4, through Rosa's real year of restaurant shifts, evening class, kids' school, and the 121 bus home.",
         loadContent: () =>
             import("@/content/grammar/all-the-tenses-year-in-review").then((m) => m.allTheTensesYearInReviewContent),
     },
@@ -150,6 +150,13 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
         metaDescription: "Learn affirmative and negative imperatives plus prepositions of location to give and follow directions in your neighborhood.",
         loadContent: () =>
             import("@/content/grammar/getting-there-directions").then((m) => m.gettingThereDirectionsContent),
+    },
+    "fall-review-six-tenses": {
+        activityTitle: "Fall Review: Six Tenses You Know",
+        metaTitle: "Fall Review: Six Tenses You Know - Interactive Guide | Class Companion",
+        metaDescription: "Review the six tenses from the fall semester (present simple and continuous, past simple and continuous, present perfect, will and going to) through Rosa's busy December.",
+        loadContent: () =>
+            import("@/content/grammar/fall-review-six-tenses").then((m) => m.fallReviewSixTensesContent),
     },
     "have-to-dont-have-to-cant": {
         activityTitle: "Have to, Don't Have to, Can't",
@@ -404,9 +411,9 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
             import("@/content/grammar/present-perfect-family").then((m) => m.presentPerfectFamilyContent),
     },
     "present-perfect-how-long": {
-        activityTitle: "Present Perfect + How Long",
-        metaTitle: "Present Perfect + How Long - Interactive Grammar Guide | Class Companion",
-        metaDescription: "Learn how to use Present Perfect with 'How long', for, and since in job interviews and real work conversations.",
+        activityTitle: "Just, Already, Yet: The Job Search",
+        metaTitle: "Just, Already, Yet: The Job Search - Interactive Grammar Guide | Class Companion",
+        metaDescription: "Use the present perfect with just, already, and yet to talk about a job application and an interview.",
         loadContent: () =>
             import("@/content/grammar/present-perfect-how-long").then((m) => m.presentPerfectHowLongContent),
     },
@@ -434,7 +441,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "reading-econ-news": {
         activityTitle: "Understanding the News for Econ: Headlines + Charts",
         metaTitle: "Understanding the News for Econ - Interactive Guide | ESOL Teacher Resources",
-        metaDescription: "Learn to read simple economy news: headlines, bar charts, and price tables about prices, wages, and jobs.",
+        metaDescription: "Learn to read simple economy news: headlines, bar charts, and price tables about prices, wages, and jobs, plus predictions with will and going to.",
         loadContent: () =>
             import("@/content/grammar/reading-econ-news").then((m) => m.readingEconNewsContent),
     },
