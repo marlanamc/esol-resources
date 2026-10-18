@@ -129,7 +129,23 @@ describe('Weekly Parts of Speech curriculum', () => {
       expect(scoreReviewAttempt(attempt(id)).correct).toBe(18);
     }
     expect(REVIEW_LESSONS['week-4-describing'].categories).toEqual(['Adjective', 'Article']);
-    expect(REVIEW_LESSONS['week-5-subjects'].bridge).toBe(true);
+    for (const id of ['week-4-describing', 'week-5-subjects', 'week-7-adverbs'] as const) expect(REVIEW_LESSONS[id].bridge, id).toBeTruthy();
+  });
+  it('authors intro screens whose highlighted words sit in a real sentence', () => {
+    for (const lesson of Object.values(REVIEW_LESSONS)) {
+      for (const row of lesson.bridge?.rows ?? []) {
+        expect(row.target.trim(), lesson.id).toBe(row.target);
+        expect(row.target.length, lesson.id).toBeGreaterThan(0);
+        expect(row.before + row.target + row.after, lesson.id).not.toMatch(/\s+[.,!?]/);
+      }
+    }
+  });
+  it('models and practices adjectives as much as adverbs in Adjectives and Adverbs', () => {
+    const lesson = REVIEW_LESSONS['week-7-adverbs'];
+    expect(lesson.examples.map(q => q.answer)).toEqual(['Adjective', 'Adverb']);
+    const scored = lesson.questions.filter(q => !q.review);
+    expect(scored.filter(q => q.answer === 'Adjective').length).toBeGreaterThanOrEqual(7);
+    expect(scored.filter(q => q.answer === 'Adverb').length).toBeGreaterThanOrEqual(7);
   });
   it('separates core lessons from optional depth across five phases, without losing older content', () => {
     expect(REVIEW_PHASES).toHaveLength(5);

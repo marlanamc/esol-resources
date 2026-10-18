@@ -4,12 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, Star, XCircle } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
-import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewWords, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
 import { WORD_JOBS_LESSON_POINTS } from '@/lib/parts-of-speech-review/rewards';
 import styles from './PartsOfSpeechReview.module.css';
 import { ReviewCategoryCue, categoryColorClass } from './ReviewCategoryCue';
-import { SpeakButton } from './SpeakButton';
 
 type Stage = 'start' | 'bridge' | 'example' | 'round' | 'question' | 'results';
 const primary = styles.primary + ' inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary';
@@ -24,7 +23,7 @@ function questionPrompt(item: ReviewItem, lesson: ReviewLesson) {
   return (item.review ? 'Remember this: choose the label for the highlighted part.' : lesson.prompt) ?? 'What is the highlighted word’s job?';
 }
 
-export function ReviewSentence({ item, reveal = false }: { item: ReviewItem; reveal?: boolean }) {
+export function ReviewSentence({ item, reveal = false }: { item: Pick<ReviewItem, 'before' | 'target' | 'after' | 'answer'>; reveal?: boolean }) {
   return <p className={styles.sentence}>{item.before}<mark className={`${styles.target} ${reveal ? `${styles.revealed} ${categoryColorClass(item.answer)}` : ''}`}>{item.target}</mark>{item.after}</p>;
 }
 
@@ -226,16 +225,17 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         <footer className={styles.footer}>
           <button className="min-h-11 text-sm font-semibold text-text-muted underline underline-offset-4 disabled:opacity-60" disabled={hasUnsaved} onClick={onLibrary}>Original practice library</button>
         </footer>
-      </main> : stage === 'bridge' ? <main>
-        <h1 ref={heading} tabIndex={-1} className={`${styles.heading} ${styles.questionTitle} font-display`}>A word type and a sentence job</h1>
-        <p className={styles.lead}>From word types to sentence roles.</p>
+      </main> : stage === 'bridge' && lesson.bridge ? <main>
+        <h1 ref={heading} tabIndex={-1} className={`${styles.heading} ${styles.questionTitle} font-display`}>{lesson.bridge.title}</h1>
+        <p className={styles.lead}>{lesson.bridge.lead}</p>
         <div className={styles.panel}>
-          <div className={styles.sentenceRow}><p className={styles.sentence}>The teacher helps us.</p><SpeakButton text="The teacher helps us." size="lg" /></div>
-          <dl className="mt-6 space-y-3">
-            <div className={`${styles.bridgeRow} ${categoryColorClass('Noun')}`}><dt className="font-semibold"><ReviewCategoryCue category="Noun" /> <span className="block mt-3">Teacher is a noun.</span></dt><dd className="mt-2 leading-relaxed">Noun tells us what kind of word teacher is. It names a person.</dd></div>
-            <div className={`${styles.bridgeRow} ${categoryColorClass('Subject')}`}><dt className="font-semibold"><ReviewCategoryCue category="Subject" /> <span className="block mt-3">The teacher is the subject.</span></dt><dd className="mt-2 leading-relaxed">Subject tells us the job of this part in the sentence: who the sentence is about.</dd></div>
+          <dl className="space-y-3">
+            {lesson.bridge.rows.map(row => <div key={row.before + row.target} className={`${styles.bridgeRow} ${categoryColorClass(row.category)}`}>
+              <dt className="font-semibold"><ReviewCategoryCue category={row.category} /><span className="mt-3 block"><ReviewSentence item={{ ...row, answer: row.category }} reveal /></span><span className="mt-3 block">{row.heading}</span></dt>
+              <dd className="mt-2 leading-relaxed">{row.detail}</dd>
+            </div>)}
           </dl>
-          <p className="mt-5 leading-relaxed">Both labels can be true. In this lesson, look for the subject and the verb.</p>
+          {lesson.bridge.note && <p className="mt-5 leading-relaxed">{lesson.bridge.note}</p>}
           <button className={`${primary} mt-6 w-full`} onClick={() => setStage('example')}>See the examples <ArrowRight size={18} aria-hidden="true" /></button>
         </div>
       </main> : stage === 'round' && round ? <main>
@@ -281,7 +281,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         </div>
         <h1 ref={heading} tabIndex={-1} className={`${styles.heading} ${styles.questionTitle} font-display`}>{stage === 'example' ? lesson.title : questionPrompt(item, lesson)}</h1>
         <div className={styles.panel} data-answered={(stage === 'question' && selection !== null) || undefined}>
-          <div className={styles.sentenceRow}>
+          <div>
             {stage === 'question' && kind === 'find' ? <fieldset>
               <legend className="sr-only">Tap the {item.answer.toLowerCase()} in this sentence</legend>
               <p className={styles.findWords}>{reviewWords(item).map((word, wordIndex) => {
@@ -294,8 +294,6 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
             </fieldset> : stage === 'question' && kind === 'choose' && selection === null
               ? <p className={styles.sentence}>{item.before}<span className={styles.blank}><span className="sr-only">blank</span></span>{item.after}</p>
               : <ReviewSentence item={item} reveal={stage === 'example' || selection !== null} />}
-            {/* A choose sentence read aloud would give away the blank, so it waits for the answer. */}
-            {(kind !== 'choose' || stage === 'example' || selection !== null) && <SpeakButton key={item.id} text={reviewSentence(item)} size="lg" />}
           </div>
           {stage === 'example' ? <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div> : kind === 'choose' ? <fieldset className="mt-6">
             <legend className="sr-only">Choose the word for the blank</legend>
