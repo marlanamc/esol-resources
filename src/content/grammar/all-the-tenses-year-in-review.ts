@@ -255,8 +255,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Rosa", "takes", "class", "on", "Tuesday", "and", "Thursday"],
-              correctAnswer: "Rosa takes class on Tuesday and Thursday",
+              words: ["Rosa", "starts", "work", "at", "7", "on", "weekdays"],
+              correctAnswer: "Rosa starts work at 7 on weekdays",
             },
           ],
         },
@@ -285,7 +285,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           kicker: "A real life",
           title: "Gloria Estefan",
           paragraphs: [
-            "Gloria Estefan <strong>was</strong> a toddler when her family <strong>fled</strong> Cuba. Her band, Miami Sound Machine, <strong>was driving</strong> on a snowy highway in Pennsylvania in March 1990 when the bus <strong>had</strong> an accident with a tractor-trailer. Gloria <strong>broke</strong> a bone in her back, and surgeons <strong>operated</strong> on her spine for four hours.",
+            "Gloria Estefan <strong>was</strong> a toddler when her family <strong>fled</strong> Cuba. Her band, Miami Sound Machine, <strong>was traveling</strong> on a snowy highway in Pennsylvania in March 1990 when their bus <strong>had</strong> an accident with a tractor-trailer. Gloria <strong>broke</strong> a bone in her back, and surgeons <strong>operated</strong> on her spine for four hours.",
             "She <strong>did not give up</strong>. Before she <strong>returned</strong> to performing in January 1991, she <strong>had done</strong> extensive physical therapy. By 2015, she <strong>had sold</strong> more than 100 million records, and she and her husband <strong>received</strong> the Presidential Medal of Freedom.",
           ],
           photo: {
@@ -308,7 +308,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("in progress", "blue")}
-            <span><em>The band <strong>was driving</strong> when the bus had an accident.</em></span>
+            <span><em>The band <strong>was traveling</strong> when the bus had an accident.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("before that", "sage")}
@@ -324,13 +324,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The band ___ on a snowy highway when the bus had an accident. (drive)",
+              label: "The band ___ on a snowy highway when the bus had an accident. (travel)",
               options: [
-                { value: "was driving", label: "was driving" },
-                { value: "drove", label: "drove" },
-                { value: "had driven", label: "had driven" },
+                { value: "was traveling", label: "was traveling" },
+                { value: "traveled", label: "traveled" },
+                { value: "had traveled", label: "had traveled" },
               ],
-              expectedAnswer: "was driving",
+              expectedAnswer: "was traveling",
             },
             {
               type: "radio",
@@ -363,7 +363,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               options: [
                 { value: "correct", label: "Correct as written" },
                 { value: "fled", label: "Should be 'fled' (past simple for a finished event)" },
-                { value: "was fleeing", label: "Should be 'is fleeing' (present continuous)" },
+                { value: "was fleeing", label: "Should be 'was fleeing' (past continuous)" },
               ],
               expectedAnswer: "fled",
             },
@@ -394,7 +394,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           title: "Rosa's life in East Boston",
           items: [
             { when: "2021", text: "Rosa moved to East Boston.", accent: "sage" },
-            { when: "2022", text: "She started working in housekeeping.", accent: "sage" },
+            { when: "3 years ago", text: "She started working in housekeeping.", accent: "sage" },
             { when: "March", text: "She began taking extra shifts.", accent: "amber" },
             { span: "since March", accent: "amber" },
             { when: "Now (June)", text: "She is tired, but she is still working.", accent: "blue" },
@@ -427,7 +427,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               label: "Look at the timeline. Which sentence is true?",
               options: [
                 { value: "a", label: "Rosa has lived in East Boston since 2022." },
-                { value: "b", label: "Rosa has worked in housekeeping since 2021." },
+                { value: "b", label: "Rosa has worked in housekeeping for six years." },
                 { value: "c", label: "Rosa has been taking extra shifts since March." },
               ],
               expectedAnswer: "c",
@@ -444,7 +444,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Rosa started in housekeeping in 2022. Now it is June, so she has worked there ___ three years.",
+              label: "Rosa started in housekeeping three years ago, so she has worked there ___ three years.",
               options: [
                 { value: "for", label: "for" },
                 { value: "since", label: "since" },
