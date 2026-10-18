@@ -81,6 +81,8 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
       id: "gerunds-after-verbs",
       title: "\"I'm Tired of Bending All Day\"",
       explanation: `
+        <p><strong>Bring back:</strong> Bring back: good at + -ing (W10) and need to + base verb (W18). Keep workplace phrases in short sentences: I enjoy helping out. I want to find out more.</p>
+
         ${sceneCard("sceneHotelCart", "East Boston. End of the afternoon shift. Tuesday.", "terracotta")}
 
         ${dialogue([

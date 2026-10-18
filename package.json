@@ -117,7 +117,8 @@
     "db:seed:word-rescue": "npx tsx prisma/seed-word-rescue.ts",
     "audio:word-rescue:preview": "npx tsx scripts/word-rescue/generate-preview-audio.ts",
     "audio:word-rescue:words": "node --import tsx scripts/word-rescue/generate-word-audio.ts",
-    "audio:word-rescue:elevenlabs": "node --import tsx scripts/word-rescue/generate-elevenlabs-audio.ts"
+    "audio:word-rescue:elevenlabs": "node --import tsx scripts/word-rescue/generate-elevenlabs-audio.ts",
+    "docs:grammar": "node --import tsx scripts/build-grammar-progression.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

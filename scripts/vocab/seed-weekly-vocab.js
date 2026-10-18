@@ -15,7 +15,7 @@ const { weeklyVocabData } = require("./weekly-vocab-data.js");
 const legacyPosMap = require("./legacy-pos-map.js");
 const weeklyVocabPos = require("./weekly-vocab-pos.js");
 
-const prisma = new PrismaClient();
+let prisma;
 
 function resolveWordPos(word) {
   if (word.pos && String(word.pos).trim()) {
@@ -226,6 +226,10 @@ async function main() {
   console.log(`\n✅ Created/updated ${slugs.length} consolidated weekly vocab activities.`);
 }
 
+module.exports = { toVocabCard, getUnitNumber, generatePacketContent, generateFlashcardContent, generateMatchingContent, generateFillBlankContent };
+
+if (require.main === module) {
+prisma = new PrismaClient();
 main()
   .catch((e) => {
     console.error(e);
@@ -234,3 +238,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+}

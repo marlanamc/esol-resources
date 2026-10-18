@@ -147,3 +147,21 @@ td.n a { color: inherit; }
   .site-nav .brand { width: 100%; }
   .week-card { padding: 1rem; }
 }
+
+/* Local teacher read-through and one-week printing. */
+button[data-print-week] { padding: .45rem .7rem; border: 1px solid currentColor; border-radius: .3rem; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+summary { cursor: pointer; font-weight: 700; padding: .7rem 0; }
+details { margin: .6rem 0; }
+.week-card img { max-width: 100%; }
+.week-card section { margin-block: 1.5rem; }
+@media print {
+  .site-nav, .month-jump, button, .next-page { display: none !important; }
+  body, main { background: white !important; color: black !important; width: auto !important; max-width: none !important; }
+  .week-grid { display: block !important; }
+  body.print-one-week main > :not(.month-block):not(.print-target),
+  body.print-one-week .month-head,
+  body.print-one-week .week-card:not(.print-target) { display: none !important; }
+  body.print-one-week .month-block { margin: 0 !important; padding: 0 !important; }
+  .print-target { border: 0 !important; box-shadow: none !important; break-inside: auto; }
+  .print-target img { max-height: 160px !important; object-fit: contain; }
+}

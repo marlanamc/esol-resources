@@ -2,54 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Level 3 Progression Notes</title>
-<meta name="description" content="Things to watch, how to keep the guides in sync, and revision history.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teaching notes and local review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&amp;family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap">
 <link rel="stylesheet" href="style.css">
+<script src="reference.js" defer>
+</script>
 </head>
 <body>
-<nav class="site-nav" aria-label="Grammar progression pages"><div class="site-nav-inner">
-  <a class="brand" href="index.html">Level 3 Grammar Progression</a>
-  <ul><li><a href="index.html">Overview</a></li><li><a href="weeks.html">Week by week</a></li><li><a href="sequence.html">Sequence</a></li><li><a href="strands.html">Strands</a></li><li><a href="notes.html" aria-current="page">Notes</a></li></ul>
-</div></nav>
-<main class="wrap">
-  <section>
-    <div class="kicker">Things to watch</div>
-    <div class="watch">
-      <ul>
-        <li><strong>April is the densest month.</strong> W29, W30 and W31 are three of the hardest points of the year back to back. W30 has catch-up time built in; check those quiz scores.</li>
-        <li><strong>W32 used to → W33 be used to</strong> is a classic confusing pair. W33's "Don't Mix Them Up" page targets it; check the W33 quiz.</li>
-        <li><strong>Modals take five guides</strong> (W8, W17, W21, W28, plus W7's optional suggestions). If W21 is ever freed up, relative clauses (who, that, which) are the biggest gap and suit the workforce unit.</li>
-        <li><strong>W25 to W27 vocab looks shuffled.</strong> W25's set is pay words (gross pay, deductions, benefits), which fit W27's pay stubs better. The <code>mar-17-19</code> and <code>mar-24-26</code> topics also look swapped: "Communication &amp; Feedback" holds rights words (comply, violate) and "Rights, Rules &amp; Advocacy" holds feedback words.</li>
-        <li><strong>Some weeks have no vocab set:</strong> W13, and the catch-up and review weeks W15, W22 and W30. W14 has no verb quiz.</li>
-        <li><strong>Verb quiz numbers don't follow week order in the fall.</strong> W7 tests Quiz 7 (write, send), W8 Quiz 4, W9 Quiz 5, W10 Quiz 6, W11 Quiz 9, W12 Quiz 10, W13 Quiz 11, W15 Quiz 8. The comments in <code>verb-quiz-plan.ts</code> no longer match the weeks either.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="kicker">Keeping it in sync</div>
-    <h2>When a guide changes</h2>
-    <ul>
-      <li><strong>Rebuild the quizzes</strong> with <code>npm run quizzes:build</code>. CI fails if a guide changes without it (<code>check:generated</code>). Students see the new questions after <code>quizzes:sync -- --apply</code>.</li>
-      <li><strong>The course map does not sync on deploy.</strong> <code>vercel.json</code> uses its own build command, so after merging an edit to <code>src/lib/course-map-data.ts</code>, run <code>node --env-file=.env --import tsx prisma/seed-course-map.ts</code>. It writes immediately and removes map items that are no longer in the code.</li>
-      <li><strong>The Week by week page is a snapshot.</strong> It was built from the course map, <code>scripts/vocab/weekly-vocab-data.js</code> and <code>src/data/verb-quiz-plan.ts</code>; update it by hand if those change.</li>
-      <li><strong>A new guide needs a released activity row</strong>, or the finished-guide checkmark won't save. Run <code>scripts/course-map/ensure-guide-activities.ts</code>; it previews first and is safe to re-run.</li>
-      <li>Production writes need <code>ALLOW_PROD_DB_MUTATION=yes CONFIRM_DB_HOST=db.prisma.io</code> and <code>node --env-file=.env --import tsx ...</code>.</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="log">
-      <h3>Revision history</h3>
-      <p><strong>October 17, 2026:</strong> split into separate pages and added Week by week with each week's activities, vocab, verbs of the week and class ideas.</p>
-      <p><strong>October 2026</strong> (PR #119): W7 made the zero and first conditional the required guide; W9 moved just, already, yet to optional; W14 added will and going to; W15 replaced the 12-tense overview with a review of the six fall tenses; W24 became just, already, yet in a job search, replacing a repeat of W11; W31 kept page 1 to the third conditional only; W36 made the advanced future tenses a labeled preview. Quizzes rebuilt to match, and every course-map guide given a released activity row.</p>
-    </div>
-  </section>
-  <div class="next-page"><a href="strands.html">← Strands</a><span></span></div>
+<nav class="site-nav" aria-label="Grammar progression pages">
+<div class="site-nav-inner">
+<a class="brand" href="index.html">Level 3 Grammar Progression</a>
+<ul>
+<li>
+<a href="index.html">Overview</a>
+</li>
+<li>
+<a href="weeks.html">Week by week</a>
+</li>
+<li>
+<a href="sequence.html">Sequence</a>
+</li>
+<li>
+<a href="strands.html">Strands</a>
+</li>
+<li>
+<a href="lessons.html">Lesson previews</a>
+</li>
+<li>
+<a href="vocabulary.html">Vocabulary</a>
+</li>
+<li>
+<a href="notes.html" aria-current="page">Notes</a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="wide">
+<header class="page">
+<h1>Teaching notes and local review</h1>
+<p class="sub">Local review edition · Checked against local sources October 18, 2026 · Not deployed</p>
+</header>
+<section>
+<h2>Pacing and effort</h2>
+<ul>
+<li>Teach the short required tense lessons before offering the longer reference guides.</li>
+<li>April remains demanding. W30 has a small core target plus protected catch-up time.</li>
+<li>W33 starts by revisiting W21 used to. Gerund review returns in W29, W33, and W34.</li>
+<li>W27 revisits the pay vocabulary introduced in W25. March rights and feedback labels now match their words.</li>
+<li>Weeks 6–36 each assign six core vocabulary items with Word Lab. W13 adds grocery words; W15 and W30 have required review sets; W22 uses workplace conversation phrases. No optional vocabulary sets are assigned in Weeks 6–36. Weeks 1–5 are preserved. W14 has no verb quiz.</li>
+<li>Quiz IDs are stable identifiers, not week numbers. Dates now follow map placement.</li>
+<li>Record classroom effort through the teacher points workflow. App guide exercises recognize complete attempts; the local previews are read-only and award nothing.</li>
+</ul>
+</section>
+<section>
+<h2>Review status</h2>
+<p>Source revision, October 18, 2026. Weeks 1–5 are preserved. Weeks 6–36 have six core vocabulary items and Word Lab audio. Release verification is recorded separately; this reference is generated from source.</p>
+<p>
+<a href="maintenance.html">Technical maintenance and release checklist →</a>
+</p>
+</section>
 </main>
-
 </body>
 </html>

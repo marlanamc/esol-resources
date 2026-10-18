@@ -1,4 +1,5 @@
 import { WEEKLY_LANGUAGE_HELP, REVIEWED_RESCUE_PHRASES } from '@/data/word-rescue-language-help';
+import retired from '@/data/word-rescue-retired.json';
 import weekly from '@/data/word-rescue-weekly.generated.json';
 import { EVERYDAY_WORDS, RESCUE_HINTS } from '@/data/word-rescue-hints';
 import { COURSE_MAP_UNITS } from '@/lib/course-map-data';
@@ -6,7 +7,7 @@ import type { RescueCollection, RescueWord } from './types';
 
 export const RESCUE_WORDS: RescueWord[] = [
   ...EVERYDAY_WORDS,
-  ...weekly.flatMap(week => week.words.map(word => ({ ...word, help: WEEKLY_LANGUAGE_HELP[word.term], ...RESCUE_HINTS[word.term], phrase: RESCUE_HINTS[word.term]?.phrase ?? REVIEWED_RESCUE_PHRASES[word.term] ?? word.phrase }))),
+  ...[...weekly.flatMap(week => week.words), ...retired].map(word => ({ ...word, help: WEEKLY_LANGUAGE_HELP[word.term], ...RESCUE_HINTS[word.term], phrase: RESCUE_HINTS[word.term]?.phrase ?? REVIEWED_RESCUE_PHRASES[word.term] ?? word.phrase })),
 ];
 export const RESCUE_WORD_BY_ID = Object.fromEntries(RESCUE_WORDS.map(word => [word.id, word]));
 export const RESCUE_COLLECTIONS: RescueCollection[] = [
@@ -23,5 +24,5 @@ export const RESCUE_COLLECTIONS: RescueCollection[] = [
   })),
 ];
 export function rescueAudioPath(wordId: string, clip: 'word' | 'phrase' | 'sentence') {
-  return `/word-rescue-audio/${wordId}-${clip}.mp3?v=elevenlabs-fy27-1`;
+  return `/word-rescue-audio/${wordId}-${clip}.mp3?v=elevenlabs-fy27-2`;
 }

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maintaining this reference</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&amp;family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="reference.js" defer>
+</script>
+</head>
+<body>
+<nav class="site-nav" aria-label="Grammar progression pages">
+<div class="site-nav-inner">
+<a class="brand" href="index.html">Level 3 Grammar Progression</a>
+<ul>
+<li>
+<a href="index.html">Overview</a>
+</li>
+<li>
+<a href="weeks.html">Week by week</a>
+</li>
+<li>
+<a href="sequence.html">Sequence</a>
+</li>
+<li>
+<a href="strands.html">Strands</a>
+</li>
+<li>
+<a href="lessons.html">Lesson previews</a>
+</li>
+<li>
+<a href="vocabulary.html">Vocabulary</a>
+</li>
+<li>
+<a href="notes.html">Notes</a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="wide">
+<header class="page">
+<h1>Maintaining this reference</h1>
+<p class="sub">Local review edition · Checked against local sources October 18, 2026 · Not deployed</p>
+</header>
+<p>This page is for maintaining the app, not classroom instruction.</p>
+<ol>
+<li>Edit the source lessons and course map. Preserve existing guide and activity identities when moving lessons.</li>
+<li>Run <code>npm run quizzes:build</code>, then <code>npm run docs:grammar</code> to refresh the local read-through previews and weekly plans.</li>
+<li>Run quiz validation, curriculum, scheduling, and points checks before release.</li>
+<li>Before any future production deployment, fetch GitHub and verify the source includes the latest origin/main. Recheck before promotion.</li>
+<li>The Vercel build does not seed the course map. Guide activity release, vocabulary synchronization, course-map synchronization, and quiz synchronization are separate reviewed database operations. Preview changes first and preserve completion evidence.</li>
+<li>After an authorized release, verify the live domain and source commit. Keep this work local until approved.</li>
+</ol>
+<p>The local lesson preview exposes content and answer keys for teacher review. It does not authenticate, save answers, or award points.</p>
+</main>
+</body>
+</html>

@@ -89,6 +89,8 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> Core practice: She said that she needed rest (statement). She told me to rest (instruction). Try one of each, then use the remaining class block for catch-up work.</p>
+
         ${sceneCard("sceneClinicCall", "East Boston Neighborhood Health Center. Tuesday, 4:30 PM.", "sage")}
 
         <p>Luz is at home with her daughter Amina, who has asthma. Marco is still at the restaurant finishing his line-cook shift. The clinic calls about Amina's inhaler.</p>

@@ -505,7 +505,7 @@
         "prompt": "Which word means “to go in the same direction; to use directions step by step”?",
         "options": [
           "follow",
-          "depart",
+          "leave",
           "arrive"
         ],
         "answers": [
@@ -517,12 +517,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "_____ the street only when the walk signal is green.",
+        "prompt": "Which word means “to go from one side to the other”?",
         "options": [
-          "follow",
-          "cross",
-          "depart",
-          "arrive"
+          "leave",
+          "arrive",
+          "cross"
         ],
         "answers": [
           "cross"
@@ -687,12 +686,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "_____ the school office if your child will be absent.",
+        "prompt": "Which word means “to reach someone by phone, email, or message”?",
         "options": [
           "respond",
-          "contact",
           "confirm",
-          "connect"
+          "contact"
         ],
         "answers": [
           "contact"
@@ -879,7 +877,7 @@
         "section": "vocabulary",
         "prompt": "Which word means “to help or encourage someone or a cause”?",
         "options": [
-          "assist",
+          "help out",
           "support",
           "volunteer"
         ],
@@ -892,12 +890,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Everyone can _____ time or money to help the community garden.",
+        "prompt": "Which word means “to give time, money, or effort to help something”?",
         "options": [
-          "support",
-          "join",
-          "donate",
-          "contribute"
+          "contribute",
+          "volunteer",
+          "help out"
         ],
         "answers": [
           "contribute"
@@ -1447,16 +1444,16 @@
       {
         "id": "recap-2",
         "section": "vocabulary",
-        "prompt": "Which word means “to leave a place to start a trip”?",
+        "prompt": "Which word means “to go away from a place”?",
         "options": [
           "arrive",
-          "depart",
-          "assist"
+          "leave",
+          "help out"
         ],
         "answers": [
-          "depart"
+          "leave"
         ],
-        "explanation": "Depart: The bus departs at 7:15 every morning.",
+        "explanation": "Leave: What time does the bus leave?",
         "source": "oct-w2"
       },
       {
@@ -1996,33 +1993,32 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to take money out of a bank account”?",
+        "prompt": "Which word means “a white drink often sold in a carton or bottle”?",
         "options": [
-          "refund",
-          "withdraw",
-          "exchange"
+          "bread",
+          "milk",
+          "rice"
         ],
         "answers": [
-          "withdraw"
+          "milk"
         ],
-        "explanation": "withdraw: to take money out of a bank account. I need to withdraw cash from the ATM.",
-        "source": "vocab-dec-w2"
+        "explanation": "milk: a white drink often sold in a carton or bottle. How much milk is left?",
+        "source": "vocab-dec-groceries"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "_____ your paycheck into your bank account on payday.",
+        "prompt": "Which word means “foods with shells that are often cooked for breakfast”?",
         "options": [
-          "withdraw",
-          "deposit",
-          "charge",
-          "exchange"
+          "eggs",
+          "rice",
+          "bread"
         ],
         "answers": [
-          "deposit"
+          "eggs"
         ],
-        "explanation": "deposit: to put money into a bank account. Deposit your check before the end of the business day.",
-        "source": "vocab-dec-w2"
+        "explanation": "eggs: foods with shells that are often cooked for breakfast. How many eggs should I buy?",
+        "source": "vocab-dec-groceries"
       },
       {
         "id": "grammar-0",
@@ -2181,9 +2177,8 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Do I _____ for the low-income housing program?",
+        "prompt": "Which word means “to meet the requirements needed for something”?",
         "options": [
-          "apply",
           "qualify",
           "rent",
           "lease"
@@ -2374,7 +2369,7 @@
         "prompt": "Which word means “to look at two or more things to find differences”?",
         "options": [
           "afford",
-          "evaluate",
+          "check out",
           "compare"
         ],
         "answers": [
@@ -2386,12 +2381,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "I can't _____ an apartment in that expensive neighborhood.",
+        "prompt": "Which word means “to have enough money to pay for something”?",
         "options": [
-          "select",
-          "own",
-          "compare",
-          "afford"
+          "check out",
+          "afford",
+          "compare"
         ],
         "answers": [
           "afford"
@@ -2739,7 +2733,7 @@
         "prompt": "Which word means “to stop something bad from happening”?",
         "options": [
           "prevent",
-          "resolve",
+          "fix",
           "maintain"
         ],
         "answers": [
@@ -2751,17 +2745,16 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "The landlord agreed to _____ us for the plumber's bill.",
+        "prompt": "Which word means “to return money someone spent or lent”?",
         "options": [
-          "document",
-          "reimburse",
-          "notify",
-          "resolve"
+          "fix",
+          "maintain",
+          "pay back"
         ],
         "answers": [
-          "reimburse"
+          "pay back"
         ],
-        "explanation": "reimburse: to pay someone back for money they spent. The landlord agreed to reimburse us for the plumber's cost.",
+        "explanation": "pay back: to return money someone spent or lent. Will the landlord pay back the money I spent on the repair?",
         "source": "vocab-jan-w4"
       },
       {
@@ -3029,7 +3022,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 21,
-    "title": "Week 21 Quiz: Workplace Rules + Must, Have To, Should",
+    "title": "Week 21 Quiz: Used to: Past Jobs and Routines",
     "focusVerbs": [
       "wear",
       "keep",
@@ -3235,32 +3228,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Diego tells Sagal: 'You ___ tell Jennifer before you leave the line.' It's not a written rule, but it's important. Which word fits?",
+        "prompt": "Linh used to walk to work, but now she takes two buses. What does \"used to\" describe in sentences like this?",
         "options": [
-          "must",
-          "have to",
-          "should"
+          "Something that is still true today",
+          "A past habit or state that ended",
+          "A plan for the future"
         ],
         "answers": [
-          "should"
+          "A past habit or state that ended"
         ],
-        "explanation": "When something is strong advice from experience but not a written rule, 'should' is the right modal.",
-        "source": "must-have-to-should-at-work/must-have-to-should-at-work-q3"
+        "explanation": "Used to + base verb describes something from the past that changed.",
+        "source": "i-used-to-but-now-i/ut-q1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Which sentence has a grammar error?",
+        "prompt": "Linh starts work at 5 AM now. Back home, she started at 8. Which negative sentence is correct?",
         "options": [
-          "He must wear a hard hat on the site.",
-          "She has to clocks in before her shift.",
-          "You should ask before swapping shifts."
+          "I didn't used to start work at 5.",
+          "I didn't use to start work at 5.",
+          "I don't use to start work at 5."
         ],
         "answers": [
-          "She has to clocks in before her shift."
+          "I didn't use to start work at 5."
         ],
-        "explanation": "After 'has to,' use the base verb with no -s. The correct form is 'has to clock in,' not 'has to clocks in.'",
-        "source": "must-have-to-should-at-work/must-have-to-should-at-work-q5"
+        "explanation": "Negative: didn't use to (no -d on use).",
+        "source": "i-used-to-but-now-i/ut-q3"
       }
     ]
   },
@@ -3394,33 +3387,33 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Eating at your desk is _____ if you clean up after.",
+        "prompt": "Can you _____ at the front desk for ten minutes?",
         "options": [
-          "required",
-          "polite",
-          "prohibited",
-          "allowed"
+          "work out",
+          "show up",
+          "help out",
+          "hear from"
         ],
         "answers": [
-          "allowed"
+          "help out"
         ],
-        "explanation": "allowed: permitted; okay to do. Cell phones are not allowed during the test.",
-        "source": "vocab-mar-10-12"
+        "explanation": "help out: to help someone with something. My coworker helped out when the front desk got busy.",
+        "source": "vocab-mar-31-apr-2"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “protection from danger or harm”?",
+        "prompt": "Which word means “to feel excited about something in the future”?",
         "options": [
-          "must",
-          "should",
-          "safety"
+          "clarify",
+          "show up",
+          "look forward to"
         ],
         "answers": [
-          "safety"
+          "look forward to"
         ],
-        "explanation": "safety: protection from danger or harm. Safety is very important in the kitchen.",
-        "source": "vocab-mar-10-12"
+        "explanation": "look forward to: to feel excited about something in the future. We are looking forward to the long weekend.",
+        "source": "vocab-mar-31-apr-2"
       },
       {
         "id": "grammar-0",
@@ -3453,7 +3446,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 23,
-    "title": "Week 23 Quiz: Phrasal Verbs at Work + Workplace Rights",
+    "title": "Week 23 Quiz: Enjoy Doing vs. Want to Do at Work",
     "focusVerbs": [
       "get",
       "put",
@@ -3659,27 +3652,27 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Gabriela filled out the new-hire form at the desk. Put the words in order. (The pronoun must go in the middle.) Words: She / filled / it / out / at / the / desk",
+        "prompt": "Marisol talks about her restaurant job and her goals. Put the words in order. (One verb needs a gerund, one needs an infinitive.) Words: She / enjoys / working / and / wants / to / learn",
         "answers": [
-          "She filled it out at the desk"
+          "She enjoys working and wants to learn"
         ],
-        "explanation": "When using a pronoun with a separable phrasal verb, it goes in the middle: filled it out, not filled out it.",
-        "source": "phrasal-verbs-at-work/phrasal-verbs-at-work-qws1"
+        "explanation": "Enjoy takes a gerund (working). Want takes an infinitive (to learn). Both are used correctly here.",
+        "source": "enjoy-doing-want-to-do/edw-qws1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Gabriela's manager says, \"Make sure you clock in before 8 AM.\" What should Gabriela do?",
+        "prompt": "Elena says: 'I enjoy ___ to the guests.' Which form is correct?",
         "options": [
-          "Buy a clock for the break room",
-          "Use the machine to record when her shift starts",
-          "Call her manager at 8 AM"
+          "to talk",
+          "talking",
+          "talk"
         ],
         "answers": [
-          "Use the machine to record when her shift starts"
+          "talking"
         ],
-        "explanation": "Clock in means to record the start of your shift using the time machine or app.",
-        "source": "phrasal-verbs-at-work/phrasal-verbs-at-work-q1"
+        "explanation": "Enjoy always takes a gerund (verb + -ing). You cannot say 'enjoy to talk'.",
+        "source": "enjoy-doing-want-to-do/edw-q1"
       }
     ]
   },
@@ -4155,7 +4148,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 26,
-    "title": "Week 26 Quiz: Work Experience + Advocacy",
+    "title": "Week 26 Quiz: Past Perfect Continuous + Work Experience",
     "focusVerbs": [
       "teach",
       "show",
@@ -4330,11 +4323,10 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Workers have the _____ to a safe workplace.",
+        "prompt": "Which word means “official approval to do something”?",
         "options": [
-          "strict",
-          "comply",
-          "courtesy",
+          "advocate",
+          "respect",
           "right"
         ],
         "answers": [
@@ -4348,7 +4340,7 @@
         "section": "vocabulary",
         "prompt": "Which word means “to speak up for yourself or others”?",
         "options": [
-          "courtesy",
+          "respect",
           "advocate",
           "right"
         ],
@@ -4361,32 +4353,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Elena says: 'I enjoy ___ to the guests.' Which form is correct?",
-        "options": [
-          "to talk",
-          "talking",
-          "talk"
-        ],
+        "prompt": "Nadine ___ (work) nights for two years when the schedule changed. Use had been + -ing.",
         "answers": [
-          "talking"
+          "had been working"
         ],
-        "explanation": "Enjoy always takes a gerund (verb + -ing). You cannot say 'enjoy to talk'.",
-        "source": "enjoy-doing-want-to-do/edw-q1"
+        "explanation": "had been working. Count duration up to the stated time.",
+        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Elena says: 'I want ___ warehouse work.' Which form is correct?",
-        "options": [
-          "trying",
-          "to try",
-          "try"
-        ],
+        "prompt": "Minh ___ (clean) rooms for three hours when his break started. Use the past perfect continuous.",
         "answers": [
-          "to try"
+          "had been cleaning"
         ],
-        "explanation": "Want always takes an infinitive (to + verb). You cannot say 'want trying'.",
-        "source": "enjoy-doing-want-to-do/edw-q2"
+        "explanation": "had been cleaning. Count duration up to the stated time.",
+        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q2"
       }
     ]
   },
@@ -4584,12 +4566,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Losing your job can be a serious _____ of violating safety rules.",
+        "prompt": "Which word means “a result or effect of an action”?",
         "options": [
-          "decision",
           "consequence",
           "feedback",
-          "reflect"
+          "advice"
         ],
         "answers": [
           "consequence"
@@ -5057,12 +5038,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Rest and fluids will help you _____ quickly after the flu.",
+        "prompt": "Which word means “to get better, to make progress”?",
         "options": [
-          "prevent",
-          "adjust",
-          "recover",
-          "improve"
+          "exercise",
+          "improve",
+          "recover"
         ],
         "answers": [
           "improve"
@@ -5227,33 +5207,32 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Doctors say you should _____ for at least 30 minutes every day.",
+        "prompt": "Which word means “to do physical activity to stay healthy”?",
         "options": [
-          "recover",
-          "adjust",
-          "prevent",
-          "exercise"
+          "improve",
+          "exercise",
+          "recover"
         ],
         "answers": [
           "exercise"
         ],
         "explanation": "exercise: to do physical activity to stay healthy. You should exercise for at least 30 minutes every day.",
-        "source": "vocab-apr-14-16"
+        "source": "vocab-apr-w30-review"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “the way you live, your daily habits”?",
+        "prompt": "Which word means “the things you usually do each day”?",
         "options": [
-          "lifestyle",
+          "routine",
           "recover",
           "improve"
         ],
         "answers": [
-          "lifestyle"
+          "routine"
         ],
-        "explanation": "lifestyle: the way you live, your daily habits. Eating healthy and exercising are part of a good lifestyle.",
-        "source": "vocab-apr-14-16"
+        "explanation": "routine: the things you usually do each day. I want to change my evening routine.",
+        "source": "vocab-apr-w30-review"
       },
       {
         "id": "grammar-0",
@@ -5520,7 +5499,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 32,
-    "title": "Week 32 Quiz: I Used to + Wellness",
+    "title": "Week 32 Quiz: Future Perfect + Wellness Goals",
     "focusVerbs": [
       "run",
       "ride",
@@ -5695,12 +5674,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "A cough and sore throat are common _____ of a cold.",
+        "prompt": "Which word means “a sign that something is wrong with your body”?",
         "options": [
-          "symptom",
-          "dose",
-          "chronic",
-          "nutrient"
+          "temperature",
+          "prescribe",
+          "symptom"
         ],
         "answers": [
           "symptom"
@@ -5726,27 +5704,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"I used to walk to work, but now I ___ two buses.\"",
+        "prompt": "By the end of May, Beatriz ___ (complete) her walking plan. Use the future perfect.",
         "answers": [
-          "take"
+          "will have completed"
         ],
-        "explanation": "But now I + present simple shows the change. Used to is only for the past part.",
-        "source": "i-used-to-but-now-i/ut-fb1"
+        "explanation": "will have completed. Look at the completed result by a future deadline.",
+        "source": "future-perfect-goals/future-perfect-goals-q3"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Find the error: \"I used to lives with my parents.\"",
-        "options": [
-          "No error.",
-          "Error: should be \"used to live\" (base verb, no -s).",
-          "Error: should be \"didn't use to live\"."
-        ],
+        "prompt": "By Thursday, I ___ (do) my English homework. Use the future perfect.",
         "answers": [
-          "Error: should be \"used to live\" (base verb, no -s)."
+          "will have done"
         ],
-        "explanation": "After used to, use the base verb: live, not lives.",
-        "source": "i-used-to-but-now-i/ut-q7"
+        "explanation": "will have done. Look at the completed result by a future deadline.",
+        "source": "future-perfect-goals/future-perfect-goals-q4"
       }
     ]
   },
@@ -5944,11 +5917,10 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Deep breathing is one of my _____ for handling stress.",
+        "prompt": "Which word means “ways to handle stress or problems”?",
         "options": [
-          "wellness",
-          "balance",
           "coping skills",
+          "wellness",
           "self-care"
         ],
         "answers": [
@@ -6163,12 +6135,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Drink plenty of _____ when you are sick with a fever.",
+        "prompt": "Which word means “liquids you drink (water, tea, broth)”?",
         "options": [
-          "ailment",
-          "soothe",
           "fluids",
-          "remedy"
+          "processed",
+          "home remedy"
         ],
         "answers": [
           "fluids"
@@ -6179,16 +6150,16 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “a minor illness or discomfort (e.g. cold, headache)”?",
+        "prompt": "Which word means “pain or irritation in your throat”?",
         "options": [
           "processed",
-          "remedy",
-          "ailment"
+          "home remedy",
+          "sore throat"
         ],
         "answers": [
-          "ailment"
+          "sore throat"
         ],
-        "explanation": "ailment: a minor illness or discomfort (e.g. cold, headache). Ginger tea is good for a stomach ailment.",
+        "explanation": "sore throat: pain or irritation in your throat. I have a sore throat and a cough.",
         "source": "vocab-may-19-21"
       },
       {
@@ -6223,7 +6194,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 35,
-    "title": "Week 35 Quiz: Gerunds + Infinitives + Packed Week",
+    "title": "Week 35 Quiz: Future Perfect Continuous + Year-End Progress",
     "focusVerbs": [
       "begin",
       "quit",
@@ -6413,12 +6384,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Learning a new language is a big _____.",
+        "prompt": "Which word means “something difficult”?",
         "options": [
           "success",
           "challenge",
-          "progress",
-          "accomplish"
+          "progress"
         ],
         "answers": [
           "challenge"
@@ -6429,28 +6399,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Find the error: \"I enjoy to work overtime.\"",
-        "options": [
-          "No error.",
-          "Error: enjoy takes -ing (enjoy working).",
-          "Error: should be enjoy to working.",
-          "Error: should be enjoy work."
-        ],
+        "prompt": "By next month, I ___ (learn) English for a year. Use the future perfect continuous.",
         "answers": [
-          "Error: enjoy takes -ing (enjoy working)."
+          "will have been learning"
         ],
-        "explanation": "Enjoy is a gerund verb: enjoy working, not enjoy to work.",
-        "source": "gerunds-infinitives-full-review/gifr-q7"
+        "explanation": "will have been learning. Count duration up to the stated time.",
+        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q4"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Marisol pauses her podcast because she has a question for the bus driver. Put the words in order. Words: I / stopped / to / ask / the / driver",
+        "prompt": "By next month, we ___ (study) together for a year. Use the future perfect continuous.",
         "answers": [
-          "I stopped to ask the driver"
+          "will have been studying"
         ],
-        "explanation": "Stop + to + infinitive means pause your current activity in order to do something else.",
-        "source": "gerunds-infinitives-full-review/gifr-ws1"
+        "explanation": "Keep the helper words together: will have been studying.",
+        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q5"
       }
     ]
   },
@@ -6615,32 +6579,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa is texting the babysitter at work right now. Which sentence fits?",
-        "options": [
-          "She texts the babysitter at work.",
-          "She is texting the babysitter at work.",
-          "She has texted the babysitter at work."
-        ],
+        "prompt": "Rosa already filled out the Level 4 form. Put the words in order. Words: She / is / going / to / take / evening / classes / in / September",
         "answers": [
-          "She is texting the babysitter at work."
+          "She is going to take evening classes in September"
         ],
-        "explanation": "Present continuous for an action in progress right now.",
-        "source": "all-the-tenses-year-in-review/atyr-q2"
+        "explanation": "Going to is for a plan that is already decided. Rosa filled out the form, so the plan is made.",
+        "source": "all-the-tenses-year-in-review/atyr-ws1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Find the error: \"I have lived here since 2021.\"",
-        "options": [
-          "No error.",
-          "Error: should be 'lived' (past simple).",
-          "Error: should be 'am living' (present continuous)."
-        ],
+        "prompt": "I ___ (work) for two hours when my break started. Use the past perfect continuous.",
         "answers": [
-          "No error."
+          "had been working"
         ],
-        "explanation": "Present perfect with 'since' connects a past start to now.",
-        "source": "all-the-tenses-year-in-review/atyr-q4"
+        "explanation": "The complete verb phrase is had been working.",
+        "source": "all-the-tenses-year-in-review/year-review-past-duration"
       }
     ]
   },
@@ -6805,27 +6759,22 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Rosa ___ class every Tuesday and Thursday.\" (It's her regular schedule.)",
+        "prompt": "By Friday, I ___ (finish) my plan. Use the future perfect.",
         "answers": [
-          "takes"
+          "will have finished"
         ],
-        "explanation": "Present simple for routines and fixed schedules.",
-        "source": "all-the-tenses-year-in-review/atyr-fb1"
+        "explanation": "The complete verb phrase is will have finished.",
+        "source": "all-the-tenses-year-in-review/year-review-future-result"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa finished her homework, and then the bus came. Which sentence fits?",
-        "options": [
-          "She had already finished her homework when the bus came.",
-          "She already finishes her homework when the bus came.",
-          "She has already finished her homework when the bus came."
-        ],
+        "prompt": "By June, I ___ (study) here for about nine months. Use the future perfect continuous.",
         "answers": [
-          "She had already finished her homework when the bus came."
+          "will have been studying"
         ],
-        "explanation": "Past perfect for something finished before another past event.",
-        "source": "all-the-tenses-year-in-review/atyr-q6"
+        "explanation": "The complete verb phrase is will have been studying.",
+        "source": "all-the-tenses-year-in-review/year-review-future-duration"
       }
     ]
   },
@@ -6990,28 +6939,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa already filled out the Level 4 form. Put the words in order. Words: She / is / going / to / take / evening / classes / in / September",
-        "answers": [
-          "She is going to take evening classes in September"
+        "prompt": "Rosa is texting the babysitter at work right now. Which sentence fits?",
+        "options": [
+          "She texts the babysitter at work.",
+          "She is texting the babysitter at work.",
+          "She has texted the babysitter at work."
         ],
-        "explanation": "Going to is for a plan that is already decided. Rosa filled out the form, so the plan is made.",
-        "source": "all-the-tenses-year-in-review/atyr-ws1"
+        "answers": [
+          "She is texting the babysitter at work."
+        ],
+        "explanation": "Present continuous for an action in progress right now.",
+        "source": "all-the-tenses-year-in-review/atyr-q2"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "After a preposition like \"of\" or \"in,\" which form is correct?",
+        "prompt": "Find the error: \"I have lived here since 2021.\"",
         "options": [
-          "verb + -ing (gerund)",
-          "to + base verb (infinitive)",
-          "base verb only",
-          "past tense"
+          "No error.",
+          "Error: should be 'lived' (past simple).",
+          "Error: should be 'am living' (present continuous)."
         ],
         "answers": [
-          "verb + -ing (gerund)"
+          "No error."
         ],
-        "explanation": "After prepositions: tired of waiting, interested in learning.",
-        "source": "gerunds-infinitives-full-review/gifr-q1"
+        "explanation": "Present perfect with 'since' connects a past start to now.",
+        "source": "all-the-tenses-year-in-review/atyr-q4"
       }
     ]
   }

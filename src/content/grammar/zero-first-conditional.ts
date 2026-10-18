@@ -89,6 +89,8 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> First, build will + base verb: I will call. She will help. After if, use the present simple: If I need help, I will call.</p>
+
         ${sceneCard("sceneRestaurantManager", "La Palma Restaurant, East Boston. Monday morning before the lunch rush. The manager, Scott, checks his clipboard.", "terracotta")}
 
         <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.8"><em>Carlos is a prep cook at La Palma. He became a U.S. citizen in June, and this November is his first election. Election Day is Tuesday, November 3.</em></p>

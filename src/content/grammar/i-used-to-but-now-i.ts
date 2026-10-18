@@ -89,6 +89,8 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> Workplace warm-up: You have to wear closed-toe shoes. You should arrive a little early. You cannot block the exit. Then compare: I used to work nights; now I work days.</p>
+
         ${sceneCard("sceneBusCommute", "On the bus to work. Tuesday, 4:30 AM.", "sage")}
 
         <p>Linh works as a housekeeper at a hotel in East Boston. She moved from Vietnam four years ago. Her shift is 5 AM to 1 PM. On the bus to work, she video-calls her sister Mai. It is afternoon in Vietnam.</p>
@@ -101,7 +103,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Used to + base verb</strong> = a past habit or state that is <em>not</em> true now. It is not the same as <strong>am used to</strong> (that comes next week).</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Used to + base verb</strong> = a past habit or state that is <em>not</em> true now. It is not the same as <strong>am used to</strong> (introduced in Week 33).</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -438,7 +440,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">
             <strong>Used to + verb</strong> = past habit, not true now.<br/>
-            <strong>Be / get used to</strong> = normal now, or becoming normal (different grammar). You will learn be/get used to next week.
+            <strong>Be / get used to</strong> = normal now, or becoming normal (different grammar). You will learn be/get used to in Week 33.
           </p>
         </div>
 
@@ -449,7 +451,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("still changing", "blue")}
-            <span><em>I am <strong>getting used to</strong> the cold.</em> (Preview for next week. Not the same as used to.)</span>
+            <span><em>I am <strong>getting used to</strong> the cold.</em> (Optional preview for Week 33. Not the same as used to.)</span>
           </div>
         </div>
       `,

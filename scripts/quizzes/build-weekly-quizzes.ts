@@ -37,7 +37,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
         ...buildVerbFormsTable(plan.verbs),
         { id: 'recap-0', section: 'vocabulary', prompt: 'Which word means “to meet someone new and tell them your name”?', options: ['introduce', 'volunteer', 'calculate'], answers: ['introduce'], explanation: 'Introduce: She introduced herself on the first day of class.', source: 'sep-w1' },
         { id: 'recap-1', section: 'vocabulary', prompt: 'Which word means “to pay close attention to one thing”?', options: ['focus', 'depart', 'donate'], answers: ['focus'], explanation: 'Focus: Focus on one section at a time when you study.', source: 'oct-learning' },
-        { id: 'recap-2', section: 'vocabulary', prompt: 'Which word means “to leave a place to start a trip”?', options: ['arrive', 'depart', 'assist'], answers: ['depart'], explanation: 'Depart: The bus departs at 7:15 every morning.', source: 'oct-w2' },
+        { id: 'recap-2', section: 'vocabulary', prompt: 'Which word means “to go away from a place”?', options: ['arrive', 'leave', 'help out'], answers: ['leave'], explanation: 'Leave: What time does the bus leave?', source: 'oct-w2' },
         { id: 'recap-3', section: 'vocabulary', prompt: 'Which word means “to offer to do something without being paid”?', options: ['volunteer', 'purchase', 'compare'], answers: ['volunteer'], explanation: 'Volunteer: She volunteers at the food bank every Saturday.', source: 'nov-w1' },
         { id: 'recap-4', section: 'vocabulary', prompt: 'Which word means “to plan how much money to spend”?', options: ['budget', 'introduce', 'transfer'], answers: ['budget'], explanation: 'Budget: Budget your money so you can pay all your bills.', source: 'dec-w1' },
       ],

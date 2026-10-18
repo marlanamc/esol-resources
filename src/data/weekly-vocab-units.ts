@@ -25,6 +25,8 @@ export const VOCAB_WEEKLY_UNITS_CYCLE1: WeeklyVocabUnit[] = [
   { id: "nov-w4", label: "November Week 4" },
   { id: "dec-w1", label: "December Week 1" },
   { id: "dec-w2", label: "December Week 2" },
+  { id: "dec-groceries", label: "Week 13 · Groceries" },
+  { id: "dec-fall-review", label: "Week 15 · Fall review" },
   { id: "jan-w1", label: "January Week 1" },
   { id: "jan-w2", label: "January Week 2" },
   { id: "jan-w3", label: "January Week 3" },
@@ -67,10 +69,10 @@ function buildCycle2WeekLabel(id: string, orderedIds: readonly string[]): string
 }
 
 /** Cycle 2: February – June (Units 6–10) */
-export const VOCAB_WEEKLY_UNITS_CYCLE2: WeeklyVocabUnit[] = CYCLE2_WEEK_IDS.map((id) => ({
+export const VOCAB_WEEKLY_UNITS_CYCLE2: WeeklyVocabUnit[] = [...CYCLE2_WEEK_IDS.map((id) => ({
   id,
   label: buildCycle2WeekLabel(id, CYCLE2_WEEK_IDS),
-}));
+})), { id: "apr-w30-review", label: "Week 30 · Health review" }];
 
 /** All weekly vocab units in calendar order */
 export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [

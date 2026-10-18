@@ -1,0 +1,112 @@
+[
+  {
+    "set": "oct-w2",
+    "from": "depart",
+    "to": "leave"
+  },
+  {
+    "set": "oct-w2",
+    "from": "locate",
+    "to": "find"
+  },
+  {
+    "set": "oct-w4",
+    "from": "decline",
+    "to": "turn down"
+  },
+  {
+    "set": "oct-w4",
+    "from": "postpone",
+    "to": "reschedule"
+  },
+  {
+    "set": "nov-w1",
+    "from": "assist",
+    "to": "help out"
+  },
+  {
+    "set": "jan-w1",
+    "from": "occupy",
+    "to": "move in"
+  },
+  {
+    "set": "jan-w2",
+    "from": "evaluate",
+    "to": "check out"
+  },
+  {
+    "set": "jan-w2",
+    "from": "select",
+    "to": "choose"
+  },
+  {
+    "set": "jan-w4",
+    "from": "resolve",
+    "to": "fix"
+  },
+  {
+    "set": "jan-w4",
+    "from": "notify",
+    "to": "let someone know"
+  },
+  {
+    "set": "jan-w4",
+    "from": "reimburse",
+    "to": "pay back"
+  },
+  {
+    "set": "mar-17-19",
+    "from": "courtesy",
+    "to": "respect"
+  },
+  {
+    "set": "mar-17-19",
+    "from": "comply",
+    "to": "follow the rules"
+  },
+  {
+    "set": "mar-17-19",
+    "from": "violate",
+    "to": "break a rule"
+  },
+  {
+    "set": "mar-24-26",
+    "from": "reflect",
+    "to": "think about"
+  },
+  {
+    "set": "apr-14-16",
+    "from": "lifestyle",
+    "to": "routine"
+  },
+  {
+    "set": "may-5-7",
+    "from": "nutrient",
+    "to": "side effect"
+  },
+  {
+    "set": "may-12-14",
+    "from": "mindful",
+    "to": "take a break"
+  },
+  {
+    "set": "may-19-21",
+    "from": "remedy",
+    "to": "home remedy"
+  },
+  {
+    "set": "may-19-21",
+    "from": "soothe",
+    "to": "rest"
+  },
+  {
+    "set": "may-19-21",
+    "from": "ailment",
+    "to": "sore throat"
+  },
+  {
+    "set": "may-26-28",
+    "from": "reflection",
+    "to": "look back"
+  }
+]

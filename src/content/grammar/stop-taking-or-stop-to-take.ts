@@ -82,6 +82,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
       title: "Stop Taking the Old Medicine",
       icon: "💊",
       explanation: `
+<p><strong>Bring back W23:</strong> I enjoy walking. I want to walk. Today we compare patterns that change the meaning.</p>
         ${sceneCard("scenePharmacy", "East Boston Pharmacy on Meridian Street, Thursday 10:15 PM.", "terracotta")}
 
         <p>Marisol just finished her closing shift at the warehouse. She stops at the pharmacy on the way home. The pharmacist, Jennifer, has her new prescription ready, but there's something important she needs to know.</p>

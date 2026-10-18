@@ -1,0 +1,156 @@
+[
+  {
+    "id": "oct-w2-depart",
+    "term": "depart",
+    "definition": "to leave a place",
+    "sentence": "The bus departs from Main Street at 7:00 AM.",
+    "phrase": "departs from Main"
+  },
+  {
+    "id": "oct-w2-locate",
+    "term": "locate",
+    "definition": "to find the position of something",
+    "sentence": "Can you locate the nearest pharmacy on the map?",
+    "phrase": "locate the nearest"
+  },
+  {
+    "id": "oct-w4-decline",
+    "term": "decline",
+    "definition": "to politely say no to an offer or invitation",
+    "sentence": "She had to decline the meeting because she was sick.",
+    "phrase": "decline the meeting"
+  },
+  {
+    "id": "oct-w4-postpone",
+    "term": "postpone",
+    "definition": "to move something to a later time",
+    "sentence": "We need to postpone the meeting until next week.",
+    "phrase": "postpone the meeting"
+  },
+  {
+    "id": "nov-w1-assist",
+    "term": "assist",
+    "definition": "to help someone with a task",
+    "sentence": "Can you assist me with this form?",
+    "phrase": "assist me with"
+  },
+  {
+    "id": "jan-w1-occupy",
+    "term": "occupy",
+    "definition": "to live in or use a space",
+    "sentence": "How many people will occupy this apartment?",
+    "phrase": "occupy this apartment"
+  },
+  {
+    "id": "jan-w2-evaluate",
+    "term": "evaluate",
+    "definition": "to study all parts of something to judge its quality or value",
+    "sentence": "Evaluate the location, price, and size before deciding.",
+    "phrase": "Evaluate the location"
+  },
+  {
+    "id": "jan-w2-select",
+    "term": "select",
+    "definition": "to choose something from a group of options",
+    "sentence": "We will select an apartment by the end of the week.",
+    "phrase": "select an apartment"
+  },
+  {
+    "id": "jan-w4-resolve",
+    "term": "resolve",
+    "definition": "to find a solution and fix a problem",
+    "sentence": "The landlord promised to resolve the heating issue today.",
+    "phrase": "resolve the heating"
+  },
+  {
+    "id": "jan-w4-notify",
+    "term": "notify",
+    "definition": "to officially tell someone about something",
+    "sentence": "Notify your landlord in writing if you plan to move out.",
+    "phrase": "Notify your landlord"
+  },
+  {
+    "id": "jan-w4-reimburse",
+    "term": "reimburse",
+    "definition": "to pay someone back for money they spent",
+    "sentence": "The landlord agreed to reimburse us for the plumber's cost.",
+    "phrase": "reimburse us for"
+  },
+  {
+    "id": "mar-17-19-courtesy",
+    "term": "courtesy",
+    "definition": "polite and respectful behavior",
+    "sentence": "Treat all customers with patience and courtesy.",
+    "phrase": "courtesy"
+  },
+  {
+    "id": "mar-17-19-comply",
+    "term": "comply",
+    "definition": "to follow rules or requirements",
+    "sentence": "All employees must comply with the new regulations.",
+    "phrase": "comply with the"
+  },
+  {
+    "id": "mar-17-19-violate",
+    "term": "violate",
+    "definition": "to break a rule or law",
+    "sentence": "If you violate the policy, you may receive a warning.",
+    "phrase": "violate the policy"
+  },
+  {
+    "id": "mar-24-26-reflect",
+    "term": "reflect",
+    "definition": "to think carefully about something",
+    "sentence": "Take some time to reflect on your performance this year.",
+    "phrase": "reflect on your"
+  },
+  {
+    "id": "apr-14-16-lifestyle",
+    "term": "lifestyle",
+    "definition": "the way you live, your daily habits",
+    "sentence": "Eating healthy and exercising are part of a good lifestyle.",
+    "phrase": "lifestyle"
+  },
+  {
+    "id": "may-5-7-nutrient",
+    "term": "nutrient",
+    "definition": "something in food your body needs, like vitamins",
+    "sentence": "Fruits and vegetables are full of important nutrients.",
+    "phrase": "nutrients"
+  },
+  {
+    "id": "may-12-14-mindful",
+    "term": "mindful",
+    "definition": "aware and present in the moment",
+    "sentence": "Try to be mindful of how much sugar you eat.",
+    "phrase": "mindful of how"
+  },
+  {
+    "id": "may-19-21-remedy",
+    "term": "remedy",
+    "definition": "something you do or take at home to feel better",
+    "sentence": "Honey and lemon is a good home remedy for a sore throat.",
+    "phrase": "remedy for a"
+  },
+  {
+    "id": "may-19-21-soothe",
+    "term": "soothe",
+    "definition": "to calm or comfort (e.g. a sore throat)",
+    "sentence": "Warm milk can soothe an upset stomach.",
+    "phrase": "soothe an upset"
+  },
+  {
+    "id": "may-19-21-ailment",
+    "term": "ailment",
+    "definition": "a minor illness or discomfort (e.g. cold, headache)",
+    "sentence": "Ginger tea is good for a stomach ailment.",
+    "phrase": "ailment"
+  },
+  {
+    "id": "may-26-28-reflection",
+    "term": "reflection",
+    "definition": "thinking about your experience",
+    "sentence": "Quiet reflection helps me solve problems.",
+    "phrase": "reflection helps me"
+  }
+]

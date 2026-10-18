@@ -755,7 +755,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                             onAnswerChange={handleAnswerChange}
                                             onSectionComplete={handleSectionComplete}
                                             onExerciseComplete={handleExerciseComplete}
-                                            rewardAttempts={completionKey === "verb-forms-overview" || completionKey === "questions-real-answers"}
+                                            rewardAttempts={completionKey !== 'welcome-back-tenses-review' && completionKey !== 'parts-of-speech'}
                                             unlocked={practiceUnlocked}
                                         />
                                     </div>

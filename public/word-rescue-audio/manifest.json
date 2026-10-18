@@ -3,8 +3,8 @@
   "provider": "elevenlabs",
   "voice": "EXAVITQu4vr4xnSDxMaL",
   "model": "eleven_turbo_v2_5",
-  "words": 199,
-  "clips": 597,
+  "words": 223,
+  "clips": 669,
   "sources": "elevenlabs-sources.json",
   "scope": "FY27 collections and everyday words; legacy saved sessions retain previous audio"
 }

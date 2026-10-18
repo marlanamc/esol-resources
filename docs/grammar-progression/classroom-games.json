@@ -1,0 +1,114 @@
+[
+  {
+    "week": 1,
+    "title": "Getting to Know You Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit1_cards.html",
+    "select": "Introduce a Partner",
+    "minutes": "5–10",
+    "teachingNote": "Pairs ask three questions, then introduce each other. Use “She works…” and ask one follow-up question."
+  },
+  {
+    "week": 6,
+    "title": "Daily Life Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit2_cards.html",
+    "select": "Directions Without a Phone",
+    "minutes": "5–10",
+    "teachingNote": "Use go, turn, cross, and transfer. Have the listener repeat the directions to check understanding."
+  },
+  {
+    "week": 8,
+    "title": "Daily Life Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit2_cards.html",
+    "select": "Confirm the Appointment",
+    "minutes": "5–10",
+    "teachingNote": "Practice confirming the day and time. Add “Can you repeat that?” and repeat the details back."
+  },
+  {
+    "week": 10,
+    "title": "Community Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit3_cards.html",
+    "select": "Recommend One Real Place",
+    "minutes": "5–10",
+    "teachingNote": "Recommend a place, then adapt the follow-up: “What are you interested in doing there?”"
+  },
+  {
+    "week": 12,
+    "title": "Consumer Smarts Superlative Game",
+    "url": "https://esol-level-3.vercel.app/activities/games/superlative/unit4-consumer-smarts-game.html",
+    "select": "Grocery Shopping or Clothes Shopping",
+    "minutes": "5–10",
+    "teachingNote": "Choose just one category. Compare two options, then explain which is best and why."
+  },
+  {
+    "week": 17,
+    "title": "Housing Ranking Game",
+    "url": "https://esol-level-3.vercel.app/activities/games/ranking/housing-ranking-game.html",
+    "select": "Apartment features: most to least important",
+    "minutes": "5–10",
+    "teachingNote": "Rank the apartment features. Add “We have to…” or “We don’t have to…” where it fits. Accept different priorities with reasons."
+  },
+  {
+    "week": 18,
+    "title": "Housing Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit5_cards.html",
+    "select": "No Heat in January",
+    "minutes": "5–10",
+    "teachingNote": "Role-play a repair call. Add the week’s pattern: “I need to report a problem. I want to know when someone can come.”"
+  },
+  {
+    "week": 20,
+    "title": "Workforce Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit6_cards.html",
+    "select": "Experience You Don't Call Experience",
+    "minutes": "5–10",
+    "teachingNote": "Turn experience into job-application sentences. Teacher adaptation: add one “Before I…, I had…” sentence after the basic task."
+  },
+  {
+    "week": 24,
+    "title": "Workforce Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit6_cards.html",
+    "select": "Following Up After the Interview",
+    "minutes": "5–10",
+    "teachingNote": "Practice a short follow-up call. Teacher adaptation: “I have already interviewed. I haven’t heard back yet.”"
+  },
+  {
+    "week": 27,
+    "title": "Career Awareness Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit7_cards.html",
+    "select": "Read the Stub",
+    "minutes": "5–10",
+    "teachingNote": "Revisit gross pay, deductions, and benefits from W25. Use “Tax is taken out” and explain one line in plain English."
+  },
+  {
+    "week": 29,
+    "title": "Health Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit8_cards.html",
+    "select": "Make the Appointment",
+    "minutes": "5–10",
+    "teachingNote": "Use fictional names and details. Practice “I have a sore throat” and “I’d like to make an appointment.” This is speaking practice, not a medical-advice activity."
+  },
+  {
+    "week": 31,
+    "title": "Health Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit8_cards.html",
+    "select": "The Pharmacy Called",
+    "minutes": "5–10",
+    "teachingNote": "Ask when a prescription will be ready and repeat the answer. Optional teacher follow-up: “If I had called earlier, I would have known.”"
+  },
+  {
+    "week": 32,
+    "title": "Wellness Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit9_cards.html",
+    "select": "Ten Minutes Alone",
+    "minutes": "5–10",
+    "teachingNote": "Discuss a realistic short break. Teacher adaptation: add a small milestone with “By Friday, I will have…”; the original game does not teach this tense."
+  },
+  {
+    "week": 36,
+    "title": "Future Goals Conversation Cards",
+    "url": "https://esol-level-3.vercel.app/activities/games/conversation_cards/Unit10_cards.html",
+    "select": "Advice for the Next Class",
+    "minutes": "5–10",
+    "teachingNote": "Choose three helpful tips. Add one example of progress from this year; students can use familiar language before trying a new tense."
+  }
+]

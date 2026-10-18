@@ -146,7 +146,7 @@ export function ExerciseSection({
         if (allCorrect) {
             onComplete();
         }
-        // A complete attempt earns effort credit in the Week 4 overview.
+        // A complete attempt earns effort credit without marking imperfect work as mastery.
         if (allCorrect || (rewardAttempts && allAnswered)) {
             if (onExerciseComplete) {
                 onExerciseComplete({

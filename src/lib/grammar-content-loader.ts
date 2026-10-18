@@ -11,6 +11,9 @@ export interface GrammarContentRegistryEntry {
 }
 
 export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry> = {
+    "future-perfect-continuous-progress": { sourceFile: "src/content/grammar/future-perfect-continuous-progress.ts", loader: () => import("@/content/grammar/future-perfect-continuous-progress") },
+    "future-perfect-goals": { sourceFile: "src/content/grammar/future-perfect-goals.ts", loader: () => import("@/content/grammar/future-perfect-goals") },
+    "past-perfect-continuous-work": { sourceFile: "src/content/grammar/past-perfect-continuous-work.ts", loader: () => import("@/content/grammar/past-perfect-continuous-work") },
     "all-four-conditionals-quick-tour": {
         sourceFile: "src/content/grammar/all-four-conditionals-quick-tour.ts",
         loader: () => import("@/content/grammar/all-four-conditionals-quick-tour"),

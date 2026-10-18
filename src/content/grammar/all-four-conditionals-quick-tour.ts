@@ -89,6 +89,8 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> Quick verb-pattern warm-up: I enjoy walking. I want to rest. I stopped working = the work ended. I stopped to rest = I paused another activity in order to rest.</p>
+
         ${sceneCard("sceneWarehouseLift", "Warehouse loading dock, Chelsea. Monday, 10 PM.", "terracotta")}
 
         <p><strong>Yemi</strong> is a packer at a warehouse in Chelsea. Last month she hurt her knee and missed three shifts. Now she is moving to nights, because they pay more. Tonight is her first night shift, so supervisor <strong>Brian</strong> reviews lifting rules before she goes back to pallets.</p>

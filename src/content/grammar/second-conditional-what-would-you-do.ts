@@ -102,6 +102,8 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> Keep this core pattern small: If I had more time, I would study. Try one example, then use the remaining class block for catch-up work.</p>
+
         ${sceneCard("sceneRestaurant", "East Boston restaurant kitchen. Thursday night, end of shift.", "terracotta")}
 
         <p style="margin: 0.75rem 0">Carmen works at a restaurant in East Boston. Her coworker Marta works there too. Tonight, Carmen's manager, Jennifer, gave her a new schedule. This week, we follow Carmen as she thinks about what to do.</p>

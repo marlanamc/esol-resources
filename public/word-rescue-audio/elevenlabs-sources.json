@@ -4774,5 +4774,1109 @@
     "model": "eleven_turbo_v2_5",
     "source": "elevenlabs",
     "review": "needs-listening-review"
+  },
+  "dec-fall-review-introduce-word.mp3": {
+    "text": "introduce",
+    "signature": "ffa44aa40d7ede4e357e8492a4d94ffd405b4fbd46d6e481e150aef52c0edb72",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-introduce-phrase.mp3": {
+    "text": "introduce yourself",
+    "signature": "fc61dd7048866801347f451f8f4c2488b4ab64b6dc81cbf8ba4b949c837cd18b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-introduce-sentence.mp3": {
+    "text": "Please introduce yourself to the class.",
+    "signature": "5617c0d12f6d8b9fec4e5e68ca5a94ab98bead62ac3c08c5d98fc6b2d8ddb5d9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-focus-word.mp3": {
+    "text": "focus",
+    "signature": "c42c01e4922d490f284752a0c0d018f3485c0013c1956b247bf55d18f71bd014",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-focus-phrase.mp3": {
+    "text": "focus on one sentence",
+    "signature": "6f2e95875eabac88418b1400c2c3e7d7676f409d5be8b84d579c6fb822717a2d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-focus-sentence.mp3": {
+    "text": "Focus on one sentence at a time.",
+    "signature": "5dd6bb0f6c4f36ef919e103f79e7fe3e55766df4e533f2f947389402055595ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-compare-word.mp3": {
+    "text": "compare",
+    "signature": "5eced8bfa8e0625e5fb39b7b4bdffa44194e69c3e5c3cc09bd29fff72868b015",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-compare-phrase.mp3": {
+    "text": "compare two sentences",
+    "signature": "4162c05d8b8afc53da3d4590c0a4bd20e78dbfe2e0b30ba1d07042496d2f051f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-leave-word.mp3": {
+    "text": "leave",
+    "signature": "24f5ffd8516e9bcbdc231ac7d08c2af6d1501d735fef4f04b5bd5b03d21b2069",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-leave-phrase.mp3": {
+    "text": "leave",
+    "signature": "24f5ffd8516e9bcbdc231ac7d08c2af6d1501d735fef4f04b5bd5b03d21b2069",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-leave-word.mp3": {
+    "text": "leave",
+    "signature": "24f5ffd8516e9bcbdc231ac7d08c2af6d1501d735fef4f04b5bd5b03d21b2069",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-leave-phrase.mp3": {
+    "text": "leave",
+    "signature": "24f5ffd8516e9bcbdc231ac7d08c2af6d1501d735fef4f04b5bd5b03d21b2069",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-leave-sentence.mp3": {
+    "text": "What time does the bus leave?",
+    "signature": "e10ccdae1cc27131d6bc93f5be036dfb08e26b5473865f6f1bf9b0b63ff52051",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-leave-sentence.mp3": {
+    "text": "What time does the bus leave?",
+    "signature": "e10ccdae1cc27131d6bc93f5be036dfb08e26b5473865f6f1bf9b0b63ff52051",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-find-phrase.mp3": {
+    "text": "find the bus",
+    "signature": "12509de9edc5eb450fc32c67f450b4304a6428f877f27f73db6c46e3858b9399",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-find-word.mp3": {
+    "text": "find",
+    "signature": "8fb6fee6549280caf8a319d3e2e69b8d760e76ed2103dc504059d1069522f204",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w2-find-sentence.mp3": {
+    "text": "Can you help me find the bus stop?",
+    "signature": "a609fa766dc99b52e103f6faf35181e6dcce9be0ac9a56fd5f1a1fb5deef4d5f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-turn-down-word.mp3": {
+    "text": "turn down",
+    "signature": "5ddac5109838eb48c4d6c65ae1db210a1b7ddba2ccbcf841dc2328551d1ccb8c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-turn-down-phrase.mp3": {
+    "text": "turn down the extra",
+    "signature": "fd9795b64f24f389f510568d804103c35efe7c640b47511915f31964b3d39fbe",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-turn-down-sentence.mp3": {
+    "text": "I had to turn down the extra shift.",
+    "signature": "6d79a15b051634fa7c4d7ec7c13013c389ca9710f25ed9a765908ef1c6aa9ce3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-reschedule-word.mp3": {
+    "text": "reschedule",
+    "signature": "6a4ef914614e7c7bcd900f3ac4e8de35dbe179dfb9ccaea8a100e73c13e1e338",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-reschedule-phrase.mp3": {
+    "text": "reschedule my appointment",
+    "signature": "25a6e6966272d769f4d00d8decc66cb28c924869f81fbc5fad4e33bcb3141f97",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-volunteer-word.mp3": {
+    "text": "volunteer",
+    "signature": "94af682cc6ed601697fdac59b4acebb7c9052cf51e71af13d26862eb0bd4474b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-volunteer-phrase.mp3": {
+    "text": "volunteers at the",
+    "signature": "cb3712e44fc6498d9fb9215b36118ed949fb31eda33756784e40a53e4a3dd35e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-volunteer-sentence.mp3": {
+    "text": "She volunteers at the food bank every Saturday.",
+    "signature": "d83c3a40dd709193d80071f3c5543e5e9fc20045460df482ad293bac5fc86b02",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "oct-w4-reschedule-sentence.mp3": {
+    "text": "I need to reschedule my appointment.",
+    "signature": "3d3519c63591e7792477bd2c9fa7f597522a24215130ba26124c2ae1e9efb11a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-help-out-word.mp3": {
+    "text": "help out",
+    "signature": "5db9388c5dcd6364d35f5b80e5ac912d8cf7cef60f152ce3493f2a4c52f57a24",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-help-out-word.mp3": {
+    "text": "help out",
+    "signature": "5db9388c5dcd6364d35f5b80e5ac912d8cf7cef60f152ce3493f2a4c52f57a24",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-help-out-phrase.mp3": {
+    "text": "help out at the",
+    "signature": "f13ac434a587ff985b503400acf9d8c54ef642c83b7c95dc7f9c52f0811b50bb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-compare-sentence.mp3": {
+    "text": "Always compare prices before you buy.",
+    "signature": "0dc2a42a4e9e8d827393b54ce8b896ca76b06efc4749258438247b684e23540f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-budget-word.mp3": {
+    "text": "budget",
+    "signature": "92ea004d8c195100c6391299c757536c195cdf31ffcad61194c74f07834014a2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-budget-phrase.mp3": {
+    "text": "Budget your money",
+    "signature": "8ebb0d7efd71d683474a7c58802e2a7a0e1f5b3b7993dad25e5b242b9af91f3a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-fall-review-budget-sentence.mp3": {
+    "text": "Budget your money so you can pay all your bills.",
+    "signature": "ae768f6a47ffbcc1c216832ea701e65eba926b261fa1fb24bb6485f8ffa83581",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w1-help-out-sentence.mp3": {
+    "text": "Can you help out at the food bank on Saturday?",
+    "signature": "be871470e32dafc9549e7a4b6bc14f6302520234495d0b6baa4a1db4d0418d3f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-rice-phrase.mp3": {
+    "text": "rice do we",
+    "signature": "e146429c262ec4a561ca483f137b292ea742294c63845c0bb26a65cbc0e317bf",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-rice-word.mp3": {
+    "text": "rice",
+    "signature": "0ec571af8b8da17c5473fd45f0172c025240b54ad86ea7a50dd80c5b5a9c8347",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-rice-sentence.mp3": {
+    "text": "How much rice do we need?",
+    "signature": "a49566aa68a3326669b8e54ec0a88fd4f4e8b0909d956f0367916fd9e794fdc5",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-bread-word.mp3": {
+    "text": "bread",
+    "signature": "bede94f43d25670de43157acfe5ea6f3e3b3e29f009faf60278ffb7908b51542",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-bread-phrase.mp3": {
+    "text": "bread",
+    "signature": "bede94f43d25670de43157acfe5ea6f3e3b3e29f009faf60278ffb7908b51542",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-bread-sentence.mp3": {
+    "text": "We need a loaf of bread.",
+    "signature": "ccabad401cc06d13066ad5184a48a3a60db0f76fbf2d9c1d80fc6af00fa3be05",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-milk-word.mp3": {
+    "text": "milk",
+    "signature": "6a5659b6c5c37dddf366b9227e82ad828569bc1e852eb8da72b3d5ed8d36aeeb",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-milk-phrase.mp3": {
+    "text": "milk is left",
+    "signature": "52a35d003829652fe6a4352fb21fe4173184ac32c768cccf87f26792ef015484",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-milk-sentence.mp3": {
+    "text": "How much milk is left?",
+    "signature": "e53a0e3d4dfb791399b1db05b837c1151841ddd43d1096d2cf4da6832e52f9e2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-eggs-word.mp3": {
+    "text": "eggs",
+    "signature": "c9dc9c857b54d0d66901c619e86bd27b5bd70280c85df022d691afdd29bb4b03",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-eggs-phrase.mp3": {
+    "text": "eggs should I",
+    "signature": "9a935b3eaa573e831959e88ed033f70dae5e1e81b61aa59ee8ab35589c43e031",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-eggs-sentence.mp3": {
+    "text": "How many eggs should I buy?",
+    "signature": "8fbb7139029ba35d92d5525c2b1a0888ebb75d43f1303c87d2b5af23162efbdd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-vegetables-word.mp3": {
+    "text": "vegetables",
+    "signature": "76e4ee340c0d6d1a6a34218a35b6cedc4ed256dce6a64733b3c280e9369aface",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-vegetables-phrase.mp3": {
+    "text": "vegetables for dinner",
+    "signature": "3ae3e1387f856a80b697e16aa5ee85854f0e5816cf6c7f9d3ebab14ceb7e0bc2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-vegetables-sentence.mp3": {
+    "text": "I need some vegetables for dinner.",
+    "signature": "fc770221c21b706e5bd31f111b0ff4a5eacd72b4f4c691a23c10ef82c6cf9c2e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-fruit-word.mp3": {
+    "text": "fruit",
+    "signature": "b30ad1e02a3d564d14111f24d5fe6125cac2d99c68319f60026e055c6606b6f3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-fruit-phrase.mp3": {
+    "text": "fruit for snacks",
+    "signature": "211d01bd0205aba71f8e1d03a50c9d84846b2906d75a6aaa58177e99ff6fbf86",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "dec-groceries-fruit-sentence.mp3": {
+    "text": "Let’s buy some fruit for snacks.",
+    "signature": "22e221983ce7ac1e2ff5390b058734e51c9edeee7cc0727af69f010d9fa19186",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-in-word.mp3": {
+    "text": "move in",
+    "signature": "61d2ec73fa4bba6bca64ad7483d038f0754cb316fc1c7b52b77085b892f7b1a2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-in-phrase.mp3": {
+    "text": "move in",
+    "signature": "61d2ec73fa4bba6bca64ad7483d038f0754cb316fc1c7b52b77085b892f7b1a2",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w1-move-in-sentence.mp3": {
+    "text": "When can we move in?",
+    "signature": "2c788f343c3adc4691d5d5d49868c9a8c41d4ac90fd3efae458c6cea6274b529",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-check-out-phrase.mp3": {
+    "text": "check out the apartment",
+    "signature": "fe040b6e3e911165e1e7e75b74f91fa77b5bc63eb55a43bbefaaeb065a0afb64",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-check-out-word.mp3": {
+    "text": "check out",
+    "signature": "19b7e6d12e40a2ea02bf43adc475163fdd4b1fc0e15f9e355bd5803c11ed7022",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-check-out-sentence.mp3": {
+    "text": "Let’s check out the apartment before we decide.",
+    "signature": "09ea66ebbed915c5148a430bfe3cb1ed0e1640107c2b407d123c2947b3f11022",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-choose-word.mp3": {
+    "text": "choose",
+    "signature": "ee89cd0f4da15242edda8ad05cdbcfdc4e619eb7ff81e4414b4aa0264c78cad1",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-choose-phrase.mp3": {
+    "text": "choose an apartment",
+    "signature": "53b40cfce9a01e7996c700dee0b8389b3ff495c8d82501ff8f0c2e590b569147",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w2-choose-sentence.mp3": {
+    "text": "We need to choose an apartment this week.",
+    "signature": "80be4de66ecf9ec8e66a7835b5e57a20fbbbe2b0a9e93beb30185e3c48cade0d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-fix-word.mp3": {
+    "text": "fix",
+    "signature": "4b8912740616122500868519c759c4307a6dc5c6fee6887ccfe7ce80b8fd8350",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-fix-phrase.mp3": {
+    "text": "fix the heat",
+    "signature": "3905e5d86c03702804ae55bf360a318b02532c32dd7de145a663844f0b8cb117",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-fix-sentence.mp3": {
+    "text": "When can you fix the heat?",
+    "signature": "ae9401f276e7b479b7235036683b077f3f96bd1cc1e13b42f18ac842ff8653b3",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-let-someone-know-word.mp3": {
+    "text": "let someone know",
+    "signature": "8d0897c0d06a5494cd79cd59340a304b421c6f8fef79d8681e7f2c1144f136ad",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-let-someone-know-phrase.mp3": {
+    "text": "let someone know if you",
+    "signature": "eb7e04d1d51b7413302414d69fb920414f32274ca70b217404f4380f3989c7d0",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-prevent-word.mp3": {
+    "text": "prevent",
+    "signature": "aeb2a74c0138f4aa574f930e8c0509d6262663b6aecac9ea5becc725bdcb6cdd",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-let-someone-know-sentence.mp3": {
+    "text": "Please let someone know if you will be late.",
+    "signature": "6319704eedd44934e4eebba0343e45e19e2e118d6387d8c2cafbf081cc4af1d9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-pay-back-word.mp3": {
+    "text": "pay back",
+    "signature": "bfce75875fba0d473ad6fcfe66d657dc70bba3150eacdf88440cd9918defa3f9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-pay-back-phrase.mp3": {
+    "text": "pay back the money",
+    "signature": "f837e0a8d49fcfaf435cb1f9fbb0b3adeb141487198c7fd06e5fabf72550f90a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "jan-w4-pay-back-sentence.mp3": {
+    "text": "Will the landlord pay back the money I spent on the repair?",
+    "signature": "0c26563ce3cd905ea1101377453013c13ea53d010f98fe1a303d398d3e899680",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-clarify-phrase.mp3": {
+    "text": "clarify what time",
+    "signature": "442ebbd87646dc8fa153da9d8f73aaff1718f9f89e27c52fc2c5021f15b7ab1e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-clarify-word.mp3": {
+    "text": "clarify",
+    "signature": "ac19ad91dfcc89ba9a5b792a656e5716b6515343790cca0bb7ea23abcfbff69a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-show-up-word.mp3": {
+    "text": "show up",
+    "signature": "1affcc0620ff19eb5c30666ae1c183520da65b7928d0e1ca0c7e387de3f48f0e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-clarify-sentence.mp3": {
+    "text": "Can you clarify what time the meeting starts?",
+    "signature": "a6f47ce2ec174deafdec03dd4c540fba9b698cc6f111b469bdd2875ba9476f94",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-show-up-phrase.mp3": {
+    "text": "show up a few",
+    "signature": "29ca734eb84b0a2d7e43c93bd1443f5ca6614620ca439e541b29c04b513dfd34",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-follow-up-word.mp3": {
+    "text": "follow up",
+    "signature": "b74ee4880b7e3185b9a48b580e46b0dda95d6d74cc6402586a0302bebf02821e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-follow-up-phrase.mp3": {
+    "text": "follow up with an",
+    "signature": "9ce9d1ecb3c65bb28c3c2f2ab4c144f844df967fb164bd6f0a1d51ccd4a653e4",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-follow-up-sentence.mp3": {
+    "text": "I will follow up with an email after our meeting.",
+    "signature": "6e32e13548d4ea39d856c2cbc36ee9c7721b88447d918ff96819500817562a3e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-show-up-sentence.mp3": {
+    "text": "I usually show up a few minutes early for work.",
+    "signature": "2679cac520a5f40a3cb03e83418b3be1023fde4d67f08b138bb5fedb4594b607",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-find-out-word.mp3": {
+    "text": "find out",
+    "signature": "dd6e874b8597dd3f0dd1a783b13039b362ffa69493660d999fa065349dc87fc9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-find-out-phrase.mp3": {
+    "text": "find out what time",
+    "signature": "65d71b00846c07f86c6901f220bfe154d06de97923e1f8f2b980321b7d6b7c58",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-help-out-phrase.mp3": {
+    "text": "helped out when the",
+    "signature": "59fcb57b764dc4935ce8966016c0e6d428b7a6004da5677023c6484dceea3e73",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-find-out-sentence.mp3": {
+    "text": "I need to find out what time the training starts.",
+    "signature": "f93312fb175be79e55eeb5c44152199c8870bf54132dcf5206022ea1119ee046",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-look-forward-to-word.mp3": {
+    "text": "look forward to",
+    "signature": "f4840e270cb75dba19c772792af159ef19062e7020bbacaf2f230896f31ea6cc",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-help-out-sentence.mp3": {
+    "text": "My coworker helped out when the front desk got busy.",
+    "signature": "ed42a0ba90e12311682d4a2d22faa168912ffc820ac0865e247b0a5016de7a4b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-look-forward-to-phrase.mp3": {
+    "text": "looking forward to the long",
+    "signature": "e54999e70e52e3be6fc11d37780739ba87d0d36df8f447988652952c9aa739df",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-31-apr-2-look-forward-to-sentence.mp3": {
+    "text": "We are looking forward to the long weekend.",
+    "signature": "f671950cf240abefe3008da76471b1473f232d67936a1e38d8b32c7d1995fdea",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-respect-word.mp3": {
+    "text": "respect",
+    "signature": "6f66e6358c3c8da2c9c44340c8f57e158131d52f12ebbdc589652e171efc57ce",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-respect-phrase.mp3": {
+    "text": "respect",
+    "signature": "6f66e6358c3c8da2c9c44340c8f57e158131d52f12ebbdc589652e171efc57ce",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-respect-sentence.mp3": {
+    "text": "We should treat coworkers with respect.",
+    "signature": "1348e7ac75b9cd4170af32387b3751c1ca5c8821566f8c3c88251b2f9cf44d95",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-follow-the-rules-word.mp3": {
+    "text": "follow the rules",
+    "signature": "7f02812c1c8a1512e47de53d9f92f5a6197291ad763d486c77bc7c86709c5c89",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-follow-the-rules-phrase.mp3": {
+    "text": "follow the rules at work",
+    "signature": "46db66ea1329adbc7f890ada00e3feafc15b2af89be28d1b566ab439b62b9c7e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-break-a-rule-word.mp3": {
+    "text": "break a rule",
+    "signature": "14c655c475b8e6dc8541c77bb1af0672c3ff127ecd274dd62eeebcc0dadd5a5c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-break-a-rule-phrase.mp3": {
+    "text": "break a rule",
+    "signature": "14c655c475b8e6dc8541c77bb1af0672c3ff127ecd274dd62eeebcc0dadd5a5c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-follow-the-rules-sentence.mp3": {
+    "text": "Everyone needs to follow the rules at work.",
+    "signature": "872273b01f4fd113507b24c7ad6bf3531fa727c31cd4bae7646d929a707814f7",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-17-19-break-a-rule-sentence.mp3": {
+    "text": "You could get a warning if you break a rule.",
+    "signature": "2e3cd32836e4e42f74b4a893f4a463efb794de8defbacd2c872e000aa6bcd4ac",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-think-about-word.mp3": {
+    "text": "think about",
+    "signature": "9890874222841a6aa4880a3b6c6d0478cfb266e90a342a6394bd6fea1392a1e6",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-think-about-phrase.mp3": {
+    "text": "think about your advice",
+    "signature": "b359733ed80dac7c3e35ad623dd9f13b695f0655ae4365bf1ecfbaf34cf89105",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-recover-word.mp3": {
+    "text": "recover",
+    "signature": "91a94886346fcdd27c6811d7dc01ccd69e988f494ee397a327d4190d5eb8582e",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-recover-phrase.mp3": {
+    "text": "recover from the",
+    "signature": "8435a8d9daef1e7864a5864e4d9c6523d7254d38c72a08aa65ba0aa5d1f9b391",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-recover-sentence.mp3": {
+    "text": "It took him a few weeks to fully recover from the surgery.",
+    "signature": "593d96f999ba1e486b2388fec17e78dcae459d78e7fc197e624dd3d8b5379eca",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-improve-word.mp3": {
+    "text": "improve",
+    "signature": "538ed795a3cbdcaa7833673ad2a2065b0ad041ea163edec2ebc37bde4ff4a5b8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-improve-phrase.mp3": {
+    "text": "improve quickly",
+    "signature": "7d64136010ccc5ea93e98cc5db0155a90ab8a2d2b265cfe3c8271b4441f12d3a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-improve-sentence.mp3": {
+    "text": "Rest and fluids will help you improve quickly.",
+    "signature": "ae693cdd8957785ca2a2c725a68f0e279e11b6285003e6da39e0d825cec9196d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-exercise-word.mp3": {
+    "text": "exercise",
+    "signature": "644fc6e49578ccf2be5f2491fd57222426c324b1c45a89082f6a7b83b9da254b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-exercise-phrase.mp3": {
+    "text": "exercise for at",
+    "signature": "a733f2ff03a94d091b2022addcc2963fcb87b2884923de3688b5c59563768a22",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-exercise-sentence.mp3": {
+    "text": "You should exercise for at least 30 minutes every day.",
+    "signature": "4c78391307ac1ef185bb46dc35ffc5afbe6a7ea388cf2b1b80f37c4ad32c1d5d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "mar-24-26-think-about-sentence.mp3": {
+    "text": "I need to think about your advice.",
+    "signature": "48a95701bf22380901d0b9a7a78a7ff96276e7db3e31a0510af5491a8e476610",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-routine-sentence.mp3": {
+    "text": "I want to change my evening routine.",
+    "signature": "618a6f86d11bffee63913166fadf31e4559dba2b07e34f270b672a4e18c3fbaa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-routine-sentence.mp3": {
+    "text": "I want to change my evening routine.",
+    "signature": "618a6f86d11bffee63913166fadf31e4559dba2b07e34f270b672a4e18c3fbaa",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-prevent-phrase.mp3": {
+    "text": "prevent the spread",
+    "signature": "6c4f9397aa6d8275a24ad50b55bb23fa70593ed5e138e723b4d99117f38c3b5b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-prevent-sentence.mp3": {
+    "text": "Washing your hands helps prevent the spread of germs.",
+    "signature": "4b2b79dc0f8562edb650ad32fb26ff15ba027c01b8d6608d452b607abbcbbd8a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-adjust-word.mp3": {
+    "text": "adjust",
+    "signature": "2b34823e34a48a8e500e3a18f2d7548185f6736b931433d5f551359a9cb1569b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-adjust-phrase.mp3": {
+    "text": "adjust to a",
+    "signature": "c2c87fe43d4b0b940740ee754abd51092de14174abdf1cebd19c019e3baf4c93",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-adjust-sentence.mp3": {
+    "text": "It takes time to adjust to a new medication.",
+    "signature": "2ff233690719af70b90f0dbfee8edf458275d3927e1ddee7742660c595e25bee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-routine-word.mp3": {
+    "text": "routine",
+    "signature": "7cd63f8fcff766d99191fc3cfc152d043142db278cef8380958dc7eb65dd69a8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-14-16-routine-phrase.mp3": {
+    "text": "routine",
+    "signature": "7cd63f8fcff766d99191fc3cfc152d043142db278cef8380958dc7eb65dd69a8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-routine-word.mp3": {
+    "text": "routine",
+    "signature": "7cd63f8fcff766d99191fc3cfc152d043142db278cef8380958dc7eb65dd69a8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "apr-w30-review-routine-phrase.mp3": {
+    "text": "routine",
+    "signature": "7cd63f8fcff766d99191fc3cfc152d043142db278cef8380958dc7eb65dd69a8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-side-effect-phrase.mp3": {
+    "text": "side effect of this",
+    "signature": "a596f394dacb9b517f54a5479cf7374e3792a9a22dacf5fbb457d36ac532ff0a",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-side-effect-word.mp3": {
+    "text": "side effect",
+    "signature": "f389c39b5eca4e56c0803dfc6ace66cc16a618e43c767fe079ea375b371c9720",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-take-a-break-word.mp3": {
+    "text": "take a break",
+    "signature": "c08030d0d739ed2a409c7222b640000ff44708eb98aaf5327daabe170e26a869",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-5-7-side-effect-sentence.mp3": {
+    "text": "Is feeling sleepy a side effect of this medicine?",
+    "signature": "b631bd49ae0789b3ed498bbaa63e0b09f86aea212055bdbdd2bf647b052b4dac",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-take-a-break-phrase.mp3": {
+    "text": "take a break after work",
+    "signature": "b9f08088600b3e689d58ca8cc65cb82ac0704b4c52d901a9fb0d78be13e51a81",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-12-14-take-a-break-sentence.mp3": {
+    "text": "I need to take a break after work.",
+    "signature": "4afc6c2f264928884d225e740d10fc36713e646fd413137c1835a751abbd7172",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-home-remedy-word.mp3": {
+    "text": "home remedy",
+    "signature": "7ba64d352db0a3b505210e83524036db8d891dbb027d682812c85123438a545c",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-home-remedy-phrase.mp3": {
+    "text": "home remedy for a",
+    "signature": "5c715a990c0d64ed673aed1c2a8e9fe689227520c91e21f0687ece7dd182b737",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-home-remedy-sentence.mp3": {
+    "text": "My aunt told me about a home remedy for a cough.",
+    "signature": "61075e5260a81c930347fb7bb4c0518eeff85d5e980a5363be10c180179b575b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-rest-word.mp3": {
+    "text": "rest",
+    "signature": "e6aac47236763a50daceede0c31559376730c17f278c4c9a75e8ada76055c3c8",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-rest-phrase.mp3": {
+    "text": "rest after my",
+    "signature": "61ecf7ab313954e0ec9760133d0cd01412309417e9377cea68a649f1dab59b1b",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-sore-throat-word.mp3": {
+    "text": "sore throat",
+    "signature": "e65a876a640d8e9bd6ac6f8519300164b8a4fab3ca9424ac7c61c296f0f6de3d",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-rest-sentence.mp3": {
+    "text": "I want to rest after my shift.",
+    "signature": "19fcda27610fd40c38e4bd005ddea766419fb9d660b9b0314edb3d5323a4fa31",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-sore-throat-phrase.mp3": {
+    "text": "sore throat and a",
+    "signature": "f92f83a6170219e289c47fb3d1e67e6e0328d4d2294d2ad60a81d149a053ca98",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-19-21-sore-throat-sentence.mp3": {
+    "text": "I have a sore throat and a cough.",
+    "signature": "a995919a84602b577f8149d3d33e2c4d70c19eab919599b633cf7a4aff898dd9",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-look-back-word.mp3": {
+    "text": "look back",
+    "signature": "59d1b17251f2892fdc5a1857a11aec3058aa85a57c0962d466ad7d4e4af639ee",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-look-back-phrase.mp3": {
+    "text": "look back, I can",
+    "signature": "362da6ca70a5d17fd94a515203cff981d90821d56031a72606c521901bce6b08",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "may-26-28-look-back-sentence.mp3": {
+    "text": "When I look back, I can see my progress.",
+    "signature": "c3df00b0e576c0e32f9b6b09fc42181f1c1d8011454dd6ff0c5182b9402f3c16",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
   }
 }

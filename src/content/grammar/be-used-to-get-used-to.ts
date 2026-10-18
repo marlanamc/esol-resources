@@ -88,6 +88,8 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
+        <p><strong>Bring back:</strong> Bring back W21: I used to work nights = a past habit. I am used to working nights = it feels familiar now. Notice that the to in be used to is followed by a noun or -ing.</p>
+
         ${sceneCard("sceneNightKitchen", "Restaurant kitchen, East Boston. A Tuesday in November, 11 PM.", "terracotta")}
 
         <p><strong>Fabienne</strong> moved to East Boston from Haiti last summer. She has two kids, and she works nights as a prep cook at a restaurant. Her supervisor <strong>Mark</strong> checks in before close.</p>
@@ -100,7 +102,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Be used to + gerund</strong> = something feels familiar or normal <em>now</em>. Not the same as <strong>used to + verb</strong> from last week (that was a past habit that changed).</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Be used to + gerund</strong> = something feels familiar or normal <em>now</em>. Not the same as <strong>used to + verb</strong> from Week 21 (that was a past habit that changed).</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">

@@ -11,7 +11,7 @@ describe('weekly Word Rescue', () => {
     expect(sets).toHaveLength(mapped.length);
     expect(sets.map(set => set.label)).toEqual(mapped.map(week => `Week ${week.number} · ${week.title}`));
     expect(sets.find(set => set.id === 'oct-learning')?.label).toContain('Week 4');
-    expect(sets.some(set => set.id === 'mar-31-apr-2')).toBe(false);
+    expect(sets.find(set => set.id === 'mar-31-apr-2')?.label).toContain('Week 22');
   });
   it('links each supported vocabulary week to its own pronunciation collection', () => {
     for (const week of COURSE_MAP_UNITS.flatMap(unit => unit.weeks)) {

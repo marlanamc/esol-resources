@@ -268,7 +268,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       title: "What Happened, What Was Already Done",
       icon: "⏪",
       tenseDiagram: {
-        title: "Past simple, past continuous, and past perfect",
+        title: "Past events, completed results, and duration",
         elements: [
           { id: "pp-dot", type: "arc", zone: "past-earlier", position: 22, verbLabel: "Past Perfect" },
           { id: "past-cont-line", type: "solid-line", zone: "past", position: 38, verbLabel: "Past Continuous" },
@@ -299,7 +299,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Past Simple</strong> = finished event. <strong>Past Continuous</strong> = in progress when something else happened. <strong>Past Perfect</strong> = already finished <em>before</em> another past event.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Past Simple</strong> = finished event. <strong>Past Continuous</strong> = in progress when something else happened. <strong>Past Perfect</strong> = already finished <em>before</em> another past event.</p><p><strong>Past perfect continuous:</strong> I had been working for two hours when the bus came. This focuses on duration up to a past event, as in W26.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -349,6 +349,12 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
               expectedAnswers: ["had already read"],
             },
           ],
+        },
+        {
+          id: "year-review-past-duration",
+          title: "Bring back Week 26",
+          answerExpectation: "missing-words",
+          items: [{ type: "text", label: "I ___ (work) for two hours when my break started. Use the past perfect continuous.", expectedAnswers: ["had been working"] }],
         },
         {
           id: "s3-ex2",
@@ -475,7 +481,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "whats-next-four-futures",
-      title: "What's Next: Will, Going To, and a Sneak Peek",
+      title: "Future Plans, Results, and Duration",
       icon: "➡️",
       tenseDiagram: {
         title: "Talking about the future",
@@ -516,20 +522,27 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         </div>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0 1rem 0">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.05rem"><strong>Sneak peek: Level 4.</strong> You do not need to use these yet. Just notice them. Next year you will learn three more future tenses.</p>
-          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6">
-            <em>At 7 PM in September, I <strong>will be sitting</strong> in class.</em> (in progress at a future time)<br>
-            <em>By August, I <strong>will have finished</strong> the summer course.</em> (done before a future date)<br>
-            <em>By tonight, we <strong>will have been studying</strong> together for a full year.</em> (how long, up to a future time)
-          </p>
+          <p><strong>Review from W32 and W35.</strong> These are forms you have already practiced.</p>
+          <p><strong>Completed result:</strong> By August, I <strong>will have finished</strong> the summer course.</p>
+          <p><strong>Duration:</strong> By June, we <strong>will have been studying</strong> together for about nine months.</p>
+          <p><strong>Optional preview only: future continuous.</strong> At 7 PM in September, I <strong>will be sitting</strong> in class. This describes an activity in progress at a future time. It is not part of the required quiz.</p>
         </div>
       `,
       tipBox: {
         title: "Want a head start?",
         content:
-          "Curious about the sneak-peek tenses? Open the <a href=\"/grammar-reader/future-simple\" style=\"font-weight:700;text-decoration:underline\">Future Simple</a>, <a href=\"/grammar-reader/future-continuous\" style=\"font-weight:700;text-decoration:underline\">Future Continuous</a>, <a href=\"/grammar-reader/future-perfect\" style=\"font-weight:700;text-decoration:underline\">Future Perfect</a>, or <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Tenses Overview</a> full guides.",
+          "For optional reference, open the <a href=\"/grammar-reader/future-simple\" style=\"font-weight:700;text-decoration:underline\">Future Simple</a>, <a href=\"/grammar-reader/future-continuous\" style=\"font-weight:700;text-decoration:underline\">Future Continuous</a>, <a href=\"/grammar-reader/future-perfect\" style=\"font-weight:700;text-decoration:underline\">Future Perfect</a>, or <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Tenses Overview</a> full guides.",
       },
       exercises: [
+        {
+          id: "year-review-future-milestones",
+          title: "Bring back Weeks 32 and 35",
+          answerExpectation: "missing-words",
+          items: [
+            { type: "text", label: "By Friday, I ___ (finish) my plan. Use the future perfect.", expectedAnswers: ["will have finished"] },
+            { type: "text", label: "By June, I ___ (study) here for about nine months. Use the future perfect continuous.", expectedAnswers: ["will have been studying"] },
+          ],
+        },
         {
           id: "s5-ex1",
           title: "Will or going to?",
@@ -564,14 +577,14 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         },
         {
           id: "s5-ex2",
-          title: "Sneak peek: read the meaning",
-          instructions: "You don't need to make these tenses yet. Just read them.",
+          title: "Review: completed by a future date",
+          instructions: "Review the difference between a completed result and a duration.",
           items: [
             {
               type: "radio",
               label: "\"By August, I will have finished the summer course.\" When does Rosa finish the course?",
               options: [
-                { value: "a", label: "Before the end of August" },
+                { value: "a", label: "No later than the start of August" },
                 { value: "b", label: "In September" },
                 { value: "c", label: "She never finishes it" },
               ],
@@ -579,11 +592,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "\"At 7 PM in September, I will be sitting in class.\" What will Rosa be doing at 7 PM?",
+              label: "\"By June, I will have been studying for about nine months.\" What does this emphasize?",
               options: [
-                { value: "a", label: "Leaving class" },
-                { value: "b", label: "Sitting in class, in the middle of the lesson" },
-                { value: "c", label: "Taking the bus to class" },
+                { value: "a", label: "A completed homework task" },
+                { value: "b", label: "The duration of studying up to June" },
+                { value: "c", label: "A new activity starting in July" },
               ],
               expectedAnswer: "b",
             },
@@ -679,5 +692,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       skillTag: "going-to-plan-word-order",
       difficulty: "medium",
     },
+    {"id": "year-review-past-duration", "type": "fill-blank", "question": "I ___ (work) for two hours when my break started. Use the past perfect continuous.", "correctAnswer": "had been working", "explanation": "The complete verb phrase is had been working."},
+    {"id": "year-review-future-result", "type": "fill-blank", "question": "By Friday, I ___ (finish) my plan. Use the future perfect.", "correctAnswer": "will have finished", "explanation": "The complete verb phrase is will have finished."},
+    {"id": "year-review-future-duration", "type": "fill-blank", "question": "By June, I ___ (study) here for about nine months. Use the future perfect continuous.", "correctAnswer": "will have been studying", "explanation": "The complete verb phrase is will have been studying."},
   ],
 };

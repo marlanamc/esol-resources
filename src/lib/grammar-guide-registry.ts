@@ -18,6 +18,9 @@ export interface GrammarGuideEntry {
 }
 
 export const grammarGuides: Record<string, GrammarGuideEntry> = {
+    "future-perfect-continuous-progress": { activityTitle: "Future Perfect Continuous: Looking Back from June", metaTitle: "Future Perfect Continuous: Looking Back from June", metaDescription: "A focused required lesson with supported practice and an effort-based completion path.", loadContent: () => import("@/content/grammar/future-perfect-continuous-progress").then(m => m.futurePerfectContinuousProgressContent) },
+    "future-perfect-goals": { activityTitle: "Future Perfect: Goals and Milestones", metaTitle: "Future Perfect: Goals and Milestones", metaDescription: "A focused required lesson with supported practice and an effort-based completion path.", loadContent: () => import("@/content/grammar/future-perfect-goals").then(m => m.futurePerfectGoalsContent) },
+    "past-perfect-continuous-work": { activityTitle: "Past Perfect Continuous: Before the Job Changed", metaTitle: "Past Perfect Continuous: Before the Job Changed", metaDescription: "A focused required lesson with supported practice and an effort-based completion path.", loadContent: () => import("@/content/grammar/past-perfect-continuous-work").then(m => m.pastPerfectContinuousWorkContent) },
     "all-four-conditionals-quick-tour": {
         activityTitle: "All Four Conditionals: A Quick Tour",
         metaTitle: "All Four Conditionals: A Quick Tour - Interactive Guide | Class Companion",

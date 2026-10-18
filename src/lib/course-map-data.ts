@@ -19,6 +19,10 @@ export interface CourseWeekDef {
   number: number;
   title: string;
   goal?: string;
+  /** Short retrieval practice for teachers and the weekly planning reference. */
+  reviewPractice?: string;
+  /** Teacher-led reuse of a previous set, not an additional scored app assignment. */
+  vocabularyReviewWeek?: number;
   items: CourseMapItemDef[];
 }
 
@@ -642,36 +646,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 6 Quiz"
           },
           {
-            "id": "vocab-oct-w3-flashcards",
-            "activityId": "vocab-oct-w3",
-            "slot": "extra",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 7,
-            "title": "Protect Yourself Verbs: Flash Cards"
-          },
-          {
-            "id": "vocab-oct-w3-matching",
-            "activityId": "vocab-oct-w3",
-            "slot": "extra",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 8,
-            "title": "Protect Yourself Verbs: Matching"
-          },
-          {
-            "id": "vocab-oct-w3-fill-blank",
-            "activityId": "vocab-oct-w3",
-            "slot": "extra",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 9,
-            "title": "Protect Yourself Verbs: Fill in the Blank"
-          },
-          {
             "id": "advisor-bulletin-scavenger-hunt",
             "slot": "extra",
             "order": 10,
@@ -688,13 +662,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Job History: What I Used to Do"
           }
         ],
-        "goal": "Give and follow directions, and stay safe online while getting around town."
+        "goal": "I can describe my routine and give simple directions.",
+        "reviewPractice": "Ask W5 questions about W1 routines."
       },
       {
         "id": "week-11",
         "number": 7,
         "title": "Our Voice, Our Vote",
-        "goal": "Register key civic verbs, use if to talk about what happens when people vote, and practice contacting an official, timed with the November elections.",
+        "goal": "I can describe a general result and a possible future result with if.",
         "items": [
           {
             "id": "vocab-oct-w5-flashcards",
@@ -777,7 +752,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "speaking",
             "title": "Community Issue Case Study: Discussion"
           }
-        ]
+        ],
+        "reviewPractice": "Recall W6 present simple. Teach will + base verb before the first conditional."
       }
     ]
   },
@@ -849,7 +825,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 8 Quiz"
           }
-        ]
+        ],
+        "goal": "I can use can, should, and must in a short phone conversation.",
+        "reviewPractice": "Recall W5 questions and W7 future results."
       },
       {
         "id": "week-9",
@@ -923,7 +901,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 9 Quiz"
           }
         ],
-        "goal": "Talk about life experiences with Have you ever...? Want a challenge? Try just, already, and yet. You will practice them again in March."
+        "goal": "I can ask about an experience and follow up with a past-simple question.",
+        "reviewPractice": "Recall W4 V3 forms and W1 past simple for follow-up questions."
       },
       {
         "id": "week-10",
@@ -995,7 +974,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 10 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe what I am good at and interested in.",
+        "reviewPractice": "Recall W8 can and W9 have you ever."
       }
     ]
   },
@@ -1076,7 +1057,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 11 Quiz"
           }
         ],
-        "goal": "Talk about how long you have lived, worked, and kept the same phone plan while hunting for something cheaper."
+        "goal": "I can say how long something has continued using for and since.",
+        "reviewPractice": "Recall W9 have/has + V3 and W4 verb forms."
       },
       {
         "id": "week-14",
@@ -1141,19 +1123,30 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 12 Quiz"
           }
         ],
-        "goal": "Compare prices, phone plans, and apartment listings when stretching a paycheck."
+        "goal": "I can compare two prices and identify the best option.",
+        "reviewPractice": "Recall W11 money vocabulary and W6 routines."
       },
       {
         "id": "week-15",
         "number": 13,
         "title": "How Much / How Many: Countable + Uncountable",
-        "goal": "Use much, many, a lot of, a few, and a little when feeding a family on a budget.",
+        "goal": "I can ask about quantities using how much and how many.",
         "items": [
+          {
+            "id": "week-13-core-flashcards",
+            "activityId": "vocab-dec-groceries",
+            "vocabUi": "flashcards",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 13 Core Vocabulary: Flash Cards"
+          },
           {
             "id": "how-much-how-many",
             "href": "/grammar-reader/how-much-how-many",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "How Much / How Many: Countable + Uncountable"
@@ -1162,7 +1155,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "countable-uncountable-game",
             "activityId": "countable-uncountable-nouns",
             "slot": "required",
-            "order": 1,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Countable vs Uncountable Practice"
@@ -1170,27 +1163,48 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "grocery-budget-practice",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Grocery Budget Practice"
           },
           {
+            "id": "week-13-core-matching",
+            "activityId": "vocab-dec-groceries",
+            "vocabUi": "matching",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 13 Core Vocabulary: Matching"
+          },
+          {
+            "id": "week-13-core-fill-blank",
+            "activityId": "vocab-dec-groceries",
+            "vocabUi": "fill-blank",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 13 Core Vocabulary: Fill in the Blank"
+          },
+          {
             "id": "verb-quiz-11",
             "activityId": "verb-quiz-11",
             "slot": "required",
-            "order": 3,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 13 Quiz"
           }
-        ]
+        ],
+        "reviewPractice": "Reuse W12 spending vocabulary. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
       },
       {
         "id": "week-16-econ",
         "number": 14,
         "title": "Understanding the News for Econ",
-        "goal": "Read prices, jobs, and the economy in the news, and talk about what will happen next with will, going to, and if.",
+        "goal": "I can make a prediction about a simple chart.",
         "items": [
           {
             "id": "vocab-dec-w3-flashcards",
@@ -1247,37 +1261,38 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "writing",
             "title": "Short Writing: \"Prices are higher than...\""
           }
-        ]
+        ],
+        "reviewPractice": "Recall W7 if + present → will + base verb and W12 comparisons."
       },
       {
         "id": "week-15b",
         "number": 15,
         "title": "Fall Review + Class Party",
-        "goal": "Review the fall semester together, finish any missing quizzes, and celebrate the end of the fall term.",
+        "goal": "I can use familiar fall grammar in a short personal story.",
         "items": [
+          {
+            "id": "week-15-core-flashcards",
+            "activityId": "vocab-dec-fall-review",
+            "vocabUi": "flashcards",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 15 Core Vocabulary: Flash Cards"
+          },
           {
             "id": "fall-review-six-tenses",
             "href": "/grammar-reader/fall-review-six-tenses",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Fall Review: Six Tenses You Know"
           },
           {
-            "id": "all-verb-tenses-overview-review",
-            "href": "/grammar-reader/all-verb-tenses-overview",
-            "slot": "extra",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "All Verb Tenses Overview",
-            "badge": "Challenge"
-          },
-          {
             "id": "catch-up-path-december",
             "slot": "required",
-            "order": 1,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Catch-Up Path"
@@ -1285,7 +1300,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "missing-quiz-make-up-december",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Missing Quiz Make-Up"
@@ -1293,16 +1308,36 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "optional-review-games-december",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "review",
             "title": "Optional Review Games"
           },
           {
+            "id": "week-15-core-matching",
+            "activityId": "vocab-dec-fall-review",
+            "vocabUi": "matching",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 15 Core Vocabulary: Matching"
+          },
+          {
+            "id": "week-15-core-fill-blank",
+            "activityId": "vocab-dec-fall-review",
+            "vocabUi": "fill-blank",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 15 Core Vocabulary: Fill in the Blank"
+          },
+          {
             "id": "verb-quiz-8",
             "activityId": "verb-quiz-8",
             "slot": "required",
-            "order": 4,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 15 Quiz"
@@ -1310,12 +1345,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "class-party-december",
             "slot": "extra",
-            "order": 5,
+            "order": 8,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Class Party"
+          },
+          {
+            "id": "all-verb-tenses-overview-review",
+            "href": "/grammar-reader/all-verb-tenses-overview",
+            "slot": "extra",
+            "order": 9,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "All Verb Tenses Overview",
+            "badge": "Challenge"
           }
-        ]
+        ],
+        "reviewPractice": "Reuse fall vocabulary and W14 future plans. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
       }
     ]
   },
@@ -1396,7 +1442,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "guide",
             "title": "Parts of Speech Refresh"
           }
-        ]
+        ],
+        "goal": "I can ask a polite question about a rental listing.",
+        "reviewPractice": "Recall W5 word order and W12 comparisons."
       },
       {
         "id": "week-17",
@@ -1467,7 +1515,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 17 Quiz"
           }
-        ]
+        ],
+        "goal": "I can distinguish housing rules from optional choices.",
+        "reviewPractice": "Recall W8 rules and W16 polite questions."
       },
       {
         "id": "week-18",
@@ -1530,7 +1580,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 18 Quiz"
           }
-        ]
+        ],
+        "goal": "I can explain a housing need using need to, want to, or hope to.",
+        "reviewPractice": "Recall W16 polite questions and W17 obligations."
       },
       {
         "id": "week-19",
@@ -1601,7 +1653,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 19 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe what was happening when a housing problem occurred.",
+        "reviewPractice": "Recall W1 past simple/continuous and W18 repair words."
       }
     ]
   },
@@ -1672,12 +1726,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 20 Quiz"
           }
-        ]
+        ],
+        "goal": "I can show which of two past events happened first.",
+        "reviewPractice": "Recall W4 V3 and W19 past events."
       },
       {
         "id": "week-21",
         "number": 21,
-        "title": "Workplace Rules + Must, Have To, Should",
+        "title": "Used to: Past Jobs and Routines",
         "items": [
           {
             "id": "vocab-feb-10-12-flashcards",
@@ -1690,13 +1746,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Rules & Obligation at Work: Flash Cards"
           },
           {
-            "id": "must-have-to-should-at-work",
-            "href": "/grammar-reader/must-have-to-should-at-work",
+            "id": "i-used-to-but-now-i",
+            "href": "/grammar-reader/i-used-to-but-now-i",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Must, Have to, Should at Work"
+            "title": "I Used to, but Now I..."
           },
           {
             "id": "work-schedule-practice",
@@ -1743,8 +1799,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 21 Quiz"
+          },
+          {
+            "id": "must-have-to-should-at-work",
+            "href": "/grammar-reader/must-have-to-should-at-work",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Must, Have to, Should at Work",
+            "badge": "Optional reference"
           }
-        ]
+        ],
+        "goal": "I can compare a past job routine with my routine now.",
+        "reviewPractice": "Review W8/W17 rules briefly: required, recommended, prohibited, optional."
       },
       {
         "id": "week-22",
@@ -1752,10 +1820,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Second Conditional + Catch-Up",
         "items": [
           {
+            "id": "week-22-core-flashcards",
+            "activityId": "vocab-mar-31-apr-2",
+            "vocabUi": "flashcards",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 22 Core Vocabulary: Flash Cards"
+          },
+          {
             "id": "second-conditional-what-would-you-do",
             "href": "/grammar-reader/second-conditional-what-would-you-do",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Second Conditional: What Would You Do?"
@@ -1763,7 +1841,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "catch-up-path-february",
             "slot": "required",
-            "order": 1,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Catch-Up Path"
@@ -1771,7 +1849,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "missing-quiz-make-up-february",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Missing Quiz Make-Up"
@@ -1779,26 +1857,48 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "optional-review-games-february",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "review",
             "title": "Optional Review Games"
           },
           {
+            "id": "week-22-core-matching",
+            "activityId": "vocab-mar-31-apr-2",
+            "vocabUi": "matching",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 22 Core Vocabulary: Matching"
+          },
+          {
+            "id": "week-22-core-fill-blank",
+            "activityId": "vocab-mar-31-apr-2",
+            "vocabUi": "fill-blank",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 22 Core Vocabulary: Fill in the Blank"
+          },
+          {
             "id": "verb-quiz-18",
             "activityId": "verb-quiz-18",
             "slot": "required",
-            "order": 4,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 22 Quiz"
           }
-        ]
+        ],
+        "goal": "I can answer a hypothetical question with if and would.",
+        "reviewPractice": "Recall W7 first conditional. Short core lesson, then protected catch-up time. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
       },
       {
         "id": "week-23",
         "number": 23,
-        "title": "Phrasal Verbs at Work + Workplace Rights",
+        "title": "Enjoy Doing vs. Want to Do at Work",
         "items": [
           {
             "id": "vocab-feb-24-26-flashcards",
@@ -1811,13 +1911,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Workplace Phrasal Verbs: Flash Cards"
           },
           {
-            "id": "phrasal-verbs-at-work",
-            "href": "/grammar-reader/phrasal-verbs-at-work",
+            "id": "enjoy-doing-want-to-do",
+            "href": "/grammar-reader/enjoy-doing-want-to-do",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Phrasal Verbs at Work"
+            "title": "Enjoy Doing vs. Want to Do"
           },
           {
             "id": "workplace-rights-scenario",
@@ -1863,8 +1963,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 23 Quiz"
+          },
+          {
+            "id": "phrasal-verbs-at-work",
+            "href": "/grammar-reader/phrasal-verbs-at-work",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Phrasal Verbs at Work",
+            "badge": "Optional reference"
           }
-        ]
+        ],
+        "goal": "I can describe what I enjoy doing and what I want to do at work.",
+        "reviewPractice": "Recall W10 preposition + -ing and W18 to + verb. Keep phrasal verbs in vocabulary and speaking."
       }
     ]
   },
@@ -1944,7 +2056,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 24 Quiz"
           }
-        ]
+        ],
+        "goal": "I can report job-search progress with already and yet.",
+        "reviewPractice": "Recall W9/W11 present perfect and W23 phrasal verbs."
       },
       {
         "id": "week-25",
@@ -2016,12 +2130,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 25 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe an activity continuing up to now.",
+        "reviewPractice": "Recall W24 present perfect and W11 for/since."
       },
       {
         "id": "week-26",
         "number": 26,
-        "title": "Work Experience + Advocacy",
+        "title": "Past Perfect Continuous + Work Experience",
         "items": [
           {
             "id": "vocab-mar-17-19-flashcards",
@@ -2031,26 +2147,16 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Communication & Feedback: Flash Cards"
+            "title": "Rights, Rules & Advocacy: Flash Cards"
           },
           {
-            "id": "vocab-mar-24-26-flashcards",
-            "activityId": "vocab-mar-31-apr-2",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 1,
-            "title": "Small Talk at Work: Flash Cards"
-          },
-          {
-            "id": "enjoy-doing-want-to-do",
-            "href": "/grammar-reader/enjoy-doing-want-to-do",
-            "slot": "required",
+            "id": "past-perfect-continuous-work",
+            "href": "/grammar-reader/past-perfect-continuous-work",
+            "title": "Past Perfect Continuous: Before the Job Changed",
             "order": 2,
+            "slot": "required",
             "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Enjoy Doing vs. Want to Do"
+            "activityType": "guide"
           },
           {
             "id": "pp-ppc-spiral",
@@ -2069,7 +2175,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 4,
-            "title": "Communication & Feedback: Matching"
+            "title": "Rights, Rules & Advocacy: Matching"
           },
           {
             "id": "workplace-advocacy-scenarios",
@@ -2078,16 +2184,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Workplace Advocacy Scenarios"
-          },
-          {
-            "id": "vocab-mar-24-26-matching",
-            "activityId": "vocab-mar-31-apr-2",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 6,
-            "title": "Small Talk at Work: Matching"
           },
           {
             "id": "worked-been-working-writing",
@@ -2105,17 +2201,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 8,
-            "title": "Communication & Feedback: Fill in the Blank"
-          },
-          {
-            "id": "vocab-mar-24-26-fill-blank",
-            "activityId": "vocab-mar-31-apr-2",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 9,
-            "title": "Small Talk at Work: Fill in the Blank"
+            "title": "Rights, Rules & Advocacy: Fill in the Blank"
           },
           {
             "id": "verb-quiz-22",
@@ -2126,7 +2212,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 26 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe how long an activity had continued before a past event.",
+        "reviewPractice": "Compare W25 duration up to now with W20 earlier-past events. Reuse familiar verbs."
       },
       {
         "id": "week-27",
@@ -2181,7 +2269,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 27 Quiz"
           }
-        ]
+        ],
+        "goal": "I can explain three items on a sample pay stub using passive sentences.",
+        "reviewPractice": "Recall W20 V3 forms. Revisit W25 pay words: gross pay, deductions, benefits."
       }
     ]
   },
@@ -2253,7 +2343,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 28 Quiz"
           }
-        ]
+        ],
+        "goal": "I can give advice and distinguish it from a stronger warning.",
+        "reviewPractice": "Recall W8 advice and W17 rules."
       },
       {
         "id": "week-29",
@@ -2316,7 +2408,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 29 Quiz"
           }
-        ]
+        ],
+        "goal": "I can explain the difference between stop doing and stop to do.",
+        "reviewPractice": "Recall W23 enjoy doing / want to do; revise one sentence after feedback."
       },
       {
         "id": "week-30",
@@ -2324,10 +2418,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "The Doctor Said + Catch-Up",
         "items": [
           {
+            "id": "week-30-core-flashcards",
+            "activityId": "vocab-apr-w30-review",
+            "vocabUi": "flashcards",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 30 Core Vocabulary: Flash Cards"
+          },
+          {
             "id": "doctor-said-reported-speech",
             "href": "/grammar-reader/doctor-said-reported-speech",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "The Doctor Said: Reported Speech"
@@ -2335,7 +2439,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "catch-up-path-april",
             "slot": "required",
-            "order": 1,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Catch-Up Path"
@@ -2343,7 +2447,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "missing-quiz-make-up-april",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "catch-up",
             "title": "Missing Quiz Make-Up"
@@ -2351,21 +2455,43 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "optional-review-games-april",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "review",
             "title": "Optional Review Games"
           },
           {
+            "id": "week-30-core-matching",
+            "activityId": "vocab-apr-w30-review",
+            "vocabUi": "matching",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 30 Core Vocabulary: Matching"
+          },
+          {
+            "id": "week-30-core-fill-blank",
+            "activityId": "vocab-apr-w30-review",
+            "vocabUi": "fill-blank",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Week 30 Core Vocabulary: Fill in the Blank"
+          },
+          {
             "id": "verb-quiz-26",
             "activityId": "verb-quiz-26",
             "slot": "required",
-            "order": 4,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 30 Quiz"
           }
-        ]
+        ],
+        "goal": "I can report one statement and one instruction from a conversation.",
+        "reviewPractice": "Recall W18 to + verb and W19 past forms. Short core lesson, then protected catch-up time. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
       },
       {
         "id": "week-31",
@@ -2428,7 +2554,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 31 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe an imagined different result in the past.",
+        "reviewPractice": "Recall W20 had + V3 and W22 hypothetical results."
       }
     ]
   },
@@ -2441,7 +2569,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-32",
         "number": 32,
-        "title": "I Used to + Wellness",
+        "title": "Future Perfect + Wellness Goals",
         "items": [
           {
             "id": "vocab-may-5-7-flashcards",
@@ -2454,13 +2582,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Your Body & Wellness: Flash Cards"
           },
           {
-            "id": "i-used-to-but-now-i",
-            "href": "/grammar-reader/i-used-to-but-now-i",
-            "slot": "required",
+            "id": "future-perfect-goals",
+            "href": "/grammar-reader/future-perfect-goals",
+            "title": "Future Perfect: Goals and Milestones",
             "order": 1,
+            "slot": "required",
             "wrappedGame": false,
-            "activityType": "guide",
-            "title": "I Used to, but Now I..."
+            "activityType": "guide"
           },
           {
             "id": "mychart-follow-up",
@@ -2508,7 +2636,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 32 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe a goal that will be completed by a future date.",
+        "reviewPractice": "Recall W14 will + base verb and W20 V3. Focus on one small completed milestone."
       },
       {
         "id": "week-33",
@@ -2563,7 +2693,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 33 Quiz"
           }
-        ]
+        ],
+        "goal": "I can describe what feels familiar and what I am still adjusting to.",
+        "reviewPractice": "Recall W21 used to; contrast past habits with familiarity now. Review preposition + -ing."
       },
       {
         "id": "week-34",
@@ -2634,12 +2766,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 34 Quiz"
           }
-        ]
+        ],
+        "goal": "I can choose a conditional that matches the situation.",
+        "reviewPractice": "Recall W7/W22/W31 conditionals; add a short W23/W29 verb-pattern warm-up."
       },
       {
         "id": "week-35",
         "number": 35,
-        "title": "Gerunds + Infinitives + Packed Week",
+        "title": "Future Perfect Continuous + Year-End Progress",
         "items": [
           {
             "id": "vocab-may-26-28-flashcards",
@@ -2652,13 +2786,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Holistic Health Review: Flash Cards"
           },
           {
-            "id": "gerunds-infinitives-full-review",
-            "href": "/grammar-reader/gerunds-infinitives-full-review",
-            "slot": "required",
+            "id": "future-perfect-continuous-progress",
+            "href": "/grammar-reader/future-perfect-continuous-progress",
+            "title": "Future Perfect Continuous: Looking Back from June",
             "order": 1,
+            "slot": "required",
             "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Gerunds + Infinitives: Full Review"
+            "activityType": "guide"
           },
           {
             "id": "speaking-game",
@@ -2705,8 +2839,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 35 Quiz"
+          },
+          {
+            "id": "gerunds-infinitives-full-review",
+            "href": "/grammar-reader/gerunds-infinitives-full-review",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Gerunds + Infinitives: Full Review",
+            "badge": "Optional reference"
           }
-        ]
+        ],
+        "goal": "I can say how long an activity will have continued by a future date.",
+        "reviewPractice": "Recall W32 completed results and W25/W26 duration. Use one future duration pattern."
       }
     ]
   },
@@ -2845,7 +2991,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Week 36 Bonus Quiz 3"
           }
-        ]
+        ],
+        "goal": "I can describe events, results, and durations across past, present, and future.",
+        "reviewPractice": "Review W26, W32, and W35 alongside earlier tenses. Future continuous is preview only."
       }
     ]
   }

@@ -292,11 +292,11 @@
     "topic": "Transportation + Directions: Movement Verbs",
     "words": [
       {
-        "id": "oct-w2-depart",
-        "term": "depart",
-        "definition": "to leave a place",
-        "sentence": "The bus departs from Main Street at 7:00 AM.",
-        "phrase": "departs from Main"
+        "id": "oct-w2-leave",
+        "term": "leave",
+        "definition": "to go away from a place",
+        "sentence": "What time does the bus leave?",
+        "phrase": "leave"
       },
       {
         "id": "oct-w2-arrive",
@@ -313,11 +313,11 @@
         "phrase": "Transfer to the"
       },
       {
-        "id": "oct-w2-locate",
-        "term": "locate",
-        "definition": "to find the position of something",
-        "sentence": "Can you locate the nearest pharmacy on the map?",
-        "phrase": "locate the nearest"
+        "id": "oct-w2-find",
+        "term": "find",
+        "definition": "to discover where something is",
+        "sentence": "Can you help me find the bus stop?",
+        "phrase": "find the bus"
       },
       {
         "id": "oct-w2-follow",
@@ -409,18 +409,18 @@
         "phrase": "confirm your appointment"
       },
       {
-        "id": "oct-w4-decline",
-        "term": "decline",
-        "definition": "to politely say no to an offer or invitation",
-        "sentence": "She had to decline the meeting because she was sick.",
-        "phrase": "decline the meeting"
+        "id": "oct-w4-turn-down",
+        "term": "turn down",
+        "definition": "to say no to an offer or request",
+        "sentence": "I had to turn down the extra shift.",
+        "phrase": "turn down the extra"
       },
       {
-        "id": "oct-w4-postpone",
-        "term": "postpone",
-        "definition": "to move something to a later time",
-        "sentence": "We need to postpone the meeting until next week.",
-        "phrase": "postpone the meeting"
+        "id": "oct-w4-reschedule",
+        "term": "reschedule",
+        "definition": "to change a planned event to a different time",
+        "sentence": "I need to reschedule my appointment.",
+        "phrase": "reschedule my appointment"
       },
       {
         "id": "oct-w4-connect",
@@ -491,11 +491,11 @@
         "phrase": "volunteers at the"
       },
       {
-        "id": "nov-w1-assist",
-        "term": "assist",
-        "definition": "to help someone with a task",
-        "sentence": "Can you assist me with this form?",
-        "phrase": "assist me with"
+        "id": "nov-w1-help-out",
+        "term": "help out",
+        "definition": "to help with a task or problem",
+        "sentence": "Can you help out at the food bank on Saturday?",
+        "phrase": "help out at the"
       },
       {
         "id": "nov-w1-support",
@@ -834,11 +834,11 @@
         "phrase": "lease for the"
       },
       {
-        "id": "jan-w1-occupy",
-        "term": "occupy",
-        "definition": "to live in or use a space",
-        "sentence": "How many people will occupy this apartment?",
-        "phrase": "occupy this apartment"
+        "id": "jan-w1-move-in",
+        "term": "move in",
+        "definition": "to start living in a home",
+        "sentence": "When can we move in?",
+        "phrase": "move in"
       },
       {
         "id": "jan-w1-move",
@@ -882,18 +882,18 @@
         "phrase": "afford an apartment"
       },
       {
-        "id": "jan-w2-evaluate",
-        "term": "evaluate",
-        "definition": "to study all parts of something to judge its quality or value",
-        "sentence": "Evaluate the location, price, and size before deciding.",
-        "phrase": "Evaluate the location"
+        "id": "jan-w2-check-out",
+        "term": "check out",
+        "definition": "to look at something to decide what you think of it",
+        "sentence": "Let’s check out the apartment before we decide.",
+        "phrase": "check out the apartment"
       },
       {
-        "id": "jan-w2-select",
-        "term": "select",
-        "definition": "to choose something from a group of options",
-        "sentence": "We will select an apartment by the end of the week.",
-        "phrase": "select an apartment"
+        "id": "jan-w2-choose",
+        "term": "choose",
+        "definition": "to decide which one you want",
+        "sentence": "We need to choose an apartment this week.",
+        "phrase": "choose an apartment"
       },
       {
         "id": "jan-w2-negotiate",
@@ -964,11 +964,11 @@
     "topic": "Housing Problems + Solutions: Resolution Verbs",
     "words": [
       {
-        "id": "jan-w4-resolve",
-        "term": "resolve",
-        "definition": "to find a solution and fix a problem",
-        "sentence": "The landlord promised to resolve the heating issue today.",
-        "phrase": "resolve the heating"
+        "id": "jan-w4-fix",
+        "term": "fix",
+        "definition": "to make a problem better or make something work again",
+        "sentence": "When can you fix the heat?",
+        "phrase": "fix the heat"
       },
       {
         "id": "jan-w4-maintain",
@@ -978,11 +978,11 @@
         "phrase": "maintain a clean"
       },
       {
-        "id": "jan-w4-notify",
-        "term": "notify",
-        "definition": "to officially tell someone about something",
-        "sentence": "Notify your landlord in writing if you plan to move out.",
-        "phrase": "Notify your landlord"
+        "id": "jan-w4-let-someone-know",
+        "term": "let someone know",
+        "definition": "to tell someone information they need",
+        "sentence": "Please let someone know if you will be late.",
+        "phrase": "let someone know if you"
       },
       {
         "id": "jan-w4-document",
@@ -999,11 +999,11 @@
         "phrase": "prevent mold in"
       },
       {
-        "id": "jan-w4-reimburse",
-        "term": "reimburse",
-        "definition": "to pay someone back for money they spent",
-        "sentence": "The landlord agreed to reimburse us for the plumber's cost.",
-        "phrase": "reimburse us for"
+        "id": "jan-w4-pay-back",
+        "term": "pay back",
+        "definition": "to return money someone spent or lent",
+        "sentence": "Will the landlord pay back the money I spent on the repair?",
+        "phrase": "pay back the money"
       }
     ]
   },
@@ -1249,7 +1249,7 @@
   },
   {
     "id": "mar-17-19",
-    "topic": "Jobs: Communication & Feedback",
+    "topic": "Jobs: Rights, Rules & Advocacy",
     "words": [
       {
         "id": "mar-17-19-right",
@@ -1266,11 +1266,11 @@
         "phrase": "advocate for yourself"
       },
       {
-        "id": "mar-17-19-courtesy",
-        "term": "courtesy",
-        "definition": "polite and respectful behavior",
-        "sentence": "Treat all customers with patience and courtesy.",
-        "phrase": "courtesy"
+        "id": "mar-17-19-respect",
+        "term": "respect",
+        "definition": "polite and fair treatment of other people",
+        "sentence": "We should treat coworkers with respect.",
+        "phrase": "respect"
       },
       {
         "id": "mar-17-19-strict",
@@ -1280,24 +1280,24 @@
         "phrase": "strict rules about"
       },
       {
-        "id": "mar-17-19-comply",
-        "term": "comply",
-        "definition": "to follow rules or requirements",
-        "sentence": "All employees must comply with the new regulations.",
-        "phrase": "comply with the"
+        "id": "mar-17-19-follow-the-rules",
+        "term": "follow the rules",
+        "definition": "to do what the rules say",
+        "sentence": "Everyone needs to follow the rules at work.",
+        "phrase": "follow the rules at work"
       },
       {
-        "id": "mar-17-19-violate",
-        "term": "violate",
-        "definition": "to break a rule or law",
-        "sentence": "If you violate the policy, you may receive a warning.",
-        "phrase": "violate the policy"
+        "id": "mar-17-19-break-a-rule",
+        "term": "break a rule",
+        "definition": "to do something a rule does not allow",
+        "sentence": "You could get a warning if you break a rule.",
+        "phrase": "break a rule"
       }
     ]
   },
   {
     "id": "mar-24-26",
-    "topic": "Jobs: Rights, Rules & Advocacy",
+    "topic": "Jobs: Communication & Feedback",
     "words": [
       {
         "id": "mar-24-26-feedback",
@@ -1328,11 +1328,11 @@
         "phrase": "consequence of violating"
       },
       {
-        "id": "mar-24-26-reflect",
-        "term": "reflect",
-        "definition": "to think carefully about something",
-        "sentence": "Take some time to reflect on your performance this year.",
-        "phrase": "reflect on your"
+        "id": "mar-24-26-think-about",
+        "term": "think about",
+        "definition": "to spend time considering something",
+        "sentence": "I need to think about your advice.",
+        "phrase": "think about your advice"
       },
       {
         "id": "mar-24-26-recommend",
@@ -1465,11 +1465,11 @@
         "phrase": "exercise for at"
       },
       {
-        "id": "apr-14-16-lifestyle",
-        "term": "lifestyle",
-        "definition": "the way you live, your daily habits",
-        "sentence": "Eating healthy and exercising are part of a good lifestyle.",
-        "phrase": "lifestyle"
+        "id": "apr-14-16-routine",
+        "term": "routine",
+        "definition": "the things you usually do each day",
+        "sentence": "I want to change my evening routine.",
+        "phrase": "routine"
       },
       {
         "id": "apr-14-16-prevent",
@@ -1575,11 +1575,11 @@
         "phrase": "chronic back pain"
       },
       {
-        "id": "may-5-7-nutrient",
-        "term": "nutrient",
-        "definition": "something in food your body needs, like vitamins",
-        "sentence": "Fruits and vegetables are full of important nutrients.",
-        "phrase": "nutrients"
+        "id": "may-5-7-side-effect",
+        "term": "side effect",
+        "definition": "an unwanted effect a medicine can have",
+        "sentence": "Is feeling sleepy a side effect of this medicine?",
+        "phrase": "side effect of this"
       }
     ]
   },
@@ -1623,11 +1623,11 @@
         "phrase": "balance of work"
       },
       {
-        "id": "may-12-14-mindful",
-        "term": "mindful",
-        "definition": "aware and present in the moment",
-        "sentence": "Try to be mindful of how much sugar you eat.",
-        "phrase": "mindful of how"
+        "id": "may-12-14-take-a-break",
+        "term": "take a break",
+        "definition": "to stop an activity for a short rest",
+        "sentence": "I need to take a break after work.",
+        "phrase": "take a break after work"
       }
     ]
   },
@@ -1643,11 +1643,11 @@
         "phrase": "processed food and"
       },
       {
-        "id": "may-19-21-remedy",
-        "term": "remedy",
-        "definition": "something you do or take at home to feel better",
-        "sentence": "Honey and lemon is a good home remedy for a sore throat.",
-        "phrase": "remedy for a"
+        "id": "may-19-21-home-remedy",
+        "term": "home remedy",
+        "definition": "something people use at home to try to feel better",
+        "sentence": "My aunt told me about a home remedy for a cough.",
+        "phrase": "home remedy for a"
       },
       {
         "id": "may-19-21-relieve",
@@ -1657,11 +1657,11 @@
         "phrase": "relieve the pain"
       },
       {
-        "id": "may-19-21-soothe",
-        "term": "soothe",
-        "definition": "to calm or comfort (e.g. a sore throat)",
-        "sentence": "Warm milk can soothe an upset stomach.",
-        "phrase": "soothe an upset"
+        "id": "may-19-21-rest",
+        "term": "rest",
+        "definition": "to stop working or being active for a while",
+        "sentence": "I want to rest after my shift.",
+        "phrase": "rest after my"
       },
       {
         "id": "may-19-21-fluids",
@@ -1671,11 +1671,11 @@
         "phrase": "fluids when you"
       },
       {
-        "id": "may-19-21-ailment",
-        "term": "ailment",
-        "definition": "a minor illness or discomfort (e.g. cold, headache)",
-        "sentence": "Ginger tea is good for a stomach ailment.",
-        "phrase": "ailment"
+        "id": "may-19-21-sore-throat",
+        "term": "sore throat",
+        "definition": "pain or irritation in your throat",
+        "sentence": "I have a sore throat and a cough.",
+        "phrase": "sore throat and a"
       }
     ]
   },
@@ -1719,11 +1719,11 @@
         "phrase": "proud of my"
       },
       {
-        "id": "may-26-28-reflection",
-        "term": "reflection",
-        "definition": "thinking about your experience",
-        "sentence": "Quiet reflection helps me solve problems.",
-        "phrase": "reflection helps me"
+        "id": "may-26-28-look-back",
+        "term": "look back",
+        "definition": "to think about something that happened before",
+        "sentence": "When I look back, I can see my progress.",
+        "phrase": "look back, I can"
       }
     ]
   },
@@ -1772,6 +1772,150 @@
         "definition": "to be thankful for something",
         "sentence": "I appreciate all the help my teacher gave me this year.",
         "phrase": "appreciate all the"
+      }
+    ]
+  },
+  {
+    "id": "dec-groceries",
+    "topic": "Groceries: Food We Buy",
+    "words": [
+      {
+        "id": "dec-groceries-rice",
+        "term": "rice",
+        "definition": "small grains cooked and eaten as food",
+        "sentence": "How much rice do we need?",
+        "phrase": "rice do we"
+      },
+      {
+        "id": "dec-groceries-bread",
+        "term": "bread",
+        "definition": "food made from flour and baked",
+        "sentence": "We need a loaf of bread.",
+        "phrase": "bread"
+      },
+      {
+        "id": "dec-groceries-milk",
+        "term": "milk",
+        "definition": "a white drink often sold in a carton or bottle",
+        "sentence": "How much milk is left?",
+        "phrase": "milk is left"
+      },
+      {
+        "id": "dec-groceries-eggs",
+        "term": "eggs",
+        "definition": "foods with shells that are often cooked for breakfast",
+        "sentence": "How many eggs should I buy?",
+        "phrase": "eggs should I"
+      },
+      {
+        "id": "dec-groceries-vegetables",
+        "term": "vegetables",
+        "definition": "plants or parts of plants eaten as food",
+        "sentence": "I need some vegetables for dinner.",
+        "phrase": "vegetables for dinner"
+      },
+      {
+        "id": "dec-groceries-fruit",
+        "term": "fruit",
+        "definition": "food such as apples, oranges, and bananas",
+        "sentence": "Let’s buy some fruit for snacks.",
+        "phrase": "fruit for snacks"
+      }
+    ]
+  },
+  {
+    "id": "dec-fall-review",
+    "topic": "Fall Review: Six Useful Words",
+    "words": [
+      {
+        "id": "dec-fall-review-introduce",
+        "term": "introduce",
+        "definition": "to present yourself or another person for the first time",
+        "sentence": "Please introduce yourself to the class.",
+        "phrase": "introduce yourself to"
+      },
+      {
+        "id": "dec-fall-review-focus",
+        "term": "focus",
+        "definition": "to give your attention to one thing",
+        "sentence": "Focus on one sentence at a time.",
+        "phrase": "Focus on one"
+      },
+      {
+        "id": "dec-fall-review-leave",
+        "term": "leave",
+        "definition": "to go away from a place",
+        "sentence": "What time does the bus leave?",
+        "phrase": "leave"
+      },
+      {
+        "id": "dec-fall-review-volunteer",
+        "term": "volunteer",
+        "definition": "to offer to do something without being paid",
+        "sentence": "She volunteers at the food bank every Saturday.",
+        "phrase": "volunteers at the"
+      },
+      {
+        "id": "dec-fall-review-budget",
+        "term": "budget",
+        "definition": "to plan how much money to spend",
+        "sentence": "Budget your money so you can pay all your bills.",
+        "phrase": "Budget your money"
+      },
+      {
+        "id": "dec-fall-review-compare",
+        "term": "compare",
+        "definition": "to look at two or more things to find differences",
+        "sentence": "Always compare prices before you buy.",
+        "phrase": "compare prices before"
+      }
+    ]
+  },
+  {
+    "id": "apr-w30-review",
+    "topic": "Doctor Follow-Up: Six-Word Review",
+    "words": [
+      {
+        "id": "apr-w30-review-recover",
+        "term": "recover",
+        "definition": "to get better after being sick",
+        "sentence": "It took him a few weeks to fully recover from the surgery.",
+        "phrase": "recover from the"
+      },
+      {
+        "id": "apr-w30-review-improve",
+        "term": "improve",
+        "definition": "to get better, to make progress",
+        "sentence": "Rest and fluids will help you improve quickly.",
+        "phrase": "improve quickly"
+      },
+      {
+        "id": "apr-w30-review-exercise",
+        "term": "exercise",
+        "definition": "to do physical activity to stay healthy",
+        "sentence": "You should exercise for at least 30 minutes every day.",
+        "phrase": "exercise for at"
+      },
+      {
+        "id": "apr-w30-review-routine",
+        "term": "routine",
+        "definition": "the things you usually do each day",
+        "sentence": "I want to change my evening routine.",
+        "phrase": "routine"
+      },
+      {
+        "id": "apr-w30-review-prevent",
+        "term": "prevent",
+        "definition": "to stop something from happening",
+        "sentence": "Washing your hands helps prevent the spread of germs.",
+        "phrase": "prevent the spread"
+      },
+      {
+        "id": "apr-w30-review-adjust",
+        "term": "adjust",
+        "definition": "to change to fit a new situation",
+        "sentence": "It takes time to adjust to a new medication.",
+        "phrase": "adjust to a"
       }
     ]
   }

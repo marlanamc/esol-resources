@@ -1,7 +1,8 @@
 /**
  * Weekly vocabulary words for Cycle 1 (Sep–Jan) and Cycle 2 (Feb–Jun).
  * Target cadence: 6 words per week year-round (curated for real-world frequency).
- * Cycle 2 weeks currently still hold 12 words each — to be trimmed to 6 in a future pass.
+ * Six core words/phrases per set; bonusWords are optional recognition vocabulary.
+ * October 2026 revision favors useful spoken phrases alongside essential form/label terms.
  *
  * Each word may carry:
  *   - `topics: string[]` — topical Vocab Library grouping (see below)
@@ -108,12 +109,16 @@ const weeklyVocabData = {
   "oct-w2": {
     topic: "Transportation + Directions: Movement Verbs",
     words: [
-      { term: "depart",   def: "to leave a place",                                                   ex: "The bus departs from Main Street at 7:00 AM.", topics: ["transportation"], fillBlank: { text: "The 7:00 AM bus _____ from Main Street.", options: ["arrive", "depart", "transfer", "cross"] } },
-      { term: "arrive",   def: "to reach a place",                                                   ex: "What time does the train arrive at the station?", topics: ["transportation"], fillBlank: { text: "What time does the train _____ at South Station?", options: ["depart", "arrive", "transfer", "locate"] } },
-      { term: "transfer", def: "to change from one bus, train, or route to another",                 ex: "Transfer to the Red Line at Downtown Station.", topics: ["transportation"], fillBlank: { text: "_____ to the Red Line at Downtown Station.", options: ["follow", "transfer", "cross", "depart"] } },
-      { term: "locate",   def: "to find the position of something",                                  ex: "Can you locate the nearest pharmacy on the map?", topics: ["transportation"], fillBlank: { text: "Can you _____ the nearest pharmacy on this map?", options: ["follow", "locate", "transfer", "cross"] } },
-      { term: "follow",   def: "to go in the same direction; to use directions step by step",        ex: "Follow the signs to the emergency exit.", topics: ["transportation"], fillBlank: { text: "_____ the signs to the emergency exit.", options: ["cross", "follow", "locate", "transfer"] } },
-      { term: "cross",    def: "to go from one side to the other",                                   ex: "Cross the street at the crosswalk when the light is green.", topics: ["transportation"], fillBlank: { text: "_____ the street only when the walk signal is green.", options: ["follow", "cross", "depart", "arrive"] } },
+      {"term":"leave","def":"to go away from a place","ex":"What time does the bus leave?","pos":"verb","topics":["transportation"]},
+      {"term":"arrive","def":"to reach a place","ex":"What time does the train arrive at the station?","topics":["transportation"]},
+      {"term":"transfer","def":"to change from one bus, train, or route to another","ex":"Transfer to the Red Line at Downtown Station.","topics":["transportation"]},
+      {"term":"find","def":"to discover where something is","ex":"Can you help me find the bus stop?","pos":"verb","topics":["transportation"]},
+      {"term":"follow","def":"to go in the same direction; to use directions step by step","ex":"Follow the signs to the emergency exit.","topics":["transportation"]},
+      {"term":"cross","def":"to go from one side to the other","ex":"Cross the street at the crosswalk when the light is green.","topics":["transportation"]},
+    ],
+    bonusWords: [
+      {"term":"depart","def":"to leave a place","ex":"The bus departs from Main Street at 7:00 AM.","topics":["transportation"]},
+      {"term":"locate","def":"to find the position of something","ex":"Can you locate the nearest pharmacy on the map?","topics":["transportation"]},
     ],
   },
   "oct-w3": {
@@ -130,12 +135,16 @@ const weeklyVocabData = {
   "oct-w4": {
     topic: "Phone English + Family Connection: Communication Verbs",
     words: [
-      { term: "contact",   def: "to reach someone by phone, email, or message",                     ex: "Contact the school if your child will be absent.", topics: ["communication"], fillBlank: { text: "_____ the school office if your child will be absent.", options: ["respond", "contact", "confirm", "connect"] } },
-      { term: "respond",   def: "to answer or react to a message or question",                       ex: "Please respond to the email within 24 hours.", topics: ["communication"], fillBlank: { text: "Please _____ to the email within 24 hours.", options: ["contact", "respond", "confirm", "decline"] } },
-      { term: "confirm",   def: "to say that something is definitely true or agreed upon",           ex: "Call to confirm your appointment the day before.", topics: ["communication"], fillBlank: { text: "Call the doctor's office to _____ your appointment for tomorrow.", options: ["postpone", "confirm", "decline", "respond"] } },
-      { term: "decline",   def: "to politely say no to an offer or invitation",                      ex: "She had to decline the meeting because she was sick.", topics: ["communication"], fillBlank: { text: "She was sick, so she had to _____ the invitation to the meeting.", options: ["confirm", "decline", "postpone", "respond"] } },
-      { term: "postpone",  def: "to move something to a later time",                                 ex: "We need to postpone the meeting until next week.", topics: ["communication"], fillBlank: { text: "We need to _____ the meeting until next week.", options: ["confirm", "postpone", "decline", "contact"] } },
-      { term: "connect",   def: "to join or link with someone or something",                         ex: "I couldn't connect to the Wi-Fi at the library.", topics: ["communication", "digital-skills"], fillBlank: { text: "I couldn't _____ to the library Wi-Fi on my laptop.", options: ["contact", "connect", "respond", "confirm"] } },
+      {"term":"contact","def":"to reach someone by phone, email, or message","ex":"Contact the school if your child will be absent.","topics":["communication"]},
+      {"term":"respond","def":"to answer or react to a message or question","ex":"Please respond to the email within 24 hours.","topics":["communication"]},
+      {"term":"confirm","def":"to say that something is definitely true or agreed upon","ex":"Call to confirm your appointment the day before.","topics":["communication"]},
+      {"term":"turn down","def":"to say no to an offer or request","ex":"I had to turn down the extra shift.","pos":"phrasal verb","topics":["communication"]},
+      {"term":"reschedule","def":"to change a planned event to a different time","ex":"I need to reschedule my appointment.","pos":"verb","topics":["communication"]},
+      {"term":"connect","def":"to join or link with someone or something","ex":"I couldn't connect to the Wi-Fi at the library.","topics":["communication","digital-skills"]},
+    ],
+    bonusWords: [
+      {"term":"decline","def":"to politely say no to an offer or invitation","ex":"She had to decline the meeting because she was sick.","topics":["communication"]},
+      {"term":"postpone","def":"to move something to a later time","ex":"We need to postpone the meeting until next week.","topics":["communication"]},
     ],
   },
   "oct-w5": {
@@ -154,12 +163,15 @@ const weeklyVocabData = {
   "nov-w1": {
     topic: "Helping + Volunteering: Action Verbs",
     words: [
-      { term: "volunteer",  def: "to offer to do something without being paid",                      ex: "She volunteers at the food bank every Saturday.", topics: ["civic-life"], fillBlank: { text: "She _____ at the food bank every Saturday without pay.", options: ["donate", "volunteer", "assist", "join"] } },
-      { term: "assist",     def: "to help someone with a task",                                      ex: "Can you assist me with this form?", topics: ["civic-life", "soft-skills"], fillBlank: { text: "Can you _____ me with this registration form?", options: ["support", "assist", "contribute", "donate"] } },
-      { term: "support",    def: "to help or encourage someone or a cause",                          ex: "Our community supports local families in need.", topics: ["civic-life"], fillBlank: { text: "Our neighborhood _____ families who need help with food and rent.", options: ["donate", "support", "volunteer", "contribute"] } },
-      { term: "contribute",def: "to give time, money, or effort to help something",                  ex: "Everyone can contribute in a small way to make things better.", topics: ["civic-life"], fillBlank: { text: "Everyone can _____ time or money to help the community garden.", options: ["donate", "contribute", "support", "join"] } },
-      { term: "donate",     def: "to give something (money, food, clothing) to help others",         ex: "We donate clothing to the shelter twice a year.", topics: ["civic-life"], fillBlank: { text: "We _____ winter coats to the shelter twice a year.", options: ["contribute", "donate", "volunteer", "assist"] } },
-      { term: "join",       def: "to become a member of a group or start participating",             ex: "Would you like to join our community garden project?", topics: ["civic-life"], fillBlank: { text: "Would you like to _____ our community cleanup group?", options: ["volunteer", "join", "assist", "support"] } },
+      {"term":"volunteer","def":"to offer to do something without being paid","ex":"She volunteers at the food bank every Saturday.","topics":["civic-life"]},
+      {"term":"help out","def":"to help with a task or problem","ex":"Can you help out at the food bank on Saturday?","pos":"phrasal verb","topics":["civic-life","soft-skills"]},
+      {"term":"support","def":"to help or encourage someone or a cause","ex":"Our community supports local families in need.","topics":["civic-life"]},
+      {"term":"contribute","def":"to give time, money, or effort to help something","ex":"Everyone can contribute in a small way to make things better.","topics":["civic-life"]},
+      {"term":"donate","def":"to give something (money, food, clothing) to help others","ex":"We donate clothing to the shelter twice a year.","topics":["civic-life"]},
+      {"term":"join","def":"to become a member of a group or start participating","ex":"Would you like to join our community garden project?","topics":["civic-life"]},
+    ],
+    bonusWords: [
+      {"term":"assist","def":"to help someone with a task","ex":"Can you assist me with this form?","topics":["civic-life","soft-skills"]},
     ],
   },
   "nov-w2": {
@@ -235,23 +247,30 @@ const weeklyVocabData = {
   "jan-w1": {
     topic: "Housing Basics: Renter Verbs",
     words: [
-      { term: "rent",     def: "to pay money to use something (an apartment, a car) that belongs to someone else", ex: "We rent our apartment for $1,200 a month.", topics: ["housing"], fillBlank: { text: "We _____ our apartment for $1,200 per month.", options: ["lease", "rent", "occupy", "move"] } },
-      { term: "lease",    def: "to sign an agreement to use property for a set time",               ex: "We signed a 12-month lease for the apartment.", topics: ["housing"], fillBlank: { text: "We _____ the apartment for one year.", options: ["rent", "lease", "apply", "occupy"] } },
-      { term: "occupy",   def: "to live in or use a space",                                         ex: "How many people will occupy this apartment?", topics: ["housing"], fillBlank: { text: "How many people will _____ this two-bedroom apartment?", options: ["rent", "occupy", "move", "qualify"] } },
-      { term: "move",     def: "to go to live in a different place",                                 ex: "We plan to move to a bigger apartment next month.", topics: ["housing"], fillBlank: { text: "We plan to _____ to a bigger apartment next month.", options: ["occupy", "move", "rent", "apply"] } },
-      { term: "qualify",  def: "to meet the requirements needed for something",                     ex: "Do I qualify for the low-income housing program?", topics: ["housing"], fillBlank: { text: "Do I _____ for the low-income housing program?", options: ["apply", "qualify", "rent", "lease"] } },
-      { term: "apply",    def: "to formally request something (a job, an apartment, a program)",   ex: "You need to apply online for that apartment.", topics: ["housing", "career-job-search"], fillBlank: { text: "You need to _____ online to be considered for that apartment.", options: ["qualify", "apply", "lease", "move"] } },
+      {"term":"rent","def":"to pay money to use something (an apartment, a car) that belongs to someone else","ex":"We rent our apartment for $1,200 a month.","topics":["housing"]},
+      {"term":"lease","def":"to sign an agreement to use property for a set time","ex":"We signed a 12-month lease for the apartment.","topics":["housing"]},
+      {"term":"move in","def":"to start living in a home","ex":"When can we move in?","pos":"phrasal verb","topics":["housing"]},
+      {"term":"move","def":"to go to live in a different place","ex":"We plan to move to a bigger apartment next month.","topics":["housing"]},
+      {"term":"qualify","def":"to meet the requirements needed for something","ex":"Do I qualify for the low-income housing program?","topics":["housing"]},
+      {"term":"apply","def":"to formally request something (a job, an apartment, a program)","ex":"You need to apply online for that apartment.","topics":["housing","career-job-search"]},
+    ],
+    bonusWords: [
+      {"term":"occupy","def":"to live in or use a space","ex":"How many people will occupy this apartment?","topics":["housing"]},
     ],
   },
   "jan-w2": {
     topic: "Comparing Housing Options: Decision Verbs",
     words: [
-      { term: "compare",   def: "to look at two or more things to find differences",                ex: "Compare the rent and size of each apartment.", topics: ["housing"], fillBlank: { text: "_____ the rent and size of each apartment on your list.", options: ["evaluate", "compare", "select", "afford"] } },
-      { term: "afford",    def: "to have enough money to pay for something",                        ex: "I can't afford an apartment in that area.", topics: ["housing", "money"], fillBlank: { text: "I can't _____ an apartment in that expensive neighborhood.", options: ["compare", "afford", "select", "own"] } },
-      { term: "evaluate",  def: "to study all parts of something to judge its quality or value",   ex: "Evaluate the location, price, and size before deciding.", topics: ["housing"], fillBlank: { text: "_____ the location, price, and size before you decide.", options: ["compare", "evaluate", "select", "negotiate"] } },
-      { term: "select",    def: "to choose something from a group of options",                      ex: "We will select an apartment by the end of the week.", topics: ["housing"], fillBlank: { text: "We will _____ an apartment by the end of the week.", options: ["evaluate", "select", "negotiate", "compare"] } },
-      { term: "negotiate", def: "to talk with someone to reach an agreement",                       ex: "You can negotiate the rent with the landlord.", topics: ["housing", "communication"], fillBlank: { text: "You can _____ the rent with the landlord before you sign.", options: ["select", "negotiate", "afford", "own"] } },
-      { term: "own",       def: "to have something as your legal property",                         ex: "Someday I hope to own my own home.", topics: ["housing"], fillBlank: { text: "Someday I hope to _____ my own home instead of renting.", options: ["afford", "own", "select", "negotiate"] } },
+      {"term":"compare","def":"to look at two or more things to find differences","ex":"Compare the rent and size of each apartment.","topics":["housing"]},
+      {"term":"afford","def":"to have enough money to pay for something","ex":"I can't afford an apartment in that area.","topics":["housing","money"]},
+      {"term":"check out","def":"to look at something to decide what you think of it","ex":"Let’s check out the apartment before we decide.","pos":"phrasal verb","topics":["housing"]},
+      {"term":"choose","def":"to decide which one you want","ex":"We need to choose an apartment this week.","pos":"verb","topics":["housing"]},
+      {"term":"negotiate","def":"to talk with someone to reach an agreement","ex":"You can negotiate the rent with the landlord.","topics":["housing","communication"]},
+      {"term":"own","def":"to have something as your legal property","ex":"Someday I hope to own my own home.","topics":["housing"]},
+    ],
+    bonusWords: [
+      {"term":"evaluate","def":"to study all parts of something to judge its quality or value","ex":"Evaluate the location, price, and size before deciding.","topics":["housing"]},
+      {"term":"select","def":"to choose something from a group of options","ex":"We will select an apartment by the end of the week.","topics":["housing"]},
     ],
   },
   "jan-w3": {
@@ -268,12 +287,17 @@ const weeklyVocabData = {
   "jan-w4": {
     topic: "Housing Problems + Solutions: Resolution Verbs",
     words: [
-      { term: "resolve",     def: "to find a solution and fix a problem",                           ex: "The landlord promised to resolve the heating issue today.", topics: ["housing"], fillBlank: { text: "The landlord promised to _____ the heating problem today.", options: ["maintain", "resolve", "prevent", "document"] } },
-      { term: "maintain",    def: "to keep something in good condition",                             ex: "Tenants must maintain a clean and safe apartment.", topics: ["housing"], fillBlank: { text: "Tenants must _____ a clean and safe apartment.", options: ["prevent", "maintain", "resolve", "notify"] } },
-      { term: "notify",      def: "to officially tell someone about something",                      ex: "Notify your landlord in writing if you plan to move out.", topics: ["housing", "communication"], fillBlank: { text: "_____ your landlord in writing if you plan to move out.", options: ["document", "notify", "maintain", "reimburse"] } },
-      { term: "document",    def: "to write down or photograph something as a record",              ex: "Document the damage with photos before the landlord visits.", topics: ["housing"], fillBlank: { text: "_____ the damage with photos before the landlord visits.", options: ["notify", "document", "maintain", "resolve"] } },
-      { term: "prevent",     def: "to stop something bad from happening",                           ex: "Regular cleaning can prevent mold in the bathroom.", topics: ["housing"], fillBlank: { text: "Regular cleaning can _____ mold in the bathroom.", options: ["resolve", "prevent", "maintain", "document"] } },
-      { term: "reimburse",   def: "to pay someone back for money they spent",                       ex: "The landlord agreed to reimburse us for the plumber's cost.", topics: ["housing", "money"], fillBlank: { text: "The landlord agreed to _____ us for the plumber's bill.", options: ["document", "reimburse", "notify", "resolve"] } },
+      {"term":"fix","def":"to make a problem better or make something work again","ex":"When can you fix the heat?","pos":"verb","topics":["housing"]},
+      {"term":"maintain","def":"to keep something in good condition","ex":"Tenants must maintain a clean and safe apartment.","topics":["housing"]},
+      {"term":"let someone know","def":"to tell someone information they need","ex":"Please let someone know if you will be late.","pos":"verb phrase","topics":["housing","communication"]},
+      {"term":"document","def":"to write down or photograph something as a record","ex":"Document the damage with photos before the landlord visits.","topics":["housing"]},
+      {"term":"prevent","def":"to stop something bad from happening","ex":"Regular cleaning can prevent mold in the bathroom.","topics":["housing"]},
+      {"term":"pay back","def":"to return money someone spent or lent","ex":"Will the landlord pay back the money I spent on the repair?","pos":"phrasal verb","topics":["housing","money"]},
+    ],
+    bonusWords: [
+      {"term":"resolve","def":"to find a solution and fix a problem","ex":"The landlord promised to resolve the heating issue today.","topics":["housing"]},
+      {"term":"notify","def":"to officially tell someone about something","ex":"Notify your landlord in writing if you plan to move out.","topics":["housing","communication"]},
+      {"term":"reimburse","def":"to pay someone back for money they spent","ex":"The landlord agreed to reimburse us for the plumber's cost.","topics":["housing","money"]},
     ],
   },
 
@@ -374,41 +398,45 @@ const weeklyVocabData = {
     ],
   },
   "mar-17-19": {
-    topic: "Jobs: Communication & Feedback",
+    topic: "Jobs: Rights, Rules & Advocacy",
     words: [
-      { term: "right", def: "official approval to do something", ex: "Workers have the right to a safe workplace.", topics: ["career-on-the-job", "civic-life"], fillBlank: { text: "Workers have the _____ to a safe workplace.", options: ["courtesy", "right", "strict", "comply"] } },
-      { term: "advocate", def: "to speak up for yourself or others", ex: "You need to advocate for yourself if you want a raise.", topics: ["soft-skills", "civic-life", "career-on-the-job"], fillBlank: { text: "You need to _____ for yourself if you want to ask for a raise.", options: ["comply", "advocate", "violate", "courtesy"] } },
-      { term: "courtesy", def: "polite and respectful behavior", ex: "Treat all customers with patience and courtesy.", topics: ["soft-skills", "communication"], fillBlank: { text: "Treat all customers with patience and _____ at the front desk.", options: ["courtesy", "strict", "right", "comply"] } },
-      { term: "strict", def: "following rules very closely; not flexible", ex: "The company has strict rules about using cell phones at work.", topics: ["career-on-the-job"], fillBlank: { text: "The company has _____ rules about using cell phones at work.", options: ["strict", "courtesy", "comply", "right"] } },
-      { term: "comply", def: "to follow rules or requirements", ex: "All employees must comply with the new regulations.", topics: ["career-on-the-job"], fillBlank: { text: "All employees must _____ with the new safety regulations.", options: ["violate", "comply", "advocate", "strict"] } },
-      { term: "violate", def: "to break a rule or law", ex: "If you violate the policy, you may receive a warning.", topics: ["career-on-the-job"], fillBlank: { text: "If you _____ company policy, you may receive a warning.", options: ["comply", "violate", "advocate", "courtesy"] } },
+      {"term":"right","def":"official approval to do something","ex":"Workers have the right to a safe workplace.","topics":["career-on-the-job","civic-life"]},
+      {"term":"advocate","def":"to speak up for yourself or others","ex":"You need to advocate for yourself if you want a raise.","topics":["soft-skills","civic-life","career-on-the-job"]},
+      {"term":"respect","def":"polite and fair treatment of other people","ex":"We should treat coworkers with respect.","pos":"noun","topics":["soft-skills","communication"]},
+      {"term":"strict","def":"following rules very closely; not flexible","ex":"The company has strict rules about using cell phones at work.","topics":["career-on-the-job"]},
+      {"term":"follow the rules","def":"to do what the rules say","ex":"Everyone needs to follow the rules at work.","pos":"verb phrase","topics":["career-on-the-job"]},
+      {"term":"break a rule","def":"to do something a rule does not allow","ex":"You could get a warning if you break a rule.","pos":"verb phrase","topics":["career-on-the-job"]},
     ],
     bonusWords: [
-      { term: "require", def: "to need something or make it necessary", ex: "This job may require you to work some weekends.", topics: ["career-on-the-job"] },
-      { term: "allow", def: "to let someone do something", ex: "Does your company allow employees to work from home?", topics: ["career-on-the-job"] },
-      { term: "rule", def: "a guideline or regulation you must follow", ex: "Please follow every safety rule to avoid accidents.", topics: ["career-on-the-job"] },
-      { term: "prohibit", def: "to not allow, to ban something", ex: "Company policy prohibits smoking in the building.", topics: ["career-on-the-job"] },
-      { term: "coordinate", def: "to organize people or activities so they work well together", ex: "I need to coordinate the schedule with the other managers.", topics: ["career-on-the-job", "soft-skills"] },
-      { term: "recruit", def: "to find and bring new people into a company or group", ex: "We are trying to recruit new engineers for the team.", topics: ["career-job-search"] },
+      {"term":"require","def":"to need something or make it necessary","ex":"This job may require you to work some weekends.","topics":["career-on-the-job"]},
+      {"term":"allow","def":"to let someone do something","ex":"Does your company allow employees to work from home?","topics":["career-on-the-job"]},
+      {"term":"rule","def":"a guideline or regulation you must follow","ex":"Please follow every safety rule to avoid accidents.","topics":["career-on-the-job"]},
+      {"term":"prohibit","def":"to not allow, to ban something","ex":"Company policy prohibits smoking in the building.","topics":["career-on-the-job"]},
+      {"term":"coordinate","def":"to organize people or activities so they work well together","ex":"I need to coordinate the schedule with the other managers.","topics":["career-on-the-job","soft-skills"]},
+      {"term":"recruit","def":"to find and bring new people into a company or group","ex":"We are trying to recruit new engineers for the team.","topics":["career-job-search"]},
+      {"term":"courtesy","def":"polite and respectful behavior","ex":"Treat all customers with patience and courtesy.","topics":["soft-skills","communication"]},
+      {"term":"comply","def":"to follow rules or requirements","ex":"All employees must comply with the new regulations.","topics":["career-on-the-job"]},
+      {"term":"violate","def":"to break a rule or law","ex":"If you violate the policy, you may receive a warning.","topics":["career-on-the-job"]},
     ],
   },
   "mar-24-26": {
-    topic: "Jobs: Rights, Rules & Advocacy",
+    topic: "Jobs: Communication & Feedback",
     words: [
-      { term: "feedback", def: "comments or advice about your work", ex: "I appreciate your honest feedback on my work.", topics: ["career-on-the-job", "communication"], fillBlank: { text: "I appreciate your honest _____ on my presentation.", options: ["advice", "feedback", "decision", "recommend"] } },
-      { term: "advice", def: "suggestions or recommendations about what to do", ex: "Can you give me some advice on how to ask for a promotion?", topics: ["communication"], fillBlank: { text: "Can you give me some _____ on how to ask for a promotion?", options: ["feedback", "advice", "decision", "consequence"] } },
-      { term: "decision", def: "a choice you make", ex: "We need to make a decision about the budget by tomorrow.", topics: ["soft-skills"], fillBlank: { text: "We need to make a _____ about the budget by tomorrow.", options: ["consequence", "decision", "advice", "reflect"] } },
-      { term: "consequence", def: "a result or effect of an action", ex: "Losing your job can be a serious consequence of violating safety rules.", topics: ["career-on-the-job"], fillBlank: { text: "Losing your job can be a serious _____ of violating safety rules.", options: ["decision", "consequence", "feedback", "reflect"] } },
-      { term: "reflect", def: "to think carefully about something", ex: "Take some time to reflect on your performance this year.", topics: ["soft-skills"], fillBlank: { text: "Take some time to _____ on your performance this year before the review.", options: ["recommend", "reflect", "advice", "feedback"] } },
-      { term: "recommend", def: "to suggest something is good", ex: "I can recommend a good mechanic if you need one.", topics: ["communication"], fillBlank: { text: "I can _____ a good mechanic if you need your car fixed.", options: ["reflect", "recommend", "advice", "feedback"] } },
+      {"term":"feedback","def":"comments or advice about your work","ex":"I appreciate your honest feedback on my work.","topics":["career-on-the-job","communication"]},
+      {"term":"advice","def":"suggestions or recommendations about what to do","ex":"Can you give me some advice on how to ask for a promotion?","topics":["communication"]},
+      {"term":"decision","def":"a choice you make","ex":"We need to make a decision about the budget by tomorrow.","topics":["soft-skills"]},
+      {"term":"consequence","def":"a result or effect of an action","ex":"Losing your job can be a serious consequence of violating safety rules.","topics":["career-on-the-job"]},
+      {"term":"think about","def":"to spend time considering something","ex":"I need to think about your advice.","pos":"verb phrase","topics":["soft-skills"]},
+      {"term":"recommend","def":"to suggest something is good","ex":"I can recommend a good mechanic if you need one.","topics":["communication"]},
     ],
     bonusWords: [
-      { term: "risk", def: "the possibility of something bad happening", ex: "There is always a risk when starting a new business.", topics: ["career-on-the-job"] },
-      { term: "regret", def: "to feel sorry about something you did or didn't do", ex: "I regret not finishing college when I was younger.", topics: ["soft-skills"] },
-      { term: "experience", def: "knowledge or skill gained from doing something", ex: "You will gain valuable experience in this internship.", topics: ["career-job-search"] },
-      { term: "choice", def: "a decision you make", ex: "You have a choice between working the day shift or the night shift.", topics: ["soft-skills"] },
-      { term: "result", def: "what happens because of an action", ex: "The result of the project was better than we expected.", topics: ["career-on-the-job"] },
-      { term: "career", def: "your work life over many years", ex: "She changed her career path after ten years in sales.", topics: ["career-job-search", "career-on-the-job"] },
+      {"term":"risk","def":"the possibility of something bad happening","ex":"There is always a risk when starting a new business.","topics":["career-on-the-job"]},
+      {"term":"regret","def":"to feel sorry about something you did or didn't do","ex":"I regret not finishing college when I was younger.","topics":["soft-skills"]},
+      {"term":"experience","def":"knowledge or skill gained from doing something","ex":"You will gain valuable experience in this internship.","topics":["career-job-search"]},
+      {"term":"choice","def":"a decision you make","ex":"You have a choice between working the day shift or the night shift.","topics":["soft-skills"]},
+      {"term":"result","def":"what happens because of an action","ex":"The result of the project was better than we expected.","topics":["career-on-the-job"]},
+      {"term":"career","def":"your work life over many years","ex":"She changed her career path after ten years in sales.","topics":["career-job-search","career-on-the-job"]},
+      {"term":"reflect","def":"to think carefully about something","ex":"Take some time to reflect on your performance this year.","topics":["soft-skills"]},
     ],
   },
   "mar-31-apr-2": {
@@ -453,20 +481,21 @@ const weeklyVocabData = {
   "apr-14-16": {
     topic: "Health: Recovery & Lifestyle",
     words: [
-      { term: "recover", def: "to get better after being sick", ex: "It took him a few weeks to fully recover from the surgery.", topics: ["health"], fillBlank: { text: "It took him a few weeks to fully _____ from the surgery.", options: ["improve", "recover", "adjust", "prevent"] } },
-      { term: "improve", def: "to get better, to make progress", ex: "Rest and fluids will help you improve quickly.", topics: ["health"], fillBlank: { text: "Rest and fluids will help you _____ quickly after the flu.", options: ["recover", "improve", "prevent", "adjust"] } },
-      { term: "exercise", def: "to do physical activity to stay healthy", ex: "You should exercise for at least 30 minutes every day.", topics: ["health"], fillBlank: { text: "Doctors say you should _____ for at least 30 minutes every day.", options: ["prevent", "exercise", "recover", "adjust"] } },
-      { term: "lifestyle", def: "the way you live, your daily habits", ex: "Eating healthy and exercising are part of a good lifestyle.", topics: ["health"], fillBlank: { text: "Eating healthy and exercising are part of a good _____.", options: ["lifestyle", "recover", "improve", "prevent"] } },
-      { term: "prevent", def: "to stop something from happening", ex: "Washing your hands helps prevent the spread of germs.", topics: ["health"], fillBlank: { text: "Washing your hands helps _____ the spread of germs.", options: ["recover", "prevent", "improve", "adjust"] } },
-      { term: "adjust", def: "to change to fit a new situation", ex: "It takes time to adjust to a new medication.", topics: ["health"], fillBlank: { text: "It takes time to _____ to a new medication.", options: ["recover", "adjust", "improve", "prevent"] } },
+      {"term":"recover","def":"to get better after being sick","ex":"It took him a few weeks to fully recover from the surgery.","topics":["health"]},
+      {"term":"improve","def":"to get better, to make progress","ex":"Rest and fluids will help you improve quickly.","topics":["health"]},
+      {"term":"exercise","def":"to do physical activity to stay healthy","ex":"You should exercise for at least 30 minutes every day.","topics":["health"]},
+      {"term":"routine","def":"the things you usually do each day","ex":"I want to change my evening routine.","pos":"noun","topics":["health"]},
+      {"term":"prevent","def":"to stop something from happening","ex":"Washing your hands helps prevent the spread of germs.","topics":["health"]},
+      {"term":"adjust","def":"to change to fit a new situation","ex":"It takes time to adjust to a new medication.","topics":["health"]},
     ],
     bonusWords: [
-      { term: "result", def: "the outcome or effect of something", ex: "The doctor will call you with the result of your blood test.", topics: ["health"] },
-      { term: "duration", def: "how long something lasts", ex: "The duration of the flu is usually about one week.", topics: ["health"] },
-      { term: "bladder", def: "the organ that holds urine", ex: "Drinking plenty of water is good for your bladder.", topics: ["health"] },
-      { term: "liver", def: "the organ that cleans your blood", ex: "Alcohol can damage your liver over time.", topics: ["health"] },
-      { term: "used to", def: "something you did in the past but not now", ex: "I used to smoke, but I quit five years ago.", topics: ["health"] },
-      { term: "pattern", def: "a regular way you do things (like a habit)", ex: "Sleep problems can disrupt your daily pattern.", topics: ["health"] },
+      {"term":"result","def":"the outcome or effect of something","ex":"The doctor will call you with the result of your blood test.","topics":["health"]},
+      {"term":"duration","def":"how long something lasts","ex":"The duration of the flu is usually about one week.","topics":["health"]},
+      {"term":"bladder","def":"the organ that holds urine","ex":"Drinking plenty of water is good for your bladder.","topics":["health"]},
+      {"term":"liver","def":"the organ that cleans your blood","ex":"Alcohol can damage your liver over time.","topics":["health"]},
+      {"term":"used to","def":"something you did in the past but not now","ex":"I used to smoke, but I quit five years ago.","topics":["health"]},
+      {"term":"pattern","def":"a regular way you do things (like a habit)","ex":"Sleep problems can disrupt your daily pattern.","topics":["health"]},
+      {"term":"lifestyle","def":"the way you live, your daily habits","ex":"Eating healthy and exercising are part of a good lifestyle.","topics":["health"]},
     ],
   },
   "apr-28-30": {
@@ -491,77 +520,83 @@ const weeklyVocabData = {
   "may-5-7": {
     topic: "Health: Body & Medicine",
     words: [
-      { term: "symptom", def: "a sign that something is wrong with your body", ex: "A cough and sore throat are common symptoms of a cold.", topics: ["health"], fillBlank: { text: "A cough and sore throat are common _____ of a cold.", options: ["symptom", "dose", "chronic", "nutrient"] } },
-      { term: "temperature", def: "how hot or cold your body is", ex: "The nurse took my temperature to check for a fever.", topics: ["health"], fillBlank: { text: "The nurse took my _____ to check whether I have a fever.", options: ["symptom", "temperature", "dose", "chronic"] } },
-      { term: "prescribe", def: "to order medicine for a patient", ex: "The doctor will prescribe antibiotics for the infection.", topics: ["health"], fillBlank: { text: "The doctor will _____ antibiotics for the infection.", options: ["prescribe", "dose", "symptom", "chronic"] } },
-      { term: "dose", def: "one measured amount of medicine to take at one time", ex: "Take one dose every six hours as directed.", topics: ["health"], fillBlank: { text: "Take one _____ of this medicine every six hours as directed.", options: ["dose", "symptom", "nutrient", "chronic"] } },
-      { term: "chronic", def: "lasting a long time, not going away", ex: "She has chronic back pain that never fully goes away.", topics: ["health"], fillBlank: { text: "She has _____ back pain that never fully goes away.", options: ["chronic", "symptom", "dose", "nutrient"] } },
-      { term: "nutrient", def: "something in food your body needs, like vitamins", ex: "Fruits and vegetables are full of important nutrients.", topics: ["health"], fillBlank: { text: "Fruits and vegetables are full of important _____ your body needs.", options: ["dose", "nutrient", "symptom", "chronic"] } },
+      {"term":"symptom","def":"a sign that something is wrong with your body","ex":"A cough and sore throat are common symptoms of a cold.","topics":["health"]},
+      {"term":"temperature","def":"how hot or cold your body is","ex":"The nurse took my temperature to check for a fever.","topics":["health"]},
+      {"term":"prescribe","def":"to order medicine for a patient","ex":"The doctor will prescribe antibiotics for the infection.","topics":["health"]},
+      {"term":"dose","def":"one measured amount of medicine to take at one time","ex":"Take one dose every six hours as directed.","topics":["health"]},
+      {"term":"chronic","def":"lasting a long time, not going away","ex":"She has chronic back pain that never fully goes away.","topics":["health"]},
+      {"term":"side effect","def":"an unwanted effect a medicine can have","ex":"Is feeling sleepy a side effect of this medicine?","pos":"noun","topics":["health"]},
     ],
     bonusWords: [
-      { term: "muscles", def: "parts of the body that help you move", ex: "Stretching helps keep your muscles flexible.", topics: ["health"] },
-      { term: "bones", def: "hard parts inside your body that give shape and support", ex: "Calcium is important for strong bones.", topics: ["health"] },
-      { term: "drowsy", def: "sleepy or less alert, often after taking medicine", ex: "This allergy medicine can make you feel drowsy.", topics: ["health"] },
-      { term: "sign", def: "something that shows you might be sick", ex: "A fever is often a sign of an infection.", topics: ["health"] },
-      { term: "caution", def: "being careful to avoid danger", ex: "Use caution when taking new medicine for the first time.", topics: ["health"] },
-      { term: "organ", def: "a body part with a specific job, like the heart or lungs", ex: "The heart is a vital organ that pumps blood.", topics: ["health"] },
+      {"term":"muscles","def":"parts of the body that help you move","ex":"Stretching helps keep your muscles flexible.","topics":["health"]},
+      {"term":"bones","def":"hard parts inside your body that give shape and support","ex":"Calcium is important for strong bones.","topics":["health"]},
+      {"term":"drowsy","def":"sleepy or less alert, often after taking medicine","ex":"This allergy medicine can make you feel drowsy.","topics":["health"]},
+      {"term":"sign","def":"something that shows you might be sick","ex":"A fever is often a sign of an infection.","topics":["health"]},
+      {"term":"caution","def":"being careful to avoid danger","ex":"Use caution when taking new medicine for the first time.","topics":["health"]},
+      {"term":"organ","def":"a body part with a specific job, like the heart or lungs","ex":"The heart is a vital organ that pumps blood.","topics":["health"]},
+      {"term":"nutrient","def":"something in food your body needs, like vitamins","ex":"Fruits and vegetables are full of important nutrients.","topics":["health"]},
     ],
   },
   "may-12-14": {
     topic: "Health: Self-Care & Wellness",
     words: [
-      { term: "wellness", def: "overall health and well-being", ex: "The company offers a wellness program for employees.", topics: ["health"], fillBlank: { text: "The company offers a _____ program with gym discounts and stress workshops.", options: ["self-care", "wellness", "balance", "relax"] } },
-      { term: "self-care", def: "taking care of your own needs", ex: "Taking time to relax is an important part of self-care.", topics: ["health", "soft-skills"], fillBlank: { text: "Taking time to rest is an important part of _____.", options: ["wellness", "self-care", "relax", "balance"] } },
-      { term: "relax", def: "to rest and become calm", ex: "I like to relax with a good book after work.", topics: ["health"], fillBlank: { text: "I like to _____ with a good book after a long day at work.", options: ["balance", "relax", "mindful", "wellness"] } },
-      { term: "coping skills", def: "ways to handle stress or problems", ex: "Deep breathing is one of my coping skills for stress.", topics: ["health", "soft-skills"], fillBlank: { text: "Deep breathing is one of my _____ for handling stress.", options: ["coping skills", "self-care", "wellness", "balance"] } },
-      { term: "balance", def: "having the right amount of different things", ex: "A good balance of work and rest keeps you healthy.", topics: ["health", "soft-skills"], fillBlank: { text: "A good _____ of work and rest keeps you healthy.", options: ["wellness", "balance", "self-care", "mindful"] } },
-      { term: "mindful", def: "aware and present in the moment", ex: "Try to be mindful of how much sugar you eat.", topics: ["health", "soft-skills"], fillBlank: { text: "Try to be _____ of how much sugar you eat each day.", options: ["mindful", "relax", "balance", "wellness"] } },
+      {"term":"wellness","def":"overall health and well-being","ex":"The company offers a wellness program for employees.","topics":["health"]},
+      {"term":"self-care","def":"taking care of your own needs","ex":"Taking time to relax is an important part of self-care.","topics":["health","soft-skills"]},
+      {"term":"relax","def":"to rest and become calm","ex":"I like to relax with a good book after work.","topics":["health"]},
+      {"term":"coping skills","def":"ways to handle stress or problems","ex":"Deep breathing is one of my coping skills for stress.","topics":["health","soft-skills"]},
+      {"term":"balance","def":"having the right amount of different things","ex":"A good balance of work and rest keeps you healthy.","topics":["health","soft-skills"]},
+      {"term":"take a break","def":"to stop an activity for a short rest","ex":"I need to take a break after work.","pos":"verb phrase","topics":["health","soft-skills"]},
     ],
     bonusWords: [
-      { term: "regimen", def: "a routine plan, often for health or fitness", ex: "He follows a strict workout regimen to stay fit.", topics: ["health"] },
-      { term: "hydration", def: "having enough water in your body", ex: "Good hydration is essential for athletes.", topics: ["health"] },
-      { term: "moderation", def: "not too much or too little", ex: "It is okay to eat dessert in moderation.", topics: ["health"] },
-      { term: "nourish", def: "to give your body the food and care it needs", ex: "Eating fruits and vegetables helps nourish your body.", topics: ["health"] },
-      { term: "recreational", def: "related to fun or relaxing activities", ex: "The park offers many recreational activities for families.", topics: ["health"] },
-      { term: "restore", def: "to bring back to good condition", ex: "A good night's sleep will restore your energy.", topics: ["health"] },
+      {"term":"regimen","def":"a routine plan, often for health or fitness","ex":"He follows a strict workout regimen to stay fit.","topics":["health"]},
+      {"term":"hydration","def":"having enough water in your body","ex":"Good hydration is essential for athletes.","topics":["health"]},
+      {"term":"moderation","def":"not too much or too little","ex":"It is okay to eat dessert in moderation.","topics":["health"]},
+      {"term":"nourish","def":"to give your body the food and care it needs","ex":"Eating fruits and vegetables helps nourish your body.","topics":["health"]},
+      {"term":"recreational","def":"related to fun or relaxing activities","ex":"The park offers many recreational activities for families.","topics":["health"]},
+      {"term":"restore","def":"to bring back to good condition","ex":"A good night's sleep will restore your energy.","topics":["health"]},
+      {"term":"mindful","def":"aware and present in the moment","ex":"Try to be mindful of how much sugar you eat.","topics":["health","soft-skills"]},
     ],
   },
   "may-19-21": {
     topic: "Health: Home Remedies & Food",
     words: [
-      { term: "processed", def: "changed from natural state", ex: "Try to eat less processed food and more fresh vegetables.", topics: ["health"], fillBlank: { text: "Try to eat less _____ food and more fresh vegetables.", options: ["processed", "remedy", "fluids", "ailment"] } },
-      { term: "remedy", def: "something you do or take at home to feel better", ex: "Honey and lemon is a good home remedy for a sore throat.", topics: ["health"], fillBlank: { text: "Honey and lemon is a good home _____ for a sore throat.", options: ["remedy", "relieve", "soothe", "fluids"] } },
-      { term: "relieve", def: "to make pain or discomfort less", ex: "Ice can help relieve the pain of a sprained ankle.", topics: ["health"], fillBlank: { text: "Ice can help _____ the pain of a sprained ankle.", options: ["soothe", "relieve", "remedy", "ailment"] } },
-      { term: "soothe", def: "to calm or comfort (e.g. a sore throat)", ex: "Warm milk can soothe an upset stomach.", topics: ["health"], fillBlank: { text: "Warm tea can _____ an upset stomach.", options: ["relieve", "soothe", "remedy", "fluids"] } },
-      { term: "fluids", def: "liquids you drink (water, tea, broth)", ex: "Drink plenty of fluids when you are sick.", topics: ["health"], fillBlank: { text: "Drink plenty of _____ when you are sick with a fever.", options: ["fluids", "remedy", "ailment", "soothe"] } },
-      { term: "ailment", def: "a minor illness or discomfort (e.g. cold, headache)", ex: "Ginger tea is good for a stomach ailment.", topics: ["health"], fillBlank: { text: "Ginger tea is good for a minor stomach _____.", options: ["ailment", "remedy", "fluids", "relieve"] } },
+      {"term":"processed","def":"changed from natural state","ex":"Try to eat less processed food and more fresh vegetables.","topics":["health"]},
+      {"term":"home remedy","def":"something people use at home to try to feel better","ex":"My aunt told me about a home remedy for a cough.","pos":"noun","topics":["health"]},
+      {"term":"relieve","def":"to make pain or discomfort less","ex":"Ice can help relieve the pain of a sprained ankle.","topics":["health"]},
+      {"term":"rest","def":"to stop working or being active for a while","ex":"I want to rest after my shift.","pos":"verb","topics":["health"]},
+      {"term":"fluids","def":"liquids you drink (water, tea, broth)","ex":"Drink plenty of fluids when you are sick.","topics":["health"]},
+      {"term":"sore throat","def":"pain or irritation in your throat","ex":"I have a sore throat and a cough.","pos":"noun","topics":["health"]},
     ],
     bonusWords: [
-      { term: "packaged", def: "put in a container or box", ex: "The cookies are packaged in a plastic box.", topics: ["health"] },
-      { term: "preserved", def: "kept fresh for a long time", ex: "Salt was used to keep the meat preserved for the winter.", topics: ["health"] },
-      { term: "required", def: "needed, must be done", ex: "A helmet is required when riding a motorcycle.", topics: ["transportation"] },
-      { term: "listed", def: "written down in order", ex: "The ingredients are listed on the back of the package.", topics: ["health"] },
-      { term: "measured", def: "checked the amount or size", ex: "She carefully measured the flour for the cake.", topics: ["health"] },
-      { term: "detox", def: "to remove harmful or addictive substances from the body", ex: "He went on a detox diet to clean his system.", topics: ["health"] },
+      {"term":"packaged","def":"put in a container or box","ex":"The cookies are packaged in a plastic box.","topics":["health"]},
+      {"term":"preserved","def":"kept fresh for a long time","ex":"Salt was used to keep the meat preserved for the winter.","topics":["health"]},
+      {"term":"required","def":"needed, must be done","ex":"A helmet is required when riding a motorcycle.","topics":["transportation"]},
+      {"term":"listed","def":"written down in order","ex":"The ingredients are listed on the back of the package.","topics":["health"]},
+      {"term":"measured","def":"checked the amount or size","ex":"She carefully measured the flour for the cake.","topics":["health"]},
+      {"term":"detox","def":"to remove harmful or addictive substances from the body","ex":"He went on a detox diet to clean his system.","topics":["health"]},
+      {"term":"remedy","def":"something you do or take at home to feel better","ex":"Honey and lemon is a good home remedy for a sore throat.","topics":["health"]},
+      {"term":"soothe","def":"to calm or comfort (e.g. a sore throat)","ex":"Warm milk can soothe an upset stomach.","topics":["health"]},
+      {"term":"ailment","def":"a minor illness or discomfort (e.g. cold, headache)","ex":"Ginger tea is good for a stomach ailment.","topics":["health"]},
     ],
   },
   "may-26-28": {
     topic: "Reflection & Growth",
     words: [
-      { term: "progress", def: "improvement over time", ex: "You are making good progress in your English class.", topics: ["soft-skills"], fillBlank: { text: "You are making good _____ in your English class this semester.", options: ["progress", "success", "challenge", "reflection"] } },
-      { term: "challenge", def: "something difficult", ex: "Learning a new language is a big challenge.", topics: ["soft-skills"], fillBlank: { text: "Learning a new language is a big _____.", options: ["success", "challenge", "progress", "accomplish"] } },
-      { term: "success", def: "achieving your goal", ex: "Hard work is the key to success.", topics: ["soft-skills"], fillBlank: { text: "Hard work and practice are the keys to _____.", options: ["progress", "success", "challenge", "reflection"] } },
-      { term: "accomplish", def: "to finish something successfully", ex: "She accomplished her goal of running a 5K.", topics: ["soft-skills"], fillBlank: { text: "She _____ her goal of running a 5K race last month.", options: ["accomplish", "progress", "success", "proud"] } },
-      { term: "proud", def: "feeling good about achievement", ex: "I am very proud of my son for graduating.", topics: ["soft-skills"], fillBlank: { text: "I am very _____ of my son for graduating from high school.", options: ["proud", "success", "progress", "reflection"] } },
-      { term: "reflection", def: "thinking about your experience", ex: "Quiet reflection helps me solve problems.", topics: ["soft-skills"], fillBlank: { text: "Quiet _____ helps me think about what I learned this year.", options: ["reflection", "progress", "challenge", "success"] } },
+      {"term":"progress","def":"improvement over time","ex":"You are making good progress in your English class.","topics":["soft-skills"]},
+      {"term":"challenge","def":"something difficult","ex":"Learning a new language is a big challenge.","topics":["soft-skills"]},
+      {"term":"success","def":"achieving your goal","ex":"Hard work is the key to success.","topics":["soft-skills"]},
+      {"term":"accomplish","def":"to finish something successfully","ex":"She accomplished her goal of running a 5K.","topics":["soft-skills"]},
+      {"term":"proud","def":"feeling good about achievement","ex":"I am very proud of my son for graduating.","topics":["soft-skills"]},
+      {"term":"look back","def":"to think about something that happened before","ex":"When I look back, I can see my progress.","pos":"phrasal verb","topics":["soft-skills"]},
     ],
     bonusWords: [
-      { term: "nerves", def: "feelings of stress or anxiety; or fibers that carry signals in the body", ex: "She checked her nerves before the big speech.", topics: ["health"] },
-      { term: "mind", def: "the part that thinks, feels, and remembers; your thoughts", ex: "Keep an open mind when listening to new ideas.", topics: ["health", "soft-skills"] },
-      { term: "cycle", def: "a repeating pattern (e.g. weekly habits)", ex: "The life cycle of a butterfly is fascinating.", topics: ["health"] },
-      { term: "outcome", def: "the result of something", ex: "We are waiting for the outcome of the election.", topics: ["civic-life"] },
-      { term: "keep", def: "to continue doing something", ex: "Please keep the door closed." },
-      { term: "sustain", def: "to keep something going over time", ex: "It is hard to sustain high energy all day.", topics: ["soft-skills"] },
+      {"term":"nerves","def":"feelings of stress or anxiety; or fibers that carry signals in the body","ex":"She checked her nerves before the big speech.","topics":["health"]},
+      {"term":"mind","def":"the part that thinks, feels, and remembers; your thoughts","ex":"Keep an open mind when listening to new ideas.","topics":["health","soft-skills"]},
+      {"term":"cycle","def":"a repeating pattern (e.g. weekly habits)","ex":"The life cycle of a butterfly is fascinating.","topics":["health"]},
+      {"term":"outcome","def":"the result of something","ex":"We are waiting for the outcome of the election.","topics":["civic-life"]},
+      {"term":"keep","def":"to continue doing something","ex":"Please keep the door closed."},
+      {"term":"sustain","def":"to keep something going over time","ex":"It is hard to sustain high energy all day.","topics":["soft-skills"]},
+      {"term":"reflection","def":"thinking about your experience","ex":"Quiet reflection helps me solve problems.","topics":["soft-skills"]},
     ],
   },
   "jun-2-4": {
@@ -583,6 +618,190 @@ const weeklyVocabData = {
       { term: "continue", def: "to keep doing something", ex: "Please continue working until 5:00 PM." },
     ],
   },
+  "dec-groceries": {
+  "topic": "Groceries: Food We Buy",
+  "words": [
+    {
+      "term": "rice",
+      "def": "small grains cooked and eaten as food",
+      "ex": "How much rice do we need?",
+      "pos": "noun"
+    },
+    {
+      "term": "bread",
+      "def": "food made from flour and baked",
+      "ex": "We need a loaf of bread.",
+      "pos": "noun"
+    },
+    {
+      "term": "milk",
+      "def": "a white drink often sold in a carton or bottle",
+      "ex": "How much milk is left?",
+      "pos": "noun"
+    },
+    {
+      "term": "eggs",
+      "def": "foods with shells that are often cooked for breakfast",
+      "ex": "How many eggs should I buy?",
+      "pos": "noun"
+    },
+    {
+      "term": "vegetables",
+      "def": "plants or parts of plants eaten as food",
+      "ex": "I need some vegetables for dinner.",
+      "pos": "noun"
+    },
+    {
+      "term": "fruit",
+      "def": "food such as apples, oranges, and bananas",
+      "ex": "Let’s buy some fruit for snacks.",
+      "pos": "noun"
+    }
+  ]
+},
+  "dec-fall-review": {
+  "topic": "Fall Review: Six Useful Words",
+  "words": [
+    {
+      "term": "introduce",
+      "def": "to present yourself or another person for the first time",
+      "ex": "Please introduce yourself to the class.",
+      "fillBlank": {
+        "text": "On the first day, please _____ yourself to the class.",
+        "options": [
+          "introduce",
+          "greet",
+          "share",
+          "prefer"
+        ]
+      }
+    },
+    {
+      "term": "focus",
+      "pos": "verb",
+      "def": "to give your attention to one thing",
+      "ex": "Focus on one sentence at a time.",
+      "fillBlank": {
+        "text": "Put other work away and _____ on this one sentence.",
+        "options": [
+          "notice",
+          "focus",
+          "correct",
+          "compare"
+        ]
+      },
+      "quizDistractors": [
+        "correct",
+        "remember"
+      ]
+    },
+    {
+      "term": "leave",
+      "def": "to go away from a place",
+      "ex": "What time does the bus leave?",
+      "pos": "verb",
+      "topics": [
+        "transportation"
+      ]
+    },
+    {
+      "term": "volunteer",
+      "def": "to offer to do something without being paid",
+      "ex": "She volunteers at the food bank every Saturday.",
+      "topics": [
+        "civic-life"
+      ]
+    },
+    {
+      "term": "budget",
+      "def": "to plan how much money to spend",
+      "ex": "Budget your money so you can pay all your bills.",
+      "topics": [
+        "money"
+      ],
+      "fillBlank": {
+        "text": "_____ your money so you can pay rent and all your bills.",
+        "options": [
+          "save",
+          "budget",
+          "spend",
+          "calculate"
+        ]
+      }
+    },
+    {
+      "term": "compare",
+      "def": "to look at two or more things to find differences",
+      "ex": "Always compare prices before you buy.",
+      "topics": [
+        "money"
+      ],
+      "fillBlank": {
+        "text": "Always _____ prices at two stores before you buy.",
+        "options": [
+          "calculate",
+          "compare",
+          "budget",
+          "purchase"
+        ]
+      }
+    }
+  ]
+},
+  "apr-w30-review": {
+  "topic": "Doctor Follow-Up: Six-Word Review",
+  "words": [
+    {
+      "term": "recover",
+      "def": "to get better after being sick",
+      "ex": "It took him a few weeks to fully recover from the surgery.",
+      "topics": [
+        "health"
+      ]
+    },
+    {
+      "term": "improve",
+      "def": "to get better, to make progress",
+      "ex": "Rest and fluids will help you improve quickly.",
+      "topics": [
+        "health"
+      ]
+    },
+    {
+      "term": "exercise",
+      "def": "to do physical activity to stay healthy",
+      "ex": "You should exercise for at least 30 minutes every day.",
+      "topics": [
+        "health"
+      ]
+    },
+    {
+      "term": "routine",
+      "def": "the things you usually do each day",
+      "ex": "I want to change my evening routine.",
+      "pos": "noun",
+      "topics": [
+        "health"
+      ]
+    },
+    {
+      "term": "prevent",
+      "def": "to stop something from happening",
+      "ex": "Washing your hands helps prevent the spread of germs.",
+      "topics": [
+        "health"
+      ]
+    },
+    {
+      "term": "adjust",
+      "def": "to change to fit a new situation",
+      "ex": "It takes time to adjust to a new medication.",
+      "topics": [
+        "health"
+      ]
+    }
+  ]
+},
 };
 
 module.exports = { weeklyVocabData };
