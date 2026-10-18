@@ -150,3 +150,8 @@ deep-research-report.md
 
 # Local Word Rescue database recovery snapshots
 /output/word-rescue/release-backup-*.json
+
+# Private student analyses and generated local previews
+/output/guide-mobile-fit/
+/output/month-one-evaluation/
+/output/student-evaluation-preview/

@@ -125,8 +125,9 @@ Before building a new day's warmup:
   block are all fine as their own CSS classes (see the Week 2 Day 1
   files for a scramble-list + sort-boxes example). Reuse `.word-bank`
   for any bordered word-pool box, `.blank` for any inline write-in line,
-  and a `.bonus-line` (a bare `border-bottom` rule, no fixed width) for
-  bonus/writing-prompt lines — don't reinvent those three.
+  a `.bonus-line` (a bare `border-bottom` rule, no fixed width) for
+  bonus/writing-prompt lines, and `.ideas` for a suggested-words hint
+  under a writing prompt — don't reinvent those four.
 - **Word search grids** (old Week 4 Day 1, still in git at commit 6885e638): build as an HTML `<table>`
   with one letter per `<td>`, monospace font, fixed cell width/height.
   Place the target words first (across or down), then fill every
@@ -171,7 +172,15 @@ Reference implementation: `FY27/worksheets/warmups/{print,classroom}/week5-day1-
     it; a one-line `<s>`-strikethrough worked example is fine since the
     cross-out convention is new. Task 5 "Bonus: Your turn" — 3 prompts
     (clue + verb, e.g. **Last weekend** + do), each followed by a
-    `.bonus-line`, for a true sentence about themselves. Reference:
+    `.bonus-line`, for a true sentence about themselves. Put a
+    `<p class="ideas">Ideas: … &middot; …</p>` line between each prompt
+    and its `.bonus-line`, with 3-4 nouns/phrases that collocate with that
+    verb (*breakfast · coffee · my bed* for make). Never write full
+    sentences there. Students had the grammar but got stuck finding a
+    noun (Wk5D2: "I made the food" for *breakfast*). Classroom: 15px
+    italic on its own line. Print: 12px, `display: inline` on the prompt
+    line (its own line pushes the 2-up onto a third page). Keep the
+    print hint short enough not to wrap. Reference:
     `week5-day2-2026-10-15.html`.
   - Connecting sentences (and / but / because) is a later-week stretch
     once verb forms are solid — don't stack it on the same week.

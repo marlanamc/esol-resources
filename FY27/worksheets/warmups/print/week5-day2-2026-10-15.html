@@ -89,7 +89,7 @@
 
   /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
   .page.back { break-before: page; }
-  .page.back .copy { padding: 0.25in 0.25in; }
+  .page.back .copy { padding: 0.18in 0.25in; }
   .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
   .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
   .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
@@ -108,6 +108,9 @@
   .sort-box { flex: 1; border: 1px solid #000; min-height: 150px; padding: 6px 10px; }
   .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 6px; }
   .opt { white-space: nowrap; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
 </style>
 </head>
 <body>
@@ -202,10 +205,13 @@
         <div class="task-title">5&ensp;Bonus: Your turn</div>
         <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
         <p class="prompt"><b>Last weekend</b> + do</p>
+        <p class="ideas">Ideas: the laundry &middot; homework &middot; the shopping &middot; exercise</p>
         <div class="bonus-line"></div>
         <p class="prompt"><b>Every morning</b> + make</p>
+        <p class="ideas">Ideas: breakfast &middot; coffee &middot; my bed &middot; lunch</p>
         <div class="bonus-line"></div>
         <p class="prompt">I <b>have</b> + make <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: new friends &middot; a plan &middot; a mistake</p>
         <div class="bonus-line"></div>
       </section>
     </div>
@@ -241,10 +247,13 @@
         <div class="task-title">5&ensp;Bonus: Your turn</div>
         <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
         <p class="prompt"><b>Last weekend</b> + do</p>
+        <p class="ideas">Ideas: the laundry &middot; homework &middot; the shopping &middot; exercise</p>
         <div class="bonus-line"></div>
         <p class="prompt"><b>Every morning</b> + make</p>
+        <p class="ideas">Ideas: breakfast &middot; coffee &middot; my bed &middot; lunch</p>
         <div class="bonus-line"></div>
         <p class="prompt">I <b>have</b> + make <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: new friends &middot; a plan &middot; a mistake</p>
         <div class="bonus-line"></div>
       </section>
     </div>

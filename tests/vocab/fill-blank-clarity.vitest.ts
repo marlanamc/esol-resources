@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { COURSE_MAP_UNITS } from '@/lib/course-map-data';
-const { weeklyVocabData } = require('../../scripts/vocab/weekly-vocab-data');
-const { generateFillBlankContent } = require('../../scripts/vocab/seed-weekly-vocab');
+import { weeklyVocabData } from '../../scripts/vocab/weekly-vocab-data';
+import { generateFillBlankContent } from '../../scripts/vocab/seed-weekly-vocab';
 describe('clear vocabulary blanks',()=>{
  it('never leaves an inflection behind or exposes the answer when the example uses another form',()=>{
   for(const [term,ex] of [['support','She supports the team.'],['help out','He helped out yesterday.'],['art','The cart is full.']]){
@@ -13,7 +13,7 @@ describe('clear vocabulary blanks',()=>{
  it('uses reviewed prompts and complete phrase answers in all 31 later weeks',()=>{
   for(const w of COURSE_MAP_UNITS.flatMap(u=>u.weeks).filter(w=>w.number>=6)){
    const slug=w.items.find(i=>i.vocabUi==='flashcards'&&i.slot==='required')!.activityId!.slice(6);
-   const data=weeklyVocabData[slug];const questions=generateFillBlankContent(slug,data).sentences;
+   const data=weeklyVocabData[slug as keyof typeof weeklyVocabData];const questions=generateFillBlankContent(slug,data).sentences;
    expect(questions).toHaveLength(6);
    questions.forEach((q:{text:string;correctAnswers:string[];options:string[]},i:number)=>{
     const word=data.words[i];expect(word.fillBlank).toBeDefined();

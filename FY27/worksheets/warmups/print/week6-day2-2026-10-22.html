@@ -88,8 +88,8 @@
   }
   /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
   .page.back { break-before: page; }
-  .page.back .copy { padding: 0.25in 0.25in; }
-  .page.back .task { margin-bottom: 12px; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
   .page.back .item-list li { margin-bottom: 3px; }
   .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
   .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
@@ -118,6 +118,9 @@
   .verb-chart tr.example td { font-style: italic; }
   .seq-blank { width: 1.6em !important; }
 
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
 </style>
 </head>
 <body>
@@ -218,10 +221,13 @@
         <div class="task-title">5&ensp;Bonus: Your turn</div>
         <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
         <p class="prompt"><b>Last weekend</b> + go</p>
+        <p class="ideas">Ideas: to the store &middot; to church &middot; shopping &middot; to the park</p>
         <div class="bonus-line"></div>
         <p class="prompt"><b>Every Tuesday</b> + come</p>
+        <p class="ideas">Ideas: to class &middot; home late &middot; to school by bus &middot; early</p>
         <div class="bonus-line"></div>
         <p class="prompt">I <b>have</b> + go <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: to New York &middot; to the beach &middot; many times</p>
         <div class="bonus-line"></div>
       </section>
     </div>
@@ -257,10 +263,13 @@
         <div class="task-title">5&ensp;Bonus: Your turn</div>
         <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
         <p class="prompt"><b>Last weekend</b> + go</p>
+        <p class="ideas">Ideas: to the store &middot; to church &middot; shopping &middot; to the park</p>
         <div class="bonus-line"></div>
         <p class="prompt"><b>Every Tuesday</b> + come</p>
+        <p class="ideas">Ideas: to class &middot; home late &middot; to school by bus &middot; early</p>
         <div class="bonus-line"></div>
         <p class="prompt">I <b>have</b> + go <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: to New York &middot; to the beach &middot; many times</p>
         <div class="bonus-line"></div>
       </section>
     </div>

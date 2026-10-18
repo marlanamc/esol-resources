@@ -83,7 +83,9 @@
   }
 
   /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus (prints as page 2). */
-  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  .copy.back { break-before: page; padding-top: 0.25in; padding-bottom: 0.2in; }
+  .copy.back .item-list li { margin-bottom: 5px; }
+  .copy.back .task { margin-bottom: 10px; }
   @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
   .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
   .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
@@ -91,7 +93,7 @@
   .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
   .forms-chart td { height: 0.62in; }
   .forms-chart td.base { font-weight: bold; }
-  .prompt { margin-top: 8px; }
+  .prompt { margin-top: 4px; }
   s { text-decoration-thickness: 2px; }
   @media print {
     @page { size: letter portrait; margin: 0; }
@@ -102,6 +104,7 @@
   .sort-box { flex: 1; border: 1px solid #000; min-height: 150px; padding: 6px 10px; }
   .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 6px; }
   .opt { white-space: nowrap; }
+  .ideas { font-size: 15px; font-style: italic; margin: 0 0 2px; }
 </style>
 </head>
 <body>
@@ -165,10 +168,13 @@
         <div class="task-title">5&ensp;Bonus: Your turn</div>
         <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
         <p class="prompt"><b>Last weekend</b> + do</p>
+        <p class="ideas">Ideas: the laundry &middot; homework &middot; the shopping &middot; exercise</p>
         <div class="bonus-line"></div>
         <p class="prompt"><b>Every morning</b> + make</p>
+        <p class="ideas">Ideas: breakfast &middot; coffee &middot; my bed &middot; lunch</p>
         <div class="bonus-line"></div>
         <p class="prompt">I <b>have</b> + make <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: new friends &middot; a plan &middot; a mistake</p>
         <div class="bonus-line"></div>
       </section>
     </div>
