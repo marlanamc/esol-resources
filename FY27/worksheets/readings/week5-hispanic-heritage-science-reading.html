@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Science Stars Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* One .sheet = one portrait letter page.
+     Pages 1-2 are the student worksheet (print double-sided).
+     Page 3 is the teacher page. */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.5in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; }
+  .tag { font-size: 14px; white-space: nowrap; }
+  .subtitle { font-size: 14px; font-style: italic; margin-bottom: 8px; }
+  .small { font-size: 11px; }
+  .task { margin-bottom: 10px; }
+  .task-title { font-size: 18px; font-weight: bold; margin-bottom: 3px; }
+  .task-instructions { font-size: 14px; margin-bottom: 5px; }
+  .box { border: 1.5px solid #000; padding: 5px 10px; font-size: 14px; margin-bottom: 6px; }
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; width: 5.5em; margin: 0 2px; }
+  .blank.short { width: 2.4em; }
+  .blank.long { width: 8em; }
+  ol.items { list-style: none; }
+  ol.items li { margin-bottom: 5px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+
+  /* Words to know */
+  .words { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 20px; font-size: 13px; }
+  .words b { font-size: 14px; }
+
+  /* Two articles side by side */
+  .articles { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; flex: 1; min-height: 0; }
+  .article-box { border: 2px solid #000; padding: 8px 12px 6px; display: flex; flex-direction: column; }
+  .article-title { font-size: 20px; font-weight: bold; line-height: 1.15; }
+  .byline { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; margin: 2px 0 6px; }
+  .article p { font-size: 14.5px; line-height: 1.5; margin-bottom: 6px; }
+  .article p .pn { font-size: 11px; font-weight: bold; margin-right: 3px; }
+  .source { font-size: 11px; font-style: italic; margin-top: auto; }
+
+  /* Who? E / A / Both */
+  .who li { display: flex; gap: 6px; align-items: baseline; }
+  .who .blank { flex: none; }
+
+  /* Timelines: fixed columns so labels never overlap */
+  .timeline { margin-bottom: 8px; }
+  .timeline-name { font-size: 14px; font-weight: bold; margin-bottom: 2px; }
+  .tl { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 2px solid #000; margin-top: 7px; }
+  .tl div { position: relative; padding: 9px 5px 0; font-size: 13px; text-align: center; line-height: 1.3; }
+  .tl div::before {
+    content: ""; position: absolute; top: -7px; left: 50%; margin-left: -6px;
+    width: 12px; height: 12px; border-radius: 50%; background: #000;
+  }
+  .tl .yr { display: block; font-weight: bold; font-size: 14px; }
+  .tl .fill { display: block; border-bottom: 1.5px solid #000; height: 22px; margin: 0 4px; }
+  .tl .yr .fill { display: inline-block; width: 3.2em; height: 16px; }
+
+  /* Subjects and verbs */
+  .sv li { font-size: 14.5px; margin-bottom: 6px; }
+  .choice { font-weight: bold; white-space: nowrap; }
+  .circled { border: 1.5px solid #000; border-radius: 50%; padding: 0 5px; }
+
+  .tf { display: flex; justify-content: space-between; gap: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     PAGE 1 (front): Words to know + two stories
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Reading: Science Stars</h1><span class="tag">Name: ______________________</span></div>
+  <p class="subtitle">Hispanic Heritage Month is September 15 &ndash; October 15. Let&rsquo;s meet two Hispanic Americans in science.</p>
+
+  <section class="task">
+    <div class="task-title">A&ensp;Before you read</div>
+    <div class="box words">
+      <span><b>aerospace engineer</b> &ndash; a person who designs airplanes and spacecraft</span>
+      <span><b>surgeon</b> &ndash; a doctor who operates on the body</span>
+      <span><b>rover</b> &ndash; a robot car that explores another planet</span>
+      <span><b>crops</b> &ndash; plants that farmers grow, like tomatoes</span>
+      <span><b>broadcast</b> &ndash; a TV or internet show that many people watch</span>
+      <span><b>exhausting</b> &ndash; very, very tiring</span>
+      <span><b>transfer</b> &ndash; move to a different school</span>
+      <span><b>cure</b> &ndash; medicine that stops a sickness</span>
+    </div>
+    <p class="task-instructions"><b>Talk:</b> Both people in these stories came to the U.S. and learned English. What was hard for you when you started learning English? What helped you?</p>
+  </section>
+
+  <div class="articles">
+    <div class="article-box">
+      <div class="article-title">Diana Trujillo</div>
+      <div class="byline">Aerospace engineer, Mars mission leader</div>
+      <div class="article">
+        <p><span class="pn">1</span>Diana Trujillo was born in 1983 in Cali, Colombia. At age 17, she moved to the United States with only $300. She didn&rsquo;t speak any English.</p>
+        <p><span class="pn">2</span>Diana started English classes at Miami Dade College, a community college in Florida. Because she needed money for school, she worked full time while she studied. Her days were long and exhausting, but she didn&rsquo;t give up.</p>
+        <p><span class="pn">3</span>At college, Diana decided to become an aerospace engineer. She transferred to the University of Florida and then to the University of Maryland, where she finished her degree in 2007. While she was still a student, she was accepted into the NASA Academy. She was the first Hispanic immigrant woman in the program.</p>
+        <p><span class="pn">4</span>In 2008, Diana started working at NASA&rsquo;s Jet Propulsion Laboratory in California. Her team works on rovers that explore Mars. She helped lead missions for two rovers, <i>Curiosity</i> and <i>Perseverance</i>.</p>
+        <p><span class="pn">5</span>When <i>Perseverance</i> landed on Mars in February 2021, Diana hosted NASA&rsquo;s first live broadcast of a mission in Spanish. Families all over Latin America watched the landing in their own language. Today, Diana encourages young Latinas to study science.</p>
+      </div>
+      <p class="source">Source: NASA, &ldquo;Diana Trujillo: From Colombia to Mars.&rdquo; Adapted for English learners.</p>
+    </div>
+
+    <div class="article-box">
+      <div class="article-title">Alfredo Qui&ntilde;ones-Hinojosa</div>
+      <div class="byline">Farmworker, student, brain surgeon</div>
+      <div class="article">
+        <p><span class="pn">1</span>Alfredo Qui&ntilde;ones-Hinojosa was born in 1968 near Mexicali, Mexico. He was the oldest of six children. His parents were farmworkers, and the family didn&rsquo;t have much money.</p>
+        <p><span class="pn">2</span>In 1987, when he was 19, Alfredo came to California to look for work. He spoke very little English. For months, he picked tomatoes and other crops in the hot sun. Even though the farm work was exhausting, he took English classes at night at San Joaquin Delta College, a community college.</p>
+        <p><span class="pn">3</span>His teachers saw that he was a talented student, and they encouraged him to keep going. He transferred to the University of California, Berkeley. After that, he was accepted to Harvard Medical School, one of the best medical schools in the world. There, he decided to become a brain surgeon.</p>
+        <p><span class="pn">4</span>Today, people call him &ldquo;Dr.&nbsp;Q.&rdquo; He works at the Mayo Clinic in Florida, where he operates on patients&rsquo; brains. He also studies brain cancer because he hopes to find a cure. He teaches young doctors, too.</p>
+        <p><span class="pn">5</span>In 2011, he wrote a book about his life called <i>Becoming Dr.&nbsp;Q</i>. He went from the tomato fields to one of the most famous hospitals in the country.</p>
+      </div>
+      <p class="source">Source: Mayo Clinic; KQED, &ldquo;Meet the Brain Surgeon Who Once Picked Tomatoes.&rdquo; Adapted for English learners.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 2 (back): Who? + think + timelines + subjects and verbs + write
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Science Stars: Subjects and Verbs</h1><span class="tag">Week 5</span></div>
+
+  <section class="task">
+    <div class="task-title">B&ensp;Who is it?</div>
+    <p class="task-instructions">Write <b>D</b> (Diana), <b>A</b> (Alfredo), or <b>B</b> (both).</p>
+    <div class="two-col">
+      <ol class="items who">
+        <li><span class="blank short"></span><span><b>1.</b> started at a community college.</span></li>
+        <li><span class="blank short"></span><span><b>2.</b> worked on farms.</span></li>
+        <li><span class="blank short"></span><span><b>3.</b> works with robots.</span></li>
+      </ol>
+      <ol class="items who">
+        <li><span class="blank short"></span><span><b>4.</b> helps sick people.</span></li>
+        <li><span class="blank short"></span><span><b>5.</b> came to the U.S. as a teenager.</span></li>
+        <li><span class="blank short"></span><span><b>6.</b> shared science in Spanish.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="task">
+    <div class="task-title">C&ensp;Think about it</div>
+    <p class="task-instructions">Answer in a full sentence. The answers are not in one sentence of the story; you need to think!</p>
+    <ol class="items">
+      <li><b>1.</b> Why do you think Alfredo&rsquo;s teachers encouraged him?</li>
+      <li class="line" style="margin-bottom:6px;"></li>
+      <li><b>2.</b> Why was the broadcast in Spanish important for families in Latin America?</li>
+      <li class="line" style="margin-bottom:6px;"></li>
+    </ol>
+  </section>
+
+  <section class="task">
+    <div class="task-title">D&ensp;Two timelines</div>
+    <p class="task-instructions">Fill in the missing years and events.</p>
+    <div class="timeline">
+      <div class="timeline-name">Diana Trujillo</div>
+      <div class="tl">
+        <div><span class="yr">1983</span><span class="fill"></span></div>
+        <div><span class="yr">age 17</span>moved to the U.S. with <span class="fill"></span></div>
+        <div><span class="yr"><span class="fill"></span></span>finished her degree</div>
+        <div><span class="yr">2008</span><span class="fill"></span></div>
+        <div><span class="yr"><span class="fill"></span></span>Spanish broadcast</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-name">Alfredo Qui&ntilde;ones-Hinojosa (Dr. Q)</div>
+      <div class="tl">
+        <div><span class="yr">1968</span><span class="fill"></span></div>
+        <div><span class="yr"><span class="fill"></span></span>came to California</div>
+        <div><span class="yr">at night</span>studied <span class="fill"></span></div>
+        <div><span class="yr">later</span>became a <span class="fill"></span></div>
+        <div><span class="yr">2011</span><span class="fill"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="task">
+    <div class="task-title">E&ensp;Subjects and verbs</div>
+    <p class="task-instructions"><b>Underline</b> the whole subject (who or what). <b>Circle</b> the verb. &nbsp;<b>Example:</b> <u>Her team</u> <span class="circled">works</span> on rovers. &nbsp;<span class="small">(The subject is not always first, and it can be more than one word!)</span></p>
+    <div class="two-col">
+      <ol class="items sv">
+        <li><b>1.</b> Dr. Q studies brain cancer.</li>
+        <li><b>2.</b> Today, Diana encourages young Latinas.</li>
+        <li><b>3.</b> His teachers saw his talent.</li>
+      </ol>
+      <ol class="items sv">
+        <li><b>4.</b> For months, he picked tomatoes.</li>
+        <li><b>5.</b> Families all over Latin America watched.</li>
+        <li><b>6.</b> The young doctors learn from Dr. Q.</li>
+      </ol>
+    </div>
+    <p class="task-instructions" style="margin-top:2px;">Circle the correct word.</p>
+    <div class="two-col">
+      <ol class="items sv">
+        <li><b>7.</b> Diana and her team <span class="choice">work / works</span> at JPL.</li>
+        <li><b>8.</b> A rover <span class="choice">explore / explores</span> Mars.</li>
+      </ol>
+      <ol class="items sv">
+        <li><b>9.</b> Dr. Q <span class="choice">operate / operates</span> on brains.</li>
+        <li><b>10.</b> <span class="choice">They / Them</span> both learned English.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="task">
+    <div class="task-title">F&ensp;Talk and write</div>
+    <p class="task-instructions">Ask a partner: &ldquo;Which story do you like more? Why?&rdquo; Then write about a person you know who works hard. Underline the subject and circle the verb. &nbsp;<b>Example:</b> <u>My sister</u> <span class="circled">works</span> at a clinic.</p>
+    <div class="line"></div>
+    <div class="line"></div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE 3: Teacher answer key (don't print for students)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Answer Key</h1><span class="tag">Teacher copy &middot; print pages 1&ndash;2 for students</span></div>
+
+  <section class="task">
+    <div class="task-title">B&ensp;Who is it?</div>
+    <p>1. B &nbsp;&middot;&nbsp; 2. A &nbsp;&middot;&nbsp; 3. D &nbsp;&middot;&nbsp; 4. A &nbsp;&middot;&nbsp; 5. B (Diana at 17, Alfredo at 19) &nbsp;&middot;&nbsp; 6. D</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">C&ensp;Think about it (sample answers)</div>
+    <p>1. They saw that he was talented and worked very hard, even after long days on the farm.</p>
+    <p>2. Families could understand the landing in their own language. Children could see a Latina scientist at NASA.</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">D&ensp;Two timelines</div>
+    <p><b>Diana:</b> 1983 was born (in Cali, Colombia) &nbsp;&middot;&nbsp; $300 &nbsp;&middot;&nbsp; <b>2007</b> finished her degree &nbsp;&middot;&nbsp; 2008 started at NASA&rsquo;s JPL &nbsp;&middot;&nbsp; <b>2021</b> Spanish broadcast</p>
+    <p><b>Alfredo:</b> 1968 was born (near Mexicali) &nbsp;&middot;&nbsp; <b>1987</b> came to California &nbsp;&middot;&nbsp; English &nbsp;&middot;&nbsp; brain surgeon &nbsp;&middot;&nbsp; 2011 wrote a book</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">E&ensp;Subjects and verbs</div>
+    <p>1. <u>Dr. Q</u> / studies &nbsp;&middot;&nbsp; 2. <u>Diana</u> / encourages &nbsp;&middot;&nbsp; 3. <u>His teachers</u> / saw &nbsp;&middot;&nbsp; 4. <u>he</u> / picked &nbsp;&middot;&nbsp; 5. <u>Families all over Latin America</u> / watched &nbsp;&middot;&nbsp; 6. <u>The young doctors</u> / learn</p>
+    <p>7. work &nbsp;&middot;&nbsp; 8. explores &nbsp;&middot;&nbsp; 9. operates &nbsp;&middot;&nbsp; 10. They</p>
+    <p class="small">2 and 4 start with a time phrase, so the subject is not the first word. 5 is a long subject: the whole group is who watched. 7: <i>Diana and her team</i> = they, so no -s.</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">F&ensp;Talk and write</div>
+    <p>Answers will vary. Check that each sentence has a subject and a verb, and that he / she / one person gets <b>-s</b> (works, studies).</p>
+  </section>
+
+  <div class="box" style="margin-top:auto;">
+    <b>How to use it:</b> About 45&ndash;60 minutes. Go over the words in A together, then do the Talk question. It connects the stories to learners&rsquo; own English journeys.
+    <br><b>Option &ndash; partner jigsaw:</b> Partner A reads Diana, Partner B reads Alfredo. Each person tells their partner 3 facts (&ldquo;She&hellip;&rdquo; / &ldquo;He&hellip;&rdquo;), then they do B and D together. This gets a lot of he/she + -s talk.
+    <br>Model E on the board with the example before learners start. If time is short, assign F for homework.
+    <br><b>Background:</b> Diana Trujillo is an aerospace engineer at NASA&rsquo;s Jet Propulsion Laboratory and hosted <i>#JuntosPerseveramos</i>, NASA&rsquo;s first Spanish-language broadcast of a mission event (Perseverance landing, Feb. 18, 2021). Dr. Alfredo Qui&ntilde;ones-Hinojosa is a neurosurgeon at Mayo Clinic in Florida; his memoir is <i>Becoming Dr.&nbsp;Q</i>.
+  </div>
+</div>
+
+</body>
+</html>

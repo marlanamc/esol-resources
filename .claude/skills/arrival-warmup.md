@@ -141,6 +141,116 @@ Before building a new day's warmup:
   correct 1-N sequence (no letter's display position equals its correct
   number).
 
+## Back Side: Verb Forms of the Week (Week 5 onward)
+
+From Week 5 Day 1 on, every warmup gets a **second page printed on the
+back**: a verb-forms chart plus a short fill-in-the-blank practice. The
+front stays exactly as described above (one page); the back is page 2.
+Reference implementation: `FY27/worksheets/warmups/{print,classroom}/week5-day1-2026-10-13.html`.
+
+- **Which verbs:** the verbs being tested on **that week's quiz** — NOT the
+  weekly vocab list (Week 5 = just *do* and *make*). If it isn't clear
+  which verbs the quiz tests, ask the user before building.
+- **Quiz name:** call it **"Week X Quiz"**, the way the app shows it, never
+  "Quiz 3" or "Weekly Quiz 3". The internal `verb-quiz-N` number doesn't match
+  the week (verb-quiz-7 is the Week 7 Quiz, verb-quiz-4 is Week 8). Take the
+  name from the quiz title in `src/content/quizzes/weekly-quizzes.json`, the
+  part before the colon.
+- **Day 1 (Tuesday) and Day 2 (Thursday) build in difficulty** — same
+  verbs, never the same page twice:
+  - **Day 1 = recognize.** Task 3 chart ("Use your reference sheet if
+    you need help") + Task 4 "Use the right form" fill-in-the-blanks
+    (details below). Reference: `week5-day1-2026-10-13.html`.
+  - **Day 2 = produce** (quiz day). Task 3 "Verb forms from memory" —
+    same blank chart, but fill it in *from memory*, then check with the
+    reference sheet. Task 4 "Fix the mistakes" — 6 sentences, each with
+    exactly one wrong verb form (wrong tense for the clue word, or an
+    overregularized form like *doed*); students cross it out and write
+    the correct form after `&rarr; <span class="blank"></span>`. Not
+    telling them which word is wrong is the point, so do NOT underline
+    it; a one-line `<s>`-strikethrough worked example is fine since the
+    cross-out convention is new. Task 5 "Bonus: Your turn" — 3 prompts
+    (clue + verb, e.g. **Last weekend** + do), each followed by a
+    `.bonus-line`, for a true sentence about themselves. Reference:
+    `week5-day2-2026-10-15.html`.
+  - Connecting sentences (and / but / because) is a later-week stretch
+    once verb forms are solid — don't stack it on the same week.
+- **Task numbering continues from the front** (front has 1 & 2, back has
+  3 & 4). Same header row/h1/date as the front; subtitle says it's the
+  back side and to keep the chart in their binder.
+- **Task 3 — the chart:** columns `V1 | V1-s | V-ing | V2 | V3`, each
+  header with a small italic sub-label (base / he / she / it / -ing /
+  past / past participle). Only the V1 column is printed (bold); every
+  other cell is blank for students to fill in. **No example row** —
+  students already practiced the chart format. Give rows generous height
+  for large handwriting.
+- **Task 4 — "Use the right form":** 6-8 fill-in-the-blanks, mixed across
+  the chart's verbs and columns so every column gets used. Each item
+  has a **bold time-clue word** (Every morning / Right now / Yesterday /
+  Last night / every Saturday / has / Have) and the base verb in
+  parentheses at the end. Use real-life collocations (make the bed, do
+  the dishes, make an appointment). Present-perfect items (has/have +
+  V3) get a `(Present Perfect Tense)` label after the verb hint, wrapped
+  in `<span style="white-space: nowrap;">` so it never splits across lines.
+- **Print layout:** still two-up landscape with the same dashed cut line —
+  both halves identical, so a left/right swap on duplex doesn't matter.
+  Tell the user to print double-sided, **flip on short edge**.
+- **Classroom layout:** a second portrait page (`.copy.back`).
+- **The front must still fit on exactly one page.** If the front spills
+  even its footer line onto a new page, the back lands on the wrong sheet
+  when printed double-sided — always check the PDF is exactly 2 pages.
+
+Print CSS (add above `@media print`) and markup — wrap two identical
+`.copy` blocks in a second `.page`, after the front `.page`:
+
+```css
+  /* Back side: verb-forms chart + practice. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.25in 0.25in; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.5in; }
+  .forms-chart td.base { font-weight: bold; }
+```
+
+Classroom CSS — same rules but `font-size: 19px` / `15px` for the sub-label,
+`td { height: 0.62in; }`, plus:
+
+```css
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+```
+
+```html
+  <div class="page back">
+    <div class="copy">
+      <!-- header-row + subtitle, same as the front -->
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>do</b> and <b>make</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">do</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">make</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>do</b> or <b>make</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every morning</b>, my son <span class="blank verb"></span> his bed. (make)</li>
+          <!-- ... -->
+        </ol>
+      </section>
+    </div>
+    <div class="copy"><!-- identical copy --></div>
+  </div>
+```
+
+Give the user an answer key for Task 4 in the chat (not on the page).
+
 ## Input Sources
 
 - Ask the user for the day's topic/sentences if not provided, or adapt
@@ -410,7 +520,9 @@ After generating both files:
 1. Open each file directly in a browser (or via a headless screenshot).
 2. Print preview (Cmd+P) each — the print variant should be exactly one
    landscape page with the dashed cut line centered and both copies
-   identical; the classroom variant should be one portrait page.
+   identical; the classroom variant should be one portrait page. With the
+   verb-forms back side (Week 5 on), each variant is **exactly two**
+   pages: front on page 1, back on page 2 — nothing spilling between.
 3. Confirm there's no large dead gap between sections in either — if
    there is, it means a fixed height/coordinate crept in; switch that
    spot back to natural flow.

@@ -56,7 +56,7 @@
   }
 
   .item-list { list-style: none; }
-  .item-list li { margin-bottom: 6px; }
+  .item-list li { margin-bottom: 5px; }
   .item-list li b.n { margin-right: 6px; }
 
   .blank {
@@ -67,6 +67,7 @@
   }
   .blank.short { width: 3.4em; }
   .blank.long { width: 9.3em; }
+  .blank.verb { width: 8.5em; }
   .answer-line {
     display: block;
     border-bottom: 1.5px solid #000;
@@ -82,10 +83,20 @@
 
   .footer-note {
     margin-top: auto;
-    padding-top: 8px;
+    padding-top: 2px;
     font-size: 12px;
     font-style: italic;
   }
+
+  /* Back side: verb-forms chart + practice. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.25in 0.25in; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.5in; }
+  .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -107,11 +118,11 @@
         <p class="task-instructions">Complete each sentence with the present-simple form of the verb. Underline the subject.</p>
         <p class="task-example"><b>Example:</b> <u>Maria</u> reviews her notes every day. (review)</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> She <span class="blank"></span> to the app after class. (log in)</li>
-          <li><b class="n">2.</b> I <span class="blank"></span> the menu to find my lesson. (navigate)</li>
-          <li><b class="n">3.</b> We <span class="blank"></span> our lessons on a phone. (access)</li>
-          <li><b class="n">4.</b> Maria <span class="blank"></span> one activity each day. (complete)</li>
-          <li><b class="n">5.</b> She <span class="blank"></span> her answers after checking them. (submit)</li>
+          <li><b class="n">1.</b> She <span class="blank verb"></span> to the app after class. (log in)</li>
+          <li><b class="n">2.</b> I <span class="blank verb"></span> the menu to find my lesson. (navigate)</li>
+          <li><b class="n">3.</b> We <span class="blank verb"></span> our lessons on a phone. (access)</li>
+          <li><b class="n">4.</b> Maria <span class="blank verb"></span> one activity each day. (complete)</li>
+          <li><b class="n">5.</b> She <span class="blank verb"></span> her answers on time. (submit)</li>
         </ol>
       </section>
       <section class="task">
@@ -140,11 +151,11 @@
         <p class="task-instructions">Complete each sentence with the present-simple form of the verb. Underline the subject.</p>
         <p class="task-example"><b>Example:</b> <u>Maria</u> reviews her notes every day. (review)</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> She <span class="blank"></span> to the app after class. (log in)</li>
-          <li><b class="n">2.</b> I <span class="blank"></span> the menu to find my lesson. (navigate)</li>
-          <li><b class="n">3.</b> We <span class="blank"></span> our lessons on a phone. (access)</li>
-          <li><b class="n">4.</b> Maria <span class="blank"></span> one activity each day. (complete)</li>
-          <li><b class="n">5.</b> She <span class="blank"></span> her answers after checking them. (submit)</li>
+          <li><b class="n">1.</b> She <span class="blank verb"></span> to the app after class. (log in)</li>
+          <li><b class="n">2.</b> I <span class="blank verb"></span> the menu to find my lesson. (navigate)</li>
+          <li><b class="n">3.</b> We <span class="blank verb"></span> our lessons on a phone. (access)</li>
+          <li><b class="n">4.</b> Maria <span class="blank verb"></span> one activity each day. (complete)</li>
+          <li><b class="n">5.</b> She <span class="blank verb"></span> her answers on time. (submit)</li>
         </ol>
       </section>
       <section class="task">
@@ -161,6 +172,68 @@
         </ol>
       </section>
       <p class="footer-note">Finished? Choose one question from Task 2 and write your own answer in your notebook.</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 5, Tuesday</h1>
+        <span class="date">10/13/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>do</i> and <i>make</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>do</b> and <b>make</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">do</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">make</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>do</b> or <b>make</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every morning</b>, my son <span class="blank verb"></span> his bed. (make)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> my homework. (do)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, we <span class="blank verb"></span> a big mistake. (make)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, Ana <span class="blank verb"></span> the dishes. (do)</li>
+          <li><b class="n">5.</b> My sister <span class="blank verb"></span> the shopping <b>every Saturday</b>. (do)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, Dad is <span class="blank verb"></span> dinner. (make)</li>
+          <li><b class="n">7.</b> She <b>has</b> <span class="blank verb"></span> an appointment for Monday. (make) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> <b>Have</b> you <span class="blank verb"></span> the laundry? (do) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 5, Tuesday</h1>
+        <span class="date">10/13/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>do</i> and <i>make</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>do</b> and <b>make</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">do</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">make</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>do</b> or <b>make</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every morning</b>, my son <span class="blank verb"></span> his bed. (make)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> my homework. (do)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, we <span class="blank verb"></span> a big mistake. (make)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, Ana <span class="blank verb"></span> the dishes. (do)</li>
+          <li><b class="n">5.</b> My sister <span class="blank verb"></span> the shopping <b>every Saturday</b>. (do)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, Dad is <span class="blank verb"></span> dinner. (make)</li>
+          <li><b class="n">7.</b> She <b>has</b> <span class="blank verb"></span> an appointment for Monday. (make) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> <b>Have</b> you <span class="blank verb"></span> the laundry? (do) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
     </div>
   </div>
 </body>

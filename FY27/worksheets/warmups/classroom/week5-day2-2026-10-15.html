@@ -81,6 +81,18 @@
     font-size: 15px;
     font-style: italic;
   }
+
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 8px; }
+  s { text-decoration-thickness: 2px; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -98,7 +110,7 @@
         <h1>Warm-Up: Week 5, Thursday</h1>
         <span class="date">10/15/26</span>
       </div>
-      <p class="subtitle">Weekly Quiz 2 opens today at 6 p.m. Warm up do + make!</p>
+      <p class="subtitle">Week 5 Quiz opens today at 6 p.m. Warm up do + make!</p>
       <section class="task">
         <div class="task-title">1&ensp;Do or make?</div>
         <p class="task-instructions">Write each phrase in the correct box.</p>
@@ -113,13 +125,52 @@
         <p class="task-instructions">First, answer each question about you in a full sentence. Then ask a partner the same questions.</p>
         <ol class="item-list">
           <li><b class="n">1.</b> What did you do last weekend?<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> How do you make an appointment?<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> When did you last make a doctor's appointment?<span class="answer-line"></span></li>
           <li><b class="n">3.</b> How often do you exercise?<span class="answer-line"></span></li>
           <li><b class="n">4.</b> What do you usually make for dinner?<span class="answer-line"></span></li>
-          <li><b class="n">5.</b> When do you do your English homework?<span class="answer-line"></span></li>
+          <li><b class="n">5.</b> How many days a week do you study English?<span class="answer-line"></span></li>
         </ol>
       </section>
-      <p class="footer-note">Finished? Try <b>Weekly Quiz 2</b> in My ESOL App after 6 p.m. Due Tuesday, Oct. 20 at 6 p.m.; available afterward.</p>
+      <p class="footer-note">Finished? Try <b>Week 5 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Oct. 20 at 6 p.m.; available afterward.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 5, Thursday</h1>
+        <span class="date">10/15/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>do</i> and <i>make</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">do</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">make</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> She <s>make</s> dinner <b>every night</b>. &rarr; <i>makes</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> My brother <b>always</b> do the laundry on Sunday. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, I make a doctor&rsquo;s appointment. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, she is do her homework. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last week</b>, we doed a lot of exercise. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> He <b>has</b> make a plan. <span style="white-space: nowrap;">(Present Perfect Tense)</span> &rarr; <span class="blank"></span></li>
+          <li><b class="n">6.</b> I <b>have</b> did the dishes. <span style="white-space: nowrap;">(Present Perfect Tense)</span> &rarr; <span class="blank"></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last weekend</b> + do</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every morning</b> + make</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + make <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
 </body>
 </html>
