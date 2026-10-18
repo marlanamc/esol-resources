@@ -23,12 +23,20 @@ export interface ReviewLesson {
   title: string;
   categories: ReviewCategory[];
   prompt?: string;
-  bridge?: boolean;
+  /** A short "how to tell" screen shown before the examples. */
+  bridge?: ReviewBridge;
   transfer?: { prompt: string; example: string; check: string; parts?: { text: string; category?: ReviewCategory }[] };
   examples: ReviewItem[];
   /** Every scored question in order. For a lesson with rounds, the rounds flattened. */
   questions: ReviewItem[];
   rounds?: ReviewRound[];
+}
+/** Each row shows one sentence with its target highlighted in the row's category color. */
+export interface ReviewBridge {
+  title: string;
+  lead: string;
+  rows: { category: ReviewCategory; before: string; target: string; after: string; heading: string; detail: string }[];
+  note?: string;
 }
 /** One question type per round: label, then find, then choose. */
 export interface ReviewRound {
@@ -57,9 +65,30 @@ function find(id: string, before: string, target: string, after: string, answer:
 function choose(id: string, before: string, target: string, after: string, answer: ReviewCategory, options: string[], explanation: string): ReviewItem {
   return { ...item(id, before, target, after, answer, explanation), kind: 'choose', options };
 }
+// Adjective and adverb feedback uses one rule: find the word it describes.
+// A noun (or a person after is) means adjective; an action means adverb.
+const ADJECTIVE_OR_ADVERB_BRIDGE: ReviewBridge = {
+  title: 'Adjective or adverb?',
+  lead: 'Find the word it describes.',
+  rows: [
+    { category: 'Adjective', before: 'She is a ', target: 'careful', after: ' driver.', heading: 'Careful describes driver.', detail: 'Driver is a noun. It names a person. An adjective describes a noun.' },
+    { category: 'Adverb', before: 'She drives ', target: 'carefully', after: '.', heading: 'Carefully tells how she drives.', detail: 'Drives is an action. An adverb tells how or how often.' },
+  ],
+  note: 'After is, am, or are, use an adjective: The soup is hot. Many adverbs end in -ly, but not all: fast, well, often.',
+};
 export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   "week-4-describing": {
     id: "week-4-describing", title: "Adjectives and articles", categories: ["Adjective", "Article"],
+    bridge: {
+      title: 'Words that describe',
+      lead: 'An adjective describes a noun.',
+      rows: [
+        { category: 'Adjective', before: 'We have a ', target: 'small', after: ' kitchen.', heading: 'Small describes kitchen.', detail: 'Kitchen is a noun. The adjective comes before it.' },
+        { category: 'Adjective', before: 'The kitchen is ', target: 'small', after: '.', heading: 'Small still describes kitchen.', detail: 'An adjective can also come after is, am, or are.' },
+        { category: 'Article', before: 'We have ', target: 'a', after: ' small kitchen.', heading: 'A is an article.', detail: 'The articles are a, an, and the. They come before the adjective and the noun.' },
+      ],
+      note: 'Ask: what does this word describe? If it describes a person, place, or thing, it is an adjective.',
+    },
     transfer: {"prompt": "Describe one thing in your home. Use an article and an adjective.", "example": "I have a small table.", "check": "Point to the article, the adjective, and the noun in your sentence.", parts: [{"text": "I have "}, {"text": "a", "category": "Article"}, {"text": " "}, {"text": "small", "category": "Adjective"}, {"text": " "}, {"text": "table", "category": "Noun"}, {"text": "."}] },
     examples: [
       item("week-4-describing-examples-1", "We have a ", "small", " kitchen.", "Adjective", "Small describes the kitchen. An adjective describes a noun."),
@@ -68,30 +97,38 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     ...rounds([
       item("week-4-describing-questions-1", "The soup is ", "hot", ".", "Adjective", "Hot describes the soup. Adjectives can come after is."),
       item("week-4-describing-questions-5", "Please close ", "the", " door.", "Article", "The introduces a particular door."),
-      item("week-4-describing-questions-7", "My coat is ", "warm", ".", "Adjective", "Warm describes my coat."),
+      item("week-4-describing-questions-7", "My coat is ", "warm", ".", "Adjective", "Warm describes my coat. After is, use an adjective."),
       item("week-4-describing-questions-8", "I saw ", "an", " old friend.", "Article", "An introduces old friend. We use an before a vowel sound."),
       { ...item("week-4-describing-review-1", "The ", "bus", " arrives at eight.", "Noun", "Bus names a thing."), review: true, categories: ["Noun", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-4-describing-review-2", "We ", "cook", " dinner together.", "Verb", "Cook tells what we do."), review: true, categories: ["Noun", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
     ], [
       find("week-4-describing-questions-3", "She has ", "an", " appointment.", "Article", "An introduces appointment. We use an before a vowel sound."),
-      find("week-4-describing-questions-4", "The ", "new", " student is here.", "Adjective", "New describes the student."),
+      find("week-4-describing-questions-4", "The ", "new", " student is here.", "Adjective", "New describes student. Student is a noun, so new is an adjective."),
       find("week-4-describing-questions-9", "I want ", "a", " sandwich.", "Article", "A introduces the noun sandwich."),
-      find("week-4-describing-questions-10", "This apple is ", "sweet", ".", "Adjective", "Sweet describes the apple."),
+      find("week-4-describing-questions-10", "This apple is ", "sweet", ".", "Adjective", "Sweet describes the apple. After is, use an adjective."),
       find("week-4-describing-questions-11", "We had lunch at ", "the", " park.", "Article", "The introduces a particular park."),
-      find("week-4-describing-questions-12", "She has ", "long", " hair.", "Adjective", "Long describes her hair."),
+      find("week-4-describing-questions-12", "She has ", "long", " hair.", "Adjective", "Long describes hair. Hair is a noun, so long is an adjective."),
     ], [
       choose("week-4-describing-questions-2", "I need ", "a", " pen.", "Article", ["a", "an"], "We say a pen. Use a before a consonant sound."),
-      choose("week-4-describing-questions-6", "Our neighbor is ", "friendly", ".", "Adjective", ["friend", "friendly"], "We need an adjective here. Friendly describes our neighbor."),
+      choose("week-4-describing-questions-6", "Our neighbor is ", "friendly", ".", "Adjective", ["friend", "friendly"], "The word describes our neighbor. After is, use an adjective: friendly. Friend is a noun."),
       choose("week-4-describing-questions-13", "I eat ", "an", " egg every day.", "Article", ["a", "an"], "We say an egg. Use an before a vowel sound."),
-      choose("week-4-describing-questions-14", "The street is ", "busy", " today.", "Adjective", ["business", "busy"], "We need an adjective here. Busy describes the street."),
+      choose("week-4-describing-questions-14", "The street is ", "busy", " today.", "Adjective", ["business", "busy"], "The word describes the street. After is, use an adjective: busy. Business is a noun."),
       choose("week-4-describing-questions-15", "Can you open ", "the", " window?", "Article", ["an", "the"], "We say the window. Window starts with a consonant sound, so an does not fit."),
-      choose("week-4-describing-questions-16", "We live in a ", "small", " apartment.", "Adjective", ["smile", "small"], "We need an adjective here. Small describes the apartment."),
+      choose("week-4-describing-questions-16", "We live in a ", "small", " apartment.", "Adjective", ["smile", "small"], "The word describes apartment, a noun. Use the adjective small. Smile is a verb or a noun."),
     ]),
   },
   "week-5-subjects": {
     id: "week-5-subjects", title: "Subjects and verbs", categories: ["Subject", "Verb"],
     prompt: "What is the highlighted part’s job in this sentence?",
-    bridge: true,
+    bridge: {
+      title: 'A word type and a sentence job',
+      lead: 'From word types to sentence roles.',
+      rows: [
+        { category: 'Noun', before: 'The ', target: 'teacher', after: ' helps us.', heading: 'Teacher is a noun.', detail: 'Noun tells us what kind of word teacher is. It names a person.' },
+        { category: 'Subject', before: '', target: 'The teacher', after: ' helps us.', heading: 'The teacher is the subject.', detail: 'Subject tells us the job of this part in the sentence: who the sentence is about.' },
+      ],
+      note: 'Both labels can be true. In this lesson, look for the subject and the verb.',
+    },
     transfer: {"prompt": "Say or write one sentence about someone you know.", "example": "My sister works at a clinic.", "check": "Point to the subject and the verb. Who or what is your sentence about?", parts: [{"text": "My sister", "category": "Subject"}, {"text": " "}, {"text": "works", "category": "Verb"}, {"text": " at a clinic."}] },
     examples: [
       item("week-5-subjects-examples-1", "", "The teacher", " helps us.", "Subject", "The teacher is who this sentence is about. Teacher is a noun; The teacher is the subject."),
@@ -123,31 +160,32 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   "week-7-adverbs": {
     id: "week-7-adverbs", title: "Adjectives and adverbs", categories: ["Adjective", "Adverb"],
     transfer: {"prompt": "Say or write a sentence about how you do something, or how often you do it.", "example": "I usually cook at home.", "check": "Point to your adverb. Does it tell how, or how often?", parts: [{"text": "I "}, {"text": "usually", "category": "Adverb"}, {"text": " "}, {"text": "cook", "category": "Verb"}, {"text": " at home."}] },
+    bridge: ADJECTIVE_OR_ADVERB_BRIDGE,
     examples: [
-      item("week-7-adverbs-examples-1", "She drives ", "carefully", ".", "Adverb", "Carefully tells how she drives. An adverb can add information about a verb."),
-      item("week-7-adverbs-examples-2", "She ", "often", " drives to work.", "Adverb", "Often tells how frequently she drives. Adverbs can tell how often."),
+      item("week-7-adverbs-examples-1", "He has a ", "quiet", " voice.", "Adjective", "Quiet describes voice. Voice is a noun, so quiet is an adjective."),
+      item("week-7-adverbs-examples-2", "He speaks ", "quietly", ".", "Adverb", "Quietly tells how he speaks. Speaks is an action, so quietly is an adverb."),
     ],
     ...rounds([
-      item("week-7-adverbs-questions-4", "The children are ", "happy", ".", "Adjective", "Happy describes the children."),
-      item("week-7-adverbs-questions-5", "She is ", "always", " early.", "Adverb", "Always tells how consistently she is early. It comes after is here."),
-      item("week-7-adverbs-questions-7", "She sings ", "beautifully", ".", "Adverb", "Beautifully tells how she sings."),
-      item("week-7-adverbs-questions-8", "We had a ", "quiet", " evening.", "Adjective", "Quiet describes the noun evening."),
+      item("week-7-adverbs-questions-4", "The children are ", "happy", ".", "Adjective", "Happy describes the children. After are, use an adjective."),
+      item("week-7-adverbs-questions-5", "She is ", "always", " early.", "Adverb", "Always tells how often she is early. Words like always, often, and never are adverbs."),
+      item("week-7-adverbs-questions-7", "She sings ", "beautifully", ".", "Adverb", "Beautifully tells how she sings. Sings is an action, so beautifully is an adverb."),
+      item("week-7-adverbs-questions-8", "We had a ", "quiet", " evening.", "Adjective", "Quiet describes evening. Evening is a noun, so quiet is an adjective."),
       { ...item("week-7-adverbs-review-3", "", "The teacher", " helps us.", "Subject", "The teacher is the subject: who this sentence is about."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
       { ...item("week-7-adverbs-review-4", "The teacher ", "helps", " us.", "Verb", "Helps tells what the teacher does."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
     ], [
-      find("week-7-adverbs-questions-3", "We ", "usually", " cook at home.", "Adverb", "Usually tells how often we cook."),
-      find("week-7-adverbs-questions-6", "He walks ", "quickly", ".", "Adverb", "Quickly tells how he walks."),
-      find("week-7-adverbs-questions-9", "I ", "sometimes", " eat breakfast.", "Adverb", "Sometimes tells how often I eat breakfast."),
-      find("week-7-adverbs-questions-10", "This is a ", "difficult", " question.", "Adjective", "Difficult describes the noun question."),
-      find("week-7-adverbs-questions-11", "My son ", "never", " eats vegetables.", "Adverb", "Never tells how often my son eats vegetables."),
-      find("week-7-adverbs-questions-12", "I have a ", "new", " phone.", "Adjective", "New describes the noun phone."),
+      find("week-7-adverbs-questions-3", "We ", "usually", " cook at home.", "Adverb", "Usually tells how often we cook. Cook is an action, so usually is an adverb."),
+      find("week-7-adverbs-questions-6", "He walks ", "quickly", ".", "Adverb", "Quickly tells how he walks. Walks is an action, so quickly is an adverb."),
+      find("week-7-adverbs-questions-17", "This bag is ", "heavy", ".", "Adjective", "Heavy describes the bag. After is, use an adjective."),
+      find("week-7-adverbs-questions-10", "This is a ", "difficult", " question.", "Adjective", "Difficult describes question. Question is a noun, so difficult is an adjective."),
+      find("week-7-adverbs-questions-11", "My son ", "never", " eats vegetables.", "Adverb", "Never tells how often my son eats vegetables. Eats is an action, so never is an adverb."),
+      find("week-7-adverbs-questions-12", "I have a ", "new", " phone.", "Adjective", "New describes phone. Phone is a noun, so new is an adjective."),
     ], [
-      choose("week-7-adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "Slowly tells how he speaks. An adverb describes an action verb."),
-      choose("week-7-adverbs-questions-2", "He is a ", "careful", " driver.", "Adjective", ["careful", "carefully"], "Careful describes the noun driver, so we need an adjective."),
-      choose("week-7-adverbs-questions-13", "Please talk ", "quietly", " at night.", "Adverb", ["quiet", "quietly"], "Quietly tells how to talk, so we need an adverb."),
-      choose("week-7-adverbs-questions-14", "She is a ", "good", " cook.", "Adjective", ["good", "well"], "Good describes the noun cook, so we need an adjective."),
-      choose("week-7-adverbs-questions-15", "He works ", "well", " with others.", "Adverb", ["good", "well"], "Well tells how he works, so we need an adverb."),
-      choose("week-7-adverbs-questions-16", "The weather is ", "beautiful", " today.", "Adjective", ["beautiful", "beautifully"], "After is, beautiful describes the weather, so we need an adjective."),
+      choose("week-7-adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "The word tells how he speaks. Speaks is an action, so we need the adverb slowly."),
+      choose("week-7-adverbs-questions-2", "He is a ", "careful", " driver.", "Adjective", ["careful", "carefully"], "The word describes driver. Driver is a noun, so we need the adjective careful."),
+      choose("week-7-adverbs-questions-13", "Please talk ", "quietly", " at night.", "Adverb", ["quiet", "quietly"], "The word tells how to talk. Talk is an action, so we need the adverb quietly."),
+      choose("week-7-adverbs-questions-14", "She is a ", "good", " cook.", "Adjective", ["good", "well"], "The word describes cook. Cook is a noun here (a person), so we need the adjective good."),
+      choose("week-7-adverbs-questions-15", "He works ", "well", " with others.", "Adverb", ["good", "well"], "The word tells how he works. Works is an action, so we need the adverb well."),
+      choose("week-7-adverbs-questions-16", "The weather is ", "beautiful", " today.", "Adjective", ["beautiful", "beautifully"], "The word describes the weather. After is, use an adjective: beautiful."),
     ]),
   },
   'foundation-check-in': {
@@ -186,16 +224,16 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     id: "description-check-in", title: "Describing words check-in", categories: ["Adjective", "Article", "Adverb"],
     prompt: "Choose the label for the highlighted part.",
     examples: [
-      item("description-check-in-examples-0", "The ", "quiet", " room is upstairs.", "Adjective", "Quiet describes the room."),
-      item("description-check-in-examples-1", "She speaks ", "quietly", ".", "Adverb", "Quietly tells how she speaks."),
+      item("description-check-in-examples-0", "The ", "quiet", " room is upstairs.", "Adjective", "Quiet describes room. Room is a noun, so quiet is an adjective."),
+      item("description-check-in-examples-1", "She speaks ", "quietly", ".", "Adverb", "Quietly tells how she speaks. Speaks is an action, so quietly is an adverb."),
     ],
     questions: [
       choose("description-check-in-questions-0", "I have ", "a", " bag.", "Article", ["a", "an"], "We say a bag. Use a before a consonant sound."),
-      item("description-check-in-questions-1", "The bag is ", "heavy", ".", "Adjective", "Heavy describes the bag after is."),
-      item("description-check-in-questions-2", "We ", "often", " walk home.", "Adverb", "Often tells how often we walk."),
+      item("description-check-in-questions-1", "The bag is ", "heavy", ".", "Adjective", "Heavy describes the bag. After is, use an adjective."),
+      item("description-check-in-questions-2", "We ", "often", " walk home.", "Adverb", "Often tells how often we walk. Walk is an action, so often is an adverb."),
       item("description-check-in-questions-3", "She has ", "an", " umbrella.", "Article", "An introduces umbrella."),
-      find("description-check-in-questions-4", "He has a ", "blue", " coat.", "Adjective", "Blue describes the coat."),
-      choose("description-check-in-questions-5", "They work ", "carefully", ".", "Adverb", ["careful", "carefully"], "Carefully tells how they work. An adverb describes an action verb."),
+      find("description-check-in-questions-4", "He has a ", "blue", " coat.", "Adjective", "Blue describes coat. Coat is a noun, so blue is an adjective."),
+      choose("description-check-in-questions-5", "They work ", "carefully", ".", "Adverb", ["careful", "carefully"], "The word tells how they work. Work is an action, so we need the adverb carefully."),
     ],
   },
   "pattern-check-in": {
@@ -342,47 +380,58 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
   "adjective-placement": {
     id: "adjective-placement", title: "Adjectives in sentences", categories: ["Adjective", "Noun"],
+    bridge: {
+      title: 'Where do adjectives go?',
+      lead: 'An adjective describes a noun. It can go in two places.',
+      rows: [
+        { category: 'Adjective', before: 'I have an ', target: 'old', after: ' phone.', heading: 'Before the noun.', detail: 'Old describes phone. It comes after a, an, or the and before the noun.' },
+        { category: 'Adjective', before: 'My phone is ', target: 'old', after: '.', heading: 'After is, am, or are.', detail: 'Old still describes phone. The adjective comes at the end.' },
+        { category: 'Noun', before: 'We saw a beautiful old ', target: 'house', after: '.', heading: 'Two adjectives, one noun.', detail: 'Beautiful and old both describe house. The noun comes last.' },
+      ],
+      note: 'In English, the adjective does not come after the noun. We say an old phone, not a phone old.',
+    },
     examples: [
-      item("adjective-placement-examples-1", "We have a ", "quiet", " room.", "Adjective", "Quiet describes room and comes before the noun."),
-      item("adjective-placement-examples-2", "The room is ", "quiet", ".", "Adjective", "Quiet still describes room, now after is."),
+      item("adjective-placement-examples-1", "We have a ", "quiet", " room.", "Adjective", "Quiet describes room. Room is a noun. The adjective comes before it."),
+      item("adjective-placement-examples-2", "The room is ", "quiet", ".", "Adjective", "Quiet still describes room. After is, use an adjective."),
     ],
     questions: [
-      find("adjective-placement-questions-1", "She has a ", "blue", " bag.", "Adjective", "Blue describes the bag."),
-      find("adjective-placement-questions-2", "Her ", "bag", " is blue.", "Noun", "Bag names a thing."),
-      choose("adjective-placement-questions-3", "This room is ", "larger", " than ours.", "Adjective", ["large", "larger"], "With than, use the comparative: larger than."),
-      item("adjective-placement-questions-4", "We saw a beautiful old ", "house", ".", "Noun", "House is the noun described by beautiful and old."),
-      item("adjective-placement-questions-5", "He is ", "bilingual", ".", "Adjective", "Bilingual describes him."),
-      item("adjective-placement-questions-6", "I have an ", "old", " phone.", "Adjective", "Old describes phone, between the article and noun."),
+      find("adjective-placement-questions-1", "She has a ", "blue", " bag.", "Adjective", "Blue describes bag. Bag is a noun, so blue is an adjective."),
+      find("adjective-placement-questions-2", "Her ", "bag", " is blue.", "Noun", "Bag names a thing. Blue describes it."),
+      choose("adjective-placement-questions-3", "This room is ", "larger", " than ours.", "Adjective", ["large", "larger"], "Larger describes the room. With than, use the -er form: larger than."),
+      item("adjective-placement-questions-4", "We saw a beautiful old ", "house", ".", "Noun", "House names a thing. Beautiful and old are two adjectives. Both describe house."),
+      item("adjective-placement-questions-5", "He is ", "bilingual", ".", "Adjective", "Bilingual describes him. After is, use an adjective."),
+      item("adjective-placement-questions-6", "I have an ", "old", " phone.", "Adjective", "Old describes phone. It comes after the article an and before the noun phone."),
     ],
   },
   "adverbs": {
-    id: "adverbs", title: "Adjectives and adverbs", categories: ["Adjective", "Adverb"],
+    id: "adverbs", title: "More adjectives and adverbs", categories: ["Adjective", "Adverb"],
+    bridge: ADJECTIVE_OR_ADVERB_BRIDGE,
     examples: [
-      item("adverbs-examples-1", "She is a ", "careful", " driver.", "Adjective", "Careful describes the noun driver."),
-      item("adverbs-examples-2", "She drives ", "carefully", ".", "Adverb", "Carefully tells how she drives."),
+      item("adverbs-examples-1", "She is a ", "careful", " driver.", "Adjective", "Careful describes driver. Driver is a noun, so careful is an adjective."),
+      item("adverbs-examples-2", "She drives ", "carefully", ".", "Adverb", "Carefully tells how she drives. Drives is an action, so carefully is an adverb."),
     ],
     questions: [
-      find("adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", "Slowly tells how he speaks."),
-      item("adverbs-questions-2", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor. An -ly ending does not always mean adverb."),
-      item("adverbs-questions-3", "The train moves ", "fast", ".", "Adverb", "Fast tells how the train moves."),
-      item("adverbs-questions-4", "This is a ", "fast", " train.", "Adjective", "Fast describes the noun train."),
-      find("adverbs-questions-5", "I am ", "very", " tired.", "Adverb", "Very adds information about the adjective tired."),
-      choose("adverbs-questions-6", "The children are ", "happy", ".", "Adjective", ["happily", "happy"], "After are, use an adjective to describe the children: happy."),
+      find("adverbs-questions-1", "He speaks ", "slowly", ".", "Adverb", "Slowly tells how he speaks. Speaks is an action, so slowly is an adverb."),
+      item("adverbs-questions-2", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor, a person. After is, use an adjective. Some adjectives end in -ly."),
+      item("adverbs-questions-3", "The train moves ", "fast", ".", "Adverb", "Fast tells how the train moves. Moves is an action, so fast is an adverb here. Not every adverb ends in -ly."),
+      item("adverbs-questions-4", "This is a ", "fast", " train.", "Adjective", "Fast describes train. Train is a noun, so fast is an adjective here. The same word can do both jobs."),
+      find("adverbs-questions-5", "I am ", "very", " tired.", "Adverb", "Very tells how tired I am. Very makes an adjective stronger, so very is an adverb."),
+      choose("adverbs-questions-6", "The children are ", "happy", ".", "Adjective", ["happily", "happy"], "The word describes the children. After are, use an adjective: happy."),
     ],
   },
   "adverb-placement": {
     id: "adverb-placement", title: "Adverbs of time and frequency", categories: ["Adverb", "Verb"],
     examples: [
-      item("adverb-placement-examples-1", "We ", "often", " walk to school.", "Adverb", "Often tells how frequently we walk."),
+      item("adverb-placement-examples-1", "We ", "often", " walk to school.", "Adverb", "Often tells how often we walk. Walk is an action, so often is an adverb."),
       item("adverb-placement-examples-2", "We often ", "walk", " to school.", "Verb", "Walk names the action."),
     ],
     questions: [
-      item("adverb-placement-questions-1", "She is ", "always", " kind.", "Adverb", "Always tells how consistently she is kind. It comes after is here."),
-      find("adverb-placement-questions-2", "I ", "usually", " cook at home.", "Adverb", "Usually tells how often I cook."),
+      item("adverb-placement-questions-1", "She is ", "always", " kind.", "Adverb", "Always tells how often she is kind. It comes after is."),
+      find("adverb-placement-questions-2", "I ", "usually", " cook at home.", "Adverb", "Usually tells how often I cook. It comes before the action cook."),
       choose("adverb-placement-questions-3", "We arrived ", "yesterday", ".", "Adverb", ["tomorrow", "yesterday"], "Arrived is past, so we say yesterday. Yesterday is an adverb of time."),
       find("adverb-placement-questions-4", "They ", "arrived", " early.", "Verb", "Arrived tells the action."),
-      item("adverb-placement-questions-5", "", "Tomorrow", ", we will study.", "Adverb", "Tomorrow tells when. It can come at the start of a sentence."),
-      item("adverb-placement-questions-6", "He has ", "never", " visited Boston.", "Adverb", "Never tells how often. Here it comes between the helping verb and main verb."),
+      item("adverb-placement-questions-5", "", "Tomorrow", ", we will study.", "Adverb", "Tomorrow tells when we will study. It can come at the start of a sentence."),
+      item("adverb-placement-questions-6", "He has ", "never", " visited Boston.", "Adverb", "Never tells how often he has visited. It comes between has and visited."),
     ],
   },
   "prepositions": {
@@ -513,15 +562,15 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     id: "modifier-review", title: "Describing words review", categories: ["Adjective", "Noun", "Adverb", "Verb"],
     prompt: "Choose the label for the highlighted part.",
     examples: [
-      item("modifier-review-examples-1", "We have a ", "quiet", " room.", "Adjective", "Quiet describes room and comes before the noun."),
-      item("modifier-review-examples-2", "We ", "often", " walk to school.", "Adverb", "Often tells how frequently we walk."),
+      item("modifier-review-examples-1", "We have a ", "quiet", " room.", "Adjective", "Quiet describes room. Room is a noun. The adjective comes before it."),
+      item("modifier-review-examples-2", "We ", "often", " walk to school.", "Adverb", "Often tells how often we walk. Walk is an action, so often is an adverb."),
     ],
     questions: [
-      find("modifier-review-questions-1", "She has a ", "blue", " bag.", "Adjective", "Blue describes the bag."),
-      item("modifier-review-questions-2", "Her ", "bag", " is blue.", "Noun", "Bag names a thing."),
-      item("modifier-review-questions-3", "This room is ", "larger", " than ours.", "Adjective", "Larger describes the room by comparing it with another room."),
-      choose("modifier-review-questions-4", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "Slowly tells how he speaks. An adverb describes an action verb."),
-      item("modifier-review-questions-5", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor. An -ly ending does not always mean adverb."),
+      find("modifier-review-questions-1", "She has a ", "blue", " bag.", "Adjective", "Blue describes bag. Bag is a noun, so blue is an adjective."),
+      item("modifier-review-questions-2", "Her ", "bag", " is blue.", "Noun", "Bag names a thing. Blue describes it."),
+      item("modifier-review-questions-3", "This room is ", "larger", " than ours.", "Adjective", "Larger describes the room. It compares this room with another room."),
+      choose("modifier-review-questions-4", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "The word tells how he speaks. Speaks is an action, so we need the adverb slowly."),
+      item("modifier-review-questions-5", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor, a person. After is, use an adjective. Some adjectives end in -ly."),
       find("modifier-review-questions-6", "They ", "arrived", " early.", "Verb", "Arrived tells the action."),
     ],
   },
@@ -552,8 +601,8 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("final-review-questions-1", "", "They", " work together.", "Pronoun", "They stands in for the people we mean."),
       find("final-review-questions-2", "The ", "teacher", " helps us.", "Noun", "Teacher names a person."),
       item("final-review-questions-3", "We meet ", "at", " noon.", "Preposition", "At introduces a time."),
-      choose("final-review-questions-4", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "Slowly tells how he speaks. An adverb describes an action verb."),
-      item("final-review-questions-5", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor. An -ly ending does not always mean adverb."),
+      choose("final-review-questions-4", "He speaks ", "slowly", ".", "Adverb", ["slow", "slowly"], "The word tells how he speaks. Speaks is an action, so we need the adverb slowly."),
+      item("final-review-questions-5", "Our neighbor is ", "friendly", ".", "Adjective", "Friendly describes our neighbor, a person. After is, use an adjective. Some adjectives end in -ly."),
       find("final-review-questions-6", "I am tired, ", "but", " I will finish.", "Conjunction", "But joins contrasting ideas."),
     ],
   },
