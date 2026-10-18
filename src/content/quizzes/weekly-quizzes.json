@@ -7000,17 +7000,18 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa is texting the babysitter at work right now. Which sentence fits?",
+        "prompt": "After a preposition like \"of\" or \"in,\" which form is correct?",
         "options": [
-          "She texts the babysitter at work.",
-          "She is texting the babysitter at work.",
-          "She has texted the babysitter at work."
+          "verb + -ing (gerund)",
+          "to + base verb (infinitive)",
+          "base verb only",
+          "past tense"
         ],
         "answers": [
-          "She is texting the babysitter at work."
+          "verb + -ing (gerund)"
         ],
-        "explanation": "Present continuous for an action in progress right now.",
-        "source": "all-the-tenses-year-in-review/atyr-q2"
+        "explanation": "After prepositions: tired of waiting, interested in learning.",
+        "source": "gerunds-infinitives-full-review/gifr-q1"
       }
     ]
   }

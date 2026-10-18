@@ -10,6 +10,10 @@ const { weeklyVocabData } = require('../vocab/weekly-vocab-data');
 const weeks = COURSE_MAP_UNITS.flatMap(unit => unit.weeks);
 const plain = (s: string) => s.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&[lr]dquo;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
 const quizzes: Record<string, WeeklyQuizContent> = {};
+// Grammar questions already used by an earlier quiz in the same week, keyed by week number.
+const usedInWeek = new Map<number, Set<string>>();
+const requiredGuideSlug = (weekNumber: number) => weeks.find(w => w.number === weekNumber)?.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))?.href?.split('/').pop();
+const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
 
 // Weeks with more than one quiz (the optional final-review extras) number them.
 const bonusNumber = (quizNumber: number, weekNumber: number) => {
@@ -62,12 +66,24 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a brother in Colombia.” Write the complete sentence.', answers: ['She has a brother in Colombia.'], explanation: 'With she, have becomes has.', source: 'verb-forms-overview' },
     );
   } else {
-    const slug = week.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))!.href!.split('/').pop()!;
-    const guide = await getGrammarContent(slug);
-    const pool = guide?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
-    if (pool.length < 2) throw new Error(`Not enough grammar questions: ${slug}`);
+    const weekSlug = requiredGuideSlug(week.number)!;
+    const pool = await questionPool(weekSlug);
+    if (pool.length < 2) throw new Error(`Not enough grammar questions: ${weekSlug}`);
+    const used = usedInWeek.get(week.number) ?? new Set<string>();
+    usedInWeek.set(week.number, used);
     for (let i = 0; i < 2; i++) {
-      const q = pool[((n - 2) * 2 + i) % pool.length];
+      let slug = weekSlug;
+      let q = pool[((n - 2) * 2 + i) % pool.length];
+      if (used.has(`${slug}/${q.id}`)) {
+        // Several quizzes in one week (the W36 bonus quizzes) can run out of the
+        // guide's mini-quiz. Borrow an unused question from the previous week's
+        // guide instead of repeating one.
+        slug = requiredGuideSlug(week.number - 1)!;
+        const borrowed = (await questionPool(slug)).find(p => !Object.values(quizzes).some(z => z.questions.some(x => x.source === `${slug}/${p.id}`)));
+        if (!borrowed) throw new Error(`No unused grammar question to borrow from ${slug}`);
+        q = borrowed;
+      }
+      used.add(`${slug}/${q.id}`);
       const radio = !q.type || q.type === 'radio';
       let answers: string[];
       let options: string[] | undefined;
