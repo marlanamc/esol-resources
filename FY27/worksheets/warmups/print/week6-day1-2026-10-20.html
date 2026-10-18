@@ -86,6 +86,19 @@
     font-size: 12px;
     font-style: italic;
   }
+  .blank.verb { width: 8.5em; }
+  .circled { border: 1.5px solid #000; border-radius: 50%; padding: 0 4px; }
+
+  /* Back side: verb-forms chart + practice. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.25in 0.25in; }
+  .page.back .blank.verb { width: 6.5em; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.5in; }
+  .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -116,15 +129,16 @@
       </div>
       <p class="subtitle">Getting Around &mdash; movement verbs for buses, trains, and streets.</p>
       <section class="task">
-        <div class="task-title">1&ensp;Unscramble the sentence</div>
-        <p class="task-instructions">Put the words in the correct order. Start with a capital letter and end with a period.</p>
-        <p class="task-example"><b>Example:</b> station / the / arrives / train / at &rarr; The train arrives at the station.</p>
+        <div class="task-title">1&ensp;Adjective or adverb?</div>
+        <p class="task-instructions">Circle the correct word. An <b>adjective</b> describes a person, place, or thing. An <b>adverb</b> tells <i>how</i> someone does something (often <b>-ly</b>).</p>
+        <p class="task-example"><b>Example:</b> She drives <span class="opt">(slow / <span class="circled">slowly</span>)</span>. &rarr; <i>slowly</i> tells how she drives.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> Main Street / departs / the bus / from<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> the signs / to the exit / follow<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> at the crosswalk / the street / cross<span class="answer-line"></span></li>
-          <li><b class="n">4.</b> at Downtown Station / to the Red Line / transfer<span class="answer-line"></span></li>
-          <li><b class="n">5.</b> the nearest pharmacy / can you / locate<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> The bus driver is very <span class="opt">(careful / carefully)</span>.</li>
+          <li><b class="n">2.</b> Look both ways and cross the street <span class="opt">(careful / carefully)</span>.</li>
+          <li><b class="n">3.</b> Please talk <span class="opt">(quiet / quietly)</span> on the train.</li>
+          <li><b class="n">4.</b> The signs at the station are <span class="opt">(clear / clearly)</span>.</li>
+          <li><b class="n">5.</b> Follow the map, and you will arrive <span class="opt">(safe / safely)</span>.</li>
+          <li><b class="n">6.</b> It is a <span class="opt">(quick / quickly)</span> walk to the pharmacy.</li>
         </ol>
       </section>
       <section class="task">
@@ -141,7 +155,7 @@
         </ol>
       </section>
 
-      <p class="footer-note">Finished? Try <b>Weekly Quiz 3</b> in My ESOL App after 6 p.m. Opens Thursday, Oct. 22; due Tuesday, Oct. 27 at 6 p.m.</p>
+      <p class="footer-note">Finished? Try <b>Week 6 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Oct. 22; due Tuesday, Oct. 27 at 6 p.m.</p>
     </div>
     <div class="copy">
       <div class="header-row">
@@ -150,15 +164,16 @@
       </div>
       <p class="subtitle">Getting Around &mdash; movement verbs for buses, trains, and streets.</p>
       <section class="task">
-        <div class="task-title">1&ensp;Unscramble the sentence</div>
-        <p class="task-instructions">Put the words in the correct order. Start with a capital letter and end with a period.</p>
-        <p class="task-example"><b>Example:</b> station / the / arrives / train / at &rarr; The train arrives at the station.</p>
+        <div class="task-title">1&ensp;Adjective or adverb?</div>
+        <p class="task-instructions">Circle the correct word. An <b>adjective</b> describes a person, place, or thing. An <b>adverb</b> tells <i>how</i> someone does something (often <b>-ly</b>).</p>
+        <p class="task-example"><b>Example:</b> She drives <span class="opt">(slow / <span class="circled">slowly</span>)</span>. &rarr; <i>slowly</i> tells how she drives.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> Main Street / departs / the bus / from<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> the signs / to the exit / follow<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> at the crosswalk / the street / cross<span class="answer-line"></span></li>
-          <li><b class="n">4.</b> at Downtown Station / to the Red Line / transfer<span class="answer-line"></span></li>
-          <li><b class="n">5.</b> the nearest pharmacy / can you / locate<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> The bus driver is very <span class="opt">(careful / carefully)</span>.</li>
+          <li><b class="n">2.</b> Look both ways and cross the street <span class="opt">(careful / carefully)</span>.</li>
+          <li><b class="n">3.</b> Please talk <span class="opt">(quiet / quietly)</span> on the train.</li>
+          <li><b class="n">4.</b> The signs at the station are <span class="opt">(clear / clearly)</span>.</li>
+          <li><b class="n">5.</b> Follow the map, and you will arrive <span class="opt">(safe / safely)</span>.</li>
+          <li><b class="n">6.</b> It is a <span class="opt">(quick / quickly)</span> walk to the pharmacy.</li>
         </ol>
       </section>
       <section class="task">
@@ -175,7 +190,69 @@
         </ol>
       </section>
 
-      <p class="footer-note">Finished? Try <b>Weekly Quiz 3</b> in My ESOL App after 6 p.m. Opens Thursday, Oct. 22; due Tuesday, Oct. 27 at 6 p.m.</p>
+      <p class="footer-note">Finished? Try <b>Week 6 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Oct. 22; due Tuesday, Oct. 27 at 6 p.m.</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 6, Tuesday</h1>
+        <span class="date">10/20/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>go</i> and <i>come</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>go</b> and <b>come</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">go</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">come</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>go</b> or <b>come</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every day</b>, my daughter <span class="blank verb"></span> to school by bus.&nbsp;(go)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, the bus is <span class="blank verb"></span> down Main Street.&nbsp;(come)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, I <span class="blank verb"></span> to the pharmacy after work.&nbsp;(go)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, my cousin <span class="blank verb"></span> to my house for dinner.&nbsp;(come)</li>
+          <li><b class="n">5.</b> The train <span class="blank verb"></span> at 7:15 <b>every morning</b>.&nbsp;(come)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, we are <span class="blank verb"></span> to Downtown Station.&nbsp;(go)</li>
+          <li><b class="n">7.</b> She <b>has</b> <span class="blank verb"></span> to the doctor.&nbsp;(go) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> My parents <b>have</b> <span class="blank verb"></span> to visit three times.&nbsp;(come) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 6, Tuesday</h1>
+        <span class="date">10/20/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>go</i> and <i>come</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>go</b> and <b>come</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">go</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">come</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>go</b> or <b>come</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every day</b>, my daughter <span class="blank verb"></span> to school by bus.&nbsp;(go)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, the bus is <span class="blank verb"></span> down Main Street.&nbsp;(come)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, I <span class="blank verb"></span> to the pharmacy after work.&nbsp;(go)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, my cousin <span class="blank verb"></span> to my house for dinner.&nbsp;(come)</li>
+          <li><b class="n">5.</b> The train <span class="blank verb"></span> at 7:15 <b>every morning</b>.&nbsp;(come)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, we are <span class="blank verb"></span> to Downtown Station.&nbsp;(go)</li>
+          <li><b class="n">7.</b> She <b>has</b> <span class="blank verb"></span> to the doctor.&nbsp;(go) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> My parents <b>have</b> <span class="blank verb"></span> to visit three times.&nbsp;(come) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
     </div>
   </div>
 </body>

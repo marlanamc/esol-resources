@@ -1,4 +1,4 @@
-import { Box, Zap, Palette, Type, UserRound, Target, Link2, Clock3, MapPin } from 'lucide-react';
+import { Box, Zap, Palette, Type, UserRound, Link2, Clock3, MapPin } from 'lucide-react';
 import type { ReviewCategory } from '@/lib/parts-of-speech-review/content';
 import styles from './PartsOfSpeechReview.module.css';
 
@@ -6,7 +6,7 @@ import styles from './PartsOfSpeechReview.module.css';
 const categoryVisuals = {
   Noun: ['blue', Box], Verb: ['coral', Zap], Adjective: ['plum', Palette],
   Article: ['gold', Type], Pronoun: ['teal', UserRound], Determiner: ['gold', Type],
-  Subject: ['indigo', UserRound], Object: ['teal', Target], Complement: ['plum', Link2],
+  Subject: ['indigo', UserRound],
   'Base form': ['coral', Zap], 'Past form': ['coral', Clock3], 'Past participle': ['coral', Clock3],
   'Helping verb': ['coral', Link2], 'Main verb': ['coral', Zap], 'Linking verb': ['coral', Link2],
   Adverb: ['rose', Clock3], Preposition: ['teal', MapPin], Conjunction: ['indigo', Link2],

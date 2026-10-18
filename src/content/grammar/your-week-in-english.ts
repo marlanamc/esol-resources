@@ -560,10 +560,6 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want more directions practice?",
-        content: "For more ways to give directions (turn left, go straight, across from), open the optional <a href=\"/grammar-reader/getting-there-directions\" style=\"font-weight:700;text-decoration:underline\">Getting There guide</a>. You can find it in the Week 6 extras.",
-      },
     },
 
     // -----------------------------------------------------------------------

@@ -81,6 +81,17 @@
     font-size: 15px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 8px; }
+  s { text-decoration-thickness: 2px; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -107,7 +118,7 @@
         <h1>Warm-Up: Week 6, Thursday</h1>
         <span class="date">10/22/26</span>
       </div>
-      <p class="subtitle">Weekly Quiz 3 opens today at 6 p.m. Digital safety + how often do you...?</p>
+      <p class="subtitle">Week 6 Quiz opens today at 6 p.m. Digital safety + how often do you...?</p>
       <section class="task">
         <div class="task-title">1&ensp;How often?</div>
         <p class="task-instructions">Match each adverb to the sentence that matches its meaning. Write the letter.</p>
@@ -131,7 +142,46 @@
         </ol>
       </section>
 
-      <p class="footer-note">Finished? Try <b>Weekly Quiz 3</b> in My ESOL App after 6 p.m. Due Tuesday, Oct. 27 at 6 p.m.; available afterward.</p>
+      <p class="footer-note">Finished? Try <b>Week 6 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Oct. 27 at 6 p.m.; available afterward.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 6, Thursday</h1>
+        <span class="date">10/22/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>go</i> and <i>come</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">go</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">come</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> He <s>go</s> to work <b>every day</b>. &rarr; <i>goes</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> My sister <b>always</b> come home late on Fridays. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, we goed to the park. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, the train is come into the station. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last Saturday</b>, my friends come to my party. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> She <b>has</b> went to the store. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> They <b>have</b> came to class every week. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last weekend</b> + go</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every Tuesday</b> + come</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + go <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
 </body>
 </html>
