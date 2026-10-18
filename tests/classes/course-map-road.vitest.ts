@@ -86,6 +86,12 @@ describe("course map road", () => {
         expect(later.cycles[0].summary).toBe("2 of 7 weeks done");
     });
 
+    it("shows every cycle to teachers", () => {
+        const teacherRoad = buildCourseMapRoad({ outline, units, progress, currentWeek: 4, showAllCycles: true });
+        expect(teacherRoad.cycles.map((c) => [c.number, c.isPast, c.isCurrent])).toEqual([[1, false, true], [2, false, false]]);
+        expect(teacherRoad.weeks.some((w) => w.weekNumber === 20)).toBe(true);
+    });
+
     it("derives week states from the class week and visibility", () => {
         expect(week(1).state).toBe("done");
         expect(week(2).state).toBe("past");

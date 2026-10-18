@@ -271,6 +271,7 @@ export default async function MapPage({
                   assignmentIds: guidedAssignments,
                   quizScores,
                   schedule: roadSchedule,
+                  showAllCycles: canUseTeacherTools(session.user),
               })
             : null;
 
