@@ -18,3 +18,16 @@ document.addEventListener('click', event => {
   window.print();
 });
 window.addEventListener('afterprint', () => restorePrint());
+
+// Open a linked review section when arriving from the vocabulary overview.
+function revealLinkedSection() {
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (!target) return;
+  let detail = target.closest('details');
+  while (detail) {
+    detail.open = true;
+    detail = detail.parentElement?.closest('details');
+  }
+}
+window.addEventListener('hashchange', revealLinkedSection);
+revealLinkedSection();
