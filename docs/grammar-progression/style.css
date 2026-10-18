@@ -100,6 +100,7 @@ td.n a { color: inherit; }
 .tag { display: inline-block; font-family: var(--mono); font-size: 0.68rem; padding: 0.05rem 0.4rem; border-radius: 0.3rem; margin-left: 0.35rem; vertical-align: 0.08rem; }
 .tag.extra { background: var(--extra-soft); color: var(--extra); }
 .tag.rev { background: var(--accent-soft); color: var(--accent); }
+.tag.planned { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
 
 /* Watch list and maintenance */
 .watch { border: 1px solid var(--warn); background: var(--warn-soft); padding: 1rem 1.15rem; border-radius: 0.5rem; display: grid; gap: 0.6rem; }
