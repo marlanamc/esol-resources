@@ -24,5 +24,5 @@ export const RESCUE_COLLECTIONS: RescueCollection[] = [
   })),
 ];
 export function rescueAudioPath(wordId: string, clip: 'word' | 'phrase' | 'sentence') {
-  return `/word-rescue-audio/${wordId}-${clip}.mp3?v=elevenlabs-fy27-2`;
+  return `/word-rescue-audio/${wordId}-${clip}.mp3?v=elevenlabs-fy27-3`;
 }

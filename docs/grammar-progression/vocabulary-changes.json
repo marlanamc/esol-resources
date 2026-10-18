@@ -1,112 +1,530 @@
 [
   {
+    "week": 6,
     "set": "oct-w2",
-    "from": "depart",
-    "to": "leave"
+    "from": "leave",
+    "to": "commute"
   },
   {
+    "week": 6,
     "set": "oct-w2",
-    "from": "locate",
-    "to": "find"
+    "from": "arrive",
+    "to": "delay"
   },
   {
-    "set": "oct-w4",
-    "from": "decline",
-    "to": "turn down"
+    "week": 6,
+    "set": "oct-w2",
+    "from": "find",
+    "to": "detour"
   },
   {
+    "week": 6,
+    "set": "oct-w2",
+    "from": "follow",
+    "to": "miss a connection"
+  },
+  {
+    "week": 6,
+    "set": "oct-w2",
+    "from": "cross",
+    "to": "get off at"
+  },
+  {
+    "week": 7,
+    "set": "oct-w5",
+    "from": "vote",
+    "to": "register to vote"
+  },
+  {
+    "week": 8,
     "set": "oct-w4",
-    "from": "postpone",
+    "from": "connect",
+    "to": "put someone through"
+  },
+  {
+    "week": 9,
+    "set": "nov-w1",
+    "from": "join",
+    "to": "sign up for"
+  },
+  {
+    "week": 10,
+    "set": "nov-w2",
+    "from": "agree",
+    "to": "reach an agreement"
+  },
+  {
+    "week": 10,
+    "set": "nov-w2",
+    "from": "listen",
+    "to": "raise a concern"
+  },
+  {
+    "week": 11,
+    "set": "dec-w1",
+    "from": "purchase",
+    "to": "purchase price"
+  },
+  {
+    "week": 11,
+    "set": "dec-w1",
+    "from": "compare",
+    "to": "comparison shop"
+  },
+  {
+    "week": 11,
+    "set": "dec-w1",
+    "from": "save",
+    "to": "set aside"
+  },
+  {
+    "week": 11,
+    "set": "dec-w1",
+    "from": "spend",
+    "to": "keep track of"
+  },
+  {
+    "week": 11,
+    "set": "dec-w1",
+    "from": "calculate",
+    "to": "total cost"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "rice",
+    "to": "run out of"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "bread",
+    "to": "stock up on"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "milk",
+    "to": "buy in bulk"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "eggs",
+    "to": "unit price"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "vegetables",
+    "to": "serving size"
+  },
+  {
+    "week": 13,
+    "set": "dec-groceries",
+    "from": "fruit",
+    "to": "go bad"
+  },
+  {
+    "week": 14,
+    "set": "dec-w3",
+    "from": "prices",
+    "to": "cost of living"
+  },
+  {
+    "week": 15,
+    "set": "dec-fall-review",
+    "from": "introduce",
     "to": "reschedule"
   },
   {
-    "set": "nov-w1",
-    "from": "assist",
-    "to": "help out"
+    "week": 15,
+    "set": "dec-fall-review",
+    "from": "focus",
+    "to": "raise a concern"
   },
   {
+    "week": 15,
+    "set": "dec-fall-review",
+    "from": "leave",
+    "to": "set aside"
+  },
+  {
+    "week": 15,
+    "set": "dec-fall-review",
+    "from": "compare",
+    "to": "unit price"
+  },
+  {
+    "week": 16,
     "set": "jan-w1",
-    "from": "occupy",
-    "to": "move in"
+    "from": "rent",
+    "to": "security deposit"
   },
   {
+    "week": 16,
+    "set": "jan-w1",
+    "from": "move",
+    "to": "utilities included"
+  },
+  {
+    "week": 16,
+    "set": "jan-w1",
+    "from": "qualify",
+    "to": "qualify for"
+  },
+  {
+    "week": 16,
+    "set": "jan-w1",
+    "from": "apply",
+    "to": "rental application"
+  },
+  {
+    "week": 17,
     "set": "jan-w2",
-    "from": "evaluate",
-    "to": "check out"
+    "from": "compare",
+    "to": "weigh your options"
   },
   {
+    "week": 17,
     "set": "jan-w2",
-    "from": "select",
-    "to": "choose"
+    "from": "choose",
+    "to": "trade-off"
   },
   {
+    "week": 17,
+    "set": "jan-w2",
+    "from": "own",
+    "to": "within your budget"
+  },
+  {
+    "week": 18,
+    "set": "jan-w3",
+    "from": "request",
+    "to": "request a repair"
+  },
+  {
+    "week": 18,
+    "set": "jan-w3",
+    "from": "report",
+    "to": "report a problem"
+  },
+  {
+    "week": 18,
+    "set": "jan-w3",
+    "from": "repair",
+    "to": "maintenance request"
+  },
+  {
+    "week": 18,
+    "set": "jan-w3",
+    "from": "clog",
+    "to": "clogged"
+  },
+  {
+    "week": 19,
     "set": "jan-w4",
-    "from": "resolve",
-    "to": "fix"
+    "from": "fix",
+    "to": "resolve"
   },
   {
+    "week": 19,
     "set": "jan-w4",
-    "from": "notify",
-    "to": "let someone know"
+    "from": "let someone know",
+    "to": "notify"
   },
   {
+    "week": 19,
     "set": "jan-w4",
-    "from": "reimburse",
-    "to": "pay back"
+    "from": "pay back",
+    "to": "reimburse"
   },
   {
+    "week": 20,
+    "set": "feb-3-5",
+    "from": "schedule",
+    "to": "availability"
+  },
+  {
+    "week": 20,
+    "set": "feb-3-5",
+    "from": "break",
+    "to": "responsibility"
+  },
+  {
+    "week": 20,
+    "set": "feb-3-5",
+    "from": "team",
+    "to": "work independently"
+  },
+  {
+    "week": 21,
+    "set": "mar-10-12",
+    "from": "must",
+    "to": "previous position"
+  },
+  {
+    "week": 21,
+    "set": "mar-10-12",
+    "from": "should",
+    "to": "job duties"
+  },
+  {
+    "week": 21,
+    "set": "mar-10-12",
+    "from": "can",
+    "to": "work overtime"
+  },
+  {
+    "week": 21,
+    "set": "mar-10-12",
+    "from": "safety",
+    "to": "safety procedure"
+  },
+  {
+    "week": 23,
+    "set": "feb-10-12",
+    "from": "call out",
+    "to": "call in sick"
+  },
+  {
+    "week": 23,
+    "set": "feb-10-12",
+    "from": "follow up",
+    "to": "cover a shift"
+  },
+  {
+    "week": 26,
     "set": "mar-17-19",
-    "from": "courtesy",
-    "to": "respect"
+    "from": "respect",
+    "to": "raise a concern"
   },
   {
+    "week": 26,
     "set": "mar-17-19",
-    "from": "comply",
-    "to": "follow the rules"
+    "from": "strict",
+    "to": "workplace policy"
   },
   {
+    "week": 26,
     "set": "mar-17-19",
-    "from": "violate",
-    "to": "break a rule"
+    "from": "follow the rules",
+    "to": "file a complaint"
   },
   {
+    "week": 26,
+    "set": "mar-17-19",
+    "from": "break a rule",
+    "to": "violation"
+  },
+  {
+    "week": 27,
     "set": "mar-24-26",
-    "from": "reflect",
-    "to": "think about"
+    "from": "advice",
+    "to": "constructive criticism"
   },
   {
+    "week": 27,
+    "set": "mar-24-26",
+    "from": "decision",
+    "to": "make a decision"
+  },
+  {
+    "week": 27,
+    "set": "mar-24-26",
+    "from": "think about",
+    "to": "take into account"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "cough",
+    "to": "symptom"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "infected",
+    "to": "persistent"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "depressed",
+    "to": "diagnosis"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "habit",
+    "to": "contagious"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "avoid",
+    "to": "seek care"
+  },
+  {
+    "week": 28,
+    "set": "apr-7-9",
+    "from": "quit",
+    "to": "follow-up appointment"
+  },
+  {
+    "week": 29,
     "set": "apr-14-16",
-    "from": "lifestyle",
-    "to": "routine"
+    "from": "recover",
+    "to": "recover from"
   },
   {
+    "week": 29,
+    "set": "apr-14-16",
+    "from": "improve",
+    "to": "ease up"
+  },
+  {
+    "week": 29,
+    "set": "apr-14-16",
+    "from": "exercise",
+    "to": "cut back on"
+  },
+  {
+    "week": 29,
+    "set": "apr-14-16",
+    "from": "routine",
+    "to": "build up"
+  },
+  {
+    "week": 29,
+    "set": "apr-14-16",
+    "from": "adjust",
+    "to": "adjust to"
+  },
+  {
+    "week": 30,
+    "set": "apr-w30-review",
+    "from": "recover",
+    "to": "persistent"
+  },
+  {
+    "week": 30,
+    "set": "apr-w30-review",
+    "from": "improve",
+    "to": "follow-up appointment"
+  },
+  {
+    "week": 30,
+    "set": "apr-w30-review",
+    "from": "exercise",
+    "to": "recover from"
+  },
+  {
+    "week": 30,
+    "set": "apr-w30-review",
+    "from": "routine",
+    "to": "cut back on"
+  },
+  {
+    "week": 30,
+    "set": "apr-w30-review",
+    "from": "adjust",
+    "to": "adjust to"
+  },
+  {
+    "week": 31,
+    "set": "apr-28-30",
+    "from": "appointment",
+    "to": "refill"
+  },
+  {
+    "week": 31,
+    "set": "apr-28-30",
+    "from": "checkup",
+    "to": "over-the-counter"
+  },
+  {
+    "week": 31,
+    "set": "apr-28-30",
+    "from": "diagnosis",
+    "to": "dosage"
+  },
+  {
+    "week": 31,
+    "set": "apr-28-30",
+    "from": "fever",
+    "to": "pharmacist"
+  },
+  {
+    "week": 31,
+    "set": "apr-28-30",
+    "from": "contagious",
+    "to": "interaction"
+  },
+  {
+    "week": 32,
     "set": "may-5-7",
-    "from": "nutrient",
-    "to": "side effect"
+    "from": "temperature",
+    "to": "treatment plan"
   },
   {
+    "week": 33,
     "set": "may-12-14",
-    "from": "mindful",
-    "to": "take a break"
+    "from": "relax",
+    "to": "unwind"
   },
   {
+    "week": 33,
+    "set": "may-12-14",
+    "from": "balance",
+    "to": "work-life balance"
+  },
+  {
+    "week": 33,
+    "set": "may-12-14",
+    "from": "take a break",
+    "to": "set boundaries"
+  },
+  {
+    "week": 34,
     "set": "may-19-21",
-    "from": "remedy",
-    "to": "home remedy"
+    "from": "rest",
+    "to": "recover your energy"
   },
   {
+    "week": 34,
     "set": "may-19-21",
-    "from": "soothe",
-    "to": "rest"
+    "from": "sore throat",
+    "to": "wear off"
   },
   {
-    "set": "may-19-21",
-    "from": "ailment",
-    "to": "sore throat"
-  },
-  {
+    "week": 35,
     "set": "may-26-28",
-    "from": "reflection",
-    "to": "look back"
+    "from": "progress",
+    "to": "make progress"
+  },
+  {
+    "week": 35,
+    "set": "may-26-28",
+    "from": "challenge",
+    "to": "overcome a challenge"
+  },
+  {
+    "week": 35,
+    "set": "may-26-28",
+    "from": "success",
+    "to": "milestone"
+  },
+  {
+    "week": 35,
+    "set": "may-26-28",
+    "from": "proud",
+    "to": "take pride in"
+  },
+  {
+    "week": 36,
+    "set": "jun-2-4",
+    "from": "goal",
+    "to": "set a goal"
   }
 ]

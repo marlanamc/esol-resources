@@ -595,7 +595,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Movement Verbs: Flash Cards"
+            "title": "Transportation and Directions: Flash Cards"
           },
           {
             "id": "your-week-in-english",
@@ -614,7 +614,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 2,
-            "title": "Movement Verbs: Matching"
+            "title": "Transportation and Directions: Matching"
           },
           {
             "id": "vocab-oct-w2-fill-blank",
@@ -624,7 +624,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 3,
-            "title": "Movement Verbs: Fill in the Blank"
+            "title": "Transportation and Directions: Fill in the Blank"
           },
           {
             "id": "parts-of-speech-week-6",
@@ -679,7 +679,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Civic Verbs: Flash Cards"
+            "title": "Voting and Community Voice: Flash Cards"
           },
           {
             "id": "zero-first-conditional",
@@ -706,7 +706,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Civic Verbs: Matching"
+            "title": "Voting and Community Voice: Matching"
           },
           {
             "id": "vocab-oct-w5-fill-blank",
@@ -716,7 +716,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Civic Verbs: Fill in the Blank"
+            "title": "Voting and Community Voice: Fill in the Blank"
           },
           {
             "id": "verb-quiz-7",
@@ -776,7 +776,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Communication Verbs: Flash Cards"
+            "title": "Phone Communication: Flash Cards"
           },
           {
             "id": "can-should-must",
@@ -804,7 +804,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Communication Verbs: Matching"
+            "title": "Phone Communication: Matching"
           },
           {
             "id": "vocab-oct-w4-fill-blank",
@@ -814,7 +814,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Communication Verbs: Fill in the Blank"
+            "title": "Phone Communication: Fill in the Blank"
           },
           {
             "id": "verb-quiz-4",
@@ -842,7 +842,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Action Verbs: Flash Cards"
+            "title": "Volunteering: Flash Cards"
           },
           {
             "id": "have-you-ever",
@@ -879,7 +879,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 4,
-            "title": "Action Verbs: Matching"
+            "title": "Volunteering: Matching"
           },
           {
             "id": "vocab-nov-w1-fill-blank",
@@ -889,7 +889,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Action Verbs: Fill in the Blank"
+            "title": "Volunteering: Fill in the Blank"
           },
           {
             "id": "verb-quiz-5",
@@ -917,7 +917,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Discussion Verbs: Flash Cards"
+            "title": "Meetings and Suggestions: Flash Cards"
           },
           {
             "id": "what-are-you-good-at",
@@ -944,7 +944,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Discussion Verbs: Matching"
+            "title": "Meetings and Suggestions: Matching"
           },
           {
             "id": "short-i-long-e-lab",
@@ -963,7 +963,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Discussion Verbs: Fill in the Blank"
+            "title": "Meetings and Suggestions: Fill in the Blank"
           },
           {
             "id": "verb-quiz-6",
@@ -999,7 +999,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Money Verbs: Flash Cards"
+            "title": "Spending and Budgeting: Flash Cards"
           },
           {
             "id": "how-long-for-since-guide",
@@ -1027,7 +1027,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Money Verbs: Matching"
+            "title": "Spending and Budgeting: Matching"
           },
           {
             "id": "compare-prices-practice",
@@ -1045,7 +1045,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Money Verbs: Fill in the Blank"
+            "title": "Spending and Budgeting: Fill in the Blank"
           },
           {
             "id": "verb-quiz-9",
@@ -1073,7 +1073,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Financial Action Verbs: Flash Cards"
+            "title": "Returns and Financial Problems: Flash Cards"
           },
           {
             "id": "more-less-the-most",
@@ -1101,7 +1101,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Financial Action Verbs: Matching"
+            "title": "Returns and Financial Problems: Matching"
           },
           {
             "id": "vocab-dec-w2-fill-blank",
@@ -1111,7 +1111,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Financial Action Verbs: Fill in the Blank"
+            "title": "Returns and Financial Problems: Fill in the Blank"
           },
           {
             "id": "verb-quiz-10",
@@ -1140,7 +1140,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 13 Core Vocabulary: Flash Cards"
+            "title": "Grocery Shopping: Quantity, Value, and Waste: Flash Cards"
           },
           {
             "id": "how-much-how-many",
@@ -1176,7 +1176,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 13 Core Vocabulary: Matching"
+            "title": "Grocery Shopping: Quantity, Value, and Waste: Matching"
           },
           {
             "id": "week-13-core-fill-blank",
@@ -1186,7 +1186,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 13 Core Vocabulary: Fill in the Blank"
+            "title": "Grocery Shopping: Quantity, Value, and Waste: Fill in the Blank"
           },
           {
             "id": "verb-quiz-11",
@@ -1214,7 +1214,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Economy Words: Flash Cards"
+            "title": "Understanding Economic News: Flash Cards"
           },
           {
             "id": "reading-econ-news",
@@ -1233,7 +1233,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 2,
-            "title": "Economy Words: Matching"
+            "title": "Understanding Economic News: Matching"
           },
           {
             "id": "vocab-dec-w3-fill-blank",
@@ -1243,7 +1243,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 3,
-            "title": "Economy Words: Fill in the Blank"
+            "title": "Understanding Economic News: Fill in the Blank"
           },
           {
             "id": "econ-news-headlines-practice",
@@ -1278,7 +1278,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 15 Core Vocabulary: Flash Cards"
+            "title": "Fall Review: Six Useful Words and Phrases: Flash Cards"
           },
           {
             "id": "fall-review-six-tenses",
@@ -1321,7 +1321,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 15 Core Vocabulary: Matching"
+            "title": "Fall Review: Six Useful Words and Phrases: Matching"
           },
           {
             "id": "week-15-core-fill-blank",
@@ -1331,7 +1331,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 15 Core Vocabulary: Fill in the Blank"
+            "title": "Fall Review: Six Useful Words and Phrases: Fill in the Blank"
           },
           {
             "id": "verb-quiz-8",
@@ -1384,7 +1384,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Renter Verbs: Flash Cards"
+            "title": "Housing Basics: Flash Cards"
           },
           {
             "id": "asking-right-questions-housing",
@@ -1412,7 +1412,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Renter Verbs: Matching"
+            "title": "Housing Basics: Matching"
           },
           {
             "id": "vocab-jan-w1-fill-blank",
@@ -1422,7 +1422,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Renter Verbs: Fill in the Blank"
+            "title": "Housing Basics: Fill in the Blank"
           },
           {
             "id": "verb-quiz-12",
@@ -1459,7 +1459,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Decision Verbs: Flash Cards"
+            "title": "Comparing Housing Options: Flash Cards"
           },
           {
             "id": "have-to-dont-have-to-cant",
@@ -1486,7 +1486,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Decision Verbs: Matching"
+            "title": "Comparing Housing Options: Matching"
           },
           {
             "id": "housing-description-writing",
@@ -1504,7 +1504,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Decision Verbs: Fill in the Blank"
+            "title": "Comparing Housing Options: Fill in the Blank"
           },
           {
             "id": "verb-quiz-13",
@@ -1532,7 +1532,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Maintenance Verbs: Flash Cards"
+            "title": "Landlord Calls and Repair Requests: Flash Cards"
           },
           {
             "id": "need-to-find-a-place-infinitives",
@@ -1559,7 +1559,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Maintenance Verbs: Matching"
+            "title": "Landlord Calls and Repair Requests: Matching"
           },
           {
             "id": "vocab-jan-w3-fill-blank",
@@ -1569,7 +1569,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Maintenance Verbs: Fill in the Blank"
+            "title": "Landlord Calls and Repair Requests: Fill in the Blank"
           },
           {
             "id": "verb-quiz-14",
@@ -1597,7 +1597,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Resolution Verbs: Flash Cards"
+            "title": "Resolving Housing Problems: Flash Cards"
           },
           {
             "id": "it-was-happening-when",
@@ -1624,7 +1624,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Resolution Verbs: Matching"
+            "title": "Resolving Housing Problems: Matching"
           },
           {
             "id": "what-happened-writing",
@@ -1642,7 +1642,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Resolution Verbs: Fill in the Blank"
+            "title": "Resolving Housing Problems: Fill in the Blank"
           },
           {
             "id": "verb-quiz-15",
@@ -1678,7 +1678,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Jobs Foundations: Flash Cards"
+            "title": "Work Experience and Expectations: Flash Cards"
           },
           {
             "id": "past-perfect",
@@ -1705,7 +1705,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Jobs Foundations: Matching"
+            "title": "Work Experience and Expectations: Matching"
           },
           {
             "id": "vocab-feb-3-5-fill-blank",
@@ -1715,7 +1715,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Jobs Foundations: Fill in the Blank"
+            "title": "Work Experience and Expectations: Fill in the Blank"
           },
           {
             "id": "verb-quiz-16",
@@ -1743,7 +1743,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Rules & Obligation at Work: Flash Cards"
+            "title": "Past Jobs and Workplace Routines: Flash Cards"
           },
           {
             "id": "i-used-to-but-now-i",
@@ -1770,7 +1770,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Rules & Obligation at Work: Matching"
+            "title": "Past Jobs and Workplace Routines: Matching"
           },
           {
             "id": "v-w-lab",
@@ -1789,7 +1789,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Rules & Obligation at Work: Fill in the Blank"
+            "title": "Past Jobs and Workplace Routines: Fill in the Blank"
           },
           {
             "id": "verb-quiz-17",
@@ -1827,7 +1827,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 22 Core Vocabulary: Flash Cards"
+            "title": "Workplace Conversation and Clarification: Flash Cards"
           },
           {
             "id": "second-conditional-what-would-you-do",
@@ -1870,7 +1870,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 22 Core Vocabulary: Matching"
+            "title": "Workplace Conversation and Clarification: Matching"
           },
           {
             "id": "week-22-core-fill-blank",
@@ -1880,7 +1880,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 22 Core Vocabulary: Fill in the Blank"
+            "title": "Workplace Conversation and Clarification: Fill in the Blank"
           },
           {
             "id": "verb-quiz-18",
@@ -1908,7 +1908,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Workplace Phrasal Verbs: Flash Cards"
+            "title": "Shifts and Attendance: Flash Cards"
           },
           {
             "id": "enjoy-doing-want-to-do",
@@ -1935,7 +1935,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Workplace Phrasal Verbs: Matching"
+            "title": "Shifts and Attendance: Matching"
           },
           {
             "id": "at-work-have-to-writing",
@@ -1953,7 +1953,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Workplace Phrasal Verbs: Fill in the Blank"
+            "title": "Shifts and Attendance: Fill in the Blank"
           },
           {
             "id": "verb-quiz-19",
@@ -1999,7 +1999,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Experience & Timelines: Flash Cards"
+            "title": "Job Applications and Interviews: Flash Cards"
           },
           {
             "id": "present-perfect-how-long",
@@ -2026,7 +2026,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Experience & Timelines: Matching"
+            "title": "Job Applications and Interviews: Matching"
           },
           {
             "id": "s-th-lab",
@@ -2045,7 +2045,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Experience & Timelines: Fill in the Blank"
+            "title": "Job Applications and Interviews: Fill in the Blank"
           },
           {
             "id": "verb-quiz-20",
@@ -2073,7 +2073,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Skills & Qualifications: Flash Cards"
+            "title": "Career Progress and Pay: Flash Cards"
           },
           {
             "id": "ive-been-working",
@@ -2101,7 +2101,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Skills & Qualifications: Matching"
+            "title": "Career Progress and Pay: Matching"
           },
           {
             "id": "how-long-speaking",
@@ -2119,7 +2119,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Skills & Qualifications: Fill in the Blank"
+            "title": "Career Progress and Pay: Fill in the Blank"
           },
           {
             "id": "verb-quiz-21",
@@ -2147,7 +2147,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Rights, Rules & Advocacy: Flash Cards"
+            "title": "Workplace Rights and Concerns: Flash Cards"
           },
           {
             "id": "past-perfect-continuous-work",
@@ -2175,7 +2175,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 4,
-            "title": "Rights, Rules & Advocacy: Matching"
+            "title": "Workplace Rights and Concerns: Matching"
           },
           {
             "id": "workplace-advocacy-scenarios",
@@ -2201,7 +2201,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 8,
-            "title": "Rights, Rules & Advocacy: Fill in the Blank"
+            "title": "Workplace Rights and Concerns: Fill in the Blank"
           },
           {
             "id": "verb-quiz-22",
@@ -2229,7 +2229,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Feedback & Decision-Making: Flash Cards"
+            "title": "Feedback and Decisions: Flash Cards"
           },
           {
             "id": "passive-voice-what-was-done",
@@ -2248,7 +2248,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 2,
-            "title": "Feedback & Decision-Making: Matching"
+            "title": "Feedback and Decisions: Matching"
           },
           {
             "id": "vocab-mar-31-apr-2-fill-blank",
@@ -2258,7 +2258,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 3,
-            "title": "Feedback & Decision-Making: Fill in the Blank"
+            "title": "Feedback and Decisions: Fill in the Blank"
           },
           {
             "id": "verb-quiz-23",
@@ -2294,7 +2294,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Symptoms & Expectations: Flash Cards"
+            "title": "Describing Symptoms and Getting Care: Flash Cards"
           },
           {
             "id": "should-shouldnt-health-advice",
@@ -2322,7 +2322,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Symptoms & Expectations: Matching"
+            "title": "Describing Symptoms and Getting Care: Matching"
           },
           {
             "id": "vocab-apr-7-9-fill-blank",
@@ -2332,7 +2332,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Symptoms & Expectations: Fill in the Blank"
+            "title": "Describing Symptoms and Getting Care: Fill in the Blank"
           },
           {
             "id": "verb-quiz-24",
@@ -2360,7 +2360,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Symptoms & Care: Flash Cards"
+            "title": "Recovery and Changing Habits: Flash Cards"
           },
           {
             "id": "stop-taking-or-stop-to-take",
@@ -2387,7 +2387,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Symptoms & Care: Matching"
+            "title": "Recovery and Changing Habits: Matching"
           },
           {
             "id": "vocab-apr-14-16-fill-blank",
@@ -2397,7 +2397,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Symptoms & Care: Fill in the Blank"
+            "title": "Recovery and Changing Habits: Fill in the Blank"
           },
           {
             "id": "verb-quiz-25",
@@ -2425,7 +2425,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 30 Core Vocabulary: Flash Cards"
+            "title": "Doctor Follow-Up: Six-Item Review: Flash Cards"
           },
           {
             "id": "doctor-said-reported-speech",
@@ -2468,7 +2468,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 30 Core Vocabulary: Matching"
+            "title": "Doctor Follow-Up: Six-Item Review: Matching"
           },
           {
             "id": "week-30-core-fill-blank",
@@ -2478,7 +2478,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 30 Core Vocabulary: Fill in the Blank"
+            "title": "Doctor Follow-Up: Six-Item Review: Fill in the Blank"
           },
           {
             "id": "verb-quiz-26",
@@ -2506,7 +2506,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Health Advice & Habits: Flash Cards"
+            "title": "Pharmacy Communication: Flash Cards"
           },
           {
             "id": "third-conditional-what-would-have-happened",
@@ -2533,7 +2533,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Health Advice & Habits: Matching"
+            "title": "Pharmacy Communication: Matching"
           },
           {
             "id": "vocab-apr-28-30-fill-blank",
@@ -2543,7 +2543,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Health Advice & Habits: Fill in the Blank"
+            "title": "Pharmacy Communication: Fill in the Blank"
           },
           {
             "id": "verb-quiz-27",
@@ -2579,7 +2579,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Your Body & Wellness: Flash Cards"
+            "title": "Treatment and Wellness Goals: Flash Cards"
           },
           {
             "id": "future-perfect-goals",
@@ -2606,7 +2606,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Your Body & Wellness: Matching"
+            "title": "Treatment and Wellness Goals: Matching"
           },
           {
             "id": "p-b-lab",
@@ -2625,7 +2625,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Your Body & Wellness: Fill in the Blank"
+            "title": "Treatment and Wellness Goals: Fill in the Blank"
           },
           {
             "id": "verb-quiz-28",
@@ -2653,7 +2653,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Daily Care & Nutrition: Flash Cards"
+            "title": "Stress and Adjustment: Flash Cards"
           },
           {
             "id": "be-used-to-get-used-to",
@@ -2672,7 +2672,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 2,
-            "title": "Daily Care & Nutrition: Matching"
+            "title": "Stress and Adjustment: Matching"
           },
           {
             "id": "vocab-may-12-14-fill-blank",
@@ -2682,7 +2682,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 3,
-            "title": "Daily Care & Nutrition: Fill in the Blank"
+            "title": "Stress and Adjustment: Fill in the Blank"
           },
           {
             "id": "verb-quiz-29",
@@ -2710,7 +2710,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Life Skills & Habits: Flash Cards"
+            "title": "Food, Remedies, and Recovery: Flash Cards"
           },
           {
             "id": "all-four-conditionals-quick-tour",
@@ -2737,7 +2737,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Life Skills & Habits: Matching"
+            "title": "Food, Remedies, and Recovery: Matching"
           },
           {
             "id": "sleep-better-writing",
@@ -2755,7 +2755,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Life Skills & Habits: Fill in the Blank"
+            "title": "Food, Remedies, and Recovery: Fill in the Blank"
           },
           {
             "id": "verb-quiz-30",
@@ -2783,7 +2783,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Holistic Health Review: Flash Cards"
+            "title": "Reflecting on Progress: Flash Cards"
           },
           {
             "id": "future-perfect-continuous-progress",
@@ -2810,7 +2810,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Holistic Health Review: Matching"
+            "title": "Reflecting on Progress: Matching"
           },
           {
             "id": "b-v-refresh",
@@ -2829,7 +2829,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Holistic Health Review: Fill in the Blank"
+            "title": "Reflecting on Progress: Fill in the Blank"
           },
           {
             "id": "verb-quiz-31",
@@ -2875,7 +2875,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Wrap-Up & Next Steps: Flash Cards"
+            "title": "Next Steps: Flash Cards"
           },
           {
             "id": "all-the-tenses-year-in-review",
@@ -2903,7 +2903,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Wrap-Up & Next Steps: Matching"
+            "title": "Next Steps: Matching"
           },
           {
             "id": "mixed-pronunciation-review",
@@ -2922,7 +2922,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Wrap-Up & Next Steps: Fill in the Blank"
+            "title": "Next Steps: Fill in the Blank"
           },
           {
             "id": "post-test-window",

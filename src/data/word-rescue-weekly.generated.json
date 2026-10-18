@@ -289,21 +289,21 @@
   },
   {
     "id": "oct-w2",
-    "topic": "Transportation + Directions: Movement Verbs",
+    "topic": "Transportation and Directions",
     "words": [
       {
-        "id": "oct-w2-leave",
-        "term": "leave",
-        "definition": "to go away from a place",
-        "sentence": "What time does the bus leave?",
-        "phrase": "leave"
+        "id": "oct-w2-commute",
+        "term": "commute",
+        "definition": "to travel regularly between home and work or school",
+        "sentence": "I commute by train three days a week.",
+        "phrase": "commute by train"
       },
       {
-        "id": "oct-w2-arrive",
-        "term": "arrive",
-        "definition": "to reach a place",
-        "sentence": "What time does the train arrive at the station?",
-        "phrase": "arrive at the"
+        "id": "oct-w2-delay",
+        "term": "delay",
+        "definition": "a wait because something happens later than expected",
+        "sentence": "There is a twenty-minute delay on the bus route.",
+        "phrase": "delay on the"
       },
       {
         "id": "oct-w2-transfer",
@@ -313,25 +313,25 @@
         "phrase": "Transfer to the"
       },
       {
-        "id": "oct-w2-find",
-        "term": "find",
-        "definition": "to discover where something is",
-        "sentence": "Can you help me find the bus stop?",
-        "phrase": "find the bus"
+        "id": "oct-w2-detour",
+        "term": "detour",
+        "definition": "a different route used when the usual route is blocked",
+        "sentence": "The bus takes a detour because of road work.",
+        "phrase": "detour because of"
       },
       {
-        "id": "oct-w2-follow",
-        "term": "follow",
-        "definition": "to go in the same direction; to use directions step by step",
-        "sentence": "Follow the signs to the emergency exit.",
-        "phrase": "Follow the signs"
+        "id": "oct-w2-miss-a-connection",
+        "term": "miss a connection",
+        "definition": "to arrive too late to catch the next bus, train, or flight",
+        "sentence": "If the bus is late, I might miss a connection.",
+        "phrase": "miss a connection"
       },
       {
-        "id": "oct-w2-cross",
-        "term": "cross",
-        "definition": "to go from one side to the other",
-        "sentence": "Cross the street at the crosswalk when the light is green.",
-        "phrase": "Cross the street"
+        "id": "oct-w2-get-off-at",
+        "term": "get off at",
+        "definition": "to leave a bus or train at a particular stop",
+        "sentence": "Get off at Central Square and walk one block.",
+        "phrase": "Get off at Central Square"
       }
     ]
   },
@@ -385,7 +385,7 @@
   },
   {
     "id": "oct-w4",
-    "topic": "Phone English + Family Connection: Communication Verbs",
+    "topic": "Phone Communication",
     "words": [
       {
         "id": "oct-w4-contact",
@@ -423,24 +423,24 @@
         "phrase": "reschedule my appointment"
       },
       {
-        "id": "oct-w4-connect",
-        "term": "connect",
-        "definition": "to join or link with someone or something",
-        "sentence": "I couldn't connect to the Wi-Fi at the library.",
-        "phrase": "connect to the"
+        "id": "oct-w4-put-someone-through",
+        "term": "put someone through",
+        "definition": "to connect a caller to another person on the phone",
+        "sentence": "Can the receptionist put someone through to the billing office?",
+        "phrase": "put someone through to the"
       }
     ]
   },
   {
     "id": "oct-w5",
-    "topic": "Voting + Contacting Officials: Civic Verbs",
+    "topic": "Voting and Community Voice",
     "words": [
       {
-        "id": "oct-w5-vote",
-        "term": "vote",
-        "definition": "to officially choose a person or option in an election",
-        "sentence": "Register and vote in your local elections.",
-        "phrase": "vote in your"
+        "id": "oct-w5-register-to-vote",
+        "term": "register to vote",
+        "definition": "to add your name to the official list of voters",
+        "sentence": "Where can eligible residents register to vote?",
+        "phrase": "register to vote"
       },
       {
         "id": "oct-w5-elect",
@@ -459,9 +459,9 @@
       {
         "id": "oct-w5-petition",
         "term": "petition",
-        "definition": "to formally ask for change by collecting signatures",
-        "sentence": "We started a petition to fix the broken street lights.",
-        "phrase": "petition to fix"
+        "definition": "a written request for change, often signed by many people",
+        "sentence": "We started a petition to improve the bus service.",
+        "phrase": "petition to improve"
       },
       {
         "id": "oct-w5-represent",
@@ -481,7 +481,7 @@
   },
   {
     "id": "nov-w1",
-    "topic": "Helping + Volunteering: Action Verbs",
+    "topic": "Volunteering",
     "words": [
       {
         "id": "nov-w1-volunteer",
@@ -519,17 +519,17 @@
         "phrase": "donate clothing to"
       },
       {
-        "id": "nov-w1-join",
-        "term": "join",
-        "definition": "to become a member of a group or start participating",
-        "sentence": "Would you like to join our community garden project?",
-        "phrase": "join our community"
+        "id": "nov-w1-sign-up-for",
+        "term": "sign up for",
+        "definition": "to put your name on a list to take part in something",
+        "sentence": "I want to sign up for the Saturday volunteer shift.",
+        "phrase": "sign up for the Saturday"
       }
     ]
   },
   {
     "id": "nov-w2",
-    "topic": "Public Meetings + Suggestions: Discussion Verbs",
+    "topic": "Meetings and Suggestions",
     "words": [
       {
         "id": "nov-w2-participate",
@@ -560,18 +560,18 @@
         "phrase": "recommended that we"
       },
       {
-        "id": "nov-w2-agree",
-        "term": "agree",
-        "definition": "to have the same opinion or say yes to something",
-        "sentence": "Most people at the meeting agreed with the new plan.",
-        "phrase": "agreed with the"
+        "id": "nov-w2-reach-an-agreement",
+        "term": "reach an agreement",
+        "definition": "to make a decision that everyone involved accepts",
+        "sentence": "We hope to reach an agreement about the meeting time.",
+        "phrase": "reach an agreement about the"
       },
       {
-        "id": "nov-w2-listen",
-        "term": "listen",
-        "definition": "to pay attention to what someone is saying",
-        "sentence": "Good leaders listen to the concerns of their community.",
-        "phrase": "listen to the"
+        "id": "nov-w2-raise-a-concern",
+        "term": "raise a concern",
+        "definition": "to tell others about something you think may be a problem",
+        "sentence": "I would like to raise a concern about the bus schedule.",
+        "phrase": "raise a concern about the"
       }
     ]
   },
@@ -673,21 +673,21 @@
   },
   {
     "id": "dec-w1",
-    "topic": "Smart Spending + Big Numbers: Money Verbs",
+    "topic": "Spending and Budgeting",
     "words": [
       {
-        "id": "dec-w1-purchase",
-        "term": "purchase",
-        "definition": "to buy something",
-        "sentence": "Think carefully before you purchase anything online.",
-        "phrase": "purchase anything online"
+        "id": "dec-w1-purchase-price",
+        "term": "purchase price",
+        "definition": "the amount paid to buy something",
+        "sentence": "The purchase price does not include delivery.",
+        "phrase": "purchase price does not"
       },
       {
-        "id": "dec-w1-compare",
-        "term": "compare",
-        "definition": "to look at two or more things to find differences",
-        "sentence": "Always compare prices before you buy.",
-        "phrase": "compare prices before"
+        "id": "dec-w1-comparison-shop",
+        "term": "comparison shop",
+        "definition": "to compare prices or features at different stores before buying",
+        "sentence": "I comparison shop before buying an appliance.",
+        "phrase": "comparison shop before buying"
       },
       {
         "id": "dec-w1-budget",
@@ -697,31 +697,31 @@
         "phrase": "Budget your money"
       },
       {
-        "id": "dec-w1-save",
-        "term": "save",
-        "definition": "to keep money so you can use it later",
-        "sentence": "Try to save at least 10% of your income each month.",
-        "phrase": "save at least"
+        "id": "dec-w1-set-aside",
+        "term": "set aside",
+        "definition": "to keep money, time, or something else for a particular purpose",
+        "sentence": "I set aside a little money each payday.",
+        "phrase": "set aside a little"
       },
       {
-        "id": "dec-w1-spend",
-        "term": "spend",
-        "definition": "to use money to pay for things",
-        "sentence": "Don't spend more than you earn.",
-        "phrase": "spend more than"
+        "id": "dec-w1-keep-track-of",
+        "term": "keep track of",
+        "definition": "to record or pay attention to something as it changes",
+        "sentence": "I use an app to keep track of my spending.",
+        "phrase": "keep track of my spending"
       },
       {
-        "id": "dec-w1-calculate",
-        "term": "calculate",
-        "definition": "to use math to find an answer",
-        "sentence": "Calculate the total cost before you decide to buy.",
-        "phrase": "Calculate the total"
+        "id": "dec-w1-total-cost",
+        "term": "total cost",
+        "definition": "the full amount to pay, including extra charges",
+        "sentence": "What is the total cost with tax and delivery?",
+        "phrase": "total cost with tax"
       }
     ]
   },
   {
     "id": "dec-w2",
-    "topic": "Bills, Returns + Scams: Financial Action Verbs",
+    "topic": "Returns and Financial Problems",
     "words": [
       {
         "id": "dec-w2-exchange",
@@ -733,7 +733,7 @@
       {
         "id": "dec-w2-refund",
         "term": "refund",
-        "definition": "to get your money back after returning something",
+        "definition": "money returned to a customer after a purchase",
         "sentence": "The store gave me a full refund for the broken item.",
         "phrase": "refund for the"
       },
@@ -769,14 +769,14 @@
   },
   {
     "id": "dec-w3",
-    "topic": "Understanding the News: Economy Words",
+    "topic": "Understanding Economic News",
     "words": [
       {
-        "id": "dec-w3-prices",
-        "term": "prices",
-        "definition": "how much things cost",
-        "sentence": "Prices went up at the grocery store this year.",
-        "phrase": "Prices went up"
+        "id": "dec-w3-cost-of-living",
+        "term": "cost of living",
+        "definition": "the money needed for basic expenses such as housing, food, and transportation",
+        "sentence": "The cost of living has increased in our area.",
+        "phrase": "cost of living has increased"
       },
       {
         "id": "dec-w3-inflation",
@@ -795,42 +795,42 @@
       {
         "id": "dec-w3-unemployed",
         "term": "unemployed",
-        "definition": "not having a paid job right now",
-        "sentence": "The news said fewer people are unemployed this month.",
-        "phrase": "unemployed this month"
+        "definition": "without a paid job and looking for work",
+        "sentence": "She was unemployed for two months before finding a new job.",
+        "phrase": "unemployed for two"
       },
       {
         "id": "dec-w3-interest-rate",
         "term": "interest rate",
-        "definition": "the extra money a bank charges (or pays) on money you borrow or save",
-        "sentence": "When the interest rate goes up, loans cost more.",
-        "phrase": "interest rate goes up"
+        "definition": "the percentage used to calculate interest on money borrowed or saved",
+        "sentence": "What is the interest rate on this loan?",
+        "phrase": "interest rate on this"
       },
       {
         "id": "dec-w3-economy",
         "term": "economy",
-        "definition": "how well money, jobs, and businesses are doing in a place",
-        "sentence": "The news talks about the economy almost every day.",
-        "phrase": "economy almost every"
+        "definition": "the system of producing, buying, and selling goods and services in a place",
+        "sentence": "The news discussed jobs and the local economy.",
+        "phrase": "economy"
       }
     ]
   },
   {
     "id": "jan-w1",
-    "topic": "Housing Basics: Renter Verbs",
+    "topic": "Housing Basics",
     "words": [
       {
-        "id": "jan-w1-rent",
-        "term": "rent",
-        "definition": "to pay money to use something (an apartment, a car) that belongs to someone else",
-        "sentence": "We rent our apartment for $1,200 a month.",
-        "phrase": "rent our apartment"
+        "id": "jan-w1-security-deposit",
+        "term": "security deposit",
+        "definition": "money held by a landlord to cover certain damage or unpaid charges under a rental agreement",
+        "sentence": "How much is the security deposit for this apartment?",
+        "phrase": "security deposit for this"
       },
       {
         "id": "jan-w1-lease",
         "term": "lease",
-        "definition": "to sign an agreement to use property for a set time",
-        "sentence": "We signed a 12-month lease for the apartment.",
+        "definition": "an agreement allowing someone to rent property for a set time",
+        "sentence": "We signed a twelve-month lease for the apartment.",
         "phrase": "lease for the"
       },
       {
@@ -841,38 +841,38 @@
         "phrase": "move in"
       },
       {
-        "id": "jan-w1-move",
-        "term": "move",
-        "definition": "to go to live in a different place",
-        "sentence": "We plan to move to a bigger apartment next month.",
-        "phrase": "move to a"
+        "id": "jan-w1-utilities-included",
+        "term": "utilities included",
+        "definition": "basic services, such as heat or water, covered by the rent",
+        "sentence": "The listing says utilities included, but which services does that cover?",
+        "phrase": "utilities included, but which"
       },
       {
-        "id": "jan-w1-qualify",
-        "term": "qualify",
-        "definition": "to meet the requirements needed for something",
-        "sentence": "Do I qualify for the low-income housing program?",
-        "phrase": "qualify for the"
+        "id": "jan-w1-qualify-for",
+        "term": "qualify for",
+        "definition": "to meet the requirements for something",
+        "sentence": "Do I qualify for this housing program?",
+        "phrase": "qualify for this housing"
       },
       {
-        "id": "jan-w1-apply",
-        "term": "apply",
-        "definition": "to formally request something (a job, an apartment, a program)",
-        "sentence": "You need to apply online for that apartment.",
-        "phrase": "apply online for"
+        "id": "jan-w1-rental-application",
+        "term": "rental application",
+        "definition": "a form used to ask to rent a home",
+        "sentence": "What documents do I need for the rental application?",
+        "phrase": "rental application"
       }
     ]
   },
   {
     "id": "jan-w2",
-    "topic": "Comparing Housing Options: Decision Verbs",
+    "topic": "Comparing Housing Options",
     "words": [
       {
-        "id": "jan-w2-compare",
-        "term": "compare",
-        "definition": "to look at two or more things to find differences",
-        "sentence": "Compare the rent and size of each apartment.",
-        "phrase": "Compare the rent"
+        "id": "jan-w2-weigh-your-options",
+        "term": "weigh your options",
+        "definition": "to compare possible choices carefully before deciding",
+        "sentence": "It helps to weigh your options before signing a lease.",
+        "phrase": "weigh your options before signing"
       },
       {
         "id": "jan-w2-afford",
@@ -889,11 +889,11 @@
         "phrase": "check out the apartment"
       },
       {
-        "id": "jan-w2-choose",
-        "term": "choose",
-        "definition": "to decide which one you want",
-        "sentence": "We need to choose an apartment this week.",
-        "phrase": "choose an apartment"
+        "id": "jan-w2-trade-off",
+        "term": "trade-off",
+        "definition": "a situation in which you give up one advantage to get another",
+        "sentence": "A smaller apartment near work may be a good trade-off.",
+        "phrase": "trade-off"
       },
       {
         "id": "jan-w2-negotiate",
@@ -903,31 +903,31 @@
         "phrase": "negotiate the rent"
       },
       {
-        "id": "jan-w2-own",
-        "term": "own",
-        "definition": "to have something as your legal property",
-        "sentence": "Someday I hope to own my own home.",
-        "phrase": "own my own"
+        "id": "jan-w2-within-your-budget",
+        "term": "within your budget",
+        "definition": "costing no more than the amount you have planned to spend",
+        "sentence": "Is this apartment within your budget?",
+        "phrase": "within your budget"
       }
     ]
   },
   {
     "id": "jan-w3",
-    "topic": "Landlord Calls + Repair Requests: Maintenance Verbs",
+    "topic": "Landlord Calls and Repair Requests",
     "words": [
       {
-        "id": "jan-w3-request",
-        "term": "request",
-        "definition": "to politely ask for something officially",
-        "sentence": "I need to request a repair for the broken heater.",
-        "phrase": "request a repair"
+        "id": "jan-w3-request-a-repair",
+        "term": "request a repair",
+        "definition": "to ask for something broken to be fixed",
+        "sentence": "I need to request a repair for the heater.",
+        "phrase": "request a repair for the"
       },
       {
-        "id": "jan-w3-report",
-        "term": "report",
-        "definition": "to tell someone in authority about a problem",
-        "sentence": "Report any leaks or damage to your landlord right away.",
-        "phrase": "Report any leaks"
+        "id": "jan-w3-report-a-problem",
+        "term": "report a problem",
+        "definition": "to tell the responsible person that something is wrong",
+        "sentence": "How can I report a problem with the elevator?",
+        "phrase": "report a problem with the"
       },
       {
         "id": "jan-w3-inspect",
@@ -937,11 +937,11 @@
         "phrase": "inspect the apartment"
       },
       {
-        "id": "jan-w3-repair",
-        "term": "repair",
-        "definition": "to fix something that is broken or damaged",
-        "sentence": "The landlord must repair the broken window within 24 hours.",
-        "phrase": "repair the broken"
+        "id": "jan-w3-maintenance-request",
+        "term": "maintenance request",
+        "definition": "a message or form asking for a building or appliance to be checked or fixed",
+        "sentence": "I submitted a maintenance request for the broken lock.",
+        "phrase": "maintenance request for the"
       },
       {
         "id": "jan-w3-leak",
@@ -951,24 +951,24 @@
         "phrase": "leaking after the"
       },
       {
-        "id": "jan-w3-clog",
-        "term": "clog",
-        "definition": "to block a pipe so water cannot flow",
-        "sentence": "The kitchen sink is clogged and the water won't drain.",
+        "id": "jan-w3-clogged",
+        "term": "clogged",
+        "definition": "blocked so that water or something else cannot pass through",
+        "sentence": "The kitchen sink is clogged and the water will not drain.",
         "phrase": "clogged and the"
       }
     ]
   },
   {
     "id": "jan-w4",
-    "topic": "Housing Problems + Solutions: Resolution Verbs",
+    "topic": "Resolving Housing Problems",
     "words": [
       {
-        "id": "jan-w4-fix",
-        "term": "fix",
-        "definition": "to make a problem better or make something work again",
-        "sentence": "When can you fix the heat?",
-        "phrase": "fix the heat"
+        "id": "jan-w4-resolve",
+        "term": "resolve",
+        "definition": "to find a solution to a problem or disagreement",
+        "sentence": "Can we resolve the problem before the next rent payment?",
+        "phrase": "resolve the problem"
       },
       {
         "id": "jan-w4-maintain",
@@ -978,11 +978,11 @@
         "phrase": "maintain a clean"
       },
       {
-        "id": "jan-w4-let-someone-know",
-        "term": "let someone know",
-        "definition": "to tell someone information they need",
-        "sentence": "Please let someone know if you will be late.",
-        "phrase": "let someone know if you"
+        "id": "jan-w4-notify",
+        "term": "notify",
+        "definition": "to tell someone information they need, often formally",
+        "sentence": "Please notify the landlord about the leak.",
+        "phrase": "notify the landlord"
       },
       {
         "id": "jan-w4-document",
@@ -994,50 +994,50 @@
       {
         "id": "jan-w4-prevent",
         "term": "prevent",
-        "definition": "to stop something bad from happening",
-        "sentence": "Regular cleaning can prevent mold in the bathroom.",
-        "phrase": "prevent mold in"
+        "definition": "to stop something from happening",
+        "sentence": "What steps can help prevent this problem from happening again?",
+        "phrase": "prevent this problem"
       },
       {
-        "id": "jan-w4-pay-back",
-        "term": "pay back",
-        "definition": "to return money someone spent or lent",
-        "sentence": "Will the landlord pay back the money I spent on the repair?",
-        "phrase": "pay back the money"
+        "id": "jan-w4-reimburse",
+        "term": "reimburse",
+        "definition": "to pay someone back for money they spent on an expense",
+        "sentence": "Will the landlord reimburse me for the approved repair?",
+        "phrase": "reimburse me for"
       }
     ]
   },
   {
     "id": "feb-3-5",
-    "topic": "Jobs: Foundations",
+    "topic": "Work Experience and Expectations",
     "words": [
       {
-        "id": "feb-3-5-schedule",
-        "term": "schedule",
-        "definition": "your plan for the day or week",
-        "sentence": "My work schedule changes every week.",
-        "phrase": "schedule changes every"
+        "id": "feb-3-5-availability",
+        "term": "availability",
+        "definition": "the times when someone is free to work or meet",
+        "sentence": "My availability changes when my class schedule changes.",
+        "phrase": "availability changes when"
       },
       {
-        "id": "feb-3-5-break",
-        "term": "break",
-        "definition": "a short rest from work",
-        "sentence": "We take a 15-minute break at 10:00 AM.",
-        "phrase": "break at 10:00"
+        "id": "feb-3-5-responsibility",
+        "term": "responsibility",
+        "definition": "a duty or task someone is expected to take care of",
+        "sentence": "Checking the supplies is my responsibility.",
+        "phrase": "responsibility"
       },
       {
         "id": "feb-3-5-time-off",
         "term": "time off",
-        "definition": "days when you don't work (e.g. Saturday, Sunday, vacation)",
-        "sentence": "I asked my boss for some time off to visit my family.",
-        "phrase": "time off to visit"
+        "definition": "time away from work, such as leave or vacation",
+        "sentence": "I requested time off for a family visit.",
+        "phrase": "time off for a"
       },
       {
-        "id": "feb-3-5-team",
-        "term": "team",
-        "definition": "the group of people you work with",
-        "sentence": "Our sales team meets every Monday morning.",
-        "phrase": "team meets every"
+        "id": "feb-3-5-work-independently",
+        "term": "work independently",
+        "definition": "to do a task without needing someone to guide every step",
+        "sentence": "I can work independently after the training.",
+        "phrase": "work independently after the"
       },
       {
         "id": "feb-3-5-reliable",
@@ -1057,7 +1057,7 @@
   },
   {
     "id": "feb-10-12",
-    "topic": "Cycle 1 Review + Workplace Phrasal Verbs",
+    "topic": "Shifts and Attendance",
     "words": [
       {
         "id": "feb-10-12-clock-in",
@@ -1074,11 +1074,11 @@
         "phrase": "clock out when your"
       },
       {
-        "id": "feb-10-12-call-out",
-        "term": "call out",
-        "definition": "to phone your job to say you will not work that day",
-        "sentence": "I had to call out on Monday because my son was sick.",
-        "phrase": "call out on Monday"
+        "id": "feb-10-12-call-in-sick",
+        "term": "call in sick",
+        "definition": "to contact your workplace to say you cannot work because you are sick",
+        "sentence": "I had to call in sick yesterday.",
+        "phrase": "call in sick yesterday"
       },
       {
         "id": "feb-10-12-shift",
@@ -1095,17 +1095,17 @@
         "phrase": "supervisor before your"
       },
       {
-        "id": "feb-10-12-follow-up",
-        "term": "follow up",
-        "definition": "to check in later about something",
-        "sentence": "I will follow up with an email after our meeting.",
-        "phrase": "follow up with an"
+        "id": "feb-10-12-cover-a-shift",
+        "term": "cover a shift",
+        "definition": "to work during another employee's scheduled hours",
+        "sentence": "Can you cover a shift for me on Friday?",
+        "phrase": "cover a shift for me"
       }
     ]
   },
   {
     "id": "feb-24-26",
-    "topic": "Jobs: Experience & Timelines",
+    "topic": "Job Applications and Interviews",
     "words": [
       {
         "id": "feb-24-26-experience",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": "mar-3-5",
-    "topic": "Jobs: Skills & Qualifications",
+    "topic": "Career Progress and Pay",
     "words": [
       {
         "id": "mar-3-5-promotion",
@@ -1186,9 +1186,9 @@
       {
         "id": "mar-3-5-priority",
         "term": "priority",
-        "definition": "the most important thing",
-        "sentence": "Completing this report is my top priority for today.",
-        "phrase": "priority for today"
+        "definition": "something treated as more important or urgent than other things",
+        "sentence": "Finishing the application is my top priority today.",
+        "phrase": "priority today"
       },
       {
         "id": "mar-3-5-emergency-fund",
@@ -1201,28 +1201,28 @@
   },
   {
     "id": "mar-10-12",
-    "topic": "Jobs: Rules, Obligation & Permission",
+    "topic": "Past Jobs and Workplace Routines",
     "words": [
       {
-        "id": "mar-10-12-must",
-        "term": "must",
-        "definition": "used to show a strong obligation or rule",
-        "sentence": "You must wear closed-toe shoes in the kitchen.",
-        "phrase": "must wear closed-toe"
+        "id": "mar-10-12-previous-position",
+        "term": "previous position",
+        "definition": "a job someone had before their current job",
+        "sentence": "In my previous position, I trained new employees.",
+        "phrase": "previous position, I trained"
       },
       {
-        "id": "mar-10-12-should",
-        "term": "should",
-        "definition": "used to give advice or say the best thing to do",
-        "sentence": "You should ask your supervisor if you are unsure.",
-        "phrase": "should ask your"
+        "id": "mar-10-12-job-duties",
+        "term": "job duties",
+        "definition": "the tasks a person is expected to do at work",
+        "sentence": "My job duties used to include answering phones.",
+        "phrase": "job duties used to"
       },
       {
-        "id": "mar-10-12-can",
-        "term": "can",
-        "definition": "used to show permission or ability",
-        "sentence": "You can take your break after you finish this task.",
-        "phrase": "can take your"
+        "id": "mar-10-12-work-overtime",
+        "term": "work overtime",
+        "definition": "to work more than your usual scheduled hours",
+        "sentence": "I used to work overtime during the busy season.",
+        "phrase": "work overtime during the"
       },
       {
         "id": "mar-10-12-required",
@@ -1239,23 +1239,23 @@
         "phrase": "allowed during the"
       },
       {
-        "id": "mar-10-12-safety",
-        "term": "safety",
-        "definition": "protection from danger or harm",
-        "sentence": "Safety is very important in the kitchen.",
-        "phrase": "Safety is very"
+        "id": "mar-10-12-safety-procedure",
+        "term": "safety procedure",
+        "definition": "a set of steps used to reduce the risk of injury or harm",
+        "sentence": "We practiced the safety procedure during training.",
+        "phrase": "safety procedure during training"
       }
     ]
   },
   {
     "id": "mar-17-19",
-    "topic": "Jobs: Rights, Rules & Advocacy",
+    "topic": "Workplace Rights and Concerns",
     "words": [
       {
         "id": "mar-17-19-right",
         "term": "right",
-        "definition": "official approval to do something",
-        "sentence": "Workers have the right to a safe workplace.",
+        "definition": "something a person is entitled to do or have",
+        "sentence": "Workers discussed their right to a safe workplace.",
         "phrase": "right to a"
       },
       {
@@ -1266,38 +1266,38 @@
         "phrase": "advocate for yourself"
       },
       {
-        "id": "mar-17-19-respect",
-        "term": "respect",
-        "definition": "polite and fair treatment of other people",
-        "sentence": "We should treat coworkers with respect.",
-        "phrase": "respect"
+        "id": "mar-17-19-raise-a-concern",
+        "term": "raise a concern",
+        "definition": "to tell others about something you think may be a problem",
+        "sentence": "I would like to raise a concern about the bus schedule.",
+        "phrase": "raise a concern about the"
       },
       {
-        "id": "mar-17-19-strict",
-        "term": "strict",
-        "definition": "following rules very closely; not flexible",
-        "sentence": "The company has strict rules about using cell phones at work.",
-        "phrase": "strict rules about"
+        "id": "mar-17-19-workplace-policy",
+        "term": "workplace policy",
+        "definition": "an official rule or guideline at a job",
+        "sentence": "The workplace policy explains how to request time off.",
+        "phrase": "workplace policy explains how"
       },
       {
-        "id": "mar-17-19-follow-the-rules",
-        "term": "follow the rules",
-        "definition": "to do what the rules say",
-        "sentence": "Everyone needs to follow the rules at work.",
-        "phrase": "follow the rules at work"
+        "id": "mar-17-19-file-a-complaint",
+        "term": "file a complaint",
+        "definition": "to formally report a problem and ask for it to be addressed",
+        "sentence": "Where can I file a complaint about this issue?",
+        "phrase": "file a complaint about this"
       },
       {
-        "id": "mar-17-19-break-a-rule",
-        "term": "break a rule",
-        "definition": "to do something a rule does not allow",
-        "sentence": "You could get a warning if you break a rule.",
-        "phrase": "break a rule"
+        "id": "mar-17-19-violation",
+        "term": "violation",
+        "definition": "an action that breaks a rule, agreement, or law",
+        "sentence": "Blocking the emergency exit is a safety violation.",
+        "phrase": "violation"
       }
     ]
   },
   {
     "id": "mar-24-26",
-    "topic": "Jobs: Communication & Feedback",
+    "topic": "Feedback and Decisions",
     "words": [
       {
         "id": "mar-24-26-feedback",
@@ -1307,18 +1307,18 @@
         "phrase": "feedback on my"
       },
       {
-        "id": "mar-24-26-advice",
-        "term": "advice",
-        "definition": "suggestions or recommendations about what to do",
-        "sentence": "Can you give me some advice on how to ask for a promotion?",
-        "phrase": "advice on how"
+        "id": "mar-24-26-constructive-criticism",
+        "term": "constructive criticism",
+        "definition": "feedback that identifies a problem and helps someone improve",
+        "sentence": "I appreciate constructive criticism that includes a useful suggestion.",
+        "phrase": "constructive criticism that includes"
       },
       {
-        "id": "mar-24-26-decision",
-        "term": "decision",
-        "definition": "a choice you make",
-        "sentence": "We need to make a decision about the budget by tomorrow.",
-        "phrase": "decision about the"
+        "id": "mar-24-26-make-a-decision",
+        "term": "make a decision",
+        "definition": "to choose what to do after considering the options",
+        "sentence": "We need to make a decision about the schedule.",
+        "phrase": "make a decision about the"
       },
       {
         "id": "mar-24-26-consequence",
@@ -1328,11 +1328,11 @@
         "phrase": "consequence of violating"
       },
       {
-        "id": "mar-24-26-think-about",
-        "term": "think about",
-        "definition": "to spend time considering something",
-        "sentence": "I need to think about your advice.",
-        "phrase": "think about your advice"
+        "id": "mar-24-26-take-into-account",
+        "term": "take into account",
+        "definition": "to consider something when making a judgment or decision",
+        "sentence": "We need to take into account the cost of transportation.",
+        "phrase": "take into account the cost"
       },
       {
         "id": "mar-24-26-recommend",
@@ -1345,7 +1345,7 @@
   },
   {
     "id": "mar-31-apr-2",
-    "topic": "Jobs: Small Talk & Social Conversation",
+    "topic": "Workplace Conversation and Clarification",
     "words": [
       {
         "id": "mar-31-apr-2-clarify",
@@ -1393,186 +1393,186 @@
   },
   {
     "id": "apr-7-9",
-    "topic": "Health: Symptoms & Lifestyle",
+    "topic": "Describing Symptoms and Getting Care",
     "words": [
       {
-        "id": "apr-7-9-cough",
-        "term": "cough",
-        "definition": "to force air out of your lungs with a sound",
-        "sentence": "Please cover your mouth when you cough.",
-        "phrase": "cough"
+        "id": "apr-7-9-symptom",
+        "term": "symptom",
+        "definition": "a change in how someone feels or functions that may indicate a health problem",
+        "sentence": "I wrote down each symptom before my appointment.",
+        "phrase": "symptom before my"
       },
       {
-        "id": "apr-7-9-infected",
-        "term": "infected",
-        "definition": "having germs that make you sick",
-        "sentence": "The cut on his finger became infected because he didn't clean it.",
-        "phrase": "infected because he"
+        "id": "apr-7-9-persistent",
+        "term": "persistent",
+        "definition": "continuing for a long time or repeatedly returning",
+        "sentence": "I want to ask the clinic about this persistent cough.",
+        "phrase": "persistent cough"
       },
       {
-        "id": "apr-7-9-depressed",
-        "term": "depressed",
-        "definition": "feeling very sad or unhappy",
-        "sentence": "Feeling depressed is a common reaction to losing a job.",
-        "phrase": "depressed is a"
+        "id": "apr-7-9-diagnosis",
+        "term": "diagnosis",
+        "definition": "a healthcare professional's identification of a health condition",
+        "sentence": "The doctor explained the diagnosis and answered my questions.",
+        "phrase": "diagnosis and answered"
       },
       {
-        "id": "apr-7-9-habit",
-        "term": "habit",
-        "definition": "something you do regularly",
-        "sentence": "Smoking is a bad habit that is hard to break.",
-        "phrase": "habit that is"
+        "id": "apr-7-9-contagious",
+        "term": "contagious",
+        "definition": "able to spread from one person to another",
+        "sentence": "I asked the clinic whether the illness was contagious.",
+        "phrase": "contagious"
       },
       {
-        "id": "apr-7-9-avoid",
-        "term": "avoid",
-        "definition": "to stay away from",
-        "sentence": "You should avoid eating too much sugar.",
-        "phrase": "avoid eating too"
+        "id": "apr-7-9-seek-care",
+        "term": "seek care",
+        "definition": "to try to get help from a healthcare professional",
+        "sentence": "I called the clinic to ask where I could seek care.",
+        "phrase": "seek care"
       },
       {
-        "id": "apr-7-9-quit",
-        "term": "quit",
-        "definition": "to stop doing something",
-        "sentence": "He decided to quit his job and go back to school.",
-        "phrase": "quit his job"
+        "id": "apr-7-9-follow-up-appointment",
+        "term": "follow-up appointment",
+        "definition": "a later visit to check progress or discuss what happens next",
+        "sentence": "When is my follow-up appointment?",
+        "phrase": "follow-up appointment"
       }
     ]
   },
   {
     "id": "apr-14-16",
-    "topic": "Health: Recovery & Lifestyle",
+    "topic": "Recovery and Changing Habits",
     "words": [
       {
-        "id": "apr-14-16-recover",
-        "term": "recover",
-        "definition": "to get better after being sick",
-        "sentence": "It took him a few weeks to fully recover from the surgery.",
-        "phrase": "recover from the"
+        "id": "apr-14-16-recover-from",
+        "term": "recover from",
+        "definition": "to get better after an illness, injury, or difficult experience",
+        "sentence": "It took me several weeks to recover from the surgery.",
+        "phrase": "recover from the surgery"
       },
       {
-        "id": "apr-14-16-improve",
-        "term": "improve",
-        "definition": "to get better, to make progress",
-        "sentence": "Rest and fluids will help you improve quickly.",
-        "phrase": "improve quickly"
+        "id": "apr-14-16-ease-up",
+        "term": "ease up",
+        "definition": "to become less strong or severe",
+        "sentence": "The pain began to ease up yesterday.",
+        "phrase": "ease up yesterday"
       },
       {
-        "id": "apr-14-16-exercise",
-        "term": "exercise",
-        "definition": "to do physical activity to stay healthy",
-        "sentence": "You should exercise for at least 30 minutes every day.",
-        "phrase": "exercise for at"
+        "id": "apr-14-16-cut-back-on",
+        "term": "cut back on",
+        "definition": "to reduce how much you use, do, or consume",
+        "sentence": "I am trying to cut back on soda.",
+        "phrase": "cut back on soda"
       },
       {
-        "id": "apr-14-16-routine",
-        "term": "routine",
-        "definition": "the things you usually do each day",
-        "sentence": "I want to change my evening routine.",
-        "phrase": "routine"
+        "id": "apr-14-16-build-up",
+        "term": "build up",
+        "definition": "to increase something gradually over time",
+        "sentence": "I want to build up my strength gradually.",
+        "phrase": "build up my strength"
       },
       {
         "id": "apr-14-16-prevent",
         "term": "prevent",
         "definition": "to stop something from happening",
-        "sentence": "Washing your hands helps prevent the spread of germs.",
-        "phrase": "prevent the spread"
+        "sentence": "What steps can help prevent this problem from happening again?",
+        "phrase": "prevent this problem"
       },
       {
-        "id": "apr-14-16-adjust",
-        "term": "adjust",
-        "definition": "to change to fit a new situation",
-        "sentence": "It takes time to adjust to a new medication.",
-        "phrase": "adjust to a"
+        "id": "apr-14-16-adjust-to",
+        "term": "adjust to",
+        "definition": "to become used to a new situation or change",
+        "sentence": "It takes time to adjust to a new routine.",
+        "phrase": "adjust to a new"
       }
     ]
   },
   {
     "id": "apr-28-30",
-    "topic": "Health: Doctor Visits",
+    "topic": "Pharmacy Communication",
     "words": [
       {
-        "id": "apr-28-30-appointment",
-        "term": "appointment",
-        "definition": "a scheduled time to see a doctor",
-        "sentence": "I have a dentist appointment next Tuesday at 2:00.",
-        "phrase": "appointment next Tuesday"
+        "id": "apr-28-30-refill",
+        "term": "refill",
+        "definition": "another supply of a medicine prescribed before",
+        "sentence": "I need to ask the pharmacy for a refill.",
+        "phrase": "refill"
       },
       {
-        "id": "apr-28-30-checkup",
-        "term": "checkup",
-        "definition": "a regular doctor visit when you're not sick",
-        "sentence": "You should go to the doctor for a yearly checkup.",
-        "phrase": "checkup"
+        "id": "apr-28-30-over-the-counter",
+        "term": "over-the-counter",
+        "definition": "sold without a prescription",
+        "sentence": "Can I ask you about this over-the-counter medicine?",
+        "phrase": "over-the-counter"
       },
       {
-        "id": "apr-28-30-diagnosis",
-        "term": "diagnosis",
-        "definition": "what the doctor says is wrong with you",
-        "sentence": "The doctor gave him a diagnosis of strep throat.",
-        "phrase": "diagnosis of strep"
+        "id": "apr-28-30-dosage",
+        "term": "dosage",
+        "definition": "instructions for the amount of medicine to take and how often to take it",
+        "sentence": "Could you explain the dosage on this label?",
+        "phrase": "dosage on this"
       },
       {
         "id": "apr-28-30-prescription",
         "term": "prescription",
-        "definition": "a written order from a doctor for medicine",
-        "sentence": "The doctor wrote a prescription for pain medicine.",
-        "phrase": "prescription for pain"
+        "definition": "an order from an authorized healthcare professional for medicine or treatment",
+        "sentence": "The clinic sent my prescription to the pharmacy.",
+        "phrase": "prescription to the"
       },
       {
-        "id": "apr-28-30-fever",
-        "term": "fever",
-        "definition": "when your body temperature is too high",
-        "sentence": "She has a high fever and needs to rest.",
-        "phrase": "fever and needs"
+        "id": "apr-28-30-pharmacist",
+        "term": "pharmacist",
+        "definition": "a healthcare professional who prepares medicines and explains their use",
+        "sentence": "The pharmacist answered my questions about the label.",
+        "phrase": "pharmacist answered my"
       },
       {
-        "id": "apr-28-30-contagious",
-        "term": "contagious",
-        "definition": "can spread easily to other people",
-        "sentence": "The flu is very contagious, so stay home from work.",
-        "phrase": "contagious, so stay"
+        "id": "apr-28-30-interaction",
+        "term": "interaction",
+        "definition": "a change in a medicine's effect when it is taken with another substance",
+        "sentence": "Could there be an interaction between these medicines?",
+        "phrase": "interaction between these"
       }
     ]
   },
   {
     "id": "may-5-7",
-    "topic": "Health: Body & Medicine",
+    "topic": "Treatment and Wellness Goals",
     "words": [
       {
         "id": "may-5-7-symptom",
         "term": "symptom",
-        "definition": "a sign that something is wrong with your body",
-        "sentence": "A cough and sore throat are common symptoms of a cold.",
-        "phrase": "symptoms of a"
+        "definition": "a change in how someone feels or functions that may indicate a health problem",
+        "sentence": "I wrote down each symptom before my appointment.",
+        "phrase": "symptom before my"
       },
       {
-        "id": "may-5-7-temperature",
-        "term": "temperature",
-        "definition": "how hot or cold your body is",
-        "sentence": "The nurse took my temperature to check for a fever.",
-        "phrase": "temperature to check"
+        "id": "may-5-7-treatment-plan",
+        "term": "treatment plan",
+        "definition": "the agreed steps for managing a health condition",
+        "sentence": "At my next visit, I will ask about my treatment plan.",
+        "phrase": "treatment plan"
       },
       {
         "id": "may-5-7-prescribe",
         "term": "prescribe",
-        "definition": "to order medicine for a patient",
-        "sentence": "The doctor will prescribe antibiotics for the infection.",
-        "phrase": "prescribe antibiotics for"
+        "definition": "to order medicine or treatment for a patient",
+        "sentence": "Will the clinician prescribe a medicine or suggest another treatment?",
+        "phrase": "prescribe a medicine"
       },
       {
         "id": "may-5-7-dose",
         "term": "dose",
-        "definition": "one measured amount of medicine to take at one time",
-        "sentence": "Take one dose every six hours as directed.",
-        "phrase": "dose every six"
+        "definition": "one measured amount of medicine taken at one time",
+        "sentence": "Where does the label show the amount for one dose?",
+        "phrase": "dose"
       },
       {
         "id": "may-5-7-chronic",
         "term": "chronic",
-        "definition": "lasting a long time, not going away",
-        "sentence": "She has chronic back pain that never fully goes away.",
-        "phrase": "chronic back pain"
+        "definition": "lasting a long time or repeatedly returning",
+        "sentence": "She asked about treatment options for chronic pain.",
+        "phrase": "chronic pain"
       },
       {
         "id": "may-5-7-side-effect",
@@ -1585,7 +1585,7 @@
   },
   {
     "id": "may-12-14",
-    "topic": "Health: Self-Care & Wellness",
+    "topic": "Stress and Adjustment",
     "words": [
       {
         "id": "may-12-14-wellness",
@@ -1602,11 +1602,11 @@
         "phrase": "self-care"
       },
       {
-        "id": "may-12-14-relax",
-        "term": "relax",
-        "definition": "to rest and become calm",
-        "sentence": "I like to relax with a good book after work.",
-        "phrase": "relax with a"
+        "id": "may-12-14-unwind",
+        "term": "unwind",
+        "definition": "to relax after work, stress, or activity",
+        "sentence": "I listen to music to unwind after work.",
+        "phrase": "unwind after work"
       },
       {
         "id": "may-12-14-coping-skills",
@@ -1616,31 +1616,31 @@
         "phrase": "coping skills for stress"
       },
       {
-        "id": "may-12-14-balance",
-        "term": "balance",
-        "definition": "having the right amount of different things",
-        "sentence": "A good balance of work and rest keeps you healthy.",
-        "phrase": "balance of work"
+        "id": "may-12-14-work-life-balance",
+        "term": "work-life balance",
+        "definition": "a manageable balance between work and the rest of your life",
+        "sentence": "A predictable schedule helps my work-life balance.",
+        "phrase": "work-life balance"
       },
       {
-        "id": "may-12-14-take-a-break",
-        "term": "take a break",
-        "definition": "to stop an activity for a short rest",
-        "sentence": "I need to take a break after work.",
-        "phrase": "take a break after work"
+        "id": "may-12-14-set-boundaries",
+        "term": "set boundaries",
+        "definition": "to make clear limits about what you can accept or do",
+        "sentence": "I am learning to set boundaries with my time.",
+        "phrase": "set boundaries with my"
       }
     ]
   },
   {
     "id": "may-19-21",
-    "topic": "Health: Home Remedies & Food",
+    "topic": "Food, Remedies, and Recovery",
     "words": [
       {
         "id": "may-19-21-processed",
         "term": "processed",
-        "definition": "changed from natural state",
-        "sentence": "Try to eat less processed food and more fresh vegetables.",
-        "phrase": "processed food and"
+        "definition": "changed during preparation or manufacturing, for example by cooking, freezing, or adding ingredients",
+        "sentence": "The class compared labels on different processed foods.",
+        "phrase": "processed foods"
       },
       {
         "id": "may-19-21-home-remedy",
@@ -1652,57 +1652,57 @@
       {
         "id": "may-19-21-relieve",
         "term": "relieve",
-        "definition": "to make pain or discomfort less",
-        "sentence": "Ice can help relieve the pain of a sprained ankle.",
-        "phrase": "relieve the pain"
+        "definition": "to make pain, discomfort, or worry less severe",
+        "sentence": "I asked what might relieve the discomfort.",
+        "phrase": "relieve the discomfort"
       },
       {
-        "id": "may-19-21-rest",
-        "term": "rest",
-        "definition": "to stop working or being active for a while",
-        "sentence": "I want to rest after my shift.",
-        "phrase": "rest after my"
+        "id": "may-19-21-recover-your-energy",
+        "term": "recover your energy",
+        "definition": "to regain strength or feel less tired",
+        "sentence": "What helps you recover your energy after a busy week?",
+        "phrase": "recover your energy after a"
       },
       {
         "id": "may-19-21-fluids",
         "term": "fluids",
-        "definition": "liquids you drink (water, tea, broth)",
-        "sentence": "Drink plenty of fluids when you are sick.",
-        "phrase": "fluids when you"
+        "definition": "liquids, including drinks such as water, tea, or broth",
+        "sentence": "The nurse asked whether I had been drinking enough fluids.",
+        "phrase": "fluids"
       },
       {
-        "id": "may-19-21-sore-throat",
-        "term": "sore throat",
-        "definition": "pain or irritation in your throat",
-        "sentence": "I have a sore throat and a cough.",
-        "phrase": "sore throat and a"
+        "id": "may-19-21-wear-off",
+        "term": "wear off",
+        "definition": "to gradually stop having an effect",
+        "sentence": "I asked the pharmacist when the effect might wear off.",
+        "phrase": "wear off"
       }
     ]
   },
   {
     "id": "may-26-28",
-    "topic": "Reflection & Growth",
+    "topic": "Reflecting on Progress",
     "words": [
       {
-        "id": "may-26-28-progress",
-        "term": "progress",
-        "definition": "improvement over time",
-        "sentence": "You are making good progress in your English class.",
-        "phrase": "progress in your"
+        "id": "may-26-28-make-progress",
+        "term": "make progress",
+        "definition": "to improve or move closer to a goal",
+        "sentence": "I make progress when I practice regularly.",
+        "phrase": "make progress when I"
       },
       {
-        "id": "may-26-28-challenge",
-        "term": "challenge",
-        "definition": "something difficult",
-        "sentence": "Learning a new language is a big challenge.",
-        "phrase": "challenge"
+        "id": "may-26-28-overcome-a-challenge",
+        "term": "overcome a challenge",
+        "definition": "to successfully deal with something difficult",
+        "sentence": "Support from classmates can help you overcome a challenge.",
+        "phrase": "overcome a challenge"
       },
       {
-        "id": "may-26-28-success",
-        "term": "success",
-        "definition": "achieving your goal",
-        "sentence": "Hard work is the key to success.",
-        "phrase": "success"
+        "id": "may-26-28-milestone",
+        "term": "milestone",
+        "definition": "an important point or achievement in a process",
+        "sentence": "Finishing this course will be a milestone for me.",
+        "phrase": "milestone for me"
       },
       {
         "id": "may-26-28-accomplish",
@@ -1712,11 +1712,11 @@
         "phrase": "accomplished her goal"
       },
       {
-        "id": "may-26-28-proud",
-        "term": "proud",
-        "definition": "feeling good about achievement",
-        "sentence": "I am very proud of my son for graduating.",
-        "phrase": "proud of my"
+        "id": "may-26-28-take-pride-in",
+        "term": "take pride in",
+        "definition": "to feel pleased about something you do or achieve",
+        "sentence": "I take pride in the progress I have made.",
+        "phrase": "take pride in the progress"
       },
       {
         "id": "may-26-28-look-back",
@@ -1729,14 +1729,14 @@
   },
   {
     "id": "jun-2-4",
-    "topic": "Wrap-Up & Next Steps",
+    "topic": "Next Steps",
     "words": [
       {
-        "id": "jun-2-4-goal",
-        "term": "goal",
-        "definition": "something you want to achieve",
-        "sentence": "My goal is to save enough money for a car.",
-        "phrase": "goal is to"
+        "id": "jun-2-4-set-a-goal",
+        "term": "set a goal",
+        "definition": "to decide on something you want to achieve",
+        "sentence": "I want to set a goal for my next English class.",
+        "phrase": "set a goal for my"
       },
       {
         "id": "jun-2-4-achievement",
@@ -1777,76 +1777,76 @@
   },
   {
     "id": "dec-groceries",
-    "topic": "Groceries: Food We Buy",
+    "topic": "Grocery Shopping: Quantity, Value, and Waste",
     "words": [
       {
-        "id": "dec-groceries-rice",
-        "term": "rice",
-        "definition": "small grains cooked and eaten as food",
-        "sentence": "How much rice do we need?",
-        "phrase": "rice do we"
+        "id": "dec-groceries-run-out-of",
+        "term": "run out of",
+        "definition": "to use all of something so that none is left",
+        "sentence": "We often run out of coffee before Friday.",
+        "phrase": "run out of coffee before"
       },
       {
-        "id": "dec-groceries-bread",
-        "term": "bread",
-        "definition": "food made from flour and baked",
-        "sentence": "We need a loaf of bread.",
-        "phrase": "bread"
+        "id": "dec-groceries-stock-up-on",
+        "term": "stock up on",
+        "definition": "to buy extra supplies to use later",
+        "sentence": "I stock up on rice when it is on sale.",
+        "phrase": "stock up on rice when"
       },
       {
-        "id": "dec-groceries-milk",
-        "term": "milk",
-        "definition": "a white drink often sold in a carton or bottle",
-        "sentence": "How much milk is left?",
-        "phrase": "milk is left"
+        "id": "dec-groceries-buy-in-bulk",
+        "term": "buy in bulk",
+        "definition": "to buy a large amount of something at one time",
+        "sentence": "Is it cheaper to buy in bulk?",
+        "phrase": "buy in bulk"
       },
       {
-        "id": "dec-groceries-eggs",
-        "term": "eggs",
-        "definition": "foods with shells that are often cooked for breakfast",
-        "sentence": "How many eggs should I buy?",
-        "phrase": "eggs should I"
+        "id": "dec-groceries-unit-price",
+        "term": "unit price",
+        "definition": "the cost for one standard amount, such as one ounce or one pound",
+        "sentence": "Compare the unit price before choosing a package.",
+        "phrase": "unit price before choosing"
       },
       {
-        "id": "dec-groceries-vegetables",
-        "term": "vegetables",
-        "definition": "plants or parts of plants eaten as food",
-        "sentence": "I need some vegetables for dinner.",
-        "phrase": "vegetables for dinner"
+        "id": "dec-groceries-serving-size",
+        "term": "serving size",
+        "definition": "the amount of food counted as one serving on a label",
+        "sentence": "The serving size on this label is one cup.",
+        "phrase": "serving size on this"
       },
       {
-        "id": "dec-groceries-fruit",
-        "term": "fruit",
-        "definition": "food such as apples, oranges, and bananas",
-        "sentence": "Let’s buy some fruit for snacks.",
-        "phrase": "fruit for snacks"
+        "id": "dec-groceries-go-bad",
+        "term": "go bad",
+        "definition": "to spoil and no longer be good to eat",
+        "sentence": "How much food will go bad if we buy too much?",
+        "phrase": "go bad if we"
       }
     ]
   },
   {
     "id": "dec-fall-review",
-    "topic": "Fall Review: Six Useful Words",
+    "topic": "Fall Review: Six Useful Words and Phrases",
     "words": [
       {
-        "id": "dec-fall-review-introduce",
-        "term": "introduce",
-        "definition": "to present yourself or another person for the first time",
-        "sentence": "Please introduce yourself to the class.",
-        "phrase": "introduce yourself to"
+        "id": "dec-fall-review-reschedule",
+        "term": "reschedule",
+        "definition": "to change a planned event to a different time",
+        "sentence": "I need to reschedule my appointment.",
+        "phrase": "reschedule my appointment"
       },
       {
-        "id": "dec-fall-review-focus",
-        "term": "focus",
-        "definition": "to give your attention to one thing",
-        "sentence": "Focus on one sentence at a time.",
-        "phrase": "Focus on one"
+        "id": "dec-fall-review-raise-a-concern",
+        "term": "raise a concern",
+        "definition": "to tell others about something you think may be a problem",
+        "sentence": "I would like to raise a concern about the bus schedule.",
+        "phrase": "raise a concern about the"
       },
       {
-        "id": "dec-fall-review-leave",
-        "term": "leave",
-        "definition": "to go away from a place",
-        "sentence": "What time does the bus leave?",
-        "phrase": "leave"
+        "id": "dec-fall-review-set-aside",
+        "term": "set aside",
+        "definition": "to keep money, time, or something else for a particular purpose",
+        "sentence": "I set aside a little money each payday.",
+        "phrase": "set aside a little"
       },
       {
         "id": "dec-fall-review-volunteer",
@@ -1863,59 +1863,59 @@
         "phrase": "Budget your money"
       },
       {
-        "id": "dec-fall-review-compare",
-        "term": "compare",
-        "definition": "to look at two or more things to find differences",
-        "sentence": "Always compare prices before you buy.",
-        "phrase": "compare prices before"
+        "id": "dec-fall-review-unit-price",
+        "term": "unit price",
+        "definition": "the cost for one standard amount, such as one ounce or one pound",
+        "sentence": "Compare the unit price before choosing a package.",
+        "phrase": "unit price before choosing"
       }
     ]
   },
   {
     "id": "apr-w30-review",
-    "topic": "Doctor Follow-Up: Six-Word Review",
+    "topic": "Doctor Follow-Up: Six-Item Review",
     "words": [
       {
-        "id": "apr-w30-review-recover",
-        "term": "recover",
-        "definition": "to get better after being sick",
-        "sentence": "It took him a few weeks to fully recover from the surgery.",
-        "phrase": "recover from the"
+        "id": "apr-w30-review-persistent",
+        "term": "persistent",
+        "definition": "continuing for a long time or repeatedly returning",
+        "sentence": "I want to ask the clinic about this persistent cough.",
+        "phrase": "persistent cough"
       },
       {
-        "id": "apr-w30-review-improve",
-        "term": "improve",
-        "definition": "to get better, to make progress",
-        "sentence": "Rest and fluids will help you improve quickly.",
-        "phrase": "improve quickly"
+        "id": "apr-w30-review-follow-up-appointment",
+        "term": "follow-up appointment",
+        "definition": "a later visit to check progress or discuss what happens next",
+        "sentence": "When is my follow-up appointment?",
+        "phrase": "follow-up appointment"
       },
       {
-        "id": "apr-w30-review-exercise",
-        "term": "exercise",
-        "definition": "to do physical activity to stay healthy",
-        "sentence": "You should exercise for at least 30 minutes every day.",
-        "phrase": "exercise for at"
+        "id": "apr-w30-review-recover-from",
+        "term": "recover from",
+        "definition": "to get better after an illness, injury, or difficult experience",
+        "sentence": "It took me several weeks to recover from the surgery.",
+        "phrase": "recover from the surgery"
       },
       {
-        "id": "apr-w30-review-routine",
-        "term": "routine",
-        "definition": "the things you usually do each day",
-        "sentence": "I want to change my evening routine.",
-        "phrase": "routine"
+        "id": "apr-w30-review-cut-back-on",
+        "term": "cut back on",
+        "definition": "to reduce how much you use, do, or consume",
+        "sentence": "I am trying to cut back on soda.",
+        "phrase": "cut back on soda"
       },
       {
         "id": "apr-w30-review-prevent",
         "term": "prevent",
         "definition": "to stop something from happening",
-        "sentence": "Washing your hands helps prevent the spread of germs.",
-        "phrase": "prevent the spread"
+        "sentence": "What steps can help prevent this problem from happening again?",
+        "phrase": "prevent this problem"
       },
       {
-        "id": "apr-w30-review-adjust",
-        "term": "adjust",
-        "definition": "to change to fit a new situation",
-        "sentence": "It takes time to adjust to a new medication.",
-        "phrase": "adjust to a"
+        "id": "apr-w30-review-adjust-to",
+        "term": "adjust to",
+        "definition": "to become used to a new situation or change",
+        "sentence": "It takes time to adjust to a new routine.",
+        "phrase": "adjust to a new"
       }
     ]
   }

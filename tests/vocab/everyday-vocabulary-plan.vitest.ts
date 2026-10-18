@@ -4,6 +4,8 @@ import { weeklyVocabData } from '../../scripts/vocab/weekly-vocab-data';
 import games from '../../docs/grammar-progression/classroom-games.json';
 import changes from '../../docs/grammar-progression/vocabulary-changes.json';
 import rescueWeeks from '@/data/word-rescue-weekly.generated.json';
+import quizzes from '@/content/quizzes/weekly-quizzes.json';
+import { RESCUE_WORDS } from '@/lib/word-rescue/content';
 const sets: Record<string,{words:{term:string;def:string;ex:string}[]}> = weeklyVocabData;
 const weeks=COURSE_MAP_UNITS.flatMap(u=>u.weeks);
 describe('everyday vocabulary and optional classroom plan',()=>{
@@ -17,6 +19,20 @@ describe('everyday vocabulary and optional classroom plan',()=>{
    expect(w.items.some(i=>i.vocabUi&&i.slot==='extra')).toBe(false);
    expect(w.items.some(i=>i.id===`${w.id}-word-rescue`)).toBe(true);
   }
+ });
+ it('assesses current core vocabulary and keeps review weeks familiar',()=>{
+  for(const w of weeks.filter(w=>w.number>=6)){
+   const id=w.items.find(i=>i.vocabUi==='flashcards'&&i.slot==='required')!.activityId!;
+   const terms=sets[id.replace('vocab-','')].words.map(w=>w.term);
+   for(const quiz of Object.values(quizzes).filter(q=>q.weekNumber===w.number)){
+    for(const q of quiz.questions.filter(q=>q.section==='vocabulary'))for(const answer of q.answers)expect(terms).toContain(answer);
+   }
+   if([15,30].includes(w.number)){
+    const prior=weeks.filter(x=>x.number<w.number).flatMap(x=>x.items.filter(i=>i.vocabUi==='flashcards'&&i.slot==='required').flatMap(i=>sets[i.activityId!.replace('vocab-','')].words.map(w=>w.term)));
+    for(const term of terms)expect(prior).toContain(term);
+   }
+  }
+  expect(new Set(RESCUE_WORDS.map(w=>w.id)).size).toBe(RESCUE_WORDS.length);
  });
  it('keeps replacement definitions and Word Lab content in sync',()=>{
   for(const change of changes){

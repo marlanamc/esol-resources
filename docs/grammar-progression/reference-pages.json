@@ -1,0 +1,474 @@
+[
+  {
+    "week": 1,
+    "pages": [
+      {
+        "section": "simple",
+        "focus": "Present and past simple"
+      },
+      {
+        "section": "continuous",
+        "focus": "Present and past continuous"
+      }
+    ],
+    "recommendation": "Review familiar simple and continuous examples only; leave future continuous for later."
+  },
+  {
+    "week": 2,
+    "pages": [
+      {
+        "section": "word-types",
+        "focus": "Nouns and verbs"
+      },
+      {
+        "section": "build-sentence",
+        "focus": "Subject + verb"
+      }
+    ],
+    "recommendation": "Start with nouns and verbs; use the other word jobs as a lookup, not a memorization list."
+  },
+  {
+    "week": 3,
+    "pages": [
+      {
+        "section": "word-types",
+        "focus": "Noun and verb sections"
+      },
+      {
+        "section": "build-sentence",
+        "focus": "Build a complete statement"
+      }
+    ],
+    "recommendation": "Repeat the noun/verb focus. Identify who or what the sentence is about and its verb."
+  },
+  {
+    "week": 4,
+    "pages": [
+      {
+        "section": "verb-forms",
+        "focus": "The five verb forms"
+      },
+      {
+        "section": "irregular-verbs",
+        "focus": "V1, V2, and V3 patterns"
+      }
+    ],
+    "recommendation": "Find the form you need and practice the weekly verbs; do not memorize the whole tense chart."
+  },
+  {
+    "week": 5,
+    "pages": [
+      {
+        "section": "questions",
+        "focus": "Question words, helpers, and short answers"
+      }
+    ],
+    "recommendation": "Practice one question and a matching short answer before adding more information."
+  },
+  {
+    "week": 6,
+    "pages": [
+      {
+        "section": "adverbs",
+        "focus": "Frequency words and their position"
+      },
+      {
+        "section": "simple",
+        "focus": "Present simple"
+      },
+      {
+        "section": "prepositions-movement",
+        "focus": "Directions and movement"
+      }
+    ],
+    "recommendation": "Start with frequency and present simple; use the movement pictures during the directions activity."
+  },
+  {
+    "week": 7,
+    "pages": [
+      {
+        "section": "conditionals",
+        "focus": "Zero and first conditional only"
+      }
+    ],
+    "recommendation": "Compare a usual result with a real future possibility. Leave second and third conditional for later."
+  },
+  {
+    "week": 8,
+    "pages": [
+      {
+        "section": "modals",
+        "focus": "Can, should, and must"
+      },
+      {
+        "section": "modal-meaning",
+        "focus": "Permission, advice, and requirements"
+      }
+    ],
+    "recommendation": "Review only the meanings used in this week’s conversations; leave past modals for later."
+  },
+  {
+    "week": 9,
+    "pages": [
+      {
+        "section": "perfect",
+        "focus": "Present perfect: experience"
+      },
+      {
+        "section": "questions",
+        "focus": "Have/has questions and short answers"
+      }
+    ],
+    "recommendation": "Use Have you ever…? and a short answer; do not assign the past or future perfect sections yet."
+  },
+  {
+    "week": 10,
+    "pages": [
+      {
+        "section": "gerunds",
+        "focus": "Preposition + gerund"
+      }
+    ],
+    "recommendation": "Focus on good at + -ing and interested in + -ing. The rest of the page is a lookup."
+  },
+  {
+    "week": 11,
+    "pages": [
+      {
+        "section": "prepositions-time",
+        "focus": "For + duration; since + starting point"
+      },
+      {
+        "section": "perfect",
+        "focus": "Present perfect: continuing situations"
+      }
+    ],
+    "recommendation": "Match for/since to a timeline and answer How long…? Leave the other perfect tenses for later."
+  },
+  {
+    "week": 12,
+    "pages": [
+      {
+        "section": "comparisons",
+        "focus": "Comparatives, superlatives, and as…as"
+      }
+    ],
+    "recommendation": "Compare two prices or choices, then choose the best option in a group."
+  },
+  {
+    "week": 13,
+    "pages": [
+      {
+        "section": "pronouns",
+        "focus": "A/an, plural nouns, and uncountable nouns"
+      }
+    ],
+    "recommendation": "Partial match: page 4 supports noun and article choices, but the sheet has no dedicated how much/how many or quantifier page. Use the weekly lesson for those rules."
+  },
+  {
+    "week": 14,
+    "pages": [
+      {
+        "section": "comparisons",
+        "focus": "Comparing amounts or changes"
+      },
+      {
+        "section": "connectors",
+        "focus": "Contrast and result"
+      }
+    ],
+    "recommendation": "Supporting review only: use comparisons and connections to explain a chart. Headline conventions and chart-reading vocabulary are taught in the weekly lesson, not on a dedicated sheet page."
+  },
+  {
+    "week": 15,
+    "pages": [
+      {
+        "section": "simple",
+        "focus": "Present, past, and future simple"
+      },
+      {
+        "section": "continuous",
+        "focus": "Present and past continuous"
+      },
+      {
+        "section": "perfect",
+        "focus": "Present perfect only"
+      }
+    ],
+    "recommendation": "Use just these six familiar tenses. Choose one contrast at a time; skip future continuous, past perfect, and future perfect."
+  },
+  {
+    "week": 16,
+    "pages": [
+      {
+        "section": "questions",
+        "focus": "Direct questions and question words"
+      },
+      {
+        "section": "build-sentence",
+        "focus": "Subject before verb in statements"
+      }
+    ],
+    "recommendation": "Partial match: these pages support the lesson, but polite indirect questions such as Can you tell me if…? are not taught directly in the sheet. Use the lesson for that pattern; do not introduce reported speech yet."
+  },
+  {
+    "week": 17,
+    "pages": [
+      {
+        "section": "modal-meaning",
+        "focus": "Requirement, prohibition, and no requirement"
+      },
+      {
+        "section": "modals",
+        "focus": "Have to / need to forms"
+      }
+    ],
+    "recommendation": "Contrast have to, don’t have to, and can’t. No requirement is different from prohibition."
+  },
+  {
+    "week": 18,
+    "pages": [
+      {
+        "section": "gerunds",
+        "focus": "Verb + infinitive and infinitive of purpose"
+      },
+      {
+        "section": "verb-lists",
+        "focus": "Need, want, plan, and hope"
+      }
+    ],
+    "recommendation": "Look up only the verbs needed for the housing task; practice need to + base verb."
+  },
+  {
+    "week": 19,
+    "pages": [
+      {
+        "section": "continuous",
+        "focus": "Past continuous"
+      },
+      {
+        "section": "two-clauses",
+        "focus": "Background and interruption"
+      }
+    ],
+    "recommendation": "Pair was/were + -ing with a short past action. Leave the past-perfect order example for Week 20."
+  },
+  {
+    "week": 20,
+    "pages": [
+      {
+        "section": "perfect",
+        "focus": "Past perfect"
+      },
+      {
+        "section": "two-clauses",
+        "focus": "Earlier event and later past event"
+      }
+    ],
+    "recommendation": "Show which event happened first, then use had + V3 for that earlier event."
+  },
+  {
+    "week": 21,
+    "pages": [
+      {
+        "section": "used-to",
+        "focus": "Used to + base verb: then, not now"
+      }
+    ],
+    "recommendation": "Read only the past-habit section and its question/negative forms. Save be/get used to for Week 33."
+  },
+  {
+    "week": 22,
+    "pages": [
+      {
+        "section": "conditionals",
+        "focus": "Second conditional only"
+      }
+    ],
+    "recommendation": "Practice if + past form, would + base verb for an imagined present or future. Keep this short during catch-up week."
+  },
+  {
+    "week": 23,
+    "pages": [
+      {
+        "section": "gerunds",
+        "focus": "Verb + gerund versus verb + infinitive"
+      },
+      {
+        "section": "verb-lists",
+        "focus": "Enjoy, avoid, finish; want, need, plan"
+      }
+    ],
+    "recommendation": "Use the list to check a few useful verbs, not to memorize every entry."
+  },
+  {
+    "week": 24,
+    "pages": [
+      {
+        "section": "perfect",
+        "focus": "Present perfect: present results; just, already, yet"
+      }
+    ],
+    "recommendation": "Review the present-perfect section only. Use the weekly lesson for the exact placement of just, already, and yet."
+  },
+  {
+    "week": 25,
+    "pages": [
+      {
+        "section": "perfect-continuous",
+        "focus": "Present perfect continuous"
+      },
+      {
+        "section": "tense-choices",
+        "focus": "Amount versus duration"
+      }
+    ],
+    "recommendation": "Compare I have completed… with I have been working…; leave the past and future duration sections for later."
+  },
+  {
+    "week": 26,
+    "pages": [
+      {
+        "section": "perfect-continuous",
+        "focus": "Past perfect continuous"
+      },
+      {
+        "section": "perfect",
+        "focus": "Past perfect comparison"
+      }
+    ],
+    "recommendation": "Focus on had been + -ing for duration before a past event. Contrast duration with a completed result."
+  },
+  {
+    "week": 27,
+    "pages": [
+      {
+        "section": "passive",
+        "focus": "Present and past simple passive"
+      }
+    ],
+    "recommendation": "Start with is/are + V3 and was/were + V3; the longer passive table is a lookup, not an additional assignment."
+  },
+  {
+    "week": 28,
+    "pages": [
+      {
+        "section": "modals",
+        "focus": "Should / ought to and had better"
+      },
+      {
+        "section": "modal-meaning",
+        "focus": "Advice versus requirement"
+      }
+    ],
+    "recommendation": "Practice practical advice. Use the weekly lesson for shouldn’t and fuller had better examples."
+  },
+  {
+    "week": 29,
+    "pages": [
+      {
+        "section": "gerunds",
+        "focus": "Some verbs change meaning: stop, remember, try"
+      }
+    ],
+    "recommendation": "Read the gerund/infinitive meaning contrasts and explain one pair in your own words."
+  },
+  {
+    "week": 30,
+    "pages": [
+      {
+        "section": "reported",
+        "focus": "Said/told and simple reported statements"
+      },
+      {
+        "section": "reported-context",
+        "focus": "Requests and commands at the bottom"
+      }
+    ],
+    "recommendation": "Keep the core review to statements and told me to… / told me not to…. Save reported questions and the full shift table for later practice."
+  },
+  {
+    "week": 31,
+    "pages": [
+      {
+        "section": "conditionals",
+        "focus": "Third conditional"
+      },
+      {
+        "section": "modals-past",
+        "focus": "Would have + V3: imagined past result"
+      }
+    ],
+    "recommendation": "Review only the imagined-past pattern, not the whole past-modals table."
+  },
+  {
+    "week": 32,
+    "pages": [
+      {
+        "section": "perfect",
+        "focus": "Future perfect"
+      },
+      {
+        "section": "prepositions-time",
+        "focus": "By + deadline"
+      }
+    ],
+    "recommendation": "Practice will have + V3 with by Friday / by June. Keep the focus on a completed result."
+  },
+  {
+    "week": 33,
+    "pages": [
+      {
+        "section": "used-to",
+        "focus": "Be used to / get used to"
+      },
+      {
+        "section": "gerunds",
+        "focus": "When to is a preposition"
+      }
+    ],
+    "recommendation": "Contrast familiar now / becoming familiar with the old used to + base-verb pattern."
+  },
+  {
+    "week": 34,
+    "pages": [
+      {
+        "section": "conditionals",
+        "focus": "All four patterns"
+      }
+    ],
+    "recommendation": "Choose the meaning first: usual, possible, imagined now, or imagined past. Review one contrast at a time."
+  },
+  {
+    "week": 35,
+    "pages": [
+      {
+        "section": "perfect-continuous",
+        "focus": "Future perfect continuous"
+      },
+      {
+        "section": "perfect",
+        "focus": "Future perfect comparison"
+      }
+    ],
+    "recommendation": "Compare duration (will have been studying) with a completed result (will have finished)."
+  },
+  {
+    "week": 36,
+    "pages": [
+      {
+        "section": "tense-choices",
+        "focus": "Choose the meaning"
+      },
+      {
+        "section": "formulas",
+        "focus": "Look up only taught tense patterns"
+      },
+      {
+        "section": "perfect-continuous",
+        "focus": "Review present, past, and future duration"
+      }
+    ],
+    "recommendation": "Use these as lookup pages during the year-end task. Future continuous remains a preview, not a required assessment target."
+  }
+]

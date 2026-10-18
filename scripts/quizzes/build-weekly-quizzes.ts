@@ -35,11 +35,12 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       focusVerbs: plan.verbs, estimatedMinutes: '5–10',
       questions: [
         ...buildVerbFormsTable(plan.verbs),
-        { id: 'recap-0', section: 'vocabulary', prompt: 'Which word means “to meet someone new and tell them your name”?', options: ['introduce', 'volunteer', 'calculate'], answers: ['introduce'], explanation: 'Introduce: She introduced herself on the first day of class.', source: 'sep-w1' },
-        { id: 'recap-1', section: 'vocabulary', prompt: 'Which word means “to pay close attention to one thing”?', options: ['focus', 'depart', 'donate'], answers: ['focus'], explanation: 'Focus: Focus on one section at a time when you study.', source: 'oct-learning' },
-        { id: 'recap-2', section: 'vocabulary', prompt: 'Which word means “to go away from a place”?', options: ['arrive', 'leave', 'help out'], answers: ['leave'], explanation: 'Leave: What time does the bus leave?', source: 'oct-w2' },
-        { id: 'recap-3', section: 'vocabulary', prompt: 'Which word means “to offer to do something without being paid”?', options: ['volunteer', 'purchase', 'compare'], answers: ['volunteer'], explanation: 'Volunteer: She volunteers at the food bank every Saturday.', source: 'nov-w1' },
-        { id: 'recap-4', section: 'vocabulary', prompt: 'Which word means “to plan how much money to spend”?', options: ['budget', 'introduce', 'transfer'], answers: ['budget'], explanation: 'Budget: Budget your money so you can pay all your bills.', source: 'dec-w1' },
+        ...weeklyVocabData['dec-fall-review'].words.slice(0, 5).map((word: {term:string;def:string;ex:string}, i:number) => {
+          const words = weeklyVocabData['dec-fall-review'].words as {term:string}[];
+          const options = [word.term, words[(i+1)%6].term, words[(i+2)%6].term];
+          const rotate = i % options.length;
+          return { id: `recap-${i}`, section: 'vocabulary' as const, prompt: `Which word or phrase means “${word.def}”?`, options: [...options.slice(rotate), ...options.slice(0,rotate)], answers: [word.term], explanation: word.ex, source: 'vocab-dec-fall-review' };
+        }),
       ],
     };
     continue;
@@ -58,7 +59,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     const useContext = word.fillBlank && (n + i) % 2 === 0;
     const options = useContext ? [...word.fillBlank!.options] : [word.term, ...(word.quizDistractors ?? words.filter(w => w.term !== word.term).slice(0, 2).map(w => w.term))];
     const rotate = (n + i) % options.length;
-    questions.push({ id: `vocab-${i}`, section: 'vocabulary', prompt: useContext ? plain(word.fillBlank!.text) : `Which word means “${plain(word.def)}”?`, options: [...options.slice(rotate), ...options.slice(0, rotate)], answers: [word.term], explanation: `${word.term}: ${plain(word.def)}. ${plain(word.ex)}`, source: vocabId });
+    questions.push({ id: `vocab-${i}`, section: 'vocabulary', prompt: useContext ? plain(word.fillBlank!.text) : `Which ${week.number >= 6 ? "word or phrase" : "word"} means “${plain(word.def)}”?`, options: [...options.slice(rotate), ...options.slice(0, rotate)], answers: [word.term], explanation: `${word.term}: ${plain(word.def)}. ${plain(word.ex)}`, source: vocabId });
   }
   if (n === 1) {
     questions.push(

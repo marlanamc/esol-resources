@@ -12,6 +12,7 @@ const builders = require('../vocab/seed-weekly-vocab');
 const { requireSafeDbTarget, parseActiveDbTarget } = require('../lib/require-safe-db-target');
 loadEnvConfig(process.cwd());
 const apply = process.argv.includes('--apply');
+const vocabularyOnly = process.argv.includes('--vocabulary-only');
 async function main() {
  const { prisma } = await import('@/lib/database/prisma');
  const { lookupGrammarGuideActivity } = await import('@/lib/grammar-guide-activity');
@@ -36,7 +37,7 @@ async function main() {
   const content={type:'vocabulary',wordList:builders.generatePacketContent(slug,data),flashcards:builders.generateFlashcardContent(slug,data),matching:builders.generateMatchingContent(slug,data),fillInBlank:builders.generateFillBlankContent(slug,data),libraryOnlyCards:(data.bonusWords??[]).map(builders.toVocabCard)};
   planned.set(id,{title:`Unit ${builders.getUnitNumber(slug)}: ${data.topic}`,content:JSON.stringify(content),type:'vocabulary',category:'Vocab',contentKind:'map',isReleased:true});vocabIds.add(id);
   for(const item of w.items){
-   if(item.href?.startsWith('/grammar-reader/')){
+   if(!vocabularyOnly && item.href?.startsWith('/grammar-reader/')){
     const slug=item.href.split('/').pop()!.split('?')[0];const guide=getGrammarGuide(slug);if(!guide)throw new Error(slug);
     const row=await lookupGrammarGuideActivity(guide.activityTitle,slug);
     const id=row?.id??`${slug}-guide`;
@@ -51,7 +52,8 @@ async function main() {
   }
  }
  for(const id of planned.keys())if(protectedActivities.includes(id))throw new Error(`Would change protected activity ${id}`);
- const snapshot={weeks:await prisma.courseWeek.findMany({where:{id:{in:weekIds}},include:{items:true}}),activities:await prisma.activity.findMany({where:{id:{in:[...planned.keys()]}}}),early,earlyActivities};
+ const protectedTerms = new Set(buildVocabReviewSeedCards(earlyActivities).map(c=>c.normalizedTerm));
+ const snapshot={vocabCards:await prisma.vocabCard.findMany(),weeks:await prisma.courseWeek.findMany({where:{id:{in:weekIds}},include:{items:true}}),activities:await prisma.activity.findMany({where:{id:{in:[...planned.keys()]}}}),early,earlyActivities};
  for(const {u,w} of future){const live=snapshot.weeks.find(x=>x.id===w.id);if(live&&(live.number!==w.number||live.unitId!==u.id))throw new Error(`Unexpected production week identity: ${w.id}`);}
  const missingLinks=[...new Set(future.flatMap(({w})=>w.items.flatMap(i=>i.activityId&&!planned.has(i.activityId)?[i.activityId]:[])))];
  const found=await prisma.activity.findMany({where:{id:{in:missingLinks}},select:{id:true}});
@@ -84,8 +86,14 @@ async function main() {
   const cards=buildVocabReviewSeedCards(await tx.activity.findMany({where:{id:{in:[...vocabIds]}},select:{id:true,title:true,description:true,content:true}}));
   for(const card of cards){
    const existing=await tx.vocabCard.findUnique({where:{normalizedTerm:card.normalizedTerm}});
-   // Preserve familiar cards and review state. Add only missing library entries.
+   // Keep IDs and review state; preserve definitions belonging to Weeks 1–5.
    if(!existing)await tx.vocabCard.create({data:card});
+   else if(!protectedTerms.has(card.normalizedTerm)) await tx.vocabCard.update({where:{id:existing.id},data:{...card,
+    sourceKeys:[...new Set([...existing.sourceKeys,...card.sourceKeys])],
+    sourceLabels:[...new Set([...existing.sourceLabels,...card.sourceLabels])],
+    unitNumbers:[...new Set([...existing.unitNumbers,...card.unitNumbers])],
+    topics:[...new Set([...existing.topics,...card.topics])],sortOrder:existing.sortOrder,
+   }});
   }
   const after=await tx.courseWeek.findMany({where:{id:{in:earlyIds}},include:{items:{orderBy:{id:'asc'}}},orderBy:{id:'asc'}});
   const afterActivities=await tx.activity.findMany({where:{id:{in:protectedActivities}},orderBy:{id:'asc'}});

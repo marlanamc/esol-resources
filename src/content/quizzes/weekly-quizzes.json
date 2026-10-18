@@ -502,31 +502,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to go in the same direction; to use directions step by step”?",
+        "prompt": "Which word or phrase means “to arrive too late to catch the next bus, train, or flight”?",
         "options": [
-          "follow",
-          "leave",
-          "arrive"
+          "miss a connection",
+          "commute",
+          "delay"
         ],
         "answers": [
-          "follow"
+          "miss a connection"
         ],
-        "explanation": "follow: to go in the same direction; to use directions step by step. Follow the signs to the emergency exit.",
+        "explanation": "miss a connection: to arrive too late to catch the next bus, train, or flight. If the bus is late, I might miss a connection.",
         "source": "vocab-oct-w2"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to go from one side to the other”?",
+        "prompt": "Which word or phrase means “to leave a bus or train at a particular stop”?",
         "options": [
-          "leave",
-          "arrive",
-          "cross"
+          "commute",
+          "delay",
+          "get off at"
         ],
         "answers": [
-          "cross"
+          "get off at"
         ],
-        "explanation": "cross: to go from one side to the other. Cross the street at the crosswalk when the light is green.",
+        "explanation": "get off at: to leave a bus or train at a particular stop. Get off at Central Square and walk one block.",
         "source": "vocab-oct-w2"
       },
       {
@@ -686,7 +686,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to reach someone by phone, email, or message”?",
+        "prompt": "Which word or phrase means “to reach someone by phone, email, or message”?",
         "options": [
           "respond",
           "confirm",
@@ -701,7 +701,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to answer or react to a message or question”?",
+        "prompt": "Which word or phrase means “to answer or react to a message or question”?",
         "options": [
           "confirm",
           "respond",
@@ -875,7 +875,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to help or encourage someone or a cause”?",
+        "prompt": "Which word or phrase means “to help or encourage someone or a cause”?",
         "options": [
           "help out",
           "support",
@@ -890,7 +890,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to give time, money, or effort to help something”?",
+        "prompt": "Which word or phrase means “to give time, money, or effort to help something”?",
         "options": [
           "contribute",
           "volunteer",
@@ -1059,32 +1059,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Most neighbors _____ with the plan to fix the streetlights.",
+        "prompt": "Which word or phrase means “to make a decision that everyone involved accepts”?",
         "options": [
-          "suggest",
-          "listen",
-          "recommend",
-          "agree"
+          "reach an agreement",
+          "participate",
+          "suggest"
         ],
         "answers": [
-          "agree"
+          "reach an agreement"
         ],
-        "explanation": "agree: to have the same opinion or say yes to something. Most people at the meeting agreed with the new plan.",
+        "explanation": "reach an agreement: to make a decision that everyone involved accepts. We hope to reach an agreement about the meeting time.",
         "source": "vocab-nov-w2"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to pay attention to what someone is saying”?",
+        "prompt": "Which word or phrase means “to tell others about something you think may be a problem”?",
         "options": [
           "participate",
           "suggest",
-          "listen"
+          "raise a concern"
         ],
         "answers": [
-          "listen"
+          "raise a concern"
         ],
-        "explanation": "listen: to pay attention to what someone is saying. Good leaders listen to the concerns of their community.",
+        "explanation": "raise a concern: to tell others about something you think may be a problem. I would like to raise a concern about the bus schedule.",
         "source": "vocab-nov-w2"
       },
       {
@@ -1244,27 +1243,26 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to officially choose a person or option in an election”?",
+        "prompt": "Which word or phrase means “to add your name to the official list of voters”?",
         "options": [
           "elect",
           "advocate",
-          "vote"
+          "register to vote"
         ],
         "answers": [
-          "vote"
+          "register to vote"
         ],
-        "explanation": "vote: to officially choose a person or option in an election. Register and vote in your local elections.",
+        "explanation": "register to vote: to add your name to the official list of voters. Where can eligible residents register to vote?",
         "source": "vocab-oct-w5"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "In November, voters will _____ a new mayor.",
+        "prompt": "Which word or phrase means “to choose a person for a position by voting”?",
         "options": [
-          "vote",
+          "advocate",
           "elect",
-          "represent",
-          "advocate"
+          "register to vote"
         ],
         "answers": [
           "elect"
@@ -1414,77 +1412,77 @@
       {
         "id": "recap-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to meet someone new and tell them your name”?",
+        "prompt": "Which word or phrase means “to change a planned event to a different time”?",
         "options": [
-          "introduce",
-          "volunteer",
-          "calculate"
+          "reschedule",
+          "raise a concern",
+          "set aside"
         ],
         "answers": [
-          "introduce"
+          "reschedule"
         ],
-        "explanation": "Introduce: She introduced herself on the first day of class.",
-        "source": "sep-w1"
+        "explanation": "I need to reschedule my appointment.",
+        "source": "vocab-dec-fall-review"
       },
       {
         "id": "recap-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to pay close attention to one thing”?",
+        "prompt": "Which word or phrase means “to tell others about something you think may be a problem”?",
         "options": [
-          "focus",
-          "depart",
-          "donate"
+          "set aside",
+          "volunteer",
+          "raise a concern"
         ],
         "answers": [
-          "focus"
+          "raise a concern"
         ],
-        "explanation": "Focus: Focus on one section at a time when you study.",
-        "source": "oct-learning"
+        "explanation": "I would like to raise a concern about the bus schedule.",
+        "source": "vocab-dec-fall-review"
       },
       {
         "id": "recap-2",
         "section": "vocabulary",
-        "prompt": "Which word means “to go away from a place”?",
+        "prompt": "Which word or phrase means “to keep money, time, or something else for a particular purpose”?",
         "options": [
-          "arrive",
-          "leave",
-          "help out"
+          "budget",
+          "set aside",
+          "volunteer"
         ],
         "answers": [
-          "leave"
+          "set aside"
         ],
-        "explanation": "Leave: What time does the bus leave?",
-        "source": "oct-w2"
+        "explanation": "I set aside a little money each payday.",
+        "source": "vocab-dec-fall-review"
       },
       {
         "id": "recap-3",
         "section": "vocabulary",
-        "prompt": "Which word means “to offer to do something without being paid”?",
+        "prompt": "Which word or phrase means “to offer to do something without being paid”?",
         "options": [
           "volunteer",
-          "purchase",
-          "compare"
+          "budget",
+          "unit price"
         ],
         "answers": [
           "volunteer"
         ],
-        "explanation": "Volunteer: She volunteers at the food bank every Saturday.",
-        "source": "nov-w1"
+        "explanation": "She volunteers at the food bank every Saturday.",
+        "source": "vocab-dec-fall-review"
       },
       {
         "id": "recap-4",
         "section": "vocabulary",
-        "prompt": "Which word means “to plan how much money to spend”?",
+        "prompt": "Which word or phrase means “to plan how much money to spend”?",
         "options": [
-          "budget",
-          "introduce",
-          "transfer"
+          "unit price",
+          "reschedule",
+          "budget"
         ],
         "answers": [
           "budget"
         ],
-        "explanation": "Budget: Budget your money so you can pay all your bills.",
-        "source": "dec-w1"
+        "explanation": "Budget your money so you can pay all your bills.",
+        "source": "vocab-dec-fall-review"
       }
     ]
   },
@@ -1618,32 +1616,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to use money to pay for things”?",
+        "prompt": "Which word or phrase means “to record or pay attention to something as it changes”?",
         "options": [
-          "spend",
-          "purchase",
-          "compare"
+          "keep track of",
+          "purchase price",
+          "comparison shop"
         ],
         "answers": [
-          "spend"
+          "keep track of"
         ],
-        "explanation": "spend: to use money to pay for things. Don't spend more than you earn.",
+        "explanation": "keep track of: to record or pay attention to something as it changes. I use an app to keep track of my spending.",
         "source": "vocab-dec-w1"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "_____ the total cost, including tax, before you pay.",
+        "prompt": "Which word or phrase means “the full amount to pay, including extra charges”?",
         "options": [
-          "budget",
-          "purchase",
-          "compare",
-          "calculate"
+          "purchase price",
+          "comparison shop",
+          "total cost"
         ],
         "answers": [
-          "calculate"
+          "total cost"
         ],
-        "explanation": "calculate: to use math to find an answer. Calculate the total cost before you decide to buy.",
+        "explanation": "total cost: the full amount to pay, including extra charges. What is the total cost with tax and delivery?",
         "source": "vocab-dec-w1"
       },
       {
@@ -1808,11 +1805,10 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "This shirt is too small. I want to _____ it for a larger size.",
+        "prompt": "Which word or phrase means “to return one item and get a different one”?",
         "options": [
-          "deposit",
-          "withdraw",
           "refund",
+          "withdraw",
           "exchange"
         ],
         "answers": [
@@ -1824,7 +1820,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to get your money back after returning something”?",
+        "prompt": "Which word or phrase means “money returned to a customer after a purchase”?",
         "options": [
           "withdraw",
           "refund",
@@ -1833,7 +1829,7 @@
         "answers": [
           "refund"
         ],
-        "explanation": "refund: to get your money back after returning something. The store gave me a full refund for the broken item.",
+        "explanation": "refund: money returned to a customer after a purchase. The store gave me a full refund for the broken item.",
         "source": "vocab-dec-w2"
       },
       {
@@ -1993,31 +1989,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “a white drink often sold in a carton or bottle”?",
+        "prompt": "Which word or phrase means “to buy a large amount of something at one time”?",
         "options": [
-          "bread",
-          "milk",
-          "rice"
+          "stock up on",
+          "buy in bulk",
+          "run out of"
         ],
         "answers": [
-          "milk"
+          "buy in bulk"
         ],
-        "explanation": "milk: a white drink often sold in a carton or bottle. How much milk is left?",
+        "explanation": "buy in bulk: to buy a large amount of something at one time. Is it cheaper to buy in bulk?",
         "source": "vocab-dec-groceries"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “foods with shells that are often cooked for breakfast”?",
+        "prompt": "Which word or phrase means “the cost for one standard amount, such as one ounce or one pound”?",
         "options": [
-          "eggs",
-          "rice",
-          "bread"
+          "unit price",
+          "run out of",
+          "stock up on"
         ],
         "answers": [
-          "eggs"
+          "unit price"
         ],
-        "explanation": "eggs: foods with shells that are often cooked for breakfast. How many eggs should I buy?",
+        "explanation": "unit price: the cost for one standard amount, such as one ounce or one pound. Compare the unit price before choosing a package.",
         "source": "vocab-dec-groceries"
       },
       {
@@ -2177,31 +2173,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to meet the requirements needed for something”?",
+        "prompt": "Which word or phrase means “to meet the requirements for something”?",
         "options": [
-          "qualify",
-          "rent",
+          "qualify for",
+          "security deposit",
           "lease"
         ],
         "answers": [
-          "qualify"
+          "qualify for"
         ],
-        "explanation": "qualify: to meet the requirements needed for something. Do I qualify for the low-income housing program?",
+        "explanation": "qualify for: to meet the requirements for something. Do I qualify for this housing program?",
         "source": "vocab-jan-w1"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to formally request something (a job, an apartment, a program)”?",
+        "prompt": "Which word or phrase means “a form used to ask to rent a home”?",
         "options": [
-          "rent",
+          "security deposit",
           "lease",
-          "apply"
+          "rental application"
         ],
         "answers": [
-          "apply"
+          "rental application"
         ],
-        "explanation": "apply: to formally request something (a job, an apartment, a program). You need to apply online for that apartment.",
+        "explanation": "rental application: a form used to ask to rent a home. What documents do I need for the rental application?",
         "source": "vocab-jan-w1"
       },
       {
@@ -2366,26 +2362,26 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to look at two or more things to find differences”?",
+        "prompt": "Which word or phrase means “to compare possible choices carefully before deciding”?",
         "options": [
           "afford",
           "check out",
-          "compare"
+          "weigh your options"
         ],
         "answers": [
-          "compare"
+          "weigh your options"
         ],
-        "explanation": "compare: to look at two or more things to find differences. Compare the rent and size of each apartment.",
+        "explanation": "weigh your options: to compare possible choices carefully before deciding. It helps to weigh your options before signing a lease.",
         "source": "vocab-jan-w2"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to have enough money to pay for something”?",
+        "prompt": "Which word or phrase means “to have enough money to pay for something”?",
         "options": [
           "check out",
           "afford",
-          "compare"
+          "weigh your options"
         ],
         "answers": [
           "afford"
@@ -2545,12 +2541,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "The landlord will _____ the apartment on Monday.",
+        "prompt": "Which word or phrase means “to look at something carefully to check its condition”?",
         "options": [
-          "report",
-          "request",
-          "repair",
-          "inspect"
+          "report a problem",
+          "inspect",
+          "request a repair"
         ],
         "answers": [
           "inspect"
@@ -2561,16 +2556,16 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to fix something that is broken or damaged”?",
+        "prompt": "Which word or phrase means “a message or form asking for a building or appliance to be checked or fixed”?",
         "options": [
-          "repair",
-          "request",
-          "report"
+          "maintenance request",
+          "request a repair",
+          "report a problem"
         ],
         "answers": [
-          "repair"
+          "maintenance request"
         ],
-        "explanation": "repair: to fix something that is broken or damaged. The landlord must repair the broken window within 24 hours.",
+        "explanation": "maintenance request: a message or form asking for a building or appliance to be checked or fixed. I submitted a maintenance request for the broken lock.",
         "source": "vocab-jan-w3"
       },
       {
@@ -2730,31 +2725,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to stop something bad from happening”?",
+        "prompt": "Which word or phrase means “to stop something from happening”?",
         "options": [
           "prevent",
-          "fix",
+          "resolve",
           "maintain"
         ],
         "answers": [
           "prevent"
         ],
-        "explanation": "prevent: to stop something bad from happening. Regular cleaning can prevent mold in the bathroom.",
+        "explanation": "prevent: to stop something from happening. What steps can help prevent this problem from happening again?",
         "source": "vocab-jan-w4"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to return money someone spent or lent”?",
+        "prompt": "Which word or phrase means “to pay someone back for money they spent on an expense”?",
         "options": [
-          "fix",
+          "resolve",
           "maintain",
-          "pay back"
+          "reimburse"
         ],
         "answers": [
-          "pay back"
+          "reimburse"
         ],
-        "explanation": "pay back: to return money someone spent or lent. Will the landlord pay back the money I spent on the repair?",
+        "explanation": "reimburse: to pay someone back for money they spent on an expense. Will the landlord reimburse me for the approved repair?",
         "source": "vocab-jan-w4"
       },
       {
@@ -2963,32 +2958,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Check the _____ to see which days you work next week.",
+        "prompt": "Which word or phrase means “the times when someone is free to work or meet”?",
         "options": [
-          "break",
-          "schedule",
-          "team",
-          "time off"
+          "responsibility",
+          "time off",
+          "availability"
         ],
         "answers": [
-          "schedule"
+          "availability"
         ],
-        "explanation": "schedule: your plan for the day or week. My work schedule changes every week.",
+        "explanation": "availability: the times when someone is free to work or meet. My availability changes when my class schedule changes.",
         "source": "vocab-feb-3-5"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “a short rest from work”?",
+        "prompt": "Which word or phrase means “a duty or task someone is expected to take care of”?",
         "options": [
           "time off",
-          "break",
-          "schedule"
+          "responsibility",
+          "availability"
         ],
         "answers": [
-          "break"
+          "responsibility"
         ],
-        "explanation": "break: a short rest from work. We take a 15-minute break at 10:00 AM.",
+        "explanation": "responsibility: a duty or task someone is expected to take care of. Checking the supplies is my responsibility.",
         "source": "vocab-feb-3-5"
       },
       {
@@ -3197,27 +3191,26 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “used to show permission or ability”?",
+        "prompt": "Which word or phrase means “to work more than your usual scheduled hours”?",
         "options": [
-          "should",
-          "can",
-          "must"
+          "job duties",
+          "work overtime",
+          "previous position"
         ],
         "answers": [
-          "can"
+          "work overtime"
         ],
-        "explanation": "can: used to show permission or ability. You can take your break after you finish this task.",
+        "explanation": "work overtime: to work more than your usual scheduled hours. I used to work overtime during the busy season.",
         "source": "vocab-mar-10-12"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Safety goggles are _____ when using the machines.",
+        "prompt": "Which word or phrase means “necessary; must be done”?",
         "options": [
           "required",
-          "can",
-          "allowed",
-          "permission"
+          "previous position",
+          "job duties"
         ],
         "answers": [
           "required"
@@ -3387,12 +3380,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Can you _____ at the front desk for ten minutes?",
+        "prompt": "Which word or phrase means “to help someone with something”?",
         "options": [
-          "work out",
-          "show up",
           "help out",
-          "hear from"
+          "clarify",
+          "show up"
         ],
         "answers": [
           "help out"
@@ -3403,7 +3395,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to feel excited about something in the future”?",
+        "prompt": "Which word or phrase means “to feel excited about something in the future”?",
         "options": [
           "clarify",
           "show up",
@@ -3621,10 +3613,10 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to arrive at work and record your start time”?",
+        "prompt": "Which word or phrase means “to arrive at work and record your start time”?",
         "options": [
           "clock out",
-          "call out",
+          "call in sick",
           "clock in"
         ],
         "answers": [
@@ -3636,12 +3628,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Please _____ when your shift ends so payroll knows your hours.",
+        "prompt": "Which word or phrase means “to leave work and record your end time”?",
         "options": [
-          "clock in",
+          "call in sick",
           "clock out",
-          "call out",
-          "shift"
+          "clock in"
         ],
         "answers": [
           "clock out"
@@ -3855,11 +3846,10 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Include a _____ explaining why you are a good fit for the job.",
+        "prompt": "Which word or phrase means “a letter explaining why you want the job”?",
         "options": [
           "resume",
           "cover letter",
-          "reference",
           "experience"
         ],
         "answers": [
@@ -3871,7 +3861,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “a person who can speak about your work or character”?",
+        "prompt": "Which word or phrase means “a person who can speak about your work or character”?",
         "options": [
           "reference",
           "experience",
@@ -4089,7 +4079,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “the most important thing”?",
+        "prompt": "Which word or phrase means “something treated as more important or urgent than other things”?",
         "options": [
           "priority",
           "promotion",
@@ -4098,17 +4088,16 @@
         "answers": [
           "priority"
         ],
-        "explanation": "priority: the most important thing. Completing this report is my top priority for today.",
+        "explanation": "priority: something treated as more important or urgent than other things. Finishing the application is my top priority today.",
         "source": "vocab-mar-3-5"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "It is smart to save money in an _____ for unexpected costs like car repairs.",
+        "prompt": "Which word or phrase means “money saved for unexpected problems”?",
         "options": [
-          "deductions",
+          "promotion",
           "gross pay",
-          "benefits",
           "emergency fund"
         ],
         "answers": [
@@ -4323,24 +4312,24 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “official approval to do something”?",
+        "prompt": "Which word or phrase means “something a person is entitled to do or have”?",
         "options": [
           "advocate",
-          "respect",
+          "raise a concern",
           "right"
         ],
         "answers": [
           "right"
         ],
-        "explanation": "right: official approval to do something. Workers have the right to a safe workplace.",
+        "explanation": "right: something a person is entitled to do or have. Workers discussed their right to a safe workplace.",
         "source": "vocab-mar-17-19"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to speak up for yourself or others”?",
+        "prompt": "Which word or phrase means “to speak up for yourself or others”?",
         "options": [
-          "respect",
+          "raise a concern",
           "advocate",
           "right"
         ],
@@ -4551,26 +4540,26 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “a choice you make”?",
+        "prompt": "Which word or phrase means “to choose what to do after considering the options”?",
         "options": [
-          "advice",
-          "decision",
+          "constructive criticism",
+          "make a decision",
           "feedback"
         ],
         "answers": [
-          "decision"
+          "make a decision"
         ],
-        "explanation": "decision: a choice you make. We need to make a decision about the budget by tomorrow.",
+        "explanation": "make a decision: to choose what to do after considering the options. We need to make a decision about the schedule.",
         "source": "vocab-mar-24-26"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “a result or effect of an action”?",
+        "prompt": "Which word or phrase means “a result or effect of an action”?",
         "options": [
           "consequence",
           "feedback",
-          "advice"
+          "constructive criticism"
         ],
         "answers": [
           "consequence"
@@ -4784,32 +4773,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "You should _____ eating too much sugar if you want to be healthier.",
+        "prompt": "Which word or phrase means “to try to get help from a healthcare professional”?",
         "options": [
-          "quit",
-          "avoid",
-          "cough",
-          "habit"
+          "seek care",
+          "symptom",
+          "persistent"
         ],
         "answers": [
-          "avoid"
+          "seek care"
         ],
-        "explanation": "avoid: to stay away from. You should avoid eating too much sugar.",
+        "explanation": "seek care: to try to get help from a healthcare professional. I called the clinic to ask where I could seek care.",
         "source": "vocab-apr-7-9"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to stop doing something”?",
+        "prompt": "Which word or phrase means “a later visit to check progress or discuss what happens next”?",
         "options": [
-          "cough",
-          "infected",
-          "quit"
+          "symptom",
+          "persistent",
+          "follow-up appointment"
         ],
         "answers": [
-          "quit"
+          "follow-up appointment"
         ],
-        "explanation": "quit: to stop doing something. He decided to quit his job and go back to school.",
+        "explanation": "follow-up appointment: a later visit to check progress or discuss what happens next. When is my follow-up appointment?",
         "source": "vocab-apr-7-9"
       },
       {
@@ -5023,31 +5011,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to get better after being sick”?",
+        "prompt": "Which word or phrase means “to get better after an illness, injury, or difficult experience”?",
         "options": [
-          "improve",
-          "exercise",
-          "recover"
+          "ease up",
+          "cut back on",
+          "recover from"
         ],
         "answers": [
-          "recover"
+          "recover from"
         ],
-        "explanation": "recover: to get better after being sick. It took him a few weeks to fully recover from the surgery.",
+        "explanation": "recover from: to get better after an illness, injury, or difficult experience. It took me several weeks to recover from the surgery.",
         "source": "vocab-apr-14-16"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “to get better, to make progress”?",
+        "prompt": "Which word or phrase means “to become less strong or severe”?",
         "options": [
-          "exercise",
-          "improve",
-          "recover"
+          "cut back on",
+          "ease up",
+          "recover from"
         ],
         "answers": [
-          "improve"
+          "ease up"
         ],
-        "explanation": "improve: to get better, to make progress. Rest and fluids will help you improve quickly.",
+        "explanation": "ease up: to become less strong or severe. The pain began to ease up yesterday.",
         "source": "vocab-apr-14-16"
       },
       {
@@ -5207,31 +5195,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to do physical activity to stay healthy”?",
+        "prompt": "Which word or phrase means “to get better after an illness, injury, or difficult experience”?",
         "options": [
-          "improve",
-          "exercise",
-          "recover"
+          "follow-up appointment",
+          "recover from",
+          "persistent"
         ],
         "answers": [
-          "exercise"
+          "recover from"
         ],
-        "explanation": "exercise: to do physical activity to stay healthy. You should exercise for at least 30 minutes every day.",
+        "explanation": "recover from: to get better after an illness, injury, or difficult experience. It took me several weeks to recover from the surgery.",
         "source": "vocab-apr-w30-review"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “the things you usually do each day”?",
+        "prompt": "Which word or phrase means “to reduce how much you use, do, or consume”?",
         "options": [
-          "routine",
-          "recover",
-          "improve"
+          "cut back on",
+          "persistent",
+          "follow-up appointment"
         ],
         "answers": [
-          "routine"
+          "cut back on"
         ],
-        "explanation": "routine: the things you usually do each day. I want to change my evening routine.",
+        "explanation": "cut back on: to reduce how much you use, do, or consume. I am trying to cut back on soda.",
         "source": "vocab-apr-w30-review"
       },
       {
@@ -5435,32 +5423,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “when your body temperature is too high”?",
+        "prompt": "Which word or phrase means “a healthcare professional who prepares medicines and explains their use”?",
         "options": [
-          "fever",
-          "appointment",
-          "checkup"
+          "pharmacist",
+          "refill",
+          "over-the-counter"
         ],
         "answers": [
-          "fever"
+          "pharmacist"
         ],
-        "explanation": "fever: when your body temperature is too high. She has a high fever and needs to rest.",
+        "explanation": "pharmacist: a healthcare professional who prepares medicines and explains their use. The pharmacist answered my questions about the label.",
         "source": "vocab-apr-28-30"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "The flu is very _____, so stay home from work if you are sick.",
+        "prompt": "Which word or phrase means “a change in a medicine's effect when it is taken with another substance”?",
         "options": [
-          "contagious",
-          "fever",
-          "diagnosis",
-          "checkup"
+          "refill",
+          "over-the-counter",
+          "interaction"
         ],
         "answers": [
-          "contagious"
+          "interaction"
         ],
-        "explanation": "contagious: can spread easily to other people. The flu is very contagious, so stay home from work.",
+        "explanation": "interaction: a change in a medicine's effect when it is taken with another substance. Could there be an interaction between these medicines?",
         "source": "vocab-apr-28-30"
       },
       {
@@ -5674,31 +5661,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “a sign that something is wrong with your body”?",
+        "prompt": "Which word or phrase means “a change in how someone feels or functions that may indicate a health problem”?",
         "options": [
-          "temperature",
+          "treatment plan",
           "prescribe",
           "symptom"
         ],
         "answers": [
           "symptom"
         ],
-        "explanation": "symptom: a sign that something is wrong with your body. A cough and sore throat are common symptoms of a cold.",
+        "explanation": "symptom: a change in how someone feels or functions that may indicate a health problem. I wrote down each symptom before my appointment.",
         "source": "vocab-may-5-7"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “how hot or cold your body is”?",
+        "prompt": "Which word or phrase means “the agreed steps for managing a health condition”?",
         "options": [
           "prescribe",
-          "temperature",
+          "treatment plan",
           "symptom"
         ],
         "answers": [
-          "temperature"
+          "treatment plan"
         ],
-        "explanation": "temperature: how hot or cold your body is. The nurse took my temperature to check for a fever.",
+        "explanation": "treatment plan: the agreed steps for managing a health condition. At my next visit, I will ask about my treatment plan.",
         "source": "vocab-may-5-7"
       },
       {
@@ -5902,22 +5889,22 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “to rest and become calm”?",
+        "prompt": "Which word or phrase means “to relax after work, stress, or activity”?",
         "options": [
           "self-care",
-          "relax",
+          "unwind",
           "wellness"
         ],
         "answers": [
-          "relax"
+          "unwind"
         ],
-        "explanation": "relax: to rest and become calm. I like to relax with a good book after work.",
+        "explanation": "unwind: to relax after work, stress, or activity. I listen to music to unwind after work.",
         "source": "vocab-may-12-14"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “ways to handle stress or problems”?",
+        "prompt": "Which word or phrase means “ways to handle stress or problems”?",
         "options": [
           "coping skills",
           "wellness",
@@ -6135,7 +6122,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “liquids you drink (water, tea, broth)”?",
+        "prompt": "Which word or phrase means “liquids, including drinks such as water, tea, or broth”?",
         "options": [
           "fluids",
           "processed",
@@ -6144,22 +6131,22 @@
         "answers": [
           "fluids"
         ],
-        "explanation": "fluids: liquids you drink (water, tea, broth). Drink plenty of fluids when you are sick.",
+        "explanation": "fluids: liquids, including drinks such as water, tea, or broth. The nurse asked whether I had been drinking enough fluids.",
         "source": "vocab-may-19-21"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “pain or irritation in your throat”?",
+        "prompt": "Which word or phrase means “to gradually stop having an effect”?",
         "options": [
           "processed",
           "home remedy",
-          "sore throat"
+          "wear off"
         ],
         "answers": [
-          "sore throat"
+          "wear off"
         ],
-        "explanation": "sore throat: pain or irritation in your throat. I have a sore throat and a cough.",
+        "explanation": "wear off: to gradually stop having an effect. I asked the pharmacist when the effect might wear off.",
         "source": "vocab-may-19-21"
       },
       {
@@ -6369,31 +6356,31 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “improvement over time”?",
+        "prompt": "Which word or phrase means “to improve or move closer to a goal”?",
         "options": [
-          "challenge",
-          "success",
-          "progress"
+          "overcome a challenge",
+          "milestone",
+          "make progress"
         ],
         "answers": [
-          "progress"
+          "make progress"
         ],
-        "explanation": "progress: improvement over time. You are making good progress in your English class.",
+        "explanation": "make progress: to improve or move closer to a goal. I make progress when I practice regularly.",
         "source": "vocab-may-26-28"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “something difficult”?",
+        "prompt": "Which word or phrase means “to successfully deal with something difficult”?",
         "options": [
-          "success",
-          "challenge",
-          "progress"
+          "milestone",
+          "overcome a challenge",
+          "make progress"
         ],
         "answers": [
-          "challenge"
+          "overcome a challenge"
         ],
-        "explanation": "challenge: something difficult. Learning a new language is a big challenge.",
+        "explanation": "overcome a challenge: to successfully deal with something difficult. Support from classmates can help you overcome a challenge.",
         "source": "vocab-may-26-28"
       },
       {
@@ -6548,12 +6535,11 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "This English class offers many opportunities for personal _____.",
+        "prompt": "Which word or phrase means “getting better over time”?",
         "options": [
           "achievement",
           "growth",
-          "goal",
-          "commitment"
+          "set a goal"
         ],
         "answers": [
           "growth"
@@ -6564,10 +6550,10 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “feeling sure of yourself”?",
+        "prompt": "Which word or phrase means “feeling sure of yourself”?",
         "options": [
           "confident",
-          "goal",
+          "set a goal",
           "achievement"
         ],
         "answers": [
@@ -6728,10 +6714,10 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word means “a promise to keep doing something”?",
+        "prompt": "Which word or phrase means “a promise to keep doing something”?",
         "options": [
           "commitment",
-          "goal",
+          "set a goal",
           "achievement"
         ],
         "answers": [
@@ -6743,12 +6729,11 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "I _____ all the help my teacher gave me this year.",
+        "prompt": "Which word or phrase means “to be thankful for something”?",
         "options": [
-          "commitment",
+          "set a goal",
           "achievement",
-          "appreciate",
-          "confident"
+          "appreciate"
         ],
         "answers": [
           "appreciate"
@@ -6908,27 +6893,26 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "My _____ is to save enough money to buy a car next year.",
+        "prompt": "Which word or phrase means “to decide on something you want to achieve”?",
         "options": [
+          "achievement",
           "growth",
-          "commitment",
-          "goal",
-          "achievement"
+          "set a goal"
         ],
         "answers": [
-          "goal"
+          "set a goal"
         ],
-        "explanation": "goal: something you want to achieve. My goal is to save enough money for a car.",
+        "explanation": "set a goal: to decide on something you want to achieve. I want to set a goal for my next English class.",
         "source": "vocab-jun-2-4"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Which word means “something you did well or completed”?",
+        "prompt": "Which word or phrase means “something you did well or completed”?",
         "options": [
           "growth",
           "achievement",
-          "goal"
+          "set a goal"
         ],
         "answers": [
           "achievement"
