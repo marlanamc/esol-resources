@@ -84,12 +84,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneAfterClass", "Outside the community center, Tuesday evening. Rosa came to class 30 minutes late.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Fatima", avatar: "🧕🏾", text: "Rosa! You're <strong>never</strong> late. What happened tonight?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "The 116. I <strong>always</strong> take it at 5:15, but tonight I waited 40 minutes.", side: "right", tone: "terracotta" },
-          { speaker: "Fatima", avatar: "🧕🏾", text: "It's detoured this week. The stop moved two blocks up, next to the pharmacy.", side: "left", tone: "sage" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "Rosa, you're <strong>never</strong> late. What happened tonight?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "The 116 bus. I <strong>always</strong> take it to class at 5:15, but I waited at the wrong stop.", side: "right", tone: "terracotta" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "The stop moved this week. It's next to the pharmacy now.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "How do you know that?", side: "right", tone: "terracotta" },
-          { speaker: "Fatima", avatar: "🧕🏾", text: "The MBTA app. I <strong>usually</strong> check it before I leave at 5:30. Don't you?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>never</strong> use apps for the bus. I just walk to the stop and wait.", side: "right", tone: "terracotta" },
+          { speaker: "Fatima", avatar: "🧕🏾", text: "I <strong>usually</strong> check the bus app before I leave at 5:30.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>never</strong> check it. I just walk to the same stop.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -572,12 +572,12 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighbors", "Outside Rosa's building on Meridian Street, Saturday evening. Her neighbor Valentina stops her.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Valentina", avatar: "👩🏾", text: "Rosa, wait. I got a text. It says I owe $6.95 for a toll. Should I pay it?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Do you have a car?", side: "right", tone: "terracotta" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "No. I <strong>always</strong> take the bus. And I missed class Thursday. The 116 <strong>never</strong> came.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "It's detoured. The stop is next to the pharmacy this week. I <strong>usually</strong> check the app now.", side: "right", tone: "terracotta" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "You? The app? On Tuesday you didn't even have it.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "A lot can change in a week. And that text is fake. <strong>Don't pay</strong> it. <strong>Delete</strong> it.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Rosa, I missed class on Thursday. I waited on Meridian Street, and the 116 didn't come.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "<strong>Don't wait</strong> there. <strong>Walk</strong> one block to the pharmacy. I <strong>usually</strong> check the app before I leave.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "You have the app now? On Tuesday you didn't even have it.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Jessica helped me get it after class on Tuesday.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "I also got a toll text for $6.95. But I <strong>always</strong> take the bus. I <strong>never</strong> drive.", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Then <strong>don't pay</strong> it. <strong>Delete</strong> the text. I got the same one.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
