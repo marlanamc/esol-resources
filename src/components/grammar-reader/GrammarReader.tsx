@@ -65,13 +65,13 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [saveNotice, setSaveNotice] = useState("");
     const saveGuideWork = useCallback(async (key: string, operation: () => Promise<void>) => {
         const ok = await saveQueue.current.run(key, operation);
-        setFailedSaveCount(saveQueue.current.pendingCount);
+        setFailedSaveCount(saveQueue.current.failedCount);
         return ok;
     }, []);
     const retryGuideSaves = useCallback(async () => {
         setRetryingSaves(true);
         const ok = await saveQueue.current.retry();
-        setFailedSaveCount(saveQueue.current.pendingCount);
+        setFailedSaveCount(saveQueue.current.failedCount);
         setRetryingSaves(false);
         return ok;
     }, []);
