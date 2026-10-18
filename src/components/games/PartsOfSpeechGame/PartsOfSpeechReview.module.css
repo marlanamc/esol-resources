@@ -158,7 +158,7 @@
 .correct .resultIcon { color: var(--color-success); }
 .incorrect .resultIcon { color: var(--wj-error-ink); }
 .feedback { margin-top: 1.5rem; padding: 1rem 1.125rem; border-radius: .875rem; background: var(--cue-bg); color: var(--color-text); border: 1px solid color-mix(in srgb, var(--cue) 28%, transparent); }
-.verdict { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 .75rem; padding: .375rem .875rem .375rem .625rem; border-radius: 999px; font-size: 1.125rem; font-weight: 700; }
+.verdict { display: flex; width: fit-content; align-items: center; gap: .5rem; margin: 0 0 .875rem; padding: .375rem .875rem .375rem .625rem; border-radius: 999px; font-size: 1.125rem; font-weight: 700; }
 .verdictOk { background: var(--wj-verdict-ok-bg); color: var(--wj-verdict-ok-ink); }
 .verdictMiss { background: var(--wj-verdict-miss-bg); color: var(--wj-verdict-miss-ink); }
 .bridgeRow { padding: 1rem; border-radius: .875rem; background: var(--cue-bg); border: 1px solid color-mix(in srgb, var(--cue) 28%, transparent); }
