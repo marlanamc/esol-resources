@@ -12,6 +12,11 @@
   --wj-none-bg: #f7f2e8;
   --wj-none-ink: #5e6b7d;
   --wj-error-ink: #b3262c; /* --color-error is 4.2:1 on cream; this reads at body size */
+  /* Solid verdict labels read the same on every category tint (6.4:1 or better). */
+  --wj-verdict-ok-bg: #2b6a49;
+  --wj-verdict-ok-ink: #ffffff;
+  --wj-verdict-miss-bg: #b3262c;
+  --wj-verdict-miss-ink: #ffffff;
   --wj-primary-ink: #ffffff;
   --wj-ease: cubic-bezier(.16, 1, .3, 1);
 }
@@ -27,6 +32,10 @@
   --wj-none-bg: var(--color-bg-light);
   --wj-none-ink: var(--color-text-muted);
   --wj-error-ink: var(--color-error);
+  --wj-verdict-ok-bg: #8fd6ae;
+  --wj-verdict-ok-ink: #0f2a1f;
+  --wj-verdict-miss-bg: #ffb0ab;
+  --wj-verdict-miss-ink: #3d0a0c;
   --wj-primary-ink: #122536;
 }
 
@@ -146,10 +155,12 @@
 .correct, .correct[aria-pressed='true'] { box-shadow: inset 0 0 0 2px var(--color-success); }
 .incorrect, .incorrect[aria-pressed='true'] { box-shadow: inset 0 0 0 2px var(--wj-error-ink); }
 .resultIcon { margin-inline-start: .4rem; flex-shrink: 0; }
-.correct .resultIcon, .correctText { color: var(--color-success); }
-.incorrect .resultIcon, .incorrectText { color: var(--wj-error-ink); }
+.correct .resultIcon { color: var(--color-success); }
+.incorrect .resultIcon { color: var(--wj-error-ink); }
 .feedback { margin-top: 1.5rem; padding: 1rem 1.125rem; border-radius: .875rem; background: var(--cue-bg); color: var(--color-text); border: 1px solid color-mix(in srgb, var(--cue) 28%, transparent); }
-.verdict { display: flex; align-items: center; gap: .5rem; margin: 0 0 .75rem; font-size: 1.125rem; font-weight: 700; }
+.verdict { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 .75rem; padding: .375rem .875rem .375rem .625rem; border-radius: 999px; font-size: 1.125rem; font-weight: 700; }
+.verdictOk { background: var(--wj-verdict-ok-bg); color: var(--wj-verdict-ok-ink); }
+.verdictMiss { background: var(--wj-verdict-miss-bg); color: var(--wj-verdict-miss-ink); }
 .bridgeRow { padding: 1rem; border-radius: .875rem; background: var(--cue-bg); border: 1px solid color-mix(in srgb, var(--cue) 28%, transparent); }
 .bridgeRow dt { color: var(--cue); }
 
