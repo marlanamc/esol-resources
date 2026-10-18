@@ -173,6 +173,9 @@ export const futurePerfectContinuousProgressContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-continuous-progress-q1",
       "type": "fill-blank",
+      "topic": "future-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-future-perfect-continuous-positive",
       "question": "By June, Fabienne ___ (study) here for about nine months. Use will have been + -ing.",
       "correctAnswer": "will have been studying",
       "explanation": "will have been studying. Count duration up to the stated time."
@@ -180,6 +183,9 @@ export const futurePerfectContinuousProgressContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-continuous-progress-q2",
       "type": "fill-blank",
+      "topic": "future-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-future-perfect-continuous-positive",
       "question": "By June, Michael ___ (work) at the restaurant for a year. Use the future perfect continuous.",
       "correctAnswer": "will have been working",
       "explanation": "will have been working. Count duration up to the stated time."
@@ -187,6 +193,9 @@ export const futurePerfectContinuousProgressContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-continuous-progress-q3",
       "type": "fill-blank",
+      "topic": "future-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-future-perfect-continuous-positive",
       "question": "By Friday, Lan ___ (practice) her presentation for two weeks. Emphasize duration with the future perfect continuous.",
       "correctAnswer": "will have been practicing",
       "explanation": "will have been practicing. Count duration up to the stated time."
@@ -194,6 +203,9 @@ export const futurePerfectContinuousProgressContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-continuous-progress-q4",
       "type": "fill-blank",
+      "topic": "future-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-future-perfect-continuous-positive",
       "question": "By next month, I ___ (learn) English for a year. Use the future perfect continuous.",
       "correctAnswer": "will have been learning",
       "explanation": "will have been learning. Count duration up to the stated time."
@@ -201,6 +213,9 @@ export const futurePerfectContinuousProgressContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-continuous-progress-q5",
       "type": "fill-blank",
+      "topic": "future-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-future-perfect-continuous-positive",
       "question": "By next month, we ___ (study) together for a year. Use the future perfect continuous.",
       "correctAnswer": "will have been studying",
       "explanation": "Keep the helper words together: will have been studying."

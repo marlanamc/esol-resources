@@ -173,6 +173,9 @@ export const pastPerfectContinuousWorkContent: InteractiveGuideContent = {
     {
       "id": "past-perfect-continuous-work-q1",
       "type": "fill-blank",
+      "topic": "past-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-past-perfect-continuous-positive",
       "question": "Nadine ___ (work) nights for two years when the schedule changed. Use had been + -ing.",
       "correctAnswer": "had been working",
       "explanation": "had been working. Count duration up to the stated time."
@@ -180,6 +183,9 @@ export const pastPerfectContinuousWorkContent: InteractiveGuideContent = {
     {
       "id": "past-perfect-continuous-work-q2",
       "type": "fill-blank",
+      "topic": "past-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-past-perfect-continuous-positive",
       "question": "Minh ___ (clean) rooms for three hours when his break started. Use the past perfect continuous.",
       "correctAnswer": "had been cleaning",
       "explanation": "had been cleaning. Count duration up to the stated time."
@@ -187,6 +193,9 @@ export const pastPerfectContinuousWorkContent: InteractiveGuideContent = {
     {
       "id": "past-perfect-continuous-work-q3",
       "type": "fill-blank",
+      "topic": "past-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-past-perfect-continuous-positive",
       "question": "I ___ (wait) for an hour when the manager finally arrived yesterday. Emphasize the duration with had been + -ing.",
       "correctAnswer": "had been waiting",
       "explanation": "had been waiting. Count duration up to the stated time."
@@ -194,6 +203,9 @@ export const pastPerfectContinuousWorkContent: InteractiveGuideContent = {
     {
       "id": "past-perfect-continuous-work-q4",
       "type": "fill-blank",
+      "topic": "past-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-past-perfect-continuous-positive",
       "question": "Complete the model: I ___ (study) English for six months when I started my new job. Use the past perfect continuous.",
       "correctAnswer": "had been studying",
       "explanation": "had been studying. Count duration up to the stated time."
@@ -201,6 +213,9 @@ export const pastPerfectContinuousWorkContent: InteractiveGuideContent = {
     {
       "id": "past-perfect-continuous-work-q5",
       "type": "fill-blank",
+      "topic": "past-perfect-continuous",
+      "skill": "form",
+      "skillTag": "form-past-perfect-continuous-positive",
       "question": "Before the hotel closed, we ___ (work) there for a year. Use the past perfect continuous.",
       "correctAnswer": "had been working",
       "explanation": "Keep the helper words together: had been working."

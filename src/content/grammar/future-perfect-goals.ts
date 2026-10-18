@@ -173,6 +173,9 @@ export const futurePerfectGoalsContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-goals-q1",
       "type": "fill-blank",
+      "topic": "future-perfect",
+      "skill": "form",
+      "skillTag": "form-future-perfect-positive",
       "question": "By Friday, Sarah ___ (finish) her activity log. Use will have + past participle.",
       "correctAnswer": "will have finished",
       "explanation": "will have finished. Look at the completed result by a future deadline."
@@ -180,6 +183,9 @@ export const futurePerfectGoalsContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-goals-q2",
       "type": "fill-blank",
+      "topic": "future-perfect",
+      "skill": "form",
+      "skillTag": "form-future-perfect-positive",
       "question": "By Sunday, Tuan ___ (write) his plan. Use the future perfect.",
       "correctAnswer": "will have written",
       "explanation": "will have written. Look at the completed result by a future deadline."
@@ -187,6 +193,9 @@ export const futurePerfectGoalsContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-goals-q3",
       "type": "fill-blank",
+      "topic": "future-perfect",
+      "skill": "form",
+      "skillTag": "form-future-perfect-positive",
       "question": "By the end of May, Beatriz ___ (complete) her walking plan. Use the future perfect.",
       "correctAnswer": "will have completed",
       "explanation": "will have completed. Look at the completed result by a future deadline."
@@ -194,6 +203,9 @@ export const futurePerfectGoalsContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-goals-q4",
       "type": "fill-blank",
+      "topic": "future-perfect",
+      "skill": "form",
+      "skillTag": "form-future-perfect-positive",
       "question": "By Thursday, I ___ (do) my English homework. Use the future perfect.",
       "correctAnswer": "will have done",
       "explanation": "will have done. Look at the completed result by a future deadline."
@@ -201,6 +213,9 @@ export const futurePerfectGoalsContent: InteractiveGuideContent = {
     {
       "id": "future-perfect-goals-q5",
       "type": "fill-blank",
+      "topic": "future-perfect",
+      "skill": "form",
+      "skillTag": "form-future-perfect-positive",
       "question": "By Monday, we ___ (finish) the plan. Use the future perfect.",
       "correctAnswer": "will have finished",
       "explanation": "Keep the helper words together: will have finished."
