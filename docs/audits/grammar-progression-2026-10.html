@@ -102,14 +102,15 @@ code { font-family: var(--mono); font-size: 0.85em; background: var(--accent-sof
 
 <div class="wrap">
   <header style="display:grid;gap:0.9rem">
-    <div class="kicker">Level 3 ESOL · FY27 · Audit of October 17, 2026</div>
+    <div class="kicker">Level 3 ESOL · FY27 · Audit of October 17, 2026 · Updated October 18</div>
     <h1>Grammar Progression, Weeks 1–36</h1>
     <p class="lede">The unit topics stay fixed. This audit looks only at the order of the grammar: what each week teaches, whether it builds on what came before, and where students might get overwhelmed or meet something too late. The changes cover Weeks 7–36; the overview at the bottom shows the whole year, starting with Week 1.</p>
     <div class="status">
-      <span class="chip ok">Drafted on branch grammar-progression-fixes</span>
-      <span class="chip ok">Tests and audits pass</span>
-      <span class="chip todo">Not merged yet</span>
-      <span class="chip todo">Database sync still needed</span>
+      <span class="chip ok">Merged in PR #119</span>
+      <span class="chip ok">Deployed: guides and course map live</span>
+      <span class="chip ok">Quiz content checked</span>
+      <span class="chip todo">Live quizzes not synced yet</span>
+      <span class="chip todo">W15 activity row not created yet</span>
     </div>
   </header>
 
@@ -217,15 +218,35 @@ code { font-family: var(--mono); font-size: 0.85em; background: var(--accent-sof
     <div class="kicker">Weekly quizzes</div>
     <h2>Quizzes only test what the guides teach</h2>
     <p>Each weekly quiz has verb forms, two hand-written "apply" sentences, and two grammar questions pulled from that week's first required guide.</p>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>Quiz</th><th>Grammar it tests</th><th>Taught in the guide?</th></tr></thead>
+        <tbody>
+          <tr><td class="n">W7</td><td>If + present, will (2 apply, 2 grammar)</td><td>Yes: Zero + First Conditional, now required</td></tr>
+          <tr><td class="n">W9</td><td>Have you ever + V3</td><td>Yes: Have You Ever</td></tr>
+          <tr><td class="n">W14</td><td colspan="2">No quiz this week</td></tr>
+          <tr><td class="n">W15</td><td>Vocabulary recap only (party week)</td><td>Yes: no grammar questions</td></tr>
+          <tr><td class="n">W24</td><td>Just, yet, already + V3</td><td>Yes: Just, Already, Yet: The Job Search</td></tr>
+          <tr><td class="n">W31</td><td>If + had + V3, would have + V3</td><td>Yes: Third Conditional</td></tr>
+          <tr><td class="n">W36</td><td>Present continuous, present simple, present perfect, past perfect, going to</td><td>Yes: all reviewed in A Year in Review</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Checked October 18 against the merged code. <code>quizzes:build --check</code> passes: every quiz matches the current guides.</p>
     <ul>
       <li><strong>W7</strong> now asks about the first conditional. Its apply sentences became "If you ___ a letter to the council, they will read it" and "If I ___ an email to the mayor, her office will answer me."</li>
       <li><strong>W24</strong> now asks about just and yet. Its apply sentence used "since," so it became "I have already ___ the safety rules."</li>
       <li><strong>W36</strong> asks about going to, which is now taught in W14 and W36.</li>
-      <li><strong>W9, W14, W31:</strong> I checked the apply sentences, and they still match their guides. W14 has no quiz.</li>
+      <li><strong>W9, W31:</strong> I checked the apply sentences, and they still match their guides.</li>
+      <li><strong>Small repeat:</strong> W36 Bonus Quizzes 1 and 3 both ask the same question ("Rosa is texting the babysitter…") because the guide's mini-quiz has five questions and the three bonus quizzes draw six. It's harmless, but worth knowing.</li>
     </ul>
     <div class="note">
+      <h3>Students don't see the new quizzes yet</h3>
+      <p>The quiz content is checked and merged, but the live quizzes come from the database, and the sync hasn't run. Right now the live W7 guide is the conditional while the live W7 quiz still asks about suggestions. Running the sync before W7 opens on October 25 fixes this.</p>
+    </div>
+    <div class="note">
       <h3>The quiz file was already out of date</h3>
-      <p>Before any of this work, 13 weeks of quizzes (W11, W12, W13, W17, W19, W25, W27, W28, W29, W32, W33, W34) no longer matched edits made to their guides, and nothing checked for it. The rebuild brings every quiz back in line. A new check in <code>health:gate</code> now fails CI if a guide changes without a quiz rebuild.</p>
+      <p>Before any of this work, 12 weeks of quizzes (W11, W12, W13, W17, W19, W25, W27, W28, W29, W32, W33, W34) no longer matched edits made to their guides, and nothing checked for it. The rebuild brings every quiz back in line. A new check in <code>health:gate</code> now fails CI if a guide changes without a quiz rebuild.</p>
     </div>
   </section>
 
@@ -369,13 +390,19 @@ code { font-family: var(--mono); font-size: 0.85em; background: var(--accent-sof
   </section>
 
   <section style="max-width:46rem">
-    <div class="kicker">Before it goes live</div>
-    <h2>Remaining steps</h2>
+    <div class="kicker">Status</div>
+    <h2>Done and remaining</h2>
+    <h3>Done</h3>
+    <ul>
+      <li><strong>Merged</strong> in PR #119 on October 18, and <strong>deployed</strong>. The deploy re-seeds the course map, so W7's required guide, W9's optional extra, the new W15 guide link and the week goals are live.</li>
+      <li><strong>Quiz content checked</strong> against the merged guides (table above).</li>
+    </ul>
+    <h3>Remaining, before W7 opens Sunday, October 25</h3>
     <ol>
-      <li><strong>W7 goes live Sunday, October 25.</strong> To make the conditional the required guide that week, the branch has to be merged and synced before then. Also check that the "Contact an Official Practice" activity doesn't depend on the suggestions guide; its content is in the database, so I couldn't see it.</li>
-      <li><strong>Read the W24 guide on a phone.</strong> It's mostly new content.</li>
-      <li><strong>Merge the branch.</strong> Guide pages update as soon as it deploys.</li>
-      <li><strong>Sync the database.</strong> The live course map and quizzes are stored in the database. Six updates: swap the required guide in W7; add the new W15 guide (a course-map item plus an activity row, so progress saves) and make the 12-tense overview optional; set Just, Already, Yet in W9 to optional; rename the W24 guide title; update the W7, W9 and W14 goals; and run <code>npm run quizzes:sync -- --apply</code>, which skips quizzes students have already taken. Your local setup points at the production database, so this step waits for your go-ahead.</li>
+      <li><strong>Sync the live quizzes:</strong> <code>npm run quizzes:sync -- --apply</code>. It skips any quiz students have already taken.</li>
+      <li><strong>Create the W15 activity row and rename the W24 activity:</strong> <code>node --import tsx scripts/course-map/grammar-progression-oct-2026.ts --apply</code>. Without the row, W15 progress won't save. W15 opens in December, so this one is less urgent.</li>
+      <li><strong>Check "Contact an Official Practice"</strong> (W7) doesn't depend on the suggestions guide. Its content is only in the database.</li>
+      <li><strong>Read the W24 and W15 guides on a phone.</strong> Both are mostly new content.</li>
     </ol>
   </section>
 </div>
