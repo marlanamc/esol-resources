@@ -603,15 +603,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Your Week in English"
           },
           {
-            "id": "getting-there-directions",
-            "href": "/grammar-reader/getting-there-directions",
-            "slot": "extra",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Getting There: Directions + Imperatives"
-          },
-          {
             "id": "vocab-oct-w2-matching",
             "activityId": "vocab-oct-w2",
             "slot": "required",
@@ -634,12 +625,12 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "parts-of-speech-week-6",
             "activityId": "parts-of-speech-game",
-            "href": "/activity/parts-of-speech-game?lesson=week-6-objects",
+            "href": "/activity/parts-of-speech-game?lesson=week-7-adverbs",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "game",
-            "title": "Week 6: Actions and Descriptions"
+            "title": "Week 6: Adjectives and Adverbs"
           },
           {
             "id": "verb-quiz-3",
@@ -848,16 +839,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "vocabUi": "fill-blank",
             "order": 4,
             "title": "Communication Verbs: Fill in the Blank"
-          },
-          {
-            "id": "parts-of-speech-week-7",
-            "activityId": "parts-of-speech-game",
-            "href": "/activity/parts-of-speech-game?lesson=week-7-adverbs",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "game",
-            "title": "Week 7: Adverbs: How and How Often"
           },
           {
             "id": "verb-quiz-4",

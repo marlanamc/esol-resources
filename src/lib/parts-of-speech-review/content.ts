@@ -1,7 +1,7 @@
 export const REVIEW_ACTIVITY_ID = 'parts-of-speech-game';
-export const REVIEW_CATEGORIES = ['Noun', 'Verb', 'Adjective', 'Pronoun', 'Article', 'Determiner', 'Subject', 'Object', 'Complement', 'Base form', 'Past form', 'Past participle', 'Helping verb', 'Main verb', 'Linking verb', 'Adverb', 'Preposition', 'Conjunction', 'Gerund', 'Infinitive'] as const;
+export const REVIEW_CATEGORIES = ['Noun', 'Verb', 'Adjective', 'Pronoun', 'Article', 'Determiner', 'Subject', 'Base form', 'Past form', 'Past participle', 'Helping verb', 'Main verb', 'Linking verb', 'Adverb', 'Preposition', 'Conjunction', 'Gerund', 'Infinitive'] as const;
 export type ReviewCategory = typeof REVIEW_CATEGORIES[number];
-export type ReviewLessonId = 'sentence-check-in' | 'description-check-in' | 'pattern-check-in' | 'week-4-describing' | 'week-5-subjects' | 'week-6-objects' | 'week-7-adverbs' | 'foundation-check-in' | 'nouns-verbs' | 'adjectives-articles' | 'more-word-jobs' | 'pronouns' | 'determiners' | 'subjects' | 'verb-forms' | 'verb-phrases' | 'objects' | 'complements' | 'adjective-placement' | 'adverbs' | 'adverb-placement' | 'prepositions' | 'preposition-partners' | 'conjunctions' | 'dependent-clauses' | 'gerunds' | 'verb-patterns' | 'complete-patterns' | 'foundation-review' | 'sentence-review' | 'modifier-review' | 'connector-review' | 'final-review';
+export type ReviewLessonId = 'sentence-check-in' | 'description-check-in' | 'pattern-check-in' | 'week-4-describing' | 'week-5-subjects' | 'week-7-adverbs' | 'foundation-check-in' | 'nouns-verbs' | 'adjectives-articles' | 'more-word-jobs' | 'pronouns' | 'determiners' | 'subjects' | 'verb-forms' | 'verb-phrases' | 'adjective-placement' | 'adverbs' | 'adverb-placement' | 'prepositions' | 'preposition-partners' | 'conjunctions' | 'dependent-clauses' | 'gerunds' | 'verb-patterns' | 'foundation-review' | 'sentence-review' | 'modifier-review' | 'connector-review' | 'final-review';
 /** label: choose the highlighted part's job. find: tap the word with this job. choose: fill the blank with the word that fits. */
 export type ReviewQuestionKind = 'label' | 'find' | 'choose';
 export interface ReviewItem {
@@ -120,39 +120,8 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       choose("week-5-subjects-questions-16", "The baby ", "sleeps", " in the afternoon.", "Verb", ["sleep", "sleeps"], "The baby is one person, so we use sleeps."),
     ]),
   },
-  "week-6-objects": {
-    id: "week-6-objects", title: "Actions and descriptions", categories: ["Object", "Complement"],
-    prompt: "What is the highlighted part’s job in this sentence?",
-    transfer: {"prompt": "Describe someone, or tell what they do. Choose one sentence pattern.", "example": "My friend is kind. / My friend helps a neighbor.", "check": "Does the part after the verb describe your person, or tell who or what the action affects?", parts: [{"text": "My friend is "}, {"text": "kind", "category": "Complement"}, {"text": ". / My friend helps "}, {"text": "a neighbor", "category": "Object"}, {"text": "."}] },
-    examples: [
-      item("week-6-objects-examples-1", "She helps ", "a friend", ".", "Object", "A friend is who she helps. This part is the object."),
-      item("week-6-objects-examples-2", "She is ", "friendly", ".", "Complement", "Friendly describes her after is. This description completes the sentence; it is a complement."),
-    ],
-    ...rounds([
-      item("week-6-objects-questions-1", "He reads ", "a book", ".", "Object", "A book is what he reads."),
-      item("week-6-objects-questions-4", "My brother is ", "a driver", ".", "Complement", "A driver tells who my brother is after is."),
-      item("week-6-objects-questions-5", "They carry ", "the bags", ".", "Object", "The bags are what they carry."),
-      item("week-6-objects-questions-7", "Our teacher is ", "very patient", ".", "Complement", "Very patient describes our teacher after is."),
-      { ...item("week-6-objects-review-1", "", "The teacher", " helps us.", "Subject", "The teacher is the subject: who this sentence is about."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
-      { ...item("week-6-objects-review-2", "The teacher ", "helps", " us.", "Verb", "Helps tells what the teacher does."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
-    ], [
-      find("week-6-objects-questions-2", "The room is ", "quiet", ".", "Complement", "Quiet describes the room after is."),
-      find("week-6-objects-questions-3", "We need ", "help", ".", "Object", "Help is what we need."),
-      find("week-6-objects-questions-8", "I want ", "water", ".", "Object", "Water is what I want."),
-      find("week-6-objects-questions-9", "My mother is ", "tired", ".", "Complement", "Tired describes my mother after is."),
-      find("week-6-objects-questions-10", "He fixes ", "cars", ".", "Object", "Cars are what he fixes."),
-      find("week-6-objects-questions-11", "The store is ", "open", ".", "Complement", "Open describes the store after is."),
-    ], [
-      choose("week-6-objects-questions-6", "The children are ", "happy", ".", "Complement", ["happily", "happy"], "After are, we need a complement that describes the children: happy."),
-      choose("week-6-objects-questions-12", "Please call ", "me", " later.", "Object", ["I", "me"], "Me is the object: who you call. After a verb, use me, not I."),
-      choose("week-6-objects-questions-13", "He is ", "tired", " today.", "Complement", ["tire", "tired"], "After is, we need a word that describes him: tired."),
-      choose("week-6-objects-questions-14", "My friend helps ", "them", " every week.", "Object", ["them", "they"], "Them is the object: who my friend helps. After a verb, use them, not they."),
-      choose("week-6-objects-questions-15", "The test was ", "easy", ".", "Complement", ["easily", "easy"], "After was, we need a word that describes the test: easy."),
-      choose("week-6-objects-questions-16", "I visit ", "her", " on Sundays.", "Object", ["her", "she"], "Her is the object: who I visit. After a verb, use her, not she."),
-    ]),
-  },
   "week-7-adverbs": {
-    id: "week-7-adverbs", title: "Adverbs: how and how often", categories: ["Adjective", "Adverb"],
+    id: "week-7-adverbs", title: "Adjectives and adverbs", categories: ["Adjective", "Adverb"],
     transfer: {"prompt": "Say or write a sentence about how you do something, or how often you do it.", "example": "I usually cook at home.", "check": "Point to your adverb. Does it tell how, or how often?", parts: [{"text": "I "}, {"text": "usually", "category": "Adverb"}, {"text": " "}, {"text": "cook", "category": "Verb"}, {"text": " at home."}] },
     examples: [
       item("week-7-adverbs-examples-1", "She drives ", "carefully", ".", "Adverb", "Carefully tells how she drives. An adverb can add information about a verb."),
@@ -163,8 +132,8 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("week-7-adverbs-questions-5", "She is ", "always", " early.", "Adverb", "Always tells how consistently she is early. It comes after is here."),
       item("week-7-adverbs-questions-7", "She sings ", "beautifully", ".", "Adverb", "Beautifully tells how she sings."),
       item("week-7-adverbs-questions-8", "We had a ", "quiet", " evening.", "Adjective", "Quiet describes the noun evening."),
-      { ...item("week-7-adverbs-review-1", "She helps ", "a friend", ".", "Object", "A friend is who she helps: the object."), review: true, categories: ["Object", "Complement"], prompt: "Remember this: choose the label for the highlighted part." },
-      { ...item("week-7-adverbs-review-2", "She is ", "friendly", ".", "Complement", "Friendly describes her after is: a complement."), review: true, categories: ["Object", "Complement"], prompt: "Remember this: choose the label for the highlighted part." },
+      { ...item("week-7-adverbs-review-3", "", "The teacher", " helps us.", "Subject", "The teacher is the subject: who this sentence is about."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
+      { ...item("week-7-adverbs-review-4", "The teacher ", "helps", " us.", "Verb", "Helps tells what the teacher does."), review: true, categories: ["Subject", "Verb"], prompt: "Remember this: choose the label for the highlighted part." },
     ], [
       find("week-7-adverbs-questions-3", "We ", "usually", " cook at home.", "Adverb", "Usually tells how often we cook."),
       find("week-7-adverbs-questions-6", "He walks ", "quickly", ".", "Adverb", "Quickly tells how he walks."),
@@ -198,7 +167,7 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     transfer: { prompt: 'Say or write one sentence with a pronoun and an article.', example: 'She has a bike.', check: 'Point to the pronoun and the article.', parts: [{"text": "She", "category": "Pronoun"}, {"text": " has "}, {"text": "a", "category": "Article"}, {"text": " bike."}] },
   },
   "sentence-check-in": {
-    id: "sentence-check-in", title: "Sentence check-in", categories: ["Subject", "Verb", "Object", "Complement"],
+    id: "sentence-check-in", title: "Sentence check-in", categories: ["Subject", "Verb"],
     prompt: "Choose the label for the highlighted part.",
     examples: [
       item("sentence-check-in-examples-0", "", "The teacher", " helps us.", "Subject", "The teacher is who this sentence is about."),
@@ -207,10 +176,10 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     questions: [
       item("sentence-check-in-questions-0", "", "My sister", " works nearby.", "Subject", "My sister is who works nearby."),
       find("sentence-check-in-questions-1", "We ", "need", " help.", "Verb", "Need is the verb. It tells what we require."),
-      item("sentence-check-in-questions-2", "She reads ", "a book", ".", "Object", "A book is what she reads."),
-      find("sentence-check-in-questions-3", "The soup is ", "hot", ".", "Complement", "Hot describes the soup after is."),
-      item("sentence-check-in-questions-4", "He helps ", "a neighbor", ".", "Object", "A neighbor is who he helps."),
-      item("sentence-check-in-questions-5", "My sister is ", "a nurse", ".", "Complement", "A nurse tells who my sister is after is."),
+      item("sentence-check-in-questions-6", "", "The bus", " stops here.", "Subject", "The bus is what this sentence is about."),
+      find("sentence-check-in-questions-7", "My son ", "plays", " soccer.", "Verb", "Plays tells what my son does."),
+      item("sentence-check-in-questions-8", "Our neighbors ", "cook", " together.", "Verb", "Cook tells what our neighbors do."),
+      find("sentence-check-in-questions-9", "", "They", " live nearby.", "Subject", "They is who lives nearby."),
     ],
   },
   "description-check-in": {
@@ -371,38 +340,6 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("verb-phrases-questions-6", "I ", "have", " two children.", "Main verb", "Have is the main verb here. It is not helping another verb."),
     ],
   },
-  "objects": {
-    id: "objects", title: "Subjects and objects", categories: ["Subject", "Object"],
-    prompt: "Is the highlighted part a subject or an object?",
-    examples: [
-      item("objects-examples-1", "", "The student", " reads a book.", "Subject", "The student does the reading."),
-      item("objects-examples-2", "The student reads ", "a book", ".", "Object", "A book is what the student reads."),
-    ],
-    questions: [
-      find("objects-questions-1", "", "We", " help our neighbors.", "Subject", "We do the helping."),
-      choose("objects-questions-2", "Our neighbors help ", "us", ".", "Object", ["us", "we"], "After the verb help, use us, not we. Us is the object."),
-      item("objects-questions-3", "She gave ", "him", " a key.", "Object", "Him is the indirect object: the person receiving the key."),
-      item("objects-questions-4", "She gave him ", "a key", ".", "Object", "A key is the direct object: the thing given."),
-      item("objects-questions-5", "", "Cooking", " takes time.", "Subject", "Cooking is the activity the sentence is about."),
-      find("objects-questions-6", "I enjoy ", "cooking", ".", "Object", "Cooking is what I enjoy, so it is the object."),
-    ],
-  },
-  "complements": {
-    id: "complements", title: "Objects and complements", categories: ["Object", "Complement"],
-    prompt: "Is the highlighted part an object or a complement?",
-    examples: [
-      item("complements-examples-1", "She bought ", "a coat", ".", "Object", "A coat is what she bought."),
-      item("complements-examples-2", "She is ", "a nurse", ".", "Complement", "A nurse identifies she and completes the linking verb is."),
-    ],
-    questions: [
-      find("complements-questions-1", "The soup is ", "hot", ".", "Complement", "Hot describes the soup after the linking verb is."),
-      item("complements-questions-2", "He opened ", "the door", ".", "Object", "The door is what he opened."),
-      find("complements-questions-3", "They became ", "friends", ".", "Complement", "Friends identifies what they became."),
-      item("complements-questions-4", "We painted the wall ", "blue", ".", "Complement", "Blue describes the wall after painting: an object complement."),
-      item("complements-questions-5", "I need ", "a pen", ".", "Object", "A pen is what I need."),
-      item("complements-questions-6", "The keys are ", "on the table", ".", "Complement", "On the table completes this sentence by telling where the keys are."),
-    ],
-  },
   "adjective-placement": {
     id: "adjective-placement", title: "Adjectives in sentences", categories: ["Adjective", "Noun"],
     examples: [
@@ -540,22 +477,6 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
       item("verb-patterns-questions-6", "Please keep ", "trying", ".", "Gerund", "The pattern is keep doing something."),
     ],
   },
-  "complete-patterns": {
-    id: "complete-patterns", title: "Completing a sentence", categories: ["Object", "Complement"],
-    prompt: "How does the highlighted part complete the sentence?",
-    examples: [
-      item("complete-patterns-examples-1", "I need ", "help", ".", "Object", "Help is what I need. The pattern is subject + verb + object."),
-      item("complete-patterns-examples-2", "I feel ", "ready", ".", "Complement", "Ready describes me. The pattern is subject + linking verb + complement."),
-    ],
-    questions: [
-      item("complete-patterns-questions-1", "She reads ", "a book", ".", "Object", "A book is what she reads."),
-      item("complete-patterns-questions-2", "He became ", "a doctor", ".", "Complement", "A doctor tells who he became."),
-      find("complete-patterns-questions-3", "We enjoy ", "music", ".", "Object", "Music is what we enjoy."),
-      choose("complete-patterns-questions-4", "The food smells ", "delicious", ".", "Complement", ["delicious", "deliciously"], "Smells links the food to a description, so use an adjective: delicious."),
-      item("complete-patterns-questions-5", "They bought ", "a table", ".", "Object", "A table is what they bought."),
-      find("complete-patterns-questions-6", "The children seem ", "happy", ".", "Complement", "Happy describes the children after seem."),
-    ],
-  },
   "foundation-review": {
     id: "foundation-review", title: "Foundation review", categories: ["Noun", "Pronoun", "Article", "Determiner"],
     prompt: "Choose the label for the highlighted part.",
@@ -573,19 +494,19 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     ],
   },
   "sentence-review": {
-    id: "sentence-review", title: "Sentence structure review", categories: ["Subject", "Verb", "Object", "Complement"],
+    id: "sentence-review", title: "Sentence structure review", categories: ["Subject", "Verb"],
     prompt: "Choose the label for the highlighted part.",
     examples: [
       item("sentence-review-examples-1", "", "The nurse", " works here.", "Subject", "The nurse is who the sentence is about."),
-      item("sentence-review-examples-2", "She bought ", "a coat", ".", "Object", "A coat is what she bought."),
+      item("sentence-review-examples-3", "She ", "bought", " a coat.", "Verb", "Bought tells what she did."),
     ],
     questions: [
       item("sentence-review-questions-1", "", "We", " need help.", "Subject", "We is who needs help."),
       choose("sentence-review-questions-2", "My brother ", "cooks", " dinner.", "Verb", ["cook", "cooks"], "My brother is one person, so the verb is cooks."),
-      item("sentence-review-questions-3", "The soup is ", "hot", ".", "Complement", "Hot describes the soup after the linking verb is."),
-      find("sentence-review-questions-4", "They became ", "friends", ".", "Complement", "Friends identifies what they became."),
-      find("sentence-review-questions-5", "Our neighbors help ", "us", ".", "Object", "Us receives the help."),
-      item("sentence-review-questions-6", "She gave ", "him", " a key.", "Object", "Him is the indirect object: the person receiving the key."),
+      find("sentence-review-questions-7", "", "Maria", " works at night.", "Subject", "Maria is who works at night."),
+      item("sentence-review-questions-8", "The children ", "walk", " to school.", "Verb", "Walk tells what the children do."),
+      choose("sentence-review-questions-9", "She ", "has", " two jobs.", "Verb", ["have", "has"], "She is one person, so the verb is has."),
+      item("sentence-review-questions-10", "", "My neighbors", " help us.", "Subject", "My neighbors are the people who help us."),
     ],
   },
   "modifier-review": {
@@ -677,12 +598,11 @@ export const WEEKLY_REVIEW_LESSONS = [
   { id: 'nouns-verbs', week: 3, phase: 'Phase 1 · Foundation' },
   { id: 'week-4-describing', week: 4, phase: 'Phases 1 & 3 · Describing things' },
   { id: 'week-5-subjects', week: 5, phase: 'Phase 2 · Building sentences' },
-  { id: 'week-6-objects', week: 6, phase: 'Phase 2 · Building sentences' },
-  { id: 'week-7-adverbs', week: 8, phase: 'Phase 3 · Adding detail' },
+  { id: 'week-7-adverbs', week: 6, phase: 'Phase 3 · Adding detail' },
 ] as const;
 export const REVIEW_PHASES: { title: string; description: string; core: ReviewLessonId[]; extra: ReviewLessonId[]; checkIn: ReviewLessonId }[] = [
   { title: 'Phase 1: Foundation', description: 'Notice nouns, verbs, basic pronouns, and a, an, the. Revisit these whenever you need to.', core: ['nouns-verbs', 'pronouns', 'week-4-describing'], extra: ['determiners', 'foundation-review'], checkIn: 'foundation-check-in' },
-  { title: 'Phase 2: Building sentences', description: 'Find subjects and verbs, then explore simple actions and descriptions.', core: ['week-5-subjects', 'week-6-objects'], extra: ['subjects', 'verb-forms', 'verb-phrases', 'objects', 'complements', 'complete-patterns', 'sentence-review'], checkIn: 'sentence-check-in' },
+  { title: 'Phase 2: Building sentences', description: 'Find subjects and verbs in everyday sentences.', core: ['week-5-subjects'], extra: ['subjects', 'verb-forms', 'verb-phrases', 'sentence-review'], checkIn: 'sentence-check-in' },
   { title: 'Phase 3: Adding detail', description: 'Use adjectives and common adverbs to add detail to familiar sentences.', core: ['week-4-describing', 'week-7-adverbs'], extra: ['adjective-placement', 'adverbs', 'adverb-placement', 'adjectives-articles', 'modifier-review'], checkIn: 'description-check-in' },
   { title: 'Phase 4: Connecting ideas', description: 'Start with useful prepositions and and, but, so. Then try because, when, and if.', core: ['prepositions', 'conjunctions', 'dependent-clauses'], extra: ['preposition-partners'], checkIn: 'connector-review' },
   { title: 'Phase 5: Using sentence patterns', description: 'Learn useful word partnerships, such as enjoy reading and want to read. The particular word matters, not only its part of speech.', core: ['gerunds', 'verb-patterns'], extra: ['final-review'], checkIn: 'pattern-check-in' },
@@ -694,9 +614,9 @@ export const LATER_REVIEW_SECTIONS = REVIEW_PHASES.map(phase => ({ title: phase.
 export const REVIEW_TOPICS: { title: string; what: string; cues: ReviewCategory[]; core: ReviewLessonId[]; check: ReviewLessonId; extra: ReviewLessonId[] }[] = [
   { title: 'Word basics', what: 'Nouns, verbs, pronouns, a / an / the', cues: ['Noun', 'Verb', 'Pronoun', 'Article'],
     core: ['nouns-verbs', 'pronouns', 'week-4-describing'], check: 'foundation-check-in', extra: ['determiners', 'foundation-review'] },
-  { title: 'Building sentences', what: 'Who does it? What happens?', cues: ['Subject', 'Verb', 'Object'],
-    core: ['week-5-subjects', 'week-6-objects'], check: 'sentence-check-in',
-    extra: ['subjects', 'verb-forms', 'verb-phrases', 'objects', 'complements', 'complete-patterns', 'sentence-review'] },
+  { title: 'Building sentences', what: 'Who does it? What happens?', cues: ['Subject', 'Verb'],
+    core: ['week-5-subjects'], check: 'sentence-check-in',
+    extra: ['subjects', 'verb-forms', 'verb-phrases', 'sentence-review'] },
   { title: 'Adding detail', what: 'Adjectives and adverbs', cues: ['Adjective', 'Adverb'],
     core: ['week-7-adverbs', 'adjective-placement'], check: 'description-check-in', extra: ['adverbs', 'adverb-placement', 'modifier-review'] },
   { title: 'Connecting ideas', what: 'in, on, and, but, because', cues: ['Preposition', 'Conjunction'],
