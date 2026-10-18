@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Binder Labels - FY27</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Full-bleed page: the 4 labels split the sheet into quarters,
+       so each page needs only 2 cuts (one across, one down the middle). */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e5e5e5;
+      color: #111;
+    }
+
+    .page {
+      width: 8.5in;
+      height: 11in;
+      margin: 0.3in auto;
+      background: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      page-break-after: always;
+      break-after: page;
+      overflow: hidden;
+    }
+
+    .label {
+      /* Generous inner padding keeps text out of the printer's unprintable edge */
+      padding: 0.5in 0.45in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+      border: 2.5px solid #222;
+      border-radius: 14px;
+      padding: 0.25in 0.2in 0.22in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .property {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .flag {
+      font-size: 50px;
+      line-height: 1;
+      margin-top: 10px;
+    }
+
+    .name {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-top: 6px;
+      white-space: nowrap;
+    }
+
+    .name.long {
+      font-size: 36px;
+    }
+
+    .name.blank {
+      width: 85%;
+      height: 50px;
+      border-bottom: 2px solid #222;
+    }
+
+    .divider {
+      width: 60%;
+      border-top: 2px solid #222;
+      margin: 14px 0 12px;
+    }
+
+    .level {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .school {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #1f3a5f;
+    }
+
+    .anchor {
+      width: 18px;
+      height: 20px;
+      margin-bottom: 4px;
+    }
+
+    .school-top {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .school-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    .wave {
+      width: 30px;
+      height: 8px;
+    }
+
+    .teacher {
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    .contact {
+      margin-top: auto;
+      width: 100%;
+      border: 1.5px solid #222;
+      border-radius: 10px;
+      padding: 10px 12px 14px;
+      text-align: left;
+    }
+
+    .contact-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .phone-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 22px;
+      font-size: 15px;
+    }
+
+    .phone-line {
+      flex: 1;
+      border-bottom: 1.5px solid #222;
+    }
+
+    @media print {
+      .school {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        background: white;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="sheets"></main>
+
+  <script>
+    // Edit this list to add or remove students. Use flag: "" and name: "" for a blank label.
+    const students = [
+      { name: "Marinela", flag: "🇨🇴" },
+      { name: "Daniel", flag: "🇸🇻" },
+      { name: "Carolina", flag: "🇸🇻" },
+      { name: "Elena", flag: "🇸🇻" },
+      { name: "Leidy", flag: "🇨🇴" },
+      { name: "Juan", flag: "🇨🇴" },
+      { name: "Sandra", flag: "🇨🇴" },
+      { name: "Bryan", flag: "🇸🇻" },
+      { name: "Diego", flag: "🇨🇴" },
+      { name: "Helena", flag: "🇧🇷" },
+      { name: "Sara", flag: "🇭🇳" },
+      { name: "Mirna", flag: "🇸🇻" },
+      { name: "Angie", flag: "🇨🇴" },
+      { name: "Fredy", flag: "🇸🇻" },
+      { name: "Nuvia", flag: "🇸🇻" },
+      { name: "Roman", flag: "🇨🇴" },
+      { name: "Susan", flag: "🇭🇳" },
+      { name: "Josue", flag: "🇸🇻" },
+      { name: "Alexandre", flag: "🇧🇷" },
+      { name: "Mariana", flag: "🇨🇴" },
+      { name: "", flag: "" }, // blank for a new student
+    ];
+
+    // Pad to a full page with blank labels
+    while (students.length % 4 !== 0) students.push({ name: "", flag: "" });
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    function labelHtml({ name, flag }) {
+      const nameHtml = name
+        ? `<div class="name${name.length > 8 ? " long" : ""}">${escapeHtml(name)}</div>`
+        : `<div class="name blank"></div>`;
+      return `
+        <div class="label">
+          <div class="inner">
+            <div class="property">Property of</div>
+            <div class="flag">${flag || "&nbsp;"}</div>
+            ${nameHtml}
+            <div class="divider"></div>
+            <div class="level">ESOL Level 3</div>
+            <div class="school">
+              <svg class="anchor" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.5"/><path d="M12 6.5V24M7 11h10M3 16c0 4.5 4 8 9 8s9-3.5 9-8M3 16l-1.5 2M3 16l2.5 1M21 16l1.5 2M21 16l-2.5 1"/></svg>
+              <div class="school-top">East Boston Harborside</div>
+              <div class="school-bottom"><svg class="wave" viewBox="0 0 30 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 4 Q4.5 0 8 4 T15 4 T22 4 T29 4"/></svg>Community School<svg class="wave" viewBox="0 0 30 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 4 Q4.5 0 8 4 T15 4 T22 4 T29 4"/></svg></div>
+            </div>
+            <div class="teacher">Teacher: Marlie</div>
+            <div class="contact">
+              <div class="contact-title">If found, please contact:</div>
+              <div class="phone-row">Phone: <span class="phone-line"></span></div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    const sheets = document.getElementById("sheets");
+    for (let i = 0; i < students.length; i += 4) {
+      const page = document.createElement("section");
+      page.className = "page";
+      page.innerHTML =
+        students.slice(i, i + 4).map(labelHtml).join("");
+      sheets.appendChild(page);
+    }
+  </script>
+</body>
+</html>

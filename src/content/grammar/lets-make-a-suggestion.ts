@@ -289,7 +289,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
       title: "Could We and Should We. Suggestions as Questions",
       icon: "🍽️",
       explanation: `
-        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.85"><em>Diego lives in Gloria and Jean's building. His coworkers Halima and Brian want to help. Halima says, "<strong>Why don't we</strong> read about someone who started with a hard life? It's Hispanic Heritage Month." <strong>Could we</strong> learn something from her? Read her story.</em></p>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.85"><em>Diego lives in Gloria and Jean's building. His coworkers Halima and Brian want to help. Halima says, "<strong>Why don't we</strong> read about someone who started with a hard life?" <strong>Could we</strong> learn something from her? Read her story.</em></p>
 
         ${readingCard({
           kicker: "Famous person",
@@ -301,7 +301,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             creditUrl: "https://commons.wikimedia.org/wiki/File:Sonia_Sotomayor_in_SCOTUS_robe.jpg",
           },
           paragraphs: [
-            "Sonia Sotomayor was born in the Bronx, New York, in 1954. Her parents were born in Puerto Rico. Her father worked with tools and metal, and her mother worked as a telephone operator before she became a nurse. The family lived in public housing. Sonia's father died when she was nine years old.",
+            "Sonia Sotomayor was born in the Bronx, New York, in 1954. Her parents were born in Puerto Rico. Her father was a metalworker in a factory. Her mother worked as a telephone operator before she became a nurse. The family lived in public housing. Sonia's father died when she was nine years old.",
             "Her mother valued education and bought an encyclopedia set for her children. Sonia studied at Princeton University and Yale Law School. In 2009, President Obama chose her for the Supreme Court. She is the first Hispanic person to serve on it.",
           ],
           sources: [
@@ -367,8 +367,8 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Sonia was born in 1954 (in June). She joined the Supreme Court in August 2009. How old was she? (write a number)",
-              expectedAnswers: ["55", "fifty-five", "fifty five"],
+              label: "Sonia's mother valued education. Finish her strong advice to Sonia: \"You ___ study hard.\" (should or could?)",
+              expectedAnswers: ["should"],
             },
             {
               type: "text",

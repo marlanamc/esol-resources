@@ -148,7 +148,7 @@ export const readingCard = ({
   accent?: Accent;
 }): string => {
   const img = photo
-    ? `<img src="${photo.url}" alt="${photo.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover; object-position: top" />`
+    ? `<div style="display: flex; justify-content: center; background: rgba(128,128,128,0.08)"><img src="${photo.url}" alt="${photo.alt}" loading="lazy" style="display: block; width: auto; max-width: 100%; height: auto; max-height: 320px" /></div>`
     : "";
   const credit = photo
     ? `Photo: ${photo.creditUrl ? `<a href="${photo.creditUrl}" rel="noopener" target="_blank">${photo.credit}</a>` : photo.credit}. `
