@@ -173,6 +173,8 @@ export interface BuildCourseMapRoadOptions {
     quizScores?: Record<string, WeeklyQuizScore>;
     /** Teaching calendar by week number; omit for learners without a class calendar. */
     schedule?: Map<number, RoadScheduleWeek>;
+    /** Teachers see every cycle; learners only reach the current one. */
+    showAllCycles?: boolean;
 }
 
 function stripVocabPrefix(title: string): string {
@@ -252,6 +254,7 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
         assignmentIds = {},
         quizScores = {},
         schedule,
+        showAllCycles = false,
     } = options;
 
     const visibleLevels = new Map(
@@ -364,7 +367,7 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
 
     // Later cycles stay off the road until they start, so the map only ever
     // shows the stretch of the year the class has reached.
-    const cycles: RoadCycle[] = COURSE_CYCLES.filter((def) => def.number <= currentCycle)
+    const cycles: RoadCycle[] = COURSE_CYCLES.filter((def) => showAllCycles || def.number <= currentCycle)
         .map((def) => {
             const cycleUnits = roadUnits.filter((unit) => unit.cycle === def.number);
             const weeks = cycleUnits.flatMap((unit) => unit.weeks);
