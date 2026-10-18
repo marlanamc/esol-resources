@@ -1,9 +1,14 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   buildAlreadyEnrolledResponse,
   normalizeJoinClassCode,
   validateJoinSession,
 } from "@/app/api/classes/join/route";
+
+// The helpers under test are pure; mock auth and Prisma so importing the route
+// never needs NEXTAUTH_SECRET or DATABASE_URL.
+vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
+vi.mock("@/lib/database/prisma", () => ({ prisma: {} }));
 
 describe("classes join contract", () => {
   it("validateJoinSession enforces unauthorized and teacher restrictions", () => {

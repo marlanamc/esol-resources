@@ -1,10 +1,15 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   hasDuplicateSubmissionIdempotencyKey,
   normalizeAssignmentId,
   parseSubmitJsonBody,
   readIdempotencyKey,
 } from "@/app/api/activity/submit/route";
+
+// The helpers under test are pure; mock auth and Prisma so importing the route
+// never needs NEXTAUTH_SECRET or DATABASE_URL.
+vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
+vi.mock("@/lib/database/prisma", () => ({ prisma: {} }));
 
 describe("activity submit contract", () => {
   it("readIdempotencyKey trims and normalizes header values", () => {
