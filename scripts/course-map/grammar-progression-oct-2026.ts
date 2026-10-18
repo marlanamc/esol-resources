@@ -1,8 +1,8 @@
 /**
  * Activity rows for the Oct 2026 grammar progression audit. The course-map items
- * and week goals sync on deploy (prisma/seed-course-map.ts runs in `npm run build`);
- * this covers what that seed does not: the Activity rows guides save progress to.
- * Run after the PR deploys. Preview by default; --apply writes.
+ * and week goals do NOT sync on deploy (vercel.json overrides `npm run build`), so
+ * run prisma/seed-course-map.ts after merging; this covers what that seed does not:
+ * the Activity rows guides save progress to. Preview by default; --apply writes.
  */
 import { PrismaClient } from '@prisma/client';
 import { getGrammarGuide } from '../../src/lib/grammar-guide-registry';
