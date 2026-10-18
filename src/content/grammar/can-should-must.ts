@@ -88,8 +88,8 @@ export const canShouldMustContent: InteractiveGuideContent = {
           { speaker: "Ryan", avatar: "👨🏽", text: "Done. Your new phone is ready. You <strong>can</strong> call, text, and video-chat now.", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "<strong>Can</strong> I video-call my daughter in Haiti? My old phone was too slow.", side: "left", tone: "sage" },
           { speaker: "Ryan", avatar: "👨🏽", text: "Yes, you <strong>can</strong>. With WhatsApp and wifi, the call is free.", side: "right", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>can't</strong> read these little letters. <strong>Can</strong> you make them bigger?", side: "left", tone: "sage" },
-          { speaker: "Ryan", avatar: "👨🏽", text: "Sure. And look, I saved Nadège's number. You <strong>can</strong> call her with one touch.", side: "right", tone: "blue" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "I <strong>can't</strong> read these little letters. <strong>Can</strong> the phone make them bigger?", side: "left", tone: "sage" },
+          { speaker: "Ryan", avatar: "👨🏽", text: "Yes, it <strong>can</strong>. And I saved Nadège's number. You <strong>can</strong> call her with one touch.", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Perfect. Now I <strong>can</strong> see her face every Sunday.", side: "left", tone: "sage" },
         ])}
 
@@ -404,7 +404,7 @@ export const canShouldMustContent: InteractiveGuideContent = {
           { speaker: "Ms. Tran", avatar: "👩🏻", text: "Claudette, you got a strange text this week. <strong>Can</strong> you tell the class?", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "A \"new number\" said it was my daughter. It asked for $200, then my PIN.", side: "left", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩🏻", text: "That's a common scam. What <strong>should</strong> people do?", side: "right", tone: "blue" },
-          { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>shouldn't</strong> send anything. You <strong>should</strong> call the real number. And you <strong>must</strong> never share your PIN.", side: "left", tone: "terracotta" },
+          { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>shouldn't</strong> send anything. You <strong>should</strong> call the real number. And you <strong>must not</strong> share your PIN.", side: "left", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩🏻", text: "And did you reach Nadège?", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Yes! This morning she video-called me. Her phone was fine the whole time. She never sent that text.", side: "left", tone: "terracotta" },
         ])}

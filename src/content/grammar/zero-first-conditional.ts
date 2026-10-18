@@ -95,9 +95,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Scott, can I come in at 11 on Election Day? It's my first time voting.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Congratulations. <strong>If you need</strong> a day off, <strong>you ask</strong> two weeks ahead. A morning is easier.", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "Just the morning. The polls open at 7. I'll be here by 11.", side: "right", tone: "terracotta" },
-          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Write it on the request sheet. My wife votes at 7 every year. <strong>If you go</strong> early, the line <strong>is</strong> short.", side: "left", tone: "blue" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "<strong>If you need</strong> the morning off, <strong>you ask</strong> two weeks ahead. Write it on the request sheet.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "The polls open at 7. I'll be here by 11.", side: "right", tone: "terracotta" },
+          { speaker: "Scott", avatar: "👨🏼‍💼", text: "Good. <strong>If you go</strong> early, the line <strong>is</strong> short.", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "And if the line is long and I'm late?", side: "right", tone: "terracotta" },
           { speaker: "Scott", avatar: "👨🏼‍💼", text: "Same as any day. <strong>If you're</strong> running late, <strong>you call</strong> me before your shift starts.", side: "left", tone: "blue" },
         ])}
@@ -544,7 +544,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           { speaker: "Beatriz", avatar: "👩🏽", text: "Really? Then I'll be outside at 9. Are you coming too?", side: "left", tone: "sage" },
           { speaker: "Ana", avatar: "👩🏾", text: "I can't vote yet. I'm not a citizen. But <strong>if my sister comes</strong> for the kids, <strong>I can come</strong> with you.", side: "right", tone: "terracotta" },
           { speaker: "Beatriz", avatar: "👩🏽", text: "OK. Call me <strong>as soon as</strong> you <strong>know</strong>.", side: "left", tone: "sage" },
-          { speaker: "Ana", avatar: "👩🏾", text: "Don't worry. My sister always <strong>says</strong> yes <strong>if</strong> I <strong>make</strong> her breakfast.", side: "right", tone: "terracotta" },
+          { speaker: "Ana", avatar: "👩🏾", text: "Don't worry. My sister always <strong>watches</strong> the kids <strong>if</strong> I <strong>ask</strong> the night before.", side: "right", tone: "terracotta" },
         ])}
 
         <p style="margin: 1.25rem 0 0.5rem; font-weight: 700; font-size: 1rem">Which type is each sentence?</p>
@@ -556,7 +556,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("zero", "terracotta")}
-            <span><em>"My sister always says yes if I make her breakfast."</em> Always true, every time.</span>
+            <span><em>"My sister always watches the kids if I ask the night before."</em> Always true, every time.</span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(128,128,128,0.08); border-radius: 0.4rem">
             ${labelPill("first", "amber")}
@@ -586,7 +586,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Ana says, 'My sister always says yes if I make her breakfast.' Which conditional fits this?",
+              label: "Ana says, 'My sister always watches the kids if I ask the night before.' Which conditional fits this?",
               options: [
                 { value: "a", label: "First Conditional. It is a future plan." },
                 { value: "b", label: "Zero Conditional. It happens every time, always." },
