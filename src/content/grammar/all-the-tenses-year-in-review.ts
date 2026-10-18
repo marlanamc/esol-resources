@@ -1,5 +1,6 @@
 import type { InteractiveGuideContent } from "@/types/activity";
 import { allTheTensesYearInReviewImages as img } from "@/data/all-the-tenses-year-in-review-images.generated";
+import { readingCard, scheduleChart, timeline } from "@/content/grammar/_shared/guide-visuals";
 
 // ---------------------------------------------------------------------------
 // Visual helpers
@@ -179,16 +180,20 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneRestaurantShift", "The hotel restaurant on Meridian Street at lunch. Wednesday, 1:30 PM.", "terracotta")}
+        <p>Rosa is a housekeeper at a hotel on Meridian Street. Her supervisor, <strong>Jennifer</strong>, helps her when she needs to leave early. This is Rosa's regular week.</p>
 
-        <p>Rosa is a housekeeper at a hotel on Meridian Street, Monday to Friday, 7 to 3. ESOL class on Tuesday and Thursday evenings. Supervisor <strong>Jennifer</strong> covers the late checkouts when Rosa leaves at 3.</p>
+        ${scheduleChart({
+          kicker: "Schedule",
+          title: "Rosa's regular week",
+          days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+          rows: [
+            { label: "🏨 Hotel work", cells: [{ text: "7-3" }, { text: "7-3" }, { text: "7-3" }, { text: "7-3" }, { text: "7-3" }] },
+            { label: "📚 ESOL class", cells: [null, { text: "6 pm", accent: "sage" }, null, { text: "6 pm", accent: "sage" }, null] },
+            { label: "🛎️ Jennifer covers the late checkouts", cells: [null, null, { text: "Jen", accent: "blue" }, null, null] },
+          ],
+        })}
 
-        ${dialogue([
-          { speaker: "Jennifer", avatar: "👩🏼", text: "You usually <strong>leave</strong> at three, right? Do you need to go early today?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes, please. The sitter <strong>has</strong> a doctor's appointment, so I need to pick up my daughter. I <strong>am texting</strong> her now.", side: "right", tone: "terracotta" },
-          { speaker: "Jennifer", avatar: "👩🏼", text: "Sure. I usually <strong>cover</strong> the late checkouts for you on Wednesdays anyway. What time do you need to leave?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Two thirty, please. Thanks. I know we <strong>are running</strong> behind today.", side: "right", tone: "terracotta" },
-        ])}
+        <p>Now it is Wednesday afternoon, and Rosa is on her break. Right now she <strong>is texting</strong> the babysitter about picking up her daughter.</p>
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Present Simple</strong> = routines and facts. <strong>Present Continuous</strong> = happening right now or this week.</p>
@@ -201,7 +206,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("right now", "blue")}
-            <span><em>I <strong>am texting</strong> the sitter about the pickup.</em></span>
+            <span><em>I <strong>am texting</strong> the babysitter about the pickup.</em></span>
           </div>
         </div>
       `,
@@ -209,21 +214,21 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         {
           id: "s2-ex1",
           title: "Simple or continuous?",
-          instructions: "Pick the form that fits the situation.",
+          instructions: "Look at Rosa's regular week. Then pick the form that fits.",
           items: [
             {
               type: "radio",
-              label: "Rosa ___ at the hotel Monday through Friday. (work)",
+              label: "Look at Rosa's week. Which sentence is true?",
               options: [
-                { value: "works", label: "works" },
-                { value: "is working", label: "is working" },
-                { value: "worked", label: "worked" },
+                { value: "a", label: "Rosa takes class on Wednesday." },
+                { value: "b", label: "Rosa takes class on Tuesday and Thursday." },
+                { value: "c", label: "Rosa takes class on Monday and Friday." },
               ],
-              expectedAnswer: "works",
+              expectedAnswer: "b",
             },
             {
               type: "radio",
-              label: "Hold on. Rosa ___ the sitter right now. (text)",
+              label: "Hold on. Rosa ___ the babysitter right now. (text)",
               options: [
                 { value: "texts", label: "texts" },
                 { value: "is texting", label: "is texting" },
@@ -233,8 +238,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Jennifer usually ___ the late checkouts when Rosa leaves. (cover)",
+              label: "Look at the schedule. Jennifer usually ___ (cover) the late checkouts on Wednesdays.",
               expectedAnswers: ["covers"],
+            },
+            {
+              type: "text",
+              label: "Look at the schedule. How many days a week does Rosa work at the hotel? (Write a number.)",
+              expectedAnswers: ["5", "five"],
             },
           ],
         },
@@ -245,8 +255,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Rosa", "is", "texting", "the", "sitter", "about", "the", "pickup"],
-              correctAnswer: "Rosa is texting the sitter about the pickup",
+              words: ["Rosa", "takes", "class", "on", "Tuesday", "and", "Thursday"],
+              correctAnswer: "Rosa takes class on Tuesday and Thursday",
             },
           ],
         },
@@ -269,17 +279,27 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneApartmentKitchen", "Rosa's old kitchen, East Boston. The heat stopped here on January 14.", "blue")}
+        <p>For the last class, Ms. Tran gives everyone a reading about a singer. Rosa reads it on the 116 bus. Look for three kinds of past: what happened, what was in progress, and what had already finished.</p>
 
-        <p>Rosa moved out in February, but in June her old landlord still hasn't returned her security deposit. He thinks she broke the heater in January. She calls him to explain what happened: what she was doing, what happened next, and what she had already done before calling.</p>
-
-        ${dialogue([
-          { speaker: "Landlord", avatar: "🧑🏾", text: "I’m still holding your deposit. What happened with the heater in January?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "I <strong>was cooking</strong> dinner when the heat <strong>stopped</strong>. I <strong>called</strong> you that night.", side: "right", tone: "terracotta" },
-          { speaker: "Landlord", avatar: "🧑🏾", text: "Didn’t you check the thermostat first?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Yes. I <strong>had already checked</strong> it before I called. The heater was old. I didn't break it.", side: "right", tone: "terracotta" },
-          { speaker: "Landlord", avatar: "🧑🏾", text: "OK, that's fair. I'll mail your deposit this week.", side: "left", tone: "sage" },
-        ])}
+        ${readingCard({
+          kicker: "A real life",
+          title: "Gloria Estefan",
+          paragraphs: [
+            "Gloria Estefan <strong>was</strong> a toddler when her family <strong>fled</strong> Cuba. Her band, Miami Sound Machine, <strong>was driving</strong> on a snowy highway in Pennsylvania in March 1990 when the bus <strong>had</strong> an accident with a tractor-trailer. Gloria <strong>broke</strong> a bone in her back, and surgeons <strong>operated</strong> on her spine for four hours.",
+            "She <strong>did not give up</strong>. Before she <strong>returned</strong> to performing in January 1991, she <strong>had done</strong> extensive physical therapy. By 2015, she <strong>had sold</strong> more than 100 million records, and she and her husband <strong>received</strong> the Presidential Medal of Freedom.",
+          ],
+          photo: {
+            url: "/images/guide-people/gloria-estefan.jpg",
+            alt: "Gloria Estefan smiles at the 2017 Kennedy Center Honors dinner, wearing a rainbow-colored honoree ribbon",
+            credit: "U.S. State Department, 2017, public domain",
+            creditUrl: "https://commons.wikimedia.org/wiki/File:Gloria_Estefan_2017.jpg",
+          },
+          sources: [
+            { name: "Biography.com", url: "https://www.biography.com/musicians/gloria-estefan" },
+            { name: "The White House (2015 Medal of Freedom)", url: "https://obamawhitehouse.archives.gov/the-press-office/2015/11/16/president-obama-names-recipients-presidential-medal-freedom" },
+          ],
+          accent: "sage",
+        })}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Simple</strong> = finished event. <strong>Past Continuous</strong> = in progress when something else happened. <strong>Past Perfect</strong> = already finished <em>before</em> another past event.</p>
@@ -288,11 +308,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("in progress", "blue")}
-            <span><em>I <strong>was cooking</strong> when the heat stopped.</em></span>
+            <span><em>The band <strong>was driving</strong> when the bus had an accident.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("before that", "sage")}
-            <span><em>I <strong>had already saved</strong> some money before my lease ended.</em></span>
+            <span><em>She <strong>had done</strong> physical therapy before she returned.</em></span>
           </div>
         </div>
       `,
@@ -300,31 +320,36 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         {
           id: "s3-ex1",
           title: "Pick the right past form",
+          instructions: "Read about Gloria Estefan again if you need to.",
           items: [
             {
               type: "radio",
-              label: "Rosa was cooking when the heat ___. (stop)",
+              label: "The band ___ on a snowy highway when the bus had an accident. (drive)",
               options: [
-                { value: "came", label: "stopped" },
-                { value: "was coming", label: "was stopping" },
-                { value: "had come", label: "has stopped" },
+                { value: "was driving", label: "was driving" },
+                { value: "drove", label: "drove" },
+                { value: "had driven", label: "had driven" },
               ],
-              expectedAnswer: "came",
+              expectedAnswer: "was driving",
             },
             {
               type: "radio",
-              label: "Rosa ___ dinner when the heat stopped. (cook)",
+              label: "Look at the reading. Which happened first?",
               options: [
-                { value: "cooked", label: "cooked" },
-                { value: "was cooking", label: "was cooking" },
-                { value: "had cooked", label: "had cooked" },
+                { value: "therapy", label: "Gloria did physical therapy." },
+                { value: "return", label: "Gloria returned to performing." },
               ],
-              expectedAnswer: "was cooking",
+              expectedAnswer: "therapy",
             },
             {
               type: "text",
-              label: "She ___ (already save) some money before her lease ended in February.",
-              expectedAnswers: ["had already saved", "had saved"],
+              label: "Look at the reading. By 2015, Gloria had sold more than ___ million records. (Write a number.)",
+              expectedAnswers: ["100"],
+            },
+            {
+              type: "text",
+              label: "Rosa ___ (already read) the article before the bus reached her stop.",
+              expectedAnswers: ["had already read"],
             },
           ],
         },
@@ -334,13 +359,13 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"I was cooking when the heat <strong>has stopped</strong>.\"",
+              label: "\"Her family <strong>has fled</strong> Cuba when she was a toddler.\"",
               options: [
                 { value: "correct", label: "Correct as written" },
-                { value: "came", label: "Should be 'stopped' (past simple for the sudden event)" },
-                { value: "had come", label: "Should be 'is stopping' (present continuous)" },
+                { value: "fled", label: "Should be 'fled' (past simple for a finished event)" },
+                { value: "was fleeing", label: "Should be 'is fleeing' (present continuous)" },
               ],
-              expectedAnswer: "came",
+              expectedAnswer: "fled",
             },
           ],
         },
@@ -362,16 +387,19 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneVideoCall", "Hotel break room after a double shift. Friday, 9:30 PM.", "sage")}
+        <p>After class, Rosa writes about her life for a class project. She puts the dates on a timeline. Today is June, and she looks at her timeline.</p>
 
-        <p>Rosa covered an evening shift too. She calls her sister <strong>Teresa</strong> after the long double shift at the hotel. Teresa is at home waiting for her.</p>
-
-        ${dialogue([
-          { speaker: "Teresa", avatar: "👩🏽", text: "Still at work? I haven’t seen you all week.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Just finished. I <strong>have worked</strong> in housekeeping for three years, and this has been my busiest week yet.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "And I <strong>have been taking</strong> extra shifts since I started here in March. I'm so tired.", side: "right", tone: "terracotta" },
-          { speaker: "Teresa", avatar: "👩🏽", text: "That sounds exhausting. I <strong>made</strong> dinner, so you won’t need to cook tonight.", side: "left", tone: "sage" },
-        ])}
+        ${timeline({
+          kicker: "Timeline",
+          title: "Rosa's life in East Boston",
+          items: [
+            { when: "2021", text: "Rosa moved to East Boston.", accent: "sage" },
+            { when: "2022", text: "She started working in housekeeping.", accent: "sage" },
+            { when: "March", text: "She began taking extra shifts.", accent: "amber" },
+            { span: "since March", accent: "amber" },
+            { when: "Now (June)", text: "She is tired, but she is still working.", accent: "blue" },
+          ],
+        })}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Present Perfect</strong> = past connected to now (experience, change, duration with <em>for/since</em>). <strong>Present Perfect Continuous</strong> = ongoing action from past until now, often with <em>for/since</em>.</p>
@@ -384,7 +412,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.08); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("since March", "sage")}
-            <span><em>I <strong>have been taking</strong> extra shifts since I started the new job.</em></span>
+            <span><em>I <strong>have been taking</strong> extra shifts since March.</em></span>
           </div>
         </div>
       `,
@@ -392,7 +420,18 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         {
           id: "s4-ex1",
           title: "Perfect or perfect continuous?",
+          instructions: "Look at Rosa's timeline.",
           items: [
+            {
+              type: "radio",
+              label: "Look at the timeline. Which sentence is true?",
+              options: [
+                { value: "a", label: "Rosa has lived in East Boston since 2022." },
+                { value: "b", label: "Rosa has worked in housekeeping since 2021." },
+                { value: "c", label: "Rosa has been taking extra shifts since March." },
+              ],
+              expectedAnswer: "c",
+            },
             {
               type: "radio",
               label: "Rosa ___ in East Boston since 2021. (live)",
@@ -405,18 +444,17 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Since March she ___ extra shifts every week. (take)",
+              label: "Rosa started in housekeeping in 2022. Now it is June, so she has worked there ___ three years.",
               options: [
-                { value: "is taking", label: "is taking" },
-                { value: "has been taking", label: "has been taking" },
-                { value: "takes", label: "takes" },
+                { value: "for", label: "for" },
+                { value: "since", label: "since" },
               ],
-              expectedAnswer: "has been taking",
+              expectedAnswer: "for",
             },
             {
               type: "text",
-              label: "She ___ (work) in housekeeping for three years.",
-              expectedAnswers: ["has worked", "has been working"],
+              label: "Since March, Rosa ___ (take) extra shifts every week.",
+              expectedAnswers: ["has been taking"],
             },
           ],
         },
@@ -427,8 +465,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "have", "been", "taking", "extra", "shifts", "since", "March"],
-              correctAnswer: "I have been taking extra shifts since March",
+              words: ["Rosa", "has", "worked", "in", "housekeeping", "for", "three", "years"],
+              correctAnswer: "Rosa has worked in housekeeping for three years",
             },
           ],
         },
@@ -566,11 +604,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "atyr-q2",
-      question: "Rosa is texting the sitter at work right now. Which sentence fits?",
+      question: "Rosa is texting the babysitter at work right now. Which sentence fits?",
       options: [
-        { value: "a", label: "She texts the sitter at work." },
-        { value: "b", label: "She is texting the sitter at work." },
-        { value: "c", label: "She has texted the sitter at work." },
+        { value: "a", label: "She texts the babysitter at work." },
+        { value: "b", label: "She is texting the babysitter at work." },
+        { value: "c", label: "She has texted the babysitter at work." },
       ],
       correctAnswer: "b",
       explanation: "Present continuous for an action in progress right now.",
@@ -607,11 +645,11 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     },
     {
       id: "atyr-q6",
-      question: "Rosa saved some money before her lease ended in February. Which sentence fits?",
+      question: "Rosa finished her homework, and then the bus came. Which sentence fits?",
       options: [
-        { value: "a", label: "She had already saved some money when the lease ended." },
-        { value: "b", label: "She already saved some money when the lease ended." },
-        { value: "c", label: "She has already saved some money when the lease ended." },
+        { value: "a", label: "She had already finished her homework when the bus came." },
+        { value: "b", label: "She already finishes her homework when the bus came." },
+        { value: "c", label: "She has already finished her homework when the bus came." },
       ],
       correctAnswer: "a",
       explanation: "Past perfect for something finished before another past event.",
