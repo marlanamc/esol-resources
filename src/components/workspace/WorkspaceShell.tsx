@@ -7,6 +7,7 @@ import {
     BookOpen,
     CalendarDays,
     ChartNoAxesCombined,
+    GraduationCap,
     House,
     Map,
     MoreHorizontal,
@@ -26,6 +27,7 @@ const primary = [
     { href: "/teach/roster", label: "Roster", Icon: Users },
     { href: "/teach/gradebook", label: "Gradebook", Icon: BookOpen },
     { href: "/teach/map", label: "Course Map", Icon: Map },
+    { href: "/teach/progression", label: "Grammar", Icon: GraduationCap },
     { href: "/teach/activities", label: "Activities", Icon: BookOpen },
     { href: "/teach/calendar", label: "Calendar", Icon: CalendarDays },
     { href: "/teach/reports", label: "Progress", Icon: ChartNoAxesCombined },
@@ -215,7 +217,7 @@ export function WorkspaceShell({
                 aria-label="Mobile workspace navigation"
                 className="workspace-bottom-nav"
             >
-                {[primary[0], primary[1], primary[2], primary[6]].map(
+                {[primary[0], primary[1], primary[2], primary[7]].map(
                     (item) => (
                         <Link
                             key={item.href}
@@ -271,7 +273,7 @@ export function WorkspaceShell({
                     aria-label="More workspace navigation"
                     className="space-y-1"
                 >
-                    {[primary[3], primary[5]].map(navLink)}
+                    {[primary[3], primary[4], primary[6]].map(navLink)}
                     {admin && (
                         <>
                             <p className="workspace-eyebrow px-3 pt-5 pb-2">
