@@ -31,10 +31,10 @@ const nextConfig: NextConfig = {
       "./_legacy/activities/**/*",
       "./css-from-legacy/**/*",
     ],
-    "/api/teach/grammar-progression/*": [
-      "./docs/grammar-progression/*",
+    "/api/teach/grammar-reference-sheet": [
       "./FY27/reference-sheets/esol-3b-grammar-reference.html",
     ],
+    "/teach/progression": ["./docs/grammar-progression/*.html"],
   },
   // Prisma's generated client traces unused DB engines, WASM, and maps into
   // every serverless function. Drop them so each deploy ships one Postgres

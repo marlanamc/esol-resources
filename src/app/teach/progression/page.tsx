@@ -1,70 +1,109 @@
+import Link from "next/link";
 import { connection } from "next/server";
-import { ArrowUpRight } from "lucide-react";
 import { buildTeachingWeeks } from "@/lib/course-map-schedule";
+import {
+    PROGRESSION_PAGES,
+    REFERENCE_SHEET_HREF,
+    isProgressionSlug,
+    loadProgressionPage,
+    progressionHref,
+} from "@/lib/teach/grammar-progression";
+import { ProgressionContent } from "@/components/teach/ProgressionContent";
+import "./progression.css";
 
 export const metadata = { title: "Grammar Progression | My ESOL Class" };
 
-const BASE = "/api/teach/grammar-progression";
-const FRAME = "grammar-progression";
-
-/** The latest week already opened to students, so the link lands on what is being taught now. */
+/** The latest week already opened to students, so the page lands on what is being taught now. */
 function currentWeekNumber(now = new Date()): number {
     const opened = buildTeachingWeeks().filter((week) => week.revealAt <= now);
     return opened.at(-1)?.index ?? 1;
 }
 
-export default async function TeachProgressionPage() {
+const pill = "shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-sm font-medium";
+
+export default async function TeachProgressionPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ page?: string; week?: string }>;
+}) {
     await connection();
-    const week = currentWeekNumber();
-    const links = [
-        { href: `${BASE}/weeks.html#w${week}`, label: `This week · W${week}` },
-        { href: `${BASE}/index.html`, label: "Overview" },
-        { href: `${BASE}/weeks.html`, label: "Week by week" },
-        { href: `${BASE}/sequence.html`, label: "Sequence" },
-        { href: `${BASE}/lessons.html#w${week}`, label: "Lesson preview" },
-        { href: `${BASE}/vocabulary.html`, label: "Vocabulary" },
-        { href: `${BASE}/reference-sheet.html`, label: "Reference sheet" },
-    ];
+    const params = await searchParams;
+    const slug = isProgressionSlug(params.page) ? params.page : "weeks";
+    const current = currentWeekNumber();
+    const requestedWeek = Number(params.week);
+    const week = Number.isInteger(requestedWeek) && requestedWeek > 0 ? requestedWeek : current;
+    const page = await loadProgressionPage(slug, week);
+    const lessons = slug === "lessons";
 
     return (
-        <div className="flex flex-col h-[calc(100dvh-10rem)] min-h-[32rem]">
-            <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                    <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--secondary)" }}>
-                        Course
-                    </p>
-                    <h1 className="font-display font-bold text-2xl sm:text-3xl text-text mt-0.5">
-                        Grammar Progression
-                    </h1>
-                </div>
+        <div>
+            <div className="mb-4">
+                <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--secondary)" }}>
+                    Course
+                </p>
+                <h1 className="font-display font-bold text-2xl sm:text-3xl text-text mt-0.5">Grammar Progression</h1>
+                <p className="text-sm text-text-muted mt-1">{page.title}</p>
+            </div>
+
+            <nav
+                aria-label="Grammar progression pages"
+                className="-mx-4 mb-5 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
+            >
+                <Link
+                    href={progressionHref("weeks", { hash: `#w${current}` })}
+                    className={pill}
+                    style={{ borderColor: "var(--primary)", color: "var(--primary-text)" }}
+                >
+                    This week · W{current}
+                </Link>
+                {PROGRESSION_PAGES.map((item) => (
+                    <Link
+                        key={item.slug}
+                        href={item.slug === "lessons" ? progressionHref("lessons", { week: current }) : progressionHref(item.slug)}
+                        aria-current={item.slug === slug ? "page" : undefined}
+                        className={`${pill} text-text aria-[current=page]:font-bold`}
+                        style={{
+                            borderColor: "var(--border-subtle)",
+                            background: item.slug === slug ? "var(--surface-subtle)" : undefined,
+                        }}
+                    >
+                        {item.label}
+                    </Link>
+                ))}
                 <a
-                    href={`${BASE}/index.html`}
+                    href={REFERENCE_SHEET_HREF}
                     target="_blank"
                     rel="noopener"
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-text-muted hover:text-text"
+                    className={`${pill} text-text-muted`}
+                    style={{ borderColor: "var(--border-subtle)" }}
                 >
-                    Open full page <ArrowUpRight size={16} aria-hidden="true" />
+                    Reference sheet ↗
                 </a>
-            </div>
-            <nav aria-label="Grammar progression sections" className="mb-3 flex flex-wrap gap-2">
-                {links.map((link) => (
-                    <a
-                        key={link.label}
-                        href={link.href}
-                        target={FRAME}
-                        className="rounded-full border px-3 py-1 text-sm font-medium text-text hover:bg-[var(--surface-subtle)]"
-                        style={{ borderColor: "var(--border-subtle)" }}
-                    >
-                        {link.label}
-                    </a>
-                ))}
             </nav>
-            <iframe
-                name={FRAME}
-                title="Level 3 grammar progression"
-                src={`${BASE}/weeks.html#w${week}`}
-                className="w-full flex-1 rounded-xl border bg-white"
-                style={{ borderColor: "var(--border-subtle)" }}
+
+            {lessons && page.weeks && (
+                <nav aria-label="Lesson preview week" className="mb-5 flex flex-wrap gap-1.5">
+                    {page.weeks.map((n) => (
+                        <Link
+                            key={n}
+                            href={progressionHref("lessons", { week: n })}
+                            aria-current={n === week ? "page" : undefined}
+                            className="min-w-11 rounded-md border px-2 py-1.5 text-center text-sm tabular-nums text-text aria-[current=page]:font-bold"
+                            style={{
+                                borderColor: n === week ? "var(--primary)" : "var(--border-subtle)",
+                                background: n === week ? "var(--surface-subtle)" : undefined,
+                            }}
+                        >
+                            W{n}
+                        </Link>
+                    ))}
+                </nav>
+            )}
+
+            <ProgressionContent
+                html={lessons ? `<div class="explanation-content">${page.html}</div>` : page.html}
+                className={lessons ? "gp grammar-reader-container" : "gp"}
+                scrollToId={slug === "weeks" ? `w${current}` : undefined}
             />
         </div>
     );

@@ -1,0 +1,125 @@
+/* Grammar progression reference (docs/grammar-progression) restyled with the
+   app theme. Scoped to .gp so it never reaches the rest of the workspace. */
+.gp {
+    --gp-ink: var(--text-color);
+    --gp-muted: var(--text-color-muted);
+    --gp-line: var(--border-subtle);
+    --gp-surface: var(--surface-base);
+    --gp-bg: var(--bg-color);
+    --gp-accent: var(--primary-text);
+    --gp-accent-soft: color-mix(in srgb, var(--primary-color) 12%, transparent);
+    --gp-extra: var(--secondary-color-dark);
+    --gp-extra-soft: color-mix(in srgb, var(--secondary-color) 14%, transparent);
+    --gp-warn: var(--warning-color);
+    --gp-warn-soft: color-mix(in srgb, var(--warning-color) 12%, transparent);
+    --gp-mono: ui-monospace, "SF Mono", Menlo, monospace;
+    display: grid;
+    gap: 2rem;
+    max-width: 64rem;
+    color: var(--gp-ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+/* Let grid children shrink to the screen instead of growing to their widest line. */
+.gp, .gp section, .gp .month-block { grid-template-columns: minmax(0, 1fr); }
+.gp [id] { scroll-margin-top: 5.5rem; }
+.gp a { color: var(--gp-accent); text-underline-offset: 2px; }
+.gp h2, .gp h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+.gp h2 { font-size: 1.4rem; }
+.gp h3 { font-size: 1.1rem; }
+.gp p { margin: 0; max-width: 65ch; }
+.gp ul, .gp ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+.gp ul { list-style: disc; }
+.gp ol { list-style: decimal; }
+.gp section { display: grid; gap: 1rem; }
+.gp code { font-family: var(--gp-mono); font-size: 0.85em; background: var(--gp-accent-soft); padding: 0.05rem 0.3rem; border-radius: 0.25rem; overflow-wrap: anywhere; }
+.gp .sub { color: var(--gp-muted); font-size: 0.86rem; }
+.gp .lede { font-size: 1.08rem; color: var(--gp-muted); }
+.gp .kicker { font-family: var(--gp-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gp-accent); }
+.gp img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+.gp summary { cursor: pointer; font-weight: 700; padding: 0.6rem 0; }
+.gp details { margin: 0.4rem 0; }
+.gp .next-page { border-top: 1px solid var(--gp-line); padding-top: 1.25rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.95rem; }
+
+/* Overview */
+.gp .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem 1.5rem; }
+.gp .principle { display: grid; gap: 0.3rem; align-content: start; }
+.gp .principle p { color: var(--gp-muted); font-size: 0.95rem; }
+.gp .month { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.25rem 1.25rem; padding-block: 1rem; border-top: 1px solid var(--gp-line); }
+.gp .month:last-child { border-bottom: 1px solid var(--gp-line); }
+.gp .month .when { display: grid; gap: 0.1rem; align-content: start; }
+.gp .month .when strong { font-family: var(--font-display); font-size: 1.05rem; }
+.gp .month .when span { font-family: var(--gp-mono); font-size: 0.75rem; color: var(--gp-muted); }
+.gp .month > div:last-child { min-width: 0; display: grid; gap: 0.35rem; }
+
+/* Strands */
+.gp .strands { display: grid; gap: 0.75rem; }
+.gp .strand { display: grid; grid-template-columns: 11rem 1fr; gap: 0.75rem; align-items: start; }
+.gp .strand h3 { font-size: 0.98rem; padding-top: 0.15rem; }
+.gp .weeks { display: flex; flex-wrap: wrap; gap: 0.35rem; min-width: 0; }
+.gp .w { font-family: var(--gp-mono); font-size: 0.78rem; background: var(--gp-surface); border: 1px solid var(--gp-line); border-radius: 0.35rem; padding: 0.15rem 0.45rem; color: var(--gp-ink); text-decoration: none; }
+.gp .w span { font-family: var(--font-body); color: var(--gp-muted); margin-left: 0.3rem; }
+.gp .w.extra { background: var(--gp-extra-soft); border-color: var(--gp-extra); }
+.gp .w.rev { background: var(--gp-accent-soft); border-color: var(--gp-accent); }
+
+/* Tables */
+.gp .table-box { overflow-x: auto; border: 1px solid var(--gp-line); border-radius: 0.75rem; background: var(--gp-surface); }
+.gp table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+.gp th, .gp td { text-align: left; padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--gp-line); vertical-align: top; }
+.gp thead th { font-family: var(--gp-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gp-muted); font-weight: 500; }
+.gp .tag { display: inline-block; font-family: var(--gp-mono); font-size: 0.68rem; padding: 0.05rem 0.4rem; border-radius: 0.3rem; margin-left: 0.35rem; }
+.gp .tag.planned { color: var(--gp-muted); border: 1px dashed var(--gp-line); }
+
+/* Notes */
+.gp .watch { border: 1px solid var(--gp-warn); background: var(--gp-warn-soft); padding: 1rem 1.15rem; border-radius: 0.75rem; display: grid; gap: 0.6rem; }
+.gp .log { border-top: 1px solid var(--gp-line); padding-top: 1.25rem; display: grid; gap: 0.6rem; color: var(--gp-muted); font-size: 0.92rem; }
+
+/* Week by week */
+.gp .month-jump ul { list-style: none; padding: 0; display: flex; gap: 0.35rem; overflow-x: auto; }
+.gp .month-jump a { display: block; white-space: nowrap; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--gp-line); border-radius: 999px; background: var(--gp-surface); color: var(--gp-ink); text-decoration: none; }
+.gp .month-block { display: grid; gap: 1rem; }
+.gp .month-head { padding-top: 0.5rem; }
+.gp .week-card { background: var(--gp-surface); border: 1px solid var(--gp-line); border-radius: var(--radius-lg, 12px); box-shadow: var(--shadow-card); padding: 1.15rem 1.25rem 1.25rem; display: grid; gap: 1rem; min-width: 0; }
+.gp .week-top { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 1rem; align-items: baseline; }
+.gp .week-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--gp-accent); grid-row: span 2; line-height: 1.1; }
+.gp .week-top h3 { font-size: 1.2rem; }
+.gp .week-top .goal { color: var(--gp-muted); font-size: 0.95rem; }
+.gp .week-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem 1.75rem; }
+.gp .week-grid > div { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.gp .part { display: grid; gap: 0.35rem; min-width: 0; }
+.gp .part h4 { margin: 0; font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gp-muted); }
+.gp .guide-name { font-weight: 700; }
+.gp .focus { font-size: 0.93rem; color: var(--gp-muted); }
+.gp .part ul { font-size: 0.95rem; gap: 0.2rem; }
+.gp .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.gp .chip { font-size: 0.9rem; padding: 0.1rem 0.55rem; border-radius: 999px; background: var(--gp-accent-soft); color: var(--gp-ink); }
+.gp .chip.verb { font-family: var(--gp-mono); font-size: 0.82rem; background: var(--gp-surface); border: 1px solid var(--gp-line); }
+.gp .chip.verb.review { border-style: dashed; color: var(--gp-muted); }
+.gp .vocab-topic { font-size: 0.85rem; color: var(--gp-muted); }
+.gp .vocab-set + .vocab-set { margin-top: 0.4rem; }
+.gp .ideas { background: var(--gp-extra-soft); border-radius: 0.75rem; padding: 0.85rem 1rem; display: grid; gap: 0.4rem; }
+.gp .ideas h4 { color: var(--gp-extra); }
+
+/* Lesson previews: the reader styles colour the gc-* blocks; keep its card plain. */
+.gp.grammar-reader-container .week-card { display: block; }
+.gp.grammar-reader-container .explanation-content > .week-card > * + * { margin-top: 1rem; }
+
+@media (max-width: 720px) {
+    .gp .week-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .gp { gap: 1.5rem; }
+    .gp .month, .gp .strand { grid-template-columns: 1fr; gap: 0.35rem; }
+    .gp .week-card { padding: 1rem; border-radius: 0.75rem; }
+    .gp .week-num { font-size: 1.25rem; }
+    /* Stack table rows into cards, each cell labelled with its column. */
+    .gp table.gp-stack thead { display: none; }
+    .gp table.gp-stack, .gp table.gp-stack tbody, .gp table.gp-stack tr, .gp table.gp-stack td { display: block; }
+    .gp table.gp-stack tr { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--gp-line); }
+    .gp table.gp-stack td { border: 0; padding: 0.2rem 0; }
+    .gp table.gp-stack td[data-label]::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gp-muted); }
+    .gp table.gp-stack td:first-child { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+    .gp table.gp-stack td:first-child::before { display: none; }
+}
