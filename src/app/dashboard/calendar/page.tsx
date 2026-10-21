@@ -5,6 +5,7 @@ import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { getStudentWeeklyQuizDueEvents, weeklyQuizDueEvents } from "@/lib/learner/weekly-quiz-status";
 
 export default async function CalendarPage() {
     const session = await getServerSession(authOptions);
@@ -51,11 +52,16 @@ export default async function CalendarPage() {
             orderBy: { createdAt: "desc" },
         });
 
-        const allAssignments = classes.flatMap((c) => c.assignments);
+        const datedAssignments = classes.flatMap((c) => c.assignments).filter((a) => a.dueDate);
+        // Teachers see every weekly quiz's due date, including ones not released yet.
+        const weeklyQuizzes = await prisma.activity.findMany({
+            where: { type: "quiz", deletedAt: null, content: { contains: '"type":"weekly-quiz"' } },
+            select: { id: true, title: true, content: true },
+        });
 
         calendarEvents = [
-            ...allAssignments
-                .filter((a) => a.dueDate)
+            ...weeklyQuizDueEvents(weeklyQuizzes, datedAssignments.map((a) => a.activityId)),
+            ...datedAssignments
                 .map((a) => ({
                     date: a.dueDate as Date,
                     endDate: null,
@@ -112,9 +118,15 @@ export default async function CalendarPage() {
             }))
         );
 
+        const datedAssignments = allAssignments.filter((a) => a.dueDate);
+        const quizDueEvents = await getStudentWeeklyQuizDueEvents(userId, datedAssignments.map((a) => a.activityId)).catch((error) => {
+            console.error("[Calendar] Weekly quiz due dates unavailable", error);
+            return [];
+        });
+
         calendarEvents = [
-            ...allAssignments
-                .filter((a) => a.dueDate)
+            ...quizDueEvents,
+            ...datedAssignments
                 .map((a) => ({
                     date: a.dueDate as Date,
                     endDate: null,

@@ -19,6 +19,8 @@ import { getVisibleMap, type CourseMapUnit } from "@/lib/course-map";
 import { enrichCourseMapUnitsWithGrammarIds } from "@/lib/course-map-progress.server";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { getCurrentWeekCompletion } from "@/lib/course-map-week";
+import { getStudentWeeklyQuizCatchUp } from "@/lib/learner/weekly-quiz-status";
+import { WeeklyQuizCatchUpCard } from "@/components/dashboard/WeeklyQuizCatchUpCard";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 
 // Force dynamic rendering to show real-time activity data
@@ -327,6 +329,7 @@ export default async function ProfilePage() {
         grammarQuizSubmissions,
         visibleMapUnits,
         weekCompletion,
+        weeklyQuizCatchUp,
     ] = await Promise.all([
         // Get activity progress for category stats.
         // Only status + activity.category are consumed below (see category filters
@@ -448,6 +451,10 @@ export default async function ProfilePage() {
             enrichCourseMapUnitsWithGrammarIds(units)
         ),
         getCurrentWeekCompletion({ id: userId, role: userRole }),
+        getStudentWeeklyQuizCatchUp(userId).catch((error) => {
+            console.error("[Profile] Weekly quiz catch-up unavailable", error);
+            return { missing: [], notPerfect: [] };
+        }),
     ]);
 
     // Combine both date sources
@@ -772,6 +779,9 @@ export default async function ProfilePage() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Weekly quiz homework: missing quizzes and retakes for 100% */}
+                    <WeeklyQuizCatchUpCard catchUp={weeklyQuizCatchUp} />
 
                     {/* Mini Quiz Certificates - Medal Collection */}
                     <div id="mini-quiz-certificates" className="mb-10 rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50/50 via-white to-amber-50/30 p-6 shadow-sm animate-fade-in-up delay-300 dark:border-border/60 dark:from-[var(--dashboard-surface-start)] dark:via-[var(--dashboard-surface-end)] dark:to-[var(--dashboard-surface-start)]">

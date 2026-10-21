@@ -12,6 +12,8 @@ export {
   getWeeklyLeaderboard,
   resetWeeklyPoints,
   calculateQuizPoints,
+  calculateWeeklyQuizPoints,
+  weeklyQuizRetakeTopUp,
   POINTS,
   getActivityPoints,
   resolveActivityGameUi,
