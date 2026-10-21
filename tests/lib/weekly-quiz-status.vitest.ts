@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/database/prisma", () => ({ prisma: {} }));
-import { calendarDaysUntil, formatQuizDay, pickWeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
+import { buildWeeklyQuizCatchUp, calendarDaysUntil, formatQuizDay, pickWeeklyQuizStatus, weeklyQuizDueEvents } from "@/lib/learner/weekly-quiz-status";
 import { getWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 
 const week4 = getWeeklyQuizSchedule(4)!;
@@ -46,5 +46,45 @@ describe("weekly quiz home bar status", () => {
     it("formats the deadline in class time", () => {
         expect(formatQuizDay(week4.dueAt)).toBe("Tuesday, 6 PM");
         expect(calendarDaysUntil(week4.dueAt, week4.opensAt)).toBe(5);
+    });
+});
+
+describe("weekly quiz catch-up on the profile", () => {
+    const week3 = getWeeklyQuizSchedule(3)!;
+    const catchUp = (now: Date, done: [string, number | null][], joined = joinedAt) =>
+        buildWeeklyQuizCatchUp({
+            quizzes: [quiz(3), quiz(4), quiz(5)],
+            doneById: new Map(done.map(([id, score]) => [id, { score }])),
+            joinedAt: joined,
+            now,
+        });
+
+    it("lists past-due unfinished quizzes as missing, oldest first, but not the open one", () => {
+        const result = catchUp(after(week5.opensAt, 1), []);
+        expect(result.missing.map((q) => q.activityId)).toEqual(["q3", "q4"]);
+        expect(result.missing[0].dueAt).toEqual(week3.dueAt);
+    });
+
+    it("lists finished quizzes under 100% for a retake, lowest score first", () => {
+        const result = catchUp(after(week5.opensAt, 1), [["q3", 100], ["q4", 60], ["q5", 80]]);
+        expect(result.missing).toEqual([]);
+        expect(result.notPerfect.map((q) => [q.activityId, q.score])).toEqual([["q4", 60], ["q5", 80]]);
+    });
+
+    it("does not count quizzes due before the student joined as missing", () => {
+        const result = catchUp(after(week5.opensAt, 1), [], after(week3.dueAt, 1));
+        expect(result.missing.map((q) => q.activityId)).toEqual(["q4"]);
+    });
+});
+
+describe("weekly quiz calendar due dates", () => {
+    it("adds a quiz due event on each quiz's Tuesday due time", () => {
+        expect(weeklyQuizDueEvents([{ ...quiz(4), title: "Week 4 Quiz" }])).toEqual([
+            { date: week4.dueAt, endDate: null, type: "quiz", title: "Quiz due: Week 4 Quiz" },
+        ]);
+    });
+
+    it("skips quizzes whose class assignment already has a due date", () => {
+        expect(weeklyQuizDueEvents([quiz(4), quiz(5)], ["q4"]).map((e) => e.date)).toEqual([week5.dueAt]);
     });
 });

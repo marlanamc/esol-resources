@@ -3,24 +3,35 @@ import { Check, ClipboardCheck, Clock } from "lucide-react";
 import { ShowUntilNextAppOpen } from "./ShowUntilNextAppOpen";
 import { calendarDaysUntil, formatQuizDay, formatQuizTime, type WeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
 
+// Open and late bars use a dark gradient with white text so the one required
+// task stands apart from the pale cards below it; done goes back to a soft green.
 const tones = {
     open: {
-        box: "border-violet-700 bg-violet-50 dark:border-violet-400 dark:bg-violet-950/40",
-        icon: "bg-violet-700 dark:bg-violet-500",
-        label: "text-violet-800 dark:text-violet-300",
-        button: "bg-violet-700 dark:bg-violet-500",
+        box: "border-transparent bg-gradient-to-r from-violet-700 via-purple-700 to-fuchsia-700 shadow-lg shadow-violet-700/25 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-700",
+        icon: "bg-white/20 ring-1 ring-white/40",
+        label: "text-violet-100",
+        title: "text-white",
+        detail: "text-white/90",
+        button: "bg-white text-violet-800",
+        ring: "focus-visible:ring-violet-700",
     },
     late: {
-        box: "border-red-800 bg-red-50 dark:border-red-400 dark:bg-red-950/40",
-        icon: "bg-red-800 dark:bg-red-600",
-        label: "text-red-800 dark:text-red-300",
-        button: "bg-red-800 dark:bg-red-600",
+        box: "border-transparent bg-gradient-to-r from-red-800 via-red-700 to-orange-700 shadow-lg shadow-red-800/25",
+        icon: "bg-white/20 ring-1 ring-white/40",
+        label: "text-red-100",
+        title: "text-white",
+        detail: "text-white/90",
+        button: "bg-white text-red-800",
+        ring: "focus-visible:ring-red-800",
     },
     done: {
         box: "border-emerald-800 bg-emerald-50 dark:border-emerald-400 dark:bg-emerald-950/40",
         icon: "bg-emerald-800 dark:bg-emerald-600",
         label: "text-emerald-800 dark:text-emerald-300",
+        title: "text-text",
+        detail: "text-text-muted",
         button: "",
+        ring: "",
     },
 } as const;
 
@@ -53,8 +64,8 @@ export function WeeklyQuizBar({ status, now = new Date() }: { status: WeeklyQuiz
             </span>
             <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                 <span className={`text-xs font-extrabold uppercase tracking-[.08em] ${tone.label}`}>{label}</span>
-                <span className="text-[1.0625rem] font-extrabold leading-tight text-text">{title}</span>
-                <span className="text-sm font-semibold text-text-muted">{detail}</span>
+                <span className={`text-[1.0625rem] font-extrabold leading-tight ${tone.title}`}>{title}</span>
+                <span className={`text-sm font-semibold ${tone.detail}`}>{detail}</span>
             </span>
         </>
     );
@@ -70,10 +81,10 @@ export function WeeklyQuizBar({ status, now = new Date() }: { status: WeeklyQuiz
     return (
         <Link
             href={status.href}
-            className={`${box} transition-transform duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 motion-reduce:transition-none`}
+            className={`${box} transition-transform duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${tone.ring} motion-reduce:transition-none`}
         >
             {body}
-            <span className={`flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-4 text-[0.9375rem] font-extrabold text-white ${tone.button}`}>
+            <span className={`flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-4 text-[0.9375rem] font-extrabold ${tone.button}`}>
                 {status.state === "late" ? "Do it now" : "Start"}
             </span>
         </Link>

@@ -19,7 +19,7 @@ export type WeeklyQuizStatus = {
     nextOpensAt: Date | null;
 };
 
-type QuizCandidate = { id: string; content: string; assignmentId?: string | null };
+type QuizCandidate = { id: string; title?: string | null; content: string; assignmentId?: string | null };
 
 function readWeekNumber(content: string): number | null {
     try {
@@ -65,8 +65,16 @@ export function pickWeeklyQuizStatus(input: {
     };
 }
 
+type StudentWeeklyQuizzes = {
+    quizzes: QuizCandidate[];
+    /** Finished submissions from this enrollment, by activity id. */
+    doneById: Map<string, { completedAt: Date; score: number | null }>;
+    /** Start of the student's current enrollment; earlier quizzes are not expected. */
+    since: Date;
+};
+
 /** Released weekly quizzes on the student's visible map weeks or class assignments. */
-export async function getStudentWeeklyQuizStatus(userId: string, now = new Date()): Promise<WeeklyQuizStatus | null> {
+async function loadStudentWeeklyQuizzes(userId: string, now: Date): Promise<StudentWeeklyQuizzes | null> {
     const enrollments = await withPrismaReadRetry(() =>
         prisma.classEnrollment.findMany({
             where: { studentId: userId, status: "active" },
@@ -92,7 +100,7 @@ export async function getStudentWeeklyQuizStatus(userId: string, now = new Date(
                     { id: { in: assignments.map((a) => a.activityId) } },
                 ],
             },
-            select: { id: true, content: true },
+            select: { id: true, title: true, content: true },
         }),
     );
     if (!quizzes.length) return null;
@@ -102,20 +110,116 @@ export async function getStudentWeeklyQuizStatus(userId: string, now = new Date(
     const submissions = await withPrismaReadRetry(() =>
         prisma.submission.findMany({
             where: { userId, activityId: { in: quizzes.map((q) => q.id) }, status: { in: DONE_STATUSES } },
-            select: { activityId: true, completedAt: true, updatedAt: true },
+            select: { activityId: true, completedAt: true, updatedAt: true, score: true },
         }),
     );
     const assignmentByActivityId = new Map(assignments.map((a) => [a.activityId, a.id]));
-    return pickWeeklyQuizStatus({
+    return {
         quizzes: quizzes.map((q) => ({ ...q, assignmentId: assignmentByActivityId.get(q.id) ?? null })),
-        completedAtById: new Map(
+        doneById: new Map(
             submissions
-                .map((s) => [s.activityId, s.completedAt ?? s.updatedAt] as const)
-                .filter(([, at]) => at >= since),
+                .map((s) => [s.activityId, { completedAt: s.completedAt ?? s.updatedAt, score: s.score }] as const)
+                .filter(([, done]) => done.completedAt >= since),
         ),
-        joinedAt: since,
+        since,
+    };
+}
+
+export async function getStudentWeeklyQuizStatus(userId: string, now = new Date()): Promise<WeeklyQuizStatus | null> {
+    const loaded = await loadStudentWeeklyQuizzes(userId, now);
+    if (!loaded) return null;
+    return pickWeeklyQuizStatus({
+        quizzes: loaded.quizzes,
+        completedAtById: new Map([...loaded.doneById].map(([id, done]) => [id, done.completedAt])),
+        joinedAt: loaded.since,
         now,
     });
+}
+
+export type WeeklyQuizCatchUpItem = {
+    activityId: string;
+    title: string;
+    href: string;
+    weekNumber: number;
+    dueAt: Date;
+    score: number | null;
+};
+
+export type WeeklyQuizCatchUp = {
+    /** Past due and never finished, oldest first. */
+    missing: WeeklyQuizCatchUpItem[];
+    /** Finished below 100%, lowest score first. Retakes keep the best score. */
+    notPerfect: WeeklyQuizCatchUpItem[];
+};
+
+/**
+ * Weekly quizzes the student still owes (missing) or can retake for a perfect
+ * score. Only quizzes that are already due count as missing; the open quiz is
+ * the dashboard bar's job.
+ */
+export function buildWeeklyQuizCatchUp(input: {
+    quizzes: QuizCandidate[];
+    doneById: Map<string, { score: number | null }>;
+    joinedAt: Date;
+    now: Date;
+}): WeeklyQuizCatchUp {
+    const items = input.quizzes.flatMap((quiz) => {
+        const weekNumber = readWeekNumber(quiz.content);
+        const schedule = weekNumber === null ? null : getWeeklyQuizSchedule(weekNumber);
+        if (!schedule || weekNumber === null || schedule.opensAt > input.now) return [];
+        const done = input.doneById.get(quiz.id);
+        return [{
+            done: Boolean(done),
+            item: {
+                activityId: quiz.id,
+                title: quiz.title ?? `Week ${weekNumber} Quiz`,
+                href: buildActivityHref(quiz.id, quiz.assignmentId),
+                weekNumber,
+                dueAt: schedule.dueAt,
+                score: done?.score ?? null,
+            },
+        }];
+    });
+    return {
+        missing: items
+            .filter(({ done, item }) => !done && item.dueAt <= input.now && item.dueAt >= input.joinedAt)
+            .map(({ item }) => item)
+            .sort((a, b) => a.dueAt.getTime() - b.dueAt.getTime()),
+        notPerfect: items
+            .filter(({ done, item }) => done && item.score !== null && item.score < 100)
+            .map(({ item }) => item)
+            .sort((a, b) => (a.score ?? 0) - (b.score ?? 0) || a.dueAt.getTime() - b.dueAt.getTime()),
+    };
+}
+
+export async function getStudentWeeklyQuizCatchUp(userId: string, now = new Date()): Promise<WeeklyQuizCatchUp> {
+    const loaded = await loadStudentWeeklyQuizzes(userId, now);
+    if (!loaded) return { missing: [], notPerfect: [] };
+    return buildWeeklyQuizCatchUp({ quizzes: loaded.quizzes, doneById: loaded.doneById, joinedAt: loaded.since, now });
+}
+
+/**
+ * Calendar entries for each weekly quiz's Tuesday due time. Quizzes whose class
+ * assignment already has its own due date are skipped so they don't show twice.
+ */
+export function weeklyQuizDueEvents(
+    quizzes: { id: string; title?: string | null; content: string }[],
+    skipActivityIds: Iterable<string> = [],
+) {
+    const skip = new Set(skipActivityIds);
+    return quizzes.flatMap((quiz) => {
+        const weekNumber = skip.has(quiz.id) ? null : readWeekNumber(quiz.content);
+        const schedule = weekNumber === null ? null : getWeeklyQuizSchedule(weekNumber);
+        return schedule && weekNumber !== null
+            ? [{ date: schedule.dueAt, endDate: null, type: "quiz" as const, title: `Quiz due: ${quiz.title || `Week ${weekNumber} Quiz`}` }]
+            : [];
+    });
+}
+
+/** Due-date calendar entries for the student's released weekly quizzes. */
+export async function getStudentWeeklyQuizDueEvents(userId: string, skipActivityIds: Iterable<string> = [], now = new Date()) {
+    const loaded = await loadStudentWeeklyQuizzes(userId, now);
+    return loaded ? weeklyQuizDueEvents(loaded.quizzes, skipActivityIds) : [];
 }
 
 function dayKey(date: Date): string {

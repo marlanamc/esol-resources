@@ -26,6 +26,7 @@ import {
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { getStudentWeeklyQuizDueEvents } from "@/lib/learner/weekly-quiz-status";
 import { buildGlobalFeaturedActivitiesWhere } from "@/lib/featured-assignments";
 import { buildIndependentFeaturedAssignment } from "@/lib/independent-learning";
 import { buildActivityHref } from "@/lib/learner/navigation";
@@ -442,9 +443,14 @@ export default async function DashboardPage() {
         />
     );
 
+    const datedAssignments = allAssignments.filter((a) => a.dueDate);
+    const weeklyQuizDueEvents = await getStudentWeeklyQuizDueEvents(userId, datedAssignments.map((a) => a.activityId)).catch((error) => {
+        console.error("[Dashboard] Weekly quiz due dates unavailable", error);
+        return [];
+    });
     const calendarEvents: CalendarEvent[] = [
-        ...allAssignments
-            .filter((a) => a.dueDate)
+        ...weeklyQuizDueEvents,
+        ...datedAssignments
             .map((a) => ({
                 date: a.dueDate as Date,
                 type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
