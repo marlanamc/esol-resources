@@ -127,6 +127,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "emotion-spin-wheel" ||
             gameUi === "cafe-catch-up" ||
             gameUi === "grammar-hospital" ||
+            gameUi === "sentence-builder" ||
             gameUi === "verb-speed-round"
         )
     ) {
@@ -360,6 +361,7 @@ function renderImmersiveActivity(
         immersiveGameUi !== "timeline-tenses" &&
         immersiveGameUi !== "emotion-spin-wheel" &&
         immersiveGameUi !== "grammar-hospital" &&
+        immersiveGameUi !== "sentence-builder" &&
         immersiveGameUi !== "cafe-catch-up";
     return (
         <div className="min-h-dvh bg-bg flex flex-col">

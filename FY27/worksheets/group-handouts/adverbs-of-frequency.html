@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adverbs of Frequency Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  /* Frequency scale: 100% -> 0% */
+  .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .scale > div { padding: 4px 6px; text-align: center; }
+  .scale > div + div { border-left: 1.5px solid #000; }
+  .scale .word { font-size: 18px; font-weight: bold; }
+  .scale .pct { font-size: 14px; }
+  .scale .ex { font-size: 11px; }
+  .bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Position key */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rule .ex { font-size: 14px; }
+  .rule .ex b { text-decoration: underline; }
+  .rule.wide { grid-column: 1 / -1; }
+  .no { font-size: 14px; margin-top: 3px; }
+  .no s { text-decoration-thickness: 2px; }
+
+  /* Phrase bank */
+  .bank { column-count: 4; column-gap: 14px; }
+  .cat { break-inside: avoid; margin-bottom: 6px; }
+  .cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+
+  /* Writing */
+  .write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .write-row .adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .write-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .write-row .fill.example { font-style: italic; color: #000; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+
+  table.interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.interview th, table.interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  table.interview th { font-size: 14px; }
+  table.interview td { height: 34px; }
+  table.interview td.q { width: 52%; }
+
+  .line { border-bottom: 1.5px solid #000; height: 32px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: scale, position key, phrase bank
+     ====================================================== -->
+<section class="page">
+
+  <div class="name-row">
+    Name: <span class="fill"></span>
+    Date: <span class="fill date"></span>
+  </div>
+
+  <div class="title-row">
+    <h1>Adverbs of Frequency: How Often?</h1>
+    <span class="sub">Keep this page. Use it to write on the back.</span>
+  </div>
+
+  <!-- Scale -->
+  <div class="box">
+    <h2>1. How often? <span class="small">From all the time to not at all.</span></h2>
+    <div class="scale">
+      <div><div class="word">always</div><div class="bar"><i style="width:100%"></i></div><div class="pct">100%</div><div class="ex">every day</div></div>
+      <div><div class="word">usually</div><div class="bar"><i style="width:85%"></i></div><div class="pct">85%</div><div class="ex">almost every day</div></div>
+      <div><div class="word">often</div><div class="bar"><i style="width:65%"></i></div><div class="pct">65%</div><div class="ex">many times</div></div>
+      <div><div class="word">sometimes</div><div class="bar"><i style="width:45%"></i></div><div class="pct">45%</div><div class="ex">some days</div></div>
+      <div><div class="word">rarely</div><div class="bar"><i style="width:10%"></i></div><div class="pct">10%</div><div class="ex">almost never</div></div>
+      <div><div class="word">never</div><div class="bar"></div><div class="pct">0%</div><div class="ex">not one time</div></div>
+    </div>
+  </div>
+
+  <!-- Position key -->
+  <div class="box">
+    <h2>2. Where does it go? <span class="small">The adverb is in <b>black</b>.</span></h2>
+    <div class="rules">
+      <div class="rule">
+        <div class="rule-name">A. Most verbs: BEFORE the verb</div>
+        <div class="formula"><span class="chip">I</span><span class="chip adv">usually</span><span class="chip">drink</span><span class="chip">coffee.</span></div>
+        <div class="ex">She <b>never</b> eats breakfast.</div>
+        <div class="no">&#10007; <s>I drink usually coffee.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">B. am / is / are: AFTER the verb</div>
+        <div class="formula"><span class="chip">I</span><span class="chip">am</span><span class="chip adv">always</span><span class="chip">tired.</span></div>
+        <div class="ex">He is <b>sometimes</b> late.</div>
+        <div class="no">&#10007; <s>I always am tired.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">C. Negative: don't / doesn't + usually</div>
+        <div class="formula"><span class="chip">I</span><span class="chip">don't</span><span class="chip adv">usually</span><span class="chip">cook.</span></div>
+        <div class="ex">She doesn't <b>often</b> watch TV.</div>
+        <div class="no">Never is already negative: &#10007; <s>I don't never cook.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">D. Questions: How often...? / ...ever...?</div>
+        <div class="formula"><span class="chip">How often</span><span class="chip">do you</span><span class="chip">cook?</span></div>
+        <div class="ex">Do you <b>ever</b> take a nap?</div>
+        <div class="ex">&rarr; Yes, I <b>sometimes</b> take a nap.</div>
+      </div>
+      <div class="rule wide">
+        <div class="rule-name" style="margin:0">Remember: he / she / it + <b>V1-s</b> <span style="font-weight:normal">&rarr; My friend <b>usually</b> drink<b>s</b> tea. &nbsp;|&nbsp; <i>Sometimes</i> can go first: <b>Sometimes</b> I take the bus.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phrase bank -->
+  <div class="box" style="flex:1; display:flex; flex-direction:column;">
+    <h2>3. Phrase bank <span class="small">Pick any phrase. Change it if you want.</span></h2>
+    <div class="bank">
+      <div class="cat">
+        <div class="cat-name">Food &amp; drinks</div>
+        <ul>
+          <li>drink coffee / tea / water</li>
+          <li>eat breakfast</li>
+          <li>skip breakfast</li>
+          <li>eat vegetables / fruit</li>
+          <li>eat dessert</li>
+          <li>eat fast food</li>
+          <li>order takeout</li>
+          <li>cook dinner</li>
+          <li>cook at home</li>
+          <li>pack lunch</li>
+          <li>buy coffee outside</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">At home</div>
+        <ul>
+          <li>make my bed</li>
+          <li>clean the kitchen</li>
+          <li>do laundry</li>
+          <li>wash the dishes</li>
+          <li>take out the trash</li>
+          <li>go grocery shopping</li>
+          <li>water my plants</li>
+          <li>forget my keys</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Getting around</div>
+        <ul>
+          <li>take the bus / the T</li>
+          <li>drive / walk to work</li>
+          <li>ride a bike</li>
+          <li>take an Uber</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Health &amp; body</div>
+        <ul>
+          <li>take a shower</li>
+          <li>brush / floss my teeth</li>
+          <li>go to the gym</li>
+          <li>go for a walk</li>
+          <li>sleep 8 hours</li>
+          <li>go to bed early</li>
+          <li>take a nap</li>
+          <li>meditate</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Weather &amp; clothes</div>
+        <ul>
+          <li>bring an umbrella</li>
+          <li>wear a jacket / a hat</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Learning</div>
+        <ul>
+          <li>study English</li>
+          <li>do homework</li>
+          <li>practice speaking</li>
+          <li>read a book</li>
+          <li>use a dictionary</li>
+          <li>arrive early / late</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Phone &amp; free time</div>
+        <ul>
+          <li>listen to music</li>
+          <li>watch TV / YouTube</li>
+          <li>check the news</li>
+          <li>check TikTok</li>
+          <li>use my phone in bed</li>
+          <li>play video games</li>
+          <li>play soccer</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">People</div>
+        <ul>
+          <li>call my family</li>
+          <li>video call my family</li>
+          <li>text my friends</li>
+          <li>send voice messages</li>
+          <li>visit my neighbors</li>
+          <li>eat dinner with my family</li>
+          <li>work on weekends</li>
+        </ul>
+      </div>
+    </div>
+      <div class="cat-be"><b>For am / is / are (Rule B):</b> &nbsp;tired &middot; busy &middot; hungry &middot; stressed &middot; happy &middot; late &middot; on time &middot; at home on Sunday</div>
+  </div>
+
+</section>
+
+<!-- ======================================================
+     BACK: write, then talk
+     ====================================================== -->
+<section class="page">
+
+  <div class="title-row">
+    <h1>Write About You</h1>
+    <span class="sub">Look at the front for help.</span>
+  </div>
+
+  <!-- Part 4: one sentence per adverb, with a detail -->
+  <div class="box">
+    <h2>4. My week <span class="small">One sentence for each adverb. Add a detail: <b>when?</b> <b>where?</b> or <b>because...</b></span></h2>
+    <div class="write-row"><span class="adv">example</span><span class="fill example">I usually drink coffee in the morning because I am tired.</span></div>
+    <div class="write-row"><span class="adv">always</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">usually</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">often</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">sometimes</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">rarely</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">never</span><span class="fill"></span></div>
+    <div class="hint" style="margin-top:6px">Detail ideas: in the morning &middot; at night &middot; on weekends &middot; after work &middot; at school &middot; because I am busy &middot; because I like it</div>
+  </div>
+
+  <!-- Part 5: am/is/are + negative -->
+  <div class="box">
+    <h2>5. Two more <span class="small">Use Rule B and Rule C.</span></h2>
+    <div class="write-row"><span class="adv">I am</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I don't</span><span class="fill"></span></div>
+  </div>
+
+  <!-- Part 6: partner interview -->
+  <div class="box">
+    <h2>6. Ask a partner <span class="small">Ask: <b>How often do you...?</b> Your partner answers with an adverb.</span></h2>
+    <div class="hint">Partner's name: ______________________</div>
+    <table class="interview">
+      <tr><th>How often do you...</th><th>My partner's answer</th></tr>
+      <tr><td class="q">...cook at home?</td><td></td></tr>
+      <tr><td class="q">...</td><td></td></tr>
+      <tr><td class="q">...</td><td></td></tr>
+      <tr><td class="q">...</td><td></td></tr>
+    </table>
+    <div class="hint" style="margin-top:8px">Now write about your partner. Remember <b>V1-s</b>: <i>Ana usually cook<b>s</b> at home.</i></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>adverb before the verb</span>
+    <span><span class="cb"></span>after am / is / are</span>
+    <span><span class="cb"></span>he / she + V1-s</span>
+    <span><span class="cb"></span>period at the end.</span>
+  </div>
+
+</section>
+
+</body>
+</html>

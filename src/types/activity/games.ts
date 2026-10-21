@@ -249,3 +249,79 @@ export function isGrammarHospitalContent(value: unknown): value is GrammarHospit
     const c = value as Record<string, unknown>;
     return c["type"] === "grammar-hospital" && Array.isArray(c["cases"]);
 }
+
+// ============================================================================
+// Sentence Builder — rounds written from each phrase bank worksheet
+// ============================================================================
+
+/** A rule card, worded exactly like the worksheet's "Where does it go?" key. */
+export interface SentenceBuilderRule {
+    title: string;
+    example: string;
+}
+
+/** Tap the gap where `word` goes. Slot 0 is before the first word. */
+export interface SentenceBuilderPlaceRound {
+    kind: "place";
+    id: string;
+    words: string[];
+    word: string;
+    answer: number;
+    /** Other correct slots, each with an "Also correct!" note. Slot 0
+     *  capitalizes `word` and lowercases the first word unless it is "I". */
+    also?: { slot: number; note: string }[];
+    rule: string;
+}
+
+export interface SentenceBuilderBlank {
+    options: string[];
+    answer: number;
+    /** Other option indexes that are also correct. */
+    also?: number[];
+}
+
+/** Pick the right option for each gap. Strings are fixed text. */
+export interface SentenceBuilderPickRound {
+    kind: "pick";
+    id: string;
+    parts: (string | SentenceBuilderBlank)[];
+    rule: string;
+}
+
+/** No wrong answers: pick what is true for you, then say it out loud. */
+export interface SentenceBuilderTrueRound {
+    kind: "true";
+    id: string;
+    question: string;
+    choices: string[];
+    /** Sentence with a `{choice}` placeholder, e.g. "I {choice} eat breakfast." */
+    template: string;
+}
+
+export type SentenceBuilderRound =
+    | SentenceBuilderPlaceRound
+    | SentenceBuilderPickRound
+    | SentenceBuilderTrueRound;
+
+export interface SentenceBuilderContent {
+    type: "sentence-builder";
+    title: string;
+    description?: string;
+    courseMapPreset?: boolean;
+    rules: Record<string, SentenceBuilderRule>;
+    rounds: SentenceBuilderRound[];
+    /** Rounds served per game. Default 8. */
+    roundSize?: number;
+    released?: boolean;
+}
+
+export function isSentenceBuilderContent(value: unknown): value is SentenceBuilderContent {
+    if (!value || typeof value !== "object") return false;
+    const c = value as Record<string, unknown>;
+    return (
+        c["type"] === "sentence-builder" &&
+        Array.isArray(c["rounds"]) &&
+        !!c["rules"] &&
+        typeof c["rules"] === "object"
+    );
+}

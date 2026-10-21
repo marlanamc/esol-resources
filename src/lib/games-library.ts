@@ -113,7 +113,7 @@ const GAME_LIBRARY_SECTION_DEFS: Array<{ name: string; match: GameLibraryMatcher
   {
     name: "Grammar & Sentences",
     match: (activity) =>
-      activity.ui === "grammar-hospital" || activity.ui === "comparison-battle",
+      activity.ui === "grammar-hospital" || activity.ui === "comparison-battle" || activity.ui === "sentence-builder",
   },
   {
     name: "Numbers",
