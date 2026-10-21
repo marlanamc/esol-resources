@@ -52,6 +52,15 @@ const WORD_TILE =
 const TARGET_TILE =
     "inline-flex items-center rounded-lg bg-gray-900 text-white dark:bg-gray-50 dark:text-gray-900 px-3 py-2 font-bold";
 
+// globals.css resets every <button> to border: none; background: none, which
+// beats plain utilities, so button colors and borders need the ! modifier.
+const OPTION_BUTTON = "rounded-lg border! px-3 py-1.5 text-lg transition-colors";
+const OPTION_IDLE =
+    "border-gray-200! bg-[#fdf9f0]! text-gray-900! hover:border-primary/40! dark:border-white/10! dark:bg-[#1a1410]! dark:text-gray-50!";
+const OPTION_PICKED =
+    "border-gray-900! bg-gray-900! text-white! dark:border-gray-50! dark:bg-gray-50! dark:text-gray-900!";
+const OPTION_WRONG = "border-red-400! bg-red-50! text-red-900! dark:bg-red-950/40! dark:text-red-100!";
+
 export default function SentenceBuilderGame({ activityId, content, assignmentId }: Props) {
     const roundSize = content.roundSize ?? DEFAULT_SENTENCE_BUILDER_ROUND_SIZE;
     const [dealKey, setDealKey] = useState(0);
@@ -170,7 +179,7 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
                         <button
                             type="button"
                             onClick={playAgain}
-                            className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold border border-gray-200 bg-white text-gray-800 hover:border-primary/40 dark:border-white/10 dark:bg-[#2a1f1a] dark:text-gray-100 transition-all"
+                            className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold border! border-gray-200! bg-white! text-gray-800! hover:border-primary/40! dark:border-white/10! dark:bg-[#2a1f1a]! dark:text-gray-100! transition-all"
                         >
                             <RotateCcw size={16} /> Play again
                         </button>
@@ -328,13 +337,7 @@ function PickRound({ round, rule, onDone, announce }: RoundProps<SentenceBuilder
                                         disabled={solved}
                                         aria-pressed={picked}
                                         onClick={() => choose(b, j)}
-                                        className={`rounded-lg border px-3 py-1.5 text-lg transition-colors ${
-                                            isWrong
-                                                ? "border-red-400 bg-red-50 text-red-900 dark:bg-red-950/40 dark:text-red-100"
-                                                : picked
-                                                  ? "border-gray-900 bg-gray-900 text-white dark:border-gray-50 dark:bg-gray-50 dark:text-gray-900"
-                                                  : "border-gray-200 bg-[#fdf9f0] text-gray-900 hover:border-primary/40 dark:border-white/10 dark:bg-[#1a1410] dark:text-gray-50"
-                                        }`}
+                                        className={`${OPTION_BUTTON} ${isWrong ? OPTION_WRONG : picked ? OPTION_PICKED : OPTION_IDLE}`}
                                     >
                                         {option}
                                     </button>
@@ -378,11 +381,7 @@ function TrueRound({ round, onDone, announce }: RoundProps<SentenceBuilderTrueRo
                             setChoice(c);
                             announce(fillTemplate(round, c));
                         }}
-                        className={`rounded-lg border px-3 py-1.5 text-lg transition-colors ${
-                            choice === c
-                                ? "border-gray-900 bg-gray-900 text-white dark:border-gray-50 dark:bg-gray-50 dark:text-gray-900"
-                                : "border-gray-200 bg-[#fdf9f0] text-gray-900 hover:border-primary/40 dark:border-white/10 dark:bg-[#1a1410] dark:text-gray-50"
-                        }`}
+                        className={`${OPTION_BUTTON} ${choice === c ? OPTION_PICKED : OPTION_IDLE}`}
                     >
                         {c}
                     </button>
@@ -453,8 +452,8 @@ function Slot({ label, wrong, onTap }: { label: string; wrong: boolean; onTap: (
             type="button"
             aria-label={label}
             onClick={onTap}
-            className={`h-11 w-8 rounded-md border-2 border-dashed transition-colors ${
-                wrong ? "border-red-400 bg-red-50 dark:bg-red-950/40" : "border-accent hover:bg-accent/20 focus-visible:bg-accent/20"
+            className={`h-11 w-8 rounded-md border-2! border-dashed! transition-colors ${
+                wrong ? "border-red-400! bg-red-50! dark:bg-red-950/40!" : "border-accent! hover:bg-accent/20! focus-visible:bg-accent/20!"
             }`}
         />
     );
