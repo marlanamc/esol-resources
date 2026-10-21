@@ -24,8 +24,8 @@ import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 import type { WeeklyQuizContent } from "@/types/weekly-quiz";
 import { VerbQuizContent } from "@/types/verb-quiz";
-import { isSpeakingActivityContent, isCafeCatchUpContent, isTriviaGameContent, isGrammarHospitalContent } from "@/types/activity";
-import type { SpeakingActivityContent, CafeCatchUpContent, TriviaGameContent, GrammarHospitalContent } from "@/types/activity";
+import { isSpeakingActivityContent, isCafeCatchUpContent, isTriviaGameContent, isGrammarHospitalContent, isSentenceBuilderContent } from "@/types/activity";
+import type { SpeakingActivityContent, CafeCatchUpContent, TriviaGameContent, GrammarHospitalContent, SentenceBuilderContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
@@ -60,6 +60,7 @@ const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { lo
 const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
 const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
 const GrammarHospitalGame = dynamic(() => import("../games/GrammarHospitalGame"), { loading: ActivityLoadingFallback });
+const SentenceBuilderGame = dynamic(() => import("../games/SentenceBuilderGame"), { loading: ActivityLoadingFallback });
 const ComparisonBattleGame = dynamic(() => import("../games/ComparisonBattleGame"), { loading: ActivityLoadingFallback });
 const WeeklyQuiz = dynamic(() => import("../activities/WeeklyQuiz"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
@@ -266,6 +267,17 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                             );
                         }
                         return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Grammar Hospital content.</div>;
+                    case "sentence-builder":
+                        if (isSentenceBuilderContent(content)) {
+                            return (
+                                <SentenceBuilderGame
+                                    activityId={activity.id}
+                                    content={content as SentenceBuilderContent}
+                                    assignmentId={assignmentId}
+                                />
+                            );
+                        }
+                        return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Sentence Builder content.</div>;
                     case "comparison-battle":
                         return <ComparisonBattleGame activityId={activity.id} assignmentId={assignmentId} variant="embedded" />;
                     case "verb-speed-round":

@@ -1,7 +1,9 @@
 {
   "detector": {
     "ignoreRules": [],
-    "ignoreFiles": [],
+    "ignoreFiles": [
+      "FY27/worksheets/**"
+    ],
     "ignoreValues": [
       {
         "rule": "border-accent-on-rounded",

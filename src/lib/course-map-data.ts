@@ -654,6 +654,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Community Resources Scavenger Hunt"
           },
           {
+            "id": "sentence-builder-week-6",
+            "activityId": "sentence-builder-adverbs-of-frequency",
+            "slot": "extra",
+            "order": 12,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sentence Builder: How Often?"
+          },
+          {
             "id": "job-history-used-to-speaking",
             "slot": "extra",
             "order": 11,
@@ -691,9 +700,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Zero + First Conditional: If This, Then That"
           },
           {
-            "id": "contact-official-practice",
+            "id": "sentence-builder-week-7",
+            "activityId": "sentence-builder-zero-first-conditional",
             "slot": "required",
             "order": 2,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sentence Builder: If This, Then That"
+          },
+          {
+            "id": "contact-official-practice",
+            "slot": "required",
+            "order": 3,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Contact an Official Practice"
@@ -705,7 +723,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 4,
             "title": "Voting and Community Voice: Matching"
           },
           {
@@ -715,14 +733,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 5,
             "title": "Voting and Community Voice: Fill in the Blank"
           },
           {
             "id": "verb-quiz-7",
             "activityId": "verb-quiz-7",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 7 Quiz"
@@ -730,7 +748,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "political-ads-fact-opinion",
             "slot": "extra",
-            "order": 6,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "worksheet",
             "title": "Political Ads: Fact or Opinion?"
@@ -739,7 +757,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "lets-make-a-suggestion",
             "href": "/grammar-reader/lets-make-a-suggestion",
             "slot": "extra",
-            "order": 7,
+            "order": 8,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Let's Make a Suggestion"
@@ -747,7 +765,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "community-issue-discussion",
             "slot": "extra",
-            "order": 8,
+            "order": 9,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Community Issue Case Study: Discussion"
