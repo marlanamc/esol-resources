@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api/schemas";
-import { calculateQuizPoints, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
+import { calculateQuizPoints, calculateWeeklyQuizPoints, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/database/locks";
@@ -254,7 +254,9 @@ export async function POST(request: NextRequest) {
 
         // Calculate points SERVER-SIDE based on activity type and score
         // NEVER trust points from client request
-        const calculatedPoints = activity.type.toLowerCase() === 'quiz'
+        const calculatedPoints = weeklyQuizResult
+            ? calculateWeeklyQuizPoints(score ?? null)
+            : activity.type.toLowerCase() === 'quiz'
             ? calculateQuizPoints(score ?? null)
             : getActivityPoints(activity.type, activity);
 

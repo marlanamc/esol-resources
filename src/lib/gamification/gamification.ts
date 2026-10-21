@@ -244,6 +244,14 @@ export function calculateQuizPoints(score: number | null): number {
   return POINTS.QUIZ_COMPLETION;
 }
 
+/**
+ * The weekly quiz is the one required homework each week, so finishing it
+ * always pays more than any game: a flat homework bonus plus the score points.
+ */
+export function calculateWeeklyQuizPoints(score: number | null): number {
+  return POINTS.WEEKLY_QUIZ_HOMEWORK_BONUS + calculateQuizPoints(score);
+}
+
 export type { LeaderboardRange } from './leaderboard-period';
 
 /**

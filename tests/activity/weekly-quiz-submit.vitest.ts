@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 import quizzes from '@/content/quizzes/weekly-quizzes.json';
+import { POINTS } from '@/lib/gamification/constants';
+// A 0% weekly quiz still earns the homework bonus plus completion points.
+const EFFORT_POINTS = POINTS.WEEKLY_QUIZ_HOMEWORK_BONUS + POINTS.QUIZ_COMPLETION;
 const mocks = vi.hoisted(() => ({
   activity: vi.fn(), createSubmission: vi.fn(), createProgress: vi.fn(), award: vi.fn(),
   findProgress: vi.fn(), findSubmission: vi.fn(), claim: vi.fn(), updateSubmission: vi.fn(), updateProgress: vi.fn(),
@@ -39,17 +42,17 @@ describe('weekly quiz submission', () => {
     expect(response.status).toBe(200);
     const data = await response.json();
     expect(data.score).toBe(0);
-    expect(data.points).toBe(2);
+    expect(data.points).toBe(EFFORT_POINTS);
     expect(data.weeklyQuizResult.results).toHaveLength(quiz.questions.length);
     expect(mocks.createSubmission.mock.calls[0][0].data.score).toBe(0);
     expect(mocks.createProgress.mock.calls[0][0].data.status).toBe('completed');
-    expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student', points: 2, source: 'activity' }));
+    expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student', points: EFFORT_POINTS, source: 'activity' }));
   });
   it('accepts late completion and still awards effort points', async () => {
     vi.setSystemTime(new Date('2027-06-30T22:00:00Z'));
     const response = await POST(request(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))));
     expect(response.status).toBe(200);
-    expect((await response.json()).points).toBe(2);
+    expect((await response.json()).points).toBe(EFFORT_POINTS);
     expect(mocks.createProgress.mock.calls[0][0].data.status).toBe('completed');
   });
   it('rejects unanswered quizzes before writing progress or points', async () => {
@@ -95,7 +98,7 @@ it('recovers an older completed request whose point claim was reset after a fail
   mocks.updateSubmission.mockResolvedValue({ id: 'submission', score: 0 });
   const response = await POST(request(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))));
   expect(response.status).toBe(200);
-  expect((await response.json()).points).toBe(2);
+  expect((await response.json()).points).toBe(EFFORT_POINTS);
   expect(mocks.award).toHaveBeenCalledTimes(1);
 });
 

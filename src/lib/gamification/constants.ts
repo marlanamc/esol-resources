@@ -4,6 +4,8 @@ export const POINTS = {
   QUIZ_HIGH_SCORE: 10,
   QUIZ_GOOD_SCORE: 5,
   QUIZ_PASSING_SCORE: 2,
+  /** Flat bonus for finishing the required weekly quiz, on top of the score points. */
+  WEEKLY_QUIZ_HOMEWORK_BONUS: 20,
 
   FLASHCARDS: 4,
   MATCHING_GAME: 5,
