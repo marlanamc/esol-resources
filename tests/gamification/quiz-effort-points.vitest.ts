@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 vi.mock('@/lib/database/prisma', () => ({ prisma: {} }));
-import { calculateQuizPoints, calculateWeeklyQuizPoints, POINTS } from '@/lib/gamification/gamification';
+import { calculateQuizPoints, calculateWeeklyQuizPoints, weeklyQuizRetakeTopUp, POINTS } from '@/lib/gamification/gamification';
 
 describe('quiz effort points', () => {
   it.each([null, 0, 35, 69, 70])('recognizes completion at score %s', score => {
@@ -15,5 +15,15 @@ describe('quiz effort points', () => {
   });
   it('makes even a low weekly quiz score worth more than any game', () => {
     expect(calculateWeeklyQuizPoints(0)).toBeGreaterThan(POINTS.TIMELINE_TENSES_PERFECT);
+  });
+  it.each([
+    [50, 100, POINTS.QUIZ_PERFECT_SCORE - POINTS.QUIZ_COMPLETION],
+    [85, 95, POINTS.QUIZ_HIGH_SCORE - POINTS.QUIZ_GOOD_SCORE],
+    [40, 60, 0],
+    [100, 100, 0],
+    [90, 80, 0],
+    [null, 100, 0],
+  ])('tops up a retake from %s to %s by %s points', (previous, next, topUp) => {
+    expect(weeklyQuizRetakeTopUp(previous, next)).toBe(topUp);
   });
 });

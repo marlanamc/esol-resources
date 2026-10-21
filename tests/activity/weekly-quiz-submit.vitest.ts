@@ -6,7 +6,7 @@ import { POINTS } from '@/lib/gamification/constants';
 const EFFORT_POINTS = POINTS.WEEKLY_QUIZ_HOMEWORK_BONUS + POINTS.QUIZ_COMPLETION;
 const mocks = vi.hoisted(() => ({
   activity: vi.fn(), createSubmission: vi.fn(), createProgress: vi.fn(), award: vi.fn(),
-  findProgress: vi.fn(), findSubmission: vi.fn(), claim: vi.fn(), updateSubmission: vi.fn(), updateProgress: vi.fn(),
+  findProgress: vi.fn(), findSubmission: vi.fn(), claim: vi.fn(), updateSubmission: vi.fn(), updateProgress: vi.fn(), findUniqueSubmission: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: async () => ({ user: { id: 'student', role: 'student' } }) }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
@@ -17,7 +17,7 @@ vi.mock('@/lib/database/prisma', () => ({ prisma: {
   activity: { findFirst: mocks.activity },
   $transaction: async (fn: (tx: unknown) => unknown) => fn({
     activityProgress: { findFirst: mocks.findProgress, create: mocks.createProgress, update: mocks.updateProgress },
-    submission: { findFirst: mocks.findSubmission, create: mocks.createSubmission, updateMany: mocks.claim, update: mocks.updateSubmission },
+    submission: { findFirst: mocks.findSubmission, create: mocks.createSubmission, updateMany: mocks.claim, update: mocks.updateSubmission, findUnique: mocks.findUniqueSubmission },
   }),
 } }));
 import { POST } from '@/app/api/activity/submit/route';
@@ -121,5 +121,42 @@ describe('weekly quiz retakes', () => {
     mocks.findSubmission.mockResolvedValue(saved(50, 5));
     await POST(request(allRight()));
     expect(mocks.updateSubmission.mock.calls[0][0].data.score).toBe(100);
+  });
+});
+
+describe('weekly quiz retakes', () => {
+  const allCorrect = () => Object.fromEntries(quiz.questions.map(q => [q.id, q.answers[0]]));
+  const retakeRequest = (answers: Record<string, string>) => {
+    const req = request(answers);
+    req.headers.set('x-idempotency-key', 'retake-attempt');
+    return req;
+  };
+  beforeEach(() => {
+    // An earlier attempt at 50% already earned the homework bonus plus completion points.
+    const earlier = { type: 'weekly-quiz', correctCount: 7, totalQuestions: 14, score: 50 };
+    mocks.findSubmission.mockResolvedValue({ id: 'submission', score: 50, content: JSON.stringify(earlier), pointsAwarded: EFFORT_POINTS });
+    mocks.updateSubmission.mockImplementation(async ({ data }) => ({ id: 'submission', score: data.score }));
+    mocks.findUniqueSubmission.mockResolvedValue({ pointsAwarded: EFFORT_POINTS });
+    mocks.claim.mockResolvedValueOnce({ count: 0 }).mockResolvedValueOnce({ count: 1 });
+  });
+
+  it('pays the score-point difference when a retake beats the best score', async () => {
+    const data = await (await POST(retakeRequest(allCorrect()))).json();
+    const topUp = POINTS.QUIZ_PERFECT_SCORE - POINTS.QUIZ_COMPLETION;
+    expect(data.points).toBe(topUp);
+    expect(data.totalPointsAwarded).toBe(EFFORT_POINTS + topUp);
+    expect(mocks.claim).toHaveBeenLastCalledWith({
+      where: { id: 'submission', userId: 'student', pointsAwarded: EFFORT_POINTS },
+      data: { pointsAwarded: { increment: topUp } },
+    });
+    expect(mocks.award).toHaveBeenCalledTimes(1);
+    expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ points: topUp, source: 'activity' }));
+  });
+
+  it('pays nothing when a retake does not beat the best score', async () => {
+    const data = await (await POST(retakeRequest(Object.fromEntries(quiz.questions.map(q => [q.id, 'wrong']))))).json();
+    expect(data.points).toBe(0);
+    expect(data.totalPointsAwarded).toBe(EFFORT_POINTS);
+    expect(mocks.award).not.toHaveBeenCalled();
   });
 });

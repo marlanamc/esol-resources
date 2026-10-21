@@ -252,6 +252,15 @@ export function calculateWeeklyQuizPoints(score: number | null): number {
   return POINTS.WEEKLY_QUIZ_HOMEWORK_BONUS + calculateQuizPoints(score);
 }
 
+/**
+ * Extra points when a weekly quiz retake beats the student's best score: the
+ * difference in score points only, since the homework bonus was already paid.
+ */
+export function weeklyQuizRetakeTopUp(previousBest: number | null, newBest: number | null): number {
+  if (previousBest === null || newBest === null || newBest <= previousBest) return 0;
+  return Math.max(0, calculateQuizPoints(newBest) - calculateQuizPoints(previousBest));
+}
+
 export type { LeaderboardRange } from './leaderboard-period';
 
 /**

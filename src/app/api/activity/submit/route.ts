@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api/schemas";
-import { calculateQuizPoints, calculateWeeklyQuizPoints, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
+import { calculateQuizPoints, calculateWeeklyQuizPoints, weeklyQuizRetakeTopUp, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/database/locks";
@@ -310,12 +310,14 @@ export async function POST(request: NextRequest) {
             // again never lowers a learner's saved score.
             let storedContent: unknown = content;
             let storedScore = score;
+            let previousBestScore: number | null = null;
             if (weeklyQuizResult) {
                 const previous = await tx.submission.findFirst({
                     where: progressWhere,
                     orderBy: { updatedAt: "desc" },
                     select: { content: true, score: true },
                 });
+                previousBestScore = previous?.score ?? null;
                 if (previous?.score != null && previous.score > weeklyQuizResult.score && readWeeklyQuizScore(previous.content)) {
                     storedContent = JSON.parse(previous.content);
                     storedScore = previous.score;
@@ -362,6 +364,10 @@ export async function POST(request: NextRequest) {
 
             let duplicateFromClaim = false;
             let totalPointsAwarded = 0;
+            let pointsEarned = 0;
+            const quizLedgerReason = activity.type.toLowerCase() === "quiz"
+                ? `${activity.title || activityId}|Quiz`
+                : `Completed: ${activity.title || activityId}`;
 
             // Award points exactly once per submission by atomically claiming pointsAwarded.
             if (calculatedPoints > 0) {
@@ -374,15 +380,36 @@ export async function POST(request: NextRequest) {
                 duplicateFromClaim = !claimResult.claimed;
                 totalPointsAwarded = claimResult.existingPointsAwarded;
                 if (claimResult.claimed) {
+                    pointsEarned = calculatedPoints;
                     await applyAwardChain({
                         userId,
                         points: calculatedPoints,
-                        reason: activity.type.toLowerCase() === "quiz"
-                            ? `${activity.title || activityId}|Quiz`
-                            : `Completed: ${activity.title || activityId}`,
+                        reason: quizLedgerReason,
                         source: "activity",
                         transaction: tx,
                     });
+                } else if (weeklyQuizResult && claimResult.existingPointsAwarded > 0) {
+                    // A weekly quiz retake that beats the best score pays the
+                    // difference in score points; the homework bonus is paid once.
+                    const topUp = weeklyQuizRetakeTopUp(previousBestScore, storedScore ?? null);
+                    if (topUp > 0) {
+                        const raised = await tx.submission.updateMany({
+                            where: { id: submission.id, userId, pointsAwarded: claimResult.existingPointsAwarded },
+                            data: { pointsAwarded: { increment: topUp } },
+                        });
+                        if (raised.count === 1) {
+                            duplicateFromClaim = false;
+                            pointsEarned = topUp;
+                            totalPointsAwarded += topUp;
+                            await applyAwardChain({
+                                userId,
+                                points: topUp,
+                                reason: quizLedgerReason,
+                                source: "activity",
+                                transaction: tx,
+                            });
+                        }
+                    }
                 }
             } else {
                 await checkAndAwardAchievements(userId, tx);
@@ -394,6 +421,7 @@ export async function POST(request: NextRequest) {
                 submissionId: submission.id,
                 score: submission.score,
                 totalPointsAwarded,
+                pointsEarned,
             };
         }, { timeout: 10000 });
 
@@ -425,7 +453,7 @@ export async function POST(request: NextRequest) {
             submissionId: submissionResult.submissionId,
             score: submissionResult.score,
             ...(weeklyQuizResult ? { weeklyQuizResult, totalPointsAwarded: submissionResult.totalPointsAwarded } : {}),
-            points: duplicate ? 0 : calculatedPoints,
+            points: submissionResult.pointsEarned,
         };
         logger.info("api.activity.submit.response", {
             route: "/api/activity/submit",
@@ -433,7 +461,7 @@ export async function POST(request: NextRequest) {
             durationMs: Date.now() - startedAt,
             duplicate,
             payloadBytes: JSON.stringify(responsePayload).length,
-            pointsAwarded: duplicate ? 0 : calculatedPoints,
+            pointsAwarded: submissionResult.pointsEarned,
             assignmentProvided: Boolean(assignmentId),
         });
         return NextResponse.json(responsePayload);

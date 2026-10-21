@@ -78,7 +78,7 @@ export function WeeklyQuizCatchUpCard({ catchUp }: { catchUp: WeeklyQuizCatchUp 
                             <h2 className="text-xl font-extrabold text-text">
                                 Try these quizzes again
                             </h2>
-                            <p className="text-sm font-semibold text-text-muted">You can take a quiz many times. We keep your best score.</p>
+                            <p className="text-sm font-semibold text-text-muted">Take a quiz again and again. We keep your best score. A better score gets more points.</p>
                         </div>
                     </div>
                     <ul className="space-y-2">
