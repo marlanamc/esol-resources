@@ -71,7 +71,8 @@ jobs:
         run: npm run build
 
   e2e:
-    runs-on: ubuntu-latest
+    # Playwright 1.58 cannot install browsers on ubuntu-latest (26.04) yet.
+    runs-on: ubuntu-24.04
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
       POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
