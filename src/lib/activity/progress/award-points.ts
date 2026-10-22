@@ -1,4 +1,4 @@
-import { getActivityPoints, getVocabularyTypePoints, POINTS } from "@/lib/gamification/gamification";
+import { getActivityPoints, getSentenceBuilderPoints, getVocabularyTypePoints, POINTS } from "@/lib/gamification/gamification";
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
@@ -208,6 +208,9 @@ export async function awardProgressActivityPoints(
             points = POINTS.VERB_SPEED_ROUND;
         }
         activityTypeLabel = "Verb Speed Round";
+    } else if (activityGameUi === "sentence-builder") {
+        points = getSentenceBuilderPoints(sanitizedAccuracy);
+        activityTypeLabel = "Sentence Builder";
     } else if (activityGameUi === "timeline-tenses") {
         const isTimeSignalsRound =
             sanitizedAccuracy !== undefined &&
