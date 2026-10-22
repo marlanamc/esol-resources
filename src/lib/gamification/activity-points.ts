@@ -177,3 +177,13 @@ export function getVocabularyTypePoints(vocabType: string): number {
   };
   return vocabPoints[vocabType] || 5;
 }
+
+/**
+ * Sentence Builder pays more for answers right on the first try. `accuracy`
+ * is the percent of rule rounds solved before any rule card appeared.
+ */
+export function getSentenceBuilderPoints(accuracy?: number): number {
+  if (accuracy === 100) return POINTS.SENTENCE_BUILDER_PERFECT;
+  if (accuracy !== undefined && accuracy >= 80) return POINTS.SENTENCE_BUILDER_HIGH;
+  return POINTS.SENTENCE_BUILDER;
+}

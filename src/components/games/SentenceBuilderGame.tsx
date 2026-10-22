@@ -128,7 +128,9 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
         setResults(next);
         if (roundIdx + 1 >= rounds.length) {
             setPhase("done");
-            const accuracy = Math.round((next.filter((r) => r.firstTry).length / next.length) * 100);
+            // Make-it-true rounds have no wrong answer, so only rule rounds count.
+            const graded = next.filter((r) => r.kind !== "true");
+            const accuracy = graded.length === 0 ? 100 : Math.round((graded.filter((r) => r.firstTry).length / graded.length) * 100);
             void grantCompletion(accuracy);
         } else {
             setRoundIdx(roundIdx + 1);
