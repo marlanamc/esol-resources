@@ -637,10 +637,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 6: Adjectives and Adverbs"
           },
           {
+            "id": "sentence-builder-week-6",
+            "activityId": "sentence-builder-adverbs-of-frequency",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sentence Builder: How Often?"
+          },
+          {
             "id": "verb-quiz-3",
             "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 6 Quiz"
@@ -652,15 +661,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "worksheet",
             "title": "Community Resources Scavenger Hunt"
-          },
-          {
-            "id": "sentence-builder-week-6",
-            "activityId": "sentence-builder-adverbs-of-frequency",
-            "slot": "extra",
-            "order": 12,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Sentence Builder: How Often?"
           },
           {
             "id": "job-history-used-to-speaking",
@@ -700,18 +700,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Zero + First Conditional: If This, Then That"
           },
           {
-            "id": "sentence-builder-week-7",
-            "activityId": "sentence-builder-zero-first-conditional",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Sentence Builder: If This, Then That"
-          },
-          {
             "id": "contact-official-practice",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Contact an Official Practice"
@@ -723,7 +714,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 4,
+            "order": 3,
             "title": "Voting and Community Voice: Matching"
           },
           {
@@ -733,8 +724,17 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Voting and Community Voice: Fill in the Blank"
+          },
+          {
+            "id": "sentence-builder-week-7",
+            "activityId": "sentence-builder-zero-first-conditional",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sentence Builder: If This, Then That"
           },
           {
             "id": "verb-quiz-7",
