@@ -8,8 +8,9 @@ export default function ActivityLoading() {
             {/* Slim header placeholder to match the activity shells' top bar */}
             <div className="h-[60px] flex-shrink-0 border-b border-black/5 dark:border-white/10" />
             {/* Calm centered spinner */}
-            <div className="flex-1 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
+            <div role="status" className="flex-1 flex flex-col gap-4 items-center justify-center">
+                <p className="text-sm text-text-muted">Loading your activity…</p>
+                <div aria-hidden="true" className="motion-reduce:animate-none animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
             </div>
         </div>
     );

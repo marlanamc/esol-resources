@@ -4,6 +4,7 @@ import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } fro
 import { TrophyIcon, FlameIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import Link from 'next/link';
 import { Badge } from '@/components/ui';
+import LeaderboardLoading from './loading';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
 function LeaderboardAvatar({ avatar, avatarColor, size = "sm" }: { avatar: string | null; avatarColor: string | null; size?: "sm" | "md" }) {
@@ -301,14 +302,7 @@ export default function LeaderboardPage() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-dvh flex items-center justify-center" style={{ backgroundColor: 'var(--color-bg)' }}>
-        <div className="text-center px-6">
-          <TrophyIcon className="w-16 h-16 mx-auto mb-4 animate-bounce" style={{ color: 'var(--color-primary)' }} />
-          <p className="text-base sm:text-lg" style={{ color: 'var(--color-text-muted)' }}>Loading leaderboard...</p>
-        </div>
-      </div>
-    );
+    return <LeaderboardLoading />;
   }
 
   if (errorMessage) {
