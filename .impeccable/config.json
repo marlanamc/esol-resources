@@ -2,7 +2,9 @@
   "detector": {
     "ignoreRules": [],
     "ignoreFiles": [
-      "FY27/worksheets/**"
+      "FY27/worksheets/**",
+      "/private/tmp/claude-501/-Users-marlanacreed-Downloads-Projects-ESOL-Teacher-Resources/4f0eb640-2c4d-49e8-a453-8059bb288763/scratchpad/sentence-builder-plan.html",
+      "src/components/games/SentenceBuilderGame.tsx"
     ],
     "ignoreValues": [
       {

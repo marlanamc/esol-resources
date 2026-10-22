@@ -7,7 +7,7 @@ import type { SentenceBuilderContent } from "@/types/activity";
 const FREQ = ["always", "usually", "often", "sometimes", "rarely", "never"];
 
 const FIRST_NOTE =
-    "Also correct! Usually, sometimes, and often can go first. The most common place is before the verb.";
+    "**Also correct!** Usually, sometimes, and often can go **first**. The most common place is **before the verb**.";
 
 export const adverbsOfFrequencySentenceBuilder: SentenceBuilderContent = {
     type: "sentence-builder",
@@ -16,35 +16,36 @@ export const adverbsOfFrequencySentenceBuilder: SentenceBuilderContent = {
     courseMapPreset: true,
     released: true,
     rules: {
-        A: { title: "Most verbs: the adverb goes BEFORE the verb", example: "I usually drink coffee." },
-        B: { title: "am / is / are: the adverb goes AFTER the verb", example: "I am always tired." },
-        C: { title: "Negative: don't / doesn't + usually", example: "I don't usually cook. (Never is already negative.)" },
-        S: { title: "he / she / it: adverb + V1-s", example: "My friend usually drinks tea." },
-        Q: { title: "Questions: Do you ever...?", example: "Do you ever take a nap?" },
+        A: { title: "Most verbs: the adverb goes **BEFORE the verb**", example: "I **usually drink** coffee." },
+        B: { title: "[am / is / are]: the adverb goes **AFTER the verb**", example: "I **am always** tired." },
+        C: { title: "Negative: [don't / doesn't] **+ usually**", example: "I **don't usually** cook." },
+        N: { title: "**Never is already negative.** Don't use don't.", example: "I **never cook**. (Not: I don't never cook.)" },
+        S: { title: "[he / she / it]: **adverb + V1-s**", example: "My friend **usually drinks** tea." },
+        Q: { title: "Questions: **Do you ever...?**", example: "**Do you ever** take a nap?" },
     },
     rounds: [
         { kind: "place", id: "aof-p1", words: ["I", "drink", "coffee", "in the morning."], word: "usually", answer: 1, also: [{ slot: 0, note: FIRST_NOTE }], rule: "A" },
         { kind: "place", id: "aof-p2", words: ["I", "am", "tired", "after work."], word: "always", answer: 2, rule: "B" },
         { kind: "place", id: "aof-p3", words: ["My", "friend", "drinks", "tea."], word: "never", answer: 2, rule: "S" },
         { kind: "place", id: "aof-p4", words: ["She", "is", "late", "for class."], word: "never", answer: 2, rule: "B" },
-        { kind: "place", id: "aof-p5", words: ["We", "eat", "dinner", "together."], word: "sometimes", answer: 1, also: [{ slot: 0, note: FIRST_NOTE }, { slot: 4, note: "Also correct! Sometimes can go at the end too." }], rule: "A" },
+        { kind: "place", id: "aof-p5", words: ["We", "eat", "dinner", "together."], word: "sometimes", answer: 1, also: [{ slot: 0, note: FIRST_NOTE }, { slot: 4, note: "**Also correct!** Sometimes can go **at the end** too." }], rule: "A" },
         {
             kind: "place", id: "aof-p6", words: ["I", "don't", "cook", "on weekends."], word: "usually", answer: 2,
             also: [
-                { slot: 1, note: "Also correct! \"I usually don't cook\" is common too. Both mean the same thing." },
+                { slot: 1, note: "**Also correct!** \"I **usually don't** cook\" is common too. Both mean the same thing." },
                 { slot: 0, note: FIRST_NOTE },
             ],
             rule: "C",
         },
         { kind: "place", id: "aof-p7", words: ["The kids", "are", "hungry", "after school."], word: "always", answer: 2, rule: "B" },
-        { kind: "place", id: "aof-p8", words: ["I", "check", "TikTok", "before bed."], word: "often", answer: 1, also: [{ slot: 0, note: FIRST_NOTE }, { slot: 3, note: "Also correct! Often can also come after the thing you do." }], rule: "A" },
+        { kind: "place", id: "aof-p8", words: ["I", "check", "TikTok", "before bed."], word: "often", answer: 1, also: [{ slot: 0, note: FIRST_NOTE }, { slot: 3, note: "**Also correct!** Often can also come **after the thing you do**." }], rule: "A" },
         { kind: "place", id: "aof-p9", words: ["He", "takes", "the bus", "to work."], word: "rarely", answer: 1, rule: "S" },
 
         { kind: "pick", id: "aof-k1", parts: ["My sister", { options: ["always cooks", "cooks always"], answer: 0 }, "dinner."], rule: "S" },
         { kind: "pick", id: "aof-k2", parts: ["I", { options: ["never am", "am never"], answer: 1 }, "late for work."], rule: "B" },
         { kind: "pick", id: "aof-k3", parts: ["He", { options: ["takes usually", "usually take", "usually takes"], answer: 2 }, "the bus."], rule: "S" },
         { kind: "pick", id: "aof-k4", parts: ["We", { options: ["don't usually", "usually don't", "don't never"], answer: 0, also: [1] }, "work on Sunday."], rule: "C" },
-        { kind: "pick", id: "aof-k5", parts: ["I", { options: ["don't never", "never"], answer: 1 }, "eat fast food."], rule: "C" },
+        { kind: "pick", id: "aof-k5", parts: ["I", { options: ["don't never", "never"], answer: 1 }, "eat fast food."], rule: "N" },
         { kind: "pick", id: "aof-k6", parts: ["Do you", { options: ["never", "ever"], answer: 1 }, "take a nap?"], rule: "Q" },
         { kind: "pick", id: "aof-k7", parts: ["She", { options: ["always is", "is always"], answer: 1 }, "on time."], rule: "B" },
 
