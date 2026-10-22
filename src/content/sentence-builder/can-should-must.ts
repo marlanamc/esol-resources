@@ -1,7 +1,7 @@
 import type { SentenceBuilderContent } from "@/types/activity";
 
 // Rounds and rule cards come from the Week 8 worksheet,
-// FY27/worksheets/group-handouts/can-should-must.html. Keep the rule
+// FY27/worksheets/group-handouts/phrase-banks/can-should-must.html. Keep the rule
 // wording in sync with its "How does it work?" key and "Remember" strip.
 
 export const canShouldMustSentenceBuilder: SentenceBuilderContent = {

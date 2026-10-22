@@ -1,7 +1,7 @@
 import type { SentenceBuilderContent } from "@/types/activity";
 
 // Rounds and rule cards come from the Week 6 worksheet,
-// FY27/worksheets/group-handouts/adverbs-of-frequency.html. Keep the rule
+// FY27/worksheets/group-handouts/phrase-banks/adverbs-of-frequency.html. Keep the rule
 // wording in sync with its "Where does it go?" key.
 
 const FREQ = ["always", "usually", "often", "sometimes", "rarely", "never"];
