@@ -835,6 +835,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Phone Communication: Fill in the Blank"
           },
           {
+            "id": "sentence-builder-week-8",
+            "activityId": "sentence-builder-can-should-must",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sentence Builder: Can, Should, Must"
+          },
+          {
             "id": "verb-quiz-4",
             "activityId": "verb-quiz-4",
             "slot": "required",
