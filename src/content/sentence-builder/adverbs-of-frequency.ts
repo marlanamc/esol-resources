@@ -53,6 +53,6 @@ export const adverbsOfFrequencySentenceBuilder: SentenceBuilderContent = {
         { kind: "true", id: "aof-t2", question: "How often do you cook at home?", choices: FREQ, template: "I {choice} cook at home." },
         { kind: "true", id: "aof-t3", question: "How often do you take the bus?", choices: FREQ, template: "I {choice} take the bus." },
         { kind: "true", id: "aof-t4", question: "How often are you tired after work?", choices: FREQ, template: "I am {choice} tired after work." },
-        { kind: "true", id: "aof-t5", question: "How often do you call your family?", choices: FREQ, template: "I {choice} call my family." },
+        { kind: "true", id: "aof-t5", question: "How often do you call your family on weekends?", choices: FREQ, template: "I {choice} call my family on weekends." },
     ],
 };
