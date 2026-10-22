@@ -1,7 +1,7 @@
 import type { SentenceBuilderContent } from "@/types/activity";
 
 // Rounds and rule cards come from the Week 7 worksheet,
-// FY27/worksheets/group-handouts/zero-first-conditional.html. Keep the rule
+// FY27/worksheets/group-handouts/phrase-banks/zero-first-conditional.html. Keep the rule
 // wording in sync with its "How does it work?" key and "Level up" box.
 
 export const zeroFirstConditionalSentenceBuilder: SentenceBuilderContent = {

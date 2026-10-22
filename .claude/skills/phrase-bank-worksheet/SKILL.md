@@ -17,7 +17,7 @@ the words go, and the sentence starters give them the first few words.
 Keep that promise on every worksheet. Every writing line on the back should
 be answerable using only the front page.
 
-**Reference implementation:** `FY27/worksheets/group-handouts/adverbs-of-frequency.html`.
+**Reference implementation:** `FY27/worksheets/group-handouts/phrase-banks/adverbs-of-frequency.html`.
 Copy its `<style>` block and page structure exactly. Change only the content.
 
 ## Steps
@@ -30,7 +30,7 @@ Copy its `<style>` block and page structure exactly. Change only the content.
 2. **Tell Marlana the plan before building it.** Keep it short: the target
    forms (the "scale" row), the 3-5 rules for the key, the phrase bank
    categories, and the back-page tasks. Wait for an OK or changes.
-3. **Build the HTML** at `FY27/worksheets/group-handouts/<slug>.html`.
+3. **Build the HTML** at `FY27/worksheets/group-handouts/phrase-banks/<slug>.html`.
 4. **Render and check the fit** (see below). Fix any overflow, then export the PDF.
 5. **Report** both file paths and anything you guessed (local references,
    percentages, unusual vocabulary).
@@ -105,7 +105,7 @@ content gets cut off silently. Always check the PDF itself, not just a screensho
 
 ```bash
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-cd FY27/worksheets/group-handouts
+cd FY27/worksheets/group-handouts/phrase-banks
 "$CH" --headless --disable-gpu --no-pdf-header-footer --virtual-time-budget=5000 \
   --print-to-pdf=<slug>.pdf <slug>.html
 pdfinfo <slug>.pdf | grep Pages          # must be 2
