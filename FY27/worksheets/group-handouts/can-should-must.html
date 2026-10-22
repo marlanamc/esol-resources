@@ -56,7 +56,21 @@
   .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
   .box:last-child { margin-bottom: 0; }
 
-  /* Forms at a glance */
+  /* Forms at a glance: can -> should -> must on a "how much choice" line, negatives below */
+  .choice-line { display: flex; align-items: center; gap: 8px; font-size: 11px; font-style: italic; margin: 2px 0 4px; }
+  .choice-line .arrow { flex: 1; height: 0; border-top: 2px solid #000; position: relative; }
+  .choice-line .arrow::after { content: ""; position: absolute; right: -2px; top: -6px; border-left: 9px solid #000; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+  .forms { display: grid; grid-template-columns: repeat(3, 1fr); border: 1.5px solid #000; }
+  .form { display: flex; gap: 7px; align-items: center; padding: 4px 7px; }
+  .form:nth-child(3n+2), .form:nth-child(3n+3) { border-left: 1.5px solid #000; }
+  .form:nth-child(n+4) { border-top: 1.5px dashed #000; }
+  .form .icon { flex: none; width: 26px; height: 26px; }
+  .form .icon svg { width: 100%; height: 100%; display: block; }
+  .form .word { font-size: 18px; font-weight: bold; }
+  .form .meaning { font-size: 14px; }
+  .form .fx { display: block; font-size: 11px; }
+
+  /* Scale cells (from the adverbs sheet) */
   .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
   .scale > div { padding: 4px 6px; text-align: center; }
   .scale > div + div { border-left: 1.5px solid #000; }
@@ -125,14 +139,15 @@
 
   <!-- Forms -->
   <div class="box">
-    <h2>1. What does it mean? <span class="small">Possible, a good idea, or a rule?</span></h2>
-    <div class="scale">
-      <div><div class="word">can</div><div class="pct">able / possible</div><div class="ex">I can speak Spanish.</div></div>
-      <div><div class="word">can't</div><div class="pct">not able</div><div class="ex">I can't read small letters.</div></div>
-      <div><div class="word">should</div><div class="pct">a good idea</div><div class="ex">You should call back.</div></div>
-      <div><div class="word">shouldn't</div><div class="pct">a bad idea</div><div class="ex">You shouldn't click it.</div></div>
-      <div><div class="word">must</div><div class="pct">a strong rule</div><div class="ex">You must pay rent.</div></div>
-      <div><div class="word">must not</div><div class="pct">never do it</div><div class="ex">You must not share your PIN.</div></div>
+    <h2>1. What does it mean? <span class="small">How much choice do you have?</span></h2>
+    <div class="choice-line"><span>you choose</span><span class="arrow"></span><span>no choice</span></div>
+    <div class="forms">
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13"/><path d="M10 16.5l4 4 8-9"/></svg></span><span><span class="word">can</span> <span class="meaning">able / possible</span><span class="fx">I can speak Spanish.</span></span></div>
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13"/><circle cx="11.5" cy="13" r="1.2" fill="#000"/><circle cx="20.5" cy="13" r="1.2" fill="#000"/><path d="M10.5 19c3 3.5 8 3.5 11 0"/></svg></span><span><span class="word">should</span> <span class="meaning">a good idea</span><span class="fx">You should call back.</span></span></div>
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.5L29.5 27.5H2.5Z"/><path d="M16 12v7"/><circle cx="16" cy="23" r="1.3" fill="#000"/></svg></span><span><span class="word">must</span> <span class="meaning">a strong rule</span><span class="fx">You must pay rent.</span></span></div>
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13"/><path d="M11 11l10 10M21 11l-10 10"/></svg></span><span><span class="word">can't</span> <span class="meaning">not able</span><span class="fx">I can't read small letters.</span></span></div>
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13"/><circle cx="11.5" cy="13" r="1.2" fill="#000"/><circle cx="20.5" cy="13" r="1.2" fill="#000"/><path d="M10.5 22c3-3.5 8-3.5 11 0"/></svg></span><span><span class="word">shouldn't</span> <span class="meaning">a bad idea</span><span class="fx">You shouldn't click it.</span></span></div>
+      <div class="form"><span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13"/><path d="M7 7l18 18"/></svg></span><span><span class="word">must not</span> <span class="meaning">never do it</span><span class="fx">You must not share your PIN.</span></span></div>
     </div>
   </div>
 
