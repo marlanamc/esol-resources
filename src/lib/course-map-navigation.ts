@@ -310,6 +310,43 @@ export function resolveWeekActivityLaunch(
     };
 }
 
+export interface CatchUpWeek {
+    weekNumber: number;
+    title: string;
+    done: number;
+    total: number;
+    isDone: boolean;
+    isCurrent: boolean;
+    /** First unfinished activity in this week; null once the week is done. */
+    href: string | null;
+}
+
+/**
+ * Every week up to and including the current one, with its progress and a
+ * link straight into its first unfinished activity, so learners can go back
+ * and finish weeks the class has already moved past.
+ */
+export function buildCourseMapCatchUp(
+    units: CourseMapUnit[],
+    progress: CourseMapProgressState | Record<string, string | null>,
+    currentWeekNumber: number,
+    assignmentByActivityId?: Record<string, { assignmentId: string }>
+): CatchUpWeek[] {
+    return buildMapWeekProgress(units, progress)
+        .filter((week) => week.weekNumber <= currentWeekNumber && week.total > 0)
+        .map((week) => ({
+            weekNumber: week.weekNumber,
+            title: week.title,
+            done: week.done,
+            total: week.total,
+            isDone: week.isDone,
+            isCurrent: week.weekNumber === currentWeekNumber,
+            href: week.isDone
+                ? null
+                : resolveWeekActivityLaunch(units, progress, week.weekNumber, assignmentByActivityId)?.href ?? null,
+        }));
+}
+
 export function focusMapWeekHeading(weekNumber: number): void {
     if (typeof document === "undefined") return;
     window.requestAnimationFrame(() => {
