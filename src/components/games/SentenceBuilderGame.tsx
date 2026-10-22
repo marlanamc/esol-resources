@@ -16,9 +16,12 @@ import {
     checkPlace,
     dealRounds,
     DEFAULT_SENTENCE_BUILDER_ROUND_SIZE,
+    fillPick,
     fillTemplate,
     isBlank,
     placeWord,
+    splitRich,
+    stripRich,
 } from "@/lib/sentence-builder/rounds";
 import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
@@ -42,7 +45,12 @@ type Phase = "intro" | "play" | "done";
 /** What happened in one round: solved on the first try, or after a rule card. */
 interface RoundResult {
     id: string;
+    kind: SentenceBuilderRound["kind"];
     firstTry: boolean;
+    /** The finished sentence, shown again on the results screen. */
+    sentence: string;
+    /** Rule card the learner saw, for rounds fixed after a mistake. */
+    ruleTitle?: string;
 }
 
 const PRIMARY_BUTTON =
@@ -92,8 +100,6 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
         };
     }, [activityId, assignmentId]);
 
-    const firstTryCount = results.filter((r) => r.firstTry).length;
-
     // Points come from the progress API, which awards once per activity.
     const grantCompletion = useCallback(
         async (accuracy: number) => {
@@ -115,9 +121,10 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
         [activityId, assignmentId, isCompleted]
     );
 
-    const finishRound = (firstTry: boolean) => {
+    const finishRound = (firstTry: boolean, sentence: string) => {
         const round = rounds[roundIdx];
-        const next = [...results, { id: round.id, firstTry }];
+        const ruleTitle = round.kind === "true" || firstTry ? undefined : content.rules[round.rule]?.title;
+        const next = [...results, { id: round.id, kind: round.kind, firstTry, sentence, ruleTitle }];
         setResults(next);
         if (roundIdx + 1 >= rounds.length) {
             setPhase("done");
@@ -162,18 +169,42 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
     }
 
     if (phase === "done") {
+        const graded = results.filter((r) => r.kind !== "true");
+        const gradedFirstTry = graded.filter((r) => r.firstTry).length;
+        const fixedCount = graded.length - gradedFirstTry;
         return (
             <Shell>
-                <div className="max-w-md mx-auto text-center pt-4 sm:pt-12">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/15 text-secondary-dark mb-5">
-                        <CheckCircle2 size={22} />
+                <div className="max-w-xl mx-auto pt-2 sm:pt-8">
+                    <div className="text-center">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/15 text-secondary-dark mb-4">
+                            <CheckCircle2 size={22} />
+                        </div>
+                        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
+                            You built {results.length} sentences!
+                        </h1>
                     </div>
-                    <h1 className="font-display text-4xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
-                        You built {results.length} sentences!
-                    </h1>
-                    <p className="mt-4 text-gray-600 dark:text-gray-300">
-                        {firstTryCount} right on the first try. Every mistake you fixed is practice too.
+
+                    <div className="mt-6 grid grid-cols-2 gap-3">
+                        <ScoreTile value={`${gradedFirstTry} / ${graded.length}`} label="right the first time" />
+                        {pointsAwarded !== null && pointsAwarded > 0 ? (
+                            <ScoreTile value={`+${pointsAwarded}`} label="points" />
+                        ) : (
+                            <ScoreTile value={String(fixedCount)} label={fixedCount === 1 ? "mistake fixed" : "mistakes fixed"} />
+                        )}
+                    </div>
+                    <p className="mt-4 text-center text-gray-700 dark:text-gray-200">
+                        {fixedCount === 0
+                            ? "Every sentence was right the first time. Great work!"
+                            : "Every mistake you fixed is practice too. Read those rules one more time."}
                     </p>
+
+                    <h2 className="mt-8 mb-3 text-sm font-bold uppercase tracking-wide text-gray-500 dark:text-gray-400">Your sentences</h2>
+                    <ol className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] divide-y divide-gray-100 dark:divide-white/10">
+                        {results.map((r) => (
+                            <ResultRow key={r.id} result={r} />
+                        ))}
+                    </ol>
+
                     <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:justify-center">
                         {content.courseMapPreset && <CourseMapReturnButton className="w-full sm:w-auto" />}
                         <button
@@ -218,7 +249,7 @@ export default function SentenceBuilderGame({ activityId, content, assignmentId 
 
 interface RoundProps<R extends SentenceBuilderRound> {
     round: R;
-    onDone: (firstTry: boolean) => void;
+    onDone: (firstTry: boolean, sentence: string) => void;
     announce: (message: string) => void;
 }
 
@@ -235,7 +266,7 @@ function PlaceRound({ round, rule, onDone, announce }: RoundProps<SentenceBuilde
         } else {
             setTries((t) => t + 1);
             setWrongSlot(slot);
-            announce(`Not there. ${rule?.title ?? "Try again."}`);
+            announce(`Not there. ${rule ? stripRich(rule.title) : "Try again."}`);
         }
     };
 
@@ -254,7 +285,7 @@ function PlaceRound({ round, rule, onDone, announce }: RoundProps<SentenceBuilde
                         )
                     )}
                 </Sentence>
-                <Success message={solved.note ?? rule?.title} onNext={() => onDone(tries === 0)} />
+                <Success message={solved.note ?? rule?.title} onNext={() => onDone(tries === 0, placeWord(round, solved.slot).join(" "))} />
             </>
         );
     }
@@ -308,7 +339,7 @@ function PickRound({ round, rule, onDone, announce }: RoundProps<SentenceBuilder
         } else {
             setTries((t) => t + 1);
             setWrong(result.wrong);
-            announce(`Not quite. ${rule?.title ?? "Try again."}`);
+            announce(`Not quite. ${rule ? stripRich(rule.title) : "Try again."}`);
         }
     };
 
@@ -348,7 +379,7 @@ function PickRound({ round, rule, onDone, announce }: RoundProps<SentenceBuilder
                 })}
             </Sentence>
             {solved ? (
-                <Success message={rule?.title} onNext={() => onDone(tries === 0)} />
+                <Success message={rule?.title} onNext={() => onDone(tries === 0, fillPick(round, selections))} />
             ) : (
                 <>
                     {tries > 0 && wrong.length > 0 && <RuleCard rule={rule} />}
@@ -393,7 +424,7 @@ function TrueRound({ round, onDone, announce }: RoundProps<SentenceBuilderTrueRo
                         {fillTemplate(round, choice)}
                     </p>
                     {said ? (
-                        <Success message="That's a true sentence about you." onNext={() => onDone(true)} />
+                        <Success message="That's a true sentence about you." onNext={() => onDone(true, fillTemplate(round, choice))} />
                     ) : (
                         <>
                             <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">Say your sentence out loud, to a partner or quietly to yourself.</p>
@@ -463,12 +494,78 @@ function RuleCard({ rule }: { rule?: SentenceBuilderRule }) {
     if (!rule) return <p className="mt-5 text-sm text-gray-600 dark:text-gray-300">Not quite. Try again.</p>;
     return (
         <div className="mt-5 rounded-xl border-2 border-primary/60 bg-[#fdf9f0] dark:bg-[#1a1410] p-4">
-            <p className="flex items-center gap-1.5 font-bold text-primary">
-                <Lightbulb size={16} /> {rule.title}
+            <p className="flex items-start gap-1.5 text-lg font-bold text-gray-900 dark:text-gray-50">
+                <Lightbulb size={18} className="mt-1 shrink-0 text-primary-dark dark:text-primary-light" aria-hidden="true" />
+                <span>
+                    <RichText text={rule.title} />
+                </span>
             </p>
-            <p className="mt-1 text-gray-700 dark:text-gray-200">Example: {rule.example}</p>
+            <p className="mt-1 text-lg text-gray-700 dark:text-gray-200">
+                Example: <RichText text={rule.example} />
+            </p>
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Try again.</p>
         </div>
+    );
+}
+
+function ScoreTile({ value, label }: { value: string; label: string }) {
+    return (
+        <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] px-4 py-3 text-center">
+            <p className="font-display text-3xl font-bold text-gray-900 dark:text-gray-50">{value}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">{label}</p>
+        </div>
+    );
+}
+
+function ResultRow({ result }: { result: RoundResult }) {
+    const status =
+        result.kind === "true"
+            ? { icon: <MessageCircle size={18} />, label: "You said this", tone: "text-gray-600 dark:text-gray-300" }
+            : result.firstTry
+              ? { icon: <CheckCircle2 size={18} />, label: "Right the first time", tone: "text-secondary-dark dark:text-secondary-light" }
+              : { icon: <RotateCcw size={18} />, label: "Fixed after the rule", tone: "text-primary-dark dark:text-primary-light" };
+    return (
+        <li className="flex gap-3 px-4 py-3.5">
+            <span className={`mt-1 shrink-0 ${status.tone}`} aria-hidden="true">
+                {status.icon}
+            </span>
+            <div className="min-w-0">
+                <p className="text-lg leading-snug text-gray-900 dark:text-gray-50">{result.sentence}</p>
+                <p className={`mt-0.5 text-sm font-semibold ${status.tone}`}>{status.label}</p>
+                {result.ruleTitle && (
+                    <p className="mt-1 flex items-start gap-1.5 text-sm text-gray-600 dark:text-gray-300">
+                        <Lightbulb size={14} className="mt-0.5 shrink-0" aria-hidden="true" /> <span><RichText text={result.ruleTitle} /></span>
+                    </p>
+                )}
+            </div>
+        </li>
+    );
+}
+
+const CHIP =
+    "inline-block rounded-md border border-accent-dark/40 bg-accent-light px-1.5 py-px mx-0.5 font-bold text-gray-900 dark:border-accent/40 dark:bg-accent/20 dark:text-gray-50";
+
+/** Renders **bold** key words and [a / b] choice chips so students can skim a rule. */
+function RichText({ text }: { text: string }) {
+    return (
+        <>
+            {splitRich(text).map((piece, i) => {
+                if (piece.kind === "chips") {
+                    return (
+                        <span key={i} className="whitespace-nowrap">
+                            {piece.chips.map((chip, j) => (
+                                <span key={j} className={CHIP}>{chip}</span>
+                            ))}
+                        </span>
+                    );
+                }
+                return piece.kind === "bold" ? (
+                    <strong key={i} className="font-bold text-gray-900 dark:text-gray-50">{piece.text}</strong>
+                ) : (
+                    <span key={i}>{piece.text}</span>
+                );
+            })}
+        </>
     );
 }
 
@@ -478,7 +575,11 @@ function Success({ message, onNext }: { message?: string; onNext: () => void }) 
             <p className="flex items-center gap-1.5 font-bold text-secondary-dark dark:text-secondary-light">
                 <CheckCircle2 size={16} /> Yes!
             </p>
-            {message && <p className="mt-1 text-gray-700 dark:text-gray-200">{message}</p>}
+            {message && (
+                <p className="mt-1 text-lg text-gray-700 dark:text-gray-200">
+                    <RichText text={message} />
+                </p>
+            )}
             <button type="button" onClick={onNext} className={`mt-4 ${PRIMARY_BUTTON}`}>
                 Next
             </button>

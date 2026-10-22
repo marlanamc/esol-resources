@@ -11,11 +11,11 @@ export const zeroFirstConditionalSentenceBuilder: SentenceBuilderContent = {
     courseMapPreset: true,
     released: true,
     rules: {
-        Z: { title: "Zero: If + V1, V1 (always true)", example: "If I drink coffee at night, I can't sleep." },
-        F: { title: "First: NO will after if. If + V1, will + V1", example: "If it rains tomorrow, I will take the bus." },
-        C: { title: "If first? Use a comma. If in the middle? No comma.", example: "If it rains, I take the bus. / I take the bus if it rains." },
-        U: { title: "unless / when / as soon as + V1 (not will)", example: "I'll call you as soon as I get home." },
-        S: { title: "he / she / it + V1-s", example: "If my son gets sick, I stay home." },
+        Z: { title: "Zero: **If + V1, V1** (always true)", example: "If I **drink** coffee at night, I **can't sleep**." },
+        F: { title: "First: **NO will after if.** If + V1, will + V1", example: "If it **rains** tomorrow, I **will take** the bus." },
+        C: { title: "**If first? Use a comma.** If in the middle? No comma.", example: "**If it rains,** I take the bus. / I take the bus if it rains." },
+        U: { title: "[unless / when / as soon as] **+ V1** (not will)", example: "I'll call you **as soon as I get** home." },
+        S: { title: "[he / she / it] + **V1-s**", example: "If my **son gets** sick, I stay home." },
     },
     rounds: [
         { kind: "place", id: "zf-p1", words: ["If", "it", "rains", "tomorrow,", "I", "take", "the bus."], word: "will", answer: 5, rule: "F" },

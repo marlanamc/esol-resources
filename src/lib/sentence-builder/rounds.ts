@@ -63,8 +63,49 @@ export function checkPick(round: SentenceBuilderPickRound, selections: (number |
     return { correct: wrong.length === 0, wrong };
 }
 
+/** The finished sentence, with each gap filled by the chosen option. */
+export function fillPick(round: SentenceBuilderPickRound, selections: (number | undefined)[]): string {
+    let gap = -1;
+    return round.parts
+        .map((part) => {
+            if (!isBlank(part)) return part;
+            const choice = selections[++gap];
+            return choice === undefined ? "___" : part.options[choice];
+        })
+        .join(" ");
+}
+
 export function fillTemplate(round: SentenceBuilderTrueRound, choice: string): string {
     return round.template.replace("{choice}", choice);
+}
+
+export type RichPiece =
+    | { kind: "plain" | "bold"; text: string }
+    | { kind: "chips"; chips: string[] };
+
+/**
+ * Rule titles, examples, and notes use two marks: **bold** for the key words
+ * and [he / she / it] for a list of choices, shown as one chip per choice.
+ * Splits the text into pieces, in order.
+ */
+export function splitRich(text: string): RichPiece[] {
+    return text
+        .split(/(\*\*[^*]+\*\*|\[[^\]]+\])/)
+        .filter((piece) => piece !== "")
+        .map((piece): RichPiece => {
+            if (piece.length > 4 && piece.startsWith("**") && piece.endsWith("**")) {
+                return { kind: "bold", text: piece.slice(2, -2) };
+            }
+            if (piece.length > 2 && piece.startsWith("[") && piece.endsWith("]")) {
+                return { kind: "chips", chips: piece.slice(1, -1).split("/").map((c) => c.trim()).filter(Boolean) };
+            }
+            return { kind: "plain", text: piece };
+        });
+}
+
+/** The text without marks, for screen reader announcements. */
+export function stripRich(text: string): string {
+    return text.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\[([^\]]+)\]/g, "$1");
 }
 
 function capitalize(word: string): string {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { SentenceBuilderContent, SentenceBuilderPickRound, SentenceBuilderPlaceRound } from "@/types/activity";
 import { isSentenceBuilderContent } from "@/types/activity";
-import { checkPick, checkPlace, dealRounds, fillTemplate, isBlank, placeWord } from "@/lib/sentence-builder/rounds";
+import { checkPick, checkPlace, dealRounds, fillPick, fillTemplate, isBlank, placeWord, splitRich, stripRich } from "@/lib/sentence-builder/rounds";
 import { SENTENCE_BUILDER_DECKS } from "@/content/sentence-builder";
 
 const usually: SentenceBuilderPlaceRound = {
@@ -65,6 +65,48 @@ describe("checkPick", () => {
     it("reports which gaps are wrong or empty", () => {
         expect(checkPick(round, [2, 1])).toEqual({ correct: false, wrong: [0] });
         expect(checkPick(round, [0, undefined])).toEqual({ correct: false, wrong: [1] });
+    });
+});
+
+describe("fillPick", () => {
+    const twoGaps: SentenceBuilderPickRound = {
+        kind: "pick",
+        id: "t-two",
+        parts: ["If it", { options: ["rains", "will rain"], answer: 0 }, "tomorrow, I", { options: ["take", "will take"], answer: 1 }, "the bus."],
+        rule: "F",
+    };
+
+    it("fills every gap with the chosen option", () => {
+        expect(fillPick(twoGaps, [0, 1])).toBe("If it rains tomorrow, I will take the bus.");
+    });
+
+    it("marks gaps that are still empty", () => {
+        expect(fillPick(twoGaps, [0, undefined])).toBe("If it rains tomorrow, I ___ the bus.");
+    });
+});
+
+describe("splitRich / stripRich", () => {
+    it("splits **marked** words into bold pieces", () => {
+        expect(splitRich("Most verbs: adverb goes **BEFORE the verb**")).toEqual([
+            { kind: "plain", text: "Most verbs: adverb goes " },
+            { kind: "bold", text: "BEFORE the verb" },
+        ]);
+    });
+
+    it("turns a [a / b / c] list into chips", () => {
+        expect(splitRich("[he / she / it]: **adverb + V1-s**")).toEqual([
+            { kind: "chips", chips: ["he", "she", "it"] },
+            { kind: "plain", text: ": " },
+            { kind: "bold", text: "adverb + V1-s" },
+        ]);
+    });
+
+    it("leaves unmarked text as one plain piece", () => {
+        expect(splitRich("Try again.")).toEqual([{ kind: "plain", text: "Try again." }]);
+    });
+
+    it("removes the marks for screen readers", () => {
+        expect(stripRich("**Also correct!** [he / she / it] goes **first**.")).toBe("Also correct! he / she / it goes first.");
     });
 });
 
