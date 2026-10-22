@@ -12,7 +12,9 @@ import {
     loadCourseMapProgressState,
 } from "@/lib/course-map-progress.server";
 import {
+    buildCourseMapCatchUp,
     buildMapActivityHref,
+    type CatchUpWeek,
     findFirstIncompleteRequired,
     resolveWeekActivityLaunch,
 } from "@/lib/course-map-navigation";
@@ -259,6 +261,35 @@ export async function getStudentCourseMapStatus(
         },
         weekComplete,
         overall: { done, total, percent },
+        completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),
+    };
+}
+
+export interface ProfileCourseMapProgress {
+    currentWeekNumber: number;
+    /** Weeks up to and including the current one, oldest first. */
+    weeks: CatchUpWeek[];
+    /** Count of visible weeks fully finished, same as getCurrentWeekCompletion. */
+    completedWeeksCount: number;
+}
+
+/** Course-map progress for the student profile: past weeks to finish plus this week. */
+export async function getProfileCourseMapProgress(
+    user: { id: string; role?: string | null },
+    options?: { now?: Date }
+): Promise<ProfileCourseMapProgress | null> {
+    const snapshot = await buildCurrentWeekSnapshot(user, options);
+    if (!snapshot) return null;
+
+    const assignmentByActivityId = await loadAssignmentByActivityId(user.id);
+    return {
+        currentWeekNumber: snapshot.weekNumber,
+        weeks: buildCourseMapCatchUp(
+            snapshot.units,
+            snapshot.guidedProgress,
+            snapshot.weekNumber,
+            assignmentByActivityId
+        ),
         completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),
     };
 }

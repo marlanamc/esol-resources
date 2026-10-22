@@ -46,7 +46,7 @@ export function WeeklyQuizCatchUpCard({ catchUp }: { catchUp: WeeklyQuizCatchUp 
     if (missing.length === 0 && notPerfect.length === 0) return null;
 
     return (
-        <section aria-label="Weekly quiz homework" className="mb-10 space-y-5">
+        <section aria-label="Weekly quiz homework" className="space-y-5">
             {missing.length > 0 && (
                 <div className="rounded-2xl border-2 border-red-800 bg-red-50 p-5 dark:border-red-400 dark:bg-red-950/40">
                     <div className="mb-4 flex items-center gap-3">

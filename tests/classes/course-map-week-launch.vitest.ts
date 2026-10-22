@@ -4,6 +4,7 @@ import {
     findFirstIncompleteInWeek,
     getMapWeekMeta,
     resolveWeekActivityLaunch,
+    buildCourseMapCatchUp,
 } from "@/lib/course-map-navigation";
 import type { CourseMapUnit } from "@/lib/course-map";
 
@@ -112,5 +113,21 @@ describe("getMapWeekMeta", () => {
 
     it("returns null for an unknown week", () => {
         expect(getMapWeekMeta(units, 12)).toBeNull();
+    });
+});
+
+describe("buildCourseMapCatchUp", () => {
+    it("lists weeks up to the current one with a link into each unfinished week", () => {
+        const weeks = buildCourseMapCatchUp(units, week2Done, 2);
+        expect(weeks.map((w) => [w.weekNumber, w.done, w.total, w.isDone, w.isCurrent])).toEqual([
+            [1, 0, 2, false, false],
+            [2, 2, 2, true, true],
+        ]);
+        expect(weeks[0].href).toContain("act-w1a");
+        expect(weeks[1].href).toBeNull();
+    });
+
+    it("leaves out weeks after the current one", () => {
+        expect(buildCourseMapCatchUp(units, nothingDone, 1).map((w) => w.weekNumber)).toEqual([1]);
     });
 });
