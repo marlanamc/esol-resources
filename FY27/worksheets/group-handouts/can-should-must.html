@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Can, Should, Must Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  /* Forms at a glance */
+  .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .scale > div { padding: 4px 6px; text-align: center; }
+  .scale > div + div { border-left: 1.5px solid #000; }
+  .scale .word { font-size: 18px; font-weight: bold; }
+  .scale .pct { font-size: 14px; }
+  .scale .ex { font-size: 11px; }
+  .bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Rule key */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rule .ex { font-size: 14px; }
+  .rule .ex b { text-decoration: underline; }
+  .rule.wide { grid-column: 1 / -1; }
+  .no { font-size: 14px; margin-top: 3px; }
+  .no s { text-decoration-thickness: 2px; }
+
+  /* Phrase bank */
+  .bank { column-count: 4; column-gap: 14px; }
+  .cat { break-inside: avoid; margin-bottom: 6px; }
+  .cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+
+  /* Writing */
+  .write-row { display: flex; align-items: flex-end; gap: 8px; height: 46px; }
+  .write-row .adv { width: 1.4in; font-size: 18px; font-weight: bold; flex: none; }
+  .write-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .write-row .fill.example { font-style: italic; color: #000; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+
+  table.interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.interview th, table.interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  table.interview th { font-size: 14px; }
+  table.interview td { height: 38px; }
+  table.interview td.q { width: 44%; }
+
+  .line { border-bottom: 1.5px solid #000; height: 32px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: forms, rule key, phrase bank
+     ====================================================== -->
+<section class="page">
+
+  <div class="name-row">
+    Name: <span class="fill"></span>
+    Date: <span class="fill date"></span>
+  </div>
+
+  <div class="title-row">
+    <h1>Can, Should, Must</h1>
+    <span class="sub">Keep this page. Use it to write on the back.</span>
+  </div>
+
+  <!-- Forms -->
+  <div class="box">
+    <h2>1. What does it mean? <span class="small">Possible, a good idea, or a rule?</span></h2>
+    <div class="scale">
+      <div><div class="word">can</div><div class="pct">able / possible</div><div class="ex">I can speak Spanish.</div></div>
+      <div><div class="word">can't</div><div class="pct">not able</div><div class="ex">I can't read small letters.</div></div>
+      <div><div class="word">should</div><div class="pct">a good idea</div><div class="ex">You should call back.</div></div>
+      <div><div class="word">shouldn't</div><div class="pct">a bad idea</div><div class="ex">You shouldn't click it.</div></div>
+      <div><div class="word">must</div><div class="pct">a strong rule</div><div class="ex">You must pay rent.</div></div>
+      <div><div class="word">must not</div><div class="pct">never do it</div><div class="ex">You must not share your PIN.</div></div>
+    </div>
+  </div>
+
+  <!-- Rule key -->
+  <div class="box">
+    <h2>2. How does it work? <span class="small">The modal is in <b>black</b>.</span></h2>
+    <div class="rules">
+      <div class="rule">
+        <div class="rule-name">A. Modal + V1. No "to".</div>
+        <div class="formula"><span class="chip">I</span><span class="chip adv">can</span><span class="chip">call</span><span class="chip">my mom.</span></div>
+        <div class="ex">You <b>should</b> check your messages.</div>
+        <div class="no">&#10007; <s>I can to call my mom.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">B. he / she / it: no -s</div>
+        <div class="formula"><span class="chip">She</span><span class="chip adv">can</span><span class="chip">call</span><span class="chip">her son.</span></div>
+        <div class="ex">He <b>must</b> work on Saturday.</div>
+        <div class="no">&#10007; <s>She cans call.</s> &nbsp; &#10007; <s>She can calls.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">C. Negative: can't / shouldn't / must not + V1</div>
+        <div class="formula"><span class="chip">I</span><span class="chip adv">can't</span><span class="chip">drive.</span></div>
+        <div class="ex">You <b>shouldn't</b> answer unknown numbers.</div>
+        <div class="no">&#10007; <s>I don't can drive.</s> &nbsp; &#10007; <s>I no can drive.</s></div>
+      </div>
+      <div class="rule">
+        <div class="rule-name">D. Questions: the modal goes first</div>
+        <div class="formula"><span class="chip adv">Can</span><span class="chip">you</span><span class="chip">help</span><span class="chip">me?</span></div>
+        <div class="ex"><b>Should</b> I call back? &rarr; Yes, you <b>should</b>.</div>
+        <div class="no">&#10007; <s>Do you can help me?</s></div>
+      </div>
+      <div class="rule wide">
+        <div class="rule-name" style="margin:0">Remember: <b>can</b> = possible &nbsp;&middot;&nbsp; <b>should</b> = a good idea &nbsp;&middot;&nbsp; <b>must</b> = a rule</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phrase bank -->
+  <div class="box" style="flex:1; display:flex; flex-direction:column;">
+    <h2>3. Phrase bank <span class="small">Pick any phrase. Change it if you want.</span></h2>
+    <div class="bank">
+      <div class="cat">
+        <div class="cat-name">On the phone</div>
+        <ul>
+          <li>call back</li>
+          <li>leave a message</li>
+          <li>text my daughter / son</li>
+          <li>video-call my family</li>
+          <li>turn up the volume</li>
+          <li>make the letters bigger</li>
+          <li>charge my phone</li>
+          <li>speak slowly</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Phone safety</div>
+        <ul>
+          <li>share my PIN</li>
+          <li>answer unknown numbers</li>
+          <li>click strange links</li>
+          <li>call the real number</li>
+          <li>send money to a stranger</li>
+          <li>change my password</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Family</div>
+        <ul>
+          <li>help my kids with homework</li>
+          <li>visit my parents</li>
+          <li>pick up my kids</li>
+          <li>cook for my family</li>
+          <li>send money home</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Money &amp; bills</div>
+        <ul>
+          <li>pay rent on time</li>
+          <li>pay the phone bill</li>
+          <li>save money</li>
+          <li>check my bank account</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Home</div>
+        <ul>
+          <li>call the landlord</li>
+          <li>fix the sink</li>
+          <li>lock the door</li>
+          <li>take out the trash</li>
+          <li>do laundry</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Health</div>
+        <ul>
+          <li>drink more water</li>
+          <li>sleep 8 hours</li>
+          <li>see a doctor</li>
+          <li>take my medicine</li>
+          <li>go for a walk</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Getting around</div>
+        <ul>
+          <li>drive a car</li>
+          <li>take the bus / the T</li>
+          <li>ride a bike</li>
+          <li>use a map app</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Work</div>
+        <ul>
+          <li>work on Saturday</li>
+          <li>arrive on time</li>
+          <li>wear a uniform</li>
+          <li>ask for a day off</li>
+          <li>call my boss</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <div class="cat-name">Learning</div>
+        <ul>
+          <li>speak Spanish / Portuguese / Creole</li>
+          <li>practice English every day</li>
+          <li>do my homework</li>
+          <li>use a dictionary app</li>
+        </ul>
+      </div>
+    </div>
+      <div class="cat-be"><b>Talk to a friend (Rule D):</b> &nbsp;Can you help me? &middot; Can I call you later? &middot; Should I call back? &middot; What should I do?</div>
+  </div>
+
+</section>
+
+<!-- ======================================================
+     BACK: write, then talk
+     ====================================================== -->
+<section class="page">
+
+  <div class="title-row">
+    <h1>Write About You</h1>
+    <span class="sub">Look at the front for help.</span>
+  </div>
+
+  <!-- Part 4: one sentence per form -->
+  <div class="box">
+    <h2>4. My life <span class="small">One sentence for each word. Add a detail: <b>when?</b> <b>where?</b> or <b>because...</b></span></h2>
+    <div class="write-row"><span class="adv">example</span><span class="fill example">I can video-call my family on Sundays because the call is free.</span></div>
+    <div class="write-row"><span class="adv">I can</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I can't</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I should</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I shouldn't</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I must</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">You must not</span><span class="fill"></span></div>
+    <div class="hint" style="margin-top:6px">Detail ideas: on Sundays &middot; at night &middot; at work &middot; on the phone &middot; every day &middot; because it is free &middot; because it is dangerous</div>
+  </div>
+
+  <!-- Part 5: he/she + but -->
+  <div class="box">
+    <h2>5. Two more <span class="small">Use Rule B and Rule C.</span></h2>
+    <div class="write-row"><span class="adv">My friend</span><span class="fill"></span></div>
+    <div class="write-row"><span class="adv">I can't</span><span class="fill"></span><span class="adv" style="width:auto">, but I can</span><span class="fill"></span></div>
+  </div>
+
+  <!-- Part 6: partner interview -->
+  <div class="box">
+    <h2>6. Ask a partner <span class="small">Ask: <b>Can you...?</b> Your partner answers: <b>Yes, I can.</b> / <b>No, I can't.</b></span></h2>
+    <div class="hint">Partner's name: ______________________</div>
+    <table class="interview">
+      <tr><th>Can you...</th><th>Yes or no?</th><th>One more detail</th></tr>
+      <tr><td class="q">...video-call your family?</td><td></td><td></td></tr>
+      <tr><td class="q">...</td><td></td><td></td></tr>
+      <tr><td class="q">...</td><td></td><td></td></tr>
+      <tr><td class="q">...</td><td></td><td></td></tr>
+    </table>
+    <div class="hint" style="margin-top:8px">Now write about your partner. Remember <b>no -s</b>: <i>Ana can drive. Ana can't swim.</i></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>modal + V1, no "to"</span>
+    <span><span class="cb"></span>no -s</span>
+    <span><span class="cb"></span>can't / shouldn't / must not</span>
+    <span><span class="cb"></span>modal first in questions</span>
+  </div>
+
+</section>
+
+</body>
+</html>
