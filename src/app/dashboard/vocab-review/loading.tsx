@@ -1,7 +1,8 @@
 export default function VocabReviewLoading() {
     return (
         <div className="min-h-dvh bg-bg">
-            <main className="mx-auto max-w-5xl px-4 pb-24 pt-4 sm:px-6 sm:pt-6 md:pb-12">
+            <p role="status" className="sr-only">Loading vocabulary review…</p>
+            <main aria-hidden="true" className="mx-auto max-w-5xl px-4 pb-24 pt-4 sm:px-6 sm:pt-6 md:pb-12">
                 <div
                     className="relative overflow-hidden rounded-[32px] border p-5 sm:p-6"
                     style={{
@@ -16,12 +17,12 @@ export default function VocabReviewLoading() {
                     />
 
                     <div className="relative flex items-start justify-between gap-4">
-                        <div className="space-y-3">
-                            <div className="h-4 w-24 skeleton rounded-full" />
-                            <div className="h-10 w-56 skeleton rounded-xl" />
-                            <div className="h-4 w-44 skeleton rounded" />
+                        <div className="min-w-0 space-y-3">
+                            <div className="h-4 w-24 max-w-full skeleton rounded-full" />
+                            <div className="h-10 w-56 max-w-full skeleton rounded-xl" />
+                            <div className="h-4 w-44 max-w-full skeleton rounded" />
                         </div>
-                        <div className="h-11 w-11 skeleton rounded-full" />
+                        <div className="h-11 w-11 shrink-0 skeleton rounded-full" />
                     </div>
 
                     <div className="relative mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
@@ -35,14 +36,14 @@ export default function VocabReviewLoading() {
                             <div className="flex items-center justify-between gap-3">
                                 <div className="space-y-2">
                                     <div className="h-4 w-20 skeleton rounded-full" />
-                                    <div className="h-6 w-36 skeleton rounded-lg" />
+                                    <div className="h-6 w-36 max-w-full skeleton rounded-lg" />
                                 </div>
-                                <div className="h-9 w-24 skeleton rounded-full" />
+                                <div className="h-9 w-24 max-w-full skeleton rounded-full" />
                             </div>
 
                             <div className="mt-6 rounded-[28px] border p-5 sm:p-7" style={{ borderColor: "var(--border-subtle)" }}>
                                 <div className="space-y-4">
-                                    <div className="h-5 w-24 skeleton rounded-full" />
+                                    <div className="h-5 w-24 max-w-full skeleton rounded-full" />
                                     <div className="h-12 w-3/4 skeleton rounded-2xl" />
                                     <div className="h-5 w-2/3 skeleton rounded-xl" />
                                     <div className="h-24 w-full skeleton rounded-[24px]" />
@@ -64,7 +65,7 @@ export default function VocabReviewLoading() {
                                     background: "color-mix(in srgb, var(--surface-elevated) 82%, transparent)",
                                 }}
                             >
-                                <div className="h-4 w-28 skeleton rounded-full" />
+                                <div className="h-4 w-28 max-w-full skeleton rounded-full" />
                                 <div className="mt-4 space-y-3">
                                     <div className="h-12 skeleton rounded-2xl" />
                                     <div className="h-12 skeleton rounded-2xl" />
@@ -79,7 +80,7 @@ export default function VocabReviewLoading() {
                                     background: "color-mix(in srgb, var(--surface-subtle) 86%, var(--surface-elevated))",
                                 }}
                             >
-                                <div className="h-4 w-24 skeleton rounded-full" />
+                                <div className="h-4 w-24 max-w-full skeleton rounded-full" />
                                 <div className="mt-4 space-y-2.5">
                                     <div className="h-4 w-full skeleton rounded" />
                                     <div className="h-4 w-5/6 skeleton rounded" />
