@@ -3,6 +3,7 @@ import type { SentenceBuilderContent, SentenceBuilderPickRound, SentenceBuilderP
 import { isSentenceBuilderContent } from "@/types/activity";
 import { checkPick, checkPlace, dealRounds, fillPick, fillTemplate, isBlank, placeWord, splitRich, stripRich } from "@/lib/sentence-builder/rounds";
 import { SENTENCE_BUILDER_DECKS } from "@/content/sentence-builder";
+import { getSentenceBuilderPoints } from "@/lib/gamification/activity-points";
 
 const usually: SentenceBuilderPlaceRound = {
     kind: "place",
@@ -142,6 +143,22 @@ describe("dealRounds", () => {
 
     it("never deals more rounds than the deck has", () => {
         expect(dealRounds([usually], 8)).toHaveLength(1);
+    });
+});
+
+describe("getSentenceBuilderPoints", () => {
+    it("pays 10 for a perfect game", () => {
+        expect(getSentenceBuilderPoints(100)).toBe(10);
+    });
+
+    it("pays 8 for 80% or more right the first time", () => {
+        expect(getSentenceBuilderPoints(80)).toBe(8);
+        expect(getSentenceBuilderPoints(83)).toBe(8);
+    });
+
+    it("pays 5 for finishing", () => {
+        expect(getSentenceBuilderPoints(67)).toBe(5);
+        expect(getSentenceBuilderPoints(undefined)).toBe(5);
     });
 });
 

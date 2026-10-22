@@ -10,7 +10,7 @@ import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart
 import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
-export { getActivityPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
+export { getActivityPoints, getSentenceBuilderPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
 export {
   getExcludedLeaderboardUsernames,
   parseExcludedLeaderboardUsernames,
