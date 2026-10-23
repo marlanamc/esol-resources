@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pocket Verb Book Key</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  /* One .sheet = one letter page holding two half-page cards (8.5in x 5.5in). */
+  .sheet { width: 8.5in; height: 11in; overflow: hidden; page-break-after: always; break-after: page; }
+  .card { width: 8.5in; height: 5.5in; display: flex; flex-direction: column; position: relative; }
+  .card + .card { border-top: 1.5px dashed #000; }
+  .card + .card::before { content: "\2702  cut"; position: absolute; top: -9px; left: 0.15in; background: #fff; font-size: 11px; padding: 0 4px; }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  .gray {
+    background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  .body { flex: 1; padding: 0.3in 0.4in 0.12in; display: flex; flex-direction: column; gap: 6px; }
+
+  .staple { position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }
+  .staple i { display: inline-block; width: 0.35in; height: 0; border-top: 3px solid #000; }
+  .staple.l { left: 0.4in; }
+  .staple.r { right: 0.4in; }
+
+  .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 2px solid #000; padding-bottom: 3px; }
+  .head h1 { font-size: 22px; white-space: nowrap; }
+  .head .use { font-size: 14px; text-align: right; }
+  .head .use b { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .words { display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }
+  .words b { white-space: nowrap; }
+  .words .fill { flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }
+
+  .timeline { border: 1.5px solid #000; padding: 2px 8px 0; }
+  .timeline .label { font-size: 11px; font-weight: bold; }
+  .timeline svg { display: block; width: 100%; height: auto; }
+
+  .forms { display: grid; grid-template-columns: 30px 1fr 1.25fr; border: 1.5px solid #000; flex: 1; }
+  .forms > div { padding: 2px 7px; display: flex; align-items: flex-end; }
+  .forms .h { font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; }
+  .forms .sym { justify-content: center; align-items: center; font-size: 22px; font-weight: bold; }
+  .forms .row + .row, .forms .sym.n, .forms .sym.q { border-top: 1.5px solid #000; }
+  .forms > div:not(:nth-child(3n+1)) { border-left: 1.5px solid #000; }
+  .forms .write { flex: 1; border-bottom: 1px dotted #000; min-height: 22px; padding-bottom: 1px; }
+  .forms .r2, .forms .r3 { border-top: 1.5px solid #000; }
+
+  .third { display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }
+  .third b { white-space: nowrap; }
+  .third .fill { flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }
+
+  /* Teacher key: the filled-in answers */
+  .ans { font-style: italic; font-weight: bold; }
+
+  /* Bottom tab strip: keep the white tab, cut off the gray */
+  .tabs { height: 0.55in; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1.5px dashed #000; }
+  .tabs > div { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; font-weight: bold; line-height: 1.1; }
+  .tabs .keep { background: #fff; border: 2px dashed #000; border-top: none; }
+  .tabs.all { display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
+
+  /* Cover */
+  .cover h1 { font-size: 22px; }
+  .cover .name-row { display: flex; gap: 10px; align-items: flex-end; font-size: 18px; font-weight: bold; }
+  .cover .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 24px; }
+  .calm { border: 2px dashed #000; padding: 5px 10px; font-size: 14px; }
+  .calm b { font-size: 18px; }
+  .ideas { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid #000; font-size: 14px; }
+  .ideas > div { padding: 4px 7px; }
+  .ideas > div + div { border-left: 1.5px solid #000; }
+  .ideas u, .help { font-weight: bold; text-decoration: underline; text-decoration-thickness: 2px; }
+  .cover .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cover .box { border: 1.5px solid #000; padding: 4px 9px; font-size: 14px; }
+  .cover .box b.t { display: block; font-size: 14px; }
+  .cover ol { padding-left: 18px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+<section class="card cover">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>My Pocket Verb Book</h1><span class="use">7 tenses · flip to the tab you need</span></div>
+    <div class="name-row">Name: <span class="fill"></span></div>
+    <div class="calm"><b>This book is a helper.</b> You don't need to memorize it. Keep it in your pocket or bag. Look at it anytime. Mistakes are OK. People understand you.</div>
+    <div class="ideas">
+      <div><b>1. Find the helper.</b><br>I <u>am</u> working.</div>
+      <div><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
+      <div><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
+      <div><b>No helper?</b> Use <u>do / does / did</u>.<br>I <u>don't</u> work. <u>Do</u> you work?</div>
+    </div>
+    <div class="two">
+      <div class="box"><b class="t">Verb key</b>V1 = work · V1-s = works<br>V2 = worked · V3 = worked<br>V-ing = working</div>
+      <div class="box"><b class="t">Stuck? Say this:</b>"Wait, let me think." · "How do I say...?"<br>"Sorry, I mean..." · "Can you say that again?"</div>
+    </div>
+    <div class="box" style="border:1.5px solid #000;padding:4px 9px;font-size:14px">
+      <b>How to make it:</b> 1. Cut on the long dashed lines. &nbsp;2. Cut off all the gray. &nbsp;3. Put the pages in order: cover, 1, 2, 3... &nbsp;4. Staple at the top.
+    </div>
+  </div>
+  <div class="tabs all gray">cut off this gray strip</div>
+</section>
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>1. Present simple</h1><span class="use"><b>Use it for:</b> Habits, routines, and facts.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">every day · usually · always · on Mondays</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><path d="M111,22 L129,40 M129,22 L111,40" stroke="#000" stroke-width="3" fill="none"/><path d="M241,22 L259,40 M259,22 L241,40" stroke="#000" stroke-width="3" fill="none"/><path d="M371,22 L389,40 M389,22 L371,40" stroke="#000" stroke-width="3" fill="none"/><path d="M501,22 L519,40 M519,22 L501,40" stroke="#000" stroke-width="3" fill="none"/><path d="M631,22 L649,40 M649,22 L631,40" stroke="#000" stroke-width="3" fill="none"/></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + V1</span></span></div><div class=""><span class="write"><span class="ans">I work at a hotel.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + don't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I don't work on Sunday.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Do + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Do you work on Sunday?</span></span></div>
+    </div>
+    <div class="third"><b>he / she / it:</b><span class="fill"><span class="ans">She works. · She doesn't work. · Does she work?</span></span></div>
+  </div>
+  <div class="tabs"><div class="keep">Present<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
+</section></div><div class="sheet">
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>2. Past simple</h1><span class="use"><b>Use it for:</b> Finished actions in the past.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">yesterday · last week · 2 days ago · in 2020</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><path d="M181,22 L199,40 M199,22 L181,40" stroke="#000" stroke-width="3" fill="none"/></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + V2</span></span></div><div class=""><span class="write"><span class="ans">I worked yesterday.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + didn't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I didn't work yesterday.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Did + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Did you work yesterday?</span></span></div>
+    </div>
+    
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="keep">Past<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
+</section>
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>3. Future simple</h1><span class="use"><b>Use it for:</b> Plans, promises, and guesses about the future.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">tomorrow · next week · later · soon</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><path d="M561,22 L579,40 M579,22 L561,40" stroke="#000" stroke-width="3" fill="none"/></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + will + V1</span></span></div><div class=""><span class="write"><span class="ans">I will work tomorrow.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I won't work tomorrow.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you work tomorrow?</span></span></div>
+    </div>
+    
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
+</section></div><div class="sheet">
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>4. Present continuous</h1><span class="use"><b>Use it for:</b> Happening right now. In the middle of the action.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">now · right now · today · at the moment</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><polyline points="330,26.0 332,24.0 334,22.2 336,20.7 338,19.6 340,19.1 342,19.1 344,19.6 346,20.7 348,22.2 350,24.0 352,26.0 354,28.0 356,29.8 358,31.3 360,32.4 362,32.9 364,32.9 366,32.4 368,31.3 370,29.8 372,28.0 374,26.0 376,24.0 378,22.2 380,20.7 382,19.6 384,19.1 386,19.1 388,19.6 390,20.7 392,22.2 394,24.1 396,26.0 398,28.0 400,29.8 402,31.3 404,32.4 406,32.9 408,32.9 410,32.4 412,31.3 414,29.8 416,27.9 418,26.0 420,24.0 422,22.2 424,20.7 426,19.6 428,19.1 430,19.1" stroke="#000" stroke-width="3" fill="none"/></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + am / is / are + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I am working now.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + am / is / are + not + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I am not working now.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Am / Is / Are + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Are you working now?</span></span></div>
+    </div>
+    
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>continuous</div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
+</section>
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>5. Past continuous</h1><span class="use"><b>Use it for:</b> In the middle of an action in the past.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">at 8:00 last night · when you called · all day yesterday</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><polyline points="110,26.0 112,24.0 114,22.2 116,20.7 118,19.6 120,19.1 122,19.1 124,19.6 126,20.7 128,22.2 130,24.0 132,26.0 134,28.0 136,29.8 138,31.3 140,32.4 142,32.9 144,32.9 146,32.4 148,31.3 150,29.8 152,28.0 154,26.0 156,24.0 158,22.2 160,20.7 162,19.6 164,19.1 166,19.1 168,19.6 170,20.7 172,22.2 174,24.1 176,26.0 178,28.0 180,29.8 182,31.3 184,32.4 186,32.9 188,32.9 190,32.4 192,31.3 194,29.8 196,27.9 198,26.0 200,24.0 202,22.2 204,20.7 206,19.6 208,19.1 210,19.1 212,19.6 214,20.7 216,22.3 218,24.1 220,26.0 222,28.0 224,29.8 226,31.3 228,32.4 230,32.9 232,32.9 234,32.3 236,31.3 238,29.7 240,27.9 242,25.9 244,24.0 246,22.2 248,20.7 250,19.6 252,19.1 254,19.1 256,19.7 258,20.7 260,22.3 262,24.1 264,26.1 266,28.0 268,29.8 270,31.3" stroke="#000" stroke-width="3" fill="none"/><line x1="190" y1="8" x2="190" y2="40" stroke="#000" stroke-width="2"/><text x="190" y="7" font-size="12" text-anchor="middle" font-weight="bold">8:00</text></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + was / were + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I was working at 8:00 last night.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + wasn't / weren't + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I wasn't working at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Was / Were + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Were you working at 8:00?</span></span></div>
+    </div>
+    
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Past<br>continuous</div><div class="gray"></div><div class="gray"></div></div>
+</section></div><div class="sheet">
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>6. Future continuous</h1><span class="use"><b>Use it for:</b> In the middle of an action in the future.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">at 8:00 tomorrow · this time next week · all day tomorrow</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><polyline points="490,26.0 492,24.0 494,22.2 496,20.7 498,19.6 500,19.1 502,19.1 504,19.6 506,20.7 508,22.2 510,24.0 512,26.0 514,28.0 516,29.8 518,31.3 520,32.4 522,32.9 524,32.9 526,32.4 528,31.3 530,29.8 532,28.0 534,26.0 536,24.0 538,22.2 540,20.7 542,19.6 544,19.1 546,19.1 548,19.6 550,20.7 552,22.2 554,24.1 556,26.0 558,28.0 560,29.8 562,31.3 564,32.4 566,32.9 568,32.9 570,32.4 572,31.3 574,29.8 576,27.9 578,26.0 580,24.0 582,22.2 584,20.7 586,19.6 588,19.1 590,19.1 592,19.6 594,20.7 596,22.3 598,24.1 600,26.0 602,28.0 604,29.8 606,31.3 608,32.4 610,32.9 612,32.9 614,32.3 616,31.3 618,29.7 620,27.9 622,25.9 624,24.0 626,22.2 628,20.7 630,19.6 632,19.1 634,19.1 636,19.7 638,20.7 640,22.3 642,24.1 644,26.1 646,28.0 648,29.8 650,31.3" stroke="#000" stroke-width="3" fill="none"/><line x1="570" y1="8" x2="570" y2="40" stroke="#000" stroke-width="2"/><text x="570" y="7" font-size="12" text-anchor="middle" font-weight="bold">8:00</text></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + will be + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I will be working at 8:00 tomorrow.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't be + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I won't be working at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + be + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you be working at 8:00?</span></span></div>
+    </div>
+    
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>continuous</div><div class="gray"></div></div>
+</section>
+<section class="card">
+  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+  <div class="body">
+    <div class="head"><h1>7. Present perfect</h1><span class="use"><b>Use it for:</b> From the past up to now. Life experience.</span></div>
+    <div class="words"><b>Time words:</b><span class="fill"><span class="ans">ever · never · already · for 3 years · since 2023</span></span></div>
+    <div class="timeline"><span class="label">Draw it:</span>
+      <svg viewBox="0 0 760 70" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif"><line x1="20" y1="31" x2="735" y2="31" stroke="#000" stroke-width="2"/><path d="M732,24 L746,31 L732,38 Z" fill="#000"/><line x1="380" y1="4" x2="380" y2="50" stroke="#000" stroke-width="2" stroke-dasharray="4 3"/><text x="110" y="64" font-size="13" text-anchor="middle" font-weight="bold">PAST</text><text x="380" y="64" font-size="13" text-anchor="middle" font-weight="bold">NOW</text><text x="650" y="64" font-size="13" text-anchor="middle" font-weight="bold">FUTURE</text><circle cx="160" cy="31" r="6" fill="#000"/><line x1="160" y1="31" x2="368" y2="31" stroke="#000" stroke-width="6"/><path d="M366,21 L382,31 L366,41 Z" fill="#000"/></svg>
+    </div>
+    <div class="forms">
+      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="sym a">+</div><div class=""><span class="write"><span class="ans">subject + have / has + V3</span></span></div><div class=""><span class="write"><span class="ans">I have worked here for 3 years.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + haven't / hasn't + V3</span></span></div><div class="r2"><span class="write"><span class="ans">I haven't worked at night.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Have / Has + subject + V3?</span></span></div><div class="r3"><span class="write"><span class="ans">Have you ever worked at night?</span></span></div>
+    </div>
+    <div class="third"><b>he / she / it:</b><span class="fill"><span class="ans">She has worked. · She hasn't worked. · Has she worked?</span></span></div>
+  </div>
+  <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>perfect</div></div>
+</section></div>
+</body>
+</html>
