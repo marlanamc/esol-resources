@@ -14,7 +14,7 @@
     color: #000;
     background: #fff;
     font-size: 14px;
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   /* One .page = one letter sheet holding two identical half-page cards. Cut on the dashed line. */
@@ -22,10 +22,10 @@
   .card {
     width: 8.5in;
     height: 5.5in;
-    padding: 0.35in 0.45in;
+    padding: 0.3in 0.45in;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 6px;
   }
   .card + .card { border-top: 1.5px dashed #000; }
 
@@ -47,25 +47,17 @@
   }
   .title-row .sub { font-size: 11px; font-style: italic; text-align: right; }
 
-  .ideas { display: grid; grid-template-columns: 1fr 1fr 1fr 1.35fr; border: 1.5px solid #000; font-size: 14px; }
-  .idea { padding: 4px 7px; }
-  .idea + .idea { border-left: 1.5px solid #000; }
+  .ideas { display: flex; justify-content: space-between; border: 1.5px solid #000; padding: 3px 9px; font-size: 14px; }
 
-  .grid { display: grid; grid-template-columns: 1.1in 1fr 1fr 1fr; grid-template-rows: auto 1fr 1fr 1fr; border: 2px solid #000; flex: 1; }
-  .grid > div { padding: 4px 7px; }
-  .grid > div:nth-child(n+5) { border-top: 1.5px solid #000; }
-  .grid > div:not(:nth-child(4n+1)) { border-left: 1.5px solid #000; }
-  .corner { font-size: 11px; display: flex; align-items: center; }
-  .col-h { font-size: 18px; font-weight: bold; text-align: center; }
-  .row-h { font-size: 14px; font-weight: bold; display: flex; align-items: center; }
-  .cell { font-size: 18px; }
-  .cell .when { display: block; font-size: 11px; font-style: italic; }
-  .cell.later {
-    background: repeating-linear-gradient(45deg, #fff 0 7px, #ddd 7px 8px);
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
+  table.chart { width: 100%; border-collapse: collapse; border: 2px solid #000; flex: 1; }
+  table.chart th, table.chart td { border: 1.5px solid #000; padding: 2px 7px; text-align: left; vertical-align: middle; font-size: 14px; }
+  table.chart th.corner { font-size: 11px; width: 1.55in; }
+  table.chart th.col-h { font-size: 18px; text-align: center; }
+  table.chart th.col-h span { font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart th.tense { font-size: 14px; }
+  table.chart th.tense .when { display: block; font-size: 11px; font-weight: normal; font-style: italic; }
 
-  .rescue { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; }
+  .rescue { border: 1.5px dashed #000; padding: 3px 9px; font-size: 14px; }
   .rescue span { margin-left: 12px; white-space: nowrap; }
 </style>
 </head>
@@ -78,33 +70,22 @@
   </div>
 
   <div class="ideas">
-    <div class="idea"><b>1. Find the helper.</b><br>I <u>am</u> working. I <u>will</u> work.</div>
-    <div class="idea"><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
-    <div class="idea"><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
-    <div class="idea"><b>No helper? Use do / does / did.</b><br>I work. → I <u>don't</u> work. → <u>Do</u> you work?</div>
+    <span><b>1.</b> Find the <u>helper</u>.</span>
+    <span><b>2. −</b> Add <i>not</i> after it.</span>
+    <span><b>3. ?</b> Move it to the front.</span>
+    <span><b>No helper?</b> Use <u>do / does / did</u>.</span>
   </div>
 
-  <div class="grid">
-    <div class="corner"><b>Start with the time word.</b></div>
-    <div class="col-h">Past</div>
-    <div class="col-h">Present</div>
-    <div class="col-h">Future</div>
-
-    <div class="row-h">Simple</div>
-    <div class="cell"><span class="when">yesterday · last week</span>I work<b>ed</b>.</div>
-    <div class="cell"><span class="when">every day · usually</span>I work. She work<b>s</b>.</div>
-    <div class="cell"><span class="when">tomorrow · next week</span>I <u>will</u> work.</div>
-
-    <div class="row-h">Continuous</div>
-    <div class="cell"><span class="when">at 8:00 last night · when...</span>I <u>was</u> work<b>ing</b>.</div>
-    <div class="cell"><span class="when">now · right now · today</span>I <u>am</u> work<b>ing</b>.</div>
-    <div class="cell"><span class="when">at 8:00 tomorrow</span>I <u>will be</u> work<b>ing</b>.</div>
-
-    <div class="row-h">Perfect</div>
-    <div class="cell later"></div>
-    <div class="cell"><span class="when">ever · never · for · since</span>I <u>have</u> work<b>ed</b>. She <u>has</u> work<b>ed</b>.</div>
-    <div class="cell later"></div>
-  </div>
+  <table class="chart">
+    <tr><th class="corner">Start with the time word.</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>I work.<br>She work<b>s</b>.</td><td>I <u>don't</u> work.<br>She <u>doesn't</u> work.</td><td><u>Do</u> you work?<br><u>Does</u> she work?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>I work<b>ed</b>.</td><td>I <u>didn't</u> work.</td><td><u>Did</u> you work?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>I <u>will</u> work.</td><td>I <u>won't</u> work.</td><td><u>Will</u> you work?</td></tr>
+    <tr><th class="tense">Present continuous<span class="when">now · right now · today</span></th><td>I <u>am</u> work<b>ing</b>.</td><td>I <u>am</u> not work<b>ing</b>.</td><td><u>Are</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night · when...</span></th><td>I <u>was</u> work<b>ing</b>.</td><td>I <u>wasn't</u> work<b>ing</b>.</td><td><u>Were</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>I <u>will</u> be work<b>ing</b>.</td><td>I <u>won't</u> be work<b>ing</b>.</td><td><u>Will</u> you be work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>I <u>have</u> work<b>ed</b>.<br>She <u>has</u> work<b>ed</b>.</td><td>I <u>haven't</u> work<b>ed</b>.</td><td><u>Have</u> you ever work<b>ed</b>?</td></tr>
+  </table>
 
   <div class="rescue">
     <b>Stuck? Say this:</b>
@@ -122,33 +103,22 @@
   </div>
 
   <div class="ideas">
-    <div class="idea"><b>1. Find the helper.</b><br>I <u>am</u> working. I <u>will</u> work.</div>
-    <div class="idea"><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
-    <div class="idea"><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
-    <div class="idea"><b>No helper? Use do / does / did.</b><br>I work. → I <u>don't</u> work. → <u>Do</u> you work?</div>
+    <span><b>1.</b> Find the <u>helper</u>.</span>
+    <span><b>2. −</b> Add <i>not</i> after it.</span>
+    <span><b>3. ?</b> Move it to the front.</span>
+    <span><b>No helper?</b> Use <u>do / does / did</u>.</span>
   </div>
 
-  <div class="grid">
-    <div class="corner"><b>Start with the time word.</b></div>
-    <div class="col-h">Past</div>
-    <div class="col-h">Present</div>
-    <div class="col-h">Future</div>
-
-    <div class="row-h">Simple</div>
-    <div class="cell"><span class="when">yesterday · last week</span>I work<b>ed</b>.</div>
-    <div class="cell"><span class="when">every day · usually</span>I work. She work<b>s</b>.</div>
-    <div class="cell"><span class="when">tomorrow · next week</span>I <u>will</u> work.</div>
-
-    <div class="row-h">Continuous</div>
-    <div class="cell"><span class="when">at 8:00 last night · when...</span>I <u>was</u> work<b>ing</b>.</div>
-    <div class="cell"><span class="when">now · right now · today</span>I <u>am</u> work<b>ing</b>.</div>
-    <div class="cell"><span class="when">at 8:00 tomorrow</span>I <u>will be</u> work<b>ing</b>.</div>
-
-    <div class="row-h">Perfect</div>
-    <div class="cell later"></div>
-    <div class="cell"><span class="when">ever · never · for · since</span>I <u>have</u> work<b>ed</b>. She <u>has</u> work<b>ed</b>.</div>
-    <div class="cell later"></div>
-  </div>
+  <table class="chart">
+    <tr><th class="corner">Start with the time word.</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>I work.<br>She work<b>s</b>.</td><td>I <u>don't</u> work.<br>She <u>doesn't</u> work.</td><td><u>Do</u> you work?<br><u>Does</u> she work?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>I work<b>ed</b>.</td><td>I <u>didn't</u> work.</td><td><u>Did</u> you work?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>I <u>will</u> work.</td><td>I <u>won't</u> work.</td><td><u>Will</u> you work?</td></tr>
+    <tr><th class="tense">Present continuous<span class="when">now · right now · today</span></th><td>I <u>am</u> work<b>ing</b>.</td><td>I <u>am</u> not work<b>ing</b>.</td><td><u>Are</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night · when...</span></th><td>I <u>was</u> work<b>ing</b>.</td><td>I <u>wasn't</u> work<b>ing</b>.</td><td><u>Were</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>I <u>will</u> be work<b>ing</b>.</td><td>I <u>won't</u> be work<b>ing</b>.</td><td><u>Will</u> you be work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>I <u>have</u> work<b>ed</b>.<br>She <u>has</u> work<b>ed</b>.</td><td>I <u>haven't</u> work<b>ed</b>.</td><td><u>Have</u> you ever work<b>ed</b>?</td></tr>
+  </table>
 
   <div class="rescue">
     <b>Stuck? Say this:</b>
