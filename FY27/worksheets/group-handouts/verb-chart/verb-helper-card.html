@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verb Helper Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  /* One .page = one letter sheet holding two identical half-page cards. Cut on the dashed line. */
+  .page { width: 8.5in; height: 11in; overflow: hidden; }
+  .card {
+    width: 8.5in;
+    height: 5.5in;
+    padding: 0.35in 0.45in;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .card + .card { border-top: 1.5px dashed #000; }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  u { text-decoration-thickness: 2px; font-weight: bold; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    border-bottom: 2px solid #000; padding-bottom: 4px;
+  }
+  .title-row .sub { font-size: 11px; font-style: italic; text-align: right; }
+
+  .ideas { display: grid; grid-template-columns: 1fr 1fr 1fr 1.35fr; border: 1.5px solid #000; font-size: 14px; }
+  .idea { padding: 4px 7px; }
+  .idea + .idea { border-left: 1.5px solid #000; }
+
+  .grid { display: grid; grid-template-columns: 1.1in 1fr 1fr 1fr; grid-template-rows: auto 1fr 1fr 1fr; border: 2px solid #000; flex: 1; }
+  .grid > div { padding: 4px 7px; }
+  .grid > div:nth-child(n+5) { border-top: 1.5px solid #000; }
+  .grid > div:not(:nth-child(4n+1)) { border-left: 1.5px solid #000; }
+  .corner { font-size: 11px; display: flex; align-items: center; }
+  .col-h { font-size: 18px; font-weight: bold; text-align: center; }
+  .row-h { font-size: 14px; font-weight: bold; display: flex; align-items: center; }
+  .cell { font-size: 18px; }
+  .cell .when { display: block; font-size: 11px; font-style: italic; }
+  .cell.later {
+    background: repeating-linear-gradient(45deg, #fff 0 7px, #ddd 7px 8px);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .rescue { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; }
+  .rescue span { margin-left: 12px; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+<section class="card">
+  <div class="title-row">
+    <h1>My Verb Helper</h1>
+    <span class="sub">Look at me anytime. Your message is more important than perfect grammar.</span>
+  </div>
+
+  <div class="ideas">
+    <div class="idea"><b>1. Find the helper.</b><br>I <u>am</u> working. I <u>will</u> work.</div>
+    <div class="idea"><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
+    <div class="idea"><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
+    <div class="idea"><b>No helper? Use do / does / did.</b><br>I work. → I <u>don't</u> work. → <u>Do</u> you work?</div>
+  </div>
+
+  <div class="grid">
+    <div class="corner"><b>Start with the time word.</b></div>
+    <div class="col-h">Past</div>
+    <div class="col-h">Present</div>
+    <div class="col-h">Future</div>
+
+    <div class="row-h">Simple</div>
+    <div class="cell"><span class="when">yesterday · last week</span>I work<b>ed</b>.</div>
+    <div class="cell"><span class="when">every day · usually</span>I work. She work<b>s</b>.</div>
+    <div class="cell"><span class="when">tomorrow · next week</span>I <u>will</u> work.</div>
+
+    <div class="row-h">Continuous</div>
+    <div class="cell"><span class="when">at 8:00 last night · when...</span>I <u>was</u> work<b>ing</b>.</div>
+    <div class="cell"><span class="when">now · right now · today</span>I <u>am</u> work<b>ing</b>.</div>
+    <div class="cell"><span class="when">at 8:00 tomorrow</span>I <u>will be</u> work<b>ing</b>.</div>
+
+    <div class="row-h">Perfect</div>
+    <div class="cell later"></div>
+    <div class="cell"><span class="when">ever · never · for · since</span>I <u>have</u> work<b>ed</b>. She <u>has</u> work<b>ed</b>.</div>
+    <div class="cell later"></div>
+  </div>
+
+  <div class="rescue">
+    <b>Stuck? Say this:</b>
+    <span>"Wait, let me think."</span>
+    <span>"How do I say...?"</span>
+    <span>"Sorry, I mean..."</span>
+    <span>"Can you say that again?"</span>
+  </div>
+</section>
+
+<section class="card">
+  <div class="title-row">
+    <h1>My Verb Helper</h1>
+    <span class="sub">Look at me anytime. Your message is more important than perfect grammar.</span>
+  </div>
+
+  <div class="ideas">
+    <div class="idea"><b>1. Find the helper.</b><br>I <u>am</u> working. I <u>will</u> work.</div>
+    <div class="idea"><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
+    <div class="idea"><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
+    <div class="idea"><b>No helper? Use do / does / did.</b><br>I work. → I <u>don't</u> work. → <u>Do</u> you work?</div>
+  </div>
+
+  <div class="grid">
+    <div class="corner"><b>Start with the time word.</b></div>
+    <div class="col-h">Past</div>
+    <div class="col-h">Present</div>
+    <div class="col-h">Future</div>
+
+    <div class="row-h">Simple</div>
+    <div class="cell"><span class="when">yesterday · last week</span>I work<b>ed</b>.</div>
+    <div class="cell"><span class="when">every day · usually</span>I work. She work<b>s</b>.</div>
+    <div class="cell"><span class="when">tomorrow · next week</span>I <u>will</u> work.</div>
+
+    <div class="row-h">Continuous</div>
+    <div class="cell"><span class="when">at 8:00 last night · when...</span>I <u>was</u> work<b>ing</b>.</div>
+    <div class="cell"><span class="when">now · right now · today</span>I <u>am</u> work<b>ing</b>.</div>
+    <div class="cell"><span class="when">at 8:00 tomorrow</span>I <u>will be</u> work<b>ing</b>.</div>
+
+    <div class="row-h">Perfect</div>
+    <div class="cell later"></div>
+    <div class="cell"><span class="when">ever · never · for · since</span>I <u>have</u> work<b>ed</b>. She <u>has</u> work<b>ed</b>.</div>
+    <div class="cell later"></div>
+  </div>
+
+  <div class="rescue">
+    <b>Stuck? Say this:</b>
+    <span>"Wait, let me think."</span>
+    <span>"How do I say...?"</span>
+    <span>"Sorry, I mean..."</span>
+    <span>"Can you say that again?"</span>
+  </div>
+</section>
+</div>
+</body>
+</html>
