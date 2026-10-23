@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verb Chart Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 8px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+
+  /* "This is a helper" note */
+  .calm { border: 2px dashed #000; padding: 6px 11px; margin-bottom: 8px; font-size: 14px; }
+  .calm b { font-size: 18px; }
+
+  /* Three big ideas */
+  .ideas { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1.5px solid #000; }
+  .idea { padding: 5px 8px; }
+  .idea + .idea { border-left: 1.5px solid #000; }
+  .idea .num { font-size: 18px; font-weight: bold; }
+  .idea .ex { font-size: 14px; margin-top: 2px; }
+  .hidden-helper { font-size: 14px; margin-top: 6px; }
+
+  .help { font-weight: bold; text-decoration: underline; text-decoration-thickness: 2px; }
+
+  /* The chart: rows = simple / continuous / perfect, columns = past / present / future */
+  .chart { display: grid; grid-template-columns: 0.95in 1fr 1fr 1fr; border: 2px solid #000; flex: 1; }
+  .chart > div { padding: 5px 7px; }
+  .chart .corner { border-bottom: 2px solid #000; }
+  .chart .col-h { font-size: 18px; font-weight: bold; text-align: center; border-left: 1.5px solid #000; border-bottom: 2px solid #000; }
+  .chart .col-h .small { display: block; font-weight: normal; font-style: italic; }
+  .chart .row-h { font-size: 14px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; }
+  .chart .row-h .small { font-weight: normal; }
+  .chart .row-h.r2, .chart .row-h.r3, .chart .cell.r2, .chart .cell.r3 { border-top: 1.5px solid #000; }
+  .chart .cell { border-left: 1.5px solid #000; display: flex; flex-direction: column; gap: 3px; }
+  .cell .when { font-size: 11px; font-style: italic; border-bottom: 1px dashed #000; padding-bottom: 2px; }
+  .cell .line { display: flex; gap: 6px; align-items: baseline; }
+  .cell .sym { flex: none; width: 16px; height: 16px; border: 1.5px solid #000; border-radius: 50%; font-size: 14px; font-weight: bold; line-height: 13px; text-align: center; }
+  .cell .say { font-size: 14px; }
+  .cell .fx { display: block; font-size: 11px; }
+  .cell .note { font-size: 11px; border-top: 1px dashed #000; padding-top: 2px; margin-top: auto; }
+  .cell.later {
+    align-items: center; justify-content: center; font-size: 14px; font-style: italic;
+    background: repeating-linear-gradient(45deg, #fff 0 7px, #ddd 7px 8px);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .cell.later span { background: #fff; padding: 2px 6px; border: 1px solid #000; }
+
+  .key { font-size: 11px; margin-top: 5px; }
+
+  /* Back: make the negative and the question */
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 3px; }
+  table.practice { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.practice th, table.practice td { border: 1.5px solid #000; padding: 3px 6px; text-align: left; vertical-align: bottom; }
+  table.practice th { font-size: 14px; vertical-align: middle; }
+  table.practice td { height: 52px; }
+  table.practice td.tense { width: 1.05in; font-size: 11px; font-weight: bold; vertical-align: middle; }
+  table.practice td.given { width: 2.15in; }
+  table.practice tr.example td.write { font-style: italic; }
+
+  /* Partner talk */
+  table.talk { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.talk th, table.talk td { border: 1.5px solid #000; padding: 3px 7px; text-align: left; vertical-align: bottom; }
+  table.talk td { height: 50px; }
+  table.talk td.q { width: 52%; vertical-align: middle; }
+  table.talk td.t { width: 1.05in; font-size: 11px; font-weight: bold; vertical-align: middle; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: the chart (a helper to look at, not to memorize)
+     ====================================================== -->
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+
+  <div class="title-row">
+    <h1>My Verb Chart</h1>
+    <span class="sub">7 tenses, one verb: work</span>
+  </div>
+
+  <div class="calm">
+    <b>This chart is a helper.</b> You do not need to memorize it. Keep it with you. Look at it when you write or speak. If you make a mistake, that's OK. People understand you.
+  </div>
+
+  <div class="box">
+    <h2>3 big ideas <span class="small">(they work for every tense on this page)</span></h2>
+    <div class="ideas">
+      <div class="idea">
+        <span class="num">1. Find the helper.</span>
+        <div class="ex">I <span class="help">am</span> working.<br>I <span class="help">will</span> work.<br>I <span class="help">have</span> worked.</div>
+      </div>
+      <div class="idea">
+        <span class="num">2. <span style="font-size:18px">−</span> Add <i>not</i> after it.</span>
+        <div class="ex">I <span class="help">am</span> not working.<br>I <span class="help">will</span> not work.<br>I <span class="help">have</span> not worked.</div>
+      </div>
+      <div class="idea">
+        <span class="num">3. ? Move it to the front.</span>
+        <div class="ex"><span class="help">Are</span> you working?<br><span class="help">Will</span> you work?<br><span class="help">Have</span> you worked?</div>
+      </div>
+    </div>
+    <div class="hidden-helper"><b>No helper?</b> Simple present and simple past have a hidden helper: <span class="help">do / does / did</span>. You see it only in <b>−</b> and <b>?</b> &nbsp;I work. → I <span class="help">don't</span> work. → <span class="help">Do</span> you work?</div>
+  </div>
+
+  <div class="chart">
+    <div class="corner"></div>
+    <div class="col-h">Past <span class="small">before now</span></div>
+    <div class="col-h">Present <span class="small">now / usually</span></div>
+    <div class="col-h">Future <span class="small">after now</span></div>
+
+    <!-- SIMPLE -->
+    <div class="row-h r1">Simple <span class="small">facts, habits, finished actions</span></div>
+    <div class="cell r1">
+      <div class="when">yesterday · last week · in 2020</div>
+      <div class="line"><span class="sym">+</span><span class="say">I worked.<span class="fx">V2</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">didn't</span> work.<span class="fx">didn't + V1</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Did</span> you work?<span class="fx">Did + subject + V1?</span></span></div>
+    </div>
+    <div class="cell r1">
+      <div class="when">every day · usually · on Mondays</div>
+      <div class="line"><span class="sym">+</span><span class="say">I work.<span class="fx">V1</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">don't</span> work.<span class="fx">don't + V1</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Do</span> you work?<span class="fx">Do + subject + V1?</span></span></div>
+      <div class="note"><b>he / she / it:</b> She work<b>s</b>. She <span class="help">doesn't</span> work. <span class="help">Does</span> she work?</div>
+    </div>
+    <div class="cell r1">
+      <div class="when">tomorrow · next week · later</div>
+      <div class="line"><span class="sym">+</span><span class="say">I <span class="help">will</span> work.<span class="fx">will + V1</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">won't</span> work.<span class="fx">won't (will not) + V1</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Will</span> you work?<span class="fx">Will + subject + V1?</span></span></div>
+    </div>
+
+    <!-- CONTINUOUS -->
+    <div class="row-h r2">Continuous <span class="small">in the middle of an action</span></div>
+    <div class="cell r2">
+      <div class="when">at 8:00 last night · when you called</div>
+      <div class="line"><span class="sym">+</span><span class="say">I <span class="help">was</span> working.<span class="fx">was / were + V-ing</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">wasn't</span> working.<span class="fx">wasn't / weren't + V-ing</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Were</span> you working?<span class="fx">Was / Were + subject + V-ing?</span></span></div>
+    </div>
+    <div class="cell r2">
+      <div class="when">now · right now · today</div>
+      <div class="line"><span class="sym">+</span><span class="say">I<span class="help">'m</span> working.<span class="fx">am / is / are + V-ing</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I<span class="help">'m</span> not working.<span class="fx">am not / isn't / aren't + V-ing</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Are</span> you working?<span class="fx">Am / Is / Are + subject + V-ing?</span></span></div>
+    </div>
+    <div class="cell r2">
+      <div class="when">at 8:00 tomorrow · this time next week</div>
+      <div class="line"><span class="sym">+</span><span class="say">I <span class="help">will</span> be working.<span class="fx">will be + V-ing</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">won't</span> be working.<span class="fx">won't be + V-ing</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Will</span> you be working?<span class="fx">Will + subject + be + V-ing?</span></span></div>
+    </div>
+
+    <!-- PERFECT -->
+    <div class="row-h r3">Perfect <span class="small">from the past up to now</span></div>
+    <div class="cell r3 later"><span>Not today</span></div>
+    <div class="cell r3">
+      <div class="when">ever · never · already · for 3 years · since 2023</div>
+      <div class="line"><span class="sym">+</span><span class="say">I<span class="help">'ve</span> worked here for 3 years.<span class="fx">have / has + V3</span></span></div>
+      <div class="line"><span class="sym">−</span><span class="say">I <span class="help">haven't</span> worked at night.<span class="fx">haven't / hasn't + V3</span></span></div>
+      <div class="line"><span class="sym">?</span><span class="say"><span class="help">Have</span> you ever worked at night?<span class="fx">Have / Has + subject + V3?</span></span></div>
+      <div class="note"><b>he / she / it:</b> She <span class="help">has</span> worked. She <span class="help">hasn't</span> worked. <span class="help">Has</span> she worked?</div>
+    </div>
+    <div class="cell r3 later"><span>Not today</span></div>
+  </div>
+
+  <div class="key"><b>Key:</b> V1 = work &nbsp;·&nbsp; V1-s = works &nbsp;·&nbsp; V2 = worked &nbsp;·&nbsp; V3 = worked &nbsp;·&nbsp; V-ing = working &nbsp;·&nbsp; <span class="help">underline</span> = the helper</div>
+</section>
+
+<!-- ======================================================
+     BACK: practice slowly, then talk
+     ====================================================== -->
+<section class="page">
+  <div class="title-row">
+    <h1>Try It: One Step at a Time</h1>
+    <span class="sub">Use your chart. Looking is OK!</span>
+  </div>
+
+  <div class="box">
+    <h2>A. Make the − and the ?</h2>
+    <div class="hint">Find the helper. For −, add <i>not</i>. For ?, move the helper to the front. No helper? Use do / does / did.</div>
+    <table class="practice">
+      <tr><th></th><th>+</th><th>−</th><th>?</th></tr>
+      <tr class="example">
+        <td class="tense">Present simple</td>
+        <td class="given">She plays soccer.</td>
+        <td class="write">She doesn't play soccer.</td>
+        <td class="write">Does she play soccer?</td>
+      </tr>
+      <tr>
+        <td class="tense">Past simple</td>
+        <td class="given">They played soccer yesterday.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Future simple</td>
+        <td class="given">We will play soccer tomorrow.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Present continuous</td>
+        <td class="given">He is playing soccer now.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Past continuous</td>
+        <td class="given">You were playing soccer at 6:00 last night.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Future continuous</td>
+        <td class="given">I will be playing soccer at 6:00 tomorrow.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Present perfect</td>
+        <td class="given">She has played soccer for 10 years.</td>
+        <td></td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>B. Ask a partner</h2>
+    <div class="hint">Ask the question. Write a short answer. Look at the time words: they tell you the tense.</div>
+    <table class="talk">
+      <tr><th></th><th>Question</th><th>My partner's answer</th></tr>
+      <tr><td class="t">Present simple</td><td class="q">What do you usually do on Saturday?</td><td></td></tr>
+      <tr><td class="t">Past simple</td><td class="q">What did you do last Saturday?</td><td></td></tr>
+      <tr><td class="t">Present continuous</td><td class="q">What are you learning right now?</td><td></td></tr>
+      <tr><td class="t">Past continuous</td><td class="q">What were you doing at 7:00 this morning?</td><td></td></tr>
+      <tr><td class="t">Future simple</td><td class="q">What will you do this weekend?</td><td></td></tr>
+      <tr><td class="t">Future continuous</td><td class="q">What will you be doing at 8:00 tomorrow night?</td><td></td></tr>
+      <tr><td class="t">Present perfect</td><td class="q">How long have you lived in Boston?</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="check">
+    <b>Remember:</b>
+    <span><span class="cb"></span>I can find the helper.</span>
+    <span><span class="cb"></span>I can make a −.</span>
+    <span><span class="cb"></span>I can make a ?.</span>
+    <span><span class="cb"></span>I can use my chart. I don't need to memorize it.</span>
+  </div>
+</section>
+
+</body>
+</html>
