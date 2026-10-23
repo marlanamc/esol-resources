@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verb Helper Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  /* One .page = one letter sheet holding two identical half-page cards. Cut on the dashed line. */
+  .page { width: 8.5in; height: 11in; overflow: hidden; }
+  .card {
+    width: 8.5in;
+    height: 5.5in;
+    padding: 0.3in 0.45in;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card + .card { border-top: 1.5px dashed #000; }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  u { text-decoration-thickness: 2px; font-weight: bold; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    border-bottom: 2px solid #000; padding-bottom: 4px;
+  }
+  .title-row .sub { font-size: 11px; font-style: italic; text-align: right; }
+
+  .ideas { display: flex; justify-content: space-between; border: 1.5px solid #000; padding: 3px 9px; font-size: 14px; }
+
+  table.chart { width: 100%; border-collapse: collapse; border: 2px solid #000; flex: 1; }
+  table.chart th, table.chart td { border: 1.5px solid #000; padding: 2px 7px; text-align: left; vertical-align: middle; font-size: 14px; }
+  table.chart th.corner { font-size: 11px; width: 1.55in; }
+  table.chart th.col-h { font-size: 18px; text-align: center; }
+  table.chart th.col-h span { font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart th.tense { font-size: 14px; }
+  table.chart th.tense .when { display: block; font-size: 11px; font-weight: normal; font-style: italic; }
+
+  .rescue { border: 1.5px dashed #000; padding: 3px 9px; font-size: 14px; }
+  .rescue span { margin-left: 12px; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+<section class="card">
+  <div class="title-row">
+    <h1>My Verb Helper</h1>
+    <span class="sub">Look at me anytime. Your message is more important than perfect grammar.</span>
+  </div>
+
+  <div class="ideas">
+    <span><b>1.</b> Find the <u>helper</u>.</span>
+    <span><b>2. −</b> Add <i>not</i> after it.</span>
+    <span><b>3. ?</b> Move it to the front.</span>
+    <span><b>No helper?</b> Use <u>do / does / did</u>.</span>
+  </div>
+
+  <table class="chart">
+    <tr><th class="corner">Start with the time word.</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>I work.<br>She work<b>s</b>.</td><td>I <u>don't</u> work.<br>She <u>doesn't</u> work.</td><td><u>Do</u> you work?<br><u>Does</u> she work?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>I work<b>ed</b>.</td><td>I <u>didn't</u> work.</td><td><u>Did</u> you work?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>I <u>will</u> work.</td><td>I <u>won't</u> work.</td><td><u>Will</u> you work?</td></tr>
+    <tr><th class="tense">Present continuous<span class="when">now · right now · today</span></th><td>I <u>am</u> work<b>ing</b>.</td><td>I <u>am</u> not work<b>ing</b>.</td><td><u>Are</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night · when...</span></th><td>I <u>was</u> work<b>ing</b>.</td><td>I <u>wasn't</u> work<b>ing</b>.</td><td><u>Were</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>I <u>will</u> be work<b>ing</b>.</td><td>I <u>won't</u> be work<b>ing</b>.</td><td><u>Will</u> you be work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>I <u>have</u> work<b>ed</b>.<br>She <u>has</u> work<b>ed</b>.</td><td>I <u>haven't</u> work<b>ed</b>.</td><td><u>Have</u> you ever work<b>ed</b>?</td></tr>
+  </table>
+
+  <div class="rescue">
+    <b>Stuck? Say this:</b>
+    <span>"Wait, let me think."</span>
+    <span>"How do I say...?"</span>
+    <span>"Sorry, I mean..."</span>
+    <span>"Can you say that again?"</span>
+  </div>
+</section>
+
+<section class="card">
+  <div class="title-row">
+    <h1>My Verb Helper</h1>
+    <span class="sub">Look at me anytime. Your message is more important than perfect grammar.</span>
+  </div>
+
+  <div class="ideas">
+    <span><b>1.</b> Find the <u>helper</u>.</span>
+    <span><b>2. −</b> Add <i>not</i> after it.</span>
+    <span><b>3. ?</b> Move it to the front.</span>
+    <span><b>No helper?</b> Use <u>do / does / did</u>.</span>
+  </div>
+
+  <table class="chart">
+    <tr><th class="corner">Start with the time word.</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>I work.<br>She work<b>s</b>.</td><td>I <u>don't</u> work.<br>She <u>doesn't</u> work.</td><td><u>Do</u> you work?<br><u>Does</u> she work?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>I work<b>ed</b>.</td><td>I <u>didn't</u> work.</td><td><u>Did</u> you work?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>I <u>will</u> work.</td><td>I <u>won't</u> work.</td><td><u>Will</u> you work?</td></tr>
+    <tr><th class="tense">Present continuous<span class="when">now · right now · today</span></th><td>I <u>am</u> work<b>ing</b>.</td><td>I <u>am</u> not work<b>ing</b>.</td><td><u>Are</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night · when...</span></th><td>I <u>was</u> work<b>ing</b>.</td><td>I <u>wasn't</u> work<b>ing</b>.</td><td><u>Were</u> you work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>I <u>will</u> be work<b>ing</b>.</td><td>I <u>won't</u> be work<b>ing</b>.</td><td><u>Will</u> you be work<b>ing</b>?</td></tr>
+    <tr><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>I <u>have</u> work<b>ed</b>.<br>She <u>has</u> work<b>ed</b>.</td><td>I <u>haven't</u> work<b>ed</b>.</td><td><u>Have</u> you ever work<b>ed</b>?</td></tr>
+  </table>
+
+  <div class="rescue">
+    <b>Stuck? Say this:</b>
+    <span>"Wait, let me think."</span>
+    <span>"How do I say...?"</span>
+    <span>"Sorry, I mean..."</span>
+    <span>"Can you say that again?"</span>
+  </div>
+</section>
+</div>
+</body>
+</html>

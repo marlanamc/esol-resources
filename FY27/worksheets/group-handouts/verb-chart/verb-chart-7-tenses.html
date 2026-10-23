@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verb Chart Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 8px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+
+  /* "This is a helper" note */
+  .calm { border: 2px dashed #000; padding: 6px 11px; margin-bottom: 8px; font-size: 14px; }
+  .calm b { font-size: 18px; }
+
+  /* Three big ideas */
+  .ideas { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1.5px solid #000; }
+  .idea { padding: 5px 8px; }
+  .idea + .idea { border-left: 1.5px solid #000; }
+  .idea .num { font-size: 18px; font-weight: bold; }
+  .idea .ex { font-size: 14px; margin-top: 2px; }
+  .hidden-helper { font-size: 14px; margin-top: 6px; }
+
+  .help { font-weight: bold; text-decoration: underline; text-decoration-thickness: 2px; }
+
+  /* The chart: rows = tenses, columns = + / - / ? (matches the desk card) */
+  table.chart { width: 100%; border-collapse: collapse; border: 2px solid #000; flex: 1; }
+  table.chart th, table.chart td { border: 1.5px solid #000; padding: 3px 7px; text-align: left; vertical-align: middle; font-size: 14px; }
+  table.chart th.corner { font-size: 11px; width: 1.55in; }
+  table.chart th.col-h { font-size: 18px; text-align: center; }
+  table.chart th.col-h span { font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart th.tense .when { display: block; font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart .fx { display: block; font-size: 11px; }
+  table.chart tr.group td, table.chart tr.group th { border-top: 2px solid #000; }
+
+  .key { font-size: 11px; margin-top: 5px; }
+
+  /* Back: make the negative and the question */
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 3px; }
+  table.practice { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.practice th, table.practice td { border: 1.5px solid #000; padding: 3px 6px; text-align: left; vertical-align: bottom; }
+  table.practice th { font-size: 14px; vertical-align: middle; }
+  table.practice td { height: 52px; }
+  table.practice td.tense { width: 1.05in; font-size: 11px; font-weight: bold; vertical-align: middle; }
+  table.practice td.given { width: 2.15in; }
+  table.practice tr.example td.write { font-style: italic; }
+
+  /* Partner talk */
+  table.talk { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.talk th, table.talk td { border: 1.5px solid #000; padding: 3px 7px; text-align: left; vertical-align: bottom; }
+  table.talk td { height: 50px; }
+  table.talk td.q { width: 52%; vertical-align: middle; }
+  table.talk td.t { width: 1.05in; font-size: 11px; font-weight: bold; vertical-align: middle; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: the chart (a helper to look at, not to memorize)
+     ====================================================== -->
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+
+  <div class="title-row">
+    <h1>My Verb Chart</h1>
+    <span class="sub">7 tenses, one verb: work</span>
+  </div>
+
+  <div class="calm">
+    <b>This chart is a helper.</b> You do not need to memorize it. Keep it with you. Look at it when you write or speak. If you make a mistake, that's OK. People understand you.
+  </div>
+
+  <div class="box">
+    <h2>3 big ideas <span class="small">(they work for every tense on this page)</span></h2>
+    <div class="ideas">
+      <div class="idea">
+        <span class="num">1. Find the helper.</span>
+        <div class="ex">I <span class="help">am</span> working.<br>I <span class="help">will</span> work.<br>I <span class="help">have</span> worked.</div>
+      </div>
+      <div class="idea">
+        <span class="num">2. <span style="font-size:18px">−</span> Add <i>not</i> after it.</span>
+        <div class="ex">I <span class="help">am</span> not working.<br>I <span class="help">will</span> not work.<br>I <span class="help">have</span> not worked.</div>
+      </div>
+      <div class="idea">
+        <span class="num">3. ? Move it to the front.</span>
+        <div class="ex"><span class="help">Are</span> you working?<br><span class="help">Will</span> you work?<br><span class="help">Have</span> you worked?</div>
+      </div>
+    </div>
+    <div class="hidden-helper"><b>No helper?</b> Simple present and simple past have a hidden helper: <span class="help">do / does / did</span>. You see it only in <b>−</b> and <b>?</b> &nbsp;I work. → I <span class="help">don't</span> work. → <span class="help">Do</span> you work?</div>
+  </div>
+
+  <table class="chart">
+    <tr><th class="corner">Start with the time word.</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>I work.<br>She work<b>s</b>.<span class="fx">V1 / V1-s</span></td><td>I <span class="help">don't</span> work.<br>She <span class="help">doesn't</span> work.<span class="fx">don't / doesn't + V1</span></td><td><span class="help">Do</span> you work?<br><span class="help">Does</span> she work?<span class="fx">Do / Does + subject + V1?</span></td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week · in 2020</span></th><td>I work<b>ed</b>.<span class="fx">V2</span></td><td>I <span class="help">didn't</span> work.<span class="fx">didn't + V1</span></td><td><span class="help">Did</span> you work?<span class="fx">Did + subject + V1?</span></td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week · later</span></th><td>I <span class="help">will</span> work.<span class="fx">will + V1</span></td><td>I <span class="help">won't</span> work.<span class="fx">won't (will not) + V1</span></td><td><span class="help">Will</span> you work?<span class="fx">Will + subject + V1?</span></td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now · today</span></th><td>I<span class="help">'m</span> work<b>ing</b>.<span class="fx">am / is / are + V-ing</span></td><td>I<span class="help">'m</span> not work<b>ing</b>.<span class="fx">am not / isn't / aren't + V-ing</span></td><td><span class="help">Are</span> you work<b>ing</b>?<span class="fx">Am / Is / Are + subject + V-ing?</span></td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night · when you called</span></th><td>I <span class="help">was</span> work<b>ing</b>.<span class="fx">was / were + V-ing</span></td><td>I <span class="help">wasn't</span> work<b>ing</b>.<span class="fx">wasn't / weren't + V-ing</span></td><td><span class="help">Were</span> you work<b>ing</b>?<span class="fx">Was / Were + subject + V-ing?</span></td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow · this time next week</span></th><td>I <span class="help">will</span> be work<b>ing</b>.<span class="fx">will be + V-ing</span></td><td>I <span class="help">won't</span> be work<b>ing</b>.<span class="fx">won't be + V-ing</span></td><td><span class="help">Will</span> you be work<b>ing</b>?<span class="fx">Will + subject + be + V-ing?</span></td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · already · for · since</span></th><td>I<span class="help">'ve</span> work<b>ed</b> here for 3 years.<br>She <span class="help">has</span> work<b>ed</b>.<span class="fx">have / has + V3</span></td><td>I <span class="help">haven't</span> work<b>ed</b> at night.<span class="fx">haven't / hasn't + V3</span></td><td><span class="help">Have</span> you ever work<b>ed</b> at night?<span class="fx">Have / Has + subject + V3?</span></td></tr>
+  </table>
+
+  <div class="key"><b>Key:</b> V1 = work &nbsp;·&nbsp; V1-s = works &nbsp;·&nbsp; V2 = worked &nbsp;·&nbsp; V3 = worked &nbsp;·&nbsp; V-ing = working &nbsp;·&nbsp; <span class="help">underline</span> = the helper</div>
+</section>
+
+<!-- ======================================================
+     BACK: practice slowly, then talk
+     ====================================================== -->
+<section class="page">
+  <div class="title-row">
+    <h1>Try It: One Step at a Time</h1>
+    <span class="sub">Use your chart. Looking is OK!</span>
+  </div>
+
+  <div class="box">
+    <h2>A. Make the − and the ?</h2>
+    <div class="hint">Find the helper. For −, add <i>not</i>. For ?, move the helper to the front. No helper? Use do / does / did.</div>
+    <table class="practice">
+      <tr><th></th><th>+</th><th>−</th><th>?</th></tr>
+      <tr class="example">
+        <td class="tense">Present simple</td>
+        <td class="given">She plays soccer.</td>
+        <td class="write">She doesn't play soccer.</td>
+        <td class="write">Does she play soccer?</td>
+      </tr>
+      <tr>
+        <td class="tense">Past simple</td>
+        <td class="given">They played soccer yesterday.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Future simple</td>
+        <td class="given">We will play soccer tomorrow.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Present continuous</td>
+        <td class="given">He is playing soccer now.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Past continuous</td>
+        <td class="given">You were playing soccer at 6:00 last night.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Future continuous</td>
+        <td class="given">I will be playing soccer at 6:00 tomorrow.</td>
+        <td></td><td></td>
+      </tr>
+      <tr>
+        <td class="tense">Present perfect</td>
+        <td class="given">She has played soccer for 10 years.</td>
+        <td></td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>B. Ask a partner</h2>
+    <div class="hint">Ask the question. Write a short answer. Look at the time words: they tell you the tense.</div>
+    <table class="talk">
+      <tr><th></th><th>Question</th><th>My partner's answer</th></tr>
+      <tr><td class="t">Present simple</td><td class="q">What do you usually do on Saturday?</td><td></td></tr>
+      <tr><td class="t">Past simple</td><td class="q">What did you do last Saturday?</td><td></td></tr>
+      <tr><td class="t">Present continuous</td><td class="q">What are you learning right now?</td><td></td></tr>
+      <tr><td class="t">Past continuous</td><td class="q">What were you doing at 7:00 this morning?</td><td></td></tr>
+      <tr><td class="t">Future simple</td><td class="q">What will you do this weekend?</td><td></td></tr>
+      <tr><td class="t">Future continuous</td><td class="q">What will you be doing at 8:00 tomorrow night?</td><td></td></tr>
+      <tr><td class="t">Present perfect</td><td class="q">How long have you lived in Boston?</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="check">
+    <b>Remember:</b>
+    <span><span class="cb"></span>I can find the helper.</span>
+    <span><span class="cb"></span>I can make a −.</span>
+    <span><span class="cb"></span>I can make a ?.</span>
+    <span><span class="cb"></span>I can use my chart. I don't need to memorize it.</span>
+  </div>
+</section>
+
+</body>
+</html>
