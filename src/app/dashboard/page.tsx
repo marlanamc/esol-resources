@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
 import { PracticeLaterSection, MomentumSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
@@ -489,6 +490,7 @@ export default async function DashboardPage() {
                             fallback={nextStepFallback}
                             variant="road"
                         /></Suspense>
+                        <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
                         {practiceLater}
                         {newThisWeekItems.length > 0 ? (
                             <NewThisWeekSection items={newThisWeekItems} variant="list" />
@@ -522,6 +524,7 @@ export default async function DashboardPage() {
                                 collapsedLimit={3}
                             /></Suspense>
 
+                            <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
                             {practiceLater}
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
