@@ -19,7 +19,8 @@ const loadResumePractice = cache(async (userId: string) => {
             ],
         },
         orderBy: [{ updatedAt: "desc" }, { id: "desc" }],
-        take: 50,
+        // Check every saved game so older unfinished work can beat recent completions.
+        distinct: ["activityId"],
         select: {
             activityId: true, assignmentId: true, progress: true, status: true,
             categoryData: true, updatedAt: true,

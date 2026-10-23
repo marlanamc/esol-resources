@@ -86,14 +86,20 @@ export function describePractice(row: PracticeProgressRow): ResumePracticeItem |
     return { ...base, detail: "Return to your practice", action: "Continue playing", progress: null, note: "Keep practicing at your own pace" };
 }
 
-/** Newest saved activity wins, including when a newer assignment has completed it. */
+/** Prefer unfinished practice; use the newest repeatable game only as a fallback. */
 export function pickResumePractice(rows: PracticeProgressRow[]): ResumePracticeItem | null {
     const seen = new Set<string>();
+    let fallback: ResumePracticeItem | null = null;
     for (const row of [...rows].sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())) {
         if (seen.has(row.activityId)) continue;
         seen.add(row.activityId);
         const item = describePractice(row);
-        if (item) return item;
+        if (!item) continue;
+        const completed = row.status === "completed" || row.status === "submitted" || row.progress >= 100;
+        // Free play has no finish line, so it must not displace unfinished work.
+        const freePlay = FREE_PLAY.has(resolveActivityGameUi(row.activity));
+        if (!completed && !freePlay) return item;
+        fallback ??= item;
     }
-    return null;
+    return fallback;
 }

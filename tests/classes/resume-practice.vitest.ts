@@ -58,4 +58,30 @@ describe("homepage return to practice", () => {
     it("hides the section when there is no practice", () => {
         expect(pickResumePractice([])).toBeNull();
     });
+    it("prioritizes older unfinished work over a newer completed round", () => {
+        const unfinished = row({ activityId: "unfinished" });
+        const completed = row({ activityId: "completed", progress: 100, status: "completed", updatedAt: new Date("2026-10-23T14:00:00Z") }, "verb-forms");
+        expect(pickResumePractice([completed, unfinished])?.href).toContain("/activity/unfinished?");
+    });
+    it("uses the newest completed repeatable game only when nothing is unfinished", () => {
+        const older = row({ activityId: "older", progress: 100, status: "completed" });
+        const newer = row({ activityId: "newer", progress: 100, status: "completed", updatedAt: new Date("2026-10-23T14:00:00Z") }, "verb-forms");
+        expect(pickResumePractice([older, newer])?.href).toContain("/activity/newer?");
+    });
+    it("does not let free play displace a game with unfinished work", () => {
+        const freePlay = row({ activityId: "free-play", progress: 20, updatedAt: new Date("2026-10-23T14:00:00Z") }, "emotion-spin-wheel");
+        const unfinished = row({ activityId: "unfinished" });
+        expect(pickResumePractice([freePlay, unfinished])?.href).toContain("/activity/unfinished?");
+        expect(pickResumePractice([freePlay])?.href).toContain("/activity/free-play?");
+    });
+    it.each([
+        { status: "completed", progress: 25 },
+        { status: "submitted", progress: 25 },
+        { status: "in_progress", progress: 100 },
+    ])("respects completion evidence %j instead of reviving older unfinished data", completion => {
+        const old = row({ activityId: "same-game" });
+        const latest = row({ activityId: "same-game", ...completion, updatedAt: new Date("2026-10-23T14:00:00Z") });
+        const unfinished = row({ activityId: "other-game", updatedAt: new Date("2026-10-22T12:00:00Z") });
+        expect(pickResumePractice([old, latest, unfinished])?.href).toContain("/activity/other-game?");
+    });
 });
