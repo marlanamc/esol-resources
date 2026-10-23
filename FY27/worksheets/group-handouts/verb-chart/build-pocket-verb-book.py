@@ -201,12 +201,13 @@ CSS = f"""
   .gray {{ background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }}
 
   /* Type scale: 22 / 18 / 14 / 11 */
-  .body {{ flex: 1; padding: 0.3in 0.4in 0.12in; display: flex; flex-direction: column; gap: 6px; }}
+  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 13px; }}
+  .cover .body {{ gap: 7px; padding-top: 0.3in; }}
 
   .staple {{ position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }}
   .staple i {{ display: inline-block; width: 0.35in; height: 0; border-top: 3px solid #000; }}
-  .staple.l {{ left: 0.4in; }}
-  .staple.r {{ right: 0.4in; }}
+  .staple.l {{ left: 0.55in; }}
+  .staple.r {{ right: 0.55in; }}
 
   .head {{ display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 4px solid var(--c, #000); padding-bottom: 3px; }}
   .head h1 {{ font-size: 22px; white-space: nowrap; color: var(--c, #000); }}
@@ -222,12 +223,12 @@ CSS = f"""
   .timeline .label span {{ display: block; font-weight: normal; font-style: italic; }}
   .timeline svg {{ display: block; flex: 1; height: 1.05in; }}
 
-  .forms {{ display: grid; grid-template-columns: 30px 1fr 1.25fr; border: 1.5px solid #000; flex: 1; }}
+  .forms {{ display: grid; grid-template-columns: 30px 1fr 1.25fr; grid-template-rows: auto repeat(3, 0.5in); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
   .forms > div {{ padding: 2px 7px; display: flex; align-items: flex-end; }}
   .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); }}
-  .forms .sym {{ justify-content: center; align-items: center; font-size: 22px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }}
+  .forms .sym {{ justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }}
   .forms > div:not(:nth-child(3n+1)) {{ border-left: 1.5px solid #000; }}
-  .forms .write {{ flex: 1; border-bottom: 1px dotted #000; min-height: 22px; padding-bottom: 1px; }}
+  .forms .write {{ flex: 1; min-height: 20px; padding-bottom: 2px; }}
   .forms .r2, .forms .r3 {{ border-top: 1.5px solid #000; }}
 
   .third {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
