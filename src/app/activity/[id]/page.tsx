@@ -35,6 +35,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         typeof parsedContent === "object" &&
         "type" in parsedContent &&
         parsedContent.type === "verb-quiz";
+    const isWeeklyQuiz =
+        !!parsedContent &&
+        typeof parsedContent === "object" &&
+        "type" in parsedContent &&
+        parsedContent.type === "weekly-quiz";
     const userRole = viewer.userRole;
     const studentReliabilityOverlays = userRole === "student" ? (
         <>
@@ -70,15 +75,17 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const standardTitleClassName = "text-gray-900 dark:text-white";
     const standardContentCardClassName = isVerbQuiz
         ? "p-0 bg-transparent shadow-none border-0"
-        : isComparisonBattleGame
+        : isComparisonBattleGame || isWeeklyQuiz
             ? "bg-transparent p-0 shadow-none border-0 sm:bg-white sm:dark:bg-[#162b3d] sm:shadow sm:rounded-lg sm:p-6 sm:dark:border sm:dark:border-white/10"
         : "bg-white dark:bg-[#162b3d] shadow sm:rounded-lg p-6 dark:border dark:border-white/10";
-    const standardMainClassName = isComparisonBattleGame
+    const standardMainClassName = isComparisonBattleGame || isWeeklyQuiz
         ? "max-w-7xl mx-auto py-0 sm:py-6 sm:px-6 lg:px-8"
         : "max-w-7xl mx-auto py-6 sm:px-6 lg:px-8";
     const standardInnerClassName = isComparisonBattleGame
         ? "px-0 py-0 sm:px-0 sm:py-6 space-y-6"
-        : "px-4 py-6 sm:px-0 space-y-6";
+        : isWeeklyQuiz
+            ? "px-4 py-5 sm:px-0 sm:py-6 space-y-6"
+            : "px-4 py-6 sm:px-0 space-y-6";
 
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {

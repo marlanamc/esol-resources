@@ -159,23 +159,23 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
 
   return <div className="mx-auto max-w-3xl space-y-6">
     <header className="space-y-3">
-      <h2 className="font-display text-2xl font-bold text-text">{displayWeeklyQuizTitle(content)}</h2>
+      {/* The mobile page header already shows the full title. */}
+      <h2 className="hidden font-display text-2xl font-bold text-text sm:block">{displayWeeklyQuizTitle(content)}</h2>
       <div className="flex flex-wrap gap-2 text-sm font-semibold">
         {schedule && <span className="rounded-full bg-[var(--tone-quizzes-chip-bg)] px-3 py-1 text-[var(--tone-quizzes-chip-text)]">Due {formatDue(schedule.dueAt)}</span>}
       </div>
       {content.guided && <p className="rounded-xl bg-primary/10 p-3 text-text">Our first quiz is together in class. Follow your teacher and submit your own answers.</p>}
     </header>
     {result ? <section aria-label="Quiz results" className="space-y-4">
-      <div role="status" className="rounded-2xl border border-[var(--tone-quizzes-border)] bg-[var(--tone-quizzes-surface)] p-5">
-        <h3 className="text-xl font-bold text-text">Weekly quiz complete ✓</h3>
-        <p className="text-text">{result.correctCount} of {result.totalQuestions} correct · {result.score}%</p>
-        <p className="font-semibold text-primary">{points} points awarded</p>
-        <p className="text-sm text-text-muted">Use the explanations to choose one thing to practice next.</p>
-        <p className="mt-2 text-text">Best score: {best ?? result.score}% · Most recent score: {result.score}%</p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <button type="button" onClick={tryAgain} className="min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white">Try Again</button>
-          <span className="text-sm text-text-muted">Practice as many times as you want. Every completed attempt is saved and earns effort points.</span>
+      <div role="status" className="rounded-2xl border border-[var(--tone-quizzes-border)] bg-[var(--tone-quizzes-surface)] p-4 sm:p-5">
+        <h3 className="text-lg font-bold text-text sm:text-xl">Weekly quiz complete ✓</h3>
+        <div className="mt-3 flex items-end justify-between gap-3">
+          <p className="mb-0 font-display text-4xl font-bold leading-none text-text">{result.score}%</p>
+          <p className="mb-0 text-right text-sm text-text-muted">{result.correctCount} of {result.totalQuestions} correct<br /><span className="font-semibold text-primary">+{points} points</span></p>
         </div>
+        <p className="mt-3 mb-0 text-sm text-text-muted">Best score: <span className="font-semibold text-text">{best ?? result.score}%</span> · Most recent: <span className="font-semibold text-text">{result.score}%</span></p>
+        <button type="button" onClick={tryAgain} className="mt-4 min-h-12 w-full rounded-xl bg-primary px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto">Try Again</button>
+        <p className="mt-2 mb-0 text-sm text-text-muted">Practice as many times as you want. Every completed attempt is saved and earns effort points. Use the explanations below to choose one thing to practice next.</p>
       </div>
       <FormsTable questions={content.questions} renderCell={q => {
         const item = result.results.find(r => r.id === q.id);

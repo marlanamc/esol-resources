@@ -1081,13 +1081,16 @@ input[type="reset"] {
   min-width: 44px;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-size: inherit;
-  color: inherit;
+/* In @layer base so Tailwind bg-/text-/border- utilities on buttons win. */
+@layer base {
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+  }
 }
 
 input,
