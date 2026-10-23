@@ -81,6 +81,17 @@
     font-size: 15px;
     font-style: italic;
   }
+  .blank.verb { width: 10.5em; }
+
+  /* Back side: verb-forms chart + practice (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -109,36 +120,62 @@
       </div>
       <p class="subtitle">Helping + Volunteering &mdash; have you ever...?</p>
       <section class="task">
-        <div class="task-title">1&ensp;Complete the verb chart</div>
-        <p class="task-instructions">Write the missing forms. Use your reference sheet to check.</p>
-        <table class="verb-chart">
-          <tr><th>V1 (base)</th><th>V2 (past)</th><th>V3 (past participle)</th></tr>
-          <tr class="example"><td>help</td><td>helped</td><td>helped</td></tr>
-          <tr><td>volunteer</td><td></td><td>volunteered</td></tr>
-          <tr><td>give</td><td>gave</td><td></td></tr>
-          <tr><td>donate</td><td>donated</td><td></td></tr>
-          <tr><td>join</td><td></td><td>joined</td></tr>
-          <tr><td>see</td><td>saw</td><td></td></tr>
-          <tr><td>assist</td><td></td><td>assisted</td></tr>
-          <tr><td>support</td><td>supported</td><td></td></tr>
-          <tr><td>go</td><td>went</td><td></td></tr>
-        </table>
+        <div class="task-title">1&ensp;Have you ever...? or Did you...?</div>
+        <p class="task-instructions">Circle the right start. <b>Have you ever</b> + V3 = any time in your life. <b>Did you</b> + V1 = one finished time.</p>
+        <p class="task-example"><b>Example:</b> (<b>Have you ever</b> / Did you) donated blood?</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> (Have you ever / Did you) volunteered at a food bank?</li>
+          <li><b class="n">2.</b> (Have you ever / Did you) help out at the cleanup <b>last Saturday</b>?</li>
+          <li><b class="n">3.</b> (Have you ever / Did you) signed up for a class online?</li>
+          <li><b class="n">4.</b> (Have you ever / Did you) donate clothes <b>last winter</b>?</li>
+          <li><b class="n">5.</b> (Have you ever / Did you) supported a friend in a hard time?</li>
+        </ol>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Fill in the blank</div>
         <p class="task-instructions">Use every word once. Change the verb form if needed.</p>
-        <div class="word-bank"><span class="opt">assist</span> &middot; <span class="opt">donate</span> &middot; <span class="opt">join</span> &middot; <span class="opt">volunteer</span> &middot; <span class="opt">contribute</span> &middot; <span class="opt">support</span></div>
+        <div class="word-bank"><span class="opt">donate</span> &middot; <span class="opt">sign up for</span> &middot; <span class="opt">volunteer</span> &middot; <span class="opt">help out</span> &middot; <span class="opt">support</span> &middot; <span class="opt">contribute</span></div>
         <ol class="item-list">
           <li><b class="n">1.</b> She <span class="blank"></span> at the food bank every Saturday.</li>
-          <li><b class="n">2.</b> Can you <span class="blank"></span> me with this registration form?</li>
+          <li><b class="n">2.</b> Can you <span class="blank"></span> with the park cleanup on Sunday?</li>
           <li><b class="n">3.</b> Our neighborhood <span class="blank"></span> families who need help with food and rent.</li>
-          <li><b class="n">4.</b> Everyone can <span class="blank"></span> time or money to help the community garden.</li>
+          <li><b class="n">4.</b> Everyone can <span class="blank"></span> time or money to the community garden.</li>
           <li><b class="n">5.</b> We <span class="blank"></span> winter coats to the shelter twice a year.</li>
-          <li><b class="n">6.</b> Would you like to <span class="blank"></span> our community cleanup group?</li>
+          <li><b class="n">6.</b> Did you <span class="blank long"></span> the soccer team online?</li>
         </ol>
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 9 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Nov. 12; due Tuesday, Nov. 17 at 6 p.m.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 9, Tuesday</h1>
+        <span class="date">11/10/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>take</i> and <i>bring</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>take</b> and <b>bring</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">take</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">bring</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>take</b> or <b>bring</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every Saturday</b>, my neighbor <span class="blank verb"></span> food to the shelter.&nbsp;(bring)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> the bus to the food bank.&nbsp;(take)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, we <span class="blank verb"></span> winter coats to donate.&nbsp;(bring)</li>
+          <li><b class="n">4.</b> <b>Last week</b>, she <span class="blank verb"></span> her kids to help out at the park cleanup.&nbsp;(take)</li>
+          <li><b class="n">5.</b> He <span class="blank verb"></span> the sign-up sheet home <b>every week</b>.&nbsp;(take)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, volunteers are <span class="blank verb"></span> boxes into the church.&nbsp;(bring)</li>
+          <li><b class="n">7.</b> I <b>have</b> <span class="blank verb"></span> a first aid class.&nbsp;(take) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> She <b>has</b> <span class="blank verb"></span> cookies to every meeting.&nbsp;(bring) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
     </div>
 </body>
 </html>

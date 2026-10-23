@@ -81,6 +81,17 @@
     font-size: 15px;
     font-style: italic;
   }
+  .blank.verb { width: 10.5em; }
+
+  /* Back side: verb-forms chart + practice (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -130,6 +141,36 @@
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 13 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Dec. 10; due Tuesday, Dec. 15 at 6 p.m.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 13, Tuesday</h1>
+        <span class="date">12/8/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>eat</i> and <i>drink</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>eat</b> and <b>drink</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">eat</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">drink</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>eat</b> or <b>drink</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every morning</b>, my husband <span class="blank verb"></span> two cups of coffee.&nbsp;(drink)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, the kids are <span class="blank verb"></span> rice and beans.&nbsp;(eat)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, we <span class="blank verb"></span> all the milk, so we ran out.&nbsp;(drink)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, I <span class="blank verb"></span> too many cookies!&nbsp;(eat)</li>
+          <li><b class="n">5.</b> She <span class="blank verb"></span> a lot of fruit <b>every day</b>.&nbsp;(eat)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, he is <span class="blank verb"></span> a glass of water.&nbsp;(drink)</li>
+          <li><b class="n">7.</b> We <b>have</b> <span class="blank verb"></span> all the bread. It&rsquo;s gone!&nbsp;(eat) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> I <b>have</b> <span class="blank verb"></span> too much soda this week.&nbsp;(drink) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
     </div>
 </body>
 </html>

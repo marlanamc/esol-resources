@@ -86,6 +86,22 @@
     font-size: 12px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
+  .page.back .item-list li { margin-bottom: 3px; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.4in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 2px; }
+  s { text-decoration-thickness: 2px; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -119,8 +135,8 @@
       </div>
       <p class="subtitle">Week 9 Quiz opens today at 6 p.m. Volunteering in your community.</p>
       <section class="task">
-        <div class="task-title">1&ensp;Word search: Action Verbs</div>
-        <p class="task-instructions">Find all 6 words. They go across or down.</p>
+        <div class="task-title">1&ensp;Word search: Helping words</div>
+        <p class="task-instructions">Find all 6 words. They go across or down. Two-word phrases have no space.</p>
         <div class="ws-wrap">
           <table class="wordsearch">
             <tr><td>C</td><td>K</td><td>Z</td><td>V</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td></tr>
@@ -130,14 +146,14 @@
             <tr><td>R</td><td>X</td><td>F</td><td>N</td><td>S</td><td>U</td><td>P</td><td>P</td><td>O</td><td>R</td><td>T</td><td>N</td></tr>
             <tr><td>I</td><td>T</td><td>D</td><td>T</td><td>V</td><td>K</td><td>Z</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td></tr>
             <tr><td>B</td><td>Q</td><td>W</td><td>E</td><td>B</td><td>P</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td></tr>
-            <tr><td>U</td><td>T</td><td>D</td><td>E</td><td>V</td><td>A</td><td>S</td><td>S</td><td>I</td><td>S</td><td>T</td><td>K</td></tr>
+            <tr><td>U</td><td>T</td><td>D</td><td>E</td><td>H</td><td>E</td><td>L</td><td>P</td><td>O</td><td>U</td><td>T</td><td>K</td></tr>
             <tr><td>T</td><td>Z</td><td>J</td><td>R</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td><td>P</td></tr>
-            <tr><td>E</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td><td>J</td><td>O</td><td>I</td><td>N</td><td>T</td></tr>
+            <tr><td>E</td><td>C</td><td>H</td><td>R</td><td>X</td><td>S</td><td>I</td><td>G</td><td>N</td><td>U</td><td>P</td><td>T</td></tr>
             <tr><td>D</td><td>V</td><td>K</td><td>Z</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td></tr>
             <tr><td>P</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td><td>T</td><td>D</td><td>V</td><td>K</td><td>Z</td></tr>
           </table>
           <div class="ws-list">
-            CONTRIBUTE (down, col 1)<br>VOLUNTEER (down, col 4)<br>DONATE (across, row 2)<br>SUPPORT (across, row 5)<br>ASSIST (across, row 8)<br>JOIN (across, row 10)
+            CONTRIBUTE (down, col 1)<br>VOLUNTEER (down, col 4)<br>DONATE (across, row 2)<br>SUPPORT (across, row 5)<br>HELP OUT (across, row 8)<br>SIGN UP (across, row 10)
           </div>
         </div>
       </section>
@@ -147,8 +163,8 @@
         <ol class="item-list">
           <li><b class="n">1.</b> Have you ever volunteered at a school or church?<span class="answer-line"></span></li>
           <li><b class="n">2.</b> Have you ever donated clothing or food?<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> Have you ever joined a community group?<span class="answer-line"></span></li>
-          <li><b class="n">4.</b> Have you ever helped a neighbor with something big?<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> Have you ever signed up for a class or a team?<span class="answer-line"></span></li>
+          <li><b class="n">4.</b> Have you ever helped out a neighbor with something big?<span class="answer-line"></span></li>
           <li><b class="n">5.</b> Have you ever contributed money to a cause you cared about?<span class="answer-line"></span></li>
         </ol>
       </section>
@@ -162,8 +178,8 @@
       </div>
       <p class="subtitle">Week 9 Quiz opens today at 6 p.m. Volunteering in your community.</p>
       <section class="task">
-        <div class="task-title">1&ensp;Word search: Action Verbs</div>
-        <p class="task-instructions">Find all 6 words. They go across or down.</p>
+        <div class="task-title">1&ensp;Word search: Helping words</div>
+        <p class="task-instructions">Find all 6 words. They go across or down. Two-word phrases have no space.</p>
         <div class="ws-wrap">
           <table class="wordsearch">
             <tr><td>C</td><td>K</td><td>Z</td><td>V</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td></tr>
@@ -173,14 +189,14 @@
             <tr><td>R</td><td>X</td><td>F</td><td>N</td><td>S</td><td>U</td><td>P</td><td>P</td><td>O</td><td>R</td><td>T</td><td>N</td></tr>
             <tr><td>I</td><td>T</td><td>D</td><td>T</td><td>V</td><td>K</td><td>Z</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td></tr>
             <tr><td>B</td><td>Q</td><td>W</td><td>E</td><td>B</td><td>P</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td></tr>
-            <tr><td>U</td><td>T</td><td>D</td><td>E</td><td>V</td><td>A</td><td>S</td><td>S</td><td>I</td><td>S</td><td>T</td><td>K</td></tr>
+            <tr><td>U</td><td>T</td><td>D</td><td>E</td><td>H</td><td>E</td><td>L</td><td>P</td><td>O</td><td>U</td><td>T</td><td>K</td></tr>
             <tr><td>T</td><td>Z</td><td>J</td><td>R</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td><td>P</td></tr>
-            <tr><td>E</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td><td>J</td><td>O</td><td>I</td><td>N</td><td>T</td></tr>
+            <tr><td>E</td><td>C</td><td>H</td><td>R</td><td>X</td><td>S</td><td>I</td><td>G</td><td>N</td><td>U</td><td>P</td><td>T</td></tr>
             <tr><td>D</td><td>V</td><td>K</td><td>Z</td><td>J</td><td>M</td><td>S</td><td>G</td><td>L</td><td>Q</td><td>W</td><td>B</td></tr>
             <tr><td>P</td><td>C</td><td>H</td><td>R</td><td>X</td><td>F</td><td>N</td><td>T</td><td>D</td><td>V</td><td>K</td><td>Z</td></tr>
           </table>
           <div class="ws-list">
-            CONTRIBUTE (down, col 1)<br>VOLUNTEER (down, col 4)<br>DONATE (across, row 2)<br>SUPPORT (across, row 5)<br>ASSIST (across, row 8)<br>JOIN (across, row 10)
+            CONTRIBUTE (down, col 1)<br>VOLUNTEER (down, col 4)<br>DONATE (across, row 2)<br>SUPPORT (across, row 5)<br>HELP OUT (across, row 8)<br>SIGN UP (across, row 10)
           </div>
         </div>
       </section>
@@ -190,13 +206,99 @@
         <ol class="item-list">
           <li><b class="n">1.</b> Have you ever volunteered at a school or church?<span class="answer-line"></span></li>
           <li><b class="n">2.</b> Have you ever donated clothing or food?<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> Have you ever joined a community group?<span class="answer-line"></span></li>
-          <li><b class="n">4.</b> Have you ever helped a neighbor with something big?<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> Have you ever signed up for a class or a team?<span class="answer-line"></span></li>
+          <li><b class="n">4.</b> Have you ever helped out a neighbor with something big?<span class="answer-line"></span></li>
           <li><b class="n">5.</b> Have you ever contributed money to a cause you cared about?<span class="answer-line"></span></li>
         </ol>
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 9 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Nov. 17 at 6 p.m.; available afterward.</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 9, Thursday</h1>
+        <span class="date">11/12/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>take</i> and <i>bring</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">take</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">bring</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> She <s>bring</s> lunch <b>every day</b>. &rarr; <i>brings</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every Sunday</b>, he take his mother to church. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, we bringed toys to donate. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, they are take photos of the cleanup. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last week</b>, I taked my son to soccer. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> She <b>has</b> took a lot of classes. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> We <b>have</b> brung extra chairs. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last weekend</b> + take</p>
+        <p class="ideas">Ideas: the bus &middot; a walk &middot; my kids to the park</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every week</b> + bring</p>
+        <p class="ideas">Ideas: lunch &middot; my notebook &middot; water &middot; my kids</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + take <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: a class &middot; the train &middot; a test &middot; a trip</p>
+        <div class="bonus-line"></div>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 9, Thursday</h1>
+        <span class="date">11/12/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>take</i> and <i>bring</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">take</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">bring</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> She <s>bring</s> lunch <b>every day</b>. &rarr; <i>brings</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every Sunday</b>, he take his mother to church. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, we bringed toys to donate. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, they are take photos of the cleanup. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last week</b>, I taked my son to soccer. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> She <b>has</b> took a lot of classes. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> We <b>have</b> brung extra chairs. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last weekend</b> + take</p>
+        <p class="ideas">Ideas: the bus &middot; a walk &middot; my kids to the park</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every week</b> + bring</p>
+        <p class="ideas">Ideas: lunch &middot; my notebook &middot; water &middot; my kids</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + take <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: a class &middot; the train &middot; a test &middot; a trip</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
   </div>
 </body>

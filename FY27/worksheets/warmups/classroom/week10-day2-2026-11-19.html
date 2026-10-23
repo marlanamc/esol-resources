@@ -81,6 +81,20 @@
     font-size: 15px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.25in; padding-bottom: 0.2in; }
+  .copy.back .item-list li { margin-bottom: 5px; }
+  .copy.back .task { margin-bottom: 10px; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.55in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 4px; }
+  s { text-decoration-thickness: 2px; }
+  .ideas { font-size: 15px; font-style: italic; margin: 0 0 2px; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -128,13 +142,55 @@
         <div class="dialogue">
           <p><span class="speaker">Chair:</span> Thank you all for coming. Who would like to proposing an idea tonight?</p>
           <p><span class="speaker">Marco:</span> I would like to suggest we adds a crosswalk on Elm Street.</p>
-          <p><span class="speaker">Chair:</span> Does anyone agrees with this suggestion?</p>
-          <p><span class="speaker">Lina:</span> Yes, I recommend that we votes on it tonight.</p>
-          <p><span class="speaker">Chair:</span> Good. Please listens carefully before we decide.</p>
+          <p><span class="speaker">Chair:</span> Does anyone wants to participate in this discussion?</p>
+          <p><span class="speaker">Lina:</span> Yes. I want to raises a concern about the cost.</p>
+          <p><span class="speaker">Chair:</span> Good. Let&rsquo;s talk until we reaches an agreement.</p>
         </div>
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 10 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Nov. 24 at 6 p.m.; available afterward.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 10, Thursday</h1>
+        <span class="date">11/19/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>meet</i> and <i>speak</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">meet</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">speak</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> He <s>speak</s> English at work <b>every day</b>. &rarr; <i>speaks</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every Tuesday</b>, the group meet at school. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, I speaked to my landlord. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, she is meet with her boss. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last week</b>, we meeted at the library. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> He <b>has</b> spoke at two meetings. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> I <b>have</b> meet the new manager. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last week</b> + meet</p>
+        <p class="ideas">Ideas: a friend &middot; my neighbor &middot; for coffee</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every day</b> + speak</p>
+        <p class="ideas">Ideas: English &middot; on the phone &middot; to my kids</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + meet <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: new friends &middot; my neighbors &middot; my boss</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
 </body>
 </html>

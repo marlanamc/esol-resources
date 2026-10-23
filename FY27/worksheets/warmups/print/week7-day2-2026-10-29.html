@@ -86,6 +86,22 @@
     font-size: 12px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
+  .page.back .item-list li { margin-bottom: 3px; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.4in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 2px; }
+  s { text-decoration-thickness: 2px; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -164,6 +180,92 @@
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 7 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Nov. 3 at 6 p.m.; available afterward.</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 7, Thursday</h1>
+        <span class="date">10/29/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>write</i> and <i>send</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">write</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">send</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> He <s>send</s> an email <b>every day</b>. &rarr; <i>sends</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every week</b>, she write to her representative. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, I sended an email. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, they are write a petition. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last night</b>, we writed to the candidate. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> He <b>has</b> wrote two letters. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> The city <b>has</b> send us a voter guide. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last week</b> + send</p>
+        <p class="ideas">Ideas: a text &middot; an email &middot; a photo &middot; money home</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every week</b> + write</p>
+        <p class="ideas">Ideas: a shopping list &middot; a message &middot; to my family</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + write <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: a letter &middot; an email &middot; a story</p>
+        <div class="bonus-line"></div>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 7, Thursday</h1>
+        <span class="date">10/29/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>write</i> and <i>send</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">write</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">send</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> He <s>send</s> an email <b>every day</b>. &rarr; <i>sends</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every week</b>, she write to her representative. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, I sended an email. &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, they are write a petition. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last night</b>, we writed to the candidate. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> He <b>has</b> wrote two letters. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> The city <b>has</b> send us a voter guide. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last week</b> + send</p>
+        <p class="ideas">Ideas: a text &middot; an email &middot; a photo &middot; money home</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every week</b> + write</p>
+        <p class="ideas">Ideas: a shopping list &middot; a message &middot; to my family</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + write <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: a letter &middot; an email &middot; a story</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
   </div>
 </body>
