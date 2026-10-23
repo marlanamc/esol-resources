@@ -1,4 +1,7 @@
-import { questionsRealAnswersContent } from "@/content/grammar/questions-real-answers";
+import { getGrammarGuide } from "@/lib/grammar-guide-registry";
+import { markGrammarQuizComplete } from "@/lib/grammar-completion-progress";
+import { acquireUserActivityScopeLock } from "@/lib/database/locks";
+import type { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -28,7 +31,7 @@ interface QuizResponseData {
     topic?: string;
 }
 
-async function saveMiniQuizSubmission(params: {
+async function saveMiniQuizSubmission(tx: Prisma.TransactionClient, params: {
     userId: string;
     activityId: string;
     score: number;
@@ -40,7 +43,7 @@ async function saveMiniQuizSubmission(params: {
     const payload = JSON.stringify({ type: "mini-quiz", score, total, slug });
     const now = new Date();
 
-    const existing = await prisma.submission.findFirst({
+    const existing = await tx.submission.findFirst({
         where: {
             userId,
             activityId,
@@ -51,7 +54,7 @@ async function saveMiniQuizSubmission(params: {
     });
 
     if (existing) {
-        await prisma.submission.update({
+        await tx.submission.update({
             where: { id: existing.id },
             data: {
                 score,
@@ -63,7 +66,7 @@ async function saveMiniQuizSubmission(params: {
         return;
     }
 
-    await prisma.submission.create({
+    await tx.submission.create({
         data: {
             userId,
             activityId,
@@ -101,6 +104,14 @@ export async function POST(request: Request) {
         (!Number.isInteger(score) || !Number.isInteger(total) || total <= 0 || score < 0 || score > total)) {
         return apiError("Invalid quiz score", 400);
     }
+    const submittedQuiz = score !== undefined && total !== undefined;
+    if (submittedQuiz) {
+        const guide = getGrammarGuide(slug);
+        const guideContent = guide ? await guide.loadContent() : null;
+        if (guideContent && (!guideContent.miniQuiz?.length || total !== guideContent.miniQuiz.length)) {
+            return apiError("Please submit the complete mini-quiz.", 400);
+        }
+    }
     // 1. Record the quiz score if provided
     if (score !== undefined && total !== undefined) {
         const activityExists = await prisma.activity.findUnique({
@@ -114,33 +125,37 @@ export async function POST(request: Request) {
         const percentage = Math.round((score / total) * 100);
 
         // Persist mini-quiz submission
-        await saveMiniQuizSubmission({
-            userId,
-            activityId: canonicalActivityId,
-            score: percentage,
-            total,
-            slug,
-            assignmentId: assignmentKey,
-        });
-
-        // 1b. Store individual question responses for diagnostic reporting
-        if (responses && Array.isArray(responses)) {
-            const quizResponses = responses.map((r: QuizResponseData) => ({
+        await prisma.$transaction(async tx => {
+            await acquireUserActivityScopeLock(tx, { userId, activityId: canonicalActivityId, assignmentId: assignmentKey });
+            await saveMiniQuizSubmission(tx, {
                 userId,
                 activityId: canonicalActivityId,
+                score: percentage,
+                total,
+                slug,
                 assignmentId: assignmentKey,
-                questionId: r.questionId,
-                userAnswer: r.userAnswer,
-                isCorrect: r.isCorrect,
-                skillTag: r.skillTag || null,
-                difficulty: r.difficulty || null,
-                topic: r.topic || null,
-            }));
-
-            await prisma.quizResponse.createMany({
-                data: quizResponses,
             });
-        }
+
+            // 1b. Store individual question responses for diagnostic reporting
+            if (responses && Array.isArray(responses)) {
+                const quizResponses = responses.map((r: QuizResponseData) => ({
+                    userId,
+                    activityId: canonicalActivityId,
+                    assignmentId: assignmentKey,
+                    questionId: r.questionId,
+                    userAnswer: r.userAnswer,
+                    isCorrect: r.isCorrect,
+                    skillTag: r.skillTag || null,
+                    difficulty: r.difficulty || null,
+                    topic: r.topic || null,
+                }));
+
+                await tx.quizResponse.createMany({
+                    data: quizResponses,
+                });
+            }
+            await markGrammarQuizComplete(tx, { userId, activityId: canonicalActivityId, assignmentId: assignmentKey });
+        }, { timeout: 10000 });
     }
 
     // 2. Check if already awarded completion points. Awards are written under the
@@ -187,10 +202,8 @@ export async function POST(request: Request) {
         }
     }
 
-    // 4. Require at least 1 exercise to get any completion points
-    const completedWeekFiveQuiz = slug === "questions-real-answers" && total === questionsRealAnswersContent.miniQuiz?.length &&
-        Number.isInteger(score) && score >= 0 && score <= total;
-    if (exercisesCompleted === 0 && !completedWeekFiveQuiz) {
+    // A submitted quiz earns completion points even with no prior practice or correct answers.
+    if (exercisesCompleted === 0 && !submittedQuiz) {
         return NextResponse.json({
             ok: true,
             awarded: false,
@@ -200,10 +213,7 @@ export async function POST(request: Request) {
         });
     }
 
-    // 5. Calculate completion points: base + perfect bonus (if all exercises done)
-    // Note: We use base points only here since exercises already awarded their own points.
-    // The "perfect bonus" is if they completed ALL exercises in the guide.
-    // We don't have total exercise count here, so we just award base completion.
+    // Completion recognizes effort; optional exercises keep their separate rewards.
     const basePoints = POINTS.GRAMMAR_GUIDE_BASE;
 
     const completionAward = await applyAwardChain({

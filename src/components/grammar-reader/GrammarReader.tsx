@@ -84,9 +84,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const quizSavePromiseRef = useRef<Promise<boolean | undefined> | null>(null);
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
-    // The checkmark needs every exercise plus the mini-quiz; refs keep save callbacks current.
+    // The mini-quiz earns the checkmark; exercises remain available for practice points.
     const finishedExercisesRef = useRef<Set<string>>(new Set());
     const quizSubmittedRef = useRef(false);
+    const [workHydrated, setWorkHydrated] = useState(false);
     const guideCompletedRef = useRef(false);
     const grammarActivitiesHref = "/dashboard/activities?category=grammar";
     const returnHref = useResolvedLearnerReturnHref({ fallbackHref: grammarActivitiesHref });
@@ -210,6 +211,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     if (exercise?.completed) finishedExercisesRef.current.add(key);
                 }
                 if (data.miniQuizSubmitted) quizSubmittedRef.current = true;
+                setWorkHydrated(true);
             } catch {
                 // non-blocking; work done this visit still counts
             }
@@ -238,6 +240,12 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         persistedProgressRef.current = 100;
         return remaining;
     }, [activityId, content, readAssignmentId, sectionKeys]);
+
+    // Reconcile previously saved quizzes, including guides left at 99% by the old rule.
+    useEffect(() => {
+        if (!progressHydrated || !workHydrated || !quizSubmittedRef.current) return;
+        void saveGuideWork("completion-progress", async () => { await saveCompletionIfDone(); });
+    }, [progressHydrated, workHydrated, saveCompletionIfDone, saveGuideWork]);
 
     // Fallback title if a page didn't provide completionKey.
     useEffect(() => {
@@ -282,7 +290,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             if (award.points > 0 && award.awarded) {
                 setPointsToast({ points: award.points, key: Date.now() });
             }
-            if (remaining.exercisesLeft > 0) {
+            if (remaining.done) {
+                const credit = award.points > 0 && award.awarded ? ` +${award.points} points.` : "";
+                setSaveNotice(`Guide complete!${credit} You can keep practicing for exercise points.`);
+            } else if (remaining.exercisesLeft > 0) {
                 const exercises = remaining.exercisesLeft === 1 ? "1 more practice exercise" : `${remaining.exercisesLeft} more practice exercises`;
                 setSaveNotice(`Saved. Finish ${exercises} to complete this guide.`);
             } else if (award.points > 0 && award.awarded) {

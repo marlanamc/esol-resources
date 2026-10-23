@@ -1,3 +1,4 @@
+import { acquireUserActivityScopeLock } from "@/lib/database/locks";
 import { REVIEW_ACTIVITY_ID } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, scoreReviewAttempt, preserveReviewProgress } from '@/lib/parts-of-speech-review/progression';
 import { savePartsOfSpeechReview } from './parts-of-speech-review';
@@ -204,6 +205,19 @@ export async function POST(request: NextRequest) {
             const incoming = preserveReviewProgress(saved, updatedCategoryData ? parseExistingCategoryData(updatedCategoryData) : saved);
             const reviewCompleted = !!readReviewProgress(saved._partsOfSpeechReview).lessons['nouns-verbs'];
             const data = { ...progressData, categoryData: JSON.stringify(incoming), ...(reviewCompleted ? { progress: 100, status: 'completed' } : {}) };
+            return latest
+                ? tx.activityProgress.update({ where: { id: latest.id }, data })
+                : tx.activityProgress.create({ data: { userId, activityId, assignmentId: assignmentKey, ...data } });
+        })
+        : guideState
+        ? await prisma.$transaction(async tx => {
+            await acquireUserActivityScopeLock(tx, { userId, activityId, assignmentId: assignmentKey });
+            const latest = await tx.activityProgress.findFirst({ where: progressWhere, orderBy: { updatedAt: 'desc' } });
+            const saved = parseExistingCategoryData(latest?.categoryData);
+            // Navigation only owns _guide. Never overwrite saved exercise credit or
+            // undo completion when an older navigation request arrives after the quiz.
+            const data = { ...progressData, categoryData: JSON.stringify({ ...saved, _guide: categoryUpdate.currentData._guide }),
+                ...(latest?.status === 'completed' ? { progress: 100, status: 'completed' as const } : {}) };
             return latest
                 ? tx.activityProgress.update({ where: { id: latest.id }, data })
                 : tx.activityProgress.create({ data: { userId, activityId, assignmentId: assignmentKey, ...data } });

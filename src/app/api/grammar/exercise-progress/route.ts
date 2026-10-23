@@ -117,7 +117,7 @@ export async function POST(request: Request) {
                 categoryData: updatedCategoryDataStr,
                 // Reopening a finished guide to redo an exercise shouldn't
                 // un-complete it.
-                ...(existing.status === "completed" ? {} : { status: "in_progress" }),
+                // Leave status untouched: a mini-quiz may have completed this guide since the read.
             },
         });
     } else {

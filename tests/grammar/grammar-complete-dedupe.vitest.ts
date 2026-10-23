@@ -9,15 +9,20 @@ vi.mock("@/lib/grammar-activity-resolution", () => ({
     resolveCanonicalGrammarActivityId: vi.fn().mockResolvedValue("verb-forms-overview-guide"),
 }));
 vi.mock("@/lib/gamification/award-chain", () => ({ applyAwardChain: vi.fn() }));
-vi.mock("@/lib/database/prisma", () => ({
-    prisma: {
+vi.mock("@/lib/database/prisma", () => {
+    const db = {
+        $executeRaw: vi.fn(),
+        $transaction: vi.fn(),
         activity: { findUnique: vi.fn() },
         pointsLedger: { findFirst: vi.fn() },
-        activityProgress: { findFirst: vi.fn() },
+        activityProgress: { findFirst: vi.fn(), update: vi.fn(), create: vi.fn() },
         submission: { findFirst: vi.fn(), create: vi.fn(), update: vi.fn() },
         quizResponse: { createMany: vi.fn() },
-    },
-}));
+    };
+    db.$transaction.mockImplementation(async fn => fn(db));
+    return { prisma: db };
+});
+vi.mock("@/lib/grammar-guide-registry", () => ({ getGrammarGuide: () => ({ loadContent: async () => ({ miniQuiz: Array(5).fill({}) }) }) }));
 
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/database/prisma";
@@ -45,6 +50,7 @@ beforeEach(() => {
     } as never);
     mockPrisma.submission.findFirst.mockResolvedValue(null as never);
     mockPrisma.activityProgress.findFirst.mockResolvedValue({
+        id: "progress-1", progress: 99, status: "in_progress",
         categoryData: JSON.stringify({
             exercises: { a: { completed: true, completedAt: "", pointsAwarded: 2 } },
             totalExercisePoints: 2,
@@ -93,7 +99,7 @@ describe("Week 5 quiz effort", () => {
         mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
         mockPrisma.activityProgress.findFirst.mockResolvedValue(null as never);
         const response = await grammarCompletePost(completeRequest({ slug: "questions-real-answers", score: 1, total: 2 }));
-        expect((await response.json()).awarded).toBe(false);
+        expect(response.status).toBe(400);
         expect(mockAward).not.toHaveBeenCalled();
     });
     it("reports no new points when the transactional award was deduplicated", async () => {
@@ -101,5 +107,39 @@ describe("Week 5 quiz effort", () => {
         mockAward.mockResolvedValue({deduped: true} as never);
         const response = await grammarCompletePost(completeRequest({ slug: "questions-real-answers", score: 2, total: 5 }));
         expect(await response.json()).toMatchObject({awarded: false, points: 0});
+    });
+});
+
+
+describe("guide completion from mini-quiz submission", () => {
+    it("marks a zero-score quiz complete and credits effort with no practice", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
+        mockPrisma.activityProgress.findFirst.mockResolvedValue(null as never);
+        mockAward.mockResolvedValue({ deduped: false } as never);
+        const res = await grammarCompletePost(completeRequest({ slug: "your-week-in-english", score: 0, total: 5 }));
+        expect(res.status).toBe(200);
+        expect(mockPrisma.activityProgress.create).toHaveBeenCalledWith({ data: {
+            userId: "student-1", activityId: "verb-forms-overview-guide", assignmentId: null, progress: 100, status: "completed",
+        } });
+        expect(await res.json()).toMatchObject({ awarded: true, points: 5 });
+    });
+    it("repairs 99% even if completion points were already awarded, without changing exercise evidence", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue({ id: "credited" } as never);
+        await grammarCompletePost(completeRequest({ slug: "your-week-in-english", score: 5, total: 5 }));
+        expect(mockPrisma.activityProgress.update).toHaveBeenCalledWith({ where: { id: "progress-1" }, data: { progress: 100, status: "completed" } });
+        expect(mockAward).not.toHaveBeenCalled();
+    });
+    it("keeps completion in the submitted assignment scope", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue({ id: "credited" } as never);
+        await grammarCompletePost(completeRequest({ slug: "your-week-in-english", score: 1, total: 5, assignmentId: "class-assignment" }));
+        expect(mockPrisma.activityProgress.findFirst).toHaveBeenCalledWith({ where: { userId: "student-1", activityId: "verb-forms-overview-guide", assignmentId: "class-assignment" }, orderBy: { updatedAt: "desc" } });
+    });
+    it("does not complete a guide just for navigation", async () => {
+        mockPrisma.pointsLedger.findFirst.mockResolvedValue(null as never);
+        mockPrisma.activityProgress.findFirst.mockResolvedValue(null as never);
+        await grammarCompletePost(completeRequest({ slug: "your-week-in-english" }));
+        expect(mockPrisma.activityProgress.update).not.toHaveBeenCalled();
+        expect(mockPrisma.activityProgress.create).not.toHaveBeenCalled();
+        expect(mockAward).not.toHaveBeenCalled();
     });
 });

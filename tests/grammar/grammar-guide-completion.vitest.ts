@@ -20,15 +20,17 @@ describe("grammar guide completion", () => {
         ]);
     });
 
-    it("needs every exercise and the mini-quiz", () => {
+    it("requires the quiz but leaves unfinished exercises optional", () => {
         const all = new Set(getGuideExerciseKeys(content));
         expect(getGuideWorkRemaining(content, all, false)).toEqual({ exercisesLeft: 0, quizLeft: true, done: false });
-        expect(getGuideWorkRemaining(content, new Set(["intro:pick-the-verb"]), true)).toEqual({ exercisesLeft: 2, quizLeft: false, done: false });
+        expect(getGuideWorkRemaining(content, new Set(["intro:pick-the-verb"]), true)).toEqual({ exercisesLeft: 2, quizLeft: false, done: true });
         expect(getGuideWorkRemaining(content, all, true).done).toBe(true);
+        expect(getGuideWorkRemaining(content, new Set(), true).done).toBe(true);
     });
 
     it("does not wait on a quiz the guide does not have", () => {
         const noQuiz = { ...content, miniQuiz: undefined };
         expect(getGuideWorkRemaining(noQuiz, new Set(getGuideExerciseKeys(noQuiz)), false).done).toBe(true);
+        expect(getGuideWorkRemaining(noQuiz, new Set(), false).done).toBe(false);
     });
 });
