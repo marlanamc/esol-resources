@@ -26,7 +26,6 @@ import {
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
-import { getStudentWeeklyQuizDueEvents } from "@/lib/learner/weekly-quiz-status";
 import { buildGlobalFeaturedActivitiesWhere } from "@/lib/featured-assignments";
 import { buildIndependentFeaturedAssignment } from "@/lib/independent-learning";
 import { buildActivityHref } from "@/lib/learner/navigation";
@@ -443,21 +442,16 @@ export default async function DashboardPage() {
         />
     );
 
-    const datedAssignments = allAssignments.filter((a) => a.dueDate);
-    const weeklyQuizDueEvents = await getStudentWeeklyQuizDueEvents(userId, datedAssignments.map((a) => a.activityId)).catch((error) => {
-        console.error("[Dashboard] Weekly quiz due dates unavailable", error);
-        return [];
-    });
+    const datedAssignments = allAssignments.filter((a) => a.dueDate && a.activity.type !== "quiz" && !/quiz/i.test(a.title || a.activity.title));
     const calendarEvents: CalendarEvent[] = [
-        ...weeklyQuizDueEvents,
         ...datedAssignments
             .map((a) => ({
                 date: a.dueDate as Date,
-                type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
+                type: "due" as const,
                 title: `${a.title || a.activity.title || "Assignment"}`,
             })),
         ...enrollments.flatMap((enrollment: StudentEnrollment) =>
-            enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string; description: string | null }) => ({
+            enrollment.class.calendarEvents.filter(ev => ev.description !== "Verb quiz due date" && !/^Quiz due:/i.test(ev.title)).map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string; description: string | null }) => ({
                 date: ev.date,
                 endDate: ev.endDate || null,
                 type: (ev.type as CalendarEvent["type"]) || "holiday",

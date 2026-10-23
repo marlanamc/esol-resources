@@ -5,7 +5,6 @@ import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
-import { getStudentWeeklyQuizDueEvents, weeklyQuizDueEvents } from "@/lib/learner/weekly-quiz-status";
 
 export default async function CalendarPage() {
     const session = await getServerSession(authOptions);
@@ -34,6 +33,7 @@ export default async function CalendarPage() {
                             select: {
                                 id: true,
                                 title: true,
+                                type: true,
                             },
                         },
                     },
@@ -52,24 +52,17 @@ export default async function CalendarPage() {
             orderBy: { createdAt: "desc" },
         });
 
-        const datedAssignments = classes.flatMap((c) => c.assignments).filter((a) => a.dueDate);
-        // Teachers see every weekly quiz's due date, including ones not released yet.
-        const weeklyQuizzes = await prisma.activity.findMany({
-            where: { type: "quiz", deletedAt: null, content: { contains: '"type":"weekly-quiz"' } },
-            select: { id: true, title: true, content: true },
-        });
-
+        const datedAssignments = classes.flatMap((c) => c.assignments).filter((a) => a.dueDate && a.activity.type !== "quiz" && !/quiz/i.test(a.title || a.activity.title));
         calendarEvents = [
-            ...weeklyQuizDueEvents(weeklyQuizzes, datedAssignments.map((a) => a.activityId)),
             ...datedAssignments
                 .map((a) => ({
                     date: a.dueDate as Date,
                     endDate: null,
-                    type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
+                    type: "due" as const,
                     title: `${a.title || a.activity.title || "Assignment"}`,
                 })),
             ...classes.flatMap((cls) =>
-                cls.calendarEvents.map((ev) => ({
+                cls.calendarEvents.filter((ev) => ev.description !== "Verb quiz due date" && !/^Quiz due:/i.test(ev.title)).map((ev) => ({
                     id: ev.id,
                     date: ev.date,
                     endDate: ev.endDate || null,
@@ -91,6 +84,7 @@ export default async function CalendarPage() {
                                         select: {
                                             id: true,
                                             title: true,
+                                            type: true,
                                         },
                                     },
                                 },
@@ -118,23 +112,17 @@ export default async function CalendarPage() {
             }))
         );
 
-        const datedAssignments = allAssignments.filter((a) => a.dueDate);
-        const quizDueEvents = await getStudentWeeklyQuizDueEvents(userId, datedAssignments.map((a) => a.activityId)).catch((error) => {
-            console.error("[Calendar] Weekly quiz due dates unavailable", error);
-            return [];
-        });
-
+        const datedAssignments = allAssignments.filter((a) => a.dueDate && a.activity.type !== "quiz" && !/quiz/i.test(a.title || a.activity.title));
         calendarEvents = [
-            ...quizDueEvents,
             ...datedAssignments
                 .map((a) => ({
                     date: a.dueDate as Date,
                     endDate: null,
-                    type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
+                    type: "due" as const,
                     title: `${a.title || a.activity.title || "Assignment"}`,
                 })),
             ...enrollments.flatMap((enrollment) =>
-                enrollment.class.calendarEvents.map((ev) => ({
+                enrollment.class.calendarEvents.filter((ev) => ev.description !== "Verb quiz due date" && !/^Quiz due:/i.test(ev.title)).map((ev) => ({
                     id: ev.id,
                     date: ev.date,
                     endDate: ev.endDate || null,

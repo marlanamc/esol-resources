@@ -30,7 +30,7 @@ export default async function TeachCalendarPage({
         include: {
             assignments: {
                 include: {
-                    activity: { select: { id: true, title: true } },
+                    activity: { select: { id: true, title: true, type: true } },
                 },
             },
             calendarEvents: {
@@ -47,17 +47,15 @@ export default async function TeachCalendarPage({
 
     const calendarEvents: CalendarEvent[] = [
         ...allAssignments
-            .filter((a) => a.dueDate)
+            .filter((a) => a.dueDate && a.activity.type !== "quiz" && !/quiz/i.test(a.title || a.activity.title))
             .map((a) => ({
                 date: a.dueDate as Date,
                 endDate: null,
-                type: (a.title || a.activity.title || "").toLowerCase().includes("quiz")
-                    ? ("quiz" as const)
-                    : ("due" as const),
+                type: "due" as const,
                 title: a.title || a.activity.title || "Assignment",
             })),
         ...classes.flatMap((cls) =>
-            cls.calendarEvents.map((ev) => ({
+            cls.calendarEvents.filter(ev => ev.description !== "Verb quiz due date" && !/^Quiz due:/i.test(ev.title)).map((ev) => ({
                 id: ev.id,
                 date: ev.date,
                 endDate: ev.endDate ?? null,
