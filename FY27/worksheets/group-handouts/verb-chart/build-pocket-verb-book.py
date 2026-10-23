@@ -97,7 +97,7 @@ TENSES = [
         "words": "yesterday · last week · 2 days ago · in 2020",
         "stamp": ("single-dot", "past", 40),
         "forms": [
-            ("subject + V2", "I worked yesterday."),
+            ("subject + V2", "I <b>worked</b> yesterday."),
             ("subject + didn't + V1", "I didn't work yesterday."),
             ("Did + subject + V1?", "Did you work yesterday?"),
         ],
@@ -130,7 +130,7 @@ TENSES = [
         "words": "at 8:00 last night · when you called · all day yesterday",
         "stamp": ("solid-line", "past", 30),
         "forms": [
-            ("subject + was / were + V-ing", "I was working at 8:00 last night."),
+            ("subject + was / were + V-ing", "I was working at 8:00."),
             ("subject + wasn't / weren't + V-ing", "I wasn't working at 8:00."),
             ("Was / Were + subject + V-ing?", "Were you working at 8:00?"),
         ],
@@ -141,7 +141,7 @@ TENSES = [
         "words": "at 8:00 tomorrow · this time next week · all day tomorrow",
         "stamp": ("solid-line", "future", 60),
         "forms": [
-            ("subject + will be + V-ing", "I will be working at 8:00 tomorrow."),
+            ("subject + will be + V-ing", "I will be working at 8:00."),
             ("subject + won't be + V-ing", "I won't be working at 8:00."),
             ("Will + subject + be + V-ing?", "Will you be working at 8:00?"),
         ],
@@ -152,13 +152,35 @@ TENSES = [
         "words": "ever · never · already · for 3 years · since 2023",
         "stamp": ("arc", "past", 50),
         "forms": [
-            ("subject + have / has + V3", "I have worked here for 3 years."),
+            ("subject + have / has + V3", "I have <b>worked</b> at night."),
             ("subject + haven't / hasn't + V3", "I haven't worked at night."),
             ("Have / Has + subject + V3?", "Have you ever worked at night?"),
         ],
         "third": "She has worked. · She hasn't worked. · Has she worked?",
     },
 ]
+
+# Irregular examples (eat · ate · eaten), one per + / - / ? row
+IRREGULAR = {
+    "Present simple": ("I eat breakfast at 7.", "I don't eat meat.", "Do you eat meat?"),
+    "Past simple": ("I <b>ate</b> breakfast.", "I didn't eat breakfast.", "Did you eat breakfast?"),
+    "Future simple": ("I will eat later.", "I won't eat later.", "Will you eat later?"),
+    "Present continuous": ("I am eating now.", "I am not eating now.", "Are you eating now?"),
+    "Past continuous": ("I was eating at 8:00.", "I wasn't eating at 8:00.", "Were you eating at 8:00?"),
+    "Future continuous": ("I will be eating at 8:00.", "I won't be eating at 8:00.", "Will you be eating at 8:00?"),
+    "Present perfect": ("I have <b>eaten</b> sushi.", "I haven't <b>eaten</b> sushi.", "Have you ever <b>eaten</b> sushi?"),
+}
+
+# One common mistake per card, printed on both versions
+WATCH = {
+    "Present simple": "No am / is / are with V1: <s>I am work.</s> → I work.",
+    "Past simple": "After did, use V1: <s>Did you went?</s> → Did you go?",
+    "Future simple": "No -s after will: <s>She will works.</s> → She will work.",
+    "Present continuous": "Don't forget am / is / are: <s>I working.</s> → I am working.",
+    "Past continuous": "I / he / she / it + was · you / we / they + were",
+    "Future continuous": "Don't forget be: <s>I will working.</s> → I will be working.",
+    "Present perfect": "Use V3, not V2: <s>I have ate.</s> → I have eaten.",
+}
 
 CSS = f"""
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -201,7 +223,7 @@ CSS = f"""
   .gray {{ background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }}
 
   /* Type scale: 22 / 18 / 14 / 11 */
-  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 13px; }}
+  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 10px; }}
   .cover .body {{ gap: 7px; padding-top: 0.3in; }}
 
   .staple {{ position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }}
@@ -223,17 +245,23 @@ CSS = f"""
   .timeline .label span {{ display: block; font-weight: normal; font-style: italic; }}
   .timeline svg {{ display: block; flex: 1; height: 1.05in; }}
 
-  .forms {{ display: grid; grid-template-columns: 30px 1fr 1.25fr; grid-template-rows: auto repeat(3, 0.5in); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
-  .forms > div {{ padding: 2px 7px; display: flex; align-items: flex-end; }}
-  .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); }}
+  .forms {{ display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.34in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
+  .forms > div {{ padding: 2px 7px; display: flex; align-items: center; }}
+  .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }}
+  .forms .h span {{ font-weight: normal; margin-left: 4px; }}
   .forms .sym {{ justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }}
-  .forms > div:not(:nth-child(3n+1)) {{ border-left: 1.5px solid #000; }}
-  .forms .write {{ flex: 1; min-height: 20px; padding-bottom: 2px; }}
+  .forms > div:not(:nth-child(4n+1)) {{ border-left: 1.5px solid #000; }}
+  .forms .write {{ flex: 1; font-size: 14px; }}
+  .forms .write b {{ text-decoration: underline; }}
   .forms .r2, .forms .r3 {{ border-top: 1.5px solid #000; }}
 
   .third {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
   .third b {{ white-space: nowrap; }}
   .third .fill {{ flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }}
+
+  .watch {{ font-size: 14px; border: 1.5px dashed var(--c, #000); border-radius: 6px; padding: 3px 9px; background: var(--bg, #fff); }}
+  .watch b {{ color: var(--c, #000); }}
+  .watch s {{ text-decoration-thickness: 2px; }}
 
   /* Teacher key: the filled-in answers */
   .ans {{ font-style: italic; font-weight: bold; color: var(--c, #000); }}
@@ -285,12 +313,14 @@ def tense_card(i, t, key):
     marks = stamp(*t["stamp"]) if key else ""
     rows = []
     for n, (sym, cls) in enumerate((("+", "a"), ("−", "n"), ("?", "q"))):
-        formula, example = t["forms"][n]
+        formula, regular = t["forms"][n]
+        irregular = IRREGULAR[t["name"]][n]
         r = f"r{n+1}" if n else ""
         rows.append(
             f'<div class="sym {cls} {r}">{sym}</div>'
             f'<div class="{r}"><span class="write">{fill(formula, key)}</span></div>'
-            f'<div class="{r}"><span class="write">{fill(example, key)}</span></div>'
+            f'<div class="{r}"><span class="write">{fill(regular, key)}</span></div>'
+            f'<div class="{r}"><span class="write">{fill(irregular, key)}</span></div>'
         )
     third = ""
     if t.get("third"):
@@ -305,10 +335,12 @@ def tense_card(i, t, key):
       {timeline(marks)}
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
       {"".join(rows)}
     </div>
     {third}
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> {WATCH[t["name"]]}</div>
   </div>
   {tabs(i)}
 </section>"""
@@ -349,7 +381,7 @@ COVER = f"""
       </div>
     </div>
     <div class="two">
-      <div class="box"><b class="t">Verb key</b>V1 = work · V1-s = works · V2 = worked<br>V3 = worked · V-ing = working</div>
+      <div class="box"><b class="t">Verb key: V1 · V2 · V3</b>Regular: work · worked · worked<br>Irregular: eat · ate · eaten · V-ing = working</div>
       <div class="box"><b class="t">Stuck? Say this:</b>"Wait, let me think." · "How do I say...?"<br>"Sorry, I mean..." · "Can you say that again?"</div>
     </div>
     <div class="box">

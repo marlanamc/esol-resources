@@ -47,7 +47,7 @@
   .gray { background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }
 
   /* Type scale: 22 / 18 / 14 / 11 */
-  .body { flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 13px; }
+  .body { flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 10px; }
   .cover .body { gap: 7px; padding-top: 0.3in; }
 
   .staple { position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }
@@ -69,17 +69,23 @@
   .timeline .label span { display: block; font-weight: normal; font-style: italic; }
   .timeline svg { display: block; flex: 1; height: 1.05in; }
 
-  .forms { display: grid; grid-template-columns: 30px 1fr 1.25fr; grid-template-rows: auto repeat(3, 0.5in); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }
-  .forms > div { padding: 2px 7px; display: flex; align-items: flex-end; }
-  .forms .h { font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); }
+  .forms { display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.34in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }
+  .forms > div { padding: 2px 7px; display: flex; align-items: center; }
+  .forms .h { font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }
+  .forms .h span { font-weight: normal; margin-left: 4px; }
   .forms .sym { justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }
-  .forms > div:not(:nth-child(3n+1)) { border-left: 1.5px solid #000; }
-  .forms .write { flex: 1; min-height: 20px; padding-bottom: 2px; }
+  .forms > div:not(:nth-child(4n+1)) { border-left: 1.5px solid #000; }
+  .forms .write { flex: 1; font-size: 14px; }
+  .forms .write b { text-decoration: underline; }
   .forms .r2, .forms .r3 { border-top: 1.5px solid #000; }
 
   .third { display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }
   .third b { white-space: nowrap; }
   .third .fill { flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }
+
+  .watch { font-size: 14px; border: 1.5px dashed var(--c, #000); border-radius: 6px; padding: 3px 9px; background: var(--bg, #fff); }
+  .watch b { color: var(--c, #000); }
+  .watch s { text-decoration-thickness: 2px; }
 
   /* Teacher key: the filled-in answers */
   .ans { font-style: italic; font-weight: bold; color: var(--c, #000); }
@@ -141,7 +147,7 @@
       </div>
     </div>
     <div class="two">
-      <div class="box"><b class="t">Verb key</b>V1 = work · V1-s = works · V2 = worked<br>V3 = worked · V-ing = working</div>
+      <div class="box"><b class="t">Verb key: V1 · V2 · V3</b>Regular: work · worked · worked<br>Irregular: eat · ate · eaten · V-ing = working</div>
       <div class="box"><b class="t">Stuck? Say this:</b>"Wait, let me think." · "How do I say...?"<br>"Sorry, I mean..." · "Can you say that again?"</div>
     </div>
     <div class="box">
@@ -169,10 +175,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + V1</span></span></div><div class=""><span class="write"><span class="ans">I work at a hotel.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + don't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I don't work on Sunday.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Do + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Do you work on Sunday?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + V1</span></span></div><div class=""><span class="write"><span class="ans">I work at a hotel.</span></span></div><div class=""><span class="write"><span class="ans">I eat breakfast at 7.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + don't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I don't work on Sunday.</span></span></div><div class="r2"><span class="write"><span class="ans">I don't eat meat.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Do + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Do you work on Sunday?</span></span></div><div class="r3"><span class="write"><span class="ans">Do you eat meat?</span></span></div>
     </div>
     <div class="third"><b>he / she / it:</b><span class="fill"><span class="ans">She works. · She doesn't work. · Does she work?</span></span></div>
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> No am / is / are with V1: <s>I am work.</s> → I work.</div>
   </div>
   <div class="tabs"><div class="keep">Present<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
 </section></div><div class="sheet">
@@ -195,10 +203,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + V2</span></span></div><div class=""><span class="write"><span class="ans">I worked yesterday.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + didn't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I didn't work yesterday.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Did + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Did you work yesterday?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + V2</span></span></div><div class=""><span class="write"><span class="ans">I <b>worked</b> yesterday.</span></span></div><div class=""><span class="write"><span class="ans">I <b>ate</b> breakfast.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + didn't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I didn't work yesterday.</span></span></div><div class="r2"><span class="write"><span class="ans">I didn't eat breakfast.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Did + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Did you work yesterday?</span></span></div><div class="r3"><span class="write"><span class="ans">Did you eat breakfast?</span></span></div>
     </div>
     
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> After did, use V1: <s>Did you went?</s> → Did you go?</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="keep">Past<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
 </section>
@@ -221,10 +231,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + will + V1</span></span></div><div class=""><span class="write"><span class="ans">I will work tomorrow.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I won't work tomorrow.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you work tomorrow?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + will + V1</span></span></div><div class=""><span class="write"><span class="ans">I will work tomorrow.</span></span></div><div class=""><span class="write"><span class="ans">I will eat later.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't + V1</span></span></div><div class="r2"><span class="write"><span class="ans">I won't work tomorrow.</span></span></div><div class="r2"><span class="write"><span class="ans">I won't eat later.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + V1?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you work tomorrow?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you eat later?</span></span></div>
     </div>
     
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> No -s after will: <s>She will works.</s> → She will work.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
 </section></div><div class="sheet">
@@ -247,10 +259,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + am / is / are + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I am working now.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + am / is / are + not + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I am not working now.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Am / Is / Are + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Are you working now?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + am / is / are + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I am working now.</span></span></div><div class=""><span class="write"><span class="ans">I am eating now.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + am / is / are + not + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I am not working now.</span></span></div><div class="r2"><span class="write"><span class="ans">I am not eating now.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Am / Is / Are + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Are you working now?</span></span></div><div class="r3"><span class="write"><span class="ans">Are you eating now?</span></span></div>
     </div>
     
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> Don't forget am / is / are: <s>I working.</s> → I am working.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>continuous</div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
 </section>
@@ -273,10 +287,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + was / were + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I was working at 8:00 last night.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + wasn't / weren't + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I wasn't working at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Was / Were + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Were you working at 8:00?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + was / were + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I was working at 8:00.</span></span></div><div class=""><span class="write"><span class="ans">I was eating at 8:00.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + wasn't / weren't + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I wasn't working at 8:00.</span></span></div><div class="r2"><span class="write"><span class="ans">I wasn't eating at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Was / Were + subject + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Were you working at 8:00?</span></span></div><div class="r3"><span class="write"><span class="ans">Were you eating at 8:00?</span></span></div>
     </div>
     
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> I / he / she / it + was · you / we / they + were</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Past<br>continuous</div><div class="gray"></div><div class="gray"></div></div>
 </section></div><div class="sheet">
@@ -299,10 +315,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + will be + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I will be working at 8:00 tomorrow.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't be + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I won't be working at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + be + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you be working at 8:00?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + will be + V-ing</span></span></div><div class=""><span class="write"><span class="ans">I will be working at 8:00.</span></span></div><div class=""><span class="write"><span class="ans">I will be eating at 8:00.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + won't be + V-ing</span></span></div><div class="r2"><span class="write"><span class="ans">I won't be working at 8:00.</span></span></div><div class="r2"><span class="write"><span class="ans">I won't be eating at 8:00.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Will + subject + be + V-ing?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you be working at 8:00?</span></span></div><div class="r3"><span class="write"><span class="ans">Will you be eating at 8:00?</span></span></div>
     </div>
     
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> Don't forget be: <s>I will working.</s> → I will be working.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>continuous</div><div class="gray"></div></div>
 </section>
@@ -325,10 +343,12 @@
       </svg>
     </div>
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">My example</div>
-      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + have / has + V3</span></span></div><div class=""><span class="write"><span class="ans">I have worked here for 3 years.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + haven't / hasn't + V3</span></span></div><div class="r2"><span class="write"><span class="ans">I haven't worked at night.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Have / Has + subject + V3?</span></span></div><div class="r3"><span class="write"><span class="ans">Have you ever worked at night?</span></span></div>
+      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + have / has + V3</span></span></div><div class=""><span class="write"><span class="ans">I have <b>worked</b> at night.</span></span></div><div class=""><span class="write"><span class="ans">I have <b>eaten</b> sushi.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"><span class="ans">subject + haven't / hasn't + V3</span></span></div><div class="r2"><span class="write"><span class="ans">I haven't worked at night.</span></span></div><div class="r2"><span class="write"><span class="ans">I haven't <b>eaten</b> sushi.</span></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"><span class="ans">Have / Has + subject + V3?</span></span></div><div class="r3"><span class="write"><span class="ans">Have you ever worked at night?</span></span></div><div class="r3"><span class="write"><span class="ans">Have you ever <b>eaten</b> sushi?</span></span></div>
     </div>
     <div class="third"><b>he / she / it:</b><span class="fill"><span class="ans">She has worked. · She hasn't worked. · Has she worked?</span></span></div>
+    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="watch"><b>Watch out!</b> Use V3, not V2: <s>I have ate.</s> → I have eaten.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>perfect</div></div>
 </section></div>
