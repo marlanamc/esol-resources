@@ -19,6 +19,8 @@ type LoadedAssignment = Prisma.AssignmentGetPayload<{
   };
 }>;
 
+type SubmissionWithAttempt = Prisma.SubmissionGetPayload<{ include: { quizAttempts: true } }>;
+
 type LoadedSubmission = Omit<Prisma.SubmissionGetPayload<object>, "content"> & {
   content: unknown;
 };
@@ -243,11 +245,12 @@ async function loadSubmissionAndProgress(args: {
   activityId: string;
   assignmentId?: string;
   userRole: SessionUser["role"];
-}): Promise<[Prisma.SubmissionGetPayload<object> | null, LoadedProgress]> {
+}): Promise<[SubmissionWithAttempt | null, LoadedProgress]> {
   try {
     return await Promise.all([
       args.userRole === "student"
         ? prisma.submission.findFirst({
+            include: { quizAttempts: { orderBy: [{ completedAt: 'desc' }, { id: 'desc' }], take: 1 } },
             where: {
               userId: args.userId,
               activityId: args.activityId,
@@ -278,7 +281,7 @@ async function loadSubmissionAndProgress(args: {
 }
 
 function parseSubmission(
-  submission: Prisma.SubmissionGetPayload<object> | null
+  submission: SubmissionWithAttempt | null
 ): LoadedSubmission | null {
   if (!submission?.content || typeof submission.content !== "string") {
     return submission as LoadedSubmission | null;
@@ -287,7 +290,8 @@ function parseSubmission(
   try {
     return {
       ...submission,
-      content: JSON.parse(submission.content) as Record<string, unknown>,
+      content: JSON.parse(submission.quizAttempts?.[0]?.content ?? submission.content) as Record<string, unknown>,
+      pointsAwarded: submission.quizAttempts?.[0]?.pointsAwarded ?? submission.pointsAwarded,
     };
   } catch {
     return submission as LoadedSubmission;

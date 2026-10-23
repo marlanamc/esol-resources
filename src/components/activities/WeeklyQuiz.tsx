@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
 import { useRouter } from 'next/navigation';
 import type { WeeklyQuizContent, WeeklyQuizQuestion, WeeklyQuizSection, WeeklyQuizSubmission, WeeklyQuizVerbForm } from '@/types/weekly-quiz';
-import { submitWithOutbox, submissionSavedEventName } from '@/lib/submissionOutbox';
+import { generateIdempotencyKey, submitWithOutbox, submissionSavedEventName } from '@/lib/submissionOutbox';
 import { displayWeeklyQuizTitle, withVerbFormsTable } from '@/lib/weekly-quiz';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
@@ -80,7 +80,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
   content: WeeklyQuizContent;
   activityId: string;
   assignmentId?: string | null;
-  existingSubmission?: { content: unknown; pointsAwarded?: number } | null;
+  existingSubmission?: { content: unknown; pointsAwarded?: number; score?: number | null } | null;
 }) {
   const router = useRouter();
   const tableContent = withVerbFormsTable(savedContent);
@@ -88,13 +88,15 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
   const saved = existingSubmission?.content as WeeklyQuizSubmission | undefined;
   const [result, setResult] = useState<WeeklyQuizSubmission | null>(saved?.type === 'weekly-quiz' ? saved : null);
   // The server keeps the best attempt; this mirrors it so a lower retake can say so.
-  const [best, setBest] = useState<WeeklyQuizSubmission | null>(saved?.type === 'weekly-quiz' ? saved : null);
+  const [best, setBest] = useState<number | null>(existingSubmission?.score ?? saved?.score ?? null);
   // Results saved before the table existed point at the old question ids.
   const content = result && !result.results.every(r => tableContent.questions.some(q => q.id === r.id)) ? savedContent : tableContent;
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [queued, setQueued] = useState(false);
   const pendingKey = useRef<string | null>(null);
+  const attemptKey = useRef<string | null>(null);
+  const submitting = useRef(false);
   const [error, setError] = useState('');
   const [points, setPoints] = useState(existingSubmission?.pointsAwarded ?? 0);
   const [showToast, setShowToast] = useState(false);
@@ -109,7 +111,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       pendingKey.current = null;
       setQueued(false);
       showResult(receipt.weeklyQuizResult);
-      setPoints(receipt.totalPointsAwarded ?? receipt.points ?? 0);
+      setPoints(receipt.points ?? 0);
       setShowToast((receipt.points ?? 0) > 0);
     };
     window.addEventListener(submissionSavedEventName, onSaved);
@@ -118,23 +120,28 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
 
   function showResult(next: WeeklyQuizSubmission) {
     setResult(next);
-    setBest(previous => previous && previous.score > next.score ? previous : next);
+    setBest(previous => Math.max(previous ?? 0, next.score));
   }
 
   function tryAgain() {
     setResult(null);
     setAnswers({});
+    attemptKey.current = null;
+    setPoints(0);
+    setShowToast(false);
     setError('');
     window.scrollTo({ top: 0 });
   }
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (!complete || busy || queued) return;
+    if (!complete || submitting.current || busy || queued) return;
+    submitting.current = true;
+    attemptKey.current ??= generateIdempotencyKey();
     setBusy(true);
     setError('');
     try {
-      const sent = await submitWithOutbox({ endpoint: '/api/activity/submit', method: 'POST', payload: {
+      const sent = await submitWithOutbox({ endpoint: '/api/activity/submit', method: 'POST', idempotencyKey: attemptKey.current, payload: {
         activityId, assignmentId: assignmentId ?? null, content: { type: 'weekly-quiz', version: 1, answers },
       } });
       if (sent.queued) { pendingKey.current = sent.idempotencyKey; setQueued(true); return; }
@@ -142,12 +149,12 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       if (!sent.response.ok) throw new Error(data.error || 'Your quiz could not be saved. Please try again.');
       if (!data.weeklyQuizResult) { router.refresh(); throw new Error('Your submission was received. Refresh this page to see your saved results.'); }
       showResult(data.weeklyQuizResult);
-      setPoints(data.totalPointsAwarded ?? data.points ?? 0);
+      setPoints(data.points ?? 0);
       setShowToast((data.points ?? 0) > 0);
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Please try again.');
-    } finally { setBusy(false); }
+    } finally { submitting.current = false; setBusy(false); }
   }
 
   return <div className="mx-auto max-w-3xl space-y-6">
@@ -164,11 +171,11 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
         <p className="text-text">{result.correctCount} of {result.totalQuestions} correct · {result.score}%</p>
         <p className="font-semibold text-primary">{points} points awarded</p>
         <p className="text-sm text-text-muted">Use the explanations to choose one thing to practice next.</p>
-        {best && best.score > result.score && <p className="mt-2 text-text">Your best score is still {best.correctCount} of {best.totalQuestions}.</p>}
-        {result.score < 100 && <div className="mt-4 flex flex-wrap items-center gap-3">
-          <button type="button" onClick={tryAgain} className="min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white">Try again</button>
-          <span className="text-sm text-text-muted">Take it as many times as you want. We keep your best score.</span>
-        </div>}
+        <p className="mt-2 text-text">Best score: {best ?? result.score}% · Most recent score: {result.score}%</p>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <button type="button" onClick={tryAgain} className="min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white">Try Again</button>
+          <span className="text-sm text-text-muted">Practice as many times as you want. Every completed attempt is saved and earns effort points.</span>
+        </div>
       </div>
       <FormsTable questions={content.questions} renderCell={q => {
         const item = result.results.find(r => r.id === q.id);

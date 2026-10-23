@@ -228,7 +228,22 @@ model Assignment {
   @@index([classId, sequenceNumber])
 }
 
+model QuizAttempt {
+  id             String     @id @default(cuid())
+  submissionId   String
+  idempotencyKey String
+  content        String
+  score          Int?
+  pointsAwarded  Int        @default(0)
+  completedAt    DateTime   @default(now())
+  submission     Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@unique([submissionId, idempotencyKey])
+  @@index([submissionId, completedAt])
+}
+
 model Submission {
+  quizAttempts  QuizAttempt[]
   id            String      @id @default(cuid())
   userId        String
   activityId    String

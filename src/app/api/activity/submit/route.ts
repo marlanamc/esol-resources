@@ -1,12 +1,14 @@
+import { gradeVerbQuiz, saveQuizAttempt } from '@/lib/quiz-attempts';
+import type { VerbQuizContent } from '@/types/verb-quiz';
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
-import { gradeWeeklyQuiz, readWeeklyQuizScore } from "@/lib/weekly-quiz";
+import { gradeWeeklyQuiz } from "@/lib/weekly-quiz";
 import type { WeeklyQuizContent, WeeklyQuizSubmission } from "@/types/weekly-quiz";
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api/schemas";
-import { calculateQuizPoints, calculateWeeklyQuizPoints, weeklyQuizRetakeTopUp, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
+import { calculateQuizPoints, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/database/locks";
@@ -252,11 +254,36 @@ export async function POST(request: NextRequest) {
             content = weeklyQuizResult;
         }
 
+        const isRetakableQuiz = savedContent?.type === 'weekly-quiz' || savedContent?.type === 'verb-quiz';
+        if (savedContent?.type === 'verb-quiz') {
+            try {
+                content = gradeVerbQuiz(savedContent as VerbQuizContent, content);
+                score = (content as { score: number }).score;
+            } catch (error) {
+                return apiError(error instanceof Error ? error.message : 'Invalid quiz answers.', 400);
+            }
+        }
+        if (isRetakableQuiz) {
+            if (!idempotencyKey || idempotencyKey.length > 200) return apiError('A valid quiz attempt ID is required.', 400);
+            const assignmentKey = normalizeAssignmentId(assignmentId);
+            if (assignmentKey) {
+                const assignment = await prisma.assignment.findFirst({ where: {
+                    id: assignmentKey, activityId,
+                    ...(session.user.role === 'student' ? { class: { enrollments: { some: { studentId: userId, status: 'active' } } } } : {}),
+                } });
+                if (!assignment) return ApiErrors.forbidden('This quiz assignment is not available to you.');
+            }
+            const receipt = await prisma.$transaction(async tx => {
+                await acquireUserActivityScopeLock(tx, { userId, activityId, assignmentId: assignmentKey });
+                return saveQuizAttempt(tx, { userId, activityId, assignmentId: assignmentKey, idempotencyKey,
+                    content, score: score!, weekly: !!weeklyQuizResult, title: activity.title || activityId });
+            }, { timeout: 10000 });
+            return NextResponse.json({ ok: true, ...receipt, ...(weeklyQuizResult ? { weeklyQuizResult: receipt.quizResult } : {}) });
+        }
+
         // Calculate points SERVER-SIDE based on activity type and score
         // NEVER trust points from client request
-        const calculatedPoints = weeklyQuizResult
-            ? calculateWeeklyQuizPoints(score ?? null)
-            : activity.type.toLowerCase() === 'quiz'
+        const calculatedPoints = activity.type.toLowerCase() === 'quiz'
             ? calculateQuizPoints(score ?? null)
             : getActivityPoints(activity.type, activity);
 
@@ -306,31 +333,13 @@ export async function POST(request: NextRequest) {
                 }
             }
 
-            // Weekly quizzes can be retaken; keep the best attempt so trying
-            // again never lowers a learner's saved score.
-            let storedContent: unknown = content;
-            let storedScore = score;
-            let previousBestScore: number | null = null;
-            if (weeklyQuizResult) {
-                const previous = await tx.submission.findFirst({
-                    where: progressWhere,
-                    orderBy: { updatedAt: "desc" },
-                    select: { content: true, score: true },
-                });
-                previousBestScore = previous?.score ?? null;
-                if (previous?.score != null && previous.score > weeklyQuizResult.score && readWeeklyQuizScore(previous.content)) {
-                    storedContent = JSON.parse(previous.content);
-                    storedScore = previous.score;
-                }
-            }
-
             const submission = await saveActivitySubmission({
                 submission: tx.submission,
                 userId,
                 activityId,
                 assignmentId: assignmentKey,
-                content: storedContent,
-                score: typeof storedScore === "number" ? storedScore : null,
+                content,
+                score: typeof score === "number" ? score : null,
             });
 
             // Update activity progress to completed.
@@ -388,29 +397,8 @@ export async function POST(request: NextRequest) {
                         source: "activity",
                         transaction: tx,
                     });
-                } else if (weeklyQuizResult && claimResult.existingPointsAwarded > 0) {
-                    // A weekly quiz retake that beats the best score pays the
-                    // difference in score points; the homework bonus is paid once.
-                    const topUp = weeklyQuizRetakeTopUp(previousBestScore, storedScore ?? null);
-                    if (topUp > 0) {
-                        const raised = await tx.submission.updateMany({
-                            where: { id: submission.id, userId, pointsAwarded: claimResult.existingPointsAwarded },
-                            data: { pointsAwarded: { increment: topUp } },
-                        });
-                        if (raised.count === 1) {
-                            duplicateFromClaim = false;
-                            pointsEarned = topUp;
-                            totalPointsAwarded += topUp;
-                            await applyAwardChain({
-                                userId,
-                                points: topUp,
-                                reason: quizLedgerReason,
-                                source: "activity",
-                                transaction: tx,
-                            });
-                        }
-                    }
                 }
+
             } else {
                 await checkAndAwardAchievements(userId, tx);
             }

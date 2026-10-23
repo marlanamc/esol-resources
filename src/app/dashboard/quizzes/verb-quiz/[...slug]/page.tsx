@@ -1,3 +1,4 @@
+import { QuizAttemptHistory } from '@/components/activities/QuizAttemptHistory';
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import LogoutButton from "@/components/layout/LogoutButton";
@@ -7,6 +8,7 @@ import { prisma } from "@/lib/database/prisma";
 import { canUseTeacherTools } from "@/lib/auth/roles";
 
 interface SubmissionRow {
+    quizAttempts: { id: string; content: string; score: number | null; completedAt: Date; pointsAwarded: number }[];
     id: string;
     content: string;
     score: number | null;
@@ -54,7 +56,7 @@ export default async function VerbQuizResultsPage({
     }
 
     const activity = await prisma.activity.findFirst({
-        where: { title: `Verb Quiz ${weekNumber}`, type: "quiz" },
+        where: { OR: [{ id: `verb-quiz-${weekNumber}` }, { title: `Verb Quiz ${weekNumber}` }], type: "quiz" },
         select: { id: true, title: true },
     });
 
@@ -82,6 +84,7 @@ export default async function VerbQuizResultsPage({
     const submissions = await prisma.submission.findMany({
         where: { activityId: activity.id },
         include: {
+            quizAttempts: { orderBy: [{ completedAt: 'desc' }, { id: 'desc' }] },
             user: { select: { name: true, username: true } },
             assignment: { select: { title: true } },
         },
@@ -122,7 +125,7 @@ export default async function VerbQuizResultsPage({
                     <div className="bg-white rounded-2xl border border-border/40 shadow-sm overflow-hidden">
                         <div className="divide-y divide-border/20">
                             {submissions.map((submission: SubmissionRow) => (
-                                <div key={submission.id} className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <div key={submission.id} className="p-5 flex flex-wrap items-center justify-between gap-3">
                                     <div>
                                         <div className="text-base font-semibold text-text">
                                             {submission.user.name || submission.user.username}
@@ -134,9 +137,10 @@ export default async function VerbQuizResultsPage({
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="px-3 py-1 rounded-full bg-secondary/10 text-[#3d6b47] dark:text-secondary text-xs font-semibold">
-                                            {submission.score ?? 0}%
+                                            Best: {submission.score ?? 0}% · Most recent: {submission.quizAttempts[0]?.score ?? submission.score ?? 0}%
                                         </span>
                                     </div>
+                                    <QuizAttemptHistory attempts={submission.quizAttempts} />
                                 </div>
                             ))}
                         </div>

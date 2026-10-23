@@ -10,6 +10,7 @@ interface VerbQuizResultsProps {
   content: VerbQuizContent;
   submission: VerbQuizSubmission;
   onRetake?: () => void;
+  bestScore?: number;
 }
 
 const FORM_KEYS = ['v1_3rd', 'v1_ing', 'v2', 'v3'] as const;
@@ -21,7 +22,7 @@ const FORM_LABELS: Record<(typeof FORM_KEYS)[number], string> = {
   v3: 'V3',
 };
 
-export default function VerbQuizResults({ content, submission, onRetake }: VerbQuizResultsProps) {
+export default function VerbQuizResults({ content, submission, onRetake, bestScore }: VerbQuizResultsProps) {
   const percentage = submission.score;
   const isPerfect = percentage === 100;
   const isExcellent = percentage >= 90;
@@ -56,7 +57,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
         </h2>
         <p className="mb-4 text-2xl font-semibold text-[var(--color-text)]">{grade.text}</p>
 
-        <div className="flex items-center justify-center gap-6 text-sm text-[var(--color-text-muted)]">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--color-text-muted)]">
           <div>
             <span className="font-semibold text-sage">{submission.correctCount}</span> correct
           </div>
@@ -69,6 +70,11 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
             <span className="font-semibold text-terracotta">+{submission.totalPoints}</span> points
           </div>
         </div>
+        <p className="mt-4 text-text">Best score: {bestScore ?? submission.score}% · Most recent score: {submission.score}%</p>
+        {onRetake && <div className="mt-4 space-y-2">
+          <button type="button" onClick={onRetake} className="min-h-11 w-full rounded-xl bg-primary px-6 py-3 font-semibold text-white sm:w-auto">Try Again</button>
+          <p className="text-sm text-text-muted">Practice as many times as you want. Every completed attempt is saved and earns effort points.</p>
+        </div>}
       </motion.div>
 
       {/* Detailed Results */}
