@@ -86,6 +86,24 @@
     font-size: 12px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
+  .page.back .item-list li { margin-bottom: 3px; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.4in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 2px; }
+  s { text-decoration-thickness: 2px; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
+  .blank.verb { width: 8.5em; }
+  .page.back .blank.verb { width: 6.5em; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -178,6 +196,90 @@
       </section>
 
       <p class="footer-note">Happy Winter Break! Missing <b>Week 15 Quiz</b>? You can still make it up in My ESOL App. See you in January!</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 15, Tuesday</h1>
+        <span class="date">12/22/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>think</i> and <i>know</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>think</b> and <b>know</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">think</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">know</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>think</b> or <b>know</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every time</b> I ask, she <span class="blank verb"></span> the answer.&nbsp;(know)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> about my goals.&nbsp;(think)</li>
+          <li><b class="n">3.</b> <b>Last year</b>, I <span class="blank verb"></span> only a few people here.&nbsp;(know)</li>
+          <li><b class="n">4.</b> <b>Yesterday</b>, I <span class="blank verb"></span> the bus was late.&nbsp;(think)</li>
+          <li><b class="n">5.</b> I <b>have</b> <span class="blank verb"></span> my classmates since September.&nbsp;(know) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">6.</b> We <b>have</b> <span class="blank verb"></span> about our goals.&nbsp;(think) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last year</b> + think</p>
+        <p class="ideas">Ideas: about my family &middot; about a new job</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Now</b> + know</p>
+        <p class="ideas">Ideas: my classmates &middot; the bus routes &middot; new words</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + know <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: my best friend &middot; my neighbor</p>
+        <div class="bonus-line"></div>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 15, Tuesday</h1>
+        <span class="date">12/22/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>think</i> and <i>know</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>think</b> and <b>know</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">think</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">know</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>think</b> or <b>know</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every time</b> I ask, she <span class="blank verb"></span> the answer.&nbsp;(know)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> about my goals.&nbsp;(think)</li>
+          <li><b class="n">3.</b> <b>Last year</b>, I <span class="blank verb"></span> only a few people here.&nbsp;(know)</li>
+          <li><b class="n">4.</b> <b>Yesterday</b>, I <span class="blank verb"></span> the bus was late.&nbsp;(think)</li>
+          <li><b class="n">5.</b> I <b>have</b> <span class="blank verb"></span> my classmates since September.&nbsp;(know) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">6.</b> We <b>have</b> <span class="blank verb"></span> about our goals.&nbsp;(think) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last year</b> + think</p>
+        <p class="ideas">Ideas: about my family &middot; about a new job</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Now</b> + know</p>
+        <p class="ideas">Ideas: my classmates &middot; the bus routes &middot; new words</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + know <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: my best friend &middot; my neighbor</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
   </div>
 </body>

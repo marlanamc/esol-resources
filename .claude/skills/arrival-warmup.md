@@ -40,7 +40,8 @@ Before building a new day's warmup:
   (Wk3D2), complete-the-verb-chart V1/V2/V3 (Wk4D1), rewrite-in-the-past
   transformation (Wk4D1), circle-the-correct-form (Wk4D2), two-truths-
   and-a-lie (Wk4D2), to-do-list checkmarks to sentences (Wk5D1),
-  write-the-question-word (Wk5D1), partner-interview prompts (Wk5D2).
+  write-the-question-word (Wk5D1), partner-interview prompts (Wk5D2),
+  Have-you-ever-or-Did-you circle (Wk9D1).
   Still unused and available: riddles ("What word am I?"), true-or-false,
   sentence-unscramble, word search grid, would-you-rather with a reason,
   story-ordering, dictation.
@@ -182,6 +183,17 @@ Reference implementation: `FY27/worksheets/warmups/{print,classroom}/week5-day1-
     line (its own line pushes the 2-up onto a third page). Keep the
     print hint short enough not to wrap. Reference:
     `week5-day2-2026-10-15.html`.
+  - **Week with only one class** (e.g. Week 11 before Thanksgiving, Week 15
+    before Winter Break): use the Day 1 chart ("Use your reference
+    sheet") + 6 "Use the right form" items + the Day 2 "Bonus: Your turn"
+    with ideas. Reference: `week11-day1-2026-11-24.html`.
+  - **Week with no quiz** (Week 14): review 3 recent quiz verbs that fit
+    the week's theme (Week 14 econ news = buy / sell / spend), same Day 1
+    / Day 2 build. Say "review" in the subtitle, not "on this week's quiz".
+  - **Keep fix-the-mistakes and bonus lines short.** Present-perfect items
+    already wrap because of the label, so the other sentences need to
+    fit on one line (about 40 characters of text), or the classroom
+    back runs onto a third page.
   - Connecting sentences (and / but / because) is a later-week stretch
     once verb forms are solid — don't stack it on the same week.
 - **Task numbering continues from the front** (front has 1 & 2, back has

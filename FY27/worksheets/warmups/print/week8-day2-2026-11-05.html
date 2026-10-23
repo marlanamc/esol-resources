@@ -86,6 +86,22 @@
     font-size: 12px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
+  .page.back .item-list li { margin-bottom: 3px; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.4in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 2px; }
+  s { text-decoration-thickness: 2px; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -120,25 +136,25 @@
         <p class="task-instructions">Say each word out loud. Circle the letter you hear at the start or in the middle: B or V.</p>
         <p class="task-example"><b>Example:</b> <b>v</b>erify &rarr; circle V</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> contact &mdash; <span class="blank short"></span></li>
-          <li><b class="n">2.</b> connect &mdash; <span class="blank short"></span></li>
-          <li><b class="n">3.</b> voicemail &mdash; <span class="blank short"></span></li>
-          <li><b class="n">4.</b> verbal &mdash; <span class="blank short"></span></li>
-          <li><b class="n">5.</b> number &mdash; <span class="blank short"></span></li>
-          <li><b class="n">6.</b> available &mdash; <span class="blank short"></span></li>
+          <li><b class="n">1.</b> voicemail &mdash; <span class="blank short"></span></li>
+          <li><b class="n">2.</b> number &mdash; <span class="blank short"></span></li>
+          <li><b class="n">3.</b> leave &mdash; <span class="blank short"></span></li>
+          <li><b class="n">4.</b> busy &mdash; <span class="blank short"></span></li>
+          <li><b class="n">5.</b> receive &mdash; <span class="blank short"></span></li>
+          <li><b class="n">6.</b> website &mdash; <span class="blank short"></span></li>
         </ol>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Fill in the blank</div>
         <p class="task-instructions">Use every word once. Change the verb form if needed.</p>
-        <div class="word-bank"><span class="opt">decline</span> &middot; <span class="opt">confirm</span> &middot; <span class="opt">contact</span> &middot; <span class="opt">connect</span> &middot; <span class="opt">postpone</span> &middot; <span class="opt">respond</span></div>
+        <div class="word-bank"><span class="opt">reschedule</span> &middot; <span class="opt">confirm</span> &middot; <span class="opt">put someone through</span> &middot; <span class="opt">contact</span> &middot; <span class="opt">respond</span> &middot; <span class="opt">turn down</span></div>
         <ol class="item-list">
           <li><b class="n">1.</b> <span class="blank"></span> the school office if your child will be absent.</li>
           <li><b class="n">2.</b> Please <span class="blank"></span> to the email within 24 hours.</li>
           <li><b class="n">3.</b> Call the doctor's office to <span class="blank"></span> your appointment for tomorrow.</li>
-          <li><b class="n">4.</b> She was sick, so she had to <span class="blank"></span> the invitation.</li>
-          <li><b class="n">5.</b> We need to <span class="blank"></span> the meeting until next week.</li>
-          <li><b class="n">6.</b> I couldn't <span class="blank"></span> to the library Wi-Fi on my laptop.</li>
+          <li><b class="n">4.</b> She was sick, so she had to <span class="blank"></span> the party invitation.</li>
+          <li><b class="n">5.</b> I can't come on Monday. Can we <span class="blank"></span> for Wednesday?</li>
+          <li><b class="n">6.</b> &ldquo;Please hold. I will <span class="blank long"></span> to the manager.&rdquo;</li>
         </ol>
       </section>
 
@@ -155,29 +171,115 @@
         <p class="task-instructions">Say each word out loud. Circle the letter you hear at the start or in the middle: B or V.</p>
         <p class="task-example"><b>Example:</b> <b>v</b>erify &rarr; circle V</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> contact &mdash; <span class="blank short"></span></li>
-          <li><b class="n">2.</b> connect &mdash; <span class="blank short"></span></li>
-          <li><b class="n">3.</b> voicemail &mdash; <span class="blank short"></span></li>
-          <li><b class="n">4.</b> verbal &mdash; <span class="blank short"></span></li>
-          <li><b class="n">5.</b> number &mdash; <span class="blank short"></span></li>
-          <li><b class="n">6.</b> available &mdash; <span class="blank short"></span></li>
+          <li><b class="n">1.</b> voicemail &mdash; <span class="blank short"></span></li>
+          <li><b class="n">2.</b> number &mdash; <span class="blank short"></span></li>
+          <li><b class="n">3.</b> leave &mdash; <span class="blank short"></span></li>
+          <li><b class="n">4.</b> busy &mdash; <span class="blank short"></span></li>
+          <li><b class="n">5.</b> receive &mdash; <span class="blank short"></span></li>
+          <li><b class="n">6.</b> website &mdash; <span class="blank short"></span></li>
         </ol>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Fill in the blank</div>
         <p class="task-instructions">Use every word once. Change the verb form if needed.</p>
-        <div class="word-bank"><span class="opt">decline</span> &middot; <span class="opt">confirm</span> &middot; <span class="opt">contact</span> &middot; <span class="opt">connect</span> &middot; <span class="opt">postpone</span> &middot; <span class="opt">respond</span></div>
+        <div class="word-bank"><span class="opt">reschedule</span> &middot; <span class="opt">confirm</span> &middot; <span class="opt">put someone through</span> &middot; <span class="opt">contact</span> &middot; <span class="opt">respond</span> &middot; <span class="opt">turn down</span></div>
         <ol class="item-list">
           <li><b class="n">1.</b> <span class="blank"></span> the school office if your child will be absent.</li>
           <li><b class="n">2.</b> Please <span class="blank"></span> to the email within 24 hours.</li>
           <li><b class="n">3.</b> Call the doctor's office to <span class="blank"></span> your appointment for tomorrow.</li>
-          <li><b class="n">4.</b> She was sick, so she had to <span class="blank"></span> the invitation.</li>
-          <li><b class="n">5.</b> We need to <span class="blank"></span> the meeting until next week.</li>
-          <li><b class="n">6.</b> I couldn't <span class="blank"></span> to the library Wi-Fi on my laptop.</li>
+          <li><b class="n">4.</b> She was sick, so she had to <span class="blank"></span> the party invitation.</li>
+          <li><b class="n">5.</b> I can't come on Monday. Can we <span class="blank"></span> for Wednesday?</li>
+          <li><b class="n">6.</b> &ldquo;Please hold. I will <span class="blank long"></span> to the manager.&rdquo;</li>
         </ol>
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 8 Quiz</b> in My ESOL App after 6 p.m. Due Tuesday, Nov. 10 at 6 p.m.; available afterward.</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 8, Thursday</h1>
+        <span class="date">11/5/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>tell</i> and <i>say</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">tell</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">say</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> She <s>say</s> hello <b>every morning</b>. &rarr; <i>says</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every day</b>, my manager tell us the schedule. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, the receptionist sayed, &ldquo;Please hold.&rdquo; &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, he is say goodbye to his mother. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last night</b>, I telled my wife about the call. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> She <b>has</b> tell me the good news. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> They <b>have</b> say they will call back. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Yesterday</b> + tell</p>
+        <p class="ideas">Ideas: a story &middot; the truth &middot; my family &middot; a joke</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every morning</b> + say</p>
+        <p class="ideas">Ideas: good morning &middot; hello &middot; thank you</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + tell <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: my teacher &middot; a friend &middot; my kids</p>
+        <div class="bonus-line"></div>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 8, Thursday</h1>
+        <span class="date">11/5/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; quiz practice for <i>tell</i> and <i>say</i>. No peeking at Tuesday&rsquo;s chart!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms from memory</div>
+        <p class="task-instructions">Fill in the chart <b>from memory</b>. Then check it with your reference sheet.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">tell</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">say</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Fix the mistakes</div>
+        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
+        <p class="task-example"><b>Example:</b> She <s>say</s> hello <b>every morning</b>. &rarr; <i>says</i></p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every day</b>, my manager tell us the schedule. &rarr; <span class="blank"></span></li>
+          <li><b class="n">2.</b> <b>Yesterday</b>, the receptionist sayed, &ldquo;Please hold.&rdquo; &rarr; <span class="blank"></span></li>
+          <li><b class="n">3.</b> <b>Right now</b>, he is say goodbye to his mother. &rarr; <span class="blank"></span></li>
+          <li><b class="n">4.</b> <b>Last night</b>, I telled my wife about the call. &rarr; <span class="blank"></span></li>
+          <li><b class="n">5.</b> She <b>has</b> tell me the good news. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+          <li><b class="n">6.</b> They <b>have</b> say they will call back. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Yesterday</b> + tell</p>
+        <p class="ideas">Ideas: a story &middot; the truth &middot; my family &middot; a joke</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every morning</b> + say</p>
+        <p class="ideas">Ideas: good morning &middot; hello &middot; thank you</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + tell <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: my teacher &middot; a friend &middot; my kids</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
   </div>
 </body>

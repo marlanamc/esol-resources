@@ -81,6 +81,17 @@
     font-size: 15px;
     font-style: italic;
   }
+  .blank.verb { width: 10.5em; }
+
+  /* Back side: verb-forms chart + practice (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter portrait; margin: 0; }
     body { background: #fff; }
@@ -111,14 +122,14 @@
       <p class="subtitle">Public Meetings + Suggestions &mdash; what are you good at?</p>
       <section class="task">
         <div class="task-title">1&ensp;Odd one out</div>
-        <p class="task-instructions">Three words are discussion verbs. Circle the one that does not belong.</p>
+        <p class="task-instructions">Three are meeting words. Circle the one that does not belong.</p>
         <p class="task-example"><b>Example:</b> suggest &middot; propose &middot; <b>bus</b> &middot; recommend &rarr; circle "bus"</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> <span class="odd-words">participate &middot; listen &middot; sandwich &middot; agree</span> &rarr; <span class="blank short"></span></li>
-          <li><b class="n">2.</b> <span class="odd-words">suggest &middot; propose &middot; recommend &middot; umbrella</span> &rarr; <span class="blank short"></span></li>
-          <li><b class="n">3.</b> <span class="odd-words">agree &middot; listen &middot; mountain &middot; participate</span> &rarr; <span class="blank short"></span></li>
-          <li><b class="n">4.</b> <span class="odd-words">recommend &middot; pillow &middot; suggest &middot; propose</span> &rarr; <span class="blank short"></span></li>
-          <li><b class="n">5.</b> <span class="odd-words">listen &middot; agree &middot; participate &middot; banana</span> &rarr; <span class="blank short"></span></li>
+          <li><b class="n">1.</b> <span class="odd-words">participate &middot; raise a concern &middot; sandwich &middot; propose</span> &rarr; <span class="blank short"></span></li>
+          <li><b class="n">2.</b> <span class="odd-words">suggest &middot; recommend &middot; umbrella &middot; reach an agreement</span> &rarr; <span class="blank short"></span></li>
+          <li><b class="n">3.</b> <span class="odd-words">raise a concern &middot; mountain &middot; suggest &middot; participate</span> &rarr; <span class="blank short"></span></li>
+          <li><b class="n">4.</b> <span class="odd-words">recommend &middot; pillow &middot; propose &middot; reach an agreement</span> &rarr; <span class="blank short"></span></li>
+          <li><b class="n">5.</b> <span class="odd-words">participate &middot; recommend &middot; banana &middot; raise a concern</span> &rarr; <span class="blank short"></span></li>
         </ol>
       </section>
       <section class="task">
@@ -135,6 +146,36 @@
       </section>
 
       <p class="footer-note">Finished? Try <b>Week 10 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Nov. 19; due Tuesday, Nov. 24 at 6 p.m.</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 10, Tuesday</h1>
+        <span class="date">11/17/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>meet</i> and <i>speak</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>meet</b> and <b>speak</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">meet</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">speak</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>meet</b> or <b>speak</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every month</b>, the neighborhood group <span class="blank verb"></span> at the library.&nbsp;(meet)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, a parent is <span class="blank verb"></span> at the school meeting.&nbsp;(speak)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, I <span class="blank verb"></span> my child&rsquo;s new teacher.&nbsp;(meet)</li>
+          <li><b class="n">4.</b> <b>Last night</b>, she <span class="blank verb"></span> up and raised a concern about parking.&nbsp;(speak)</li>
+          <li><b class="n">5.</b> <b>Every day</b>, my daughter <span class="blank verb"></span> English at school.&nbsp;(speak)</li>
+          <li><b class="n">6.</b> <b>Right now</b>, we are <span class="blank verb"></span> with the city planner.&nbsp;(meet)</li>
+          <li><b class="n">7.</b> I <b>have</b> <span class="blank verb"></span> to the mayor once.&nbsp;(speak) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> They <b>have</b> <span class="blank verb"></span> many new neighbors this year.&nbsp;(meet) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
     </div>
 </body>
 </html>

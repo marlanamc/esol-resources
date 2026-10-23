@@ -86,6 +86,24 @@
     font-size: 12px;
     font-style: italic;
   }
+  /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus. Same 2-up cut line as the front. */
+  .page.back { break-before: page; }
+  .page.back .copy { padding: 0.18in 0.25in; }
+  .page.back .task { margin-bottom: 8px; }
+  .page.back .item-list li { margin-bottom: 3px; }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 16px; }
+  .forms-chart th { padding: 3px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 12px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.4in; }
+  .forms-chart td.base { font-weight: bold; }
+  .prompt { margin-top: 2px; }
+  s { text-decoration-thickness: 2px; }
+  /* Ideas sit on the prompt line here; a line of their own pushes the 2-up back onto a third page. */
+  .prompt:has(+ .ideas), .ideas { display: inline; }
+  .ideas { font-size: 12px; font-style: italic; margin-left: 8px; }
+  .blank.verb { width: 8.5em; }
+  .page.back .blank.verb { width: 6.5em; }
   @media print {
     @page { size: letter landscape; margin: 0; }
     body { background: #fff; }
@@ -124,15 +142,15 @@
           <li><b class="n">2.</b> She has worked at the clinic <span class="blank short"></span> last spring.</li>
           <li><b class="n">3.</b> We have known our neighbors <span class="blank short"></span> we moved here.</li>
           <li><b class="n">4.</b> He has had his job <span class="blank short"></span> six months.</li>
-          <li><b class="n">5.</b> I have saved money <span class="blank short"></span> January.</li>
+          <li><b class="n">5.</b> I have set aside money <span class="blank short"></span> January.</li>
         </ol>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Would you rather?</div>
         <p class="task-instructions">Circle your answer. Then write one reason why.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> Would you rather <b>save</b> money slowly or <b>spend</b> it on something fun today?<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> Would you rather <b>budget</b> every week or check your spending once a month?<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> Would you rather <b>comparison shop</b> at three stores or buy at the first store and save time?<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> Would you rather <b>keep track of</b> your spending in a notebook or on your phone?<span class="answer-line"></span></li>
           <li><b class="n">3.</b> Before Thanksgiving break, would you rather have more homework or more rest?<span class="answer-line"></span></li>
         </ol>
       </section>
@@ -154,20 +172,104 @@
           <li><b class="n">2.</b> She has worked at the clinic <span class="blank short"></span> last spring.</li>
           <li><b class="n">3.</b> We have known our neighbors <span class="blank short"></span> we moved here.</li>
           <li><b class="n">4.</b> He has had his job <span class="blank short"></span> six months.</li>
-          <li><b class="n">5.</b> I have saved money <span class="blank short"></span> January.</li>
+          <li><b class="n">5.</b> I have set aside money <span class="blank short"></span> January.</li>
         </ol>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Would you rather?</div>
         <p class="task-instructions">Circle your answer. Then write one reason why.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> Would you rather <b>save</b> money slowly or <b>spend</b> it on something fun today?<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> Would you rather <b>budget</b> every week or check your spending once a month?<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> Would you rather <b>comparison shop</b> at three stores or buy at the first store and save time?<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> Would you rather <b>keep track of</b> your spending in a notebook or on your phone?<span class="answer-line"></span></li>
           <li><b class="n">3.</b> Before Thanksgiving break, would you rather have more homework or more rest?<span class="answer-line"></span></li>
         </ol>
       </section>
 
       <p class="footer-note">Short week! Week 11 Quiz opens Tuesday, Dec. 1 (no class Thursday for Thanksgiving); due Tuesday, Dec. 8 at 6 p.m. Happy Thanksgiving!</p>
+    </div>
+  </div>
+  <div class="page back">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 11, Tuesday</h1>
+        <span class="date">11/24/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>cost</i> and <i>spend</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>cost</b> and <b>spend</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">cost</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">spend</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>cost</b> or <b>spend</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every month</b>, my phone bill <span class="blank verb"></span> $45.&nbsp;(cost)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> too much on takeout.&nbsp;(spend)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, the groceries <span class="blank verb"></span> $86.&nbsp;(cost)</li>
+          <li><b class="n">4.</b> <b>Last weekend</b>, we <span class="blank verb"></span> $30 at the farmers market.&nbsp;(spend)</li>
+          <li><b class="n">5.</b> We <b>have</b> <span class="blank verb"></span> $200 on school supplies since August.&nbsp;(spend) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">6.</b> This old car <b>has</b> <span class="blank verb"></span> me $1,000 in repairs.&nbsp;(cost) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last week</b> + spend</p>
+        <p class="ideas">Ideas: money on food &middot; $20 on gas &middot; time at home</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every month</b> + cost</p>
+        <p class="ideas">Ideas: my rent &middot; my phone bill &middot; a bus pass</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + spend <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: two years here &middot; a lot on rent</p>
+        <div class="bonus-line"></div>
+      </section>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 11, Tuesday</h1>
+        <span class="date">11/24/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; <i>cost</i> and <i>spend</i> are on this week&rsquo;s quiz! Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>cost</b> and <b>spend</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">cost</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">spend</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>cost</b> or <b>spend</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every month</b>, my phone bill <span class="blank verb"></span> $45.&nbsp;(cost)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> too much on takeout.&nbsp;(spend)</li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, the groceries <span class="blank verb"></span> $86.&nbsp;(cost)</li>
+          <li><b class="n">4.</b> <b>Last weekend</b>, we <span class="blank verb"></span> $30 at the farmers market.&nbsp;(spend)</li>
+          <li><b class="n">5.</b> We <b>have</b> <span class="blank verb"></span> $200 on school supplies since August.&nbsp;(spend) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">6.</b> This old car <b>has</b> <span class="blank verb"></span> me $1,000 in repairs.&nbsp;(cost) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Bonus: Your turn</div>
+        <p class="task-instructions">Write a true sentence about <b>you</b>. Use the clue and the verb.</p>
+        <p class="prompt"><b>Last week</b> + spend</p>
+        <p class="ideas">Ideas: money on food &middot; $20 on gas &middot; time at home</p>
+        <div class="bonus-line"></div>
+        <p class="prompt"><b>Every month</b> + cost</p>
+        <p class="ideas">Ideas: my rent &middot; my phone bill &middot; a bus pass</p>
+        <div class="bonus-line"></div>
+        <p class="prompt">I <b>have</b> + spend <span style="white-space: nowrap;">(Present Perfect Tense)</span></p>
+        <p class="ideas">Ideas: two years here &middot; a lot on rent</p>
+        <div class="bonus-line"></div>
+      </section>
     </div>
   </div>
 </body>
