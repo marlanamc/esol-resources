@@ -533,27 +533,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "\"She don't work on Sundays.\" What is wrong with this sentence?",
+        "prompt": "A coworker asks Rosa about her coffee habit at work. Which answer is correct?",
         "options": [
-          "Nothing is wrong.",
-          "Should be 'doesn't' because 'she' is third person singular.",
-          "Should be 'didn't' because it happened in the past."
+          "I drink always coffee at work.",
+          "I always drink coffee at work.",
+          "Always I drink coffee at work."
         ],
         "answers": [
-          "Should be 'doesn't' because 'she' is third person singular."
+          "I always drink coffee at work."
         ],
-        "explanation": "With he/she/it in present simple negatives, use doesn't, not don't.",
-        "source": "your-week-in-english/your-week-q3"
+        "explanation": "Adverbs of frequency go before the main verb: I always drink.",
+        "source": "your-week-in-english/your-week-q1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fatima gives a new classmate directions to the classroom. Put the words in order. Words: Take / the / stairs / and / turn / left",
-        "answers": [
-          "Take the stairs and turn left"
+        "prompt": "Rosa checks the bus app on some days, but not on most days. Which word fits?",
+        "options": [
+          "usually",
+          "never",
+          "sometimes"
         ],
-        "explanation": "Imperatives start with the base verb: Take..., turn...",
-        "source": "your-week-in-english/your-week-qws1"
+        "answers": [
+          "sometimes"
+        ],
+        "explanation": "Sometimes means on some days, not most days. Usually means most of the time. Never means not at all.",
+        "source": "your-week-in-english/your-week-q9"
       }
     ]
   },

@@ -74,7 +74,13 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     usedInWeek.set(week.number, used);
     for (let i = 0; i < 2; i++) {
       let slug = weekSlug;
-      let q = pool[((n - 2) * 2 + i) % pool.length];
+      // Week 6's guide opens with adverbs of frequency. The default index
+      // lands on present simple and imperatives, so use the frequency items.
+      const frequencyIds = ['your-week-q1', 'your-week-q9'];
+      let q = n === 3
+        ? pool.find(item => item.id === frequencyIds[i])
+        : pool[((n - 2) * 2 + i) % pool.length];
+      if (!q) throw new Error(`Missing grammar question for quiz ${n}`);
       if (used.has(`${slug}/${q.id}`)) {
         // Several quizzes in one week (the W36 bonus quizzes) can run out of the
         // guide's mini-quiz. Borrow an unused question from the previous week's
