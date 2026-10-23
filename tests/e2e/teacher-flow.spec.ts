@@ -44,9 +44,16 @@ test.describe("Teaching workspace", () => {
         const more = page.getByRole("button", { name: "More navigation" });
         await more.click();
         await expect(page.getByRole("dialog")).toBeVisible();
-        await expect(
-            page.getByRole("dialog").getByRole("link", { name: "Calendar" }),
-        ).toBeVisible();
+        for (const name of ["Course Map", "Grammar", "Activities", "Calendar", "Classes"]) {
+            const link = page.getByRole("dialog").getByRole("link", { name, exact: true });
+            await expect(link).toBeVisible();
+            // The phone menu must preserve the same class scope as the desktop sidebar.
+            await expect(link).toHaveAttribute(
+                "href",
+                await page.getByRole("navigation", { name: "Workspace navigation", exact: true, includeHidden: true })
+                    .getByRole("link", { name, exact: true, includeHidden: true }).getAttribute("href") as string,
+            );
+        }
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog")).not.toBeVisible();
         await expect(more).toBeFocused();

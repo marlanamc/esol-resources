@@ -1,5 +1,6 @@
 'use client';
 
+import { logger } from "@/lib/shared/logger";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -223,7 +224,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
 
     if (process.env.NODE_ENV === 'development' && previousPathname && previousPathname !== pathname) {
       const durationText = navDurationMs !== null ? ` in ${navDurationMs}ms` : '';
-      console.debug(`[BottomNav] route changed: ${previousPathname} -> ${pathname}${durationText}`);
+      logger.debug(`[BottomNav] route changed: ${previousPathname} -> ${pathname}${durationText}`);
     }
 
     navTapAtRef.current = null;

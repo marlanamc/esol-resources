@@ -23,12 +23,12 @@ function resolveBadgeLabel(assignment: FeaturedAssignment): string {
     return resolveFormatType(assignment) === "game" ? "New game" : "New";
 }
 
-/** Size the grid to the item count so a short list never leaves one card alone on a row. */
+/** Leave enough room for activity titles before adding columns on wider screens. */
 function gridColumnsClass(count: number): string {
     if (count === 1) return "grid-cols-1";
-    if (count === 2) return "grid-cols-2";
-    if (count === 3) return "grid-cols-3";
-    return "grid-cols-2 2xl:grid-cols-4";
+    if (count === 2) return "grid-cols-1 sm:grid-cols-2";
+    if (count === 3) return "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3";
+    return "grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4";
 }
 
 function resolveDisplayTitle(assignment: FeaturedAssignment): string {

@@ -72,7 +72,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const isComparisonBattleGame = gameUi === "comparison-battle";
     const standardPageClassName = "min-h-dvh bg-bg";
     const standardHeaderClassName = "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
-    const standardTitleClassName = "text-gray-900 dark:text-white";
+    const standardTitleClassName = "text-text";
     const standardContentCardClassName = isVerbQuiz
         ? "p-0 bg-transparent shadow-none border-0"
         : isComparisonBattleGame || isWeeklyQuiz
@@ -177,7 +177,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     </div>
 
                     {/* Desktop Layout: Horizontal */}
-                    <div className="hidden sm:flex items-center justify-between">
+                    <div className="hidden sm:flex items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-4 mb-1">
                                 <LearnerMenu mode="quiet" />
@@ -231,12 +231,12 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             </div>
                             <h1 className={`text-base font-bold line-clamp-2 leading-snug ${standardTitleClassName}`}>{activity.title}</h1>
                         </div>
-                        <div className="hidden sm:flex items-center justify-between">
-                            <div className="flex items-center gap-3">
+                        <div className="hidden sm:flex items-center justify-between gap-4">
+                            <div className="flex shrink-0 items-center gap-3">
                                 <LearnerMenu mode="quiet" />
                                 <ContextualBackButton aria-label="Return to previous page" />
                             </div>
-                            <h1 className={`absolute left-1/2 -translate-x-1/2 text-2xl font-bold ${standardTitleClassName}`}>{activity.title}</h1>
+                            <h1 className={`min-w-0 flex-1 break-words text-center text-2xl font-bold ${standardTitleClassName}`}>{activity.title}</h1>
                             {shouldShowHeaderProgressBadge && (
                                 <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                             )}
@@ -278,14 +278,14 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     </div>
 
                     {/* Desktop Layout: Horizontal */}
-                    <div className="hidden sm:flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                    <div className="hidden sm:flex items-center justify-between gap-4">
+                        <div className="flex shrink-0 items-center gap-3">
                             <LearnerMenu mode="quiet" />
                             <ContextualBackButton aria-label="Return to previous page" />
                         </div>
 
-                        {/* Centered Title */}
-                        <h1 className={`absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold ${standardTitleClassName}`}>
+                        {/* Keep long titles in flow so the header grows with them. */}
+                        <h1 className={`min-w-0 flex-1 break-words text-center text-2xl font-bold ${standardTitleClassName}`}>
                             {activity.title}
                         </h1>
 
@@ -374,7 +374,7 @@ function renderImmersiveActivity(
         <div className="min-h-dvh bg-bg flex flex-col">
             {overlays}
             {shouldRenderImmersiveHeader && (
-                <header className="border-b border-white/10 bg-bg/95 backdrop-blur-md shadow-sm flex-shrink-0">
+                <header className={`border-b border-white/10 bg-bg/95 backdrop-blur-md shadow-sm flex-shrink-0 ${activity.type === "vocabulary" ? "hidden md:block" : ""}`}>
                     <div className="relative px-4 py-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col gap-2 sm:hidden">
                             <div className="flex items-center justify-between gap-2">
@@ -394,14 +394,14 @@ function renderImmersiveActivity(
                             </h1>
                         </div>
 
-                        <div className="hidden sm:flex items-center justify-between">
-                            <div className="flex items-center gap-3">
+                        <div className="hidden sm:flex items-center justify-between gap-4">
+                            <div className="flex shrink-0 items-center gap-3">
                                 <LearnerMenu mode="quiet" />
                                 <ContextualBackButton aria-label="Return to previous page" />
                             </div>
 
                             <h1
-                                className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold"
+                                className="min-w-0 flex-1 break-words text-center text-2xl font-bold"
                                 style={{ color: "var(--text-color)" }}
                             >
                                 {headerTitle}

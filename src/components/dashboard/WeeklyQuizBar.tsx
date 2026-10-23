@@ -3,25 +3,25 @@ import { Check, ClipboardCheck, Clock } from "lucide-react";
 import { ShowUntilNextAppOpen } from "./ShowUntilNextAppOpen";
 import { calendarDaysUntil, formatQuizDay, formatQuizTime, type WeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
 
-// Open and late bars use a dark gradient with white text so the one required
-// task stands apart from the pale cards below it; done goes back to a soft green.
+// Open and late bars stand apart with a dark gradient; done uses soft green.
+// Use literal cream for contrast: the shared white token becomes navy in dark mode.
 const tones = {
     open: {
         box: "border-transparent bg-gradient-to-r from-violet-700 via-purple-700 to-fuchsia-700 shadow-lg shadow-violet-700/25 dark:from-violet-600 dark:via-purple-700 dark:to-fuchsia-700",
-        icon: "bg-white/20 ring-1 ring-white/40",
+        icon: "bg-[#fffdfa]/20 ring-1 ring-[#fffdfa]/40",
         label: "text-violet-100",
-        title: "text-white",
-        detail: "text-white/90",
-        button: "bg-white text-violet-800",
+        title: "text-[#fffdfa]",
+        detail: "text-[#fffdfa]/90",
+        button: "bg-[#fffdfa] text-violet-800",
         ring: "focus-visible:ring-violet-700",
     },
     late: {
         box: "border-transparent bg-gradient-to-r from-red-800 via-red-700 to-orange-700 shadow-lg shadow-red-800/25",
-        icon: "bg-white/20 ring-1 ring-white/40",
+        icon: "bg-[#fffdfa]/20 ring-1 ring-[#fffdfa]/40",
         label: "text-red-100",
-        title: "text-white",
-        detail: "text-white/90",
-        button: "bg-white text-red-800",
+        title: "text-[#fffdfa]",
+        detail: "text-[#fffdfa]/90",
+        button: "bg-[#fffdfa] text-red-800",
         ring: "focus-visible:ring-red-800",
     },
     done: {
@@ -59,7 +59,7 @@ export function WeeklyQuizBar({ status, now = new Date() }: { status: WeeklyQuiz
 
     const body = (
         <>
-            <span className={`flex h-11 w-11 shrink-0 items-center justify-center text-white ${status.state === "done" ? "rounded-full" : "rounded-2xl"} ${tone.icon}`}>
+            <span className={`flex h-11 w-11 shrink-0 items-center justify-center text-[#fffdfa] ${status.state === "done" ? "rounded-full" : "rounded-2xl"} ${tone.icon}`}>
                 <Icon size={22} strokeWidth={status.state === "done" ? 2.8 : 2.2} aria-hidden />
             </span>
             <span className="flex min-w-0 flex-1 flex-col gap-0.5">

@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { CACHE_CDN_HOUR, jsonWithCacheControl } from "@/lib/api/cache-control";
 import { getVapidPublicKey } from "@/lib/push";
 

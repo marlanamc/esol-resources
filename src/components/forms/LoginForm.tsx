@@ -1,5 +1,7 @@
 "use client";
 
+import { PasswordVisibilityButton } from "@/components/forms/PasswordVisibilityButton";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,10 +31,12 @@ export default function LoginForm() {
     } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
     const onSubmit = async (values: FormValues) => {
+        let loginTimeout: ReturnType<typeof setTimeout> | undefined;
+        let cacheTimeout: ReturnType<typeof setTimeout> | undefined;
         try {
-            const timeoutPromise: Promise<SignInResponse | undefined> = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error("Login timeout")), 10000)
-            );
+            const timeoutPromise: Promise<SignInResponse | undefined> = new Promise((_, reject) => {
+                loginTimeout = setTimeout(() => reject(new Error("Login timeout")), 10000);
+            });
 
             const signInPromise = signIn("credentials", {
                 username: values.username,
@@ -49,7 +53,9 @@ export default function LoginForm() {
             } else if (result?.ok) {
                 await Promise.race([
                     clearServiceWorkerCache(),
-                    new Promise((resolve) => setTimeout(resolve, 1200)),
+                    new Promise((resolve) => {
+                        cacheTimeout = setTimeout(resolve, 1200);
+                    }),
                 ]);
                 router.push("/dashboard");
                 router.refresh();
@@ -62,6 +68,9 @@ export default function LoginForm() {
             } else {
                 setError("root", { message: "An error occurred. Please try again." });
             }
+        } finally {
+            clearTimeout(loginTimeout);
+            clearTimeout(cacheTimeout);
         }
     };
 
@@ -76,6 +85,8 @@ export default function LoginForm() {
                         id="username"
                         type="text"
                         autoComplete="username"
+                        autoCapitalize="none"
+                        spellCheck={false}
                         aria-invalid={errors.username ? true : undefined}
                         aria-describedby={errors.username ? "username-error" : undefined}
                         {...register("username")}
@@ -99,17 +110,13 @@ export default function LoginForm() {
                             aria-describedby={errors.password ? "password-error" : undefined}
                             {...register("password")}
                             placeholder="••••••••"
-                            className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)] pr-11"
+                            className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)] pr-20"
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
-                            aria-controls="password"
-                            aria-label={showPassword ? "Hide password" : "Show password"}
-                        >
-                            {showPassword ? "Hide" : "Show"}
-                        </button>
+                        <PasswordVisibilityButton
+                            visible={showPassword}
+                            onToggle={() => setShowPassword((prev) => !prev)}
+                            controls="password"
+                        />
                     </div>
                     {errors.password && (
                         <p id="password-error" role="alert" className="mt-1.5 text-sm text-error">{errors.password.message}</p>
@@ -135,7 +142,10 @@ export default function LoginForm() {
                     <span className="relative z-20 pointer-events-none">{isSubmitting ? "Signing in…" : "Sign In"}</span>
                 </button>
                 <p className="text-xs sm:text-sm leading-5 text-[var(--color-text-muted)]">
-                    Forgot your password? Ask Marlie for help.
+                    Forgot your password?{" "}
+                    <Link href="/forgot-password" className="font-semibold underline underline-offset-4 hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
+                        Ask Marlie for help.
+                    </Link>
                 </p>
             </div>
         </form>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -39,16 +39,17 @@ export default function CreateAssignmentForm({
     const {
         register,
         handleSubmit,
-        watch,
+        control,
+        getValues,
         setValue,
         setError,
         formState: { errors, isSubmitting },
-    } = useForm<FormValues>({
+    } = useForm<z.input<typeof schema>, unknown, FormValues>({
         resolver: zodResolver(schema),
         defaultValues: { syncToSectionGroup: true },
     });
 
-    const activityId = watch("activityId");
+    const activityId = useWatch({ control, name: "activityId" });
     const selectedActivity = activities.find((a) => a.id === activityId);
 
     const onSubmit = async (values: FormValues) => {
@@ -89,7 +90,7 @@ export default function CreateAssignmentForm({
                             {...register("activityId", {
                                 onChange: (e) => {
                                     const activity = activities.find((a) => a.id === e.target.value);
-                                    if (activity && !watch("title")) {
+                                    if (activity && !getValues("title")) {
                                         setValue("title", activity.title);
                                     }
                                 },

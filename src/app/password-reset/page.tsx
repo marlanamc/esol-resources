@@ -1,5 +1,6 @@
 "use client";
 
+import { PasswordVisibilityButton } from "@/components/forms/PasswordVisibilityButton";
 import { useState, useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -118,18 +119,15 @@ function PasswordResetContent() {
                                         autoComplete="new-password"
                                         aria-invalid={error ? true : undefined}
                                         aria-describedby={error ? "new-password-hint password-reset-error" : "new-password-hint"}
-                                        className={`${inputClasses} pr-11`}
+                                        className={`${inputClasses} pr-20`}
                                         required
                                     />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-                                        aria-controls="new-password confirm-password"
-                                        aria-label={showPassword ? "Hide passwords" : "Show passwords"}
-                                    >
-                                        {showPassword ? "Hide" : "Show"}
-                                    </button>
+                                    <PasswordVisibilityButton
+                                        visible={showPassword}
+                                        onToggle={() => setShowPassword((prev) => !prev)}
+                                        controls="new-password confirm-password"
+                                        plural
+                                    />
                                 </div>
                                 <p id="new-password-hint" className="mt-1.5 text-sm text-[var(--color-text-muted)]">
                                     At least 8 characters
@@ -170,7 +168,7 @@ function PasswordResetContent() {
                                 disabled={isSubmitting}
                                 className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${isSubmitting ? "bg-[var(--color-text-muted)] cursor-not-allowed" : "bg-primary hover:bg-primary-dark cursor-pointer"}`}
                             >
-                                {isSubmitting ? 'Updating...' : 'Update Password'}
+                                {isSubmitting ? 'Updating…' : 'Update Password'}
                             </button>
                         </div>
                     </form>
@@ -195,7 +193,7 @@ function PasswordResetContent() {
                             disabled={isReturningToLogin}
                             className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${isReturningToLogin ? "bg-[var(--color-text-muted)] cursor-not-allowed" : "bg-[var(--color-text)] hover:opacity-90 cursor-pointer"}`}
                         >
-                            {isReturningToLogin ? "Returning..." : "Back to Sign In"}
+                            {isReturningToLogin ? "Returning…" : "Back to Sign In"}
                         </button>
                         <p lang="es" className="text-sm text-center leading-5 text-[var(--color-text-muted)]">
                             Español: Vuelve a entrar con tu clave nueva.

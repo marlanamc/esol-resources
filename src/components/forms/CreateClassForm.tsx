@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -30,11 +30,11 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
     const {
         register,
         handleSubmit,
-        watch,
+        control,
         setValue,
         setError,
         formState: { errors, isSubmitting },
-    } = useForm<FormValues>({
+    } = useForm<z.input<typeof schema>, unknown, FormValues>({
         resolver: zodResolver(schema),
         defaultValues: {
             name: "",
@@ -45,7 +45,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
         },
     });
 
-    const sourceClassId = watch("sourceClassId");
+    const sourceClassId = useWatch({ control, name: "sourceClassId" });
 
     const generateCode = () => {
         const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";

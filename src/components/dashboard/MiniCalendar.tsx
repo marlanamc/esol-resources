@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { useTheme } from '@/components/layout/ThemeProvider';
 import { getLearnerEventTone } from '@/lib/learner/theme';
 import { getClassDayInfo } from '@/lib/class-days';
 
@@ -87,7 +86,6 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
     viewDate: viewDateProp,
     onViewDateChange,
 }) => {
-    const { resolvedTheme } = useTheme();
     const isControlled = viewDateProp !== undefined;
     // Calculate today fresh on every render to avoid caching issues
     const today = new Date();
@@ -165,9 +163,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                     className={
                         compact
                             ? "font-display text-sm font-bold text-text tracking-tight"
-                            : `text-[1.45rem] font-display font-bold tracking-tight ${
-                                  resolvedTheme === "dark" ? "text-white" : "text-[#1f2633]"
-                              }`
+                            : "text-[1.45rem] font-display font-bold tracking-tight text-text"
                     }
                     style={{ textWrap: "balance" }}
                 >
@@ -184,7 +180,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                         style={{
                             borderColor: 'color-mix(in srgb, var(--dashboard-divider) 82%, transparent)',
                             background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
-                            color: resolvedTheme === 'dark' ? 'rgba(226, 232, 240, 0.76)' : 'var(--text-color-muted)',
+                            color: 'var(--text-color-muted)',
                         }}
                     >
                         <span aria-hidden="true">←</span>
@@ -199,7 +195,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                         style={{
                             borderColor: 'color-mix(in srgb, var(--dashboard-divider) 82%, transparent)',
                             background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
-                            color: resolvedTheme === 'dark' ? 'rgba(226, 232, 240, 0.76)' : 'var(--text-color-muted)',
+                            color: 'var(--text-color-muted)',
                         }}
                     >
                         <span aria-hidden="true">→</span>
@@ -231,7 +227,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                         <div key={`${day}-${idx}`} className={`font-semibold uppercase ${
                             compact
                                 ? "text-[0.5625rem] tracking-wide text-text-muted"
-                                : `text-[0.625rem] tracking-[0.16em] ${resolvedTheme === "dark" ? "text-gray-500" : "text-text-muted/80"}`
+                                : "text-[0.625rem] tracking-[0.16em] text-text-muted/80"
                         }`}>
                             {day}
                         </div>

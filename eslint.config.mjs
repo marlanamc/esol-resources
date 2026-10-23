@@ -7,7 +7,7 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     rules: {
-      // Flag console.log/debug left in app code; warn rather than error to allow gradual cleanup
+      // Application diagnostics go through the shared logger.
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "@typescript-eslint/no-explicit-any": "warn",
       // Honor the `_`-prefix convention for intentionally-unused vars/args/catch bindings.
@@ -23,6 +23,25 @@ const eslintConfig = defineConfig([
       // The react-hooks compiler rules are currently too strict for this codebase.
       "react-hooks/set-state-in-effect": "off",
       "react-hooks/preserve-manual-memoization": "off",
+    },
+  },
+  {
+    // CLI tools intentionally report progress to the operator. Keep all other
+    // rules active, including unused variables and explicit-any checks.
+    files: [
+      "prisma/*.ts",
+      "tests/auth/student-isolation.test.ts",
+      "tests/vocab/test-fsrs-algorithm.ts",
+    ],
+    rules: {
+      "no-console": ["warn", { allow: ["log", "warn", "error"] }],
+    },
+  },
+  {
+    // The logging adapter is the single application console sink.
+    files: ["src/lib/shared/logger.ts"],
+    rules: {
+      "no-console": ["warn", { allow: ["debug", "log", "warn", "error"] }],
     },
   },
   // Override default ignores of eslint-config-next.
@@ -45,6 +64,9 @@ const eslintConfig = defineConfig([
     "public/assets/**",
     "_legacy/**",
     "archive/**",
+    // Gitignored local recovery snapshots and one-off working files.
+    "audit/**",
+    "tmp/**",
     "docs/**",
     // Claude Design handoff prototypes (HTML/JS references, not app code).
     "design_handoff_*/**",

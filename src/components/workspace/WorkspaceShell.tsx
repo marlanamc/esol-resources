@@ -33,6 +33,15 @@ const primary = [
     { href: "/teach/reports", label: "Progress", Icon: ChartNoAxesCombined },
     { href: "/teach/classes", label: "Classes", Icon: Users },
 ];
+const mobilePrimaryHrefs = new Set([
+    "/teach",
+    "/teach/roster",
+    "/teach/gradebook",
+    "/teach/reports",
+]);
+const mobilePrimary = primary.filter((item) => mobilePrimaryHrefs.has(item.href));
+const mobileSecondary = primary.filter((item) => !mobilePrimaryHrefs.has(item.href));
+
 const administration = [
     { href: "/admin/users", label: "Accounts", Icon: Users },
     { href: "/admin/content", label: "Content", Icon: Library },
@@ -217,7 +226,7 @@ export function WorkspaceShell({
                 aria-label="Mobile workspace navigation"
                 className="workspace-bottom-nav"
             >
-                {[primary[0], primary[1], primary[2], primary[7]].map(
+                {mobilePrimary.map(
                     (item) => (
                         <Link
                             key={item.href}
@@ -227,11 +236,7 @@ export function WorkspaceShell({
                             }
                         >
                             <item.Icon size={20} aria-hidden="true" />
-                            <span>
-                                {item.label === "Course Map"
-                                    ? "Map"
-                                    : item.label}
-                            </span>
+                            <span>{item.label}</span>
                         </Link>
                     ),
                 )}
@@ -273,7 +278,7 @@ export function WorkspaceShell({
                     aria-label="More workspace navigation"
                     className="space-y-1"
                 >
-                    {[primary[3], primary[4], primary[6]].map(navLink)}
+                    {mobileSecondary.map(navLink)}
                     {admin && (
                         <>
                             <p className="workspace-eyebrow px-3 pt-5 pb-2">

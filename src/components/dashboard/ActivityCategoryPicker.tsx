@@ -176,65 +176,63 @@ export function ActivityCategoryPicker({
         return (
             <div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
-                    {visibleCards.map((card) => (
-                        (() => {
-                            const tone = getLearnerCategoryTone(card.key);
-                            return (
-                        <button
-                            key={card.key}
-                            onClick={() => {
-                                setSelectedCategory(card.key);
-                                updateCategoryQuery(card.key);
-                            }}
-                            className="group flex flex-col rounded-2xl overflow-hidden border surface-card-shadow transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
-                            style={{
-                                borderColor: tone.border,
-                                background: `linear-gradient(180deg, ${tone.surfaceMuted} 0%, var(--surface-elevated) 42%, var(--surface-elevated) 100%)`,
-                            }}
-                        >
-                            {/* Category-tinted icon area */}
-                            <div
-                                className="flex items-center justify-center py-6 sm:py-7 transition-transform duration-300 relative border-b"
+                    {visibleCards.map((card) => {
+                        const tone = getLearnerCategoryTone(card.key);
+                        return (
+                            <button
+                                key={card.key}
+                                onClick={() => {
+                                    setSelectedCategory(card.key);
+                                    updateCategoryQuery(card.key);
+                                }}
+                                className="group flex flex-col rounded-2xl overflow-hidden border surface-card-shadow transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 active:scale-[0.97] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                                 style={{
-                                    background: `linear-gradient(180deg, ${tone.surface} 0%, ${tone.surfaceMuted} 100%)`,
                                     borderColor: tone.border,
-                                    borderTop: `4px solid ${tone.accent}`,
+                                    background: `linear-gradient(180deg, ${tone.surfaceMuted} 0%, var(--surface-elevated) 42%, var(--surface-elevated) 100%)`,
                                 }}
                             >
+                                {/* Category-tinted icon area */}
                                 <div
-                                    className="absolute inset-x-8 top-4 h-16 rounded-full blur-2xl opacity-80"
-                                    style={{ backgroundColor: tone.surface }}
-                                    aria-hidden="true"
-                                />
-                                <span
-                                    className="select-none group-hover:scale-105 transition-transform duration-300 relative z-10 rounded-xl p-3"
+                                    className="flex items-center justify-center py-6 sm:py-7 transition-transform duration-300 relative border-b"
                                     style={{
-                                        color: tone.accent,
-                                        backgroundColor: tone.chipBg,
-                                        boxShadow: `inset 0 0 0 1px ${tone.border}, 0 8px 20px rgba(13,22,32,0.18)`,
+                                        background: `linear-gradient(180deg, ${tone.surface} 0%, ${tone.surfaceMuted} 100%)`,
+                                        borderColor: tone.border,
+                                        borderTop: `4px solid ${tone.accent}`,
                                     }}
                                 >
-                                    {card.icon}
-                                </span>
-                            </div>
+                                    <div
+                                        className="absolute inset-x-8 top-4 h-16 rounded-full blur-2xl opacity-80"
+                                        style={{ backgroundColor: tone.surface }}
+                                        aria-hidden="true"
+                                    />
+                                    <span
+                                        className="select-none group-hover:scale-105 transition-transform duration-300 relative z-10 rounded-xl p-3"
+                                        style={{
+                                            color: tone.accent,
+                                            backgroundColor: tone.chipBg,
+                                            boxShadow: `inset 0 0 0 1px ${tone.border}, 0 8px 20px rgba(13,22,32,0.18)`,
+                                        }}
+                                    >
+                                        {card.icon}
+                                    </span>
+                                </div>
 
-                            <div className="flex flex-col items-center gap-1 py-3 sm:py-3.5 px-2">
-                                <div
-                                    className="mb-1 h-px w-[78%]"
-                                    style={{ background: `linear-gradient(90deg, transparent 0%, ${tone.accentStrong} 18%, ${tone.accentStrong} 82%, transparent 100%)` }}
-                                    aria-hidden="true"
-                                />
-                                <span className="text-base sm:text-lg font-bold font-display" style={{ color: tone.accentStrong, textShadow: '0 1px 0 rgba(0,0,0,0.12)' }}>
-                                    {card.name}
-                                </span>
-                                <span className="text-[0.6875rem] sm:text-xs font-medium tracking-wide" style={{ color: 'var(--text-color-muted)' }}>
-                                    {card.subtitle}
-                                </span>
-                            </div>
-                        </button>
-                            );
-                        })()
-                    ))}
+                                <div className="flex flex-col items-center gap-1 py-3 sm:py-3.5 px-2">
+                                    <div
+                                        className="mb-1 h-px w-[78%]"
+                                        style={{ background: `linear-gradient(90deg, transparent 0%, ${tone.accentStrong} 18%, ${tone.accentStrong} 82%, transparent 100%)` }}
+                                        aria-hidden="true"
+                                    />
+                                    <span className="text-base sm:text-lg font-bold font-display" style={{ color: tone.accentStrong, textShadow: '0 1px 0 rgba(0,0,0,0.12)' }}>
+                                        {card.name}
+                                    </span>
+                                    <span className="text-[0.6875rem] sm:text-xs font-medium tracking-wide" style={{ color: 'var(--text-color-muted)' }}>
+                                        {card.subtitle}
+                                    </span>
+                                </div>
+                            </button>
+                        );
+                    })}
                 </div>
             </div>
         );

@@ -37,7 +37,7 @@ import { buildTeachingWeeks } from "@/lib/course-map-schedule";
 import { readWeeklyQuizScore, type WeeklyQuizScore } from "@/lib/weekly-quiz";
 
 export const metadata = {
-    title: "Course Map | My ESOL Class",
+    title: "Course Map",
     description: "Your guided learning path through the course.",
 };
 

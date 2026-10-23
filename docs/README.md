@@ -7,6 +7,8 @@ Quick map of project docs. Generated audit reports live in [`audits/`](audits/) 
 | Doc | Purpose |
 |-----|---------|
 | [`../README.md`](../README.md) | App overview, setup, health gate |
+| [`CODEBASE_TOUR.md`](CODEBASE_TOUR.md) | Engineer onboarding and suggested review paths |
+| [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Change conventions, validation, and release discipline |
 | [`../CLAUDE.md`](../CLAUDE.md) | Agent/dev reference (commands, architecture, env) |
 | [`planning/scalability-roadmap.md`](planning/scalability-roadmap.md) | Post-review refactor & performance backlog |
 | [`MAINTENANCE_DASHBOARD.md`](MAINTENANCE_DASHBOARD.md) | Health gate, debt buckets, weekly/monthly cadence |

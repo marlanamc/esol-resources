@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth/auth";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { WorkspaceLayout } from "@/components/workspace/WorkspaceLayout";
-export const metadata = { title: "Teaching workspace | My ESOL Class" };
+export const metadata = { title: "Teaching workspace" };
 export default async function Layout({ children }: { children: ReactNode }) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");

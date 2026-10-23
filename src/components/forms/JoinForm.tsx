@@ -1,5 +1,6 @@
 "use client";
 
+import { PasswordVisibilityButton } from "@/components/forms/PasswordVisibilityButton";
 import { signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -164,7 +165,7 @@ export function JoinForm() {
                     />
                     <div id="inviteCode-status" role="status" aria-live="polite">
                         {isValidatingCode && (
-                            <p className="mt-2 text-sm text-[var(--color-text-muted)]">Checking code...</p>
+                            <p className="mt-2 text-sm text-[var(--color-text-muted)]">Checking code…</p>
                         )}
                         {inviteValidation?.valid && (
                             <p className="mt-2 text-sm text-secondary-dark font-medium">
@@ -196,6 +197,8 @@ export function JoinForm() {
                         className={inputClassName(!!errors.username)}
                         maxLength={30}
                         autoComplete="username"
+                        autoCapitalize="none"
+                        spellCheck={false}
                         aria-invalid={errors.username ? true : undefined}
                         aria-describedby="username-msg"
                     />
@@ -220,6 +223,8 @@ export function JoinForm() {
                         placeholder="you@example.com"
                         className={inputClassName(!!errors.email)}
                         autoComplete="email"
+                        autoCapitalize="none"
+                        spellCheck={false}
                         aria-invalid={errors.email ? true : undefined}
                         aria-describedby="email-msg"
                     />
@@ -241,20 +246,17 @@ export function JoinForm() {
                             type={showPassword ? "text" : "password"}
                             {...register("password")}
                             placeholder="••••••••"
-                            className={`${inputClassName(!!errors.password)} pr-11`}
+                            className={`${inputClassName(!!errors.password)} pr-20`}
                             autoComplete="new-password"
                             aria-invalid={errors.password ? true : undefined}
                             aria-describedby="password-msg"
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
-                            aria-controls="password confirmPassword"
-                            aria-label={showPassword ? "Hide passwords" : "Show passwords"}
-                        >
-                            {showPassword ? "Hide" : "Show"}
-                        </button>
+                        <PasswordVisibilityButton
+                            visible={showPassword}
+                            onToggle={() => setShowPassword((prev) => !prev)}
+                            controls="password confirmPassword"
+                            plural
+                        />
                     </div>
                     {errors.password ? (
                         <p id="password-msg" role="alert" className="mt-1.5 text-sm text-error">{errors.password.message}</p>

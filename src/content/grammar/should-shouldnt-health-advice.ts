@@ -13,9 +13,6 @@ const sceneCard = (
 ): string => {
   const scene = img[sceneId];
   if (!scene) return "";
-  const credit = scene.credit.url
-    ? `<a href="${scene.credit.url}" rel="noopener" target="_blank">${scene.credit.name}</a>`
-    : scene.credit.name;
   return `
     <div class="gc-bg-white" style="margin: 0 0 1.5rem 0; padding: 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.06)">
       <div style="padding: 0.55rem 0.9rem; font-size: 0.82rem; background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; gap: 0.5rem; align-items: center; flex-wrap: wrap">

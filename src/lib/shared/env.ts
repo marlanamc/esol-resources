@@ -1,3 +1,5 @@
+import { logger } from "./logger";
+
 /**
  * Environment variable validation
  * Validates all required environment variables at startup
@@ -138,7 +140,7 @@ export function validateEnv(): void {
 
   // Success message in development
   if (process.env.NODE_ENV !== 'production') {
-    console.log('✅ Environment variables validated successfully\n');
+    logger.info('Environment variables validated successfully');
   }
 }
 

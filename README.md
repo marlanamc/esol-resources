@@ -1,283 +1,123 @@
-# My ESOL App - ESOL Learning Hub
+# Class Companion
 
-An interactive classroom companion for ESOL (English for Speakers of Other Languages) teachers and students. Features gamification, progress tracking, and a warm educational design system.
+A classroom companion for adult ESOL (English for Speakers of Other Languages) learners and their teachers. The app brings grammar guides, vocabulary practice, classroom games, assignments, and progress tracking into one mobile-friendly learning space.
 
-## Features
+Meaningful effort earns recognition: students receive points for practice and participation, with additional rewards for achievement. Reliable credit, clear feedback, and access to learning on a phone are core product requirements.
 
-### For Teachers
-- **Class Management**: Create and manage multiple classes with unique class codes
-- **Student Roster**: View enrolled students and track class enrollment
-- **Activity Library**: Browse and organize teaching activities (grammar, vocabulary, speaking, writing)
-- **Assignment System**: Assign activities to classes with due dates
-- **Student Progress**: Track student submissions and grades
+## For reviewers
 
-### For Students
-- **Class Enrollment**: Join classes using class codes
-- **Assignment Dashboard**: View assigned activities and due dates
-- **Activity Completion**: Complete and submit assignments
-- **Gamification**: Earn points, build streaks, and unlock achievements
-- **Weekly Leaderboard**: Compete with classmates and track your rank
-- **Progress Tracking**: View submission status and feedback
+Start with the [codebase tour](docs/CODEBASE_TOUR.md), then see [contributing](CONTRIBUTING.md) for checks and change conventions. The [documentation index](docs/README.md) separates implementation notes, classroom resources, audits, and planning.
 
-## Getting Started
+This repository contains both the application and the teaching materials it supports. Curriculum files and printable handouts are intentional parts of the project.
 
-### Prerequisites
-- Node.js 18+ 
-- npm, yarn, pnpm, or bun
+## What the app does
 
-### Installation
+- **Learners:** complete grammar, vocabulary, speaking, and writing activities; play practice games; follow assignments and course-map work; view feedback and progress.
+- **Teachers:** manage classes and enrollment, assign activities, and review student work.
+- **Practice rewards:** points, streaks, achievements, and class leaderboards, with safeguards against duplicate awards from retries.
+- **Mobile access:** responsive layouts and an installable progressive web app. Offline submission queueing is controlled by a feature flag.
 
-1. Clone the repository:
+## Stack
+
+Next.js 16 App Router · React · TypeScript · PostgreSQL · Prisma 6 · NextAuth · Tailwind CSS 4. Tests use Vitest, Node's test runner, and Playwright; GitHub Actions runs the CI checks. Exact dependency versions are recorded in [package-lock.json](package-lock.json).
+
+## Local setup
+
+Use Node.js 20.9 or newer (CI currently uses Node 20), npm, and a separate PostgreSQL development database. CI uses PostgreSQL 16. Use the committed npm lockfile for reproducible installs.
+
+From a cloned checkout:
+
 ```bash
-git clone <repository-url>
-cd ESOL_Teacher_Resources
+cp .env.example .env
 ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+Edit `.env` before proceeding:
 
-3. Set up the database:
+| Variable | Local value |
+| --- | --- |
+| `DATABASE_URL` | Connection string for your development PostgreSQL database |
+| `NEXTAUTH_URL` | `http://localhost:3000` |
+| `NEXTAUTH_SECRET` | Generate with `openssl rand -base64 32` |
+| `DEV_SEED_ACCOUNT_PASSWORD` | A unique password for local seeded accounts |
+| `TEST_STUDENT_DEFAULT_PASSWORD` | A unique password for system-created test accounts |
+
+Additional integrations and feature flags are described in [.env.example](.env.example). Keep local credentials out of Git. An existing `.env.local` can override app settings from `.env`; ensure both point to the intended development services.
+
+Install dependencies, apply committed migrations, and seed the development database:
+
 ```bash
-npx prisma migrate dev
+npm ci
+npm run ci:db:prepare
 npm run db:seed
-npx tsx prisma/seed-achievements.ts  # Seed gamification achievements
-```
-
-4. Run the development server:
-```bash
+npm run db:seed:achievements
+npm run db:seed:course-map
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+Open [localhost:3000](http://localhost:3000). The base seed creates the administrator account `marlie` and student accounts such as `ricardo`, using `DEV_SEED_ACCOUNT_PASSWORD` for newly created accounts. A password change is required at first login. Re-running the base seed preserves existing passwords.
 
-### Default Accounts
+These commands populate a development database; they are not a complete copy of the live classroom. Additional activity seeds are listed in [package.json](package.json) and the [scripts index](scripts/README.md).
 
-After seeding, you can log in with the usernames below and the password you set in `DEV_SEED_ACCOUNT_PASSWORD`:
+## Quality checks
 
-**Teacher Account:**
-- Username: `teacher`
-
-**Student Account** (any seeded student, e.g.):
-- Username: `ricardo`
-
-## Project Structure
-
-```
-├── src/
-│   ├── app/                   # Next.js App Router (pages + API routes)
-│   │   ├── dashboard/         # Learner & teacher dashboards
-│   │   ├── grammar-reader/    # Dynamic grammar guide routes
-│   │   └── api/               # REST handlers (activities, gamification, …)
-│   ├── components/            # UI by domain (dashboard, games, grammar-reader, …)
-│   ├── content/               # Authoring source (grammar guides, speaking warmups)
-│   ├── hooks/                 # Client state hooks (games, dashboard)
-│   ├── lib/                   # Domain logic (auth, gamification, learner, vocab, …)
-│   ├── types/                 # Shared TypeScript types (activity, parts-of-speech)
-│   └── utils/                 # Pure helpers (sanitize, markdown, …)
-├── prisma/                    # Schema, migrations, seed scripts
-├── scripts/                   # Imports, audits, content generation (see scripts/README.md)
-├── tests/                     # Vitest + Playwright (mirrors src domains)
-├── docs/                      # Specs, planning, audits (see docs/README.md)
-├── public/                    # Static assets (audio, images, PWA sw.js)
-├── _legacy/                   # Legacy HTML guides (legacy-guide API)
-├── class_uploads/             # Teacher handouts (objectives tracked in git)
-└── worksheets/                # Printable worksheet HTML by topic
-```
-
-Key entry points: [`CLAUDE.md`](CLAUDE.md) (dev/agent reference), [`docs/README.md`](docs/README.md) (doc index), [`docs/planning/scalability-roadmap.md`](docs/planning/scalability-roadmap.md) (refactor backlog).
-
-## Database Schema
-
-### Core Models
-- **User**: Teachers and students with authentication + gamification fields (points, streaks)
-- **Class**: Classes created by teachers with unique codes
-- **ClassEnrollment**: Student enrollments in classes
-- **Activity**: Teaching activities (quizzes, worksheets, slides, guides)
-- **Assignment**: Activities assigned to classes with due dates
-- **Submission**: Student submissions with scores and points awarded
-
-### Gamification Models
-- **Achievement**: Unlockable badges and milestones
-- **UserAchievement**: Tracks which achievements each user has earned
-
-## Deployment
-
-### Updating Content for Students
-
-When you add new activities or content, students using the PWA receive updates automatically after deploy. The app checks for updates every 5 minutes and registers `sw.js` with a build-derived version query string (`NEXT_PUBLIC_BUILD_ID`), so no manual cache version bump is required.
-
-Students will see an "Update Available" notification within 5 minutes of opening the app, with reminder cooldowns to avoid repeated interruption.
-
-### Environment Variables
-
-Copy `.env.example` to `.env` and configure:
-- `POSTGRES_URL` - Database connection string
-- `NEXTAUTH_SECRET` - Auth secret (generate with `openssl rand -base64 32`)
-- `CRON_SECRET` - Secret for weekly points reset cron job
-- `DEV_SEED_ACCOUNT_PASSWORD` - Required local password for seeded accounts
-- `TEST_STUDENT_DEFAULT_PASSWORD` - Required password for auto-created system test students
-- `NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX` - `true` to enable offline submission queue + outbox banner
-
-### E2E Mobile Smoke Tests (Playwright)
+The standard pre-push check runs types, lint, Vitest coverage, and Node tests without migrating or seeding a database:
 
 ```bash
-# Install browsers (first run)
-npm run test:e2e:install
-
-# Run mobile PWA smoke suite
-npm run test:e2e:mobile
+npm run check:push
+npm run check:repo-hygiene
 ```
 
-## Development
-
-### Architecture & Safety Docs
-- [`docs/README.md`](docs/README.md) - Documentation index
-- [`docs/SECTIONS_AND_AUTH_GUARDRAILS.md`](docs/SECTIONS_AND_AUTH_GUARDRAILS.md) - Section sync, leaderboard scoping, and authorization guardrails
-- [`docs/CHANGELOG_SAFETY.md`](docs/CHANGELOG_SAFETY.md) - Risk log template and rollback notes for high-impact changes
-- [`docs/MAINTENANCE_DASHBOARD.md`](docs/MAINTENANCE_DASHBOARD.md) - Health gate, current cleanup targets, debt buckets, and weekly/monthly operating cadence
-- [`docs/student/STUDENT_SETUP_AND_APP_GUIDE.md`](docs/student/STUDENT_SETUP_AND_APP_GUIDE.md) - Student-friendly login, class join, and home-screen app setup guide
-- [`docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md`](docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md) - Guía en español para inicio de sesión, unirse a clase y guardar como app
-
-### Database Migrations
-```bash
-npx prisma migrate dev --name migration_name
-```
-
-### Database Seed
-```bash
-npm run db:seed
-```
-
-### Prisma Studio (Database GUI)
-```bash
-npx prisma studio
-```
-
-### Quality Gate (Before PR)
-Run these locally and ensure they all pass:
+For individual checks:
 
 ```bash
 npm run typecheck
 npm run lint
 npm test
-npm run check:repo-hygiene
-npm run build
 ```
 
-`npm test` runs Vitest (including generated-content, vocabulary-duplicate, mini-guide, and answer-position checks) followed by the Node test suites. For a quick content-only check, run `npm run test:content`. The content checks also run in CI through `npm run test:coverage`; each failure includes its standalone command and audit output. Review duplicate vocabulary intentionally rather than updating baselines just to make a test pass.
+Install the optional tracked pre-push hook with `npm run hooks:install`. Content audits are included in the test suite; `npm run test:content` runs just those checks.
 
-`npm run build` should not rewrite tracked generated files, but it does run database migrations and seed course-map data. Use an isolated development/test database for local build verification. If the gerund/infinitive generated dataset is stale, update it explicitly with `npm run generate:content`.
+**Builds write to the configured database.** `npm run build` generates Prisma, runs the migration wrapper, seeds course-map data, and builds Next.js. Use an isolated development/test database. The `health:*` gates that invoke a build also have these side effects.
 
-### Operations Shortcuts
+Playwright expects a production build and seeded E2E accounts. On an isolated test database:
 
 ```bash
-npm run health:gate
-npm run health:weekly
-npm run health:monthly
-npm run report:maintenance
+npm run test:e2e:install
+npm run ci:e2e:setup
+npm run build
+npm run test:e2e:smoke
 ```
 
-GitHub automation now includes:
-- PR template with the default health gate
-- weekly maintenance workflow
-- monthly maintenance report workflow
-- manual release gate workflow
+See [.github/workflows/ci.yml](.github/workflows/ci.yml) for the automated environment and [CONTRIBUTING.md](CONTRIBUTING.md) for review expectations.
 
-## Tech Stack
+## Repository map
 
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Database**: PostgreSQL (via Prisma)
-- **Authentication**: NextAuth.js
-- **Styling**: Tailwind CSS 4 + Custom Design System
-- **ORM**: Prisma
-- **Fonts**: Fraunces (display), DM Sans (body), Caveat (handwritten)
+| Path | Contents |
+| --- | --- |
+| [`src/app/`](src/app/) | App Router pages, layouts, and API handlers |
+| [`src/components/`](src/components/) | Activity renderers, games, dashboards, and shared UI |
+| [`src/lib/`](src/lib/) | Authentication, database access, progress, rewards, and domain logic |
+| [`src/content/`](src/content/) | Authored learning content, including grammar guides |
+| [`src/types/`](src/types/) | Shared TypeScript domain types |
+| [`prisma/`](prisma/) | Database schema, migrations, and seeds |
+| [`tests/`](tests/) | Unit, route, content, and browser tests |
+| [`scripts/`](scripts/) | Content generation, audits, imports, and operational tools |
+| [`public/`](public/) | Static assets and service worker |
+| [`FY26/`](FY26/), [`FY27/`](FY27/) | Teaching resources organized by school year |
+| [`docs/`](docs/) | Technical guides, curriculum planning, and review notes |
 
-## Design System
+## Product and engineering references
 
-The app uses a **Warm Educational** color palette:
-- **Primary (Terracotta)**: `#d97757` - Buttons, links, highlights
-- **Secondary (Sage Green)**: `#7ba884` - Success states, growth indicators
-- **Accent (Sunny Yellow)**: `#f4d35e` - Achievements, highlights
-- **Background**: `#fef9f3` - Warm cream
-- **Text**: `#2b3a4a` - Dark blue-gray
+- [Product context](PRODUCT.md) and [design system](DESIGN.md)
+- [Authorization and class-scoping guardrails](docs/SECTIONS_AND_AUTH_GUARDRAILS.md)
+- [Maintenance dashboard](docs/MAINTENANCE_DASHBOARD.md) and [refactoring roadmap](docs/planning/scalability-roadmap.md)
+- [Student setup guide](docs/student/STUDENT_SETUP_AND_APP_GUIDE.md) and [Spanish version](docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md)
+- [Project working agreements](AGENTS.md) and [agent development reference](CLAUDE.md)
 
-All colors are defined in `/src/app/globals.css` as CSS variables for consistency.
+## Releases
 
-## Gamification System
+Small changes are batched locally before release. Before a production deployment or promotion, fetch GitHub and verify the exact source includes the latest `origin/main`; then verify the live domain and record the deployed source commit. See [AGENTS.md](AGENTS.md) for the full release requirements and [deployment notes](docs/setup/DEPLOYMENT.md) for operational context.
 
-The app includes a comprehensive gamification system to motivate students:
-
-### Points
-Students earn points for:
-- Completing activities: **3-10 points** (varies by type: grammar guide 10, flashcards 4, matching 5, etc.)
-- Quiz completion: **2-15 points** (based on score; perfect score 15)
-- Daily streak: **3 points**
-- Weekly streak (7 days): **25 bonus points**
-
-### Streaks
-- Students build streaks by completing activities on consecutive days
-- Streaks reset if a day is missed
-- Bonus points awarded for maintaining streaks
-
-### Achievements
-14 unlockable achievements across 4 categories:
-- **Activity Milestones**: First Steps, Getting Started, Dedicated Learner, Activity Master
-- **Streak Achievements**: Day One, Week Warrior, Two Week Champion, Month Master
-- **Quiz Perfection**: Perfect Start, Quiz Ace, Perfectionist
-- **Point Milestones**: Point Collector, Point Hoarder, Point Legend
-
-### Weekly Leaderboard
-- Shows top performers by weekly points
-- Resets every week
-- Displays rank changes from previous week
-- Students can see "You're up 3 spots!" type messages
-
-## Legacy Content
-
-**Note:** Legacy HTML activities have been moved to `/Users/marlanacreed/Downloads/Projects/Old Work/ESOL_legacy/`
-
-The legacy folder contains 82 HTML-based teaching resources including:
-- 40+ grammar guides (all tenses, sentence structure)
-- 16+ vocabulary activities
-- Speaking and writing activities
-- Slide presentations
-
-These can be migrated into the new activity system using the import scripts in `/scripts/` as needed.
-
-## Completed Features
-
-- [x] User authentication (teachers & students)
-- [x] Class management with join codes
-- [x] Activity library (quizzes, guides, worksheets, slides)
-- [x] Assignment system with due dates
-- [x] Student submissions and grading
-- [x] **Gamification system** (points, streaks, achievements)
-- [x] **Weekly leaderboard** with rank tracking
-- [x] **Mobile-first responsive design**
-- [x] PWA support (installable on mobile)
-
-## Future Enhancements
-
-- [ ] **Auto-grading quiz system** with immediate feedback
-- [ ] **Flashcard system** with images, audio, and study modes
-- [ ] **Live polling** for classroom interaction
-- [ ] **Progress analytics** (completion rates, areas of struggle)
-- [ ] Activity creation/editing interface for teachers
-- [ ] Advanced activity renderers
-- [ ] File uploads for assignments
-- [ ] Class announcements and messaging
-- [ ] Migrate remaining legacy HTML activities
-- [ ] Dark mode toggle
-
-## License
+## Usage
 
 Free for educational use. Created by teachers, for teachers.
-
-### Before pushing
-
-Run `npm run check:push` to check types, lint, the full test suite with coverage, and Node tests. The suite includes the generated-content and curriculum audits. These checks do not migrate or seed a database.
-
-Run `npm run hooks:install` once per checkout to enable the tracked pre-push hook. It runs this same gate so a passing type check alone cannot publish known test failures. GitHub additionally checks dependencies, builds the application, and runs browser tests.
