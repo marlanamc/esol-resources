@@ -31,6 +31,7 @@
     "audit:mini-guides": "node --import tsx scripts/checks/audit-mini-guides.ts",
     "audit:mini-quiz-quality": "node --import tsx scripts/checks/audit-mini-quiz-quality.ts --report",
     "audit:answer-integrity": "node --import tsx scripts/checks/audit-answer-integrity.ts --report",
+    "slide:top-learners": "node --import tsx scripts/slides/top-learners.ts",
     "audit:holiday-references": "node --import tsx scripts/checks/audit-holiday-references.ts",
     "audit:mini-guide-images": "node --import tsx scripts/checks/build-mini-guide-image-sheet.ts",
     "audit:scene-images": "node --import tsx scripts/checks/audit-scene-images.ts",
