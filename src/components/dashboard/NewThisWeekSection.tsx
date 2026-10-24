@@ -1,10 +1,12 @@
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { Gamepad2 } from "lucide-react";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
 import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { stripVocabTypeSuffix } from "@/lib/vocab/display";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
+import type { ResumePracticeItem } from "@/lib/dashboard/resume-practice";
 
 interface NewThisWeekSectionProps {
     items: FeaturedAssignment[];
@@ -49,7 +51,7 @@ export function NewThisWeekSection({
     }
 
     if (variant === "list") {
-        return <FeaturedList items={items} />;
+        return <KeepPracticingList items={items} />;
     }
 
     return (
@@ -115,23 +117,56 @@ export function NewThisWeekSection({
 
 const ROW_BORDER = "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)";
 
-function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
+/** Mobile home: the game you stopped in, then the teacher's featured activities. Finished ones drop off. */
+export function KeepPracticingList({ items, resume = null }: { items: FeaturedAssignment[]; resume?: ResumePracticeItem | null }) {
+    // The resume row already covers that game; don't list it twice.
+    const resumeTitle = resume?.title.trim().toLowerCase();
+    const open = items.filter(
+        (assignment) => (assignment.progress ?? 0) < 100 && resolveDisplayTitle(assignment).trim().toLowerCase() !== resumeTitle
+    );
+    if (open.length === 0 && !resume) return null;
+    const gamesTone = getLearnerCategoryTone("games");
+
     return (
-        <section aria-label="Featured" className={`font-legible ${roadStyles.road}`}>
-            <h2 className="mb-2 text-[0.75rem] font-extrabold uppercase tracking-[.07em] text-text-muted">Featured</h2>
-            <div
-                className="overflow-hidden rounded-2xl"
-                style={{
-                    background: "var(--surface-base)",
-                    border: "1px solid color-mix(in srgb, var(--road-rail) 75%, transparent)",
-                }}
-            >
-                {items.map((assignment, index) => {
+        <section aria-labelledby="keep-practicing-heading" className={`font-legible ${roadStyles.road}`}>
+            <h2 id="keep-practicing-heading" className="mb-1.5 font-display text-[1.1875rem] font-bold leading-tight text-text">
+                Keep practicing
+            </h2>
+            <div>
+                {resume ? (
+                    <Link
+                        href={resume.href}
+                        aria-label={`${resume.action}: ${resume.title}`}
+                        className="flex min-h-[60px] items-center gap-3 rounded-lg px-1 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                    >
+                        <span
+                            className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full"
+                            style={{ background: gamesTone.surface, color: gamesTone.accent }}
+                        >
+                            <Gamepad2 size={18} aria-hidden />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                            <span className="block text-[0.9375rem] leading-[1.3] font-semibold text-text">{resume.title}</span>
+                            <span className="mt-0.5 block text-[0.8125rem] text-text-muted">
+                                {resume.action === "Play another round" ? "Play another round" : "You stopped here"}
+                            </span>
+                            {resume.progress !== null ? (
+                                <span role="progressbar" aria-label="Patterns unlocked" aria-valuenow={resume.progress} aria-valuemin={0} aria-valuemax={100} className="mt-1.5 block h-1 max-w-40 overflow-hidden rounded-full" style={{ background: "var(--road-progress-todo)" }}>
+                                    <span className="block h-full rounded-full" style={{ width: `${resume.progress}%`, background: gamesTone.accent }} />
+                                </span>
+                            ) : null}
+                            <span className="sr-only">{resume.note}</span>
+                        </span>
+                        <span className="shrink-0 text-[0.875rem] font-bold" style={{ color: gamesTone.chipText }}>
+                            {resume.action === "Play another round" ? "Play" : "Finish"} ›
+                        </span>
+                    </Link>
+                ) : null}
+                {open.map((assignment, index) => {
                     const title = resolveDisplayTitle(assignment);
                     const format = getCourseMapActivityFormat(resolveFormatType(assignment), undefined, title);
                     const tone = getLearnerCategoryTone(format.tone);
                     const Icon = format.icon;
-                    const done = (assignment.progress ?? 0) >= 100;
 
                     return (
                         <ActivityLink
@@ -139,41 +174,21 @@ function FeaturedList({ items }: { items: FeaturedAssignment[] }) {
                             activityId={assignment.activityId}
                             assignmentId={assignment.assignmentId ?? assignment.id}
                             href={assignment.href}
-                            className="flex min-h-[64px] items-center gap-3 px-4 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset"
-                            style={{ borderTop: index === 0 ? undefined : ROW_BORDER }}
+                            className="flex min-h-[60px] items-center gap-3 rounded-lg px-1 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                            style={{ borderTop: index === 0 && !resume ? undefined : ROW_BORDER }}
                         >
                             <span
-                                className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                                style={
-                                    done
-                                        ? { background: tone.surface, color: tone.accent }
-                                        : { background: "var(--surface-base)", border: `2px solid ${tone.accent}`, color: tone.accent }
-                                }
+                                className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full"
+                                style={{ background: tone.surface, color: tone.accent }}
                             >
-                                <Icon size={19} aria-hidden />
-                                {done ? (
-                                    <span
-                                        className="absolute -bottom-1 -right-1 flex h-[18px] w-[18px] items-center justify-center rounded-full"
-                                        style={{ background: "var(--success-color)", color: "var(--road-on-success)", boxShadow: "0 0 0 2px var(--surface-base)" }}
-                                    >
-                                        <Check size={10} strokeWidth={3.5} aria-hidden />
-                                    </span>
-                                ) : null}
+                                <Icon size={18} aria-hidden />
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className={`block text-[0.9375rem] leading-[1.3] ${done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>
-                                    {title}
-                                </span>
-                                <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: done ? "var(--text-muted)" : tone.chipText }}>
-                                    {format.label}
-                                </span>
-                                {done ? <span className="sr-only">Done</span> : null}
+                                <span className="block text-[0.9375rem] leading-[1.3] font-semibold text-text">{title}</span>
+                                <span className="mt-0.5 block text-[0.8125rem] text-text-muted">{format.label}</span>
                             </span>
-                            {assignment.isNewRelease && !done ? (
-                                <span
-                                    className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] text-text-muted"
-                                    style={{ background: "var(--road-neutral-chip)" }}
-                                >
+                            {assignment.isNewRelease ? (
+                                <span className="shrink-0 text-[0.6875rem] font-extrabold uppercase tracking-[.06em]" style={{ color: "var(--primary-text)" }}>
                                     New
                                 </span>
                             ) : null}

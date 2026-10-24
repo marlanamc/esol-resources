@@ -2,6 +2,7 @@ import { cache } from "react";
 import { SectionUnavailable } from "./SectionUnavailable";
 import type { ReactNode } from "react";
 import { getDashboardResumeData } from "@/lib/course-map-week";
+import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { ThisWeekPanelClient } from "@/components/dashboard/ThisWeekPanelClient";
 import { EarlyWeekBanner } from "@/components/dashboard/EarlyWeekBanner";
 import { ThisWeekRoadCard } from "@/components/dashboard/ThisWeekRoadCard";
@@ -17,6 +18,14 @@ interface ThisWeekPanelProps {
 }
 
 export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, variant = "panel" }: ThisWeekPanelProps) {
+    // Road only: streak and this week's points ride under the road. Started early so it loads alongside the week;
+    // a failure just hides the numbers.
+    const momentumLoad = variant === "road"
+        ? getStudentMomentumSnapshot(user.id).catch(error => {
+            console.error("[Dashboard] Points unavailable", error);
+            return null;
+        })
+        : null;
     let data;
     try { data = await loadResume(user.id, user.role); }
     catch (error) {
@@ -24,6 +33,7 @@ export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, var
         return <SectionUnavailable title="Course progress" />;
     }
     if (!data) return fallback;
+    const momentum = await momentumLoad;
 
     const panel = variant === "road" ? (
         <ThisWeekRoadCard
@@ -38,6 +48,7 @@ export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, var
             continueLabel={data.continueLabel}
             mapHref={data.mapHref}
             showUnitMonths={data.showUnitMonths}
+            momentum={momentum ? { streak: momentum.initialStreak ?? 0, weeklyPoints: momentum.initialWeeklyPoints ?? 0 } : null}
         />
     ) : (
         <ThisWeekPanelClient

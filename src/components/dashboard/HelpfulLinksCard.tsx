@@ -1,8 +1,10 @@
+import { ChevronDown, Link2 } from "lucide-react";
 import { getHelpfulLinks } from "@/lib/helpful-links";
 import { HelpfulLinkRow } from "@/components/dashboard/HelpfulLinkRow";
+import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 
 interface HelpfulLinksCardProps {
-    /** `plain` matches the mobile Explore heading; `contained` is a sidebar panel */
+    /** `plain` is the folded row on the phone home; `contained` is a sidebar panel */
     variant?: "plain" | "contained";
 }
 
@@ -19,13 +21,21 @@ export function HelpfulLinksCard({ variant = "contained" }: HelpfulLinksCardProp
     );
 
     if (variant === "plain") {
+        // Phone home: folded to one quiet row so it never competes with the week card.
         return (
-            <section aria-label="Class resources">
-                <h2 className="mb-1 font-display text-lg font-bold leading-tight text-text">
-                    Class resources
-                </h2>
-                {list}
-            </section>
+            <details
+                className={`group rounded-[14px] border border-dashed px-3.5 ${roadStyles.road}`}
+                style={{ borderColor: "var(--road-rail)" }}
+            >
+                <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-[14px] text-[0.875rem] text-text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary [&::-webkit-details-marker]:hidden">
+                    <Link2 size={18} aria-hidden className="shrink-0" />
+                    <span className="min-w-0 flex-1 truncate">
+                        <strong className="font-bold text-text">Class links</strong> · {links.slice(0, 2).map((link) => link.label).join(", ")}
+                    </span>
+                    <ChevronDown size={16} aria-hidden className="shrink-0 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" />
+                </summary>
+                <div className="pb-1">{list}</div>
+            </details>
         );
     }
 

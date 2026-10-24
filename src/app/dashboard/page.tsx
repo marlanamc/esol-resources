@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
+import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
 import { PracticeLaterSection, MomentumSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
@@ -20,6 +20,7 @@ import {
     type AnnouncementItem,
     HelpfulLinksCard,
     NewThisWeekSection,
+    KeepPracticingList,
     MissedClassCatchUpCard,
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
@@ -490,11 +491,10 @@ export default async function DashboardPage() {
                             fallback={nextStepFallback}
                             variant="road"
                         /></Suspense>
-                        <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
                         {practiceLater}
-                        {newThisWeekItems.length > 0 ? (
-                            <NewThisWeekSection items={newThisWeekItems} variant="list" />
-                        ) : null}
+                        <Suspense fallback={<KeepPracticingList items={newThisWeekItems} />}>
+                            <KeepPracticingSection userId={userId} items={newThisWeekItems} />
+                        </Suspense>
                         <HelpfulLinksCard variant="plain" />
                     </div>
                 </div>
