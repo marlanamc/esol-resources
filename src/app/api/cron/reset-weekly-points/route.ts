@@ -5,8 +5,9 @@ import { logger } from "@/lib/shared/logger";
 
 /**
  * Cron job to reset weekly leaderboard points
- * Runs at both candidate UTC offsets for Monday midnight in New York.
- * Only the matching local-midnight invocation refreshes the counters.
+ * Runs once on Monday at 05:00 UTC (midnight EST / 01:00 EDT).
+ * Ledger windows define the exact week; this refresh preserves new-week points.
+ * One daily invocation is compatible with the Vercel Hobby plan.
  *
  * This endpoint is secured by Vercel Cron's authorization header
  */
@@ -29,8 +30,8 @@ export async function GET(request: NextRequest) {
     }
 
     const now = new Date();
-    const local = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', hourCycle: 'h23' }).formatToParts(now);
-    if (local.find(p => p.type === 'weekday')?.value !== 'Mon' || local.find(p => p.type === 'hour')?.value !== '00') {
+    const local = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short' }).formatToParts(now);
+    if (local.find(p => p.type === 'weekday')?.value !== 'Mon') {
         return apiSuccess({ skipped: true });
     }
     try {
