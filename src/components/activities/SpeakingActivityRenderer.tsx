@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import type { SpeakingActivityContent } from "@/types/activity";
+import { isWarmupCompleted, completeWarmup } from "@/lib/speaking-warmup-client";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
@@ -30,23 +32,16 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
 
   // Check if already completed
   useEffect(() => {
+    let active = true;
     const checkCompletionStatus = async () => {
-      try {
-        const response = await fetch(`/api/activities/progress?activityId=${activityId}&assignmentId=${assignmentId || ''}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.progress?.status === 'completed') {
-            setIsCompleted(true);
-          }
-        }
-      } catch (error) {
-        console.error('Error checking completion status:', error);
-      } finally {
+      const completed = await isWarmupCompleted(activityId, assignmentId);
+      if (active) {
+        setIsCompleted(completed);
         setIsLoading(false);
       }
     };
-
-    checkCompletionStatus();
+    void checkCompletionStatus();
+    return () => { active = false; };
   }, [activityId, assignmentId]);
 
   const handleComplete = async () => {
@@ -56,25 +51,9 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
     setCompletionError(null);
 
     try {
-      const response = await fetch('/api/speaking/complete', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          activityId,
-          assignmentId,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to complete warmup');
-      }
-
+      const points = await completeWarmup(activityId, assignmentId);
       setIsCompleted(true);
-      // Could show success message with points awarded
+      if (points > 0) setPointsToast({ points, key: Date.now() });
     } catch (error) {
       console.error('Completion error:', error);
       setCompletionError(error instanceof Error ? error.message : 'Failed to complete warmup');
@@ -269,14 +248,18 @@ interface SpeakingFormData {
 }
 
 export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+  const { data: session } = useSession();
+  const owner = session?.user?.id;
+  if (!owner) return null;
+  const scopeKey = JSON.stringify([owner, activityId, assignmentId]);
   if (content.warmupMode) {
-    return <WarmupModeRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
+    return <WarmupModeRenderer key={scopeKey} content={content} activityId={activityId} assignmentId={assignmentId} />;
   }
 
-  return <LegacySpeakingActivityRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
+  return <LegacySpeakingActivityRenderer key={scopeKey} owner={owner} content={content} activityId={activityId} assignmentId={assignmentId} />;
 }
 
-function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+function LegacySpeakingActivityRenderer({ content, activityId, assignmentId, owner }: Props & { owner: string }) {
   const router = useRouter();
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: "/dashboard" });
 
@@ -300,6 +283,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [showSoloHelp, setShowSoloHelp] = useState(false);
   const [showKeyPhrases, setShowKeyPhrases] = useState(false);
+  const [draftLoaded, setDraftLoaded] = useState(false);
   const [lastSnapshot, setLastSnapshot] = useState<string | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
@@ -352,7 +336,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
   useEffect(() => {
     let isMounted = true;
 
-    const draft = loadDraft(activityId, assignmentId);
+    const draft = loadDraft(activityId, assignmentId, owner);
     if (draft) {
       if (isMounted) {
         setSelectedPrompts(new Set(draft.selectedPromptIds));
@@ -365,6 +349,8 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
         setCompletedSpeakingSteps(new Set(draft.speaking.completedStepIds));
       }
     }
+
+    setDraftLoaded(true);
 
     (async () => {
       const submission = await getSpeakingSubmission(activityId, assignmentId);
@@ -397,9 +383,10 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
     return () => {
       isMounted = false;
     };
-  }, [activityId, assignmentId]);
+  }, [activityId, assignmentId, owner]);
 
   useEffect(() => {
+    if (!draftLoaded) return;
     saveDraft({
       activityId,
       assignmentId,
@@ -413,8 +400,10 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
         bestSentence: speakingData.bestSentence,
         completedStepIds: Array.from(completedSpeakingSteps),
       },
-    });
+    }, owner);
   }, [
+    draftLoaded,
+    owner,
     activityId,
     assignmentId,
     selectedPrompts,

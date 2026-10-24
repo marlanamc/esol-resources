@@ -187,3 +187,8 @@ export function getSentenceBuilderPoints(accuracy?: number): number {
   if (accuracy !== undefined && accuracy >= 80) return POINTS.SENTENCE_BUILDER_HIGH;
   return POINTS.SENTENCE_BUILDER;
 }
+
+/** Attempt identities dedupe rewards, but reports still aggregate the activity. */
+export function activityAwardReportKey(reason: string | null): string {
+  return (reason || "unknown").replace(/\|attempt:.*$/, "");
+}

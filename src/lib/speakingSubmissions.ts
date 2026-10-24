@@ -1,3 +1,4 @@
+import { getActiveLearnerId } from "@/lib/learner-session";
 import type { SpeakingSubmission } from "@/types/activity";
 import { submitWithOutbox } from "@/lib/submissionOutbox";
 
@@ -19,22 +20,26 @@ export interface DraftData {
     lastSaved: string;
 }
 
-export function saveDraft(data: Omit<DraftData, 'lastSaved'>): void {
-    if (typeof window === 'undefined') return;
+function draftKey(owner: string, activityId: string, assignmentId?: string | null) {
+    return `${STORAGE_KEY}-v2-${JSON.stringify([owner, activityId, assignmentId || null])}`;
+}
+
+export function saveDraft(data: Omit<DraftData, 'lastSaved'>, owner = getActiveLearnerId()): void {
+    if (typeof window === 'undefined' || !owner) return;
     
     const draftData: DraftData = {
         ...data,
         lastSaved: new Date().toISOString(),
     };
     
-    const key = `${STORAGE_KEY}-${data.activityId}-${data.assignmentId || 'no-assignment'}`;
+    const key = draftKey(owner, data.activityId, data.assignmentId);
     localStorage.setItem(key, JSON.stringify(draftData));
 }
 
-export function loadDraft(activityId: string, assignmentId?: string | null): DraftData | null {
-    if (typeof window === 'undefined') return null;
+export function loadDraft(activityId: string, assignmentId?: string | null, owner = getActiveLearnerId()): DraftData | null {
+    if (typeof window === 'undefined' || !owner) return null;
     
-    const key = `${STORAGE_KEY}-${activityId}-${assignmentId || 'no-assignment'}`;
+    const key = draftKey(owner, activityId, assignmentId);
     const stored = localStorage.getItem(key);
     
     if (!stored) return null;
@@ -46,10 +51,10 @@ export function loadDraft(activityId: string, assignmentId?: string | null): Dra
     }
 }
 
-export function clearDraft(activityId: string, assignmentId?: string | null): void {
-    if (typeof window === 'undefined') return;
+export function clearDraft(activityId: string, assignmentId?: string | null, owner = getActiveLearnerId()): void {
+    if (typeof window === 'undefined' || !owner) return;
     
-    const key = `${STORAGE_KEY}-${activityId}-${assignmentId || 'no-assignment'}`;
+    const key = draftKey(owner, activityId, assignmentId);
     localStorage.removeItem(key);
 }
 
@@ -63,6 +68,7 @@ export interface SubmitSpeakingWarmupResult {
 }
 
 export async function submitSpeakingWarmup(submission: SpeakingSubmissionPayload): Promise<SubmitSpeakingWarmupResult> {
+    const owner = getActiveLearnerId();
     try {
         const submitResult = await submitWithOutbox({
             endpoint: "/api/speaking/submissions",
@@ -87,7 +93,7 @@ export async function submitSpeakingWarmup(submission: SpeakingSubmissionPayload
             };
         }
         // Clear draft on successful submission
-        clearDraft(submission.activityId, submission.assignmentId);
+        clearDraft(submission.activityId, submission.assignmentId, owner);
         
         return { success: true, submission: data.submission || null };
     } catch (error) {

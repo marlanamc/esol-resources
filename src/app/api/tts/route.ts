@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth/auth';
+import { checkRateLimit } from '@/lib/api/rate-limit';
 
 // ElevenLabs voice: Rachel — clear, warm American English. Good for ESOL instruction.
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? '21m00Tcm4TlvDq8ikWAM';
-const API_KEY = process.env.ELEVENLABS_API_KEY;
 
 export async function POST(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  const API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!API_KEY) {
     return NextResponse.json({ error: 'TTS not configured' }, { status: 503 });
   }
@@ -12,7 +19,7 @@ export async function POST(request: NextRequest) {
   let text: string;
   try {
     const body = await request.json();
-    text = String(body.text ?? '').trim();
+    text = typeof body?.text === 'string' ? body.text.trim() : '';
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
@@ -21,11 +28,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'text must be 1–500 characters' }, { status: 400 });
   }
 
+  // This endpoint spends paid credits. Use the shared store, and refuse paid
+  // work on a store outage instead of inheriting the login limiter's fail-open policy.
+  const limits = await Promise.all([
+    checkRateLimit(`tts:minute:${session.user.id}`, { limit: 30, windowSeconds: 60, failClosed: true }),
+    checkRateLimit(`tts:day:${session.user.id}`, { limit: 500, windowSeconds: 86400, failClosed: true }),
+  ]);
+  if (limits.some(allowed => !allowed)) {
+    return NextResponse.json({ error: 'Audio request limit reached. Please try again later.' }, { status: 429 });
+  }
+
   try {
     const elevenResponse = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
       {
         method: 'POST',
+        signal: AbortSignal.timeout(15000),
         headers: {
           'xi-api-key': API_KEY,
           'Content-Type': 'application/json',
@@ -55,8 +73,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
-        // Cache for 24h — same sentence always produces the same audio
-        'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+        'Cache-Control': 'private, no-store',
       },
     });
   } catch (err) {

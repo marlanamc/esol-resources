@@ -1,3 +1,4 @@
+import { weeklyRankings } from './weekly-rankings';
 import { revalidateTag } from 'next/cache';
 import { prisma } from '@/lib/database/prisma';
 import type { PrismaClient, Prisma } from "@prisma/client";
@@ -313,6 +314,10 @@ export async function getTimeframedLeaderboard(
     _sum: { points: true },
   });
 
+  const previousRanks = range === 'week'
+    ? await weeklyRankings('last-week', options?.referenceDate, studentWhere)
+    : new Map<string, { points: number; rank: number }>();
+
   // Create a map of userId -> points from ledger
   const pointsMap = new Map(grouped.map((entry) => [entry.userId, entry._sum.points || 0]));
 
@@ -394,7 +399,7 @@ export async function getTimeframedLeaderboard(
       weeklyPoints: r.points,
       currentStreak: r.currentStreak || 0,
       rank: currentRank,
-      rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - currentRank : null) : null,
+      rankChange: previousRanks.has(r.userId) ? previousRanks.get(r.userId)!.rank - currentRank : null,
       avatar: r.avatar,
       avatarColor: r.avatarColor,
       weekComplete: completionByUserId.get(r.userId)?.weekComplete ?? false,
@@ -498,119 +503,30 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
  * Get weekly leaderboard (top students by weekly points)
  */
 export async function getWeeklyLeaderboard(limit: number = 10, classId?: string) {
-  // SECURITY: Input validation
-  if (classId !== undefined && typeof classId !== 'string') {
-    throw new Error('Invalid classId: must be a string');
-  }
-
-  // Sanitize limit to prevent excessive queries (1-100)
-  const safeLimit = Math.min(Math.max(1, Math.floor(limit)), 100);
-
-  const whereClause = buildLeaderboardEligibleUserWhere();
-
-  // If classId provided, filter by students in that class
-  if (classId) {
-    whereClause.classes = {
-      some: {
-        classId: classId,
-      },
-    };
-  }
-
-  const students = await prisma.user.findMany({
-    where: {
-      ...whereClause,
-      weeklyPoints: { gt: 0 }, // Only include students with points > 0
-    },
-    orderBy: {
-      weeklyPoints: 'desc',
-    },
-    take: safeLimit,
-    select: {
-      id: true,
-      name: true,
-      weeklyPoints: true,
-      currentStreak: true,
-      lastActivityDate: true,
-      lastWeekRank: true,
-    },
-  });
-
-  // Add rank and rank change (same rank for ties)
-  let currentRank = 1;
-  return students.map((student, index: number) => {
-      if (index > 0 && student.weeklyPoints !== students[index - 1].weeklyPoints) {
-        currentRank = index + 1;
-      }
-
-      return {
-        id: student.id,
-        name: student.name,
-        weeklyPoints: student.weeklyPoints,
-        currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
-        lastWeekRank: student.lastWeekRank,
-        rank: currentRank,
-        rankChange: student.lastWeekRank ? student.lastWeekRank - currentRank : null,
-      };
-    });
+  const entries = await getTimeframedLeaderboard('week', limit, classId);
+  return entries;
 }
 
-/**
- * Reset weekly points for all users (to be run weekly via cron)
- * PERFORMANCE: Uses single raw SQL batch update for lastWeekRank instead of N individual updates
- * All reads and writes happen inside a single transaction to prevent race conditions.
- */
-export async function resetWeeklyPoints() {
-  await prisma.$transaction(async (tx) => {
-    // Snapshot rankings inside the transaction so no points are lost between read and reset
-    const whereClause = buildLeaderboardEligibleUserWhere();
-    const students = await tx.user.findMany({
-      where: {
-        ...whereClause,
-        weeklyPoints: { gt: 0 },
-      },
-      orderBy: { weeklyPoints: 'desc' },
-      take: 100,
-      select: { id: true, name: true, weeklyPoints: true },
-    });
-
-    if (students.length === 0) {
-      await tx.user.updateMany({
-        where: { role: 'student' },
-        data: { weeklyPoints: 0 },
-      });
-      logger.info('Weekly points reset complete (no rankings to save)');
-      return;
+/** Refresh legacy counters from ledger periods; never move or delete earned credit. */
+export async function resetWeeklyPoints(now = new Date()) {
+  await prisma.$transaction(async tx => {
+    // Awards update the user row before the ledger. Hold the same row locks so
+    // a concurrent award cannot be overwritten by this maintenance snapshot.
+    await tx.$executeRaw`SELECT id FROM "User" WHERE role = 'student' ORDER BY id FOR UPDATE`;
+    const [current, previous] = await Promise.all([
+      weeklyRankings('week', now, { role: 'student' }, tx),
+      weeklyRankings('last-week', now, buildLeaderboardEligibleUserWhere(), tx),
+    ]);
+    await tx.user.updateMany({ where: { role: 'student' }, data: { weeklyPoints: 0, lastWeekRank: null } });
+    const ids = [...new Set([...current.keys(), ...previous.keys()])];
+    if (ids.length) {
+      const values = ids.map((_, i) => `($${i * 3 + 1}::text, $${i * 3 + 2}::int, $${i * 3 + 3}::int)`).join(', ');
+      await tx.$executeRawUnsafe(
+        `UPDATE "User" AS u SET "weeklyPoints" = v.points, "lastWeekRank" = v.rank FROM (VALUES ${values}) AS v(id, points, rank) WHERE u.id = v.id`,
+        ...ids.flatMap(id => [id, current.get(id)?.points ?? 0, previous.get(id)?.rank ?? null]),
+      );
     }
-
-    // Calculate ranks with tie handling (O(n))
-    let currentRank = 1;
-    const rankings = students.map((s, idx) => {
-      if (idx > 0 && s.weeklyPoints !== students[idx - 1].weeklyPoints) {
-        currentRank = idx + 1;
-      }
-      return { id: s.id, rank: currentRank };
-    });
-
-    const params = rankings.flatMap((r) => [r.id, r.rank]);
-    const valuesClause = rankings
-      .map((_, i) => `($${i * 2 + 1}::text, $${i * 2 + 2}::int)`)
-      .join(', ');
-
-    await (tx as typeof prisma).$executeRawUnsafe(
-      `UPDATE "User" AS u SET "lastWeekRank" = v.rank
-       FROM (VALUES ${valuesClause}) AS v(id, rank)
-       WHERE u.id = v.id`,
-      ...params
-    );
-    await tx.user.updateMany({
-      where: { role: 'student' },
-      data: { weeklyPoints: 0 },
-    });
-
-    logger.info(`Weekly points reset complete (${rankings.length} rankings saved)`);
   }, { timeout: 15000 });
-
   invalidateLeaderboardCache();
 }
 
@@ -634,26 +550,25 @@ export async function getUserGamificationStats(userId: string) {
 
   if (!user) return null;
 
-  // Get user's rank in weekly leaderboard (single count query instead of loading all students)
-  const usersAheadOfMe = await prisma.user.count({
-    where: {
-      ...buildLeaderboardEligibleUserWhere(),
-      OR: [
-        { weeklyPoints: { gt: user.weeklyPoints } },
-        { weeklyPoints: user.weeklyPoints, id: { lt: userId } },
-      ],
-    },
+  const now = new Date();
+  const [current, previous] = await Promise.all([
+    weeklyRankings('week', now), weeklyRankings('last-week', now),
+  ]);
+  const rank = current.get(userId)?.rank ?? null;
+  const lastWeekRank = previous.get(userId)?.rank ?? null;
+  const ownPeriod = getLeaderboardPeriod('week', now);
+  const ownPoints = await prisma.pointsLedger.aggregate({
+    where: { userId, createdAt: { gte: ownPeriod.start!, lt: ownPeriod.end! } }, _sum: { points: true },
   });
-  const rank = usersAheadOfMe + 1;
 
   return {
     points: user.points,
-    weeklyPoints: user.weeklyPoints,
+    weeklyPoints: Math.max(0, ownPoints._sum.points ?? 0),
     currentStreak: getEffectiveStreak(user.currentStreak, user.lastActivityDate),
     longestStreak: user.longestStreak,
-    rank: rank > 0 ? rank : null,
-    lastWeekRank: user.lastWeekRank,
-    rankChange: user.lastWeekRank && rank > 0 ? user.lastWeekRank - rank : null,
+    rank,
+    lastWeekRank,
+    rankChange: lastWeekRank !== null && rank !== null ? lastWeekRank - rank : null,
     achievements: user.achievements.map((ua: { achievement: { id: string; name: string; description: string; icon: string }; earnedAt: Date }) => ({
       id: ua.achievement.id,
       name: ua.achievement.name,

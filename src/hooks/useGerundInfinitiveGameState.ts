@@ -7,6 +7,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
+import { practiceAttemptKey } from '@/lib/practice-attempt-key';
 import type {
   GerundInfinitiveGroup,
   GIExercise,
@@ -296,7 +297,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
       const overallProgress = calculateOverallProgress(updatedCategoryData);
       const response = await fetch('/api/activity/progress', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Idempotency-Key': practiceAttemptKey(results) },
         body: JSON.stringify({
           activityId,
           progress: overallProgress,

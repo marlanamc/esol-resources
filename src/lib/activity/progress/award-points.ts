@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { getActivityPoints, getSentenceBuilderPoints, getVocabularyTypePoints, POINTS } from "@/lib/gamification/gamification";
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
@@ -14,6 +15,8 @@ type ActivitySnapshot = {
 };
 
 export interface AwardProgressPointsInput {
+    transaction?: Prisma.TransactionClient;
+    idempotencyKey?: string | null;
     userId: string;
     activityId: string;
     activity: ActivitySnapshot | null;
@@ -61,10 +64,12 @@ export async function awardProgressActivityPoints(
                 // This route's client effects can fire concurrently; dedupe so a
                 // double-submit cannot award twice.
                 dedupeKey: true,
+                transaction: input.transaction,
             });
             return 5;
         } catch (err) {
             logger.error("[Progress] Award chain failed (fallback)", { userId, activityId, err });
+            if (input.transaction) throw err;
             return 0;
         }
     }
@@ -120,7 +125,9 @@ export async function awardProgressActivityPoints(
                 : groupIdStr.includes("-2-")
                   ? 2
                   : 1;
-            points = passed ? (difficulty === 3 ? 8 : difficulty === 2 ? 5 : 3) : 0;
+            points = sanitizedRoundExercises > 0
+                ? passed ? (difficulty === 3 ? 8 : difficulty === 2 ? 5 : 3) : POINTS.ACTIVITY_COMPLETION
+                : 0;
             activityTypeLabel = "Parts of Speech";
         } else {
             points =
@@ -198,7 +205,7 @@ export async function awardProgressActivityPoints(
         if (sanitizedAccuracy === 100) {
             sessionPoints += POINTS.VERB_FORMS_BONUS;
         }
-        points = sessionPoints;
+        points = Math.max(POINTS.ACTIVITY_COMPLETION, sessionPoints);
     } else if (activityGameUi === "verb-speed-round") {
         if (sanitizedAccuracy === 100) {
             points = POINTS.VERB_SPEED_ROUND_PERFECT;
@@ -218,7 +225,9 @@ export async function awardProgressActivityPoints(
             category.toLowerCase() === "time-signals";
 
         if (isTimeSignalsRound) {
-            points = POINTS.TIMELINE_TENSES_TIME_SIGNALS;
+            points = sanitizedAccuracy >= 70
+                ? POINTS.TIMELINE_TENSES_TIME_SIGNALS
+                : POINTS.ACTIVITY_COMPLETION;
             activityTypeLabel = "Timeline Time Signals Quiz";
         } else if (sanitizedAccuracy === 100) {
             points = POINTS.TIMELINE_TENSES_PERFECT;
@@ -232,9 +241,16 @@ export async function awardProgressActivityPoints(
         }
     }
 
-    const reason = activityTypeLabel
+    const displayReason = activityTypeLabel
         ? `${activity.title}|${activityTypeLabel}`
         : `Completed: ${activity.title}`;
+
+    // A round's stable client key distinguishes real new practice from retries.
+    // Keep the title first so existing teacher reports still group this activity.
+    const attemptKey = shouldAwardGroupRoundPoints ? input.idempotencyKey : null;
+    const reason = attemptKey
+        ? `${displayReason}|attempt:${activityId}:${attemptKey}`
+        : displayReason;
 
     try {
         const result = await applyAwardChain({
@@ -245,6 +261,8 @@ export async function awardProgressActivityPoints(
             // This route's client effects can fire concurrently; dedupe so a
             // double-submit cannot award twice.
             dedupeKey: true,
+            transaction: input.transaction,
+            ...(attemptKey ? { dedupeWindowMs: 100 * 365.25 * 24 * 60 * 60 * 1000 } : {}),
         });
         return result.deduped ? 0 : points;
     } catch (err) {
@@ -254,6 +272,7 @@ export async function awardProgressActivityPoints(
             points,
             err,
         });
+        if (input.transaction) throw err;
         return 0;
     }
 }

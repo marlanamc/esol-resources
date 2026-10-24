@@ -298,18 +298,14 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
     if (activityId) {
       const accuracy = (state.score / state.verbs.length) * 100;
       
-      // Flat 4 points per round as requested
-      const totalPoints = 4;
-
-      // Note: saveActivityProgress might award its own points based on the API, 
-      // but we pass category and accuracy for the database.
-      await saveActivityProgress(
-        activityId, 
-        100, 
-        "completed", 
-        accuracy, 
+      const result = await saveActivityProgress(
+        activityId,
+        100,
+        "completed",
+        accuracy,
         state.difficulty
       );
+      const totalPoints = result?.pointsAwarded ?? 0;
 
       if (totalPoints > 0) {
         setState(prev => ({

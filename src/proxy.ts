@@ -16,7 +16,7 @@ function addSecurityHeaders(response: NextResponse, pathname = ''): NextResponse
         `script-src 'self'${isDev ? " 'unsafe-eval'" : ''} 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live https://*.vercel.live`,
         "style-src 'self' 'unsafe-inline'", // Required for Next.js styled-jsx and CSS modules
         // Level 1 vocab hotlinks (fetch-vocab-images.ts: static.photos + legacy Unsplash/Pixabay)
-        "img-src 'self' data: blob: https://static.photos https://images.unsplash.com https://plus.unsplash.com https://pixabay.com https://cdn.pixabay.com",
+        "img-src 'self' data: blob: https://static.photos https://images.unsplash.com https://plus.unsplash.com https://pixabay.com https://cdn.pixabay.com https://*.public.blob.vercel-storage.com",
         "font-src 'self' data:", // Allow data URIs for fonts
         // Generated audio served from Vercel Blob when NEXT_PUBLIC_AUDIO_CDN_URL is set
         "media-src 'self' blob: https://*.public.blob.vercel-storage.com",

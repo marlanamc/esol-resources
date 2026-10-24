@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         // Get activity content to check if it's a warmup (optional validation)
         const activity = await prisma.activity.findUnique({
             where: { id: activityId },
-            select: { content: true },
+            select: { content: true, title: true },
         });
 
         // Check if this is a warmup activity (parse content to verify)
@@ -91,28 +91,24 @@ export async function POST(request: NextRequest) {
                 });
             }
 
-            return { alreadyCompleted: false };
+            const awardResult = await applyAwardChain({
+                userId, points: participationPoints,
+                reason: `${activity?.title || activityId}|Warmup`,
+                transaction: tx,
+            });
+            return { alreadyCompleted: false, awardResult };
         });
 
         if (completionResult.alreadyCompleted) {
             return NextResponse.json({
                 success: true,
                 alreadyCompleted: true,
-                message: 'Activity already completed'
+                message: 'Activity already completed',
+                pointsAwarded: 0
             });
         }
 
-        // Award participation points - get activity title for better display
-        const activityWithTitle = await prisma.activity.findUnique({
-            where: { id: activityId },
-            select: { title: true },
-        });
-        const activityTitle = activityWithTitle?.title || activityId;
-        const awardResult = await applyAwardChain({
-            userId,
-            points: participationPoints,
-            reason: `${activityTitle}|Warmup`,
-        });
+        const awardResult = completionResult.awardResult!;
 
         return NextResponse.json({
             success: true,

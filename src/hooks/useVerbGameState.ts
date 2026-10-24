@@ -7,6 +7,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
+import { practiceAttemptKey } from '@/lib/practice-attempt-key';
 import type {
   VerbGroup,
   VerbExercise,
@@ -267,7 +268,7 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
 
       const response = await fetch('/api/activity/progress', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Idempotency-Key': practiceAttemptKey(results) },
         body: JSON.stringify({
           activityId,
           progress: overallProgress,
