@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import type { SpeakingActivityContent } from "@/types/activity";
 import { saveActivityProgress } from "@/lib/activityProgress";
@@ -269,14 +270,18 @@ interface SpeakingFormData {
 }
 
 export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+  const { data: session } = useSession();
+  const owner = session?.user?.id;
+  if (!owner) return null;
+  const scopeKey = JSON.stringify([owner, activityId, assignmentId]);
   if (content.warmupMode) {
-    return <WarmupModeRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
+    return <WarmupModeRenderer key={scopeKey} content={content} activityId={activityId} assignmentId={assignmentId} />;
   }
 
-  return <LegacySpeakingActivityRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
+  return <LegacySpeakingActivityRenderer key={scopeKey} owner={owner} content={content} activityId={activityId} assignmentId={assignmentId} />;
 }
 
-function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+function LegacySpeakingActivityRenderer({ content, activityId, assignmentId, owner }: Props & { owner: string }) {
   const router = useRouter();
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: "/dashboard" });
 
@@ -300,6 +305,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [showSoloHelp, setShowSoloHelp] = useState(false);
   const [showKeyPhrases, setShowKeyPhrases] = useState(false);
+  const [draftLoaded, setDraftLoaded] = useState(false);
   const [lastSnapshot, setLastSnapshot] = useState<string | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
@@ -352,7 +358,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
   useEffect(() => {
     let isMounted = true;
 
-    const draft = loadDraft(activityId, assignmentId);
+    const draft = loadDraft(activityId, assignmentId, owner);
     if (draft) {
       if (isMounted) {
         setSelectedPrompts(new Set(draft.selectedPromptIds));
@@ -365,6 +371,8 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
         setCompletedSpeakingSteps(new Set(draft.speaking.completedStepIds));
       }
     }
+
+    setDraftLoaded(true);
 
     (async () => {
       const submission = await getSpeakingSubmission(activityId, assignmentId);
@@ -397,9 +405,10 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
     return () => {
       isMounted = false;
     };
-  }, [activityId, assignmentId]);
+  }, [activityId, assignmentId, owner]);
 
   useEffect(() => {
+    if (!draftLoaded) return;
     saveDraft({
       activityId,
       assignmentId,
@@ -413,8 +422,10 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
         bestSentence: speakingData.bestSentence,
         completedStepIds: Array.from(completedSpeakingSteps),
       },
-    });
+    }, owner);
   }, [
+    draftLoaded,
+    owner,
     activityId,
     assignmentId,
     selectedPrompts,
