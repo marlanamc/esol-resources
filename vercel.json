@@ -8,7 +8,7 @@
   "crons": [
     {
       "path": "/api/cron/reset-weekly-points",
-      "schedule": "0 0 * * 2"
+      "schedule": "0 4,5 * * 1"
     },
     {
       "path": "/api/cron/send-vocab-reminders",
