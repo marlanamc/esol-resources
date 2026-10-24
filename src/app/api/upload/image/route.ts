@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { put } from "@vercel/blob";
 import { canUseTeacherTools } from "@/lib/auth/roles";
 
 const ALLOWED_TYPES: Record<string, string> = {
@@ -23,6 +22,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Teachers only" }, { status: 403 });
     }
 
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return NextResponse.json({ error: "Image storage is not configured" }, { status: 503 });
+    }
+
     const formData = await req.formData();
     const file = formData.get("file");
 
@@ -36,16 +39,19 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "File must be a JPEG, PNG, WebP, or GIF image" }, { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    if (bytes.byteLength > MAX_SIZE_BYTES) {
+    if (file.size > MAX_SIZE_BYTES) {
         return NextResponse.json({ error: "Image must be under 5 MB" }, { status: 400 });
     }
 
-    const filename = `${crypto.randomUUID()}.${ext}`;
-    const uploadsDir = join(process.cwd(), "public", "uploads", "activities");
-
-    await mkdir(uploadsDir, { recursive: true });
-    await writeFile(join(uploadsDir, filename), Buffer.from(bytes));
-
-    return NextResponse.json({ url: `/uploads/activities/${filename}` });
+    try {
+        const blob = await put(`activities/${crypto.randomUUID()}.${ext}`, file, {
+            access: "public",
+            contentType: mimeType,
+            addRandomSuffix: false,
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+        });
+        return NextResponse.json({ url: blob.url });
+    } catch {
+        return NextResponse.json({ error: "Image could not be saved. Please retry." }, { status: 502 });
+    }
 }
