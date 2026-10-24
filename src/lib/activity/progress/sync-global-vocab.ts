@@ -1,8 +1,10 @@
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/database/prisma";
 import { logger } from "@/lib/shared/logger";
 import { VOCAB_PROGRESS_TYPES } from "@/lib/activity/progress/shared";
 
 export async function syncGlobalVocabularyProgress(params: {
+    transaction?: Prisma.TransactionClient;
     userId: string;
     activityId: string;
     updatedCategoryData: string;
@@ -12,10 +14,11 @@ export async function syncGlobalVocabularyProgress(params: {
         categoryData?: string;
     };
 }): Promise<void> {
+    const db = params.transaction ?? prisma;
     const { userId, activityId, updatedCategoryData, progressData } = params;
 
     try {
-        const globalRecord = await prisma.activityProgress.findFirst({
+        const globalRecord = await db.activityProgress.findFirst({
             where: {
                 userId,
                 activityId,
@@ -68,7 +71,7 @@ export async function syncGlobalVocabularyProgress(params: {
                     ? "completed"
                     : "in_progress";
 
-            await prisma.activityProgress.update({
+            await db.activityProgress.update({
                 where: { id: globalRecord.id },
                 data: {
                     categoryData: JSON.stringify(mergedData),
@@ -77,7 +80,7 @@ export async function syncGlobalVocabularyProgress(params: {
                 },
             });
         } else {
-            await prisma.activityProgress.create({
+            await db.activityProgress.create({
                 data: {
                     userId,
                     activityId,
@@ -88,5 +91,6 @@ export async function syncGlobalVocabularyProgress(params: {
         }
     } catch (error) {
         logger.error("Failed to sync global vocabulary progress", error);
+        if (params.transaction) throw error;
     }
 }

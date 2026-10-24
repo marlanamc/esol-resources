@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { getActivityPoints, getSentenceBuilderPoints, getVocabularyTypePoints, POINTS } from "@/lib/gamification/gamification";
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
@@ -14,6 +15,7 @@ type ActivitySnapshot = {
 };
 
 export interface AwardProgressPointsInput {
+    transaction?: Prisma.TransactionClient;
     userId: string;
     activityId: string;
     activity: ActivitySnapshot | null;
@@ -61,10 +63,12 @@ export async function awardProgressActivityPoints(
                 // This route's client effects can fire concurrently; dedupe so a
                 // double-submit cannot award twice.
                 dedupeKey: true,
+                transaction: input.transaction,
             });
             return 5;
         } catch (err) {
             logger.error("[Progress] Award chain failed (fallback)", { userId, activityId, err });
+            if (input.transaction) throw err;
             return 0;
         }
     }
@@ -245,6 +249,7 @@ export async function awardProgressActivityPoints(
             // This route's client effects can fire concurrently; dedupe so a
             // double-submit cannot award twice.
             dedupeKey: true,
+            transaction: input.transaction,
         });
         return result.deduped ? 0 : points;
     } catch (err) {
@@ -254,6 +259,7 @@ export async function awardProgressActivityPoints(
             points,
             err,
         });
+        if (input.transaction) throw err;
         return 0;
     }
 }
