@@ -8,8 +8,8 @@
  * - Otherwise falls back to per-instance in-memory counting (fine for
  *   development and single-instance deployments).
  *
- * Store failures fail OPEN (request allowed) so a Redis outage can never
- * lock users out of login or password reset.
+ * Store failures default to OPEN so outages do not block login/password reset.
+ * Paid endpoints opt into failClosed to avoid unmetered spending.
  */
 
 import { logger } from "@/lib/shared/logger";
@@ -19,6 +19,8 @@ export interface RateLimitOptions {
     limit: number;
     /** Window duration in seconds */
     windowSeconds: number;
+    /** Refuse paid/sensitive work if the shared store cannot be reached. */
+    failClosed?: boolean;
 }
 
 interface RateLimitStore {
@@ -83,6 +85,7 @@ class UpstashStore implements RateLimitStore {
                 ["PEXPIRE", key, windowMs.toString(), "NX"],
             ]),
             cache: "no-store",
+            signal: AbortSignal.timeout(5000),
         });
 
         if (!response.ok) {
@@ -128,8 +131,8 @@ export async function checkRateLimit(
         const { count } = await store.increment(key, options.windowSeconds * 1000);
         return count <= options.limit;
     } catch (error) {
-        logger.error("Rate limit store error; failing open", error);
-        return true;
+        logger.error(options.failClosed ? "Rate limit store error; failing closed" : "Rate limit store error; failing open", error);
+        return !options.failClosed;
     }
 }
 
