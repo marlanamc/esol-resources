@@ -1,3 +1,4 @@
+import { activityAwardReportKey } from "@/lib/gamification/activity-points";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -228,7 +229,7 @@ export async function GET(request: Request) {
 
     groupedPoints.forEach((row) => {
       // Reason can be: "activity:numbers-game", "activity-name", or null
-      const activityId = row.reason || "unknown";
+      const activityId = activityAwardReportKey(row.reason);
 
       if (!activityMap.has(activityId)) {
         activityMap.set(activityId, {

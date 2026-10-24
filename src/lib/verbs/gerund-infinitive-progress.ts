@@ -239,9 +239,9 @@ export function calculateGroupPoints(
   roundMode: GIRoundMode
 ): number {
   void accuracy;
-  void exercisesCompleted;
   void roundMode;
-  return isRoundCompleted ? POINTS_PER_ROUND : 0;
+  if (!Number.isFinite(exercisesCompleted) || exercisesCompleted <= 0) return 0;
+  return isRoundCompleted ? POINTS_PER_ROUND : 3;
 }
 
 export function getProgressSummary(categoryData: Record<string, GIGroupProgress>) {

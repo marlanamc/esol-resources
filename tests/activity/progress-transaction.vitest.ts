@@ -2,14 +2,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 
 const mocks = vi.hoisted(() => ({
-  transaction: vi.fn(), award: vi.fn(), findActivity: vi.fn(),
+  transaction: vi.fn(), award: vi.fn(), findActivity: vi.fn(), resolveUi: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: async () => ({ user: { id: 'learner', role: 'student' } }) }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
 vi.mock('@/lib/database/prisma', () => ({ prisma: { $transaction: mocks.transaction, activity: { findUnique: mocks.findActivity } } }));
 vi.mock('@/lib/gamification/gamification', () => ({
-  resolveActivityGameUi: () => 'flashcards', getActivityPoints: () => 5,
-  getVocabularyTypePoints: () => 5, getSentenceBuilderPoints: () => 5, POINTS: {},
+  resolveActivityGameUi: mocks.resolveUi, getActivityPoints: () => 5,
+  getVocabularyTypePoints: () => 5, getSentenceBuilderPoints: () => 5, POINTS: { ACTIVITY_COMPLETION: 3, TIMELINE_TENSES_TIME_SIGNALS: 5 },
 }));
 vi.mock('@/lib/gamification/award-chain', () => ({ applyAwardChain: mocks.award }));
 import { POST } from '@/lib/activity/progress/post-progress';
@@ -25,7 +25,7 @@ const request = (body: Record<string, unknown> = {}, key?: string) => new NextRe
 });
 
 beforeEach(() => {
-  vi.clearAllMocks(); rows = []; balance = 0; ledger = []; tail = Promise.resolve();
+  vi.clearAllMocks(); mocks.resolveUi.mockReturnValue("flashcards"); rows = []; balance = 0; ledger = []; tail = Promise.resolve();
   mocks.findActivity.mockResolvedValue({ type: 'vocabulary', title: 'Words', content: '{}', ui: 'flashcards', category: null });
   // Transaction double models rollback and serialization. Assertions below also
   // require the real route to acquire its DB lock before reading or writing.
@@ -92,5 +92,20 @@ describe('progress and credit commit together', () => {
     await POST(request({ assignmentId: 'homework' }));
     expect(rows.map(r => r.assignmentId)).toEqual(['homework', null]);
     expect(balance).toBe(5);
+  });
+});
+
+
+describe('practice round route awards', () => {
+  it.each(['round1', 'round2', 'round3', 'round4', 'round5'])('credits an attempted Parts of Speech %s even at zero accuracy', async roundMode => {
+    mocks.resolveUi.mockReturnValue('parts-of-speech');
+    const result = await (await POST(request({ vocabType: null, groupId: 'group-1', roundMode, roundAccuracy: 0, roundExercisesCompleted: 5 }, `attempt-${roundMode}`))).json();
+    expect(result.pointsAwarded).toBe(3); expect(balance).toBe(3); expect(ledger).toEqual([3]);
+  });
+  it('credits an unsuccessful Time Signals quiz without marking mastery', async () => {
+    mocks.resolveUi.mockReturnValue('timeline-tenses');
+    const result = await (await POST(request({ vocabType: null, category: 'time-signals', accuracy: 0 }))).json();
+    expect(result.pointsAwarded).toBe(3); expect(balance).toBe(3);
+    expect(JSON.parse(rows[0].categoryData!)['time-signals'].completed).toBe(false);
   });
 });

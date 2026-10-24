@@ -6,6 +6,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
+import { practiceAttemptKey } from '@/lib/practice-attempt-key';
 import type {
   POSAnswerDetail,
   POSGroup,
@@ -228,13 +229,10 @@ function computeRoundResults(
     nextStep = 'finish';
   }
 
-  // Points: awarded on round 1 pass only (so next-group unlock feels earned immediately)
-  // Bonus points for mastery
-  const basePoints = passed && roundNum === 1
-    ? group.difficulty === 1 ? 3 : group.difficulty === 2 ? 5 : 8
+  // Every attempted round earns effort credit; passing earns the difficulty award.
+  const pointsAwarded = total > 0
+    ? passed ? (group.difficulty === 1 ? 3 : group.difficulty === 2 ? 5 : 8) : 3
     : 0;
-  const masteryBonus = mastery ? 5 : 0;
-  const pointsAwarded = basePoints + masteryBonus;
 
   return {
     groupId: group.id,
@@ -517,7 +515,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
       const overallProgress = calculateOverallProgress(updatedCategoryData);
       const res = await fetch('/api/activity/progress', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Idempotency-Key': practiceAttemptKey(results) },
         body: JSON.stringify({
           activityId,
           progress: overallProgress,

@@ -268,7 +268,9 @@ export async function POST(request: NextRequest) {
                 activityGameUi === "gerund-infinitive" ||
                 activityGameUi === "irregular-verbs" ||
                 activityGameUi === "parts-of-speech";
-            const validRoundModes = ["round1", "round2", "review", "final"];
+            const validRoundModes = activityGameUi === "parts-of-speech"
+                ? ["round1", "round2", "round3", "round4", "round5", "review", "final"]
+                : ["round1", "round2", "review", "final"];
             const hasRoundParams =
                 typeof groupId === "string" &&
                 groupId.length > 0 &&
@@ -277,15 +279,14 @@ export async function POST(request: NextRequest) {
                 Number.isFinite(roundAccuracy) &&
                 typeof roundExercisesCompleted === "number" &&
                 Number.isFinite(roundExercisesCompleted) &&
-                roundExercisesCompleted >= 0;
+                roundExercisesCompleted > 0;
+            if (isGroupRoundUpdate && groupId !== undefined && !hasRoundParams) {
+                throw new Error("A completed practice round is required");
+            }
             const shouldAwardGroupRoundPoints = isGroupRoundUpdate && hasRoundParams;
             const isTimelineRoundCompletion =
                 activityGameUi === "timeline-tenses" && sanitizedAccuracy !== undefined;
-            const isTimeSignalsRound =
-                isTimelineRoundCompletion &&
-                typeof category === "string" &&
-                category.toLowerCase() === "time-signals";
-            const isPassingTimeSignalsQuiz = isTimeSignalsRound && sanitizedAccuracy >= 70;
+
 
             const shouldAwardProgress = shouldAwardProgressPoints({
                 rawProgress,
@@ -298,11 +299,10 @@ export async function POST(request: NextRequest) {
                 existingCategoryData,
             });
 
-            const canAwardTimeSignals = !isTimeSignalsRound || isPassingTimeSignalsQuiz;
             const shouldAwardPoints =
                 shouldAwardGroupRoundPoints ||
-                (isTimelineRoundCompletion && canAwardTimeSignals) ||
-                (shouldAwardProgress && canAwardTimeSignals);
+                (isTimelineRoundCompletion && rawProgress >= 100) ||
+                shouldAwardProgress;
 
             let pointsAwarded = 0;
             if (shouldAwardPoints) {
@@ -312,6 +312,7 @@ export async function POST(request: NextRequest) {
                     activity,
                     activityGameUi,
                     transaction: tx,
+                    idempotencyKey,
                     shouldAwardGroupRoundPoints,
                     groupId,
                     roundMode,
