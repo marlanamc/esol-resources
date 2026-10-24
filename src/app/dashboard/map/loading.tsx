@@ -8,17 +8,16 @@ export default function CourseMapLoading() {
                             <h1 className="text-3xl font-display font-bold text-text leading-tight">Course Map</h1>
                             <p role="status" className="text-sm text-text-muted mt-1">Loading your course map…</p>
                         </div>
-                        <div aria-hidden="true" className="hidden lg:block dashboard-panel rounded-2xl p-5 space-y-4">
-                            <div className="flex items-center gap-4">
-                                <div className="h-16 w-16 shrink-0 skeleton rounded-full" />
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-4 w-3/4 skeleton rounded" />
-                                    <div className="h-3 w-1/2 skeleton rounded" />
+                        <div aria-hidden="true" className="hidden lg:flex flex-col gap-1.5">
+                            {[0, 1, 2, 3, 4].map((unit) => (
+                                <div key={unit} className="flex min-h-[52px] items-center gap-3 rounded-[14px] px-3 py-2">
+                                    <div className="h-8 w-2.5 shrink-0 skeleton rounded" />
+                                    <div className="flex-1 space-y-2">
+                                        <div className="h-3 w-1/3 skeleton rounded" />
+                                        <div className="h-4 w-3/4 skeleton rounded" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="h-2 skeleton rounded" />
-                            <div className="h-10 skeleton rounded-lg" />
-                            <div className="h-10 skeleton rounded-lg" />
+                            ))}
                         </div>
                     </div>
 
