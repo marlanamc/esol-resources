@@ -351,6 +351,7 @@ export const WEEKLY_LANGUAGE_HELP: Record<string, Record<'es' | 'pt-BR', Languag
 );
 
 export const REVIEWED_RESCUE_PHRASES: Record<string, string> = {
+  "advocate": "to advocate for better schools",
   "commute": "commute by train",
   "delay": "a twenty-minute delay",
   "detour": "take a detour",

@@ -6,7 +6,10 @@ import { resolveAudioUrl } from "@/lib/audio/url";
  * When the on-disk filename differs from the curriculum `card.term`, map it here.
  */
 /** Map `card.term` → filename base when the mp3 on disk does not match the term text. */
-const VOCAB_AUDIO_FILE_OVERRIDES: Record<string, string> = {};
+const VOCAB_AUDIO_FILE_OVERRIDES: Record<string, string> = {
+  // New filename bypasses the CDN's long-lived cache of the original recording.
+  represent: "represent-v2",
+};
 
 export function getVocabAudioUrl(term: string): string {
   const fileBase = VOCAB_AUDIO_FILE_OVERRIDES[term] ?? term;
