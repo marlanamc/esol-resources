@@ -12,12 +12,11 @@ const loadResume = cache((id: string, role?: string | null) => getDashboardResum
 interface ThisWeekPanelProps {
     user: { id: string; role?: string | null };
     fallback?: ReactNode;
-    collapsedLimit?: number;
     /** `road` is the course map's "You are here" card (mobile home). */
     variant?: "panel" | "road";
 }
 
-export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, variant = "panel" }: ThisWeekPanelProps) {
+export async function ThisWeekPanel({ user, fallback = null, variant = "panel" }: ThisWeekPanelProps) {
     // Road only: streak and this week's points ride under the road. Started early so it loads alongside the week;
     // a failure just hides the numbers.
     const momentumLoad = variant === "road"
@@ -64,7 +63,6 @@ export async function ThisWeekPanel({ user, fallback = null, collapsedLimit, var
             continueLabel={data.continueLabel}
             mapHref={data.mapHref}
             showUnitMonths={data.showUnitMonths}
-            collapsedLimit={collapsedLimit}
         />
     );
 

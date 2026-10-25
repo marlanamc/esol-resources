@@ -521,7 +521,6 @@ export default async function DashboardPage() {
                             <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                                 user={{ id: userId, role: userRole }}
                                 fallback={nextStepFallback}
-                                collapsedLimit={3}
                             /></Suspense>
 
                             <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
