@@ -517,7 +517,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "_____ Central Square and walk one block. (Meaning: to leave a bus or train at a particular stop.)",
+        "prompt": "_____ Central Square and walk one block. When the driver announces that stop, leave the bus.",
         "options": [
           "commute",
           "delay",
@@ -692,7 +692,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "_____ the school if your child will be absent. (Meaning: to reach someone by phone, email, or message.)",
+        "prompt": "_____ the school if your child will be absent. You can call the office or send the teacher a message.",
         "options": [
           "contact",
           "respond",
@@ -897,7 +897,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Each person can _____ time or effort to the community project. (Meaning: to give time, money, or effort to help something.)",
+        "prompt": "Each person can _____ time or effort to the community project. Some neighbors will paint, and others will bring supplies.",
         "options": [
           "contribute",
           "volunteer",
@@ -1066,7 +1066,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "After discussing different meeting times, we hope to _____ everyone accepts. (Meaning: to make a decision that everyone involved accepts.)",
+        "prompt": "After discussing different meeting times, we hope to _____ everyone accepts. Some people want Monday and others want Friday, but Thursday could work for all of us.",
         "options": [
           "suggest",
           "propose",
@@ -1266,7 +1266,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Citizens _____ leaders to represent them in government. (Meaning: to choose a person for a position by voting.)",
+        "prompt": "Citizens _____ leaders to represent them in government. On election day, each voter marks a ballot for their favorite candidate.",
         "options": [
           "register to vote",
           "advocate",
@@ -1640,7 +1640,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "What is the _____ with tax and delivery? (Meaning: the full amount to pay, including extra charges.)",
+        "prompt": "What is the _____ with tax and delivery? I want to know the final amount I will pay at checkout.",
         "options": [
           "budget",
           "total cost",
@@ -1815,7 +1815,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "The shirt is too small, so I want to _____ it for a larger one. (Meaning: to return one item and get a different one.)",
+        "prompt": "The shirt is too small, so I want to _____ it for a larger one. I will take it back and choose the same style in a bigger size.",
         "options": [
           "withdraw",
           "deposit",
@@ -2015,7 +2015,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Compare the _____ before choosing a package. (Meaning: the cost for one standard amount, such as one ounce or one pound.)",
+        "prompt": "Compare the _____ before choosing a package. The shelf label shows how much each ounce costs.",
         "options": [
           "buy in bulk",
           "unit price",
@@ -2185,7 +2185,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Do I _____ this housing program? (Meaning: to meet the requirements for something.)",
+        "prompt": "Do I _____ this housing program? My income is below the limit, but I need to check the other requirements.",
         "options": [
           "qualify for",
           "security deposit",
@@ -2390,7 +2390,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "I can't _____ an apartment in that area. (Meaning: to have enough money to pay for something.)",
+        "prompt": "I can't _____ an apartment in that area. The monthly rent is more than I earn.",
         "options": [
           "trade-off",
           "afford",
@@ -2555,7 +2555,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "The landlord will _____ the apartment next Monday. (Meaning: to look at something carefully to check its condition.)",
+        "prompt": "The landlord will _____ the apartment next Monday. She will check the windows, pipes, and smoke alarms.",
         "options": [
           "inspect",
           "request a repair",
@@ -2755,7 +2755,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Will the landlord _____ me for the approved repair? (Meaning: to pay someone back for money they spent on an expense.)",
+        "prompt": "Will the landlord _____ me for the approved repair? I paid the plumber myself and kept the receipt.",
         "options": [
           "resolve",
           "maintain",
@@ -2974,7 +2974,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "My _____ changes when my class schedule changes. (Meaning: the times when someone is free to work or meet.)",
+        "prompt": "My _____ changes when my class schedule changes. This semester, I can work on Mondays but not on Tuesdays.",
         "options": [
           "availability",
           "responsibility",
@@ -3223,7 +3223,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "A photo ID is _____ to enter the building. (Meaning: necessary; must be done.)",
+        "prompt": "A photo ID is _____ to enter the building. The guard will not let you in without it.",
         "options": [
           "previous position",
           "job duties",
@@ -3398,7 +3398,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Can you _____ at the front desk while I answer this call? (Meaning: to help someone with something.)",
+        "prompt": "Can you _____ at the front desk while I answer this call? Please welcome visitors and show them where to wait.",
         "options": [
           "show up",
           "follow up",
@@ -3647,7 +3647,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Please _____ when your shift ends. (Meaning: to leave work and record your end time.)",
+        "prompt": "Please _____ when your shift ends. Use the time clock before you leave for home.",
         "options": [
           "clock in",
           "call in sick",
@@ -3866,7 +3866,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Include a _____ explaining why you are a good fit. (Meaning: a letter explaining why you want the job.)",
+        "prompt": "Include a _____ explaining why you are a good fit. Use it to tell the hiring manager why you want to work at this company.",
         "options": [
           "resume",
           "reference",
@@ -4115,7 +4115,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "It is smart to save money in an _____ for unexpected costs. (Meaning: money saved for unexpected problems.)",
+        "prompt": "It is smart to save money in an _____ for unexpected costs. When my car suddenly needed repairs, I used those savings.",
         "options": [
           "deductions",
           "emergency fund",
@@ -4334,7 +4334,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Workers discussed their _____ to a safe workplace. (Meaning: something a person is entitled to do or have.)",
+        "prompt": "Workers discussed their _____ to a safe workplace. They said everyone should be able to do their job without unsafe conditions.",
         "options": [
           "raise a concern",
           "workplace policy",
@@ -4578,7 +4578,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Losing your job can be a serious _____ of violating safety rules. (Meaning: a result or effect of an action.)",
+        "prompt": "Losing your job can be a serious _____ of violating safety rules. An employee could be dismissed for repeatedly ignoring those rules.",
         "options": [
           "make a decision",
           "consequence",
@@ -4797,7 +4797,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "I called the clinic to ask where I could _____. (Meaning: to try to get help from a healthcare professional.)",
+        "prompt": "I called the clinic to ask where I could _____. I was feeling unwell and wanted a healthcare professional to see me.",
         "options": [
           "seek care",
           "symptom",
@@ -5051,7 +5051,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "The pain began to _____ yesterday. (Meaning: to become less strong or severe.)",
+        "prompt": "The pain began to _____ yesterday. It hurt less than it had the day before.",
         "options": [
           "build up",
           "ease up",
@@ -5221,7 +5221,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "It took me several weeks to _____ the surgery. (Meaning: to get better after an illness, injury, or difficult experience.)",
+        "prompt": "It took me several weeks to _____ the surgery. At first I needed help at home, but later I could do my usual activities again.",
         "options": [
           "recover from",
           "persistent",
@@ -5465,7 +5465,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Could there be an _____ between these medicines? (Meaning: a change in a medicine's effect when it is taken with another substance.)",
+        "prompt": "Could there be an _____ between these medicines? I want to know whether taking one could change how the other works.",
         "options": [
           "refill",
           "over-the-counter",
@@ -5689,7 +5689,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "I wrote down each _____ before my appointment. (Meaning: a change in how someone feels or functions that may indicate a health problem.)",
+        "prompt": "I wrote down each _____ before my appointment. My list included a sore throat and a headache.",
         "options": [
           "symptom",
           "treatment plan",
@@ -5933,7 +5933,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Deep breathing is one of my _____ for stress. (Meaning: ways to handle stress or problems.)",
+        "prompt": "Deep breathing is one of my _____ for stress. Writing in my journal also helps me handle difficult days.",
         "options": [
           "wellness",
           "self-care",
@@ -6152,7 +6152,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "The nurse asked whether I had been drinking enough _____. (Meaning: liquids, including drinks such as water, tea, or broth.)",
+        "prompt": "The nurse asked whether I had been drinking enough _____. She asked how much water, tea, and broth I had each day.",
         "options": [
           "home remedy",
           "relieve",
@@ -6402,7 +6402,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Support from classmates can help you _____. (Meaning: to successfully deal with something difficult.)",
+        "prompt": "Support from classmates can help you _____. They helped me practice until I could give my first presentation.",
         "options": [
           "make progress",
           "milestone",
@@ -6567,7 +6567,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "This job offers many opportunities for personal _____. (Meaning: getting better over time.)",
+        "prompt": "This job offers many opportunities for personal _____. I can learn new skills and become more confident in my work.",
         "options": [
           "confident",
           "commitment",
@@ -6762,7 +6762,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "I _____ all the help my teacher gave me this year. (Meaning: to be thankful for something.)",
+        "prompt": "I _____ all the help my teacher gave me this year. I thanked her for staying after class to answer my questions.",
         "options": [
           "growth",
           "appreciate",
@@ -6927,7 +6927,7 @@
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "I want to _____ for my next English class. (Meaning: to decide on something you want to achieve.)",
+        "prompt": "I want to _____ for my next English class. By June, I want to have a conversation in English without using my phone to translate.",
         "options": [
           "growth",
           "confident",
