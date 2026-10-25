@@ -19,6 +19,8 @@
   --road-on-tone: #fffdfa;
   --road-done-bg: #eef4ec;
   --road-done-text: #2d6930;
+  --road-required-bg: #a3402a;
+  --road-required-text: #fffdfa;
 }
 
 :global(.dark) .road,
@@ -41,6 +43,8 @@
   --road-on-tone: #0d1620;
   --road-done-bg: rgba(111, 191, 159, 0.16);
   --road-done-text: #8ed4b8;
+  --road-required-bg: rgba(229, 115, 115, 0.2);
+  --road-required-text: #f4b4ae;
 }
 
 /* Keep keyboard-focused rows clear of the sticky top bar and the fixed
