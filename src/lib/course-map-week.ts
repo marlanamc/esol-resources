@@ -67,6 +67,7 @@ function toTimelineItem(activity: CourseMapActivity, status: TimelineStatus): Ti
         activityId: activity.id,
         title: activity.title,
         type: activity.activityType,
+        vocabUi: activity.vocabUi,
         estMinutes: getCourseMapEstimatedMinutesForActivity(activity),
         status,
         href: buildItemHref(activity),

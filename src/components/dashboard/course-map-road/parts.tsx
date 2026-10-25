@@ -377,7 +377,7 @@ export function SegmentedProgress({ activities, accent }: { activities: RoadActi
 // ── What you'll learn ─────────────────────────────────────────────────────────
 
 /** A tap-to-open list of the week's "I can" goals and the reference pages that help. */
-function WeekLearningDisclosure({ weekNumber, accent, className = "" }: { weekNumber: number; accent: string; className?: string }) {
+export function WeekLearningDisclosure({ weekNumber, accent, className = "" }: { weekNumber: number; accent: string; className?: string }) {
     const learning = getWeekLearning(weekNumber);
     if (!learning) return null;
     return (
