@@ -1,5 +1,8 @@
 import type { CourseMapActivity, CourseMapActivityType } from "@/lib/course-map";
 
+/** "Word Lab · 6 words" reads as just "Word Lab"; the count is noise to learners. */
+export const WORD_LAB_COUNT = /^Word Lab\s*·\s*\d+\s+words?$/i;
+
 export function formatNextUpActivityTitle(title: string): string {
     const shortened = title
         .replace("Welcome Back: Simple & Continuous Review", "Simple & Continuous Review")
@@ -10,6 +13,7 @@ export function formatNextUpActivityTitle(title: string): string {
         .replace("Timeline Tenses:", "Timeline:")
         .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
         .replace(/\s+\+\s+V3 Preview$/i, "")
+        .replace(WORD_LAB_COUNT, "Word Lab")
         .trim();
 
     if (title.startsWith("Welcome Back:") && !shortened.startsWith("Welcome Back:")) {

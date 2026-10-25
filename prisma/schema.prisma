@@ -49,6 +49,7 @@ model User {
   submissions            Submission[]
   achievements           UserAchievement[]
   announcementDismissals AnnouncementDismissal[]
+  classQuestions         ClassQuestion[]
   preferences            UserPreferences?
   vocabReviewStates      UserVocabReviewState[]
   writingClassVotes      WritingClassVote[]      @relation("StudentClassVotes")
@@ -66,24 +67,25 @@ model User {
 }
 
 model Class {
-  id              String              @id @default(cuid())
-  name            String
-  description     String?
-  code            String              @unique
-  teacherId       String
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-  announcementId  String              @default(cuid())
+  id                     String                  @id @default(cuid())
+  name                   String
+  description            String?
+  code                   String                  @unique
+  teacherId              String
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  announcementId         String                  @default(cuid())
   announcementDismissals AnnouncementDismissal[]
-  announcement    String?
-  sectionGroupId  String?
-  assignments     Assignment[]
-  calendarEvents  CalendarEvent[]
-  classReveals    ClassReveal[]
-  weekSchedules   ClassWeekSchedule[]
-  teacher         User                @relation("ClassTeacher", fields: [teacherId], references: [id])
-  enrollments     ClassEnrollment[]
-  writingSessions WritingSession[]
+  classQuestions         ClassQuestion[]
+  announcement           String?
+  sectionGroupId         String?
+  assignments            Assignment[]
+  calendarEvents         CalendarEvent[]
+  classReveals           ClassReveal[]
+  weekSchedules          ClassWeekSchedule[]
+  teacher                User                    @relation("ClassTeacher", fields: [teacherId], references: [id])
+  enrollments            ClassEnrollment[]
+  writingSessions        WritingSession[]
 
   @@index([teacherId])
   @@index([teacherId, createdAt])
@@ -244,21 +246,21 @@ model QuizAttempt {
 
 model Submission {
   quizAttempts  QuizAttempt[]
-  id            String      @id @default(cuid())
+  id            String        @id @default(cuid())
   userId        String
   activityId    String
   assignmentId  String?
   content       String
   score         Int?
   feedback      String?
-  status        String      @default("pending")
-  pointsAwarded Int         @default(0)
+  status        String        @default("pending")
+  pointsAwarded Int           @default(0)
   completedAt   DateTime?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  activity      Activity    @relation(fields: [activityId], references: [id])
-  assignment    Assignment? @relation(fields: [assignmentId], references: [id])
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  activity      Activity      @relation(fields: [activityId], references: [id])
+  assignment    Assignment?   @relation(fields: [assignmentId], references: [id])
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, activityId, assignmentId])
   @@index([userId])
@@ -658,9 +660,28 @@ model AnnouncementDismissal {
   classId        String
   announcementId String
   dismissedAt    DateTime @default(now())
-  student        User @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  class          Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student        User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class          Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   @@id([studentId, classId])
   @@index([classId])
+}
+
+/// A learner's question for class, sent from the course map before class.
+/// Only the class's teachers read these; `anonymous` hides the name from them too.
+model ClassQuestion {
+  id         String    @id @default(cuid())
+  studentId  String
+  classId    String
+  weekNumber Int
+  text       String
+  anonymous  Boolean   @default(false)
+  answeredAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  student    User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class      Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  @@index([classId, weekNumber])
+  @@index([studentId, weekNumber])
 }

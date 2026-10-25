@@ -14,6 +14,8 @@ import { participationStatus } from "@/lib/teach/participation-status";
 import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { getClassQuizCompletion } from "@/lib/teach/quiz-completion";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
+import { ClassQuestionsPanel } from "@/components/teach/ClassQuestionsPanel";
+import { resolveScheduledTeachingWeek } from "@/lib/course-map-current-week";
 
 export default async function TeachHomePage({
     searchParams,
@@ -76,13 +78,20 @@ export default async function TeachHomePage({
         getVisibleWeekIdsForClasses([classId]),
     ]);
     if (!cls) redirect("/teach/classes");
-    const [week, quizCompletion] = await Promise.all([
+    const scheduledWeek = resolveScheduledTeachingWeek(new Date(now))?.weekNumber ?? 1;
+    const [week, quizCompletion, pendingQuestion] = await Promise.all([
         prisma.courseWeek.findFirst({
             where: { id: { in: [...visibleWeekIds] } },
             orderBy: { number: "desc" },
             select: { number: true, title: true },
         }),
         getClassQuizCompletion(classId, students, new Date(now)),
+        // Open on the newest week with unanswered questions (students can ask a week early).
+        prisma.classQuestion.findFirst({
+            where: { classId, answeredAt: null, weekNumber: { lte: scheduledWeek + 1 } },
+            orderBy: { weekNumber: "desc" },
+            select: { weekNumber: true },
+        }).catch(() => null),
     ]);
     const counts = { active: 0, inactive: 0, never: 0 };
     students.forEach((s) => counts[participationStatus(s.lastActive, now)]++);
@@ -160,6 +169,7 @@ export default async function TeachHomePage({
                     />
                 </section>
             </div>
+            <ClassQuestionsPanel key={classId} classId={classId} initialWeek={pendingQuestion?.weekNumber ?? scheduledWeek} />
             <div className="grid xl:grid-cols-[1fr_1.1fr] gap-6 items-start">
                 <section className="workspace-panel space-y-5">
                     <div className="flex flex-wrap items-center justify-between gap-3">

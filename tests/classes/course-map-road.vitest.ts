@@ -6,6 +6,8 @@ import {
     formatRoadCtaTitle,
     formatRoadRowLabels,
     formatRoadWeekDates,
+    groupRoadWeekSteps,
+    type RoadActivity,
     type RoadScheduleWeek,
 } from "@/lib/course-map-road";
 import { buildTeachingWeeks } from "@/lib/course-map-schedule";
@@ -106,7 +108,7 @@ describe("course map road", () => {
         expect(week(1).dates).toBe("Sep 14–18");
         expect(formatRoadWeekDates("2026-09-28")).toBe("Sep 28 – Oct 2");
         expect(week(6).note).toBeNull();
-        expect(week(5).note).toBe("Open now · class starts Tuesday");
+        expect(week(5).note).toBe("Open now");
     });
 
     it("folds past units with a summary and neutralises locked future units", () => {
@@ -176,4 +178,37 @@ it('keeps locked Word Rescue first and removes optional vocabulary, including ol
     expect(result.activities[0].id).toBe('word-rescue');
     expect(result.activities[0].href).toBeNull();
     expect(result.extras.map(item => item.id)).toEqual(['bonus']);
+});
+
+describe("groupRoadWeekSteps", () => {
+    const act = (id: string, activityType: RoadActivity["activityType"], vocabUi?: string): RoadActivity => ({
+        id, title: id, activityType, vocabUi, href: `/a/${id}`, done: false, isNext: false,
+    });
+
+    it("sorts a week into words, grammar, practice and quiz", () => {
+        const steps = groupRoadWeekSteps([
+            act("word-lab", "pronunciation"),
+            act("flash", "game", "flashcards"),
+            act("guide", "guide"),
+            act("match", "game", "matching"),
+            act("blank", "game", "fill-blank"),
+            act("builder", "game"),
+            act("quiz", "quiz"),
+        ]);
+        expect(steps.words.map((a) => a.id)).toEqual(["word-lab", "flash"]);
+        expect(steps.grammar.map((a) => a.id)).toEqual(["guide"]);
+        expect(steps.practice.map((a) => a.id)).toEqual(["match", "blank", "builder"]);
+        expect(steps.quiz.map((a) => a.id)).toEqual(["quiz"]);
+    });
+
+    it("treats a check-in like the quiz", () => {
+        expect(groupRoadWeekSteps([act("check", "assessment")]).quiz).toHaveLength(1);
+    });
+});
+
+describe("Word Lab titles", () => {
+    it("drops the word count from the row and the Continue button", () => {
+        expect(formatRoadRowLabels({ title: "Word Lab · 6 words" }, "Listen & say").title).toBe("Word Lab");
+        expect(formatRoadCtaTitle("Word Lab · 6 words")).toBe("Word Lab");
+    });
 });

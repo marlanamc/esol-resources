@@ -6,7 +6,7 @@ import type {
 } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import type { WeeklyQuizScore } from "@/lib/weekly-quiz";
-import { formatNextUpActivityTitle } from "@/lib/course-map-hero";
+import { WORD_LAB_COUNT, formatNextUpActivityTitle } from "@/lib/course-map-hero";
 import {
     buildMapActivityHref,
     buildMapReturnHref,
@@ -57,7 +57,6 @@ export function cycleForUnit(unit: { unitNumber: number; month: string }): numbe
 // ── Dates ─────────────────────────────────────────────────────────────────────
 
 const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const WEEKDAY_LONG = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 function dateOnlyToUtc(value: string): Date {
     const [y, m, d] = value.split("-").map(Number);
@@ -212,9 +211,36 @@ export function formatRoadRowLabels(
         activity.title
             .replace(/^Week \d+:\s*/i, "")
             .replace(/^Week \d+ Quiz\s*[—–-]\s*/i, "")
+            .replace(WORD_LAB_COUNT, "Word Lab")
             .trim() || activity.title;
     const saysFormat = title.toLowerCase().includes(formatLabel.toLowerCase());
     return { title, detail: saysFormat ? null : formatLabel };
+}
+
+export interface RoadWeekSteps {
+    /** Word Lab and Flash Cards: start before Tuesday, review all week. */
+    words: RoadActivity[];
+    /** The grammar guide. */
+    grammar: RoadActivity[];
+    /** Matching, Fill in the Blank, games: the rest of the week's practice. */
+    practice: RoadActivity[];
+    /** The weekly quiz: the one required piece. */
+    quiz: RoadActivity[];
+}
+
+/**
+ * Sorts a week's activities into the class routine the week card shows as
+ * numbered steps. Order within each step is kept.
+ */
+export function groupRoadWeekSteps(activities: RoadActivity[]): RoadWeekSteps {
+    const steps: RoadWeekSteps = { words: [], grammar: [], practice: [], quiz: [] };
+    for (const activity of activities) {
+        if (activity.activityType === "quiz" || activity.activityType === "assessment") steps.quiz.push(activity);
+        else if (activity.activityType === "guide") steps.grammar.push(activity);
+        else if (activity.activityType === "pronunciation" || activity.vocabUi === "flashcards") steps.words.push(activity);
+        else steps.practice.push(activity);
+    }
+    return steps;
 }
 
 function toRoadActivity(
@@ -300,10 +326,7 @@ export function buildCourseMapRoad(options: BuildCourseMapRoadOptions): CourseMa
                   : "past";
 
         let note: string | null = null;
-        if (state === "upcoming" && scheduled?.firstClassDate) {
-            const classDay = dateOnlyToUtc(scheduled.firstClassDate);
-            note = `Open now · class starts ${WEEKDAY_LONG[classDay.getUTCDay()]}`;
-        }
+        if (state === "upcoming" && scheduled?.firstClassDate) note = "Open now";
 
         return {
             weekNumber,
