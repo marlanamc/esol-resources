@@ -1,18 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState } from "react";
-import { ChevronDown, ChevronRight, Play } from "lucide-react";
+import { ChevronRight, Play } from "lucide-react";
 import type { TimelineItem } from "@/components/dashboard/ActivityTimeline";
-import {
-    ActivityRow,
-    SegmentedProgress,
-    timelineToRoadActivities,
-} from "@/components/dashboard/course-map-road/parts";
+import { WeekStepLines } from "@/components/dashboard/WeekStepLines";
+import { WeekLearningDisclosure } from "@/components/dashboard/course-map-road/parts";
 import roadStyles from "@/components/dashboard/course-map-road/road.module.css";
 import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import type { RoadActivity } from "@/lib/course-map-road";
 
 export interface ThisWeekPanelClientProps {
     weekNumber: number;
@@ -27,8 +22,6 @@ export interface ThisWeekPanelClientProps {
     continueLabel: string;
     mapHref: string;
     showUnitMonths?: boolean;
-    /** How many timeline rows to show before "See full week". Desktop can show more. */
-    collapsedLimit?: number;
 }
 
 export function ThisWeekPanelClient({
@@ -36,26 +29,16 @@ export function ThisWeekPanelClient({
     weekTitle,
     unitNumber,
     unitMonth,
-    progress,
     items,
     continueHref,
     continueLabel,
     mapHref,
     showUnitMonths = true,
-    collapsedLimit = 1,
 }: ThisWeekPanelClientProps) {
-    const [expanded, setExpanded] = useState(false);
-    const panelId = useId();
     const tone = getCourseMapUnitTone(unitNumber);
     const weekLabel = formatLevelLabel(weekNumber, showUnitMonths);
     const unitLabel = showUnitMonths && unitMonth ? `Unit ${unitNumber} · ${unitMonth}` : `Unit ${unitNumber}`;
 
-    // Same rows and colors as the course map road, so desktop and mobile read as one app.
-    const activities = timelineToRoadActivities(items, weekNumber);
-    const currentItem = activities.find((activity) => activity.isNext);
-    const collapsedItems = previewAroundCurrent(activities, currentItem, collapsedLimit);
-    const canExpand = activities.length > collapsedItems.length;
-    const visibleItems = expanded ? activities : collapsedItems;
     const divider = "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)";
 
     return (
@@ -88,21 +71,11 @@ export function ThisWeekPanelClient({
                     <h2 className="m-0 mt-1.5 font-display text-[1.65rem] font-bold leading-[1.1] tracking-tight text-text">
                         {weekTitle}
                     </h2>
-                    {activities.length > 0 ? (
-                        <div className="mt-3 flex items-center gap-3">
-                            <SegmentedProgress activities={activities} accent={tone.accent} />
-                            <span className="text-sm font-bold whitespace-nowrap text-text-muted">
-                                {progress.done} of {progress.total} done
-                            </span>
-                        </div>
-                    ) : null}
+                    <WeekLearningDisclosure weekNumber={weekNumber} accent={tone.accent} className="mt-1" />
                 </div>
 
-                <div id={panelId}>
-                    {visibleItems.map((activity) => (
-                        <ActivityRow key={activity.id} activity={activity} showNext inset={20} />
-                    ))}
-                </div>
+                {/* Same steps as the phone home and the Map, so the routine reads the same everywhere. */}
+                <WeekStepLines items={items} weekNumber={weekNumber} mapHref={mapHref} showUnitMonths={showUnitMonths} accent={tone.button} inset={20} />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3" style={{ borderTop: divider }}>
                     <Link
@@ -117,50 +90,16 @@ export function ThisWeekPanelClient({
                         <Play size={14} fill="currentColor" aria-hidden />
                         {continueLabel}
                     </Link>
-                    <div className="flex items-center gap-4">
-                        {canExpand ? (
-                            <button
-                                type="button"
-                                className="inline-flex items-center gap-1 rounded-lg py-2 text-sm font-bold text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                aria-expanded={expanded}
-                                aria-controls={panelId}
-                                onClick={() => setExpanded((open) => !open)}
-                            >
-                                {expanded ? "Show less" : `See all ${activities.length}`}
-                                <ChevronDown
-                                    size={16}
-                                    aria-hidden
-                                    className={`transition-transform duration-200 motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`}
-                                />
-                            </button>
-                        ) : null}
-                        <Link
-                            href={mapHref}
-                            className="inline-flex items-center gap-0.5 rounded-lg py-2 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                            style={{ color: tone.accent }}
-                        >
-                            Open map
-                            <ChevronRight size={16} aria-hidden />
-                        </Link>
-                    </div>
+                    <Link
+                        href={mapHref}
+                        className="inline-flex items-center gap-0.5 rounded-lg py-2 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        style={{ color: tone.accent }}
+                    >
+                        More practice on the Map
+                        <ChevronRight size={16} aria-hidden />
+                    </Link>
                 </div>
             </div>
         </section>
     );
-}
-
-function previewAroundCurrent(
-    items: RoadActivity[],
-    currentItem: RoadActivity | undefined,
-    limit: number
-): RoadActivity[] {
-    if (items.length === 0 || limit <= 0) return [];
-    if (limit >= items.length) return items;
-    if (limit === 1) return currentItem ? [currentItem] : items.slice(0, 1);
-
-    const idx = currentItem
-        ? Math.max(0, items.findIndex((item) => item.id === currentItem.id))
-        : 0;
-    const start = Math.max(0, Math.min(idx - 1, items.length - limit));
-    return items.slice(start, start + limit);
 }
