@@ -46,7 +46,11 @@ async function main() {
     process.exit(1);
   }
 
-  const outputPath = path.join(process.cwd(), "public", "audio", "vocab", `${encodeURIComponent(term)}.mp3`);
+  // Encode spaces in the request URL, not in the actual filename.
+  const filename = term.trim().replace(/[/\\:?*"<>|]/g, "-");
+  const outputDir = path.join(process.cwd(), "public", "audio", "vocab");
+  fs.mkdirSync(outputDir, { recursive: true });
+  const outputPath = path.join(outputDir, `${filename}.mp3`);
   const audioBuffer = await response.arrayBuffer();
   fs.writeFileSync(outputPath, Buffer.from(audioBuffer));
   console.log(`Saved ${outputPath}`);

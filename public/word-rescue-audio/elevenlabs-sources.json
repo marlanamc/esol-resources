@@ -1128,8 +1128,8 @@
     "review": "needs-listening-review"
   },
   "oct-w5-advocate-phrase.mp3": {
-    "text": "advocates for better",
-    "signature": "96e09fdb4cbb483dc1eca155812440e3fb34a1e150201a1364163143f1751946",
+    "text": "to advocate for better schools",
+    "signature": "cc2d63fc764457c701bb476d0430eae5624fa6083df1ec52dc446119a06011eb",
     "voice": "EXAVITQu4vr4xnSDxMaL",
     "model": "eleven_turbo_v2_5",
     "source": "elevenlabs",
@@ -3384,8 +3384,8 @@
     "review": "needs-listening-review"
   },
   "mar-17-19-advocate-phrase.mp3": {
-    "text": "advocate for yourself",
-    "signature": "889683e60dcc2439870ed3383bf25df0f3f2410770bfc1bc502e4eea9e308e82",
+    "text": "to advocate for better schools",
+    "signature": "cc2d63fc764457c701bb476d0430eae5624fa6083df1ec52dc446119a06011eb",
     "voice": "EXAVITQu4vr4xnSDxMaL",
     "model": "eleven_turbo_v2_5",
     "source": "elevenlabs",
@@ -7914,6 +7914,14 @@
   "jun-2-4-set-a-goal-sentence.mp3": {
     "text": "I want to set a goal for my next English class.",
     "signature": "39ac494cf8675c77d494ee42ebc008fefa64f940b5c691676131fcb6916bda0f",
+    "voice": "EXAVITQu4vr4xnSDxMaL",
+    "model": "eleven_turbo_v2_5",
+    "source": "elevenlabs",
+    "review": "needs-listening-review"
+  },
+  "nov-w3-advocate-phrase.mp3": {
+    "text": "to advocate for better schools",
+    "signature": "cc2d63fc764457c701bb476d0430eae5624fa6083df1ec52dc446119a06011eb",
     "voice": "EXAVITQu4vr4xnSDxMaL",
     "model": "eleven_turbo_v2_5",
     "source": "elevenlabs",
