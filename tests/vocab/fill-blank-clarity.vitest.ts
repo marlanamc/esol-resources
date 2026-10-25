@@ -18,7 +18,13 @@ describe('clear vocabulary blanks',()=>{
    questions.forEach((q:{text:string;correctAnswers:string[];options:string[]},i:number)=>{
     const word=data.words[i];expect(word.fillBlank).toBeDefined();
     expect(q.text).toBe(word.fillBlank.text);expect(q.text.match(/_____/g)).toHaveLength(1);
-    expect(q.text).toContain('(Meaning: ');expect(q.correctAnswers).toEqual([word.term]);
+    if (slug === 'oct-w5') {
+     expect(q.text).not.toContain('(Meaning: ');
+     expect(q.text.split(/[.!?]\s+/).length).toBeGreaterThanOrEqual(2);
+    } else {
+     expect(q.text).toContain('(Meaning: ');
+    }
+    expect(q.correctAnswers).toEqual([word.term]);
     expect(q.options.filter(x=>x===word.term)).toHaveLength(1);
     expect(new Set(q.options).size).toBe(q.options.length);expect(q.options.length).toBeGreaterThanOrEqual(3);
    });
