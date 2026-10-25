@@ -1266,7 +1266,7 @@
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Citizens _____ leaders to represent them in government. (Meaning: to choose a person for a position by voting.)",
+        "prompt": "Citizens _____ leaders to represent them in government. On election day, each voter marks a ballot for their favorite candidate.",
         "options": [
           "register to vote",
           "advocate",

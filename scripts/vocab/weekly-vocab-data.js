@@ -417,7 +417,7 @@ const weeklyVocabData = {
       "def": "to add your name to the official list of voters",
       "ex": "Where can eligible residents register to vote?",
       "fillBlank": {
-        "text": "Where can eligible residents _____? (Meaning: to add your name to the official list of voters.)",
+        "text": "Where can eligible residents _____? I want my name on the voter list before the next election.",
         "options": [
           "register to vote",
           "elect",
@@ -434,7 +434,7 @@ const weeklyVocabData = {
         "civic-life"
       ],
       "fillBlank": {
-        "text": "Citizens _____ leaders to represent them in government. (Meaning: to choose a person for a position by voting.)",
+        "text": "Citizens _____ leaders to represent them in government. On election day, each voter marks a ballot for their favorite candidate.",
         "options": [
           "register to vote",
           "advocate",
@@ -451,7 +451,7 @@ const weeklyVocabData = {
         "civic-life"
       ],
       "fillBlank": {
-        "text": "At the meeting, residents can _____ for better bus service. (Meaning: to publicly support a cause or group of people.)",
+        "text": "At the meeting, residents can _____ for better bus service. They can explain why their neighborhood needs more buses.",
         "options": [
           "elect",
           "petition",
@@ -466,7 +466,7 @@ const weeklyVocabData = {
       "def": "a written request for change, often signed by many people",
       "ex": "We started a petition to improve the bus service.",
       "fillBlank": {
-        "text": "We started a _____ to improve the bus service. (Meaning: a written request for change, often signed by many people.)",
+        "text": "We started a _____ to improve the bus service. I passed around a clipboard so everyone could sign.",
         "options": [
           "advocate",
           "petition",
@@ -483,7 +483,7 @@ const weeklyVocabData = {
         "civic-life"
       ],
       "fillBlank": {
-        "text": "City council members _____ the people in their districts. (Meaning: to speak or act on behalf of others.)",
+        "text": "City council members _____ the people in their districts. They bring their neighbors’ concerns to city meetings.",
         "options": [
           "represent",
           "register to vote",
@@ -500,7 +500,7 @@ const weeklyVocabData = {
         "civic-life"
       ],
       "fillBlank": {
-        "text": "Many volunteers _____ for better housing in our city. (Meaning: to work to get support for a cause or candidate.)",
+        "text": "Many volunteers _____ for better housing in our city. They knock on doors and hand out flyers to get more neighbors involved.",
         "options": [
           "register to vote",
           "elect",
