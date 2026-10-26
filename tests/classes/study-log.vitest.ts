@@ -32,6 +32,7 @@ import { GET as TEACHER_GET } from '@/app/api/teacher/study-log/route';
 import {
     buildStudyJournal,
     buildStudyWeek,
+    countPracticeDays,
     getWeekStartForDayKey,
     buildTeacherStudyRows,
     MAX_STUDY_LOGS_PER_DAY,
@@ -109,6 +110,20 @@ describe('study log helpers', () => {
         expect(rows[0]).toMatchObject({ daysPracticed: 0, entries: [] });
         expect(rows[1].days.slice(0, 3)).toEqual([['listen'], ['write'], []]);
         expect(rows[1].entries.map((e) => e.id)).toEqual(['2', '1']);
+    });
+});
+
+describe('leaderboard practice days', () => {
+    it('counts distinct days per learner and skips learners with no logs', () => {
+        const days = countPracticeDays([
+            { userId: 'a', dayKey: '2026-10-26' },
+            { userId: 'a', dayKey: '2026-10-26' },
+            { userId: 'a', dayKey: '2026-10-28' },
+            { userId: 'b', dayKey: '2026-10-27' },
+        ]);
+        expect(days.get('a')).toBe(2);
+        expect(days.get('b')).toBe(1);
+        expect(days.has('c')).toBe(false);
     });
 });
 

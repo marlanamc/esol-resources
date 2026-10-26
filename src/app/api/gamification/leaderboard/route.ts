@@ -6,9 +6,10 @@ import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification/g
 import { prisma } from '@/lib/database/prisma';
 import { classOwnershipWhere, ensureTeacher } from '@/lib/auth/policies';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
-import { getLearnerDayKey, getInstantForLearnerDayStart } from '@/lib/gamification/calendar-week';
+import { addDaysToDayKey, getCalendarWeekStartDayKey, getLearnerDayKey, getInstantForLearnerDayStart } from '@/lib/gamification/calendar-week';
 import { getLeaderboardPeriod, getLeaderboardWeekLabel } from '@/lib/gamification/leaderboard-period';
 import { getLearnerState } from '@/lib/learner-mode';
+import { loadPracticeDaysForWeek } from '@/lib/learner/study-log-data';
 
 /**
  * Leaderboard results are shared across every viewer of the same scope,
@@ -174,9 +175,23 @@ export async function GET(req: NextRequest) {
         _sum: { points: true },
       }) : Promise.resolve(null),
     ]);
-    const viewerEntry = ranked.find((entry) => entry.id === user.id) ?? null;
-    const leaderboard = isAllTime ? ranked.slice(0, ALL_TIME_VISIBLE) : ranked;
-    const viewerOutsideList = viewerEntry && !leaderboard.some((entry) => entry.id === user.id);
+    const visible = isAllTime ? ranked.slice(0, ALL_TIME_VISIBLE) : ranked;
+    const rawViewerEntry = ranked.find((entry) => entry.id === user.id) ?? null;
+    const viewerOutsideList = rawViewerEntry && !visible.some((entry) => entry.id === user.id);
+    // Practice-log days are read live (not from the cached board) so a new log shows up right away.
+    // They never change points or rank.
+    const practiceWeekStart = timeframe === 'last-week'
+      ? addDaysToDayKey(getCalendarWeekStartDayKey(now), -7)
+      : getCalendarWeekStartDayKey(now);
+    const practiceDays = timeframe === 'week' || timeframe === 'last-week'
+      ? await loadPracticeDaysForWeek(
+          [...visible, ...(viewerOutsideList && rawViewerEntry ? [rawViewerEntry] : [])].map((entry) => entry.id),
+          practiceWeekStart
+        )
+      : new Map<string, number>();
+    const withPractice = <T extends { id: string }>(entry: T) => ({ ...entry, practiceDays: practiceDays.get(entry.id) ?? 0 });
+    const leaderboard = visible.map(withPractice);
+    const viewerEntry = rawViewerEntry ? withPractice(rawViewerEntry) : null;
 
     return NextResponse.json({
       leaderboard,

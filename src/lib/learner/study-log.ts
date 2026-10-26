@@ -191,3 +191,14 @@ export function buildStudyJournal(entries: StudyLogEntry[]): StudyJournal {
     }
     return { daysPracticed: new Set(sorted.map((entry) => entry.dayKey)).size, weeks };
 }
+
+/** Distinct days practiced per learner, from (userId, dayKey) rows that may repeat. */
+export function countPracticeDays(rows: Array<{ userId: string; dayKey: string }>): Map<string, number> {
+    const days = new Map<string, Set<string>>();
+    for (const row of rows) {
+        const set = days.get(row.userId) ?? new Set<string>();
+        set.add(row.dayKey);
+        days.set(row.userId, set);
+    }
+    return new Map([...days].map(([userId, set]) => [userId, set.size]));
+}
