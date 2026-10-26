@@ -32,6 +32,8 @@ model User {
   avatarColor            String?
   isSystemAccount        Boolean                 @default(false)
   excludeFromLeaderboard Boolean                 @default(false)
+  /// Practice log goal: days a week the learner wants to practice (one of PRACTICE_GOAL_OPTIONS).
+  practiceGoalDays       Int                     @default(3)
   email                  String?                 @unique
   passwordResetToken     String?                 @unique
   passwordResetExpires   DateTime?

@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import { getStudyLogKind, MAX_STUDY_LOG_LENGTH, STUDY_LOG_KINDS, type StudyLogKind } from "@/lib/learner/study-log";
 import type { StudentStudyWeek } from "@/lib/learner/study-log-data";
 import { refreshPracticeViews } from "@/app/dashboard/practice/actions";
+import { StudyLogKindIcon } from "./StudyLogKindIcon";
 import { StudyLogList } from "./StudyLogList";
 import { StudyWeekDots } from "./StudyWeekDots";
 
@@ -53,7 +54,7 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                 return;
             }
             const data = (await res.json()) as StudentStudyWeek & { pointsAwarded: number };
-            setStudyWeek({ week: data.week, entries: data.entries });
+            setStudyWeek({ week: data.week, entries: data.entries, goalDays: data.goalDays });
             setSaved({ text: text.trim(), pointsAwarded: data.pointsAwarded });
             // The log is saved; a failed refresh only means home shows it after a reload.
             refreshPracticeViews().catch(() => {});
@@ -72,6 +73,7 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
 
     if (saved) {
         const days = studyWeek.week.daysPracticed;
+        const goal = studyWeek.goalDays;
         return (
             <div className="space-y-5">
                 <div role="status" className="flex flex-col items-center gap-3 pt-6 text-center">
@@ -80,7 +82,15 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                     </span>
                     <h1 className="m-0 font-display text-3xl font-bold text-text">Nice work!</h1>
                     <p className="m-0 text-[1.0625rem] text-text">
-                        You practiced <b>{days} {days === 1 ? "day" : "days"}</b> this week.
+                        {days >= goal ? (
+                            <>
+                                You reached your goal: <b>{goal} days</b> this week!
+                            </>
+                        ) : (
+                            <>
+                                <b>{days} of {goal} days</b> this week.
+                            </>
+                        )}
                     </p>
                     <p className="m-0 max-w-xs break-words text-base italic text-text-muted">&ldquo;{saved.text}&rdquo;</p>
                     <p className="m-0 max-w-xs text-sm text-text-muted">
@@ -123,12 +133,13 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                                     type="button"
                                     aria-pressed={on}
                                     onClick={() => pick(k.id)}
-                                    className={`flex min-h-[76px] flex-col items-center justify-center gap-0.5 rounded-xl px-1.5 py-2 text-center ${
+                                    className={`flex min-h-[92px] flex-col items-center justify-center gap-0.5 rounded-xl px-1.5 py-2 text-center ${
                                         on
                                             ? "border-[2.5px]! border-emerald-700! bg-emerald-50! dark:border-emerald-500! dark:bg-emerald-950/50!"
                                             : "border-[1.5px]! border-border! bg-surface-elevated!"
                                     }`}
                                 >
+                                    <StudyLogKindIcon kind={k.id} size={22} strokeWidth={2.2} className="text-emerald-800 dark:text-emerald-300" />
                                     <span className="text-base font-bold text-text">{k.label}</span>
                                     <span className="text-xs leading-tight text-text-muted">{k.example}</span>
                                 </button>
@@ -168,9 +179,14 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
             </form>
 
             <section aria-labelledby="study-week-log-heading" className="space-y-3">
-                <h2 id="study-week-log-heading" className="m-0 text-base font-bold text-text">
-                    This week: {studyWeek.week.daysPracticed} of 7 days
-                </h2>
+                <div className="flex items-baseline justify-between gap-3">
+                    <h2 id="study-week-log-heading" className="m-0 text-base font-bold text-text">
+                        This week: {studyWeek.week.daysPracticed} of {studyWeek.goalDays} days
+                    </h2>
+                    <Link href="/dashboard/profile#practice-goal" className="shrink-0 text-sm font-bold text-primary-dark dark:text-primary-light">
+                        Change goal
+                    </Link>
+                </div>
                 <StudyWeekDots week={studyWeek.week} />
                 <StudyLogList entries={studyWeek.entries} />
             </section>

@@ -92,7 +92,7 @@ export function StudyLogPanel({ classId }: { classId: string }) {
                                         <abbr title={name} className="no-underline">{name.slice(0, 3)}</abbr>
                                     </th>
                                 ))}
-                                <th scope="col" className="w-14 py-2 text-center font-semibold">Days</th>
+                                <th scope="col" className="w-16 py-2 text-center font-semibold">Days / goal</th>
                                 <th scope="col" className="py-2 pl-3 font-semibold">What they wrote</th>
                             </tr>
                         </thead>
@@ -118,7 +118,10 @@ export function StudyLogPanel({ classId }: { classId: string }) {
                                             </span>
                                         </td>
                                     ))}
-                                    <td className="py-2.5 text-center font-bold">{row.daysPracticed}</td>
+                                    <td className="py-2.5 text-center whitespace-nowrap" title={`Goal: ${row.goalDays} days a week`}>
+                                        <b>{row.daysPracticed}</b>
+                                        <span className="text-text-muted"> / {row.goalDays}</span>
+                                    </td>
                                     <td className="py-2.5 pl-3">
                                         {row.entries.length === 0 ? (
                                             <span className="italic text-text-muted">No practice logged</span>

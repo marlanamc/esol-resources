@@ -10,6 +10,8 @@ const mocks = vi.hoisted(() => ({
     findMany: vi.fn(),
     classFindUnique: vi.fn(),
     enrollmentFindMany: vi.fn(),
+    userFindUnique: vi.fn(),
+    userUpdate: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: mocks.session }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
@@ -21,6 +23,7 @@ vi.mock('@/lib/database/prisma', () => {
         studyLog: { findMany: mocks.findMany },
         class: { findUnique: mocks.classFindUnique },
         classEnrollment: { findMany: mocks.enrollmentFindMany },
+        user: { findUnique: mocks.userFindUnique, update: mocks.userUpdate },
     } };
 });
 vi.mock('@/lib/api/response', () => ({
@@ -29,6 +32,7 @@ vi.mock('@/lib/api/response', () => ({
 }));
 import { GET, POST } from '@/app/api/study-log/route';
 import { GET as TEACHER_GET } from '@/app/api/teacher/study-log/route';
+import { PUT as GOAL_PUT } from '@/app/api/study-log/goal/route';
 import {
     buildStudyJournal,
     buildStudyWeek,
@@ -36,6 +40,7 @@ import {
     getWeekStartForDayKey,
     buildTeacherStudyRows,
     MAX_STUDY_LOGS_PER_DAY,
+    normalizePracticeGoalDays,
     parseStudyLogText,
     parseWeekStartDayKey,
 } from '@/lib/learner/study-log';
@@ -52,6 +57,7 @@ beforeEach(() => {
     mocks.session.mockResolvedValue(student);
     mocks.count.mockResolvedValue(0);
     mocks.findMany.mockResolvedValue([]);
+    mocks.userFindUnique.mockResolvedValue({ practiceGoalDays: 4 });
     mocks.award.mockResolvedValue({ streakPointsAwarded: 3, currentStreak: 4 });
 });
 
@@ -175,7 +181,7 @@ describe('POST /api/study-log', () => {
         expect(mocks.lock).toHaveBeenCalled();
         expect(mocks.create).toHaveBeenCalledWith({ data: expect.objectContaining({ userId: 'student-1', kind: 'watch', text: log.text }) });
         expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student-1', points: 5, source: 'study-log' }));
-        expect(await res.json()).toMatchObject({ pointsAwarded: 8, streak: 4 });
+        expect(await res.json()).toMatchObject({ pointsAwarded: 8, streak: 4, goalDays: 4 });
     });
 
     it('saves later logs that day without points', async () => {
@@ -200,6 +206,31 @@ describe('POST /api/study-log', () => {
     });
 });
 
+describe('practice goal', () => {
+    it('falls back to 3 days for a stored value that is not an option', () => {
+        expect(normalizePracticeGoalDays(5)).toBe(5);
+        expect(normalizePracticeGoalDays(6)).toBe(3);
+        expect(normalizePracticeGoalDays(null)).toBe(3);
+    });
+
+    it('PUT saves an allowed goal for the signed-in student only', async () => {
+        const res = await GOAL_PUT(json('/api/study-log/goal', 'PUT', { days: 5, userId: 'someone-else' }));
+        expect(res.status).toBe(200);
+        expect(mocks.userUpdate).toHaveBeenCalledWith({ where: { id: 'student-1' }, data: { practiceGoalDays: 5 } });
+        expect(mocks.award).not.toHaveBeenCalled();
+    });
+
+    it.each([{ days: 6 }, { days: '5' }, {}])('PUT rejects %j', async (body) => {
+        expect((await GOAL_PUT(json('/api/study-log/goal', 'PUT', body))).status).toBe(400);
+        expect(mocks.userUpdate).not.toHaveBeenCalled();
+    });
+
+    it('PUT is students only', async () => {
+        mocks.session.mockResolvedValue(teacher);
+        expect((await GOAL_PUT(json('/api/study-log/goal', 'PUT', { days: 5 }))).status).toBe(403);
+    });
+});
+
 describe('GET /api/teacher/study-log', () => {
     beforeEach(() => mocks.session.mockResolvedValue(teacher));
 
@@ -214,7 +245,7 @@ describe('GET /api/teacher/study-log', () => {
 
     it('returns a row per enrolled student for the requested week', async () => {
         mocks.classFindUnique.mockResolvedValue({ teacherId: 'teacher-1' });
-        mocks.enrollmentFindMany.mockResolvedValue([{ student: { id: 's1', name: 'Ana', username: 'ana' } }]);
+        mocks.enrollmentFindMany.mockResolvedValue([{ student: { id: 's1', name: 'Ana', username: 'ana', practiceGoalDays: 5 } }]);
         const res = await TEACHER_GET(json('/api/teacher/study-log?classId=c1&week=2026-10-19', 'GET'));
         expect(res.status).toBe(200);
         expect(mocks.findMany).toHaveBeenCalledWith(expect.objectContaining({
@@ -223,5 +254,6 @@ describe('GET /api/teacher/study-log', () => {
         const body = await res.json();
         expect(body.weekStart).toBe('2026-10-19');
         expect(body.rows).toHaveLength(1);
+        expect(body.rows[0].goalDays).toBe(5);
     });
 });

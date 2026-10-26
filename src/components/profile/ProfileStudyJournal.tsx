@@ -4,7 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { NotebookPen } from "lucide-react";
 import { getCalendarWeekStartDayKey } from "@/lib/gamification/calendar-week";
-import { getStudyLogKind, type StudyJournal } from "@/lib/learner/study-log";
+import { getStudyLogKind } from "@/lib/learner/study-log";
+import type { StudentStudyJournal } from "@/lib/learner/study-log-data";
+import { PracticeGoalPicker } from "@/components/study-log/PracticeGoalPicker";
 
 const VISIBLE_WEEKS = 3;
 
@@ -13,9 +15,11 @@ function formatDay(dayKey: string, options: Intl.DateTimeFormatOptions): string 
     return new Date(Date.UTC(y, m - 1, d, 12)).toLocaleDateString("en-US", { timeZone: "UTC", ...options });
 }
 
-/** Every sentence the learner wrote in the practice log, a week at a time, newest first. */
-export function ProfileStudyJournal({ journal }: { journal: StudyJournal }) {
+/** The learner's practice goal, then every sentence they wrote in the practice log, a week at a time, newest first. */
+export function ProfileStudyJournal({ journal }: { journal: StudentStudyJournal }) {
     const [showAll, setShowAll] = useState(false);
+    const [goalDays, setGoalDays] = useState(journal.goalDays);
+    const [editingGoal, setEditingGoal] = useState(false);
     const thisWeek = getCalendarWeekStartDayKey();
     const weeks = showAll ? journal.weeks : journal.weeks.slice(0, VISIBLE_WEEKS);
 
@@ -26,6 +30,23 @@ export function ProfileStudyJournal({ journal }: { journal: StudyJournal }) {
                     <NotebookPen size={22} aria-hidden />
                 </span>
                 <h2 id="profile-journal-heading" className="text-xl font-extrabold text-text">My practice journal</h2>
+            </div>
+
+            <div id="practice-goal" className="scroll-mt-24 space-y-3 rounded-xl bg-emerald-50 px-3 py-2 dark:bg-emerald-950/40">
+                <div className="flex items-center justify-between gap-3">
+                    <p className="m-0 text-base text-text">
+                        My goal: <b>{goalDays} days a week</b>
+                    </p>
+                    <button
+                        type="button"
+                        aria-expanded={editingGoal}
+                        onClick={() => setEditingGoal((value) => !value)}
+                        className="min-h-11 shrink-0 px-1 text-base font-bold text-primary-dark dark:text-primary-light"
+                    >
+                        {editingGoal ? "Done" : "Change"}
+                    </button>
+                </div>
+                {editingGoal && <PracticeGoalPicker goalDays={goalDays} onChange={setGoalDays} />}
             </div>
 
             {journal.weeks.length === 0 ? (
