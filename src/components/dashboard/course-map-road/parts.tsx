@@ -85,7 +85,7 @@ export function WeekNode({ week, accent }: { week: RoadWeek; accent: string }) {
                 className="flex h-[42px] w-[42px] items-center justify-center rounded-full text-[1.125rem] font-extrabold"
                 style={{
                     ...base,
-                    marginTop: 10,
+                    marginTop: 14,
                     background: accent,
                     color: "var(--road-on-accent)",
                     boxShadow: `${HALO}, 0 0 0 9px color-mix(in srgb, ${accent} 22%, transparent)`,
@@ -235,14 +235,18 @@ export function ActivityRow({
     showNext,
     inset = 16,
     divider = true,
+    emphasizeNext = true,
 }: {
     activity: RoadActivity;
     showNext: boolean;
     inset?: number;
     /** The line above the row; off for the first row under a step heading. */
     divider?: boolean;
+    /** Filled row and Start pill. Off when Continue already names the next activity. */
+    emphasizeNext?: boolean;
 }) {
     const isNext = showNext && activity.isNext;
+    const showStart = isNext && emphasizeNext;
     const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
     const tone = getLearnerCategoryTone(format.tone);
     const Icon = format.icon;
@@ -297,8 +301,9 @@ export function ActivityRow({
                 {/* The check badge, lock and Start label carry these visually. */}
                 {activity.done ? <span className="sr-only">Done</span> : null}
                 {locked ? <span className="sr-only">Opens later</span> : null}
+                {isNext && !showStart ? <span className="sr-only">Next</span> : null}
             </span>
-            {isNext ? (
+            {showStart ? (
                 <span className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
                     Start
                 </span>
@@ -321,7 +326,7 @@ export function ActivityRow({
         paddingLeft: inset,
         paddingRight: inset,
         borderTop: divider ? ROW_BORDER : undefined,
-        background: isNext ? `color-mix(in srgb, ${tone.accent} 9%, transparent)` : undefined,
+        background: showStart ? `color-mix(in srgb, ${tone.accent} 9%, transparent)` : undefined,
     };
 
     if (!activity.href) {
@@ -495,11 +500,11 @@ function StepHeading({ marker, title, tag, required }: { marker: string | null; 
 }
 
 /** Rows under a step heading: no box, just dividers between them. */
-function StepRows({ activities, showNext }: { activities: RoadActivity[]; showNext: boolean }) {
+function StepRows({ activities, showNext, emphasizeNext }: { activities: RoadActivity[]; showNext: boolean; emphasizeNext: boolean }) {
     return (
         <div className="-mx-2">
             {activities.map((activity, index) => (
-                <ActivityRow key={activity.id} activity={activity} showNext={showNext} inset={8} divider={index > 0} />
+                <ActivityRow key={activity.id} activity={activity} showNext={showNext} emphasizeNext={emphasizeNext} inset={8} divider={index > 0} />
             ))}
         </div>
     );
@@ -513,11 +518,14 @@ function StepRows({ activities, showNext }: { activities: RoadActivity[]; showNe
 function WeekSteps({
     week,
     showNext,
+    emphasizeNext = true,
     extrasOpen,
     onToggleExtras,
 }: {
     week: RoadWeek;
     showNext: boolean;
+    /** When Continue already names the next activity, rows stay one list. */
+    emphasizeNext?: boolean;
     extrasOpen: boolean;
     onToggleExtras: () => void;
 }) {
@@ -530,10 +538,10 @@ function WeekSteps({
     type Step = { key: string; numbered: boolean; title: string; tag: string | null; required?: boolean; filled: boolean; body?: ReactNode };
     const list: Step[] = [];
     if (steps.words.length > 0) {
-        list.push({ key: "words", numbered: true, title: "Words", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.words} showNext={showNext} /> });
+        list.push({ key: "words", numbered: true, title: "Words", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.words} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
     if (steps.grammar.length > 0) {
-        list.push({ key: "grammar", numbered: true, title: "Grammar", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.grammar} showNext={showNext} /> });
+        list.push({ key: "grammar", numbered: true, title: "Grammar", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.grammar} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
     if (ahead) {
         list.push({
@@ -575,7 +583,7 @@ function WeekSteps({
         });
     }
     if (steps.quiz.length > 0) {
-        list.push({ key: "quiz", numbered: true, title: "Quiz", tag: ahead ? "Required · Thurs" : "Required", required: true, filled: true, body: <StepRows activities={steps.quiz} showNext={showNext} /> });
+        list.push({ key: "quiz", numbered: true, title: "Quiz", tag: ahead ? "Required · Thurs" : "Required", required: true, filled: true, body: <StepRows activities={steps.quiz} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
 
     // Each step sits on the road itself, so an open week reads as part of the path.
@@ -697,15 +705,16 @@ export function CurrentWeekCard({
     const next = week.next;
     const [stepsOpen, setStepsOpen] = useState(true);
     const hasSteps = week.activities.length > 0 || week.extras.length > 0;
-    // No card: a soft band marks "you are here" and the road runs straight through it.
+    const tray: CSSProperties = {
+        background: `color-mix(in srgb, ${tone.accent} 8%, var(--surface-base))`,
+        borderColor: `color-mix(in srgb, ${tone.accent} 34%, transparent)`,
+    };
+    // The week number stays on the rail. The tray holds the title, progress, and Continue.
     return (
-        <div
-            className="my-2 py-1 lg:rounded-[22px]"
-            style={{ background: `color-mix(in srgb, ${tone.accent} 6%, var(--surface-base))` }}
-        >
+        <div className="my-2">
             <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={false} node={<WeekNode week={week} accent={tone.button} />}>
                 <WeekHeading week={week} weekNoun={weekNoun} />
-                <div className="pt-2 pb-2">
+                <div className="rounded-[18px] border px-3.5 pt-2.5 pb-3" style={tray}>
                     <div className="flex items-center justify-between gap-2">
                         <span className="text-[0.8438rem] font-bold leading-tight whitespace-nowrap text-text-muted">
                             {weekNoun} {week.weekNumber}
@@ -762,11 +771,7 @@ export function CurrentWeekCard({
                         <Link
                             href={next.href}
                             className="mt-2.5 flex min-h-[52px] items-center gap-2.5 rounded-[14px] px-3 py-2"
-                            style={{
-                                background: tone.button,
-                                color: "var(--road-on-accent)",
-                                boxShadow: `0 8px 18px color-mix(in srgb, ${tone.button} 30%, transparent)`,
-                            }}
+                            style={{ background: tone.button, color: "var(--road-on-accent)" }}
                         >
                             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--road-on-accent)", color: tone.button }}>
                                 <Play size={15} fill="currentColor" aria-hidden />
@@ -788,8 +793,8 @@ export function CurrentWeekCard({
                 </div>
             </RoadRow>
             {hasSteps && stepsOpen ? (
-                <div id={`road-week-${week.weekNumber}-steps`}>
-                    <WeekSteps week={week} showNext extrasOpen={optionalOpen} onToggleExtras={onToggleOptional} />
+                <div id={`road-week-${week.weekNumber}-steps`} className="mt-3">
+                    <WeekSteps week={week} showNext emphasizeNext={false} extrasOpen={optionalOpen} onToggleExtras={onToggleOptional} />
                 </div>
             ) : null}
         </div>

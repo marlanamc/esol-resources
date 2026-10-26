@@ -22,9 +22,9 @@ export function StudyWeekCard({ week, entries }: StudentStudyWeek) {
                 </div>
                 <Link
                     href={STUDY_LOG_HREF}
-                    className="flex min-h-11 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-base font-bold text-[#fffdfa] no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    className="flex h-8 shrink-0 items-center gap-1 rounded-full bg-primary px-3 text-sm font-bold text-[#fffdfa] no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
-                    <Plus size={18} strokeWidth={2.6} aria-hidden />
+                    <Plus size={15} strokeWidth={2.6} aria-hidden />
                     Log
                     <span className="sr-only"> my practice</span>
                 </Link>
