@@ -1,0 +1,23 @@
+{
+  "release": "Unlimited quiz retakes",
+  "date": "2026-10-22",
+  "domain": "https://myesolclass.com",
+  "sourceCommit": "e8e68adc0253137a59bff1bdbd51ec3b6034762d",
+  "includedProductionBase": "9a6700da",
+  "deploymentId": "dpl_AUEPiGqiaYABTnbJCqH7jPFhe5cw",
+  "deploymentUrl": "https://esol-resources-7hlyqg4gg-marlies-projects-abe96d86.vercel.app",
+  "previousProductionDeployment": "dpl_DkZari49zmueCC9qBeJzfUvFjHZw",
+  "verified": {
+    "domainAlias": true,
+    "githubVercelStatus": "success",
+    "productionMigrationStatus": "up to date",
+    "loginHttpStatus": 200,
+    "testsPassed": 168,
+    "typecheck": "passed",
+    "changedFilesLint": "passed"
+  },
+  "migrationsApplied": [
+    "20261015120000_backfill_schema_drift",
+    "20261023000000_add_quiz_attempts"
+  ]
+}

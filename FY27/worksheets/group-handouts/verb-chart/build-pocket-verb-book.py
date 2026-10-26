@@ -8,7 +8,7 @@ Every tense card keeps one tab at a different spot, so all 7 tabs show at once.
 The timelines copy the Timeline Tenses game (TimelineCanvas.tsx and
 TimelineElement.tsx): same 400 x 80 canvas, zones, colors and stamps, with each
 tense's stamp taken from src/data/timeline-learn-tenses.ts. Students get the
-empty canvas and draw the stamp; the key shows it.
+empty canvas, a sentence to map, and an affirmative model; the key shows all answers.
 
     python3 build-pocket-verb-book.py
 writes pocket-verb-book.html and pocket-verb-book-key.html next to this file.
@@ -104,7 +104,7 @@ TENSES = [
     },
     {
         "tab": "Future<br>simple", "name": "Future simple", "zone": "future",
-        "use": "Plans, promises, and guesses about the future.",
+        "use": "Predictions, promises, and decisions made now.",
         "words": "tomorrow · next week · later · soon",
         "stamp": ("single-dot", "future", 50),
         "forms": [
@@ -148,7 +148,7 @@ TENSES = [
     },
     {
         "tab": "Present<br>perfect", "name": "Present perfect", "zone": "perfect",
-        "use": "From the past up to now. Life experience.",
+        "use": "Before now, connected to now.",
         "words": "ever · never · already · for 3 years · since 2023",
         "stamp": ("arc", "past", 50),
         "forms": [
@@ -173,7 +173,7 @@ IRREGULAR = {
 
 # One common mistake per card, printed on both versions
 WATCH = {
-    "Present simple": "No am / is / are with V1: <s>I am work.</s> → I work.",
+    "Present simple": "For this action: <s>I am work.</s> → I work.",
     "Past simple": "After did, use V1: <s>Did you went?</s> → Did you go?",
     "Future simple": "No -s after will: <s>She will works.</s> → She will work.",
     "Present continuous": "Don't forget am / is / are: <s>I working.</s> → I am working.",
@@ -181,6 +181,21 @@ WATCH = {
     "Future continuous": "Don't forget be: <s>I will working.</s> → I will be working.",
     "Present perfect": "Use V3, not V2: <s>I have ate.</s> → I have eaten.",
 }
+
+PROMPTS = [
+    "I eat breakfast every day.", "I ate breakfast yesterday.",
+    "I will eat breakfast tomorrow.", "I am eating breakfast now.",
+    "I was eating at 8:00 last night.", "I will be eating at 8:00 tomorrow.",
+    "I have eaten sushi before. The exact time is not given.",
+]
+
+
+def emphasize(text):
+    import re
+    text = re.sub(r"</?b>", "", text)
+    pattern = r"\b(?:haven't|hasn't|wasn't|weren't|doesn't|don't|didn't|won't|have|has|was|were|does|do|did|will|am|is|are|be|not|working|worked|works|work|eating|eaten|ate|eat|V-ing|V1|V2|V3)\b"
+    return re.sub(pattern, lambda m: "<b>" + m.group() + "</b>", text, flags=re.I)
+
 
 CSS = f"""
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -223,7 +238,7 @@ CSS = f"""
   .gray {{ background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }}
 
   /* Type scale: 22 / 18 / 14 / 11 */
-  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 10px; }}
+  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 7px; }}
   .cover .body {{ gap: 7px; padding-top: 0.3in; }}
 
   .staple {{ position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }}
@@ -243,16 +258,16 @@ CSS = f"""
   .timeline {{ display: flex; align-items: center; gap: 10px; border: 1.5px solid #000; border-radius: 6px; padding: 2px 8px; }}
   .timeline .label {{ font-size: 11px; font-weight: bold; width: 0.9in; flex: none; }}
   .timeline .label span {{ display: block; font-weight: normal; font-style: italic; }}
-  .timeline svg {{ display: block; flex: 1; height: 1.05in; }}
+  .timeline svg {{ display: block; flex: 1; height: 0.82in; }}
 
-  .forms {{ display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.34in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
+  .forms {{ display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.43in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
   .forms > div {{ padding: 2px 7px; display: flex; align-items: center; }}
   .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }}
   .forms .h span {{ font-weight: normal; margin-left: 4px; }}
   .forms .sym {{ justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }}
   .forms > div:not(:nth-child(4n+1)) {{ border-left: 1.5px solid #000; }}
   .forms .write {{ flex: 1; font-size: 14px; }}
-  .forms .write b {{ text-decoration: underline; }}
+  .forms .write b {{ font-weight: 700; }}
   .forms .r2, .forms .r3 {{ border-top: 1.5px solid #000; }}
 
   .third {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
@@ -264,7 +279,8 @@ CSS = f"""
   .watch s {{ text-decoration-thickness: 2px; }}
 
   /* Teacher key: the filled-in answers */
-  .ans {{ font-style: italic; font-weight: bold; color: var(--c, #000); }}
+  .ans {{ font-style: normal; font-weight: normal; color: #000; }}
+  .ans b {{ color: var(--c, #000); }}
 
   /* Bottom tab strip: keep the colored tab, cut off the gray */
   .tabs {{ height: 0.55in; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1.5px dashed #000; }}
@@ -294,6 +310,41 @@ CSS = f"""
   .colors i {{ display: inline-block; width: 14px; height: 14px; border-radius: 3px; }}
 """
 
+CSS += """
+.body { gap: 2px; padding-top: .29in; padding-bottom: .10in; }
+.tabs { flex-shrink: 0; }
+.forms { grid-template-rows: 25px repeat(3, 38px); }
+.timeline svg { height: .90in; }
+.draw-prompt { font-size: 13px; }
+.perfect-note { font-size: 12px; }
+.personal { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; font-size: 13px; }
+.personal span { border-bottom: 1px solid #555; min-height: 15px; }
+.personal span:last-child { grid-column: 1 / -1; }
+.say { font-size: 11px; color: #333; }
+.head .use { font-size: 12px; max-width: 48%; }
+.forms .write { font-size: 13px; }
+.watch, .third, .words { font-size: 12px; }
+.cover .body { gap: 10px; padding-top: .32in; }
+.cover-heading { position: relative; }
+.eyebrow { font-size: 10px; letter-spacing: 2px; color: #555; margin-bottom: 4px; }
+.cover h1 { font-size: 28px; line-height: 1.05; }
+.subtitle { position: absolute; right: 0; bottom: 3px; font-size: 13px; }
+.stamp-guide { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid #111; border-bottom: 1px solid #aaa; padding: 8px 0; }
+.stamp-guide > div { display: flex; flex-direction: column; align-items: center; font-size: 12px; }
+.stamp-guide svg { width: 110px; height: 38px; }
+.stamp-guide span { font-size: 11px; color: #444; }
+.chooser > b, .verb-guide > b { font-size: 13px; }
+.choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; margin-top: 5px; }
+.choose-grid > span { display: flex; justify-content: space-between; gap: 5px; font-size: 11px; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
+.choose-grid strong { white-space: nowrap; }
+.choose-grid .wide { grid-column: 1 / -1; }
+.verb-guide > div { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 5px; }
+.verb-guide span { font-size: 12px; }
+.verb-guide span b { display: block; font-size: 11px; margin-bottom: 2px; }
+.cover-bottom { display: flex; justify-content: space-between; font-size: 11px; margin-top: auto; }
+.assembly { font-size: 10px; color: #444; }
+"""
+
 
 def tabs(keep_index):
     cells = []
@@ -311,6 +362,10 @@ def fill(text, key):
 
 def tense_card(i, t, key):
     marks = stamp(*t["stamp"]) if key else ""
+    if key and i in (4, 5):
+        x = element_x(t["stamp"][1], t["stamp"][2])
+        marks += f'<line x1="{x}" y1="32" x2="{x}" y2="60" stroke="#111" stroke-width="1.5"/><text x="{x}" y="26" text-anchor="middle" font-size="11">8:00</text>'
+    note = ('<div class="perfect-note"><b>Experience:</b> I have eaten sushi. <b>Still true:</b> I have worked here for three years.</div>' if i == 6 else '')
     rows = []
     for n, (sym, cls) in enumerate((("+", "a"), ("−", "n"), ("?", "q"))):
         formula, regular = t["forms"][n]
@@ -318,28 +373,31 @@ def tense_card(i, t, key):
         r = f"r{n+1}" if n else ""
         rows.append(
             f'<div class="sym {cls} {r}">{sym}</div>'
-            f'<div class="{r}"><span class="write">{fill(formula, key)}</span></div>'
-            f'<div class="{r}"><span class="write">{fill(regular, key)}</span></div>'
-            f'<div class="{r}"><span class="write">{fill(irregular, key)}</span></div>'
+            f'<div class="{r}"><span class="write">{fill(emphasize(formula), key or n == 0)}</span></div>'
+            f'<div class="{r}"><span class="write">{fill(emphasize(regular), key or n == 0)}</span></div>'
+            f'<div class="{r}"><span class="write">{fill(emphasize(irregular), key or n == 0)}</span></div>'
         )
     third = ""
     if t.get("third"):
-        third = f'<div class="third"><b>he / she / it:</b><span class="fill">{fill(t["third"], key)}</span></div>'
+        third = f'<div class="third"><b>he / she / it:</b><span class="fill">{fill(emphasize(t["third"]), key)}</span></div>'
     return f"""
 <section class="card z-{t["zone"]}">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>{i + 1}. {t["name"]}</h1><span class="use"><b>Use it for:</b> {t["use"]}</span></div>
-    <div class="words"><b>Time words:</b><span class="fill">{fill(t["words"], key)}</span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill">{fill(t["words"], key)}</span></div>
+    <div class="draw-prompt"><b>Draw when:</b> {PROMPTS[i]}</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       {timeline(marks)}
     </div>
+{note}
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
       {"".join(rows)}
     </div>
     {third}
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> {WATCH[t["name"]]}</div>
   </div>
   {tabs(i)}
@@ -348,8 +406,8 @@ def tense_card(i, t, key):
 
 def mini(kind, zone, position, x0):
     """A cropped stamp for the cover legend."""
-    return (f'<svg viewBox="{x0} 30 90 40" xmlns="http://www.w3.org/2000/svg">'
-            f'<line x1="{x0}" y1="{AXIS_Y}" x2="{x0 + 90}" y2="{AXIS_Y}" stroke="{SLATE_300}" stroke-width="4"/>'
+    return (f'<svg viewBox="{x0} 18 {130 if kind == "arc" else 90} 48" xmlns="http://www.w3.org/2000/svg">'
+            f'<line x1="{x0}" y1="{AXIS_Y}" x2="{x0 + (130 if kind == "arc" else 90)}" y2="{AXIS_Y}" stroke="{SLATE_300}" stroke-width="4"/>'
             f'{stamp(kind, zone, position)}</svg>')
 
 
@@ -357,36 +415,25 @@ COVER = f"""
 <section class="card cover">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
-    <div class="head"><h1>My Pocket Verb Book</h1><span class="use">7 tenses · flip to the tab you need</span></div>
-    <div class="name-row">Name: <span class="fill"></span></div>
-    <div class="calm"><b>This book is a helper.</b> You don't need to memorize it. Keep it in your pocket or bag. Look at it anytime. Mistakes are OK. People understand you.</div>
-    <div class="ideas">
-      <div><b>1. Find the helper.</b><br>I <u>am</u> working.</div>
-      <div><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
-      <div><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
-      <div><b>No helper?</b> Use <u>do / does / did</u>.<br>I <u>don't</u> work. <u>Do</u> you work?</div>
+    <div class="cover-heading"><div class="eyebrow">MY ENGLISH TOOLKIT</div><h1>See the time.<br>Build the sentence.</h1><div class="subtitle">A flip book for 7 verb tenses</div></div>
+    <div class="stamp-guide">
+      <div>{mini("single-dot", "past", 40, 34)}<b>An event</b><span>at a point in time</span></div>
+      <div>{mini("multiple-dots", "present", 50, 155)}<b>A routine</b><span>again and again</span></div>
+      <div>{mini("solid-line", "present", 50, 155)}<b>In progress</b><span>in the middle of it</span></div>
+      <div>{mini("arc", "past", 50, 88)}<b>Connected to now</b><span>before now + now</span></div>
     </div>
-    <div class="box">
-      <b class="t">Timeline stamps</b>
-      <div class="stamps">
-        <div>{mini("single-dot", "past", 40, 34)} one time</div>
-        <div>{mini("multiple-dots", "present", 50, 155)} again and again</div>
-        <div>{mini("solid-line", "present", 50, 155)} in the middle</div>
-        <div>{mini("arc", "past", 50, 88)} past up to now</div>
-      </div>
-      <div class="colors">
-        <span><i style="background:{AMBER_600}"></i> past</span>
-        <span><i style="background:{EMERALD_600}"></i> present</span>
-        <span><i style="background:{BLUE_600}"></i> future</span>
-      </div>
-    </div>
-    <div class="two">
-      <div class="box"><b class="t">Verb key: V1 · V2 · V3</b>Regular: work · worked · worked<br>Irregular: eat · ate · eaten · V-ing = working</div>
-      <div class="box"><b class="t">Stuck? Say this:</b>"Wait, let me think." · "How do I say...?"<br>"Sorry, I mean..." · "Can you say that again?"</div>
-    </div>
-    <div class="box">
-      <b>How to make it:</b> 1. Cut on the long dashed lines. &nbsp;2. Cut off all the gray. &nbsp;3. Put the pages in order: cover, 1, 2, 3... &nbsp;4. Staple at the top.
-    </div>
+    <div class="chooser"><b>What do you want to say?</b><div class="choose-grid">
+      <span>Usually / a fact <strong>1 · Present simple</strong></span>
+      <span>Happening now <strong>4 · Present continuous</strong></span>
+      <span>Finished in the past <strong>2 · Past simple</strong></span>
+      <span>In progress in the past <strong>5 · Past continuous</strong></span>
+      <span>A prediction or promise <strong>3 · Future simple</strong></span>
+      <span>In progress in the future <strong>6 · Future continuous</strong></span>
+      <span class="wide">Before now, connected to now <strong>7 · Present perfect</strong></span>
+    </div></div>
+    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past participle</b>worked / eaten</span><span><b>V-ing</b>working / eating</span></div></div>
+    <div class="cover-bottom"><span>Name: __________________________</span><span>Time clues help. Meaning comes first.</span></div>
+    <div class="assembly">Cut between cards. Remove gray areas. Stack cover, then 1–7. Staple at the top.</div>
   </div>
   <div class="tabs all gray">cut off this gray strip</div>
 </section>"""

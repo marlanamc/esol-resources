@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PROTECT Act Staff Facts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.38;
+  }
+
+  /* One .sheet = one portrait letter page. Print double-sided. */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.5in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; }
+  .tag { font-size: 14px; white-space: nowrap; }
+  .subtitle { font-size: 13.5px; font-style: italic; margin-bottom: 8px; }
+  .small { font-size: 11px; }
+  .task { margin-bottom: 8px; }
+  .task-title { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
+  .box { border: 1.5px solid #000; padding: 6px 10px; margin-bottom: 8px; }
+  .box.heavy { border-width: 2.5px; font-size: 14px; }
+
+  /* Dates strip */
+  .dates { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid #000; margin: 10px 0 8px; }
+  .dates div { position: relative; padding: 10px 6px 0; font-size: 12.5px; text-align: center; line-height: 1.3; }
+  .dates div::before {
+    content: ""; position: absolute; top: -7px; left: 50%; margin-left: -6px;
+    width: 12px; height: 12px; border-radius: 50%; background: #000;
+  }
+  .dates .yr { display: block; font-weight: bold; font-size: 14px; }
+
+  /* Question / say / do / don't table */
+  table.qa { width: 100%; border-collapse: collapse; font-size: 12.5px; line-height: 1.4; }
+  table.qa th, table.qa td { border: 1.5px solid #000; padding: 4px 7px; vertical-align: top; text-align: left; }
+  table.qa th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; background: #e9e9e9; }
+  table.qa td:first-child { font-weight: bold; font-size: 12.5px; width: 19%; }
+  table.qa td:nth-child(2) { width: 37%; }
+  table.qa td:nth-child(3) { width: 22%; }
+  table.qa td:nth-child(4) { width: 22%; }
+  .when { display: block; font-size: 10.5px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 3px; }
+  .ref { font-size: 10px; vertical-align: super; }
+
+  ul.list { margin-left: 1.2em; font-size: 13px; line-height: 1.4; }
+  ul.list li { margin-bottom: 2px; }
+  ul.links { list-style: none; font-size: 13px; }
+  ul.links li { margin-bottom: 3px; }
+  ul.links .url { font-size: 11.5px; word-break: break-all; }
+  ol.sources { margin-left: 1.6em; font-size: 11px; line-height: 1.4; }
+  ol.sources li { margin-bottom: 2px; word-break: break-all; }
+
+  /* Reporting flow */
+  .lane { display: grid; grid-template-columns: 1.3in 1fr; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .lane-label { font-size: 13px; font-weight: bold; line-height: 1.25; }
+  .lane-label .small { font-weight: normal; }
+  .flow { display: flex; align-items: stretch; gap: 4px; }
+  .step { flex: 1; border: 1.5px solid #000; padding: 5px 6px; font-size: 11.5px; line-height: 1.25; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+  .step b { display: block; font-size: 13px; margin-bottom: 1px; }
+  .arrow { align-self: center; font-size: 18px; font-weight: bold; }
+
+  ul.links li.hub { display: flex; gap: 10px; align-items: center; border: 1.5px solid #000; padding: 6px 8px; }
+  .qr { flex: none; width: 70px; height: 70px; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+
+  .footer { margin-top: auto; font-size: 11px; border-top: 1.5px solid #000; padding-top: 4px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+
+<!-- ======================================================
+     PAGE 1 (front): dates + quick answers table
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>PROTECT Act: Student Questions</h1><span class="tag">Staff Fact Sheet &middot; Oct. 21, 2026 &middot; Draft</span></div>
+  <p class="subtitle">Our role is to point students to accurate info and qualified legal help, not to assess their cases.</p>
+
+  <div class="box heavy">
+    <b>A helpful opening:</b> &ldquo;You do not need to tell me your immigration status. I can help you find reliable information and someone qualified to answer questions about your situation.&rdquo;
+  </div>
+
+  <div class="dates">
+    <div><span class="yr">Aug. 5, 2026</span>Signed. Job-inspection notices + guardianship planning.</div>
+    <div><span class="yr">Sept. 4, 2026</span>Police + court staff limits.</div>
+    <div><span class="yr">Nov. 3, 2026</span>Courthouse arrests, detention notices, U/T deadlines.</div>
+  </div>
+
+  <table class="qa">
+    <thead>
+      <tr><th>Student asks</th><th>Short answer</th><th>Staff next step</th><th>Best to avoid</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Can ICE arrest someone at court?<span class="when">From Nov. 3</span></td>
+        <td>&bull; MA courthouse civil arrests need a <b>judicial</b> warrant/order<br>&bull; None inside a courtroom<br>&bull; ICE administrative warrant &ne; judicial warrant<span class="ref">1, 2</span></td>
+        <td>Contact their lawyer soon.</td>
+        <td>Advising on skipping court. Calling court &ldquo;safe.&rdquo; Saying all ICE arrests need a judge.</td>
+      </tr>
+      <tr>
+        <td>Can police ask my status?<span class="when">Since Sept. 4</span></td>
+        <td>&bull; Covered police/court staff generally can&rsquo;t ask or record it (exceptions)<br>&bull; Limits ICE help; doesn&rsquo;t ban all of it<span class="ref">1</span></td>
+        <td>Share MIRA explainer. Specific encounter &rarr; legal help.</td>
+        <td>Applying it to all employers or schools.</td>
+      </tr>
+      <tr>
+        <td>Family member detained or moved<span class="when">Refer promptly</span></td>
+        <td>&bull; Time-sensitive<br>&bull; <b>New facility rules from Nov. 3:</b> covered MA facilities update records within 6 hrs and try to notify lawyer + contact within 6 hrs of transfer<br>&bull; Not every location covered<span class="ref">1</span></td>
+        <td>Help the family connect with a lawyer as soon as they can.</td>
+        <td>Promising a filing stops a transfer or a 48-hr hold in MA.</td>
+      </tr>
+      <tr>
+        <td>ICE inspection at my job<span class="when">Since Aug. 5</span></td>
+        <td>&bull; Employers generally must notify all employees in writing within 48 hours after receiving an ICE inspection notice<br>&bull; I-9 / employment records<br>&bull; Notice rule, not an access ban<span class="ref">1</span></td>
+        <td>Refer to worker + immigration legal help.</td>
+        <td>Advising on changing or submitting documents.</td>
+      </tr>
+      <tr>
+        <td>Boss or landlord threatened me</td>
+        <td>&bull; Some crime/trafficking survivors may qualify for U/T visas<br>&bull; Wage theft or housing issues don&rsquo;t auto-qualify<br>&bull; <b>From Nov. 3:</b> agencies generally respond to certification requests within 45 days, or 14 business days in specified urgent cases. Certification &ne; visa<span class="ref">1, 3</span></td>
+        <td>Private conversation + referral.</td>
+        <td>Asking for details in class. Promising a visa.</td>
+      </tr>
+      <tr>
+        <td>Plan care for my child</td>
+        <td>&bull; Caregiver affidavit: school + health decisions, no court, parent keeps rights<br>&bull; Standby guardian: separate, court-confirmed<br>&bull; Not always both<span class="ref">1, 4</span></td>
+        <td>Share MLRI guide. Connect to legal help.</td>
+        <td>Choosing the option for them.</td>
+      </tr>
+      <tr>
+        <td>Officer not following the law</td>
+        <td>&bull; AG enforces<br>&bull; MIRA hub links to the Section 7 complaint process<span class="ref">1, 5</span></td>
+        <td>With consent, note basic facts + keep papers. Optional support route on back.</td>
+        <td>Collecting extra status info. Promising an outcome.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="footer">General staff information, not individual legal advice. Numbers refer to sources on the back. &nbsp;<b>Turn over &rarr;</b></p>
+</div>
+
+<!-- ======================================================
+     PAGE 2 (back): how to help + resources + sources
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>How Staff Can Help</h1><span class="tag">Staff Fact Sheet &middot; Oct. 21, 2026 &middot; Draft</span></div>
+
+  <section class="task">
+    <div class="task-title">Every conversation</div>
+    <ul class="list">
+      <li><b>Language:</b> offer their preferred language (MIRA: English, Spanish, Haitian Creole, Portuguese).</li>
+      <li><b>Consent:</b> ask what help they want and how to contact them safely. Ask before sharing info or referring.</li>
+      <li><b>Privacy:</b> follow program procedures. No case details in class notes or group talk.</li>
+      <li><b>Time-sensitive:</b> for detention, transfer, or a court date coming up, a legal referral is the best next step.</li>
+      <li><b>Legal questions:</b> leave warrant interpretation and court filings to qualified legal providers. Do not guarantee outcomes.</li>
+    </ul>
+  </section>
+
+  <div class="box">
+    <b>Student handout</b> (<i>The PROTECT Act: What to Know</i>): it&rsquo;s a good idea to have counsel review it and check for updated guidance before sharing.
+  </div>
+
+  <section class="task">
+    <div class="task-title">Resources to share</div>
+    <ul class="links">
+      <li class="hub"><div class="qr" data-url="https://miracoalition.org/resources/the-protect-act-8-5-2026/"></div><div><b>MIRA PROTECT Act hub</b> &ndash; start here: explainers in 4 languages, trainings, AG complaint process. <i>Scan with a phone.</i><br><span class="url">miracoalition.org/resources/the-protect-act-8-5-2026</span></div></li>
+      <li><b>MIRA Know Your Rights</b><br><span class="url">miracoalition.org/resources/know-your-rights</span></li>
+      <li><b>MIRA legal services</b> &ndash; attorneys + accredited reps<br><span class="url">miracoalition.org/resources/legal-services</span></li>
+      <li><b>MLRI / MassLegalHelp: Planning for a Family Emergency</b><br><span class="url">masslegalhelp.org/immigration/know-your-rights/planning-family-emergency</span></li>
+    </ul>
+  </section>
+
+  <section class="task">
+    <div class="task-title">If you want to report a problem <span class="small" style="font-weight:normal;">&middot; one possible support route</span></div>
+    <p style="font-size:13px;margin-bottom:6px;">This is optional, not a required chain. Please check with the student first, and share only with their consent. MIRA&rsquo;s PROTECT Act hub (QR above) also links directly to the AG complaint process.</p>
+    <div class="lane">
+      <div class="lane-label">Someone isn&rsquo;t following the law<br><span class="small">(officer, agency, court, jail)</span></div>
+      <div class="flow">
+        <div class="step"><b>Student / teacher</b>notes date, time, place</div><div class="arrow">&rarr;</div>
+        <div class="step"><b>LUCE</b>a good first contact</div><div class="arrow">&rarr;</div>
+        <div class="step"><b>MLRI</b>LUCE usually contacts MLRI</div><div class="arrow">&rarr;</div>
+        <div class="step"><b>Attorney General</b>MLRI can raise it with the AG</div>
+      </div>
+    </div>
+    <div class="lane">
+      <div class="lane-label">Teacher needs help or is having issues</div>
+      <div class="flow">
+        <div class="step"><b>Teacher</b>let me know what&rsquo;s going on</div><div class="arrow">&rarr;</div>
+        <div class="step"><b>Marlie (MLRI)</b>I can pass it along</div><div class="arrow">&rarr;</div>
+        <div class="step"><b>MLRI Immigration Unit</b></div>
+      </div>
+    </div>
+    <div class="box" style="font-size:13px;line-height:1.5;margin-top:4px;">
+      <b>LUCE:</b> 617-370-5023<br>
+      <b>Marlie:</b> 770-378-9207 &nbsp;&middot;&nbsp; mcreed@mlri.org &nbsp;&middot;&nbsp; mcreed@ebhcs.org<br>
+      <b>For detention, transfer, or an upcoming court date,</b> help the student contact a qualified lawyer promptly. Do not wait for this reporting process.
+    </div>
+  </section>
+
+  <section class="task">
+    <div class="task-title">Sources for staff review</div>
+    <ol class="sources">
+      <li>Massachusetts Acts of 2026, Chapter 163, especially &sect;&sect; 6&ndash;13 and effective-date provisions. malegislature.gov/Laws/SessionLaws/Acts/2026/Chapter163</li>
+      <li>Massachusetts Trial Court policy on interactions with ICE. mass.gov/policy-statement/massachusetts-trial-court-policy-on-interactions-with-united-states-immigration-and-customs-enforcement</li>
+      <li>Massachusetts PROTECT Act guidance. mass.gov/info-details/the-protect-act</li>
+      <li>Massachusetts caregiver authorization law, Chapter 201F, &sect; 2. malegislature.gov/Laws/GeneralLaws/PartII/TitleII/Chapter201F/Section2</li>
+      <li>MIRA PROTECT Act hub (Attorney General complaint-process guidance). miracoalition.org/resources/the-protect-act-8-5-2026</li>
+    </ol>
+  </section>
+
+  <p class="footer">Summarized from <i>PROTECT Act Student Questions &ndash; Staff Briefing (October 2026)</i>. General staff information, not individual legal advice. Check for updated implementation guidance.</p>
+</div>
+
+<script>
+  document.querySelectorAll(".qr[data-url]").forEach(function (el) {
+    if (typeof qrcode !== "function") return;
+    var qr = qrcode(0, "M");
+    qr.addData(el.dataset.url);
+    qr.make();
+    el.innerHTML = qr.createSvgTag({ cellSize: 2, margin: 0, scalable: true });
+  });
+</script>
+</body>
+</html>

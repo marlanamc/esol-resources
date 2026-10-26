@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import { getStudyLogKind, MAX_STUDY_LOG_LENGTH, STUDY_LOG_KINDS, type StudyLogKind } from "@/lib/learner/study-log";
 import type { StudentStudyWeek } from "@/lib/learner/study-log-data";
+import { refreshPracticeViews } from "@/app/dashboard/practice/actions";
 import { StudyLogList } from "./StudyLogList";
 import { StudyWeekDots } from "./StudyWeekDots";
 
@@ -54,6 +55,8 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
             const data = (await res.json()) as StudentStudyWeek & { pointsAwarded: number };
             setStudyWeek({ week: data.week, entries: data.entries });
             setSaved({ text: text.trim(), pointsAwarded: data.pointsAwarded });
+            // The log is saved; a failed refresh only means home shows it after a reload.
+            refreshPracticeViews().catch(() => {});
         } catch {
             setError("Something went wrong. Try again.");
         } finally {

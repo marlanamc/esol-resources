@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Succeed in ESOL 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  .ink { background: #000; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 5px; flex: none; }
+  .tick { display: flex; gap: 2px; align-items: flex-start; margin-bottom: 3px; }
+  .tick .cb { margin-top: 2px; }
+  svg.icon { width: 30px; height: 30px; fill: none; stroke: #000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  /* Big idea banner */
+  .banner { padding: 6px 12px; margin-bottom: 8px; display: flex; justify-content: center; align-items: center; gap: 14px; }
+  .banner .big { font-size: 22px; font-weight: bold; }
+  .banner .side { font-size: 14px; text-align: right; max-width: 3.1in; }
+
+  /* Weekly flow: 3 steps with arrows */
+  .flow { display: grid; grid-template-columns: 1fr 22px 1fr 22px 1fr; align-items: stretch; }
+  .step { border: 1.5px solid #000; display: flex; flex-direction: column; }
+  .step-head { padding: 4px 8px; display: flex; align-items: center; gap: 8px; }
+  .step-head svg.icon { stroke: #fff; }
+  .step-head .when { font-size: 11px; font-weight: bold; letter-spacing: 0.04em; text-transform: uppercase; }
+  .step-head .what { font-size: 18px; font-weight: bold; line-height: 1.1; }
+  .step-body { padding: 5px 8px; flex: 1; }
+  .step-body .note { font-size: 11px; font-style: italic; margin-top: 4px; }
+  .req { display: inline-block; border: 1.5px solid #000; font-size: 11px; font-weight: bold; padding: 0 5px; margin-left: 2px; }
+  .arrow { display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; }
+  .flow-foot { margin-top: 6px; font-size: 14px; text-align: center; }
+
+  /* Week road: mirrors the app's Course Map steps */
+  .road { position: relative; margin: 2px 0 0; }
+  .road::before { content: ""; position: absolute; left: 9px; top: 10px; bottom: 10px; width: 3px; background: #000;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .wk { position: relative; display: grid; grid-template-columns: 22px 1fr auto; column-gap: 9px; align-items: start; padding: 3px 0; }
+  .wk + .wk { border-top: 1px dashed #999; }
+  .dot { width: 13px; height: 13px; border-radius: 50%; border: 2.5px solid #000; background: #fff; margin: 4px 0 0 4px; position: relative; z-index: 1; }
+  .dot.full { background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .wk-title { font-size: 14px; font-weight: bold; }
+  .wk-title .n { margin-right: 3px; }
+  .wk-what { font-size: 14px; }
+  .wk-what .small { font-style: italic; }
+  .tag { border: 1.5px solid #000; border-radius: 999px; padding: 0 8px; font-size: 11px; font-weight: bold; white-space: nowrap; margin-top: 2px; }
+  .tag.ink { border-color: #000; }
+
+  /* Two side-by-side boxes */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  .pair .box { margin-bottom: 0; }
+  .mini-flow { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.dark { font-weight: bold; }
+
+  /* 15 minutes a day tiles */
+  .tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 3px; }
+  .tile { border: 1.5px solid #000; padding: 5px 6px 5px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .tile svg.icon { width: 28px; height: 28px; }
+  .tile .label { font-weight: bold; font-size: 14px; line-height: 1.15; }
+  .tile .ex { font-size: 11px; line-height: 1.2; min-height: 27px; }
+  .tile .cb { margin: 2px 0 0; }
+  .tiles-foot { font-size: 14px; margin-top: 5px; }
+
+  /* Section 4 fills the rest of the page; the study-week grid takes the leftover height */
+  .goal { flex: 1; display: flex; flex-direction: column; margin-bottom: 0; }
+  .plan-label { font-size: 14px; margin-top: 8px; }
+  table.week { width: 100%; flex: 1; border-collapse: collapse; table-layout: fixed; margin-top: 4px; }
+  table.week th { border: 1.5px solid #000; font-size: 14px; padding: 2px 0; height: 1px; line-height: 1.1; }
+  table.week th span { display: block; font-size: 11px; font-weight: normal; }
+  table.week td { border: 1.5px solid #000; }
+
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+
+  /* Jobs */
+  .jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid #000; }
+  .jobs > div { padding: 4px 11px; }
+  .jobs > div + div { border-left: 2px solid #000; }
+  .jobs .who { font-weight: bold; font-size: 14px; margin-bottom: 2px; }
+  .motto { margin-top: 6px; text-align: center; font-size: 18px; font-weight: bold; padding: 5px; }
+
+  /* Why box */
+  .why-grid { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
+  .plan { display: flex; align-items: stretch; gap: 6px; }
+  .plan .arrow { font-size: 22px; }
+  .plan-step { border: 1.5px solid #000; padding: 4px 10px; width: 1.45in; display: flex; flex-direction: column; justify-content: center; font-size: 14px; line-height: 1.2; }
+  .plan-step .when { font-size: 11px; font-weight: bold; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* Back side */
+  .intro { font-size: 14px; margin-bottom: 8px; }
+  table.find { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.find th, table.find td { border: 1.5px solid #000; padding: 5px 8px; text-align: left; }
+  table.find th { font-size: 14px; }
+  table.find td.c, table.find th.c { text-align: center; width: 0.9in; }
+  table.find td.where { width: 2.4in; }
+  table.find .cb { margin: 0; }
+
+  .q { font-size: 14px; font-weight: bold; margin-top: 12px; }
+  .q:first-of-type { margin-top: 0; }
+  .q-hint { font-size: 11px; font-style: italic; font-weight: normal; }
+  .starter { font-size: 14px; display: flex; align-items: flex-end; gap: 6px; height: 38px; }
+  .starter .fill { flex: 1; border-bottom: 1.5px solid #000; height: 26px; }
+
+  .cond-key { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid #000; margin: 2px 0 8px; font-size: 14px; }
+  .cond-key > div { padding: 3px 8px; }
+  .cond-key > div + div { border-left: 1.5px solid #000; }
+  .cond-key .f { font-size: 11px; font-weight: bold; }
+
+  .faces { display: flex; gap: 10px; margin-top: 4px; }
+  .face { border: 1.5px solid #000; padding: 3px 10px; display: flex; align-items: center; gap: 6px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: how the week works + my routine
+     ====================================================== -->
+<section class="page">
+
+  <div class="name-row">
+    Name: <span class="fill"></span>
+    Date: <span class="fill date"></span>
+  </div>
+
+  <div class="title-row">
+    <h1>How to Succeed in ESOL 3</h1>
+    <span class="sub">Keep this page. Check your routine every week.</span>
+  </div>
+
+  <div class="banner ink">
+    <div class="big">Our classroom is a place to USE English. Mistakes are welcome!</div>
+  </div>
+
+  <!-- Why: class time is short -->
+  <div class="box why">
+    <div class="why-grid">
+      <div>
+        <h2>Why is this class different?</h2>
+        We only have <b>4 hours</b> of class a week (Tues + Thurs).
+        That is not enough time to teach grammar <b>and</b> practice it.
+      </div>
+      <div class="plan">
+        <div class="plan-step"><span class="when">At home &middot; 10 min</span><b>You look at it</b></div>
+        <span class="arrow">&rarr;</span>
+        <div class="plan-step ink"><span class="when">In class</span><b>We practice it together</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly steps: same names and tags as the Course Map -->
+  <div class="box">
+    <h2>1. My week on the Course Map <span class="small">Open the app &rarr; <b>Map</b> &rarr; this week. Follow the steps.</span></h2>
+    <div class="road">
+      <div class="wk">
+        <span class="dot full"></span>
+        <div><div class="wk-title"><span class="n">1.</span>Words</div>
+          <div class="wk-what"><span class="cb"></span>Word Lab &nbsp;<span class="cb"></span>Flash Cards <span class="small">5&ndash;10 min. Keep reviewing all week!</span></div></div>
+        <span class="tag">Start before Tues</span>
+      </div>
+      <div class="wk">
+        <span class="dot full"></span>
+        <div><div class="wk-title"><span class="n">2.</span>Grammar</div>
+          <div class="wk-what"><span class="cb"></span>Look through the grammar guide. <span class="small">You don't need to understand it all.</span></div></div>
+        <span class="tag">Start before Tues</span>
+      </div>
+      <div class="wk">
+        <span class="dot full"></span>
+        <div><div class="wk-title"><span class="n">3.</span>Class</div>
+          <div class="wk-what">Speak, use the new words, make mistakes! <span class="cb"></span><b>Send me a question</b> in the app before class.</div></div>
+        <span class="tag">Tues &amp; Thurs</span>
+      </div>
+      <div class="wk">
+        <span class="dot"></span>
+        <div><div class="wk-title">More practice</div>
+          <div class="wk-what">Matching, Fill in the Blank, games. <span class="small">We won't repeat these in class.</span></div></div>
+        <span class="tag">All week</span>
+      </div>
+      <div class="wk">
+        <span class="dot full"></span>
+        <div><div class="wk-title"><span class="n">4.</span>Quiz</div>
+          <div class="wk-what"><span class="cb"></span>Weekly quiz, <b>even if I was absent.</b> <span class="small">Your answers show me what to practice next.</span></div></div>
+        <span class="tag ink" style="background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact">Required &middot; Thurs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Missed class + need help -->
+  <div class="pair">
+    <div class="box">
+      <h2>2. I missed class. Now what?</h2>
+      <div class="mini-flow">
+        <span class="chip">Map</span>&rarr;
+        <span class="chip">Find the week</span>&rarr;
+        <span class="chip">Follow the steps</span>
+      </div>
+      <div style="margin-top:5px">The Map is how you catch up. <b>We won't repeat it in class.</b> Always do the quiz.</div>
+    </div>
+    <div class="box">
+      <h2>3. I need more help.</h2>
+      <div class="tick"><span class="cb"></span><span>Tap <b>What you'll learn</b> under the week title.</span></div>
+      <div class="tick"><span class="cb"></span><span>Look at the <b>Grammar Reference Sheets</b> pages it lists.</span></div>
+      <div class="tick"><span class="cb"></span><span>Send me a question in step 3.</span></div>
+    </div>
+  </div>
+
+  <!-- 15 minutes a day -->
+  <div class="box goal">
+    <h2>4. My goal: 15 minutes of English a day <span class="small">Practice during everyday life.</span></h2>
+    <div class="tiles">
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 20v-4a11 11 0 0 1 22 0v4"/><rect x="4" y="19" width="6" height="9" rx="2"/><rect x="22" y="19" width="6" height="9" rx="2"/></svg>
+        <div class="label">Listen</div>
+        <div class="ex">while cooking, cleaning, or on the bus</div>
+        <span class="cb"></span>
+      </div>
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="18" rx="2"/><polygon points="13,11 21,15 13,19" /><line x1="11" y1="28" x2="21" y2="28"/></svg>
+        <div class="label">Watch</div>
+        <div class="ex">a short video in English</div>
+        <span class="cb"></span>
+      </div>
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 8c-3-2.5-7-3-12-3v19c5 0 9 .5 12 3 3-2.5 7-3 12-3V5c-5 0-9 .5-12 3z"/><line x1="16" y1="8" x2="16" y2="27"/></svg>
+        <div class="label">Read</div>
+        <div class="ex">a book, a sign, the news</div>
+        <span class="cb"></span>
+      </div>
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M21 4l7 7L12 27H5v-7z"/><line x1="17" y1="8" x2="24" y2="15"/></svg>
+        <div class="label">Write</div>
+        <div class="ex">2&ndash;3 sentences about my day</div>
+        <span class="cb"></span>
+      </div>
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 6h24v15H14l-6 5v-5H4z"/><line x1="10" y1="12" x2="22" y2="12"/><line x1="10" y1="16" x2="18" y2="16"/></svg>
+        <div class="label">Speak</div>
+        <div class="ex">out loud, to myself or a friend</div>
+        <span class="cb"></span>
+      </div>
+      <div class="tile">
+        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><line x1="16" y1="10" x2="16" y2="22"/><line x1="10" y1="16" x2="22" y2="16"/></svg>
+        <div class="label">Other</div>
+        <div class="ex">help a friend, phone in English</div>
+        <span class="cb"></span>
+      </div>
+    </div>
+    <div class="tiles-foot">I don't need to do everything every day. <b>Small practice makes a big difference.</b> Log it in the app: <b style="white-space:nowrap">Home &rarr; + Log</b>.</div>
+    <div class="plan-label"><b>My study week:</b> When can I practice? Write the time and what I will do. <span class="small"><i>Example: 7:30 bus, listen</i></span></div>
+    <table class="week">
+      <tr><th>Mon</th><th class="ink">Tue<span>class</span></th><th>Wed</th><th class="ink">Thu<span>class</span></th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+</section>
+
+<!-- ======================================================
+     BACK: feedback
+     ====================================================== -->
+<section class="page">
+
+  <div class="title-row">
+    <h1>Let's Talk About Our Class</h1>
+    <span class="sub">There are no wrong answers.</span>
+  </div>
+
+  <p class="intro">This class works differently from some other English classes. First, practice the weekly steps with a partner. Then tell me about your week, so I know how to help you.</p>
+
+  <!-- Part 1 -->
+  <div class="box">
+    <h2>Part 1: Practice with a partner <span class="small">Open the class app on your phone. Try each one together. Check one box.</span></h2>
+    <table class="find">
+      <tr><th>Can you...</th><th class="c">I did it!</th><th class="c">A partner<br>helped</th><th class="c">I need<br>help</th></tr>
+      <tr><td>1. Open this week on the <b>Map</b> and start <b>Word Lab</b>?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>2. Tap <b>What you&apos;ll learn</b> and find a <b>Reference Sheets</b> page?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>3. Send a <b>question</b> in step 3, <b>Class</b>?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>4. Find the <b>Quiz</b> and its <b>Required</b> tag?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>5. Find a week you missed?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+    </table>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="box" style="flex:1">
+    <h2>Part 2: Let's talk <span class="small">Talk with your group first. Then write.</span></h2>
+    <div class="cond-key">
+      <div><span class="f">ZERO CONDITIONAL &middot; If + V1, V1</span><br>If I <b>have</b> time, I <b>study</b> on the bus.</div>
+      <div><span class="f">FIRST CONDITIONAL &middot; If + V1, will + V1</span><br>If I <b>study</b> every day, I <b>will learn</b> faster.</div>
+    </div>
+
+    <div class="q">1. When a new week starts, do you know what to do first?</div>
+    <div class="faces">
+      <span class="face"><span class="cb"></span>Yes, always</span>
+      <span class="face"><span class="cb"></span>Sometimes</span>
+      <span class="face"><span class="cb"></span>No, not yet</span>
+    </div>
+    <div class="starter">Why? <span class="fill"></span></div>
+
+    <div class="q">2. What is the ONE thing you must do every week?</div>
+    <div class="starter">I must <span class="fill"></span></div>
+
+    <div class="q">3. What do you do if you have 10 free minutes? <span class="q-hint">on the bus, at lunch, after the kids sleep...</span></div>
+    <div class="starter">If I have 10 minutes, I <span class="fill"></span></div>
+
+    <div class="q">4. What helps you learn English during class?</div>
+    <div class="starter">If <span class="fill"></span><span style="margin-left:-5px">, I learn more.</span></div>
+    <div class="starter"><span class="fill"></span></div>
+
+    <div class="q">5. What is hard about preparing before class?</div>
+    <div class="starter">It is hard to <span class="fill"></span></div>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="box">
+    <h2>Part 3: What do you need?</h2>
+    <div class="q">One thing that would help me learn better in this class:</div>
+    <div class="starter">If <span class="fill"></span><span style="margin-left:-5px">, I will learn better.</span></div>
+    <div class="starter"><span class="fill"></span></div>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PROTECT Act Staff Update</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* One .sheet = one portrait letter page. */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.5in 0.55in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 24 / 18 / 15 / 12 */
+  .header-row {
+    gap: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 24px; }
+  .tag { font-size: 14px; white-space: nowrap; }
+  .subtitle { font-size: 15px; font-style: italic; margin-bottom: 16px; }
+  .small { font-size: 12px; }
+  .box { border: 1.5px solid #000; padding: 10px 14px; margin-bottom: 14px; }
+  .contacts.box { padding: 8px 14px; margin-bottom: 10px; }
+  .box.heavy { border-width: 2.5px; font-size: 15px; }
+  .box-title { font-size: 16px; font-weight: bold; margin-bottom: 6px; }
+
+  .section-head { font-size: 16px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+
+  /* Topic boxes, two per row */
+  .topics { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  .topic { border: 1.5px solid #000; padding: 10px 14px 12px; }
+  .topic.wide { grid-column: 1 / -1; }
+  .topic-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 8px; }
+  .topic-title { font-size: 18px; font-weight: bold; }
+  .when { flex: none; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; padding: 1px 6px; border: 1.5px solid #000; }
+  .when.soon { background: #000; color: #fff; }
+  .topic ul { margin-left: 1.15em; font-size: 14.5px; line-height: 1.45; }
+  .topic li { margin-bottom: 6px; }
+  .topic li.not { list-style: none; margin-left: -1.15em; margin-top: 8px; font-size: 13.5px; font-style: italic; }
+
+  /* Warrant comparison */
+  .warrant { border-width: 2.5px; padding: 12px 14px; }
+  .warrant .box-title { font-size: 17px; }
+  .warrant-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 8px 0 10px; }
+  .warrant-col { border: 1.5px solid #000; padding: 8px 12px; }
+  .warrant-label { font-weight: bold; font-size: 15px; border-bottom: 1px solid #000; padding-bottom: 3px; margin-bottom: 6px; }
+  .warrant-col ul { margin-left: 1.15em; font-size: 14px; }
+  .warrant-col li { margin-bottom: 4px; }
+  .warrant p { font-size: 14px; margin-top: 4px; }
+
+  /* Support */
+  .contacts { font-size: 14.5px; line-height: 1.5; }
+  .contacts p { margin-bottom: 6px; }
+  .contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* QR codes for every link */
+  .qr-intro { font-size: 14px; margin-bottom: 6px; }
+  .qr-group { font-size: 14px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 2px solid #000; padding-bottom: 3px; margin: 4px 0 10px; }
+  .qr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+  .qr-card { border: 1.5px solid #000; padding: 6px 8px; text-align: center; }
+  .qr { width: 1.05in; height: 1.05in; margin: 0 auto 5px; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card .box-title { font-size: 14px; margin-bottom: 2px; }
+  .qr-card p { font-size: 12px; line-height: 1.3; margin-bottom: 3px; }
+  .url { font-size: 9.5px; word-break: break-all; }
+
+  /* Appendix page */
+  .appendix-img { display: block; width: auto; max-width: 100%; max-height: 8.1in; margin: 0 auto 10px; border: 1px solid #000; padding: 6px; }
+
+  a { color: #000; }
+
+  .footer { margin-top: auto; font-size: 11.5px; border-top: 1.5px solid #000; padding-top: 5px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+
+<!-- Page 1: in effect now -->
+<div class="sheet">
+  <div class="header-row"><h1>MA PROTECT Act: What&rsquo;s Changing</h1><span class="tag">Staff Quick Info &middot; Oct. 2026</span></div>
+  <p class="subtitle">A quick overview for staff. For anything case-specific, connect the student with qualified legal help.</p>
+
+  <h2 class="section-head">In effect now</h2>
+  <div class="topics">
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">Schools + health care</span><span class="when">Since Sept. 1</span></div>
+      <ul>
+        <li>No immigration arrests at <b>public + charter schools</b> or <b>licensed child care</b> without a judge&rsquo;s warrant</li>
+        <li>Same rule in areas <b>hospitals + clinics mark as private</b>, like exam rooms (since Oct. 4)</li>
+        <li class="not">Places of worship are not covered. Lobbies and waiting rooms are covered only if the provider marks them private.</li>
+      </ul>
+    </section>
+
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">Police + courts</span><span class="when">Since Sept. 4</span></div>
+      <ul>
+        <li>Police, sheriffs, and court staff generally <b>can&rsquo;t ask about or write down</b> someone&rsquo;s immigration status (some exceptions)</li>
+        <li>They generally can&rsquo;t hold someone just because ICE asks, or share private information with ICE</li>
+        <li class="not">This limits local help to ICE. It does not stop ICE itself.</li>
+      </ul>
+    </section>
+
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">Family emergency planning</span><span class="when">Since Aug. 5</span></div>
+      <ul>
+        <li>Parents can choose now who will care for their children if they are <b>detained or deported</b>. Two options:</li>
+        <li><b>Caregiver affidavit:</b> no court, but it <b>must be notarized</b> and signed in front of 2 adult witnesses (not the caregiver). The caregiver must live with the child. Covers school + medical decisions for up to 2 years; the parent keeps all rights</li>
+        <li><b>Standby guardian:</b> named on court form MPC 142. Starts if the parent is detained or deported. The guardian must file with Probate and Family Court <b>within 30 days</b>, unless a judge already confirmed it</li>
+        <li class="not">Plan before a crisis. MIRA family guide: QR on page 3.</li>
+      </ul>
+    </section>
+
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">ICE inspection at work</span><span class="when">Since Aug. 5</span></div>
+      <ul>
+        <li>If ICE says it will check workers&rsquo; I-9 papers (proof of work permission), the employer generally must <b>tell all employees in writing within 48 hours</b></li>
+        <li class="not">Workers get a warning. ICE can still check the papers.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="box heavy">
+    <b>Urgent?</b> For detention, transfer, or a court date coming up, help the student reach a qualified lawyer right away. Don&rsquo;t wait for a reporting process.
+  </div>
+
+  <p class="footer">General staff information, not individual legal advice. Page 1 of 4.</p>
+</div>
+
+<!-- Page 2: starts Nov. 3 + warrants -->
+<div class="sheet">
+  <div class="header-row"><h1>PROTECT Act: Starting Nov. 3 + Support</h1><span class="tag">Staff Quick Info &middot; Oct. 2026</span></div>
+
+  <div class="topics">
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">Courthouse arrests</span><span class="when soon">Starts Nov. 3</span></div>
+      <ul>
+        <li>No ICE arrests <b>anywhere on court property</b> (the &ldquo;curtilage&rdquo;): steps, sidewalks, lawns, plazas, and court parking lots, <b>without a judge&rsquo;s warrant or order</b></li>
+        <li>Before any arrest, ICE must <b>show a judge at that courthouse</b> the warrant or order. The judge reviews it</li>
+        <li>No immigration arrests inside a courtroom</li>
+        <li class="not">Court is not fully safe. Students with a court date should talk to a lawyer first.</li>
+      </ul>
+    </section>
+
+    <section class="topic">
+      <div class="topic-head"><span class="topic-title">Detention + transfers</span><span class="when soon">Starts Nov. 3</span></div>
+      <ul>
+        <li>State and county jails holding people for ICE must explain rights in the person&rsquo;s language and allow free video calls with lawyers</li>
+        <li>If someone is moved, the jail must try to <b>tell their lawyer or family contact within 6 hours</b>, including where they went</li>
+        <li>Each must have a public phone number to check who is held there</li>
+        <li class="not">Not every place ICE holds people is covered.</li>
+      </ul>
+    </section>
+
+    <section class="topic wide">
+      <div class="topic-head"><span class="topic-title">U + T visa forms</span><span class="when soon">Starts Nov. 3</span></div>
+      <ul>
+        <li>U and T visas help some survivors of serious crimes or trafficking. They need a signed form from police or another agency</li>
+        <li>Agencies generally must answer within <b>45 days</b>, or <b>14 business days</b> if urgent</li>
+        <li class="not">The signed form is not a visa. Wage theft or housing problems alone usually don&rsquo;t qualify.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="box warrant">
+    <div class="box-title">Most of these rules need a <u>judge&rsquo;s</u> warrant. ICE usually doesn&rsquo;t have one.</div>
+    <div class="warrant-cols">
+      <div class="warrant-col">
+        <div class="warrant-label">ICE warrant: does <b>NOT</b> count</div>
+        <ul>
+          <li>Says &ldquo;Department of Homeland Security&rdquo; at the top (Form I-200 or I-205)</li>
+          <li>Signed by an <b>immigration officer</b></li>
+        </ul>
+      </div>
+      <div class="warrant-col">
+        <div class="warrant-label">Judge&rsquo;s warrant: counts</div>
+        <ul>
+          <li>Names a court, like &ldquo;Trial Court of Massachusetts&rdquo; or &ldquo;U.S. District Court&rdquo;</li>
+          <li>Signed by a <b>judge</b> or magistrate</li>
+        </ul>
+      </div>
+    </div>
+    <p><b>Check the signature line.</b> Staff can ask to see the paper. Don&rsquo;t physically block anyone. Call a lawyer or LUCE. <b>Sample warrants: page 4.</b></p>
+  </div>
+
+  <div class="box contacts">
+    <div class="box-title">Support + reporting</div>
+    <div class="contact-cols">
+      <div>
+        <p><b>LUCE hotline:</b> 617-370-5023 (report ICE activity)</p>
+        <p><b>Police or courts breaking these rules:</b> complain to the Attorney General (link on the MIRA hub, page 3)</p>
+      </div>
+      <div>
+        <p><b>Questions? Ask me:</b> Marlie &middot; 770-378-9207<br><span class="small">mcreed@mlri.org &middot; mcreed@ebhcs.org</span></p>
+        <p class="small"><i>Optional routes, not a required chain. Share only with the student&rsquo;s consent.</i></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer">General staff information, not individual legal advice. Page 2 of 4.</p>
+</div>
+
+<!-- Page 3: support + links -->
+<div class="sheet">
+  <div class="header-row"><h1>PROTECT Act: Links</h1><span class="tag">Staff Quick Info &middot; Oct. 2026</span></div>
+
+  <p class="qr-intro">Scan a code with a phone camera to open the page. You can share these with students.</p>
+
+  <h2 class="qr-group">Help + rights</h2>
+  <div class="qr-grid">
+    <div class="qr-card">
+      <div class="qr" data-url="https://miracoalition.org/resources/the-protect-act-8-5-2026/"></div>
+      <div class="box-title">MIRA PROTECT Act hub</div>
+      <p>Start here. Explainers in English, Spanish, Haitian Creole, Portuguese. Links to the AG complaint process.</p>
+      <span class="url"><a href="https://miracoalition.org/resources/the-protect-act-8-5-2026/">miracoalition.org/resources/the-protect-act-8-5-2026</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://miracoalition.org/resources/legal-services/"></div>
+      <div class="box-title">MIRA legal services</div>
+      <p>Directory of immigration lawyers and legal aid groups in Massachusetts.</p>
+      <span class="url"><a href="https://miracoalition.org/resources/legal-services/">miracoalition.org/resources/legal-services</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://miracoalition.org/resources/know-your-rights/"></div>
+      <div class="box-title">Know Your Rights</div>
+      <p>What to do if ICE comes to your home, work, or car.</p>
+      <span class="url"><a href="https://miracoalition.org/resources/know-your-rights/">miracoalition.org/resources/know-your-rights</a></span>
+    </div>
+  </div>
+
+  <h2 class="qr-group">Warrants + family planning</h2>
+  <div class="qr-grid">
+    <div class="qr-card">
+      <div class="qr" data-url="https://www.mass.gov/doc/protect-act-guidance-and-model-policy-for-covered-health-care-providers/download"></div>
+      <div class="box-title">State guidance (mass.gov)</div>
+      <p>Health care guidance. Appendix A (page 12) has the sample warrants on page 4 of this sheet.</p>
+      <span class="url"><a href="https://www.mass.gov/doc/protect-act-guidance-and-model-policy-for-covered-health-care-providers/download">mass.gov/doc/protect-act-guidance-and-model-policy-for-covered-health-care-providers</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://miracoalition.org/family-preparedness/"></div>
+      <div class="box-title">MIRA family preparedness</div>
+      <p>Family plan packets in 7 languages, caregiver form tools, help for detained parents.</p>
+      <span class="url"><a href="https://miracoalition.org/family-preparedness/">miracoalition.org/family-preparedness</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://www.mass.gov/lists/probate-and-family-court-forms-for-guardianship-and-conservatorship"></div>
+      <div class="box-title">Probate Court guardianship forms</div>
+      <p>Includes form MPC 142 to name a standby guardian.</p>
+      <span class="url"><a href="https://www.mass.gov/lists/probate-and-family-court-forms-for-guardianship-and-conservatorship">mass.gov/lists/probate-and-family-court-forms-for-guardianship-and-conservatorship</a></span>
+    </div>
+  </div>
+
+  <h2 class="qr-group">Official sources</h2>
+  <div class="qr-grid">
+    <div class="qr-card">
+      <div class="qr" data-url="https://malegislature.gov/Laws/SessionLaws/Acts/2026/Chapter163"></div>
+      <div class="box-title">The law: Acts of 2026, Ch. 163</div>
+      <p>Full text of the PROTECT Act.</p>
+      <span class="url"><a href="https://malegislature.gov/Laws/SessionLaws/Acts/2026/Chapter163">malegislature.gov/Laws/SessionLaws/Acts/2026/Chapter163</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://www.mass.gov/info-details/the-protect-act"></div>
+      <div class="box-title">mass.gov PROTECT Act guidance</div>
+      <p>The state&rsquo;s official explanation of the law.</p>
+      <span class="url"><a href="https://www.mass.gov/info-details/the-protect-act">mass.gov/info-details/the-protect-act</a></span>
+    </div>
+    <div class="qr-card">
+      <div class="qr" data-url="https://www.mass.gov/policy-statement/massachusetts-trial-court-policy-on-interactions-with-united-states-immigration-and-customs-enforcement"></div>
+      <div class="box-title">Trial Court ICE policy</div>
+      <p>Rules for ICE in Massachusetts courthouses.</p>
+      <span class="url"><a href="https://www.mass.gov/policy-statement/massachusetts-trial-court-policy-on-interactions-with-united-states-immigration-and-customs-enforcement">mass.gov/policy-statement/massachusetts-trial-court-policy-on-interactions-with-united-states-immigration-and-customs-enforcement</a></span>
+    </div>
+  </div>
+
+  <p class="footer">General staff information, not individual legal advice. Links checked Oct. 2026. Page 3 of 4.</p>
+</div>
+
+<!-- Page 4: Appendix A sample warrants -->
+<div class="sheet">
+  <div class="header-row"><h1>Sample Warrants: What to Look For</h1><span class="tag">Staff Quick Info &middot; Oct. 2026</span></div>
+  <p class="subtitle">Top: a Massachusetts state court form (names the &ldquo;Trial Court of Massachusetts&rdquo;). Bottom left: a federal court warrant, signed by a judge. Bottom right: an ICE warrant (&ldquo;U.S. Department of Homeland Security,&rdquo; signed by an immigration officer). Only a judge&rsquo;s warrant counts.</p>
+  <img class="appendix-img" src="protect-act-appendix-a.png" alt="Appendix A: a Massachusetts Trial Court search warrant application, a U.S. District Court search warrant, and a sample ICE Warrant for Arrest of Alien from the U.S. Department of Homeland Security.">
+  <p class="footer">Source: Massachusetts PROTECT Act Guidance and Model Policy for Covered Health Care Providers, Appendix A (p. 12). Page 4 of 4.</p>
+</div>
+
+<script>
+  document.querySelectorAll(".qr[data-url]").forEach(function (el) {
+    if (typeof qrcode !== "function") return;
+    var qr = qrcode(0, "M");
+    qr.addData(el.dataset.url);
+    qr.make();
+    el.innerHTML = qr.createSvgTag({ cellSize: 2, margin: 0, scalable: true });
+  });
+</script>
+</body>
+</html>

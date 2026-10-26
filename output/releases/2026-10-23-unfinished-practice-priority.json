@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "d112249beebba9db3a86593355e388453758f8ab",
+  "includedProductionBase": "4c455938a7dc9168f5f69cadb2540f62db9804cb",
+  "deploymentId": "dpl_CE17t3DbfuhSoqgguhH4AG5c3iGM",
+  "liveDomain": "https://myesolclass.com",
+  "verified": [
+    "Fresh main fetched and included before push",
+    "18 tests passed",
+    "TypeScript passed",
+    "Changed-file lint passed",
+    "Vercel success and READY",
+    "Live domain alias verified",
+    "Live /api/ping returned ok"
+  ]
+}

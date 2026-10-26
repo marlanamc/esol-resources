@@ -85,6 +85,7 @@ export function WeekNode({ week, accent }: { week: RoadWeek; accent: string }) {
                 className="flex h-[42px] w-[42px] items-center justify-center rounded-full text-[1.125rem] font-extrabold"
                 style={{
                     ...base,
+                    marginTop: 10,
                     background: accent,
                     color: "var(--road-on-accent)",
                     boxShadow: `${HALO}, 0 0 0 9px color-mix(in srgb, ${accent} 22%, transparent)`,
@@ -377,13 +378,26 @@ export function SegmentedProgress({ activities, accent }: { activities: RoadActi
 // ── What you'll learn ─────────────────────────────────────────────────────────
 
 /** A tap-to-open list of the week's "I can" goals and the reference pages that help. */
-export function WeekLearningDisclosure({ weekNumber, accent, className = "" }: { weekNumber: number; accent: string; className?: string }) {
+export function WeekLearningDisclosure({
+    weekNumber,
+    accent,
+    className = "",
+    compact = false,
+}: {
+    weekNumber: number;
+    accent: string;
+    className?: string;
+    /** Shorter tap row for a header that already has its own padding. */
+    compact?: boolean;
+}) {
     const learning = getWeekLearning(weekNumber);
     if (!learning) return null;
     return (
         <details className={`group ${className}`}>
             <summary
-                className="inline-flex min-h-[36px] cursor-pointer list-none items-center gap-1 text-[0.875rem] font-bold [&::-webkit-details-marker]:hidden"
+                className={`inline-flex cursor-pointer list-none items-center gap-1 text-[0.875rem] font-bold [&::-webkit-details-marker]:hidden ${
+                    compact ? "min-h-7 leading-tight" : "min-h-[36px]"
+                }`}
                 style={{ color: accent }}
             >
                 What you&apos;ll learn
@@ -691,9 +705,9 @@ export function CurrentWeekCard({
         >
             <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={false} node={<WeekNode week={week} accent={tone.button} />}>
                 <WeekHeading week={week} weekNoun={weekNoun} />
-                <div className="pt-3.5 pb-3">
+                <div className="pt-2 pb-2">
                     <div className="flex items-center justify-between gap-2">
-                        <span className="text-[0.8438rem] font-bold whitespace-nowrap text-text-muted">
+                        <span className="text-[0.8438rem] font-bold leading-tight whitespace-nowrap text-text-muted">
                             {weekNoun} {week.weekNumber}
                         </span>
                         <span
@@ -703,8 +717,8 @@ export function CurrentWeekCard({
                             You are here
                         </span>
                     </div>
-                    <div className="mt-2 flex items-start gap-2">
-                        <p className="m-0 min-w-0 flex-1 font-display text-[1.5rem] font-bold leading-tight text-text">{week.title}</p>
+                    <div className="relative mt-1">
+                        <p className="m-0 min-w-0 pr-11 font-display text-[1.5rem] font-bold leading-[1.12] text-text">{week.title}</p>
                         {hasSteps ? (
                             <button
                                 type="button"
@@ -712,15 +726,15 @@ export function CurrentWeekCard({
                                 aria-expanded={stepsOpen}
                                 aria-controls={`road-week-${week.weekNumber}-steps`}
                                 aria-label={stepsOpen ? "Hide this week's steps" : "Show this week's steps"}
-                                className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                                className="absolute top-1/2 right-0 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full"
                             >
                                 <Chevron open={stepsOpen} />
                             </button>
                         ) : null}
                     </div>
-                    <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} className="mt-1" />
+                    <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} compact className="mt-0.5" />
                     {week.total > 0 ? (
-                        <div className="mt-2.5 flex items-center gap-3">
+                        <div className="mt-1.5 flex items-center gap-3">
                             <div className="flex flex-1 gap-1" aria-hidden>
                                 {week.activities
                                     .filter((activity) => activity.href != null)
@@ -747,7 +761,7 @@ export function CurrentWeekCard({
                     {next?.href ? (
                         <Link
                             href={next.href}
-                            className="mt-3 flex min-h-[52px] items-center gap-2.5 rounded-[14px] px-3 py-2"
+                            className="mt-2.5 flex min-h-[52px] items-center gap-2.5 rounded-[14px] px-3 py-2"
                             style={{
                                 background: tone.button,
                                 color: "var(--road-on-accent)",
@@ -766,7 +780,7 @@ export function CurrentWeekCard({
                             <ChevronRight size={18} aria-hidden className="shrink-0" />
                         </Link>
                     ) : week.isDone ? (
-                        <p className="mt-3 mb-0 rounded-2xl px-4 py-3 text-[0.9375rem] leading-snug font-bold" style={{ background: "var(--road-done-bg)", color: "var(--road-done-text)" }}>
+                        <p className="mt-2.5 mb-0 rounded-2xl px-4 py-3 text-[0.9375rem] leading-snug font-bold" style={{ background: "var(--road-done-bg)", color: "var(--road-done-text)" }}>
                             You finished this week! You can review anything below
                             {nextWeekOpen ? " or start next week early." : "."}
                         </p>

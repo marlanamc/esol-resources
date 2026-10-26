@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "39b844a3e63982b9a60812bc8c80aa8375d4718f",
+  "baseCommit": "e277ed2290c0a55665e80a139bef4e4eb52a9dbe",
+  "deploymentId": "dpl_5SRdn4xWPsAxc1weXPifpQeH2wWf",
+  "deploymentUrl": "https://esol-resources-iz1g77kap-marlies-projects-abe96d86.vercel.app",
+  "liveDomain": "https://myesolclass.com",
+  "verified": [
+    "Fresh origin/main fetched before push; latest main included",
+    "Typecheck passed",
+    "ESLint passed for changed files",
+    "Production deployment Ready and live domain alias verified",
+    "GitHub commit status success",
+    "Live /api/ping returned ok"
+  ]
+}

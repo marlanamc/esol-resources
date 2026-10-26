@@ -1,0 +1,17 @@
+{
+  "release": "Grammar guides complete on mini-quiz submission, regardless of score",
+  "sourceCommit": "e277ed2290c0a55665e80a139bef4e4eb52a9dbe",
+  "includedProductionBase": "a1b17cf8",
+  "deploymentId": "dpl_7DzRSo9tTHhrsnGd6WwCRYnyDSPN",
+  "domain": "https://myesolclass.com",
+  "domainAliasVerified": true,
+  "githubDeploymentStatus": "success",
+  "healthEndpoint": {
+    "ok": true
+  },
+  "testsPassed": 263,
+  "typecheck": "passed",
+  "lint": "passed",
+  "confirmedStudentProgressReconciliations": 1,
+  "duplicatePointsIssued": 0
+}
