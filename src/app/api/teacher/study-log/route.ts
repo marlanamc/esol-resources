@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         // Same population as the participation list: active, real students.
         const enrollments = await prisma.classEnrollment.findMany({
             where: { classId, status: "active", student: { isSystemAccount: false, excludeFromLeaderboard: false } },
-            select: { student: { select: { id: true, name: true, username: true } } },
+            select: { student: { select: { id: true, name: true, username: true, practiceGoalDays: true } } },
         });
         const students = enrollments.map((enrollment) => enrollment.student);
         const logs = students.length

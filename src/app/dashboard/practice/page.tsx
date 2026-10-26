@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { authOptions } from "@/lib/auth/auth";
-import { buildStudyWeek } from "@/lib/learner/study-log";
+import { buildStudyWeek, DEFAULT_PRACTICE_GOAL_DAYS } from "@/lib/learner/study-log";
 import { loadStudentStudyWeek } from "@/lib/learner/study-log-data";
 import { StudyLogForm } from "@/components/study-log/StudyLogForm";
 
@@ -17,7 +17,7 @@ export default async function StudyLogPage() {
     // Falls back to an empty week so the page still opens if the logs can't load.
     const initial = await loadStudentStudyWeek(session.user.id).catch((error) => {
         console.error("[Practice log] Could not load this week", error);
-        return { week: buildStudyWeek([]), entries: [] };
+        return { week: buildStudyWeek([]), entries: [], goalDays: DEFAULT_PRACTICE_GOAL_DAYS };
     });
     return (
         <div className="min-h-dvh bg-bg">

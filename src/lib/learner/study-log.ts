@@ -10,6 +10,19 @@ export const MAX_STUDY_LOG_LENGTH = 300;
 /** Logging is open-ended, but only this many entries a day are saved. */
 export const MAX_STUDY_LOGS_PER_DAY = 10;
 
+/** Days-a-week goals a learner can pick on the log page. Days, not minutes: the dots can show days. */
+export const PRACTICE_GOAL_OPTIONS = [2, 3, 4, 5, 7] as const;
+export const DEFAULT_PRACTICE_GOAL_DAYS = 3;
+
+export function isPracticeGoalDays(value: unknown): value is (typeof PRACTICE_GOAL_OPTIONS)[number] {
+    return PRACTICE_GOAL_OPTIONS.some((days) => days === value);
+}
+
+/** A saved goal, or the default if the stored value isn't one of the options. */
+export function normalizePracticeGoalDays(value: number | null | undefined): number {
+    return isPracticeGoalDays(value) ? value : DEFAULT_PRACTICE_GOAL_DAYS;
+}
+
 /**
  * The "15 minutes of English a day" tiles from the How to Succeed in ESOL 3
  * handout, plus Read, with Other in place of Switch for anything else
@@ -120,6 +133,8 @@ export function parseWeekStartDayKey(value: unknown, referenceDate: Date = new D
 export interface TeacherStudyRow {
     studentId: string;
     studentName: string;
+    /** The student's days-a-week goal. */
+    goalDays: number;
     /** Mon–Sun; each day lists the kinds logged. */
     days: StudyLogKind[][];
     daysPracticed: number;
@@ -129,7 +144,7 @@ export interface TeacherStudyRow {
 
 /** One row per student for a teacher's Mon–Sun week, in name order. */
 export function buildTeacherStudyRows(
-    students: Array<{ id: string; name: string | null; username: string }>,
+    students: Array<{ id: string; name: string | null; username: string; practiceGoalDays?: number | null }>,
     logs: Array<StudyLogRow & { userId: string }>,
     weekStartDayKey: string
 ): TeacherStudyRow[] {
@@ -151,6 +166,7 @@ export function buildTeacherStudyRows(
             return {
                 studentId: student.id,
                 studentName: student.name?.trim() || student.username,
+                goalDays: normalizePracticeGoalDays(student.practiceGoalDays),
                 days,
                 daysPracticed: days.filter((kinds) => kinds.length > 0).length,
                 entries: mine.map(toStudyLogEntry).filter((entry): entry is StudyLogEntry => entry != null),
