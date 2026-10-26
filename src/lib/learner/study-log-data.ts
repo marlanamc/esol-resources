@@ -1,7 +1,9 @@
 import { prisma } from "@/lib/database/prisma";
+import { addDaysToDayKey } from "@/lib/gamification/calendar-week";
 import {
     buildStudyJournal,
     buildStudyWeek,
+    countPracticeDays,
     getStudyWeekRange,
     toStudyLogEntry,
     type StudyJournal,
@@ -42,4 +44,14 @@ export async function loadStudyJournal(userId: string): Promise<StudyJournal> {
     ]);
     const journal = buildStudyJournal(rows.map(toStudyLogEntry).filter((entry): entry is StudyLogEntry => entry != null));
     return { ...journal, daysPracticed: days.length };
+}
+
+/** How many days each learner logged practice in the Mon–Sun week starting weekStart. Learners with none are left out. */
+export async function loadPracticeDaysForWeek(userIds: string[], weekStart: string): Promise<Map<string, number>> {
+    if (userIds.length === 0) return new Map();
+    const rows = await prisma.studyLog.groupBy({
+        by: ["userId", "dayKey"],
+        where: { userId: { in: userIds }, dayKey: { gte: weekStart, lte: addDaysToDayKey(weekStart, 6) } },
+    });
+    return countPracticeDays(rows);
 }

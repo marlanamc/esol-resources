@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { TrophyIcon, FlameIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import Link from 'next/link';
+import { NotebookPen } from 'lucide-react';
 import { Badge } from '@/components/ui';
 import LeaderboardLoading from './loading';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
@@ -66,6 +67,8 @@ interface LeaderboardEntry {
   weekComplete: boolean;
   weeklyQuizComplete: boolean;
   completedWeeksCount: number;
+  /** Days with a practice log in the selected week; display only, never part of the score. */
+  practiceDays?: number;
 }
 
 const TROPHY_TILE_BG =
@@ -315,6 +318,7 @@ export default function LeaderboardPage() {
   }
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
+  const hasPracticeChips = timeframe !== 'all' && leaderboard.some((entry) => (entry.practiceDays ?? 0) > 0);
   const isAllTime = timeframe === 'all';
   // Historical chips describe the selected course week, never the whole unit.
   const isLastWeek = timeframe === 'last-week';
@@ -323,13 +327,12 @@ export default function LeaderboardPage() {
   const showWeekCard = timeframe === 'week' && viewerRole === 'student' && viewerPoints > 0;
   // All time gets the same card shape: total points and weeks finished.
   const showAllTimeCard = isAllTime && viewerRole === 'student' && viewerPoints > 0;
-  // Students see last week's saved points as one line; it doubles as the "see last week" link.
-  const showSavedRow = timeframe === 'week' && viewerRole === 'student' && lastWeekPoints > 0 && !showWeekCard;
-  const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
+    const renderStatusChips = (entry: LeaderboardEntry, className = '') => {
     const showStreak = !isLastWeek && entry.currentStreak > 0;
     const showQuiz = showWeekBadges && entry.weeklyQuizComplete;
     const showWeek = showWeekBadges && entry.weekComplete;
-    if (!showStreak && !showQuiz && !showWeek) return null;
+    const practiceDays = showWeekBadges ? entry.practiceDays ?? 0 : 0;
+    if (!showStreak && !showQuiz && !showWeek && !practiceDays) return null;
     return (
       <div className={`flex items-center gap-1.5 ${className}`}>
         {showStreak && (
@@ -358,6 +361,14 @@ export default function LeaderboardPage() {
             color="var(--success-color)"
           />
         )}
+        {practiceDays > 0 && (
+          <StatusChip
+            icon={<NotebookPen size={12} aria-hidden />}
+            label={`Practiced ${practiceDays} ${practiceDays === 1 ? 'day' : 'days'}`}
+            title={`Logged English practice at home on ${practiceDays} ${practiceDays === 1 ? 'day' : 'days'} in ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
+            className="text-emerald-800 dark:text-emerald-300"
+          />
+        )}
       </div>
     );
   };
@@ -377,7 +388,7 @@ export default function LeaderboardPage() {
         backgroundColor: 'var(--surface-contrast)',
       }}
     >
-      {([['week', currentWeekLabel], ['all', 'All time']] as const).map(([value, label]) => {
+      {([['week', currentWeekLabel], ['last-week', previousWeekLabel], ['all', 'All time']] as const).map(([value, label]) => {
         const selected = timeframe === value;
         return (
           <button
@@ -554,19 +565,17 @@ export default function LeaderboardPage() {
         <section className="text-center space-y-2" aria-label="Scoring period">
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
             <span className="font-semibold" style={{ color: 'var(--color-text)' }}>{periodLabel}</span>
-            <span title="Monday at 12:00 a.m., Eastern time"> · New week every Monday</span>
           </p>
           {isLastWeek && scope !== 'independent' && previousWeekLabel.startsWith('Week ') && (
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               Quiz and Week done show saved completion for {previousWeekLabel}, including catch-up work.
             </p>
           )}
-          {!showSavedRow && !showWeekCard && (
-            <button type="button" className="min-h-11 px-3 text-sm font-semibold underline underline-offset-4"
-              style={{ color: 'var(--color-primary)' }}
-              onClick={() => void onTimeframeChange(isLastWeek ? 'week' : 'last-week')}>
-              {isLastWeek ? `Back to ${currentWeekLabel}` : previousWeekLabel === 'Last week' ? 'View last week' : `View last week · ${previousWeekLabel}`}
-            </button>
+          {hasPracticeChips && (
+            <p className="flex flex-wrap items-center justify-center gap-1.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              <NotebookPen size={12} aria-hidden className="text-emerald-800 dark:text-emerald-300" />
+              Practiced = days they logged English practice at home {isLastWeek ? 'that week' : 'this week'}
+            </p>
           )}
         </section>
         )}
@@ -649,18 +658,7 @@ export default function LeaderboardPage() {
               </div>
             </div>
             <div className="flex min-w-0 flex-col gap-0.5 border-l px-3 py-2 sm:px-4" style={{ backgroundColor: 'var(--surface-contrast)', borderColor: 'var(--border-subtle)' }}>
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>{previousWeekLabel}</span>
-                <button
-                  type="button"
-                  className="-my-2 min-h-11 px-1 text-sm font-bold"
-                  style={{ color: 'var(--color-primary)' }}
-                  onClick={() => void onTimeframeChange('last-week')}
-                  aria-label={`See ${previousWeekLabel}`}
-                >
-                  See →
-                </button>
-              </div>
+              <span className="text-sm font-bold" style={{ color: 'var(--color-text-muted)' }}>{previousWeekLabel}</span>
               <div className="flex items-center gap-2.5">
                 <span className="text-xl font-bold tabular-nums sm:text-2xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
                   {lastWeekPoints.toLocaleString()}
@@ -680,36 +678,6 @@ export default function LeaderboardPage() {
             </div>
           </section>
         )}
-        {showSavedRow && (
-          <section
-            className="flex items-center gap-3 rounded-2xl py-1.5 pl-4 pr-3 text-sm sm:text-base"
-            style={{ backgroundColor: 'color-mix(in srgb, var(--success-color) 16%, var(--surface-elevated))', color: 'var(--color-text)' }}
-            aria-label="Your points from last week"
-          >
-            <span
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-              style={{ backgroundColor: 'var(--success-color)', color: 'var(--surface-elevated)' }}
-              aria-hidden
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12l5 5 9-10" />
-              </svg>
-            </span>
-            <span className="m-0 min-w-0 flex-1 leading-snug">
-              <span className="font-bold">{previousWeekLabel === 'Last week' ? 'Last week' : previousWeekLabel}:</span>{' '}
-              {lastWeekPoints.toLocaleString()} points saved
-            </span>
-            <button
-              type="button"
-              className="min-h-11 shrink-0 whitespace-nowrap px-1 font-bold"
-              style={{ color: 'var(--color-primary)' }}
-              onClick={() => void onTimeframeChange('last-week')}
-            >
-              {previousWeekLabel === 'Last week' ? 'See last week' : `See ${previousWeekLabel}`} →
-            </button>
-          </section>
-        )}
-
         {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
         {showPodium && (() => {
           // Get all students in top 3 ranks (handles ties)

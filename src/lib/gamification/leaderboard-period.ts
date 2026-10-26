@@ -25,7 +25,7 @@ export function getLeaderboardPeriod(range: LeaderboardRange, now = new Date()) 
 }
 
 function formatDay(key: string) {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
     .format(new Date(`${key}T12:00:00Z`));
 }
 
