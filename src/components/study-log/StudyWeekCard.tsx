@@ -1,37 +1,42 @@
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { getStudyLogKind } from "@/lib/learner/study-log";
 import type { StudentStudyWeek } from "@/lib/learner/study-log-data";
-import { StudyLogList } from "./StudyLogList";
 import { StudyWeekDots } from "./StudyWeekDots";
 
 export const STUDY_LOG_HREF = "/dashboard/practice";
 
-/** Home card: this week's practice dots, the "Log my practice" button and the latest logs. */
+/** Home card: title, day count and Log button on one row, compact Mon–Sun dots, then the latest log. */
 export function StudyWeekCard({ week, entries }: StudentStudyWeek) {
+    const latest = entries[0];
     return (
-        <section aria-labelledby="study-week-heading" className="space-y-3 rounded-[20px] border-2 border-emerald-700 bg-surface-elevated p-4 dark:border-emerald-600">
-            <div className="flex items-baseline justify-between gap-3">
-                <h2 id="study-week-heading" className="m-0 font-display text-xl font-bold text-text">
-                    My practice week
-                </h2>
-                <span className="text-sm font-bold text-emerald-800 dark:text-emerald-300">{week.daysPracticed} of 7 days</span>
+        <section aria-labelledby="study-week-heading" className="space-y-2.5 rounded-[20px] border-2 border-emerald-700 bg-surface-elevated px-4 py-3 dark:border-emerald-600">
+            <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                    <h2 id="study-week-heading" className="m-0 font-display text-lg font-bold leading-tight text-text">
+                        My practice week
+                    </h2>
+                    <p className="m-0 text-sm text-text-muted">
+                        <b className="text-emerald-800 dark:text-emerald-300">{week.daysPracticed} of 7 days</b> · Goal: 15 min a day
+                    </p>
+                </div>
+                <Link
+                    href={STUDY_LOG_HREF}
+                    className="flex min-h-11 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-base font-bold text-[#fffdfa] no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                >
+                    <Plus size={18} strokeWidth={2.6} aria-hidden />
+                    Log
+                    <span className="sr-only"> my practice</span>
+                </Link>
             </div>
 
-            <StudyWeekDots week={week} />
+            <StudyWeekDots week={week} compact />
 
-            <p className="m-0 text-[0.9375rem] text-text">
-                Goal: <b>15 minutes of English a day</b>. Small practice makes a big difference.
-            </p>
-
-            <Link
-                href={STUDY_LOG_HREF}
-                className="flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-primary text-[1.0625rem] font-bold text-[#fffdfa] no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            >
-                <Plus size={20} strokeWidth={2.6} aria-hidden />
-                Log my practice
-            </Link>
-
-            <StudyLogList entries={entries.slice(0, 3)} />
+            {latest ? (
+                <p className="m-0 truncate text-sm text-text-muted">
+                    <b className="text-text">{getStudyLogKind(latest.kind).label}:</b> {latest.text}
+                </p>
+            ) : null}
         </section>
     );
 }

@@ -30,7 +30,9 @@ vi.mock('@/lib/api/response', () => ({
 import { GET, POST } from '@/app/api/study-log/route';
 import { GET as TEACHER_GET } from '@/app/api/teacher/study-log/route';
 import {
+    buildStudyJournal,
     buildStudyWeek,
+    getWeekStartForDayKey,
     buildTeacherStudyRows,
     MAX_STUDY_LOGS_PER_DAY,
     parseStudyLogText,
@@ -106,6 +108,31 @@ describe('study log helpers', () => {
         expect(rows[0]).toMatchObject({ daysPracticed: 0, entries: [] });
         expect(rows[1].days.slice(0, 3)).toEqual([['listen'], ['write'], []]);
         expect(rows[1].entries.map((e) => e.id)).toEqual(['2', '1']);
+    });
+});
+
+describe('practice journal', () => {
+    it('finds the Monday of any day', () => {
+        expect(getWeekStartForDayKey('2026-10-26')).toBe('2026-10-26'); // Monday
+        expect(getWeekStartForDayKey('2026-11-01')).toBe('2026-10-26'); // Sunday
+        expect(getWeekStartForDayKey('2026-11-02')).toBe('2026-11-02');
+    });
+
+    it('groups logs by week, newest first, and counts distinct days', () => {
+        const entry = (id: string, dayKey: string, hour: number) => ({
+            id, kind: 'watch' as const, text: id, dayKey, createdAt: `${dayKey}T${String(hour).padStart(2, '0')}:00:00.000Z`,
+        });
+        const journal = buildStudyJournal([
+            entry('a', '2026-10-20', 12),
+            entry('b', '2026-10-27', 12),
+            entry('c', '2026-10-27', 18),
+            entry('d', '2026-11-01', 12),
+        ]);
+        expect(journal.daysPracticed).toBe(3);
+        expect(journal.weeks.map((w) => [w.weekStart, w.entries.map((e) => e.id)])).toEqual([
+            ['2026-10-26', ['d', 'c', 'b']],
+            ['2026-10-19', ['a']],
+        ]);
     });
 });
 

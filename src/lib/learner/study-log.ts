@@ -145,3 +145,36 @@ export function buildTeacherStudyRows(
         })
         .sort((a, b) => a.studentName.localeCompare(b.studentName));
 }
+
+/** Monday (YYYY-MM-DD) of the Mon–Sun week a learner day key falls in. */
+export function getWeekStartForDayKey(dayKey: string): string {
+    const [y, m, d] = dayKey.split("-").map(Number);
+    const daysSinceMonday = (new Date(Date.UTC(y, m - 1, d)).getUTCDay() + 6) % 7;
+    return addDaysToDayKey(dayKey, -daysSinceMonday);
+}
+
+export interface StudyJournalWeek {
+    weekStart: string;
+    /** Newest first. */
+    entries: StudyLogEntry[];
+}
+
+export interface StudyJournal {
+    /** Distinct days with at least one log, all time. */
+    daysPracticed: number;
+    /** Newest week first. */
+    weeks: StudyJournalWeek[];
+}
+
+/** Every log grouped by Mon–Sun week, for the profile's practice journal. */
+export function buildStudyJournal(entries: StudyLogEntry[]): StudyJournal {
+    const sorted = [...entries].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    const weeks: StudyJournalWeek[] = [];
+    for (const entry of sorted) {
+        const weekStart = getWeekStartForDayKey(entry.dayKey);
+        const last = weeks[weeks.length - 1];
+        if (last?.weekStart === weekStart) last.entries.push(entry);
+        else weeks.push({ weekStart, entries: [entry] });
+    }
+    return { daysPracticed: new Set(sorted.map((entry) => entry.dayKey)).size, weeks };
+}
