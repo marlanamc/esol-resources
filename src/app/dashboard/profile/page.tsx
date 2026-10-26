@@ -17,7 +17,9 @@ import { WeeklyQuizCatchUpCard } from "@/components/dashboard/WeeklyQuizCatchUpC
 import { ProfileCourseMapCard } from "@/components/profile/ProfileCourseMapCard";
 import { ProfileQuizGrades } from "@/components/profile/ProfileQuizGrades";
 import { ProfileStreakWeek } from "@/components/profile/ProfileStreakWeek";
-import { Trophy, Flame, BookOpen, Target, Check, ChevronRight } from "lucide-react";
+import { ProfileStudyJournal } from "@/components/profile/ProfileStudyJournal";
+import { loadStudyJournal } from "@/lib/learner/study-log-data";
+import { Trophy, Flame, BookOpen, Target, Check, ChevronRight, NotebookPen } from "lucide-react";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';
@@ -275,6 +277,7 @@ export default async function ProfilePage() {
         visibleMapUnits,
         courseMapProgress,
         weeklyQuizCatchUp,
+        studyJournal,
     ] = await Promise.all([
         // Get activity dates for streak calendar - PointsLedger (for completed activities)
         prisma.pointsLedger.findMany({
@@ -378,6 +381,12 @@ export default async function ProfilePage() {
             console.error("[Profile] Weekly quiz catch-up unavailable", error);
             return { missing: [], notPerfect: [] };
         }),
+        userRole === "student"
+            ? loadStudyJournal(userId).catch((error) => {
+                  console.error("[Profile] Practice journal unavailable", error);
+                  return null;
+              })
+            : null,
     ]);
 
     // Combine both date sources
@@ -472,6 +481,9 @@ export default async function ProfilePage() {
             { label: "Points", value: user.points.toLocaleString(), icon: <Trophy className="h-4 w-4" aria-hidden />, tone: "text-primary" },
             { label: "Day streak", value: effectiveCurrentStreak, icon: <Flame className="h-4 w-4" aria-hidden />, tone: "text-amber-700 dark:text-amber-300" },
             { label: completedWeeksCount === 1 ? "Week done" : "Weeks done", value: completedWeeksCount, icon: <Check className="h-4 w-4" aria-hidden />, tone: "text-emerald-700 dark:text-emerald-300" },
+            ...(studyJournal
+                ? [{ label: studyJournal.daysPracticed === 1 ? "Day practiced" : "Days practiced", value: studyJournal.daysPracticed, icon: <NotebookPen className="h-4 w-4" aria-hidden />, tone: "text-sky-700 dark:text-sky-300" }]
+                : []),
         ];
 
         return (
@@ -496,7 +508,7 @@ export default async function ProfilePage() {
                                 )}
                             </div>
                         </div>
-                        <dl className="grid grid-cols-3 gap-2">
+                        <dl className={`grid gap-2 ${stats.length === 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"}`}>
                             {stats.map((stat) => (
                                 <div key={stat.label} className="flex flex-col-reverse items-center gap-0.5 rounded-xl bg-surface-subtle px-1 py-2.5 text-center">
                                     <dt className="text-[13px] font-medium text-text-muted">{stat.label}</dt>
@@ -521,6 +533,8 @@ export default async function ProfilePage() {
                         activityDates={activityDates.map((date) => date.toISOString())}
                         currentStreak={effectiveCurrentStreak}
                     />
+
+                    {studyJournal && <ProfileStudyJournal journal={studyJournal} />}
                 </div>
             </div>
         );

@@ -15,6 +15,7 @@ import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { getClassQuizCompletion } from "@/lib/teach/quiz-completion";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 import { ClassQuestionsPanel } from "@/components/teach/ClassQuestionsPanel";
+import { StudyLogPanel } from "@/components/teach/StudyLogPanel";
 import { resolveScheduledTeachingWeek } from "@/lib/course-map-current-week";
 
 export default async function TeachHomePage({
@@ -170,6 +171,7 @@ export default async function TeachHomePage({
                 </section>
             </div>
             <ClassQuestionsPanel key={classId} classId={classId} initialWeek={pendingQuestion?.weekNumber ?? scheduledWeek} />
+            <StudyLogPanel key={`study-${classId}`} classId={classId} />
             <div className="grid xl:grid-cols-[1fr_1.1fr] gap-6 items-start">
                 <section className="workspace-panel space-y-5">
                     <div className="flex flex-wrap items-center justify-between gap-3">

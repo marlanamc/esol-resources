@@ -53,6 +53,8 @@ export const POINTS = {
   VERB_SPEED_ROUND_HIGH: 8,
   VERB_SPEED_ROUND_PERFECT: 12,
   ACTIVITY_COMPLETION: 3,
+  /** First practice log of the learner's day; later logs that day save without points. */
+  STUDY_LOG: 5,
 
   VOCAB_REVIEW_BASE: 0,
   VOCAB_REVIEW_PER_CARD: 1,
