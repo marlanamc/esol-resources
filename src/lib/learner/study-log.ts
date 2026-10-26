@@ -1,4 +1,4 @@
-/** Practice a learner logs from home: one of five kinds plus one sentence about it. */
+/** Practice a learner logs from home: one of six kinds plus one sentence about it. */
 import {
     addDaysToDayKey,
     CALENDAR_WEEK_DAY_NAMES,
@@ -11,13 +11,14 @@ export const MAX_STUDY_LOG_LENGTH = 300;
 export const MAX_STUDY_LOGS_PER_DAY = 10;
 
 /**
- * The same five tiles as the "15 minutes of English a day" box on the
- * How to Succeed in ESOL 3 handout. `starter` fills the sentence box and `v2`
+ * The "15 minutes of English a day" tiles from the How to Succeed in ESOL 3
+ * handout, plus Read. `starter` fills the sentence box and `v2`
  * is the past-tense hint shown under it.
  */
 export const STUDY_LOG_KINDS = [
     { id: "listen", label: "Listen", example: "music, a podcast", starter: "I listened to ", v2: "listen → listened", letter: "L" },
     { id: "watch", label: "Watch", example: "a video, a show", starter: "I watched ", v2: "watch → watched", letter: "W" },
+    { id: "read", label: "Read", example: "a book, the news", starter: "I read ", v2: "read → read (say \"red\")", letter: "R" },
     { id: "write", label: "Write", example: "a text, a note", starter: "I wrote ", v2: "write → wrote", letter: "Wr" },
     { id: "speak", label: "Speak", example: "a friend, a store", starter: "I talked to ", v2: "talk → talked", letter: "S" },
     { id: "switch", label: "Switch", example: "my phone to English", starter: "I changed ", v2: "change → changed", letter: "Sw" },

@@ -12,7 +12,7 @@ function formatDay(dayKey: string, options: Intl.DateTimeFormatOptions): string 
     return new Date(Date.UTC(y, m - 1, d, 12)).toLocaleDateString("en-US", { timeZone: "UTC", ...options });
 }
 
-/** Practice students logged from home (listen, watch, write, speak, switch), one Mon–Sun week at a time. */
+/** Practice students logged from home (listen, watch, read, write, speak, switch), one Mon–Sun week at a time. */
 export function StudyLogPanel({ classId }: { classId: string }) {
     const [week, setWeek] = useState<string | null>(null);
     const [data, setData] = useState<WeekData | null>(null);
