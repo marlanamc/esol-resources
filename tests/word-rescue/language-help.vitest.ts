@@ -1,5 +1,17 @@
 import { expect, it } from 'vitest';
 import { RESCUE_WORDS, RESCUE_COLLECTIONS, RESCUE_WORD_BY_ID } from '@/lib/word-rescue/content';
+it('provides both translations for every current and resumable word', () => {
+  for (const word of RESCUE_WORDS) for (const language of ['es', 'pt-BR'] as const) {
+    expect(word.translations?.[language]?.trim().length, `${word.id}: missing ${language} translation`).toBeGreaterThan(0);
+  }
+});
+it('translates words according to their activity meaning', () => {
+  expect(RESCUE_WORD_BY_ID['oct-learning-apply'].translations?.es).toBe('aplicar');
+  expect(RESCUE_WORD_BY_ID['jan-w1-apply'].translations?.es).toBe('solicitar');
+  expect(RESCUE_WORD_BY_ID['oct-w1-schedule'].translations?.['pt-BR']).toBe('agendar');
+  expect(RESCUE_WORD_BY_ID['feb-3-5-schedule'].translations?.['pt-BR']).toBe('horário');
+  expect(RESCUE_WORD_BY_ID['oct-w5-petition'].translations?.es).toBe('petición');
+});
 it('has Spanish and Brazilian Portuguese coaching for every current and resumable word', () => {
   for (const word of RESCUE_WORDS) for (const language of ['es','pt-BR'] as const) {
     const tips = word.help?.[language]?.tips;

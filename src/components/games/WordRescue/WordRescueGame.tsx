@@ -242,6 +242,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
     {helpOpen && <div id="rescue-language-help" className={styles.helpBody}>
       <div className={styles.languages} role="group" aria-label="Help language"><button lang="es" disabled={disabled} aria-pressed={state.language === 'es'} onClick={() => chooseLanguage('es')}>Español</button><button lang="pt-BR" disabled={disabled} aria-pressed={state.language === 'pt-BR'} onClick={() => chooseLanguage('pt-BR')}>Português (Brasil)</button></div>
       <div lang={state.language}>
+        {word.translations?.[state.language] && <p><strong>Significado: </strong>{word.translations[state.language]}</p>}
         <p className={styles.muted}>{state.language === 'es' ? 'Guía aproximada · escucha el audio' : 'Guia aproximado · ouça o áudio'}</p>
         {RESCUE_WORD_PARTS[word.term] && <div className={styles.wordParts}><p className={styles.muted}>{state.language === 'es' ? 'La palabra por partes' : 'A palavra em partes'}</p><p className={styles.soundGuide} lang="en"><span className="sr-only">{word.term}</span><span aria-hidden>{RESCUE_WORD_PARTS[word.term]}</span></p></div>}
         {hint?.sounds && <p className={styles.soundGuide}>{hint.sounds}</p>}

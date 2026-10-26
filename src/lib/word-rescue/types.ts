@@ -8,6 +8,7 @@ export interface RescueWord {
   id: string;
   term: string;
   definition: string;
+  translations?: Record<HelpLanguage, string>;
   phrase: string;
   sentence: string;
   clue?: string;
