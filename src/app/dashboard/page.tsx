@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { PracticeLaterSection, MomentumSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
+import { PracticeLaterSection, MomentumSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -468,6 +468,7 @@ export default async function DashboardPage() {
     // Accounts without an active class enrollment get no bar.
     const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
     const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
+    const studyWeek = userRole === "student" ? <Suspense fallback={null}><StudyWeekSection userId={userId} /></Suspense> : null;
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -491,6 +492,7 @@ export default async function DashboardPage() {
                             fallback={nextStepFallback}
                             variant="road"
                         /></Suspense>
+                        {studyWeek}
                         {practiceLater}
                         <Suspense fallback={<KeepPracticingList items={newThisWeekItems} />}>
                             <KeepPracticingSection userId={userId} items={newThisWeekItems} />
@@ -522,6 +524,7 @@ export default async function DashboardPage() {
                                 user={{ id: userId, role: userRole }}
                                 fallback={nextStepFallback}
                             /></Suspense>
+                            {studyWeek}
 
                             <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
                             {practiceLater}

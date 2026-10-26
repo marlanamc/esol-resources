@@ -50,6 +50,7 @@ model User {
   achievements           UserAchievement[]
   announcementDismissals AnnouncementDismissal[]
   classQuestions         ClassQuestion[]
+  studyLogs              StudyLog[]
   preferences            UserPreferences?
   vocabReviewStates      UserVocabReviewState[]
   writingClassVotes      WritingClassVote[]      @relation("StudentClassVotes")
@@ -684,4 +685,19 @@ model ClassQuestion {
 
   @@index([classId, weekNumber])
   @@index([studentId, weekNumber])
+}
+
+/// Practice a learner did outside class (listen, watch, write, speak, switch), with one sentence about it.
+model StudyLog {
+  id        String   @id @default(cuid())
+  userId    String
+  kind      String
+  text      String
+  /// Learner-local day (YYYY-MM-DD, America/New_York): the first log of a day earns points.
+  dayKey    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, dayKey])
+  @@index([dayKey])
 }

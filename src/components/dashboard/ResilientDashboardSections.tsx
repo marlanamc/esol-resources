@@ -5,8 +5,11 @@ import { SectionUnavailable } from "./SectionUnavailable";
 import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { WeeklyQuizBar } from "./WeeklyQuizBar";
 import { getStudentWeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
+import { loadStudentStudyWeek } from "@/lib/learner/study-log-data";
+import { StudyWeekCard } from "@/components/study-log/StudyWeekCard";
 
 const weeklyQuizStatus = cache((userId: string) => getStudentWeeklyQuizStatus(userId));
+const studentStudyWeek = cache((userId: string) => loadStudentStudyWeek(userId));
 const practiceLater = cache((id: string, role?: string | null) => WordRescuePracticeLater({ user: { id, role } }));
 export async function PracticeLaterSection({ user }: { user: { id: string; role?: string | null } }) {
     try { return await practiceLater(user.id, user.role); }
@@ -30,4 +33,13 @@ export async function WeeklyQuizSection({ userId }: { userId: string }) {
         return null;
     });
     return status ? <WeeklyQuizBar status={status} /> : null;
+}
+
+// Rendered in both the phone and desktop layouts; cache() keeps it to one load.
+export async function StudyWeekSection({ userId }: { userId: string }) {
+    const studyWeek = await studentStudyWeek(userId).catch(error => {
+        console.error("[Dashboard] Practice log unavailable", error);
+        return null;
+    });
+    return studyWeek ? <StudyWeekCard {...studyWeek} /> : null;
 }
