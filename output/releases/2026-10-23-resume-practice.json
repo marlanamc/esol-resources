@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "4c455938a7dc9168f5f69cadb2540f62db9804cb",
+  "featureCommit": "21cad0ca477b86095b4563c91dd1cf97795efcae",
+  "includedProductionBase": "39b844a3e63982b9a60812bc8c80aa8375d4718f",
+  "deploymentId": "dpl_BgUfu6pdGeSLzWPXT5sFNnVbHro8",
+  "deploymentUrl": "https://esol-resources-fqd4xfifq-marlies-projects-abe96d86.vercel.app",
+  "liveDomain": "https://myesolclass.com",
+  "verified": [
+    "Fresh GitHub main fetched and included before each push",
+    "Release checkout clean",
+    "TypeScript passed",
+    "Changed-file ESLint passed",
+    "12 resume-practice tests passed",
+    "Compact component visually checked at 320px and 390px",
+    "Production deployment READY and myesolclass.com alias verified",
+    "Authenticated live homepage renders compact card"
+  ]
+}

@@ -59,8 +59,8 @@ export function ThisWeekRoadCard({
                     boxShadow: "0 1px 2px rgba(40,31,23,.06), 0 10px 16px -8px rgba(40,31,23,.18)",
                 }}
             >
-                <div className="px-4 pt-4 pb-3" style={{ background: tone.surface }}>
-                    <span className="flex items-center justify-between gap-3 text-[0.8438rem] font-bold text-text-muted">
+                <div className="px-4 pt-2.5 pb-2" style={{ background: tone.surface }}>
+                    <span className="flex items-center justify-between gap-2.5 text-[0.8438rem] font-bold leading-tight text-text-muted">
                         <span className="min-w-0 truncate">
                             <span style={{ color: tone.accent }}>{unitLabel}</span> · {weekLabel}
                         </span>
@@ -81,11 +81,11 @@ export function ThisWeekRoadCard({
                             </span>
                         ) : null}
                     </span>
-                    <h2 className="mt-1.5 mb-0 font-display text-[1.5625rem] font-bold leading-[1.18] text-balance text-text">{weekTitle}</h2>
-                    <WeekLearningDisclosure weekNumber={weekNumber} accent={tone.accent} className="mt-1" />
+                    <h2 className="mt-1 mb-0 font-display text-[1.5625rem] font-bold leading-[1.12] text-balance text-text">{weekTitle}</h2>
+                    <WeekLearningDisclosure weekNumber={weekNumber} accent={tone.accent} compact className="mt-0.5" />
                 </div>
 
-                <div className="p-3">
+                <div className="px-3 pt-2 pb-2.5">
                     {weekDone ? (
                         <div className="rounded-[14px] px-4 py-3" style={{ background: "var(--road-done-bg)" }}>
                             <p className="m-0 font-display text-[1.1875rem] font-bold" style={{ color: "var(--road-done-text)" }}>

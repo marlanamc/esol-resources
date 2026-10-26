@@ -47,7 +47,7 @@
   .gray { background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }
 
   /* Type scale: 22 / 18 / 14 / 11 */
-  .body { flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 10px; }
+  .body { flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 7px; }
   .cover .body { gap: 7px; padding-top: 0.3in; }
 
   .staple { position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }
@@ -67,16 +67,16 @@
   .timeline { display: flex; align-items: center; gap: 10px; border: 1.5px solid #000; border-radius: 6px; padding: 2px 8px; }
   .timeline .label { font-size: 11px; font-weight: bold; width: 0.9in; flex: none; }
   .timeline .label span { display: block; font-weight: normal; font-style: italic; }
-  .timeline svg { display: block; flex: 1; height: 1.05in; }
+  .timeline svg { display: block; flex: 1; height: 0.82in; }
 
-  .forms { display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.34in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }
+  .forms { display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.43in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }
   .forms > div { padding: 2px 7px; display: flex; align-items: center; }
   .forms .h { font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }
   .forms .h span { font-weight: normal; margin-left: 4px; }
   .forms .sym { justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }
   .forms > div:not(:nth-child(4n+1)) { border-left: 1.5px solid #000; }
   .forms .write { flex: 1; font-size: 14px; }
-  .forms .write b { text-decoration: underline; }
+  .forms .write b { font-weight: 700; }
   .forms .r2, .forms .r3 { border-top: 1.5px solid #000; }
 
   .third { display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }
@@ -88,7 +88,8 @@
   .watch s { text-decoration-thickness: 2px; }
 
   /* Teacher key: the filled-in answers */
-  .ans { font-style: italic; font-weight: bold; color: var(--c, #000); }
+  .ans { font-style: normal; font-weight: normal; color: #000; }
+  .ans b { color: var(--c, #000); }
 
   /* Bottom tab strip: keep the colored tab, cut off the gray */
   .tabs { height: 0.55in; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1.5px dashed #000; }
@@ -116,6 +117,39 @@
   .colors { display: flex; gap: 12px; font-size: 14px; margin-top: 3px; }
   .colors span { display: inline-flex; align-items: center; gap: 4px; }
   .colors i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; }
+
+.body { gap: 2px; padding-top: .29in; padding-bottom: .10in; }
+.tabs { flex-shrink: 0; }
+.forms { grid-template-rows: 25px repeat(3, 38px); }
+.timeline svg { height: .90in; }
+.draw-prompt { font-size: 13px; }
+.perfect-note { font-size: 12px; }
+.personal { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; font-size: 13px; }
+.personal span { border-bottom: 1px solid #555; min-height: 15px; }
+.personal span:last-child { grid-column: 1 / -1; }
+.say { font-size: 11px; color: #333; }
+.head .use { font-size: 12px; max-width: 48%; }
+.forms .write { font-size: 13px; }
+.watch, .third, .words { font-size: 12px; }
+.cover .body { gap: 10px; padding-top: .32in; }
+.cover-heading { position: relative; }
+.eyebrow { font-size: 10px; letter-spacing: 2px; color: #555; margin-bottom: 4px; }
+.cover h1 { font-size: 28px; line-height: 1.05; }
+.subtitle { position: absolute; right: 0; bottom: 3px; font-size: 13px; }
+.stamp-guide { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid #111; border-bottom: 1px solid #aaa; padding: 8px 0; }
+.stamp-guide > div { display: flex; flex-direction: column; align-items: center; font-size: 12px; }
+.stamp-guide svg { width: 110px; height: 38px; }
+.stamp-guide span { font-size: 11px; color: #444; }
+.chooser > b, .verb-guide > b { font-size: 13px; }
+.choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; margin-top: 5px; }
+.choose-grid > span { display: flex; justify-content: space-between; gap: 5px; font-size: 11px; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
+.choose-grid strong { white-space: nowrap; }
+.choose-grid .wide { grid-column: 1 / -1; }
+.verb-guide > div { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 5px; }
+.verb-guide span { font-size: 12px; }
+.verb-guide span b { display: block; font-size: 11px; margin-bottom: 2px; }
+.cover-bottom { display: flex; justify-content: space-between; font-size: 11px; margin-top: auto; }
+.assembly { font-size: 10px; color: #444; }
 </style>
 </head>
 <body>
@@ -123,36 +157,25 @@
 <section class="card cover">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
-    <div class="head"><h1>My Pocket Verb Book</h1><span class="use">7 tenses · flip to the tab you need</span></div>
-    <div class="name-row">Name: <span class="fill"></span></div>
-    <div class="calm"><b>This book is a helper.</b> You don't need to memorize it. Keep it in your pocket or bag. Look at it anytime. Mistakes are OK. People understand you.</div>
-    <div class="ideas">
-      <div><b>1. Find the helper.</b><br>I <u>am</u> working.</div>
-      <div><b>2. − Add <i>not</i>.</b><br>I <u>am</u> not working.</div>
-      <div><b>3. ? Move it to the front.</b><br><u>Are</u> you working?</div>
-      <div><b>No helper?</b> Use <u>do / does / did</u>.<br>I <u>don't</u> work. <u>Do</u> you work?</div>
+    <div class="cover-heading"><div class="eyebrow">MY ENGLISH TOOLKIT</div><h1>See the time.<br>Build the sentence.</h1><div class="subtitle">A flip book for 7 verb tenses</div></div>
+    <div class="stamp-guide">
+      <div><svg viewBox="34 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="34" y1="50" x2="124" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="79.2" cy="50" r="8" fill="#d97706"/></svg><b>An event</b><span>at a point in time</span></div>
+      <div><svg viewBox="155 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="180.0" cy="50" r="5" fill="#059669" opacity="0.7"/><circle cx="200.0" cy="50" r="6" fill="#059669"/><circle cx="220.0" cy="50" r="5" fill="#059669" opacity="0.7"/></svg><b>A routine</b><span>again and again</span></div>
+      <div><svg viewBox="155 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><line x1="170.0" y1="50" x2="230.0" y2="50" stroke="#047857" stroke-width="8" stroke-linecap="round" stroke-dasharray="8 6"/></svg><b>In progress</b><span>in the middle of it</span></div>
+      <div><svg viewBox="88 18 130 48" xmlns="http://www.w3.org/2000/svg"><line x1="88" y1="50" x2="218" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="94.0" cy="50" r="6" fill="#d97706"/><path d="M 94.0 50 Q 147.0 23.5 200 50" fill="none" stroke="#b45309" stroke-width="4"/><circle cx="200" cy="50" r="7" fill="#059669"/></svg><b>Connected to now</b><span>before now + now</span></div>
     </div>
-    <div class="box">
-      <b class="t">Timeline stamps</b>
-      <div class="stamps">
-        <div><svg viewBox="34 30 90 40" xmlns="http://www.w3.org/2000/svg"><line x1="34" y1="50" x2="124" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="79.2" cy="50" r="8" fill="#d97706"/></svg> one time</div>
-        <div><svg viewBox="155 30 90 40" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="180.0" cy="50" r="5" fill="#059669" opacity="0.7"/><circle cx="200.0" cy="50" r="6" fill="#059669"/><circle cx="220.0" cy="50" r="5" fill="#059669" opacity="0.7"/></svg> again and again</div>
-        <div><svg viewBox="155 30 90 40" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><line x1="170.0" y1="50" x2="230.0" y2="50" stroke="#047857" stroke-width="8" stroke-linecap="round" stroke-dasharray="8 6"/></svg> in the middle</div>
-        <div><svg viewBox="88 30 90 40" xmlns="http://www.w3.org/2000/svg"><line x1="88" y1="50" x2="178" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="94.0" cy="50" r="6" fill="#d97706"/><path d="M 94.0 50 Q 147.0 23.5 200 50" fill="none" stroke="#b45309" stroke-width="4"/><circle cx="200" cy="50" r="7" fill="#059669"/></svg> past up to now</div>
-      </div>
-      <div class="colors">
-        <span><i style="background:#d97706"></i> past</span>
-        <span><i style="background:#059669"></i> present</span>
-        <span><i style="background:#2563eb"></i> future</span>
-      </div>
-    </div>
-    <div class="two">
-      <div class="box"><b class="t">Verb key: V1 · V2 · V3</b>Regular: work · worked · worked<br>Irregular: eat · ate · eaten · V-ing = working</div>
-      <div class="box"><b class="t">Stuck? Say this:</b>"Wait, let me think." · "How do I say...?"<br>"Sorry, I mean..." · "Can you say that again?"</div>
-    </div>
-    <div class="box">
-      <b>How to make it:</b> 1. Cut on the long dashed lines. &nbsp;2. Cut off all the gray. &nbsp;3. Put the pages in order: cover, 1, 2, 3... &nbsp;4. Staple at the top.
-    </div>
+    <div class="chooser"><b>What do you want to say?</b><div class="choose-grid">
+      <span>Usually / a fact <strong>1 · Present simple</strong></span>
+      <span>Happening now <strong>4 · Present continuous</strong></span>
+      <span>Finished in the past <strong>2 · Past simple</strong></span>
+      <span>In progress in the past <strong>5 · Past continuous</strong></span>
+      <span>A prediction or promise <strong>3 · Future simple</strong></span>
+      <span>In progress in the future <strong>6 · Future continuous</strong></span>
+      <span class="wide">Before now, connected to now <strong>7 · Present perfect</strong></span>
+    </div></div>
+    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past participle</b>worked / eaten</span><span><b>V-ing</b>working / eating</span></div></div>
+    <div class="cover-bottom"><span>Name: __________________________</span><span>Time clues help. Meaning comes first.</span></div>
+    <div class="assembly">Cut between cards. Remove gray areas. Stack cover, then 1–7. Staple at the top.</div>
   </div>
   <div class="tabs all gray">cut off this gray strip</div>
 </section>
@@ -160,8 +183,9 @@
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>1. Present simple</h1><span class="use"><b>Use it for:</b> Habits, routines, and facts.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I eat breakfast every day.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -174,13 +198,15 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>V1</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>work</b> at a hotel.</span></span></div><div class=""><span class="write"><span class="ans">I <b>eat</b> breakfast at 7.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     <div class="third"><b>he / she / it:</b><span class="fill"></span></div>
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
-    <div class="watch"><b>Watch out!</b> No am / is / are with V1: <s>I am work.</s> → I work.</div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
+    <div class="watch"><b>Watch out!</b> For this action: <s>I am work.</s> → I work.</div>
   </div>
   <div class="tabs"><div class="keep">Present<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
 </section></div><div class="sheet">
@@ -188,8 +214,9 @@
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>2. Past simple</h1><span class="use"><b>Use it for:</b> Finished actions in the past.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I ate breakfast yesterday.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -202,12 +229,14 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>V2</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>worked</b> yesterday.</span></span></div><div class=""><span class="write"><span class="ans">I <b>ate</b> breakfast.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> After did, use V1: <s>Did you went?</s> → Did you go?</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="keep">Past<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
@@ -215,9 +244,10 @@
 <section class="card z-future">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
-    <div class="head"><h1>3. Future simple</h1><span class="use"><b>Use it for:</b> Plans, promises, and guesses about the future.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="head"><h1>3. Future simple</h1><span class="use"><b>Use it for:</b> Predictions, promises, and decisions made now.</span></div>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I will eat breakfast tomorrow.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -230,12 +260,14 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>will</b> + <b>V1</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>will</b> <b>work</b> tomorrow.</span></span></div><div class=""><span class="write"><span class="ans">I <b>will</b> <b>eat</b> later.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> No -s after will: <s>She will works.</s> → She will work.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>simple</div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
@@ -244,8 +276,9 @@
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>4. Present continuous</h1><span class="use"><b>Use it for:</b> Happening right now. In the middle of the action.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I am eating breakfast now.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -258,12 +291,14 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>am</b> / <b>is</b> / <b>are</b> + <b>V-ing</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>am</b> <b>working</b> now.</span></span></div><div class=""><span class="write"><span class="ans">I <b>am</b> <b>eating</b> now.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> Don't forget am / is / are: <s>I working.</s> → I am working.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>continuous</div><div class="gray"></div><div class="gray"></div><div class="gray"></div></div>
@@ -272,8 +307,9 @@
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>5. Past continuous</h1><span class="use"><b>Use it for:</b> In the middle of an action in the past.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I was eating at 8:00 last night.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -286,12 +322,14 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>was</b> / <b>were</b> + <b>V-ing</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>was</b> <b>working</b> at 8:00.</span></span></div><div class=""><span class="write"><span class="ans">I <b>was</b> <b>eating</b> at 8:00.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> I / he / she / it + was · you / we / they + were</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Past<br>continuous</div><div class="gray"></div><div class="gray"></div></div>
@@ -300,8 +338,9 @@
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
     <div class="head"><h1>6. Future continuous</h1><span class="use"><b>Use it for:</b> In the middle of an action in the future.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I will be eating at 8:00 tomorrow.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -314,12 +353,14 @@
         
       </svg>
     </div>
+
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>will</b> <b>be</b> + <b>V-ing</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>will</b> <b>be</b> <b>working</b> at 8:00.</span></span></div><div class=""><span class="write"><span class="ans">I <b>will</b> <b>be</b> <b>eating</b> at 8:00.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> Don't forget be: <s>I will working.</s> → I will be working.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Future<br>continuous</div><div class="gray"></div></div>
@@ -327,9 +368,10 @@
 <section class="card z-perfect">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
-    <div class="head"><h1>7. Present perfect</h1><span class="use"><b>Use it for:</b> From the past up to now. Life experience.</span></div>
-    <div class="words"><b>Time words:</b><span class="fill"></span></div>
-    <div class="timeline"><span class="label">Draw it:<span>Draw the stamp from Timeline Tenses.</span></span>
+    <div class="head"><h1>7. Present perfect</h1><span class="use"><b>Use it for:</b> Before now, connected to now.</span></div>
+    <div class="words"><b>Helpful time clues:</b><span class="fill"></span></div>
+    <div class="draw-prompt"><b>Draw when:</b> I have eaten sushi before. The exact time is not given.</div>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
       <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
         <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
         <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
@@ -342,12 +384,14 @@
         
       </svg>
     </div>
+<div class="perfect-note"><b>Experience:</b> I have eaten sushi. <b>Still true:</b> I have worked here for three years.</div>
     <div class="forms">
       <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
-      <div class="sym a ">+</div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class=""><span class="write"></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
+      <div class="sym a ">+</div><div class=""><span class="write"><span class="ans">subject + <b>have</b> / <b>has</b> + <b>V3</b></span></span></div><div class=""><span class="write"><span class="ans">I <b>have</b> <b>worked</b> at night.</span></span></div><div class=""><span class="write"><span class="ans">I <b>have</b> <b>eaten</b> sushi.</span></span></div><div class="sym n r2">−</div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="r2"><span class="write"></span></div><div class="sym q r3">?</div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div><div class="r3"><span class="write"></span></div>
     </div>
     <div class="third"><b>he / she / it:</b><span class="fill"></span></div>
-    <div class="third"><b>My sentence:</b><span class="fill"></span></div>
+    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> Use V3, not V2: <s>I have ate.</s> → I have eaten.</div>
   </div>
   <div class="tabs"><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="gray"></div><div class="keep">Present<br>perfect</div></div>
