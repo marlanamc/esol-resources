@@ -12,7 +12,8 @@ export const MAX_STUDY_LOGS_PER_DAY = 10;
 
 /**
  * The "15 minutes of English a day" tiles from the How to Succeed in ESOL 3
- * handout, plus Read. `starter` fills the sentence box and `v2`
+ * handout, plus Read, with Other in place of Switch for anything else
+ * (helping a friend with homework, changing the phone to English...). `starter` fills the sentence box and `v2`
  * is the past-tense hint shown under it.
  */
 export const STUDY_LOG_KINDS = [
@@ -21,7 +22,7 @@ export const STUDY_LOG_KINDS = [
     { id: "read", label: "Read", example: "a book, the news", starter: "I read ", v2: "read → read (say \"red\")", letter: "R" },
     { id: "write", label: "Write", example: "a text, a note", starter: "I wrote ", v2: "write → wrote", letter: "Wr" },
     { id: "speak", label: "Speak", example: "a friend, a store", starter: "I talked to ", v2: "talk → talked", letter: "S" },
-    { id: "switch", label: "Switch", example: "my phone to English", starter: "I changed ", v2: "change → changed", letter: "Sw" },
+    { id: "other", label: "Other", example: "anything else", starter: "I ", v2: "help → helped, go → went", letter: "O" },
 ] as const;
 
 export type StudyLogKind = (typeof STUDY_LOG_KINDS)[number]["id"];
@@ -58,6 +59,12 @@ export function isStudyLogKind(value: unknown): value is StudyLogKind {
     return STUDY_LOG_KINDS.some((kind) => kind.id === value);
 }
 
+/** Saved kind → current kind. "switch" logs from before Other replaced it read as Other. */
+export function normalizeStudyLogKind(value: string): StudyLogKind | null {
+    const kind = value === "switch" ? "other" : value;
+    return isStudyLogKind(kind) ? kind : null;
+}
+
 export function getStudyLogKind(id: StudyLogKind) {
     return STUDY_LOG_KINDS.find((kind) => kind.id === id)!;
 }
@@ -72,8 +79,9 @@ export function parseStudyLogText(value: unknown): { text: string } | { error: s
 }
 
 export function toStudyLogEntry(row: StudyLogRow): StudyLogEntry | null {
-    if (!isStudyLogKind(row.kind)) return null;
-    return { id: row.id, kind: row.kind, text: row.text, dayKey: row.dayKey, createdAt: row.createdAt.toISOString() };
+    const kind = normalizeStudyLogKind(row.kind);
+    if (!kind) return null;
+    return { id: row.id, kind, text: row.text, dayKey: row.dayKey, createdAt: row.createdAt.toISOString() };
 }
 
 /** Learner-local day keys for Mon–Sun of the week containing `referenceDate`. */
@@ -90,7 +98,9 @@ export function buildStudyWeek(logs: Array<{ kind: string; dayKey: string }>, re
         const dayKey = addDaysToDayKey(start, i);
         const kinds: StudyLogKind[] = [];
         for (const log of logs) {
-            if (log.dayKey === dayKey && isStudyLogKind(log.kind) && !kinds.includes(log.kind)) kinds.push(log.kind);
+            if (log.dayKey !== dayKey) continue;
+            const kind = normalizeStudyLogKind(log.kind);
+            if (kind && !kinds.includes(kind)) kinds.push(kind);
         }
         return { dayKey, label: name.slice(0, 3), name, isToday: dayKey === todayKey, isFuture: dayKey > todayKey, kinds };
     });
@@ -132,7 +142,9 @@ export function buildTeacherStudyRows(
             const days = dayKeys.map((dayKey) => {
                 const kinds: StudyLogKind[] = [];
                 for (const log of [...mine].reverse()) {
-                    if (log.dayKey === dayKey && isStudyLogKind(log.kind) && !kinds.includes(log.kind)) kinds.push(log.kind);
+                    if (log.dayKey !== dayKey) continue;
+            const kind = normalizeStudyLogKind(log.kind);
+            if (kind && !kinds.includes(kind)) kinds.push(kind);
                 }
                 return kinds;
             });

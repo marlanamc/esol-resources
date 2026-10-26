@@ -66,14 +66,15 @@ describe('study log helpers', () => {
             { kind: 'write', dayKey: '2026-10-28' },
             { kind: 'write', dayKey: '2026-10-25' }, // last Sunday: previous week
             { kind: 'dance', dayKey: '2026-10-27' }, // unknown kind
+            { kind: 'switch', dayKey: '2026-10-29' }, // saved before Other replaced Switch
         ], wednesday);
         expect(week.weekStartDayKey).toBe('2026-10-26');
         expect(week.days.map((d) => d.label)).toEqual(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']);
         expect(week.days[0].kinds).toEqual(['watch', 'listen']);
         expect(week.days[1].kinds).toEqual([]);
         expect(week.days[2]).toMatchObject({ isToday: true, isFuture: false, kinds: ['write'] });
-        expect(week.days[3].isFuture).toBe(true);
-        expect(week.daysPracticed).toBe(2);
+        expect(week.days[3]).toMatchObject({ isFuture: true, kinds: ['other'] });
+        expect(week.daysPracticed).toBe(3);
     });
 
     it('uses the learner day, not UTC: 11pm Sunday Eastern is still last week', () => {

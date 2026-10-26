@@ -687,7 +687,7 @@ model ClassQuestion {
   @@index([studentId, weekNumber])
 }
 
-/// Practice a learner did outside class (listen, watch, read, write, speak, switch), with one sentence about it.
+/// Practice a learner did outside class (listen, watch, read, write, speak, other), with one sentence about it.
 model StudyLog {
   id        String   @id @default(cuid())
   userId    String
