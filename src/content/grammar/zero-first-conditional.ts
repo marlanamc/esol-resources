@@ -625,10 +625,6 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/conditionals-zero-first\" style=\"font-weight:700;text-decoration:underline\">Zero + First Conditionals Full Guide</a>.",
-      },
     },
   ],
 

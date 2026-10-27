@@ -577,10 +577,6 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
           </p>
         </div>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick tour. For full explanations and more practice, open the <a href=\"/grammar-reader/conditionals-zero-first\" style=\"font-weight:700;text-decoration:underline\">Zero + First Conditionals Full Guide</a> and the <a href=\"/grammar-reader/conditionals-second-third\" style=\"font-weight:700;text-decoration:underline\">Second and Third Conditionals Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",
