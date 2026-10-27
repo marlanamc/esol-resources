@@ -649,7 +649,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     {
       id: "atyr-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Rosa ___ class every Tuesday and Thursday.\" (It's her regular schedule.)",
+      question: "Fill in the blank: \"Rosa ___ (take) class every Tuesday and Thursday.\" (It's her regular schedule.)",
       correctAnswer: "takes",
       explanation: "Present simple for routines and fixed schedules.",
       topic: "present-simple",

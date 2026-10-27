@@ -789,7 +789,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
     {
       id: "edw-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She avoids ___ heavy things because of her shoulder.\" (Avoid + gerund.)",
+      question: "Fill in the blank: \"She avoids ___ (lift) heavy things because of her shoulder.\" (Avoid + gerund.)",
       correctAnswer: "lifting",
       explanation: "Avoid always takes a gerund (verb + -ing). 'Avoids to lift' is a common error.",
       topic: "gerunds-after-verbs",

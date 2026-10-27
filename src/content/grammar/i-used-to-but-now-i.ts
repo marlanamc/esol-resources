@@ -638,7 +638,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     {
       id: "ut-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I used to walk to work, but now I ___ two buses.\"",
+      question: "Fill in the blank: \"I used to walk to work, but now I ___ (take) two buses.\"",
       correctAnswer: "take",
       explanation: "But now I + present simple shows the change. Used to is only for the past part.",
       topic: "used-to",

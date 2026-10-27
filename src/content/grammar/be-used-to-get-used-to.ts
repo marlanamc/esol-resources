@@ -685,7 +685,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I'm not used to ___ outside in January.\" (Fabienne still finds the cold bus stop hard.)",
+      question: "Fill in the blank: \"I'm not used to ___ (wait) outside in January.\" (Fabienne still finds the cold bus stop hard.)",
       correctAnswer: "waiting",
       explanation: "After be used to (or not used to), use a gerund: waiting.",
       topic: "be-used-to",

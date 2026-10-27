@@ -680,7 +680,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
     {
       id: "gifr-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I'm tired of ___ for the late bus.\" (Marisol hates waiting at night.)",
+      question: "Fill in the blank: \"I'm tired of ___ (wait) for the late bus.\" (Marisol hates waiting at night.)",
       correctAnswer: "waiting",
       explanation: "After prepositions like 'of', use a gerund: waiting.",
       topic: "gerund-after-preposition",

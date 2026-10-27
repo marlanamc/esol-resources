@@ -662,7 +662,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If you work Saturday nights, you ___ double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
+      question: "Fill in the blank: \"If you work Saturday nights, you ___ (earn) double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
       correctAnswer: "earn",
       explanation: "Zero Conditional uses If + present simple, present simple. Double pay on Saturday nights is always true at this job.",
       topic: "zero-conditional",
