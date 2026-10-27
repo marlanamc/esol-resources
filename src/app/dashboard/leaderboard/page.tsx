@@ -20,7 +20,11 @@ function LeaderboardAvatar({ avatar, avatarColor, size = "sm" }: { avatar: strin
   );
 }
 
-/** Short status pill for a leaderboard row; the key above the list explains each one. */
+const STREAK_CHIP = 'text-orange-800 dark:text-orange-300';
+const QUIZ_CHIP = 'text-violet-800 dark:text-violet-300';
+const PRACTICE_CHIP = 'text-sky-800 dark:text-sky-300';
+
+/** Short status pill for a leaderboard row. A key at the bottom of the page names each one. */
 function StatusChip({
   icon,
   label,
@@ -318,7 +322,6 @@ export default function LeaderboardPage() {
   }
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
-  const hasPracticeChips = timeframe !== 'all' && leaderboard.some((entry) => (entry.practiceDays ?? 0) > 0);
   const isAllTime = timeframe === 'all';
   // Historical chips describe the selected course week, never the whole unit.
   const isLastWeek = timeframe === 'last-week';
@@ -340,7 +343,7 @@ export default function LeaderboardPage() {
             icon={<FlameIcon size={12} />}
             label={`${entry.currentStreak} ${entry.currentStreak === 1 ? 'day' : 'days'}`}
             title={`${entry.currentStreak} day streak`}
-            color="var(--color-primary)"
+            className={STREAK_CHIP}
           />
         )}
         {showQuiz && (
@@ -349,7 +352,7 @@ export default function LeaderboardPage() {
             iconAfter
             label="Quiz"
             title={`Finished the quiz for ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
-            className="text-violet-700 dark:text-violet-300"
+            className={QUIZ_CHIP}
           />
         )}
         {showWeek && (
@@ -364,9 +367,9 @@ export default function LeaderboardPage() {
         {practiceDays > 0 && (
           <StatusChip
             icon={<NotebookPen size={12} aria-hidden />}
-            label={`Practiced ${practiceDays} ${practiceDays === 1 ? 'day' : 'days'}`}
-            title={`Logged English practice at home on ${practiceDays} ${practiceDays === 1 ? 'day' : 'days'} in ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
-            className="text-emerald-800 dark:text-emerald-300"
+            label={`${practiceDays} ${practiceDays === 1 ? 'day' : 'days'}`}
+            title={`Logged practice on ${practiceDays} ${practiceDays === 1 ? 'day' : 'days'} in ${isLastWeek ? previousWeekLabel : currentWeekLabel}`}
+            className={PRACTICE_CHIP}
           />
         )}
       </div>
@@ -569,12 +572,6 @@ export default function LeaderboardPage() {
           {isLastWeek && scope !== 'independent' && previousWeekLabel.startsWith('Week ') && (
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               Quiz and Week done show saved completion for {previousWeekLabel}, including catch-up work.
-            </p>
-          )}
-          {hasPracticeChips && (
-            <p className="flex flex-wrap items-center justify-center gap-1.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              <NotebookPen size={12} aria-hidden className="text-emerald-800 dark:text-emerald-300" />
-              Practiced = days they logged English practice at home {isLastWeek ? 'that week' : 'this week'}
             </p>
           )}
         </section>
@@ -975,6 +972,38 @@ export default function LeaderboardPage() {
             <p className="text-sm max-w-sm mx-auto leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               There is a new chance to practice and earn points this week.
             </p>
+          </div>
+        )}
+        {leaderboard.length > 0 && (
+          <div
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs"
+            style={{ color: 'var(--color-text-muted)' }}
+            role="note"
+            aria-label="Key"
+          >
+            <span className="font-bold tracking-wide uppercase">Key</span>
+            {!isLastWeek && (
+              <span className="inline-flex items-center gap-1.5">
+                <FlameIcon size={14} aria-hidden className={STREAK_CHIP} />
+                days in a row
+              </span>
+            )}
+            {showWeekBadges && (
+              <>
+                <span className="inline-flex items-center gap-1.5">
+                  <NotebookPen size={14} aria-hidden className={PRACTICE_CHIP} />
+                  days logged
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircleIcon size={14} aria-hidden className={QUIZ_CHIP} />
+                  quiz done
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircleIcon size={14} aria-hidden style={{ color: 'var(--success-color)' }} />
+                  week done
+                </span>
+              </>
+            )}
           </div>
         )}
       </main>
