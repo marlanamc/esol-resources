@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Go Chart Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 8px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 10px; margin-bottom: 10px; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 4px; }
+  .help { font-weight: bold; text-decoration: underline; text-decoration-thickness: 2px; }
+
+  /* Step 1: verb forms */
+  .given-row { display: flex; gap: 36px; font-size: 18px; margin-bottom: 6px; }
+  .given-row .fill { display: inline-block; width: 1.6in; border-bottom: 2px solid #000; height: 20px; vertical-align: bottom; }
+  table.forms { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.forms th, table.forms td { border: 1.5px solid #000; padding: 3px 7px; text-align: center; }
+  table.forms th { font-size: 18px; }
+  table.forms th span { display: block; font-size: 11px; font-weight: normal; font-style: italic; }
+  table.forms td { height: 44px; font-size: 18px; }
+
+  /* Step 2: the chart (rows = tenses, columns = + / − / ?) */
+  table.chart { width: 100%; border-collapse: collapse; table-layout: fixed; border: 2px solid #000; flex: 1; margin-bottom: 8px; }
+  table.chart th, table.chart td { border: 1.5px solid #000; padding: 3px 6px; text-align: left; vertical-align: middle; font-size: 14px; }
+  table.chart td { line-height: 1.9; height: 78px; }
+  table.chart th.corner { font-size: 11px; width: 1.3in; }
+  table.chart th.col-h { font-size: 18px; text-align: center; height: 34px; }
+  table.chart th.col-h span { font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart th.tense .when { display: block; font-size: 11px; font-weight: normal; font-style: italic; }
+  table.chart .fx { display: block; font-size: 11px; font-style: italic; }
+  table.chart tr.group td, table.chart tr.group th { border-top: 2px solid #000; }
+  .line { display: inline-block; width: 0.48in; border-bottom: 2px solid #000; height: 16px; vertical-align: baseline; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row">
+    <h1>Go Chart 1: Helpers</h1>
+    <span class="sub">Write the forms, then the helpers.</span>
+  </div>
+
+  <div class="box">
+    <h2>Step 1. Write the verb forms.</h2>
+    <div class="given-row"><span>Verb (V1): <b>go</b></span><span>Subject: <b>she</b></span></div>
+    <table class="forms">
+      <tr><th>V1<span>base form</span></th><th>V1-s<span>he / she / it</span></th><th>V-ing<span>-ing form</span></th><th>V2<span>past form</span></th><th>V3<span>past participle</span></th></tr>
+      <tr><td>go</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <h2>Step 2. Fill in the chart.</h2>
+  <div class="hint">Write the helper on each line. The verb is there for you.</div>
+  <table class="chart">
+    <tr><th class="corner">Tense</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>She goes.<span class="fx">no helper</span></td><td>She <span class="line"></span> not go.</td><td><span class="line"></span> she go?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>She went.<span class="fx">no helper</span></td><td>She <span class="line"></span> not go.</td><td><span class="line"></span> she go?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>She <span class="line"></span> go.</td><td>She <span class="line"></span> not go.</td><td><span class="line"></span> she go?</td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now</span></th><td>She <span class="line"></span> going.</td><td>She <span class="line"></span> not going.</td><td><span class="line"></span> she going?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night</span></th><td>She <span class="line"></span> going.</td><td>She <span class="line"></span> not going.</td><td><span class="line"></span> she going?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>She <span class="line"></span> <span class="line"></span> going.</td><td>She <span class="line"></span> not <span class="line"></span> going.</td><td><span class="line"></span> she <span class="line"></span> going?</td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>She <span class="line"></span> gone.</td><td>She <span class="line"></span> not gone.</td><td><span class="line"></span> she gone?</td></tr>
+  </table>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>Every − has <i>not</i>.</span>
+    <span><span class="cb"></span>Every ? starts with a helper.</span>
+    <span><span class="cb"></span>After do / does / did / will: V1.</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row">
+    <h1>Go Chart 2: Helpers + Verbs</h1>
+    <span class="sub">Use your forms from Step 1.</span>
+  </div>
+
+  <div class="box">
+    <h2>Step 1. Write the verb forms.</h2>
+    <div class="given-row"><span>Verb (V1): <b>go</b></span><span>Subject: <b>she</b></span></div>
+    <table class="forms">
+      <tr><th>V1<span>base form</span></th><th>V1-s<span>he / she / it</span></th><th>V-ing<span>-ing form</span></th><th>V2<span>past form</span></th><th>V3<span>past participle</span></th></tr>
+      <tr><td>go</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <h2>Step 2. Fill in the chart.</h2>
+  <div class="hint">Write the helper and the verb form on each line.</div>
+  <table class="chart">
+    <tr><th class="corner">Tense</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>She <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>She <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>She <span class="line"></span> <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now</span></th><td>She <span class="line"></span> <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night</span></th><td>She <span class="line"></span> <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>She <span class="line"></span> <span class="line"></span> <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span> <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span> <span class="line"></span>?</td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>She <span class="line"></span> <span class="line"></span>.</td><td>She <span class="line"></span> not <span class="line"></span>.</td><td><span class="line"></span> she <span class="line"></span>?</td></tr>
+  </table>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>Every − has <i>not</i>.</span>
+    <span><span class="cb"></span>Every ? starts with a helper.</span>
+    <span><span class="cb"></span>After do / does / did / will: V1.</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row">
+    <h1>Go Chart 3: The Whole Chart</h1>
+    <span class="sub">Use your forms from Step 1.</span>
+  </div>
+
+  <div class="box">
+    <h2>Step 1. Write the verb forms.</h2>
+    <div class="given-row"><span>Verb (V1): <b>go</b></span><span>Subject: <b>she</b></span></div>
+    <table class="forms">
+      <tr><th>V1<span>base form</span></th><th>V1-s<span>he / she / it</span></th><th>V-ing<span>-ing form</span></th><th>V2<span>past form</span></th><th>V3<span>past participle</span></th></tr>
+      <tr><td>go</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <h2>Step 2. Fill in the chart.</h2>
+  <div class="hint">Write the full sentence. End with . or ?</div>
+  <table class="chart">
+    <tr><th class="corner">Tense</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td></td><td></td><td></td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td></td><td></td><td></td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>Every − has <i>not</i>.</span>
+    <span><span class="cb"></span>Every ? starts with a helper.</span>
+    <span><span class="cb"></span>After do / does / did / will: V1.</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row">
+    <h1>My Verb Chart</h1>
+    <span class="sub">Any verb, any subject.</span>
+  </div>
+
+  <div class="box">
+    <h2>Step 1. Write the verb forms.</h2>
+    <div class="given-row"><span>Verb (V1): <span class="fill"></span></span><span>Subject: <span class="fill"></span></span></div>
+    <table class="forms">
+      <tr><th>V1<span>base form</span></th><th>V1-s<span>he / she / it</span></th><th>V-ing<span>-ing form</span></th><th>V2<span>past form</span></th><th>V3<span>past participle</span></th></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <h2>Step 2. Fill in the chart.</h2>
+  <div class="hint">Write the full sentence. End with . or ?</div>
+  <table class="chart">
+    <tr><th class="corner">Tense</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td></td><td></td><td></td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night</span></th><td></td><td></td><td></td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td></td><td></td><td></td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="check">
+    <b>Check:</b>
+    <span><span class="cb"></span>Every − has <i>not</i>.</span>
+    <span><span class="cb"></span>Every ? starts with a helper.</span>
+    <span><span class="cb"></span>After do / does / did / will: V1.</span>
+  </div>
+</section>
+
+<section class="page">
+  
+  <div class="title-row">
+    <h1>Go Chart: Answer Key</h1>
+    <span class="sub">Contractions are OK too.</span>
+  </div>
+
+  <div class="box">
+    <h2>Step 1. Write the verb forms.</h2>
+    <div class="given-row"><span>Verb (V1): <b>go</b></span><span>Subject: <b>she</b></span></div>
+    <table class="forms">
+      <tr><th>V1<span>base form</span></th><th>V1-s<span>he / she / it</span></th><th>V-ing<span>-ing form</span></th><th>V2<span>past form</span></th><th>V3<span>past participle</span></th></tr>
+      <tr><td>go</td><td>goes</td><td>going</td><td>went</td><td>gone</td></tr>
+    </table>
+  </div>
+
+  <h2>Step 2. Fill in the chart.</h2>
+  <div class="hint"><span class="help">underline</span> = the helper. doesn’t, didn’t, won’t, isn’t, wasn’t, hasn’t, she’s gone are also correct.</div>
+  <table class="chart">
+    <tr><th class="corner">Tense</th><th class="col-h">+ <span>yes</span></th><th class="col-h">− <span>no</span></th><th class="col-h">? <span>question</span></th></tr>
+    <tr><th class="tense">Present simple<span class="when">every day · usually</span></th><td>She goes.</td><td>She <span class="help">does</span> not go.</td><td><span class="help">Does</span> she go?</td></tr>
+    <tr><th class="tense">Past simple<span class="when">yesterday · last week</span></th><td>She went.</td><td>She <span class="help">did</span> not go.</td><td><span class="help">Did</span> she go?</td></tr>
+    <tr><th class="tense">Future simple<span class="when">tomorrow · next week</span></th><td>She <span class="help">will</span> go.</td><td>She <span class="help">will</span> not go.</td><td><span class="help">Will</span> she go?</td></tr>
+    <tr class="group"><th class="tense">Present continuous<span class="when">now · right now</span></th><td>She <span class="help">is</span> going.</td><td>She <span class="help">is</span> not going.</td><td><span class="help">Is</span> she going?</td></tr>
+    <tr><th class="tense">Past continuous<span class="when">at 8:00 last night</span></th><td>She <span class="help">was</span> going.</td><td>She <span class="help">was</span> not going.</td><td><span class="help">Was</span> she going?</td></tr>
+    <tr><th class="tense">Future continuous<span class="when">at 8:00 tomorrow</span></th><td>She <span class="help">will</span> <span class="help">be</span> going.</td><td>She <span class="help">will</span> not <span class="help">be</span> going.</td><td><span class="help">Will</span> she <span class="help">be</span> going?</td></tr>
+    <tr class="group"><th class="tense">Present perfect<span class="when">ever · never · for · since</span></th><td>She <span class="help">has</span> gone.</td><td>She <span class="help">has</span> not gone.</td><td><span class="help">Has</span> she gone?</td></tr>
+  </table>
+
+  
+</section>
+
+</body>
+</html>
