@@ -33,7 +33,7 @@ export function PracticeGoalPicker({ goalDays, onChange }: { goalDays: number; o
 
     return (
         <div className="space-y-2">
-            <div role="group" aria-label="My goal: how many days a week?" className="grid grid-cols-5 gap-1.5">
+            <div role="group" aria-label="My goal: how many days a week?" className="grid grid-cols-6 gap-1.5">
                 {PRACTICE_GOAL_OPTIONS.map((days) => {
                     const on = days === goalDays;
                     return (

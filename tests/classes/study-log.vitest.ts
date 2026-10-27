@@ -209,7 +209,8 @@ describe('POST /api/study-log', () => {
 describe('practice goal', () => {
     it('falls back to 3 days for a stored value that is not an option', () => {
         expect(normalizePracticeGoalDays(5)).toBe(5);
-        expect(normalizePracticeGoalDays(6)).toBe(3);
+        expect(normalizePracticeGoalDays(6)).toBe(6);
+        expect(normalizePracticeGoalDays(8)).toBe(3);
         expect(normalizePracticeGoalDays(null)).toBe(3);
     });
 
@@ -220,7 +221,7 @@ describe('practice goal', () => {
         expect(mocks.award).not.toHaveBeenCalled();
     });
 
-    it.each([{ days: 6 }, { days: '5' }, {}])('PUT rejects %j', async (body) => {
+    it.each([{ days: 8 }, { days: '5' }, {}])('PUT rejects %j', async (body) => {
         expect((await GOAL_PUT(json('/api/study-log/goal', 'PUT', body))).status).toBe(400);
         expect(mocks.userUpdate).not.toHaveBeenCalled();
     });

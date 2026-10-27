@@ -11,7 +11,7 @@ export const MAX_STUDY_LOG_LENGTH = 300;
 export const MAX_STUDY_LOGS_PER_DAY = 10;
 
 /** Days-a-week goals a learner can pick on the log page. Days, not minutes: the dots can show days. */
-export const PRACTICE_GOAL_OPTIONS = [2, 3, 4, 5, 7] as const;
+export const PRACTICE_GOAL_OPTIONS = [2, 3, 4, 5, 6, 7] as const;
 export const DEFAULT_PRACTICE_GOAL_DAYS = 3;
 
 export function isPracticeGoalDays(value: unknown): value is (typeof PRACTICE_GOAL_OPTIONS)[number] {
