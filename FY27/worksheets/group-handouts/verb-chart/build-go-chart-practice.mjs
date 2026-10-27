@@ -67,8 +67,8 @@ const pages = [
  { mode: 'key', title: 'Go Chart: Answer Key', sub: 'Contractions are OK too.', step2: '<span class="help">underline</span> = the helper. doesn’t, didn’t, won’t, isn’t, wasn’t, hasn’t, she’s gone are also correct.' },
 ];
 
-const page = p => `<section class="page">
-  ${p.mode === 'key' ? '' : '<div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>'}
+const page = (p, i) => `<section class="page">
+  ${i > 0 ? '' : '<div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>'}
   <div class="title-row">
     <h1>${p.title}</h1>
     <span class="sub">${p.sub}</span>
