@@ -673,9 +673,10 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qws1",
       type: "word-scramble" as const,
-      question: "Carlos tells Ana why he said yes to the Saturday night shift. Put the words in order.",
-      words: ["I", "will", "pay", "rent", "if", "I", "work"],
-      correctAnswer: "I will pay rent if I work",
+      question: "Carlos tells Ana why he said yes to the Saturday night shift. He needs the extra money for rent. Put the words in order.",
+      words: ["If", "I", "work", "I", "will", "pay", "the", "rent"],
+      correctAnswer: "If I work I will pay the rent",
+      correctAnswers: ["I will pay the rent if I work"],
       hint: "will + base verb in the result part; present simple in the if-part",
       explanation: "First Conditional: if + present simple, will + base verb. The if-part never uses 'will'.",
       topic: "first-conditional",
