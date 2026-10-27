@@ -568,10 +568,6 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and a full list of workplace phrasal verbs, open the <a href=\"/grammar-reader/workplace-phrasal-verbs\" style=\"font-weight:700;text-decoration:underline\">Workplace Phrasal Verbs Full Guide</a>.",
-      },
     },
   ],
 

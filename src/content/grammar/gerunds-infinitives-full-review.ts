@@ -543,10 +543,6 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
           </p>
         </div>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick review. For more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/gerunds-infinitives\" style=\"font-weight:700;text-decoration:underline\">Gerunds + Infinitives Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",

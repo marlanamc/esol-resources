@@ -632,10 +632,6 @@ export const haveYouEverContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation of all present perfect uses, open the <a href=\"/grammar-reader/present-perfect\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Full Guide</a>.",
-      },
     },
   ],
 

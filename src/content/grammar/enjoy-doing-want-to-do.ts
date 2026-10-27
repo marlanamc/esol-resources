@@ -668,10 +668,6 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
           <p style="margin: 0.2rem 0"><strong>like / love / hate / start</strong> + either form (both work)</p>
         </div>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This guide covers the most common patterns. For more verbs, more examples, and meaning-change pairs like <em>stop doing</em> vs. <em>stop to do</em>, open the <a href=\"/grammar-reader/gerunds-infinitives\" style=\"font-weight:700;text-decoration:underline\">Gerunds and Infinitives Full Guide</a>.",
-      },
       exercises: [
         {
           id: "pit-s5-ex1",

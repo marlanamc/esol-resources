@@ -570,10 +570,6 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation of obligation and permission modals, open the <a href=\"/grammar-reader/modals-obligation-permission\" style=\"font-weight:700;text-decoration:underline\">Modals: Obligation and Permission Full Guide</a>.",
-      },
     },
   ],
 

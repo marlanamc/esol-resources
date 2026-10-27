@@ -693,10 +693,6 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/passive-voice\" style=\"font-weight:700;text-decoration:underline\">Passive Voice Full Guide</a>.",
-      },
     },
   ],
 

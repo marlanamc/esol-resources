@@ -532,10 +532,6 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> work long restaurant shifts and cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, would rather, and extra practice, open the <a href=\"/grammar-reader/used-to-would-rather\" style=\"font-weight:700;text-decoration:underline\">Used to / Would rather Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",

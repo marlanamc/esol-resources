@@ -622,10 +622,6 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, exercises, and the full explanation of gerunds vs. infinitives, open the <a href=\"/grammar-reader/gerunds-infinitives\" style=\"font-weight:700;text-decoration:underline\">Gerunds + Infinitives Full Guide</a>.",
-      },
     },
   ],
 

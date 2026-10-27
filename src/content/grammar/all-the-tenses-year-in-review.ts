@@ -526,11 +526,6 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           <p><strong>Optional preview only: future continuous.</strong> At 7 PM in September, I <strong>will be sitting</strong> in class. This describes an activity in progress at a future time. It is not part of the required quiz.</p>
         </div>
       `,
-      tipBox: {
-        title: "Want a head start?",
-        content:
-          "For optional reference, open the <a href=\"/grammar-reader/future-simple\" style=\"font-weight:700;text-decoration:underline\">Future Simple</a>, <a href=\"/grammar-reader/future-continuous\" style=\"font-weight:700;text-decoration:underline\">Future Continuous</a>, <a href=\"/grammar-reader/future-perfect\" style=\"font-weight:700;text-decoration:underline\">Future Perfect</a>, or <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Tenses Overview</a> full guides.",
-      },
       exercises: [
         {
           id: "year-review-future-milestones",

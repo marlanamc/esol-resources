@@ -559,10 +559,6 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           { speaker: "Fabienne", avatar: "👩🏾", text: "Yes. I'm <strong>used to working</strong> late. Thank you, Mark!", side: "right", tone: "terracotta" },
         ])}
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, would rather, and extra practice with all three \"used to\" patterns, open the <a href=\"/grammar-reader/used-to-would-rather\" style=\"font-weight:700;text-decoration:underline\">Used to / Would rather Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",

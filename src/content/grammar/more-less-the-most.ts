@@ -686,10 +686,6 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation of comparatives, superlatives, and quantifiers, open the <a href=\"/grammar-reader/superlatives-quantifiers\" style=\"font-weight:700;text-decoration:underline\">Comparatives + Superlatives + Quantifiers Full Guide</a>.",
-      },
     },
   ],
 

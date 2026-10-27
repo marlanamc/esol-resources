@@ -570,10 +570,6 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           </p>
         </div>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "For more practice with these three words, open <a href=\"/grammar-reader/just-already-yet\" style=\"font-weight:700;text-decoration:underline\">Just, Already, Yet</a>. For a full grammar breakdown, open the <a href=\"/grammar-reader/present-perfect\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Full Guide</a>.",
-      },
       exercises: [
         {
           id: "hl-s5-ex1",

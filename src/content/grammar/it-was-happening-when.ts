@@ -527,10 +527,6 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/past-simple-past-continuous\" style=\"font-weight:700;text-decoration:underline\">Past Simple + Past Continuous Full Guide</a>.",
-      },
     },
   ],
 

@@ -623,10 +623,6 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/superlatives-quantifiers\" style=\"font-weight:700;text-decoration:underline\">Quantifiers: Much, Many, A Few, A Little Full Guide</a>.",
-      },
     },
   ],
 
