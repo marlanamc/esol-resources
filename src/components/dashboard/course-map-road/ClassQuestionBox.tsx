@@ -23,7 +23,16 @@ async function readError(res: Response): Promise<string> {
 }
 
 /** "My question for class": learners send questions before class and see when they're answered. */
-export function ClassQuestionBox({ weekNumber, accent }: { weekNumber: number; accent: string }) {
+export function ClassQuestionBox({
+    weekNumber,
+    accent,
+    bare = false,
+}: {
+    weekNumber: number;
+    accent: string;
+    /** No border or background, for a caller that already draws the card. */
+    bare?: boolean;
+}) {
     const inputId = useId();
     const [questions, setQuestions] = useState<StudentClassQuestion[]>([]);
     const [text, setText] = useState("");
@@ -101,7 +110,7 @@ export function ClassQuestionBox({ weekNumber, accent }: { weekNumber: number; a
     }
 
     return (
-        <div className="rounded-[14px] p-3" style={{ border: BORDER, background: "var(--surface-base)" }}>
+        <div className={bare ? undefined : "rounded-[14px] p-3"} style={bare ? undefined : { border: BORDER, background: "var(--surface-base)" }}>
             <form onSubmit={submit}>
                 <label htmlFor={inputId} className="block text-[0.9375rem] font-semibold text-text">
                     {editingId ? "Edit my question" : "My question for class"}
