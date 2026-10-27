@@ -467,10 +467,6 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/imperatives-declaratives\" style=\"font-weight:700;text-decoration:underline\">Imperatives Full Guide</a>.",
-      },
     },
   ],
 

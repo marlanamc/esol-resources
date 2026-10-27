@@ -523,10 +523,6 @@ export const fallReviewSixTensesContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want the big picture?",
-        content: "Curious about all twelve English tenses? Open the <a href=\"/grammar-reader/all-verb-tenses-overview\" style=\"font-weight:700;text-decoration:underline\">All Verb Tenses Overview</a>. It's optional. You will learn the rest in the spring.",
-      },
     },
   ],
 

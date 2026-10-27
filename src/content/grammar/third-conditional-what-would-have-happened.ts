@@ -534,10 +534,6 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
 
         <p>Third conditional for past regrets. Second conditional when you can still act.</p>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, all four conditionals side by side, and extra practice, open the <a href=\"/grammar-reader/conditionals-second-third\" style=\"font-weight:700;text-decoration:underline\">Second and Third Conditionals Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",

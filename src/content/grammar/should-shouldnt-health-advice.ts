@@ -538,10 +538,6 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
 
         <p>Back home, Yolanda texts her supervisor, Mark: "The doctor says I <strong>had better</strong> not come back until Thursday. I have a note." Mark writes back: "Got it. Rest up and bring the note Thursday. You <strong>shouldn't</strong> lift anything over ten pounds until your follow-up. And you <strong>should</strong> fill out an injury report when you're back."</p>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/modals-health-advice-caution-consent\" style=\"font-weight:700;text-decoration:underline\">Modals for Health: Advice, Caution &amp; Consent Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s4-ex1",

@@ -524,10 +524,6 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
 
         <p>Statements, commands, and questions. All three patterns in one real phone call.</p>
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/reported-speech\" style=\"font-weight:700;text-decoration:underline\">Reported Speech Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",

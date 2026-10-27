@@ -513,10 +513,6 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/present-perfect-continuous\" style=\"font-weight:700;text-decoration:underline\">Present Perfect Continuous Full Guide</a>.",
-      },
     },
   ],
 
@@ -554,7 +550,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     {
       id: "ive-been-working-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She has been ___ money for months.\" (Present Perfect Continuous: verb-ing after 'has been'.)",
+      question: "Fill in the blank: \"She has been ___ (save) money for months.\" (Present Perfect Continuous: verb-ing after 'has been'.)",
       correctAnswer: "saving",
       explanation: "After 'has been,' always use the -ing form of the verb. 'Has been saving' = the action started in the past and is still continuing.",
       topic: "present-perfect-continuous",

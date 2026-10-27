@@ -532,10 +532,6 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. I <strong>used to</strong> work long restaurant shifts and cook at 11 pm. <strong>But now I</strong> meal-prep on Sunday.", side: "right", tone: "terracotta" },
         ])}
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, would rather, and extra practice, open the <a href=\"/grammar-reader/used-to-would-rather\" style=\"font-weight:700;text-decoration:underline\">Used to / Would rather Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",
@@ -642,7 +638,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     {
       id: "ut-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I used to walk to work, but now I ___ two buses.\"",
+      question: "Fill in the blank: \"I used to walk to work, but now I ___ (take) two buses.\"",
       correctAnswer: "take",
       explanation: "But now I + present simple shows the change. Used to is only for the past part.",
       topic: "used-to",

@@ -559,10 +559,6 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           { speaker: "Fabienne", avatar: "👩🏾", text: "Yes. I'm <strong>used to working</strong> late. Thank you, Mark!", side: "right", tone: "terracotta" },
         ])}
       `,
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, would rather, and extra practice with all three \"used to\" patterns, open the <a href=\"/grammar-reader/used-to-would-rather\" style=\"font-weight:700;text-decoration:underline\">Used to / Would rather Full Guide</a>.",
-      },
       exercises: [
         {
           id: "s5-ex1",
@@ -689,7 +685,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-fb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I'm not used to ___ outside in January.\" (Fabienne still finds the cold bus stop hard.)",
+      question: "Fill in the blank: \"I'm not used to ___ (wait) outside in January.\" (Fabienne still finds the cold bus stop hard.)",
       correctAnswer: "waiting",
       explanation: "After be used to (or not used to), use a gerund: waiting.",
       topic: "be-used-to",

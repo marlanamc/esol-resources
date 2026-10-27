@@ -625,10 +625,6 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This was the quick version. For more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/conditionals-zero-first\" style=\"font-weight:700;text-decoration:underline\">Zero + First Conditionals Full Guide</a>.",
-      },
     },
   ],
 
@@ -666,7 +662,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If you work Saturday nights, you ___ double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
+      question: "Fill in the blank: \"If you work Saturday nights, you ___ (earn) double pay.\" (Zero Conditional: Scott's always-true rule at La Palma.)",
       correctAnswer: "earn",
       explanation: "Zero Conditional uses If + present simple, present simple. Double pay on Saturday nights is always true at this job.",
       topic: "zero-conditional",
@@ -677,9 +673,10 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qws1",
       type: "word-scramble" as const,
-      question: "Carlos tells Ana why he said yes to the Saturday night shift. Put the words in order.",
-      words: ["I", "will", "pay", "rent", "if", "I", "work"],
-      correctAnswer: "I will pay rent if I work",
+      question: "Carlos tells Ana why he said yes to the Saturday night shift. He needs the extra money for rent. Put the words in order.",
+      words: ["If", "I", "work", "I", "will", "pay", "the", "rent"],
+      correctAnswer: "If I work I will pay the rent",
+      correctAnswers: ["I will pay the rent if I work"],
       hint: "will + base verb in the result part; present simple in the if-part",
       explanation: "First Conditional: if + present simple, will + base verb. The if-part never uses 'will'.",
       topic: "first-conditional",

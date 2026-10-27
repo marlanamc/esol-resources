@@ -699,10 +699,6 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           ],
         },
       ],
-      tipBox: {
-        title: "Want to go deeper?",
-        content: "This guide covered information questions and indirect questions. For a full guide on information questions with more examples and practice, open the <a href=\"/grammar-reader/information-questions\" style=\"font-weight:700;text-decoration:underline\">Information Questions Full Guide</a>.",
-      },
     },
   ],
 
