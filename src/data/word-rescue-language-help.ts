@@ -1,56 +1,57 @@
 import type { LanguageHint } from '@/lib/word-rescue/types';
 
 // Authored sound targets for each word, not a spelling-to-sound algorithm.
-// Shared explanations keep coaching consistent across Spanish and Brazilian Portuguese.
+// Each tip names the English letters, then anchors the sound to a word the learner
+// already knows in Spanish or Brazilian Portuguese. Avoid phonetics jargon.
 const coaching = {
-  r: ['usa la r inglesa del audio, sin vibrar la lengua.', 'use o r inglês do áudio, sem vibrar a língua.'],
-  v: ['dientes superiores sobre el labio inferior; deja vibrar el aire.', 'dentes superiores sobre o lábio inferior; deixe o ar vibrar.'],
-  f: ['dientes superiores sobre el labio inferior; sopla sin voz.', 'dentes superiores sobre o lábio inferior; sopre sem voz.'],
-  h: ['deja salir aire suavemente; aquí se oye.', 'solte o ar suavemente; aqui esse som é pronunciado.'],
-  sh: ['sopla como para pedir silencio, con los labios un poco redondeados.', 'use o som de ch em chá, com os lábios um pouco arredondados.'],
-  ch: ['usa el sonido de ch en chico.', 'use o som de tch em tchau.'],
-  j: ['empieza con d y suelta un sonido parecido a la y de algunas variedades de español; escucha el modelo.', 'use o som de dj, como o início de dia em muitas regiões do Brasil.'],
-  zh: ['usa un sonido suave y continuo con voz; escucha el modelo, sin empezar con d.', 'use o som de j em janela, sem começar com d.'],
-  th: ['punta de la lengua entre los dientes; sopla sin voz.', 'ponta da língua entre os dentes; sopre sem voz.'],
-  dh: ['punta de la lengua entre los dientes; deja vibrar la voz.', 'ponta da língua entre os dentes; deixe a voz vibrar.'],
-  w: ['redondea los labios y pasa enseguida a la vocal; no uses v.', 'arredonde os lábios e passe logo para a vogal; não use v.'],
-  ng: ['lleva la parte posterior de la lengua hacia arriba; el aire sale por la nariz, sin una g separada.', 'levante a parte de trás da língua; o ar sai pelo nariz, sem um g separado.'],
-  s: ['usa s, con aire continuo y sin vibración en la garganta.', 'use s de sapo, sem vibração na garganta.'],
-  z: ['suena como s, pero con vibración en la garganta.', 'use o som de z em zebra, com vibração na garganta.'],
-  k: ['usa el sonido de k, aunque las letras puedan parecer distintas.', 'use o som de k, mesmo que as letras pareçam diferentes.'],
-  g: ['usa g como en gato, no j.', 'use g como em gato, não j.'],
-  ee: ['usa una i clara y sostenida, como la vocal inglesa de see.', 'use um i claro e sustentado, como a vogal inglesa de see.'],
-  shortI: ['usa una vocal breve y relajada, distinta de la i de sí; copia el audio.', 'use uma vogal curta e relaxada, diferente do i de sim; copie o áudio.'],
-  ae: ['abre la boca más que para e; escucha la vocal inglesa de cat.', 'abra a boca mais do que para é; ouça a vogal inglesa de cat.'],
-  eh: ['usa una e abierta y breve, como en la palabra inglesa bed.', 'use uma vogal parecida com é, curta, como na palavra inglesa bed.'],
-  uh: ['abre un poco la boca y relaja los labios; no leas esta vocal como u española.', 'abra um pouco a boca e relaxe os lábios; não leia essa vogal como u português.'],
-  er: ['la vocal se une a la r inglesa; no vibres la punta de la lengua.', 'a vogal se une ao r inglês; não vibre a ponta da língua.'],
-  oo: ['redondea los labios para una u sostenida, como en la palabra inglesa food.', 'arredonde os lábios para um u sustentado, como na palavra inglesa food.'],
-  shortU: ['usa una vocal breve y relajada; no alargues la u. Escucha good.', 'use uma vogal curta e relaxada; não alongue o u. Ouça good.'],
-  ay: ['desliza de e hacia i en un solo movimiento.', 'deslize de ê para i em um único movimento.'],
-  eye: ['desliza de a hacia i en un solo movimiento.', 'deslize de a para i em um único movimento.'],
-  oh: ['desliza de o hacia u; no mantengas una o fija.', 'deslize de ô para u; não mantenha um ô parado.'],
-  ow: ['desliza de a hacia u en un solo movimiento.', 'deslize de a para u em um único movimento.'],
-  oy: ['desliza de o hacia i en un solo movimiento.', 'deslize de ó para i em um único movimento.'],
-  schwa: ['usa una vocal muy breve y relajada; escucha el audio en vez de leer cada letra.', 'use uma vogal bem curta e relaxada; ouça o áudio em vez de ler cada letra.'],
+  r: ['la r inglesa nunca vibra, ni al inicio de la palabra: la lengua no toca el paladar.', 'o r inglês nunca vibra nem soa como o rr de carro: a língua não toca o céu da boca.'],
+  v: ['no es b: los dientes de arriba tocan el labio de abajo y el aire vibra, vvv.', 'como o v de vaca: dentes de cima no lábio de baixo.'],
+  f: ['suena como la f de foto.', 'soa como o f de faca.'],
+  h: ['suena como una j suave, como al reír "ja", solo con aire. En la guía se escribe j.', 'soa como o rr de carro, bem suave, só com ar. Na guia se escreve rr.'],
+  sh: ['suena "sh", como cuando pides silencio: shhh.', 'soa como o ch de chá.'],
+  ch: ['suena como la ch de chico.', 'soa como o tch de tchau.'],
+  j: ['suena "dy": una d seguida de una y fuerte, como "yo" dicho con fuerza.', 'soa como o dj de dia (como se fala em muitas regiões).'],
+  zh: ['suena como la y de "yo" en Argentina: una "sh" con voz. En la guía se escribe zh.', 'soa como o j de janela.'],
+  th: ['como la z de España en "zapato": la lengua entre los dientes, sin voz.', 'ponta da língua entre os dentes; sopre sem voz. Não é t nem f.'],
+  dh: ['como la d suave de "nada", con la punta de la lengua entre los dientes. En la guía: dh.', 'ponta da língua entre os dentes; deixe a voz vibrar. Não é d. Na guia: dh.'],
+  w: ['suena como la u de "huevo": labios redondos y pasa enseguida a la vocal. No es g ni v.', 'soa como o u de quase: lábios arredondados e passe logo para a vogal.'],
+  ng: ['como la n de "tengo", pero sin decir la g.', 'como o n de manga, mas sem dizer o g.'],
+  s: ['suena como la s de sol.', 'soa como o s de sapo, sem som de z.'],
+  z: ['es una s con zumbido, como una abeja: zzz. Toca tu garganta: debe vibrar.', 'soa como o z de zebra.'],
+  k: ['suena como la c de casa.', 'soa como o c de casa.'],
+  g: ['suena como la g de gato, nunca como j.', 'soa como o g de gato.'],
+  ee: ['suena como una i larga, como "sí" alargado: ii.', 'soa como um i longo, como aqui esticado: ii.'],
+  shortI: ['es una i corta y relajada, casi entre i y e.', 'é um i curto e relaxado, quase entre i e ê.'],
+  ae: ['entre a y e: pon la boca para decir a y di e.', 'é um é bem aberto, com a boca mais aberta do que em café.'],
+  eh: ['suena como la e de mesa.', 'soa como o é de café.'],
+  uh: ['suena como una a corta y relajada, no como u.', 'soa como o a final de casa: curto e relaxado, não é u. Na guia: â.'],
+  er: ['suena "er" con la r inglesa: la lengua se curva hacia atrás y no vibra.', 'soa "er" com o r inglês, parecido com o r caipira: a língua se curva para trás.'],
+  oo: ['suena como una u larga, como "tú" alargado: uu.', 'soa como um u longo, como tu esticado: uu.'],
+  shortU: ['es una u corta y relajada, con los labios poco redondeados.', 'é um u curto e relaxado, com os lábios pouco arredondados.'],
+  ay: ['suena "ei", como en rey o seis.', 'soa "ei", como em lei.'],
+  eye: ['suena "ai", como en hay o baile.', 'soa "ai", como em pai.'],
+  oh: ['suena "ou": empieza en o y termina cerca de u. No es una o sola.', 'soa "ou": comece em ô e termine em u. Não é um ô parado.'],
+  ow: ['suena "au", como en auto.', 'soa "au", como em mau.'],
+  oy: ['suena "oi", como en hoy.', 'soa "ói", como em herói.'],
+  schwa: ['esta vocal es muy corta y débil, casi sin abrir la boca.', 'essa vogal é bem curta e fraca, quase sem abrir a boca.'],
   silent: ['esta letra no se pronuncia en esta palabra.', 'essa letra não é pronunciada nesta palavra.'],
-  cluster: ['une estos sonidos sin añadir una vocal entre ellos.', 'junte esses sons sem acrescentar uma vogal entre eles.'],
-  end: ['conserva estos sonidos al final, sin añadir otra vocal.', 'mantenha esses sons no final, sem acrescentar outra vogal.'],
-  l: ['la punta de la lengua toca detrás de los dientes superiores; no añadas una vocal.', 'a ponta da língua toca atrás dos dentes superiores; evite trocar o l por u.'],
-  tion: ['empieza como al pedir silencio y termina en n, con una vocal muy breve entre ellos.', 'comece com o som de ch em chá e termine em n, com uma vogal bem curta entre eles.'],
-  edT: ['aquí ed suena como t, sin una sílaba extra.', 'aqui ed tem som de t, sem uma sílaba extra.'],
-  edD: ['aquí ed suena como d, sin una sílaba extra.', 'aqui ed tem som de d, sem uma sílaba extra.'],
-  edId: ['aquí ed añade una vocal breve antes de d; escucha esa sílaba extra.', 'aqui ed acrescenta uma vogal curta antes de d; ouça essa sílaba extra.'],
-  link: ['une el final de la primera palabra con el inicio de la siguiente, sin una pausa larga.', 'ligue o final da primeira palavra ao início da próxima, sem uma pausa longa.'],
-  resume: ['aquí significa currículum: tiene tres sílabas y termina con un sonido parecido a mei.', 'aqui significa currículo: tem três sílabas e termina com um som parecido com mêi.'],
-  schedule: ['en el modelo americano, empieza con s + k; no añadas e delante.', 'no modelo americano, comece com s + k; não acrescente uma vogal antes.'],
+  cluster: ['di estos sonidos juntos, sin poner una e delante ni una vocal en medio.', 'junte esses sons, sem colocar um i antes ou no meio.'],
+  end: ['termina con estos sonidos; no añadas una e al final.', 'termine nesses sons; não acrescente um i no final.'],
+  l: ['como la l de sol; no añadas una vocal después.', 'a ponta da língua toca atrás dos dentes de cima; não troque o l por u.'],
+  tion: ['suena "shan": sh + una a débil + n.', 'soa "chan": o ch de chá + um a fraco + n.'],
+  edT: ['aquí -ed suena solo como t, sin una sílaba extra.', 'aqui -ed soa só como t, sem uma sílaba extra.'],
+  edD: ['aquí -ed suena solo como d, sin una sílaba extra.', 'aqui -ed soa só como d, sem uma sílaba extra.'],
+  edId: ['aquí -ed sí es una sílaba extra: "id".', 'aqui -ed é uma sílaba extra: "id".'],
+  link: ['une las dos palabras como si fueran una sola, sin pausa.', 'junte as duas palavras como se fossem uma só, sem pausa.'],
+  resume: ['con el significado de currículum suena RÉ · zu · mei: tres sílabas.', 'com o sentido de currículo soa RÉ · zu · mei: três sílabas.'],
+  schedule: ['empieza directamente con "sk", sin poner una e delante (no "eskedul").', 'comece direto com "sk", sem vogal antes (não "isquedul").'],
 } satisfies Record<string, [string, string]>;
 
 type Cue = [label: string, sound: keyof typeof coaching];
 // Labels identify the actual letters or sound sequence to notice in this word.
 const targets: Record<string, Cue[]> = {
   "delay": [["ay","ay"],["d","end"]],
-  "detour": [["ee","ee"],["r","r"]],
+  "detour": [["e","ee"],["r","r"]],
   "miss a connection": [["ss","s"],["tion","tion"]],
   "get off at": [["ff","f"],["t","end"]],
   "register to vote": [["g","j"],["v","v"]],
@@ -341,12 +342,325 @@ const targets: Record<string, Cue[]> = {
   "appreciate": [["c (antes de i)", "sh"], ["ate", "ay"]],
 };
 
+// Respellings in each language's own spelling: term | Spanish | Brazilian Portuguese.
+// CAPS mark the strong syllable; hyphens become " · ". Shared keys:
+// ii/uu = long vowel, ei/ai/ou/au/oi = one gliding sound, th/dh = tongue between teeth,
+// sh = shhh. Spanish: j = soft h, dy = English j, zh = voiced sh, a = cut/cat vowels.
+// Portuguese: rr = h, dj = English j, tch = ch, ch = sh, é = cat vowel, â = cut vowel.
+// Model is the American audio; these stay approximations, never a replacement for it.
+const respellings = `
+delay | di-LÉI | di-LEI
+detour | DÍI-tur | DII-tur
+miss a connection | MIS a ko-NÉK-shan | MIS a ko-NÉK-chan
+get off at | gue-TÓ-fat | gué-TÓ-fét
+register to vote | RÉ-dyis-ter tu VOUT | RÉ-djis-ter tu VOUT
+put someone through | put SÁM-uan THRUU | put SÂM-uân THRUU
+sign up for | sai-NÁP for | sai-NÂP for
+reach an agreement | RIICH an a-GRÍI-ment | RIITCH an a-GRII-ment
+raise a concern | REIZ a kon-SÉRN | REIZ a kon-SERN
+purchase price | PÉR-chas PRAIS | PER-tchas PRAIS
+comparison shop | kom-PÉ-ri-son SHAP | kom-PÉ-ri-son CHAP
+set aside | SET a-SÁID | SÉT a-SAID
+keep track of | KIIP TRAK av | KIIP TRÉK av
+total cost | TÓU-tal KOST | TOU-tal KÓST
+run out of | ra-NÁU-tav | râ-NAU-tav
+stock up on | sta-KÁ-pan | sta-KÂ-pan
+buy in bulk | BAI in BALK | BAI in BÂLK
+unit price | YÚU-nit PRAIS | IUU-nit PRAIS
+serving size | SÉR-ving SAIZ | SER-ving SAIZ
+go bad | gou BAD | gou BÉD
+cost of living | KOST av LÍ-ving | KÓST av LI-ving
+security deposit | si-KIÚ-ri-ti di-PÁ-zit | si-KIU-ri-ti di-PA-zit
+utilities included | yu-TÍ-li-tiz in-KLÚU-did | iu-TI-li-tiz in-KLUU-did
+qualify for | KUÁ-li-fai for | KUA-li-fai for
+rental application | RÉN-tal a-pli-KÉI-shan | RÉN-tal é-pli-KEI-chan
+weigh your options | UÉI yer ÁP-shanz | UEI ier AP-chanz
+trade-off | TRÉI-dof | TREI-dóf
+within your budget | ui-DHÍN yer BÁ-dyit | ui-DHIN ier BÂ-djit
+request a repair | ri-KUÉST a ri-PÉR | ri-KUÉST a ri-PÉR
+report a problem | ri-PÓRT a PRÁ-blem | ri-PÓRT a PRA-blem
+maintenance request | MÉIN-te-nans ri-KUÉST | MEIN-te-nans ri-KUÉST
+clogged | klagd | klagd
+availability | a-vei-la-BÍ-li-ti | a-vei-la-BI-li-ti
+responsibility | ris-pan-si-BÍ-li-ti | ris-pan-si-BI-li-ti
+work independently | UERK in-di-PÉN-dent-li | UERK in-di-PÉN-dent-li
+previous position | PRÍI-vi-as po-ZÍ-shan | PRII-vi-as po-ZI-chan
+job duties | DYAB DÚU-tiz | DJAB DUU-tiz
+work overtime | UERK ÓU-ver-taim | UERK OU-ver-taim
+safety procedure | SÉIF-ti pro-SÍI-dyer | SEIF-ti pro-SII-djer
+call in sick | KÓ-lin SIK | KÓ-lin SIK
+cover a shift | KÁ-ve-ra SHIFT | KÂ-ve-ra CHIFT
+workplace policy | UÉRK-pleis PÁ-li-si | UERK-pleis PA-li-si
+file a complaint | FÁI-la kom-PLÉINT | FAI-la kom-PLEINT
+violation | vai-o-LÉI-shan | vai-o-LEI-chan
+constructive criticism | kons-TRÁK-tiv KRÍ-ti-si-zem | kons-TRÂK-tiv KRI-ti-si-zem
+make a decision | MÉI-ka di-SÍ-zhan | MEI-ka di-SI-jan
+take into account | TEIK in-tu a-KÁUNT | TEIK in-tu a-KAUNT
+persistent | per-SÍS-tent | per-SIS-tent
+seek care | SIIK KER | SIIK KÉR
+follow-up appointment | FÁ-lou-ap a-PÓINT-ment | FA-lou-âp a-POINT-ment
+recover from | ri-KÁ-ver from | ri-KÂ-ver from
+ease up | ii-ZÁP | ii-ZÂP
+cut back on | kat BÁ-kan | kât BÉ-kan
+build up | bil-DÁP | bil-DÂP
+adjust to | a-DYÁST tu | a-DJÂST tu
+refill | RÍI-fil | RII-fil
+over-the-counter | ou-ver-dha-KÁUN-ter | ou-ver-dha-KAUN-ter
+dosage | DÓU-sidy | DOU-sidj
+pharmacist | FÁR-ma-sist | FAR-ma-sist
+interaction | in-ter-ÁK-shan | in-ter-ÉK-chan
+treatment plan | TRÍIT-ment PLAN | TRIIT-ment PLÉN
+unwind | an-UÁIND | ân-UAIND
+work-life balance | UÉRK-laif BÁ-lans | UERK-laif BÉ-lans
+set boundaries | SET BÁUN-driz | SÉT BAUN-driz
+recover your energy | ri-KÁ-ver yer É-ner-dyi | ri-KÂ-ver ier É-ner-dji
+wear off | ue-RÓF | ué-RÓF
+make progress | MEIK PRÁ-gres | MEIK PRA-grés
+overcome a challenge | ou-ver-KÁ-ma CHÁ-lendy | ou-ver-KÂ-ma TCHÉ-lendj
+milestone | MÁIL-stoun | MAIL-stoun
+take pride in | TEIK PRÁI-din | TEIK PRAI-din
+set a goal | SÉ-ta GOUL | SÉ-ta GOUL
+leave | liiv | liiv
+find | faind | faind
+turn down | tern DAUN | tern DAUN
+reschedule | rii-SKÉ-dyul | rii-SKÉ-djul
+move in | muu-VÍN | muu-VIN
+check out | che-KÁUT | tché-KAUT
+choose | chuuz | tchuuz
+fix | fiks | fiks
+let someone know | LET SÁM-uan NOU | LÉT SÂM-uân NOU
+pay back | pei BAK | pei BÉK
+respect | ris-PÉKT | ris-PÉKT
+follow the rules | FÁ-lou dha RUULZ | FA-lou dha RUULZ
+break a rule | BRÉI-ka RUUL | BREI-ka RUUL
+think about | THINK a-BÁUT | THINK a-BAUT
+routine | ruu-TÍIN | ruu-TIIN
+side effect | SÁID i-fekt | SAID i-fékt
+take a break | TÉI-ka BREIK | TEI-ka BREIK
+home remedy | JOUM RÉ-me-di | RROUM RÉ-me-di
+rest | rest | rést
+sore throat | SOR THROUT | SÓR THROUT
+look back | luk BAK | luk BÉK
+rice | rais | rais
+bread | bred | bréd
+milk | milk | milk
+eggs | egz | égz
+vegetables | VÉDY-te-bolz | VÉDJ-te-bolz
+fruit | fruut | fruut
+introduce | in-tro-DÚUS | in-tro-DUUS
+greet | griit | griit
+share | sher | chér
+describe | dis-KRÁIB | dis-KRAIB
+prefer | pri-FÉR | pri-FER
+catch up | ka-CHÁP | ké-TCHÂP
+identify | ai-DÉN-ti-fai | ai-DÉN-ti-fai
+categorize | KÁ-te-go-raiz | KÉ-te-go-raiz
+practice | PRÁK-tis | PRÉK-tis
+focus | FÓU-kas | FOU-kas
+notice | NÓU-tis | NOU-tis
+compare | kom-PÉR | kom-PÉR
+correct | ko-RÉKT | ko-RÉKT
+remember | ri-MÉM-ber | ri-MÉM-ber
+apply | a-PLÁI | a-PLAI
+log in | lo-GUÍN | ló-GUIN
+navigate | NÁ-vi-gueit | NÉ-vi-gueit
+submit | sab-MÍT | sab-MIT
+access | ÁK-ses | ÉK-sés
+complete | kom-PLÍIT | kom-PLIIT
+review | ri-VIÚU | ri-VIUU
+relocate | rii-LÓU-keit | rii-LOU-keit
+motivate | MÓU-ti-veit | MOU-ti-veit
+overcome | ou-ver-KÁM | ou-ver-KÂM
+immigrate | Í-mi-greit | I-mi-greit
+belong | bi-LÓNG | bi-LÓNG
+schedule | SKÉ-dyul | SKÉ-djul
+commute | ko-MIÚUT | ko-MIUUT
+prepare | pri-PÉR | pri-PÉR
+attend | a-TÉND | a-TÉND
+balance | BÁ-lans | BÉ-lans
+exercise | ÉK-ser-saiz | ÉK-ser-saiz
+register | RÉ-dyis-ter | RÉ-djis-ter
+protect | pro-TÉKT | pro-TÉKT
+verify | VÉ-ri-fai | VÉ-ri-fai
+avoid | a-VÓID | a-VOID
+sign | sain | sain
+update | ap-DÉIT | âp-DEIT
+contact | KÁN-takt | KAN-tékt
+respond | ris-PÁND | ris-PAND
+confirm | kon-FÉRM | kon-FERM
+decline | di-KLÁIN | di-KLAIN
+postpone | poust-PÓUN | poust-POUN
+connect | ko-NÉKT | ko-NÉKT
+vote | vout | vout
+elect | i-LÉKT | i-LÉKT
+advocate | ÁD-vo-keit | ÉD-vo-keit
+petition | pe-TÍ-shan | pe-TI-chan
+represent | re-pri-ZÉNT | ré-pri-ZÉNT
+campaign | kam-PÉIN | kém-PEIN
+volunteer | va-lan-TÍR | va-lan-TIR
+assist | a-SÍST | a-SIST
+support | sa-PÓRT | sa-PÓRT
+contribute | kon-TRÍ-biut | kon-TRI-biut
+donate | DÓU-neit | DOU-neit
+join | dyoin | djoin
+participate | par-TÍ-si-peit | par-TI-si-peit
+suggest | sag-DYÉST | sag-DJÉST
+propose | pro-PÓUZ | pro-POUZ
+recommend | re-ko-MÉND | ré-ko-MÉND
+agree | a-GRÍI | a-GRII
+listen | LÍ-sen | LI-sen
+analyze | Á-na-laiz | É-na-laiz
+resolve | ri-ZÁLV | ri-ZALV
+improve | im-PRÚUV | im-PRUUV
+collaborate | ko-LÁ-bo-reit | ko-LÉ-bo-reit
+report | ri-PÓRT | ri-PÓRT
+prevent | pri-VÉNT | pri-VÉNT
+purchase | PÉR-chas | PER-tchas
+budget | BÁ-dyit | BÂ-djit
+save | seiv | seiv
+spend | spend | spénd
+calculate | KÁL-kiu-leit | KÉL-kiu-leit
+exchange | iks-CHÉINDY | iks-TCHEINDJ
+refund | RÍI-fand | RII-fând
+withdraw | uidh-DRÓ | uidh-DRÓ
+deposit | di-PÁ-zit | di-PA-zit
+charge | chardy | tchardj
+dispute | dis-PIÚUT | dis-PIUUT
+prices | PRÁI-siz | PRAI-siz
+inflation | in-FLÉI-shan | in-FLEI-chan
+wages | UÉI-dyiz | UEI-djiz
+unemployed | an-em-PLÓID | ân-em-PLOID
+interest rate | ÍN-trest REIT | IN-trést REIT
+economy | i-KÁ-no-mi | i-KA-no-mi
+rent | rent | rént
+lease | liis | liis
+occupy | Á-kiu-pai | A-kiu-pai
+move | muuv | muuv
+qualify | KUÁ-li-fai | KUA-li-fai
+afford | a-FÓRD | a-FÓRD
+evaluate | i-VÁ-liu-eit | i-VÉ-liu-eit
+select | se-LÉKT | se-LÉKT
+negotiate | ni-GÓU-shi-eit | ni-GOU-chi-eit
+own | oun | oun
+request | ri-KUÉST | ri-KUÉST
+inspect | ins-PÉKT | ins-PÉKT
+repair | ri-PÉR | ri-PÉR
+leak | liik | liik
+clog | klag | klag
+maintain | mein-TÉIN | mein-TEIN
+notify | NÓU-ti-fai | NOU-ti-fai
+document | DÁ-kiu-ment | DA-kiu-mént
+reimburse | rii-im-BÉRS | rii-im-BERS
+break | breik | breik
+time off | tai-MÓF | tai-MÓF
+team | tiim | tiim
+reliable | ri-LÁI-a-bol | ri-LAI-a-bol
+flexible | FLÉK-si-bol | FLÉK-si-bol
+clock in | kla-KÍN | kla-KIN
+clock out | kla-KÁUT | kla-KAUT
+call out | ko-LÁUT | kó-LAUT
+shift | shift | chift
+supervisor | SÚU-per-vai-zer | SUU-per-vai-zer
+follow up | fa-lou-ÁP | fa-lou-ÂP
+experience | iks-PÍ-ri-ens | iks-PI-ri-ens
+resume | RÉ-zu-mei | RÉ-zu-mei
+cover letter | KÁ-ver LÉ-ter | KÂ-ver LÉ-ter
+reference | RÉF-rens | RÉF-rens
+deadline | DÉD-lain | DÉD-lain
+promotion | pro-MÓU-shan | pro-MOU-chan
+gross pay | GROUS PEI | GROUS PEI
+deductions | di-DÁK-shanz | di-DÂK-chanz
+benefits | BÉ-ne-fits | BÉ-ne-fits
+priority | prai-Ó-ri-ti | prai-Ó-ri-ti
+emergency fund | i-MÉR-dyen-si FAND | i-MER-djen-si FÂND
+must | mast | mâst
+should | shud | chud
+can | kan | kén
+required | ri-KUÁI-erd | ri-KUAI-erd
+allowed | a-LÁUD | a-LAUD
+safety | SÉIF-ti | SEIF-ti
+right | rait | rait
+courtesy | KÉR-te-si | KER-te-si
+strict | strikt | strikt
+comply | kom-PLÁI | kom-PLAI
+violate | VÁI-o-leit | VAI-o-leit
+feedback | FÍID-bak | FIID-bék
+advice | ad-VÁIS | ad-VAIS
+decision | di-SÍ-zhan | di-SI-jan
+consequence | KÁN-se-kuens | KAN-se-kuens
+reflect | ri-FLÉKT | ri-FLÉKT
+clarify | KLÉ-ri-fai | KLÉ-ri-fai
+show up | shou-ÁP | chou-ÂP
+find out | fain-DÁUT | fain-DAUT
+help out | jel-PÁUT | rrél-PAUT
+look forward to | luk FÓR-uerd tu | luk FÓR-uerd tu
+cough | kof | kóf
+infected | in-FÉK-tid | in-FÉK-tid
+depressed | di-PRÉST | di-PRÉST
+habit | JÁ-bit | RRÉ-bit
+quit | kuit | kuit
+recover | ri-KÁ-ver | ri-KÂ-ver
+lifestyle | LÁIF-stail | LAIF-stail
+adjust | a-DYÁST | a-DJÂST
+appointment | a-PÓINT-ment | a-POINT-ment
+checkup | CHÉ-kap | TCHÉ-kâp
+diagnosis | dai-ag-NÓU-sis | dai-ag-NOU-sis
+prescription | pri-SKRÍP-shan | pri-SKRIP-chan
+fever | FÍI-ver | FII-ver
+contagious | kon-TÉI-dyas | kon-TEI-djas
+symptom | SÍMP-tom | SIMP-tom
+temperature | TÉM-pre-cher | TÉM-pre-tcher
+prescribe | pri-SKRÁIB | pri-SKRAIB
+dose | dous | dous
+chronic | KRÁ-nik | KRA-nik
+nutrient | NÚU-tri-ent | NUU-tri-ent
+wellness | UÉL-nes | UÉL-nés
+self-care | SELF KER | SÉLF KÉR
+relax | ri-LÁKS | ri-LÉKS
+coping skills | KÓU-ping SKILZ | KOU-ping SKILZ
+mindful | MÁIND-ful | MAIND-ful
+processed | PRÁ-sest | PRA-sést
+remedy | RÉ-me-di | RÉ-me-di
+relieve | ri-LÍIV | ri-LIIV
+soothe | suudh | suudh
+fluids | FLÚU-idz | FLUU-idz
+ailment | ÉIL-ment | EIL-ment
+progress | PRÁ-gres | PRA-grés
+challenge | CHÁ-lendy | TCHÉ-lendj
+success | sak-SÉS | sak-SÉS
+accomplish | a-KÁM-plish | a-KAM-plich
+proud | praud | praud
+reflection | ri-FLÉK-shan | ri-FLÉK-chan
+goal | goul | goul
+achievement | a-CHÍIV-ment | a-TCHIIV-ment
+growth | grouth | grouth
+confident | KÁN-fi-dent | KAN-fi-dent
+commitment | ko-MÍT-ment | ko-MIT-ment
+appreciate | a-PRÍI-shi-eit | a-PRII-chi-eit
+`;
+
+const sounds: Record<string, [es: string, pt: string]> = Object.fromEntries(
+  respellings.trim().split('\n').map(line => {
+    const [term, es, pt] = line.split(' | ');
+    return [term, [es, pt].map(guide => guide.replaceAll('-', ' · ')) as [string, string]];
+  }),
+);
+
+// Brazilian readers say "tchi"/"dji" for ti/di; the respelling means a plain t or d.
+const ptPalatalTip = 'ti / di: diga t e d como em tatu e dado, não tchi ou dji.';
+
 const portugueseLabel = (label: string) => label.replace(/inicio/g, 'início').replace(/primera/g, 'primeira').replace(/después de/g, 'depois de').replace(/sonido/g, 'som').replace(/palabra sola/g, 'palavra isolada');
 
 export const WEEKLY_LANGUAGE_HELP: Record<string, Record<'es' | 'pt-BR', LanguageHint>> = Object.fromEntries(
   Object.entries(targets).map(([term, cues]) => [term, {
-    es: { tips: cues.map(([label, sound]) => `${label}: ${coaching[sound][0]}`) },
-    'pt-BR': { tips: cues.map(([label, sound]) => `${portugueseLabel(label)}: ${coaching[sound][1]}`) },
+    es: { sounds: sounds[term][0], tips: cues.map(([label, sound]) => `${label}: ${coaching[sound][0]}`) },
+    'pt-BR': {
+      sounds: sounds[term][1],
+      tips: [
+        ...cues.map(([label, sound]) => `${portugueseLabel(label)}: ${coaching[sound][1]}`),
+        ...(/[td]i/i.test(sounds[term][1]) ? [ptPalatalTip] : []),
+      ],
+    },
   }]),
 );
 

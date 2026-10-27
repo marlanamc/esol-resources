@@ -245,7 +245,7 @@ export default function WordRescueGame({ preview = false, assignmentId = null }:
         {word.translations?.[state.language] && <p><strong>Significado: </strong>{word.translations[state.language]}</p>}
         <p className={styles.muted}>{state.language === 'es' ? 'Guía aproximada · escucha el audio' : 'Guia aproximado · ouça o áudio'}</p>
         {RESCUE_WORD_PARTS[word.term] && <div className={styles.wordParts}><p className={styles.muted}>{state.language === 'es' ? 'La palabra por partes' : 'A palavra em partes'}</p><p className={styles.soundGuide} lang="en"><span className="sr-only">{word.term}</span><span aria-hidden>{RESCUE_WORD_PARTS[word.term]}</span></p></div>}
-        {hint?.sounds && <p className={styles.soundGuide}>{hint.sounds}</p>}
+        {hint?.sounds && <div className={styles.wordParts}><p className={styles.muted}>{state.language === 'es' ? 'Cómo suena · MAYÚSCULAS = sílaba fuerte' : 'Como soa · MAIÚSCULAS = sílaba forte'}</p><p className={styles.soundGuide}>{hint.sounds}</p></div>}
         <ul className={styles.tips}>{(hint?.tips ?? (state.language === 'es' ? ['Escucha la palabra despacio y después a velocidad normal.', 'Repite con el audio. La guía de sonidos para esta palabra todavía está en preparación.'] : ['Ouça a palavra devagar e depois na velocidade normal.', 'Repita com o áudio. O guia de sons desta palavra ainda está em preparação.'])).map(tip => {
           const colon = tip.indexOf(':');
           return <li key={tip}>{colon >= 0 ? <><strong>{tip.slice(0, colon + 1)}</strong>{tip.slice(colon + 1)}</> : tip}</li>;
