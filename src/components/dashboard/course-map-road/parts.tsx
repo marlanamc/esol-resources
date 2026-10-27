@@ -464,16 +464,117 @@ function PracticePill({ activity }: { activity: RoadActivity }) {
 }
 
 /** A step's small dot on the road; only weeks get numbered circles. */
-function StepNode({ required, filled, accent }: { required: boolean; filled: boolean; accent: string }) {
+function StepNode({ required, filled, accent, offset = 11 }: { required: boolean; filled: boolean; accent: string; offset?: number }) {
     return (
         <span
-            className="mt-[11px] block h-3 w-3 rounded-full"
+            className="block h-3 w-3 rounded-full"
             style={{
+                marginTop: offset,
                 boxShadow: HALO,
                 background: required ? "var(--road-required-bg)" : filled ? accent : "var(--road-rail)",
             }}
         />
     );
+}
+
+/** One line of the week's checklist: a status circle, the title, and what kind of step it is. */
+function ChecklistRow({
+    activity,
+    showNext,
+    stepName,
+    accent,
+    divider,
+}: {
+    activity: RoadActivity;
+    showNext: boolean;
+    /** "Words" or "Grammar"; null in the quiz group, where the detail is enough. */
+    stepName: string | null;
+    accent: string;
+    divider: boolean;
+}) {
+    const isNext = showNext && activity.isNext && !activity.done;
+    const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
+    const tone = getLearnerCategoryTone(format.tone);
+    const Icon = format.icon;
+    const labels = formatRoadRowLabels(activity, format.label);
+    const detail = [stepName, labels.detail ?? (stepName ? null : format.label)].filter(Boolean).join(" · ");
+    const locked = !activity.done && activity.href == null;
+    const score = activity.quizScore;
+    const perfect = score != null && score.correct >= score.total;
+
+    const status = activity.done ? (
+        <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
+            <Check size={14} strokeWidth={3} aria-hidden />
+        </span>
+    ) : locked ? (
+        <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full text-text-muted" style={{ border: "1.5px dashed var(--road-rail-future)" }}>
+            <Lock size={12} aria-hidden />
+        </span>
+    ) : isNext ? (
+        <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full" style={{ border: `2px solid ${accent}` }}>
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: accent }} />
+        </span>
+    ) : (
+        <span className="block h-[26px] w-[26px] rounded-full" style={{ border: "2px solid var(--road-rail)" }} />
+    );
+
+    const content = (
+        <>
+            {status}
+            <span className="min-w-0">
+                <span className={`block text-[0.9375rem] leading-[1.3] ${activity.done ? "font-normal text-text-muted" : "font-bold text-text"}`}>{labels.title}</span>
+                {detail ? (
+                    <span className="mt-0.5 flex items-center gap-[5px] text-[0.8125rem] font-bold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
+                        <Icon size={14} aria-hidden className="shrink-0" style={{ color: activity.done ? "var(--text-muted)" : tone.accent }} />
+                        {detail}
+                    </span>
+                ) : null}
+                {score && !perfect ? (
+                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: tone.chipText }}>
+                        Try again!
+                    </span>
+                ) : null}
+                {/* The status circle carries these visually. */}
+                {activity.done ? <span className="sr-only">Done</span> : null}
+                {locked ? <span className="sr-only">Opens later</span> : null}
+                {isNext ? <span className="sr-only">Next</span> : null}
+            </span>
+            {score ? (
+                <span
+                    className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold tabular-nums"
+                    style={perfect ? { background: "var(--road-done-bg)", color: "var(--road-done-text)" } : { background: tone.chipBg, color: tone.chipText }}
+                >
+                    <span className="sr-only">Best score: </span>
+                    {Math.round((score.correct / score.total) * 100)}%
+                    {perfect ? <span aria-hidden> 🎉</span> : null}
+                </span>
+            ) : (
+                <ChevronRight size={18} aria-hidden className="text-text-muted" />
+            )}
+        </>
+    );
+
+    const className = "grid min-h-[60px] grid-cols-[26px_minmax(0,1fr)_auto] items-center gap-3 px-3 py-2.5 text-left";
+    const style: CSSProperties = { borderTop: divider ? ROW_BORDER : undefined };
+    if (!activity.href) {
+        return (
+            <div className={`${className} opacity-70`} style={style} aria-disabled="true">
+                {content}
+            </div>
+        );
+    }
+    return (
+        <Link href={activity.href} className={`${className} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset`} style={style}>
+            {content}
+        </Link>
+    );
+}
+
+/** "x of n done", counting only steps that are open, like the tray's progress bar. */
+function doneCount(activities: RoadActivity[]): string | null {
+    const open = activities.filter((activity) => activity.href != null);
+    if (open.length === 0) return null;
+    return `${open.filter((activity) => activity.done).length} of ${open.length} done`;
 }
 
 function StepHeading({ marker, title, tag, required }: { marker: string | null; title: string; tag: string | null; required: boolean }) {
@@ -510,10 +611,146 @@ function StepRows({ activities, showNext, emphasizeNext }: { activities: RoadAct
     );
 }
 
+/** The practice pills plus the "N more games" toggle. */
+function PracticePills({
+    practice,
+    extras,
+    extrasOpen,
+    onToggleExtras,
+    className = "",
+}: {
+    practice: RoadActivity[];
+    extras: RoadActivity[];
+    extrasOpen: boolean;
+    onToggleExtras: () => void;
+    className?: string;
+}) {
+    return (
+        <div className={`flex flex-wrap gap-1.5 ${className}`}>
+            {practice.map((activity) => (
+                <PracticePill key={activity.id} activity={activity} />
+            ))}
+            {extrasOpen ? extras.map((activity) => <PracticePill key={activity.id} activity={activity} />) : null}
+            {extras.length > 0 ? (
+                <button
+                    type="button"
+                    onClick={onToggleExtras}
+                    aria-expanded={extrasOpen}
+                    className="inline-flex min-h-[40px] items-center gap-1 rounded-full px-3 py-1.5 text-[0.875rem] font-semibold text-text-muted"
+                    style={{ border: "1.5px dashed color-mix(in srgb, var(--road-rail) 85%, transparent)" }}
+                >
+                    {extrasOpen ? null : <Plus size={15} aria-hidden />}
+                    {extrasOpen ? "Fewer games" : `${extras.length} more games`}
+                </button>
+            ) : null}
+        </div>
+    );
+}
+
 /**
- * The week as the class routine: words and grammar to start before Tuesday,
- * class, more practice all week, then the required quiz. Timing tags only show
- * on the class week and the weeks after it; past weeks keep just the groups.
+ * The class week (or a week opened early) as a checklist grouped by deadline:
+ * words and grammar before Tuesday, class, the required Thursday quiz, then
+ * extra practice. Each group is a stop on the road.
+ */
+function WeekChecklist({
+    week,
+    showNext,
+    extrasOpen,
+    onToggleExtras,
+}: {
+    week: RoadWeek;
+    showNext: boolean;
+    extrasOpen: boolean;
+    onToggleExtras: () => void;
+}) {
+    const tone = getCourseMapUnitTone(week.unitNumber);
+    const questionsEnabled = useClassQuestionsEnabled();
+    const steps = groupRoadWeekSteps(week.activities);
+    const before = [...steps.words.map((activity) => ({ activity, stepName: "Words" })), ...steps.grammar.map((activity) => ({ activity, stepName: "Grammar" }))];
+
+    type Group = { key: string; label: string; meta: string | null; color: string; node: "filled" | "required" | "plain"; card?: CSSProperties; body: ReactNode };
+    const card: CSSProperties = { border: "1px solid var(--border-subtle)", background: "var(--surface-base)" };
+    const groups: Group[] = [];
+    if (before.length > 0) {
+        groups.push({
+            key: "before",
+            label: "Before Tuesday",
+            meta: doneCount(before.map(({ activity }) => activity)),
+            color: tone.accent,
+            node: "filled",
+            card,
+            body: before.map(({ activity, stepName }, index) => (
+                <ChecklistRow key={activity.id} activity={activity} showNext={showNext} stepName={stepName} accent={tone.button} divider={index > 0} />
+            )),
+        });
+    }
+    if (questionsEnabled) {
+        groups.push({
+            key: "class",
+            label: "In class",
+            meta: "Tues & Thurs",
+            color: tone.accent,
+            node: "filled",
+            card: { ...card, padding: 12 },
+            body: <ClassQuestionBox weekNumber={week.weekNumber} accent={tone.button} bare />,
+        });
+    }
+    if (steps.quiz.length > 0) {
+        groups.push({
+            key: "quiz",
+            label: "Thursday · Required",
+            meta: doneCount(steps.quiz),
+            color: "var(--road-required-bg)",
+            node: "required",
+            card: { ...card, border: "1px solid color-mix(in srgb, var(--road-required-bg) 35%, transparent)" },
+            body: steps.quiz.map((activity, index) => (
+                <ChecklistRow key={activity.id} activity={activity} showNext={showNext} stepName={null} accent={tone.button} divider={index > 0} />
+            )),
+        });
+    }
+    if (steps.practice.length > 0 || week.extras.length > 0) {
+        groups.push({
+            key: "practice",
+            label: "Extra practice",
+            meta: "All week · optional",
+            color: "var(--text-muted)",
+            node: "plain",
+            body: <PracticePills practice={steps.practice} extras={week.extras} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} />,
+        });
+    }
+
+    return (
+        <>
+            {groups.map((group, index) => (
+                <RoadRow
+                    key={group.key}
+                    future={week.isFuture}
+                    node={<StepNode required={group.node === "required"} filled={group.node === "filled"} accent={tone.button} offset={23} />}
+                >
+                    <div className={index === groups.length - 1 ? "pb-2" : "pb-1"}>
+                        <div className="flex items-baseline justify-between gap-2 px-0.5 pt-[18px] pb-2">
+                            <h4 className="m-0 text-[0.75rem] font-extrabold uppercase tracking-[.08em]" style={{ color: group.color }}>
+                                {group.label}
+                            </h4>
+                            {group.meta ? <span className="text-right text-[0.8125rem] font-bold text-text-muted">{group.meta}</span> : null}
+                        </div>
+                        {group.card ? (
+                            <div className="overflow-hidden rounded-2xl" style={group.card}>
+                                {group.body}
+                            </div>
+                        ) : (
+                            group.body
+                        )}
+                    </div>
+                </RoadRow>
+            ))}
+        </>
+    );
+}
+
+/**
+ * The week as the class routine: words, grammar, more practice, then the
+ * required quiz. The class week and the weeks after it use the checklist.
  */
 function WeekSteps({
     week,
@@ -530,60 +767,31 @@ function WeekSteps({
     onToggleExtras: () => void;
 }) {
     const tone = getCourseMapUnitTone(week.unitNumber);
-    const questionsEnabled = useClassQuestionsEnabled();
     const steps = groupRoadWeekSteps(week.activities);
-    const ahead = week.isCurrent || week.state === "upcoming";
-    const hasPractice = steps.practice.length > 0 || week.extras.length > 0;
+    if (week.isCurrent || week.state === "upcoming") {
+        return <WeekChecklist week={week} showNext={showNext} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} />;
+    }
 
     type Step = { key: string; numbered: boolean; title: string; tag: string | null; required?: boolean; filled: boolean; body?: ReactNode };
     const list: Step[] = [];
     if (steps.words.length > 0) {
-        list.push({ key: "words", numbered: true, title: "Words", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.words} showNext={showNext} emphasizeNext={emphasizeNext} /> });
+        list.push({ key: "words", numbered: true, title: "Words", tag: null, filled: true, body: <StepRows activities={steps.words} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
     if (steps.grammar.length > 0) {
-        list.push({ key: "grammar", numbered: true, title: "Grammar", tag: ahead ? "Start before Tues" : null, filled: true, body: <StepRows activities={steps.grammar} showNext={showNext} emphasizeNext={emphasizeNext} /> });
+        list.push({ key: "grammar", numbered: true, title: "Grammar", tag: null, filled: true, body: <StepRows activities={steps.grammar} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
-    if (ahead) {
-        list.push({
-            key: "class",
-            numbered: true,
-            title: "Class",
-            tag: "Tues & Thurs",
-            filled: questionsEnabled,
-            body: questionsEnabled ? <ClassQuestionBox weekNumber={week.weekNumber} accent={tone.button} /> : undefined,
-        });
-    }
-    if (hasPractice) {
+    if (steps.practice.length > 0 || week.extras.length > 0) {
         list.push({
             key: "practice",
             numbered: false,
             title: "More practice",
-            tag: ahead ? "All week" : null,
+            tag: null,
             filled: false,
-            body: (
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                    {steps.practice.map((activity) => (
-                        <PracticePill key={activity.id} activity={activity} />
-                    ))}
-                    {extrasOpen ? week.extras.map((activity) => <PracticePill key={activity.id} activity={activity} />) : null}
-                    {week.extras.length > 0 ? (
-                        <button
-                            type="button"
-                            onClick={onToggleExtras}
-                            aria-expanded={extrasOpen}
-                            className="inline-flex min-h-[40px] items-center gap-1 rounded-full px-3 py-1.5 text-[0.875rem] font-semibold text-text-muted"
-                            style={{ border: "1.5px dashed color-mix(in srgb, var(--road-rail) 85%, transparent)" }}
-                        >
-                            {extrasOpen ? null : <Plus size={15} aria-hidden />}
-                            {extrasOpen ? "Fewer games" : `${week.extras.length} more games`}
-                        </button>
-                    ) : null}
-                </div>
-            ),
+            body: <PracticePills practice={steps.practice} extras={week.extras} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} className="pt-1" />,
         });
     }
     if (steps.quiz.length > 0) {
-        list.push({ key: "quiz", numbered: true, title: "Quiz", tag: ahead ? "Required · Thurs" : "Required", required: true, filled: true, body: <StepRows activities={steps.quiz} showNext={showNext} emphasizeNext={emphasizeNext} /> });
+        list.push({ key: "quiz", numbered: true, title: "Quiz", tag: "Required", required: true, filled: true, body: <StepRows activities={steps.quiz} showNext={showNext} emphasizeNext={emphasizeNext} /> });
     }
 
     // Each step sits on the road itself, so an open week reads as part of the path.
