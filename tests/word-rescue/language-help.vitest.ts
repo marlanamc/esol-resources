@@ -42,3 +42,15 @@ it('handles silent letters, voiced th, and the job-document meaning of resume ex
   expect(help('resume')['pt-BR'].tips[0]).toContain('currículo');
   expect(help('processed').es.tips[1]).toContain('sin una sílaba extra');
 });
+it('gives every word a respelling in each language, without phonetic symbols', () => {
+  for (const word of RESCUE_WORDS) for (const language of ['es', 'pt-BR'] as const) {
+    const sounds = word.help?.[language]?.sounds;
+    expect(sounds?.trim().length, `${word.term}: missing ${language} respelling`).toBeGreaterThan(0);
+    expect(sounds, word.term).not.toMatch(/[əɪʊæʌɑɔθðʃʒŋ]|\+/);
+  }
+  const help = (term: string) => RESCUE_WORDS.find(word => word.term === term)!.help!;
+  expect(help('campaign').es.sounds).toBe('kam · PÉIN');
+  expect(help('campaign').es.tips[0]).toContain('rey');
+  expect(help('habit')['pt-BR'].sounds).toBe('RRÉ · bit');
+  expect(help('safety')['pt-BR'].tips.at(-1)).toContain('tatu');
+});
