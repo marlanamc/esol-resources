@@ -10,7 +10,7 @@ import { StudyLogKindIcon } from "./StudyLogKindIcon";
 import { StudyLogList } from "./StudyLogList";
 import { StudyWeekDots } from "./StudyWeekDots";
 
-type Saved = { text: string; pointsAwarded: number };
+type Saved = { text: string; pointsAwarded: number; goalBonus: number };
 
 async function readError(res: Response): Promise<string> {
     const data = await res.json().catch(() => null);
@@ -53,9 +53,9 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                 setError(await readError(res));
                 return;
             }
-            const data = (await res.json()) as StudentStudyWeek & { pointsAwarded: number };
+            const data = (await res.json()) as StudentStudyWeek & { pointsAwarded: number; goalBonus?: number };
             setStudyWeek({ week: data.week, entries: data.entries, goalDays: data.goalDays });
-            setSaved({ text: text.trim(), pointsAwarded: data.pointsAwarded });
+            setSaved({ text: text.trim(), pointsAwarded: data.pointsAwarded, goalBonus: data.goalBonus ?? 0 });
             // The log is saved; a failed refresh only means home shows it after a reload.
             refreshPracticeViews().catch(() => {});
         } catch {
@@ -94,9 +94,9 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                     </p>
                     <p className="m-0 max-w-xs break-words text-base italic text-text-muted">&ldquo;{saved.text}&rdquo;</p>
                     <p className="m-0 max-w-xs text-sm text-text-muted">
-                        {saved.pointsAwarded > 0
-                            ? `+${saved.pointsAwarded} points. Your streak keeps going.`
-                            : "You already got today's points. Every practice still counts!"}{" "}
+                        {saved.goalBonus > 0
+                            ? `+${saved.pointsAwarded} points, with a ${saved.goalBonus}-point bonus for reaching your goal!`
+                            : `+${saved.pointsAwarded} points. Your streak keeps going.`}{" "}
                         Your teacher can see what you wrote.
                     </p>
                 </div>

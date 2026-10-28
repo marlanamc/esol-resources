@@ -53,8 +53,10 @@ export const POINTS = {
   VERB_SPEED_ROUND_HIGH: 8,
   VERB_SPEED_ROUND_PERFECT: 12,
   ACTIVITY_COMPLETION: 3,
-  /** First practice log of the learner's day; later logs that day save without points. */
+  /** Every practice log (up to MAX_STUDY_LOGS_PER_DAY a day). */
   STUDY_LOG: 5,
+  /** Once a Mon–Sun week, when the learner's days practiced reaches their goal. */
+  STUDY_GOAL_BONUS: 25,
 
   VOCAB_REVIEW_BASE: 0,
   VOCAB_REVIEW_PER_CARD: 1,

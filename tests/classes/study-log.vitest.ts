@@ -12,12 +12,19 @@ const mocks = vi.hoisted(() => ({
     enrollmentFindMany: vi.fn(),
     userFindUnique: vi.fn(),
     userUpdate: vi.fn(),
+    groupBy: vi.fn(),
+    ledgerFindFirst: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: mocks.session }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
 vi.mock('@/lib/gamification/award-chain', () => ({ applyAwardChain: mocks.award }));
 vi.mock('@/lib/database/prisma', () => {
-    const tx = { $executeRaw: mocks.lock, studyLog: { count: mocks.count, create: mocks.create } };
+    const tx = {
+        $executeRaw: mocks.lock,
+        studyLog: { count: mocks.count, create: mocks.create, groupBy: mocks.groupBy },
+        user: { findUnique: mocks.userFindUnique },
+        pointsLedger: { findFirst: mocks.ledgerFindFirst },
+    };
     return { prisma: {
         $transaction: (run: (client: typeof tx) => unknown) => run(tx),
         studyLog: { findMany: mocks.findMany },
@@ -59,6 +66,8 @@ beforeEach(() => {
     mocks.findMany.mockResolvedValue([]);
     mocks.userFindUnique.mockResolvedValue({ practiceGoalDays: 4 });
     mocks.award.mockResolvedValue({ streakPointsAwarded: 3, currentStreak: 4 });
+    mocks.groupBy.mockResolvedValue([{ dayKey: '2026-10-26' }]);
+    mocks.ledgerFindFirst.mockResolvedValue(null);
 });
 
 describe('study log helpers', () => {
@@ -175,22 +184,38 @@ describe('POST /api/study-log', () => {
         }
     );
 
-    it('awards 5 points through the award chain for the first log of the day', async () => {
+    it('awards 5 points through the award chain for a log', async () => {
         const res = await POST(json('/api/study-log', 'POST', { ...log, userId: 'someone-else' }));
         expect(res.status).toBe(201);
         expect(mocks.lock).toHaveBeenCalled();
         expect(mocks.create).toHaveBeenCalledWith({ data: expect.objectContaining({ userId: 'student-1', kind: 'watch', text: log.text }) });
+        expect(mocks.award).toHaveBeenCalledTimes(1);
         expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student-1', points: 5, source: 'study-log' }));
-        expect(await res.json()).toMatchObject({ pointsAwarded: 8, streak: 4, goalDays: 4 });
+        expect(await res.json()).toMatchObject({ pointsAwarded: 8, goalBonus: 0, streak: 4, goalDays: 4 });
     });
 
-    it('saves later logs that day without points', async () => {
-        mocks.count.mockResolvedValue(1);
+    it('awards 5 points for later logs the same day too', async () => {
+        mocks.count.mockResolvedValue(3);
+        mocks.award.mockResolvedValue({ streakPointsAwarded: 0, currentStreak: 4 });
         const res = await POST(json('/api/study-log', 'POST', log));
         expect(res.status).toBe(201);
-        expect(mocks.create).toHaveBeenCalled();
-        expect(mocks.award).not.toHaveBeenCalled();
-        expect((await res.json()).pointsAwarded).toBe(0);
+        expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ points: 5, source: 'study-log' }));
+        expect((await res.json()).pointsAwarded).toBe(5);
+    });
+
+    it('adds a 25-point bonus the first time the week reaches the goal', async () => {
+        mocks.groupBy.mockResolvedValue(['a', 'b', 'c', 'd'].map((dayKey) => ({ dayKey })));
+        const res = await POST(json('/api/study-log', 'POST', log));
+        expect(mocks.award).toHaveBeenCalledWith(expect.objectContaining({ userId: 'student-1', points: 25, source: 'study-goal' }));
+        expect(await res.json()).toMatchObject({ pointsAwarded: 33, goalBonus: 25 });
+    });
+
+    it('gives the goal bonus only once a week', async () => {
+        mocks.groupBy.mockResolvedValue(['a', 'b', 'c', 'd', 'e'].map((dayKey) => ({ dayKey })));
+        mocks.ledgerFindFirst.mockResolvedValue({ id: 'already' });
+        const res = await POST(json('/api/study-log', 'POST', log));
+        expect(mocks.award).toHaveBeenCalledTimes(1);
+        expect(await res.json()).toMatchObject({ pointsAwarded: 8, goalBonus: 0 });
     });
 
     it('stops at the daily limit', async () => {
