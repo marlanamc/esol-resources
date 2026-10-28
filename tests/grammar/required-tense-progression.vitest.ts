@@ -8,7 +8,8 @@ const weeks = COURSE_MAP_UNITS.flatMap(u => u.weeks);
 const expected = new Map([[21,'i-used-to-but-now-i'],[23,'enjoy-doing-want-to-do'],[26,'past-perfect-continuous-work'],[32,'future-perfect-goals'],[35,'future-perfect-continuous-progress'],[36,'all-the-tenses-year-in-review']]);
 describe('required tense progression', () => {
   it('keeps one required guide per week and preserves moved guide identities', () => {
-    for (const w of weeks) expect(w.items.filter(i => i.slot === 'required' && i.activityType === 'guide')).toHaveLength(1);
+    // Week 11 has no Thursday class (Thanksgiving), so no new grammar is taught.
+    for (const w of weeks) expect(w.items.filter(i => i.slot === 'required' && i.activityType === 'guide')).toHaveLength(w.number === 11 ? 0 : 1);
     for (const [n, slug] of expected) {
       const guide = weeks.find(w=>w.number===n)!.items.find(i=>i.slot==='required'&&i.activityType==='guide')!;
       expect(guide.href).toBe(`/grammar-reader/${slug}`);

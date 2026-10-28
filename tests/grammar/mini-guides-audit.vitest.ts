@@ -54,8 +54,9 @@ describe("mini guides audit (weeks 1–18)", () => {
     it("runs without throwing and audits the expected guide count", async () => {
         const result = await runMiniGuidesAudit();
         // Week 4 past-tense work, Week 6 Getting There, and Week 9 Just,
-        // Already, Yet (taught in Week 24) are optional, leaving 18 required guides.
-        expect(result.guides.length).toBe(18);
+        // Already, Yet (taught in Week 24) are optional. Week 11 (Thanksgiving) has
+        // no guide and Week 14's econ reading is optional, leaving 17 required guides.
+        expect(result.guides.length).toBe(17);
         expect(result.guides.map(({ guide }) => guide.slug)).not.toContain("welcome-how-to-use-app");
     });
 

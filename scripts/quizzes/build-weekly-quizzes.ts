@@ -13,12 +13,13 @@ const quizzes: Record<string, WeeklyQuizContent> = {};
 // Grammar questions already used by an earlier quiz in the same week, keyed by week number.
 const usedInWeek = new Map<number, Set<string>>();
 const requiredGuideSlug = (weekNumber: number) => weeks.find(w => w.number === weekNumber)?.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))?.href?.split('/').pop();
-// From week 8, Thursday teaches the new grammar and the next Tuesday practices
-// it, so each quiz tests the guide from the week before. Weeks 12+ wait on the
-// Thanksgiving decision (week 11 has no Thursday).
-const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 11 ? weekNumber - 1 : weekNumber;
 // Week 7's quiz opened before conditionals were practiced, so it reviews weeks 5-6.
-const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6] };
+// Week 12's Thursday before is Thanksgiving, so it reviews weeks 7-8.
+const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6], 12: [7, 8] };
+// From week 8, Thursday teaches the new grammar and the next Tuesday practices
+// it, so each quiz tests the guide from the week before. Spring weeks are not
+// shifted yet.
+const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 13 && !REVIEW_WEEKS[weekNumber] ? weekNumber - 1 : weekNumber;
 const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
 
 // Weeks with more than one quiz (the optional final-review extras) number them.
