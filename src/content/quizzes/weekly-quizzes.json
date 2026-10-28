@@ -672,21 +672,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Can you ___ me your phone number? (tell)",
+        "prompt": "If you ___ me your phone number, I will call you. (tell)",
         "answers": [
           "tell"
         ],
-        "explanation": "Can you tell me your phone number? (tell)",
+        "explanation": "If you tell me your phone number, I will call you. (tell)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "You should ___ your name clearly. (say)",
+        "prompt": "If my boss ___ yes, I will take Friday off. (say)",
         "answers": [
-          "say"
+          "says"
         ],
-        "explanation": "You should say your name clearly. (say)",
+        "explanation": "If my boss says yes, I will take Friday off. (say)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -723,32 +723,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "\"You don't have to come to the bank. You can call the number on your card.\" What does this mean?",
+        "prompt": "Scott says: 'If you work Saturday nights, you earn double.' Carlos says: 'If I vote Saturday morning, I will still make the night shift.' What is the difference?",
         "options": [
-          "Coming to the bank is forbidden.",
-          "Coming to the bank is required.",
-          "Coming to the bank is optional."
+          "Both are Zero Conditional. They are the same.",
+          "Scott states a rule (Zero). Carlos states his plan (First).",
+          "Carlos's sentence is wrong. He should say 'I make' not 'I will make.'"
         ],
         "answers": [
-          "Coming to the bank is optional."
+          "Scott states a rule (Zero). Carlos states his plan (First)."
         ],
-        "explanation": "'Don't have to' means it is not required. It is different from 'must not,' which means it is forbidden.",
-        "source": "can-should-must/can-should-must-q6"
+        "explanation": "Zero = an always-true rule (double pay on Saturday nights). First = a real, specific future plan (Carlos's Saturday).",
+        "source": "zero-first-conditional/zero-first-conditional-q7"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Claudette is setting up her new phone at the library. Which sentence is correct?",
+        "prompt": "Carlos tells Ana about the extra Saturday night shift and the electric bill. Which if-part is correct?",
         "options": [
-          "She can video-calls her daughter for free.",
-          "She can video-call her daughter for free.",
-          "She can to video-call her daughter for free."
+          "If I will take the extra shift...",
+          "If I take the extra shift...",
+          "If I took the extra shift..."
         ],
         "answers": [
-          "She can video-call her daughter for free."
+          "If I take the extra shift..."
         ],
-        "explanation": "Modal verbs (can, should, must) are always followed by the base verb with no changes.",
-        "source": "can-should-must/can-should-must-q1"
+        "explanation": "In First Conditional, the if-part uses present simple. Never use 'will' in the if-part.",
+        "source": "zero-first-conditional/zero-first-conditional-q2"
       }
     ]
   },
@@ -862,21 +862,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Have you ever ___ food to a neighbor? (take)",
+        "prompt": "You should ___ food to a sick neighbor. (take)",
         "answers": [
-          "taken"
+          "take"
         ],
-        "explanation": "Have you ever taken food to a neighbor? (take)",
+        "explanation": "You should take food to a sick neighbor. (take)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "We have ___ extra bags for the volunteers. (bring)",
+        "prompt": "You must ___ your ID to the appointment. (bring)",
         "answers": [
-          "brought"
+          "bring"
         ],
-        "explanation": "We have brought extra bags for the volunteers. (bring)",
+        "explanation": "You must bring your ID to the appointment. (bring)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -912,27 +912,27 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Have you ever ___ to a city council meeting?\" (V3 of 'be')",
-        "answers": [
-          "been"
+        "prompt": "Which sentence has an error?",
+        "options": [
+          "You must call the bank if someone has your card number.",
+          "You should calls your daughter's old number first.",
+          "Scammers can pretend to be your family."
         ],
-        "explanation": "After 'have you ever', always use V3. The V3 of 'be' is 'been'.",
-        "source": "have-you-ever/hye-qfb1"
+        "answers": [
+          "You should calls your daughter's old number first."
+        ],
+        "explanation": "'Should' is followed by the base verb. 'Calls' should be 'call'.",
+        "source": "can-should-must/can-should-must-q4"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "\"Have you ever called 311?\" Claudette says no. What is the best reply?",
-        "options": [
-          "No, I didn't.",
-          "No, I haven't.",
-          "No, I don't."
-        ],
+        "prompt": "Fill in the blank: \"You ___ not share your PIN, not even with family. This is a strong rule, not just advice.\" (must / should / can)",
         "answers": [
-          "No, I haven't."
+          "must"
         ],
-        "explanation": "Short answer for Have you ever uses haven't (not didn't or don't).",
-        "source": "have-you-ever/hye-q7"
+        "explanation": "'Must not' is the strongest prohibition. 'Should not' is advice; 'cannot' is about ability.",
+        "source": "can-should-must/csm-qfb1"
       }
     ]
   },
@@ -1046,21 +1046,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "I enjoy ___ new neighbors. (meet)",
+        "prompt": "I have ___ many new neighbors this year. (meet)",
         "answers": [
-          "meeting"
+          "met"
         ],
-        "explanation": "I enjoy meeting new neighbors. (meet)",
+        "explanation": "I have met many new neighbors this year. (meet)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "She is good at ___ in public. (speak)",
+        "prompt": "Have you ever ___ at a public meeting? (speak)",
         "answers": [
-          "speaking"
+          "spoken"
         ],
-        "explanation": "She is good at speaking in public. (speak)",
+        "explanation": "Have you ever spoken at a public meeting? (speak)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -1097,27 +1097,27 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Sarah asks Diego what he is good at. Put the words in order. Words: I / am / good / at / cooking / fast",
+        "prompt": "Build the question by tapping the words in order. Words: Have / you / ever / applied / for / a / library / card",
         "answers": [
-          "I am good at cooking fast"
+          "Have you ever applied for a library card"
         ],
-        "explanation": "Good at + -ing. The verb after 'at' must end in -ing.",
-        "source": "what-are-you-good-at/good-at-qws1"
+        "explanation": "Have you ever + V3 asks about life experience with no specific time.",
+        "source": "have-you-ever/hye-qws1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Which sentence is correct?",
+        "prompt": "Jean says: \"I have went to a food pantry two years ago.\" What is wrong?",
         "options": [
-          "Don't sign without read the letter.",
-          "Don't sign without reading the letter.",
-          "Don't sign without to read the letter."
+          "Should be: I went to a food pantry two years ago. (specific time needs Past Simple)",
+          "Should be: I have gone to a food pantry two years ago.",
+          "Nothing is wrong."
         ],
         "answers": [
-          "Don't sign without reading the letter."
+          "Should be: I went to a food pantry two years ago. (specific time needs Past Simple)"
         ],
-        "explanation": "'Without' is a preposition. The verb after it must be -ing: without reading.",
-        "source": "what-are-you-good-at/good-at-q7"
+        "explanation": "Two years ago is a specific time, so Past Simple is required. Never use present perfect with a finished time expression.",
+        "source": "have-you-ever/hye-q8"
       }
     ]
   },
@@ -1231,21 +1231,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "If you ___ a letter to the council, they will read it. (write)",
+        "prompt": "Last week, I ___ a letter to the city council. (write)",
         "answers": [
-          "write"
+          "wrote"
         ],
-        "explanation": "If you write a letter to the council, they will read it. (write)",
+        "explanation": "Last week, I wrote a letter to the city council. (write)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "If I ___ an email to the mayor, her office will answer me. (send)",
+        "prompt": "She ___ an email to the mayor every month. (send)",
         "answers": [
-          "send"
+          "sends"
         ],
-        "explanation": "If I send an email to the mayor, her office will answer me. (send)",
+        "explanation": "She sends an email to the mayor every month. (send)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -1282,32 +1282,27 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Carlos tells Ana about the extra Saturday night shift and the electric bill. Which if-part is correct?",
+        "prompt": "Your answer is: Twice a day. Which question were you asked?",
         "options": [
-          "If I will take the extra shift...",
-          "If I take the extra shift...",
-          "If I took the extra shift..."
+          "How long is the video?",
+          "How do you open the app?",
+          "How often do you check email?"
         ],
         "answers": [
-          "If I take the extra shift..."
+          "How often do you check email?"
         ],
-        "explanation": "In First Conditional, the if-part uses present simple. Never use 'will' in the if-part.",
-        "source": "zero-first-conditional/zero-first-conditional-q2"
+        "explanation": "How often asks about frequency: how many times something happens.",
+        "source": "questions-real-answers/qra-frequency"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Which sentence has an error?",
-        "options": [
-          "If your name is on the list, you get a ballot.",
-          "If Carlos will work Saturday, he will pay the bill.",
-          "If I don't see you by 5, I will call you."
-        ],
+        "prompt": "Fill in the blank: \"Rosa ___ to class on Tuesdays and Thursdays.\" (come: he/she/it form)",
         "answers": [
-          "If Carlos will work Saturday, he will pay the bill."
+          "comes"
         ],
-        "explanation": "'Will' cannot appear in the if-part of a conditional. It should be: 'If Carlos works Saturday...'",
-        "source": "zero-first-conditional/zero-first-conditional-q4"
+        "explanation": "With he/she/it in present simple, add -s: come → comes.",
+        "source": "your-week-in-english/your-week-qfb1"
       }
     ]
   },
@@ -1615,11 +1610,11 @@
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "Last week, we ___ less on groceries. (spend)",
+        "prompt": "I don’t enjoy ___ money on things I don’t need. (spend)",
         "answers": [
-          "spent"
+          "spending"
         ],
-        "explanation": "Last week, we spent less on groceries. (spend)",
+        "explanation": "I don’t enjoy spending money on things I don’t need. (spend)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -1656,32 +1651,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Luis von Ahn sold reCAPTCHA to Google in 2009. He does not own reCAPTCHA now. Which sentence is correct?",
+        "prompt": "Which sentence is correct?",
         "options": [
-          "He has sold reCAPTCHA since 2009.",
-          "He has sold reCAPTCHA for 2009.",
-          "He sold reCAPTCHA to Google in 2009."
+          "Don't sign without read the letter.",
+          "Don't sign without reading the letter.",
+          "Don't sign without to read the letter."
         ],
         "answers": [
-          "He sold reCAPTCHA to Google in 2009."
+          "Don't sign without reading the letter."
         ],
-        "explanation": "A finished action with a specific past time (2009) needs past simple, not present perfect.",
-        "source": "how-long-for-since/hlfs-q7"
+        "explanation": "'Without' is a preposition. The verb after it must be -ing: without reading.",
+        "source": "what-are-you-good-at/good-at-q7"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Yesenia chose her phone company three years ago, in 2023. She wants to say how long she has had it, using 'for'. What does she say?",
+        "prompt": "Diego says, 'I am good ___ cooking fast.' Which word fits?",
         "options": [
-          "I have had this company for since three years.",
-          "I have had this company for three years.",
-          "I have had this company for 2023."
+          "at",
+          "in",
+          "of"
         ],
         "answers": [
-          "I have had this company for three years."
+          "at"
         ],
-        "explanation": "'For' takes a length of time (three years), not a starting year (2023).",
-        "source": "how-long-for-since/hlfs-q2"
+        "explanation": "Good at + -ing is the fixed pattern. 'Good in' and 'good of' are not used this way.",
+        "source": "what-are-you-good-at/good-at-q1"
       }
     ]
   },

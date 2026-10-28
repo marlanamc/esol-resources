@@ -13,6 +13,12 @@ const quizzes: Record<string, WeeklyQuizContent> = {};
 // Grammar questions already used by an earlier quiz in the same week, keyed by week number.
 const usedInWeek = new Map<number, Set<string>>();
 const requiredGuideSlug = (weekNumber: number) => weeks.find(w => w.number === weekNumber)?.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))?.href?.split('/').pop();
+// From week 8, Thursday teaches the new grammar and the next Tuesday practices
+// it, so each quiz tests the guide from the week before. Weeks 12+ wait on the
+// Thanksgiving decision (week 11 has no Thursday).
+const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 11 ? weekNumber - 1 : weekNumber;
+// Week 7's quiz opened before conditionals were practiced, so it reviews weeks 5-6.
+const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6] };
 const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
 
 // Weeks with more than one quiz (the optional final-review extras) number them.
@@ -67,17 +73,22 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a brother in Colombia.” Write the complete sentence.', answers: ['She has a brother in Colombia.'], explanation: 'With she, have becomes has.', source: 'verb-forms-overview' },
     );
   } else {
-    const weekSlug = requiredGuideSlug(week.number)!;
+    const weekSlug = requiredGuideSlug(grammarWeek(week.number))!;
     const pool = await questionPool(weekSlug);
     if (pool.length < 2) throw new Error(`Not enough grammar questions: ${weekSlug}`);
     const used = usedInWeek.get(week.number) ?? new Set<string>();
     usedInWeek.set(week.number, used);
+    const unusedFrom = async (reviewSlug: string) => (await questionPool(reviewSlug)).find(p => !Object.values(quizzes).some(z => z.questions.some(x => x.source === `${reviewSlug}/${p.id}`)));
     for (let i = 0; i < 2; i++) {
       let slug = weekSlug;
       // Week 6's guide opens with adverbs of frequency. The default index
       // lands on present simple and imperatives, so use the frequency items.
       const frequencyIds = ['your-week-q1', 'your-week-q9'];
-      let q = n === 3
+      const reviewWeek = REVIEW_WEEKS[week.number]?.[i];
+      if (reviewWeek) slug = requiredGuideSlug(reviewWeek)!;
+      let q = reviewWeek
+        ? await unusedFrom(slug)
+        : n === 3
         ? pool.find(item => item.id === frequencyIds[i])
         : pool[((n - 2) * 2 + i) % pool.length];
       if (!q) throw new Error(`Missing grammar question for quiz ${n}`);

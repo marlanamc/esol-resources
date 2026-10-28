@@ -649,8 +649,9 @@ function PracticePills({
 
 /**
  * The class week (or a week opened early) as a checklist grouped by deadline:
- * words and grammar before Tuesday, class, the required Thursday quiz, then
- * extra practice. Each group is a stop on the road.
+ * words before Tuesday, grammar before Thursday (new grammar is taught
+ * Thursday), class, the required Thursday quiz, then extra practice. Each
+ * group is a stop on the road.
  */
 function WeekChecklist({
     week,
@@ -666,20 +667,22 @@ function WeekChecklist({
     const tone = getCourseMapUnitTone(week.unitNumber);
     const questionsEnabled = useClassQuestionsEnabled();
     const steps = groupRoadWeekSteps(week.activities);
-    const before = [...steps.words.map((activity) => ({ activity, stepName: "Words" })), ...steps.grammar.map((activity) => ({ activity, stepName: "Grammar" }))];
-
     type Group = { key: string; label: string; meta: string | null; color: string; node: "filled" | "required" | "plain"; card?: CSSProperties; body: ReactNode };
     const card: CSSProperties = { border: "1px solid var(--border-subtle)", background: "var(--surface-base)" };
     const groups: Group[] = [];
-    if (before.length > 0) {
+    for (const [key, label, stepName, activities] of [
+        ["before", "Before Tuesday", "Words", steps.words],
+        ["grammar", "Before Thursday", "Grammar", steps.grammar],
+    ] as const) {
+        if (activities.length === 0) continue;
         groups.push({
-            key: "before",
-            label: "Before Tuesday",
-            meta: doneCount(before.map(({ activity }) => activity)),
+            key,
+            label,
+            meta: doneCount(activities),
             color: tone.accent,
             node: "filled",
             card,
-            body: before.map(({ activity, stepName }, index) => (
+            body: activities.map((activity, index) => (
                 <ChecklistRow key={activity.id} activity={activity} showNext={showNext} stepName={stepName} accent={tone.button} divider={index > 0} />
             )),
         });
