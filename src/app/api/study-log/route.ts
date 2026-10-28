@@ -6,7 +6,13 @@ import { apiError, handleApiError } from "@/lib/api/response";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { POINTS } from "@/lib/gamification/constants";
 import { getLearnerDayKey } from "@/lib/gamification/calendar-week";
-import { isStudyLogKind, MAX_STUDY_LOGS_PER_DAY, parseStudyLogText } from "@/lib/learner/study-log";
+import {
+    getStudyWeekRange,
+    isStudyLogKind,
+    MAX_STUDY_LOGS_PER_DAY,
+    normalizePracticeGoalDays,
+    parseStudyLogText,
+} from "@/lib/learner/study-log";
 import { loadStudentStudyWeek } from "@/lib/learner/study-log-data";
 
 /** The learner's practice logs for this week. */
@@ -22,7 +28,10 @@ export async function GET(request: NextRequest) {
     }
 }
 
-/** Saves one log. The first log of the learner's day earns POINTS.STUDY_LOG and counts for the streak. */
+/**
+ * Saves one log. Every log earns POINTS.STUDY_LOG and counts for the streak; the log that brings
+ * the week's days practiced up to the learner's goal also earns POINTS.STUDY_GOAL_BONUS, once a week.
+ */
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
@@ -46,8 +55,6 @@ export async function POST(request: NextRequest) {
                 if (loggedToday >= MAX_STUDY_LOGS_PER_DAY) return { limited: true as const };
 
                 await tx.studyLog.create({ data: { userId, kind: body.kind, text: parsed.text, dayKey } });
-                if (loggedToday > 0) return { limited: false as const, pointsAwarded: 0, streak: null };
-
                 const award = await applyAwardChain({
                     userId,
                     points: POINTS.STUDY_LOG,
@@ -55,9 +62,36 @@ export async function POST(request: NextRequest) {
                     source: "study-log",
                     transaction: tx,
                 });
+
+                // The lock above also keeps two logs from both claiming the week's goal bonus.
+                const { start, end } = getStudyWeekRange(now);
+                const goalReason = `Practice goal week ${start}`;
+                const weekDays = await tx.studyLog.groupBy({
+                    by: ["dayKey"],
+                    where: { userId, dayKey: { gte: start, lte: end } },
+                });
+                const user = await tx.user.findUnique({ where: { id: userId }, select: { practiceGoalDays: true } });
+                const bonusAlready = await tx.pointsLedger.findFirst({
+                    where: { userId, source: "study-goal", reason: goalReason },
+                    select: { id: true },
+                });
+                const goalReached = weekDays.length >= normalizePracticeGoalDays(user?.practiceGoalDays);
+                let goalBonus = 0;
+                if (goalReached && !bonusAlready) {
+                    await applyAwardChain({
+                        userId,
+                        points: POINTS.STUDY_GOAL_BONUS,
+                        reason: goalReason,
+                        source: "study-goal",
+                        transaction: tx,
+                    });
+                    goalBonus = POINTS.STUDY_GOAL_BONUS;
+                }
+
                 return {
                     limited: false as const,
-                    pointsAwarded: POINTS.STUDY_LOG + award.streakPointsAwarded,
+                    pointsAwarded: POINTS.STUDY_LOG + award.streakPointsAwarded + goalBonus,
+                    goalBonus,
                     streak: award.currentStreak,
                 };
             },
@@ -69,7 +103,7 @@ export async function POST(request: NextRequest) {
         }
         const studyWeek = await loadStudentStudyWeek(userId, now);
         return NextResponse.json(
-            { ...studyWeek, pointsAwarded: result.pointsAwarded, streak: result.streak },
+            { ...studyWeek, pointsAwarded: result.pointsAwarded, goalBonus: result.goalBonus, streak: result.streak },
             { status: 201 }
         );
     } catch (error) {
