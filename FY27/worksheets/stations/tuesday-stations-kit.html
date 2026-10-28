@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tuesday Stations Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  /* One .sheet = one landscape letter page. Most sheets are two cut-apart halves. */
+  .sheet {
+    width: 11in;
+    height: 8.5in;
+    display: flex;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .half {
+    width: 50%;
+    padding: 0.35in 0.4in;
+    display: flex;
+    flex-direction: column;
+  }
+  .half + .half { border-left: 1.5px dashed #000; }
+  .full {
+    width: 100%;
+    padding: 0.35in 0.45in;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+  }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  .tag { font-size: 12px; white-space: nowrap; }
+  .section { margin-bottom: 12px; }
+  ul.dots { padding-left: 1.1em; }
+  ul.dots li { margin-bottom: 4px; }
+
+  /* ---------- Rotation chart (board copy) ---------- */
+  .chart-title { font-size: 40px; font-weight: bold; }
+  .chart-sub { font-size: 18px; }
+  table.rotation { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
+  table.rotation th, table.rotation td { border: 2px solid #000; padding: 10px 8px; text-align: center; font-size: 26px; font-weight: bold; }
+  table.rotation th { font-size: 20px; }
+  table.rotation th .time { display: block; font-size: 16px; font-weight: normal; }
+  table.rotation td.g { text-align: left; font-size: 20px; width: 22%; }
+  table.rotation td.g span { display: block; font-size: 14px; font-weight: normal; }
+  table.rotation tr.who td { font-size: 15px; font-weight: normal; padding: 6px; }
+  table.rotation tr.who td.g { font-size: 15px; font-weight: bold; }
+  .chart-notes { display: flex; gap: 24px; font-size: 16px; }
+  .chart-notes > div { flex: 1; border: 1.5px solid #000; padding: 10px 14px; }
+  .chart-notes h2 { font-size: 18px; }
+  .chart-notes ol { padding-left: 1.3em; }
+  .chart-notes li { margin-bottom: 3px; }
+
+  /* ---------- Station direction cards ---------- */
+  .station-top { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+  .station-top svg { width: 84px; height: 84px; flex: none; }
+  .station-num { font-size: 18px; font-weight: bold; }
+  .station-verb { font-size: 64px; font-weight: bold; line-height: 1; letter-spacing: 1px; }
+  .station-with { font-size: 18px; }
+  .goal { font-size: 22px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding: 6px 0; margin: 10px 0 14px; }
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li {
+    counter-increment: s;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-left: 52px;
+    position: relative;
+    line-height: 1.3;
+  }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: -2px;
+    width: 34px; height: 34px;
+    border: 2px solid #000; border-radius: 50%;
+    font-size: 18px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .early { margin-top: auto; border: 1.5px dashed #000; padding: 10px 14px; font-size: 18px; }
+
+  /* ---------- Leader guides ---------- */
+  .guide { font-size: 15px; }
+  .guide h2 { margin-top: 4px; }
+  .timeline { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .timeline td { border: 1.5px solid #000; padding: 5px 8px; vertical-align: top; font-size: 15px; }
+  .timeline td:first-child { width: 28%; font-weight: bold; white-space: nowrap; }
+  .recast { border: 1.5px solid #000; padding: 6px 10px; margin: 4px 0 10px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     SHEET 1: Rotation chart (board / teacher copy, full page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="full">
+    <div class="header-row">
+      <div>
+        <div class="chart-title">Tuesday Stations</div>
+        <div class="chart-sub">Practice day. No new grammar. Move when the timer rings.</div>
+      </div>
+      <span class="tag">Reusable every Tuesday</span>
+    </div>
+
+    <table class="rotation">
+      <tr>
+        <th>Group</th>
+        <th>Block 1<span class="time">6:00&ndash;6:28</span></th>
+        <th>Block 2<span class="time">6:30&ndash;6:58</span></th>
+        <th>Block 3<span class="time">7:00&ndash;7:28</span></th>
+        <th>Block 4<span class="time">7:30&ndash;7:58</span></th>
+      </tr>
+      <tr><td class="g">A<span>first 4 to arrive</span></td><td>SPEAK</td><td>READ</td><td>WRITE</td><td>REVIEW</td></tr>
+      <tr><td class="g">B<span>next 4</span></td><td>READ</td><td>WRITE</td><td>REVIEW</td><td>SPEAK</td></tr>
+      <tr><td class="g">C<span>next 4</span></td><td>WRITE</td><td>REVIEW</td><td>SPEAK</td><td>READ</td></tr>
+      <tr><td class="g">D<span>everyone after</span></td><td>REVIEW</td><td>SPEAK</td><td>READ</td><td>WRITE</td></tr>
+      <tr class="who"><td class="g">Leading SPEAK</td><td>Matt</td><td>Marlie</td><td>Matt</td><td>Marlie</td></tr>
+      <tr class="who"><td class="g">Leading WRITE</td><td>Marlie</td><td>Matt</td><td>Marlie</td><td>Matt</td></tr>
+    </table>
+
+    <div class="chart-notes">
+      <div>
+        <h2>Arriving late?</h2>
+        <ol>
+          <li>Arrivals 1&ndash;4 &rarr; <b>SPEAK</b></li>
+          <li>Arrivals 5&ndash;8 &rarr; <b>READ</b></li>
+          <li>Arrivals 9&ndash;12 &rarr; <b>WRITE</b></li>
+          <li>Everyone after &rarr; <b>REVIEW</b></li>
+        </ol>
+        <p style="margin-top:4px;">The latest people start at the easiest station to join late.</p>
+      </div>
+      <div>
+        <h2>Timing</h2>
+        <ol>
+          <li><b>3-minute warning</b> before every move.</li>
+          <li>Moves at 6:28, 6:58, 7:28.</li>
+          <li><b>7:58&ndash;8:05</b> wrap-up: homework reminder.</li>
+          <li>Small night? Skip group D. REVIEW is empty for one block. That's fine.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEETS 2-3: Station direction cards (cut in half, one per table)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><path d="M6 12h46v28H26l-12 10V40H6z"/><path d="M34 46v10h24l12 10V56h8V28H60"/></svg>
+      <div>
+        <div class="station-num">Station 1</div>
+        <div class="station-verb">SPEAK</div>
+        <div class="station-with">with Matt or Marlie</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Use Thursday&rsquo;s grammar when you talk.</div>
+    <ol class="steps">
+      <li>Play the <b>dice game</b>. Take turns.</li>
+      <li>Read your question.</li>
+      <li>Answer with a <b>full sentence</b>.</li>
+      <li>Your group asks you <b>one more question</b>: <i>&ldquo;Why?&rdquo;</i> <i>&ldquo;And then?&rdquo;</i></li>
+    </ol>
+    <div class="early"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</div>
+  </div>
+
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><path d="M42 20C32 12 18 10 6 12v54c12-2 26 0 36 8 10-8 24-10 36-8V12c-12-2-26 0-36 8z"/><path d="M42 20v54"/></svg>
+      <div>
+        <div class="station-num">Station 2</div>
+        <div class="station-verb">READ</div>
+        <div class="station-with">with your group</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Read, understand, and talk. No rush.</div>
+    <ol class="steps">
+      <li>Read the story <b>alone</b>. Read it <b>2 times</b>.</li>
+      <li>Answer <b>Part A</b>. Check with your group.</li>
+      <li>Do <b>Part B</b>: find the grammar.</li>
+      <li>Talk about <b>Part C</b> together.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Find 3 new words. Ask your group what they mean.</div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><path d="M16 68l4-16L56 16l12 12-36 36z"/><path d="M50 22l12 12"/><path d="M16 68h52"/></svg>
+      <div>
+        <div class="station-num">Station 3</div>
+        <div class="station-verb">WRITE</div>
+        <div class="station-with">with Matt or Marlie</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Write about your life. Then make it better.</div>
+    <ol class="steps">
+      <li>Take this week&rsquo;s <b>writing paper</b>.</li>
+      <li>Write for <b>15 minutes</b>. Use the phrase bank.</li>
+      <li>Read <b>one sentence</b> to your group.</li>
+      <li>Fix <b>one sentence</b> with the teacher.</li>
+    </ol>
+    <div class="early"><b>Keep your paper.</b> You can finish it at home.</div>
+  </div>
+
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M70 42a28 28 0 1 1-8-20"/><path d="M64 8v16H48"/><path d="M30 43l9 9 17-19"/></svg>
+      <div>
+        <div class="station-num">Station 4</div>
+        <div class="station-verb">REVIEW</div>
+        <div class="station-with">on your own</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Practice this week&rsquo;s words and verb.</div>
+    <ol class="steps">
+      <li>Take the <b>Review paper</b>.</li>
+      <li>Do it alone or with a partner.</li>
+      <li>Check your answers with a partner.</li>
+      <li><b>Not finished?</b> It&rsquo;s homework. Bring it on <b>Thursday</b>.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Open <b>My ESOL App</b>. Practice this week&rsquo;s vocabulary.</div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 4: Leader guides (Matt and Marlie swap every block)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half guide">
+    <div class="header-row">
+      <h1>Leading SPEAK</h1>
+      <span class="tag">Matt &amp; Marlie swap every block</span>
+    </div>
+    <p class="section">Your job: get every learner talking. Talking matters more than perfect English.</p>
+    <table class="timeline">
+      <tr><td>First 2 min</td><td>Model one turn of the dice game. Answer, then let them ask you &ldquo;Why?&rdquo;</td></tr>
+      <tr><td>~22 min</td><td>Take turns around the table. Everyone answers. Everyone asks a follow-up.</td></tr>
+      <tr><td>Last 3 min</td><td>Each learner says their <b>best sentence</b> again.</td></tr>
+    </table>
+    <h2>Please do</h2>
+    <ul class="dots section">
+      <li><b>Wait 5 seconds.</b> Silence means thinking.</li>
+      <li>Stuck? Start the sentence for them: &ldquo;If it snows, I&nbsp;&hellip;&rdquo;</li>
+      <li><b>Repeat it back correctly.</b> Don't stop them to correct.</li>
+    </ul>
+    <div class="recast">
+      Learner: &ldquo;If it will snow, I stay home.&rdquo;<br>
+      You: &ldquo;Oh, if it <b>snows</b>, you <b>will stay</b> home? Me too!&rdquo;
+    </div>
+    <h2>Adjust the level</h2>
+    <ul class="dots">
+      <li><b>Beginner:</b> Give choices. &ldquo;Will you stay home or go to work?&rdquo;</li>
+      <li><b>Stronger:</b> They make up their own <i>if</i> question for the group.</li>
+    </ul>
+  </div>
+
+  <div class="half guide">
+    <div class="header-row">
+      <h1>Leading WRITE</h1>
+      <span class="tag">Matt &amp; Marlie swap every block</span>
+    </div>
+    <p class="section">Your job: help them finish a thought, then make one sentence better.</p>
+    <table class="timeline">
+      <tr><td>First 2 min</td><td>Show one example sentence from the paper. Point to the phrase bank.</td></tr>
+      <tr><td>15 min</td><td>Quiet writing. Walk around. Help with <b>ideas</b>, not spelling.</td></tr>
+      <tr><td>~9 min</td><td>Each learner reads one sentence aloud. The group helps fix one sentence.</td></tr>
+      <tr><td>Last 1 min</td><td>&ldquo;Keep your paper. Finish at home if you want.&rdquo;</td></tr>
+    </table>
+    <h2>When you fix</h2>
+    <ul class="dots section">
+      <li>Fix <b>one thing</b> per learner. Choose this week&rsquo;s grammar first.</li>
+      <li>Underline it. Let them try first. Then help.</li>
+      <li>Say something good before the fix.</li>
+    </ul>
+    <h2>Block 1 only (6:00&ndash;6:28)</h2>
+    <ul class="dots">
+      <li>WRITE starts almost empty. That's on purpose.</li>
+      <li>Greet late arrivals and send them to a group: <b>5&ndash;8 &rarr; READ</b>, <b>9&ndash;12 &rarr; WRITE</b>, <b>13+ &rarr; REVIEW</b>.</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

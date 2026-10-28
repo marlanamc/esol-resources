@@ -147,7 +147,7 @@ export function WeekStepLines({
         });
     }
     if (steps.grammar.length > 0) {
-        lines.push({ key: "grammar", numbered: true, title: "Grammar", status: steps.grammar.map(rowTitle).join(" · "), tag: "Start before Tues", href: stepHref(steps.grammar), done: allDone(steps.grammar) });
+        lines.push({ key: "grammar", numbered: true, title: "Grammar", status: steps.grammar.map(rowTitle).join(" · "), tag: "Start before Thurs", href: stepHref(steps.grammar), done: allDone(steps.grammar) });
     }
     if (showUnitMonths) {
         lines.push({ key: "class", numbered: true, title: "Class", status: "Send a question before class", tag: "Tues & Thurs", href: mapHref, done: false });

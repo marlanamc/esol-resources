@@ -29,7 +29,7 @@ async function main() {
         const renamed = await tx.activity.updateMany({ where: { id, NOT: { title: content.title } }, data: { title: content.title } });
         return renamed.count ? 'preserved questions (existing student work); title renamed' : 'preserved: existing student work';
       }
-      const fields = { title: content.title, description: 'A 5–10 minute review: verb forms in context, vocabulary, and this week’s grammar.', type: 'quiz', category: 'quizzes', content: JSON.stringify(content), contentKind: MAP };
+      const fields = { title: content.title, description: 'A 5–10 minute review: verb forms in context, vocabulary, and grammar.', type: 'quiz', category: 'quizzes', content: JSON.stringify(content), contentKind: MAP };
       await tx.activity.upsert({ where: { id }, update: fields, create: { id, ...fields, isReleased: false, createdBy: teacher.id, level: 'intermediate' } });
       return 'synced';
     });
