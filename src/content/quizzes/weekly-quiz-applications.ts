@@ -6,7 +6,7 @@ export const WEEKLY_VERB_APPLICATIONS: [string, string, string, string][] = [
   ['If you ___ me your phone number, I will call you. (tell)', 'tell', 'If my boss ___ yes, I will take Friday off. (say)', 'says'],
   ['You should ___ food to a sick neighbor. (take)', 'take', 'You must ___ your ID to the appointment. (bring)', 'bring'],
   ['I have ___ many new neighbors this year. (meet)', 'met', 'Have you ever ___ at a public meeting? (speak)', 'spoken'],
-  ['Last week, I ___ a letter to the city council. (write)', 'wrote', 'She ___ an email to the mayor every month. (send)', 'sends'],
+  ['My neighbor usually ___ to the newspaper about bus problems. (write)', 'writes', 'Last month, our class ___ a petition to the mayor. (send)', 'sent'],
   ['If we ___ carefully, we will find a solution. (think)', 'think', 'If she ___ the answer, she will tell us. (know)', 'knows'],
   ['The smaller package ___ less than the large one. (cost)', 'costs', 'I don’t enjoy ___ money on things I don’t need. (spend)', 'spending'],
   ['Yesterday, I ___ a new phone. (buy)', 'bought', 'This shop ___ used furniture. (sell)', 'sells'],

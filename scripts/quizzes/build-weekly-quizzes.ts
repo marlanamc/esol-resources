@@ -119,6 +119,31 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       questions.push({ id: `grammar-${i}`, section: 'grammar', prompt: plain(q.question).replace('Two words: not required.', 'Three words: not required.') + (q.type === 'word-scramble' ? ` Words: ${q.words.join(' / ')}` : ''), ...(options ? {options} : {}), answers: answers.map(plain), explanation: plain(q.explanation ?? `Answer: ${answers[0]}`), source: `${slug}/${q.id}` });
     }
   }
+  // Week 7 reviews weeks 5-6. The mini-quiz items gave the answer away in the
+  // hint, and the definition match could be solved by spotting "voters", so
+  // use context-clue vocabulary and grammar that mixes both review weeks.
+  if (n === 7) {
+    Object.assign(questions.find(q => q.id === 'vocab-0')!, {
+      prompt: 'Our class wrote a _____ to the city. 200 neighbors signed it to ask for a new crosswalk.',
+      options: ['petition', 'campaign', 'vote'], answers: ['petition'],
+      explanation: 'petition: a written request for change, often signed by many people. Signed it is the clue.',
+    });
+    Object.assign(questions.find(q => q.id === 'vocab-1')!, {
+      prompt: 'Our city councilors _____ our neighborhood. They speak for us at every meeting.',
+      options: ['register', 'elect', 'represent'], answers: ['represent'],
+      explanation: 'represent: to speak or act on behalf of others. They speak for us is the clue.',
+    });
+    Object.assign(questions.find(q => q.id === 'grammar-0')!, {
+      prompt: 'Put the words in order to make a question. Words: does / vote / where / your neighbor',
+      options: undefined, answers: ['Where does your neighbor vote?'],
+      explanation: 'Question word + does + subject + base verb: Where does your neighbor vote?', source: 'review-week-5/do-does-question',
+    });
+    Object.assign(questions.find(q => q.id === 'grammar-1')!, {
+      prompt: 'Fix the sentence: “My sister vote always in November.” Write the correct sentence.',
+      options: undefined, answers: ['My sister always votes in November.'],
+      explanation: 'With she, vote becomes votes. Always goes before the main verb: My sister always votes in November.', source: 'review-week-6/frequency-adverb-s',
+    });
+  }
   // Remove ambiguous error judgments from the source practice bank.
   if (n === 16) Object.assign(questions.find(q => q.id === 'grammar-0')!, {
     prompt: 'When the manager arrived, I had already finished my tasks. What happened first?',
