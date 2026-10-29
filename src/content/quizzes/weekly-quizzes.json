@@ -1231,78 +1231,72 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Last week, I ___ a letter to the city council. (write)",
+        "prompt": "My neighbor usually ___ to the newspaper about bus problems. (write)",
         "answers": [
-          "wrote"
+          "writes"
         ],
-        "explanation": "Last week, I wrote a letter to the city council. (write)",
+        "explanation": "My neighbor usually writes to the newspaper about bus problems. (write)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "She ___ an email to the mayor every month. (send)",
+        "prompt": "Last month, our class ___ a petition to the mayor. (send)",
         "answers": [
-          "sends"
+          "sent"
         ],
-        "explanation": "She sends an email to the mayor every month. (send)",
+        "explanation": "Last month, our class sent a petition to the mayor. (send)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "vocab-0",
         "section": "vocabulary",
-        "prompt": "Which word or phrase means “to add your name to the official list of voters”?",
+        "prompt": "Our class wrote a _____ to the city. 200 neighbors signed it to ask for a new crosswalk.",
         "options": [
-          "elect",
-          "advocate",
-          "register to vote"
+          "petition",
+          "campaign",
+          "vote"
         ],
         "answers": [
-          "register to vote"
+          "petition"
         ],
-        "explanation": "register to vote: to add your name to the official list of voters. Where can eligible residents register to vote?",
+        "explanation": "petition: a written request for change, often signed by many people. Signed it is the clue.",
         "source": "vocab-oct-w5"
       },
       {
         "id": "vocab-1",
         "section": "vocabulary",
-        "prompt": "Citizens _____ leaders to represent them in government. On election day, each voter marks a ballot for their favorite candidate.",
+        "prompt": "Our city councilors _____ our neighborhood. They speak for us at every meeting.",
         "options": [
-          "register to vote",
-          "advocate",
-          "petition",
-          "elect"
+          "register",
+          "elect",
+          "represent"
         ],
         "answers": [
-          "elect"
+          "represent"
         ],
-        "explanation": "elect: to choose a person for a position by voting. Citizens elect leaders to represent them in government.",
+        "explanation": "represent: to speak or act on behalf of others. They speak for us is the clue.",
         "source": "vocab-oct-w5"
       },
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Your answer is: Twice a day. Which question were you asked?",
-        "options": [
-          "How long is the video?",
-          "How do you open the app?",
-          "How often do you check email?"
-        ],
+        "prompt": "Put the words in order to make a question. Words: does / vote / where / your neighbor",
         "answers": [
-          "How often do you check email?"
+          "Where does your neighbor vote?"
         ],
-        "explanation": "How often asks about frequency: how many times something happens.",
-        "source": "questions-real-answers/qra-frequency"
+        "explanation": "Question word + does + subject + base verb: Where does your neighbor vote?",
+        "source": "review-week-5/do-does-question"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Rosa ___ to class on Tuesdays and Thursdays.\" (come: he/she/it form)",
+        "prompt": "Fix the sentence: “My sister vote always in November.” Write the correct sentence.",
         "answers": [
-          "comes"
+          "My sister always votes in November."
         ],
-        "explanation": "With he/she/it in present simple, add -s: come → comes.",
-        "source": "your-week-in-english/your-week-qfb1"
+        "explanation": "With she, vote becomes votes. Always goes before the main verb: My sister always votes in November.",
+        "source": "review-week-6/frequency-adverb-s"
       }
     ]
   },
