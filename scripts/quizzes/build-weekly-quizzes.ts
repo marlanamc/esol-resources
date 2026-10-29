@@ -32,7 +32,9 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   const n = plan.quizNumber;
   const week = weeks.find(w => w.items.some(i => i.activityId === plan.activityId))!;
   if (!week) throw new Error(`Missing map week for ${plan.activityId}`);
-  const title = `${weekQuizTitle(week.number, bonusNumber(plan.quizNumber, week.number))}: ${week.title}`;
+  // No topic in the name: from week 8 a quiz tests the week before, so the
+  // week's topic would name the wrong grammar.
+  const title = weekQuizTitle(week.number, bonusNumber(plan.quizNumber, week.number));
   if (n === 8) {
     // Fall Review + Class Party: an easy, low-stakes recap across the whole
     // fall semester instead of new grammar/verb-form questions — this quiz
