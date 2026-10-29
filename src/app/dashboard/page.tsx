@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { PracticeLaterSection, MomentumSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
+import { PracticeLaterSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -541,7 +541,13 @@ export default async function DashboardPage() {
                             {/* Streak / Momentum card — top of sidebar */}
                             <Suspense fallback={<p role="status">Loading points…</p>}><MomentumSection userId={userId} /></Suspense>
 
-                            <DashboardCalendarCard events={calendarEvents} />
+                            {userRole === "student" ? (
+                                <Suspense fallback={<DashboardCalendarCard events={calendarEvents} />}>
+                                    <SidebarCalendarSection userId={userId} events={calendarEvents} />
+                                </Suspense>
+                            ) : (
+                                <DashboardCalendarCard events={calendarEvents} />
+                            )}
 
                             <HelpfulLinksCard />
 

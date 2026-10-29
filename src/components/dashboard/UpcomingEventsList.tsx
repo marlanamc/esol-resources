@@ -10,6 +10,60 @@ interface Props {
     allowDelete?: boolean;
     showSyncedLabel?: boolean;
     emptyMessage?: string;
+    /** One short row per event (date tile, title, type) instead of a card each. Read-only. */
+    compact?: boolean;
+}
+
+function eventTypeLabel(eventType: NonNullable<CalendarEvent["type"]>) {
+    if (eventType === "quiz") return "Quiz/Test";
+    if (eventType === "holiday") return "Holiday";
+    if (eventType === "event") return "Event";
+    if (eventType === "reminder") return "Reminder";
+    return "Due";
+}
+
+function CompactEventRows({ events, emptyMessage }: { events: CalendarEvent[]; emptyMessage: string }) {
+    if (events.length === 0) return <p className="m-0 text-sm text-text-muted">{emptyMessage}</p>;
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+    const monthFmt = new Intl.DateTimeFormat("en-US", { month: "short" });
+    const rangeFmt = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" });
+    return (
+        <ul className="m-0 list-none p-0">
+            {events.map((ev, idx) => {
+                const startDate = new Date(ev.date);
+                const endDate = ev.endDate ? new Date(ev.endDate) : startDate;
+                const sameDay = startDate.toDateString() === endDate.toDateString();
+                const eventType = ev.type || "due";
+                const colors = getLearnerEventTone(eventType);
+                // Dates already over stay listed but fade back, so what's next stands out.
+                const isPast = endDate.getTime() < todayStart.getTime();
+                return (
+                    <li
+                        key={ev.id ?? `${ev.title}-${ev.date}-${idx}`}
+                        className={`flex items-center gap-3 py-2.5 ${idx > 0 ? "border-t" : ""} ${isPast ? "opacity-60" : ""}`}
+                        style={{ borderColor: "var(--dashboard-divider)" }}
+                    >
+                        <span
+                            className="flex w-12 shrink-0 flex-col items-center rounded-lg border py-1 leading-none"
+                            style={{ backgroundColor: colors.bg, borderColor: colors.border, color: colors.text }}
+                        >
+                            <span className="text-[0.625rem] font-bold uppercase tracking-wide">{monthFmt.format(startDate)}</span>
+                            <span className="mt-0.5 text-lg font-bold">{startDate.getDate()}</span>
+                        </span>
+                        <span className="min-w-0">
+                            <span className="block break-words font-semibold leading-snug text-text">{ev.title}</span>
+                            <span className="block text-xs text-text-muted">
+                                {eventTypeLabel(eventType)}
+                                {sameDay ? "" : ` · ${rangeFmt.format(startDate)} – ${rangeFmt.format(endDate)}`}
+                                {isPast ? " · Done" : ""}
+                            </span>
+                        </span>
+                    </li>
+                );
+            })}
+        </ul>
+    );
 }
 
 export default function UpcomingEventsList({
@@ -17,6 +71,7 @@ export default function UpcomingEventsList({
     allowDelete = true,
     showSyncedLabel = true,
     emptyMessage = "No dates yet.",
+    compact = false,
 }: Props) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
@@ -119,6 +174,8 @@ export default function UpcomingEventsList({
         }
     };
 
+    if (compact) return <CompactEventRows events={events} emptyMessage={emptyMessage} />;
+
     return (
         <div>
             {(showSyncedLabel || error) && (
@@ -144,15 +201,7 @@ export default function UpcomingEventsList({
                         const eventType = ev.type || "due";
                         const colors = getLearnerEventTone(eventType);
 
-                        const typeLabel = eventType === "quiz"
-                            ? "Quiz/Test"
-                            : eventType === "holiday"
-                                ? "Holiday"
-                                : eventType === "event"
-                                    ? "Event"
-                                    : eventType === "reminder"
-                                        ? "Reminder"
-                                        : "Due";
+                        const typeLabel = eventTypeLabel(eventType);
 
                         return (
                             <div
