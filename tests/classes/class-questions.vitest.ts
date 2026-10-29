@@ -35,6 +35,7 @@ vi.mock('@/lib/api/response', () => ({
 import { GET, POST } from '@/app/api/class-questions/route';
 import { DELETE, PATCH } from '@/app/api/class-questions/[id]/route';
 import { GET as TEACHER_GET, PATCH as TEACHER_PATCH } from '@/app/api/teacher/class-questions/route';
+import { POST as ANSWER_SEEN } from '@/app/api/class-questions/answer-seen/route';
 
 const json = (url: string, method: string, body?: unknown) => new NextRequest(`http://localhost${url}`, {
     method, body: body === undefined ? undefined : JSON.stringify(body), headers: { 'Content-Type': 'application/json' },
@@ -42,7 +43,7 @@ const json = (url: string, method: string, body?: unknown) => new NextRequest(`h
 const params = (id: string) => ({ params: Promise.resolve({ id }) });
 const student = { user: { id: 'student-1', role: 'student' } };
 const teacher = { user: { id: 'teacher-1', role: 'teacher' } };
-const row = { id: 'q1', text: 'What is "if"?', anonymous: false, answeredAt: null };
+const row = { id: 'q1', text: 'What is "if"?', anonymous: false, answeredAt: null, replyText: null, answerSeenAt: null };
 
 beforeEach(() => {
     vi.resetAllMocks();
@@ -75,7 +76,7 @@ describe('student class questions', () => {
         expect(mocks.create).toHaveBeenCalledWith(expect.objectContaining({
             data: { studentId: 'student-1', classId: 'class-1', weekNumber: 7, text: 'What is "if"?', anonymous: true },
         }));
-        expect((await res.json()).question).toEqual({ id: 'q1', text: 'What is "if"?', anonymous: false, answered: false });
+        expect((await res.json()).question).toEqual({ id: 'q1', text: 'What is "if"?', anonymous: false, answered: false, reply: null, seen: false });
     });
 
     it('needs a class and caps questions per week', async () => {
@@ -92,6 +93,27 @@ describe('student class questions', () => {
         const res = await GET(json('/api/class-questions?week=7', 'GET'));
         expect(mocks.findMany).toHaveBeenCalledWith(expect.objectContaining({ where: { studentId: 'student-1', weekNumber: 7 } }));
         expect((await res.json()).questions[0].answered).toBe(true);
+    });
+
+    it('shows the teacher reply only once the question is answered', async () => {
+        mocks.findMany.mockResolvedValue([
+            { ...row, replyText: 'Draft' },
+            { ...row, id: 'q2', answeredAt: new Date(), replyText: 'Use the Practice Log!', answerSeenAt: new Date() },
+        ]);
+        const { questions } = await (await GET(json('/api/class-questions?week=7', 'GET'))).json();
+        expect(questions.map((q: { reply: string | null; seen: boolean }) => [q.reply, q.seen])).toEqual([[null, false], ['Use the Practice Log!', true]]);
+    });
+
+    it('marks only the student\'s own answered questions seen', async () => {
+        mocks.updateMany.mockResolvedValue({ count: 1 });
+        expect((await ANSWER_SEEN(json('/api/class-questions/answer-seen', 'POST', {}))).status).toBe(400);
+        expect((await ANSWER_SEEN(json('/api/class-questions/answer-seen', 'POST', { questionId: 'q1' }))).status).toBe(200);
+        expect(mocks.updateMany).toHaveBeenCalledWith({
+            where: { id: 'q1', studentId: 'student-1', answeredAt: { not: null }, answerSeenAt: null },
+            data: { answerSeenAt: expect.any(Date) },
+        });
+        mocks.session.mockResolvedValue(teacher);
+        expect((await ANSWER_SEEN(json('/api/class-questions/answer-seen', 'POST', { questionId: 'q1' }))).status).toBe(403);
     });
 
     it('edits and deletes only unanswered questions the student owns', async () => {
@@ -139,6 +161,34 @@ describe('teacher class questions', () => {
         mocks.updateMany.mockResolvedValue({ count: 1 });
         const res = await TEACHER_PATCH(json('/api/teacher/class-questions', 'PATCH', { classId: 'class-1', ids: ['q1'], answered: true }));
         expect(res.status).toBe(200);
-        expect(mocks.updateMany).toHaveBeenCalledWith({ where: { id: { in: ['q1'] }, classId: 'class-1' }, data: { answeredAt: expect.any(Date) } });
+        expect(mocks.updateMany).toHaveBeenCalledWith({
+            where: { id: { in: ['q1'] }, classId: 'class-1' },
+            data: { answeredAt: expect.any(Date), answerSeenAt: null },
+        });
+    });
+
+    it('saves a trimmed reply with the answer and tells the student again', async () => {
+        mocks.updateMany.mockResolvedValue({ count: 1 });
+        const res = await TEACHER_PATCH(json('/api/teacher/class-questions', 'PATCH', { classId: 'class-1', ids: ['q1'], answered: true, reply: '  Try the Practice Log.  ' }));
+        expect(res.status).toBe(200);
+        expect(mocks.updateMany).toHaveBeenCalledWith({
+            where: { id: { in: ['q1'] }, classId: 'class-1' },
+            data: { answeredAt: expect.any(Date), answerSeenAt: null, replyText: 'Try the Practice Log.' },
+        });
+    });
+
+    it.each([
+        { ids: ['q1', 'q2'], answered: true, reply: 'Hi' },
+        { ids: ['q1'], answered: false, reply: 'Hi' },
+        { ids: ['q1'], answered: true, reply: 'x'.repeat(501) },
+    ])('rejects a bad reply: %j', async (body) => {
+        expect((await TEACHER_PATCH(json('/api/teacher/class-questions', 'PATCH', { classId: 'class-1', ...body }))).status).toBe(400);
+        expect(mocks.updateMany).not.toHaveBeenCalled();
+    });
+
+    it('un-answering clears the reply', async () => {
+        mocks.updateMany.mockResolvedValue({ count: 1 });
+        await TEACHER_PATCH(json('/api/teacher/class-questions', 'PATCH', { classId: 'class-1', ids: ['q1'], answered: false }));
+        expect(mocks.updateMany).toHaveBeenCalledWith(expect.objectContaining({ data: { answeredAt: null, answerSeenAt: null, replyText: null } }));
     });
 });

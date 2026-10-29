@@ -9,8 +9,11 @@ import { loadStudentPracticeDays, loadStudentStudyWeek } from "@/lib/learner/stu
 import { DashboardCalendarCard } from "./CalendarMonthPanel";
 import type { CalendarEvent } from "./MiniCalendar";
 import { StudyWeekCard } from "@/components/study-log/StudyWeekCard";
+import { loadUnseenClassAnswers } from "@/lib/learner/class-questions-data";
+import { ClassAnswerNotice } from "./ClassAnswerNotice";
 
 const weeklyQuizStatus = cache((userId: string) => getStudentWeeklyQuizStatus(userId));
+const unseenClassAnswers = cache((userId: string) => loadUnseenClassAnswers(userId));
 const studentStudyWeek = cache((userId: string) => loadStudentStudyWeek(userId));
 const practiceLater = cache((id: string, role?: string | null) => WordRescuePracticeLater({ user: { id, role } }));
 export async function PracticeLaterSection({ user }: { user: { id: string; role?: string | null } }) {
@@ -44,6 +47,15 @@ export async function StudyWeekSection({ userId }: { userId: string }) {
         return null;
     });
     return studyWeek ? <StudyWeekCard {...studyWeek} /> : null;
+}
+
+// Rendered in both the phone and desktop layouts; cache() keeps it to one load.
+export async function ClassAnswerSection({ userId }: { userId: string }) {
+    const answers = await unseenClassAnswers(userId).catch(error => {
+        console.error("[Dashboard] Question answers unavailable", error);
+        return null;
+    });
+    return answers ? <ClassAnswerNotice {...answers} /> : null;
 }
 
 /** The Home sidebar calendar with the learner's practice days ticked; without the log it still shows the dates. */

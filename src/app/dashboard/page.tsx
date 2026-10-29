@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { PracticeLaterSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
+import { ClassAnswerSection, PracticeLaterSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -469,6 +469,7 @@ export default async function DashboardPage() {
     const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
     const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
     const studyWeek = userRole === "student" ? <Suspense fallback={null}><StudyWeekSection userId={userId} /></Suspense> : null;
+    const classAnswers = userRole === "student" ? <Suspense fallback={null}><ClassAnswerSection userId={userId} /></Suspense> : null;
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -487,6 +488,7 @@ export default async function DashboardPage() {
                     <div className="min-w-0 space-y-5">
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                         {weeklyQuiz}
+                        {classAnswers}
                         <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                             user={{ id: userId, role: userRole }}
                             fallback={nextStepFallback}
@@ -520,6 +522,7 @@ export default async function DashboardPage() {
                             </div>
 
                             {weeklyQuiz}
+                            {classAnswers}
                             <Suspense fallback={<p role="status">Loading your week…</p>}><ThisWeekPanel
                                 user={{ id: userId, role: userRole }}
                                 fallback={nextStepFallback}

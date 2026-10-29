@@ -7,6 +7,7 @@ import {
     MAX_QUESTIONS_PER_WEEK,
     parseQuestionText,
     parseWeekNumber,
+    QUESTION_SELECT,
     toStudentQuestion,
 } from "@/lib/learner/class-questions";
 
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest) {
         const rows = await prisma.classQuestion.findMany({
             where: { studentId: session.user.id, weekNumber },
             orderBy: { createdAt: "asc" },
-            select: { id: true, text: true, anonymous: true, answeredAt: true },
+            select: QUESTION_SELECT,
         });
         return NextResponse.json({ questions: rows.map(toStudentQuestion) });
     } catch (error) {
@@ -64,7 +65,7 @@ export async function POST(request: NextRequest) {
 
         const row = await prisma.classQuestion.create({
             data: { studentId, classId, weekNumber, text: parsed.text, anonymous: body?.anonymous === true },
-            select: { id: true, text: true, anonymous: true, answeredAt: true },
+            select: QUESTION_SELECT,
         });
         return NextResponse.json({ question: toStudentQuestion(row) }, { status: 201 });
     } catch (error) {

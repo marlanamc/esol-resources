@@ -1,8 +1,9 @@
 "use client";
 
 import { createContext, useContext, useEffect, useId, useState, type FormEvent, type ReactNode } from "react";
-import { Check, Pencil, Trash2 } from "lucide-react";
+import { Check, MessageCircle, Pencil, Trash2 } from "lucide-react";
 import { MAX_QUESTION_LENGTH, type StudentClassQuestion } from "@/lib/learner/class-questions";
+import { refreshQuestionAnswerViews } from "@/app/dashboard/map/actions";
 
 /** True when the viewer is a classroom learner whose questions reach a teacher. */
 const ClassQuestionsContext = createContext(false);
@@ -102,6 +103,18 @@ export function ClassQuestionBox({
         if (editingId === id) resetForm();
     }
 
+    async function markSeen(id: string) {
+        const res = await fetch("/api/class-questions/answer-seen", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ questionId: id }),
+        }).catch(() => null);
+        if (!res?.ok) return;
+        setQuestions((list) => list.map((q) => (q.id === id ? { ...q, seen: true } : q)));
+        // Clears the "Your teacher answered" line on home; a failed refresh only waits for a reload.
+        refreshQuestionAnswerViews().catch(() => {});
+    }
+
     function startEdit(question: StudentClassQuestion) {
         setEditingId(question.id);
         setText(question.text);
@@ -162,9 +175,10 @@ export function ClassQuestionBox({
                                     style={{ color: question.answered ? "var(--road-done-text)" : "var(--text-muted)" }}
                                 >
                                     {question.answered ? <Check size={12} strokeWidth={3} aria-hidden /> : null}
-                                    {question.answered ? "Answered" : "Sent"}
+                                    {question.answered ? (question.reply ? "Answered" : "Answered in class") : "Sent"}
                                     {question.anonymous ? " · name hidden" : ""}
                                 </span>
+                                {question.answered ? <ClassQuestionAnswer question={question} onSeen={() => markSeen(question.id)} /> : null}
                             </span>
                             {question.answered ? null : (
                                 <span className="flex shrink-0 gap-1">
@@ -191,5 +205,48 @@ export function ClassQuestionBox({
                 </ul>
             ) : null}
         </div>
+    );
+}
+
+/** The teacher's answer under a question: their written reply, if any. New answers have a "Thanks!" button that marks them seen. */
+function ClassQuestionAnswer({ question, onSeen }: { question: StudentClassQuestion; onSeen: () => Promise<void> }) {
+    const [busy, setBusy] = useState(false);
+    if (question.seen && !question.reply) return null;
+
+    async function thank() {
+        if (busy) return;
+        setBusy(true);
+        try {
+            await onSeen();
+        } finally {
+            setBusy(false);
+        }
+    }
+
+    return (
+        <span
+            className={`mt-1.5 block rounded-xl border-l-4 px-3 py-2 ${
+                question.seen ? "border-border bg-bg" : "border-emerald-700 bg-emerald-50 dark:border-emerald-500 dark:bg-emerald-950/40"
+            }`}
+        >
+            <span className="flex items-start gap-2 text-[0.875rem] leading-snug text-text">
+                <MessageCircle size={16} aria-hidden className="mt-0.5 shrink-0 text-emerald-800 dark:text-emerald-300" />
+                <span className="min-w-0 break-words">
+                    <span className="font-bold text-emerald-900 dark:text-emerald-200">Teacher: </span>
+                    {question.reply ?? "I answered your question in class."}
+                </span>
+            </span>
+            {question.seen ? null : (
+                <button
+                    type="button"
+                    onClick={thank}
+                    disabled={busy}
+                    className="mt-2 flex min-h-11 items-center gap-1.5 rounded-lg bg-emerald-700! px-3 text-sm font-bold text-[#fffdfa] disabled:opacity-60 dark:bg-emerald-600!"
+                >
+                    <Check size={16} strokeWidth={2.6} aria-hidden />
+                    Thanks!
+                </button>
+            )}
+        </span>
     );
 }
