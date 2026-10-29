@@ -3,12 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { TeacherClassQuestion } from "@/lib/learner/class-questions";
+import { useAdjustTabCount } from "@/components/teach/TeachHomeTabs";
 
 /** Questions learners sent from the course map, one week at a time. */
 export function ClassQuestionsPanel({ classId, initialWeek }: { classId: string; initialWeek: number }) {
     const [week, setWeek] = useState(initialWeek);
     const [questions, setQuestions] = useState<TeacherClassQuestion[] | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const adjustTabCount = useAdjustTabCount();
 
     useEffect(() => {
         let cancelled = false;
@@ -39,9 +41,11 @@ export function ClassQuestionsPanel({ classId, initialWeek }: { classId: string;
                 setError("Could not save. Try again.");
                 return;
             }
+            const flipped = questions?.filter((q) => ids.includes(q.id) && q.answered !== answered).length ?? 0;
+            adjustTabCount(answered ? -flipped : flipped);
             setQuestions((list) => list?.map((q) => (ids.includes(q.id) ? { ...q, answered } : q)) ?? list);
         },
-        [classId]
+        [classId, questions, adjustTabCount]
     );
 
     const open = questions?.filter((q) => !q.answered) ?? [];

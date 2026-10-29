@@ -28,7 +28,7 @@ describe("workspace participation", () => {
         expect(parseParticipationFilter("unknown")).toBe("all");
     });
     it("preserves roster and activity anchors for workspace returns", () => {
-        for (const path of ["/teach?classId=one#roster", "/teach?classId=one#recent-activity", "/teach/classes/one#roster"])
+        for (const path of ["/teach?classId=one#roster", "/teach?classId=one#recent-activity", "/teach?classId=one&view=activity", "/teach/classes/one#roster"])
             expect(safeProgressReturn(path)).toBe(path);
         expect(safeProgressReturn("/teach/classes/one/edit")).toBe("/teach/reports");
     });
