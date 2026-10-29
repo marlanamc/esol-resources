@@ -691,14 +691,21 @@ model ClassQuestion {
 
 /// Practice a learner did outside class (listen, watch, read, write, speak, other), with one sentence about it.
 model StudyLog {
-  id        String   @id @default(cuid())
-  userId    String
-  kind      String
-  text      String
+  id          String    @id @default(cuid())
+  userId      String
+  kind        String
+  text        String
   /// Learner-local day (YYYY-MM-DD, America/New_York): the first log of a day earns points.
-  dayKey    String
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dayKey      String
+  createdAt   DateTime  @default(now())
+  /// Teacher reply: "recast" (the sentence rewritten correctly, in replyText) or "praise" (no text).
+  replyKind   String?
+  replyText   String?
+  repliedById String?
+  repliedAt   DateTime?
+  /// When the learner tapped "I read it"; cleared when the teacher changes the reply.
+  replySeenAt DateTime?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, dayKey])
   @@index([dayKey])

@@ -40,12 +40,25 @@ export const STUDY_LOG_KINDS = [
 
 export type StudyLogKind = (typeof STUDY_LOG_KINDS)[number]["id"];
 
+/** "recast": the teacher rewrote the sentence correctly. "praise": a thumbs-up, no text. */
+export type StudyLogReplyKind = "recast" | "praise";
+
+export interface StudyLogReply {
+    kind: StudyLogReplyKind;
+    /** The corrected sentence for a recast; null for praise. */
+    text: string | null;
+    repliedAt: string;
+    /** The learner tapped "I read it". */
+    seen: boolean;
+}
+
 export interface StudyLogEntry {
     id: string;
     kind: StudyLogKind;
     text: string;
     dayKey: string;
     createdAt: string;
+    reply: StudyLogReply | null;
 }
 
 export interface StudyWeekDay {
@@ -66,7 +79,30 @@ export interface StudyWeek {
     daysPracticed: number;
 }
 
-type StudyLogRow = { id: string; kind: string; text: string; dayKey: string; createdAt: Date };
+type StudyLogRow = {
+    id: string;
+    kind: string;
+    text: string;
+    dayKey: string;
+    createdAt: Date;
+    replyKind?: string | null;
+    replyText?: string | null;
+    repliedAt?: Date | null;
+    replySeenAt?: Date | null;
+};
+
+/** Prisma select for everything toStudyLogEntry reads. */
+export const STUDY_LOG_ENTRY_SELECT = {
+    id: true,
+    kind: true,
+    text: true,
+    dayKey: true,
+    createdAt: true,
+    replyKind: true,
+    replyText: true,
+    repliedAt: true,
+    replySeenAt: true,
+} as const;
 
 export function isStudyLogKind(value: unknown): value is StudyLogKind {
     return STUDY_LOG_KINDS.some((kind) => kind.id === value);
@@ -91,10 +127,91 @@ export function parseStudyLogText(value: unknown): { text: string } | { error: s
     return { text };
 }
 
+export function isStudyLogReplyKind(value: unknown): value is StudyLogReplyKind {
+    return value === "recast" || value === "praise";
+}
+
+function toStudyLogReply(row: StudyLogRow): StudyLogReply | null {
+    if (!isStudyLogReplyKind(row.replyKind) || !row.repliedAt) return null;
+    if (row.replyKind === "recast" && !row.replyText) return null;
+    return {
+        kind: row.replyKind,
+        text: row.replyKind === "recast" ? row.replyText! : null,
+        repliedAt: row.repliedAt.toISOString(),
+        seen: row.replySeenAt != null,
+    };
+}
+
 export function toStudyLogEntry(row: StudyLogRow): StudyLogEntry | null {
     const kind = normalizeStudyLogKind(row.kind);
     if (!kind) return null;
-    return { id: row.id, kind, text: row.text, dayKey: row.dayKey, createdAt: row.createdAt.toISOString() };
+    return {
+        id: row.id,
+        kind,
+        text: row.text,
+        dayKey: row.dayKey,
+        createdAt: row.createdAt.toISOString(),
+        reply: toStudyLogReply(row),
+    };
+}
+
+/** Teacher replies the learner hasn't read yet, across the given logs. */
+export function countUnreadReplies(entries: StudyLogEntry[]): number {
+    return entries.filter((entry) => entry.reply && !entry.reply.seen).length;
+}
+
+/** A teacher's corrected sentence, or an error. It must differ from what the learner wrote; otherwise send praise. */
+export function parseStudyLogRecast(value: unknown, original: string): { text: string } | { error: string } {
+    if (typeof value !== "string" || !value.trim()) return { error: "Write the corrected sentence." };
+    const text = value.trim().replace(/\s+/g, " ");
+    if (text.length > MAX_STUDY_LOG_LENGTH) return { error: `Keep it under ${MAX_STUDY_LOG_LENGTH} characters.` };
+    if (text === original.trim().replace(/\s+/g, " ")) return { error: "Nothing changed. Send a thumbs-up instead." };
+    return { text };
+}
+
+/** Words with their trailing punctuation split off, so an added period doesn't mark the whole word as fixed. */
+function tokenizeRecast(sentence: string): Array<{ text: string; space: boolean }> {
+    const tokens: Array<{ text: string; space: boolean }> = [];
+    for (const word of sentence.trim().split(/\s+/).filter(Boolean)) {
+        const [, base, punct] = word.match(/^(.*?)([.,!?;:]*)$/)!;
+        if (base) tokens.push({ text: base, space: tokens.length > 0 });
+        if (punct) tokens.push({ text: punct, space: tokens.length > 0 && !base });
+    }
+    return tokens;
+}
+
+/**
+ * The corrected sentence as tokens (words and trailing punctuation), each marked `changed` when it
+ * isn't part of the longest run of tokens it shares, in order, with the learner's sentence. Learners
+ * see their own sentence right above, so only the new or fixed parts need to stand out. `space`
+ * says whether a space goes before the token.
+ */
+export function diffRecastWords(original: string, corrected: string): Array<{ word: string; changed: boolean; space: boolean }> {
+    const a = tokenizeRecast(original).map((token) => token.text);
+    const b = tokenizeRecast(corrected);
+    // lcs[i][j]: shared tokens between a[i..] and b[j..].
+    const lcs = Array.from({ length: a.length + 1 }, () => new Array<number>(b.length + 1).fill(0));
+    for (let i = a.length - 1; i >= 0; i--) {
+        for (let j = b.length - 1; j >= 0; j--) {
+            lcs[i][j] = a[i] === b[j].text ? lcs[i + 1][j + 1] + 1 : Math.max(lcs[i + 1][j], lcs[i][j + 1]);
+        }
+    }
+    const out: Array<{ word: string; changed: boolean; space: boolean }> = [];
+    let i = 0;
+    let j = 0;
+    while (j < b.length) {
+        if (i < a.length && a[i] === b[j].text) {
+            out.push({ word: b[j].text, changed: false, space: b[j].space });
+            i++;
+            j++;
+        } else if (i < a.length && lcs[i + 1][j] >= lcs[i][j + 1]) {
+            i++;
+        } else {
+            out.push({ word: b[j].text, changed: true, space: b[j].space });
+            j++;
+        }
+    }
+    return out;
 }
 
 /** Learner-local day keys for Mon–Sun of the week containing `referenceDate`. */

@@ -6,7 +6,7 @@ import { requireTeacher } from "@/lib/auth/api-auth";
 import { canManageClass } from "@/lib/auth/policies";
 import { apiError, handleApiError } from "@/lib/api/response";
 import { addDaysToDayKey, getCalendarWeekStartDayKey } from "@/lib/gamification/calendar-week";
-import { buildTeacherStudyRows, parseWeekStartDayKey } from "@/lib/learner/study-log";
+import { buildTeacherStudyRows, parseWeekStartDayKey, STUDY_LOG_ENTRY_SELECT } from "@/lib/learner/study-log";
 
 /** One class's practice logs for a Mon–Sun week. Query: classId, week (Monday YYYY-MM-DD, default this week). */
 export async function GET(request: NextRequest) {
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
         const logs = students.length
             ? await prisma.studyLog.findMany({
                   where: { userId: { in: students.map((s) => s.id) }, dayKey: { gte: weekStart, lte: weekEnd } },
-                  select: { id: true, userId: true, kind: true, text: true, dayKey: true, createdAt: true },
+                  select: { ...STUDY_LOG_ENTRY_SELECT, userId: true },
               })
             : [];
 

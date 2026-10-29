@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { MessageCircle, Plus } from "lucide-react";
+import { countUnreadReplies } from "@/lib/learner/study-log";
 import type { StudentStudyWeek } from "@/lib/learner/study-log-data";
 import { StudyWeekDots } from "./StudyWeekDots";
 
 export const STUDY_LOG_HREF = "/dashboard/practice";
 
-/** Home card: title, days toward the learner's days-a-week goal and Log button, Mon–Sun dots, then one goal line. */
-export function StudyWeekCard({ week, goalDays }: StudentStudyWeek) {
+/** Home card: title, days toward the learner's days-a-week goal and Log button, Mon–Sun dots, one goal line, then any unread teacher replies. */
+export function StudyWeekCard({ week, goalDays, entries, earlierReplies }: StudentStudyWeek) {
+    const unread = countUnreadReplies(entries) + countUnreadReplies(earlierReplies);
     const days = week.daysPracticed;
     const done = days >= goalDays;
     const left = goalDays - days;
@@ -43,6 +45,16 @@ export function StudyWeekCard({ week, goalDays }: StudentStudyWeek) {
                     ? "You did it! Extra days still count."
                     : `${left} more ${left === 1 ? "day" : "days"} to reach your goal.`}
             </p>
+
+            {unread > 0 ? (
+                <Link
+                    href={STUDY_LOG_HREF}
+                    className="flex min-h-11 items-center gap-2 rounded-xl bg-emerald-700 px-3 text-base font-bold text-[#fffdfa] no-underline dark:bg-emerald-600"
+                >
+                    <MessageCircle size={18} aria-hidden />
+                    {unread === 1 ? "Your teacher replied" : `Your teacher replied ${unread} times`}
+                </Link>
+            ) : null}
         </section>
     );
 }
