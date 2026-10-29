@@ -5,7 +5,7 @@ import { prisma } from "@/lib/database/prisma";
 import { requireTeacher, type SessionUser } from "@/lib/auth/api-auth";
 import { canManageClass } from "@/lib/auth/policies";
 import { apiError, handleApiError } from "@/lib/api/response";
-import { parseWeekNumber, toTeacherQuestion } from "@/lib/learner/class-questions";
+import { parseReplyText, parseWeekNumber, QUESTION_SELECT, toTeacherQuestion } from "@/lib/learner/class-questions";
 
 async function loadManagedClass(classId: string, user: SessionUser, admin: boolean) {
     const cls = await prisma.class.findUnique({ where: { id: classId }, select: { id: true, teacherId: true } });
@@ -29,10 +29,7 @@ export async function GET(request: NextRequest) {
             where: { classId, weekNumber },
             orderBy: { createdAt: "asc" },
             select: {
-                id: true,
-                text: true,
-                anonymous: true,
-                answeredAt: true,
+                ...QUESTION_SELECT,
                 createdAt: true,
                 student: { select: { name: true, username: true } },
             },
@@ -43,7 +40,10 @@ export async function GET(request: NextRequest) {
     }
 }
 
-/** Marks questions answered (or not). Body: { classId, ids: string[], answered: boolean }. */
+/**
+ * Marks questions answered (or not). Body: { classId, ids: string[], answered: boolean, reply?: string }.
+ * A reply needs exactly one question and answered: true; un-answering also clears the reply.
+ */
 export async function PATCH(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
@@ -56,12 +56,19 @@ export async function PATCH(request: NextRequest) {
         if (!classId || ids.length === 0 || typeof body?.answered !== "boolean") {
             return apiError("Class, questions and answered are required", 400);
         }
+        const hasReply = body.reply !== undefined;
+        if (hasReply && (ids.length !== 1 || !body.answered)) return apiError("Reply to one answered question at a time", 400);
+        const parsedReply = parseReplyText(body.reply);
+        if ("error" in parsedReply) return apiError(parsedReply.error, 400);
         if (!(await loadManagedClass(classId, teacherCheck.user, teacherCheck.admin))) return apiError("Class not found", 404);
 
         // Scoped to the class so a teacher can only mark their own class's questions.
         const result = await prisma.classQuestion.updateMany({
             where: { id: { in: ids }, classId },
-            data: { answeredAt: body.answered ? new Date() : null },
+            // Any new answer or reply resets answerSeenAt so the learner is told again.
+            data: body.answered
+                ? { answeredAt: new Date(), answerSeenAt: null, ...(hasReply ? { replyText: parsedReply.text } : {}) }
+                : { answeredAt: null, answerSeenAt: null, replyText: null },
         });
         return NextResponse.json({ updated: result.count });
     } catch (error) {

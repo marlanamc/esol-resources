@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { apiError, handleApiError } from "@/lib/api/response";
-import { parseQuestionText, toStudentQuestion } from "@/lib/learner/class-questions";
+import { parseQuestionText, QUESTION_SELECT, toStudentQuestion } from "@/lib/learner/class-questions";
 
 interface RouteParams {
     params: Promise<{ id: string }>;
@@ -34,7 +34,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         const row = await prisma.classQuestion.update({
             where: { id },
             data: { text: parsed.text, ...(typeof body?.anonymous === "boolean" ? { anonymous: body.anonymous } : {}) },
-            select: { id: true, text: true, anonymous: true, answeredAt: true },
+            select: QUESTION_SELECT,
         });
         return NextResponse.json({ question: toStudentQuestion(row) });
     } catch (error) {

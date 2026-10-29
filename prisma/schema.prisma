@@ -673,17 +673,21 @@ model AnnouncementDismissal {
 /// A learner's question for class, sent from the course map before class.
 /// Only the class's teachers read these; `anonymous` hides the name from them too.
 model ClassQuestion {
-  id         String    @id @default(cuid())
-  studentId  String
-  classId    String
-  weekNumber Int
-  text       String
-  anonymous  Boolean   @default(false)
-  answeredAt DateTime?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  student    User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  class      Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
+  id           String    @id @default(cuid())
+  studentId    String
+  classId      String
+  weekNumber   Int
+  text         String
+  anonymous    Boolean   @default(false)
+  answeredAt   DateTime?
+  /// Optional short written answer from the teacher; only shown once the question is answered.
+  replyText    String?
+  /// When the learner tapped "Thanks!" on the answer; cleared whenever the teacher answers or changes the reply.
+  answerSeenAt DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  student      User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class        Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
 
   @@index([classId, weekNumber])
   @@index([studentId, weekNumber])
