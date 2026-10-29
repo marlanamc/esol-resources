@@ -1494,7 +1494,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 11,
-    "title": "Week 11 Quiz: How Long + For and Since",
+    "title": "Week 11 Quiz: Spending + Budgeting",
     "focusVerbs": [
       "cost",
       "spend"
@@ -1684,7 +1684,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 12,
-    "title": "Week 12 Quiz: More, Less, the Most: Comparatives + Superlatives",
+    "title": "Week 12 Quiz: How Long + For and Since",
     "focusVerbs": [
       "buy",
       "sell"
@@ -1790,21 +1790,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "Yesterday, I ___ the cheaper phone. (buy)",
+        "prompt": "Yesterday, I ___ a new phone. (buy)",
         "answers": [
           "bought"
         ],
-        "explanation": "Yesterday, I bought the cheaper phone. (buy)",
+        "explanation": "Yesterday, I bought a new phone. (buy)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "This shop ___ the most affordable furniture. (sell)",
+        "prompt": "This shop ___ used furniture. (sell)",
         "answers": [
           "sells"
         ],
-        "explanation": "This shop sells the most affordable furniture. (sell)",
+        "explanation": "This shop sells used furniture. (sell)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -1841,27 +1841,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa compares three ways to get to work. Which sentence is correct?",
+        "prompt": "Which sentence has an error?",
         "options": [
-          "The Blue Line is the most fastest.",
-          "The Blue Line is fastest.",
-          "The Blue Line is the fastest."
+          "If your name is on the list, you get a ballot.",
+          "If Carlos will work Saturday, he will pay the bill.",
+          "If I don't see you by 5, I will call you."
         ],
         "answers": [
-          "The Blue Line is the fastest."
+          "If Carlos will work Saturday, he will pay the bill."
         ],
-        "explanation": "Superlatives need 'the' before them. Never add 'most' to an -est form.",
-        "source": "more-less-the-most/mlm-q2"
+        "explanation": "'Will' cannot appear in the if-part of a conditional. It should be: 'If Carlos works Saturday...'",
+        "source": "zero-first-conditional/zero-first-conditional-q4"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fill in the blank: \"Plan B is ___ expensive than Plan C.\" (Long adjective comparative: don't add -er.)",
-        "answers": [
-          "more"
+        "prompt": "Claudette is setting up her new phone at the library. Which sentence is correct?",
+        "options": [
+          "She can video-calls her daughter for free.",
+          "She can video-call her daughter for free.",
+          "She can to video-call her daughter for free."
         ],
-        "explanation": "Long adjectives use 'more' for comparatives. Never add -er to a long adjective like 'expensive'.",
-        "source": "more-less-the-most/mlm-qfb1"
+        "answers": [
+          "She can video-call her daughter for free."
+        ],
+        "explanation": "Modal verbs (can, should, must) are always followed by the base verb with no changes.",
+        "source": "can-should-must/can-should-must-q1"
       }
     ]
   },
@@ -1869,7 +1874,7 @@
     "type": "weekly-quiz",
     "version": 1,
     "weekNumber": 13,
-    "title": "Week 13 Quiz: How Much / How Many: Countable + Uncountable",
+    "title": "Week 13 Quiz: More, Less, the Most: Comparatives + Superlatives",
     "focusVerbs": [
       "eat",
       "drink"
@@ -1975,21 +1980,21 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "She ___ rice with dinner every day. (eat)",
+        "prompt": "We have ___ at that restaurant since 2020. (eat)",
         "answers": [
-          "eats"
+          "eaten"
         ],
-        "explanation": "She eats rice with dinner every day. (eat)",
+        "explanation": "We have eaten at that restaurant since 2020. (eat)",
         "source": "weekly-quiz-applications"
       },
       {
         "id": "apply-1",
         "section": "apply",
-        "prompt": "Yesterday, I ___ some water after lunch. (drink)",
+        "prompt": "I have ___ three cups of coffee since breakfast. (drink)",
         "answers": [
-          "drank"
+          "drunk"
         ],
-        "explanation": "Yesterday, I drank some water after lunch. (drink)",
+        "explanation": "I have drunk three cups of coffee since breakfast. (drink)",
         "source": "weekly-quiz-applications"
       },
       {
@@ -2026,27 +2031,27 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Claudette calls Fabienne from the grocery store. Put her question in order. Words: How / much / milk / do / we / need",
+        "prompt": "Your neighbor asks how long you have lived in East Boston. Put the words in order. Words: How / long / have / you / lived / here",
         "answers": [
-          "How much milk do we need"
+          "How long have you lived here"
         ],
-        "explanation": "Milk is uncountable, so use 'how much.'",
-        "source": "how-much-how-many/how-much-how-many-qws1"
+        "explanation": "For ongoing duration questions, use 'How long have/has + subject + past participle?'",
+        "source": "how-long-for-since/hlfs-qws1"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Which sentence has an error?",
+        "prompt": "Luis von Ahn sold reCAPTCHA to Google in 2009. He does not own reCAPTCHA now. Which sentence is correct?",
         "options": [
-          "There is too much oil in the pan.",
-          "I have a lot of eggs at home.",
-          "She bought a few rice for dinner."
+          "He has sold reCAPTCHA since 2009.",
+          "He has sold reCAPTCHA for 2009.",
+          "He sold reCAPTCHA to Google in 2009."
         ],
         "answers": [
-          "She bought a few rice for dinner."
+          "He sold reCAPTCHA to Google in 2009."
         ],
-        "explanation": "Rice is uncountable. You cannot say 'a few rice.' Use 'a little rice' instead.",
-        "source": "how-much-how-many/how-much-how-many-q8"
+        "explanation": "A finished action with a specific past time (2009) needs past simple, not present perfect.",
+        "source": "how-long-for-since/hlfs-q7"
       }
     ]
   },

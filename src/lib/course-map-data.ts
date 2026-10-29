@@ -1016,7 +1016,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-13",
         "number": 11,
-        "title": "How Long + For and Since",
+        "title": "Spending + Budgeting",
         "items": [
           {
             "id": "vocab-dec-w1-flashcards",
@@ -1029,19 +1029,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Spending and Budgeting: Flash Cards"
           },
           {
-            "id": "how-long-for-since-guide",
-            "href": "/grammar-reader/how-long-for-since",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "How Long + For and Since"
-          },
-          {
             "id": "numbers-through-trillions",
             "activityId": "numbers-through-trillions-guided",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Numbers Through Trillions"
@@ -1053,13 +1044,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 2,
             "title": "Spending and Budgeting: Matching"
           },
           {
             "id": "compare-prices-practice",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Compare Prices Practice"
@@ -1071,26 +1062,26 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Spending and Budgeting: Fill in the Blank"
           },
           {
             "id": "verb-quiz-9",
             "activityId": "verb-quiz-9",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 11 Quiz"
           }
         ],
-        "goal": "I can say how long something has continued using for and since.",
-        "reviewPractice": "Recall W9 have/has + V3 and W4 verb forms."
+        "goal": "I can talk about spending, saving, and big numbers.",
+        "reviewPractice": "Recall W10 good at + V-ing and W9 have/has + V3."
       },
       {
         "id": "week-14",
         "number": 12,
-        "title": "More, Less, the Most: Comparatives + Superlatives",
+        "title": "How Long + For and Since",
         "items": [
           {
             "id": "vocab-dec-w2-flashcards",
@@ -1103,13 +1094,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Returns and Financial Problems: Flash Cards"
           },
           {
-            "id": "more-less-the-most",
-            "href": "/grammar-reader/more-less-the-most",
+            "id": "how-long-for-since-guide",
+            "href": "/grammar-reader/how-long-for-since",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "More, Less, the Most: Comparatives + Superlatives"
+            "title": "How Long + For and Since"
           },
           {
             "id": "bv-shorti-longe-review",
@@ -1150,14 +1141,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 12 Quiz"
           }
         ],
-        "goal": "I can compare two prices and identify the best option.",
-        "reviewPractice": "Recall W11 money vocabulary and W6 routines."
+        "goal": "I can say how long something has continued using for and since.",
+        "reviewPractice": "Recall W9 have/has + V3 and W4 verb forms."
       },
       {
         "id": "week-15",
         "number": 13,
-        "title": "How Much / How Many: Countable + Uncountable",
-        "goal": "I can ask about quantities using how much and how many.",
+        "title": "More, Less, the Most: Comparatives + Superlatives",
+        "goal": "I can compare two prices and identify the best option.",
         "items": [
           {
             "id": "week-13-core-flashcards",
@@ -1168,6 +1159,63 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grocery Shopping: Quantity, Value, and Waste: Flash Cards"
+          },
+          {
+            "id": "more-less-the-most",
+            "href": "/grammar-reader/more-less-the-most",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "More, Less, the Most: Comparatives + Superlatives"
+          },
+          {
+            "id": "week-13-core-matching",
+            "activityId": "vocab-dec-groceries",
+            "vocabUi": "matching",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Grocery Shopping: Quantity, Value, and Waste: Matching"
+          },
+          {
+            "id": "week-13-core-fill-blank",
+            "activityId": "vocab-dec-groceries",
+            "vocabUi": "fill-blank",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Grocery Shopping: Quantity, Value, and Waste: Fill in the Blank"
+          },
+          {
+            "id": "verb-quiz-11",
+            "activityId": "verb-quiz-11",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Week 13 Quiz"
+          }
+        ],
+        "reviewPractice": "Reuse W12 spending vocabulary. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
+      },
+      {
+        "id": "week-16-econ",
+        "number": 14,
+        "title": "How Much / How Many: Countable + Uncountable",
+        "goal": "I can ask about quantities using how much and how many.",
+        "items": [
+          {
+            "id": "vocab-dec-w3-flashcards",
+            "activityId": "vocab-dec-w3",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "flashcards",
+            "order": 0,
+            "title": "Understanding Economic News: Flash Cards"
           },
           {
             "id": "how-much-how-many",
@@ -1196,70 +1244,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Grocery Budget Practice"
           },
           {
-            "id": "week-13-core-matching",
-            "activityId": "vocab-dec-groceries",
-            "vocabUi": "matching",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Grocery Shopping: Quantity, Value, and Waste: Matching"
-          },
-          {
-            "id": "week-13-core-fill-blank",
-            "activityId": "vocab-dec-groceries",
-            "vocabUi": "fill-blank",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Grocery Shopping: Quantity, Value, and Waste: Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-11",
-            "activityId": "verb-quiz-11",
-            "slot": "required",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Week 13 Quiz"
-          }
-        ],
-        "reviewPractice": "Reuse W12 spending vocabulary. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
-      },
-      {
-        "id": "week-16-econ",
-        "number": 14,
-        "title": "Understanding the News for Econ",
-        "goal": "I can make a prediction about a simple chart.",
-        "items": [
-          {
-            "id": "vocab-dec-w3-flashcards",
-            "activityId": "vocab-dec-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 0,
-            "title": "Understanding Economic News: Flash Cards"
-          },
-          {
-            "id": "reading-econ-news",
-            "href": "/grammar-reader/reading-econ-news",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Understanding the News for Econ: Headlines + Charts"
-          },
-          {
             "id": "vocab-dec-w3-matching",
             "activityId": "vocab-dec-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 2,
+            "order": 4,
             "title": "Understanding Economic News: Matching"
           },
           {
@@ -1269,13 +1260,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 3,
+            "order": 5,
             "title": "Understanding Economic News: Fill in the Blank"
           },
           {
             "id": "econ-news-headlines-practice",
             "slot": "extra",
-            "order": 4,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Bring Your Own Headline: Discussion"
@@ -1283,13 +1274,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "econ-news-short-writing",
             "slot": "extra",
-            "order": 5,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"Prices are higher than...\""
+          },
+          {
+            "id": "reading-econ-news",
+            "href": "/grammar-reader/reading-econ-news",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Understanding the News for Econ: Headlines + Charts"
           }
         ],
-        "reviewPractice": "Recall W7 if + present → will + base verb and W12 comparisons."
+        "reviewPractice": "Recall W12 for and since and W13 comparisons."
       },
       {
         "id": "week-15b",

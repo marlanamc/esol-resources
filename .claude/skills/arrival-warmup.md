@@ -43,8 +43,11 @@ Before building a new day's warmup:
   write-the-question-word (Wk5D1), partner-interview prompts (Wk5D2),
   Have-you-ever-or-Did-you circle (Wk9D1).
   Still unused and available: riddles ("What word am I?"), true-or-false,
-  sentence-unscramble, word search grid, would-you-rather with a reason,
+  sentence-unscramble, mini crossword, would-you-rather with a reason,
   story-ordering, dictation.
+- **No word searches.** Marlie finds them a waste of class time. Use a
+  mini crossword with sentence clues instead (reference:
+  `week9-day2-2026-11-12.html`, 4 words, word bank with one extra word).
 - **Tie the format to what's pedagogically live that week when possible**
   — e.g. a parts-of-speech week suggests a sort/categorize task; a verb-
   tense week suggests an error-hunt or transformation task. This makes
@@ -107,6 +110,29 @@ Before building a new day's warmup:
   tight/related-item gaps first and preserve the bigger section-level gap.
 
 ## Content Guidelines
+
+- **Mix in negatives and questions.** Every sentence task needs some of
+  each, not only affirmative statements. In an 8-item "Use the right
+  form": about 2 negatives (*didn't / doesn't* + V1, *haven't* + V3) and
+  2 questions (*Did you…? / Have you…?*). In "Fix the mistakes", hide
+  some errors inside negatives and questions (*didn't sent*, *is he say*).
+  In "Bonus: Your turn", mark one prompt **+ not** and one **?**.
+- **Sound tasks must need listening.** Never ask students to "circle the
+  letter you hear" for a word they can read. That is a spelling task.
+  Use minimal pairs in a sentence where meaning picks the word ("My dog
+  is sick. I need to call the (bet / vet).") or words whose spelling
+  tricks you (*busy*, *women* = short i).
+- **Learner-sized writing only.** Don't ask for an open message or
+  letter on an arrival warm-up (e.g. "write to a city official"). Give
+  concrete sentences to complete instead.
+- **Check counts.** If the instruction says "Find 5 errors", count them.
+- **Week 8 onward (Thursday-teach rhythm):** grammar on a warm-up is the
+  grammar taught the Thursday *before*, not the course-map week's own
+  guide. Vocab and the verb back stay with the calendar week.
+- **"Finished?" line goes at the end of page 2** (back), one short line.
+  Tuesday: "Finished early? Review Word Lab and Vocab in My ESOL App."
+  Thursday: "Finished? Week N Quiz opens at 6 p.m. in My ESOL App. Due
+  Tuesday, …". The front footer just says "Turn over for page 2 →".
 
 - **Word banks / answer lists must be scrambled**, never left in the same
   order as the sentences/items they answer. Pick a derangement (no word in
