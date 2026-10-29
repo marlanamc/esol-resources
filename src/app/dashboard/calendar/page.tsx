@@ -5,6 +5,10 @@ import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { getLearnerDayKey } from "@/lib/gamification/calendar-week";
+import type { StudyLogEntry } from "@/lib/learner/study-log";
+import { loadStudyLogEntries } from "@/lib/learner/study-log-data";
+import { StudentPracticeCalendar } from "@/components/study-log/StudentPracticeCalendar";
 
 export default async function CalendarPage() {
     const session = await getServerSession(authOptions);
@@ -22,6 +26,7 @@ export default async function CalendarPage() {
     const showTeacherView = canUseTeacherTools(session.user) && !studentMode;
 
     let calendarEvents: CalendarEvent[] = [];
+    let practiceEntries: StudyLogEntry[] | null = null;
 
     if (showTeacherView) {
         const classes = await prisma.class.findMany({
@@ -73,6 +78,13 @@ export default async function CalendarPage() {
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     } else {
+        // The calendar still opens if the practice log can't load; it just has no checks.
+        practiceEntries = userId
+            ? await loadStudyLogEntries(userId).catch((error) => {
+                  console.error("[Calendar] Could not load practice logs", error);
+                  return [];
+              })
+            : [];
         const enrollments = await prisma.classEnrollment.findMany({
             where: { studentId: userId, status: "active" },
             include: {
@@ -137,11 +149,15 @@ export default async function CalendarPage() {
     return (
         <div className="min-h-dvh bg-bg">
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
-                <CalendarMonthSplit
-                    events={calendarEvents}
-                    allowDelete={showTeacherView && userRole === 'teacher'}
-                    showSyncedLabel={showTeacherView && userRole === 'teacher'}
-                />
+                {practiceEntries ? (
+                    <StudentPracticeCalendar events={calendarEvents} entries={practiceEntries} todayKey={getLearnerDayKey(new Date())} />
+                ) : (
+                    <CalendarMonthSplit
+                        events={calendarEvents}
+                        allowDelete={showTeacherView && userRole === 'teacher'}
+                        showSyncedLabel={showTeacherView && userRole === 'teacher'}
+                    />
+                )}
             </main>
         </div>
     );

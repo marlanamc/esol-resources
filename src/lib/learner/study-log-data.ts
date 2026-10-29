@@ -54,19 +54,25 @@ export async function loadStudentStudyWeek(userId: string, now: Date = new Date(
 
 export type StudentStudyJournal = StudyJournal & { goalDays: number };
 
+/** A learner's newest logs (up to 1,000), newest first, with any teacher replies. */
+export async function loadStudyLogEntries(userId: string): Promise<StudyLogEntry[]> {
+    const rows = await prisma.studyLog.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        take: 1000,
+        select: STUDY_LOG_ENTRY_SELECT,
+    });
+    return rows.map(toStudyLogEntry).filter((entry): entry is StudyLogEntry => entry != null);
+}
+
 /** A learner's logs for the profile journal (newest 1,000), their all-time count of days practiced, and their goal. */
 export async function loadStudyJournal(userId: string): Promise<StudentStudyJournal> {
-    const [rows, days, user] = await Promise.all([
-        prisma.studyLog.findMany({
-            where: { userId },
-            orderBy: { createdAt: "desc" },
-            take: 1000,
-            select: STUDY_LOG_ENTRY_SELECT,
-        }),
+    const [entries, days, user] = await Promise.all([
+        loadStudyLogEntries(userId),
         prisma.studyLog.groupBy({ by: ["dayKey"], where: { userId } }),
         prisma.user.findUnique({ where: { id: userId }, select: { practiceGoalDays: true } }),
     ]);
-    const journal = buildStudyJournal(rows.map(toStudyLogEntry).filter((entry): entry is StudyLogEntry => entry != null));
+    const journal = buildStudyJournal(entries);
     return { ...journal, daysPracticed: days.length, goalDays: normalizePracticeGoalDays(user?.practiceGoalDays) };
 }
 
@@ -78,4 +84,13 @@ export async function loadPracticeDaysForWeek(userIds: string[], weekStart: stri
         where: { userId: { in: userIds }, dayKey: { gte: weekStart, lte: addDaysToDayKey(weekStart, 6) } },
     });
     return countPracticeDays(rows);
+}
+
+/** For each day, how many of these learners logged practice. Days with none are left out. */
+export async function loadClassPracticeDayCounts(userIds: string[]): Promise<Record<string, number>> {
+    if (userIds.length === 0) return {};
+    const rows = await prisma.studyLog.groupBy({ by: ["userId", "dayKey"], where: { userId: { in: userIds } } });
+    const counts: Record<string, number> = {};
+    for (const row of rows) counts[row.dayKey] = (counts[row.dayKey] ?? 0) + 1;
+    return counts;
 }

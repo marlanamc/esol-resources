@@ -1,7 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
+import type { ComponentProps } from "react";
 import { MiniCalendar, type CalendarEvent, eventOverlapsMonth, useCalendarViewDate } from "./MiniCalendar";
+
+type MiniCalendarProps = ComponentProps<typeof MiniCalendar>;
 import UpcomingEventsList from "./UpcomingEventsList";
 
 function monthEventsFor(events: CalendarEvent[], viewDate: Date) {
@@ -41,6 +44,10 @@ type CalendarMonthSplitProps = {
     allowDelete?: boolean;
     showSyncedLabel?: boolean;
     extraColumn?: ReactNode;
+    /** Practice log marks and day picking, passed through to MiniCalendar. */
+    practice?: Pick<MiniCalendarProps, "practiceDays" | "practiceBadge" | "onSelectDay" | "selectedDayKey">;
+    /** Shown under the calendar: the picked day's practice. Gets the month being viewed. */
+    renderDayPanel?: (viewDate: Date) => ReactNode;
 };
 
 export function CalendarMonthSplit({
@@ -48,6 +55,8 @@ export function CalendarMonthSplit({
     allowDelete = false,
     showSyncedLabel = false,
     extraColumn,
+    practice,
+    renderDayPanel,
 }: CalendarMonthSplitProps) {
     const [viewDate, setViewDate] = useCalendarViewDate();
     const monthEvents = monthEventsFor(events, viewDate);
@@ -61,7 +70,7 @@ export function CalendarMonthSplit({
                 background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
             }}
         >
-            <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} />
+            <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
         </div>
     );
 
@@ -98,7 +107,8 @@ export function CalendarMonthSplit({
                         background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
                     }}
                 >
-                    <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} />
+                    <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
+                    {renderDayPanel ? <div className="mt-4 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>{renderDayPanel(viewDate)}</div> : null}
                 </div>
                 <div
                     className="rounded-2xl border p-4 sm:p-5"
@@ -126,6 +136,14 @@ export function CalendarMonthSplit({
     return (
         <div className="space-y-4 sm:space-y-6">
             <div className="flex justify-center w-full">{calendarCard}</div>
+            {renderDayPanel ? (
+                <div
+                    className="mx-auto w-full max-w-md rounded-2xl border p-4 sm:p-6 surface-card-shadow"
+                    style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
+                >
+                    {renderDayPanel(viewDate)}
+                </div>
+            ) : null}
             {eventsCard}
         </div>
     );

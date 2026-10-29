@@ -58,6 +58,7 @@ import {
     buildTeacherStudyRows,
     MAX_STUDY_LOGS_PER_DAY,
     normalizePracticeGoalDays,
+    parseDayKey,
     parseStudyLogText,
     parseWeekStartDayKey,
 } from '@/lib/learner/study-log';
@@ -291,6 +292,29 @@ describe('GET /api/teacher/study-log', () => {
         expect(body.weekStart).toBe('2026-10-19');
         expect(body.rows).toHaveLength(1);
         expect(body.rows[0].goalDays).toBe(5);
+    });
+
+    it('returns one day, and only students who logged that day, with day=', async () => {
+        mocks.classFindUnique.mockResolvedValue({ teacherId: 'teacher-1' });
+        mocks.enrollmentFindMany.mockResolvedValue([
+            { student: { id: 's1', name: 'Ana', username: 'ana' } },
+            { student: { id: 's2', name: 'Wei', username: 'wei' } },
+        ]);
+        mocks.findMany.mockResolvedValue([
+            { id: '1', userId: 's2', kind: 'watch', text: 'I watched TV.', dayKey: '2026-10-28', createdAt: new Date('2026-10-28T12:00:00Z') },
+        ]);
+        const res = await TEACHER_GET(json('/api/teacher/study-log?classId=c1&day=2026-10-28', 'GET'));
+        expect(mocks.findMany).toHaveBeenCalledWith(expect.objectContaining({ where: { userId: { in: ['s1', 's2'] }, dayKey: '2026-10-28' } }));
+        const body = await res.json();
+        expect(body.weekStart).toBe('2026-10-26');
+        expect(body.rows.map((r: { studentName: string }) => r.studentName)).toEqual(['Wei']);
+    });
+
+    it('rejects a day that is not a real date', async () => {
+        mocks.classFindUnique.mockResolvedValue({ teacherId: 'teacher-1' });
+        expect((await TEACHER_GET(json('/api/teacher/study-log?classId=c1&day=2026-02-30', 'GET'))).status).toBe(400);
+        expect(parseDayKey('2026-10-28')).toBe('2026-10-28');
+        expect(parseDayKey('10/28/2026')).toBeNull();
     });
 });
 

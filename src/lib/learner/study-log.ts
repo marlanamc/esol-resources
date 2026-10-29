@@ -237,6 +237,13 @@ export function buildStudyWeek(logs: Array<{ kind: string; dayKey: string }>, re
     return { weekStartDayKey: start, days, daysPracticed: days.filter((day) => day.kinds.length > 0).length };
 }
 
+/** A real calendar day key (YYYY-MM-DD), or null. */
+export function parseDayKey(value: unknown): string | null {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const [y, m, d] = value.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1, d)).toISOString().slice(0, 10) === value ? value : null;
+}
+
 /** Accepts a Monday day key (YYYY-MM-DD); anything else falls back to this week. */
 export function parseWeekStartDayKey(value: unknown, referenceDate: Date = new Date()): string {
     if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {

@@ -77,6 +77,17 @@ interface MiniCalendarProps {
     flat?: boolean;
     viewDate?: Date;
     onViewDateChange?: (date: Date) => void;
+    /** Practice log marks by day key (YYYY-MM-DD): how many logs (student) or students (teacher) that day. */
+    practiceDays?: Record<string, number>;
+    /** "check" for a learner's own days, "count" for how many students practiced. */
+    practiceBadge?: 'check' | 'count';
+    /** With this set, days are buttons that pick a day. */
+    onSelectDay?: (dayKey: string) => void;
+    selectedDayKey?: string | null;
+}
+
+export function toCalendarDayKey(year: number, monthIndex: number, day: number): string {
+    return `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
 
 export const MiniCalendar: React.FC<MiniCalendarProps> = ({
@@ -85,6 +96,10 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
     flat = false,
     viewDate: viewDateProp,
     onViewDateChange,
+    practiceDays,
+    practiceBadge = 'check',
+    onSelectDay,
+    selectedDayKey,
 }) => {
     const isControlled = viewDateProp !== undefined;
     // Calculate today fresh on every render to avoid caching issues
@@ -256,11 +271,26 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 ? `No class — ${cancelledLabel}`
                                 : undefined;
 
+                        const dayKey = toCalendarDayKey(viewYear, viewMonth, day);
+                        const practiced = practiceDays?.[dayKey] ?? 0;
+                        const isSelected = selectedDayKey === dayKey;
+                        const practiceLabel = practiced
+                            ? practiceBadge === 'count'
+                                ? `${practiced} ${practiced === 1 ? 'student' : 'students'} practiced`
+                                : 'Practiced'
+                            : undefined;
+                        const Cell = onSelectDay ? 'button' : 'div';
+
                         return (
-                            <div
+                            <Cell
                                 key={idx}
-                                title={dayLabel}
-                                className={`${dayCellMinH} ${compact ? "rounded-md" : "rounded-lg"} border transition-colors cursor-default ${
+                                {...(onSelectDay
+                                    ? { type: 'button' as const, onClick: () => onSelectDay(dayKey), 'aria-pressed': isSelected }
+                                    : {})}
+                                title={[dayLabel, practiceLabel].filter(Boolean).join(' · ') || undefined}
+                                className={`relative w-full p-0 ${dayCellMinH} ${compact ? "rounded-md" : "rounded-lg"} border transition-colors ${
+                                    onSelectDay ? 'cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary' : 'cursor-default'
+                                } ${isSelected ? 'ring-2 ring-offset-1 ring-[color:var(--text-color)]' : ''} ${
                                     isToday
                                         ? 'text-[color:var(--text-on-accent)] border-primary shadow-sm'
                                         : 'text-text'
@@ -286,7 +316,9 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                     <span className={`leading-none ${compact ? "text-[0.6875rem]" : "text-xs"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
                                         {day}
                                     </span>
+                                    {onSelectDay && <span className="sr-only">{new Date(viewYear, viewMonth, day).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span>}
                                     {dayLabel && <span className="sr-only">{dayLabel}</span>}
+                                    {practiceLabel && <span className="sr-only">{practiceLabel}</span>}
                                     {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
                                         <span className="mt-1 flex items-center gap-0.5" aria-hidden="true">
                                             {hasQuiz && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
@@ -296,7 +328,17 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                         </span>
                                     )}
                                 </div>
-                            </div>
+                                {practiced > 0 && (
+                                    <span
+                                        aria-hidden="true"
+                                        className={`absolute -right-1 -top-1 flex items-center justify-center rounded-full border-2 border-[color:var(--surface-elevated)] bg-emerald-700 font-bold leading-none text-[#fffdfa] dark:bg-emerald-600 ${
+                                            compact ? 'h-3.5 min-w-3.5 text-[0.5rem]' : 'h-[18px] min-w-[18px] px-0.5 text-[0.625rem]'
+                                        }`}
+                                    >
+                                        {practiceBadge === 'count' ? practiced : '✓'}
+                                    </span>
+                                )}
+                            </Cell>
                         );
                     })}
                 </div>
@@ -340,6 +382,19 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 />
                                 Class day
                             </span>
+                            {practiceDays && (
+                                <span
+                                    className={chipClass}
+                                    style={{
+                                        backgroundColor: "color-mix(in srgb, #047857 10%, var(--dashboard-surface-start))",
+                                        borderColor: "#047857",
+                                        color: "var(--text-color)",
+                                    }}
+                                >
+                                    <span className={`${dotClass} bg-emerald-700`} />
+                                    {practiceBadge === 'count' ? 'Students practiced' : 'I practiced'}
+                                </span>
+                            )}
                             <span
                                 className={chipClass}
                                 style={{ backgroundColor: quizTone.bg, borderColor: quizTone.border, color: quizTone.text }}

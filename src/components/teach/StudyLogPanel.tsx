@@ -197,8 +197,8 @@ function DayDot({ kinds, dayName, size = "md" }: { kinds: StudyLogKind[]; dayNam
     );
 }
 
-/** A student's sentences for the week, newest first; past VISIBLE_ENTRIES they fold under "Show N more". */
-function EntryList({ entries, onUpdate }: { entries: StudyLogEntry[]; onUpdate: (entry: StudyLogEntry) => void }) {
+/** A student's sentences, newest first, each with reply controls; past VISIBLE_ENTRIES they fold under "Show N more". */
+export function EntryList({ entries, onUpdate }: { entries: StudyLogEntry[]; onUpdate: (entry: StudyLogEntry) => void }) {
     if (entries.length === 0) return <span className="text-sm italic text-text-muted">No practice logged</span>;
     const shown = entries.slice(0, VISIBLE_ENTRIES);
     const rest = entries.slice(VISIBLE_ENTRIES);

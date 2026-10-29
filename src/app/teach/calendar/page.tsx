@@ -6,6 +6,9 @@ import { isAdmin } from "@/lib/auth/roles";
 import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
+import { getLearnerDayKey } from "@/lib/gamification/calendar-week";
+import { loadClassPracticeDayCounts } from "@/lib/learner/study-log-data";
+import { TeacherPracticeCalendar } from "@/components/teach/TeacherPracticeCalendar";
 
 export const metadata = { title: "Calendar | My ESOL Class" };
 
@@ -72,6 +75,31 @@ export default async function TeachCalendarPage({
     }));
     const activeClassName = classes.find((c) => c.id === activeClassId)?.name ?? null;
 
+    // Practice marks need one class: same students as the practice log panel (active, real students).
+    let practiceDays: Record<string, number> | null = null;
+    if (activeClassId && activeClassName) {
+        const enrollments = await prisma.classEnrollment.findMany({
+            where: { classId: activeClassId, status: "active", student: { isSystemAccount: false, excludeFromLeaderboard: false } },
+            select: { studentId: true },
+        });
+        practiceDays = await loadClassPracticeDayCounts(enrollments.map((e) => e.studentId)).catch((error) => {
+            console.error("[Calendar] Could not load practice days", error);
+            return {};
+        });
+    }
+
+    const addEventColumn = (
+        <div
+            className="rounded-2xl border p-4 sm:p-5 self-start"
+            style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
+        >
+            <h2 className="font-semibold text-sm text-text mb-3">
+                Add event
+            </h2>
+            <CreateCalendarEventForm classes={classOptions} defaultClassId={activeClassId} />
+        </div>
+    );
+
     return (
         <div>
             <div className="mb-6">
@@ -86,22 +114,17 @@ export default async function TeachCalendarPage({
                 ) : null}
             </div>
 
-            <CalendarMonthSplit
-                events={calendarEvents}
-                allowDelete
-                showSyncedLabel
-                extraColumn={
-                    <div
-                        className="rounded-2xl border p-4 sm:p-5 self-start"
-                        style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
-                    >
-                        <h2 className="font-semibold text-sm text-text mb-3">
-                            Add event
-                        </h2>
-                        <CreateCalendarEventForm classes={classOptions} defaultClassId={activeClassId} />
-                    </div>
-                }
-            />
+            {activeClassId && practiceDays ? (
+                <TeacherPracticeCalendar
+                    classId={activeClassId}
+                    events={calendarEvents}
+                    practiceDays={practiceDays}
+                    todayKey={getLearnerDayKey(new Date())}
+                    extraColumn={addEventColumn}
+                />
+            ) : (
+                <CalendarMonthSplit events={calendarEvents} allowDelete showSyncedLabel extraColumn={addEventColumn} />
+            )}
         </div>
     );
 }
