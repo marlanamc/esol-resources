@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import type { ComponentProps } from "react";
+import { useRouter } from "next/navigation";
 import { MiniCalendar, type CalendarEvent, eventOverlapsMonth, useCalendarViewDate } from "./MiniCalendar";
 
 type MiniCalendarProps = ComponentProps<typeof MiniCalendar>;
@@ -11,7 +12,9 @@ function monthEventsFor(events: CalendarEvent[], viewDate: Date) {
     return events.filter((event) => eventOverlapsMonth(event, viewDate));
 }
 
-export function DashboardCalendarCard({ events }: { events: CalendarEvent[] }) {
+/** The Home sidebar calendar. With practiceDays it ticks the learner's logged days, and a tapped day opens on the Calendar page. */
+export function DashboardCalendarCard({ events, practiceDays }: { events: CalendarEvent[]; practiceDays?: Record<string, number> }) {
+    const router = useRouter();
     const [viewDate, setViewDate] = useCalendarViewDate();
     const monthEvents = monthEventsFor(events, viewDate);
 
@@ -23,6 +26,8 @@ export function DashboardCalendarCard({ events }: { events: CalendarEvent[] }) {
                 events={events}
                 viewDate={viewDate}
                 onViewDateChange={setViewDate}
+                practiceDays={practiceDays}
+                onSelectDay={practiceDays ? (dayKey) => router.push(`/dashboard/calendar?day=${dayKey}`) : undefined}
             />
             <div
                 className="border-t mt-4 pt-4"
@@ -33,6 +38,7 @@ export function DashboardCalendarCard({ events }: { events: CalendarEvent[] }) {
                     allowDelete={false}
                     showSyncedLabel={false}
                     emptyMessage="No events this month."
+                    compact
                 />
             </div>
         </div>
@@ -70,7 +76,7 @@ export function CalendarMonthSplit({
                 background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
             }}
         >
-            <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
+            <MiniCalendar flat events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
         </div>
     );
 
@@ -107,7 +113,7 @@ export function CalendarMonthSplit({
                         background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
                     }}
                 >
-                    <MiniCalendar events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
+                    <MiniCalendar flat events={events} viewDate={viewDate} onViewDateChange={setViewDate} {...practice} />
                     {renderDayPanel ? <div className="mt-4 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>{renderDayPanel(viewDate)}</div> : null}
                 </div>
                 <div
@@ -133,17 +139,34 @@ export function CalendarMonthSplit({
         );
     }
 
-    return (
-        <div className="space-y-4 sm:space-y-6">
-            <div className="flex justify-center w-full">{calendarCard}</div>
-            {renderDayPanel ? (
+    if (renderDayPanel) {
+        // Phone: calendar, the picked day, then the month's dates as short rows.
+        // Desktop: calendar on the left, the day and the month's dates beside it.
+        return (
+            <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-6">
+                <div className="lg:row-span-2 lg:sticky lg:top-4">
+                    <div className="mx-auto w-full max-w-md lg:max-w-none">{calendarCard}</div>
+                </div>
                 <div
-                    className="mx-auto w-full max-w-md rounded-2xl border p-4 sm:p-6 surface-card-shadow"
+                    className="mx-auto w-full max-w-md rounded-2xl border p-4 sm:p-5 surface-card-shadow lg:max-w-none"
                     style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
                 >
                     {renderDayPanel(viewDate)}
                 </div>
-            ) : null}
+                <div
+                    className="mx-auto w-full max-w-md rounded-2xl border p-4 sm:p-5 lg:max-w-none"
+                    style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
+                >
+                    <h2 className="m-0 mb-1 font-display text-lg font-bold text-text">Dates in {monthLabel}</h2>
+                    <UpcomingEventsList events={monthEvents} allowDelete={false} showSyncedLabel={false} emptyMessage="No dates this month." compact />
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-4 sm:space-y-6">
+            <div className="flex justify-center w-full">{calendarCard}</div>
             {eventsCard}
         </div>
     );

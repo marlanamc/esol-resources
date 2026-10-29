@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { Check } from 'lucide-react';
 import { getLearnerEventTone } from '@/lib/learner/theme';
 import { getClassDayInfo } from '@/lib/class-days';
 
@@ -73,7 +74,7 @@ interface MiniCalendarProps {
     events?: CalendarEvent[];
     /** Tighter layout for dashboard sidebar */
     compact?: boolean;
-    /** No inner card border (sidebar week rail) */
+    /** No inner card around the grid, for when the calendar already sits in a card */
     flat?: boolean;
     viewDate?: Date;
     onViewDateChange?: (date: Date) => void;
@@ -220,14 +221,14 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
 
             <div
                 className={
-                    flat && compact
+                    flat
                         ? "p-0"
                         : compact
                             ? "rounded-xl border p-2.5"
                             : "dashboard-panel rounded-2xl p-4"
                 }
                 style={
-                    flat && compact
+                    flat
                         ? undefined
                         : {
                               borderColor: "var(--dashboard-divider)",
@@ -290,7 +291,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 title={[dayLabel, practiceLabel].filter(Boolean).join(' · ') || undefined}
                                 className={`relative w-full p-0 ${dayCellMinH} ${compact ? "rounded-md" : "rounded-lg"} border transition-colors ${
                                     onSelectDay ? 'cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary' : 'cursor-default'
-                                } ${isSelected ? 'ring-2 ring-offset-1 ring-[color:var(--text-color)]' : ''} ${
+                                } ${isSelected ? 'ring-2 ring-primary/70 ring-offset-2 ring-offset-[color:var(--surface-elevated)]' : ''} ${
                                     isToday
                                         ? 'text-[color:var(--text-on-accent)] border-primary shadow-sm'
                                         : 'text-text'
@@ -313,115 +314,87 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 }}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
-                                    <span className={`leading-none ${compact ? "text-[0.6875rem]" : "text-xs"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
+                                    <span className={`leading-none ${compact ? "text-[0.6875rem]" : "text-sm"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
                                         {day}
                                     </span>
                                     {onSelectDay && <span className="sr-only">{new Date(viewYear, viewMonth, day).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span>}
                                     {dayLabel && <span className="sr-only">{dayLabel}</span>}
                                     {practiceLabel && <span className="sr-only">{practiceLabel}</span>}
-                                    {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
-                                        <span className="mt-1 flex items-center gap-0.5" aria-hidden="true">
-                                            {hasQuiz && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
-                                            {hasDue && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('due').accent }} />}
-                                            {hasHoliday && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} />}
-                                            {hasOther && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('event').accent }} />}
+                                    {(practiced > 0 || (!isToday && (hasQuiz || hasDue || hasHoliday || hasOther))) && (
+                                        <span className={`flex items-center gap-0.5 ${compact ? "mt-0.5" : "mt-1"}`} aria-hidden="true">
+                                            {practiced > 0 && (
+                                                <span
+                                                    className={`flex items-center justify-center rounded-full font-bold leading-none ${
+                                                        compact ? 'h-3 min-w-3 text-[0.5rem]' : 'h-4 min-w-4 px-0.5 text-[0.625rem]'
+                                                    } ${isToday ? 'bg-[#fffdfa] text-emerald-800' : 'bg-emerald-700 text-[#fffdfa] dark:bg-emerald-600'}`}
+                                                >
+                                                    {practiceBadge === 'count' ? practiced : <Check size={compact ? 8 : 11} strokeWidth={3.5} />}
+                                                </span>
+                                            )}
+                                            {!isToday && hasQuiz && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
+                                            {!isToday && hasDue && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('due').accent }} />}
+                                            {!isToday && hasHoliday && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} />}
+                                            {!isToday && hasOther && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('event').accent }} />}
                                         </span>
                                     )}
                                 </div>
-                                {practiced > 0 && (
-                                    <span
-                                        aria-hidden="true"
-                                        className={`absolute -right-1 -top-1 flex items-center justify-center rounded-full border-2 border-[color:var(--surface-elevated)] bg-emerald-700 font-bold leading-none text-[#fffdfa] dark:bg-emerald-600 ${
-                                            compact ? 'h-3.5 min-w-3.5 text-[0.5rem]' : 'h-[18px] min-w-[18px] px-0.5 text-[0.625rem]'
-                                        }`}
-                                    >
-                                        {practiceBadge === 'count' ? practiced : '✓'}
-                                    </span>
-                                )}
                             </Cell>
                         );
                     })}
                 </div>
             </div>
 
-            <div
-                className={`flex flex-wrap items-center ${compact ? "mt-2 gap-1 text-[0.5625rem]" : "mt-4 gap-2 text-[0.6875rem]"}`}
-                aria-hidden="true"
-            >
-                {(() => {
-                    const chipClass = `inline-flex items-center rounded-full border ${compact ? "gap-1 px-1.5 py-0.5" : "gap-1.5 px-2 py-1"}`;
-                    const dotClass = `${compact ? "w-1.5 h-1.5" : "w-2 h-2"} rounded-full ring-1 ring-white/50 shadow-sm shrink-0`;
-                    const quizTone = getLearnerEventTone("quiz");
-                    const dueTone = getLearnerEventTone("due");
-                    const holidayTone = getLearnerEventTone("holiday");
+            {(() => {
+                // Only the marks this month uses, so the key stays one short line.
+                const monthFlags = [...eventsByDay.values()];
+                const monthPrefix = toCalendarDayKey(viewYear, viewMonth, 1).slice(0, 8);
+                const practicedThisMonth = Object.entries(practiceDays ?? {}).filter(([key, n]) => n > 0 && key.startsWith(monthPrefix)).length;
+                const itemClass = "inline-flex items-center gap-1.5";
+                const dotClass = `${compact ? "w-1.5 h-1.5" : "w-2 h-2"} rounded-full shrink-0`;
+                const eventKeys = [
+                    { show: monthFlags.some((f) => f.quiz), label: compact ? "Quiz" : "Quiz/Test", tone: getLearnerEventTone("quiz") },
+                    { show: monthFlags.some((f) => f.due), label: "Due", tone: getLearnerEventTone("due") },
+                    { show: monthFlags.some((f) => f.holiday), label: "Holiday", tone: getLearnerEventTone("holiday") },
+                    { show: monthFlags.some((f) => f.other), label: "Event", tone: getLearnerEventTone("event") },
+                ];
 
-                    return (
-                        <>
+                return (
+                    <div
+                        className={`flex flex-wrap items-center text-text-muted ${compact ? "mt-2 gap-x-2.5 gap-y-1 text-[0.625rem]" : "mt-3 gap-x-4 gap-y-1.5 text-xs"}`}
+                        aria-hidden="true"
+                    >
+                        <span className={itemClass}>
+                            <span className={`${dotClass} bg-primary`} />
+                            Today
+                        </span>
+                        <span className={itemClass}>
                             <span
-                                className={chipClass}
-                                style={{
-                                    backgroundColor: "color-mix(in srgb, var(--dashboard-shell-bg) 52%, var(--dashboard-surface-start))",
-                                    borderColor: "var(--dashboard-divider)",
-                                    color: "var(--text-color-muted)",
-                                }}
-                            >
-                                <span className={`${dotClass} bg-primary`} />
-                                Today
-                            </span>
-                            <span
-                                className={chipClass}
-                                style={{
-                                    backgroundColor: "color-mix(in srgb, var(--tone-class-day-accent) 10%, var(--dashboard-surface-start))",
-                                    borderColor: "var(--tone-class-day-accent)",
-                                    color: "var(--tone-class-day-text)",
-                                }}
-                            >
-                                <span
-                                    className={`${compact ? "w-1.5 h-1.5" : "w-2 h-2"} rounded-[3px] border-2 shrink-0`}
-                                    style={{ borderColor: "var(--tone-class-day-accent)" }}
-                                />
-                                Class day
-                            </span>
-                            {practiceDays && (
-                                <span
-                                    className={chipClass}
-                                    style={{
-                                        backgroundColor: "color-mix(in srgb, #047857 10%, var(--dashboard-surface-start))",
-                                        borderColor: "#047857",
-                                        color: "var(--text-color)",
-                                    }}
-                                >
-                                    <span className={`${dotClass} bg-emerald-700`} />
-                                    {practiceBadge === 'count' ? 'Students practiced' : 'I practiced'}
+                                className={`${compact ? "w-2 h-2" : "w-2.5 h-2.5"} rounded-[3px] border-2 shrink-0`}
+                                style={{ borderColor: "var(--tone-class-day-accent)" }}
+                            />
+                            Class day
+                        </span>
+                        {practiceDays && (
+                            <span className={`${itemClass} font-semibold text-emerald-800 dark:text-emerald-300`}>
+                                <span className={`flex items-center justify-center rounded-full bg-emerald-700 text-[#fffdfa] dark:bg-emerald-600 ${compact ? "h-3 w-3" : "h-4 w-4"}`}>
+                                    <Check size={compact ? 8 : 11} strokeWidth={3.5} />
                                 </span>
-                            )}
-                            <span
-                                className={chipClass}
-                                style={{ backgroundColor: quizTone.bg, borderColor: quizTone.border, color: quizTone.text }}
-                            >
-                                <span className={dotClass} style={{ backgroundColor: quizTone.accent }} />
-                                {compact ? "Quiz" : "Quiz/Test"}
+                                {practiceBadge === 'count'
+                                    ? 'Students practiced'
+                                    : practicedThisMonth > 0
+                                        ? `I practiced: ${practicedThisMonth} ${practicedThisMonth === 1 ? 'day' : 'days'}`
+                                        : 'I practiced'}
                             </span>
-                            <span
-                                className={chipClass}
-                                style={{ backgroundColor: dueTone.bg, borderColor: dueTone.border, color: dueTone.text }}
-                            >
-                                <span className={dotClass} style={{ backgroundColor: dueTone.accent }} />
-                                Due
+                        )}
+                        {eventKeys.filter((key) => key.show).map((key) => (
+                            <span key={key.label} className={itemClass}>
+                                <span className={dotClass} style={{ backgroundColor: key.tone.accent }} />
+                                {key.label}
                             </span>
-                            {!compact && (
-                                <span
-                                    className={chipClass}
-                                    style={{ backgroundColor: holidayTone.bg, borderColor: holidayTone.border, color: holidayTone.text }}
-                                >
-                                    <span className={dotClass} style={{ backgroundColor: holidayTone.accent }} />
-                                    Holiday
-                                </span>
-                            )}
-                        </>
-                    );
-                })()}
-            </div>
+                        ))}
+                    </div>
+                );
+            })()}
         </section>
     );
 };

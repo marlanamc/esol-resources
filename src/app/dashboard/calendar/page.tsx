@@ -10,7 +10,9 @@ import type { StudyLogEntry } from "@/lib/learner/study-log";
 import { loadStudyLogEntries } from "@/lib/learner/study-log-data";
 import { StudentPracticeCalendar } from "@/components/study-log/StudentPracticeCalendar";
 
-export default async function CalendarPage() {
+export default async function CalendarPage({ searchParams }: { searchParams: Promise<{ day?: string }> }) {
+    const { day } = await searchParams;
+    const initialDayKey = day && /^\d{4}-\d{2}-\d{2}$/.test(day) ? day : undefined;
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -150,7 +152,7 @@ export default async function CalendarPage() {
         <div className="min-h-dvh bg-bg">
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
                 {practiceEntries ? (
-                    <StudentPracticeCalendar events={calendarEvents} entries={practiceEntries} todayKey={getLearnerDayKey(new Date())} />
+                    <StudentPracticeCalendar events={calendarEvents} entries={practiceEntries} todayKey={getLearnerDayKey(new Date())} initialDayKey={initialDayKey} />
                 ) : (
                     <CalendarMonthSplit
                         events={calendarEvents}

@@ -5,7 +5,9 @@ import { SectionUnavailable } from "./SectionUnavailable";
 import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { WeeklyQuizBar } from "./WeeklyQuizBar";
 import { getStudentWeeklyQuizStatus } from "@/lib/learner/weekly-quiz-status";
-import { loadStudentStudyWeek } from "@/lib/learner/study-log-data";
+import { loadStudentPracticeDays, loadStudentStudyWeek } from "@/lib/learner/study-log-data";
+import { DashboardCalendarCard } from "./CalendarMonthPanel";
+import type { CalendarEvent } from "./MiniCalendar";
 import { StudyWeekCard } from "@/components/study-log/StudyWeekCard";
 
 const weeklyQuizStatus = cache((userId: string) => getStudentWeeklyQuizStatus(userId));
@@ -42,4 +44,13 @@ export async function StudyWeekSection({ userId }: { userId: string }) {
         return null;
     });
     return studyWeek ? <StudyWeekCard {...studyWeek} /> : null;
+}
+
+/** The Home sidebar calendar with the learner's practice days ticked; without the log it still shows the dates. */
+export async function SidebarCalendarSection({ userId, events }: { userId: string; events: CalendarEvent[] }) {
+    const practiceDays = await loadStudentPracticeDays(userId).catch(error => {
+        console.error("[Dashboard] Practice days unavailable", error);
+        return undefined;
+    });
+    return <DashboardCalendarCard events={events} practiceDays={practiceDays} />;
 }

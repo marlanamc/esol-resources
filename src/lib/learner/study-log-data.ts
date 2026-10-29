@@ -86,6 +86,12 @@ export async function loadPracticeDaysForWeek(userIds: string[], weekStart: stri
     return countPracticeDays(rows);
 }
 
+/** The days one learner logged practice, with how many logs each day. */
+export async function loadStudentPracticeDays(userId: string): Promise<Record<string, number>> {
+    const rows = await prisma.studyLog.groupBy({ by: ["dayKey"], where: { userId }, _count: { _all: true } });
+    return Object.fromEntries(rows.map((row) => [row.dayKey, row._count._all]));
+}
+
 /** For each day, how many of these learners logged practice. Days with none are left out. */
 export async function loadClassPracticeDayCounts(userIds: string[]): Promise<Record<string, number>> {
     if (userIds.length === 0) return {};
