@@ -54,7 +54,7 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
                 return;
             }
             const data = (await res.json()) as StudentStudyWeek & { pointsAwarded: number; goalBonus?: number };
-            setStudyWeek({ week: data.week, entries: data.entries, goalDays: data.goalDays });
+            setStudyWeek({ week: data.week, entries: data.entries, goalDays: data.goalDays, earlierReplies: data.earlierReplies });
             setSaved({ text: text.trim(), pointsAwarded: data.pointsAwarded, goalBonus: data.goalBonus ?? 0 });
             // The log is saved; a failed refresh only means home shows it after a reload.
             refreshPracticeViews().catch(() => {});
@@ -120,6 +120,14 @@ export function StudyLogForm({ initial }: { initial: StudentStudyWeek }) {
     const current = getStudyLogKind(kind);
     return (
         <div className="space-y-6">
+            {studyWeek.earlierReplies.length > 0 ? (
+                <section aria-labelledby="earlier-replies-heading" className="space-y-3">
+                    <h2 id="earlier-replies-heading" className="m-0 font-display text-2xl font-bold text-text">
+                        Your teacher replied
+                    </h2>
+                    <StudyLogList entries={studyWeek.earlierReplies} />
+                </section>
+            ) : null}
             <form onSubmit={submit} className="space-y-5">
                 <fieldset className="m-0 border-0 p-0">
                     <legend className="mb-1 font-display text-3xl font-bold text-text">What did you do?</legend>

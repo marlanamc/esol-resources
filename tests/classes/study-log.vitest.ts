@@ -14,6 +14,10 @@ const mocks = vi.hoisted(() => ({
     userUpdate: vi.fn(),
     groupBy: vi.fn(),
     ledgerFindFirst: vi.fn(),
+    logFindUnique: vi.fn(),
+    logUpdate: vi.fn(),
+    logUpdateMany: vi.fn(),
+    enrollmentFindFirst: vi.fn(),
 }));
 vi.mock('next-auth', () => ({ getServerSession: mocks.session }));
 vi.mock('@/lib/auth/auth', () => ({ authOptions: {} }));
@@ -27,9 +31,9 @@ vi.mock('@/lib/database/prisma', () => {
     };
     return { prisma: {
         $transaction: (run: (client: typeof tx) => unknown) => run(tx),
-        studyLog: { findMany: mocks.findMany },
+        studyLog: { findMany: mocks.findMany, findUnique: mocks.logFindUnique, update: mocks.logUpdate, updateMany: mocks.logUpdateMany },
         class: { findUnique: mocks.classFindUnique },
-        classEnrollment: { findMany: mocks.enrollmentFindMany },
+        classEnrollment: { findMany: mocks.enrollmentFindMany, findFirst: mocks.enrollmentFindFirst },
         user: { findUnique: mocks.userFindUnique, update: mocks.userUpdate },
     } };
 });
@@ -40,7 +44,13 @@ vi.mock('@/lib/api/response', () => ({
 import { GET, POST } from '@/app/api/study-log/route';
 import { GET as TEACHER_GET } from '@/app/api/teacher/study-log/route';
 import { PUT as GOAL_PUT } from '@/app/api/study-log/goal/route';
+import { PUT as REPLY_PUT } from '@/app/api/teacher/study-log/reply/route';
+import { POST as SEEN_POST } from '@/app/api/study-log/reply-seen/route';
 import {
+    countUnreadReplies,
+    diffRecastWords,
+    parseStudyLogRecast,
+    toStudyLogEntry,
     buildStudyJournal,
     buildStudyWeek,
     countPracticeDays,
@@ -48,6 +58,7 @@ import {
     buildTeacherStudyRows,
     MAX_STUDY_LOGS_PER_DAY,
     normalizePracticeGoalDays,
+    parseDayKey,
     parseStudyLogText,
     parseWeekStartDayKey,
 } from '@/lib/learner/study-log';
@@ -151,7 +162,7 @@ describe('practice journal', () => {
 
     it('groups logs by week, newest first, and counts distinct days', () => {
         const entry = (id: string, dayKey: string, hour: number) => ({
-            id, kind: 'watch' as const, text: id, dayKey, createdAt: `${dayKey}T${String(hour).padStart(2, '0')}:00:00.000Z`,
+            id, kind: 'watch' as const, text: id, dayKey, reply: null, createdAt: `${dayKey}T${String(hour).padStart(2, '0')}:00:00.000Z`,
         });
         const journal = buildStudyJournal([
             entry('a', '2026-10-20', 12),
@@ -281,5 +292,134 @@ describe('GET /api/teacher/study-log', () => {
         expect(body.weekStart).toBe('2026-10-19');
         expect(body.rows).toHaveLength(1);
         expect(body.rows[0].goalDays).toBe(5);
+    });
+
+    it('returns one day, and only students who logged that day, with day=', async () => {
+        mocks.classFindUnique.mockResolvedValue({ teacherId: 'teacher-1' });
+        mocks.enrollmentFindMany.mockResolvedValue([
+            { student: { id: 's1', name: 'Ana', username: 'ana' } },
+            { student: { id: 's2', name: 'Wei', username: 'wei' } },
+        ]);
+        mocks.findMany.mockResolvedValue([
+            { id: '1', userId: 's2', kind: 'watch', text: 'I watched TV.', dayKey: '2026-10-28', createdAt: new Date('2026-10-28T12:00:00Z') },
+        ]);
+        const res = await TEACHER_GET(json('/api/teacher/study-log?classId=c1&day=2026-10-28', 'GET'));
+        expect(mocks.findMany).toHaveBeenCalledWith(expect.objectContaining({ where: { userId: { in: ['s1', 's2'] }, dayKey: '2026-10-28' } }));
+        const body = await res.json();
+        expect(body.weekStart).toBe('2026-10-26');
+        expect(body.rows.map((r: { studentName: string }) => r.studentName)).toEqual(['Wei']);
+    });
+
+    it('rejects a day that is not a real date', async () => {
+        mocks.classFindUnique.mockResolvedValue({ teacherId: 'teacher-1' });
+        expect((await TEACHER_GET(json('/api/teacher/study-log?classId=c1&day=2026-02-30', 'GET'))).status).toBe(400);
+        expect(parseDayKey('2026-10-28')).toBe('2026-10-28');
+        expect(parseDayKey('10/28/2026')).toBeNull();
+    });
+});
+
+describe('teacher replies', () => {
+    const changed = (original: string, corrected: string) =>
+        diffRecastWords(original, corrected).filter((part) => part.changed).map((part) => part.word);
+
+    it('marks only the new or fixed words in a recast', () => {
+        expect(changed('I spook with my boss her name is Katherine.', 'I spoke with my boss. Her name is Katherine.'))
+            .toEqual(['spoke', '.', 'Her']);
+        expect(changed('I watched the move in English', 'I watched the movie in English.')).toEqual(['movie', '.']);
+        expect(changed('I went store.', 'I went to the store.')).toEqual(['to', 'the']);
+        expect(changed('Wow.', 'Wow!')).toEqual(['!']);
+    });
+
+    it('puts the sentence back together with spaces only between words', () => {
+        const join = (parts: ReturnType<typeof diffRecastWords>) => parts.map((p) => (p.space ? ' ' : '') + p.word).join('');
+        expect(join(diffRecastWords('I  watched tv', 'I watched TV, then slept.'))).toBe('I watched TV, then slept.');
+        expect(join(diffRecastWords('x', 'Really?! ... ok'))).toBe('Really?! ... ok');
+    });
+
+    it('needs a recast that differs from the sentence', () => {
+        expect(parseStudyLogRecast('  I spoke  with my boss. ', 'I spook with my boss.')).toEqual({ text: 'I spoke with my boss.' });
+        expect(parseStudyLogRecast('I spook  with my boss.', ' I spook with my boss.')).toHaveProperty('error');
+        expect(parseStudyLogRecast('', 'x')).toHaveProperty('error');
+        expect(parseStudyLogRecast('y'.repeat(301), 'x')).toHaveProperty('error');
+    });
+
+    it('reads a reply onto the entry and counts unread ones', () => {
+        const base = { id: '1', kind: 'watch', text: 'I watched tv.', dayKey: '2026-10-27', createdAt: new Date('2026-10-27T12:00:00Z') };
+        const at = new Date('2026-10-28T12:00:00Z');
+        expect(toStudyLogEntry(base)?.reply).toBeNull();
+        const recast = toStudyLogEntry({ ...base, replyKind: 'recast', replyText: 'I watched TV.', repliedAt: at, replySeenAt: null })!;
+        expect(recast.reply).toEqual({ kind: 'recast', text: 'I watched TV.', repliedAt: at.toISOString(), seen: false });
+        const praise = toStudyLogEntry({ ...base, replyKind: 'praise', replyText: 'stray', repliedAt: at, replySeenAt: at })!;
+        expect(praise.reply).toMatchObject({ kind: 'praise', text: null, seen: true });
+        expect(toStudyLogEntry({ ...base, replyKind: 'recast', replyText: null, repliedAt: at })?.reply).toBeNull();
+        expect(countUnreadReplies([recast, praise, toStudyLogEntry(base)!])).toBe(1);
+    });
+
+    describe('PUT /api/teacher/study-log/reply', () => {
+        const put = (body: unknown) => REPLY_PUT(json('/api/teacher/study-log/reply', 'PUT', body));
+        beforeEach(() => {
+            mocks.session.mockResolvedValue(teacher);
+            mocks.logFindUnique.mockResolvedValue({ userId: 's1', text: 'I spook with my boss.' });
+            mocks.enrollmentFindFirst.mockResolvedValue({ id: 'e1' });
+            mocks.logUpdate.mockImplementation(async ({ data }) => ({
+                id: 'log-1', kind: 'speak', text: 'I spook with my boss.', dayKey: '2026-10-27', createdAt: new Date(), ...data,
+            }));
+        });
+
+        it('is teacher-only and limited to students in their classes', async () => {
+            mocks.session.mockResolvedValue(student);
+            expect((await put({ logId: 'log-1', kind: 'praise' })).status).toBe(403);
+            mocks.session.mockResolvedValue(teacher);
+            mocks.enrollmentFindFirst.mockResolvedValue(null);
+            expect((await put({ logId: 'log-1', kind: 'praise' })).status).toBe(404);
+            expect(mocks.enrollmentFindFirst).toHaveBeenCalledWith(expect.objectContaining({
+                where: { studentId: 's1', status: 'active', class: { teacherId: 'teacher-1' } },
+            }));
+            expect(mocks.logUpdate).not.toHaveBeenCalled();
+        });
+
+        it('saves a recast as unread and never awards points', async () => {
+            const res = await put({ logId: 'log-1', kind: 'recast', text: 'I spoke with my boss.' });
+            expect(res.status).toBe(200);
+            expect(mocks.logUpdate).toHaveBeenCalledWith(expect.objectContaining({
+                where: { id: 'log-1' },
+                data: expect.objectContaining({ replyKind: 'recast', replyText: 'I spoke with my boss.', repliedById: 'teacher-1', replySeenAt: null }),
+            }));
+            expect((await res.json()).entry.reply).toMatchObject({ kind: 'recast', text: 'I spoke with my boss.', seen: false });
+            expect(mocks.award).not.toHaveBeenCalled();
+        });
+
+        it('saves praise without text and clears a reply', async () => {
+            await put({ logId: 'log-1', kind: 'praise', text: 'ignored' });
+            expect(mocks.logUpdate).toHaveBeenLastCalledWith(expect.objectContaining({ data: expect.objectContaining({ replyKind: 'praise', replyText: null }) }));
+            const res = await put({ logId: 'log-1', kind: 'clear' });
+            expect((await res.json()).entry.reply).toBeNull();
+        });
+
+        it.each([{ kind: 'praise' }, { logId: 'log-1', kind: 'grade' }, { logId: 'log-1', kind: 'recast', text: 'I spook with my boss.' }])(
+            'rejects %j',
+            async (body) => {
+                expect((await put(body)).status).toBe(400);
+                expect(mocks.logUpdate).not.toHaveBeenCalled();
+            }
+        );
+    });
+
+    describe('POST /api/study-log/reply-seen', () => {
+        it('marks only the signed-in student\'s own replied log as read', async () => {
+            mocks.logUpdateMany.mockResolvedValue({ count: 1 });
+            const res = await SEEN_POST(json('/api/study-log/reply-seen', 'POST', { logId: 'log-1' }));
+            expect(res.status).toBe(200);
+            expect(mocks.logUpdateMany).toHaveBeenCalledWith({
+                where: { id: 'log-1', userId: 'student-1', replyKind: { not: null }, replySeenAt: null },
+                data: { replySeenAt: expect.any(Date) },
+            });
+        });
+
+        it('is students only', async () => {
+            mocks.session.mockResolvedValue(teacher);
+            expect((await SEEN_POST(json('/api/study-log/reply-seen', 'POST', { logId: 'log-1' }))).status).toBe(403);
+            expect(mocks.logUpdateMany).not.toHaveBeenCalled();
+        });
     });
 });

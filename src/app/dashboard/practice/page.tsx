@@ -17,7 +17,7 @@ export default async function StudyLogPage() {
     // Falls back to an empty week so the page still opens if the logs can't load.
     const initial = await loadStudentStudyWeek(session.user.id).catch((error) => {
         console.error("[Practice log] Could not load this week", error);
-        return { week: buildStudyWeek([]), entries: [], goalDays: DEFAULT_PRACTICE_GOAL_DAYS };
+        return { week: buildStudyWeek([]), entries: [], goalDays: DEFAULT_PRACTICE_GOAL_DAYS, earlierReplies: [] };
     });
     return (
         <div className="min-h-dvh bg-bg">
