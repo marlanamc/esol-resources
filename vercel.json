@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx prisma generate && npx next build",
+  "buildCommand": "npx prisma generate && if [ \"$VERCEL_ENV\" = production ]; then node scripts/migrate-deploy.mjs; fi && npx next build",
   "functions": {
     "src/app/**/*.{js,ts,jsx,tsx}": {
       "maxDuration": 60
