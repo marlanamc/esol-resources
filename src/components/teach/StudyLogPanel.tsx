@@ -12,6 +12,7 @@ import {
     type StudyLogKind,
     type TeacherStudyRow,
 } from "@/lib/learner/study-log";
+import { useAdjustTabCount } from "@/components/teach/TeachHomeTabs";
 
 type WeekData = { weekStart: string; isCurrentWeek: boolean; rows: TeacherStudyRow[] };
 type ReplyBody = { kind: "recast"; text: string } | { kind: "praise" } | { kind: "clear" };
@@ -29,6 +30,10 @@ export function StudyLogPanel({ classId }: { classId: string }) {
     const [week, setWeek] = useState<string | null>(null);
     const [data, setData] = useState<WeekData | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [showAll, setShowAll] = useState(false);
+    // Sentences that had no reply when the week loaded; replying keeps them on screen so Undo stays in reach.
+    const [toReply, setToReply] = useState<ReadonlySet<string>>(new Set());
+    const adjustTabCount = useAdjustTabCount();
 
     useEffect(() => {
         let cancelled = false;
@@ -40,7 +45,10 @@ export function StudyLogPanel({ classId }: { classId: string }) {
                 const body = await res.json().catch(() => null);
                 if (cancelled) return;
                 if (!res.ok || !Array.isArray(body?.rows)) setError("Could not load practice logs.");
-                else setData(body);
+                else {
+                    setData(body);
+                    setToReply(new Set((body.rows as TeacherStudyRow[]).flatMap((row) => row.entries.filter((e) => !e.reply).map((e) => e.id))));
+                }
             })
             .catch(() => !cancelled && setError("Could not load practice logs."));
         return () => {
@@ -49,6 +57,8 @@ export function StudyLogPanel({ classId }: { classId: string }) {
     }, [classId, week]);
 
     function replaceEntry(updated: StudyLogEntry) {
+        const previous = data?.rows.flatMap((row) => row.entries).find((entry) => entry.id === updated.id);
+        if (data?.isCurrentWeek && previous && !previous.reply !== !updated.reply) adjustTabCount(updated.reply ? -1 : 1);
         setData((current) =>
             current && {
                 ...current,
@@ -62,6 +72,12 @@ export function StudyLogPanel({ classId }: { classId: string }) {
 
     const weekStart = data?.weekStart ?? week;
     const logged = data?.rows.filter((row) => row.daysPracticed > 0).length ?? 0;
+    const waiting = data?.rows.reduce((n, row) => n + row.entries.filter((e) => toReply.has(e.id) && !e.reply).length, 0) ?? 0;
+    const rows = showAll
+        ? (data?.rows ?? [])
+        : (data?.rows ?? [])
+              .map((row) => ({ ...row, entries: row.entries.filter((e) => toReply.has(e.id)) }))
+              .filter((row) => row.entries.length > 0);
 
     return (
         <section className="workspace-panel space-y-4" aria-labelledby="study-log-heading">
@@ -106,6 +122,21 @@ export function StudyLogPanel({ classId }: { classId: string }) {
             ) : null}
 
             {data && data.rows.length > 0 ? (
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Show">
+                    <button type="button" className={`workspace-button ${showAll ? "" : "workspace-button-primary"}`} aria-pressed={!showAll} onClick={() => setShowAll(false)}>
+                        Needs reply ({waiting})
+                    </button>
+                    <button type="button" className={`workspace-button ${showAll ? "workspace-button-primary" : ""}`} aria-pressed={showAll} onClick={() => setShowAll(true)}>
+                        Everyone
+                    </button>
+                </div>
+            ) : null}
+
+            {data && data.rows.length > 0 && rows.length === 0 ? (
+                <p className="text-sm text-text-muted">All caught up. Every sentence this week has a reply.</p>
+            ) : null}
+
+            {data && rows.length > 0 ? (
                 <>
                     <p className="text-xs text-text-muted">
                         Correct: rewrite the sentence the right way. The student sees it under theirs with the changed words in bold. Points don&apos;t change.
@@ -113,7 +144,7 @@ export function StudyLogPanel({ classId }: { classId: string }) {
 
                     {/* Phones: one card per student. */}
                     <ul className="m-0 list-none space-y-0 p-0 md:hidden">
-                        {data.rows.map((row) => (
+                        {rows.map((row) => (
                             <li key={row.studentId} className="space-y-2 border-b border-border py-3">
                                 <div className="flex items-baseline justify-between gap-3">
                                     <span className="font-semibold">{row.studentName}</span>
@@ -148,7 +179,7 @@ export function StudyLogPanel({ classId }: { classId: string }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.rows.map((row) => (
+                                {rows.map((row) => (
                                     <tr key={row.studentId} className="border-b border-border align-top">
                                         <th scope="row" className="py-2.5 pr-3 text-left font-semibold">{row.studentName}</th>
                                         {row.days.map((kinds, i) => (
@@ -172,7 +203,7 @@ export function StudyLogPanel({ classId }: { classId: string }) {
                         {STUDY_LOG_KINDS.map((kind) => `${kind.letter} ${kind.label}`).join(" · ")} · + more than one that day
                     </p>
                 </>
-            ) : data ? (
+            ) : data && data.rows.length === 0 ? (
                 <p className="text-sm text-text-muted">No students in this class yet.</p>
             ) : null}
         </section>
