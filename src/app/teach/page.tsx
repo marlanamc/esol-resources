@@ -100,7 +100,12 @@ export default async function TeachHomePage({
                 orderBy: { number: "desc" },
                 select: { number: true, title: true },
             }),
-            getClassQuizCompletion(classId, students, new Date(now)),
+            // Leaderboard-excluded accounts (e.g. test27) aren't counted as missing quizzes.
+            getClassQuizCompletion(
+                classId,
+                students.filter((s) => !s.excludedFromLeaderboard),
+                new Date(now),
+            ),
             // Open on the newest week with unanswered questions (students can ask a week early).
             prisma.classQuestion
                 .findFirst({

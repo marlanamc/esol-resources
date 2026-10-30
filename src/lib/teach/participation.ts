@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
+import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
 import { latestActivityDate } from "./participation-status";
 
 /** Match the existing Reports population and its three last-activity signals. */
@@ -22,6 +23,8 @@ export async function getClassParticipation(classId: string) {
                         username: true,
                         weeklyPoints: true,
                         lastActivityDate: true,
+                        isSystemAccount: true,
+                        excludeFromLeaderboard: true,
                     },
                 },
             },
@@ -72,5 +75,6 @@ export async function getClassParticipation(classId: string) {
             progressById.get(student.id),
         ),
         recentPractice: practiceById.get(student.id) ?? null,
+        excludedFromLeaderboard: isLeaderboardExcludedUser(student),
     }));
 }
