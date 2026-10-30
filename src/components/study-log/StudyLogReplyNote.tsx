@@ -75,7 +75,7 @@ export function StudyLogReplyNote({ entry, reply }: { entry: StudyLogEntry; repl
                     className="mt-2 flex min-h-11 items-center gap-1.5 rounded-lg bg-emerald-700! px-3 text-sm font-bold text-[#fffdfa] disabled:opacity-60 dark:bg-emerald-600!"
                 >
                     <Check size={16} strokeWidth={2.6} aria-hidden />
-                    {recast ? "I said it out loud" : "Thanks!"}
+                    {recast ? "I said it out loud" : "Got it!"}
                 </button>
             )}
         </div>
