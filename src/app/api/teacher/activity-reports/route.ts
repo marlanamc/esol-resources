@@ -117,7 +117,6 @@ export async function GET(request: Request) {
               status: "active",
               student: {
                 isSystemAccount: false,
-                excludeFromLeaderboard: false,
               },
             },
             select: {
@@ -150,7 +149,6 @@ export async function GET(request: Request) {
           ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
           user: {
             isSystemAccount: false,
-            excludeFromLeaderboard: false,
           },
         },
         _sum: { points: true },
@@ -180,7 +178,6 @@ export async function GET(request: Request) {
           ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
           user: {
             isSystemAccount: false,
-            excludeFromLeaderboard: false,
           },
         },
         orderBy: { createdAt: "desc" },
@@ -305,7 +302,6 @@ export async function GET(request: Request) {
       where: {
         id: { in: activeStudentIds },
         isSystemAccount: false,
-        excludeFromLeaderboard: false,
       },
       select: {
         id: true,

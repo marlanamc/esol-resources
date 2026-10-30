@@ -11,7 +11,6 @@ export async function getClassParticipation(classId: string) {
                 status: "active",
                 student: {
                     isSystemAccount: false,
-                    excludeFromLeaderboard: false,
                 },
             },
             select: {

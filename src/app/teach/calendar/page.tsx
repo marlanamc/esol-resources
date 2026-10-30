@@ -79,7 +79,7 @@ export default async function TeachCalendarPage({
     let practiceDays: Record<string, number> | null = null;
     if (activeClassId && activeClassName) {
         const enrollments = await prisma.classEnrollment.findMany({
-            where: { classId: activeClassId, status: "active", student: { isSystemAccount: false, excludeFromLeaderboard: false } },
+            where: { classId: activeClassId, status: "active", student: { isSystemAccount: false } },
             select: { studentId: true },
         });
         practiceDays = await loadClassPracticeDayCounts(enrollments.map((e) => e.studentId)).catch((error) => {
