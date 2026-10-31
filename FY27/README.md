@@ -26,3 +26,4 @@ FY27/
 
 File names: `weekN-dayM-YYYY-MM-DD` for dated materials (Day 1 = Tuesday, Day 2 = Thursday).
 New Tuesday stations go in a new `stations/weekNN/` folder (two-digit week number).
+From Week 9 on, each `stations/weekNN/` has a `build-weekN-stations.py` that writes the packet, answer key, leader guide, and table handouts (HTML + PDF) from one source, using the shared `stations/stations_lib.py`. Edit the script, then run it with `python3`.
