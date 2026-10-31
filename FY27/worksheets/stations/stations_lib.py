@@ -529,3 +529,32 @@ def pdf(html_path, pages=None):
     flag = "" if pages is None or n == pages else f"  <-- expected {pages}"
     print(f"{out.name}: {n} pages{flag}")
     return n
+
+
+def leader_top(week, date_short, stations, bullets):
+    """Leader guide page 1 header, rotation table, and the 'how tonight works' bullets."""
+    rows = "".join(
+        f'<tr><td class="g">{g}<span>{"late arrivals" if g == "D" else "on time"}</span></td>'
+        + "".join(f"<td>{n} &middot; {stations[n - 1][0]}</td>" for n in order) + "</tr>"
+        for g, order in ROTATION)
+    lis = "".join(f"<li>{b}</li>" for b in bullets)
+    return f"""<div class="header-row"><h1>Tuesday Stations &middot; Leader Guide</h1><span class="tag">Week {week} &middot; Tue {date_short} &middot; not for students</span></div>
+  <table class="rotation">
+    <tr><th>Group</th><th>Block 1<span class="time">6:00&ndash;6:25</span></th><th>Block 2<span class="time">6:27&ndash;6:52</span></th><th>Block 3<span class="time">6:54&ndash;7:19</span></th><th>Block 4<span class="time">7:21&ndash;7:46</span></th></tr>
+    {rows}
+    <tr class="who"><td class="g">Adults</td><td colspan="4">One adult stays at <b>Station 2 (SPEAK)</b> all night. The other <b>floats</b> between Stations 1, 3, and 4.</td></tr>
+  </table>
+  <ul class="dots">{lis}</ul>"""
+
+
+def self_check_doc(title, card_body, stop="Finish Parts A, B, and C first.", page_ref="packet page 8"):
+    """Two identical half-sheet answer cards on one landscape sheet."""
+    card = f"""<div class="card">
+    <div class="stop">
+      <div class="big">STOP! {stop}</div>
+      <div class="sub">Keep this card face-down until your group is done. Then check together.</div>
+    </div>
+    <div class="title"><h1>Station 4 Self-Check</h1><span>Real World &middot; {page_ref}</span></div>
+    {card_body}
+  </div>"""
+    return doc(title, SELFCHECK_CSS, f'<div class="sheet">\n  {card}\n  {card}\n</div>')

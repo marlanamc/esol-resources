@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 10 Tuesday Stations Packet (Answer Key)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  /* One .page = one portrait letter page. Print double-sided, staple top left.
+     Page 1 cover; spreads 2-3 warm-up, 4-5 speak, 6-7 read,
+     pages 8-9 real world; page 10 early-finisher verb charts. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.45in 0.55in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale (print floor): 28 / 22 / 18 / 16 / 14 */
+  .station-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .station-bar .label { font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+  .station-bar .label span { font-size: 16px; font-weight: normal; letter-spacing: 0; margin-left: 8px; }
+  .station-bar .pg { font-size: 14px; white-space: nowrap; }
+  h2 { font-size: 22px; margin-bottom: 4px; }
+  h3 { font-size: 18px; margin-bottom: 4px; }
+  .task { margin-bottom: 14px; }
+  .how { font-size: 16px; margin-bottom: 8px; }
+  .example { font-size: 16px; margin-bottom: 8px; font-style: italic; }
+  .small { font-size: 14px; }
+  .bank { border: 1.5px solid #000; padding: 6px 10px; margin-bottom: 8px; font-size: 16px; }
+  .bank span { white-space: nowrap; margin-right: 14px; }
+  ol.items { list-style: none; }
+  ol.items li { font-size: 18px; margin-bottom: 9px; }
+  ol.items li b.n { display: inline-block; width: 1.6em; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; min-width: 1.6in; height: 1.1em; vertical-align: bottom; }
+  .blank.short { min-width: 0.6in; }
+  .blank.long { min-width: 3in; }
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .line + .line { margin-top: 2px; }
+  .tip { border: 1.5px dashed #000; padding: 8px 12px; font-size: 16px; }
+  .bottom { margin-top: auto; }
+  .pass { font-size: 14px; font-style: italic; }
+
+  /* ---------- Cover ---------- */
+  .cover-title { font-size: 40px; font-weight: bold; line-height: 1.1; }
+  .cover-sub { font-size: 20px; margin-bottom: 14px; }
+  .name-row { font-size: 20px; display: flex; gap: 16px; margin-bottom: 18px; }
+  .name-row .blank { flex: 1; }
+  table.rotation { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.rotation th, table.rotation td { border: 2px solid #000; padding: 10px 6px; text-align: center; font-size: 18px; font-weight: bold; }
+  table.rotation th { font-size: 16px; }
+  table.rotation td.g { font-size: 22px; width: 15%; }
+  .stations { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stations > div { border: 2px solid #000; padding: 10px 12px; }
+  .stations .nm { font-size: 22px; font-weight: bold; }
+  .stations .who { font-size: 16px; }
+  .stations .pp { font-size: 14px; }
+  ul.rules { padding-left: 1.2em; font-size: 18px; }
+  ul.rules li { margin-bottom: 6px; }
+
+  /* ---------- Warm-up ---------- */
+  /* Page 3 holds Parts 4-6: tighter spacing so the paragraph lines fit */
+  .wu3 .task { margin-bottom: 10px; }
+  .wu3 ol.items li { margin-bottom: 6px; }
+  .wu3 table.forms td { height: 36px; }
+  .own { border: 1.5px dashed #000; padding: 5px 10px; font-size: 16px; margin-bottom: 8px; }
+  .own .u { text-decoration: underline; font-style: italic; }
+  .starters { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+  .starters span { white-space: normal; margin: 0; }
+  .circ { display: inline-block; border: 1.5px solid #000; border-radius: 50%; width: 1.4em; height: 1.4em; line-height: 1.3em; text-align: center; font-style: normal; }
+  table.forms { width: 100%; border-collapse: collapse; }
+  table.forms th, table.forms td { border: 1.5px solid #000; padding: 6px; text-align: center; }
+  table.forms th { font-size: 16px; }
+  table.forms th small { display: block; font-size: 14px; font-weight: normal; }
+  table.forms td { font-size: 18px; height: 44px; }
+  table.forms td.base { font-weight: bold; }
+
+  /* ---------- Speak ---------- */
+  .mouths { display: flex; gap: 12px; margin-bottom: 12px; }
+  .mouth { flex: 1; border: 2px solid #000; padding: 8px 12px; display: flex; gap: 12px; align-items: center; }
+  .mouth svg { width: 92px; height: 92px; flex: none; }
+  .mouth .big { font-size: 40px; font-weight: bold; line-height: 1; }
+  .mouth p { font-size: 16px; }
+  table.pairs { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.pairs td { border: 1.5px solid #000; padding: 6px 10px; font-size: 20px; text-align: center; }
+  table.pairs td.n { font-size: 16px; font-weight: bold; width: 8%; }
+  table.pairs td small { display: block; font-size: 14px; }
+  ol.read-aloud { padding-left: 1.4em; }
+  ol.read-aloud li { font-size: 20px; margin-bottom: 8px; }
+
+  /* ---------- Read ---------- */
+  .story .words { margin-bottom: 12px; line-height: 1.3; padding: 6px 12px; }
+  .wgrid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 2px; margin-top: 2px; }
+  .paras { counter-reset: para; }
+  .paras p { counter-increment: para; position: relative; padding-left: 30px; font-size: 17px; line-height: 1.42; margin-bottom: 9px; }
+  .paras p::before { content: counter(para); position: absolute; left: 0; top: 1px; width: 21px; height: 21px; border: 1.5px solid #000; border-radius: 50%; font-size: 13px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+  .words { border: 1.5px solid #000; padding: 8px 12px; font-size: 16px; }
+  /* Page 7 (reading questions) is dense: tighter spacing so nothing reaches the printer margin */
+  .rd .task { margin-bottom: 8px; }
+  .rd ol.items li { font-size: 17px; margin-bottom: 5px; }
+  .rd .line { height: 24px; }
+  .rd .how { margin-bottom: 4px; }
+  .key { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .key div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+
+  /* ---------- Real world questions (dense page: slightly tighter spacing) ---------- */
+  .rw .task { margin-bottom: 10px; }
+  .rw ol.items li { font-size: 17px; margin-bottom: 6px; }
+  .rw .how { margin-bottom: 5px; }
+  .rw h2 { font-size: 20px; margin-bottom: 2px; }
+  table.pick { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.pick th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  table.pick td { border: 1.5px solid #000; padding: 6px 8px; font-size: 16px; height: 40px; }
+  table.pick td.t { width: 30%; font-weight: bold; white-space: nowrap; }
+  table.pick td.c { width: 20%; text-align: center; white-space: nowrap; }
+  .call { border: 1.5px solid #000; padding: 8px 14px; }
+  .call p { font-size: 16px; line-height: 1.5; margin-bottom: 4px; }
+  .call .blank { height: 1.2em; }
+  .cb { display: inline-block; width: 16px; height: 16px; border: 1.5px solid #000; vertical-align: middle; }
+  table.tf { width: 100%; border-collapse: collapse; }
+  table.tf td { border: 1.5px solid #000; padding: 3px 8px; font-size: 16px; }
+  table.tf td.c { width: 1in; text-align: center; font-size: 14px; white-space: nowrap; }
+  table.tf th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  .script { border: 1.5px solid #000; padding: 6px 12px; font-size: 17px; line-height: 2; }
+
+  /* ---------- Tense charts (page 10) ---------- */
+  .vc .task { margin-bottom: 10px; }
+  .vc h2 { font-size: 20px; margin-bottom: 2px; }
+  .vc .how { font-size: 15px; margin-bottom: 4px; }
+  .vc-meta { display: flex; gap: 28px; font-size: 16px; margin-bottom: 4px; }
+  table.forms5 { width: 100%; border-collapse: collapse; margin-bottom: 6px; table-layout: fixed; }
+  table.forms5 th, table.forms5 td { border: 1.5px solid #000; text-align: center; padding: 2px 4px; font-size: 15px; }
+  table.forms5 th { background: #eee; }
+  table.forms5 td { height: 28px; }
+  table.tense { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.tense.write td { height: 40px; }
+  table.tense th:first-child { width: 22%; }
+  table.tense th, table.tense td { border: 1.5px solid #000; padding: 2px 6px; font-size: 15px; text-align: center; height: 31px; }
+  table.tense th { background: #eee; }
+  table.tense td.tn { text-align: left; font-weight: bold; white-space: nowrap; }
+  table.tense td { white-space: nowrap; }
+  .hb.sm { width: 0.42in; }
+  table.forms5 td.ex { background: #ddd; font-style: italic; }
+  table.tense tr:nth-child(odd) td { background: #f5f5f5; }
+  .hb { display: inline-block; width: 0.65in; border-bottom: 1.5px solid #000; height: 1em; vertical-align: baseline; }
+  /* ---------- Verb charts ---------- */
+  table.verbs { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.verbs th, table.verbs td { border: 1.5px solid #000; padding: 4px 6px; text-align: center; }
+  table.verbs th { font-size: 16px; }
+  table.verbs th small { display: block; font-size: 14px; font-weight: normal; }
+  table.verbs td { font-size: 18px; height: 34px; }
+  table.verbs td.base { font-weight: bold; width: 17%; }
+
+  /* Added for Week 9+: "Bonus: Your turn" hints, can/can't rhythm boxes, flyer-style tasks */
+  .ideas { font-size: 14px; font-style: italic; margin: 1px 0 0; }
+  .prompt { font-size: 18px; margin-top: 6px; }
+  .rhythm { display: flex; gap: 12px; margin-bottom: 10px; }
+  .rhythm > div { flex: 1; border: 2px solid #000; padding: 8px 12px; }
+  .rhythm .big { font-size: 26px; font-weight: bold; line-height: 1.1; margin-bottom: 4px; }
+  .rhythm .beats { font-size: 22px; letter-spacing: 2px; margin: 2px 0 4px; }
+  .rhythm .beats b { font-size: 30px; }
+  table.who { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.who td { border: 1.5px solid #000; padding: 4px 10px; font-size: 17px; height: 38px; }
+  table.who td.q { width: 31%; font-size: 16px; }
+  table.pick.tall td { height: 66px; }
+  ol.listen2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+  ol.listen2 li { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 6px; font-size: 17px; }
+  ol.listen2 li b.n { width: auto; }
+  ol.listen2 .cc { white-space: nowrap; font-weight: bold; }
+  .textbox { border: 2px solid #000; border-radius: 18px; padding: 10px 16px; font-size: 17px; line-height: 2.1; }
+  .gram3 { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .gram3 div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+  .gline { display: flex; gap: 8px; align-items: flex-end; font-size: 17px; margin-bottom: 4px; }
+  .gline b { white-space: nowrap; width: 3.2em; }
+  .gline .line { flex: 1; }
+
+  /* ---------- Answer key overlay ---------- */
+  .page { position: relative; }
+  .keytag { position: absolute; top: 0.12in; left: 50%; transform: translateX(-50%); color: #c00; font-weight: bold; font-size: 14px; letter-spacing: 2px; border: 1.5px solid #c00; padding: 0 10px; }
+  .ans { color: #c00; font-weight: bold; font-style: normal; }
+  .blank.ans { text-align: center; padding: 0 4px; }
+  .line.ans { font-size: 16px; line-height: 26px; padding-left: 4px; }
+  .hitc { border: 2px solid #c00; border-radius: 12px; padding: 0 5px; color: #c00; }
+  .cb.on { background: #c00; }
+  .keynote { color: #c00; font-size: 15px; font-weight: bold; }
+  td.ansc { color: #c00; font-weight: bold; }
+  .hb.ans { color: #c00; font-weight: bold; text-align: center; width: auto; min-width: 0.65in; padding: 0 3px; }
+  table.tense.write td.ansc { font-size: 13px; }
+  .hb.sm.ans { min-width: 0.36in; font-size: 13px; padding: 0 1px; }
+  .textbox .blank { line-height: 1.2; height: 1.25em; }
+  td.ans { color: #c00; font-weight: bold; }
+</style>
+</head>
+<body>
+<section class="page"><div class="keytag">ANSWER KEY</div>
+  
+  <div class="cover-title">Tuesday Stations</div>
+  <div class="cover-sub">Week 10 &middot; Tuesday, November 17, 2026 &middot; Practice day</div>
+  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
+  <table class="rotation">
+    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
+    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td></tr>
+  </table>
+  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who">Short <i>i</i> and long <i>ee</i>. With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: TALK CARDS</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7 + cards on the table</div></div><div><div class="nm">Station 4: REAL WORLD</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 8&ndash;9 + 2 color pages on the table</div></div></div>
+  <h2>How it works</h2>
+  <ul class="rules">
+    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
+    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
+    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
+    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
+    <li>Keep this packet. Bring it on Thursday.</li>
+  </ul>
+</section>
+<section class="page wu3"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="task">
+    <h2>1. Odd one out</h2>
+    <p class="how">Three are meeting words. Circle the one that does not belong.</p>
+    <p class="example">Example: suggest &middot; propose &middot; <b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">bus</b> &middot; recommend</p>
+    <ol class="items"><li><b class="n">1.</b> participate &middot; raise a concern &middot; <span class="hitc">sandwich</span> &middot; propose</li><li><b class="n">2.</b> suggest &middot; recommend &middot; <span class="hitc">umbrella</span> &middot; reach an agreement</li><li><b class="n">3.</b> raise a concern &middot; <span class="hitc">mountain</span> &middot; suggest &middot; participate</li><li><b class="n">4.</b> recommend &middot; <span class="hitc">pillow</span> &middot; propose &middot; reach an agreement</li><li><b class="n">5.</b> participate &middot; recommend &middot; <span class="hitc">banana</span> &middot; raise a concern</li></ol>
+  </div>
+  <div class="task">
+    <h2>2. Have you ever&hellip;? or Did you&hellip;?</h2>
+    <p class="how">Circle the right start. <b>Have you ever + V3</b> = any time in your life. <b>Did you + V1</b> = one finished time.</p>
+    <p class="example">Example: (<b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">Have you ever</b> / Did you) donated blood?</p>
+    <ol class="items"><li><b class="n">1.</b> (<span class="hitc">Have you ever</span> / Did you) volunteered at a food bank?</li><li><b class="n">2.</b> (Have you ever / <span class="hitc">Did you</span>) help out at the cleanup <b>last Saturday</b>?</li><li><b class="n">3.</b> (<span class="hitc">Have you ever</span> / Did you) signed up for a class online?</li><li><b class="n">4.</b> (Have you ever / <span class="hitc">Did you</span>) donate clothes <b>last winter</b>?</li><li><b class="n">5.</b> (<span class="hitc">Have you ever</span> / Did you) supported a friend in a hard time?</li></ol>
+  </div>
+  <div class="task">
+    <h2>3. Finish the sentence about you</h2>
+    <p class="how"><b>You make up the ending.</b> Use your own ideas. Many answers are OK.<br>Pattern: <b>have / has (never) + V3</b></p>
+    <div class="own">
+      <b>Example:</b> I have never <span class="u">seen snow</span>.<br>
+      &emsp;&emsp;&emsp;&ensp; Other good answers: I have never <span class="u">ridden a horse</span>. &middot; I have never <span class="u">eaten sushi</span>.
+    </div>
+    <ol class="items">
+      <li><b class="n">1.</b> I have never <span class="blank long ans"><i>answers vary</i></span>.</li>
+      <li><b class="n">2.</b> I have <span class="blank long ans"><i>answers vary</i></span> many times.</li>
+      <li><b class="n">3.</b> My family has never <span class="blank long ans"><i>answers vary</i></span>.</li>
+      <li><b class="n">4.</b> Have you ever <span class="blank long ans"><i>answers vary</i></span>?</li>
+    </ol>
+  </div>
+</section>
+<section class="page wu3"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="task">
+    <h2>4. Verb forms of the week</h2>
+    <p class="how">Write the other forms of <b>meet</b> and <b>speak</b>. <i>Meet</i> and <i>speak</i> are on this week&rsquo;s quiz!</p>
+    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">meet</td><td class="ansc">meets</td><td class="ansc">meeting</td><td class="ansc">met</td><td class="ansc">met</td></tr><tr><td class="base">speak</td><td class="ansc">speaks</td><td class="ansc">speaking</td><td class="ansc">spoke</td><td class="ansc">spoken</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>5. Use the right form</h2>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>meet</b> or <b>speak</b>. Use your chart.</p>
+    <ol class="items"><li><b class="n">1.</b> <b>Every month</b>, the neighborhood group <span class="blank ans">meets</span> at the library. (meet)</li><li><b class="n">2.</b> <b>Right now</b>, a parent is <span class="blank ans">speaking</span> at the school meeting. (speak)</li><li><b class="n">3.</b> <b>Yesterday</b>, I didn&rsquo;t <span class="blank ans">meet</span> my child&rsquo;s new teacher. (meet)</li><li><b class="n">4.</b> <b>Last night</b>, did she <span class="blank ans">speak</span> up about parking? (speak)</li><li><b class="n">5.</b> My daughter doesn&rsquo;t <span class="blank ans">speak</span> Spanish at school <b>every day</b>. (speak)</li><li><b class="n">6.</b> <b>Right now</b>, who are you <span class="blank ans">meeting</span> with? (meet)</li><li><b class="n">7.</b> I <b>have</b> <span class="blank ans">spoken</span> to the mayor once. (speak)</li><li><b class="n">8.</b> <b>Have</b> you <span class="blank ans">met</span> your new neighbors? (meet)</li></ol>
+  </div>
+  <div class="task">
+    <h2>6. Bonus: Your turn</h2>
+    <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
+    <p class="prompt"><b>Last week</b> + meet</p>
+    <p class="ideas">Ideas: a friend &middot; my neighbor &middot; my child&rsquo;s teacher &middot; for coffee</p>
+    <div class="line ans"><i>answers vary: Last week, I met my friend for coffee.</i></div>
+    <p class="prompt"><b>At home</b> + speak <b>+ not</b></p>
+    <p class="ideas">Ideas: English &middot; Spanish &middot; my language &middot; on the phone</p>
+    <div class="line ans"><i>answers vary: At home, I don&rsquo;t speak English.</i></div>
+    <p class="prompt"><b>Have you ever</b> + speak<b>?</b></p>
+    <p class="ideas">Ideas: at a meeting &middot; to a big group &middot; on the radio &middot; to a doctor in English</p>
+    <div class="line ans"><i>answers vary: Have you ever spoken at a meeting?</i></div>
+  </div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <h2>Quick or long?</h2>
+  <div class="rhythm">
+    <div><div class="big">i &nbsp;<span style="font-size:20px;font-weight:normal;">ship &middot; sit &middot; live</span></div>
+      <p><b>Short and quick.</b> Your mouth is relaxed. Don&rsquo;t smile.</p></div>
+    <div><div class="big">ee &nbsp;<span style="font-size:20px;font-weight:normal;">sheep &middot; seat &middot; leave</span></div>
+      <p><b>Long.</b> Smile wide, like a photo: <i>cheeeese!</i></p></div>
+  </div>
+  <p class="how"><b>Try it:</b> Put your fingers on the corners of your mouth. Say <i>sit</i>, then <i>seat</i>. On <b>ee</b>, your mouth moves out to a smile.</p>
+  <div class="task">
+    <h2>A. Listen and circle</h2>
+    <p class="how">Your teacher says <b>one</b> word. Circle the word you hear.</p>
+    <table class="pairs"><tr><td class="n">1</td><td>ship</td><td><span class="hitc">sheep</span></td><td class="n">5</td><td>hit</td><td><span class="hitc">heat</span></td></tr><tr><td class="n">2</td><td><span class="hitc">sit</span></td><td>seat</td><td class="n">6</td><td><span class="hitc">chip</span></td><td>cheap</td></tr><tr><td class="n">3</td><td>live</td><td><span class="hitc">leave</span></td><td class="n">7</td><td>bin</td><td><span class="hitc">bean</span></td></tr><tr><td class="n">4</td><td><span class="hitc">fill</span></td><td>feel</td><td class="n">8</td><td><span class="hitc">still</span></td><td>steal</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>B. Your turn: partner game</h2>
+    <p class="how">Use the same words. <b>Partner A</b> says one word. <b>Partner B</b> points to it. Right? Switch. Wrong? Try again slowly.</p>
+  </div>
+  <div class="task">
+    <h2>C. Listen again: which sentence?</h2>
+    <p class="how">Your teacher says <b>a</b> or <b>b</b>. Circle the letter.</p>
+    <ol class="items"><li><b class="n">1.</b> &nbsp;a. I want to <b>leave</b> here. &emsp; <span class="hitc">b.</span> I want to <b>live</b> here.</li><li><b class="n">2.</b> &nbsp;<span class="hitc">a.</span> Is that a <b>ship</b>? &emsp; b. Is that a <b>sheep</b>?</li><li><b class="n">3.</b> &nbsp;<span class="hitc">a.</span> These are <b>cheap</b>. &emsp; b. These are <b>chips</b>.</li><li><b class="n">4.</b> &nbsp;a. Please <b>fill</b> the cup. &emsp; <span class="hitc">b.</span> Please <b>feel</b> the cup.</li></ol>
+  </div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="task">
+    <h2>D. Read aloud</h2>
+    <p class="how">Take turns. Read one sentence each. Go slowly. <b>i</b> = quick. <b>ee</b> = long, with a smile.</p>
+    <ol class="read-aloud">
+      <li>Please have a seat. Sit here.</li>
+      <li>Did he leave, or does he live here?</li>
+      <li>The chips are cheap this week.</li>
+      <li>Have you ever seen a sheep on a ship?</li>
+      <li>Please fill out this form. I feel tired.</li>
+      <li>We meet every week at the library.</li>
+      <li>Have you ever spoken at a meeting?</li>
+      <li>It&rsquo;s still cold, but the heat is on.</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Then ask one more question: <i>&ldquo;When?&rdquo;</i> or <i>&ldquo;Really?&rdquo;</i></p>
+    <ol class="read-aloud">
+      <li>Have you ever been on a big ship?</li>
+      <li>Have you ever seen the sea in the winter?</li>
+      <li>What do you eat when you need something cheap and quick?</li>
+      <li>Do you want to live in the city or in the country? Why?</li>
+      <li>Have you ever spoken English at a meeting?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>F. My hard words</h2>
+    <p class="how">Write 3 words with <b>i</b> or <b>ee</b> that are hard for you. Practice them at home.</p>
+    <div class="line ans"><i>answers vary</i></div>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page rd"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 3: TALK CARDS<span>Have you ever&hellip;? &middot; with your group</span></div><div class="pg">Page 6</div></div>
+  <div class="task">
+    <h2>How to play</h2>
+    <ol class="items" style="list-style:none;">
+      <li><b class="n">1.</b> Put the cards face down on the table.</li>
+      <li><b class="n">2.</b> Take a card. Ask the person on your <b>left</b>: <i>&ldquo;Have you ever &hellip;?&rdquo;</i></li>
+      <li><b class="n">3.</b> They answer: <b>Yes, I have.</b> / <b>No, I haven&rsquo;t.</b> / <b>No, never.</b></li>
+      <li><b class="n">4.</b> <b>Yes?</b> Ask one more question with <b>did</b>: <i>When did you&hellip;? Where did you&hellip;? Did you like it?</i></li>
+      <li><b class="n">5.</b> <b>No?</b> Ask: <i>&ldquo;Do you want to?&rdquo;</i> Then the next person takes a card.</li>
+    </ol>
+  </div>
+  <div class="key" style="margin-bottom:10px;">
+    <div><b>Have you ever + V3?</b><br>any time in your life</div>
+    <div><b>When / Where did you + V1?</b><br>one finished time</div>
+  </div>
+  <div class="tip" style="margin-bottom:14px; font-size:17px; line-height:1.6;">
+    <b>A:</b> Have you ever <b>eaten</b> sushi? &emsp; <b>B:</b> Yes, I have.<br>
+    <b>A:</b> When <b>did</b> you <b>eat</b> it? &emsp;&emsp;&ensp; <b>B:</b> I <b>ate</b> it last year at my friend&rsquo;s house.<br>
+    <b>A:</b> Did you like it? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> Yes, I did!
+  </div>
+  <div class="task">
+    <h2>Write it down</h2>
+    <p class="how">After each turn, write who answered and one detail.</p>
+    <table class="pick"><tr><th style="width:22%;">Who?</th><th style="width:30%;">Have you ever&hellip;?</th><th style="width:14%;">Yes / No</th><th>One detail (when? where?)</th></tr><tr><td style="height:36px;"></td><td></td><td></td><td class="ansc"><i>answers vary</i></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr></table>
+  </div>
+</section>
+<section class="page rd"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 3: TALK CARDS<span>Have you ever&hellip;? &middot; with your group</span></div><div class="pg">Page 7</div></div>
+  <div class="task">
+    <h2>A. Write about your group</h2>
+    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
+    <div class="gram3">
+      <div><b>has + V3</b><br>Ana <b>has been</b> to Mexico City.</div>
+      <div><b>has never + V3</b><br>Juan <b>has never seen</b> snow.</div>
+      <div><b>have both + V3</b><br>Mei and I <b>have both flown</b> in a plane.</div>
+    </div>
+    <div class="line ans"><i>answers vary: check has + V3 for one person, have + V3 for two</i></div><div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="task">
+    <h2>B. V3 check</h2>
+    <p class="how">These verbs are on the cards. Write the <b>V3</b>.</p>
+    <table class="pick" style="font-size:17px;"><tr><td><b>eat</b> &rarr; <span class="blank short ans">eaten</span></td><td><b>see</b> &rarr; <span class="blank short ans">seen</span></td><td><b>ride</b> &rarr; <span class="blank short ans">ridden</span></td><td><b>fly</b> &rarr; <span class="blank short ans">flown</span></td><td><b>sing</b> &rarr; <span class="blank short ans">sung</span></td></tr><tr><td><b>swim</b> &rarr; <span class="blank short ans">swum</span></td><td><b>drive</b> &rarr; <span class="blank short ans">driven</span></td><td><b>take</b> &rarr; <span class="blank short ans">taken</span></td><td><b>forget</b> &rarr; <span class="blank short ans">forgotten</span></td><td><b>be</b> &rarr; <span class="blank short ans">been</span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>C. &#9733; Make 2 new cards</h2>
+    <p class="how">Write 2 new <i>Have you ever&hellip;?</i> questions. Ask your group.</p>
+    <div class="gline"><b>1.</b><div class="line ans"><i>answers vary: Have you ever + V3?</i></div></div>
+    <div class="gline"><b>2.</b><div class="line ans"></div></div>
+  </div>
+  <div class="task">
+    <h2>D. Talk together</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> Which answer in your group was a surprise?</li>
+      <li><b class="n">2.</b> What is something you have never done, but you want to do?</li>
+    </ol>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the meeting flyer). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
+  <div class="task">
+    <h2>A. Find it</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> When is the meeting? <span class="blank long ans">Monday, November 23, 6:30&ndash;8:00 p.m.</span></li>
+      <li><b class="n">2.</b> Where is the meeting? <span class="blank long ans">Eastside Library, Community Room</span></li>
+      <li><b class="n">3.</b> At the Open Mic, how long can each person speak? <span class="blank short ans">2 minutes</span></li>
+      <li><b class="n">4.</b> What will they vote on? <span class="blank long ans">new playground equipment for Elm Park</span></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>B. True, false, or not on the flyer?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the flyer, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the flyer</th></tr><tr><td>1. Childcare is free.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. You can bring your 12-year-old to childcare.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. There will be a vote about the playground.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. The mayor will come to the meeting.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td></tr><tr><td>5. You must be a citizen to speak at the meeting.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. You can watch the meeting online.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>C. What should they do?</h2>
+    <p class="how">Find the answer on the flyer. Write a sentence.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> Rosa can&rsquo;t come on Monday. How can she share her concern?<div class="line ans">She can email it / use the online form / watch on Zoom.</div></li>
+      <li><b class="n">2.</b> Luis wants to speak at the Open Mic. What must he do?<div class="line ans">He must sign up at the door.</div></li>
+      <li><b class="n">3.</b> Mariam needs a Spanish interpreter. What should she do?<div class="line ans">She should call or email by November 20.</div></li>
+      <li><b class="n">4.</b> <b>&#9733;</b> Tom has 3 kids: ages 2, 6, and 11. Can all 3 go to childcare? Why?<div class="line ans">No. Childcare is for ages 3&ndash;10. Only the 6-year-old can go.</div></li>
+    </ol>
+  </div>
+  <p class="how bottom"><b>Talk:</b> Have you ever been to a meeting like this? A school meeting? A tenant meeting?</p>
+</section>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 9</div></div>
+  <p class="how">Now look at <b>page 2</b> on the table: <b>Mr. Haddad&rsquo;s comment card</b>.</p>
+  <div class="task">
+    <h2>D. Read the comment card</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> What is the problem? <span class="blank long ans">The streetlight on Cedar Street is broken.</span></li>
+      <li><b class="n">2.</b> How long has it been broken? <span class="blank long ans">for 3 weeks (since October 26)</span></li>
+      <li><b class="n">3.</b> Has he called the city? How many times? <span class="blank long ans">Yes, he has called 311 two times.</span></li>
+      <li><b class="n">4.</b> What does he suggest? <span class="blank long ans">fix it this week / put a temporary light</span></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>E. Write your own comment card</h2>
+    <p class="how"><b>Use your own idea.</b> What problem do you see in your neighborhood? Ideas: trash on the street &middot; no crosswalk &middot; a broken sidewalk &middot; not enough buses &middot; a dark park at night</p>
+    <div class="textbox">
+      <b>I want to raise a concern about</b> <span class="blank long ans"><i>answers vary</i></span>.<br>
+      It is a problem because <span class="blank long ans"><i>answers vary</i></span>.<br>
+      I have <span class="blank long ans"><i>answers vary: seen it / called the city&hellip;</i></span>.<br>
+      <b>I suggest</b> that the city <span class="blank long ans"><i>answers vary: + V1</i></span>.
+    </div>
+  </div>
+  <div class="task">
+    <h2>&#9733; Open Mic practice</h2>
+    <p class="how">Read your card to your group, like at the meeting. Speak for <b>2 minutes or less</b>. Your group says: <i>&ldquo;Thank you for raising your concern.&rdquo;</i></p>
+  </div>
+</section>
+<section class="page vc"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="task">
+    <h2>Chart 1: Add the helping verbs</h2>
+    <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to meet</span><span><b>Subject:</b> she</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>meet</td><td>meets</td><td>meeting</td><td>met</td><td>met</td></tr></table>
+    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>she meets</td><td>she <span class="hb ans">doesn&rsquo;t</span> meet</td><td><span class="hb ans">Does</span> she meet?</td></tr><tr><td class="tn">Past Simple</td><td>she met</td><td>she <span class="hb ans">didn&rsquo;t</span> meet</td><td><span class="hb ans">Did</span> she meet?</td></tr><tr><td class="tn">Future Simple</td><td>she <span class="hb ans">will</span> meet</td><td>she <span class="hb ans">won&rsquo;t</span> meet</td><td><span class="hb ans">Will</span> she meet?</td></tr><tr><td class="tn">Present Continuous</td><td>she <span class="hb ans">is</span> meeting</td><td>she <span class="hb ans">isn&rsquo;t</span> meeting</td><td><span class="hb ans">Is</span> she meeting?</td></tr><tr><td class="tn">Past Continuous</td><td>she <span class="hb ans">was</span> meeting</td><td>she <span class="hb ans">wasn&rsquo;t</span> meeting</td><td><span class="hb ans">Was</span> she meeting?</td></tr><tr><td class="tn">Future Continuous</td><td>she <span class="hb sm ans">will</span> <span class="hb sm ans">be</span> meeting</td><td>she <span class="hb sm ans">won&rsquo;t</span> <span class="hb sm ans">be</span> meeting</td><td><span class="hb sm ans">Will</span> she <span class="hb sm ans">be</span> meeting?</td></tr><tr><td class="tn">Present Perfect</td><td>she <span class="hb ans">has</span> met</td><td>she <span class="hb ans">hasn&rsquo;t</span> met</td><td><span class="hb ans">Has</span> she met?</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>Chart 2: Now you write it all</h2>
+    <p class="how">Write the 5 forms of <b>speak</b>. Then fill in the chart with <b>they</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to speak</span><span><b>Subject:</b> they</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">speak</td><td class="ansc">speaks</td><td class="ansc">speaking</td><td class="ansc">spoke</td><td class="ansc">spoken</td></tr></table>
+    <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td class="ansc">they speak</td><td class="ansc">they don&rsquo;t speak</td><td class="ansc">Do they speak?</td></tr><tr><td class="tn">Past Simple</td><td class="ansc">they spoke</td><td class="ansc">they didn&rsquo;t speak</td><td class="ansc">Did they speak?</td></tr><tr><td class="tn">Future Simple</td><td class="ansc">they will speak</td><td class="ansc">they won&rsquo;t speak</td><td class="ansc">Will they speak?</td></tr><tr><td class="tn">Present Continuous</td><td class="ansc">they are speaking</td><td class="ansc">they aren&rsquo;t speaking</td><td class="ansc">Are they speaking?</td></tr><tr><td class="tn">Past Continuous</td><td class="ansc">they were speaking</td><td class="ansc">they weren&rsquo;t speaking</td><td class="ansc">Were they speaking?</td></tr><tr><td class="tn">Future Continuous</td><td class="ansc">they will be speaking</td><td class="ansc">they won&rsquo;t be speaking</td><td class="ansc">Will they be speaking?</td></tr><tr><td class="tn">Present Perfect</td><td class="ansc">they have spoken</td><td class="ansc">they haven&rsquo;t spoken</td><td class="ansc">Have they spoken?</td></tr></table>
+  </div>
+</section>
+
+</body>
+</html>
