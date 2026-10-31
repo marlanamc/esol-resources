@@ -36,13 +36,13 @@ STAMP_WORDS = {
 
 # Three different "my sentence" models per card, so learners see there is no one answer
 MODELS = {
-    "Present simple": ("I drink coffee every morning.", "My son plays soccer on Saturdays.", "I don't watch TV at night."),
-    "Past simple": ("I visited my sister last weekend.", "I moved here in 2019.", "I didn't sleep well last night."),
-    "Future simple": ("I will call my mom tonight.", "It will be cold tomorrow.", "I won't be late."),
-    "Present continuous": ("I am sitting in English class now.", "My daughter is sleeping right now.", "We are learning verbs today."),
-    "Past continuous": ("I was cooking at 7:00 last night.", "I was driving when you called.", "My kids were sleeping at 10:00."),
-    "Future continuous": ("I will be working at 9:00 tomorrow.", "This time next week, I will be traveling.", "I will be sleeping at midnight."),
-    "Present perfect": ("I have lived here for 3 years.", "I have never seen snow.", "I have already eaten lunch."),
+    "Present simple": ("I <b>drink</b> coffee every morning.", "My son <b>plays</b> soccer on Saturdays.", "I <b>don't watch</b> TV at night."),
+    "Past simple": ("I <b>visited</b> my sister last weekend.", "I <b>moved</b> here in 2019.", "I <b>didn't sleep</b> well last night."),
+    "Future simple": ("I <b>will call</b> my mom tonight.", "It <b>will be</b> cold tomorrow.", "I <b>won't be</b> late."),
+    "Present continuous": ("I <b>am sitting</b> in English class now.", "My daughter <b>is sleeping</b> right now.", "We <b>are learning</b> verbs today."),
+    "Past continuous": ("I <b>was cooking</b> at 7:00 last night.", "I <b>was driving</b> when you called.", "My kids <b>were sleeping</b> at 10:00."),
+    "Future continuous": ("I <b>will be working</b> at 9:00 tomorrow.", "This time next week, I <b>will be traveling</b>.", "I <b>will be sleeping</b> at midnight."),
+    "Present perfect": ("I <b>have lived</b> here for 3 years.", "I <b>have never seen</b> snow.", "I <b>have already eaten</b> lunch."),
 }
 
 # "Which card?" review at the end: (sentence, card number)
@@ -346,6 +346,7 @@ h2 { font-size: 2.2em; margin: 0 0 .2em; line-height: 1.15; }
 
 .own { margin: 0; font-size: 1.5em; }
 .models { margin: .2em 0 0; padding-left: 1.2em; font-size: 1.4em; display: grid; gap: .2em; }
+.models b { font-weight: 800; }
 .partner { margin: 0; font-size: 1.5em; font-weight: 700; }
 .watch { margin: auto 0 0; font-size: 1.3em; border: 3px dashed var(--c); border-radius: .4em; padding: .3em .7em; background: var(--cbg); }
 .watch b { color: var(--c); }
