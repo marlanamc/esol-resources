@@ -35,3 +35,9 @@ Marlana's explicit preference: reduce Vercel deployment and function storage by 
 - Do not create a deployment solely to save these instructions or cleanup notes.
 
 Saved at Marlana's request on October 10, 2026.
+
+## Verb-table slides: practice before answers
+
+Marlana's explicit preference: immediately before each completed “Verbs of the Week” table, show the same table with only the V1 (base verb) entries filled in. Keep all column headers, the table layout, and the theme; leave the V1-s, V-ing, V2, and V3 answer cells blank. Follow it with the completed table for checking answers. Apply this pattern to future lesson slides.
+
+Saved at Marlana's request on October 28, 2026.
