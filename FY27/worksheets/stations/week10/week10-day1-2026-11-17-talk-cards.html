@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 10 Station 3 Talk Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #111; background: #fff;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Station 3 talk cards: print 1 copy per table (color or black and white). Cut on the dashed lines. */
+  .page { width: 8.5in; height: 11in; padding: 0.4in; display: grid; grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 1fr; page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .card { border: 1.5px dashed #888; display: flex; flex-direction: column; align-items: center; justify-content: center;
+          text-align: center; padding: 8px; gap: 4px; }
+  .card .emo { font-size: 38px; line-height: 1; }
+  .card .hv { font-size: 16px; color: #555; }
+  .card .ph { font-size: 22px; font-weight: bold; line-height: 1.15; }
+  .card .n { font-size: 11px; color: #999; }
+  .card.blank .ph { color: #999; font-weight: normal; font-size: 18px; }
+  .card.blank .line { width: 85%; border-bottom: 1.5px solid #999; height: 26px; }
+</style>
+</head>
+<body>
+<section class="page"><div class="card"><div class="emo">&#127843;</div><div class="hv">Have you ever&hellip;</div><div class="ph">eaten sushi?</div><div class="n">1</div></div><div class="card"><div class="emo">&#10052;&#65039;</div><div class="hv">Have you ever&hellip;</div><div class="ph">seen snow?</div><div class="n">2</div></div><div class="card"><div class="emo">&#128014;</div><div class="hv">Have you ever&hellip;</div><div class="ph">ridden a horse?</div><div class="n">3</div></div><div class="card"><div class="emo">&#9992;&#65039;</div><div class="hv">Have you ever&hellip;</div><div class="ph">flown in a plane?</div><div class="n">4</div></div><div class="card"><div class="emo">&#127858;</div><div class="hv">Have you ever&hellip;</div><div class="ph">cooked for 10 people?</div><div class="n">5</div></div><div class="card"><div class="emo">&#127908;</div><div class="hv">Have you ever&hellip;</div><div class="ph">sung karaoke?</div><div class="n">6</div></div><div class="card"><div class="emo">&#11088;</div><div class="hv">Have you ever&hellip;</div><div class="ph">met a famous person?</div><div class="n">7</div></div><div class="card"><div class="emo">&#128483;&#65039;</div><div class="hv">Have you ever&hellip;</div><div class="ph">spoken at a meeting?</div><div class="n">8</div></div><div class="card"><div class="emo">&#127957;&#65039;</div><div class="hv">Have you ever&hellip;</div><div class="ph">swum in the ocean?</div><div class="n">9</div></div><div class="card"><div class="emo">&#128241;</div><div class="hv">Have you ever&hellip;</div><div class="ph">lost your phone?</div><div class="n">10</div></div><div class="card"><div class="emo">&#128666;</div><div class="hv">Have you ever&hellip;</div><div class="ph">driven a truck?</div><div class="n">11</div></div><div class="card"><div class="emo">&#127793;</div><div class="hv">Have you ever&hellip;</div><div class="ph">planted a garden?</div><div class="n">12</div></div></section><section class="page"><div class="card"><div class="emo">&#127942;</div><div class="hv">Have you ever&hellip;</div><div class="ph">won a prize?</div><div class="n">13</div></div><div class="card"><div class="emo">&#9917;</div><div class="hv">Have you ever&hellip;</div><div class="ph">watched a game in a stadium?</div><div class="n">14</div></div><div class="card"><div class="emo">&#128131;</div><div class="hv">Have you ever&hellip;</div><div class="ph">taken a dance class?</div><div class="n">15</div></div><div class="card"><div class="emo">&#127838;</div><div class="hv">Have you ever&hellip;</div><div class="ph">made bread?</div><div class="n">16</div></div><div class="card"><div class="emo">&#128250;</div><div class="hv">Have you ever&hellip;</div><div class="ph">been on TV?</div><div class="n">17</div></div><div class="card"><div class="emo">&#127881;</div><div class="hv">Have you ever&hellip;</div><div class="ph">forgotten a birthday?</div><div class="n">18</div></div><div class="card"><div class="emo">&#127968;</div><div class="hv">Have you ever&hellip;</div><div class="ph">moved to a new city?</div><div class="n">19</div></div><div class="card"><div class="emo">&#128508;</div><div class="hv">Have you ever&hellip;</div><div class="ph">been to New York City?</div><div class="n">20</div></div><div class="card blank"><div class="hv">Have you ever&hellip;</div><div class="line"></div><div class="line"></div><div class="ph">Your question!</div></div><div class="card blank"><div class="hv">Have you ever&hellip;</div><div class="line"></div><div class="line"></div><div class="ph">Your question!</div></div><div class="card blank"><div class="hv">Have you ever&hellip;</div><div class="line"></div><div class="line"></div><div class="ph">Your question!</div></div><div class="card blank"><div class="hv">Have you ever&hellip;</div><div class="line"></div><div class="line"></div><div class="ph">Your question!</div></div></section>
+</body>
+</html>

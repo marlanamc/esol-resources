@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 12 Tuesday Real World: Receipt and Return Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1b1b1b; background: #fff;
+         font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store, family, and card number. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .row { display: flex; gap: 18px; align-items: flex-start; }
+  .receipt { width: 3.3in; flex: none; background: #fbfbf7; border: 1px solid #ccc; box-shadow: 2px 3px 0 #ddd;
+             font-family: "Courier New", Courier, monospace; font-size: 14.5px; line-height: 1.45; padding: 14px 16px; }
+  .receipt .c { text-align: center; }
+  .receipt .store { font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 22px; font-weight: bold; color: #0f5e75; }
+  .receipt hr { border: none; border-top: 1.5px dashed #888; margin: 6px 0; }
+  .receipt table { width: 100%; border-collapse: collapse; }
+  .receipt td { padding: 1px 0; vertical-align: top; }
+  .receipt td.r { text-align: right; white-space: nowrap; }
+  .receipt .tot td { font-weight: bold; font-size: 16px; }
+  .policy { flex: 1; border: 2px solid #0f5e75; border-radius: 8px; overflow: hidden; }
+  .policy h1 { background: #0f5e75; color: #fff; font-size: 22px; padding: 8px 14px; }
+  .policy ul { padding: 8px 14px 8px 30px; font-size: 16px; }
+  .policy li { margin-bottom: 7px; }
+  .policy .warn { background: #fdecea; border-left: 5px solid #c0392b; padding: 4px 8px; margin-left: -16px; list-style: none; }
+  .h { font-size: 30px; font-weight: bold; color: #0f5e75; margin-bottom: 4px; }
+  .person { display: flex; gap: 14px; border: 2px solid #cfe2e8; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+  .avatar { width: 58px; height: 58px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: bold; }
+  .person h2 { font-size: 21px; margin-bottom: 2px; }
+  .bubble { background: #eef6f8; border-radius: 14px; padding: 8px 12px; font-size: 17px; }
+  .words-box { margin-top: 22px; border: 2px dashed #0f5e75; border-radius: 10px; padding: 12px 18px; }
+  .words-box h2 { font-size: 21px; color: #0f5e75; margin-bottom: 6px; }
+  .wg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; font-size: 17px; }
+  .cal { margin-top: auto; border: 2px dashed #0f5e75; border-radius: 8px; padding: 8px 14px; font-size: 16px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="row">
+    <div class="receipt">
+      <div class="c"><div class="store">Bright Home</div>Home &middot; Kitchen &middot; Clothing<br>200 River Road</div>
+      <hr>
+      <div>Date: 11/14/2026 &nbsp; 3:42 PM<br>Customer: SILVA</div>
+      <hr>
+      <table>
+        <tr><td>BLENDER</td><td class="r">39.99 T</td></tr>
+        <tr><td>BATH TOWELS 2 @ 12.99</td><td class="r">25.98 T</td></tr>
+        <tr><td>WINTER JACKET (M)</td><td class="r">59.99</td></tr>
+        <tr><td>TABLE LAMP &nbsp;**FS**</td><td class="r">19.99 T</td></tr>
+        <tr><td>HEADPHONES</td><td class="r">49.99 T</td></tr>
+      </table>
+      <hr>
+      <table>
+        <tr><td>SUBTOTAL</td><td class="r">195.94</td></tr>
+        <tr><td>MA SALES TAX 6.25%</td><td class="r">8.50</td></tr>
+        <tr class="tot"><td>TOTAL</td><td class="r">$204.44</td></tr>
+      </table>
+      <hr>
+      <div>DEBIT CARD **** 4417<br>APPROVED</div>
+      <hr>
+      <div class="c">T = taxed &nbsp; FS = FINAL SALE<br>KEEP THIS RECEIPT<br>Thank you!</div>
+    </div>
+    <div class="policy">
+      <h1>Return Policy</h1>
+      <ul>
+        <li><b>Most items:</b> return in <b>30 days</b> with your receipt for a <b>full refund</b>.</li>
+        <li><b>No receipt?</b> You get <b>store credit</b> (a gift card). You must show a photo ID.</li>
+        <li><b>Clothing:</b> exchange for a new size or color for <b>60 days</b> with your receipt.</li>
+        <li><b>Electronics:</b> return in <b>14 days</b> in the box. <b>Opened</b> electronics: <b>15% restocking fee</b>.</li>
+        <li class="warn"><b>Final sale (FS):</b> no returns. No exchanges.</li>
+        <li><b>How you get your money:</b> card payments go back to your card in <b>5&ndash;7 business days</b>. Cash payments get cash.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="words-box">
+    <h2>Useful words at the returns desk</h2>
+    <div class="wg">
+      <div><b>refund</b> = you get your money back</div>
+      <div><b>exchange</b> = you trade it for a different one</div>
+      <div><b>store credit</b> = a gift card for this store</div>
+      <div><b>restocking fee</b> = money you pay to return an opened item</div>
+      <div><b>final sale</b> = you can&rsquo;t return it</div>
+      <div><b>receipt</b> = the paper that shows what you paid</div>
+    </div>
+  </div>
+</section><section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="h">The Silva family</div>
+  <p style="margin-bottom:12px;">Today is <b>Tuesday, December 1</b>. The Silva family goes back to Bright Home with their receipt from November 14. Everybody wants something different.</p>
+  <div class="person"><div class="avatar" style="background:#c0392b;">A</div><div><h2>Ana Silva</h2><div class="bubble">&ldquo;These towels are the wrong color. I have the receipt. I just want my money back.&rdquo;</div></div></div><div class="person"><div class="avatar" style="background:#1f6fb2;">M</div><div><h2>Marco Silva</h2><div class="bubble">&ldquo;The lamp is too small for my desk. Can I return it?&rdquo;</div></div></div><div class="person"><div class="avatar" style="background:#7d3c98;">B</div><div><h2>Bia Silva</h2><div class="bubble">&ldquo;I opened the headphones and used them. They work, but I don&rsquo;t like them.&rdquo;</div></div></div><div class="person"><div class="avatar" style="background:#2e7d32;">L</div><div><h2>Leo Silva</h2><div class="bubble">&ldquo;The jacket is too big. I want the same jacket in a small. I have the receipt.&rdquo;</div></div></div>
+  <div class="cal"><b>Count the days:</b> November 14 &rarr; November 30 = 16 days. November 30 &rarr; December 1 = 1 more day. <b>Total: 17 days.</b></div>
+</section>
+</body>
+</html>

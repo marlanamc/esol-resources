@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 11 Tuesday Stations Packet (Answer Key)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  /* One .page = one portrait letter page. Print double-sided, staple top left.
+     Page 1 cover; spreads 2-3 warm-up, 4-5 speak, 6-7 read,
+     pages 8-9 real world; page 10 early-finisher verb charts. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.45in 0.55in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale (print floor): 28 / 22 / 18 / 16 / 14 */
+  .station-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .station-bar .label { font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+  .station-bar .label span { font-size: 16px; font-weight: normal; letter-spacing: 0; margin-left: 8px; }
+  .station-bar .pg { font-size: 14px; white-space: nowrap; }
+  h2 { font-size: 22px; margin-bottom: 4px; }
+  h3 { font-size: 18px; margin-bottom: 4px; }
+  .task { margin-bottom: 14px; }
+  .how { font-size: 16px; margin-bottom: 8px; }
+  .example { font-size: 16px; margin-bottom: 8px; font-style: italic; }
+  .small { font-size: 14px; }
+  .bank { border: 1.5px solid #000; padding: 6px 10px; margin-bottom: 8px; font-size: 16px; }
+  .bank span { white-space: nowrap; margin-right: 14px; }
+  ol.items { list-style: none; }
+  ol.items li { font-size: 18px; margin-bottom: 9px; }
+  ol.items li b.n { display: inline-block; width: 1.6em; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; min-width: 1.6in; height: 1.1em; vertical-align: bottom; }
+  .blank.short { min-width: 0.6in; }
+  .blank.long { min-width: 3in; }
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .line + .line { margin-top: 2px; }
+  .tip { border: 1.5px dashed #000; padding: 8px 12px; font-size: 16px; }
+  .bottom { margin-top: auto; }
+  .pass { font-size: 14px; font-style: italic; }
+
+  /* ---------- Cover ---------- */
+  .cover-title { font-size: 40px; font-weight: bold; line-height: 1.1; }
+  .cover-sub { font-size: 20px; margin-bottom: 14px; }
+  .name-row { font-size: 20px; display: flex; gap: 16px; margin-bottom: 18px; }
+  .name-row .blank { flex: 1; }
+  table.rotation { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.rotation th, table.rotation td { border: 2px solid #000; padding: 10px 6px; text-align: center; font-size: 18px; font-weight: bold; }
+  table.rotation th { font-size: 16px; }
+  table.rotation td.g { font-size: 22px; width: 15%; }
+  .stations { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stations > div { border: 2px solid #000; padding: 10px 12px; }
+  .stations .nm { font-size: 22px; font-weight: bold; }
+  .stations .who { font-size: 16px; }
+  .stations .pp { font-size: 14px; }
+  ul.rules { padding-left: 1.2em; font-size: 18px; }
+  ul.rules li { margin-bottom: 6px; }
+
+  /* ---------- Warm-up ---------- */
+  /* Page 3 holds Parts 4-6: tighter spacing so the paragraph lines fit */
+  .wu3 .task { margin-bottom: 10px; }
+  .wu3 ol.items li { margin-bottom: 6px; }
+  .wu3 table.forms td { height: 36px; }
+  .own { border: 1.5px dashed #000; padding: 5px 10px; font-size: 16px; margin-bottom: 8px; }
+  .own .u { text-decoration: underline; font-style: italic; }
+  .starters { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+  .starters span { white-space: normal; margin: 0; }
+  .circ { display: inline-block; border: 1.5px solid #000; border-radius: 50%; width: 1.4em; height: 1.4em; line-height: 1.3em; text-align: center; font-style: normal; }
+  table.forms { width: 100%; border-collapse: collapse; }
+  table.forms th, table.forms td { border: 1.5px solid #000; padding: 6px; text-align: center; }
+  table.forms th { font-size: 16px; }
+  table.forms th small { display: block; font-size: 14px; font-weight: normal; }
+  table.forms td { font-size: 18px; height: 44px; }
+  table.forms td.base { font-weight: bold; }
+
+  /* ---------- Speak ---------- */
+  .mouths { display: flex; gap: 12px; margin-bottom: 12px; }
+  .mouth { flex: 1; border: 2px solid #000; padding: 8px 12px; display: flex; gap: 12px; align-items: center; }
+  .mouth svg { width: 92px; height: 92px; flex: none; }
+  .mouth .big { font-size: 40px; font-weight: bold; line-height: 1; }
+  .mouth p { font-size: 16px; }
+  table.pairs { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.pairs td { border: 1.5px solid #000; padding: 6px 10px; font-size: 20px; text-align: center; }
+  table.pairs td.n { font-size: 16px; font-weight: bold; width: 8%; }
+  table.pairs td small { display: block; font-size: 14px; }
+  ol.read-aloud { padding-left: 1.4em; }
+  ol.read-aloud li { font-size: 20px; margin-bottom: 8px; }
+
+  /* ---------- Read ---------- */
+  .story .words { margin-bottom: 12px; line-height: 1.3; padding: 6px 12px; }
+  .wgrid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 2px; margin-top: 2px; }
+  .paras { counter-reset: para; }
+  .paras p { counter-increment: para; position: relative; padding-left: 30px; font-size: 17px; line-height: 1.42; margin-bottom: 9px; }
+  .paras p::before { content: counter(para); position: absolute; left: 0; top: 1px; width: 21px; height: 21px; border: 1.5px solid #000; border-radius: 50%; font-size: 13px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+  .words { border: 1.5px solid #000; padding: 8px 12px; font-size: 16px; }
+  /* Page 7 (reading questions) is dense: tighter spacing so nothing reaches the printer margin */
+  .rd .task { margin-bottom: 8px; }
+  .rd ol.items li { font-size: 17px; margin-bottom: 5px; }
+  .rd .line { height: 24px; }
+  .rd .how { margin-bottom: 4px; }
+  .key { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .key div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+
+  /* ---------- Real world questions (dense page: slightly tighter spacing) ---------- */
+  .rw .task { margin-bottom: 10px; }
+  .rw ol.items li { font-size: 17px; margin-bottom: 6px; }
+  .rw .how { margin-bottom: 5px; }
+  .rw h2 { font-size: 20px; margin-bottom: 2px; }
+  table.pick { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.pick th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  table.pick td { border: 1.5px solid #000; padding: 6px 8px; font-size: 16px; height: 40px; }
+  table.pick td.t { width: 30%; font-weight: bold; white-space: nowrap; }
+  table.pick td.c { width: 20%; text-align: center; white-space: nowrap; }
+  .call { border: 1.5px solid #000; padding: 8px 14px; }
+  .call p { font-size: 16px; line-height: 1.5; margin-bottom: 4px; }
+  .call .blank { height: 1.2em; }
+  .cb { display: inline-block; width: 16px; height: 16px; border: 1.5px solid #000; vertical-align: middle; }
+  table.tf { width: 100%; border-collapse: collapse; }
+  table.tf td { border: 1.5px solid #000; padding: 3px 8px; font-size: 16px; }
+  table.tf td.c { width: 1in; text-align: center; font-size: 14px; white-space: nowrap; }
+  table.tf th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  .script { border: 1.5px solid #000; padding: 6px 12px; font-size: 17px; line-height: 2; }
+
+  /* ---------- Tense charts (page 10) ---------- */
+  .vc .task { margin-bottom: 10px; }
+  .vc h2 { font-size: 20px; margin-bottom: 2px; }
+  .vc .how { font-size: 15px; margin-bottom: 4px; }
+  .vc-meta { display: flex; gap: 28px; font-size: 16px; margin-bottom: 4px; }
+  table.forms5 { width: 100%; border-collapse: collapse; margin-bottom: 6px; table-layout: fixed; }
+  table.forms5 th, table.forms5 td { border: 1.5px solid #000; text-align: center; padding: 2px 4px; font-size: 15px; }
+  table.forms5 th { background: #eee; }
+  table.forms5 td { height: 28px; }
+  table.tense { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.tense.write td { height: 40px; }
+  table.tense th:first-child { width: 22%; }
+  table.tense th, table.tense td { border: 1.5px solid #000; padding: 2px 6px; font-size: 15px; text-align: center; height: 31px; }
+  table.tense th { background: #eee; }
+  table.tense td.tn { text-align: left; font-weight: bold; white-space: nowrap; }
+  table.tense td { white-space: nowrap; }
+  .hb.sm { width: 0.42in; }
+  table.forms5 td.ex { background: #ddd; font-style: italic; }
+  table.tense tr:nth-child(odd) td { background: #f5f5f5; }
+  .hb { display: inline-block; width: 0.65in; border-bottom: 1.5px solid #000; height: 1em; vertical-align: baseline; }
+  /* ---------- Verb charts ---------- */
+  table.verbs { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.verbs th, table.verbs td { border: 1.5px solid #000; padding: 4px 6px; text-align: center; }
+  table.verbs th { font-size: 16px; }
+  table.verbs th small { display: block; font-size: 14px; font-weight: normal; }
+  table.verbs td { font-size: 18px; height: 34px; }
+  table.verbs td.base { font-weight: bold; width: 17%; }
+
+  /* Added for Week 9+: "Bonus: Your turn" hints, can/can't rhythm boxes, flyer-style tasks */
+  .ideas { font-size: 14px; font-style: italic; margin: 1px 0 0; }
+  .prompt { font-size: 18px; margin-top: 6px; }
+  .rhythm { display: flex; gap: 12px; margin-bottom: 10px; }
+  .rhythm > div { flex: 1; border: 2px solid #000; padding: 8px 12px; }
+  .rhythm .big { font-size: 26px; font-weight: bold; line-height: 1.1; margin-bottom: 4px; }
+  .rhythm .beats { font-size: 22px; letter-spacing: 2px; margin: 2px 0 4px; }
+  .rhythm .beats b { font-size: 30px; }
+  table.who { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.who td { border: 1.5px solid #000; padding: 4px 10px; font-size: 17px; height: 38px; }
+  table.who td.q { width: 31%; font-size: 16px; }
+  table.pick.tall td { height: 66px; }
+  ol.listen2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+  ol.listen2 li { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 6px; font-size: 17px; }
+  ol.listen2 li b.n { width: auto; }
+  ol.listen2 .cc { white-space: nowrap; font-weight: bold; }
+  .textbox { border: 2px solid #000; border-radius: 18px; padding: 10px 16px; font-size: 17px; line-height: 2.1; }
+  .gram3 { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .gram3 div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+  .gline { display: flex; gap: 8px; align-items: flex-end; font-size: 17px; margin-bottom: 4px; }
+  .gline b { white-space: nowrap; width: 3.2em; }
+  .gline .line { flex: 1; }
+
+  /* ---------- Answer key overlay ---------- */
+  .page { position: relative; }
+  .keytag { position: absolute; top: 0.12in; left: 50%; transform: translateX(-50%); color: #c00; font-weight: bold; font-size: 14px; letter-spacing: 2px; border: 1.5px solid #c00; padding: 0 10px; }
+  .ans { color: #c00; font-weight: bold; font-style: normal; }
+  .blank.ans { text-align: center; padding: 0 4px; }
+  .line.ans { font-size: 16px; line-height: 26px; padding-left: 4px; }
+  .hitc { border: 2px solid #c00; border-radius: 12px; padding: 0 5px; color: #c00; }
+  .cb.on { background: #c00; }
+  .keynote { color: #c00; font-size: 15px; font-weight: bold; }
+  td.ansc { color: #c00; font-weight: bold; }
+  .hb.ans { color: #c00; font-weight: bold; text-align: center; width: auto; min-width: 0.65in; padding: 0 3px; }
+  table.tense.write td.ansc { font-size: 13px; }
+  .hb.sm.ans { min-width: 0.36in; font-size: 13px; padding: 0 1px; }
+  .textbox .blank { line-height: 1.2; height: 1.25em; }
+  td.ans { color: #c00; font-weight: bold; }
+</style>
+</head>
+<body>
+<section class="page"><div class="keytag">ANSWER KEY</div>
+  
+  <div class="cover-title">Tuesday Stations</div>
+  <div class="cover-sub">Week 11 &middot; Tuesday, November 24, 2026 &middot; Practice day</div>
+  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
+  <table class="rotation">
+    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
+    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td></tr>
+  </table>
+  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who">Numbers: <i>13</i> or <i>30</i>? With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: GAME</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7 + game board on the table</div></div><div><div class="nm">Station 4: REAL WORLD</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 8&ndash;9 + 2 color pages on the table</div></div></div>
+  <h2>How it works</h2>
+  <ul class="rules">
+    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
+    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
+    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
+    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
+    <li>Keep this packet. Bring it on Thursday.</li>
+  </ul>
+</section>
+<section class="page wu3"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="task">
+    <h2>1. Circle the correct form</h2>
+    <p class="how">After <b>good at</b>, use the <b>-ing</b> form.</p>
+    <p class="example">Example: I am good at (fix / <b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">fixing</b>) things.</p>
+    <ol class="items"><li><b class="n">1.</b> She is good at (listen / <span class="hitc">listening</span>) to other people&rsquo;s ideas.</li><li><b class="n">2.</b> Are you good at (cook / <span class="hitc">cooking</span>)?</li><li><b class="n">3.</b> I&rsquo;m <b>not</b> good at (speak / <span class="hitc">speaking</span>) in front of a group.</li><li><b class="n">4.</b> Is he good at (solve / <span class="hitc">solving</span>) problems?</li><li><b class="n">5.</b> They <b>aren&rsquo;t</b> good at (save / <span class="hitc">saving</span>) money.</li></ol>
+  </div>
+  <div class="task">
+    <h2>2. Would you rather?</h2>
+    <p class="how">Circle your answer. Then write one reason.</p>
+    <ol class="items"><li><b class="n">1.</b> Would you rather comparison shop at three stores <b>or</b> buy at the first store and save time?<div class="gline"><b style="width:auto;">Because</b><div class="line ans"><i>answers vary</i></div></div></li><li><b class="n">2.</b> Would you rather keep track of your spending in a notebook <b>or</b> on your phone?<div class="gline"><b style="width:auto;">Because</b><div class="line ans"><i>answers vary</i></div></div></li><li><b class="n">3.</b> Would you rather cook a big holiday meal <b>or</b> eat at a friend&rsquo;s house?<div class="gline"><b style="width:auto;">Because</b><div class="line ans"><i>answers vary</i></div></div></li></ol>
+  </div>
+  <div class="task">
+    <h2>3. Finish the sentence about you</h2>
+    <p class="how"><b>You make up the ending.</b> Use your own ideas. Pattern: <b>good at + V-ing</b></p>
+    <div class="own"><b>Example:</b> I am good at <span class="u">cooking rice</span>. &middot; Other good answers: <span class="u">fixing cars</span> &middot; <span class="u">listening to my friends</span></div>
+    <ol class="items">
+      <li><b class="n">1.</b> I am good at <span class="blank long ans"><i>answers vary</i></span>.</li>
+      <li><b class="n">2.</b> I am not good at <span class="blank long ans"><i>answers vary</i></span>.</li>
+      <li><b class="n">3.</b> Are you good at <span class="blank long ans"><i>answers vary</i></span>?</li>
+    </ol>
+  </div>
+</section>
+<section class="page wu3"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="task">
+    <h2>4. Verb forms of the week</h2>
+    <p class="how">Write the other forms of <b>cost</b> and <b>spend</b>. <i>Cost</i> and <i>spend</i> are on the Week 11 quiz!</p>
+    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">cost</td><td class="ansc">costs</td><td class="ansc">costing</td><td class="ansc">cost</td><td class="ansc">cost</td></tr><tr><td class="base">spend</td><td class="ansc">spends</td><td class="ansc">spending</td><td class="ansc">spent</td><td class="ansc">spent</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>5. Use the right form</h2>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>cost</b> or <b>spend</b>. Use your chart.</p>
+    <ol class="items"><li><b class="n">1.</b> <b>Every month</b>, my phone bill <span class="blank ans">costs</span> $45. (cost)</li><li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank ans">spending</span> too much on takeout. (spend)</li><li><b class="n">3.</b> <b>Yesterday</b>, the groceries didn&rsquo;t <span class="blank ans">cost</span> much. (cost)</li><li><b class="n">4.</b> <b>Last weekend</b>, how much did you <span class="blank ans">spend</span> at the market? (spend)</li><li><b class="n">5.</b> <b>Last year</b>, our turkey <span class="blank ans">cost</span> $30. (cost)</li><li><b class="n">6.</b> My sister doesn&rsquo;t <span class="blank ans">spend</span> money on coffee <b>every day</b>. (spend)</li><li><b class="n">7.</b> We <b>have</b> <span class="blank ans">spent</span> $200 on school supplies since August. (spend)</li><li><b class="n">8.</b> <b>Has</b> this old car <span class="blank ans">cost</span> you a lot in repairs? (cost)</li></ol>
+  </div>
+  <div class="task">
+    <h2>6. Bonus: Your turn</h2>
+    <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
+    <p class="prompt"><b>Last week</b> + spend</p>
+    <p class="ideas">Ideas: money on food &middot; $20 on gas &middot; time with my family</p>
+    <div class="line ans"><i>answers vary: Last week, I spent $20 on gas.</i></div>
+    <p class="prompt"><b>Every month</b> + cost <b>+ not</b></p>
+    <p class="ideas">Ideas: my phone bill &middot; a bus pass &middot; internet</p>
+    <div class="line ans"><i>answers vary: My phone bill doesn&rsquo;t cost a lot every month.</i></div>
+    <p class="prompt"><b>Have you ever</b> + spend<b>?</b></p>
+    <p class="ideas">Ideas: more than $100 on shoes &middot; a whole day shopping &middot; a holiday away from home</p>
+    <div class="line ans"><i>answers vary: Have you ever spent a whole day shopping?</i></div>
+  </div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <h2>13 or 30? Listen for the loud part.</h2>
+  <div class="rhythm">
+    <div><div class="big">13 &nbsp;<span style="font-size:22px;font-weight:normal;">thir&middot;<b>TEEN</b></span></div>
+      <p class="beats">&#9675; <b>&#9679;</b></p>
+      <p><b>-teen</b> is loud and long. You hear a clear <b>t</b> and <b>n</b>.</p></div>
+    <div><div class="big">30 &nbsp;<span style="font-size:22px;font-weight:normal;"><b>THIR</b>&middot;ty</span></div>
+      <p class="beats"><b>&#9679;</b> &#9675;</p>
+      <p>The <b>start</b> is loud. <b>-ty</b> is short. It sounds like <i>thir-dy</i>.</p></div>
+  </div>
+  <p class="how"><b>Try it:</b> Say <i>thirteen</i>. Lift your hand on the loud part. Now say <i>thirty</i>. Where does your hand go up?</p>
+  <div class="task">
+    <h2>A. Listen and circle</h2>
+    <p class="how">Your teacher says <b>one</b> number. Circle the number you hear.</p>
+    <table class="pairs"><tr><td class="n">1</td><td>13</td><td><span class="hitc">30</span></td><td class="n">5</td><td>17</td><td><span class="hitc">70</span></td></tr><tr><td class="n">2</td><td><span class="hitc">14</span></td><td>40</td><td class="n">6</td><td><span class="hitc">18</span></td><td>80</td></tr><tr><td class="n">3</td><td>15</td><td><span class="hitc">50</span></td><td class="n">7</td><td>19</td><td><span class="hitc">90</span></td></tr><tr><td class="n">4</td><td><span class="hitc">16</span></td><td>60</td><td class="n">8</td><td>$1.15</td><td><span class="hitc">$1.50</span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>B. Your turn: partner game</h2>
+    <p class="how"><b>Partner A</b> says a number from Part A. <b>Partner B</b> points to it. Right? Switch. Wrong? Try again slowly.</p>
+  </div>
+  <div class="task">
+    <h2>C. Write the price</h2>
+    <p class="how">Your teacher reads a price. Write the number you hear.</p>
+    <ol class="items"><li><b class="n">1.</b> The pie costs <span class="blank short ans">$14.99</span>.</li><li><b class="n">2.</b> We spent <span class="blank short ans">$60</span>.</li><li><b class="n">3.</b> The bus is <span class="blank short ans">$1.70</span>.</li><li><b class="n">4.</b> The turkey costs <span class="blank short ans">$18.30</span>.</li></ol>
+  </div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="task">
+    <h2>D. Read aloud</h2>
+    <p class="how">Take turns. Read one sentence each. Make the loud part loud!</p>
+    <ol class="read-aloud">
+      <li>The turkey costs thirty dollars.</li>
+      <li>I spent fifteen dollars on a pie.</li>
+      <li>My son is thirteen. My uncle is thirty.</li>
+      <li>The number 70 bus comes at 6:15.</li>
+      <li>We spent sixty dollars at the market.</li>
+      <li>The store opens at 7:00 and closes at 2:00 on Thanksgiving.</li>
+      <li>How much did the potatoes cost? Fourteen dollars? No, four!</li>
+      <li>I have lived here for sixteen years, not sixty!</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Say the numbers clearly.</p>
+    <ol class="read-aloud">
+      <li>How much does a gallon of milk cost here? In your home country?</li>
+      <li>How much does a bus or train ride cost here?</li>
+      <li>What is something that costs more in the U.S.? Less?</li>
+      <li>Do you celebrate Thanksgiving? What food do you like?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>F. My hard numbers</h2>
+    <p class="how">Write 3 numbers that are hard for you. Say them to your teacher.</p>
+    <div class="line ans"><i>answers vary</i></div>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page rd"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>What are you good at? &middot; with your group</span></div><div class="pg">Page 6</div></div>
+  <div class="task">
+    <h2>How to play</h2>
+    <ol class="items" style="list-style:none;">
+      <li><b class="n">1.</b> Put a small thing (a coin, an eraser) on <b>START</b>. That is you.</li>
+      <li><b class="n">2.</b> Roll the die. <b>No die?</b> Flip a coin: heads = move 1, tails = move 2.</li>
+      <li><b class="n">3.</b> Read your square. Ask the person on your <b>left</b>, or answer it yourself.</li>
+      <li><b class="n">4.</b> Answer with a <b>full sentence</b>. Then the group asks <b>one more question</b>.</li>
+      <li><b class="n">5.</b> First person to <b>FINISH</b> wins. Keep playing until the timer rings!</li>
+    </ol>
+  </div>
+  <div class="key" style="margin-bottom:10px;">
+    <div><b>good at + V-ing</b><br>I&rsquo;m good at <b>cooking</b>.</div>
+    <div><b>not good at + V-ing</b><br>I&rsquo;m not good at <b>singing</b>.</div>
+  </div>
+  <div class="task">
+    <h2>Ways to answer</h2>
+    <div class="bank starters" style="font-size:17px;">
+      <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
+      <span><b>I&rsquo;m OK at it.</b> I&rsquo;m getting better.</span>
+      <span><b>Not really.</b> I&rsquo;m not good at it.</span>
+      <span><b>No, I&rsquo;m terrible at it!</b> &#128514;</span>
+    </div>
+  </div>
+  <div class="task">
+    <h2>One more question</h2>
+    <div class="bank starters" style="font-size:17px;">
+      <span>What do you cook?</span><span>Who taught you?</span>
+      <span>How often do you practice?</span><span>Do you want to be good at it?</span>
+    </div>
+  </div>
+  <div class="tip" style="font-size:17px;"><b>Example:</b><br>
+    <b>A:</b> Are you good at <b>dancing</b>? &emsp; <b>B:</b> Yes, I am! I&rsquo;m good at <b>dancing</b> salsa.<br>
+    <b>C:</b> Who taught you? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> My mother taught me.</div>
+</section>
+<section class="page rd"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>What are you good at? &middot; with your group</span></div><div class="pg">Page 7</div></div>
+  <div class="task">
+    <h2>A. Write about your group</h2>
+    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
+    <div class="gram3">
+      <div><b>is good at</b><br>Ana <b>is good at</b> sewing.</div>
+      <div><b>isn&rsquo;t good at</b><br>Juan <b>isn&rsquo;t good at</b> singing.</div>
+      <div><b>are both good at</b><br>Mei and I <b>are both good at</b> cooking.</div>
+    </div>
+    <div class="line ans"><i>answers vary: check is / are good at + V-ing</i></div><div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="task">
+    <h2>B. Spell the -ing</h2>
+    <div class="gram3">
+      <div><b>Most verbs:</b> add <b>-ing</b><br>cook &rarr; cooking</div>
+      <div><b>Ends in e:</b> drop the <b>e</b><br>dance &rarr; dancing</div>
+      <div><b>Short, one vowel:</b> double<br>swim &rarr; swimming</div>
+    </div>
+    <table class="pick" style="font-size:17px;"><tr><td><b>cook</b> &rarr; <span class="blank short ans">cooking</span></td><td><b>dance</b> &rarr; <span class="blank short ans">dancing</span></td><td><b>swim</b> &rarr; <span class="blank short ans">swimming</span></td><td><b>write</b> &rarr; <span class="blank short ans">writing</span></td></tr><tr><td><b>run</b> &rarr; <span class="blank short ans">running</span></td><td><b>fix</b> &rarr; <span class="blank short ans">fixing</span></td><td><b>make</b> &rarr; <span class="blank short ans">making</span></td><td><b>shop</b> &rarr; <span class="blank short ans">shopping</span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>C. &#9733; Get better!</h2>
+    <p class="how">What do you want to be good at? How can you practice? Use <b>should</b> or <b>can</b>.</p>
+    <div class="gline"><b style="width:auto;">I want to be good at</b><div class="line ans"><i>answers vary: + V-ing</i></div></div>
+    <div class="gline"><b style="width:auto;">I should / I can</b><div class="line ans"><i>answers vary: + V1</i></div></div>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the sale flyer). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
+  <div class="task">
+    <h2>A. Find it</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> When does the sale end? <span class="blank long ans">Thursday, November 26</span></li>
+      <li><b class="n">2.</b> What time does the store close on Thanksgiving? <span class="blank short ans">2:00 p.m.</span></li>
+      <li><b class="n">3.</b> How much are 2 cans of cranberry sauce? <span class="blank short ans">$3.00</span></li>
+      <li><b class="n">4.</b> What do you need to get the $5 coupon? <span class="blank long ans">spend $50 or more</span></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>B. True, false, or not on the flyer?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the flyer, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the flyer</th></tr><tr><td>1. The store is closed on Thanksgiving.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. Pumpkin pie costs less than apple pie.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. You can use the coupon two times.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. The store has free delivery.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td></tr><tr><td>5. One ear of corn costs 50 cents.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. Frozen turkey is $1.29 a pound if you spend $10.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>C. Comparison shop</h2>
+    <p class="how">Use the flyer. Write the price. You can use your phone calculator.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> A 10-pound <b>frozen</b> turkey costs <span class="blank short ans">$12.90</span>.</li>
+      <li><b class="n">2.</b> A 10-pound <b>fresh</b> turkey costs <span class="blank short ans">$24.90</span>.</li>
+      <li><b class="n">3.</b> With frozen, how much do you save? <span class="blank short ans">$12.00</span></li>
+      <li><b class="n">4.</b> <b>&#9733;</b> Rolls: the 12-pack or the 24-pack? Which is cheaper <b>for one roll</b>?<div class="line ans">The 24-pack: about 25&cent; a roll. The 12-pack is about 29&cent; a roll.</div></li>
+    </ol>
+  </div>
+  <p class="how bottom"><b>Talk:</b> Do you comparison shop? Which store has the best prices near you?</p>
+</section>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 9</div></div>
+  <p class="how">Now look at <b>page 2</b> on the table: <b>Elena&rsquo;s list</b>. Her budget is <b>$60</b>.</p>
+  <div class="task">
+    <h2>D. Elena&rsquo;s total cost</h2>
+    <p class="how">Write the price of each thing. Then add. You can use your phone calculator.</p>
+    <table class="pick">
+      <tr><th>Item</th><th style="width:22%;">How?</th><th style="width:22%;">Price</th></tr>
+      <tr><td class="t" style="white-space:normal;">Frozen turkey, 12 pounds</td><td class="c">12 &times; $1.29</td><td class="ansc">$15.48</td></tr><tr><td class="t" style="white-space:normal;">Pumpkin pie</td><td class="c"></td><td class="ansc">$6.99</td></tr><tr><td class="t" style="white-space:normal;">Cranberry sauce, 2 cans</td><td class="c">2 for $3</td><td class="ansc">$3.00</td></tr><tr><td class="t" style="white-space:normal;">Potatoes, 5-lb bag</td><td class="c"></td><td class="ansc">$3.99</td></tr><tr><td class="t" style="white-space:normal;">Dinner rolls, 12-pack</td><td class="c"></td><td class="ansc">$3.49</td></tr><tr><td class="t" style="white-space:normal;">Green beans, 2 pounds</td><td class="c">2 &times; $1.99</td><td class="ansc">$3.98</td></tr>
+      <tr><td class="t">TOTAL COST</td><td></td><td class="ansc">$36.93</td></tr>
+    </table>
+    <ol class="items">
+      <li><b class="n">1.</b> How much money does Elena have left? <span class="blank short ans">$23.07</span></li>
+      <li><b class="n">2.</b> Can she use the coupon? Why or why not? <span class="blank long ans">No. She spends less than $50.</span></li>
+      <li><b class="n">3.</b> <b>&#9733;</b> Elena adds an apple pie and a bag of rice. What is the new total <b>with the coupon</b>?<div class="line ans">$36.93 + $8.99 + $9.99 = $55.91. That&rsquo;s $50 or more, so $5 off: $50.91.</div></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>E. Your turn: a party for 6</h2>
+    <p class="how"><b>Use your own ideas.</b> You have <b>$40</b>. Choose food from the flyer. Write your list and the total.</p>
+    <div class="line ans"><i>answers vary: check the total is $40 or less</i></div><div class="line"></div><div class="line"></div>
+    <div class="gline"><b style="width:auto;">I will spend</b><div class="line ans"><i>answers vary</i></div><b style="width:auto;">and set aside</b><div class="line ans"><i>answers vary</i></div></div>
+  </div>
+</section>
+<section class="page vc"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="task">
+    <h2>Chart 1: Add the helping verbs</h2>
+    <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to cost</span><span><b>Subject:</b> it</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>cost</td><td>costs</td><td>costing</td><td>cost</td><td>cost</td></tr></table>
+    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>it costs</td><td>it <span class="hb ans">doesn&rsquo;t</span> cost</td><td><span class="hb ans">Does</span> it cost?</td></tr><tr><td class="tn">Past Simple</td><td>it cost</td><td>it <span class="hb ans">didn&rsquo;t</span> cost</td><td><span class="hb ans">Did</span> it cost?</td></tr><tr><td class="tn">Future Simple</td><td>it <span class="hb ans">will</span> cost</td><td>it <span class="hb ans">won&rsquo;t</span> cost</td><td><span class="hb ans">Will</span> it cost?</td></tr><tr><td class="tn">Present Continuous</td><td>it <span class="hb ans">is</span> costing</td><td>it <span class="hb ans">isn&rsquo;t</span> costing</td><td><span class="hb ans">Is</span> it costing?</td></tr><tr><td class="tn">Past Continuous</td><td>it <span class="hb ans">was</span> costing</td><td>it <span class="hb ans">wasn&rsquo;t</span> costing</td><td><span class="hb ans">Was</span> it costing?</td></tr><tr><td class="tn">Future Continuous</td><td>it <span class="hb sm ans">will</span> <span class="hb sm ans">be</span> costing</td><td>it <span class="hb sm ans">won&rsquo;t</span> <span class="hb sm ans">be</span> costing</td><td><span class="hb sm ans">Will</span> it <span class="hb sm ans">be</span> costing?</td></tr><tr><td class="tn">Present Perfect</td><td>it <span class="hb ans">has</span> cost</td><td>it <span class="hb ans">hasn&rsquo;t</span> cost</td><td><span class="hb ans">Has</span> it cost?</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>Chart 2: Now you write it all</h2>
+    <p class="how">Write the 5 forms of <b>spend</b>. Then fill in the chart with <b>I</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to spend</span><span><b>Subject:</b> I</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">spend</td><td class="ansc">spends</td><td class="ansc">spending</td><td class="ansc">spent</td><td class="ansc">spent</td></tr></table>
+    <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td class="ansc">I spend</td><td class="ansc">I don&rsquo;t spend</td><td class="ansc">Do I spend?</td></tr><tr><td class="tn">Past Simple</td><td class="ansc">I spent</td><td class="ansc">I didn&rsquo;t spend</td><td class="ansc">Did I spend?</td></tr><tr><td class="tn">Future Simple</td><td class="ansc">I will spend</td><td class="ansc">I won&rsquo;t spend</td><td class="ansc">Will I spend?</td></tr><tr><td class="tn">Present Continuous</td><td class="ansc">I am spending</td><td class="ansc">I am not spending</td><td class="ansc">Am I spending?</td></tr><tr><td class="tn">Past Continuous</td><td class="ansc">I was spending</td><td class="ansc">I wasn&rsquo;t spending</td><td class="ansc">Was I spending?</td></tr><tr><td class="tn">Future Continuous</td><td class="ansc">I will be spending</td><td class="ansc">I won&rsquo;t be spending</td><td class="ansc">Will I be spending?</td></tr><tr><td class="tn">Present Perfect</td><td class="ansc">I have spent</td><td class="ansc">I haven&rsquo;t spent</td><td class="ansc">Have I spent?</td></tr></table>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>If Dice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a game table. Dice and the drawn card sit center stage; the 6x6 board is the map of what's been played. */
+  :root {
+    --felt: #0f3b36;
+    --felt-deep: #0a2c28;
+    --ivory: #f6f1e4;
+    --ink: #10201e;
+    --zero: #f4c542;
+    --first: #7cc4f2;
+    --ask: #f2896e;
+    --muted: #9cc1ba;
+    --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+    --body: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: radial-gradient(ellipse at 50% 35%, #145049 0%, var(--felt) 45%, var(--felt-deep) 100%);
+    background-color: var(--felt);
+    color: var(--ivory);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--zero); outline-offset: 3px; }
+
+  .app { min-height: 100%; display: grid; grid-template-rows: auto 1fr; gap: 16px; padding: 16px clamp(16px, 3vw, 40px) 24px; max-width: 1300px; margin: 0 auto; }
+
+  /* ---- Top bar ---- */
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: -0.5px; }
+  .brand span { color: var(--zero); }
+  .bar .spacer { flex: 1; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,0,0,.25); border: 1.5px solid rgba(246,241,228,.25); color: var(--ivory); border-radius: 999px; padding: 6px 14px; font-size: 15px; }
+  .toggle[aria-pressed="true"] { background: var(--ivory); color: var(--ink); border-color: var(--ivory); font-weight: 700; }
+  .ghost { background: none; border: 1.5px solid rgba(246,241,228,.25); color: var(--muted); border-radius: 999px; padding: 6px 14px; font-size: 15px; }
+
+  /* ---- Players ---- */
+  .players { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,0,0,.25); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: 15px; }
+  .chip.turn { background: var(--zero); color: var(--ink); font-weight: 700; }
+  .chip button { background: none; border: 0; color: inherit; opacity: .6; width: 22px; height: 22px; border-radius: 50%; line-height: 1; }
+  .add-player { display: flex; gap: 6px; }
+  .add-player input { width: 130px; background: rgba(0,0,0,.25); border: 1.5px solid rgba(246,241,228,.25); color: var(--ivory); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 15px; }
+  .add-player input::placeholder { color: var(--muted); }
+
+  /* ---- Table ---- */
+  .table { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: start; }
+  @media (max-width: 900px) { .table { grid-template-columns: 1fr; } }
+
+  .stage { display: grid; gap: 20px; justify-items: center; }
+  .dice-row { display: flex; align-items: center; gap: 22px; }
+  .die-wrap { display: grid; justify-items: center; gap: 6px; }
+  .die-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+  .die { width: 92px; height: 92px; background: var(--ivory); border-radius: 18px; display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); padding: 14px; box-shadow: 0 6px 0 #c9c1ab, 0 14px 24px rgba(0,0,0,.35); }
+  .pip { width: 16px; height: 16px; border-radius: 50%; background: var(--ink); place-self: center; visibility: hidden; }
+  .pip.on { visibility: visible; }
+  .die.rolling { animation: tumble .12s linear infinite; }
+  @keyframes tumble { 0% { transform: rotate(-12deg) translateY(-6px); } 50% { transform: rotate(10deg) translateY(2px); } 100% { transform: rotate(-12deg) translateY(-6px); } }
+
+  .roll { font-family: var(--display); font-weight: 800; font-size: 26px; background: var(--zero); color: var(--ink); border: 0; border-radius: 16px; padding: 14px 40px; box-shadow: 0 5px 0 #b8901f; transition: transform .08s; }
+  .roll:active { transform: translateY(3px); box-shadow: 0 2px 0 #b8901f; }
+  .roll:disabled { opacity: .6; }
+  .hint { font-size: 14px; color: var(--muted); }
+
+  /* ---- Card ---- */
+  .card { width: min(760px, 100%); background: var(--ivory); color: var(--ink); border-radius: 22px; padding: 26px 30px 24px; display: grid; gap: 14px; border-top: 14px solid var(--accent, var(--zero)); box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+  .card.enter { animation: deal .35s cubic-bezier(.2,.9,.3,1.2); }
+  @keyframes deal { from { transform: translateY(24px) rotate(-2deg); opacity: 0; } to { transform: none; opacity: 1; } }
+  .card-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .tag { font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: 1.5px; background: var(--accent); padding: 4px 12px; border-radius: 8px; }
+  .pattern { font-size: 16px; }
+  .pattern b { font-family: var(--display); }
+  .where { margin-left: auto; font-size: 13px; color: #5c6b68; }
+  .prompt { font-family: var(--body); font-weight: 400; font-size: clamp(30px, 4.2vw, 48px); line-height: 1.25; text-wrap: balance; }
+  .prompt b { font-weight: 700; }
+  .prompt .who { display: block; font-size: .5em; font-weight: 700; }
+  .gap { display: inline-block; width: 2.2em; border-bottom: 3px solid var(--ink); vertical-align: -0.1em; }
+  .nw { white-space: nowrap; }
+  .challenge { display: flex; align-items: center; gap: 10px; background: var(--ink); color: var(--ivory); border-radius: 12px; padding: 10px 14px; font-size: 20px; }
+  .challenge b { color: var(--accent); font-family: var(--display); }
+  .card-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .help-btn { background: none; border: 2px solid var(--ink); color: var(--ink); border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 16px; }
+  .follow { font-size: 16px; color: #3c4b48; }
+  .example { font-size: 20px; border-left: 4px solid var(--accent); padding-left: 12px; }
+
+  /* ---- Board ---- */
+  .board { background: rgba(0,0,0,.22); border-radius: 18px; padding: 16px; display: grid; gap: 10px; }
+  .board h2 { font-family: var(--display); font-size: 18px; font-weight: 800; display: flex; justify-content: space-between; align-items: baseline; }
+  .board h2 span { font-family: var(--body); font-weight: 400; font-size: 14px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 96px repeat(6, 1fr); gap: 5px; font-variant-numeric: tabular-nums; }
+  .grid .head { font-size: 13px; color: var(--muted); text-align: center; align-self: end; }
+  .grid .rowname { font-size: 12px; font-weight: 700; letter-spacing: .5px; align-self: center; line-height: 1.15; }
+  .cell { aspect-ratio: 1; border: 0; border-radius: 7px; background: var(--c); opacity: .95; color: var(--ink); font-size: 13px; font-weight: 700; }
+  .cell.used { opacity: .18; }
+  .cell.now { outline: 3px solid var(--ivory); outline-offset: 1px; opacity: 1; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .die.rolling, .card.enter { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="brand">If<span>…</span> Dice</div>
+    <div class="players" id="players" aria-label="Players"></div>
+    <form class="add-player" id="add-player">
+      <input id="player-name" placeholder="Add a name" maxlength="16" aria-label="Add a player's name">
+    </form>
+    <div class="spacer"></div>
+    <button class="toggle" id="challenge-toggle" aria-pressed="true">Challenge cards</button>
+    <button class="ghost" id="reset">New game</button>
+  </header>
+
+  <main class="table">
+    <section class="stage" aria-live="polite">
+      <div class="dice-row">
+        <div class="die-wrap"><div class="die" id="die-row"></div><div class="die-label">Row</div></div>
+        <div class="die-wrap"><div class="die" id="die-col"></div><div class="die-label">Column</div></div>
+        <button class="roll" id="roll">Roll</button>
+      </div>
+      <div class="hint">Press <b>Space</b> to roll · <b>H</b> for help</div>
+
+      <article class="card" id="card"></article>
+    </section>
+
+    <aside class="board">
+      <h2>The board <span id="count"></span></h2>
+      <div class="grid" id="grid"></div>
+      <div class="legend">
+        <span><i style="background: var(--zero)"></i>Zero: always true</span>
+        <span><i style="background: var(--first)"></i>First: one real plan</span>
+        <span><i style="background: var(--ask)"></i>Ask a partner</span>
+      </div>
+      <div class="hint">Tap a square to pick that card.</div>
+    </aside>
+  </main>
+</div>
+
+<script>
+const ROWS = [
+  { kind: 'zero', name: 'ZERO · If…', prompts: [
+    ['If the T is late, …', 'If the T is late, I text my boss.'],
+    ['If my kids are sick, …', 'If my kids are sick, I stay home with them.'],
+    ['If you park on the street in a snow emergency, …', 'If you park on the street in a snow emergency, your car gets towed.'],
+    ['If it snows a lot, …', 'If it snows a lot, I shovel the sidewalk.'],
+    ['If you don’t pay a bill on time, …', 'If you don’t pay a bill on time, you pay a late fee.'],
+    ['If I don’t understand someone, …', 'If I don’t understand someone, I ask them to repeat.'],
+  ]},
+  { kind: 'zero', name: 'ZERO · …if', prompts: [
+    ['I call my family back home if …', 'I call my family back home if I have free time on Sunday.'],
+    ['I order takeout if …', 'I order takeout if I’m too tired to cook.'],
+    ['I take an Uber if …', 'I take an Uber if I miss the last bus.'],
+    ['I feel stressed if …', 'I feel stressed if the rent is late.'],
+    ['I don’t sleep well if …', 'I don’t sleep well if I drink coffee at night.'],
+    ['My kids are happy if …', 'My kids are happy if we go to the park.'],
+  ]},
+  { kind: 'first', name: 'FIRST · If…', prompts: [
+    ['If it snows tomorrow, …', 'If it snows tomorrow, I will wear my boots.'],
+    ['If my landlord doesn’t fix the heat this week, …', 'If my landlord doesn’t fix the heat this week, I will call 311.'],
+    ['If I get a day off next week, …', 'If I get a day off next week, I will sleep late!'],
+    ['If my family visits next summer, …', 'If my family visits next summer, I will show them Boston.'],
+    ['If I finish my work early tonight, …', 'If I finish my work early tonight, I will watch a movie.'],
+    ['If I get a raise this year, …', 'If I get a raise this year, I will save for a car.'],
+  ]},
+  { kind: 'first', name: 'FIRST · …if', prompts: [
+    ['I will cook something special this weekend if …', 'I will cook something special this weekend if my sister visits.'],
+    ['I won’t go to work tomorrow if …', 'I won’t go to work tomorrow if my son is still sick.'],
+    ['I will buy a new phone if …', 'I will buy a new phone if my old phone breaks.'],
+    ['I will take the kids to the beach if …', 'I will take the kids to the beach if it’s hot on Saturday.'],
+    ['I will call the doctor if …', 'I will call the doctor if I don’t feel better tomorrow.'],
+    ['I will go to bed early tonight if …', 'I will go to bed early tonight if I’m tired after class.'],
+  ]},
+  { kind: 'first', neg: true, name: 'FIRST · not', prompts: [
+    ['If my boss doesn’t let me leave early tomorrow, …', 'If my boss doesn’t let me leave early tomorrow, I won’t come to class.'],
+    ['If it doesn’t rain this weekend, …', 'If it doesn’t rain this weekend, I will go to the park.'],
+    ['I won’t buy a car this year if …', 'I won’t buy a car this year if gas is too expensive.'],
+    ['If my package doesn’t come today, …', 'If my package doesn’t come today, I will call the store.'],
+    ['I won’t be hungry tonight if …', 'I won’t be hungry tonight if I eat a big lunch.'],
+    ['If the bus doesn’t come in ten minutes, …', 'If the bus doesn’t come in ten minutes, I will walk.'],
+  ]},
+  { kind: 'ask', name: 'ASK', prompts: [
+    ['What will you do if it rains on Saturday?', 'If it rains on Saturday, I will stay home and watch TV.'],
+    ['Where will you go if you get a day off?', 'If I get a day off, I will go to the beach.'],
+    ['What will you cook if friends come over this weekend?', 'If friends come over, I will cook rice and beans.'],
+    ['Who will you call if you get good news tonight?', 'If I get good news tonight, I will call my mom.'],
+    ['What will you buy if you get paid tomorrow?', 'If I get paid tomorrow, I will buy new shoes.'],
+    ['What do you do if you can’t sleep?', 'If I can’t sleep, I read or listen to music.'],
+  ]},
+];
+
+const KIND = {
+  zero:  { tag: 'ZERO', accent: 'var(--zero)',  pattern: '<b>If + V1, V1</b> · always true, a habit', follow: 'Group: ask “Why?” or “Every time?”' },
+  first: { tag: 'FIRST', accent: 'var(--first)', pattern: '<b>If + V1, will + V1</b> · one real plan · no <i>will</i> after <i>if</i>', follow: 'Group: ask “Why?” or “And then?”' },
+  ask:   { tag: 'ASK', accent: 'var(--ask)',   pattern: 'Ask the person on your <b>left</b>. They answer in a full sentence.', follow: 'Then they ask you a question back.' },
+};
+
+const CHALLENGES = {
+  zero:  [[5, 'Say it', 'Finish the sentence.'], [3, 'Make it negative', 'Use <b>don’t</b> or <b>doesn’t</b>.'], [2, 'Add because', 'Finish it, then say <b>because…</b>']],
+  first: [[5, 'Say it', 'Finish the sentence.'], [3, 'Make it negative', 'Use <b>won’t</b> or <b>don’t</b>.'], [2, 'Add because', 'Finish it, then say <b>because…</b>']],
+  firstNeg: [[5, 'Say it', 'Finish the sentence.'], [3, 'Make it a question', 'Start with <b>Will you…?</b>'], [2, 'Add because', 'Finish it, then say <b>because…</b>']],
+  ask:   [[1, 'Ask', 'Ask the person on your left.']],
+};
+
+const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+
+let state = { used: [], players: [], turn: 0, current: null, challenge: true, showHelp: false };
+const $ = id => document.getElementById(id);
+
+function drawDie(el, n) {
+  el.innerHTML = Array.from({ length: 9 }, (_, i) => `<span class="pip${PIPS[n].includes(i) ? ' on' : ''}"></span>`).join('');
+  el.setAttribute('aria-label', `Die shows ${n}`);
+}
+
+function pickChallenge(kind) {
+  const list = CHALLENGES[kind];
+  let r = Math.random() * list.reduce((s, c) => s + c[0], 0);
+  for (const c of list) { if ((r -= c[0]) < 0) return [c[1], c[2]]; }
+  return [list[0][1], list[0][2]];
+}
+
+function renderCard(animate) {
+  const card = $('card');
+  if (!state.current) {
+    card.style.setProperty('--accent', 'var(--zero)');
+    card.innerHTML = `
+      <div class="card-top"><span class="tag">HOW TO PLAY</span></div>
+      <div class="prompt">Roll the dice. Finish the sentence out loud.</div>
+      <div class="follow">The first die picks the row. The second die picks the column. Rows 1–2 are <b>zero</b> (always true). Rows 3–5 are <b>first</b> (one real plan). Row 6: <b>ask</b> a partner.</div>`;
+    return;
+  }
+  const { r, c, challenge } = state.current;
+  const row = ROWS[r], [prompt, example] = row.prompts[c], k = KIND[row.kind];
+  const player = state.players.length ? state.players[state.turn % state.players.length] : null;
+  card.style.setProperty('--accent', k.accent);
+  card.innerHTML = `
+    <div class="card-top">
+      <span class="tag">${k.tag}</span>
+      <span class="pattern">${k.pattern}</span>
+      <span class="where">Row ${r + 1} · Column ${c + 1}</span>
+    </div>
+    <div class="prompt">${player ? `<span class="who">${escapeHtml(player)}:</span>` : ''}${fmt(prompt)}</div>
+    ${state.challenge ? `<div class="challenge"><b>${challenge[0]}</b><span>${challenge[1]}</span></div>` : ''}
+    <div class="card-foot">
+      <button class="help-btn" id="help">${state.showHelp ? 'Hide example' : 'Need help?'}</button>
+      <span class="follow">${k.follow}</span>
+    </div>
+    ${state.showHelp ? `<div class="example">${example}</div>` : ''}`;
+  $('help').onclick = toggleHelp;
+  if (animate) { card.classList.remove('enter'); void card.offsetWidth; card.classList.add('enter'); }
+}
+
+function renderBoard() {
+  const g = $('grid');
+  let html = '<span></span>' + [1, 2, 3, 4, 5, 6].map(n => `<span class="head">${n}</span>`).join('');
+  ROWS.forEach((row, r) => {
+    html += `<span class="rowname">${r + 1} ${row.name}</span>`;
+    row.prompts.forEach((p, c) => {
+      const used = state.used.includes(`${r}-${c}`);
+      const now = state.current && state.current.r === r && state.current.c === c;
+      html += `<button class="cell${used ? ' used' : ''}${now ? ' now' : ''}" style="--c:${KIND[row.kind].accent}" data-r="${r}" data-c="${c}" aria-label="Row ${r + 1}, column ${c + 1}: ${p[0].replace(/"/g, '')}${used ? ' (played)' : ''}">${c + 1}</button>`;
+    });
+  });
+  g.innerHTML = html;
+  $('count').textContent = `${state.used.length} of 36 played`;
+}
+
+function renderPlayers() {
+  $('players').innerHTML = state.players.map((p, i) => `
+    <span class="chip${i === state.turn % Math.max(state.players.length, 1) ? ' turn' : ''}">${escapeHtml(p)}
+      <button aria-label="Remove ${escapeHtml(p)}" data-i="${i}">×</button></span>`).join('');
+}
+
+function render(animate) {
+  renderPlayers(); renderBoard(); renderCard(animate);
+  $('challenge-toggle').setAttribute('aria-pressed', String(state.challenge));
+}
+
+function choose(r, c) {
+  const key = `${r}-${c}`;
+  if (!state.used.includes(key)) state.used.push(key);
+  state.current = { r, c, challenge: pickChallenge(ROWS[r].neg ? 'firstNeg' : ROWS[r].kind) };
+  state.showHelp = false;
+}
+
+let rolling = false;
+function roll() {
+  if (rolling) return;
+  if (state.current && state.players.length) state.turn = (state.turn + 1) % state.players.length;
+  const open = [];
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) if (!state.used.includes(`${r}-${c}`)) open.push([r, c]);
+  if (!open.length) { state.used = []; open.push(...Array.from({ length: 36 }, (_, i) => [Math.floor(i / 6), i % 6])); }
+  const [r, c] = open[Math.floor(Math.random() * open.length)];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dr = $('die-row'), dc = $('die-col'), btn = $('roll');
+  if (reduce) { drawDie(dr, r + 1); drawDie(dc, c + 1); choose(r, c); render(false); return; }
+  rolling = true; btn.disabled = true;
+  dr.classList.add('rolling'); dc.classList.add('rolling');
+  const spin = setInterval(() => { drawDie(dr, 1 + Math.floor(Math.random() * 6)); drawDie(dc, 1 + Math.floor(Math.random() * 6)); }, 70);
+  setTimeout(() => {
+    clearInterval(spin);
+    dr.classList.remove('rolling'); dc.classList.remove('rolling');
+    drawDie(dr, r + 1); drawDie(dc, c + 1);
+    choose(r, c); render(true);
+    rolling = false; btn.disabled = false;
+  }, 750);
+}
+
+// Same look as the print board: only "if" in bold, a write-on line glued to the last word.
+function fmt(t) {
+  return t.replace(/\b(If|if)\b/g, '<b>$1</b>').replace(/(\S+)\s…$/, '<span class="nw">$1 <span class="gap"></span></span>');
+}
+
+function toggleHelp() { state.showHelp = !state.showHelp; renderCard(false); }
+function escapeHtml(s) { return s.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch])); }
+
+function start(saved) {
+  state = Object.assign(state, saved || {});
+  drawDie($('die-row'), state.current ? state.current.r + 1 : 5);
+  drawDie($('die-col'), state.current ? state.current.c + 1 : 2);
+  $('roll').onclick = roll;
+  $('reset').onclick = () => { state.used = []; state.current = null; state.turn = 0; state.showHelp = false; render(false); };
+  $('challenge-toggle').onclick = () => { state.challenge = !state.challenge; render(false); };
+  $('grid').onclick = e => { const b = e.target.closest('.cell'); if (!b) return; if (state.current && state.players.length) state.turn = (state.turn + 1) % state.players.length; drawDie($('die-row'), +b.dataset.r + 1); drawDie($('die-col'), +b.dataset.c + 1); choose(+b.dataset.r, +b.dataset.c); render(true); };
+  $('players').onclick = e => { const b = e.target.closest('button[data-i]'); if (!b) return; state.players.splice(+b.dataset.i, 1); state.turn = 0; render(false); };
+  $('add-player').onsubmit = e => { e.preventDefault(); const v = $('player-name').value.trim(); if (v) { state.players.push(v); $('player-name').value = ''; render(false); } };
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.code === 'Space') { e.preventDefault(); roll(); }
+    if (e.key === 'h' || e.key === 'H') { if (state.current) toggleHelp(); }
+  });
+  window.claude?.hot?.snapshot?.(() => state);
+  render(false);
+}
+
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+</script>
+</body>
+</html>

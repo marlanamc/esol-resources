@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 10 Tuesday Real World: Neighborhood Meeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1c2433; background: #fff;
+         font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up association, library, people, numbers.
+     Questions are on packet pages 8-9; page 9 needs sheet 2. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .hero { background: #24407a; color: #fff; border-radius: 10px; padding: 16px 22px; margin-bottom: 12px; }
+  .hero .org { font-size: 16px; opacity: 0.95; }
+  .hero h1 { font-size: 38px; line-height: 1.05; margin: 2px 0 4px; }
+  .hero .all { display: inline-block; background: #f2b632; color: #1c2433; font-weight: bold; border-radius: 6px; padding: 2px 10px; font-size: 17px; }
+  .when { display: flex; gap: 12px; margin-bottom: 12px; }
+  .when > div { flex: 1; background: #eaf0fa; border-left: 6px solid #24407a; padding: 10px 14px; font-size: 19px; }
+  .when b.l { display: block; font-size: 14px; color: #24407a; text-transform: uppercase; letter-spacing: 1px; }
+  h2 { font-size: 21px; color: #24407a; margin: 6px 0 4px; }
+  table.agenda { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  table.agenda td { padding: 9px 8px; border-bottom: 1px solid #ccd6ea; vertical-align: top; font-size: 18px; }
+  table.agenda td.t { width: 15%; font-weight: bold; color: #24407a; white-space: nowrap; }
+  .cols { display: flex; gap: 12px; }
+  .box { flex: 1; border: 2px solid #24407a; border-radius: 8px; padding: 8px 14px; }
+  .box h3 { font-size: 18px; color: #24407a; margin-bottom: 3px; }
+  .box ul { padding-left: 1.1em; font-size: 17px; }
+  .box li { margin-bottom: 4px; }
+  .gold { border-color: #c98f00; background: #fff8e3; }
+  .gold h3 { color: #8a6200; }
+  .rules { margin-top: auto; background: #24407a; color: #fff; border-radius: 8px; padding: 8px 16px; font-size: 16px; }
+  .card { border: 2px solid #999; border-radius: 6px; padding: 16px 22px; background: #fffef8; box-shadow: 3px 4px 0 #ddd; margin-bottom: 14px; }
+  .card .ct { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #24407a; padding-bottom: 4px; margin-bottom: 10px; }
+  .card .ct b { font-size: 22px; color: #24407a; }
+  .card .row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 17px; }
+  .card .row .k { width: 1.6in; flex: none; font-weight: bold; color: #555; }
+  .hand { font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive; font-size: 19px; color: #1d3c8f; line-height: 1.5; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="hero">
+    <div class="org">East Side Neighborhood Association</div>
+    <h1>Monthly Neighborhood Meeting</h1>
+    <span class="all">Everyone is welcome. You don&rsquo;t need to be a citizen.</span>
+  </div>
+  <div class="when">
+    <div><b class="l">When</b>Monday, November 23<br>6:30&ndash;8:00 p.m.</div>
+    <div><b class="l">Where</b>Eastside Library<br>Community Room, 2nd floor (elevator)</div>
+  </div>
+  <h2>Agenda</h2>
+  <table class="agenda">
+    <tr><td class="t">6:30</td><td>Welcome and snacks</td></tr>
+    <tr><td class="t">6:40</td><td>Update: the new crosswalk on Elm Street (City Transportation Office)</td></tr>
+    <tr><td class="t">7:00</td><td><b>Vote:</b> new playground equipment for Elm Park. Two choices: a climbing wall or new swings.</td></tr>
+    <tr><td class="t">7:30</td><td><b>Open Mic: raise a concern.</b> Sign up at the door. Each person can speak for <b>2 minutes</b>.</td></tr>
+    <tr><td class="t">7:55</td><td>Next steps and next meeting</td></tr>
+  </table>
+  <div class="cols">
+    <div class="box">
+      <h3>Interpreters</h3>
+      <ul><li>Spanish and Haitian Creole</li><li>Please call or email <b>by Friday, November 20</b>.</li></ul>
+      <h3 style="margin-top:6px;">Free childcare</h3>
+      <ul><li>Ages <b>3 to 10</b>, in Room B</li></ul>
+    </div>
+    <div class="box gold">
+      <h3>Can&rsquo;t come?</h3>
+      <ul><li>Watch on Zoom: eastsideneighbors.example.org/live</li><li>Email your concern: hello@eastsideneighbors.example.org</li><li>Or use the online comment form.</li></ul>
+    </div>
+  </div>
+  <div class="rules" style="margin-top:14px;"><b>Meeting rules:</b> Raise your hand to speak. One person speaks at a time. Be respectful. &middot; Questions? (617) 555-0177</div>
+</section><section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <h2 style="font-size:30px;">Mr. Haddad&rsquo;s comment card</h2>
+  <p style="margin-bottom:12px;">Mr. Haddad can&rsquo;t speak at the Open Mic. He works on Monday nights. He filled out the online comment form.</p>
+  <div class="card">
+    <div class="ct"><b>East Side Neighborhood Association &middot; Comment Card</b><span>Nov. 16, 2026</span></div>
+    <div class="row"><span class="k">Name</span><span class="hand">Karim Haddad</span></div>
+    <div class="row"><span class="k">Street</span><span class="hand">Cedar Street</span></div>
+    <div class="row"><span class="k">My concern</span><span class="hand">The streetlight in front of 18 Cedar Street is broken. It has been broken for 3 weeks, since October 26. At night the sidewalk is very dark. My kids walk home from the bus stop at 5:30, and it is already dark.</span></div>
+    <div class="row"><span class="k">What I have done</span><span class="hand">I have called 311 two times. They gave me a ticket number, but nobody has fixed it.</span></div>
+    <div class="row"><span class="k">My suggestion</span><span class="hand">I suggest that the city fix the light this week. If they can&rsquo;t, I recommend a temporary light. Can someone from the association help me contact the city?</span></div>
+    <div class="row"><span class="k">Contact me</span><span class="hand">karim.h@example.com</span></div>
+  </div>
+  <div class="box" style="flex:none;">
+    <h3>Useful words for a concern</h3>
+    <ul>
+      <li><b>raise a concern</b> = tell people about a problem</li>
+      <li><b>suggest / recommend</b> = say a good idea: <i>I suggest that the city fix it.</i></li>
+      <li><b>311</b> = the city phone number for problems like broken lights or trash</li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>

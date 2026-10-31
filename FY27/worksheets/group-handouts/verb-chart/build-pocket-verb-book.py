@@ -2,13 +2,13 @@
 """Build the pocket verb flip book (student fill-in + teacher key).
 
 Each letter sheet holds two half-page cards. Students cut the cards apart, cut
-off the gray in the bottom tab strip, stack them in order and staple at the top.
+off the striped parts in the bottom tab strip, stack them in order and staple at the top.
 Every tense card keeps one tab at a different spot, so all 7 tabs show at once.
 
 The timelines copy the Timeline Tenses game (TimelineCanvas.tsx and
 TimelineElement.tsx): same 400 x 80 canvas, zones, colors and stamps, with each
 tense's stamp taken from src/data/timeline-learn-tenses.ts. Students get the
-empty canvas, a sentence to map, and an affirmative model; the key shows all answers.
+empty canvas and a sentence to map, and write everything else; the key shows all answers.
 
     python3 build-pocket-verb-book.py
 writes pocket-verb-book.html and pocket-verb-book-key.html next to this file.
@@ -225,7 +225,8 @@ CSS = f"""
   .z-past {{ --c: var(--past); --bg: var(--past-bg); --band: var(--past); }}
   .z-present {{ --c: var(--present); --bg: var(--present-bg); --band: var(--present); }}
   .z-future {{ --c: var(--future); --bg: var(--future-bg); --band: var(--future); }}
-  .z-perfect {{ --c: var(--past); --bg: var(--past-bg); --band: linear-gradient(90deg, var(--past) 50%, var(--present) 50%); }}
+  .z-perfect {{ --c: var(--past); --bg: var(--past-bg); --band: var(--past); }}
+  .z-perfect .tabs .keep::before {{ content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: var(--present); z-index: -1; }}
 
   @media screen {{
     body {{ background: #e6e6e6; padding: 24px 0; }}
@@ -235,7 +236,11 @@ CSS = f"""
     @page {{ size: letter portrait; margin: 0; }}
   }}
 
-  .gray {{ background: repeating-linear-gradient(45deg, #e4e4e4 0 6px, #c8c8c8 6px 7px); }}
+  /* Stripes are drawn as plain SVG lines: some PDF viewers can't show CSS gradient patterns and fill them pink. */
+  .gray {{ position: relative; overflow: hidden; background: #fff; }}
+  .gray > svg {{ position: absolute; inset: 0; width: 100%; height: 100%; }}
+  .gray > span, .tabs > .gray::after {{ position: relative; z-index: 1; }}
+  .tabs > .gray::after {{ content: "\\2702"; background: #fff; color: #111; font-size: 14px; line-height: 1; padding: 2px 6px 2px 11px; border: 1.5px solid #111; }}
 
   /* Type scale: 22 / 18 / 14 / 11 */
   .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 7px; }}
@@ -260,14 +265,17 @@ CSS = f"""
   .timeline .label span {{ display: block; font-weight: normal; font-style: italic; }}
   .timeline svg {{ display: block; flex: 1; height: 0.82in; }}
 
-  .forms {{ display: grid; grid-template-columns: 26px 1.2fr 1fr 1fr; grid-auto-rows: minmax(0.43in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
+  .forms {{ display: grid; grid-template-columns: 1.05in 1fr 1fr 1fr; grid-auto-rows: minmax(0.43in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
   .forms > div {{ padding: 2px 7px; display: flex; align-items: center; }}
   .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }}
   .forms .h span {{ font-weight: normal; margin-left: 4px; }}
-  .forms .sym {{ justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: var(--c, #000); background: var(--bg, #fff); }}
+  .forms .h .s {{ font-size: 16px; color: var(--c, #000); margin-right: 5px; }}
+  .forms .rl {{ flex-direction: column; align-items: flex-start; justify-content: center; font-size: 11px; font-weight: bold; line-height: 1.15; background: var(--bg, #fff); }}
+  .forms .rl span {{ font-weight: normal; font-size: 10px; }}
+  .forms .rl .vline {{ display: block; width: 100%; height: 13px; border-bottom: 1px solid #000; }}
   .forms > div:not(:nth-child(4n+1)) {{ border-left: 1.5px solid #000; }}
   .forms .write {{ flex: 1; font-size: 14px; }}
-  .forms .write b {{ font-weight: 700; }}
+  .forms .write b {{ font-weight: 700; white-space: nowrap; }}
   .forms .r2, .forms .r3 {{ border-top: 1.5px solid #000; }}
 
   .third {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
@@ -282,11 +290,12 @@ CSS = f"""
   .ans {{ font-style: normal; font-weight: normal; color: #000; }}
   .ans b {{ color: var(--c, #000); }}
 
-  /* Bottom tab strip: keep the colored tab, cut off the gray */
+  /* Bottom tab strip: keep the colored tab, cut off the striped parts */
   .tabs {{ height: 0.55in; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1.5px dashed #000; }}
   .tabs > div {{ display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; font-weight: bold; line-height: 1.1; }}
-  .tabs .keep {{ background: var(--band); color: #fff; border: 2px dashed #000; border-top: none; }}
+  .tabs .keep {{ background: var(--band); color: #fff; border: 2px dashed #000; border-top: none; box-shadow: 0 0 0 3px #fff; position: relative; z-index: 1; }}
   .tabs.all {{ display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }}
+  .tabs.all.gray span {{ background: #fff; padding: 3px 16px 3px 20px; border: 1.5px solid #111; }}
 
   /* Cover */
   .cover h1 {{ font-size: 22px; }}
@@ -321,7 +330,10 @@ CSS += """
 .personal span { border-bottom: 1px solid #555; min-height: 15px; }
 .personal span:last-child { grid-column: 1 / -1; }
 .say { font-size: 11px; color: #333; }
-.head .use { font-size: 12px; max-width: 48%; }
+.head { align-items: flex-end; }
+.head .use { font-size: 12px; flex: 1; max-width: 62%; display: flex; gap: 6px; align-items: flex-end; text-align: left; }
+.head .use b { white-space: nowrap; }
+.head .use .fill { flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }
 .forms .write { font-size: 13px; }
 .watch, .third, .words { font-size: 12px; }
 .cover .body { gap: 10px; padding-top: .32in; }
@@ -334,16 +346,29 @@ CSS += """
 .stamp-guide svg { width: 110px; height: 38px; }
 .stamp-guide span { font-size: 11px; color: #444; }
 .chooser > b, .verb-guide > b { font-size: 13px; }
-.choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; margin-top: 5px; }
-.choose-grid > span { display: flex; justify-content: space-between; gap: 5px; font-size: 11px; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
-.choose-grid strong { white-space: nowrap; }
+.choose-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; margin-top: 3px; border-top: 1.5px solid #111; }
+.choose-grid > div { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #bbb; padding: 4px 0; font-size: 11px; line-height: 1.2; }
+.choose-grid strong { white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+.choose-grid i { font-style: normal; display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; color: #fff; font-size: 10px; background: var(--dot); }
+.choose-grid .present { --dot: #047857; }
+.choose-grid .past { --dot: #b45309; }
+.choose-grid .future { --dot: #1d4ed8; }
+.choose-grid .perfect { --dot: #b45309; }
+.choose-grid .perfect i { position: relative; z-index: 0; overflow: hidden; }
+.choose-grid .perfect i::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: #047857; z-index: -1; }
 .choose-grid .wide { grid-column: 1 / -1; }
-.verb-guide > div { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 5px; }
+.verb-guide > div { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 5px; }
 .verb-guide span { font-size: 12px; }
 .verb-guide span b { display: block; font-size: 11px; margin-bottom: 2px; }
 .cover-bottom { display: flex; justify-content: space-between; font-size: 11px; margin-top: auto; }
 .assembly { font-size: 10px; color: #444; }
 """
+
+
+# Diagonal cut-off stripes, one line every 16 units, cropped to whatever box holds them
+STRIPES = ('<svg viewBox="0 0 1000 55" preserveAspectRatio="xMinYMid slice" aria-hidden="true">'
+           + "".join(f'<line x1="{x}" y1="60" x2="{x + 65}" y2="-5" stroke="#111" stroke-width="1.5"/>' for x in range(-70, 1000, 16))
+           + "</svg>")
 
 
 def tabs(keep_index):
@@ -352,7 +377,7 @@ def tabs(keep_index):
         if i == keep_index:
             cells.append(f'<div class="keep">{t["tab"]}</div>')
         else:
-            cells.append('<div class="gray"></div>')
+            cells.append(f'<div class="gray">{STRIPES}</div>')
     return f'<div class="tabs">{"".join(cells)}</div>'
 
 
@@ -366,17 +391,18 @@ def tense_card(i, t, key):
         x = element_x(t["stamp"][1], t["stamp"][2])
         marks += f'<line x1="{x}" y1="32" x2="{x}" y2="60" stroke="#111" stroke-width="1.5"/><text x="{x}" y="26" text-anchor="middle" font-size="11">8:00</text>'
     note = ('<div class="perfect-note"><b>Experience:</b> I have eaten sushi. <b>Still true:</b> I have worked here for three years.</div>' if i == 6 else '')
+    # Same direction as the verb charts: + / − / ? go across, one column each
+    columns = [(f, reg, irr) for (f, reg), irr in zip(t["forms"], IRREGULAR[t["name"]])]
+    # Students pick their own verbs; the key shows work / eat as one example
+    if key:
+        labels = ("Formula", "Regular <span>e.g. work · worked</span>", "Irregular <span>e.g. eat · ate · eaten</span>")
+    else:
+        labels = ("Formula", 'Regular <i class="vline"></i>', 'Irregular <i class="vline"></i>')
     rows = []
-    for n, (sym, cls) in enumerate((("+", "a"), ("−", "n"), ("?", "q"))):
-        formula, regular = t["forms"][n]
-        irregular = IRREGULAR[t["name"]][n]
+    for n, label in enumerate(labels):
         r = f"r{n+1}" if n else ""
-        rows.append(
-            f'<div class="sym {cls} {r}">{sym}</div>'
-            f'<div class="{r}"><span class="write">{fill(emphasize(formula), key or n == 0)}</span></div>'
-            f'<div class="{r}"><span class="write">{fill(emphasize(regular), key or n == 0)}</span></div>'
-            f'<div class="{r}"><span class="write">{fill(emphasize(irregular), key or n == 0)}</span></div>'
-        )
+        rows.append(f'<div class="rl {r}">{label}</div>' + "".join(
+            f'<div class="{r}"><span class="write">{fill(emphasize(col[n]), key)}</span></div>' for col in columns))
     third = ""
     if t.get("third"):
         third = f'<div class="third"><b>he / she / it:</b><span class="fill">{fill(emphasize(t["third"]), key)}</span></div>'
@@ -384,7 +410,7 @@ def tense_card(i, t, key):
 <section class="card z-{t["zone"]}">
   <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
   <div class="body">
-    <div class="head"><h1>{i + 1}. {t["name"]}</h1><span class="use"><b>Use it for:</b> {t["use"]}</span></div>
+    <div class="head"><h1>{i + 1}. {t["name"]}</h1><span class="use"><b>Meaning:</b><span class="fill">{fill(t["use"], key)}</span></span></div>
     <div class="words"><b>Helpful time clues:</b><span class="fill">{fill(t["words"], key)}</span></div>
     <div class="draw-prompt"><b>Draw when:</b> {PROMPTS[i]}</div>
     <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
@@ -392,12 +418,11 @@ def tense_card(i, t, key):
     </div>
 {note}
     <div class="forms">
-      <div class="h"></div><div class="h">Formula</div><div class="h">Regular <span>work · worked · worked</span></div><div class="h">Irregular <span>eat · ate · eaten</span></div>
+      <div class="h"></div><div class="h"><b class="s">+</b> Affirmative</div><div class="h"><b class="s">−</b> Negative</div><div class="h"><b class="s">?</b> Question</div>
       {"".join(rows)}
     </div>
     {third}
     <div class="personal"><b>My sentence:</b><span></span><span></span></div>
-    <div class="say">Tell a partner. Point to your timeline.</div>
     <div class="watch"><b>Watch out!</b> {WATCH[t["name"]]}</div>
   </div>
   {tabs(i)}
@@ -423,19 +448,19 @@ COVER = f"""
       <div>{mini("arc", "past", 50, 88)}<b>Connected to now</b><span>before now + now</span></div>
     </div>
     <div class="chooser"><b>What do you want to say?</b><div class="choose-grid">
-      <span>Usually / a fact <strong>1 · Present simple</strong></span>
-      <span>Happening now <strong>4 · Present continuous</strong></span>
-      <span>Finished in the past <strong>2 · Past simple</strong></span>
-      <span>In progress in the past <strong>5 · Past continuous</strong></span>
-      <span>A prediction or promise <strong>3 · Future simple</strong></span>
-      <span>In progress in the future <strong>6 · Future continuous</strong></span>
-      <span class="wide">Before now, connected to now <strong>7 · Present perfect</strong></span>
+      <div class="present"><span>Usually / a fact</span><strong><i>1</i>Present simple</strong></div>
+      <div class="present"><span>Happening now</span><strong><i>4</i>Present continuous</strong></div>
+      <div class="past"><span>Finished in the past</span><strong><i>2</i>Past simple</strong></div>
+      <div class="past"><span>In progress in the past</span><strong><i>5</i>Past continuous</strong></div>
+      <div class="future"><span>A prediction or promise</span><strong><i>3</i>Future simple</strong></div>
+      <div class="future"><span>In progress in the future</span><strong><i>6</i>Future continuous</strong></div>
+      <div class="perfect wide"><span>Before now, connected to now</span><strong><i>7</i>Present perfect</strong></div>
     </div></div>
-    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past participle</b>worked / eaten</span><span><b>V-ing</b>working / eating</span></div></div>
+    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V1-s · he / she / it</b>works / eats</span><span><b>V-ing</b>working / eating</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past participle</b>worked / eaten</span></div></div>
     <div class="cover-bottom"><span>Name: __________________________</span><span>Time clues help. Meaning comes first.</span></div>
-    <div class="assembly">Cut between cards. Remove gray areas. Stack cover, then 1–7. Staple at the top.</div>
+    <div class="assembly">Cut between cards. Cut off the striped parts. Stack cover, then 1–7. Staple at the top.</div>
   </div>
-  <div class="tabs all gray">cut off this gray strip</div>
+  <div class="tabs all gray">{STRIPES}<span>✂ cut off</span></div>
 </section>"""
 
 

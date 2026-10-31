@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 9 Tuesday Stations Packet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  /* One .page = one portrait letter page. Print double-sided, staple top left.
+     Page 1 cover; spreads 2-3 warm-up, 4-5 speak, 6-7 read,
+     pages 8-9 real world; page 10 early-finisher verb charts. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.45in 0.55in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale (print floor): 28 / 22 / 18 / 16 / 14 */
+  .station-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .station-bar .label { font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+  .station-bar .label span { font-size: 16px; font-weight: normal; letter-spacing: 0; margin-left: 8px; }
+  .station-bar .pg { font-size: 14px; white-space: nowrap; }
+  h2 { font-size: 22px; margin-bottom: 4px; }
+  h3 { font-size: 18px; margin-bottom: 4px; }
+  .task { margin-bottom: 14px; }
+  .how { font-size: 16px; margin-bottom: 8px; }
+  .example { font-size: 16px; margin-bottom: 8px; font-style: italic; }
+  .small { font-size: 14px; }
+  .bank { border: 1.5px solid #000; padding: 6px 10px; margin-bottom: 8px; font-size: 16px; }
+  .bank span { white-space: nowrap; margin-right: 14px; }
+  ol.items { list-style: none; }
+  ol.items li { font-size: 18px; margin-bottom: 9px; }
+  ol.items li b.n { display: inline-block; width: 1.6em; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; min-width: 1.6in; height: 1.1em; vertical-align: bottom; }
+  .blank.short { min-width: 0.6in; }
+  .blank.long { min-width: 3in; }
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .line + .line { margin-top: 2px; }
+  .tip { border: 1.5px dashed #000; padding: 8px 12px; font-size: 16px; }
+  .bottom { margin-top: auto; }
+  .pass { font-size: 14px; font-style: italic; }
+
+  /* ---------- Cover ---------- */
+  .cover-title { font-size: 40px; font-weight: bold; line-height: 1.1; }
+  .cover-sub { font-size: 20px; margin-bottom: 14px; }
+  .name-row { font-size: 20px; display: flex; gap: 16px; margin-bottom: 18px; }
+  .name-row .blank { flex: 1; }
+  table.rotation { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.rotation th, table.rotation td { border: 2px solid #000; padding: 10px 6px; text-align: center; font-size: 18px; font-weight: bold; }
+  table.rotation th { font-size: 16px; }
+  table.rotation td.g { font-size: 22px; width: 15%; }
+  .stations { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stations > div { border: 2px solid #000; padding: 10px 12px; }
+  .stations .nm { font-size: 22px; font-weight: bold; }
+  .stations .who { font-size: 16px; }
+  .stations .pp { font-size: 14px; }
+  ul.rules { padding-left: 1.2em; font-size: 18px; }
+  ul.rules li { margin-bottom: 6px; }
+
+  /* ---------- Warm-up ---------- */
+  /* Page 3 holds Parts 4-6: tighter spacing so the paragraph lines fit */
+  .wu3 .task { margin-bottom: 10px; }
+  .wu3 ol.items li { margin-bottom: 6px; }
+  .wu3 table.forms td { height: 36px; }
+  .own { border: 1.5px dashed #000; padding: 5px 10px; font-size: 16px; margin-bottom: 8px; }
+  .own .u { text-decoration: underline; font-style: italic; }
+  .starters { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+  .starters span { white-space: normal; margin: 0; }
+  .circ { display: inline-block; border: 1.5px solid #000; border-radius: 50%; width: 1.4em; height: 1.4em; line-height: 1.3em; text-align: center; font-style: normal; }
+  table.forms { width: 100%; border-collapse: collapse; }
+  table.forms th, table.forms td { border: 1.5px solid #000; padding: 6px; text-align: center; }
+  table.forms th { font-size: 16px; }
+  table.forms th small { display: block; font-size: 14px; font-weight: normal; }
+  table.forms td { font-size: 18px; height: 44px; }
+  table.forms td.base { font-weight: bold; }
+
+  /* ---------- Speak ---------- */
+  .mouths { display: flex; gap: 12px; margin-bottom: 12px; }
+  .mouth { flex: 1; border: 2px solid #000; padding: 8px 12px; display: flex; gap: 12px; align-items: center; }
+  .mouth svg { width: 92px; height: 92px; flex: none; }
+  .mouth .big { font-size: 40px; font-weight: bold; line-height: 1; }
+  .mouth p { font-size: 16px; }
+  table.pairs { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.pairs td { border: 1.5px solid #000; padding: 6px 10px; font-size: 20px; text-align: center; }
+  table.pairs td.n { font-size: 16px; font-weight: bold; width: 8%; }
+  table.pairs td small { display: block; font-size: 14px; }
+  ol.read-aloud { padding-left: 1.4em; }
+  ol.read-aloud li { font-size: 20px; margin-bottom: 8px; }
+
+  /* ---------- Read ---------- */
+  .story .words { margin-bottom: 12px; line-height: 1.3; padding: 6px 12px; }
+  .wgrid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 2px; margin-top: 2px; }
+  .paras { counter-reset: para; }
+  .paras p { counter-increment: para; position: relative; padding-left: 30px; font-size: 17px; line-height: 1.42; margin-bottom: 9px; }
+  .paras p::before { content: counter(para); position: absolute; left: 0; top: 1px; width: 21px; height: 21px; border: 1.5px solid #000; border-radius: 50%; font-size: 13px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+  .words { border: 1.5px solid #000; padding: 8px 12px; font-size: 16px; }
+  /* Page 7 (reading questions) is dense: tighter spacing so nothing reaches the printer margin */
+  .rd .task { margin-bottom: 8px; }
+  .rd ol.items li { font-size: 17px; margin-bottom: 5px; }
+  .rd .line { height: 24px; }
+  .rd .how { margin-bottom: 4px; }
+  .key { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .key div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+
+  /* ---------- Real world questions (dense page: slightly tighter spacing) ---------- */
+  .rw .task { margin-bottom: 10px; }
+  .rw ol.items li { font-size: 17px; margin-bottom: 6px; }
+  .rw .how { margin-bottom: 5px; }
+  .rw h2 { font-size: 20px; margin-bottom: 2px; }
+  table.pick { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.pick th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  table.pick td { border: 1.5px solid #000; padding: 6px 8px; font-size: 16px; height: 40px; }
+  table.pick td.t { width: 30%; font-weight: bold; white-space: nowrap; }
+  table.pick td.c { width: 20%; text-align: center; white-space: nowrap; }
+  .call { border: 1.5px solid #000; padding: 8px 14px; }
+  .call p { font-size: 16px; line-height: 1.5; margin-bottom: 4px; }
+  .call .blank { height: 1.2em; }
+  .cb { display: inline-block; width: 16px; height: 16px; border: 1.5px solid #000; vertical-align: middle; }
+  table.tf { width: 100%; border-collapse: collapse; }
+  table.tf td { border: 1.5px solid #000; padding: 3px 8px; font-size: 16px; }
+  table.tf td.c { width: 1in; text-align: center; font-size: 14px; white-space: nowrap; }
+  table.tf th { font-size: 14px; border: 1.5px solid #000; padding: 4px; }
+  .script { border: 1.5px solid #000; padding: 6px 12px; font-size: 17px; line-height: 2; }
+
+  /* ---------- Tense charts (page 10) ---------- */
+  .vc .task { margin-bottom: 10px; }
+  .vc h2 { font-size: 20px; margin-bottom: 2px; }
+  .vc .how { font-size: 15px; margin-bottom: 4px; }
+  .vc-meta { display: flex; gap: 28px; font-size: 16px; margin-bottom: 4px; }
+  table.forms5 { width: 100%; border-collapse: collapse; margin-bottom: 6px; table-layout: fixed; }
+  table.forms5 th, table.forms5 td { border: 1.5px solid #000; text-align: center; padding: 2px 4px; font-size: 15px; }
+  table.forms5 th { background: #eee; }
+  table.forms5 td { height: 28px; }
+  table.tense { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  table.tense.write td { height: 40px; }
+  table.tense th:first-child { width: 22%; }
+  table.tense th, table.tense td { border: 1.5px solid #000; padding: 2px 6px; font-size: 15px; text-align: center; height: 31px; }
+  table.tense th { background: #eee; }
+  table.tense td.tn { text-align: left; font-weight: bold; white-space: nowrap; }
+  table.tense td { white-space: nowrap; }
+  .hb.sm { width: 0.42in; }
+  table.forms5 td.ex { background: #ddd; font-style: italic; }
+  table.tense tr:nth-child(odd) td { background: #f5f5f5; }
+  .hb { display: inline-block; width: 0.65in; border-bottom: 1.5px solid #000; height: 1em; vertical-align: baseline; }
+  /* ---------- Verb charts ---------- */
+  table.verbs { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.verbs th, table.verbs td { border: 1.5px solid #000; padding: 4px 6px; text-align: center; }
+  table.verbs th { font-size: 16px; }
+  table.verbs th small { display: block; font-size: 14px; font-weight: normal; }
+  table.verbs td { font-size: 18px; height: 34px; }
+  table.verbs td.base { font-weight: bold; width: 17%; }
+
+  /* Added for Week 9+: "Bonus: Your turn" hints, can/can't rhythm boxes, flyer-style tasks */
+  .ideas { font-size: 14px; font-style: italic; margin: 1px 0 0; }
+  .prompt { font-size: 18px; margin-top: 6px; }
+  .rhythm { display: flex; gap: 12px; margin-bottom: 10px; }
+  .rhythm > div { flex: 1; border: 2px solid #000; padding: 8px 12px; }
+  .rhythm .big { font-size: 26px; font-weight: bold; line-height: 1.1; margin-bottom: 4px; }
+  .rhythm .beats { font-size: 22px; letter-spacing: 2px; margin: 2px 0 4px; }
+  .rhythm .beats b { font-size: 30px; }
+  table.who { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.who td { border: 1.5px solid #000; padding: 4px 10px; font-size: 17px; height: 38px; }
+  table.who td.q { width: 31%; font-size: 16px; }
+  table.pick.tall td { height: 66px; }
+  ol.listen2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+  ol.listen2 li { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 6px; font-size: 17px; }
+  ol.listen2 li b.n { width: auto; }
+  ol.listen2 .cc { white-space: nowrap; font-weight: bold; }
+  .textbox { border: 2px solid #000; border-radius: 18px; padding: 10px 16px; font-size: 17px; line-height: 2.1; }
+  .gram3 { display: flex; gap: 10px; font-size: 16px; margin-bottom: 6px; }
+  .gram3 div { border: 1.5px solid #000; padding: 4px 10px; flex: 1; }
+  .gline { display: flex; gap: 8px; align-items: flex-end; font-size: 17px; margin-bottom: 4px; }
+  .gline b { white-space: nowrap; width: 3.2em; }
+  .gline .line { flex: 1; }
+</style>
+</head>
+<body>
+<section class="page">
+  
+  <div class="cover-title">Tuesday Stations</div>
+  <div class="cover-sub">Week 9 &middot; Tuesday, November 10, 2026 &middot; Practice day</div>
+  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
+  <table class="rotation">
+    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
+    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; READ</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td><td>4 &middot; REAL WORLD</td></tr>
+  </table>
+  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who"><i>Can</i> or <i>can&rsquo;t</i>? With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: READ</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7</div></div><div><div class="nm">Station 4: REAL WORLD</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 8&ndash;9 + 2 color pages on the table</div></div></div>
+  <h2>How it works</h2>
+  <ul class="rules">
+    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
+    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
+    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
+    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
+    <li>Keep this packet. Bring it on Thursday.</li>
+  </ul>
+</section>
+<section class="page wu3">
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="task">
+    <h2>1. Can, should, or must?</h2>
+    <p class="how">Use every word once. Then <b>V1</b>. No <i>to</i>, no <i>-s</i>.</p>
+    <div class="bank"><span>can&rsquo;t</span> <span>Should</span> <span>must not</span> <span>must</span> <span>Can</span> <span>shouldn&rsquo;t</span></div>
+    <ol class="items">
+      <li><b class="n">1.</b> You <span class="blank short"></span> show your ID at the airport.</li>
+      <li><b class="n">2.</b> My son is two. He <span class="blank short"></span> read yet.</li>
+      <li><b class="n">3.</b> You <span class="blank short"></span> eat a lot of candy. It&rsquo;s bad for your teeth.</li>
+      <li><b class="n">4.</b> <span class="blank short"></span> you speak Spanish?</li>
+      <li><b class="n">5.</b> You <span class="blank short"></span> text while you drive. It&rsquo;s against the law.</li>
+      <li><b class="n">6.</b> <span class="blank short"></span> I call the doctor or go to the clinic?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>2. Fill in the blank</h2>
+    <p class="how">Use every word once. Change the verb form if needed.</p>
+    <div class="bank"><span>donate</span> <span>sign up for</span> <span>volunteer</span> <span>help out</span> <span>support</span> <span>contribute</span></div>
+    <ol class="items">
+      <li><b class="n">1.</b> She doesn&rsquo;t <span class="blank"></span> on Sundays, only on Saturdays.</li>
+      <li><b class="n">2.</b> Can you <span class="blank"></span> with the park cleanup on Sunday?</li>
+      <li><b class="n">3.</b> Our neighborhood <span class="blank"></span> families who need help with food and rent.</li>
+      <li><b class="n">4.</b> Everyone can <span class="blank"></span> time or money to the community garden.</li>
+      <li><b class="n">5.</b> We <span class="blank"></span> winter coats to the shelter twice a year.</li>
+      <li><b class="n">6.</b> Did you <span class="blank"></span> the soccer team online?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>3. Give advice</h2>
+    <p class="how">Your friend has a problem. <b>You make up the advice.</b> Use your own ideas. Many answers are OK.<br>Pattern: <b>should / shouldn&rsquo;t + V1</b></p>
+    <div class="own">
+      <b>Example:</b> &ldquo;I&rsquo;m always tired.&rdquo; &rarr; You should <span class="u">go to bed early</span>.<br>
+      &emsp;&emsp;&emsp;&ensp; Other good answers: You should <span class="u">take a walk</span>. &middot; You shouldn&rsquo;t <span class="u">drink coffee at night</span>.
+    </div>
+    <ol class="items">
+      <li><b class="n">1.</b> &ldquo;I want to help my community.&rdquo; You should <span class="blank long"></span>.</li>
+      <li><b class="n">2.</b> &ldquo;I want to practice English.&rdquo; You should <span class="blank long"></span>.</li>
+      <li><b class="n">3.</b> &ldquo;My back hurts.&rdquo; You shouldn&rsquo;t <span class="blank long"></span>.</li>
+      <li><b class="n">4.</b> &ldquo;I have a job interview.&rdquo; Should I <span class="blank long"></span>?</li>
+    </ol>
+  </div>
+</section>
+<section class="page wu3">
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="task">
+    <h2>4. Verb forms of the week</h2>
+    <p class="how">Write the other forms of <b>take</b> and <b>bring</b>. <i>Take</i> and <i>bring</i> are on this week&rsquo;s quiz!</p>
+    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">take</td><td></td><td></td><td></td><td></td></tr><tr><td class="base">bring</td><td></td><td></td><td></td><td></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>5. Use the right form</h2>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>take</b> or <b>bring</b>. Use your chart.</p>
+    <ol class="items"><li><b class="n">1.</b> <b>Every Saturday</b>, my neighbor <span class="blank"></span> food to the shelter. (bring)</li><li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank"></span> the bus to the food bank. (take)</li><li><b class="n">3.</b> <b>Yesterday</b>, we didn&rsquo;t <span class="blank"></span> enough coats to donate. (bring)</li><li><b class="n">4.</b> <b>Last week</b>, did she <span class="blank"></span> her kids to the park cleanup? (take)</li><li><b class="n">5.</b> He doesn&rsquo;t <span class="blank"></span> the sign-up sheet home <b>every week</b>. (take)</li><li><b class="n">6.</b> <b>Right now</b>, are the volunteers <span class="blank"></span> boxes into the church? (bring)</li><li><b class="n">7.</b> I <b>have</b> <span class="blank"></span> a first aid class. (take)</li><li><b class="n">8.</b> <b>Has</b> she <span class="blank"></span> cookies to the meeting? (bring)</li></ol>
+  </div>
+  <div class="task">
+    <h2>6. Bonus: Your turn</h2>
+    <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
+    <p class="prompt"><b>At my job</b> / <b>At home</b> + must</p>
+    <p class="ideas">Ideas: be on time &middot; wash my hands &middot; wear a uniform &middot; cook dinner</p>
+    <div class="line"></div>
+    <p class="prompt"><b>At the library</b> + can <b>+ not</b></p>
+    <p class="ideas">Ideas: eat &middot; talk loudly &middot; use my phone &middot; sleep</p>
+    <div class="line"></div>
+    <p class="prompt"><b>This weekend</b> + should + take<b>?</b></p>
+    <p class="ideas">Ideas: the bus &middot; my kids to the park &middot; a day off &middot; a walk</p>
+    <div class="line"></div>
+  </div>
+</section>
+<section class="page ">
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span><i>can</i> or <i>can&rsquo;t</i> &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <h2>Can or can&rsquo;t? Listen to the beat.</h2>
+  <div class="rhythm">
+    <div><div class="big">can</div><p class="beats">I can <b>SWIM</b>.</p><p>da da <b>DUM</b></p>
+      <p class="small"><b>can</b> is short and quiet. The <b>verb</b> is loud.</p></div>
+    <div><div class="big">can&rsquo;t</div><p class="beats">I <b>CAN&rsquo;T</b> swim.</p><p>da <b>DUM</b> da</p>
+      <p class="small"><b>can&rsquo;t</b> is long and loud. You often don&rsquo;t hear the <b>t</b>!</p></div>
+  </div>
+  <p class="how"><b>Try it:</b> Clap the beat. <i>I can SWIM</i> (clap on SWIM). <i>I CAN&rsquo;T swim</i> (clap on CAN&rsquo;T).</p>
+  <div class="task">
+    <h2>A. Listen and circle</h2>
+    <p class="how">Your teacher reads the sentence. Circle <b>can</b> or <b>can&rsquo;t</b>.</p>
+    <ol class="items listen2"><li><b class="n">1.</b> I _____ drive. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">2.</b> She _____ come on Saturday. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">3.</b> We _____ help out on Sunday. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">4.</b> He _____ lift heavy boxes. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">5.</b> They _____ speak Spanish. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">6.</b> You _____ park here. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">7.</b> My son _____ swim. <span class="cc">can / can&rsquo;t</span></li><li><b class="n">8.</b> I _____ volunteer this week. <span class="cc">can / can&rsquo;t</span></li></ol>
+  </div>
+  <div class="task">
+    <h2>B. Your turn: thumbs up or down</h2>
+    <p class="how"><b>Partner A</b> reads a sentence from Part A with <i>can</i> or <i>can&rsquo;t</i>. Don&rsquo;t show it! <b>Partner B</b>: thumbs up &#128077; = <i>can</i>, thumbs down &#128078; = <i>can&rsquo;t</i>. Switch.</p>
+  </div>
+  <div class="task">
+    <h2>C. Who can do it?</h2>
+    <p class="how">Ask the people <b>at your table</b>. Write a name. Short answers are <b>loud</b>: &ldquo;Yes, I <b>CAN</b>.&rdquo; &ldquo;No, I <b>CAN&rsquo;T</b>.&rdquo;</p>
+    <table class="who"><tr><td class="q">Can you cook for 20 people?</td><td></td><td class="q">Can you sew a button?</td><td></td></tr><tr><td class="q">Can you drive a truck?</td><td></td><td class="q">Can you swim?</td><td></td></tr><tr><td class="q">Can you speak 3 languages?</td><td></td><td class="q">Can you sing in English?</td><td></td></tr><tr><td class="q">Can you fix a bike?</td><td></td><td class="q">Can you lift 25 pounds?</td><td></td></tr></table>
+  </div>
+</section>
+<section class="page ">
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span><i>can</i> or <i>can&rsquo;t</i> &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="task">
+    <h2>D. Read aloud</h2>
+    <p class="how">Take turns. Read one sentence each. <i>can</i> = quiet. <i>can&rsquo;t</i> = loud.</p>
+    <ol class="read-aloud">
+      <li>I can help out on Saturday, but I can&rsquo;t come on Sunday.</li>
+      <li>Can you bring a box? Yes, I can.</li>
+      <li>She can&rsquo;t lift the boxes. They&rsquo;re too heavy.</li>
+      <li>Kids can volunteer with a parent.</li>
+      <li>He can cook, but he can&rsquo;t bake.</li>
+      <li>We can&rsquo;t park here. We should take the bus.</li>
+      <li>You must sign in. You should bring water.</li>
+      <li>Can you take these coats to the shelter?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Then ask one more question: <i>&ldquo;Why?&rdquo;</i> or <i>&ldquo;Really?&rdquo;</i></p>
+    <ol class="read-aloud">
+      <li>What can you do well? What can&rsquo;t you do?</li>
+      <li>What can you cook? Can you cook for a big group?</li>
+      <li>When can you help a neighbor: weekdays or weekends?</li>
+      <li>What can you do in English now? What do you want to learn?</li>
+      <li>What should a new student in this class bring?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>F. Say it to your teacher</h2>
+    <p class="how">Write one sentence with <b>can</b> and one with <b>can&rsquo;t</b>. Read them to your teacher.</p>
+    <div class="gline"><b>can</b><div class="line"></div></div>
+    <div class="gline"><b>can&rsquo;t</b><div class="line"></div></div>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page story">
+  <div class="station-bar"><div class="label">STATION 3: READ<span>Saturday at the Food Pantry &middot; with your group</span></div><div class="pg">Page 6</div></div>
+  <div class="words">
+    <b>Words to know</b>
+    <div class="wgrid">
+      <div><b>food pantry</b> = a place that gives free food</div>
+      <div><b>shift</b> = your work time, like 9 to 12</div>
+      <div><b>sign in</b> = write your name when you arrive</div>
+      <div><b>gloves</b> = you wear them on your hands</div>
+      <div><b>expired</b> = too old; the date is past</div>
+      <div><b>heavy</b> = hard to lift</div>
+    </div>
+  </div>
+  <div class="paras">
+  <p>Every Saturday morning, the Eastside Community <b>Food Pantry</b> gives free food to families. Nobody gets paid. Volunteers do all the work. They sort cans, pack bags, and help families carry food to their cars.</p>
+  <p>Mei moved to Boston last year. She wants to practice her English and meet new people, so she signed up for a Saturday <b>shift</b> online. The website says, &ldquo;Volunteers must be 16 or older. Kids 12 to 15 can volunteer with a parent.&rdquo; Mei&rsquo;s son, Leo, is 13, so he can come with her.</p>
+  <p>On Saturday at 8:45, Mei and Leo walk into the church basement. A woman with a clipboard smiles. &ldquo;Hi! I&rsquo;m Grace, the volunteer leader. First, you must <b>sign in</b>. Then you should wash your hands and put on <b>gloves</b>.&rdquo;</p>
+  <p>Grace takes them to a long table with boxes of cans. &ldquo;Today you can sort the cans,&rdquo; she says. &ldquo;Check the date on every can. If a can is <b>expired</b>, put it in the red box. You shouldn&rsquo;t give old food to families.&rdquo; Leo finds a can of soup from 2024. &ldquo;Mom, this one is expired!&rdquo; he says.</p>
+  <p>At 10:00, the doors open and families come in. Some families bring their own bags. Others take bags from the pantry. A man asks Mei a question in Spanish. Mei can&rsquo;t speak Spanish, but another volunteer, Jorge, can. He helps the man find rice and beans.</p>
+  <p>Some boxes are very <b>heavy</b>. Leo tries to pick one up. &ldquo;Leo, you shouldn&rsquo;t lift that box alone,&rdquo; Grace says. &ldquo;Two people must carry the big boxes.&rdquo; Jorge and Leo carry it together.</p>
+  <p>At 12:00, the shift is over. Mei is tired but happy. &ldquo;Can we come back next week?&rdquo; Leo asks. &ldquo;Of course,&rdquo; Grace says. &ldquo;You can sign up online for any Saturday. And you should bring a water bottle next time. It gets hot in here!&rdquo;</p>
+  <p>On the way home, Mei thinks about her neighbors. Many of them work on Saturdays. &ldquo;They can&rsquo;t volunteer on Saturdays,&rdquo; she thinks, &ldquo;but they can donate food. Everyone can help in some way.&rdquo;</p>
+  </div>
+</section>
+<section class="page rd">
+  <div class="station-bar"><div class="label">STATION 3: READ<span>Saturday at the Food Pantry &middot; with your group</span></div><div class="pg">Page 7</div></div>
+  <p class="how"><b>First:</b> Read the story alone. Read it <b>2 times</b>. Then answer. The <b>&para;</b> number tells you which paragraph to look in.</p>
+  <div class="task">
+    <h2>Part A: Think about it</h2>
+    <p class="how">The answers are not always in one sentence. Think, then write. <b>&#9733;</b> = challenge.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> Why does Mei want to volunteer? Give 2 reasons. <span class="small">(&para;2)</span><div class="line"></div></li>
+      <li><b class="n">2.</b> Leo is 13. Can he volunteer alone? Why or why not? <span class="small">(&para;2)</span><div class="line"></div></li>
+      <li><b class="n">3.</b> Number the steps in order, 1&ndash;4. <span class="small">(&para;3&ndash;4)</span><br>
+        &emsp;&ensp;<span class="blank short"></span> wash hands, put on gloves &emsp; <span class="blank short"></span> sign in<br>
+        &emsp;&ensp;<span class="blank short"></span> put old cans in the red box &ensp; <span class="blank short"></span> check the date on the cans</li>
+      <li><b class="n">4.</b> Mei can&rsquo;t speak Spanish. How does the man get help? <span class="small">(&para;5)</span><div class="line"></div></li>
+      <li><b class="n">5.</b> <b>&#9733;</b> Why shouldn&rsquo;t the pantry give expired food to families? <span class="small">(&para;4)</span><div class="line"></div></li>
+      <li><b class="n">6.</b> <b>&#9733;</b> Mei&rsquo;s neighbors can&rsquo;t volunteer on Saturdays. How can they help? <span class="small">(&para;8)</span><div class="line"></div></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>Part B: Find the grammar</h2>
+    <div class="gram3">
+      <div><b>must</b> = a rule</div>
+      <div><b>should</b> = a good idea</div>
+      <div><b>can</b> = it&rsquo;s OK / you are able</div>
+    </div>
+    <p class="how">Find one sentence in the story for each word. Write it.</p>
+    <div class="gline"><b>must</b><div class="line"></div></div>
+    <div class="gline"><b>should</b><div class="line"></div></div>
+    <div class="gline"><b>can</b><div class="line"></div></div>
+  </div>
+  <div class="task">
+    <h2>Part C: Talk together</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> Do you volunteer or help people in your neighborhood? How?</li>
+      <li><b class="n">2.</b> What should a new volunteer bring? <i>&ldquo;You should bring ___.&rdquo;</i></li>
+      <li><b class="n">3.</b> In your home country, how do people help their neighbors?</li>
+    </ol>
+  </div>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
+</section>
+<section class="page rw">
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <p class="how"><b>On the table:</b> 2 color pages from a food pantry. Start with <b>page 1</b> (the flyer). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
+  <div class="task">
+    <h2>A. Find it</h2>
+    <ol class="items">
+      <li><b class="n">1.</b> What 3 days does the pantry need volunteers? <span class="blank long"></span></li>
+      <li><b class="n">2.</b> What must you wear on your feet? <span class="blank"></span></li>
+      <li><b class="n">3.</b> How do you sign up? <span class="blank long"></span></li>
+      <li><b class="n">4.</b> Who is Grace Okafor? <span class="blank"></span></li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>B. True, false, or not on the flyer?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the flyer, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the flyer</th></tr><tr><td>1. You need experience to volunteer.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. A 14-year-old can volunteer with a parent.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. Volunteers get a free lunch.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. There is free parking on Friday.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>5. Delivery drivers must have a car.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. Front Desk volunteers must speak Spanish.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>C. Must, should, can, or can&rsquo;t?</h2>
+    <p class="how">Read the rules on the flyer. Write <b>must</b>, <b>should</b>, <b>can</b>, or <b>can&rsquo;t</b>.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> You <span class="blank short"></span> wear sandals.</li>
+      <li><b class="n">2.</b> You <span class="blank short"></span> sign in when you arrive.</li>
+      <li><b class="n">3.</b> You <span class="blank short"></span> bring a water bottle.</li>
+      <li><b class="n">4.</b> Kids 12&ndash;15 <span class="blank short"></span> volunteer with a parent.</li>
+      <li><b class="n">5.</b> <b>&#9733;</b> Front Desk: is speaking 2 languages a rule? How do you know?<div class="line"></div></li>
+    </ol>
+  </div>
+  <p class="how bottom"><b>Talk:</b> Do you know a place to volunteer near you? A school, a church, a park?</p>
+</section>
+<section class="page rw">
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 9</div></div>
+  <p class="how">Now look at <b>page 2</b> on the table: <b>Who can help?</b></p>
+  <div class="task">
+    <h2>D. Find the best shift</h2>
+    <p class="how">Read about each person. Only <b>one</b> shift works for each person. Check the <b>day</b>, the <b>age</b>, and the <b>rules</b>.</p>
+    <table class="pick tall">
+      <tr><th style="width:16%;">Person</th><th style="width:34%;">Best shift</th><th>Why?</th></tr>
+      <tr><td class="t">Amina</td><td></td><td></td></tr><tr><td class="t">Carlos</td><td></td><td></td></tr><tr><td class="t">Ji-woo</td><td></td><td></td></tr>
+    </table>
+    <p class="how"><b>&#9733;</b> Carlos is free all day Saturday. Why can&rsquo;t he do the Saturday Market shift?</p>
+    <div class="line"></div>
+  </div>
+  <div class="task">
+    <h2>E. Sign up by text</h2>
+    <p class="how">Write a text to Grace. <b>Use your own ideas!</b> Pick a shift that works for <b>you</b>. Then read your text to your group.</p>
+    <div class="textbox">
+      Hi Grace, my name is <span class="blank"></span>. I want to volunteer on <span class="blank"></span><br>
+      for the <span class="blank"></span> shift. I can <span class="blank long"></span>.<br>
+      I can&rsquo;t <span class="blank long"></span>. Should I bring <span class="blank"></span>?
+    </div>
+  </div>
+  <div class="task">
+    <h2>&#9733; Challenge: call Grace</h2>
+    <p class="how">Work with a partner. <b>A</b> = Grace. <b>B</b> = a new volunteer. B asks 2 questions: <i>&ldquo;Can I &hellip;?&rdquo;</i> or <i>&ldquo;Should I &hellip;?&rdquo;</i> A answers with the flyer. Then <b>switch</b>.<br>
+    <span class="small">Ideas: Can I bring my son? He is 11. &middot; Can I park in the lot on Friday? &middot; Should I bring gloves?</span></p>
+  </div>
+</section>
+<section class="page vc">
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="task">
+    <h2>Chart 1: Add the helping verbs</h2>
+    <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to take</span><span><b>Subject:</b> he</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>take</td><td>takes</td><td>taking</td><td>took</td><td>taken</td></tr></table>
+    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>he takes</td><td>he <span class="hb"></span> take</td><td><span class="hb"></span> he take?</td></tr><tr><td class="tn">Past Simple</td><td>he took</td><td>he <span class="hb"></span> take</td><td><span class="hb"></span> he take?</td></tr><tr><td class="tn">Future Simple</td><td>he <span class="hb"></span> take</td><td>he <span class="hb"></span> take</td><td><span class="hb"></span> he take?</td></tr><tr><td class="tn">Present Continuous</td><td>he <span class="hb"></span> taking</td><td>he <span class="hb"></span> taking</td><td><span class="hb"></span> he taking?</td></tr><tr><td class="tn">Past Continuous</td><td>he <span class="hb"></span> taking</td><td>he <span class="hb"></span> taking</td><td><span class="hb"></span> he taking?</td></tr><tr><td class="tn">Future Continuous</td><td>he <span class="hb sm"></span> <span class="hb sm"></span> taking</td><td>he <span class="hb sm"></span> <span class="hb sm"></span> taking</td><td><span class="hb sm"></span> he <span class="hb sm"></span> taking?</td></tr><tr><td class="tn">Present Perfect</td><td>he <span class="hb"></span> taken</td><td>he <span class="hb"></span> taken</td><td><span class="hb"></span> he taken?</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>Chart 2: Now you write it all</h2>
+    <p class="how">Write the 5 forms of <b>bring</b>. Then fill in the chart with <b>we</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to bring</span><span><b>Subject:</b> we</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">bring</td><td></td><td></td><td></td><td></td></tr></table>
+    <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Perfect</td><td></td><td></td><td></td></tr></table>
+  </div>
+</section>
+
+</body>
+</html>

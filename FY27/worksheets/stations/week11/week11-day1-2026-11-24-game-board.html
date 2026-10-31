@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 11 Station 3 Game Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1a1a1a; background: #fff;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Station 3 board: print in color, 1 per table. Landscape. */
+  .page { width: 11in; height: 8.5in; padding: 0.4in 0.45in; display: flex; flex-direction: column; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter landscape; margin: 0; } }
+  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .top h1 { font-size: 34px; }
+  .top span { font-size: 15px; }
+  .grid { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; }
+  .sq { border: 2.5px solid #333; border-radius: 12px; padding: 6px 8px; font-size: 17px; display: flex; flex-direction: column; align-items: center;
+        justify-content: center; text-align: center; position: relative; font-size: 16px; line-height: 1.2; }
+  .sq .e { font-size: 30px; line-height: 1; margin-bottom: 4px; }
+  .sq .no { position: absolute; top: 4px; left: 8px; font-size: 12px; color: #666; font-weight: bold; }
+  .sq .arrow { position: absolute; font-size: 18px; color: #333; }
+  .a { background: #ffe9c7; } .b { background: #dff2e1; } .c { background: #dde9fb; } .s { background: #ffd9e3; border-style: dashed; }
+  .start { background: #2f6b2f; color: #fff; font-size: 22px; font-weight: bold; }
+  .finish { background: #b3261e; color: #fff; font-size: 22px; font-weight: bold; }
+  .foot { font-size: 14px; margin-top: 8px; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="top"><h1>What are you good at?</h1><span>Station 3: GAME &middot; Roll the die or flip a coin (heads = 1, tails = 2)</span></div>
+  <div class="grid"><div class="sq start">START</div><div class="sq a"><span class="no">1</span><div class="e">&#127859;</div><div>Are you good at <b>cooking</b>?</div></div><div class="sq b"><span class="no">2</span><div class="e">&#127912;</div><div>Are you good at <b>drawing</b>?</div></div><div class="sq c"><span class="no">3</span><div class="e">&#128131;</div><div>Are you good at <b>dancing</b>?</div></div><div class="sq s"><span class="no">4</span><div class="e">&#11014;&#65039;</div><div>Free square! Say <b>2 things</b> you are good at.</div></div><div class="sq a"><span class="no">5</span><div class="e">&#128295;</div><div>Are you good at <b>fixing</b> things?</div></div><div class="sq c"><span class="no">11</span><div class="e">&#129518;</div><div>Are you good at <b>math</b>?</div></div><div class="sq b"><span class="no">10</span><div class="e">&#128176;</div><div>Are you good at <b>saving</b> money?</div></div><div class="sq s"><span class="no">9</span><div class="e">&#11013;&#65039;</div><div>Oops! Go back 2.</div></div><div class="sq a"><span class="no">8</span><div class="e">&#129504;</div><div>Are you good at <b>remembering</b> names?</div></div><div class="sq c"><span class="no">7</span><div class="e">&#127946;</div><div>Are you good at <b>swimming</b>?</div></div><div class="sq b"><span class="no">6</span><div class="e">&#127908;</div><div>Are you good at <b>singing</b>?</div></div><div class="sq a"><span class="no">12</span><div class="e">&#128663;</div><div>Are you good at <b>driving</b>?</div></div><div class="sq s"><span class="no">13</span><div class="e">&#128106;</div><div>What is <b>your mom</b> good at?</div></div><div class="sq b"><span class="no">14</span><div class="e">&#129697;</div><div>Are you good at <b>sewing</b>?</div></div><div class="sq c"><span class="no">15</span><div class="e">&#128066;</div><div>Are you good at <b>listening</b>?</div></div><div class="sq a"><span class="no">16</span><div class="e">&#128514;</div><div>Are you good at <b>telling jokes</b>?</div></div><div class="sq b"><span class="no">17</span><div class="e">&#128247;</div><div>Are you good at <b>taking photos</b>?</div></div><div class="sq finish">FINISH &#127881;</div><div class="sq b"><span class="no">22</span><div class="e">&#128722;</div><div>Are you good at <b>comparison shopping</b>?</div></div><div class="sq s"><span class="no">21</span><div class="e">&#128118;</div><div>What were you good at <b>as a child</b>?</div></div><div class="sq a"><span class="no">20</span><div class="e">&#127793;</div><div>Are you good at <b>growing plants</b>?</div></div><div class="sq c"><span class="no">19</span><div class="e">&#128187;</div><div>Are you good at <b>using computers</b>?</div></div><div class="sq s"><span class="no">18</span><div class="e">&#11014;&#65039;</div><div>Move ahead 1!</div></div></div>
+  <div class="foot"><span>Follow the numbers: 1, 2, 3 &hellip; The path snakes back and forth.</span><span>Answer with a full sentence. Then the group asks one more question.</span></div>
+</section>
+</body>
+</html>

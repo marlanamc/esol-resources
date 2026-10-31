@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 11 Tuesday Real World: Thanksgiving Sale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #2a1a0f; background: #fff;
+         font-size: 17px; line-height: 1.35; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store and prices. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .hero { background: #a4471d; color: #fff; border-radius: 10px; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .hero .store { font-size: 16px; }
+  .hero h1 { font-size: 36px; line-height: 1.05; }
+  .hero .dates { background: #f7c548; color: #2a1a0f; font-weight: bold; border-radius: 8px; padding: 6px 12px; text-align: center; font-size: 16px; }
+  .deals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+  .deal { border: 2px solid #e2c3a8; border-radius: 10px; padding: 8px 10px; text-align: center; background: #fffaf3; }
+  .deal .e { font-size: 30px; line-height: 1; }
+  .deal .nm { font-size: 16px; font-weight: bold; margin: 2px 0; }
+  .deal .pr { font-size: 26px; font-weight: bold; color: #a4471d; line-height: 1.1; }
+  .deal .pr small { font-size: 15px; }
+  .deal .fine { font-size: 13px; color: #555; }
+  .deal.big { grid-column: span 2; background: #fff1dd; }
+  .row { display: flex; gap: 10px; }
+  .coupon { flex: 1; border: 3px dashed #a4471d; border-radius: 8px; padding: 8px 14px; background: #fff; }
+  .coupon b.big { font-size: 26px; color: #a4471d; }
+  .hours { flex: 1; background: #2a1a0f; color: #fff; border-radius: 8px; padding: 8px 14px; font-size: 15px; }
+  .hours b { color: #f7c548; }
+  .list { border: 2px solid #e2c3a8; border-radius: 6px; background: #fffef6; padding: 16px 24px; margin: 6px 0 14px;
+          background-image: repeating-linear-gradient(#fffef6 0 33px, #c9d8ef 33px 34px); }
+  .hand { font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive; font-size: 21px; color: #1d3c8f; line-height: 34px; }
+  .note { background: #fff6c7; border: 1px solid #e6d77a; padding: 12px 16px; transform: rotate(-1deg); font-size: 17px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="hero">
+    <div><div class="store">Eastside Market</div><h1>Thanksgiving Sale!</h1></div>
+    <div class="dates">Sale prices<br>Fri., Nov. 20 &ndash;<br>Thu., Nov. 26</div>
+  </div>
+  <div class="deals"><div class="deal big"><div class="e">&#129411;</div><div class="nm">Frozen turkey</div><div class="pr">$1.29<small>/lb</small></div><div class="fine">when you spend $25 or more</div></div><div class="deal "><div class="e">&#129411;</div><div class="nm">Fresh turkey</div><div class="pr">$2.49<small>/lb</small></div><div class="fine"></div></div><div class="deal "><div class="e">&#129360;</div><div class="nm">Pumpkin pie</div><div class="pr">$6.99</div><div class="fine"></div></div><div class="deal "><div class="e">&#127822;</div><div class="nm">Apple pie</div><div class="pr">$8.99</div><div class="fine"></div></div><div class="deal "><div class="e">&#129387;</div><div class="nm">Cranberry sauce</div><div class="pr">2 for $3</div><div class="fine">14-oz can</div></div><div class="deal "><div class="e">&#129364;</div><div class="nm">Potatoes</div><div class="pr">$3.99</div><div class="fine">5-lb bag</div></div><div class="deal "><div class="e">&#127805;</div><div class="nm">Corn</div><div class="pr">4 for $2</div><div class="fine">fresh ears</div></div><div class="deal "><div class="e">&#129366;</div><div class="nm">Dinner rolls</div><div class="pr">$3.49</div><div class="fine">12-pack</div></div><div class="deal "><div class="e">&#129366;</div><div class="nm">Dinner rolls</div><div class="pr">$5.99</div><div class="fine">24-pack</div></div><div class="deal "><div class="e">&#129362;</div><div class="nm">Green beans</div><div class="pr">$1.99<small>/lb</small></div><div class="fine"></div></div><div class="deal "><div class="e">&#127834;</div><div class="nm">Rice</div><div class="pr">$9.99</div><div class="fine">10-lb bag</div></div><div class="deal "><div class="e">&#127831;</div><div class="nm">Chicken thighs</div><div class="pr">$1.99<small>/lb</small></div><div class="fine"></div></div></div>
+  <div class="row">
+    <div class="coupon"><b class="big">$5 OFF</b><br>when you spend <b>$50 or more</b>.<br><span style="font-size:14px;">One coupon per family. Show it at the register.</span></div>
+    <div class="hours"><b>Store hours</b><br>Mon&ndash;Sat: 7:00 a.m.&ndash;10:00 p.m.<br>Sunday: 8:00 a.m.&ndash;8:00 p.m.<br><b>Thanksgiving (Thu., Nov. 26): 7:00 a.m.&ndash;2:00 p.m.</b></div>
+  </div>
+</section><section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <h1 style="font-size:32px; color:#a4471d;">Elena&rsquo;s list</h1>
+  <p style="margin-bottom:8px;">Elena is cooking Thanksgiving dinner for her family. She shops at Eastside Market on Tuesday.</p>
+  <div class="list"><div class="hand">
+    Thanksgiving shopping &mdash; budget: $60<br>
+    &bull; frozen turkey (12 pounds)<br>
+    &bull; 1 pumpkin pie<br>
+    &bull; cranberry sauce (2 cans)<br>
+    &bull; potatoes (1 bag, 5 lb)<br>
+    &bull; dinner rolls (12-pack)<br>
+    &bull; green beans (2 pounds)
+  </div></div>
+  <div class="note"><b>Elena&rsquo;s notes</b><br>&bull; I keep track of my spending in a notebook.<br>&bull; I want to set aside $20 for gas this week.<br>&bull; Maybe I can buy an apple pie too. My son loves apple pie!</div>
+</section>
+</body>
+</html>
