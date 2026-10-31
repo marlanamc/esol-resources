@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How Much and How Many Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  /* Frequency scale: 100% -> 0% */
+  .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .scale > div { padding: 4px 6px; text-align: center; }
+  .scale > div + div { border-left: 1.5px solid #000; }
+  .scale .word { font-size: 18px; font-weight: bold; }
+  .scale .pct { font-size: 14px; }
+  .scale .ex { font-size: 11px; }
+  .bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Position key */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rule .ex { font-size: 14px; }
+  .rule .ex b { text-decoration: underline; }
+  .rule.wide { grid-column: 1 / -1; }
+  .no { font-size: 14px; margin-top: 3px; }
+  .no s { text-decoration-thickness: 2px; }
+
+  /* Phrase bank */
+  .bank { column-count: 4; column-gap: 14px; }
+  .cat { break-inside: avoid; margin-bottom: 6px; }
+  .cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+
+  /* Writing */
+  .write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .write-row .adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .write-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .write-row .fill.example { font-style: italic; color: #000; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+
+  table.interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.interview th, table.interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  table.interview th { font-size: 14px; }
+  table.interview td { height: 34px; }
+  table.interview td.q { width: 52%; }
+
+  .line { border-bottom: 1.5px solid #000; height: 32px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+
+  /* Added for the Week 9-15 sheets */
+  .forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .forms > div { padding: 4px 6px; text-align: center; }
+  .forms > div + div { border-left: 1.5px solid #000; }
+  .forms .word { font-size: 18px; font-weight: bold; }
+  .forms .sm { font-size: 11px; }
+  .forms .md { font-size: 14px; }
+  .write-row .adv.wide { width: 1.6in; }
+  .write-row .adv.xwide { width: 2.3in; font-size: 14px; }
+  table.interview td.c { width: 14%; text-align: center; }
+  .frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .rank .opt { line-height: 1.9; }
+  .rank .opt .cb { margin-right: 6px; }
+  .dice { line-height: 1; margin-bottom: 2px; }
+  .die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .rules.three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .rules.three .rule { padding: 4px 7px; }
+  .rules.three .chip { font-size: 13px; padding: 1px 5px; }
+  .bank-split .cat-name.yes::before { content: "\2713  "; }
+  .bank-split .cat-name.no::before { content: "\2717  "; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row"><h1>How Much? How Many?</h1><span class="sub">Keep this page. Use it to write on the back.</span></div>
+  <div class="box"><h2>1. Can you count it? <span class="small">Yes &rarr; <b>many</b>. No &rarr; <b>much</b>. Both &rarr; <b>a lot of / some / any</b>.</span></h2><div class="forms" style="grid-template-columns: repeat(5, 1fr);"><div><div class="word">How many?</div><div class="md">eggs, hours, kids</div></div><div><div class="word">a few</div><div class="md">a few eggs</div></div><div><div class="word">How much?</div><div class="md">rice, time, money</div></div><div><div class="word">a little</div><div class="md">a little rice</div></div><div><div class="word">a lot of</div><div class="md">both!</div></div></div></div>
+  <div class="box"><h2>2. How does it work? <span class="small">The important words are in <b>black</b>.</span></h2><div class="rules"><div class="rule"><div class="rule-name">A. Can count: How many + -s</div><div class="formula"><span class="chip adv">How many</span><span class="chip">eggs</span><span class="chip">do you need?</span></div><div class="ex">&rarr; <b>a few</b> eggs / six eggs</div><div class="no">&#10007; <s>How many egg?</s></div></div><div class="rule"><div class="rule-name">B. Can&rsquo;t count: How much (no -s)</div><div class="formula"><span class="chip adv">How much</span><span class="chip">rice</span><span class="chip">do you need?</span></div><div class="ex">&rarr; <b>a little</b> rice / a bag of rice</div><div class="no">&#10007; <s>How much rices?</s></div></div><div class="rule"><div class="rule-name">C. Money: How much is / does&hellip; cost?</div><div class="formula"><span class="chip adv">How much</span><span class="chip">is</span><span class="chip">it?</span></div><div class="ex"><b>How much</b> does the bus cost?</div><div class="no">&#10007; <s>How many is it?</s></div></div><div class="rule"><div class="rule-name">D. Both: a lot of / some / any</div><div class="formula"><span class="chip">I have</span><span class="chip adv">a lot of</span><span class="chip">friends / time.</span></div><div class="ex">Do you have <b>any</b> milk? &rarr; I don&rsquo;t have <b>any</b>.</div><div class="no">&#10007; <s>I have many money.</s></div></div><div class="rule wide"><div class="rule-name" style="margin:0">Remember: <span style="font-weight:normal">Count it with a container: <b>a bottle of</b> water &middot; <b>a bag of</b> rice &middot; <b>a loaf of</b> bread &middot; <b>two cups of</b> coffee</span></div></div></div></div>
+  <div class="box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="small">&#10003; = count it (How many) &nbsp; &#10007; = can&rsquo;t count it (How much)</span></h2><div class="bank bank-split"><div class="cat"><div class="cat-name yes">Count it: food</div><ul><li>eggs</li><li>apples</li><li>bananas</li><li>potatoes</li><li>onions</li><li>tomatoes</li><li>cans of beans</li><li>tortillas</li><li>carrots</li><li>lemons</li><li>cookies</li><li>avocados</li><li>peppers</li></ul></div><div class="cat"><div class="cat-name yes">Count it: life</div><ul><li>hours</li><li>days</li><li>kids</li><li>friends</li><li>jobs</li><li>bills</li><li>classes</li><li>emails</li><li>steps</li><li>minutes</li><li>weeks</li><li>phone calls</li><li>messages</li></ul></div><div class="cat"><div class="cat-name no">Can&rsquo;t count: food</div><ul><li>rice</li><li>bread</li><li>milk</li><li>water</li><li>coffee</li><li>sugar</li><li>salt</li><li>cheese</li><li>meat</li><li>oil</li><li>juice</li><li>butter</li><li>soup</li><li>flour</li><li>pasta</li><li>tea</li></ul></div><div class="cat"><div class="cat-name no">Can&rsquo;t count: life</div><ul><li>money</li><li>time</li><li>homework</li><li>work</li><li>sleep</li><li>information</li><li>advice</li><li>traffic</li><li>news</li><li>help</li><li>furniture</li><li>music</li><li>weather</li><li>electricity</li><li>fun</li></ul></div></div><div class="cat-be"><b>Containers:</b> a bag of &middot; a bottle of &middot; a box of &middot; a can of &middot; a carton of &middot; a cup of &middot; a gallon of &middot; a loaf of &middot; a pound of &middot; a piece of</div></div>
+</section>
+<section class="page">
+  <div class="title-row"><h1>Write About You</h1><span class="sub">Look at the front for help.</span></div>
+  <div class="box"><h2>4. Dinner for 6 <span class="small">You are cooking dinner for 6 people. Write 6 things you need. Use <b>a few / a little / a bag of / 2 pounds of&hellip;</b></span></h2><div class="write-row"><span class="adv ">example</span><span class="fill example">a bag of rice, 2 pounds of chicken, and a few onions</span></div><div class="write-row"><span class="adv ">1, 2</span><span class="fill"></span></div><div class="write-row"><span class="adv ">3, 4</span><span class="fill"></span></div><div class="write-row"><span class="adv ">5, 6</span><span class="fill"></span></div><div class="write-row"><span class="adv ">drinks</span><span class="fill"></span></div><div class="hint" style="margin-top:4px">Now ask a partner: <b>How much rice do you need? How many onions?</b></div></div><div class="box"><h2>5. Guess the number <span class="small">First, <b>guess</b> your partner&rsquo;s answer. Then ask. Were you close?</span></h2><table class="interview"><tr><th>Question</th><th>My guess</th><th>My partner&rsquo;s answer</th></tr>
+      <tr><td class="q">How many hours do you sleep?</td><td></td><td></td></tr>
+      <tr><td class="q">How much water do you drink every day?</td><td></td><td></td></tr>
+      <tr><td class="q">How many cups of coffee or tea do you drink?</td><td></td><td></td></tr>
+      <tr><td class="q">How much time do you spend on your phone?</td><td></td><td></td></tr>
+      <tr><td class="q">How many &hellip;</td><td></td><td></td></tr>
+      <tr><td class="q">How much &hellip;</td><td></td><td></td></tr></table></div><div class="box"><h2>6. Write about your partner <span class="small">Use <b>a lot of / not much / not many / a few / a little</b>. Remember <b>V1-s</b>.</span></h2><div class="write-row"><span class="adv ">example</span><span class="fill example">Ana sleeps 6 hours. She doesn&rsquo;t drink much water, but she drinks a lot of coffee!</span></div><div class="write-row"><span class="adv "></span><span class="fill"></span></div><div class="write-row"><span class="adv "></span><span class="fill"></span></div><div class="write-row"><span class="adv "></span><span class="fill"></span></div></div><div class="check"><b>Check:</b> <span><span class="cb"></span>How many + -s</span><span><span class="cb"></span>How much (no -s)</span><span><span class="cb"></span>a few / a little</span><span><span class="cb"></span>a lot of = both</span></div>
+</section>
+</body>
+</html>
