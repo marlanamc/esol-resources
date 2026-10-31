@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>If Dice Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, sans-serif; color: #10201e; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: letter landscape; margin: 0; }
+  .sheet { width: 11in; height: 8.5in; padding: 0.3in 0.35in; display: flex; flex-direction: column; gap: 8px; overflow: hidden; break-after: page; }
+  @media screen { body { background: #ddd; padding: 20px 0; } .sheet { background: #fff; margin: 0 auto 20px; box-shadow: 0 1px 4px rgba(0,0,0,.3); } }
+  .top { display: flex; align-items: center; gap: 18px; }
+  h1 { font-family: "Bricolage Grotesque", "Arial Black", sans-serif; font-size: 34px; letter-spacing: -0.5px; }
+  h1 span { color: #c99a12; }
+  .rules { font-size: 14px; line-height: 1.35; flex: 1; }
+  .key { display: flex; gap: 10px; font-size: 13px; }
+  .key div { border-radius: 8px; padding: 4px 10px; }
+  table { width: 100%; border-collapse: separate; border-spacing: 4px; flex: 1; table-layout: fixed; }
+  th { font-weight: 400; }
+  thead th { height: 34px; }
+  .rowh { width: 0.95in; background: var(--c); border-radius: 10px; text-align: left; padding: 6px 8px; vertical-align: middle; }
+  .rowh b { display: block; font-family: "Bricolage Grotesque", "Arial Black", sans-serif; font-size: 16px; margin-top: 4px; letter-spacing: .5px; }
+  .rowh span { font-size: 12px; }
+  td { background: color-mix(in srgb, var(--c) 38%, white); border: 2px solid var(--c); border-radius: 10px; padding: 6px 9px; font-size: 16px; line-height: 1.32; font-weight: 400; vertical-align: middle; color: #000; }
+  td b { font-weight: 700; }
+  .nw { white-space: nowrap; }
+  .gap { display: inline-block; width: 2.2em; border-bottom: 1.5px solid #000; vertical-align: -2px; }
+  .help td { font-size: 14px; font-weight: 400; }
+  .die { --s: 26px; display: inline-grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); width: var(--s); height: var(--s); border: 2px solid #10201e; border-radius: 6px; padding: 3px; background: #fff; vertical-align: middle; }
+  .die i { width: calc(var(--s) / 6); height: calc(var(--s) / 6); border-radius: 50%; place-self: center; }
+  .die i.on { background: #10201e; }
+  .challenge { display: flex; align-items: center; gap: 14px; border: 2px dashed #10201e; border-radius: 12px; padding: 6px 12px; font-size: 14px; }
+  .challenge b { font-family: "Bricolage Grotesque", "Arial Black", sans-serif; }
+  .challenge .opt { display: flex; align-items: center; gap: 6px; }
+  .note { font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="top">
+    <h1>If<span>…</span> Dice</h1>
+    <div class="rules"><b>Roll 2 dice.</b> Die 1 = row ↓ &nbsp;Die 2 = column →. Finish the sentence <b>out loud</b>. The group asks one more question: <i>“Why?”</i> <i>“And then?”</i> Row 6: ask the person on your <b>left</b>.</div>
+    <div class="key">
+      <div style="background:#f6d266"><b>ZERO</b> If + V1, V1<br>always true</div>
+      <div style="background:#9ed2f5"><b>FIRST</b> If + V1, will + V1<br>one real plan · no <i>will</i> after <i>if</i></div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th></th><th><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span></th></tr></thead>
+    <tbody>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><b>ZERO</b><span>If…</span></th><td><b>If</b> the T is <span class="nw">late, <span class="gap"></span></span></td><td><b>If</b> my kids are <span class="nw">sick, <span class="gap"></span></span></td><td><b>If</b> you park on the street in a snow <span class="nw">emergency, <span class="gap"></span></span></td><td><b>If</b> it snows a <span class="nw">lot, <span class="gap"></span></span></td><td><b>If</b> you don’t pay a bill on <span class="nw">time, <span class="gap"></span></span></td><td><b>If</b> I don’t understand <span class="nw">someone, <span class="gap"></span></span></td></tr>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><b>ZERO</b><span>…if</span></th><td>I call my family back home <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I order takeout <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I take an Uber <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I feel stressed <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I don’t sleep well <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>My kids are happy <span class="nw"><b>if</b> <span class="gap"></span></span></td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span><b>FIRST</b><span>If…</span></th><td><b>If</b> it snows <span class="nw">tomorrow, <span class="gap"></span></span></td><td><b>If</b> my landlord doesn’t fix the heat this <span class="nw">week, <span class="gap"></span></span></td><td><b>If</b> I get a day off next <span class="nw">week, <span class="gap"></span></span></td><td><b>If</b> my family visits next <span class="nw">summer, <span class="gap"></span></span></td><td><b>If</b> I finish my work early <span class="nw">tonight, <span class="gap"></span></span></td><td><b>If</b> I get a raise this <span class="nw">year, <span class="gap"></span></span></td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>FIRST</b><span>…if</span></th><td>I will cook something special this weekend <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I won’t go to work tomorrow <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I will buy a new phone <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I will take the kids to the beach <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I will call the doctor <span class="nw"><b>if</b> <span class="gap"></span></span></td><td>I will go to bed early tonight <span class="nw"><b>if</b> <span class="gap"></span></span></td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>FIRST</b><span>not</span></th><td><b>If</b> my boss doesn’t let me leave early <span class="nw">tomorrow, <span class="gap"></span></span></td><td><b>If</b> it doesn’t rain this <span class="nw">weekend, <span class="gap"></span></span></td><td>I won’t buy a car this year <span class="nw"><b>if</b> <span class="gap"></span></span></td><td><b>If</b> my package doesn’t come <span class="nw">today, <span class="gap"></span></span></td><td>I won’t be hungry tonight <span class="nw"><b>if</b> <span class="gap"></span></span></td><td><b>If</b> the bus doesn’t come in ten <span class="nw">minutes, <span class="gap"></span></span></td></tr>
+<tr style="--c:#f5a48f"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span><b>ASK</b><span>a partner</span></th><td>What will you do <b>if</b> it rains on Saturday?</td><td>Where will you go <b>if</b> you get a day off?</td><td>What will you cook <b>if</b> friends come over this weekend?</td><td>Who will you call <b>if</b> you get good news tonight?</td><td>What will you buy <b>if</b> you get paid tomorrow?</td><td>What do you do <b>if</b> you can’t sleep?</td></tr>
+    </tbody>
+  </table>
+  <div class="challenge">
+    <b>Challenge die</b> (optional, roll a 3rd die):
+    <span class="opt"><span class="die" style="--s:20px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span> Say it</span>
+    <span class="opt"><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span> Make it <b>negative</b>: don’t / doesn’t / won’t</span>
+    <span class="opt"><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span> Add <b>because…</b></span>
+  </div>
+</div>
+<div class="sheet help">
+  <div class="top">
+    <h1>If<span>…</span> Dice: Help card</h1>
+    <div class="rules">Stuck? Find your square and read the example. Then <b>change it</b> to make it true for you.</div>
+  </div>
+  <table>
+    <thead><tr><th></th><th><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span></th></tr></thead>
+    <tbody>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><b>ZERO</b><span>If…</span></th><td>If the T is late, I text my boss.</td><td>If my kids are sick, I stay home with them.</td><td>If you park on the street in a snow emergency, your car gets towed.</td><td>If it snows a lot, I shovel the sidewalk.</td><td>If you don’t pay a bill on time, you pay a late fee.</td><td>If I don’t understand someone, I ask them to repeat.</td></tr>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><b>ZERO</b><span>…if</span></th><td>I call my family back home if I have free time on Sunday.</td><td>I order takeout if I’m too tired to cook.</td><td>I take an Uber if I miss the last bus.</td><td>I feel stressed if the rent is late.</td><td>I don’t sleep well if I drink coffee at night.</td><td>My kids are happy if we go to the park.</td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span><b>FIRST</b><span>If…</span></th><td>If it snows tomorrow, I will wear my boots.</td><td>If my landlord doesn’t fix the heat this week, I will call 311.</td><td>If I get a day off next week, I will sleep late!</td><td>If my family visits next summer, I will show them Boston.</td><td>If I finish my work early tonight, I will watch a movie.</td><td>If I get a raise this year, I will save for a car.</td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>FIRST</b><span>…if</span></th><td>I will cook something special this weekend if my sister visits.</td><td>I won’t go to work tomorrow if my son is still sick.</td><td>I will buy a new phone if my old phone breaks.</td><td>I will take the kids to the beach if it’s hot on Saturday.</td><td>I will call the doctor if I don’t feel better tomorrow.</td><td>I will go to bed early tonight if I’m tired after class.</td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>FIRST</b><span>not</span></th><td>If my boss doesn’t let me leave early tomorrow, I won’t come to class.</td><td>If it doesn’t rain this weekend, I will go to the park.</td><td>I won’t buy a car this year if gas is too expensive.</td><td>If my package doesn’t come today, I will call the store.</td><td>I won’t be hungry tonight if I eat a big lunch.</td><td>If the bus doesn’t come in ten minutes, I will walk.</td></tr>
+<tr style="--c:#f5a48f"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span><b>ASK</b><span>a partner</span></th><td>If it rains on Saturday, I will stay home and watch TV.</td><td>If I get a day off, I will go to the beach.</td><td>If friends come over, I will cook rice and beans.</td><td>If I get good news tonight, I will call my mom.</td><td>If I get paid tomorrow, I will buy new shoes.</td><td>If I can’t sleep, I read or listen to music.</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Page 1 = game board for the table. Page 2 = help card (print one per group, or keep it with the teacher).</div>
+</div>
+</body>
+</html>

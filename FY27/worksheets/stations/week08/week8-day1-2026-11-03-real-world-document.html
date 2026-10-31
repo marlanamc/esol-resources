@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 8 Tuesday Real World: Appointment Reminder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #1d2b2a;
+    background: #fff;
+    font-size: 17px;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies.
+     Print double-sided or as 2 sheets. Fictional clinic, store, patient, and 555 number.
+     Questions are on packet pages 8-9; page 9 Part D needs sheet 2. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.5in 0.6in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+
+  .letter { border: 1px solid #b9cfcc; border-radius: 6px; overflow: hidden; margin-bottom: 18px; }
+  .lh { background: #1f6f68; color: #fff; display: flex; align-items: center; gap: 14px; padding: 14px 20px; }
+  .lh svg { width: 46px; height: 46px; flex: none; }
+  .lh .org { font-size: 24px; font-weight: bold; line-height: 1.1; }
+  .lh .addr { font-size: 14px; opacity: 0.95; }
+  .lh .date { margin-left: auto; font-size: 14px; white-space: nowrap; align-self: flex-start; }
+  .body { padding: 14px 22px 16px; }
+  .body h1 { font-size: 24px; letter-spacing: 1.5px; color: #1f6f68; text-align: center; margin-bottom: 10px; }
+  .appt { background: #eaf4f2; border-left: 6px solid #1f6f68; padding: 10px 16px; margin-bottom: 12px; }
+  .appt table { border-collapse: collapse; }
+  .appt td { padding: 2px 18px 2px 0; font-size: 18px; vertical-align: top; }
+  .appt td:first-child { font-weight: bold; white-space: nowrap; color: #1f6f68; }
+  .sec { font-weight: bold; font-size: 18px; color: #1f6f68; border-bottom: 2px solid #cfe3e0; margin: 10px 0 5px; }
+  ul { padding-left: 1.2em; }
+  li { margin-bottom: 4px; }
+  .fee { background: #fff3d6; padding: 0 4px; border-radius: 3px; }
+  .lang { font-size: 14px; color: #444; margin-top: 4px; }
+
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone { width: 3.6in; border: 3px solid #222; border-radius: 28px; padding: 12px 16px 18px; background: #fafafa; }
+  .phone .notch { width: 70px; height: 6px; background: #222; border-radius: 3px; margin: 0 auto 10px; }
+  .phone .from { font-size: 13px; text-align: center; color: #555; margin-bottom: 2px; }
+  .phone .when { font-size: 12px; text-align: center; color: #888; margin-bottom: 8px; }
+  .bubble { background: #e5e5ea; border-radius: 16px; padding: 10px 14px; font-size: 17px; }
+
+  .page { page-break-after: always; break-after: page; }
+  /* ---------- Sheet 2: Rosa's week ---------- */
+  .wk-title { font-size: 30px; font-weight: bold; color: #1f6f68; margin-bottom: 12px; }
+  .sched { border: 1px solid #c9c2e0; border-radius: 6px; overflow: hidden; margin-bottom: 16px; }
+  .sched .sh { background: #4b3f8f; color: #fff; padding: 10px 18px; display: flex; justify-content: space-between; align-items: baseline; }
+  .sched .sh .org { font-size: 20px; font-weight: bold; }
+  .sched .sh .who { font-size: 15px; }
+  .sched table { width: 100%; border-collapse: collapse; }
+  .sched th, .sched td { padding: 8px 18px; text-align: left; font-size: 18px; border-bottom: 1px solid #e3def2; }
+  .sched th { background: #efecf8; font-size: 15px; color: #4b3f8f; }
+  .sched td.off { color: #2e7d32; font-weight: bold; }
+  .sched td.day { font-weight: bold; width: 32%; }
+  .row2 { display: flex; gap: 18px; align-items: flex-start; }
+  .note { flex: 1; background: #fff6c7; border: 1px solid #e6d77a; padding: 14px 18px; transform: rotate(-1deg); box-shadow: 2px 3px 0 #e8e1b0; }
+  .note h2 { font-size: 20px; margin-bottom: 6px; }
+  .note ul { padding-left: 1.1em; font-size: 17px; }
+  .note li { margin-bottom: 6px; }
+  .bubble.me { background: #2b7cf6; color: #fff; margin: 0 0 8px auto; width: fit-content; }
+  .bubble + .bubble { margin-top: 8px; }
+  .opts { margin: 4px 0 0 0; padding-left: 0; list-style: none; }
+  .opts li { margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+
+  <div class="letter">
+    <div class="lh">
+      <svg viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="22" fill="#fff"/><path d="M18 10h10v8h8v10h-8v8H18v-8h-8V18h8z" fill="#1f6f68"/></svg>
+      <div>
+        <div class="org">Maple Street Health Center</div>
+        <div class="addr">120 Maple Street, Suite 4 &middot; Phone: (617) 555-0142</div>
+      </div>
+      <div class="date">October 30, 2026</div>
+    </div>
+    <div class="body">
+      <h1>APPOINTMENT REMINDER</h1>
+      <div class="appt">
+        <table>
+          <tr><td>Patient:</td><td>Rosa M&eacute;ndez</td></tr>
+          <tr><td>Date:</td><td>Tuesday, November 10, 2026</td></tr>
+          <tr><td>Time:</td><td>9:15 a.m.</td></tr>
+          <tr><td>Doctor:</td><td>Dr. Kim Patel, Family Medicine</td></tr>
+          <tr><td>Visit type:</td><td>Yearly physical (check-up) with blood test</td></tr>
+        </table>
+      </div>
+
+      <div class="sec">Before your visit</div>
+      <ul>
+        <li>Please arrive <b>15 minutes early</b> to check in. Your visit will take about <b>1 hour</b>.</li>
+        <li>Do not eat or drink after midnight. You can drink water.</li>
+        <li>Bring: your photo ID, your insurance card, and a list of your medicines.</li>
+      </ul>
+
+      <div class="sec">To confirm, cancel, or reschedule</div>
+      <ul>
+        <li>To confirm, reply <b>C</b> to our text message or call us.</li>
+        <li>If you need to cancel or reschedule, please call at least <b>24 hours</b> before your appointment.</li>
+        <li>If you cancel less than 24 hours before, there is a <span class="fee"><b>$25 fee</b></span>.</li>
+        <li>If you arrive more than <b>15 minutes late</b>, we will reschedule your appointment.</li>
+      </ul>
+
+      <div class="sec">Need an interpreter?</div>
+      <ul>
+        <li>Interpreters are <b>free</b>. Please tell us your language when you confirm.</li>
+      </ul>
+      <p class="lang">&iquest;Necesita un int&eacute;rprete? Es gratis. &middot; Precisa de um int&eacute;rprete? &Eacute; gr&aacute;tis. &middot; Ou bezwen yon ent&egrave;pr&egrave;t? Li gratis.</p>
+    </div>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="from">Text Message &middot; 55142</div>
+      <div class="when">Fri, Nov 6 &middot; 10:02 AM</div>
+      <div class="bubble">MSHC: Reminder: appt w/ Dr. Patel Tue 11/10 at 9:15 AM. Reply C to confirm or R to reschedule.</div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="wk-title">Rosa&rsquo;s Week: November 16&ndash;20</div>
+
+  <div class="sched">
+    <div class="sh"><span class="org">Green Leaf Market &middot; Work Schedule</span><span class="who">Employee: Rosa M&eacute;ndez</span></div>
+    <table>
+      <tr><th>Day</th><th>Hours</th></tr>
+      <tr><td class="day">Monday 11/16</td><td>7:00 a.m. &ndash; 3:00 p.m.</td></tr>
+      <tr><td class="day">Tuesday 11/17</td><td>7:00 a.m. &ndash; 3:00 p.m.</td></tr>
+      <tr><td class="day">Wednesday 11/18</td><td class="off">OFF</td></tr>
+      <tr><td class="day">Thursday 11/19</td><td>11:00 a.m. &ndash; 5:00 p.m.</td></tr>
+      <tr><td class="day">Friday 11/20</td><td>7:00 a.m. &ndash; 3:00 p.m.</td></tr>
+    </table>
+  </div>
+
+  <div class="row2">
+    <div class="note">
+      <h2>Rosa&rsquo;s notes: getting around</h2>
+      <ul>
+        <li>I don&rsquo;t have a car. I take the <b>Bus 22</b>.</li>
+        <li>From home, the <b>first bus</b> gets to the clinic at <b>7:40 a.m.</b></li>
+        <li>From work to the clinic: <b>30 minutes</b> by bus.</li>
+        <li>From the clinic to work: <b>30 minutes</b> by bus.</li>
+        <li>ESOL class: Tuesday and Thursday, 6&ndash;8 p.m.</li>
+      </ul>
+    </div>
+
+    <div class="phone" style="width:3.4in; flex:none;">
+      <div class="notch"></div>
+      <div class="from">Text Message &middot; 55142</div>
+      <div class="when">Fri, Nov 6 &middot; 10:15 AM</div>
+      <div class="bubble me">R</div>
+      <div class="bubble">MSHC: OK. New times with Dr. Patel:
+        <ul class="opts">
+          <li>1) Mon 11/16 9:30 AM</li>
+          <li>2) Wed 11/18 7:45 AM</li>
+          <li>3) Thu 11/19 9:00 AM</li>
+          <li>4) Fri 11/20 3:00 PM</li>
+        </ul>
+        Please call (617) 555-0142 to book.</div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

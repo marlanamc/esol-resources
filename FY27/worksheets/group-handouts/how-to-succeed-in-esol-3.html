@@ -107,9 +107,16 @@
   .tile { border: 1.5px solid #000; padding: 5px 6px 5px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3px; }
   .tile svg.icon { width: 28px; height: 28px; }
   .tile .label { font-weight: bold; font-size: 14px; line-height: 1.15; }
-  .tile .ex { font-size: 11px; line-height: 1.2; min-height: 27px; }
+  .tile .ex { font-size: 11px; line-height: 1.2; }
   .tile .cb { margin: 2px 0 0; }
   .tiles-foot { font-size: 14px; margin-top: 5px; }
+
+  /* Days-a-week goal: same choices as the app's goal picker (2-7) */
+  .goal-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 4px; font-size: 14px; }
+  .goal-row .days { display: flex; gap: 5px; }
+  .goal-row .num { width: 26px; height: 26px; border: 1.5px solid #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+  .goal-row .where { font-size: 11px; font-style: italic; }
+  .log-steps { margin-top: 5px; }
 
   /* Section 4 fills the rest of the page; the study-week grid takes the leftover height */
   .goal { flex: 1; display: flex; flex-direction: column; margin-bottom: 0; }
@@ -138,16 +145,16 @@
   /* Back side */
   .intro { font-size: 14px; margin-bottom: 8px; }
   table.find { width: 100%; border-collapse: collapse; font-size: 14px; }
-  table.find th, table.find td { border: 1.5px solid #000; padding: 5px 8px; text-align: left; }
+  table.find th, table.find td { border: 1.5px solid #000; padding: 3px 8px; text-align: left; }
   table.find th { font-size: 14px; }
   table.find td.c, table.find th.c { text-align: center; width: 0.9in; }
   table.find td.where { width: 2.4in; }
   table.find .cb { margin: 0; }
 
-  .q { font-size: 14px; font-weight: bold; margin-top: 12px; }
+  .q { font-size: 14px; font-weight: bold; margin-top: 8px; }
   .q:first-of-type { margin-top: 0; }
   .q-hint { font-size: 11px; font-style: italic; font-weight: normal; }
-  .starter { font-size: 14px; display: flex; align-items: flex-end; gap: 6px; height: 38px; }
+  .starter { font-size: 14px; display: flex; align-items: flex-end; gap: 6px; height: 32px; }
   .starter .fill { flex: 1; border-bottom: 1.5px solid #000; height: 26px; }
 
   .cond-key { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid #000; margin: 2px 0 8px; font-size: 14px; }
@@ -198,37 +205,32 @@
 
   <!-- Weekly steps: same names and tags as the Course Map -->
   <div class="box">
-    <h2>1. My week on the Course Map <span class="small">Open the app &rarr; <b>Map</b> &rarr; this week. Follow the steps.</span></h2>
+    <h2>1. My week on the Course Map <span class="small">Open the app &rarr; <b>Map</b> &rarr; this week. Check off each step.</span></h2>
     <div class="road">
       <div class="wk">
         <span class="dot full"></span>
-        <div><div class="wk-title"><span class="n">1.</span>Words</div>
-          <div class="wk-what"><span class="cb"></span>Word Lab &nbsp;<span class="cb"></span>Flash Cards <span class="small">5&ndash;10 min. Keep reviewing all week!</span></div></div>
+        <div><div class="wk-title">Before Tuesday</div>
+          <div class="wk-what"><b>Words:</b> <span class="cb"></span>Word Lab &nbsp;<span class="cb"></span>Flash Cards <span class="small">5&ndash;10 min. Keep reviewing all week!</span></div>
+          <div class="wk-what"><b>Grammar:</b> <span class="cb"></span>Look through the grammar guide. <span class="small">You don't need to understand it all.</span></div></div>
         <span class="tag">Start before Tues</span>
       </div>
       <div class="wk">
         <span class="dot full"></span>
-        <div><div class="wk-title"><span class="n">2.</span>Grammar</div>
-          <div class="wk-what"><span class="cb"></span>Look through the grammar guide. <span class="small">You don't need to understand it all.</span></div></div>
-        <span class="tag">Start before Tues</span>
-      </div>
-      <div class="wk">
-        <span class="dot full"></span>
-        <div><div class="wk-title"><span class="n">3.</span>Class</div>
-          <div class="wk-what">Speak, use the new words, make mistakes! <span class="cb"></span><b>Send me a question</b> in the app before class.</div></div>
+        <div><div class="wk-title">In class</div>
+          <div class="wk-what">Speak, use the new words, make mistakes! <span class="cb"></span><b>My question for class:</b> send one before class.</div></div>
         <span class="tag">Tues &amp; Thurs</span>
       </div>
       <div class="wk">
-        <span class="dot"></span>
-        <div><div class="wk-title">More practice</div>
-          <div class="wk-what">Matching, Fill in the Blank, games. <span class="small">We won't repeat these in class.</span></div></div>
-        <span class="tag">All week</span>
+        <span class="dot full"></span>
+        <div><div class="wk-title">Quiz</div>
+          <div class="wk-what"><span class="cb"></span>Weekly quiz, <b>even if I was absent.</b> <span class="small">Your answers show me what to practice next.</span></div></div>
+        <span class="tag ink" style="background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact">Thursday &middot; Required</span>
       </div>
       <div class="wk">
-        <span class="dot full"></span>
-        <div><div class="wk-title"><span class="n">4.</span>Quiz</div>
-          <div class="wk-what"><span class="cb"></span>Weekly quiz, <b>even if I was absent.</b> <span class="small">Your answers show me what to practice next.</span></div></div>
-        <span class="tag ink" style="background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact">Required &middot; Thurs</span>
+        <span class="dot"></span>
+        <div><div class="wk-title">Extra practice</div>
+          <div class="wk-what">Matching, Fill in the Blank, games. <span class="small">We won't repeat these in class.</span></div></div>
+        <span class="tag">All week &middot; optional</span>
       </div>
     </div>
   </div>
@@ -248,13 +250,19 @@
       <h2>3. I need more help.</h2>
       <div class="tick"><span class="cb"></span><span>Tap <b>What you'll learn</b> under the week title.</span></div>
       <div class="tick"><span class="cb"></span><span>Look at the <b>Grammar Reference Sheets</b> pages it lists.</span></div>
-      <div class="tick"><span class="cb"></span><span>Send me a question in step 3.</span></div>
+      <div class="tick"><span class="cb"></span><span>Send me a question in <b>In class</b>.</span></div>
     </div>
   </div>
 
   <!-- 15 minutes a day -->
   <div class="box goal">
-    <h2>4. My goal: 15 minutes of English a day <span class="small">Practice during everyday life.</span></h2>
+    <h2>4. My practice goal <span class="small">Practice during everyday life. Even 15 minutes a day counts!</span></h2>
+    <div class="goal-row">
+      <b>I will practice English</b>
+      <span class="days"><span class="num">2</span><span class="num">3</span><span class="num">4</span><span class="num">5</span><span class="num">6</span><span class="num">7</span></span>
+      <b>days a week.</b>
+      <span class="where">Circle one. In the app: + Log &rarr; Change goal</span>
+    </div>
     <div class="tiles">
       <div class="tile">
         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 20v-4a11 11 0 0 1 22 0v4"/><rect x="4" y="19" width="6" height="9" rx="2"/><rect x="22" y="19" width="6" height="9" rx="2"/></svg>
@@ -293,7 +301,15 @@
         <span class="cb"></span>
       </div>
     </div>
-    <div class="tiles-foot">I don't need to do everything every day. <b>Small practice makes a big difference.</b> Log it in the app: <b style="white-space:nowrap">Home &rarr; + Log</b>.</div>
+    <div class="mini-flow log-steps">
+      <b>Log it:</b>
+      <span class="chip">Home</span>&rarr;
+      <span class="chip dark">+ Log</span>&rarr;
+      <span class="chip">Pick one</span>&rarr;
+      <span class="chip">Write 1 sentence with V2</span> <span class="small"><i>(I watched a video.)</i></span>&rarr;
+      <span class="chip">Save</span>
+    </div>
+    <div class="tiles-foot">I don't need to do everything every day. <b>Small practice makes a big difference.</b> <span class="small">+5 points the first log each day.</span></div>
     <div class="plan-label"><b>My study week:</b> When can I practice? Write the time and what I will do. <span class="small"><i>Example: 7:30 bus, listen</i></span></div>
     <table class="week">
       <tr><th>Mon</th><th class="ink">Tue<span>class</span></th><th>Wed</th><th class="ink">Thu<span>class</span></th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
@@ -313,18 +329,20 @@
     <span class="sub">There are no wrong answers.</span>
   </div>
 
-  <p class="intro">This class works differently from some other English classes. First, practice the weekly steps with a partner. Then tell me about your week, so I know how to help you.</p>
+  <p class="intro">This class works differently from some other English classes. First, we will practice the weekly steps together. Then tell me about your week, so I know how to help you.</p>
 
   <!-- Part 1 -->
   <div class="box">
-    <h2>Part 1: Practice with a partner <span class="small">Open the class app on your phone. Try each one together. Check one box.</span></h2>
+    <h2>Part 1: Practice together <span class="small">Open the class app on your phone. We will try each one together. Check the box when you finish.</span></h2>
     <table class="find">
-      <tr><th>Can you...</th><th class="c">I did it!</th><th class="c">A partner<br>helped</th><th class="c">I need<br>help</th></tr>
-      <tr><td>1. Open this week on the <b>Map</b> and start <b>Word Lab</b>?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
-      <tr><td>2. Tap <b>What you&apos;ll learn</b> and find a <b>Reference Sheets</b> page?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
-      <tr><td>3. Send a <b>question</b> in step 3, <b>Class</b>?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
-      <tr><td>4. Find the <b>Quiz</b> and its <b>Required</b> tag?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
-      <tr><td>5. Find a week you missed?</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr>
+      <tr><th>Can you...</th><th class="c">Done</th></tr>
+      <tr><td>1. Open this week on the <b>Map</b> and start <b>Word Lab</b>?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>2. Tap <b>What you&apos;ll learn</b> and find a <b>Reference Sheets</b> page?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>3. Send a question in <b>My question for class</b>?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>4. Find the <b>Quiz</b> under <b>Thursday &middot; Required</b>?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>5. Find a week you missed?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>6. Tap <b>+ Log</b>, then <b>Change goal</b> and set your days a week?</td><td class="c"><span class="cb"></span></td></tr>
+      <tr><td>7. Log one practice with a <b>V2</b> sentence?</td><td class="c"><span class="cb"></span></td></tr>
     </table>
   </div>
 

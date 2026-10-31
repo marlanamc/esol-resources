@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 13 Tuesday Real World: Shelf Tags and Unit Price</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1b1b1b; background: #fff;
+         font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store, prices, and people. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .h { font-size: 30px; font-weight: bold; color: #b0531c; margin-bottom: 2px; }
+  .sub { margin-bottom: 12px; }
+  .tags { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 16px; }
+  .pair-label { grid-column: 1 / -1; font-size: 19px; font-weight: bold; color: #b0531c; border-bottom: 2px solid #f0d2bd; margin-top: 2px; }
+  .tag { display: flex; border: 2px solid #333; border-radius: 4px; overflow: hidden; background: #fff; height: 0.92in; }
+  .tag .left { flex: 1; padding: 6px 10px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tag .name { font-size: 16px; font-weight: bold; text-transform: uppercase; }
+  .tag .size { font-size: 14px; color: #444; }
+  .tag .unit { background: #fff3a8; border: 1px solid #c9b200; border-radius: 3px; font-size: 14px; padding: 1px 6px; width: fit-content; }
+  .tag .right { width: 1.25in; background: #b0531c; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; }
+  .help { margin-top: auto; display: flex; gap: 14px; align-items: center; border: 2px dashed #b0531c; border-radius: 8px; padding: 10px 14px; }
+  .help .demo { flex: none; }
+  .person { display: flex; gap: 14px; border: 2px solid #f0d2bd; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: bold; }
+  .person h2 { font-size: 21px; margin-bottom: 4px; }
+  .person ul { padding-left: 1.1em; }
+  .dates { border: 2px solid #b0531c; border-radius: 8px; padding: 10px 16px; margin-top: auto; }
+  .dates h2 { color: #b0531c; font-size: 20px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="h">Eastside Market: shelf tags</div>
+  <p class="sub">Two sizes of the same food. Which one is the better deal? Look at the <b>unit price</b> (the yellow box).</p>
+  <div class="tags"><div class="pair-label">Rice</div><div class="tag"><div class="left"><div><div class="name">Long grain rice</div><div class="size">2 lb bag</div></div><div class="unit">Unit price: <b>$1.75 per lb</b></div></div><div class="right">$3.49</div></div><div class="tag"><div class="left"><div><div class="name">Long grain rice</div><div class="size">20 lb bag</div></div><div class="unit">Unit price: <b>$1.10 per lb</b></div></div><div class="right">$21.99</div></div><div class="pair-label">Cereal</div><div class="tag"><div class="left"><div><div class="name">Oat cereal</div><div class="size">12 oz box</div></div><div class="unit">Unit price: <b>33.3&cent; per oz</b></div></div><div class="right">$3.99</div></div><div class="tag"><div class="left"><div><div class="name">Oat cereal</div><div class="size">24 oz box</div></div><div class="unit">Unit price: <b>27.0&cent; per oz</b></div></div><div class="right">$6.49</div></div><div class="pair-label">Olive oil</div><div class="tag"><div class="left"><div><div class="name">Olive oil</div><div class="size">17 oz bottle</div></div><div class="unit">Unit price: <b>52.9&cent; per oz</b></div></div><div class="right">$8.99</div></div><div class="tag"><div class="left"><div><div class="name">Olive oil</div><div class="size">34 oz bottle</div></div><div class="unit">Unit price: <b>57.3&cent; per oz</b></div></div><div class="right">$19.49</div></div><div class="pair-label">Eggs</div><div class="tag"><div class="left"><div><div class="name">Large eggs</div><div class="size">12 eggs</div></div><div class="unit">Unit price: <b>33.3&cent; per egg</b></div></div><div class="right">$3.99</div></div><div class="tag"><div class="left"><div><div class="name">Large eggs</div><div class="size">18 eggs</div></div><div class="unit">Unit price: <b>34.9&cent; per egg</b></div></div><div class="right">$6.29</div></div><div class="pair-label">Milk</div><div class="tag"><div class="left"><div><div class="name">Whole milk</div><div class="size">half gallon</div></div><div class="unit">Unit price: <b>$5.78 per gallon</b></div></div><div class="right">$2.89</div></div><div class="tag"><div class="left"><div><div class="name">Whole milk</div><div class="size">1 gallon</div></div><div class="unit">Unit price: <b>$4.29 per gallon</b></div></div><div class="right">$4.29</div></div></div>
+  <div class="help" style="margin-top:14px;"><b style="font-size:19px;color:#b0531c;">Unit price</b><span>= the price for <b>one</b> pound, ounce, egg, or gallon. The <b>lower</b> unit price is the better deal.<br>Big package: $21.99 for 20 lb &rarr; $21.99 &divide; 20 = <b>$1.10 per lb</b>.</span></div>
+</section><section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="h">Should they buy in bulk?</div>
+  <p class="sub">A big package can save money. But if the food <b>goes bad</b>, you throw it away. That costs money too!</p>
+  <div class="person"><div class="avatar" style="background:#1f6fb2;">O</div><div><h2>Mr. Ortiz</h2><ul><li>He lives alone.</li><li>He drinks milk only in his coffee, about 1 cup a week.</li><li>Milk goes bad about one week after you open it.</li></ul></div></div><div class="person"><div class="avatar" style="background:#2e7d32;">D</div><div><h2>The Diallo family</h2><ul><li>6 people live in their apartment.</li><li>They eat rice every day, lunch and dinner.</li><li>They have a big closet. Rice stays good for a long time.</li></ul></div></div><div class="person"><div class="avatar" style="background:#c0392b;">R</div><div><h2>Rosa</h2><ul><li>Bananas are cheap this week. She wants to stock up for 3 weeks.</li><li>Bananas get brown and soft in 4 or 5 days.</li></ul></div></div><div class="person"><div class="avatar" style="background:#7d3c98;">K</div><div><h2>Kim&rsquo;s family</h2><ul><li>They cook with olive oil every day.</li><li>They need 34 ounces of olive oil for the month.</li></ul></div></div>
+  <div class="dates">
+    <h2>Dates on food</h2>
+    <b>Best by / Use by:</b> the food is best before this date. &middot; <b>Sell by:</b> a date for the store.<br>
+    Many foods are still OK after the date. If it smells bad or looks bad, throw it out.
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For and Since Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  /* Frequency scale: 100% -> 0% */
+  .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .scale > div { padding: 4px 6px; text-align: center; }
+  .scale > div + div { border-left: 1.5px solid #000; }
+  .scale .word { font-size: 18px; font-weight: bold; }
+  .scale .pct { font-size: 14px; }
+  .scale .ex { font-size: 11px; }
+  .bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Position key */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rule .ex { font-size: 14px; }
+  .rule .ex b { text-decoration: underline; }
+  .rule.wide { grid-column: 1 / -1; }
+  .no { font-size: 14px; margin-top: 3px; }
+  .no s { text-decoration-thickness: 2px; }
+
+  /* Phrase bank */
+  .bank { column-count: 4; column-gap: 14px; }
+  .cat { break-inside: avoid; margin-bottom: 6px; }
+  .cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+
+  /* Writing */
+  .write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .write-row .adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .write-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .write-row .fill.example { font-style: italic; color: #000; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+
+  table.interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.interview th, table.interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  table.interview th { font-size: 14px; }
+  table.interview td { height: 34px; }
+  table.interview td.q { width: 52%; }
+
+  .line { border-bottom: 1.5px solid #000; height: 32px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+
+  /* Added for the Week 9-15 sheets */
+  .forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .forms > div { padding: 4px 6px; text-align: center; }
+  .forms > div + div { border-left: 1.5px solid #000; }
+  .forms .word { font-size: 18px; font-weight: bold; }
+  .forms .sm { font-size: 11px; }
+  .forms .md { font-size: 14px; }
+  .write-row .adv.wide { width: 1.6in; }
+  .write-row .adv.xwide { width: 2.3in; font-size: 14px; }
+  table.interview td.c { width: 14%; text-align: center; }
+  .frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .rank .opt { line-height: 1.9; }
+  .rank .opt .cb { margin-right: 6px; }
+  .dice { line-height: 1; margin-bottom: 2px; }
+  .die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .rules.three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .rules.three .rule { padding: 4px 7px; }
+  .rules.three .chip { font-size: 13px; padding: 1px 5px; }
+  .bank-split .cat-name.yes::before { content: "\2713  "; }
+  .bank-split .cat-name.no::before { content: "\2717  "; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row"><h1>How Long? For and Since</h1><span class="sub">Keep this page. Use it to write on the back.</span></div>
+  <div class="box"><h2>1. for or since? <span class="small">Both answer <b>How long?</b> Both use <b>have / has + V3</b>.</span></h2><svg viewBox="0 0 720 92" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" style="width:100%;height:0.95in;display:block;">
+      <line x1="40" y1="52" x2="690" y2="52" stroke="#000" stroke-width="3"/><polygon points="690,46 704,52 690,58" fill="#000"/>
+      <circle cx="160" cy="52" r="9" fill="#000"/><text x="160" y="84" text-anchor="middle" font-size="15" font-weight="700">2019</text>
+      <text x="160" y="22" text-anchor="middle" font-size="17" font-weight="700">since 2019</text><text x="160" y="38" text-anchor="middle" font-size="12">(the start point)</text>
+      <text x="640" y="84" text-anchor="middle" font-size="15" font-weight="700">NOW</text><line x1="640" y1="40" x2="640" y2="64" stroke="#000" stroke-width="3"/>
+      <path d="M170 44 Q400 4 630 44" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="6 5"/>
+      <text x="400" y="20" text-anchor="middle" font-size="17" font-weight="700">for 7 years</text><text x="400" y="36" text-anchor="middle" font-size="12">(how much time)</text>
+    </svg><div class="forms" style="grid-template-columns: repeat(2, 1fr);"><div><div class="word">for</div><div class="md">+ how much time</div><div class="sm">5 minutes &middot; 2 weeks &middot; 10 years</div></div><div><div class="word">since</div><div class="md">+ the start point</div><div class="sm">Monday &middot; 8:00 &middot; 2019 &middot; I was a kid</div></div></div></div>
+  <div class="box"><h2>2. How does it work? <span class="small">The important words are in <b>black</b>.</span></h2><div class="rules"><div class="rule"><div class="rule-name">A. Ask: How long have you + V3?</div><div class="formula"><span class="chip adv">How long</span><span class="chip adv">have</span><span class="chip">you</span><span class="chip">lived</span><span class="chip">here?</span></div><div class="ex">How long <b>has</b> she worked there?</div><div class="no">&#10007; <s>How long do you live here?</s></div></div><div class="rule"><div class="rule-name">B. for + how much time</div><div class="formula"><span class="chip">I</span><span class="chip">have lived</span><span class="chip">here</span><span class="chip adv">for</span><span class="chip">7 years.</span></div><div class="ex">I&rsquo;ve known her <b>for</b> a long time.</div><div class="no">&#10007; <s>since 7 years</s></div></div><div class="rule"><div class="rule-name">C. since + the start point</div><div class="formula"><span class="chip">I</span><span class="chip">have worked</span><span class="chip">there</span><span class="chip adv">since</span><span class="chip">2021.</span></div><div class="ex">&hellip;<b>since</b> Monday / <b>since</b> I was 15.</div><div class="no">&#10007; <s>for 2021</s></div></div><div class="rule"><div class="rule-name">D. Not since then: haven&rsquo;t + V3</div><div class="formula"><span class="chip">I</span><span class="chip adv">haven&rsquo;t</span><span class="chip">had</span><span class="chip">a vacation</span><span class="chip">since 2023.</span></div><div class="ex">She <b>hasn&rsquo;t</b> been to the beach <b>for</b> a year.</div><div class="no">&#10007; <s>I don&rsquo;t have a vacation since 2023.</s></div></div><div class="rule wide"><div class="rule-name" style="margin:0">Remember: <span style="font-weight:normal">V3: live &rarr; <b>lived</b> &middot; know &rarr; <b>known</b> &middot; be &rarr; <b>been</b> &middot; have &rarr; <b>had</b> &nbsp;|&nbsp; he / she / it &rarr; <b>has</b></span></div></div></div></div>
+  <div class="box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="small">These are <b>have + V3</b> phrases. Add for or since.</span></h2><div class="bank"><div class="cat"><div class="cat-name">Home</div><ul><li>lived in this city</li><li>lived in my apartment</li><li>had my car</li><li>had my phone</li><li>lived with my roommate</li></ul></div><div class="cat"><div class="cat-name">Work</div><ul><li>worked at my job</li><li>been a cook / a cleaner</li><li>had this schedule</li><li>worked nights</li><li>had my driver&rsquo;s license</li></ul></div><div class="cat"><div class="cat-name">Learning</div><ul><li>studied English</li><li>been in this class</li><li>known how to drive</li><li>used this app</li><li>read this book</li></ul></div><div class="cat"><div class="cat-name">People</div><ul><li>known my best friend</li><li>been married</li><li>had my dog / cat</li><li>known my neighbors</li><li>been a mother / father</li></ul></div><div class="cat"><div class="cat-name">Habits</div><ul><li>played soccer</li><li>been a vegetarian</li><li>gone to the same church</li><li>woken up at 5:00</li><li>drunk coffee every day</li></ul></div><div class="cat"><div class="cat-name">Things I own</div><ul><li>had these shoes</li><li>had this coat</li><li>had my bike</li><li>used this backpack</li></ul></div><div class="cat"><div class="cat-name">Not since (haven&rsquo;t)</div><ul><li>haven&rsquo;t had a vacation</li><li>haven&rsquo;t been to the beach</li><li>haven&rsquo;t seen a movie</li><li>haven&rsquo;t slept 8 hours</li><li>haven&rsquo;t eaten pizza</li></ul></div></div><div class="cat-be"><b>for:</b> a few days &middot; two weeks &middot; a month &middot; six months &middot; a year &middot; a long time &emsp; <b>since:</b> Monday &middot; last week &middot; January &middot; 2020 &middot; I was a kid &middot; I moved here</div></div>
+</section>
+<section class="page">
+  <div class="title-row"><h1>Write About You</h1><span class="sub">Look at the front for help.</span></div>
+  <div class="box"><h2>4. Facts about me <span class="small">Use the bank. 2 with <b>for</b>, 2 with <b>since</b>.</span></h2><div class="write-row"><span class="adv ">example</span><span class="fill example">I have lived in my apartment since 2022.</span></div><div class="write-row"><span class="adv ">for</span><span class="fill"></span></div><div class="write-row"><span class="adv ">since</span><span class="fill"></span></div><div class="write-row"><span class="adv ">for</span><span class="fill"></span></div><div class="write-row"><span class="adv ">since</span><span class="fill"></span></div></div><div class="box"><h2>5. Switch it! <span class="small">Today is <b>Thursday, December 3, 2026</b>. Change <b>since</b> to <b>for</b>. Do 3, then one of yours from Part 4.</span></h2><div class="write-row"><span class="adv wide">since 2020</span><span class="fill example">for six years</span></div><div class="write-row"><span class="adv wide">since 2016</span><span class="fill"></span></div><div class="write-row"><span class="adv wide">since Monday</span><span class="fill"></span></div><div class="write-row"><span class="adv wide">since August</span><span class="fill"></span></div><div class="write-row"><span class="adv wide">my sentence</span><span class="fill"></span></div></div><div class="box"><h2>6. Guess how long! <span class="small">Your partner chooses one fact: <i>How long have you lived here?</i> Guess with <b>yes / no</b> questions until you find it.</span></h2><div class="frame"><b>Have you</b> lived here <b>for more than</b> 5 years? &middot; <b>Have you</b> lived here <b>since</b> 2020? &middot; <b>Less than</b> 3 years? &rarr; Yes, I have. / No, I haven&rsquo;t.</div><div class="hint">Partner&rsquo;s name: ______________________ &emsp; My guesses:</div><div class="line"></div><div class="line"></div><div class="hint" style="margin-top:6px">Write the answer. Remember <b>has</b>: <i>Ana has lived here for four years.</i></div><div class="line"></div></div><div class="check"><b>Check:</b> <span><span class="cb"></span>have / has + V3</span><span><span class="cb"></span>for + how much time</span><span><span class="cb"></span>since + start point</span><span><span class="cb"></span>How long have you&hellip;?</span></div>
+</section>
+</body>
+</html>

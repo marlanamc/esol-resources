@@ -81,7 +81,7 @@
     font-size: 15px;
     font-style: italic;
   }
-  .blank.verb { width: 10.5em; }
+  .blank.verb { width: 6.5em; }
 
   /* Back side: verb-forms chart + practice (prints as page 2). */
   .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
@@ -90,7 +90,7 @@
   .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
   .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
   .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
-  .forms-chart td { height: 0.62in; }
+  .forms-chart td { height: 0.5in; }
   .forms-chart td.base { font-weight: bold; }
   @media print {
     @page { size: letter portrait; margin: 0; }
@@ -108,6 +108,14 @@
   .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 4px 9px; text-align: left; width: 33%; }
   .verb-chart th { font-size: 15px; }
   .verb-chart tr.example td { font-style: italic; }
+  .if-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .if-chart th, .if-chart td { border: 1.5px solid #000; padding: 5px 10px; text-align: left; vertical-align: top; }
+  .if-chart th { font-size: 15px; letter-spacing: 0.5px; border-bottom: 3px solid #000; }
+  .if-chart th:first-child, .if-chart td.kind { width: 22%; }
+  .if-chart td.kind { font-weight: bold; vertical-align: middle; }
+  .if-chart td.kind small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .if-chart .pat { display: block; font-size: 15px; font-weight: bold; }
+  .if-rule { font-size: 15px; margin: 6px 0 10px; }
   .seq-blank { width: 1.8em !important; }
 
 </style>
@@ -145,8 +153,6 @@
           <li><b class="n">6.</b> Volunteers <span class="blank"></span> for safer streets in our city.</li>
         </ol>
       </section>
-
-      <p class="footer-note">Finished? Try <b>Week 7 Quiz</b> in My ESOL App after 6 p.m. Opens Thursday, Oct. 29; due Tuesday, Nov. 3 at 6 p.m.</p>
     </div>
     <div class="copy back">
       <div class="header-row">
@@ -165,16 +171,37 @@
       </section>
       <section class="task">
         <div class="task-title">4&ensp;Use the right form</div>
-        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>write</b> or <b>send</b>. Use your chart.</p>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form. Use your chart. (4: Present Perfect)</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> <b>Every month</b>, my sister <span class="blank verb"></span> a letter to her grandmother.&nbsp;(write)</li>
+          <li><b class="n">1.</b> <b>Every month</b>, my sister <span class="blank verb"></span> a letter to Grandma.&nbsp;(write)</li>
           <li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank verb"></span> an email to my city councilor.&nbsp;(write)</li>
-          <li><b class="n">3.</b> <b>Yesterday</b>, the city <span class="blank verb"></span> me a reminder to register to vote.&nbsp;(send)</li>
-          <li><b class="n">4.</b> <b>Last week</b>, our group <span class="blank verb"></span> a petition about the bus stop.&nbsp;(write)</li>
-          <li><b class="n">5.</b> The campaign <span class="blank verb"></span> text messages to voters <b>every day</b>.&nbsp;(send)</li>
-          <li><b class="n">6.</b> <b>Right now</b>, volunteers are <span class="blank verb"></span> postcards to voters.&nbsp;(send)</li>
-          <li><b class="n">7.</b> She <b>has</b> <span class="blank verb"></span> three letters to the mayor.&nbsp;(write) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
-          <li><b class="n">8.</b> They <b>have</b> <span class="blank verb"></span> their ballots by mail.&nbsp;(send) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">3.</b> <b>Yesterday</b>, the city <span class="blank verb"></span> me a voter reminder.&nbsp;(send)</li>
+          <li><b class="n">4.</b> They <b>have</b> <span class="blank verb"></span> their ballots by mail.&nbsp;(send)</li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">5&ensp;Coming up: <i>if</i> sentences</div>
+        <table class="if-chart">
+          <tr><th></th><th>IF part</th><th>RESULT part</th></tr>
+          <tr>
+            <td class="kind">Zero<small>always true</small></td>
+            <td><span class="pat">If + V1,</span>If it <u>rains</u>,</td>
+            <td><span class="pat">V1</span>I <u>take</u> the bus.</td>
+          </tr>
+          <tr>
+            <td class="kind">First<small>real future</small></td>
+            <td><span class="pat">If + V1,</span>If it <u>rains</u> tomorrow,</td>
+            <td><span class="pat">will + V1</span>I <u>will take</u> the bus.</td>
+          </tr>
+        </table>
+        <p class="if-rule">After <b>if</b>: no <b>will</b>! &ensp;&#10007; <s>If it will rain</s> &ensp;&#10003; If it rains</p>
+        <p class="task-instructions">Circle the correct verb.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> If it <span class="opt">(rains / will rain)</span> tomorrow, I will take the bus.</li>
+          <li><b class="n">2.</b> If my son <span class="opt">(get / gets)</span> sick, I stay home.</li>
+          <li><b class="n">3.</b> If the bus is late, I <b>always</b> <span class="opt">(walk / will walk)</span> to work.</li>
+          <li><b class="n">4.</b> If I see the mayor <b>tomorrow</b>, I <span class="opt">(ask / will ask)</span> about it.</li>
+          <li><b class="n">5.</b> Finish it: If I have a day off this weekend, I <span class="blank long"></span>.</li>
         </ol>
       </section>
     </div>

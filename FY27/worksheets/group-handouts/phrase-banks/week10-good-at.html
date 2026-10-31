@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Are You Good At Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  h2 .small { font-weight: normal; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .title-row .sub { font-size: 14px; font-style: italic; }
+
+  .box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .box:last-child { margin-bottom: 0; }
+
+  /* Frequency scale: 100% -> 0% */
+  .scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .scale > div { padding: 4px 6px; text-align: center; }
+  .scale > div + div { border-left: 1.5px solid #000; }
+  .scale .word { font-size: 18px; font-weight: bold; }
+  .scale .pct { font-size: 14px; }
+  .scale .ex { font-size: 11px; }
+  .bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Position key */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .chip.adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rule .ex { font-size: 14px; }
+  .rule .ex b { text-decoration: underline; }
+  .rule.wide { grid-column: 1 / -1; }
+  .no { font-size: 14px; margin-top: 3px; }
+  .no s { text-decoration-thickness: 2px; }
+
+  /* Phrase bank */
+  .bank { column-count: 4; column-gap: 14px; }
+  .cat { break-inside: avoid; margin-bottom: 6px; }
+  .cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+
+  /* Writing */
+  .write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .write-row .adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .write-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .write-row .fill.example { font-style: italic; color: #000; }
+  .hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+
+  table.interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.interview th, table.interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  table.interview th { font-size: 14px; }
+  table.interview td { height: 34px; }
+  table.interview td.q { width: 52%; }
+
+  .line { border-bottom: 1.5px solid #000; height: 32px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+
+  /* Added for the Week 9-15 sheets */
+  .forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .forms > div { padding: 4px 6px; text-align: center; }
+  .forms > div + div { border-left: 1.5px solid #000; }
+  .forms .word { font-size: 18px; font-weight: bold; }
+  .forms .sm { font-size: 11px; }
+  .forms .md { font-size: 14px; }
+  .write-row .adv.wide { width: 1.6in; }
+  .write-row .adv.xwide { width: 2.3in; font-size: 14px; }
+  table.interview td.c { width: 14%; text-align: center; }
+  .frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .rank .opt { line-height: 1.9; }
+  .rank .opt .cb { margin-right: 6px; }
+  .dice { line-height: 1; margin-bottom: 2px; }
+  .die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .rules.three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .rules.three .rule { padding: 4px 7px; }
+  .rules.three .chip { font-size: 13px; padding: 1px 5px; }
+  .bank-split .cat-name.yes::before { content: "\2713  "; }
+  .bank-split .cat-name.no::before { content: "\2717  "; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="name-row">Name: <span class="fill"></span> Date: <span class="fill date"></span></div>
+  <div class="title-row"><h1>What Are You Good At?</h1><span class="sub">Keep this page. Use it to write on the back.</span></div>
+  <div class="box"><h2>1. How good are you? <span class="small">From great to bad. All of them: + <b>V-ing</b> or a <b>noun</b>.</span></h2><div class="scale" style="grid-template-columns: repeat(5, 1fr);"><div><div class="word">great at</div><div class="bar"><i style="width:100%"></i></div><div class="ex">&#9733;&#9733;&#9733;</div></div><div><div class="word">good at</div><div class="bar"><i style="width:75%"></i></div><div class="ex">&#9733;&#9733;</div></div><div><div class="word">OK at</div><div class="bar"><i style="width:50%"></i></div><div class="ex">&#9733;</div></div><div><div class="word">not very good at</div><div class="bar"><i style="width:25%"></i></div><div class="ex">polite!</div></div><div><div class="word">bad at</div><div class="bar"><i style="width:5%"></i></div><div class="ex">&nbsp;</div></div></div></div>
+  <div class="box"><h2>2. How does it work? <span class="small">The important words are in <b>black</b>.</span></h2><div class="rules"><div class="rule"><div class="rule-name">A. good at + V-ing</div><div class="formula"><span class="chip">I&rsquo;m</span><span class="chip adv">good at</span><span class="chip adv">cooking</span><span class="chip">rice.</span></div><div class="ex">She&rsquo;s good at <b>fixing</b> cars.</div><div class="no">&#10007; <s>I&rsquo;m good at cook.</s></div></div><div class="rule"><div class="rule-name">B. good at + a noun</div><div class="formula"><span class="chip">I&rsquo;m</span><span class="chip adv">good at</span><span class="chip">math.</span></div><div class="ex">He&rsquo;s bad at <b>names</b>.</div><div class="no">&#10007; <s>I&rsquo;m good in math.</s></div></div><div class="rule"><div class="rule-name">C. Question: Are you good at&hellip;?</div><div class="formula"><span class="chip adv">Are</span><span class="chip">you</span><span class="chip">good at</span><span class="chip">drawing?</span></div><div class="ex">&rarr; Yes, I am! / I&rsquo;m OK at it. / Not really.</div><div class="no">&#10007; <s>Do you good at drawing?</s></div></div><div class="rule"><div class="rule-name">D. interested in + V-ing / noun</div><div class="formula"><span class="chip">I&rsquo;m</span><span class="chip adv">interested in</span><span class="chip">learning</span><span class="chip">computers.</span></div><div class="ex">She&rsquo;s <b>interested in</b> nursing.</div><div class="no">&#10007; <s>I&rsquo;m interesting in art.</s></div></div><div class="rule wide"><div class="rule-name" style="margin:0">Remember: <span style="font-weight:normal">-ing spelling: make &rarr; mak<b>ing</b> &middot; swim &rarr; swim<b>ming</b> &nbsp;|&nbsp; <i>not very good at</i> is a polite way to say <i>bad at</i>.</span></div></div></div></div>
+  <div class="box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="small">Pick any skill. Change it if you want.</span></h2><div class="bank"><div class="cat"><div class="cat-name">Cooking &amp; food</div><ul><li>cooking</li><li>baking</li><li>making soup</li><li>cooking for a big group</li><li>trying new food</li></ul></div><div class="cat"><div class="cat-name">Fixing &amp; building</div><ul><li>fixing things</li><li>fixing cars</li><li>building furniture</li><li>painting walls</li><li>sewing</li></ul></div><div class="cat"><div class="cat-name">People</div><ul><li>listening to people</li><li>talking to customers</li><li>taking care of kids</li><li>solving problems</li><li>making people laugh</li><li>teaching</li></ul></div><div class="cat"><div class="cat-name">Art &amp; music</div><ul><li>drawing</li><li>singing</li><li>dancing</li><li>playing the guitar</li><li>taking photos</li></ul></div><div class="cat"><div class="cat-name">Sports</div><ul><li>playing soccer</li><li>running</li><li>swimming</li><li>lifting heavy things</li></ul></div><div class="cat"><div class="cat-name">Numbers &amp; money</div><ul><li>math</li><li>saving money</li><li>counting fast</li><li>making a budget</li></ul></div><div class="cat"><div class="cat-name">Computers &amp; phone</div><ul><li>typing</li><li>using computers</li><li>fixing phones</li><li>making videos</li></ul></div><div class="cat"><div class="cat-name">Languages</div><ul><li>speaking Spanish</li><li>learning languages</li><li>remembering new words</li><li>spelling</li><li>remembering names</li></ul></div><div class="cat"><div class="cat-name">Work skills</div><ul><li>working with a team</li><li>working fast</li><li>organizing things</li><li>driving</li><li>cleaning</li></ul></div></div><div class="cat-be"><b>Jobs:</b> &nbsp;cook &middot; mechanic &middot; nurse &middot; teacher &middot; cashier &middot; driver &middot; electrician &middot; home health aide &middot; hairdresser &middot; carpenter &middot; tailor &middot; cleaner</div></div>
+</section>
+<section class="page">
+  <div class="title-row"><h1>Write About You</h1><span class="sub">Look at the front for help.</span></div>
+  <div class="box"><h2>4. My skills profile <span class="small">Like a job application. Use <b>V-ing</b> or a noun. Add a detail: <b>because&hellip;</b> or <b>for example&hellip;</b></span></h2><div class="frame"><b>SKILLS</b> &nbsp;Name: ______________________ &emsp; Languages I speak: ______________________</div><div class="write-row"><span class="adv xwide">example</span><span class="fill example">I&rsquo;m great at cooking. For example, I cook for 15 people every Sunday.</span></div><div class="write-row"><span class="adv xwide">I&rsquo;m great at</span><span class="fill"></span></div><div class="write-row"><span class="adv xwide">I&rsquo;m good at</span><span class="fill"></span></div><div class="write-row"><span class="adv xwide">I&rsquo;m OK at</span><span class="fill"></span></div><div class="write-row"><span class="adv xwide">I&rsquo;m not very good at</span><span class="fill"></span></div><div class="write-row"><span class="adv xwide">I&rsquo;m interested in</span><span class="fill"></span></div></div><div class="box"><h2>5. Not yet! <span class="small">Something you are not good at <b>yet</b>. How can you get better? Use <b>can</b> or <b>should</b>.</span></h2><div class="write-row"><span class="adv wide">example</span><span class="fill example">I&rsquo;m not good at typing yet, but I can practice 10 minutes every day.</span></div><div class="write-row"><span class="adv wide">I&rsquo;m not good at</span><span class="fill"></span></div><div class="write-row"><span class="adv wide"></span><span class="fill"></span></div></div><div class="box"><h2>6. Ask a partner, then give job advice <span class="small">Ask <b>Are you good at&hellip;?</b> Then choose a job for your partner from the front.</span></h2><div class="hint">Partner&rsquo;s name: ______________________</div><table class="interview"><tr><th>Are you good at&hellip;</th><th>Yes / OK / No</th><th>Example?</th></tr><tr><td class="q">&hellip;fixing things?</td><td></td><td></td></tr><tr><td class="q">&hellip;</td><td></td><td></td></tr><tr><td class="q">&hellip;</td><td></td><td></td></tr><tr><td class="q">&hellip;</td><td></td><td></td></tr></table><div class="hint" style="margin-top:6px">Your advice. Remember <b>is</b> for he / she: <i>Ana <b>is</b> good at listening. She should be a nurse.</i></div><div class="write-row"><span class="adv wide">You should be a</span><span class="fill"></span></div><div class="hint">&hellip; because you&rsquo;re good at ______________________. &emsp; Write about your partner:</div><div class="line"></div></div><div class="check"><b>Check:</b> <span><span class="cb"></span>good at + V-ing</span><span><span class="cb"></span>interest<b>ed</b> in (not interesting)</span><span><span class="cb"></span>he / she + <b>is</b> good at</span><span><span class="cb"></span>-ing spelling</span></div>
+</section>
+</body>
+</html>
