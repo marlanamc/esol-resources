@@ -222,11 +222,21 @@ Reference implementation: `FY27/worksheets/warmups/{print,classroom}/week5-day1-
     gives away the rule or the answer choices (scrambled, no item in its
     own slot), then `<ol class="peek">` with 3 one-line items. Each item
     is a circle-one `(a / b)` choice, a short `.blank`, or a write-the-
-    letter match, and the context must give away the answer (*than* → 
+    letter match, and the context must give away the answer (*than* →
     comparative, *3 years* → *for*). Make one item a negative or a
     question. Link it to the class pocket verb book when it fits ("Look
     at card 7"). Skip it if there's no Thursday class that week.
     Reference: `week8-day2-2026-11-05.html`, `week12-day2-2026-12-03.html`.
+  - **Week 8 onward, Tuesday is a station day.** The Tuesday warm-up is
+    Station 1 (WARM-UP, 25 min, self-run) inside that week's stapled
+    station packet (model: `FY27/worksheets/stations/week08/`), not a
+    2-up arrival sheet. Station 1 always ends with **"Bonus: Your turn"**
+    (same format as above: 3 prompts, one + not, one ?, `.ideas` hints,
+    write-on lines) using the grammar from last Thursday and this week's
+    quiz verbs. Marlana chose this split: Thursday gets the Sneak peek,
+    Tuesday gets the sentence writing, because Station 1 has time for it.
+    The older Week 9-14 Tuesday files in `warmups/` are drafts to build
+    Station 1 from.
   - **Week with only one class** (e.g. Week 11 before Thanksgiving, Week 15
     before Winter Break): use the Day 1 chart ("Use your reference
     sheet") + 6 "Use the right form" items + the Day 2 "Bonus: Your turn"

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 9 Tuesday Real World: Volunteer Flyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1f2a1f; background: #fff;
+         font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up pantry, people, and numbers.
+     Questions are on packet pages 8-9; page 9 Part D needs sheet 2. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .hero { background: #2f6b2f; color: #fff; border-radius: 10px; padding: 14px 20px; display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+  .hero svg { width: 64px; height: 64px; flex: none; }
+  .hero .org { font-size: 15px; opacity: 0.95; }
+  .hero h1 { font-size: 40px; line-height: 1; letter-spacing: 1px; }
+  .hero .tag { font-size: 18px; margin-top: 4px; }
+  table.shifts { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 17px; }
+  table.shifts th { background: #e6f0e1; color: #2f6b2f; text-align: left; padding: 6px 8px; font-size: 14px; border-bottom: 2px solid #2f6b2f; }
+  table.shifts td { padding: 9px 8px; border-bottom: 1px solid #cfdcc9; vertical-align: top; }
+  table.shifts td.n { font-weight: bold; color: #2f6b2f; white-space: nowrap; }
+  table.shifts td.t { white-space: nowrap; }
+  .cols { display: flex; gap: 14px; }
+  .box { border: 2px solid #2f6b2f; border-radius: 8px; padding: 8px 14px; flex: 1; }
+  .box h2 { font-size: 21px; color: #2f6b2f; margin-bottom: 4px; }
+  .box ul { padding-left: 1.1em; font-size: 17px; }
+  .box li { margin-bottom: 6px; }
+  .rules { flex: 1.5; }
+  .warm { background: #fff6d6; border-color: #d9a400; }
+  .warm h2 { color: #8a6500; }
+  .langs { font-size: 16px; color: #444; margin-top: 16px; text-align: center; }
+  .contact { margin-top: auto; background: #2f6b2f; color: #fff; border-radius: 8px; padding: 8px 16px; display: flex; justify-content: space-between; font-size: 16px; }
+  .wk-title { font-size: 32px; font-weight: bold; color: #2f6b2f; margin-bottom: 4px; }
+  .wk-sub { font-size: 17px; margin-bottom: 14px; }
+  .person { display: flex; gap: 16px; border: 2px solid #cfdcc9; border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 30px; font-weight: bold; }
+  .person h2 { font-size: 22px; margin-bottom: 4px; }
+  .person ul { padding-left: 1.1em; font-size: 17px; }
+  .person li { margin-bottom: 3px; }
+  .reminder { border: 2px dashed #2f6b2f; border-radius: 8px; padding: 8px 14px; font-size: 16px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="hero">
+    <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#fff"/><path d="M14 30h36l-4 20H18z" fill="#2f6b2f"/><path d="M22 30c0-8 4-14 10-14s10 6 10 14" fill="none" stroke="#2f6b2f" stroke-width="4"/><circle cx="26" cy="24" r="4" fill="#d9a400"/><circle cx="36" cy="22" r="5" fill="#c0392b"/></svg>
+    <div>
+      <div class="org">Eastside Community Food Pantry &middot; 45 Elm Street (church basement)</div>
+      <h1>VOLUNTEERS NEEDED!</h1>
+      <div class="tag">Help your neighbors. No experience needed. We can train you!</div>
+    </div>
+  </div>
+  <table class="shifts">
+    <tr><th>Shift</th><th>Day and time</th><th>What you do</th><th>Who can volunteer</th></tr>
+    <tr><td class="n">Front Desk</td><td class="t">Wednesday<br>5:00&ndash;7:30 p.m.</td><td>Sign families in. Answer the phone.</td><td>18 or older. You should speak 2 languages.</td></tr>
+    <tr><td class="n">Sort &amp; Pack</td><td class="t">Friday<br>4:00&ndash;7:00 p.m.</td><td>Check dates on cans. Pack bags.</td><td>16 or older. Ages 12&ndash;15 with a parent.</td></tr>
+    <tr><td class="n">Saturday Market</td><td class="t">Saturday<br>8:45 a.m.&ndash;12:00 p.m.</td><td>Help families choose food. Carry boxes.</td><td>16 or older. Ages 12&ndash;15 with a parent. You must be able to lift 25 pounds.</td></tr>
+    <tr><td class="n">Delivery Driver</td><td class="t">Saturday<br>12:30&ndash;3:00 p.m.</td><td>Drive bags of food to seniors at home.</td><td>21 or older. You must have a driver&rsquo;s license and a car.</td></tr>
+  </table>
+  <div class="cols">
+    <div class="box rules">
+      <h2>Volunteer rules</h2>
+      <ul>
+        <li>You <b>must</b> sign up before your shift.</li>
+        <li>You <b>must</b> sign in at the front desk when you arrive.</li>
+        <li>You <b>must</b> wear closed-toe shoes. <b>No sandals.</b></li>
+        <li>You <b>should</b> bring a water bottle.</li>
+        <li>You <b>should</b> wear old clothes. Things can get dirty!</li>
+        <li>You <b>can&rsquo;t</b> bring children under 12 to a shift.</li>
+        <li>Can&rsquo;t come? Please text us <b>24 hours</b> before your shift.</li>
+      </ul>
+    </div>
+    <div class="box warm">
+      <h2>How to sign up</h2>
+      <ul>
+        <li>Text <b>VOLUNTEER</b> to <b>55190</b></li>
+        <li>or sign up online: eastsidepantry.example.org</li>
+      </ul>
+      <h2 style="margin-top:8px;">Getting here</h2>
+      <ul>
+        <li><b>Bus 7</b> stops in front.</li>
+        <li><b>Free parking</b> in the church lot on <b>Saturday only</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="langs">We speak: English &middot; Espa&ntilde;ol &middot; Portugu&ecirc;s &middot; Krey&ograve;l ayisyen</p>
+  <div class="contact"><span><b>Questions?</b> Grace Okafor, Volunteer Leader</span><span>(617) 555-0190</span></div>
+</section><section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="wk-title">Who can help?</div>
+  <p class="wk-sub">These 3 people want to volunteer at the Eastside Community Food Pantry. Look at the shifts on page 1. Which shift is best for each person?</p>
+  <div class="person"><div class="avatar" style="background:#c0392b;">A</div><div><h2>Amina, 15</h2><ul><li>High school student. School ends at 2:30.</li><li>She plays soccer every Saturday, 8:00 a.m.&ndash;12:00 p.m.</li><li>Her mom is free on Friday evenings. She can come with Amina.</li></ul></div></div><div class="person"><div class="avatar" style="background:#1f6fb2;">C</div><div><h2>Carlos, 42</h2><ul><li>He works Monday&ndash;Friday, 7:00 a.m.&ndash;5:30 p.m.</li><li>He is free all day Saturday.</li><li>He has a car and a driver&rsquo;s license.</li><li>He has a bad back. His doctor says: &ldquo;Don&rsquo;t lift heavy boxes.&rdquo;</li></ul></div></div><div class="person"><div class="avatar" style="background:#7d3c98;">J</div><div><h2>Ji-woo, 30</h2><ul><li>She speaks Korean and English.</li><li>She works at a restaurant Thursday&ndash;Sunday, 11:00 a.m.&ndash;10:00 p.m.</li><li>She is free Monday, Tuesday, and Wednesday.</li><li>She doesn&rsquo;t have a car. She takes the bus.</li></ul></div></div>
+  <div class="reminder"><b>Remember:</b> check the <b>day and time</b>, the <b>age</b>, and the <b>rules</b> (lift 25 pounds? car and license?).</div>
+</section>
+</body>
+</html>
