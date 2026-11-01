@@ -64,7 +64,7 @@ export function TabNavTelemetryCard() {
     useEffect(() => {
         void load();
         const id = window.setInterval(() => {
-            void load();
+            if (document.visibilityState === "visible") void load();
         }, 30_000);
         return () => clearInterval(id);
     }, [load]);

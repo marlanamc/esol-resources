@@ -233,11 +233,6 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
     previousPathnameRef.current = pathname;
   }, [pathname]);
 
-  // Prefetch all tab routes once on mount (stable dependency)
-  useEffect(() => {
-    navItems.forEach((item) => router.prefetch(item.href));
-  }, [navItems, router]);
-
   const handleClick = useCallback(
     (item: NavItemConfig) => {
       const fromPath = toTrackedTabPath(pathname);
@@ -303,7 +298,9 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
               <Link
                 key={item.href}
                 href={item.href}
-                prefetch
+                // Default ("auto") prefetch stops at each tab's loading.tsx shell.
+                // `prefetch={true}` rendered every tab's full page, running its DB
+                // queries each time the nav mounted, which is billed per query.
                 onClick={() => handleClick(item)}
                 onTouchStart={() => handleTouchStart(item.href)}
                 aria-label={item.label}
