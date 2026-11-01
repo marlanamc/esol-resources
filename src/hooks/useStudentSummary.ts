@@ -75,10 +75,11 @@ function watch(userId: string) {
     window.addEventListener("submissionSaved", saved);
     window.addEventListener("activity-progress-updated", saved);
     document.addEventListener("visibilitychange", refresh);
-    const interval = setInterval(refresh, TTL);
+    // No timer polling: each summary read is billed DB queries. Refresh on
+    // resume/focus (TTL-gated) and immediately after a saved submission.
     refresh();
     watchers.set(userId, { count: 1, stop: () => {
-        clearTimeout(timer); clearInterval(interval);
+        clearTimeout(timer);
         window.removeEventListener("online", refresh); window.removeEventListener("pageshow", refresh);
         window.removeEventListener("submissionSaved", saved); window.removeEventListener("activity-progress-updated", saved); document.removeEventListener("visibilitychange", refresh);
     } });
