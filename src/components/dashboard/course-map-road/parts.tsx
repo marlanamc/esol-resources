@@ -8,6 +8,7 @@ import { ClassQuestionBox, useClassQuestionsEnabled } from "@/components/dashboa
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import { getWeekLearning } from "@/lib/week-learning";
+import { getWeekVerbs, type WeekVerb } from "@/lib/week-verbs";
 import type { TimelineItem } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivityType } from "@/lib/course-map";
 import {
@@ -388,15 +389,18 @@ export function WeekLearningDisclosure({
     accent,
     className = "",
     compact = false,
+    verbs = [],
 }: {
     weekNumber: number;
     accent: string;
     className?: string;
     /** Shorter tap row for a header that already has its own padding. */
     compact?: boolean;
+    /** Verbs of the week, shown with their V1 / V2 / V3 forms. */
+    verbs?: WeekVerb[];
 }) {
     const learning = getWeekLearning(weekNumber);
-    if (!learning) return null;
+    if (!learning && verbs.length === 0) return null;
     return (
         <details className={`group ${className}`}>
             <summary
@@ -408,6 +412,7 @@ export function WeekLearningDisclosure({
                 What you&apos;ll learn
                 <ChevronDown size={16} aria-hidden className="transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" />
             </summary>
+            {learning ? (
             <ul className="m-0 mt-1 list-none space-y-1 p-0">
                 {learning.canDo.map((line) => (
                     <li key={line} className="flex gap-2 text-[0.875rem] leading-snug text-text">
@@ -416,7 +421,21 @@ export function WeekLearningDisclosure({
                     </li>
                 ))}
             </ul>
-            {learning.pages.length > 0 ? (
+            ) : null}
+            {verbs.length > 0 ? (
+                <div className="mt-2.5 rounded-[12px] px-3 py-2" style={{ background: "var(--road-neutral-chip)" }}>
+                    <p className="m-0 text-[0.8125rem] font-bold text-text">Verbs of the week: V1 · V2 · V3</p>
+                    <ul className="m-0 mt-0.5 list-none p-0">
+                        {verbs.map((verb) => (
+                            <li key={verb.v1} className="text-[0.8125rem] leading-snug text-text-muted">
+                                <span className="font-bold text-text">{verb.v1}</span> · {verb.v2} · {verb.v3}
+                                {verb.isReview ? <span className="italic"> (review)</span> : null}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ) : null}
+            {learning && learning.pages.length > 0 ? (
                 <div className="mt-2.5 rounded-[12px] px-3 py-2" style={{ background: "var(--road-neutral-chip)" }}>
                     <p className="m-0 text-[0.8125rem] font-bold text-text">Need more help? Grammar Reference Sheets:</p>
                     <ul className="m-0 mt-0.5 list-none p-0">
@@ -898,6 +917,29 @@ export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: st
     );
 }
 
+/** "Verbs: become · lead · go" under the current week's title. Review verbs are lighter. */
+function WeekVerbsChip({ verbs, accent }: { verbs: WeekVerb[]; accent: string }) {
+    if (verbs.length === 0) return null;
+    return (
+        <p className="m-0 mt-1.5 flex flex-wrap items-center gap-1.5 text-[0.8125rem] leading-tight">
+            <span className="font-bold text-text-muted">Verbs:</span>
+            {verbs.map((verb) => (
+                <span
+                    key={verb.v1}
+                    className="min-w-min rounded-full px-2 py-[3px] font-bold"
+                    style={{
+                        background: `color-mix(in srgb, ${accent} ${verb.isReview ? 7 : 14}%, var(--surface-base))`,
+                        color: verb.isReview ? "var(--text-color-muted)" : "var(--text-color)",
+                    }}
+                >
+                    {verb.v1}
+                    {verb.isReview ? <span className="sr-only"> (review)</span> : null}
+                </span>
+            ))}
+        </p>
+    );
+}
+
 export function CurrentWeekCard({
     week,
     weekNoun,
@@ -916,6 +958,7 @@ export function CurrentWeekCard({
     const next = week.next;
     const [stepsOpen, setStepsOpen] = useState(true);
     const hasSteps = week.activities.length > 0 || week.extras.length > 0;
+    const verbs = getWeekVerbs([...week.activities, ...week.extras].map((activity) => activity.id));
     const tray: CSSProperties = {
         background: `color-mix(in srgb, ${tone.accent} 8%, var(--surface-base))`,
         borderColor: `color-mix(in srgb, ${tone.accent} 34%, transparent)`,
@@ -952,7 +995,8 @@ export function CurrentWeekCard({
                             </button>
                         ) : null}
                     </div>
-                    <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} compact className="mt-0.5" />
+                    <WeekVerbsChip verbs={verbs} accent={tone.accent} />
+                    <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} compact className="mt-0.5" verbs={verbs} />
                     {week.total > 0 ? (
                         <div className="mt-1.5 flex items-center gap-3">
                             <div className="flex flex-1 gap-1" aria-hidden>
