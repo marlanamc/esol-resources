@@ -871,6 +871,8 @@ export function CompactWeekRow({
         : week.state === "upcoming"
           ? (week.note ?? `${week.total} activities`)
           : `${week.done} of ${week.total} done`;
+    const isPast = week.state === "done" || week.state === "past";
+    const verbs = isPast ? getWeekVerbs([...week.activities, ...week.extras].map((activity) => activity.id)) : [];
     return (
         <>
         <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={week.isFuture} node={<WeekNode week={week} accent={tone.button} />}>
@@ -893,7 +895,8 @@ export function CompactWeekRow({
                 </span>
                 <Chevron open={open} />
             </button>
-            {open ? <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} className="-mt-1 pb-2" /> : null}
+            <WeekVerbsChip verbs={verbs} accent={tone.accent} className="-mt-1 mb-2.5" />
+            {open ? <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} className="-mt-1 pb-2" verbs={verbs} /> : null}
         </RoadRow>
         {open ? <WeekSteps week={week} showNext={week.state === "upcoming"} extrasOpen={optionalOpen} onToggleExtras={onToggleOptional} /> : null}
         </>
@@ -917,11 +920,11 @@ export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: st
     );
 }
 
-/** "Verbs: become · lead · go" under the current week's title. Review verbs are lighter. */
-function WeekVerbsChip({ verbs, accent }: { verbs: WeekVerb[]; accent: string }) {
+/** "Verbs: become · lead · go" under a week title (current and past weeks). Review verbs are lighter. */
+function WeekVerbsChip({ verbs, accent, className = "mt-1.5" }: { verbs: WeekVerb[]; accent: string; className?: string }) {
     if (verbs.length === 0) return null;
     return (
-        <p className="m-0 mt-1.5 flex flex-wrap items-center gap-1.5 text-[0.8125rem] leading-tight">
+        <p className={`m-0 ${className} flex flex-wrap items-center gap-1.5 text-[0.8125rem] leading-tight`}>
             <span className="font-bold text-text-muted">Verbs:</span>
             {verbs.map((verb) => (
                 <span
