@@ -4,7 +4,7 @@ import { logger } from "@/lib/shared/logger";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, StarIcon, BookOpenIcon } from '@/components/icons/Icons';
+import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, UserIcon, BookOpenIcon } from '@/components/icons/Icons';
 
 // ─── Stable nav config (never changes, never creates new references) ───
 type NavItemConfig = {
@@ -17,14 +17,16 @@ const CLASSROOM_NAV_ITEMS: NavItemConfig[] = [
   { href: '/dashboard', label: 'Home', iconKey: 'home' },
   { href: '/dashboard/map', label: 'Map', iconKey: 'map' },
   { href: '/dashboard/calendar', label: 'Calendar', iconKey: 'calendar' },
-  { href: '/dashboard/leaderboard', label: 'Leaderboard', iconKey: 'leaderboard' },
+  { href: '/dashboard/leaderboard', label: 'Points', iconKey: 'leaderboard' },
+  { href: '/dashboard/profile', label: 'Profile', iconKey: 'profile' },
 ];
 
 const INDEPENDENT_NAV_ITEMS: NavItemConfig[] = [
   { href: '/dashboard/independent', label: 'Home', iconKey: 'home' },
   { href: '/dashboard/map', label: 'Map', iconKey: 'map' },
   { href: '/dashboard/activities', label: 'Activities', iconKey: 'activities' },
-  { href: '/dashboard/leaderboard', label: 'Leaderboard', iconKey: 'leaderboard' },
+  { href: '/dashboard/leaderboard', label: 'Points', iconKey: 'leaderboard' },
+  { href: '/dashboard/profile', label: 'Profile', iconKey: 'profile' },
 ];
 
 const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }>> = {
@@ -32,7 +34,7 @@ const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }
   map: MapIcon,
   calendar: CalendarIcon,
   leaderboard: TrophyIcon,
-  profile: StarIcon,
+  profile: UserIcon,
   activities: BookOpenIcon,
 };
 
