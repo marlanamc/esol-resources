@@ -4,13 +4,13 @@ import { logger } from "@/lib/shared/logger";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, UserIcon, BookOpenIcon } from '@/components/icons/Icons';
+import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, UserIcon, BookOpenIcon, ClipboardIcon } from '@/components/icons/Icons';
 
 // ─── Stable nav config (never changes, never creates new references) ───
 type NavItemConfig = {
   href: string;
   label: string;
-  iconKey: 'home' | 'map' | 'calendar' | 'leaderboard' | 'profile' | 'activities';
+  iconKey: 'home' | 'map' | 'calendar' | 'leaderboard' | 'profile' | 'activities' | 'teacher';
 };
 
 const CLASSROOM_NAV_ITEMS: NavItemConfig[] = [
@@ -29,6 +29,29 @@ const INDEPENDENT_NAV_ITEMS: NavItemConfig[] = [
   { href: '/dashboard/profile', label: 'Profile', iconKey: 'profile' },
 ];
 
+// Teachers get their workspace in the last slot instead of Profile.
+const TEACHER_NAV_ITEM: NavItemConfig = { href: '/teach', label: 'Teacher', iconKey: 'teacher' };
+
+function withTeacherTab(items: NavItemConfig[]): NavItemConfig[] {
+  return items.map((item) => (item.iconKey === 'profile' ? TEACHER_NAV_ITEM : item));
+}
+
+const CLASSROOM_TEACHER_NAV_ITEMS = withTeacherTab(CLASSROOM_NAV_ITEMS);
+const INDEPENDENT_TEACHER_NAV_ITEMS = withTeacherTab(INDEPENDENT_NAV_ITEMS);
+
+/** Mirror ViewModeSwitcher: remember that the teacher chose the teaching view. */
+function saveTeachingViewMode() {
+  void fetch('/api/user/preferences', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gameSettings: { dashboard: { mode: 'teaching' } } }),
+    credentials: 'same-origin',
+    keepalive: true,
+  }).catch(() => {
+    // Navigation still works; only the saved view preference is skipped.
+  });
+}
+
 const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }>> = {
   home: HomeIcon,
   map: MapIcon,
@@ -36,6 +59,7 @@ const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }
   leaderboard: TrophyIcon,
   profile: UserIcon,
   activities: BookOpenIcon,
+  teacher: ClipboardIcon,
 };
 
 // ─── Telemetry (tab-nav metrics) ───
@@ -113,9 +137,11 @@ function flushQueue(force = false) {
 // ─── Component ───
 interface BottomNavProps {
   variant?: 'classroom' | 'independent';
+  /** Teachers/admins see a Teacher tab (to /teach) in place of Profile. */
+  showTeacherTab?: boolean;
 }
 
-export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavProps) {
+export const BottomNav = React.memo(function BottomNav({ variant, showTeacherTab = false }: BottomNavProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
@@ -125,7 +151,9 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
   const previousPathnameRef = useRef<string | null>(null);
   // Layout passes variant for enrolled teachers previewing independent mode
   const isIndependentVariant = variant === 'independent';
-  const navItems = isIndependentVariant ? INDEPENDENT_NAV_ITEMS : CLASSROOM_NAV_ITEMS;
+  const navItems = isIndependentVariant
+    ? (showTeacherTab ? INDEPENDENT_TEACHER_NAV_ITEMS : INDEPENDENT_NAV_ITEMS)
+    : (showTeacherTab ? CLASSROOM_TEACHER_NAV_ITEMS : CLASSROOM_NAV_ITEMS);
 
   // Keyboard visibility detection (mobile only)
   useEffect(() => {
@@ -237,6 +265,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
 
   const handleClick = useCallback(
     (item: NavItemConfig) => {
+      if (item.iconKey === 'teacher') saveTeachingViewMode();
       const fromPath = toTrackedTabPath(pathname);
       const toPath = toTrackedTabPath(item.href);
       const shouldTrack = Boolean(
