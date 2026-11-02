@@ -125,7 +125,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                     <SubmissionOutboxManager />
                 </>
             )}
-            <BottomNav variant={learnerMode} />
+            <BottomNav variant={learnerMode} showTeacherTab={canUseTeacherTools(session?.user)} />
         </div>
     );
 }
