@@ -153,24 +153,27 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     setState((prev) => ({ ...prev, audioPlayed: true }));
   }, [isAudioSupported]);
 
-  const startGame = useCallback(() => {
-    let questions = getMinimalPairsRound({
-      contrastId: state.contrast,
-      difficulty: state.difficulty,
-      roundSize: state.roundSize,
-    });
+  const startGame = useCallback((overrides?: {
+    contrast?: ContrastSelection;
+    difficulty?: DifficultySelection;
+    roundSize?: number;
+  }) => {
+    const contrast = overrides?.contrast ?? state.contrast;
+    const difficulty = overrides?.difficulty ?? state.difficulty;
+    const roundSize = overrides?.roundSize ?? state.roundSize;
+
+    let questions = getMinimalPairsRound({ contrastId: contrast, difficulty, roundSize });
 
     // Fallback for strict filters that produce 0 questions.
     if (questions.length === 0) {
-      questions = getMinimalPairsRound({
-        contrastId: state.contrast,
-        difficulty: 'mixed',
-        roundSize: state.roundSize,
-      });
+      questions = getMinimalPairsRound({ contrastId: contrast, difficulty: 'mixed', roundSize });
     }
 
     setState((prev) => ({
       ...prev,
+      contrast,
+      difficulty,
+      roundSize,
       phase: 'playing',
       questions,
       currentIndex: 0,
@@ -191,7 +194,13 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
       const parsed = JSON.parse(contentStr) as ContentConfig;
       if (parsed?.contrastId && parsed.contrastId !== 'mixed') {
         autoStartedRef.current = true;
-        startGame();
+        // Pass the content's settings explicitly: the effect that copies them
+        // into state runs in the same commit, so state still holds defaults here.
+        startGame({
+          contrast: parsed.contrastId,
+          difficulty: parsed.difficulty,
+          roundSize: parsed.roundSize && ROUND_OPTIONS.includes(parsed.roundSize) ? parsed.roundSize : undefined,
+        });
       }
     } catch {
       // ignore
@@ -397,7 +406,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             )}
 
             <button
-              onClick={startGame}
+              onClick={() => startGame()}
               className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95 active:translate-y-1 border-b-4 border-cyan-800 active:border-b-0"
             >
               Start Listening Round
