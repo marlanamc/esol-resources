@@ -41,6 +41,24 @@ Edit `.env` before proceeding:
 | `DEV_SEED_ACCOUNT_PASSWORD` | A unique password for local seeded accounts |
 | `TEST_STUDENT_DEFAULT_PASSWORD` | A unique password for system-created test accounts |
 
+### Free local database (`prisma dev`)
+
+Never point local development at the live database. Prisma Postgres bills per query, so local dev servers, builds, and tests run against it add up fast (and seeds can overwrite real student work). The easiest development database is the built-in `prisma dev` server, which runs on your machine and costs nothing:
+
+```bash
+npm run db:local   # starts the local server named "esol" in the background
+```
+
+The first time, create it with `NODE_OPTIONS=--experimental-sqlite npx prisma dev --detach --name esol` (the flag is needed on Node 22.5–23.3) and set both `DATABASE_URL` and `POSTGRES_URL` to:
+
+```
+postgres://postgres:postgres@localhost:51214/template1?sslmode=disable&connection_limit=1&pgbouncer=true
+```
+
+`pgbouncer=true` is required; without it seeds fail with `prepared statement "s0" already exists`. Run `npm run db:local` again after each restart. The data persists between restarts.
+
+Scripts that need real class data (Monday slides in `scripts/slides/`, practice-log replies in `scripts/study-log/`) read the live URLs from a git-ignored `.env.production-db` through `scripts/lib/use-live-db.ts`. Copy `DATABASE_URL` and `POSTGRES_URL` from the Vercel project into that file; keep the live URL out of `.env` and `.env.local`.
+
 Additional integrations and feature flags are described in [.env.example](.env.example). Keep local credentials out of Git. An existing `.env.local` can override app settings from `.env`; ensure both point to the intended development services.
 
 Install dependencies, apply committed migrations, and seed the development database:

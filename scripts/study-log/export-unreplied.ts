@@ -11,11 +11,13 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { PrismaClient } from "@prisma/client";
+import { useLiveDatabase } from "../lib/use-live-db";
 import { getCalendarWeekStartDayKey } from "@/lib/gamification/calendar-week";
 import { normalizeStudyLogKind, parseDayKey } from "@/lib/learner/study-log";
 
 const { parseActiveDbTarget } = require("../lib/require-safe-db-target");
 
+useLiveDatabase();
 const prisma = new PrismaClient();
 
 function arg(name: string): string | undefined {

@@ -20,8 +20,10 @@
 import os from "node:os";
 import path from "node:path";
 import { config as loadDotenv } from "dotenv";
+import { useLiveDatabase } from "../lib/use-live-db";
 import { chromium } from "@playwright/test";
 
+useLiveDatabase(); // real class data, not the local dev DB
 loadDotenv({ path: path.join(__dirname, "../../.env.local") });
 loadDotenv({ path: path.join(__dirname, "../../.env") });
 

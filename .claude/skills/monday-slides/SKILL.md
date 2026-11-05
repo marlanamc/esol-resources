@@ -23,7 +23,7 @@ Two 1920x1080 PNGs for the class slideshow, built by read-only scripts in `scrip
 
 ## Notes
 
-- Both scripts only read the database. That matters because `.env` points at production.
+- Both scripts only read the database. They load the live DB from the git-ignored `.env.production-db` (via `scripts/lib/use-live-db.ts`); local `.env` points at the `prisma dev` database.
 - If the practice stars script says nobody logged 3+ days, offer `--min 2` rather than leaving the slide out.
 - Don't put student sentences on the slides. Learners would see each other's mistakes on the big screen.
 - If the app's practice card or leaderboard changes (labels, colors, icons), update the slide scripts so they match. Learners notice any difference.
