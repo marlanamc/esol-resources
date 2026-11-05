@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Build the pocket verb flip book (student fill-in + teacher key).
 
-Each letter sheet holds two half-page cards. Students cut the cards apart, cut
-off the striped parts in the bottom tab strip, stack them in order and staple at the top.
-Every tense card keeps one tab at a different spot, so all 7 tabs show at once.
+Each landscape letter sheet holds two 5.5in-wide cards. The teacher cuts the sheets in
+half on the dashed line (paper cutter) and gives each student a set of 8 cards. Students
+cut off the striped part on the thick line, stack the cards (cover, then 1-7) and staple
+twice in the gray strip at the top. Every card is 0.4in longer
+than the one in front of it, so its colored bottom bar is its tab and all 7 tabs show
+at once. Every cut is one straight line, so a class set can go through a paper cutter.
 
 The timelines copy the Timeline Tenses game (TimelineCanvas.tsx and
 TimelineElement.tsx): same 400 x 80 canvas, zones, colors and stamps, with each
@@ -197,6 +200,18 @@ def emphasize(text):
     return re.sub(pattern, lambda m: "<b>" + m.group() + "</b>", text, flags=re.I)
 
 
+# ---- Stepped layout (inches) ----
+# Each landscape letter sheet holds two 5.5in-wide cards. Card k (0 = cover, 1-7 = tenses)
+# is STEP shorter than the card behind it, so the bottom STEP of every tense card shows
+# under the card in front of it. TALLEST stays clear of the printer's bottom margin.
+STEP, TALLEST, BIND = 0.4, 8.3, 0.5
+STAPLE_X, STAPLE_Y = (0.9, 4.6), 0.22   # centers of the 2 staple marks
+
+
+def card_height(k):
+    return round(TALLEST - (7 - k) * STEP, 2)
+
+
 CSS = f"""
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
@@ -208,177 +223,130 @@ CSS = f"""
 
   body {{
     font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
-    color: #000;
-    background: #fff;
-    font-size: 14px;
-    line-height: 1.3;
+    color: #000; background: #fff; font-size: 13px; line-height: 1.3;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }}
 
-  /* One .sheet = one letter page holding two half-page cards (8.5in x 5.5in). */
-  .sheet {{ width: 8.5in; height: 11in; overflow: hidden; page-break-after: always; break-after: page; }}
-  .card {{ width: 8.5in; height: 5.5in; display: flex; flex-direction: column; position: relative; }}
-  .card + .card {{ border-top: 1.5px dashed #000; }}
-  .card + .card::before {{ content: "\\2702  cut"; position: absolute; top: -9px; left: 0.15in; background: #fff; font-size: 11px; padding: 0 4px; }}
+  /* One .sheet = one landscape letter page holding two 5.5in-wide cards side by side */
+  .sheet {{ width: 11in; height: 8.5in; overflow: hidden; display: flex; position: relative; page-break-after: always; break-after: page; }}
+  .half {{ width: 5.5in; height: 8.5in; display: flex; flex-direction: column; position: relative; }}
+  .half + .half {{ border-left: 1.5px dashed #000; }}
+  .half + .half::before {{ content: "\\2702  cut"; position: absolute; top: 3.6in; left: -9px; writing-mode: vertical-rl; background: #fff; font-size: 11px; padding: 4px 0; z-index: 2; }}
+  .card {{ width: 5.5in; display: flex; flex-direction: column; flex: none; position: relative; overflow: hidden; }}
 
   /* Zone color per card: past = amber, present = green, future = blue, perfect = amber to green */
   .z-past {{ --c: var(--past); --bg: var(--past-bg); --band: var(--past); }}
   .z-present {{ --c: var(--present); --bg: var(--present-bg); --band: var(--present); }}
   .z-future {{ --c: var(--future); --bg: var(--future-bg); --band: var(--future); }}
-  .z-perfect {{ --c: var(--past); --bg: var(--past-bg); --band: var(--past); }}
-  .z-perfect .tabs .keep::before {{ content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: var(--present); z-index: -1; }}
+  .z-perfect {{ --c: var(--past); --bg: var(--past-bg); --band: linear-gradient(90deg, var(--past) 50%, var(--present) 50%); }}
 
   @media screen {{
     body {{ background: #e6e6e6; padding: 24px 0; }}
     .sheet {{ background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }}
   }}
   @media print {{
-    @page {{ size: letter portrait; margin: 0; }}
+    @page {{ size: letter landscape; margin: 0; }}
   }}
 
-  /* Stripes are drawn as plain SVG lines: some PDF viewers can't show CSS gradient patterns and fill them pink. */
-  .gray {{ position: relative; overflow: hidden; background: #fff; }}
-  .gray > svg {{ position: absolute; inset: 0; width: 100%; height: 100%; }}
-  .gray > span, .tabs > .gray::after {{ position: relative; z-index: 1; }}
-  .tabs > .gray::after {{ content: "\\2702"; background: #fff; color: #111; font-size: 14px; line-height: 1; padding: 2px 6px 2px 11px; border: 1.5px solid #111; }}
+  /* Staple strip at the top: the cards bend here, so nothing to read or write */
+  .bind {{ height: {BIND}in; flex: none; position: relative; border-bottom: 1px dashed #999; background: #f2f2f2; }}
+  .bind .staple {{ position: absolute; top: {STAPLE_Y}in; width: 0.45in; height: 0; margin-left: -0.225in; border-top: 4px solid #000; }}
+  .bind .note {{ position: absolute; left: 0; right: 0; top: {STAPLE_Y - 0.06}in; text-align: center; font-size: 10px; color: #555; }}
 
-  /* Type scale: 22 / 18 / 14 / 11 */
-  .body {{ flex: 1; padding: 0.34in 0.55in 0.16in; display: flex; flex-direction: column; gap: 7px; }}
-  .cover .body {{ gap: 7px; padding-top: 0.3in; }}
+  .body {{ flex: 1; min-height: 0; padding: 0.1in 0.3in 0.08in; display: flex; flex-direction: column; gap: 4px; }}
 
-  .staple {{ position: absolute; top: 0.08in; font-size: 11px; display: flex; align-items: center; gap: 4px; }}
-  .staple i {{ display: inline-block; width: 0.35in; height: 0; border-top: 3px solid #000; }}
-  .staple.l {{ left: 0.55in; }}
-  .staple.r {{ right: 0.55in; }}
+  /* Bottom tab: the part that shows when the book is closed */
+  .tab {{ height: {STEP}in; flex: none; background: var(--band); color: #fff; display: flex; align-items: center; gap: 8px; padding: 0 0.3in; font-size: 16px; font-weight: bold; }}
+  .tab i {{ font-style: normal; display: inline-grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; background: #fff; color: var(--c); font-size: 13px; }}
 
-  .head {{ display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 4px solid var(--c, #000); padding-bottom: 3px; }}
-  .head h1 {{ font-size: 22px; white-space: nowrap; color: var(--c, #000); }}
-  .head .use {{ font-size: 14px; text-align: right; }}
-  .head .use b {{ font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }}
+  /* Striped part below the card: cut it off along the thick line */
+  .waste {{ flex: 1; position: relative; overflow: hidden; border-top: 3px solid #000; display: grid; place-items: center; }}
+  .waste > svg {{ position: absolute; inset: 0; width: 100%; height: 100%; }}
+  .waste span {{ position: relative; z-index: 1; background: #fff; border: 1.5px solid #111; padding: 2px 12px; font-size: 13px; font-weight: bold; }}
+  .waste .sheet-no {{ position: absolute; left: 0.3in; bottom: 0.12in; font-size: 11px; padding: 1px 8px; }}
+  .waste.thin span {{ font-size: 10px; padding: 0 8px; }}
 
-  .words {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
-  .words b {{ white-space: nowrap; }}
-  .words .fill {{ flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }}
+  .head {{ border-bottom: 4px solid var(--c); padding-bottom: 2px; }}
+  .head h1 {{ font-size: 21px; color: var(--c); line-height: 1.1; }}
 
-  .timeline {{ display: flex; align-items: center; gap: 10px; border: 1.5px solid #000; border-radius: 6px; padding: 2px 8px; }}
-  .timeline .label {{ font-size: 11px; font-weight: bold; width: 0.9in; flex: none; }}
+  .meaning {{ border: 2px solid var(--c); border-radius: 7px; background: var(--bg); padding: 3px 9px 5px; }}
+  .meaning b {{ font-size: 12px; color: var(--c); }}
+  .meaning .ln {{ display: block; height: 19px; border-bottom: 1.5px solid #000; }}
+  .meaning .ans {{ display: block; font-size: 14px; padding-top: 3px; }}
+
+  .line {{ display: flex; gap: 6px; align-items: flex-end; font-size: 12px; }}
+  .line b {{ white-space: nowrap; }}
+  .line .fill {{ flex: 1; border-bottom: 1.5px solid #000; min-height: 19px; }}
+  .draw-prompt {{ font-size: 12px; }}
+  .perfect-note {{ font-size: 11px; }}
+
+  .timeline {{ border: 1.5px solid #000; border-radius: 6px; padding: 1px 6px 0; position: relative; }}
+  .timeline .label {{ position: absolute; top: 3px; left: 7px; font-size: 10px; font-weight: bold; line-height: 1.15; }}
   .timeline .label span {{ display: block; font-weight: normal; font-style: italic; }}
-  .timeline svg {{ display: block; flex: 1; height: 0.82in; }}
+  .timeline svg {{ display: block; width: 100%; height: 0.72in; }}
 
-  .forms {{ display: grid; grid-template-columns: 1.05in 1fr 1fr 1fr; grid-auto-rows: minmax(0.43in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
-  .forms > div {{ padding: 2px 7px; display: flex; align-items: center; }}
-  .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; padding: 2px 7px; align-items: center; background: var(--bg, #fff); min-height: 0; }}
-  .forms .h span {{ font-weight: normal; margin-left: 4px; }}
-  .forms .h .s {{ font-size: 16px; color: var(--c, #000); margin-right: 5px; }}
-  .forms .rl {{ flex-direction: column; align-items: flex-start; justify-content: center; font-size: 11px; font-weight: bold; line-height: 1.15; background: var(--bg, #fff); }}
-  .forms .rl span {{ font-weight: normal; font-size: 10px; }}
-  .forms .rl .vline {{ display: block; width: 100%; height: 13px; border-bottom: 1px solid #000; }}
+  .forms {{ display: grid; grid-template-columns: 0.72in 1fr 1fr 1fr; grid-template-rows: auto; grid-auto-rows: minmax(0.39in, auto); border: 1.5px solid #000; border-radius: 6px; overflow: hidden; }}
+  .forms > div {{ padding: 2px 5px; display: flex; align-items: center; }}
   .forms > div:not(:nth-child(4n+1)) {{ border-left: 1.5px solid #000; }}
-  .forms .write {{ flex: 1; font-size: 14px; }}
-  .forms .write b {{ font-weight: 700; white-space: nowrap; }}
+  .forms .h {{ font-size: 11px; font-weight: bold; border-bottom: 1.5px solid #000; background: var(--bg); padding: 2px 5px; }}
+  .forms .h .s {{ font-size: 15px; color: var(--c); margin-right: 4px; }}
+  .forms .rl {{ flex-direction: column; align-items: flex-start; justify-content: center; font-size: 11px; font-weight: bold; line-height: 1.15; background: var(--bg); }}
+  .forms .rl span {{ font-weight: normal; font-size: 9px; }}
+  .forms .rl .vline {{ display: block; width: 100%; height: 12px; border-bottom: 1px solid #000; }}
   .forms .r2, .forms .r3 {{ border-top: 1.5px solid #000; }}
+  .forms .write {{ flex: 1; font-size: 11px; line-height: 1.2; }}
+  .forms .write b {{ font-weight: 700; }}
 
-  .third {{ display: flex; gap: 8px; align-items: flex-end; font-size: 14px; }}
-  .third b {{ white-space: nowrap; }}
-  .third .fill {{ flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }}
-
-  .watch {{ font-size: 14px; border: 1.5px dashed var(--c, #000); border-radius: 6px; padding: 3px 9px; background: var(--bg, #fff); }}
-  .watch b {{ color: var(--c, #000); }}
+  .watch {{ font-size: 12px; border: 1.5px dashed var(--c); border-radius: 6px; padding: 3px 8px; background: var(--bg); }}
+  .watch b {{ color: var(--c); }}
   .watch s {{ text-decoration-thickness: 2px; }}
+
+  /* Longer cards: the rest of the space is lines for more examples */
+  .more {{ flex: 1; min-height: 0; display: flex; flex-direction: column; font-size: 12px; overflow: hidden; }}
+  .more .lines {{ flex: 1; background: repeating-linear-gradient(#fff 0 24px, #555 24px 25px); }}
 
   /* Teacher key: the filled-in answers */
   .ans {{ font-style: normal; font-weight: normal; color: #000; }}
   .ans b {{ color: var(--c, #000); }}
 
-  /* Bottom tab strip: keep the colored tab, cut off the striped parts */
-  .tabs {{ height: 0.55in; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1.5px dashed #000; }}
-  .tabs > div {{ display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; font-weight: bold; line-height: 1.1; }}
-  .tabs .keep {{ background: var(--band); color: #fff; border: 2px dashed #000; border-top: none; box-shadow: 0 0 0 3px #fff; position: relative; z-index: 1; }}
-  .tabs.all {{ display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }}
-  .tabs.all.gray span {{ background: #fff; padding: 3px 16px 3px 20px; border: 1.5px solid #111; }}
-
   /* Cover */
-  .cover h1 {{ font-size: 22px; }}
-  .cover .name-row {{ display: flex; gap: 10px; align-items: flex-end; font-size: 18px; font-weight: bold; }}
-  .cover .name-row .fill {{ flex: 1; border-bottom: 2px solid #000; height: 24px; }}
-  .calm {{ border: 2px dashed #000; padding: 5px 10px; font-size: 14px; }}
-  .calm b {{ font-size: 18px; }}
-  .ideas {{ display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid #000; font-size: 14px; }}
-  .ideas > div {{ padding: 4px 7px; }}
-  .ideas > div + div {{ border-left: 1.5px solid #000; }}
-  .ideas u {{ font-weight: bold; text-decoration: underline; text-decoration-thickness: 2px; }}
-  .cover .box {{ border: 1.5px solid #000; padding: 4px 9px; font-size: 14px; }}
-  .cover .box b.t {{ display: block; font-size: 14px; }}
-  .cover .two {{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }}
-
-  .stamps {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }}
-  .stamps > div {{ display: flex; align-items: center; gap: 6px; font-size: 14px; }}
-  .stamps svg {{ width: 0.7in; height: 0.3in; flex: none; }}
-  .colors {{ display: flex; gap: 12px; font-size: 14px; margin-top: 3px; }}
-  .colors span {{ display: inline-flex; align-items: center; gap: 4px; }}
-  .colors i {{ display: inline-block; width: 14px; height: 14px; border-radius: 3px; }}
-"""
-
-CSS += """
-.body { gap: 2px; padding-top: .29in; padding-bottom: .10in; }
-.tabs { flex-shrink: 0; }
-.forms { grid-template-rows: 25px repeat(3, 38px); }
-.timeline svg { height: .90in; }
-.draw-prompt { font-size: 13px; }
-.perfect-note { font-size: 12px; }
-.personal { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; font-size: 13px; }
-.personal span { border-bottom: 1px solid #555; min-height: 15px; }
-.personal span:last-child { grid-column: 1 / -1; }
-.say { font-size: 11px; color: #333; }
-.head { align-items: flex-end; }
-.head .use { font-size: 12px; flex: 1; max-width: 62%; display: flex; gap: 6px; align-items: flex-end; text-align: left; }
-.head .use b { white-space: nowrap; }
-.head .use .fill { flex: 1; border-bottom: 1.5px solid #000; min-height: 20px; }
-.forms .write { font-size: 13px; }
-.watch, .third, .words { font-size: 12px; }
-.cover .body { gap: 10px; padding-top: .32in; }
-.cover-heading { position: relative; }
-.eyebrow { font-size: 10px; letter-spacing: 2px; color: #555; margin-bottom: 4px; }
-.cover h1 { font-size: 28px; line-height: 1.05; }
-.subtitle { position: absolute; right: 0; bottom: 3px; font-size: 13px; }
-.stamp-guide { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid #111; border-bottom: 1px solid #aaa; padding: 8px 0; }
-.stamp-guide > div { display: flex; flex-direction: column; align-items: center; font-size: 12px; }
-.stamp-guide svg { width: 110px; height: 38px; }
-.stamp-guide span { font-size: 11px; color: #444; }
-.chooser > b, .verb-guide > b { font-size: 13px; }
-.choose-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; margin-top: 3px; border-top: 1.5px solid #111; }
-.choose-grid > div { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #bbb; padding: 4px 0; font-size: 11px; line-height: 1.2; }
-.choose-grid strong { white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
-.choose-grid i { font-style: normal; display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; color: #fff; font-size: 10px; background: var(--dot); }
-.choose-grid .present { --dot: #047857; }
-.choose-grid .past { --dot: #b45309; }
-.choose-grid .future { --dot: #1d4ed8; }
-.choose-grid .perfect { --dot: #b45309; }
-.choose-grid .perfect i { position: relative; z-index: 0; overflow: hidden; }
-.choose-grid .perfect i::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: #047857; z-index: -1; }
-.choose-grid .wide { grid-column: 1 / -1; }
-.verb-guide > div { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 5px; }
-.verb-guide span { font-size: 12px; }
-.verb-guide span b { display: block; font-size: 11px; margin-bottom: 2px; }
-.cover-bottom { display: flex; justify-content: space-between; font-size: 11px; margin-top: auto; }
-.assembly { font-size: 10px; color: #444; }
+  .cover .body {{ gap: 7px; }}
+  .eyebrow {{ font-size: 9px; letter-spacing: 2px; color: #555; }}
+  .cover h1 {{ font-size: 24px; line-height: 1.05; }}
+  .subtitle {{ font-size: 12px; color: #333; }}
+  .stamp-guide {{ display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid #111; border-bottom: 1px solid #aaa; padding: 3px 0 4px; }}
+  .stamp-guide > div {{ display: flex; flex-direction: column; align-items: center; text-align: center; font-size: 10px; line-height: 1.15; }}
+  .stamp-guide svg {{ width: 0.95in; height: 0.33in; }}
+  .stamp-guide span {{ font-size: 9px; color: #444; }}
+  .chooser > b, .verb-guide > b {{ font-size: 12px; }}
+  .choose-grid {{ border-top: 1.5px solid #111; margin-top: 2px; }}
+  .choose-grid > div {{ display: flex; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid #bbb; padding: 2px 0; font-size: 11px; line-height: 1.2; }}
+  .choose-grid strong {{ white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }}
+  .choose-grid i {{ font-style: normal; display: inline-grid; place-items: center; width: 15px; height: 15px; border-radius: 50%; color: #fff; font-size: 10px; background: var(--dot); position: relative; z-index: 0; overflow: hidden; }}
+  .choose-grid .present {{ --dot: {EMERALD_700}; }}
+  .choose-grid .past, .choose-grid .perfect {{ --dot: {AMBER_700}; }}
+  .choose-grid .future {{ --dot: {BLUE_700}; }}
+  .choose-grid .perfect i::before {{ content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 50%; background: {EMERALD_700}; z-index: -1; }}
+  .verb-guide > div {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 2px; }}
+  .verb-guide span {{ font-size: 10px; line-height: 1.2; }}
+  .verb-guide span b {{ display: block; font-size: 9px; }}
+  .cover-bottom {{ display: flex; justify-content: space-between; align-items: flex-end; font-size: 12px; margin-top: auto; gap: 10px; }}
+  .cover-bottom .fill {{ flex: 1; border-bottom: 1.5px solid #000; height: 18px; }}
+  .assembly {{ font-size: 9.5px; color: #333; line-height: 1.25; border-top: 1px solid #bbb; padding-top: 3px; }}
 """
 
 
-# Diagonal cut-off stripes, one line every 16 units, cropped to whatever box holds them
-STRIPES = ('<svg viewBox="0 0 1000 55" preserveAspectRatio="xMinYMid slice" aria-hidden="true">'
-           + "".join(f'<line x1="{x}" y1="60" x2="{x + 65}" y2="-5" stroke="#111" stroke-width="1.5"/>' for x in range(-70, 1000, 16))
+# Diagonal cut-off stripes, drawn as plain SVG lines: some PDF viewers can't show CSS gradient patterns.
+STRIPES = ('<svg viewBox="0 0 1000 300" preserveAspectRatio="xMinYMin slice" aria-hidden="true">'
+           + "".join(f'<line x1="{x}" y1="300" x2="{x + 300}" y2="0" stroke="#111" stroke-width="1.5"/>' for x in range(-300, 1000, 16))
            + "</svg>")
 
+BIND_STRIP = ('<div class="bind">' + "".join(f'<span class="staple" style="left:{x}in"></span>' for x in STAPLE_X)
+              + '<span class="note">staple here · don\'t write here</span></div>')
 
-def tabs(keep_index):
-    cells = []
-    for i, t in enumerate(TENSES):
-        if i == keep_index:
-            cells.append(f'<div class="keep">{t["tab"]}</div>')
-        else:
-            cells.append(f'<div class="gray">{STRIPES}</div>')
-    return f'<div class="tabs">{"".join(cells)}</div>'
+
+def tab(i, t):
+    return f'<div class="tab"><i>{i + 1}</i>{t["name"]}</div>'
 
 
 def fill(text, key):
@@ -395,7 +363,7 @@ def tense_card(i, t, key):
     columns = [(f, reg, irr) for (f, reg), irr in zip(t["forms"], IRREGULAR[t["name"]])]
     # Students pick their own verbs; the key shows work / eat as one example
     if key:
-        labels = ("Formula", "Regular <span>e.g. work · worked</span>", "Irregular <span>e.g. eat · ate · eaten</span>")
+        labels = ("Formula", "Regular <span>e.g. work</span>", "Irregular <span>e.g. eat</span>")
     else:
         labels = ("Formula", 'Regular <i class="vline"></i>', 'Irregular <i class="vline"></i>')
     rows = []
@@ -405,27 +373,30 @@ def tense_card(i, t, key):
             f'<div class="{r}"><span class="write">{fill(emphasize(col[n]), key)}</span></div>' for col in columns))
     third = ""
     if t.get("third"):
-        third = f'<div class="third"><b>he / she / it:</b><span class="fill">{fill(emphasize(t["third"]), key)}</span></div>'
+        third = f'<div class="line"><b>he / she / it:</b><span class="fill">{fill(emphasize(t["third"]), key)}</span></div>'
+    meaning = fill(t["use"], key) if key else '<span class="ln"></span><span class="ln"></span>'
     return f"""
-<section class="card z-{t["zone"]}">
-  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+<section class="card z-{t["zone"]}" style="height:{card_height(i + 1)}in">
+  {BIND_STRIP}
   <div class="body">
-    <div class="head"><h1>{i + 1}. {t["name"]}</h1><span class="use"><b>Meaning:</b><span class="fill">{fill(t["use"], key)}</span></span></div>
-    <div class="words"><b>Helpful time clues:</b><span class="fill">{fill(t["words"], key)}</span></div>
+    <div class="head"><h1>{i + 1}. {t["name"]}</h1></div>
+    <div class="meaning"><b>Meaning: what is it for?</b>{meaning}</div>
+    <div class="line"><b>Helpful time clues:</b><span class="fill">{fill(t["words"], key)}</span></div>
     <div class="draw-prompt"><b>Draw when:</b> {PROMPTS[i]}</div>
-    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.<br>Explain it.</span></span>
+    <div class="timeline"><span class="label">Timeline<span>Draw the stamp.</span></span>
       {timeline(marks)}
     </div>
 {note}
     <div class="forms">
-      <div class="h"></div><div class="h"><b class="s">+</b> Affirmative</div><div class="h"><b class="s">−</b> Negative</div><div class="h"><b class="s">?</b> Question</div>
+      <div class="h"></div><div class="h"><b class="s">+</b>Affirm.</div><div class="h"><b class="s">−</b>Negative</div><div class="h"><b class="s">?</b>Question</div>
       {"".join(rows)}
     </div>
     {third}
-    <div class="personal"><b>My sentence:</b><span></span><span></span></div>
+    <div class="line"><b>My sentence:</b><span class="fill"></span></div>
     <div class="watch"><b>Watch out!</b> {WATCH[t["name"]]}</div>
+    <div class="more"><b>More examples:</b><div class="lines"></div></div>
   </div>
-  {tabs(i)}
+  {tab(i, t)}
 </section>"""
 
 
@@ -437,8 +408,8 @@ def mini(kind, zone, position, x0):
 
 
 COVER = f"""
-<section class="card cover">
-  <span class="staple l"><i></i> staple</span><span class="staple r">staple <i></i></span>
+<section class="card cover" style="height:{card_height(0)}in">
+  {BIND_STRIP}
   <div class="body">
     <div class="cover-heading"><div class="eyebrow">MY ENGLISH TOOLKIT</div><h1>See the time.<br>Build the sentence.</h1><div class="subtitle">A flip book for 7 verb tenses</div></div>
     <div class="stamp-guide">
@@ -449,24 +420,33 @@ COVER = f"""
     </div>
     <div class="chooser"><b>What do you want to say?</b><div class="choose-grid">
       <div class="present"><span>Usually / a fact</span><strong><i>1</i>Present simple</strong></div>
-      <div class="present"><span>Happening now</span><strong><i>4</i>Present continuous</strong></div>
       <div class="past"><span>Finished in the past</span><strong><i>2</i>Past simple</strong></div>
-      <div class="past"><span>In progress in the past</span><strong><i>5</i>Past continuous</strong></div>
       <div class="future"><span>A prediction or promise</span><strong><i>3</i>Future simple</strong></div>
+      <div class="present"><span>Happening now</span><strong><i>4</i>Present continuous</strong></div>
+      <div class="past"><span>In progress in the past</span><strong><i>5</i>Past continuous</strong></div>
       <div class="future"><span>In progress in the future</span><strong><i>6</i>Future continuous</strong></div>
-      <div class="perfect wide"><span>Before now, connected to now</span><strong><i>7</i>Present perfect</strong></div>
+      <div class="perfect"><span>Before now, connected to now</span><strong><i>7</i>Present perfect</strong></div>
     </div></div>
-    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V1-s · he / she / it</b>works / eats</span><span><b>V-ing</b>working / eating</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past participle</b>worked / eaten</span></div></div>
-    <div class="cover-bottom"><span>Name: __________________________</span><span>Time clues help. Meaning comes first.</span></div>
-    <div class="assembly">Cut between cards. Cut off the striped parts. Stack cover, then 1–7. Staple at the top.</div>
+    <div class="verb-guide"><b>Know your verb forms</b><div><span><b>V1 · base</b>work / eat</span><span><b>V1-s · he/she/it</b>works / eats</span><span><b>V-ing</b>working / eating</span><span><b>V2 · past</b>worked / ate</span><span><b>V3 · past part.</b>worked / eaten</span></div></div>
+    <div class="cover-bottom"><b>Name:</b><span class="fill"></span></div>
+    <div class="assembly"><b>Make it:</b> 1. Cut off the striped part on every card. Cut on the thick line. 2. Stack: cover on top, then 1 to 7. Line up the tops. 3. Staple twice at the top.</div>
   </div>
-  <div class="tabs all gray">{STRIPES}<span>✂ cut off</span></div>
 </section>"""
+
+
+def half(card, k):
+    """One 5.5in x 8.5in half of a sheet: the card on top, the striped cut-off part below.
+    The left half also names the sheet, so the 4 piles are easy to tell apart."""
+    waste_h = 8.5 - card_height(k)
+    thin = " thin" if waste_h < 0.5 else ""
+    sheet = f'<span class="sheet-no">Sheet {k // 2 + 1} of 4</span>' if k % 2 == 0 else ""
+    return f'<div class="half">{card}<div class="waste{thin}">{STRIPES}<span>✂ cut off</span>{sheet}</div></div>'
 
 
 def build(key):
     cards = [COVER] + [tense_card(i, t, key) for i, t in enumerate(TENSES)]
-    sheets = "".join(f'<div class="sheet">{cards[k]}{cards[k + 1]}</div>' for k in range(0, len(cards), 2))
+    sheets = "".join(f'<div class="sheet">{half(cards[k], k)}{half(cards[k + 1], k + 1)}</div>'
+                     for k in range(0, len(cards), 2))
     title = "Pocket Verb Book Key" if key else "Pocket Verb Book"
     return f"""<!DOCTYPE html>
 <html lang="en">
