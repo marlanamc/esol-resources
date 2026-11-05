@@ -41,12 +41,15 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         "type" in parsedContent &&
         parsedContent.type === "weekly-quiz";
     const userRole = viewer.userRole;
-    const studentReliabilityOverlays = userRole === "student" ? (
+    // Every signed-in role can queue a submission (the outbox only needs a session),
+    // so every role needs the manager that replays it. Teachers and admins taking a
+    // quiz otherwise keep a queued attempt forever, and it blocks later attempts.
+    const studentReliabilityOverlays = (
         <>
-            <NetworkStatusBanner />
+            {userRole === "student" && <NetworkStatusBanner />}
             <SubmissionOutboxManager />
         </>
-    ) : null;
+    );
 
     // If activity is an external URL wrapper, redirect server-side to avoid flash
     // Skip for gerund-infinitive game - always show the game (bypasses maintenance redirect)
