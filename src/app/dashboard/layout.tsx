@@ -119,12 +119,9 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 {children}
             </div>
             <ServiceWorkerRegistration />
-            {session?.user?.role === "student" && (
-                <>
-                    <NetworkStatusBanner />
-                    <SubmissionOutboxManager />
-                </>
-            )}
+            {session?.user?.role === "student" && <NetworkStatusBanner />}
+            {/* Any role can queue work, so any role needs the replay manager. */}
+            <SubmissionOutboxManager />
             <BottomNav variant={learnerMode} showTeacherTab={canUseTeacherTools(session?.user)} />
         </div>
     );
