@@ -14,7 +14,7 @@ Usage: `/practice-log-corrections [class name] [since YYYY-MM-DD]`. Default sinc
 
 ## 1. Export (reads only)
 
-Confirm which database `DATABASE_URL` points at, then:
+Both study-log scripts load the live DB from the git-ignored `.env.production-db` (real class data), not the local `prisma dev` database in `.env`. Then:
 
 ```bash
 npx tsx scripts/study-log/export-unreplied.ts --class "<class>" --since <YYYY-MM-DD> --out tmp/practice-log/unreplied.json

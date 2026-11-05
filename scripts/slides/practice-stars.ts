@@ -25,8 +25,10 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Check } from "lucide-react";
 import { config as loadDotenv } from "dotenv";
+import { useLiveDatabase } from "../lib/use-live-db";
 import { chromium } from "@playwright/test";
 
+useLiveDatabase(); // real class data, not the local dev DB
 loadDotenv({ path: path.join(__dirname, "../../.env.local") });
 loadDotenv({ path: path.join(__dirname, "../../.env") });
 

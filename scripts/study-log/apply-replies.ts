@@ -15,10 +15,12 @@
  */
 import { readFileSync } from "node:fs";
 import { PrismaClient } from "@prisma/client";
+import { useLiveDatabase } from "../lib/use-live-db";
 import { isStudyLogReplyKind, parseStudyLogRecast } from "@/lib/learner/study-log";
 
 const { requireSafeDbTarget } = require("../lib/require-safe-db-target");
 
+useLiveDatabase();
 const prisma = new PrismaClient();
 
 function arg(name: string): string | undefined {

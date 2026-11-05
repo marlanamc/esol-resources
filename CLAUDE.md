@@ -7,6 +7,7 @@ My ESOL App is an ESOL (English for Speakers of Other Languages) learning platfo
 ## Commands
 - `npm run health:gate` (typecheck + lint + vitest + build) is the pre-merge check; `npm run test:critical` is the fast bundle.
 - **All `db:seed:*`, `import:*`, `delete:*`, and `prisma/*` / `scripts/db/*` scripts write to whatever `DATABASE_URL` points at, with no guard.** Confirm the target database before running one. `db:seed:full` is a destructive reset.
+- Local `.env` / `.env.local` point at a free `prisma dev` database (`localhost:51214`); start it with `npm run db:local` after a reboot. The live production URL lives only in git-ignored `.env.production-db`, read via `scripts/lib/use-live-db.ts` by the Monday slides and practice-log scripts. Prisma Postgres bills per query: never point local dev, builds, or tests at production.
 
 ## Conventions
 - Always use `@/` imports (`@/*` → `./src/*`).
