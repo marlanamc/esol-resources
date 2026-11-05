@@ -63,12 +63,13 @@ def page_images():
         subprocess.run(["pdftoppm", "-r", "110", "-png", "-f", "1", "-l", "1",
                         str(HERE / "pocket-verb-book.pdf"), f"{tmp}/p"], check=True)
         page = Image.open(next(Path(tmp).glob("p*.png"))).convert("RGB")
+    # Page 1 is landscape: cover on the left, card 1 on the right
     w, h = page.size
-    half = h // 2
+    mid, per_in = w // 2, h / 8.5
     crops = {
-        "tabs": page.crop((0, h - int(h * 0.075), w, h)),
-        "staple": page.crop((0, half, w, half + int(h * 0.075))),
-        "card": page.crop((0, half, w, h)),
+        "cutoff": page.crop((mid + 2, 0, w, h)),
+        "staple": page.crop((mid + 2, 0, w, int(per_in * 1.1))),
+        "card": page.crop((mid + 2, 0, w, int(per_in * book.card_height(1)))),
     }
     out = {}
     for name, im in crops.items():
@@ -90,35 +91,40 @@ def stamped_timeline(i, t):
 
 
 def tabs_svg():
-    """The finished book from the front: cover on top, all 7 tabs showing underneath."""
+    """The finished book from the front: cover on top, the 7 tabs stepping down underneath."""
     colors = {"past": book.AMBER_700, "present": book.EMERALD_700, "future": book.BLUE_700}
-    cells = []
-    tw = 100
-    for k, t in enumerate(book.TENSES):
-        x = k * tw
-        label = t["tab"].split("<br>")
+    u, width = 60, 5.5 * 60
+    parts = []
+    for k in range(7, 0, -1):
+        t = book.TENSES[k - 1]
+        hgt = book.card_height(k) * u
+        tab_y, tab_h = hgt - book.STEP * u, book.STEP * u
         if t["zone"] == "perfect":
-            fill = (f'<rect x="{x + 3}" y="250" width="{(tw - 6) / 2}" height="64" fill="{book.AMBER_700}"/>'
-                    f'<rect x="{x + 3 + (tw - 6) / 2}" y="250" width="{(tw - 6) / 2}" height="64" fill="{book.EMERALD_700}"/>')
+            band = (f'<rect x="0" y="{tab_y}" width="{width / 2}" height="{tab_h}" fill="{book.AMBER_700}"/>'
+                    f'<rect x="{width / 2}" y="{tab_y}" width="{width / 2}" height="{tab_h}" fill="{book.EMERALD_700}"/>')
         else:
-            fill = f'<rect x="{x + 3}" y="250" width="{tw - 6}" height="64" fill="{colors[t["zone"]]}"/>'
-        cells.append(fill + f'<text x="{x + tw / 2}" y="277" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">{label[0]}</text>'
-                     f'<text x="{x + tw / 2}" y="296" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">{label[1]}</text>')
-    return f"""<svg viewBox="-10 -10 720 340" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" role="img" aria-label="The finished book: the cover on top and 7 colored tabs in a row at the bottom">
-      <rect x="0" y="0" width="700" height="250" fill="#fff" stroke="#141414" stroke-width="3"/>
-      <rect x="110" y="-6" width="40" height="12" fill="#141414"/><rect x="550" y="-6" width="40" height="12" fill="#141414"/>
-      <text x="350" y="110" text-anchor="middle" font-size="34" font-weight="700" fill="#141414">See the time.</text>
-      <text x="350" y="152" text-anchor="middle" font-size="34" font-weight="700" fill="#141414">Build the sentence.</text>
-      <text x="350" y="205" text-anchor="middle" font-size="18" fill="#444">Name: ______________</text>
-      {"".join(cells)}
+            band = f'<rect x="0" y="{tab_y}" width="{width}" height="{tab_h}" fill="{colors[t["zone"]]}"/>'
+        parts.append(f'<rect x="0" y="0" width="{width}" height="{hgt}" fill="#fff" stroke="#141414" stroke-width="2"/>{band}'
+                     f'<text x="16" y="{tab_y + tab_h / 2 + 6}" fill="#fff" font-size="17" font-weight="700">{k} · {t["name"]}</text>')
+    cover_h = book.card_height(0) * u
+    staples = "".join(f'<rect x="{x * u - 15}" y="{book.STAPLE_Y * u - 3}" width="30" height="6" fill="#141414"/>'
+                      for x in book.STAPLE_X)
+    total = book.card_height(7) * u
+    return f"""<svg viewBox="-10 -10 {width + 20} {total + 20}" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" role="img" aria-label="The finished book: the cover on top, 2 staples at the top, and 7 colored tabs stepping down underneath">
+      {"".join(parts)}
+      <rect x="0" y="0" width="{width}" height="{cover_h}" fill="#fff" stroke="#141414" stroke-width="3"/>
+      <text x="{width / 2}" y="130" text-anchor="middle" font-size="26" font-weight="700" fill="#141414">See the time.</text>
+      <text x="{width / 2}" y="164" text-anchor="middle" font-size="26" font-weight="700" fill="#141414">Build the sentence.</text>
+      <text x="{width / 2}" y="250" text-anchor="middle" font-size="16" fill="#444">Name: ______________</text>
+      {staples}
     </svg>"""
 
 
-def piles():
-    """The 8 piles on the table, in the order students pick them up."""
-    names = ["Cover"] + [f"{k + 1}<small>{t['name']}</small>" for k, t in enumerate(book.TENSES)]
+def card_set():
+    """The 8 cards each student gets, in order."""
+    names = ["Cover"] + [f"{k + 1} · {t['name']}" for k, t in enumerate(book.TENSES)]
     zones = [""] + [t["zone"] for t in book.TENSES]
-    return "".join(f'<div class="pile z-{z}">{n}</div>' if z else f'<div class="pile">{n}</div>' for n, z in zip(names, zones))
+    return "".join(f'<span class="z-{z}">{n}</span>' if z else f'<span>{n}</span>' for n, z in zip(names, zones))
 
 
 def slide(cls, label, body, zone=""):
@@ -194,24 +200,22 @@ def build():
 <p class="sub">7 verb tenses. One small book. You write it.</p>"""),
         slide("steps", "You need", """<h2>You need</h2>
 <ol><li><b>8 cards</b> (cover + 1 to 7)</li><li><b>Scissors</b></li><li><b>A pencil</b></li><li><b>A stapler</b> (we share)</li></ol>"""),
-        slide("build", "Step 1: take your cards", f"""<p class="kicker">Make the book · Step 1</p>
-<h2>Take one card from each pile.</h2>
-<p class="big-text">Go in order: <b>Cover, 1, 2, 3, 4, 5, 6, 7</b>.</p>
-<div class="piles">{piles()}</div>
-<p class="step big-text">Check: Do you have <b>8 cards</b>? The cover is on top.</p>"""),
+        slide("build", "Step 1: check your cards", f"""<p class="kicker">Make the book · Step 1</p>
+<h2>Check your cards.</h2>
+<p class="big-text">You have <b>8 cards</b>. Put them in order.</p>
+<div class="card-set">{card_set()}</div>"""),
         slide("build", "Step 2: tabs", f"""<p class="kicker">Make the book · Step 2</p>
-<h2>Cut off the striped parts.</h2>
-<img class="pic wide" src="{img["tabs"]}" alt="The bottom strip of card 1: one green tab and six striped parts">
-<p class="big-text">Keep the <b>colored tab</b>. Cut off the <b>stripes</b> ✂.</p>
-<p class="step warn"><b>Careful!</b> Don't cut off your colored tab. Every card has its tab in a different place.</p>"""),
-        slide("build", "Step 3: check", f"""<p class="kicker">Make the book · Step 3</p>
-<h2>Check your book.</h2>
-<div class="svgbox">{tabs_svg()}</div>
-<p class="step big-text">Can you see <b>all 7 tabs</b>? If not, check the order.</p>"""),
+<h2>Cut off the stripes.</h2>
+<div class="pic-row"><img class="pic tall" src="{img["cutoff"]}" alt="Card 1 with its green bar at the bottom, a thick black line, and a striped part under the line">
+<div class="pic-text"><p>Cut on the <b>thick black line</b> ✂.</p><p>Keep the <b>colored bar</b>. It is your tab.</p><p>Do it on <b>all 7 tense cards</b> and the cover.</p><p class="step warn"><b>Careful!</b> Every card is a different length. Cut on the line.</p></div></div>"""),
+        slide("build", "Step 3: stack", f"""<p class="kicker">Make the book · Step 3</p>
+<h2>Stack your cards.</h2>
+<div class="pic-row"><div class="svgbox">{tabs_svg()}</div>
+<div class="pic-text"><p>Cover on top, then <b>1, 2, 3 … 7</b>.</p><p><b>Line up the tops.</b></p><p class="step">Can you see <b>all 7 tabs</b>? If not, check the order.</p></div></div>"""),
         slide("build", "Step 4: staple", f"""<p class="kicker">Make the book · Step 4</p>
 <h2>Staple at the top.</h2>
-<img class="pic wide" src="{img["staple"]}" alt="The top of a card with two staple marks, one on the left and one on the right">
-<p class="big-text"><b>2 staples</b>: one on the left, one on the right.</p>
+<img class="pic wide" src="{img["staple"]}" alt="The gray strip at the top of a card with two staple marks, one on the left and one on the right">
+<p class="big-text"><b>2 staples</b> in the gray strip: one on the left, one on the right.</p>
 <p class="step big-text">Write your <b>name</b> on the cover.</p>"""),
         slide("cover-tour", "The cover", f"""<p class="kicker">The cover</p>
 <h2>Four stamps</h2>
@@ -312,9 +316,10 @@ h2 { font-size: 2.2em; margin: 0 0 .2em; line-height: 1.15; }
 .warn { margin: 0; font-size: 1.3em; border-left: .3em solid var(--bad); padding: .2em .6em; background: var(--panel); }
 .svgbox { flex: 1; min-height: 0; display: flex; justify-content: center; }
 .svgbox svg { height: 100%; max-width: 100%; }
-.piles { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5vmin 3vmin; align-content: center; padding-right: 1em; }
-.pile { aspect-ratio: 8.5 / 5.5; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 1.6em; font-weight: 700; line-height: 1.1; background: #fff; color: #141414; border: 3px solid #141414; border-top: .5em solid var(--c, #141414); border-radius: .2em; box-shadow: .25em .25em 0 #bbb, .5em .5em 0 #ddd; }
-.pile small { display: block; font-size: .5em; font-weight: 400; margin-top: .2em; }
+.pic-row .svgbox { flex: 0 1 auto; height: 100%; }
+.pic-row .svgbox svg { width: auto; }
+.card-set { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5vmin 3vmin; align-content: center; }
+.card-set span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 3.2em; background: #fff; border: 3px solid #141414; border-bottom: .5em solid var(--c, #141414); border-radius: .2em; padding: .3em .5em; font-size: 1.3em; font-weight: 700; line-height: 1.15; }
 .parts { font-size: 1.5em; margin: 0; padding-left: 1.3em; display: grid; gap: .35em; }
 
 .stamps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2vmin; background: #fff; color: #141414; border: 3px solid #141414; border-radius: .4em; padding: 1em .5em; margin-bottom: .4em; }

@@ -108,10 +108,11 @@
   .mouth svg { width: 92px; height: 92px; flex: none; }
   .mouth .big { font-size: 40px; font-weight: bold; line-height: 1; }
   .mouth p { font-size: 16px; }
-  table.pairs { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
-  table.pairs td { border: 1.5px solid #000; padding: 6px 10px; font-size: 20px; text-align: center; }
-  table.pairs td.n { font-size: 16px; font-weight: bold; width: 8%; }
-  table.pairs td small { display: block; font-size: 14px; }
+  table.pairs { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 6px; }
+  table.pairs td { border: 1.5px solid #000; padding: 6px 6px; height: 58px; font-size: 20px; text-align: center; vertical-align: middle; line-height: 1.15; }
+  table.pairs td.n { font-size: 16px; font-weight: bold; width: 6%; background: #f2f2f2; }
+  table.pairs td.gap { width: 4%; border: none; }
+  table.pairs td small { display: block; font-size: 12px; margin-top: 2px; }
   ol.read-aloud { padding-left: 1.4em; }
   ol.read-aloud li { font-size: 20px; margin-bottom: 8px; }
 
@@ -371,16 +372,16 @@
     <h2>A. Listen and circle</h2>
     <p class="how">Your teacher says <b>one</b> word. Circle the word you hear.</p>
     <table class="pairs">
-      <tr><td class="n">1</td><td>boat</td><td class="hit">vote</td><td class="n">5</td><td class="hit">bet</td><td>vet<small>animal doctor</small></td></tr>
-      <tr><td class="n">2</td><td class="hit">best</td><td>vest</td><td class="n">6</td><td>base</td><td class="hit">vase<small>for flowers</small></td></tr>
-      <tr><td class="n">3</td><td>ban</td><td class="hit">van</td><td class="n">7</td><td class="hit">curb<small>edge of the street</small></td><td>curve<small>a bend in the road</small></td></tr>
-      <tr><td class="n">4</td><td>berry</td><td class="hit">very</td><td class="n">8</td><td>bent</td><td class="hit">vent<small>air comes out</small></td></tr>
+      <tr><td class="n">1</td><td>boat</td><td class="hit">vote</td><td class="gap"></td><td class="n">5</td><td class="hit">bet</td><td>vet<small>animal doctor</small></td></tr>
+      <tr><td class="n">2</td><td class="hit">best</td><td>vest</td><td class="gap"></td><td class="n">6</td><td>base</td><td class="hit">vase<small>for flowers</small></td></tr>
+      <tr><td class="n">3</td><td>ban</td><td class="hit">van</td><td class="gap"></td><td class="n">7</td><td class="hit">curb<small>edge of the street</small></td><td>curve<small>a bend in the road</small></td></tr>
+      <tr><td class="n">4</td><td>berry</td><td class="hit">very</td><td class="gap"></td><td class="n">8</td><td>bent</td><td class="hit">vent<small>air comes out</small></td></tr>
     </table>
   </div>
 
   <div class="task">
-    <h2>B. Your turn: partner game</h2>
-    <p class="how">Use the same words. <b>Partner A</b> says one word. <b>Partner B</b> points to it. Right? Switch. Wrong? Try again slowly.</p>
+    <h2>B. Your turn: group game</h2>
+    <p class="how">Use the same words. <b>One person</b> says a word. <b>Everyone</b> points to it. Same word? Good! Different words? Say it again slowly. Then the <b>next person</b> says a word.</p>
   </div>
 
   <div class="task">

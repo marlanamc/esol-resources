@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 8 Station 2: SPEAK Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  /* Guide for the adult who leads Station 2. Built to be scanned:
+     one line to say, the answers, and at most two short notes per step. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.42in 0.55in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 24px; }
+  h2 { font-size: 15px; margin-bottom: 3px; }
+  .tag { font-size: 12px; white-space: nowrap; }
+
+  .goal { font-size: 15px; margin-bottom: 8px; }
+  .sounds { display: flex; gap: 12px; margin-bottom: 12px; }
+  .sound { flex: 1; display: flex; align-items: center; gap: 12px; border: 1.5px solid #000; padding: 6px 12px; }
+  .sound .big { font-size: 34px; font-weight: bold; line-height: 1; }
+  .sound p { font-size: 14px; }
+
+  .steps { border-top: 1.5px solid #000; }
+  .step { display: flex; border: 1.5px solid #000; border-top: none; }
+  .step .t { width: 70px; flex: none; border-right: 1.5px solid #000; padding: 6px; text-align: center; background: #f2f2f2; }
+  .step .t b { display: block; font-size: 17px; }
+  .step .t span { font-size: 12px; }
+  .step .b { flex: 1; padding: 6px 10px; }
+  .step .name { font-weight: bold; font-size: 15px; }
+  .say { margin: 2px 0; }
+  .say b { display: inline-block; background: #000; color: #fff; padding: 0 5px; margin-right: 5px; font-size: 12px; border-radius: 2px; }
+  .say i { font-size: 15px; }
+  ul.notes { padding-left: 1.1em; }
+  ul.notes li { margin-bottom: 1px; }
+  .row { display: flex; gap: 20px; align-items: center; }
+  table.words { border-collapse: collapse; flex: none; }
+  table.words td { border: 1.5px solid #000; padding: 2px 10px; font-size: 15px; }
+  table.words td.n { font-weight: bold; background: #f2f2f2; }
+  table.words td.ans { font-weight: bold; }
+  .sent { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 20px; margin-top: 2px; }
+
+  .bottom { display: flex; gap: 12px; margin-top: 12px; }
+  .bottom > div { flex: 1; border: 1.5px solid #000; padding: 7px 12px; }
+  .recast { border-left: 3px solid #000; padding: 2px 8px; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="header-row">
+    <h1>Station 2: SPEAK (B and V) &middot; Guide</h1>
+    <span class="tag">Week 8 &middot; Tue 11/3/26 &middot; packet pages 4&ndash;5</span>
+  </div>
+
+  <p class="goal"><b>Goal:</b> learners <b>hear</b> the difference between B and V, then <b>make</b> it. No grammar teaching needed.</p>
+
+  <div class="sounds">
+    <div class="sound"><div class="big">B</div><p><b>Lips together</b>, then pop.<br>No buzz. <i>boat</i></p></div>
+    <div class="sound"><div class="big">V</div><p><b>Top teeth on bottom lip.</b><br>Buzz! <i>vote</i></p></div>
+  </div>
+
+  <div class="steps">
+  <div class="step">
+    <div class="t"><b>3 min</b><span>page 4</span></div>
+    <div class="b">
+      <div class="name">Lips or teeth?</div>
+      <p class="say"><b>SAY</b><i>&ldquo;B: lips together. Boat. V: teeth on your lip. Buzz. Vote.&rdquo;</i></p>
+      <ul class="notes"><li>Show it big with your mouth. They watch their mouth in the phone camera.</li></ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="t"><b>5 min</b><span>Part A</span></div>
+    <div class="b">
+      <div class="name">A. Listen and circle</div>
+      <p class="say"><b>SAY</b><i>&ldquo;I say one word. Circle the word you hear.&rdquo;</i></p>
+      <div class="row">
+        <table class="words">
+          <tr><td class="n">1</td><td class="ans">vote</td><td class="n">5</td><td class="ans">bet</td></tr>
+          <tr><td class="n">2</td><td class="ans">best</td><td class="n">6</td><td class="ans">vase</td></tr>
+          <tr><td class="n">3</td><td class="ans">van</td><td class="n">7</td><td class="ans">curb</td></tr>
+          <tr><td class="n">4</td><td class="ans">very</td><td class="n">8</td><td class="ans">vent</td></tr>
+        </table>
+        <ul class="notes">
+          <li>Say each word <b>twice</b>, at normal speed.</li>
+          <li>Then check answers: <i>&ldquo;Lips or teeth?&rdquo;</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="t"><b>4 min</b><span>Part B</span></div>
+    <div class="b">
+      <div class="name">B. Group game</div>
+      <p class="say"><b>SAY</b><i>&ldquo;You say one word. Everyone points to it.&rdquo;</i></p>
+      <ul class="notes"><li>You go first. Then go around the table.</li></ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="t"><b>3 min</b><span>Part C</span></div>
+    <div class="b">
+      <div class="name">C. Which sentence?</div>
+      <p class="say"><b>SAY</b><i>&ldquo;I say a sentence. Circle a or b.&rdquo;</i> Read each one twice:</p>
+      <div class="sent">
+        <div>1. They counted the votes. <b>(b)</b></div>
+        <div>3. Take my dog to the vet. <b>(a)</b></div>
+        <div>2. This is my best one. <b>(a)</b></div>
+        <div>4. Park near the curve. <b>(b)</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="t"><b>5 min</b><span>page 5</span></div>
+    <div class="b">
+      <div class="name">D. Read aloud</div>
+      <ul class="notes">
+        <li>Go around the table. One sentence each.</li>
+        <li>Fix <b>only</b> B and V. Let other mistakes go.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="t"><b>5 min</b><span>Part E</span></div>
+    <div class="b">
+      <div class="name">E. Talk together</div>
+      <ul class="notes">
+        <li>Read a question. Everyone answers. Ask <i>&ldquo;Why?&rdquo;</i> to keep them talking.</li>
+        <li><b>Don&rsquo;t stop them</b> to correct here. Repeat it back the right way.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <div class="bottom">
+    <div>
+      <h2>When they say it wrong</h2>
+      <ul class="notes">
+        <li>Point to your <b>lips</b> (B) or <b>teeth</b> (V).</li>
+        <li>Fix <b>one word</b>. Move on. Keep it light.</li>
+      </ul>
+      <div class="recast">
+        &ldquo;I buy <u>bejetables</u>.&rdquo; &rarr; &ldquo;Oh, you buy <b>v</b>egetables? Which ones?&rdquo;
+      </div>
+    </div>
+    <div>
+      <h2>If&hellip;</h2>
+      <ul class="notes">
+        <li><b>Too hard:</b> they repeat after you, word by word.</li>
+        <li><b>Finish early:</b> play <b>B vs V Minimal Pair Lab</b> in the app on the tablet.</li>
+        <li><b>Someone is shy:</b> read the sentence together.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
