@@ -2,15 +2,17 @@
 """Build the Modals Choice Meter: a stand-up accordion book + situation cards to sort.
 
 Different from the pocket verb book (stapled flip cards) and the conditionals book
-(split pages): nothing is stapled. Two landscape sheets are taped end to end into one
-long strip of 8 tall panels and folded zigzag, so the book stands up on the desk.
+(split pages): nothing is stapled or taped. One landscape sheet, printed double-sided
+(flip on short edge), holds 8 tall panels: 4 on the front, 4 on the back. Folded zigzag,
+it stands up on the desk with green panels on one side and yellow/red on the other;
+turned over, "should" sits right behind "don't have to", so the line keeps going.
 The panels run from green (you choose) to red (no choice), the same "How much choice
 do you have?" line as the can-should-must phrase bank. Each panel has a word bank to build examples. Sheet 3 is 16 situation cards:
 students stand the book up, put each card in front of the right panel, and say the
 sentence ("You must wear a seatbelt.").
 
     python3 build-modals-choice-meter.py
-writes modals-choice-meter.html (3 student sheets) and modals-choice-meter-key.html
+writes modals-choice-meter.html (2 student sheets: pages 1-2 = one double-sided sheet, page 3 = cards) and modals-choice-meter-key.html
 (1 teacher page), plus PDFs if Chrome is found.
 """
 import shutil
@@ -223,8 +225,8 @@ def cover():
       <b>Only</b> have to changes:<br>I <b>have to</b> · she <b>has to</b></div>
     <div class="rule"><h3>Questions: the modal goes first</h3><span style="font-size:10.5px">(have to uses <b>do</b>)</span><br><b>Can</b> I park here?<br><b>May</b> I come in?<br><b>Should</b> I call back?<br><b>Do</b> I <b>have to</b> pay now?<br><s>Do you can help me?</s></div>
     <div class="name">Name:<span class="wl"></span></div>
-    <div class="make"><b>Make it:</b><ol><li>Tape sheet 2 to the right side of sheet 1 (on the back).</li>
-      <li>Fold on every dashed line: in, out, in, out.</li><li>Stand it up. Sort the cards!</li></ol></div>
+    <div class="make"><b>Make it:</b><ol><li>Fold on every dashed line: in, out, in.</li>
+      <li>Stand it up. Green side to you, red side to your partner.</li><li>Sort the cards! Then turn it around.</li></ol></div>
   </div>"""
 
 
@@ -234,8 +236,8 @@ def sheet(panels, note_left="", note_right=""):
 
 def build_student():
     ps = [cover()] + [panel(p) for p in PANELS]
-    s1 = sheet(ps[:4], note_right='<span class="edge-note" style="right:0.3in">sheet 1 · tape sheet 2 here →</span>')
-    s2 = sheet(ps[4:], note_left='<span class="edge-note" style="left:0.3in">← sheet 2 · tape to sheet 1</span>')
+    s1 = sheet(ps[:4], note_right='<span class="edge-note" style="right:0.3in">turn over for more →</span>')
+    s2 = sheet(ps[4:], note_left='<span class="edge-note" style="left:0.3in">← the back of &ldquo;don&rsquo;t have to&rdquo;</span>')
     cards = []
     for i, (text, _, _) in enumerate(CARDS):
         if text:
@@ -252,13 +254,13 @@ def build_key():
                    for i, (t, a, b) in enumerate(CARDS) if t)
     return doc("Modals Choice Meter Key", f"""<div class="key">
   <h1>The Choice Meter · Teacher Page</h1>
-  <p>Print the 3 student sheets <b>landscape, one-sided, in color</b>. Sheets 1–2 are the accordion; sheet 3 is the cards (one cutter pass: 3 cuts each way).</p>
+  <p>Print <b>landscape, double-sided, flip on short edge, in color</b>: 2 sheets per student. Sheet 1 (pages 1–2) is the book, front and back. Sheet 2 is the cards, one-sided (one cutter pass: 3 cuts each way). <b>Print one copy first</b> and check that <i>should</i> is on the back of <i>don't have to</i>. If the back is upside down, switch to flip on long edge.</p>
   <h2>Put it together (about 5 minutes)</h2>
-  <ol><li>Lay sheet 1 and sheet 2 face up, side by side. Put tape on the back where they meet. The panels go cover, can, may, don't have to, should, have to, must, must not.</li>
-    <li>Fold on every dashed line, zigzag (in, out, in, out). It stands up like a fence.</li>
+  <ol><li>Fold the book sheet on the 3 dashed lines, zigzag (in, out, in). It stands up like a fence. No tape, no staples.</li>
+    <li>Front side (green): cover, can, may, don't have to. Back side (yellow/red): should, have to, must, must not. Turn it over and <i>should</i> is right behind <i>don't have to</i>.</li>
     <li>Cut out the 16 cards. Write a name or initials on the back.</li></ol>
   <h2>Games</h2>
-  <ol><li><b>Sort it.</b> Stand the book up. Put each card in front of a panel and say the sentence: <i>You must wear a seatbelt.</i> Pick a subject for each card: I, you, she…</li>
+  <ol><li><b>Sort it.</b> Stand the book up between two partners: one sees the green side, one sees the red side. Each partner sorts cards on their side, then turn it around and check. Put each card in front of a panel and say the sentence: <i>You must wear a seatbelt.</i> Pick a subject for each card: I, you, she…</li>
     <li><b>Argue it.</b> Partners compare. Different panel? Explain why. Some cards fit two panels (see the right column), and that's good talk.</li>
     <li><b>Blank cards.</b> Each student writes a rule from their own life: work, home, the clinic, their country. The partner sorts it.</li>
     <li><b>True or false?</b> Use the "Build an example" box on each panel. Write one true sentence and one false sentence about you. Your partner guesses: <i>I have to wear a uniform. False!</i></li></ol>
