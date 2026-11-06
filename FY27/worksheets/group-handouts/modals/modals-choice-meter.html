@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modals Choice Meter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #000; background: #fff;
+         font-size: 12px; line-height: 1.3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; }
+                  .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter landscape; margin: 0; } }
+  .sheet { width: 11in; height: 8.5in; overflow: hidden; display: flex; position: relative; page-break-after: always; break-after: page; }
+
+  /* Accordion panels: 4 per sheet, folded zigzag on the dashed lines */
+  .panel { width: 2.75in; height: 8.5in; flex: none; position: relative; padding: 0.3in 0.16in 0.3in; display: flex; flex-direction: column; gap: 7px; }
+  .panel + .panel { border-left: 1.5px dashed #000; }
+  .panel + .panel::before { content: "fold"; position: absolute; top: 4.1in; left: -13px; writing-mode: vertical-rl; background: #fff; font-size: 10px; padding: 3px 0; color: #333; }
+  .panel:first-child { padding-left: 0.3in; }
+  .panel:last-child { padding-right: 0.3in; }
+  .edge-note { position: absolute; top: 0.08in; font-size: 9px; color: #444; }
+
+  .lvl { --c: #000; --bg: #fff; }
+  .light { background: var(--c); color: #fff; border-radius: 7px; padding: 5px 8px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: bold; letter-spacing: 0.8px; }
+  .light .dots { display: flex; gap: 3px; margin-left: auto; }
+  .light .dots span { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid #fff; }
+  .light .dots span.on { background: #fff; }
+  .word { font-size: 34px; font-weight: bold; color: var(--c); line-height: 1.02; min-height: 0.75in; display: flex; align-items: flex-end; }
+  .word.small { font-size: 27px; }
+  .meaning { background: var(--bg); border: 2px solid var(--c); border-radius: 7px; padding: 5px 8px; font-size: 13px; line-height: 1.3; }
+  .examples { display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
+  .examples div::before { content: "▸ "; color: var(--c); }
+  .examples b, .forms b, .meaning b { color: var(--c); }
+  .forms { font-size: 12px; color: #222; }
+  .watch { border: 1.5px dashed var(--c); border-radius: 6px; padding: 4px 7px; font-size: 11.5px; background: var(--bg); }
+  .mine { font-size: 12px; font-weight: bold; margin-top: 2px; }
+  .wl { display: block; height: 0.36in; border-bottom: 1.5px solid #000; flex: none; }
+  .sign { flex: 1; min-height: 0.9in; border: 2px dashed var(--c); border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 10px; color: #444; text-align: center; }
+  .cards-here { border-top: 3px solid var(--c); padding-top: 3px; text-align: center; font-size: 11px; font-weight: bold; color: var(--c); }
+
+  /* Cover panel */
+  .eyebrow { font-size: 9px; letter-spacing: 2px; color: #555; }
+  .title { font-size: 30px; line-height: 1.02; }
+  .subtitle { font-size: 13px; }
+  .meter { display: flex; flex-direction: column; gap: 4px; }
+  .meter > div { border-radius: 6px; padding: 4px 8px; color: #fff; font-weight: bold; font-size: 12px; letter-spacing: 0.5px; background: var(--c); }
+  .meter span { display: block; font-weight: normal; font-size: 12px; letter-spacing: 0; }
+  .meter-arrow { font-size: 10px; color: #444; text-align: center; }
+  .rule { border: 2px solid #000; border-radius: 7px; padding: 5px 8px; font-size: 12px; line-height: 1.35; }
+  .rule h3 { font-size: 13px; margin-bottom: 2px; }
+  .rule s { text-decoration-thickness: 2px; }
+  .name { font-size: 13px; font-weight: bold; }
+  .make { font-size: 10.5px; line-height: 1.3; margin-top: auto; border-top: 1.5px solid #000; padding-top: 4px; }
+  .make ol { padding-left: 14px; }
+
+  /* Situation cards: 4 x 4, cut on the solid lines */
+  .cards { display: grid; grid-template-columns: repeat(4, 2.75in); grid-template-rows: repeat(4, 2.125in); }
+  .card { border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; padding: 0.3in 0.25in 0.15in; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px; position: relative; }
+  .card:nth-child(4n) { border-right: none; }
+  .card:nth-child(n+13) { border-bottom: none; padding-bottom: 0.3in; }
+  .card .t { font-size: 17px; font-weight: bold; line-height: 1.2; }
+  .card .t i { font-weight: normal; font-size: 12px; font-style: normal; color: #333; }
+  .card .n { position: absolute; top: 0.12in; left: 0.15in; font-size: 9px; color: #666; }
+  .card:nth-child(4n+1) .n { left: 0.3in; }
+  .card:nth-child(-n+4) .n { top: 0.3in; }
+  .card .who { font-size: 11px; color: #444; }
+  .card .wl { width: 100%; height: 0.32in; }
+  .card .cut { position: absolute; right: 4px; bottom: 2px; font-size: 9px; }
+
+  /* Teacher key (portrait) */
+  .key { width: 8.5in; height: 11in; padding: 0.5in 0.55in; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+  @media print { .key-doc { } }
+  .key h1 { font-size: 22px; }
+  .key h2 { font-size: 16px; border-bottom: 2px solid #000; padding-bottom: 2px; margin-top: 4px; }
+  .key table { border-collapse: collapse; width: 100%; }
+  .key td, .key th { border: 1px solid #000; padding: 3px 7px; text-align: left; font-size: 12.5px; }
+  .key th { background: #eee; }
+  .key ol { padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+
+  @media print {  }
+  </style>
+</head>
+<body>
+<div class="sheet"><div class="panel">
+    <div><div class="eyebrow">MY ENGLISH TOOLKIT</div><div class="title">The<br>Choice<br>Meter</div></div>
+    <div class="subtitle"><b>Modals:</b> How much choice do you have?</div>
+    <div class="meter"><div style="--c:#15803d">YOU CHOOSE<span>can · may · don't have to</span></div><div style="--c:#a16207">GOOD IDEA?<span>should · shouldn't</span></div><div style="--c:#b91c1c">NO CHOICE<span>have to · must · must not · can't</span></div></div>
+    <div class="rule"><h3>Modal + V1</h3>No <b>to</b>. No <b>-s</b>.<br>She <b>can</b> drive.<br><s>She can to drive.</s> <s>She cans drive.</s><br>
+      <b>Only</b> have to changes:<br>I <b>have to</b> · she <b>has to</b></div>
+    <div class="rule"><h3>Questions: the modal goes first</h3><span style="font-size:10.5px">(have to uses <b>do</b>)</span><br><b>Can</b> I park here?<br><b>May</b> I come in?<br><b>Should</b> I call back?<br><b>Do</b> I <b>have to</b> pay now?<br><s>Do you can help me?</s></div>
+    <div class="name">Name:<span class="wl"></span></div>
+    <div class="make"><b>Make it:</b><ol><li>Tape sheet 2 to the right side of sheet 1 (on the back).</li>
+      <li>Fold on every dashed line: in, out, in, out.</li><li>Stand it up. Sort the cards!</li></ol></div>
+  </div><div class="panel lvl" style="--c:#15803d;--bg:#dcfce7">
+    <div class="light">YOU CHOOSE<span class="dots"><span class="on"></span><span class=""></span><span class=""></span></span></div>
+    <div class="word">can</div>
+    <div class="meaning">It's possible. It's OK. I am able.</div>
+    <div class="examples"><div>I <b>can</b> speak Spanish.</div><div>You <b>can</b> park here after 6.</div></div>
+    <div class="forms"><b>?</b> <b>Can</b> I sit here?</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><div class="panel lvl" style="--c:#15803d;--bg:#dcfce7">
+    <div class="light">YOU CHOOSE<span class="dots"><span class="on"></span><span class=""></span><span class=""></span></span></div>
+    <div class="word">may</div>
+    <div class="meaning">Polite: Is it OK? Use it with a teacher, a boss, or a doctor.</div>
+    <div class="examples"><div><b>May</b> I leave early today?</div><div>Yes, you <b>may</b>.</div></div>
+    <div class="forms"><b>may</b> is more polite than <b>can</b>.</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><div class="panel lvl" style="--c:#15803d;--bg:#dcfce7">
+    <div class="light">YOU CHOOSE<span class="dots"><span class="on"></span><span class=""></span><span class=""></span></span></div>
+    <div class="word small">don't have to</div>
+    <div class="meaning">Not needed. You choose. It's OK to do it, and OK not to do it.</div>
+    <div class="examples"><div>I <b>don't have to</b> work on Sunday.</div><div>She <b>doesn't have to</b> pay for the bus.</div></div>
+    <div class="forms">he / she / it: <b>doesn't have to</b></div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><span class="edge-note" style="right:0.3in">sheet 1 · tape sheet 2 here →</span></div><div class="sheet"><div class="panel lvl" style="--c:#a16207;--bg:#fef9c3">
+    <div class="light">GOOD IDEA?<span class="dots"><span class="on"></span><span class="on"></span><span class=""></span></span></div>
+    <div class="word small">should<br>shouldn't</div>
+    <div class="meaning">Advice. <b>should</b> = a good idea. <b>shouldn't</b> = a bad idea.</div>
+    <div class="examples"><div>You <b>should</b> see a doctor.</div><div>You <b>shouldn't</b> click strange links.</div></div>
+    <div class="forms"><b>?</b> <b>Should</b> I call back?</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
+    <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
+    <div class="word small">have to<br>has to</div>
+    <div class="meaning">Required. Your job, your school, or your landlord says so.</div>
+    <div class="examples"><div>I <b>have to</b> wear a uniform.</div><div>He <b>has to</b> pay rent on the 1st.</div></div>
+    <div class="forms"><b>?</b> <b>Do</b> I <b>have to</b> sign here?</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
+    <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
+    <div class="word">must</div>
+    <div class="meaning">A strong rule. Often the law or a safety rule.</div>
+    <div class="examples"><div>You <b>must</b> wear a seatbelt.</div><div>Workers <b>must</b> wash their hands.</div></div>
+    <div class="forms">Signs and forms use <b>must</b>.</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
+    <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
+    <div class="word small">must not<br>can't</div>
+    <div class="meaning">Never do it. It's not allowed.</div>
+    <div class="examples"><div>You <b>must not</b> smoke here.</div><div>You <b>can't</b> park here.</div></div>
+    <div class="watch"><b>must not</b> ≠ <b>don't have to</b><br>must not = NO! · don't have to = you choose</div>
+    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
+    <div class="sign">Draw a sign or a picture</div>
+    <div class="cards-here">▼ cards here ▼</div>
+  </div><span class="edge-note" style="left:0.3in">← sheet 2 · tape to sheet 1</span></div><div class="sheet"><div class="cards"><div class="card"><span class="n">1</span><div class="t">wear a seatbelt in the car</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">2</span><div class="t">smoke in the hospital</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">3</span><div class="t">pay rent on the 1st of the month</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">4</span><div class="t">see a doctor if your cough doesn't stop</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">5</span><div class="t">eat a lot of sugar</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">6</span><div class="t">work on Sunday<br><i>(Your job is Monday–Friday.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">7</span><div class="t">bring lunch<br><i>(Lunch is free at work today.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">8</span><div class="t">ask the teacher: leave class early</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">9</span><div class="t">speak two languages</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">10</span><div class="t">wear a uniform at work</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">11</span><div class="t">have a dog<br><i>(The lease says: No pets.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">12</span><div class="t">show your ID at the bank</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">13</span><div class="t">drink more water</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">14</span><div class="t">share your PIN with a stranger</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">15</span><div class="t">Your own:</div><span class="wl"></span><span class="wl"></span></div><div class="card"><span class="n">16</span><div class="t">Your own:</div><span class="wl"></span><span class="wl"></span></div></div></div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modals Choice Meter Key</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #000; background: #fff;
+         font-size: 12px; line-height: 1.3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media screen { body { background: #e6e6e6; padding: 24px 0; }
+                  .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
+  @media print { @page { size: letter landscape; margin: 0; } }
+  .sheet { width: 11in; height: 8.5in; overflow: hidden; display: flex; position: relative; page-break-after: always; break-after: page; }
+
+  /* Accordion panels: 4 per sheet, folded zigzag on the dashed lines */
+  .panel { width: 2.75in; height: 8.5in; flex: none; position: relative; padding: 0.3in 0.16in 0.3in; display: flex; flex-direction: column; gap: 7px; }
+  .panel + .panel { border-left: 1.5px dashed #000; }
+  .panel + .panel::before { content: "fold"; position: absolute; top: 4.1in; left: -13px; writing-mode: vertical-rl; background: #fff; font-size: 10px; padding: 3px 0; color: #333; }
+  .panel:first-child { padding-left: 0.3in; }
+  .panel:last-child { padding-right: 0.3in; }
+  .edge-note { position: absolute; top: 0.08in; font-size: 9px; color: #444; }
+
+  .lvl { --c: #000; --bg: #fff; }
+  .light { background: var(--c); color: #fff; border-radius: 7px; padding: 5px 8px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: bold; letter-spacing: 0.8px; }
+  .light .dots { display: flex; gap: 3px; margin-left: auto; }
+  .light .dots span { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid #fff; }
+  .light .dots span.on { background: #fff; }
+  .word { font-size: 34px; font-weight: bold; color: var(--c); line-height: 1.02; min-height: 0.75in; display: flex; align-items: flex-end; }
+  .word.small { font-size: 27px; }
+  .meaning { background: var(--bg); border: 2px solid var(--c); border-radius: 7px; padding: 5px 8px; font-size: 13px; line-height: 1.3; }
+  .examples { display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
+  .examples div::before { content: "▸ "; color: var(--c); }
+  .examples b, .forms b, .meaning b { color: var(--c); }
+  .forms { font-size: 12px; color: #222; }
+  .watch { border: 1.5px dashed var(--c); border-radius: 6px; padding: 4px 7px; font-size: 11.5px; background: var(--bg); }
+  .mine { font-size: 12px; font-weight: bold; margin-top: 2px; }
+  .wl { display: block; height: 0.36in; border-bottom: 1.5px solid #000; flex: none; }
+  .sign { flex: 1; min-height: 0.9in; border: 2px dashed var(--c); border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 10px; color: #444; text-align: center; }
+  .cards-here { border-top: 3px solid var(--c); padding-top: 3px; text-align: center; font-size: 11px; font-weight: bold; color: var(--c); }
+
+  /* Cover panel */
+  .eyebrow { font-size: 9px; letter-spacing: 2px; color: #555; }
+  .title { font-size: 30px; line-height: 1.02; }
+  .subtitle { font-size: 13px; }
+  .meter { display: flex; flex-direction: column; gap: 4px; }
+  .meter > div { border-radius: 6px; padding: 4px 8px; color: #fff; font-weight: bold; font-size: 12px; letter-spacing: 0.5px; background: var(--c); }
+  .meter span { display: block; font-weight: normal; font-size: 12px; letter-spacing: 0; }
+  .meter-arrow { font-size: 10px; color: #444; text-align: center; }
+  .rule { border: 2px solid #000; border-radius: 7px; padding: 5px 8px; font-size: 12px; line-height: 1.35; }
+  .rule h3 { font-size: 13px; margin-bottom: 2px; }
+  .rule s { text-decoration-thickness: 2px; }
+  .name { font-size: 13px; font-weight: bold; }
+  .make { font-size: 10.5px; line-height: 1.3; margin-top: auto; border-top: 1.5px solid #000; padding-top: 4px; }
+  .make ol { padding-left: 14px; }
+
+  /* Situation cards: 4 x 4, cut on the solid lines */
+  .cards { display: grid; grid-template-columns: repeat(4, 2.75in); grid-template-rows: repeat(4, 2.125in); }
+  .card { border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; padding: 0.3in 0.25in 0.15in; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px; position: relative; }
+  .card:nth-child(4n) { border-right: none; }
+  .card:nth-child(n+13) { border-bottom: none; padding-bottom: 0.3in; }
+  .card .t { font-size: 17px; font-weight: bold; line-height: 1.2; }
+  .card .t i { font-weight: normal; font-size: 12px; font-style: normal; color: #333; }
+  .card .n { position: absolute; top: 0.12in; left: 0.15in; font-size: 9px; color: #666; }
+  .card:nth-child(4n+1) .n { left: 0.3in; }
+  .card:nth-child(-n+4) .n { top: 0.3in; }
+  .card .who { font-size: 11px; color: #444; }
+  .card .wl { width: 100%; height: 0.32in; }
+  .card .cut { position: absolute; right: 4px; bottom: 2px; font-size: 9px; }
+
+  /* Teacher key (portrait) */
+  .key { width: 8.5in; height: 11in; padding: 0.5in 0.55in; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+  @media print { .key-doc { } }
+  .key h1 { font-size: 22px; }
+  .key h2 { font-size: 16px; border-bottom: 2px solid #000; padding-bottom: 2px; margin-top: 4px; }
+  .key table { border-collapse: collapse; width: 100%; }
+  .key td, .key th { border: 1px solid #000; padding: 3px 7px; text-align: left; font-size: 12.5px; }
+  .key th { background: #eee; }
+  .key ol { padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .key { background: #fff; margin: 0 auto; }</style>
+</head>
+<body>
+<div class="key">
+  <h1>The Choice Meter · Teacher Page</h1>
+  <p>Print the 3 student sheets <b>landscape, one-sided, in color</b>. Sheets 1–2 are the accordion; sheet 3 is the cards (one cutter pass: 3 cuts each way).</p>
+  <h2>Put it together (about 5 minutes)</h2>
+  <ol><li>Lay sheet 1 and sheet 2 face up, side by side. Put tape on the back where they meet. The panels go cover, can, may, don't have to, should, have to, must, must not.</li>
+    <li>Fold on every dashed line, zigzag (in, out, in, out). It stands up like a fence.</li>
+    <li>Cut out the 16 cards. Write a name or initials on the back.</li></ol>
+  <h2>Games</h2>
+  <ol><li><b>Sort it.</b> Stand the book up. Put each card in front of a panel and say the sentence: <i>You must wear a seatbelt.</i> Pick a subject for each card: I, you, she…</li>
+    <li><b>Argue it.</b> Partners compare. Different panel? Explain why. Some cards fit two panels (see the right column), and that's good talk.</li>
+    <li><b>Blank cards.</b> Each student writes a rule from their own life: work, home, the clinic, their country. The partner sorts it.</li>
+    <li><b>Draw the sign.</b> On each panel, draw a real sign: No Smoking, Parking, Wash Your Hands…</li></ol>
+  <h2>Card answers</h2>
+  <table><tr><th>#</th><th>Card</th><th>Best panel</th><th>Also OK</th></tr><tr><td>1</td><td>wear a seatbelt in the car</td><td><b>must</b></td><td>have to</td></tr><tr><td>2</td><td>smoke in the hospital</td><td><b>must not / can't</b></td><td></td></tr><tr><td>3</td><td>pay rent on the 1st of the month</td><td><b>have to</b></td><td>must</td></tr><tr><td>4</td><td>see a doctor if your cough doesn't stop</td><td><b>should</b></td><td></td></tr><tr><td>5</td><td>eat a lot of sugar</td><td><b>shouldn't</b></td><td></td></tr><tr><td>6</td><td>work on Sunday (Your job is Monday–Friday.)</td><td><b>don't have to</b></td><td></td></tr><tr><td>7</td><td>bring lunch (Lunch is free at work today.)</td><td><b>don't have to</b></td><td></td></tr><tr><td>8</td><td>ask the teacher: leave class early</td><td><b>May I…?</b></td><td>Can I…?</td></tr><tr><td>9</td><td>speak two languages</td><td><b>can</b></td><td></td></tr><tr><td>10</td><td>wear a uniform at work</td><td><b>have to</b></td><td>must</td></tr><tr><td>11</td><td>have a dog (The lease says: No pets.)</td><td><b>can't / must not</b></td><td></td></tr><tr><td>12</td><td>show your ID at the bank</td><td><b>have to</b></td><td>must</td></tr><tr><td>13</td><td>drink more water</td><td><b>should</b></td><td></td></tr><tr><td>14</td><td>share your PIN with a stranger</td><td><b>must not / shouldn't</b></td><td></td></tr></table>
+  <p><b>Talk point:</b> card 14 (share your PIN) is <b>must not</b> as a bank rule and <b>shouldn't</b> as advice. Both are fine. <b>don't have to</b> is wrong, and that is the big mix-up to watch for.</p>
+</div>
+</body>
+</html>
