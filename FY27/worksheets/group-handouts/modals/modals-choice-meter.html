@@ -38,7 +38,13 @@
   .watch { border: 1.5px dashed var(--c); border-radius: 6px; padding: 4px 7px; font-size: 11.5px; background: var(--bg); }
   .mine { font-size: 12px; font-weight: bold; margin-top: 2px; }
   .wl { display: block; height: 0.36in; border-bottom: 1.5px solid #000; flex: none; }
-  .sign { flex: 1; min-height: 0.9in; border: 2px dashed var(--c); border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 10px; color: #444; text-align: center; }
+  .build { flex: none; border: 2px solid var(--c); border-radius: 8px; padding: 5px 8px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.3; }
+  .build h4 { font-size: 12px; color: var(--c); }
+  .build .row { border-top: 1px solid #ccc; padding-top: 3px; }
+  .build .row b { display: block; font-size: 10px; letter-spacing: 1px; color: #444; }
+  .build .row.modal span { font-weight: bold; color: var(--c); }
+  .build .tip { font-size: 10.5px; color: #333; border-top: 1px solid #ccc; padding-top: 3px; }
+  .ask { font-size: 12px; } .ask b { color: var(--c); }
   .cards-here { border-top: 3px solid var(--c); padding-top: 3px; text-align: center; font-size: 11px; font-weight: bold; color: var(--c); }
 
   /* Cover panel */
@@ -100,8 +106,14 @@
     <div class="meaning">It's possible. It's OK. I am able.</div>
     <div class="examples"><div>I <b>can</b> speak Spanish.</div><div>You <b>can</b> park here after 6.</div></div>
     <div class="forms"><b>?</b> <b>Can</b> I sit here?</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>I · My son · We</div>
+      <div class="row modal"><b>MODAL</b><span>can</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>speak 2 languages · drive · cook rice · fix a phone</div>
+      <div class="row"><b>WHERE? WHEN?</b>at work · on the weekend · very well</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> Can you ___?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><div class="panel lvl" style="--c:#15803d;--bg:#dcfce7">
     <div class="light">YOU CHOOSE<span class="dots"><span class="on"></span><span class=""></span><span class=""></span></span></div>
@@ -109,8 +121,14 @@
     <div class="meaning">Polite: Is it OK? Use it with a teacher, a boss, or a doctor.</div>
     <div class="examples"><div><b>May</b> I leave early today?</div><div>Yes, you <b>may</b>.</div></div>
     <div class="forms"><b>may</b> is more polite than <b>can</b>.</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>I · we · my son</div>
+      <div class="row modal"><b>MODAL</b><span>may</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>leave early · ask a question · come in · use your pen</div>
+      <div class="row"><b>WHERE? WHEN?</b>today · now · please</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> May I ___?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><div class="panel lvl" style="--c:#15803d;--bg:#dcfce7">
     <div class="light">YOU CHOOSE<span class="dots"><span class="on"></span><span class=""></span><span class=""></span></span></div>
@@ -118,8 +136,14 @@
     <div class="meaning">Not needed. You choose. It's OK to do it, and OK not to do it.</div>
     <div class="examples"><div>I <b>don't have to</b> work on Sunday.</div><div>She <b>doesn't have to</b> pay for the bus.</div></div>
     <div class="forms">he / she / it: <b>doesn't have to</b></div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>I · My wife (doesn't) · We</div>
+      <div class="row modal"><b>MODAL</b><span>don't have to</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>work · cook · pay · wake up early</div>
+      <div class="row"><b>WHERE? WHEN?</b>on Sunday · today · for the bus</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> Do you have to ___?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><span class="edge-note" style="right:0.3in">sheet 1 · tape sheet 2 here →</span></div><div class="sheet"><div class="panel lvl" style="--c:#a16207;--bg:#fef9c3">
     <div class="light">GOOD IDEA?<span class="dots"><span class="on"></span><span class="on"></span><span class=""></span></span></div>
@@ -127,8 +151,14 @@
     <div class="meaning">Advice. <b>should</b> = a good idea. <b>shouldn't</b> = a bad idea.</div>
     <div class="examples"><div>You <b>should</b> see a doctor.</div><div>You <b>shouldn't</b> click strange links.</div></div>
     <div class="forms"><b>?</b> <b>Should</b> I call back?</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>You · My friend · Kids</div>
+      <div class="row modal"><b>MODAL</b><span>should / shouldn't</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>drink water · sleep 8 hours · click strange links · call the doctor</div>
+      <div class="row"><b>WHERE? WHEN?</b>every day · at night · if you feel sick</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> What should I do if ___?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
     <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
@@ -136,8 +166,14 @@
     <div class="meaning">Required. Your job, your school, or your landlord says so.</div>
     <div class="examples"><div>I <b>have to</b> wear a uniform.</div><div>He <b>has to</b> pay rent on the 1st.</div></div>
     <div class="forms"><b>?</b> <b>Do</b> I <b>have to</b> sign here?</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>I · My husband (has to) · We</div>
+      <div class="row modal"><b>MODAL</b><span>have to / has to</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>wear a uniform · pay rent · take medicine · clock in</div>
+      <div class="row"><b>WHERE? WHEN?</b>every day · on the 1st · at 8:00</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> Do you have to ___ at work?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
     <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
@@ -145,8 +181,14 @@
     <div class="meaning">A strong rule. Often the law or a safety rule.</div>
     <div class="examples"><div>You <b>must</b> wear a seatbelt.</div><div>Workers <b>must</b> wash their hands.</div></div>
     <div class="forms">Signs and forms use <b>must</b>.</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>You · Drivers · Workers · Tenants</div>
+      <div class="row modal"><b>MODAL</b><span>must</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>wear a seatbelt · wash your hands · stop at a red light · show your ID</div>
+      <div class="row"><b>WHERE? WHEN?</b>in the car · at work · at the bank</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> What must you do at work?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><div class="panel lvl" style="--c:#b91c1c;--bg:#fee2e2">
     <div class="light">NO CHOICE<span class="dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></div>
@@ -154,8 +196,14 @@
     <div class="meaning">Never do it. It's not allowed.</div>
     <div class="examples"><div>You <b>must not</b> smoke here.</div><div>You <b>can't</b> park here.</div></div>
     <div class="watch"><b>must not</b> ≠ <b>don't have to</b><br>must not = NO! · don't have to = you choose</div>
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>You · Kids · Tenants</div>
+      <div class="row modal"><b>MODAL</b><span>must not / can't</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>smoke · park · text and drive · have a pet</div>
+      <div class="row"><b>WHERE? WHEN?</b>here · in the hospital · in the building</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> What can't you do at work?</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div><span class="edge-note" style="left:0.3in">← sheet 2 · tape to sheet 1</span></div><div class="sheet"><div class="cards"><div class="card"><span class="n">1</span><div class="t">wear a seatbelt in the car</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">2</span><div class="t">smoke in the hospital</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">3</span><div class="t">pay rent on the 1st of the month</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">4</span><div class="t">see a doctor if your cough doesn't stop</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">5</span><div class="t">eat a lot of sugar</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">6</span><div class="t">work on Sunday<br><i>(Your job is Monday–Friday.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">7</span><div class="t">bring lunch<br><i>(Lunch is free at work today.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">8</span><div class="t">ask the teacher: leave class early</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">9</span><div class="t">speak two languages</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">10</span><div class="t">wear a uniform at work</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">11</span><div class="t">have a dog<br><i>(The lease says: No pets.)</i></div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">12</span><div class="t">show your ID at the bank</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">13</span><div class="t">drink more water</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">14</span><div class="t">share your PIN with a stranger</div><div class="who">Who? I · you · he · she · we · they</div></div><div class="card"><span class="n">15</span><div class="t">Your own:</div><span class="wl"></span><span class="wl"></span></div><div class="card"><span class="n">16</span><div class="t">Your own:</div><span class="wl"></span><span class="wl"></span></div></div></div>
 </body>

@@ -5,7 +5,7 @@ Different from the pocket verb book (stapled flip cards) and the conditionals bo
 (split pages): nothing is stapled. Two landscape sheets are taped end to end into one
 long strip of 8 tall panels and folded zigzag, so the book stands up on the desk.
 The panels run from green (you choose) to red (no choice), the same "How much choice
-do you have?" line as the can-should-must phrase bank. Sheet 3 is 16 situation cards:
+do you have?" line as the can-should-must phrase bank. Each panel has a word bank to build examples. Sheet 3 is 16 situation cards:
 students stand the book up, put each card in front of the right panel, and say the
 sentence ("You must wear a seatbelt.").
 
@@ -29,38 +29,45 @@ PANELS = [
      "meaning": "It's possible. It's OK. I am able.",
      "examples": ["I <b>can</b> speak Spanish.", "You <b>can</b> park here after 6."],
      "forms": "<b>?</b> <b>Can</b> I sit here?",
-     "card_id": "can"},
+     "card_id": "can",
+     "who": "I · My son · We", "do": "speak 2 languages · drive · cook rice · fix a phone", "when": "at work · on the weekend · very well", "ask": "Can you ___?"},
     {"word": "may", "level": GREEN, "lights": 1,
      "meaning": "Polite: Is it OK? Use it with a teacher, a boss, or a doctor.",
      "examples": ["<b>May</b> I leave early today?", "Yes, you <b>may</b>."],
      "forms": "<b>may</b> is more polite than <b>can</b>.",
-     "card_id": "may"},
+     "card_id": "may",
+     "who": "I · we · my son", "do": "leave early · ask a question · come in · use your pen", "when": "today · now · please", "ask": "May I ___?"},
     {"word": "don't have to", "level": GREEN, "lights": 1,
      "meaning": "Not needed. You choose. It's OK to do it, and OK not to do it.",
      "examples": ["I <b>don't have to</b> work on Sunday.", "She <b>doesn't have to</b> pay for the bus."],
      "forms": "he / she / it: <b>doesn't have to</b>",
-     "card_id": "dont"},
+     "card_id": "dont",
+     "who": "I · My wife (doesn't) · We", "do": "work · cook · pay · wake up early", "when": "on Sunday · today · for the bus", "ask": "Do you have to ___?"},
     {"word": "should<br>shouldn't", "level": YELLOW, "lights": 2,
      "meaning": "Advice. <b>should</b> = a good idea. <b>shouldn't</b> = a bad idea.",
      "examples": ["You <b>should</b> see a doctor.", "You <b>shouldn't</b> click strange links."],
      "forms": "<b>?</b> <b>Should</b> I call back?",
-     "card_id": "should"},
+     "card_id": "should",
+     "who": "You · My friend · Kids", "do": "drink water · sleep 8 hours · click strange links · call the doctor", "when": "every day · at night · if you feel sick", "ask": "What should I do if ___?"},
     {"word": "have to<br>has to", "level": RED, "lights": 3,
      "meaning": "Required. Your job, your school, or your landlord says so.",
      "examples": ["I <b>have to</b> wear a uniform.", "He <b>has to</b> pay rent on the 1st."],
      "forms": "<b>?</b> <b>Do</b> I <b>have to</b> sign here?",
-     "card_id": "have"},
+     "card_id": "have",
+     "who": "I · My husband (has to) · We", "do": "wear a uniform · pay rent · take medicine · clock in", "when": "every day · on the 1st · at 8:00", "ask": "Do you have to ___ at work?"},
     {"word": "must", "level": RED, "lights": 3,
      "meaning": "A strong rule. Often the law or a safety rule.",
      "examples": ["You <b>must</b> wear a seatbelt.", "Workers <b>must</b> wash their hands."],
      "forms": "Signs and forms use <b>must</b>.",
-     "card_id": "must"},
+     "card_id": "must",
+     "who": "You · Drivers · Workers · Tenants", "do": "wear a seatbelt · wash your hands · stop at a red light · show your ID", "when": "in the car · at work · at the bank", "ask": "What must you do at work?"},
     {"word": "must not<br>can't", "level": RED, "lights": 3,
      "meaning": "Never do it. It's not allowed.",
      "examples": ["You <b>must not</b> smoke here.", "You <b>can't</b> park here."],
      "forms": "",
      "watch": "<b>must not</b> ≠ <b>don't have to</b><br>must not = NO! · don't have to = you choose",
-     "card_id": "not"},
+     "card_id": "not",
+     "who": "You · Kids · Tenants", "do": "smoke · park · text and drive · have a pet", "when": "here · in the hospital · in the building", "ask": "What can't you do at work?"},
 ]
 
 # Situation cards: (text, panel it best fits, other answers that also work)
@@ -115,7 +122,13 @@ CSS = """
   .watch { border: 1.5px dashed var(--c); border-radius: 6px; padding: 4px 7px; font-size: 11.5px; background: var(--bg); }
   .mine { font-size: 12px; font-weight: bold; margin-top: 2px; }
   .wl { display: block; height: 0.36in; border-bottom: 1.5px solid #000; flex: none; }
-  .sign { flex: 1; min-height: 0.9in; border: 2px dashed var(--c); border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 10px; color: #444; text-align: center; }
+  .build { flex: none; border: 2px solid var(--c); border-radius: 8px; padding: 5px 8px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.3; }
+  .build h4 { font-size: 12px; color: var(--c); }
+  .build .row { border-top: 1px solid #ccc; padding-top: 3px; }
+  .build .row b { display: block; font-size: 10px; letter-spacing: 1px; color: #444; }
+  .build .row.modal span { font-weight: bold; color: var(--c); }
+  .build .tip { font-size: 10.5px; color: #333; border-top: 1px solid #ccc; padding-top: 3px; }
+  .ask { font-size: 12px; } .ask b { color: var(--c); }
   .cards-here { border-top: 3px solid var(--c); padding-top: 3px; text-align: center; font-size: 11px; font-weight: bold; color: var(--c); }
 
   /* Cover panel */
@@ -168,6 +181,10 @@ def style(level):
     return f'style="--c:{level[0]};--bg:{level[1]}"'
 
 
+def plain(word):
+    return word.replace("<br>", " / ")
+
+
 def panel(p):
     lv = p["level"]
     small = " small" if "<br>" in p["word"] or len(p["word"]) > 8 else ""
@@ -180,8 +197,14 @@ def panel(p):
     <div class="meaning">{p["meaning"]}</div>
     <div class="examples">{ex}</div>
     {forms}{watch}
-    <div class="mine">My sentence:</div><span class="wl"></span><span class="wl"></span>
-    <div class="sign">Draw a sign or a picture</div>
+    <div class="build"><h4>Build an example</h4>
+      <div class="row"><b>WHO?</b>{p["who"]}</div>
+      <div class="row modal"><b>MODAL</b><span>{plain(p["word"])}</span></div>
+      <div class="row"><b>DO WHAT? (V1)</b>{p["do"]}</div>
+      <div class="row"><b>WHERE? WHEN?</b>{p["when"]}</div>
+      <div class="tip">Pick one from each row. Change words to make it true for you.</div></div>
+    <div class="mine">My sentences:</div><span class="wl"></span><span class="wl"></span><span class="wl"></span>
+    <div class="ask" style="margin-top:8px"><b>Ask a partner:</b> {p["ask"]}</div><div class="mine" style="font-weight:normal">My partner said:</div><span class="wl"></span>
     <div class="cards-here">▼ cards here ▼</div>
   </div>"""
 
@@ -238,7 +261,7 @@ def build_key():
   <ol><li><b>Sort it.</b> Stand the book up. Put each card in front of a panel and say the sentence: <i>You must wear a seatbelt.</i> Pick a subject for each card: I, you, she…</li>
     <li><b>Argue it.</b> Partners compare. Different panel? Explain why. Some cards fit two panels (see the right column), and that's good talk.</li>
     <li><b>Blank cards.</b> Each student writes a rule from their own life: work, home, the clinic, their country. The partner sorts it.</li>
-    <li><b>Draw the sign.</b> On each panel, draw a real sign: No Smoking, Parking, Wash Your Hands…</li></ol>
+    <li><b>True or false?</b> Use the "Build an example" box on each panel. Write one true sentence and one false sentence about you. Your partner guesses: <i>I have to wear a uniform. False!</i></li></ol>
   <h2>Card answers</h2>
   <table><tr><th>#</th><th>Card</th><th>Best panel</th><th>Also OK</th></tr>{rows}</table>
   <p><b>Talk point:</b> card 14 (share your PIN) is <b>must not</b> as a bank rule and <b>shouldn't</b> as advice. Both are fine. <b>don't have to</b> is wrong, and that is the big mix-up to watch for.</p>
