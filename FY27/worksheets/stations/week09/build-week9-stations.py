@@ -3,12 +3,17 @@
 
 Quiz verbs: take, bring. Vocab: volunteering (volunteer, help out, support,
 contribute, donate, sign up for). Stations: 1 WARM-UP, 2 SPEAK (can vs can't),
-3 GAME (advice cards), 4 REAL WORLD (food pantry flyer: getting free food).
+3 GAME (advice game on paper), 4 REAL WORLD (food pantry flyer: getting free food).
 
 Revised Nov 4 2026 after the Week 8 debrief: READ was too many questions, so
 Station 3 is a card game; learners work 2-3 jobs, so the pantry is a place they
 can use, not a place to work for free; the phone call moved up to Part B so
 every group reaches it; Station 1 ends with real writing, not a bonus.
+
+Revised Nov 8 2026: no cover page (learners know the rotation; page 1 has just the
+name and group line), so each station is one sheet front and back. Station 3 has no cards
+to cut: page 5 is the can/should/must phrase bank (skipped Thursday), page 6 is
+the game board. Page 10 is the phrase bank's "Write About You" for early finishers.
 
     python3 build-week9-stations.py
 writes the HTML and PDFs next to this file. The pantry, people, and phone
@@ -26,15 +31,18 @@ STEM = "week9-day1-2026-11-10"
 TAKE = ("take", "takes", "taking", "took", "taken")
 BRING = ("bring", "brings", "bringing", "brought", "brought")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "<i>Can</i> or <i>can&rsquo;t</i>? With a teacher.", "Pages 4&ndash;5"),
-    ("GAME", "Advice cards. With your group. A teacher will visit.", "Pages 6&ndash;7 + cards on the table"),
-    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 8&ndash;9 + 2 color pages on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "<i>Can</i> or <i>can&rsquo;t</i>? With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "Give advice. With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
 def warmup(p, key):
-    page2 = f"""  <div class="task">
+    page2 = f"""  <div class="strip">
+    <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
+  </div>
+  <div class="task">
     <h2>1. Can, should, or must?</h2>
     <p class="how">Use every word once. Then <b>V1</b>. No <i>to</i>, no <i>-s</i>.</p>
     <div class="bank"><span>can&rsquo;t</span> <span>Should</span> <span>must not</span> <span>must</span> <span>Can</span> <span>shouldn&rsquo;t</span></div>
@@ -64,14 +72,14 @@ def warmup(p, key):
     <h2>3. Give advice</h2>
     <p class="how">Your friend has a problem. <b>You make up the advice.</b> Use your own ideas. Many answers are OK.<br>Pattern: <b>should / shouldn&rsquo;t + V1</b></p>
     <div class="own">
-      <b>Example:</b> &ldquo;I&rsquo;m always tired.&rdquo; &rarr; You should <span class="u">go to bed early</span>.<br>
-      &emsp;&emsp;&emsp;&ensp; Other good answers: You should <span class="u">take a walk</span>. &middot; You shouldn&rsquo;t <span class="u">drink coffee at night</span>.
+      <b>Example:</b> &ldquo;I have a headache.&rdquo; &rarr; You should <span class="u">drink some water</span>.<br>
+      &emsp;&emsp;&emsp;&ensp; Other good answers: You should <span class="u">take a break</span>. &middot; You shouldn&rsquo;t <span class="u">look at your phone</span>.
     </div>
     <ol class="items">
-      <li><b class="n">1.</b> &ldquo;Food is very expensive this month.&rdquo; You should {p.b("<i>answers vary</i>", "long")}.</li>
-      <li><b class="n">2.</b> &ldquo;I want to practice English.&rdquo; You should {p.b("<i>answers vary</i>", "long")}.</li>
+      <li><b class="n">1.</b> &ldquo;My kitchen sink is broken.&rdquo; You should {p.b("<i>answers vary</i>", "long")}.</li>
+      <li><b class="n">2.</b> &ldquo;I want to save money.&rdquo; You should {p.b("<i>answers vary</i>", "long")}.</li>
       <li><b class="n">3.</b> &ldquo;My back hurts.&rdquo; You shouldn&rsquo;t {p.b("<i>answers vary</i>", "long")}.</li>
-      <li><b class="n">4.</b> &ldquo;I have a job interview.&rdquo; Should I {p.b("<i>answers vary</i>", "long")}?</li>
+      <li><b class="n">4.</b> &ldquo;I&rsquo;m new in this city.&rdquo; Should I {p.b("<i>answers vary</i>", "long")}?</li>
     </ol>
   </div>"""
     items = [
@@ -109,8 +117,8 @@ def warmup(p, key):
     <p class="how">Write true sentences about <b>your</b> week. <b>You make up the ending.</b> Many answers are OK.</p>
     {you_html}<p class="prompt"><b>&#11088; Star your best sentence.</b> Read it to your teacher.</p>
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 LISTEN = [  # (sentence with ___, answer) — the leader reads these
@@ -188,145 +196,201 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "<i>can</i> or <i>can&rsquo;t</i> &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-CARDS = [  # (emoji, problem, (idea, idea)) - front = problem, back = sample advice. One deck per table.
-    ("&#129393;", "I work two jobs. I&rsquo;m always tired.",
-     ("You should sleep on your day off.", "You can ask your family to help at home.")),
-    ("&#129398;", "My apartment is cold. My landlord doesn&rsquo;t fix the heat.",
-     ("You should call your landlord again.", "You can call 311. The city can help.")),
-    ("&#128084;", "I have a job interview tomorrow. I&rsquo;m nervous.",
-     ("You should practice with a friend.", "You shouldn&rsquo;t be late.")),
-    ("&#128483;&#65039;", "My kids speak English. They don&rsquo;t want to speak my language.",
-     ("You should speak your language at home.", "You can read books in your language together.")),
-    ("&#129658;", "I don&rsquo;t understand my doctor. She talks very fast.",
-     ("You should ask for an interpreter. It&rsquo;s free.", "You can say, &ldquo;Please speak slowly.&rdquo;")),
-    ("&#128722;", "Food is very expensive this month.",
-     ("You should go to a food pantry.", "You can buy rice and beans. They&rsquo;re cheap.")),
-    ("&#9200;", "My coworker is always late. I do her work.",
-     ("You should talk to your coworker.", "You can talk to your boss.")),
-    ("&#128218;", "I want to practice English, but I don&rsquo;t have time.",
-     ("You can listen to English on the bus.", "You should practice on the app for 10 minutes a day.")),
-    ("&#129298;", "My son is sick. I have to work tomorrow.",
-     ("You should call your boss early.", "You can ask a family member to help.")),
-    ("&#9993;&#65039;", "I got a letter in English. I don&rsquo;t understand it.",
-     ("You shouldn&rsquo;t throw it away.", "You can ask your teacher to read it with you.")),
-    ("&#128663;", "My car broke down. I need to get to work.",
-     ("You can take the bus.", "You should ask a coworker for a ride.")),
-    ("&#128564;", "I can&rsquo;t sleep at night.",
-     ("You shouldn&rsquo;t drink coffee at night.", "You should turn off your phone in bed.")),
-    ("&#128241;", "My phone bill is too high.",
-     ("You should call the company.", "You can ask for a cheaper plan.")),
-    ("&#129509;", "Winter is coming. My kids need warm coats.",
-     ("You should ask your kids&rsquo; school. Some schools give free coats.", "You can buy coats at a second-hand store.")),
-    ("&#128172;", "I miss my family in my country.",
-     ("You should call them on video.", "You can make new friends here.")),
+PROBLEMS = [  # (emoji, problem) - printed on the Station 3 game board (page 6). No cards to cut.
+    ("&#129393;", "I work two jobs. I&rsquo;m always tired."),
+    ("&#129398;", "My apartment is cold. My landlord doesn&rsquo;t fix the heat."),
+    ("&#128084;", "I have a job interview tomorrow. I&rsquo;m nervous."),
+    ("&#128483;&#65039;", "My kids speak English. They don&rsquo;t want to speak my language."),
+    ("&#129658;", "I don&rsquo;t understand my doctor. She talks very fast."),
+    ("&#128722;", "Food is very expensive this month."),
+    ("&#9200;", "My coworker is always late. I do her work."),
+    ("&#128218;", "I want to practice English, but I don&rsquo;t have time."),
+    ("&#129298;", "My son is sick. I have to work tomorrow."),
+    ("&#9993;&#65039;", "I got a letter in English. I don&rsquo;t understand it."),
+    ("&#128663;", "My car broke down. I need to get to work."),
+    ("&#128564;", "I can&rsquo;t sleep at night."),
+    ("&#128241;", "My phone bill is too high."),
+    ("&#129509;", "Winter is coming. My kids need warm coats."),
+    ("&#128172;", "I miss my family in my country."),
 ]
+
+# Pictograms for page 5 "What does it mean?" (from the can/should/must phrase bank handout)
+_SVG = '<svg viewBox="0 0 32 32" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">{}</svg>'
+_EYES = '<circle cx="16" cy="16" r="13"/><circle cx="11.5" cy="13" r="1.2" fill="#000"/><circle cx="20.5" cy="13" r="1.2" fill="#000"/>'
+MEANINGS = [  # (icon paths, word, meaning, example)
+    ('<circle cx="16" cy="16" r="13"/><path d="M10 16.5l4 4 8-9"/>', "can", "able / possible", "I can speak Spanish."),
+    (_EYES + '<path d="M10.5 19c3 3.5 8 3.5 11 0"/>', "should", "a good idea", "You should call back."),
+    ('<path d="M16 3.5L29.5 27.5H2.5Z"/><path d="M16 12v7"/><circle cx="16" cy="23" r="1.3" fill="#000"/>', "must", "a strong rule", "You must pay rent."),
+    ('<circle cx="16" cy="16" r="13"/><path d="M11 11l10 10M21 11l-10 10"/>', "can&rsquo;t", "not able", "I can&rsquo;t read small letters."),
+    (_EYES + '<path d="M10.5 22c3-3.5 8-3.5 11 0"/>', "shouldn&rsquo;t", "a bad idea", "You shouldn&rsquo;t click it."),
+    ('<circle cx="16" cy="16" r="13"/><path d="M7 7l18 18"/>', "must not", "never do it", "You must not share your PIN."),
+]
+RULES = [  # (name, chips [(text, is_modal)], example, wrong)
+    ('A. Modal + V1. No &ldquo;to&rdquo;.', [("I", 0), ("can", 1), ("call", 0), ("my mom.", 0)],
+     "You <b>should</b> check your messages.", "&#10007; <s>I can to call my mom.</s>"),
+    ("B. he / she / it: no -s", [("She", 0), ("can", 1), ("call", 0), ("her son.", 0)],
+     "He <b>must</b> work on Saturday.", "&#10007; <s>She cans call.</s> &nbsp; &#10007; <s>She can calls.</s>"),
+    ("C. Negative: can&rsquo;t / shouldn&rsquo;t / must not + V1", [("I", 0), ("can&rsquo;t", 1), ("drive.", 0)],
+     "You <b>shouldn&rsquo;t</b> answer unknown numbers.", "&#10007; <s>I don&rsquo;t can drive.</s> &nbsp; &#10007; <s>I no can drive.</s>"),
+    ("D. Questions: the modal goes first", [("Can", 1), ("you", 0), ("help", 0), ("me?", 0)],
+     "<b>Should</b> I call back? &rarr; Yes, you <b>should</b>.", "&#10007; <s>Do you can help me?</s>"),
+]
+PHRASES = [  # (topic, phrases) - the phrase bank, also the game's "stuck?" help
+    ("On the phone", ["call back", "leave a message", "text my daughter / son", "video-call my family",
+                      "turn up the volume", "make the letters bigger", "charge my phone", "speak slowly"]),
+    ("Phone safety", ["share my PIN", "answer unknown numbers", "click strange links", "call the real number",
+                      "send money to a stranger", "change my password"]),
+    ("Family", ["help my kids with homework", "visit my parents", "pick up my kids", "cook for my family", "send money home"]),
+    ("Money &amp; bills", ["pay rent on time", "pay the phone bill", "save money", "check my bank account"]),
+    ("Home", ["call the landlord", "fix the sink", "lock the door", "take out the trash", "do laundry"]),
+    ("Health", ["drink more water", "sleep 8 hours", "see a doctor", "take my medicine", "go for a walk"]),
+    ("Getting around", ["drive a car", "take the bus / the T", "ride a bike", "use a map app"]),
+    ("Work", ["work on Saturday", "arrive on time", "wear a uniform", "ask for a day off", "call my boss"]),
+    ("Learning", ["speak Spanish / Portuguese / Creole", "practice English every day", "do my homework", "use a dictionary app"]),
+]
+
+PB_CSS = """
+  /* Station 3 page 5 + page 10: the can / should / must phrase bank handout, all classes pb-* */
+  .pb-box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .pb-box h2 { font-size: 18px; margin-bottom: 5px; }
+  .pb-box h2 .sm { font-size: 13px; font-weight: normal; }
+  .pb-choice { display: flex; align-items: center; gap: 8px; font-size: 12px; font-style: italic; margin: 2px 0 4px; }
+  .pb-choice .arrow { flex: 1; height: 0; border-top: 2px solid #000; position: relative; }
+  .pb-choice .arrow::after { content: ""; position: absolute; right: -2px; top: -6px; border-left: 9px solid #000; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+  .pb-forms { display: grid; grid-template-columns: repeat(3, 1fr); border: 1.5px solid #000; }
+  .pb-form { display: flex; gap: 7px; align-items: center; padding: 4px 7px; }
+  .pb-form:nth-child(3n+2), .pb-form:nth-child(3n+3) { border-left: 1.5px solid #000; }
+  .pb-form:nth-child(n+4) { border-top: 1.5px dashed #000; }
+  .pb-form .icon { flex: none; width: 26px; height: 26px; }
+  .pb-form .icon svg { width: 100%; height: 100%; display: block; }
+  .pb-form .word { font-size: 18px; font-weight: bold; }
+  .pb-form .meaning { font-size: 14px; }
+  .pb-form .fx { display: block; font-size: 13px; }
+  .pb-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pb-rule { border: 1.5px solid #000; padding: 5px 9px; font-size: 14px; }
+  .pb-rule .nm { font-weight: bold; margin-bottom: 4px; }
+  .pb-rule .fm { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 4px; }
+  .pb-chip { border: 1.5px solid #000; padding: 1px 7px; white-space: nowrap; }
+  .pb-chip.m { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pb-rule .ex b { text-decoration: underline; }
+  .pb-rule s { text-decoration-thickness: 2px; }
+  .pb-bank { column-count: 3; column-gap: 16px; }
+  .pb-cat { break-inside: avoid; margin-bottom: 6px; }
+  .pb-cat .nm { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .pb-cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .pb-friend { font-size: 14px; border: 1.5px dashed #000; padding: 4px 9px; margin-top: auto; }
+  .pb-row { display: flex; align-items: flex-end; gap: 8px; height: 54px; }
+  .pb-row .lead { width: 1.45in; font-size: 18px; font-weight: bold; flex: none; }
+  .pb-row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 32px; font-size: 15px; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .pb-row .fill.example { font-style: italic; }
+  .pb-hint { font-size: 14px; font-style: italic; margin-top: 6px; }
+  .pb-check { border: 1.5px dashed #000; padding: 6px 10px; font-size: 15px; margin-top: auto; }
+  .pb-check span { margin-right: 14px; white-space: nowrap; }
+  .pb-check .cb { width: 15px; height: 15px; vertical-align: -2px; margin-right: 4px; }
+  /* Station 3 page 6: the game board */
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #000; margin-bottom: 10px; }
+  .board > div { padding: 5px 8px; display: flex; gap: 7px; border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; }
+  .board > div:nth-child(3n) { border-right: none; }
+  .board > div:nth-last-child(-n+3) { border-bottom: none; }
+  .board .n { font-size: 18px; font-weight: bold; flex: none; width: 1.5em; text-align: center; line-height: 1.1; }
+  .board .e { font-size: 20px; line-height: 1; display: block; margin-top: 2px; }
+  .board .t { font-size: 15px; line-height: 1.25; font-weight: bold; }
+  .score { display: grid; grid-template-columns: repeat(5, 1fr); border: 1.5px solid #000; margin-bottom: 12px; }
+  .score > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
+  .score > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
+  .play li { margin-bottom: 3px !important; }
+"""
+
+
+def phrase_bank_body(p):
+    forms = "".join(
+        f'<div class="pb-form"><span class="icon">{_SVG.format(svg)}</span><span><span class="word">{w}</span> '
+        f'<span class="meaning">{m}</span><span class="fx">{ex}</span></span></div>' for svg, w, m, ex in MEANINGS)
+    rules = "".join(
+        f'<div class="pb-rule"><div class="nm">{nm}</div><div class="fm">'
+        + "".join(f'<span class="pb-chip{" m" if m else ""}">{t}</span>' for t, m in chips)
+        + f'</div><div class="ex">{ex}</div><div>{no}</div></div>' for nm, chips, ex, no in RULES)
+    bank = "".join(f'<div class="pb-cat"><div class="nm">{t}</div><ul>' + "".join(f"<li>{x}</li>" for x in xs) + "</ul></div>"
+                   for t, xs in PHRASES)
+    return f"""  <div class="pb-box">
+    <h2>1. What does it mean? <span class="sm">How much choice do you have?</span></h2>
+    <div class="pb-choice"><span>you choose</span><span class="arrow"></span><span>no choice</span></div>
+    <div class="pb-forms">{forms}</div>
+  </div>
+  <div class="pb-box">
+    <h2>2. How does it work? <span class="sm">The modal is in <b>black</b>.</span></h2>
+    <div class="pb-rules">{rules}</div>
+  </div>
+  <div class="pb-box" style="flex:1; display:flex; flex-direction:column;">
+    <h2>3. Phrase bank <span class="sm">Use it in the game (page 6). Pick any phrase. Change it if you want.</span></h2>
+    <div class="pb-bank">{bank}</div>
+    <div class="pb-friend"><b>Ask for advice (Rule D):</b> &nbsp;What should I do? &middot; Should I call back? &middot; Can you help me?</div>
+  </div>"""
 
 
 def game(p, key):
-    page6 = """  <div class="gram3">
-    <div><b>should</b> = a good idea<br>You <b>should</b> rest.</div>
-    <div><b>shouldn&rsquo;t</b> = not a good idea<br>You <b>shouldn&rsquo;t</b> worry.</div>
-    <div><b>can</b> = it&rsquo;s possible<br>You <b>can</b> call a friend.</div>
-  </div>
-  <div class="task">
+    page5 = phrase_bank_body(p)
+    board = "".join(f'<div><span class="n">{i}<span class="e">{e}</span></span><span class="t">{t}</span></div>'
+                    for i, (e, t) in enumerate(PROBLEMS, 1))
+    page6 = f"""  <div class="task">
     <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Put the <b>cards</b> in a pile, problem side down.</li>
-      <li><b class="n">2.</b> Take a card. Read the problem out loud: <i>&ldquo;I have a problem. &hellip;&rdquo;</i></li>
-      <li><b class="n">3.</b> <b>Everyone</b> gives advice. Use <b>should</b>, <b>shouldn&rsquo;t</b>, or <b>can</b> + <b>V1</b>. <b>Stuck?</b> Look at the <b>back</b> of the card for ideas.</li>
-      <li><b class="n">4.</b> You pick the <b>best advice</b>. That person keeps the card.</li>
-      <li><b class="n">5.</b> Next person takes a card. Most cards when the timer rings wins!</li>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a problem. Read it out loud: <i>&ldquo;I have a problem. &hellip; What should I do?&rdquo;</i> Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> <b>Everyone</b> gives advice: <b>You should &hellip;</b> &middot; <b>You shouldn&rsquo;t &hellip;</b> &middot; <b>You can &hellip;</b> + <b>V1</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
+      <li><b class="n">3.</b> The reader picks the <b>best advice</b>: <i>&ldquo;Good idea! Thank you.&rdquo;</i> That person gets a point ( <b>|</b> ).</li>
+      <li><b class="n">4.</b> The next person picks a problem. Most points when the timer rings wins!</li>
     </ol>
   </div>
+  <div class="board">{board}</div>
+  <div class="score"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>
   <div class="task">
-    <h2>Give advice</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span>You <b>should</b> &hellip;</span><span>You <b>shouldn&rsquo;t</b> &hellip;</span>
-      <span>You <b>can</b> &hellip;</span><span>Maybe you <b>can</b> &hellip;</span>
-    </div>
-  </div>
-  <div class="task">
-    <h2>Answer the advice</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span>Good idea! Thank you.</span><span>Hmm. I can&rsquo;t. I &hellip;</span>
-      <span>That&rsquo;s the best advice!</span><span>Can you say that again?</span>
-    </div>
-  </div>
-  <div class="tip" style="font-size:17px;"><b>Example:</b><br>
-    <b>Ana</b> (reads a card): I have a problem. Food is very expensive this month.<br>
-    <b>Juan:</b> You <b>should go</b> to a food pantry. &emsp; <b>Mei:</b> You <b>can buy</b> rice and beans. They&rsquo;re cheap.<br>
-    <b>Ana:</b> Good idea, Juan! Thank you. <i>(Juan keeps the card.)</i></div>
-  <p class="how bottom"><b>Remember:</b> <i>should</i> + <b>V1</b>. No <i>to</i>. &ensp; &#10007; You should <s>to go</s>. &ensp; &#10003; You should <b>go</b>.</p>"""
-    page7 = f"""  <div class="task">
     <h2>A. The best advice</h2>
-    <p class="how">Write <b>2 problems</b> from the game and the <b>best advice</b> your group gave.</p>
+    <p class="how">Write <b>one</b> problem from the game and the <b>best advice</b> your group gave.</p>
     <div class="gline"><b style="width:5.2em;">Problem:</b>{p.ln("<i>answers vary: My phone bill is too high.</i>")}</div>
     <div class="gline"><b style="width:5.2em;">Advice:</b>{p.ln("<i>answers vary: You should call the company.</i>")}</div>
-    <div style="height:10px;"></div>
-    <div class="gline"><b style="width:5.2em;">Problem:</b>{p.ln("<i>answers vary</i>")}</div>
-    <div class="gline"><b style="width:5.2em;">Advice:</b>{p.ln("<i>answers vary: should / shouldn&rsquo;t / can + V1</i>")}</div>
   </div>
   <div class="task">
-    <h2>B. Make a card</h2>
+    <h2>B. Make a problem</h2>
     <p class="how">Write a problem. It can be <b>your</b> problem or a friend&rsquo;s. Read it to your group. Get advice!</p>
     <div class="gline"><b style="width:auto;">I have a problem.</b>{p.ln("<i>answers vary</i>")}</div>
     <div class="gline"><b style="width:auto;">My group says: You should</b>{p.ln("<i>answers vary: + V1</i>")}</div>
   </div>
-  <div class="task">
-    <h2>C. Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> Who gives you good advice? Your mom? A friend? A coworker?</li>
-      <li><b class="n">2.</b> What is the best advice you ever got?</li>
-      <li><b class="n">3.</b> What should a new person in this country know?</li>
-    </ol>
-  </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    sub = "Advice cards &middot; with your group"
-    return L.page("", "STATION 3: GAME", sub, 6, page6, key) + L.page("", "STATION 3: GAME", sub, 7, page7, key)
+    return (L.page("", "STATION 3: GAME", "Phrase bank &middot; use it in the game", 5, page5, key)
+            + L.page("", "STATION 3: GAME", "Give advice &middot; with your group", 6, page6, key))
 
 
-CARDS_CSS = """
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #000; background: #fff; }
-  /* Station 3 advice cards: print 1 per table, cut on the dashed lines before class. */
-  .page { width: 8.5in; height: 11in; padding: 0.35in 0.4in; display: flex; flex-direction: column; overflow: hidden; }
-  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
-  @media print { @page { size: letter portrait; margin: 0; } }
-  .top { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; margin-bottom: 6px; }
-  .top b { font-size: 15px; }
-  .grid { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(5, 1fr); }
-  .card { border: 1.5px dashed #777; padding: 12px 14px; display: flex; flex-direction: column; }
-  .card .e { font-size: 30px; line-height: 1; margin-bottom: 6px; }
-  .card .t { font-size: 19px; font-weight: bold; line-height: 1.25; }
-  .card .f { margin-top: auto; font-size: 12px; color: #444; }
-  .page { page-break-after: always; break-after: page; }
-  .card.back { background: #f4f4f4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .card.back .own { font-size: 12px; font-style: italic; margin-bottom: 4px; }
-  .card.back .lbl { font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-  .card.back ul { padding-left: 1em; }
-  .card.back li { font-size: 16px; line-height: 1.25; margin-bottom: 5px; }
-"""
+def write_about_you(p, key, pg):
+    rows = [("I can", "I can take the bus to work."), ("I can&rsquo;t", "I can&rsquo;t drive at night."),
+            ("I should", "I should drink more water."), ("I shouldn&rsquo;t", "I shouldn&rsquo;t answer unknown numbers."),
+            ("I must", "I must arrive on time at work."), ("You must not", "You must not share your PIN.")]
 
+    def row(lead, ans, cls=""):
+        fill = f'<i class="ans">answers vary: {ans}</i>' if key and ans else ""
+        return f'<div class="pb-row"><span class="lead">{lead}</span><span class="fill{cls}">{fill}</span></div>'
 
-def cards_doc():
-    """Page 1 = problems, page 2 = sample advice. Print double-sided, flip on the LONG edge.
-    Each back row is mirrored left-right so a card's back lands behind its front."""
-    head = '<div class="top"><b>Advice cards</b><span>Station 3: GAME &middot; 1 set per table &middot; print double-sided (long edge), cut on the dashed lines</span></div>'
-    fronts = "".join(
-        f'<div class="card"><div class="e">{e}</div><div class="t">{t}</div>'
-        f'<div class="f">You should &hellip; &middot; You can &hellip;</div></div>' for e, t, _ in CARDS)
-    backs = []
-    for r in range(5):
-        row = CARDS[r * 3:r * 3 + 3]
-        for e, t, (a, b) in reversed(row):
-            backs.append(f'<div class="card back"><div class="own">Try your own idea first!</div>'
-                         f'<div class="lbl">Ideas</div><ul><li>{a}</li><li>{b}</li></ul></div>')
-    body = (f'<section class="page">\n  {head}\n  <div class="grid">{fronts}</div>\n</section>\n'
-            f'<section class="page">\n  {head}\n  <div class="grid">{"".join(backs)}</div>\n</section>')
-    return L.doc("Week 9 Station 3 Advice Cards", CARDS_CSS, body)
+    body = f"""  <div class="pb-box">
+    <h2>A. My life <span class="sm">One sentence for each word. Add a detail: <b>when?</b> <b>where?</b> or <b>because&hellip;</b> Look at page 5 for help.</span></h2>
+    <div class="pb-row"><span class="lead">example</span><span class="fill example">I can video-call my family on Sundays because the call is free.</span></div>
+    {"".join(row(l, a) for l, a in rows)}
+    <p class="pb-hint">Detail ideas: on Sundays &middot; at night &middot; at work &middot; on the phone &middot; every day &middot; because it is free &middot; because it is dangerous</p>
+  </div>
+  <div class="pb-box">
+    <h2>B. Two more <span class="sm">Use Rule B and Rule C (page 5).</span></h2>
+    {row("My friend", "My friend can cook for 20 people.")}
+    <div class="pb-row"><span class="lead">I can&rsquo;t</span><span class="fill">{'<i class="ans">swim</i>' if key else ""}</span><span class="lead" style="width:auto">, but I can</span><span class="fill">{'<i class="ans">ride a bike.</i>' if key else ""}</span></div>
+  </div>
+  <p class="prompt" style="font-size:17px;"><b>&#11088; Star your best sentence.</b> Read it to your teacher.</p>
+  <div class="pb-check">
+    <b>Check:</b>
+    <span><span class="cb"></span>modal + V1, no &ldquo;to&rdquo;</span>
+    <span><span class="cb"></span>no -s</span>
+    <span><span class="cb"></span>can&rsquo;t / shouldn&rsquo;t / must not</span>
+  </div>"""
+    return L.page("", "FINISHED EARLY?", "write about you", pg, body, key)
 
 
 TF = [  # (statement, True / False / Not)
@@ -396,7 +460,16 @@ def real_world(p, key):
   </div>
   <p class="how bottom"><b>Talk:</b> Is there a food pantry near you? Where can you buy cheap food?</p>"""
     sub = "with your group"
-    return L.page("rw", "STATION 4: REAL WORLD", sub, 8, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 9, page9, key)
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
+
+
+STRIP_CSS = """
+  /* Page 1 top: name, group, station order (replaces the old cover page) */
+  .strip { border: 1.5px solid #000; padding: 3px 10px 4px; margin-bottom: 6px; }
+  .strip .name-row { margin-bottom: 1px; }
+  .wu3 .strip ~ .task { margin-bottom: 8px; }
+  .wu3 .strip ~ .task ol.items li { margin-bottom: 4px; }
+"""
 
 
 HINT_CSS = """
@@ -409,11 +482,11 @@ HINT_CSS = """
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(9, "Tuesday, November 10, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
-            + L.verb_charts(10, TAKE, "he", BRING, "we", key))
+    # No cover page (they know the rotation now): each station is one sheet, front and back.
+    body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
+            + L.verb_charts(9, TAKE, "he", BRING, "we", key) + write_about_you(p, key, 10))
     title = "Week 9 Tuesday Stations Packet" + (" (Answer Key)" if key else "")
-    return L.doc(title, L.packet_css(key) + HINT_CSS, body)
+    return L.doc(title, L.packet_css(key) + HINT_CSS + PB_CSS + STRIP_CSS, body)
 
 
 FLYER_CSS = """
@@ -421,7 +494,7 @@ FLYER_CSS = """
   body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1f2a1f; background: #fff;
          font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up pantry, people, and numbers.
-     Questions are on packet pages 8-9; page 9 Part D needs sheet 2. */
+     Questions are on packet pages 7-8; page 8 Part D needs sheet 2. */
   .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
           page-break-after: always; break-after: page; }
   @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
@@ -557,7 +630,7 @@ def self_check():
     </table>
     <div class="tip"><b>Different answer?</b> Find the sentence on the flyer together. Read it out loud. <b>Part B</b> (the phone call) has many good answers.</div>"""
     return L.self_check_doc("Week 9 Station 4 Self-Check", body,
-                            stop="Finish Parts A, C, and D first.", page_ref="packet pages 8&ndash;9")
+                            stop="Finish Parts A, C, and D first.", page_ref="packet pages 7&ndash;8")
 
 
 def leader_guide():
@@ -565,14 +638,14 @@ def leader_guide():
         f'<tr><td class="n">{i + 1}</td><td>{s.replace("___", "<b>" + a + "</b>")}</td></tr>' for i, (s, a) in enumerate(LISTEN))
     top = L.leader_top(9, "11/10/26", STATIONS, [
         "<b>This week:</b> practice <b>can / should / must</b> (started Thursday). Quiz verbs: <b>take, bring</b>. Week 9 Quiz opens Thu 11/12 at 6 p.m.",
-        "<b>Before class:</b> print the <b>advice cards</b> double-sided (long edge) and cut them, 1 set per table. Station 4: 2 color flyers + self-check card face down.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Nothing to cut. Station 4: 2 color flyers + self-check card face down.",
         "<b>At 6:00:</b> count off the people who are there into A, B, C. Group D starts empty. <b>Late?</b> Station 1, then join that group.",
         "<b>Floating:</b> start each block at <b>Station 4</b> (read the flyer together, Part A #1) and make sure every group gets to <b>Part B, the phone call</b>. Then <b>Station 3</b> (is everyone giving advice?), then <b>Station 1</b> (read each &#11088; sentence). Point out the flyer line: pantry food does <b>not</b> hurt an immigration case.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, quiz reminder. <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, quiz reminder. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (can / can&rsquo;t)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (can / can&rsquo;t)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p>In a sentence, <b>can</b> is weak: <i>I c&rsquo;n SWIM</i> /k&#601;n/. <b>Can&rsquo;t</b> is strong: <i>I CAN&rsquo;T swim</i> /k&aelig;nt/, and the <b>t</b> is often silent. Learners listen for the <b>t</b> and miss it. Teach them to listen for the <b>beat</b>. In short answers both are strong: <i>Yes, I CAN. / No, I CAN&rsquo;T.</i></p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>The beat.</b> Clap it: <i>I can SWIM</i> (da da DUM) vs. <i>I CAN&rsquo;T swim</i> (da DUM da). Have everyone clap and say both.</td></tr>
@@ -607,12 +680,12 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 9 &middot; Tue 11/10/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. Modals:</b> 1 must &middot; 2 can&rsquo;t &middot; 3 shouldn&rsquo;t &middot; 4 Can &middot; 5 must not &middot; 6 Should</p>
         <p><b>2. Words:</b> 1 volunteer &middot; 2 help out &middot; 3 supports &middot; 4 contribute &middot; 5 donate &middot; 6 sign up for</p>
-        <p><b>3. Advice:</b> answers vary. Check <i>should / shouldn&rsquo;t</i> + V1 (no <i>to</i>, no <i>-s</i>). #1 could be <i>go to a food pantry</i>. #4 is a question: <i>Should I</i> + V1?</p>
+        <p><b>3. Advice:</b> answers vary. Check <i>should / shouldn&rsquo;t</i> + V1 (no <i>to</i>, no <i>-s</i>). #1 could be <i>call the landlord</i>. #4 is a question: <i>Should I</i> + V1? (<i>get a library card</i>, <i>take the bus</i>&hellip;)</p>
       </div>
       <div>
         <p><b>4. Forms:</b> take, takes, taking, took, taken &middot; bring, brings, bringing, brought, brought</p>
@@ -622,16 +695,16 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i + 1} {a}" for i, (_, a) in enumerate(LISTEN))} &middot; <b>C&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: GAME, Advice cards (pages 6&ndash;7 + 15 cards)</h2>
-    <p>No fixed answers. Listen for <b>should / shouldn&rsquo;t / can + V1</b>. The most common error: <i>You should <s>to</s> go.</i> Recast it: &ldquo;Yes, you should <b>go</b>. Good idea!&rdquo; Let the reader choose the best advice; don&rsquo;t judge it yourself. Card backs have sample advice: push for their own idea first.</p>
-    <p><b>Page 7:</b> A and B answers vary (check modal + V1). C is talk only. <b>Short on time?</b> Skip page 7. The game is the main activity.</p>
+    <h2>Station 3: GAME, Give advice (pages 5&ndash;6, no cards)</h2>
+    <p>Page 5 is the can / should / must phrase bank (not covered Thursday). Spend 2&ndash;3 minutes on the meaning line and Rules A&ndash;D, then play. Page 6 has the 15 problems printed on it: the reader picks one, everyone crosses it off, the reader gives the point. No fixed answers. Listen for <b>should / shouldn&rsquo;t / can + V1</b>. The most common error: <i>You should <s>to</s> go.</i> Recast it: &ldquo;Yes, you should <b>go</b>. Good idea!&rdquo; Let the reader choose the best advice; don&rsquo;t judge it yourself. Stuck learners use the page 5 phrase bank.</p>
+    <p><b>Page 6 A and B:</b> answers vary (check modal + V1). <b>Short on time?</b> Skip A and B. The game is the main activity.</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Food pantry flyer (pages 8&ndash;9 + 2 color pages)</h2>
+    <h2>Station 4: REAL WORLD, Food pantry flyer (pages 7&ndash;8 + 2 color pages)</h2>
     <p><b>A:</b> 1 Wednesday, Friday, Saturday &middot; 2 one time a week &middot; 3 proof of address (a bill or a letter with your name) &middot; 4 people 60 or older, or people who can&rsquo;t leave home</p>
     <p><b>B (home delivery call):</b> from the flyer: 60 or older / leave home &middot; Saturday, 12:30 to 3:00. The rest varies: check <i>can&rsquo;t + V1</i> and B&rsquo;s own <i>Can I / Should I + V1?</i> question. Learners use a made-up address. &#9733; A adds a problem (list full, can&rsquo;t deliver there, nobody home); B solves it, e.g. <i>Can I pick up the food on Friday?</i></p>
     <p><b>C:</b> 1 False (no ID needed) &middot; 2 False (one time a week) &middot; 3 True &middot; 4 Not on the flyer</p>
@@ -639,7 +712,7 @@ def leader_guide():
     <p style="font-size:12px;">The pantry, people, and phone numbers are made up. A self-check card for Parts A, C, and D goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10)</h2>
     <p><b>Chart 1 (he + take, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (we + bring):</b> bring, brings, bringing, brought, brought &middot; we bring / don&rsquo;t bring / Do we bring? &middot; we brought / didn&rsquo;t bring / Did we bring? &middot; we will bring / won&rsquo;t bring / Will we bring? &middot; we are bringing / aren&rsquo;t bringing / Are we bringing? &middot; we were bringing / weren&rsquo;t bringing / Were we bringing? &middot; we will be bringing / won&rsquo;t be bringing / Will we be bringing? &middot; we have brought / haven&rsquo;t brought / Have we brought?</p>
   </div>
@@ -652,7 +725,6 @@ if __name__ == "__main__":
         f"{STEM}-packet.html": (packet(False), 10),
         f"{STEM}-packet-key.html": (packet(True), 10),
         f"{STEM}-leader-guide.html": (leader_guide(), 2),
-        f"{STEM}-advice-cards.html": (cards_doc(), 2),
         f"{STEM}-real-world-document.html": (flyer(), 2),
         f"{STEM}-real-world-self-check.html": (self_check(), 1),
     }
