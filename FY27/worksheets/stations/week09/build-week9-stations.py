@@ -238,16 +238,16 @@ RULES = [  # (name, chips [(text, is_modal)], example, wrong)
     ("D. Questions: the modal goes first", [("Can", 1), ("you", 0), ("help", 0), ("me?", 0)],
      "<b>Should</b> I call back? &rarr; Yes, you <b>should</b>.", "&#10007; <s>Do you can help me?</s>"),
 ]
-PHRASES = [  # (topic, phrases) - the phrase bank, also the game's "stuck?" help
+PHRASES = [  # (topic, phrases) - the phrase bank, also the game's "stuck?" help. Order balances the 3 columns on page 5.
     ("On the phone", ["call back", "leave a message", "text my daughter / son", "video-call my family",
                       "turn up the volume", "make the letters bigger", "charge my phone", "speak slowly"]),
+    ("Money &amp; bills", ["pay rent on time", "pay the phone bill", "save money", "check my bank account"]),
+    ("Getting around", ["drive a car", "take the bus / the T", "ride a bike", "use a map app"]),
     ("Phone safety", ["share my PIN", "answer unknown numbers", "click strange links", "call the real number",
                       "send money to a stranger", "change my password"]),
     ("Family", ["help my kids with homework", "visit my parents", "pick up my kids", "cook for my family", "send money home"]),
-    ("Money &amp; bills", ["pay rent on time", "pay the phone bill", "save money", "check my bank account"]),
     ("Home", ["call the landlord", "fix the sink", "lock the door", "take out the trash", "do laundry"]),
     ("Health", ["drink more water", "sleep 8 hours", "see a doctor", "take my medicine", "go for a walk"]),
-    ("Getting around", ["drive a car", "take the bus / the T", "ride a bike", "use a map app"]),
     ("Work", ["work on Saturday", "arrive on time", "wear a uniform", "ask for a day off", "call my boss"]),
     ("Learning", ["speak Spanish / Portuguese / Creole", "practice English every day", "do my homework", "use a dictionary app"]),
 ]
@@ -340,7 +340,7 @@ def game(p, key):
     <ol class="items play" style="list-style:none;">
       <li><b class="n">1.</b> Pick a problem. Read it out loud: <i>&ldquo;I have a problem. &hellip; What should I do?&rdquo;</i> Everyone puts an <b>&#10007;</b> on it.</li>
       <li><b class="n">2.</b> <b>Everyone</b> gives advice: <b>You should &hellip;</b> &middot; <b>You shouldn&rsquo;t &hellip;</b> &middot; <b>You can &hellip;</b> + <b>V1</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
-      <li><b class="n">3.</b> The reader picks the <b>best advice</b>: <i>&ldquo;Good idea! Thank you.&rdquo;</i> That person gets a point ( <b>|</b> ).</li>
+      <li><b class="n">3.</b> The reader picks the <b>best advice</b>: <i>&ldquo;Good idea! Thank you.&rdquo;</i> That person gets a <span style="white-space:nowrap">point (<b>|</b>).</span></li>
       <li><b class="n">4.</b> The next person picks a problem. Most points when the timer rings wins!</li>
     </ol>
   </div>
@@ -358,7 +358,7 @@ def game(p, key):
     <div class="gline"><b style="width:auto;">I have a problem.</b>{p.ln("<i>answers vary</i>")}</div>
     <div class="gline"><b style="width:auto;">My group says: You should</b>{p.ln("<i>answers vary: + V1</i>")}</div>
   </div>
-  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
+  <p class="pass bottom"><b>Finished early?</b> Go to page 10: write about you.</p>"""
     return (L.page("", "STATION 3: GAME", "Phrase bank &middot; use it in the game", 5, page5, key)
             + L.page("", "STATION 3: GAME", "Give advice &middot; with your group", 6, page6, key))
 
