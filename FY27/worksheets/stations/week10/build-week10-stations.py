@@ -3,7 +3,7 @@
 
 Quiz verbs: meet, speak. Vocab: meetings and suggestions (participate, suggest,
 propose, recommend, reach an agreement, raise a concern). Stations: 1 WARM-UP,
-2 SPEAK (short i / long ee), 3 TALK CARDS (Have you ever...? at the table),
+2 SPEAK (short i / long ee), 3 GAME (Have you ever...? phrase bank + questions on the page),
 4 REAL WORLD (neighborhood meeting flyer + comment card).
 
     python3 build-week10-stations.py
@@ -22,10 +22,10 @@ STEM = "week10-day1-2026-11-17"
 MEET = ("meet", "meets", "meeting", "met", "met")
 SPEAK_V = ("speak", "speaks", "speaking", "spoke", "spoken")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "Short <i>i</i> and long <i>ee</i>. With a teacher.", "Pages 4&ndash;5"),
-    ("TALK CARDS", "With your group. A teacher will visit.", "Pages 6&ndash;7 + cards on the table"),
-    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 8&ndash;9 + 2 color pages on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "Short <i>i</i> and long <i>ee</i>. With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "<i>Have you ever&hellip;?</i> With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
@@ -41,7 +41,7 @@ def warmup(p, key):
           ("supported a friend in a hard time?", "H")]
     hv_li = "".join(f'<li><b class="n">{i}.</b> ({p.circ("Have you ever", a == "H")} / {p.circ("Did you", a == "D")}) {t}</li>'
                     for i, (t, a) in enumerate(hv, 1))
-    page2 = f"""  <div class="task">
+    page2 = L.NAME_STRIP + f"""  <div class="task">
     <h2>1. Odd one out</h2>
     <p class="how">Three are meeting words. Circle the one that does not belong.</p>
     <p class="example">Example: suggest &middot; propose &middot; <b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">bus</b> &middot; recommend</p>
@@ -101,8 +101,8 @@ def warmup(p, key):
     <p class="ideas">Ideas: at a meeting &middot; to a big group &middot; on the radio &middot; to a doctor in English</p>
     {p.ln("<i>answers vary: Have you ever spoken at a meeting?</i>")}
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 PAIRS = [("ship", "sheep", "sheep"), ("sit", "seat", "sit"), ("live", "leave", "leave"), ("fill", "feel", "fill"),
@@ -176,84 +176,50 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "short <i>i</i> and long <i>ee</i> &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-# Talk cards: (emoji, V3 phrase). Safe, everyday experiences only.
-CARDS = [
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week09-have-you-ever")
+# Questions printed on page 6 (emoji, V3 phrase). Safe, everyday experiences only. No cards to cut.
+QUESTIONS = [
     ("&#127843;", "eaten sushi"), ("&#10052;&#65039;", "seen snow"), ("&#128014;", "ridden a horse"),
     ("&#9992;&#65039;", "flown in a plane"), ("&#127858;", "cooked for 10 people"), ("&#127908;", "sung karaoke"),
     ("&#11088;", "met a famous person"), ("&#128483;&#65039;", "spoken at a meeting"), ("&#127957;&#65039;", "swum in the ocean"),
-    ("&#128241;", "lost your phone"), ("&#128666;", "driven a truck"), ("&#127793;", "planted a garden"),
-    ("&#127942;", "won a prize"), ("&#9917;", "watched a game in a stadium"), ("&#128131;", "taken a dance class"),
-    ("&#127838;", "made bread"), ("&#128250;", "been on TV"), ("&#127881;", "forgotten a birthday"),
-    ("&#127968;", "moved to a new city"), ("&#128508;", "been to New York City"),
+    ("&#128241;", "lost your phone"), ("&#128666;", "driven a truck"), ("&#9917;", "watched a game in a stadium"),
+    ("&#128131;", "taken a dance class"), ("&#127881;", "forgotten a birthday"), ("&#128508;", "been to New York City"),
 ]
-V3_CHECK = [("eat", "eaten"), ("see", "seen"), ("ride", "ridden"), ("fly", "flown"), ("sing", "sung"),
-            ("swim", "swum"), ("drive", "driven"), ("take", "taken"), ("forget", "forgotten"), ("be", "been")]
 
 
 def talk(p, key):
-    log = '<tr><td style="height:36px;"></td><td></td><td></td><td></td></tr>' * 5
+    log = '<tr><td style="height:34px;"></td><td></td><td></td><td></td></tr>' * 3
     if key:
         log = log.replace("<td></td><td></td><td></td>", '<td></td><td></td><td class="ansc"><i>answers vary</i></td>', 1)
+    items = [(e, f"Have you ever {ph}?", None, None) for e, ph in QUESTIONS]
     page6 = f"""  <div class="task">
     <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Put the cards face down on the table.</li>
-      <li><b class="n">2.</b> Take a card. Ask the person on your <b>left</b>: <i>&ldquo;Have you ever &hellip;?&rdquo;</i></li>
-      <li><b class="n">3.</b> They answer: <b>Yes, I have.</b> / <b>No, I haven&rsquo;t.</b> / <b>No, never.</b></li>
-      <li><b class="n">4.</b> <b>Yes?</b> Ask one more question with <b>did</b>: <i>When did you&hellip;? Where did you&hellip;? Did you like it?</i></li>
-      <li><b class="n">5.</b> <b>No?</b> Ask: <i>&ldquo;Do you want to?&rdquo;</i> Then the next person takes a card.</li>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer: <b>Yes, I have.</b> / <b>No, I haven&rsquo;t.</b> / <b>No, never.</b></li>
+      <li><b class="n">3.</b> <b>Yes?</b> Ask one more question with <b>did</b>: <i>When did you&hellip;? Where did you&hellip;? Did you like it?</i></li>
+      <li><b class="n">4.</b> <b>No?</b> Ask: <i>&ldquo;Do you want to?&rdquo;</i> Then that person picks the next question. <b>Stuck?</b> Look at page 5.</li>
     </ol>
   </div>
   <div class="key" style="margin-bottom:10px;">
     <div><b>Have you ever + V3?</b><br>any time in your life</div>
     <div><b>When / Where did you + V1?</b><br>one finished time</div>
   </div>
-  <div class="tip" style="margin-bottom:14px; font-size:17px; line-height:1.6;">
-    <b>A:</b> Have you ever <b>eaten</b> sushi? &emsp; <b>B:</b> Yes, I have.<br>
-    <b>A:</b> When <b>did</b> you <b>eat</b> it? &emsp;&emsp;&ensp; <b>B:</b> I <b>ate</b> it last year at my friend&rsquo;s house.<br>
-    <b>A:</b> Did you like it? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> Yes, I did!
+  <div class="tip" style="margin-bottom:10px; font-size:16px;">
+    <b>A:</b> Have you ever <b>eaten</b> sushi? &emsp; <b>B:</b> Yes, I have. &emsp; <b>A:</b> When <b>did</b> you <b>eat</b> it? &emsp; <b>B:</b> I <b>ate</b> it last year.
   </div>
+  {L.board(items, key)}
   <div class="task">
     <h2>Write it down</h2>
-    <p class="how">After each turn, write who answered and one detail.</p>
+    <p class="how">Write who answered and one detail.</p>
     <table class="pick"><tr><th style="width:22%;">Who?</th><th style="width:30%;">Have you ever&hellip;?</th><th style="width:14%;">Yes / No</th><th>One detail (when? where?)</th></tr>{log}</table>
-  </div>"""
-    v3 = "".join(f"<td><b>{a}</b> &rarr; {p.b(b, 'short')}</td>" + ("</tr><tr>" if i % 5 == 4 and i < 9 else "")
-                 for i, (a, b) in enumerate(V3_CHECK))
-    page7 = f"""  <div class="task">
-    <h2>A. Write about your group</h2>
-    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
-    <div class="gram3">
-      <div><b>has + V3</b><br>Ana <b>has been</b> to Mexico City.</div>
-      <div><b>has never + V3</b><br>Juan <b>has never seen</b> snow.</div>
-      <div><b>have both + V3</b><br>Mei and I <b>have both flown</b> in a plane.</div>
-    </div>
-    {p.ln("<i>answers vary: check has + V3 for one person, have + V3 for two</i>", 4)}
-  </div>
-  <div class="task">
-    <h2>B. V3 check</h2>
-    <p class="how">These verbs are on the cards. Write the <b>V3</b>.</p>
-    <table class="pick" style="font-size:17px;"><tr>{v3}</tr></table>
-  </div>
-  <div class="task">
-    <h2>C. &#9733; Make 2 new cards</h2>
-    <p class="how">Write 2 new <i>Have you ever&hellip;?</i> questions. Ask your group.</p>
-    <div class="gline"><b>1.</b>{p.ln("<i>answers vary: Have you ever + V3?</i>")}</div>
-    <div class="gline"><b>2.</b>{p.ln("")}</div>
-  </div>
-  <div class="task">
-    <h2>D. Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> Which answer in your group was a surprise?</li>
-      <li><b class="n">2.</b> What is something you have never done, but you want to do?</li>
-    </ol>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    sub = "Have you ever&hellip;? &middot; with your group"
-    return L.page("rd", "STATION 3: TALK CARDS", sub, 6, page6, key) + L.page("rd", "STATION 3: TALK CARDS", sub, 7, page7, key)
+    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "Have you ever&hellip;? &middot; with your group", 6, page6, key))
 
 
 TF = [("Childcare is free.", "T"),
@@ -318,44 +284,14 @@ def real_world(p, key):
     <p class="how">Read your card to your group, like at the meeting. Speak for <b>2 minutes or less</b>. Your group says: <i>&ldquo;Thank you for raising your concern.&rdquo;</i></p>
   </div>"""
     sub = "with your group"
-    return L.page("rw", "STATION 4: REAL WORLD", sub, 8, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 9, page9, key)
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(10, "Tuesday, November 17, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + talk(p, key) + real_world(p, key)
-            + L.verb_charts(10, MEET, "she", SPEAK_V, "they", key))
-    return L.doc("Week 10 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key), body)
-
-
-CARDS_CSS = """
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #111; background: #fff;
-         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  /* Station 3 talk cards: print 1 copy per table (color or black and white). Cut on the dashed lines. */
-  .page { width: 8.5in; height: 11in; padding: 0.4in; display: grid; grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: 1fr; page-break-after: always; break-after: page; }
-  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
-  @media print { @page { size: letter portrait; margin: 0; } }
-  .card { border: 1.5px dashed #888; display: flex; flex-direction: column; align-items: center; justify-content: center;
-          text-align: center; padding: 8px; gap: 4px; }
-  .card .emo { font-size: 38px; line-height: 1; }
-  .card .hv { font-size: 16px; color: #555; }
-  .card .ph { font-size: 22px; font-weight: bold; line-height: 1.15; }
-  .card .n { font-size: 11px; color: #999; }
-  .card.blank .ph { color: #999; font-weight: normal; font-size: 18px; }
-  .card.blank .line { width: 85%; border-bottom: 1.5px solid #999; height: 26px; }
-"""
-
-
-def cards_doc():
-    cells = [f'<div class="card"><div class="emo">{e}</div><div class="hv">Have you ever&hellip;</div>'
-             f'<div class="ph">{ph}?</div><div class="n">{i}</div></div>' for i, (e, ph) in enumerate(CARDS, 1)]
-    cells += ['<div class="card blank"><div class="hv">Have you ever&hellip;</div><div class="line"></div><div class="line"></div>'
-              '<div class="ph">Your question!</div></div>'] * 4
-    pages = "".join(f'<section class="page">{"".join(cells[i:i + 12])}</section>' for i in range(0, len(cells), 12))
-    return L.doc("Week 10 Station 3 Talk Cards", CARDS_CSS, pages)
+    body = (warmup(p, key) + speak(p, key) + talk(p, key) + real_world(p, key)
+            + L.verb_charts(9, MEET, "she", SPEAK_V, "they", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 10 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
 
 
 FLYER_CSS = """
@@ -363,7 +299,7 @@ FLYER_CSS = """
   body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1c2433; background: #fff;
          font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up association, library, people, numbers.
-     Questions are on packet pages 8-9; page 9 needs sheet 2. */
+     Questions are on packet pages 7-8; page 8 needs sheet 2. */
   .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
           page-break-after: always; break-after: page; }
   @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
@@ -480,7 +416,7 @@ def self_check():
       <tr><td class="n">4&#9733;</td><td class="a">No</td><td class="why">Ages 3&ndash;10 only. Only the 6-year-old can go.</td></tr>
     </table>
     <div class="tip"><b>Different answer?</b> Find the sentence on the flyer together. Read it out loud. <b>Part D:</b> look for <i>has been</i>, <i>have called</i>, and <i>I suggest</i> on the card.</div>"""
-    return L.self_check_doc("Week 10 Station 4 Self-Check", body)
+    return L.self_check_doc("Week 10 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
@@ -489,13 +425,13 @@ def leader_guide():
     which = "".join(f'<li><b>{c}.</b> {(a if c == "a" else b)}</li>' for a, b, c in WHICH)
     top = L.leader_top(10, "11/17/26", STATIONS, [
         "<b>This week:</b> practice <b>Have you ever&hellip;?</b> (started Thursday). Quiz verbs: <b>meet, speak</b>. Week 10 Quiz opens Thu 11/19 at 6 p.m.",
-        "<b>Before class:</b> cut 1 set of talk cards per table. Print the flyer in color (2 copies) and the self-check card.",
-        "<b>Floating:</b> start each block at <b>Station 4</b> (show the flyer, do Part B #1 together). Then Station 3: play one card with them so they hear the <i>did</i> follow-up. Then Station 1.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, quiz reminder. <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Nothing to cut. Print the flyer in color (2 copies) and the self-check card.",
+        "<b>Floating:</b> start each block at <b>Station 4</b> (show the flyer, do Part B #1 together). Then Station 3: play one question with them so they hear the <i>did</i> follow-up. Then Station 1.",
+        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, quiz reminder. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (i / ee)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (i / ee)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p>Spanish, Portuguese, Haitian Creole, and Arabic have one <b>i</b> sound, close to English <b>ee</b>, so <i>live</i> and <i>leave</i> sound the same. Goal: <b>hear</b> it, then <b>make</b> it.</p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>Quick or long?</b> Fingers on the corners of the mouth: <i>sit / seat</i>. Exaggerate the smile on <b>ee</b>.</td></tr>
@@ -527,7 +463,7 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 10 &middot; Tue 11/17/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. Odd one out:</b> 1 sandwich &middot; 2 umbrella &middot; 3 mountain &middot; 4 pillow &middot; 5 banana</p>
@@ -542,16 +478,15 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(PAIRS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {c}" for i, (_, _, c) in enumerate(WHICH, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: TALK CARDS (pages 6&ndash;7 + cards)</h2>
-    <p><b>Game and A:</b> answers vary. Listen for <i>Have you ever + V3?</i> &rarr; <i>Yes, I have.</i> &rarr; <i>When did you + V1?</i> &rarr; <i>I + V2</i>. In A: <i>has + V3</i> for one person, <i>have both + V3</i> for two.</p>
-    <p><b>B, V3:</b> {" &middot; ".join(f"{a} &rarr; {b}" for a, b in V3_CHECK)} &middot; <b>C:</b> answers vary.</p>
+    <h2>Station 3: GAME, Have you ever&hellip;? (pages 5&ndash;6, no cards)</h2>
+    <p>Page 5 is the <i>Have you ever</i> phrase bank: spend 2&ndash;3 minutes on the V1 &rarr; V3 row and Rules A&ndash;D, then play. Page 6 has 15 questions printed on it: pick one, ask the person on your left, everyone crosses it off. Answers vary. Listen for <i>Have you ever + V3?</i> &rarr; <i>Yes, I have.</i> &rarr; <i>When did you + V1?</i> &rarr; <i>I + V2</i>. Most common error: <i>Have you ever <s>ate</s>&hellip;?</i> Recast: &ldquo;Have you ever <b>eaten</b>&hellip;? Yes!&rdquo;</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Neighborhood meeting (pages 8&ndash;9 + 2 color pages)</h2>
+    <h2>Station 4: REAL WORLD, Neighborhood meeting (pages 7&ndash;8 + 2 color pages)</h2>
     <p><b>A:</b> 1 Monday, Nov. 23, 6:30&ndash;8:00 p.m. &middot; 2 Eastside Library, Community Room &middot; 3 2 minutes &middot; 4 new playground equipment for Elm Park</p>
     <p><b>B:</b> 1 True &middot; 2 False (ages 3&ndash;10) &middot; 3 True &middot; 4 Not on the flyer &middot; 5 False &middot; 6 True (Zoom)</p>
     <p><b>C:</b> 1 email it / online form / watch on Zoom &middot; 2 sign up at the door &middot; 3 call or email by Nov. 20 &middot; &#9733;4 No: only the 6-year-old (ages 3&ndash;10)</p>
@@ -560,7 +495,7 @@ def leader_guide():
     <p style="font-size:12px;">The association, library, people, websites, and phone numbers are made up. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
     <p><b>Chart 1 (she + meet, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (they + speak):</b> speak, speaks, speaking, spoke, spoken &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("they", SPEAK_V))}</p>
   </div>
@@ -573,7 +508,6 @@ if __name__ == "__main__":
         f"{STEM}-packet.html": (packet(False), 10),
         f"{STEM}-packet-key.html": (packet(True), 10),
         f"{STEM}-leader-guide.html": (leader_guide(), 2),
-        f"{STEM}-talk-cards.html": (cards_doc(), 2),
         f"{STEM}-real-world-document.html": (flyer(), 2),
         f"{STEM}-real-world-self-check.html": (self_check(), 1),
     }

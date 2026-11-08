@@ -3,12 +3,12 @@
 
 No quiz this week: verb review is buy, sell, spend. Vocab: economic news (cost of
 living, inflation, wages, unemployed, interest rate, economy). Stations: 1 WARM-UP,
-2 SPEAK (Which is better? debates), 3 READ (news article + price chart),
+2 SPEAK (Which is better? debates), 3 GAME (comparatives phrase bank + Compare it!),
 4 REVIEW GAME (fall grammar quiz board with a student judge).
 
     python3 build-week14-stations.py
 writes the HTML and PDFs next to this file. The newspaper, people, and prices are
-made up for practice, and the article says so.
+made up.
 """
 import sys
 from pathlib import Path
@@ -23,10 +23,10 @@ BUY = ("buy", "buys", "buying", "bought", "bought")
 SELL = ("sell", "sells", "selling", "sold", "sold")
 SPEND = ("spend", "spends", "spending", "spent", "spent")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "<i>Which is better?</i> With a teacher.", "Pages 4&ndash;5"),
-    ("READ", "With your group. A teacher will visit.", "Pages 6&ndash;7"),
-    ("REVIEW GAME", "With your group. Take turns being the judge.", "Pages 8&ndash;9 + game sheet on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "<i>Which is better?</i> With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "Compare it! With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REVIEW GAME", "With your group. Take turns being the judge.", "Pages 7&ndash;8 + game sheet on the table"),
 ]
 
 
@@ -41,7 +41,7 @@ def warmup(p, key):
     match = [("cheap", "comparative", "cheaper"), ("expensive", "superlative", "the most expensive"),
              ("good", "comparative", "better"), ("big", "superlative", "the biggest"), ("small", "comparative", "smaller")]
     li2 = "".join(f'<li><b class="n">{i}.</b> {a} &rarr; <span class="small">({k})</span> {p.b(f)}</li>' for i, (a, k, f) in enumerate(match, 1))
-    page2 = f"""  <div class="task">
+    page2 = L.NAME_STRIP + f"""  <div class="task">
     <h2>1. Fill in the blank</h2>
     <p class="how">Use every word once. Change the word form if needed.</p>
     <div class="bank"><span>inflation</span> <span>economy</span> <span>cost of living</span> <span>wages</span> <span>interest rate</span> <span>unemployed</span></div>
@@ -97,8 +97,8 @@ def warmup(p, key):
     <p class="ideas">Ideas: store for vegetables &middot; restaurant &middot; park &middot; time to shop</p>
     {p.ln("<i>answers vary: Which store is the best for vegetables?</i>")}
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 HEAR = [("The bus is cheaper than a taxi.", "C"), ("This is the cheapest store.", "S"),
@@ -160,92 +160,46 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "Which is better? &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
 # (food, last year, this year)
-PRICES = [("Eggs (12)", 3.50, 4.20), ("Milk (1 gallon)", 4.40, 4.29), ("Bread (1 loaf)", 2.80, 3.10),
-          ("Coffee (1 lb)", 6.90, 8.40), ("Chicken (1 lb)", 2.10, 2.10)]
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week13-comparatives")
+# Compare it! (page 6): (emoji, prompt, adjective, key form). Not the same pairs as the Station 2 debates.
+COMPARE = [
+    ("&#128661;", "a taxi / the T", "fast", "faster than"), ("&#9749;", "coffee / tea", "good", "better than"),
+    ("&#127822;", "fruit / candy", "healthy", "healthier than"), ("&#127968;", "a house / an apartment", "expensive", "more expensive than"),
+    ("&#127750;", "Boston / my hometown", "big", "bigger than"), ("&#128187;", "a laptop / a phone", "easy", "easier than"),
+    ("&#127769;", "the day shift / the night shift", "hard", "harder than"), ("&#128722;", "Market Basket / a corner store", "cheap", "cheaper than"),
+    ("&#128021;", "dogs / cats", "friendly", "friendlier than"), ("&#128218;", "English / my language", "difficult", "more difficult than"),
+    ("&#127835;", "___ is the ___ food from my country.", "good", "the best"), ("&#127956;&#65039;", "___ is the ___ place I have seen.", "beautiful", "the most beautiful"),
+    ("&#128197;", "___ is the ___ day of my week.", "busy", "the busiest"), ("&#10052;&#65039;", "___ is the ___ month in Boston.", "cold", "the coldest"),
+    ("&#129534;", "___ is the ___ bill I pay.", "expensive", "the most expensive"),
+]
 
 
-def chart_svg():
-    w, h, left, top, bottom = 660, 250, 150, 18, 30
-    scale = (w - left - 60) / 9.0
-    rows = []
-    bh = 16
-    for i, (food, a, b) in enumerate(PRICES):
-        y = top + i * 44
-        rows.append(f'<text x="{left - 10}" y="{y + 20}" text-anchor="end" font-size="15" font-weight="700">{food}</text>'
-                    f'<rect x="{left}" y="{y}" width="{a * scale:.1f}" height="{bh}" fill="#b9c4d6"/>'
-                    f'<text x="{left + a * scale + 6:.1f}" y="{y + 13}" font-size="13">${a:.2f}</text>'
-                    f'<rect x="{left}" y="{y + bh + 2}" width="{b * scale:.1f}" height="{bh}" fill="#1f4e8c"/>'
-                    f'<text x="{left + b * scale + 6:.1f}" y="{y + bh + 15}" font-size="13" font-weight="700">${b:.2f}</text>')
-    legend = (f'<rect x="{left}" y="{h - 16}" width="14" height="12" fill="#b9c4d6"/><text x="{left + 20}" y="{h - 6}" font-size="13">December 2025</text>'
-              f'<rect x="{left + 140}" y="{h - 16}" width="14" height="12" fill="#1f4e8c"/><text x="{left + 160}" y="{h - 6}" font-size="13" font-weight="700">December 2026</text>')
-    return (f'<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" '
-            f'role="img" aria-label="Bar chart of five grocery prices, last year and this year">'
-            f'<line x1="{left}" y1="{top - 6}" x2="{left}" y2="{h - bottom}" stroke="#333" stroke-width="1.5"/>{"".join(rows)}{legend}</svg>')
-
-
-def read(p, key):
-    page6 = f"""  <div class="paper">
-    <div class="mast"><span>EAST SIDE WEEKLY</span><span>December 14, 2026 &middot; Practice article: the newspaper, people, and prices are made up</span></div>
-    <h1 class="hl">Your Grocery Bill: What Costs More This Year?</h1>
-  </div>
-  <div class="words" style="margin-bottom:8px;">
-    <b>Words to know</b>
-    <div class="wgrid">
-      <div><b>grocery bill</b> = what you pay for food</div>
-      <div><b>shopper</b> = a person who shops</div>
-      <div><b>a dozen</b> = 12</div>
-      <div><b>rise</b> = go up</div>
-      <div><b>economist</b> = an expert on money and the economy</div>
-      <div><b>paycheck</b> = the money you get for your work</div>
-    </div>
-  </div>
-  <div class="chartbox">{chart_svg()}</div>
-  <div class="paras">
-  <p>Shoppers in East Side are talking about prices. &ldquo;My <b>grocery bill</b> is bigger than last year,&rdquo; says Maria Lopes, a mother of three. &ldquo;I buy the same food, but I spend more.&rdquo;</p>
-  <p>The <i>East Side Weekly</i> checked prices at three local stores in December 2025 and December 2026. Some foods are more expensive now. Coffee had the biggest change. A pound of coffee costs $1.50 more than last year.</p>
-  <p>Eggs are also more expensive. <b>A dozen</b> eggs costs $4.20 now. Last year, it was $3.50. But not everything costs more. Milk is a little cheaper than last year, and chicken is the same price.</p>
-  <p>Why do prices change? When prices <b>rise</b> for a long time, <b>economists</b> call it inflation. Weather, gas prices, and wages can all change food prices. &ldquo;When coffee farms have a bad year, there is less coffee, so it is more expensive,&rdquo; says a local store owner.</p>
-  <p>Wages matter too. If prices go up faster than wages, families can buy less with their <b>paychecks</b>. Maria has a plan. &ldquo;I compare unit prices, and I buy rice and beans in bulk. It&rsquo;s the cheapest way to feed my family.&rdquo;</p>
-  </div>"""
-    page7 = f"""  <p class="how"><b>First:</b> Read the article alone. Read it <b>2 times</b>. Look at the chart too. Then answer.</p>
-  <div class="task">
-    <h2>Part A: Read the chart and the article</h2>
-    <p class="how">The answers are not always in one sentence. <b>&#9733;</b> = challenge.</p>
-    <ol class="items">
-      <li><b class="n">1.</b> Which food costs the most now? How much? {p.b("coffee, $8.40", "long")}</li>
-      <li><b class="n">2.</b> Which food had the biggest change? {p.b("coffee (+$1.50)", "long")}</li>
-      <li><b class="n">3.</b> Which food is cheaper than last year? {p.b("milk", "long")}</li>
-      <li><b class="n">4.</b> Which food is the same price? {p.b("chicken", "long")}</li>
-      <li><b class="n">5.</b> <b>&#9733;</b> Is bread cheaper or more expensive now? By how much?{p.ln("More expensive: $3.10 &minus; $2.80 = 30&cent; more.")}</li>
-      <li><b class="n">6.</b> <b>&#9733;</b> Why can coffee get more expensive? <span class="small">(&para;4)</span>{p.ln("When coffee farms have a bad year, there is less coffee.")}</li>
-      <li><b class="n">7.</b> <b>&#9733;</b> What does Maria do to save money? <span class="small">(&para;5)</span>{p.ln("She compares unit prices and buys rice and beans in bulk.")}</li>
+def compare(p, key):
+    items = [(e, t, f"({adj})", ans) for e, t, adj, ans in COMPARE]
+    page6 = f"""  <div class="task">
+    <h2>How to play: Compare it!</h2>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> Say your opinion with the word in ( ): <i>&ldquo;I think rice is <b>cheaper than</b> meat.&rdquo;</i> Boxes 11&ndash;15: <i>the -est / the most</i>. <b>Stuck?</b> Look at page 5.</li>
+      <li><b class="n">3.</b> The group checks the form. Right = 1 point ( <b>|</b> ). Then they answer: <i>&ldquo;I agree.&rdquo;</i> or <i>&ldquo;I disagree. I think&hellip;&rdquo;</i></li>
+      <li><b class="n">4.</b> The next person picks a box. Most points when the timer rings wins!</li>
     </ol>
   </div>
+  {L.board(items, key)}
+  {L.SCORE}
   <div class="task">
-    <h2>Part B: Find the grammar</h2>
-    <p class="how">Find these in the article. Write the word.</p>
-    <table class="pick" style="font-size:17px;">
-      <tr><th>-er than</th><th>more &hellip; than</th><th>the -est</th><th>a little / the same</th></tr>
-      <tr>{p.td("bigger")}{p.td("more expensive")}{p.td("the biggest / the cheapest")}{p.td("a little cheaper / the same price")}</tr>
-    </table>
+    <h2>Write your best sentence</h2>
+    {p.ln("<i>answers vary: -er than / more &hellip; than / the -est / the most</i>")}
   </div>
-  <div class="task">
-    <h2>Part C: Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> What costs more now than last year for you?</li>
-      <li><b class="n">2.</b> What is the cheapest way to eat well? <i>&ldquo;The cheapest way is &hellip;&rdquo;</i></li>
-    </ol>
-  </div>
-  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to talk about your own money.</p>"""
-    sub = "News: grocery prices &middot; with your group"
-    return L.page("story", "STATION 3: READ", sub, 6, page6, key) + L.page("rd", "STATION 3: READ", sub, 7, page7, key)
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
+    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "Compare it! &middot; with your group", 6, page6, key))
 
 
-# Review game: category -> [(points, question, answer)]
 GAME = [
     ("V2 / V3", [(100, "V2 of <b>buy</b>?", "bought"), (200, "V3 of <b>speak</b>?", "spoken"),
                  (300, "V2 <b>and</b> V3 of <b>drink</b>?", "drank, drunk")]),
@@ -313,7 +267,7 @@ def game(p, key):
     <p class="how">Read your fall review to the person next to you. Then say one thing you liked about theirs.</p>
   </div>"""
     sub = "fall review &middot; with your group"
-    return L.page("rd", "STATION 4: REVIEW GAME", sub, 8, page8, key) + L.page("rd", "STATION 4: REVIEW GAME", sub, 9, page9, key)
+    return L.page("rd", "STATION 4: REVIEW GAME", sub, 7, page8, key) + L.page("rd", "STATION 4: REVIEW GAME", sub, 8, page9, key)
 
 
 EXTRA_CSS = """
@@ -335,10 +289,9 @@ EXTRA_CSS = """
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(14, "Tuesday, December 15, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + read(p, key) + game(p, key)
-            + L.verb_charts(10, SPEND, "she", SELL, "I", key))
-    return L.doc("Week 14 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + EXTRA_CSS, body)
+    body = (warmup(p, key) + speak(p, key) + compare(p, key) + game(p, key)
+            + L.verb_charts(9, SPEND, "she", SELL, "I", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 14 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS + EXTRA_CSS, body)
 
 
 GAME_CSS = """
@@ -388,13 +341,13 @@ def leader_guide():
     hear = "".join(f'<tr><td class="n">{i}</td><td>{s}</td><td>{"compare 2" if a == "C" else "number 1"}</td></tr>' for i, (s, a) in enumerate(HEAR, 1))
     top = L.leader_top(14, "12/15/26", STATIONS, [
         "<b>This week:</b> practice <b>comparatives + superlatives</b> (started Thursday). <b>No quiz</b>: verb review <b>buy, sell, spend</b>. Last Tuesday before break (12/22 is review + party).",
-        "<b>Before class:</b> print the game sheet in color (1 per table). Page 2 is the judge&rsquo;s answers: fold it back.",
-        "<b>Floating:</b> no Real World table this week. Start each block at <b>Station 3</b> (help read the chart: light bar = last year, dark = this year). Then Station 4 (check the judge is reading answers), then Station 1.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Print the game sheet in color (1 per table). Page 2 is the judge&rsquo;s answers: fold it back.",
+        "<b>Floating:</b> no Real World table this week. Start each block at <b>Station 3</b> (listen for <i>more bigger</i> and <i>than</i>, not <i>that</i>). Then Station 4 (check the judge is reading answers), then Station 1.",
+        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (Which is better?)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (Which is better?)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p>Goal: use <b>-er / more &hellip; than</b> to give reasons, and <b>the -est / the most</b> for number 1. Pronunciation: <b>than</b> is weak (&ldquo;thn&rdquo;). Common errors: <i>more cheaper</i>, <i>more better</i>, <i>the most big</i>, <i>bigger that</i>.</p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>Quiet than.</b> Model: <i>The BUS is CHEAPer thn a TAXi.</i> Everyone repeats.</td></tr>
@@ -422,7 +375,7 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 14 &middot; Tue 12/15/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. Words:</b> 1 cost of living &middot; 2 wages &middot; 3 unemployed &middot; 4 interest rate &middot; 5 Inflation &middot; 6 economy</p>
@@ -437,21 +390,19 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i} {'compare 2' if a == 'C' else 'number 1'}" for i, (_, a) in enumerate(HEAR, 1))} &middot; <b>B&ndash;E:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: READ, Grocery prices (pages 6&ndash;7)</h2>
-    <p><b>A:</b> 1 coffee, $8.40 &middot; 2 coffee (+$1.50) &middot; 3 milk ($4.40 &rarr; $4.29) &middot; 4 chicken &middot; &#9733;5 more expensive, 30&cent; &middot; &#9733;6 a bad year on coffee farms = less coffee &middot; &#9733;7 compares unit prices, buys rice and beans in bulk</p>
-    <p><b>B:</b> -er than: <i>bigger than</i> &middot; more &hellip; than: <i>more expensive</i> &middot; the -est: <i>the biggest change, the cheapest way</i> &middot; also: <i>a little cheaper, the same price, faster than</i></p>
-    <p style="font-size:12px;">The newspaper, people, and prices are made up for practice; the article says so. Eggs +$0.70, bread +$0.30, coffee +$1.50, milk &minus;$0.11, chicken $0.</p>
+    <h2>Station 3: GAME, Compare it! (pages 5&ndash;6)</h2>
+    <p>Page 5 is the comparatives phrase bank: 2&ndash;3 minutes on the three steps and Rules A&ndash;D, then play. Page 6: pick a box, give an opinion with the word in ( ), the group gives the point for the form and agrees or disagrees. Opinions vary; the forms are: {" &middot; ".join(f"{i}. {a}" for i, (_, _, _, a) in enumerate(COMPARE, 1))}. Common errors: <i>more bigger</i>, <i>bigger <s>that</s></i>, <i>the most big</i>.</p>
   </div>
   <div class="box">
-    <h2>Station 4: REVIEW GAME (pages 8&ndash;9 + game sheet)</h2>
+    <h2>Station 4: REVIEW GAME (pages 7&ndash;8 + game sheet)</h2>
     <p>The judge&rsquo;s answers are on page 2 of the game sheet. <b>Fall review:</b> answers vary. Look for <i>have + V3, can + V1, good at + V-ing, easier than, should + V1, If &hellip; will</i>. The &ldquo;practice more&rdquo; checks are useful for planning January review.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
     <p><b>Chart 1 (she + spend, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (I + sell):</b> sell, sells, selling, sold, sold &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("I", SELL))}</p>
   </div>

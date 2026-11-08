@@ -216,30 +216,96 @@
   .hb.sm.ans { min-width: 0.36in; font-size: 13px; padding: 0 1px; }
   .textbox .blank { line-height: 1.2; height: 1.25em; }
   td.ans { color: #c00; font-weight: bold; }
-</style>
+
+  /* Page 1 top: name + group (replaces the old cover page) */
+  .strip { border: 1.5px solid #000; padding: 3px 10px 4px; margin-bottom: 8px; }
+  .strip .name-row { margin-bottom: 1px; }
+  /* Phrase bank pages: the handout's own margins */
+  .page.pbp { padding: 0.4in 0.45in; }
+  .pbk { flex: 1; min-height: 0; display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; }
+  /* Station 3 page 6: problems / questions printed on the page instead of cards */
+  .qboard { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #000; margin-bottom: 10px; }
+  .qboard > div { padding: 5px 8px; display: flex; gap: 7px; border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; }
+  .qboard > div:nth-child(3n) { border-right: none; }
+  .qboard > div:nth-last-child(-n+3) { border-bottom: none; }
+  .qboard .n { font-size: 18px; font-weight: bold; flex: none; width: 1.5em; text-align: center; line-height: 1.1; }
+  .qboard .e { font-size: 20px; line-height: 1; display: block; margin-top: 2px; }
+  .qboard .t { font-size: 15px; line-height: 1.25; font-weight: bold; }
+  .qboard .tag { display: block; font-size: 12px; font-weight: normal; font-style: italic; margin-top: 2px; }
+  .qscore { display: grid; grid-template-columns: repeat(5, 1fr); border: 1.5px solid #000; margin-bottom: 12px; }
+  .qscore > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
+  .qscore > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
+  .play li { margin-bottom: 3px !important; }
+  .pbk h2 { font-size: 18px; margin-bottom: 5px; }
+  .pbk h2 .pb-small { font-weight: normal; }
+  .pbk .pb-small { font-size: 11px; }
+  .pbk .pb-box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .pbk .pb-box:last-child { margin-bottom: 0; }
+  .pbk .pb-scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-scale > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-scale > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-scale .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-scale .pb-pct { font-size: 14px; }
+  .pbk .pb-scale .pb-ex { font-size: 11px; }
+  .pbk .pb-bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .pbk .pb-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pbk .pb-rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .pbk .pb-rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .pbk .pb-formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .pbk .pb-chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .pbk .pb-chip.pb-adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rule .pb-ex { font-size: 14px; }
+  .pbk .pb-rule .pb-ex b { text-decoration: underline; }
+  .pbk .pb-rule.pb-wide { grid-column: 1 / -1; }
+  .pbk .pb-no { font-size: 14px; margin-top: 3px; }
+  .pbk .pb-no s { text-decoration-thickness: 2px; }
+  .pbk .pb-bank { column-count: 4; column-gap: 14px; }
+  .pbk .pb-cat { break-inside: avoid; margin-bottom: 6px; }
+  .pbk .pb-cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .pbk .pb-cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .pbk .pb-cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+  .pbk .pb-write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .pbk .pb-write-row .pb-adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .pbk .pb-write-row .pb-fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .pbk .pb-write-row .pb-fill.pb-example { font-style: italic; color: #000; }
+  .pbk .pb-hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+  .pbk table.pb-interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .pbk table.pb-interview th, .pbk table.pb-interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  .pbk table.pb-interview th { font-size: 14px; }
+  .pbk table.pb-interview td { height: 34px; }
+  .pbk table.pb-interview td.pb-q { width: 52%; }
+  .pbk .pb-line { border-bottom: 1.5px solid #000; height: 32px; }
+  .pbk .pb-check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .pbk .pb-cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .pbk .pb-check span { margin-right: 14px; white-space: nowrap; }
+  .pbk .pb-forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-forms > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-forms > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-forms .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-forms .pb-sm { font-size: 11px; }
+  .pbk .pb-forms .pb-md { font-size: 14px; }
+  .pbk .pb-write-row .pb-adv.pb-wide { width: 1.6in; }
+  .pbk .pb-write-row .pb-adv.pb-xwide { width: 2.3in; font-size: 14px; }
+  .pbk table.pb-interview td.pb-c { width: 14%; text-align: center; }
+  .pbk .pb-frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .pbk .pb-rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .pbk .pb-rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .pbk .pb-rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .pbk .pb-rank .pb-opt { line-height: 1.9; }
+  .pbk .pb-rank .pb-opt .pb-cb { margin-right: 6px; }
+  .pbk .pb-dice { line-height: 1; margin-bottom: 2px; }
+  .pbk .pb-die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .pbk .pb-rules.pb-three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .pbk .pb-rules.pb-three .pb-rule { padding: 4px 7px; }
+  .pbk .pb-rules.pb-three .pb-chip { font-size: 13px; padding: 1px 5px; }
+  .pbk .pb-bank-split .pb-cat-name.pb-yes::before { content: "\2713  "; }
+  .pbk .pb-bank-split .pb-cat-name.pb-no::before { content: "\2717  "; }</style>
 </head>
 <body>
-<section class="page"><div class="keytag">ANSWER KEY</div>
-  
-  <div class="cover-title">Tuesday Stations</div>
-  <div class="cover-sub">Week 11 &middot; Tuesday, November 24, 2026 &middot; Practice day</div>
-  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
-  <table class="rotation">
-    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
-    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; GAME</td><td>4 &middot; REAL WORLD</td></tr>
-  </table>
-  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who">Numbers: <i>13</i> or <i>30</i>? With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: GAME</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7 + game board on the table</div></div><div><div class="nm">Station 4: REAL WORLD</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 8&ndash;9 + 2 color pages on the table</div></div></div>
-  <h2>How it works</h2>
-  <ul class="rules">
-    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
-    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
-    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
-    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
-    <li>Keep this packet. Bring it on Thursday.</li>
-  </ul>
-</section>
 <section class="page wu3"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 1</div></div>
+  <div class="strip"><div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>
   <div class="task">
     <h2>1. Circle the correct form</h2>
     <p class="how">After <b>good at</b>, use the <b>-ing</b> form.</p>
@@ -263,7 +329,7 @@
   </div>
 </section>
 <section class="page wu3"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
   <div class="task">
     <h2>4. Verb forms of the week</h2>
     <p class="how">Write the other forms of <b>cost</b> and <b>spend</b>. <i>Cost</i> and <i>spend</i> are on the Week 11 quiz!</p>
@@ -289,7 +355,7 @@
   </div>
 </section>
 <section class="page "><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
   <h2>13 or 30? Listen for the loud part.</h2>
   <div class="rhythm">
     <div><div class="big">13 &nbsp;<span style="font-size:22px;font-weight:normal;">thir&middot;<b>TEEN</b></span></div>
@@ -316,7 +382,7 @@
   </div>
 </section>
 <section class="page "><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>numbers &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
   <div class="task">
     <h2>D. Read aloud</h2>
     <p class="how">Take turns. Read one sentence each. Make the loud part loud!</p>
@@ -348,73 +414,40 @@
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
-<section class="page rd"><div class="keytag">ANSWER KEY</div>
+<section class="page pbp"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>Phrase bank &middot; use it in the game</span></div><div class="pg">Page 5</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>1. How good are you? <span class="pb-small">From great to bad. All of them: + <b>V-ing</b> or a <b>noun</b>.</span></h2><div class="pb-scale" style="grid-template-columns: repeat(5, 1fr);"><div><div class="pb-word">great at</div><div class="pb-bar"><i style="width:100%"></i></div><div class="pb-ex">&#9733;&#9733;&#9733;</div></div><div><div class="pb-word">good at</div><div class="pb-bar"><i style="width:75%"></i></div><div class="pb-ex">&#9733;&#9733;</div></div><div><div class="pb-word">OK at</div><div class="pb-bar"><i style="width:50%"></i></div><div class="pb-ex">&#9733;</div></div><div><div class="pb-word">not very good at</div><div class="pb-bar"><i style="width:25%"></i></div><div class="pb-ex">polite!</div></div><div><div class="pb-word">bad at</div><div class="pb-bar"><i style="width:5%"></i></div><div class="pb-ex">&nbsp;</div></div></div></div>
+<div class="pb-box"><h2>2. How does it work? <span class="pb-small">The important words are in <b>black</b>.</span></h2><div class="pb-rules"><div class="pb-rule"><div class="pb-rule-name">A. good at + V-ing</div><div class="pb-formula"><span class="pb-chip">I&rsquo;m</span><span class="pb-chip pb-adv">good at</span><span class="pb-chip pb-adv">cooking</span><span class="pb-chip">rice.</span></div><div class="pb-ex">She&rsquo;s good at <b>fixing</b> cars.</div><div class="pb-no">&#10007; <s>I&rsquo;m good at cook.</s></div></div><div class="pb-rule"><div class="pb-rule-name">B. good at + a noun</div><div class="pb-formula"><span class="pb-chip">I&rsquo;m</span><span class="pb-chip pb-adv">good at</span><span class="pb-chip">math.</span></div><div class="pb-ex">He&rsquo;s bad at <b>names</b>.</div><div class="pb-no">&#10007; <s>I&rsquo;m good in math.</s></div></div><div class="pb-rule"><div class="pb-rule-name">C. Question: Are you good at&hellip;?</div><div class="pb-formula"><span class="pb-chip pb-adv">Are</span><span class="pb-chip">you</span><span class="pb-chip">good at</span><span class="pb-chip">drawing?</span></div><div class="pb-ex">&rarr; Yes, I am! / I&rsquo;m OK at it. / Not really.</div><div class="pb-no">&#10007; <s>Do you good at drawing?</s></div></div><div class="pb-rule"><div class="pb-rule-name">D. interested in + V-ing / noun</div><div class="pb-formula"><span class="pb-chip">I&rsquo;m</span><span class="pb-chip pb-adv">interested in</span><span class="pb-chip">learning</span><span class="pb-chip">computers.</span></div><div class="pb-ex">She&rsquo;s <b>interested in</b> nursing.</div><div class="pb-no">&#10007; <s>I&rsquo;m interesting in art.</s></div></div><div class="pb-rule pb-wide"><div class="pb-rule-name" style="margin:0">Remember: <span style="font-weight:normal">-ing spelling: make &rarr; mak<b>ing</b> &middot; swim &rarr; swim<b>ming</b> &nbsp;|&nbsp; <i>not very good at</i> is a polite way to say <i>bad at</i>.</span></div></div></div></div>
+<div class="pb-box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="pb-small">Pick any skill. Change it if you want.</span></h2><div class="pb-bank"><div class="pb-cat"><div class="pb-cat-name">Cooking &amp; food</div><ul><li>cooking</li><li>baking</li><li>making soup</li><li>cooking for a big group</li><li>trying new food</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Fixing &amp; building</div><ul><li>fixing things</li><li>fixing cars</li><li>building furniture</li><li>painting walls</li><li>sewing</li></ul></div><div class="pb-cat"><div class="pb-cat-name">People</div><ul><li>listening to people</li><li>talking to customers</li><li>taking care of kids</li><li>solving problems</li><li>making people laugh</li><li>teaching</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Art &amp; music</div><ul><li>drawing</li><li>singing</li><li>dancing</li><li>playing the guitar</li><li>taking photos</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Sports</div><ul><li>playing soccer</li><li>running</li><li>swimming</li><li>lifting heavy things</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Numbers &amp; money</div><ul><li>math</li><li>saving money</li><li>counting fast</li><li>making a budget</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Computers &amp; phone</div><ul><li>typing</li><li>using computers</li><li>fixing phones</li><li>making videos</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Languages</div><ul><li>speaking Spanish</li><li>learning languages</li><li>remembering new words</li><li>spelling</li><li>remembering names</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Work skills</div><ul><li>working with a team</li><li>working fast</li><li>organizing things</li><li>driving</li><li>cleaning</li></ul></div></div><div class="pb-cat-be"><b>Jobs:</b> &nbsp;cook &middot; mechanic &middot; nurse &middot; teacher &middot; cashier &middot; driver &middot; electrician &middot; home health aide &middot; hairdresser &middot; carpenter &middot; tailor &middot; cleaner</div></div>
+</div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
   <div class="station-bar"><div class="label">STATION 3: GAME<span>What are you good at? &middot; with your group</span></div><div class="pg">Page 6</div></div>
   <div class="task">
     <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Put a small thing (a coin, an eraser) on <b>START</b>. That is you.</li>
-      <li><b class="n">2.</b> Roll the die. <b>No die?</b> Flip a coin: heads = move 1, tails = move 2.</li>
-      <li><b class="n">3.</b> Read your square. Ask the person on your <b>left</b>, or answer it yourself.</li>
-      <li><b class="n">4.</b> Answer with a <b>full sentence</b>. Then the group asks <b>one more question</b>.</li>
-      <li><b class="n">5.</b> First person to <b>FINISH</b> wins. Keep playing until the timer rings!</li>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
+      <li><b class="n">3.</b> The group asks <b>one more question</b>: <i>Who taught you? How often do you practice? Do you want to be good at it?</i></li>
+      <li><b class="n">4.</b> Then that person picks the next question. Keep playing until the timer rings!</li>
     </ol>
   </div>
-  <div class="key" style="margin-bottom:10px;">
-    <div><b>good at + V-ing</b><br>I&rsquo;m good at <b>cooking</b>.</div>
-    <div><b>not good at + V-ing</b><br>I&rsquo;m not good at <b>singing</b>.</div>
+  <div class="bank starters" style="font-size:16px;">
+    <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
+    <span><b>I&rsquo;m OK at it.</b></span>
+    <span><b>Not really.</b> I&rsquo;m not very good at it.</span>
   </div>
+  <div class="qboard"><div><span class="n">1<span class="e">&#127859;</span></span><span class="t">Are you good at <b>cooking</b>?</span></div><div><span class="n">2<span class="e">&#127912;</span></span><span class="t">Are you good at <b>drawing</b>?</span></div><div><span class="n">3<span class="e">&#128131;</span></span><span class="t">Are you good at <b>dancing</b>?</span></div><div><span class="n">4<span class="e">&#128295;</span></span><span class="t">Are you good at <b>fixing</b> things?</span></div><div><span class="n">5<span class="e">&#127908;</span></span><span class="t">Are you good at <b>singing</b>?</span></div><div><span class="n">6<span class="e">&#129504;</span></span><span class="t">Are you good at <b>remembering</b> names?</span></div><div><span class="n">7<span class="e">&#128176;</span></span><span class="t">Are you good at <b>saving</b> money?</span></div><div><span class="n">8<span class="e">&#129518;</span></span><span class="t">Are you good at <b>math</b>?</span></div><div><span class="n">9<span class="e">&#128663;</span></span><span class="t">Are you good at <b>driving</b>?</span></div><div><span class="n">10<span class="e">&#129697;</span></span><span class="t">Are you good at <b>sewing</b>?</span></div><div><span class="n">11<span class="e">&#128514;</span></span><span class="t">Are you good at <b>telling jokes</b>?</span></div><div><span class="n">12<span class="e">&#128187;</span></span><span class="t">Are you good at <b>using computers</b>?</span></div><div><span class="n">13<span class="e">&#128106;</span></span><span class="t">What is <b>your mom</b> good at?</span></div><div><span class="n">14<span class="e">&#128118;</span></span><span class="t">What were you good at <b>as a child</b>?</span></div><div><span class="n">15<span class="e">&#127891;</span></span><span class="t">What do you <b>want</b> to be good at?</span></div></div>
   <div class="task">
-    <h2>Ways to answer</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
-      <span><b>I&rsquo;m OK at it.</b> I&rsquo;m getting better.</span>
-      <span><b>Not really.</b> I&rsquo;m not good at it.</span>
-      <span><b>No, I&rsquo;m terrible at it!</b> &#128514;</span>
-    </div>
-  </div>
-  <div class="task">
-    <h2>One more question</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span>What do you cook?</span><span>Who taught you?</span>
-      <span>How often do you practice?</span><span>Do you want to be good at it?</span>
-    </div>
-  </div>
-  <div class="tip" style="font-size:17px;"><b>Example:</b><br>
-    <b>A:</b> Are you good at <b>dancing</b>? &emsp; <b>B:</b> Yes, I am! I&rsquo;m good at <b>dancing</b> salsa.<br>
-    <b>C:</b> Who taught you? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> My mother taught me.</div>
-</section>
-<section class="page rd"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 3: GAME<span>What are you good at? &middot; with your group</span></div><div class="pg">Page 7</div></div>
-  <div class="task">
-    <h2>A. Write about your group</h2>
-    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
-    <div class="gram3">
-      <div><b>is good at</b><br>Ana <b>is good at</b> sewing.</div>
-      <div><b>isn&rsquo;t good at</b><br>Juan <b>isn&rsquo;t good at</b> singing.</div>
-      <div><b>are both good at</b><br>Mei and I <b>are both good at</b> cooking.</div>
-    </div>
-    <div class="line ans"><i>answers vary: check is / are good at + V-ing</i></div><div class="line"></div><div class="line"></div><div class="line"></div>
-  </div>
-  <div class="task">
-    <h2>B. Spell the -ing</h2>
-    <div class="gram3">
-      <div><b>Most verbs:</b> add <b>-ing</b><br>cook &rarr; cooking</div>
-      <div><b>Ends in e:</b> drop the <b>e</b><br>dance &rarr; dancing</div>
-      <div><b>Short, one vowel:</b> double<br>swim &rarr; swimming</div>
-    </div>
-    <table class="pick" style="font-size:17px;"><tr><td><b>cook</b> &rarr; <span class="blank short ans">cooking</span></td><td><b>dance</b> &rarr; <span class="blank short ans">dancing</span></td><td><b>swim</b> &rarr; <span class="blank short ans">swimming</span></td><td><b>write</b> &rarr; <span class="blank short ans">writing</span></td></tr><tr><td><b>run</b> &rarr; <span class="blank short ans">running</span></td><td><b>fix</b> &rarr; <span class="blank short ans">fixing</span></td><td><b>make</b> &rarr; <span class="blank short ans">making</span></td><td><b>shop</b> &rarr; <span class="blank short ans">shopping</span></td></tr></table>
-  </div>
-  <div class="task">
-    <h2>C. &#9733; Get better!</h2>
-    <p class="how">What do you want to be good at? How can you practice? Use <b>should</b> or <b>can</b>.</p>
-    <div class="gline"><b style="width:auto;">I want to be good at</b><div class="line ans"><i>answers vary: + V-ing</i></div></div>
-    <div class="gline"><b style="width:auto;">I should / I can</b><div class="line ans"><i>answers vary: + V1</i></div></div>
+    <h2>Write about your group</h2>
+    <p class="how">Write <b>2 sentences</b> about the people at your table. Use their names: Ana <b>is good at</b> sewing. Mei and I <b>are both good at</b> cooking.</p>
+    <div class="line ans"><i>answers vary: check is / are good at + V-ing</i></div><div class="line"></div>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
 <section class="page rw"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 7</div></div>
   <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the sale flyer). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
   <div class="task">
     <h2>A. Find it</h2>
@@ -443,7 +476,7 @@
   <p class="how bottom"><b>Talk:</b> Do you comparison shop? Which store has the best prices near you?</p>
 </section>
 <section class="page rw"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 9</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
   <p class="how">Now look at <b>page 2</b> on the table: <b>Elena&rsquo;s list</b>. Her budget is <b>$60</b>.</p>
   <div class="task">
     <h2>D. Elena&rsquo;s total cost</h2>
@@ -467,7 +500,7 @@
   </div>
 </section>
 <section class="page vc"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 9</div></div>
   <div class="task">
     <h2>Chart 1: Add the helping verbs</h2>
     <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
@@ -482,6 +515,14 @@
     <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">spend</td><td class="ansc">spends</td><td class="ansc">spending</td><td class="ansc">spent</td><td class="ansc">spent</td></tr></table>
     <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td class="ansc">I spend</td><td class="ansc">I don&rsquo;t spend</td><td class="ansc">Do I spend?</td></tr><tr><td class="tn">Past Simple</td><td class="ansc">I spent</td><td class="ansc">I didn&rsquo;t spend</td><td class="ansc">Did I spend?</td></tr><tr><td class="tn">Future Simple</td><td class="ansc">I will spend</td><td class="ansc">I won&rsquo;t spend</td><td class="ansc">Will I spend?</td></tr><tr><td class="tn">Present Continuous</td><td class="ansc">I am spending</td><td class="ansc">I am not spending</td><td class="ansc">Am I spending?</td></tr><tr><td class="tn">Past Continuous</td><td class="ansc">I was spending</td><td class="ansc">I wasn&rsquo;t spending</td><td class="ansc">Was I spending?</td></tr><tr><td class="tn">Future Continuous</td><td class="ansc">I will be spending</td><td class="ansc">I won&rsquo;t be spending</td><td class="ansc">Will I be spending?</td></tr><tr><td class="tn">Present Perfect</td><td class="ansc">I have spent</td><td class="ansc">I haven&rsquo;t spent</td><td class="ansc">Have I spent?</td></tr></table>
   </div>
+</section>
+<section class="page pbp"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you &middot; look at page 5 for help</span></div><div class="pg">Page 10</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>A. My skills profile <span class="pb-small">Like a job application. Use <b>V-ing</b> or a noun. Add a detail: <b>because&hellip;</b> or <b>for example&hellip;</b></span></h2><div class="pb-frame"><b>SKILLS</b> &nbsp;Name: ______________________ &emsp; Languages I speak: ______________________</div><div class="pb-write-row"><span class="pb-adv pb-xwide">example</span><span class="pb-fill pb-example">I&rsquo;m great at cooking. For example, I cook for 15 people every Sunday.</span></div><div class="pb-write-row"><span class="pb-adv pb-xwide">I&rsquo;m great at</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-xwide">I&rsquo;m good at</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-xwide">I&rsquo;m OK at</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-xwide">I&rsquo;m not very good at</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-xwide">I&rsquo;m interested in</span><span class="pb-fill"></span></div></div>
+<div class="pb-box"><h2>B. Not yet! <span class="pb-small">Something you are not good at <b>yet</b>. How can you get better? Use <b>can</b> or <b>should</b>.</span></h2><div class="pb-write-row"><span class="pb-adv pb-wide">example</span><span class="pb-fill pb-example">I&rsquo;m not good at typing yet, but I can practice 10 minutes every day.</span></div><div class="pb-write-row"><span class="pb-adv pb-wide">I&rsquo;m not good at</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide"></span><span class="pb-fill"></span></div></div>
+<div class="pb-check"><b>Check:</b> <span><span class="pb-cb"></span>good at + V-ing</span><span><span class="pb-cb"></span>interest<b>ed</b> in (not interesting)</span><span><span class="pb-cb"></span>he / she + <b>is</b> good at</span><span><span class="pb-cb"></span>-ing spelling</span></div>
+</div>
 </section>
 
 </body>

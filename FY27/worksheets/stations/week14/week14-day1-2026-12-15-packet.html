@@ -201,6 +201,90 @@
   .gline b { white-space: nowrap; width: 3.2em; }
   .gline .line { flex: 1; }
 
+  /* Page 1 top: name + group (replaces the old cover page) */
+  .strip { border: 1.5px solid #000; padding: 3px 10px 4px; margin-bottom: 8px; }
+  .strip .name-row { margin-bottom: 1px; }
+  /* Phrase bank pages: the handout's own margins */
+  .page.pbp { padding: 0.4in 0.45in; }
+  .pbk { flex: 1; min-height: 0; display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; }
+  /* Station 3 page 6: problems / questions printed on the page instead of cards */
+  .qboard { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #000; margin-bottom: 10px; }
+  .qboard > div { padding: 5px 8px; display: flex; gap: 7px; border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; }
+  .qboard > div:nth-child(3n) { border-right: none; }
+  .qboard > div:nth-last-child(-n+3) { border-bottom: none; }
+  .qboard .n { font-size: 18px; font-weight: bold; flex: none; width: 1.5em; text-align: center; line-height: 1.1; }
+  .qboard .e { font-size: 20px; line-height: 1; display: block; margin-top: 2px; }
+  .qboard .t { font-size: 15px; line-height: 1.25; font-weight: bold; }
+  .qboard .tag { display: block; font-size: 12px; font-weight: normal; font-style: italic; margin-top: 2px; }
+  .qscore { display: grid; grid-template-columns: repeat(5, 1fr); border: 1.5px solid #000; margin-bottom: 12px; }
+  .qscore > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
+  .qscore > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
+  .play li { margin-bottom: 3px !important; }
+  .pbk h2 { font-size: 18px; margin-bottom: 5px; }
+  .pbk h2 .pb-small { font-weight: normal; }
+  .pbk .pb-small { font-size: 11px; }
+  .pbk .pb-box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .pbk .pb-box:last-child { margin-bottom: 0; }
+  .pbk .pb-scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-scale > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-scale > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-scale .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-scale .pb-pct { font-size: 14px; }
+  .pbk .pb-scale .pb-ex { font-size: 11px; }
+  .pbk .pb-bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .pbk .pb-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pbk .pb-rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .pbk .pb-rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .pbk .pb-formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .pbk .pb-chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .pbk .pb-chip.pb-adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rule .pb-ex { font-size: 14px; }
+  .pbk .pb-rule .pb-ex b { text-decoration: underline; }
+  .pbk .pb-rule.pb-wide { grid-column: 1 / -1; }
+  .pbk .pb-no { font-size: 14px; margin-top: 3px; }
+  .pbk .pb-no s { text-decoration-thickness: 2px; }
+  .pbk .pb-bank { column-count: 4; column-gap: 14px; }
+  .pbk .pb-cat { break-inside: avoid; margin-bottom: 6px; }
+  .pbk .pb-cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .pbk .pb-cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .pbk .pb-cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+  .pbk .pb-write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .pbk .pb-write-row .pb-adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .pbk .pb-write-row .pb-fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .pbk .pb-write-row .pb-fill.pb-example { font-style: italic; color: #000; }
+  .pbk .pb-hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+  .pbk table.pb-interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .pbk table.pb-interview th, .pbk table.pb-interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  .pbk table.pb-interview th { font-size: 14px; }
+  .pbk table.pb-interview td { height: 34px; }
+  .pbk table.pb-interview td.pb-q { width: 52%; }
+  .pbk .pb-line { border-bottom: 1.5px solid #000; height: 32px; }
+  .pbk .pb-check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .pbk .pb-cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .pbk .pb-check span { margin-right: 14px; white-space: nowrap; }
+  .pbk .pb-forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-forms > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-forms > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-forms .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-forms .pb-sm { font-size: 11px; }
+  .pbk .pb-forms .pb-md { font-size: 14px; }
+  .pbk .pb-write-row .pb-adv.pb-wide { width: 1.6in; }
+  .pbk .pb-write-row .pb-adv.pb-xwide { width: 2.3in; font-size: 14px; }
+  .pbk table.pb-interview td.pb-c { width: 14%; text-align: center; }
+  .pbk .pb-frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .pbk .pb-rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .pbk .pb-rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .pbk .pb-rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .pbk .pb-rank .pb-opt { line-height: 1.9; }
+  .pbk .pb-rank .pb-opt .pb-cb { margin-right: 6px; }
+  .pbk .pb-dice { line-height: 1; margin-bottom: 2px; }
+  .pbk .pb-die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .pbk .pb-rules.pb-three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .pbk .pb-rules.pb-three .pb-rule { padding: 4px 7px; }
+  .pbk .pb-rules.pb-three .pb-chip { font-size: 13px; padding: 1px 5px; }
+  .pbk .pb-bank-split .pb-cat-name.pb-yes::before { content: "\2713  "; }
+  .pbk .pb-bank-split .pb-cat-name.pb-no::before { content: "\2717  "; }
   .debates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .debates div { border: 2px solid #000; border-radius: 8px; padding: 8px; text-align: center; font-size: 17px; font-weight: bold; }
   .paper { border-top: 4px double #000; border-bottom: 1.5px solid #000; margin-bottom: 8px; }
@@ -217,27 +301,9 @@
 </style>
 </head>
 <body>
-<section class="page">
-  
-  <div class="cover-title">Tuesday Stations</div>
-  <div class="cover-sub">Week 14 &middot; Tuesday, December 15, 2026 &middot; Practice day</div>
-  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
-  <table class="rotation">
-    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
-    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td><td>4 &middot; REVIEW GAME</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; READ</td><td>4 &middot; REVIEW GAME</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REVIEW GAME</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; READ</td><td>4 &middot; REVIEW GAME</td></tr>
-  </table>
-  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who"><i>Which is better?</i> With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: READ</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7</div></div><div><div class="nm">Station 4: REVIEW GAME</div><div class="who">With your group. Take turns being the judge.</div><div class="pp">Pages 8&ndash;9 + game sheet on the table</div></div></div>
-  <h2>How it works</h2>
-  <ul class="rules">
-    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
-    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
-    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
-    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
-    <li>Keep this packet. Bring it on Thursday.</li>
-  </ul>
-</section>
 <section class="page wu3">
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 1</div></div>
+  <div class="strip"><div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>
   <div class="task">
     <h2>1. Fill in the blank</h2>
     <p class="how">Use every word once. Change the word form if needed.</p>
@@ -262,7 +328,7 @@
   </div>
 </section>
 <section class="page wu3">
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
   <div class="task">
     <h2>4. Verb forms: money verbs review</h2>
     <p class="how">Write the other forms of <b>buy</b>, <b>sell</b>, and <b>spend</b>. No quiz this week. Keep this chart in your binder!</p>
@@ -288,7 +354,7 @@
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
   <h2>Quiet <i>than</i></h2>
   <div class="rhythm">
     <div><div class="big" style="font-size:22px;">The <b>BUS</b> is <b>CHEAP</b>er thn a <b>TAX</b>i.</div><p><b>than</b> is quiet and fast: &ldquo;thn.&rdquo; <b>-er</b> is short.</p></div>
@@ -310,7 +376,7 @@
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
   <div class="task">
     <h2>C. Who is number 1 in our group?</h2>
     <p class="how">Ask the people <b>at your table</b>. Write a name. Then write 2 sentences: <i>Ana has the oldest phone in our group.</i></p>
@@ -335,67 +401,35 @@
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
-<section class="page story">
-  <div class="station-bar"><div class="label">STATION 3: READ<span>News: grocery prices &middot; with your group</span></div><div class="pg">Page 6</div></div>
-  <div class="paper">
-    <div class="mast"><span>EAST SIDE WEEKLY</span><span>December 14, 2026 &middot; Practice article: the newspaper, people, and prices are made up</span></div>
-    <h1 class="hl">Your Grocery Bill: What Costs More This Year?</h1>
-  </div>
-  <div class="words" style="margin-bottom:8px;">
-    <b>Words to know</b>
-    <div class="wgrid">
-      <div><b>grocery bill</b> = what you pay for food</div>
-      <div><b>shopper</b> = a person who shops</div>
-      <div><b>a dozen</b> = 12</div>
-      <div><b>rise</b> = go up</div>
-      <div><b>economist</b> = an expert on money and the economy</div>
-      <div><b>paycheck</b> = the money you get for your work</div>
-    </div>
-  </div>
-  <div class="chartbox"><svg viewBox="0 0 660 250" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" role="img" aria-label="Bar chart of five grocery prices, last year and this year"><line x1="150" y1="12" x2="150" y2="220" stroke="#333" stroke-width="1.5"/><text x="140" y="38" text-anchor="end" font-size="15" font-weight="700">Eggs (12)</text><rect x="150" y="18" width="175.0" height="16" fill="#b9c4d6"/><text x="331.0" y="31" font-size="13">$3.50</text><rect x="150" y="36" width="210.0" height="16" fill="#1f4e8c"/><text x="366.0" y="49" font-size="13" font-weight="700">$4.20</text><text x="140" y="82" text-anchor="end" font-size="15" font-weight="700">Milk (1 gallon)</text><rect x="150" y="62" width="220.0" height="16" fill="#b9c4d6"/><text x="376.0" y="75" font-size="13">$4.40</text><rect x="150" y="80" width="214.5" height="16" fill="#1f4e8c"/><text x="370.5" y="93" font-size="13" font-weight="700">$4.29</text><text x="140" y="126" text-anchor="end" font-size="15" font-weight="700">Bread (1 loaf)</text><rect x="150" y="106" width="140.0" height="16" fill="#b9c4d6"/><text x="296.0" y="119" font-size="13">$2.80</text><rect x="150" y="124" width="155.0" height="16" fill="#1f4e8c"/><text x="311.0" y="137" font-size="13" font-weight="700">$3.10</text><text x="140" y="170" text-anchor="end" font-size="15" font-weight="700">Coffee (1 lb)</text><rect x="150" y="150" width="345.0" height="16" fill="#b9c4d6"/><text x="501.0" y="163" font-size="13">$6.90</text><rect x="150" y="168" width="420.0" height="16" fill="#1f4e8c"/><text x="576.0" y="181" font-size="13" font-weight="700">$8.40</text><text x="140" y="214" text-anchor="end" font-size="15" font-weight="700">Chicken (1 lb)</text><rect x="150" y="194" width="105.0" height="16" fill="#b9c4d6"/><text x="261.0" y="207" font-size="13">$2.10</text><rect x="150" y="212" width="105.0" height="16" fill="#1f4e8c"/><text x="261.0" y="225" font-size="13" font-weight="700">$2.10</text><rect x="150" y="234" width="14" height="12" fill="#b9c4d6"/><text x="170" y="244" font-size="13">December 2025</text><rect x="290" y="234" width="14" height="12" fill="#1f4e8c"/><text x="310" y="244" font-size="13" font-weight="700">December 2026</text></svg></div>
-  <div class="paras">
-  <p>Shoppers in East Side are talking about prices. &ldquo;My <b>grocery bill</b> is bigger than last year,&rdquo; says Maria Lopes, a mother of three. &ldquo;I buy the same food, but I spend more.&rdquo;</p>
-  <p>The <i>East Side Weekly</i> checked prices at three local stores in December 2025 and December 2026. Some foods are more expensive now. Coffee had the biggest change. A pound of coffee costs $1.50 more than last year.</p>
-  <p>Eggs are also more expensive. <b>A dozen</b> eggs costs $4.20 now. Last year, it was $3.50. But not everything costs more. Milk is a little cheaper than last year, and chicken is the same price.</p>
-  <p>Why do prices change? When prices <b>rise</b> for a long time, <b>economists</b> call it inflation. Weather, gas prices, and wages can all change food prices. &ldquo;When coffee farms have a bad year, there is less coffee, so it is more expensive,&rdquo; says a local store owner.</p>
-  <p>Wages matter too. If prices go up faster than wages, families can buy less with their <b>paychecks</b>. Maria has a plan. &ldquo;I compare unit prices, and I buy rice and beans in bulk. It&rsquo;s the cheapest way to feed my family.&rdquo;</p>
-  </div>
+<section class="page pbp">
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>Phrase bank &middot; use it in the game</span></div><div class="pg">Page 5</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>1. Three steps <span class="pb-small">adjective &rarr; compare 2 &rarr; number 1</span></h2><div class="pb-forms" style="grid-template-columns: repeat(6, 1fr);"><div><div class="pb-md">cheap</div><div class="pb-word">cheaper</div><div class="pb-md"><b>the cheapest</b></div></div><div><div class="pb-md">big</div><div class="pb-word">bigger</div><div class="pb-md"><b>the biggest</b></div></div><div><div class="pb-md">easy</div><div class="pb-word">easier</div><div class="pb-md"><b>the easiest</b></div></div><div><div class="pb-md">expensive</div><div class="pb-word">more expensive</div><div class="pb-md"><b>the most expensive</b></div></div><div><div class="pb-md">good</div><div class="pb-word">better</div><div class="pb-md"><b>the best</b></div></div><div><div class="pb-md">bad</div><div class="pb-word">worse</div><div class="pb-md"><b>the worst</b></div></div></div></div>
+<div class="pb-box"><h2>2. How does it work? <span class="pb-small">The important words are in <b>black</b>.</span></h2><div class="pb-rules"><div class="pb-rule"><div class="pb-rule-name">A. Short words: + er + than</div><div class="pb-formula"><span class="pb-chip">The bus</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">cheaper</span><span class="pb-chip pb-adv">than</span><span class="pb-chip">a taxi.</span></div><div class="pb-ex">Boston is <b>colder than</b> Miami.</div><div class="pb-no">&#10007; <s>more cheaper</s></div></div><div class="pb-rule"><div class="pb-rule-name">B. Long words: more + than</div><div class="pb-formula"><span class="pb-chip">Rent</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">more expensive</span><span class="pb-chip pb-adv">than</span><span class="pb-chip">last year.</span></div><div class="pb-ex">This chair is <b>more comfortable</b>.</div><div class="pb-no">&#10007; <s>expensiver</s></div></div><div class="pb-rule"><div class="pb-rule-name">C. Number 1: the + -est / the most</div><div class="pb-formula"><span class="pb-chip">This</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">the cheapest</span><span class="pb-chip">store.</span></div><div class="pb-ex">It&rsquo;s <b>the most beautiful</b> park.</div><div class="pb-no">&#10007; <s>the most big</s></div></div><div class="pb-rule"><div class="pb-rule-name">D. Spelling</div><div class="pb-formula"><span class="pb-chip">big &rarr; bigger</span><span class="pb-chip">easy &rarr; easier</span><span class="pb-chip">nice &rarr; nicer</span></div><div class="pb-ex">hot &rarr; ho<b>tt</b>er &middot; busy &rarr; bus<b>i</b>er</div><div class="pb-no">&#10007; <s>bigest</s></div></div><div class="pb-rule pb-wide"><div class="pb-rule-name" style="margin:0">Remember: <span style="font-weight:normal">good &rarr; <b>better</b> &rarr; <b>the best</b> &middot; bad &rarr; <b>worse</b> &rarr; <b>the worst</b> &nbsp;|&nbsp; <b>than</b>, not <i>that</i>: &#10007; <s>bigger that</s></span></div></div></div></div>
+<div class="pb-box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="pb-small">Things to compare. Then pick an adjective.</span></h2><div class="pb-bank"><div class="pb-cat"><div class="pb-cat-name">Getting around</div><ul><li>the bus</li><li>the T</li><li>a car</li><li>a bike</li><li>walking</li><li>an Uber</li><li>the train</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Shopping</div><ul><li>Market Basket</li><li>a corner store</li><li>Target</li><li>shopping online</li><li>a farmers market</li><li>a dollar store</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Food</div><ul><li>home cooking</li><li>takeout</li><li>rice / bread</li><li>coffee / tea</li><li>fruit / candy</li><li>chicken / fish</li><li>water / soda</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Places</div><ul><li>Boston</li><li>my hometown</li><li>the city</li><li>the country</li><li>my old apartment</li><li>a house</li><li>an apartment</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Seasons</div><ul><li>summer</li><li>winter</li><li>fall</li><li>spring</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Life</div><ul><li>my first year here</li><li>this year</li><li>my life now</li><li>life 10 years ago</li><li>English class</li><li>my old job</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Phone &amp; tech</div><ul><li>calling</li><li>texting</li><li>a big phone</li><li>a small phone</li><li>email</li><li>a laptop</li><li>a tablet</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Work &amp; life</div><ul><li>the day shift</li><li>the night shift</li><li>a big company</li><li>a small company</li><li>working at home</li><li>a full-time job</li><li>a part-time job</li></ul></div></div><div class="pb-cat-be"><b>Adjectives:</b> cheap &middot; expensive &middot; fast &middot; slow &middot; easy &middot; hard &middot; big &middot; small &middot; safe &middot; healthy &middot; busy &middot; quiet &middot; friendly &middot; comfortable &middot; convenient &middot; good &middot; bad</div></div>
+</div>
 </section>
-<section class="page rd">
-  <div class="station-bar"><div class="label">STATION 3: READ<span>News: grocery prices &middot; with your group</span></div><div class="pg">Page 7</div></div>
-  <p class="how"><b>First:</b> Read the article alone. Read it <b>2 times</b>. Look at the chart too. Then answer.</p>
+<section class="page ">
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>Compare it! &middot; with your group</span></div><div class="pg">Page 6</div></div>
   <div class="task">
-    <h2>Part A: Read the chart and the article</h2>
-    <p class="how">The answers are not always in one sentence. <b>&#9733;</b> = challenge.</p>
-    <ol class="items">
-      <li><b class="n">1.</b> Which food costs the most now? How much? <span class="blank long"></span></li>
-      <li><b class="n">2.</b> Which food had the biggest change? <span class="blank long"></span></li>
-      <li><b class="n">3.</b> Which food is cheaper than last year? <span class="blank long"></span></li>
-      <li><b class="n">4.</b> Which food is the same price? <span class="blank long"></span></li>
-      <li><b class="n">5.</b> <b>&#9733;</b> Is bread cheaper or more expensive now? By how much?<div class="line"></div></li>
-      <li><b class="n">6.</b> <b>&#9733;</b> Why can coffee get more expensive? <span class="small">(&para;4)</span><div class="line"></div></li>
-      <li><b class="n">7.</b> <b>&#9733;</b> What does Maria do to save money? <span class="small">(&para;5)</span><div class="line"></div></li>
+    <h2>How to play: Compare it!</h2>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> Say your opinion with the word in ( ): <i>&ldquo;I think rice is <b>cheaper than</b> meat.&rdquo;</i> Boxes 11&ndash;15: <i>the -est / the most</i>. <b>Stuck?</b> Look at page 5.</li>
+      <li><b class="n">3.</b> The group checks the form. Right = 1 point ( <b>|</b> ). Then they answer: <i>&ldquo;I agree.&rdquo;</i> or <i>&ldquo;I disagree. I think&hellip;&rdquo;</i></li>
+      <li><b class="n">4.</b> The next person picks a box. Most points when the timer rings wins!</li>
     </ol>
   </div>
+  <div class="qboard"><div><span class="n">1<span class="e">&#128661;</span></span><span class="t">a taxi / the T<span class="tag">(fast)</span></span></div><div><span class="n">2<span class="e">&#9749;</span></span><span class="t">coffee / tea<span class="tag">(good)</span></span></div><div><span class="n">3<span class="e">&#127822;</span></span><span class="t">fruit / candy<span class="tag">(healthy)</span></span></div><div><span class="n">4<span class="e">&#127968;</span></span><span class="t">a house / an apartment<span class="tag">(expensive)</span></span></div><div><span class="n">5<span class="e">&#127750;</span></span><span class="t">Boston / my hometown<span class="tag">(big)</span></span></div><div><span class="n">6<span class="e">&#128187;</span></span><span class="t">a laptop / a phone<span class="tag">(easy)</span></span></div><div><span class="n">7<span class="e">&#127769;</span></span><span class="t">the day shift / the night shift<span class="tag">(hard)</span></span></div><div><span class="n">8<span class="e">&#128722;</span></span><span class="t">Market Basket / a corner store<span class="tag">(cheap)</span></span></div><div><span class="n">9<span class="e">&#128021;</span></span><span class="t">dogs / cats<span class="tag">(friendly)</span></span></div><div><span class="n">10<span class="e">&#128218;</span></span><span class="t">English / my language<span class="tag">(difficult)</span></span></div><div><span class="n">11<span class="e">&#127835;</span></span><span class="t">___ is the ___ food from my country.<span class="tag">(good)</span></span></div><div><span class="n">12<span class="e">&#127956;&#65039;</span></span><span class="t">___ is the ___ place I have seen.<span class="tag">(beautiful)</span></span></div><div><span class="n">13<span class="e">&#128197;</span></span><span class="t">___ is the ___ day of my week.<span class="tag">(busy)</span></span></div><div><span class="n">14<span class="e">&#10052;&#65039;</span></span><span class="t">___ is the ___ month in Boston.<span class="tag">(cold)</span></span></div><div><span class="n">15<span class="e">&#129534;</span></span><span class="t">___ is the ___ bill I pay.<span class="tag">(expensive)</span></span></div></div>
+  <div class="qscore"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>
   <div class="task">
-    <h2>Part B: Find the grammar</h2>
-    <p class="how">Find these in the article. Write the word.</p>
-    <table class="pick" style="font-size:17px;">
-      <tr><th>-er than</th><th>more &hellip; than</th><th>the -est</th><th>a little / the same</th></tr>
-      <tr><td></td><td></td><td></td><td></td></tr>
-    </table>
+    <h2>Write your best sentence</h2>
+    <div class="line"></div>
   </div>
-  <div class="task">
-    <h2>Part C: Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> What costs more now than last year for you?</li>
-      <li><b class="n">2.</b> What is the cheapest way to eat well? <i>&ldquo;The cheapest way is &hellip;&rdquo;</i></li>
-    </ol>
-  </div>
-  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to talk about your own money.</p>
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
 <section class="page rd">
-  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 8</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 7</div></div>
   <div class="task">
     <h2>How to play</h2>
     <ol class="items" style="list-style:none;">
@@ -417,7 +451,7 @@
   </div>
 </section>
 <section class="page rd">
-  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 9</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 8</div></div>
   <div class="task">
     <h2>My fall review</h2>
     <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> fall in English class.</p>
@@ -442,7 +476,7 @@
   </div>
 </section>
 <section class="page vc">
-  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 9</div></div>
   <div class="task">
     <h2>Chart 1: Add the helping verbs</h2>
     <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
@@ -457,6 +491,14 @@
     <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">sell</td><td></td><td></td><td></td><td></td></tr></table>
     <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Perfect</td><td></td><td></td><td></td></tr></table>
   </div>
+</section>
+<section class="page pbp">
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you &middot; look at page 5 for help</span></div><div class="pg">Page 10</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>A. Rank it! <span class="pb-small">Write <b>1, 2, 3</b> in the boxes (1 = the best for you). Then write about your number 1 and number 3.</span></h2><div class="pb-rank"><div><b>Getting to work</b><div class="pb-opt"><span class="pb-cb"></span>the bus<br><span class="pb-cb"></span>a car<br><span class="pb-cb"></span>a bike<br></div></div><div><b>Buying food</b><div class="pb-opt"><span class="pb-cb"></span>a big store<br><span class="pb-cb"></span>a corner store<br><span class="pb-cb"></span>online<br></div></div><div><b>Seasons in Boston</b><div class="pb-opt"><span class="pb-cb"></span>summer<br><span class="pb-cb"></span>fall<br><span class="pb-cb"></span>winter<br></div></div></div><div class="pb-write-row"><span class="pb-adv pb-wide">example</span><span class="pb-fill pb-example">The bus is the best because it is cheaper than a car.</span></div><div class="pb-write-row"><span class="pb-adv pb-wide">My #1</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide">My #3</span><span class="pb-fill"></span></div></div>
+<div class="pb-box"><h2>B. My opinion <span class="pb-small"><b>I think</b> ___ is ___ <b>than</b> ___ <b>because</b> &hellip; Use the bank.</span></h2><div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">I think summer is better than winter because I can go to the beach.</span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div></div>
+<div class="pb-check"><b>Check:</b> <span><span class="pb-cb"></span>-er <b>or</b> more (not both)</span><span><span class="pb-cb"></span>than (not that)</span><span><span class="pb-cb"></span>the + -est / the most</span><span><span class="pb-cb"></span>spelling: bigger, easier</span></div>
+</div>
 </section>
 
 </body>

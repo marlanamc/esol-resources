@@ -4,7 +4,7 @@ have you ever, good at) with money and banking.
 
 Quiz verbs: buy, sell. Vocab: returns and financial problems (exchange, refund,
 withdraw, deposit, charge, dispute). Stations: 1 WARM-UP, 2 SPEAK (B/V + i/ee review),
-3 READ (Two Charges for One Phone), 4 REAL WORLD (receipt + return policy).
+3 GAME (zero/first conditional phrase bank + money review questions), 4 REAL WORLD (receipt + return policy).
 
     python3 build-week12-stations.py
 writes the HTML and PDFs next to this file. The stores, people, and numbers are made up.
@@ -22,10 +22,10 @@ STEM = "week12-day1-2026-12-01"
 BUY = ("buy", "buys", "buying", "bought", "bought")
 SELL = ("sell", "sells", "selling", "sold", "sold")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "Sound review: B/V and i/ee. With a teacher.", "Pages 4&ndash;5"),
-    ("READ", "With your group. A teacher will visit.", "Pages 6&ndash;7"),
-    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 8&ndash;9 + 2 color pages on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "Sound review: B/V and i/ee. With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "Review. With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
@@ -45,7 +45,7 @@ def warmup(p, key):
             ("The store will {} your card when it ships.", "charge"),
             ("If your bill is wrong, call the bank to {} the charge.", "dispute")]
     li2 = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a))}</li>' for i, (t, a) in enumerate(fill, 1))
-    page2 = f"""  <div class="task">
+    page2 = L.NAME_STRIP + f"""  <div class="task">
     <h2>1. Review mix</h2>
     <p class="how">Circle the correct form. Each one is from a different week!</p>
     <p class="example">Example: If it (<b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">rains</b> / will rain), I take the bus.</p>
@@ -101,8 +101,8 @@ def warmup(p, key):
     <p class="ideas">Ideas: food &middot; old clothes &middot; a car &middot; something online</p>
     {p.ln("<i>answers vary: Have you ever sold old clothes?</i>")}
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 PAIRS = [("boat", "vote", "vote"), ("live", "leave", "live"), ("berry", "very", "very"), ("sit", "seat", "seat"),
@@ -172,62 +172,55 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "B/V and i/ee review &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-def read(p, key):
-    page6 = """  <div class="words">
-    <b>Words to know</b>
-    <div class="wgrid">
-      <div><b>receipt</b> = the paper that shows what you paid</div>
-      <div><b>debit card</b> = a card that takes money from your bank</div>
-      <div><b>bank app</b> = your bank on your phone</div>
-      <div><b>double charge</b> = you pay two times for one thing</div>
-      <div><b>business days</b> = Monday to Friday, not holidays</div>
-      <div><b>due</b> = you must pay by this day</div>
-    </div>
-  </div>
-  <div class="paras">
-  <p>Rafael works at a bakery. He is good at saving money. Every month, he deposits part of his paycheck into his savings account. In November, he finally had enough money for a new phone.</p>
-  <p>On Saturday, he went to CityTech, an electronics store. The phone cost $349.99. He paid with his <b>debit card</b>. &ldquo;You should keep your <b>receipt</b>,&rdquo; the cashier said. &ldquo;If there is a problem, you must have it to return the phone.&rdquo;</p>
-  <p>On Monday, Rafael checked his <b>bank app</b>. He saw two charges from CityTech: $349.99 and $349.99. &ldquo;That&rsquo;s $699.98!&rdquo; he said. &ldquo;I only bought one phone.&rdquo; Now he had only $85 in his account, and his rent was <b>due</b> on Friday.</p>
-  <p>He called his friend Luc&iacute;a. &ldquo;Have you ever had a <b>double charge</b>?&rdquo; he asked. &ldquo;Yes, once,&rdquo; she said. &ldquo;You should call the store first. If they don&rsquo;t help, you can dispute the charge with your bank.&rdquo;</p>
-  <p>Rafael went back to CityTech with his receipt. The manager looked at the computer. &ldquo;You&rsquo;re right. The machine charged you two times. I&rsquo;m sorry. We will refund $349.99. It can take 5 to 7 <b>business days</b>.&rdquo;</p>
-  <p>&ldquo;Five to seven days? My rent is due on Friday,&rdquo; Rafael said. The manager gave him a paper with a refund number. &ldquo;If the money isn&rsquo;t in your account by next Tuesday, call your bank and give them this number.&rdquo;</p>
-  <p>While he was there, Rafael looked at his new phone case. It was the wrong size. &ldquo;Can I exchange this case?&rdquo; he asked. &ldquo;Sure,&rdquo; the manager said. &ldquo;You can exchange it for 14 days with the receipt.&rdquo; He got the right case.</p>
-  <p>On Thursday, the $349.99 was back in his account. Rafael paid his rent on time. Now he checks his bank app every week. &ldquo;If you see a strange charge, don&rsquo;t wait,&rdquo; he tells his coworkers. &ldquo;Call the store or your bank right away.&rdquo;</p>
-  </div>"""
-    page7 = f"""  <p class="how"><b>First:</b> Read the story alone. Read it <b>2 times</b>. Then answer. The <b>&para;</b> number tells you which paragraph to look in.</p>
-  <div class="task">
-    <h2>Part A: Think about it</h2>
-    <p class="how">The answers are not always in one sentence. Think, then write. <b>&#9733;</b> = challenge.</p>
-    <ol class="items">
-      <li><b class="n">1.</b> How does Rafael save money? <span class="small">(&para;1)</span>{p.ln("He deposits part of his paycheck into savings every month.")}</li>
-      <li><b class="n">2.</b> Why should you keep your receipt? <span class="small">(&para;2)</span>{p.ln("If there is a problem, you must have it to return the item.")}</li>
-      <li><b class="n">3.</b> What was the problem? How much did CityTech take in all? <span class="small">(&para;3)</span>{p.ln("They charged him two times: $699.98.")}</li>
-      <li><b class="n">4.</b> What did Luc&iacute;a say to do first? Then what? <span class="small">(&para;4)</span>{p.ln("Call the store first. If they don&rsquo;t help, dispute it with the bank.")}</li>
-      <li><b class="n">5.</b> <b>&#9733;</b> Why was Rafael worried about &ldquo;5 to 7 business days&rdquo;? <span class="small">(&para;3, 6)</span>{p.ln("His rent was due Friday. He only had $85. The money might come late.")}</li>
-      <li><b class="n">6.</b> <b>&#9733;</b> What does Rafael do differently now? <span class="small">(&para;8)</span>{p.ln("He checks his bank app every week.")}</li>
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("zero-first-conditional")
+# Review game (page 6): money questions from 4 grammar points. (emoji, question, pattern tag, sample answer for the key)
+QUESTIONS = [
+    ("&#128179;", "What do you do if you lose your bank card?", "If + V1, V1", "If I lose my card, I call the bank."),
+    ("&#128181;", "What will you do if you get paid extra this week?", "If + V1, will + V1", "If I get paid extra, I will save it."),
+    ("&#128200;", "What should you do if a store charges you two times?", "should + V1", "You should call the store."),
+    ("&#128091;", "Have you ever lost your wallet?", "Yes, I have. / No, never.", "No, I have never lost my wallet."),
+    ("&#128176;", "Are you good at saving money?", "good at + V-ing", "Yes, I&rsquo;m good at saving money."),
+    ("&#128273;", "What should you do if a stranger asks for your PIN?", "shouldn&rsquo;t / must not + V1", "You must not share your PIN."),
+    ("&#128717;&#65039;", "Have you ever returned something to a store?", "Yes, I have. + When did you&hellip;?", "Yes, I have. I returned shoes last month."),
+    ("&#128176;", "What can you buy for $5?", "can + V1", "I can buy a coffee and a muffin."),
+    ("&#128241;", "What do you do if your phone bill is too high?", "If + V1, V1", "If my bill is too high, I call the company."),
+    ("&#127759;", "Have you ever sent money to another country?", "Have you ever + V3?", "Yes, I have. I sent money to my mother."),
+    ("&#127974;", "What must you bring to open a bank account?", "must + V1", "You must bring your ID."),
+    ("&#9200;", "What happens if you pay a bill late?", "If + V1, V1", "If you pay late, you pay a fee."),
+    ("&#129518;", "Are you good at math or at comparison shopping?", "good at + V-ing / noun", "I&rsquo;m good at comparison shopping."),
+    ("&#127873;", "What will you buy if you have $100 tomorrow?", "If + V1, will + V1", "If I have $100, I will buy winter boots."),
+    ("&#127970;", "Which bank or store do you recommend? Why should we go there?", "should + V1", "You should go to Market Basket. It&rsquo;s cheap."),
+]
+
+
+def game(p, key):
+    items = [(e, q, tag, None) for e, q, tag, _ in QUESTIONS]  # samples are in the leader guide
+    page6 = f"""  <div class="task">
+    <h2>How to play</h2>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. Look at the small words in the box for help. <b>If</b> questions: look at page 5.</li>
+      <li><b class="n">3.</b> The group checks: is the grammar right? <b>Yes</b> = 1 point ( <b>|</b> ). <b>Not sure?</b> Ask a teacher.</li>
+      <li><b class="n">4.</b> Then that person picks the next question. Most points when the timer rings wins!</li>
     </ol>
   </div>
-  <div class="task">
-    <h2>Part B: Find the grammar you know</h2>
-    <p class="how">Find one sentence in the story for each. Write it.</p>
-    <div class="gline"><b style="width:5.4em;">If &hellip;,</b>{p.ln("If there is a problem, you must have it&hellip; / If they don&rsquo;t help, you can&hellip;")}</div>
-    <div class="gline"><b style="width:5.4em;">should</b>{p.ln("You should keep your receipt. / You should call the store first.")}</div>
-    <div class="gline"><b style="width:5.4em;">Have you ever</b>{p.ln("Have you ever had a double charge?")}</div>
-    <div class="gline"><b style="width:5.4em;">good at</b>{p.ln("He is good at saving money.")}</div>
+  <div class="gram3" style="font-size:15px;">
+    <div><b>If</b> it rains, I <b>take</b> the bus.<br><b>If</b> it rains tomorrow, I <b>will take</b> the bus.</div>
+    <div>You <b>should / must / can</b> + V1.<br>No <i>to</i>, no <i>-s</i>.</div>
+    <div><b>Have you ever</b> + V3?<br>I&rsquo;m <b>good at</b> + V-ing.</div>
   </div>
+  {L.board(items, key)}
+  {L.SCORE}
   <div class="task">
-    <h2>Part C: Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> Do you keep your receipts? Where?</li>
-      <li><b class="n">2.</b> How do you keep track of your money: an app, a notebook, or in your head?</li>
-    </ol>
+    <h2>Write your best answer</h2>
+    {p.ln("<i>answers vary: check the pattern in the box</i>")}
   </div>
-  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to talk about your own money.</p>"""
-    sub = "Two Charges for One Phone &middot; with your group"
-    return L.page("story", "STATION 3: READ", sub, 6, page6, key) + L.page("rd", "STATION 3: READ", sub, 7, page7, key)
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
+    return (L.phrase_bank_page(PB_FRONT, "Review: if &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "Money review &middot; with your group", 6, page6, key))
 
 
 TF = [("You can return the lamp marked FS.", "F"),
@@ -294,15 +287,14 @@ def real_world(p, key):
     </div>
   </div>"""
     sub = "with your group"
-    return L.page("rw", "STATION 4: REAL WORLD", sub, 8, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 9, page9, key)
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(12, "Tuesday, December 1, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + read(p, key) + real_world(p, key)
-            + L.verb_charts(10, BUY, "he", SELL, "they", key))
-    return L.doc("Week 12 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key), body)
+    body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
+            + L.verb_charts(9, BUY, "he", SELL, "they", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 12 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
 
 
 DOC_CSS = """
@@ -435,7 +427,7 @@ def self_check():
       <tr><td class="n">4&#9733;</td><td class="a">$7.50</td><td class="why">15% of $49.99 = $7.4985 &asymp; $7.50</td></tr>
     </table>
     <div class="tip"><b>Different answer?</b> Find the rule in the policy together. <b>Part D hint:</b> count the days, and look for <b>FS</b> on the receipt.</div>"""
-    return L.self_check_doc("Week 12 Station 4 Self-Check", body)
+    return L.self_check_doc("Week 12 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
@@ -443,13 +435,13 @@ def leader_guide():
     which = "".join(f'<li><b>{c}.</b> {(a if c == "a" else b)}</li>' for a, b, c in WHICH)
     top = L.leader_top(12, "12/1/26", STATIONS, [
         "<b>This week:</b> <b>review</b> (if, can / should / must, have you ever, good at) with money words. Quiz verbs: <b>buy, sell</b>. Week 12 Quiz opens Thu 12/3. Week 11 Quiz opens today, due 12/8.",
-        "<b>Before class:</b> print the 2 color pages (2 copies) and the self-check card.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Print the 2 color pages (2 copies) and the self-check card.",
         "<b>Floating:</b> start each block at <b>Station 4</b> (show the receipt: <b>T</b> and <b>FS</b>; do Part B #1 together). Then Station 3, then Station 1.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (B/V + i/ee)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (B/V + i/ee)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p>A review of Weeks 8 and 10. Mixing both sounds in one sentence is the hard part (<i>very cheap, best vest</i>). Use the same cues: <b>lips / teeth</b> for B/V, <b>relaxed / smile</b> for i/ee.</p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>Warm up.</b> <i>very cheap / berry chip</i>. Exaggerate both.</td></tr>
@@ -480,7 +472,7 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 12 &middot; Tue 12/1/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. Review:</b> 1 isn&rsquo;t &middot; 2 must show &middot; 3 sent &middot; 4 saving &middot; 5 won&rsquo;t pay &middot; 6 shouldn&rsquo;t share</p>
@@ -495,16 +487,16 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(PAIRS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {c}" for i, (_, _, c) in enumerate(WHICH, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: READ, Two Charges for One Phone (pages 6&ndash;7)</h2>
-    <p><b>A:</b> 1 deposits part of his paycheck into savings &middot; 2 you need it to return something &middot; 3 charged two times, $699.98 &middot; 4 call the store; if no help, dispute with the bank &middot; &#9733;5 rent due Friday, only $85, refund could be late &middot; &#9733;6 checks his bank app every week. <i>Level 3 can stop at Q4.</i></p>
-    <p><b>B:</b> If: <i>If there is a problem, you must have it&hellip; / If they don&rsquo;t help, you can dispute&hellip; / If the money isn&rsquo;t in your account&hellip;, call&hellip; / If you see a strange charge, don&rsquo;t wait.</i> &middot; should: <i>You should keep your receipt. / You should call the store first.</i> &middot; Have you ever: <i>Have you ever had a double charge?</i> &middot; good at: <i>He is good at saving money.</i></p>
+    <h2>Station 3: GAME, Money review (pages 5&ndash;6)</h2>
+    <p>Page 5 is the zero / first conditional phrase bank: 2 minutes on the two kinds of <i>if</i> (no <i>will</i> after <i>if</i>), then play. Page 6: 15 money questions from 4 weeks. Each box shows the pattern. The group gives the point; check with them if they aren&rsquo;t sure. Answers vary. Most common errors: <i>If I <s>will get</s> paid&hellip;</i> &middot; <i>You should <s>to</s> call&hellip;</i> &middot; <i>Have you ever <s>send</s>&hellip;?</i></p>
+    <p><b>Samples:</b> {" &middot; ".join(f"{i}. {a}" for i, (_, _, _, a) in enumerate(QUESTIONS, 1))}</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Receipt + return policy (pages 8&ndash;9 + 2 color pages)</h2>
+    <h2>Station 4: REAL WORLD, Receipt + return policy (pages 7&ndash;8 + 2 color pages)</h2>
     <p><b>A:</b> 1 Nov. 14, 2026 &middot; 2 debit card &middot; 3 30 days &middot; 4 final sale</p>
     <p><b>B:</b> 1 False &middot; 2 False (store credit) &middot; 3 Not on the page &middot; 4 True &middot; 5 False (no T) &middot; 6 True</p>
     <p><b>C:</b> 1 a full refund (26 days) &middot; 2 store credit &middot; 3 cash &middot; &#9733;4 $7.50 (15% of $49.99)</p>
@@ -513,7 +505,7 @@ def leader_guide():
     <p style="font-size:12px;">Store, family, and card number are made up. Tax: 6.25% on $135.95 of taxable items = $8.50; the jacket is clothing under $175, so no tax in MA. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
     <p><b>Chart 1 (he + buy, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (they + sell):</b> sell, sells, selling, sold, sold &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("they", SELL))}</p>
   </div>

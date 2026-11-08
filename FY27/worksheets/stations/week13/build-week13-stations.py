@@ -3,7 +3,7 @@
 
 Quiz verbs: eat, drink. Vocab: groceries (run out of, stock up on, buy in bulk,
 unit price, serving size, go bad). Stations: 1 WARM-UP, 2 SPEAK (How long have you...?
-interviews; quiet "for"), 3 WRITE (My story: then and now), 4 REAL WORLD (shelf tags,
+interviews; quiet "for"), 3 GAME (for/since phrase bank + For or since? race), 4 REAL WORLD (shelf tags,
 unit price, buy in bulk?).
 
     python3 build-week13-stations.py
@@ -21,10 +21,10 @@ STEM = "week13-day1-2026-12-08"
 EAT = ("eat", "eats", "eating", "ate", "eaten")
 DRINK = ("drink", "drinks", "drinking", "drank", "drunk")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "<i>How long have you&hellip;?</i> With a teacher.", "Pages 4&ndash;5"),
-    ("WRITE", "On your own, then a partner. A teacher will visit.", "Pages 6&ndash;7"),
-    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 8&ndash;9 + 2 color pages on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "<i>How long have you&hellip;?</i> With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "<i>For</i> or <i>since</i>? With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
@@ -36,7 +36,7 @@ def warmup(p, key):
     sf = [("She has worked at the store since 2016.", "ten years"), ("I haven&rsquo;t called my sister since August.", "four months"),
           ("We have known our landlord since 2021.", "five years"), ("He has studied English since last December.", "one year")]
     li2 = "".join(f'<li><b class="n">{i}.</b> {t} &rarr; for {p.b(a)}</li>' for i, (t, a) in enumerate(sf, 1))
-    page2 = f"""  <div class="task">
+    page2 = L.NAME_STRIP + f"""  <div class="task">
     <h2>1. For or since?</h2>
     <p class="how">Write <b>for</b> (a length of time) or <b>since</b> (a starting point).</p>
     <p class="example">Example: I have lived here <u>since</u> 2021. &middot; I have lived here <u>for</u> five years.</p>
@@ -92,8 +92,8 @@ def warmup(p, key):
     <p class="ideas">Ideas: lived here &middot; had your phone &middot; known your best friend &middot; worked at your job</p>
     {p.ln("<i>answers vary: How long have you had your phone?</i>")}
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 HEAR = [("for", "3 years"), ("since", "Monday"), ("for", "a long time"), ("since", "2019"),
@@ -158,62 +158,45 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "How long have you&hellip;? &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-def write(p, key):
-    page6 = f"""  <p class="how" style="font-size:17px;"><b>Today you write about your life: then and now.</b> Choose any part of your life: your home, your job, your family, a hobby, this class. You don&rsquo;t have to write about anything private.</p>
-  <div class="task">
-    <h2>Step 1: Read Samira&rsquo;s story</h2>
-    <div class="tl">
-      <svg viewBox="0 0 700 74" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
-        <line x1="20" y1="30" x2="680" y2="30" stroke="#111" stroke-width="3"/>
-        <polygon points="680,24 694,30 680,36" fill="#111"/>
-        {"".join(f'<circle cx="{x}" cy="30" r="8" fill="#111"/><text x="{x}" y="16" text-anchor="middle" font-size="15" font-weight="700">{y}</text><text x="{x}" y="54" text-anchor="middle" font-size="14">{a}</text><text x="{x}" y="70" text-anchor="middle" font-size="14">{b}</text>' for x, y, a, b in [(70, "2015", "got", "married"), (230, "2019", "moved to", "Boston"), (390, "2021", "started at", "the hospital"), (550, "2025", "started", "ESOL class")])}
-        <text x="660" y="16" text-anchor="end" font-size="15" font-weight="700">NOW</text>
-      </svg>
-    </div>
-    <div class="model">
-      I moved to Boston in 2019. I <b>have lived</b> here <b>for</b> seven years. At first, I didn&rsquo;t have a job, and I missed my family a lot. In 2021, I started work in a hospital cafeteria. I <b>have worked</b> there <b>since</b> 2021. I am good at cooking, so now I help the cook. I got married in 2015, so my husband and I <b>have been</b> married <b>for</b> eleven years. We <b>have had</b> our cat, Luna, <b>since</b> 2023. Last year, I started my ESOL class. I <b>have studied</b> English <b>for</b> one year, and my English is better every month.
-    </div>
-    <div class="gram3" style="margin-top:6px;">
-      <div><b>In / Last year</b> + V2<br><i>I moved here in 2019.</i></div>
-      <div><b>have + V3 + for</b><br>a length of time: <i>for 7 years</i></div>
-      <div><b>have + V3 + since</b><br>a starting point: <i>since 2021</i></div>
-    </div>
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank(
+    "week12-for-since", replace=[("Today is <b>Thursday, December 3, 2026</b>", "Today is <b>Tuesday, December 8, 2026</b>")])
+# For or since? game (page 6): (emoji, time words, answer)
+TIMES = [
+    ("&#128197;", "3 years", "for"), ("&#128198;", "Monday", "since"), ("&#128336;", "2019", "since"),
+    ("&#9203;", "a long time", "for"), ("&#128118;", "I was a kid", "since"), ("&#128467;&#65039;", "two weeks", "for"),
+    ("&#9728;&#65039;", "last summer", "since"), ("&#127793;", "six months", "for"), ("&#10052;&#65039;", "January", "since"),
+    ("&#9201;&#65039;", "10 minutes", "for"), ("&#128666;", "I moved here", "since"), ("&#128338;", "a few days", "for"),
+    ("&#9200;", "8:00 this morning", "since"), ("&#127874;", "my last birthday", "since"), ("&#128200;", "a month", "for"),
+]
+
+
+def game(p, key):
+    items = [(e, f"&hellip; {t}", None, a) for e, t, a in TIMES]
+    page6 = f"""  <div class="task">
+    <h2>How to play: For or since?</h2>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> Say a <b>true</b> sentence with <b>have + V3</b> and the time words. Add <b>for</b> or <b>since</b>. <b>Stuck?</b> Use a phrase from page 5.</li>
+      <li><b class="n">3.</b> The group checks: <b>for</b> or <b>since</b>? <b>V3</b>? Right = 1 point ( <b>|</b> ).</li>
+      <li><b class="n">4.</b> The group asks: <i>&ldquo;Really? Where?&rdquo;</i> Then the next person picks. Most points wins!</li>
+    </ol>
   </div>
-  <div class="task">
-    <h2>Step 2: Make your timeline</h2>
-    <p class="how">Write 4 years (or dates) and what started. <b>Use your own life.</b> Ideas: moved &middot; started a job &middot; met my friend &middot; had my first child &middot; got my car &middot; started this class</p>
-    <div class="mytl">
-      {"".join(f'<div><span class="dot"></span>{p.b("<i>year</i>", "short")}<br>{p.b("<i>what started</i>")}</div>' for _ in range(4))}
-      <div class="now"><span class="dot"></span><b>NOW</b></div>
-    </div>
-  </div>"""
-    page7 = f"""  <div class="task">
-    <h2>Step 3: Build your sentences</h2>
-    <p class="how">Use your timeline. Write the year sentence, then the <b>for / since</b> sentence.</p>
-    <table class="pick" style="font-size:16px;">
-      <tr><th style="width:44%;">In ___, I ___ (V2).</th><th>I have ___ (V3) for / since ___.</th></tr>
-      <tr><td><i>In 2021, I started at the hospital.</i></td><td><i>I have worked there since 2021.</i></td></tr>
-      {f'<tr><td>{p.b("<i>answers vary</i>", "long")}</td><td>{p.b("<i>answers vary</i>", "long")}</td></tr>' * 3}
-    </table>
+  <div class="key" style="margin-bottom:10px;">
+    <div><b>for</b> + how much time<br>I have lived here <b>for</b> 3 years.</div>
+    <div><b>since</b> + the start point<br>I have had my phone <b>since</b> 2019.</div>
   </div>
+  {L.board(items, key)}
+  {L.SCORE}
   <div class="task">
-    <h2>Step 4: Write your story</h2>
-    <p class="how">Write <b>8 sentences or more</b>. Start: <i>&ldquo;I &hellip; in &hellip;&rdquo;</i> End with something about <b>now</b>.</p>
-    {p.ln("<i>answers vary: check the list below</i>", 10)}
+    <h2>Write your best sentence</h2>
+    {p.ln("<i>answers vary: have / has + V3 + for / since</i>")}
   </div>
-  <div class="task" style="margin-bottom:6px;">
-    <h2>Step 5: Check, then share</h2>
-    <div class="checks">
-      <span>&#9744; 2 sentences with <b>for</b></span><span>&#9744; 2 sentences with <b>since</b></span>
-      <span>&#9744; 1 sentence with <b>in</b> + a year + V2</span><span>&#9744; have / has + <b>V3</b> (not V2!)</span>
-    </div>
-    <p class="how" style="margin-top:4px;"><b>Partner:</b> read your story to a partner. Your partner asks you one question: <i>&ldquo;How long have you &hellip;?&rdquo;</i></p>
-  </div>"""
-    sub = "My story: then and now"
-    return L.page("rd wr", "STATION 3: WRITE", sub, 6, page6, key) + L.page("rd wr", "STATION 3: WRITE", sub, 7, page7, key)
+  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
+    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "For or since? &middot; with your group", 6, page6, key))
 
 
 TF = [("The bigger package is always the better deal.", "F"),
@@ -277,7 +260,7 @@ def real_world(p, key):
     </div>
   </div>"""
     sub = "with your group"
-    return L.page("rw", "STATION 4: REAL WORLD", sub, 8, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 9, page9, key)
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
 EXTRA_CSS = """
@@ -297,10 +280,9 @@ EXTRA_CSS = """
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(13, "Tuesday, December 8, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + write(p, key) + real_world(p, key)
-            + L.verb_charts(10, EAT, "she", DRINK, "we", key))
-    return L.doc("Week 13 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + EXTRA_CSS, body)
+    body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
+            + L.verb_charts(9, EAT, "she", DRINK, "we", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 13 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS + EXTRA_CSS, body)
 
 
 DOC_CSS = """
@@ -392,20 +374,20 @@ def self_check():
     <h2>C. True, false, or not on the tags?</h2>
     <table>{tf}</table>
     <div class="tip"><b>Different answer?</b> Compare the yellow unit price boxes together. The <b>lower</b> number wins. <b>Part D hint:</b> will they eat it before it goes bad?</div>"""
-    return L.self_check_doc("Week 13 Station 4 Self-Check", body)
+    return L.self_check_doc("Week 13 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
     hear = "".join(f'<tr><td class="n">{i}</td><td>I&rsquo;ve lived here <b>{a}</b> {t}.</td></tr>' for i, (a, t) in enumerate(HEAR, 1))
     top = L.leader_top(13, "12/8/26", STATIONS, [
         "<b>This week:</b> practice <b>How long&hellip;? + for / since</b> (started Thursday). Quiz verbs: <b>eat, drink</b>. Week 13 Quiz opens Thu 12/10.",
-        "<b>New: Station 3 is a full WRITE station.</b> Students write a short life story with for / since. Visit early: help with the timeline (Step 2). Writing about the past can bring up hard memories: students choose the topic, and home, job, or a hobby are fine.",
-        "<b>Floating:</b> start at <b>Station 4</b> (show one shelf tag and the yellow unit price), then <b>Station 3</b> (check timelines), then Station 1.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board).",
+        "<b>Floating:</b> start at <b>Station 4</b> (show one shelf tag and the yellow unit price), then <b>Station 3</b> (listen for <i>since 3 years</i>), then Station 1.",
+        "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (How long&hellip;?)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (How long&hellip;?)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p>Two goals: (1) answer <i>How long have you&hellip;?</i> with <b>for / since</b>, and (2) sound natural: <b>for</b> is weak (&ldquo;fer&rdquo;), the time is stressed. Learners often stress <b>FOR</b>, or say <i>since 3 years</i>.</p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>The beat.</b> Tap on stressed words: <i>I&rsquo;ve lived here fer SIX YEARS.</i></td></tr>
@@ -434,7 +416,7 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 13 &middot; Tue 12/8/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. For / since:</b> 1 for &middot; 2 since &middot; 3 since &middot; 4 for &middot; 5 since</p>
@@ -449,15 +431,16 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i} {a} ({t})" for i, (a, t) in enumerate(HEAR, 1))} &middot; <b>B&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: WRITE (pages 6&ndash;7)</h2>
-    <p>Answers vary. Look for: <b>In + year + V2</b> (<i>I moved here in 2019</i>), <b>have / has + V3 + for + length</b>, <b>have / has + V3 + since + start</b>. Common errors: <i>since 3 years</i>; <i>I have went</i> (V2 for V3); <i>I live here for 6 years</i> (present for present perfect). Praise content first. Mark only for / since and V3.</p>
+    <h2>Station 3: GAME, For or since? (pages 5&ndash;6)</h2>
+    <p>Page 5 is the for / since phrase bank: 2&ndash;3 minutes on the timeline and Rules A&ndash;D, then play. Page 6: pick a box of time words, say a true <i>have + V3</i> sentence with <b>for</b> or <b>since</b>; the group gives the point. <b>for:</b> {", ".join(t for _, t, a in TIMES if a == "for")} &middot; <b>since:</b> {", ".join(t for _, t, a in TIMES if a == "since")}. Common errors: <i>since 3 years</i>; <i>I have went</i>; <i>I live here for 6 years</i>.</p>
+    <p><b>Page 10, B (today = Tue Dec 8):</b> since 2016 &rarr; for ten years &middot; since Monday &rarr; for one day &middot; since August &rarr; for four months.</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Shelf tags (pages 8&ndash;9 + 2 color pages)</h2>
+    <h2>Station 4: REAL WORLD, Shelf tags (pages 7&ndash;8 + 2 color pages)</h2>
     <p><b>A:</b> 1 $3.49, 2 lb &middot; 2 $1.75 per pound</p>
     <p><b>B:</b> {" &middot; ".join(f"{n}: <b>{w}</b> ({why})" for n, _, _, w, why in DEALS)}</p>
     <p><b>C:</b> 1 False &middot; 2 True &middot; 3 True &middot; 4 Not on the tags &middot; 5 False &middot; 6 Not on the tags</p>
@@ -466,7 +449,7 @@ def leader_guide():
     <p style="font-size:12px;">Store, prices, and people are made up. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10)</h2>
     <p><b>Chart 1 (she + eat, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (we + drink):</b> drink, drinks, drinking, drank, drunk &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("we", DRINK))}</p>
   </div>
