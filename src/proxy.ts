@@ -6,7 +6,7 @@ import { logger } from "@/lib/shared/logger";
  * Add security headers to response
  * Implements OWASP recommended security headers for production
  */
-function addSecurityHeaders(response: NextResponse, pathname = ''): NextResponse {
+function addSecurityHeaders(response: NextResponse): NextResponse {
     // Content Security Policy - Prevents XSS, clickjacking, and other code injection attacks
     // 'unsafe-inline' is required for Next.js styled-jsx; 'unsafe-eval' only in development (HMR)
     const isDev = process.env.NODE_ENV !== 'production';
@@ -38,12 +38,16 @@ function addSecurityHeaders(response: NextResponse, pathname = ''): NextResponse
     // Referrer Policy - Control information sent in Referer header
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-    // Permissions Policy - Restrict access to browser features
+    // Permissions Policy - Restrict access to browser features.
+    // Microphone must be allowed on every page, not just /activity/word-rescue:
+    // the policy is fixed when the document first loads, and learners reach
+    // Word Lab via client-side <Link> navigation from /dashboard. Chrome (all
+    // Android phones) enforces the original page's `microphone=()` and silently
+    // denies getUserMedia; iOS Safari ignores the header, which hid the bug.
+    // `self` still blocks third-party frames, and the browser still prompts.
     response.headers.set(
         'Permissions-Policy',
-        pathname === '/activity/word-rescue'
-            ? 'camera=(), microphone=(self), geolocation=(), interest-cohort=()'
-            : 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+        'camera=(), microphone=(self), geolocation=(), interest-cohort=()'
     );
 
     // Strict-Transport-Security - Force HTTPS (only in production)
@@ -86,14 +90,14 @@ export default withAuth(
 
             // Return response with security headers
             const response = NextResponse.next();
-            return addSecurityHeaders(response, req.nextUrl.pathname);
+            return addSecurityHeaders(response);
         } catch (error) {
             logger.error('Middleware error', error, {
                 path: req.nextUrl.pathname,
             });
             // If middleware fails, allow request to continue (with security headers)
             const response = NextResponse.next();
-            return addSecurityHeaders(response, req.nextUrl.pathname);
+            return addSecurityHeaders(response);
         }
     },
     {
