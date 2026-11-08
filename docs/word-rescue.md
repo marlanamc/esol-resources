@@ -28,7 +28,7 @@ Respellings are approximate, not IPA and not a substitute for model audio. The g
 
 Normal speed is 1×; slow is 0.7× with pitch preservation. A single media owner cancels competing playback. Completion evidence is submitted only on playback end. Missing audio offers an explicit device-voice alternative, labeled as variable across devices.
 
-Recording uses MediaRecorder only after a button press and browser permission. It remains in memory, is never uploaded, stops after 60 seconds, and is discarded when leaving the word or page. Late permission results release their microphone tracks. Denied/unsupported recording does not block spoken practice. The Permissions-Policy enables microphone self-access only on `/activity/word-rescue`.
+Recording uses MediaRecorder only after a button press and browser permission. It remains in memory, is never uploaded, stops after 60 seconds, and is discarded when leaving the word or page. Late permission results release their microphone tracks. Denied/unsupported recording does not block spoken practice. The Permissions-Policy allows microphone self-access on every proxied page, because the policy is set when a document first loads and learners reach Word Lab by client-side navigation from the dashboard or course map (Chrome on Android enforces the original page's policy; iOS Safari does not).
 
 ## Persistence and rewards
 
