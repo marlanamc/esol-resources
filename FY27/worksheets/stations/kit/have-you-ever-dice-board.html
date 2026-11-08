@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Have You Ever Dice Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Atkinson Hyperlegible", Arial, sans-serif; color: #10201e; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: letter landscape; margin: 0; }
+  .sheet { width: 11in; height: 8.5in; padding: 0.3in 0.35in; display: flex; flex-direction: column; gap: 8px; overflow: hidden; break-after: page; }
+  @media screen { body { background: #ddd; padding: 20px 0; } .sheet { background: #fff; margin: 0 auto 20px; box-shadow: 0 1px 4px rgba(0,0,0,.3); } }
+  .top { display: flex; align-items: center; gap: 18px; }
+  h1 { font-family: "Bricolage Grotesque", "Arial Black", sans-serif; font-size: 34px; letter-spacing: -0.5px; }
+  h1 span { color: #c99a12; }
+  .rules { font-size: 14px; line-height: 1.35; flex: 1; }
+  .key { display: flex; gap: 10px; font-size: 13px; }
+  .key div { border-radius: 8px; padding: 4px 10px; }
+  table { width: 100%; border-collapse: separate; border-spacing: 4px; flex: 1; table-layout: fixed; }
+  th { font-weight: 400; }
+  thead th { height: 34px; }
+  .rowh { width: 0.95in; background: var(--c); border-radius: 10px; text-align: left; padding: 6px 8px; vertical-align: middle; }
+  .rowh b { display: block; font-family: "Bricolage Grotesque", "Arial Black", sans-serif; font-size: 16px; margin-top: 4px; letter-spacing: .5px; }
+  .rowh span { font-size: 12px; }
+  td { background: color-mix(in srgb, var(--c) 38%, white); border: 2px solid var(--c); border-radius: 10px; padding: 6px 9px; font-size: 16px; line-height: 1.32; font-weight: 400; vertical-align: middle; color: #000; }
+  td b { font-weight: 700; }
+  .nw { white-space: nowrap; }
+  .gap { display: inline-block; width: 2.2em; border-bottom: 1.5px solid #000; vertical-align: -2px; }
+  .help td { font-size: 14px; font-weight: 400; }
+  .die { --s: 26px; display: inline-grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); width: var(--s); height: var(--s); border: 2px solid #10201e; border-radius: 6px; padding: 3px; background: #fff; vertical-align: middle; }
+  .die i { width: calc(var(--s) / 6); height: calc(var(--s) / 6); border-radius: 50%; place-self: center; }
+  .die i.on { background: #10201e; }
+  .challenge { display: flex; align-items: center; gap: 14px; border: 2px dashed #10201e; border-radius: 12px; padding: 6px 12px; font-size: 14px; }
+  .challenge b { font-family: "Bricolage Grotesque", "Arial Black", sans-serif; }
+  .challenge .opt { display: flex; align-items: center; gap: 6px; }
+  .note { font-size: 12px; }
+  .hint { font-size: 13px; font-style: italic; }
+  .gap.s { width: 1.6em; }
+  .pass { font-size: 13px; margin-left: auto; }
+  .challenge, .challenge .opt { white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="top">
+    <h1>Have You Ever<span>?</span> Dice</h1>
+    <div class="rules"><b>Roll 2 dice.</b> Die 1 = row ↓ &nbsp;Die 2 = column →. Say it <b>out loud</b> with the <b>V3</b>. Questions: ask the person on your <b>left</b>. <i>“Yes, I have”</i>? The group asks <i>“When did you…?”</i></div>
+    <div class="key">
+      <div style="background:#a8dcb0"><b>EVER</b> Have you ever + V3?<br>any time in your life</div>
+      <div style="background:#cdb8f0"><b>DID</b> Did you + V1?<br>one time: <i>last night, in 2020</i></div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th></th><th><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span></th></tr></thead>
+    <tbody>
+<tr style="--c:#a8dcb0"><th class="rowh"><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><b>ASK</b><span>Boston</span></th><td>Have you ever <span class="gap"></span> <span class="hint">(be)</span> to Revere Beach?</td><td>Have you ever <span class="gap"></span> <span class="hint">(eat)</span> a lobster roll?</td><td>Have you ever <span class="gap"></span> <span class="hint">(take)</span> the T to the airport?</td><td>Have you ever <span class="gap"></span> <span class="hint">(get)</span> lost on the T?</td><td>Have you ever <span class="gap"></span> <span class="hint">(see)</span> the swan boats?</td><td>Have you ever <span class="gap"></span> <span class="hint">(go)</span> to a free museum day?</td></tr>
+<tr style="--c:#a8dcb0"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><b>ASK</b><span>helping</span></th><td>Have you ever <span class="gap"></span> <span class="hint">(volunteer)</span> at a school?</td><td>Have you ever <span class="gap"></span> <span class="hint">(donate)</span> clothes?</td><td>Have you ever <span class="gap"></span> <span class="hint">(help)</span> a neighbor move?</td><td>Have you ever <span class="gap"></span> <span class="hint">(sign)</span> up for a class at the library?</td><td>Have you ever <span class="gap"></span> <span class="hint">(call)</span> 311?</td><td>Have you ever <span class="gap"></span> <span class="hint">(go)</span> to a community meeting?</td></tr>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span><b>NEVER</b><span>true? say it</span></th><td>I have never <span class="gap"></span> <span class="hint">(drive)</span> in the snow.</td><td>I have never <span class="gap"></span> <span class="hint">(break)</span> a bone.</td><td>I have never <span class="gap"></span> <span class="hint">(write)</span> a letter in English.</td><td>I have never <span class="gap"></span> <span class="hint">(sleep)</span> in a tent.</td><td>I have never <span class="gap"></span> <span class="hint">(fall)</span> asleep on the bus.</td><td>I have never <span class="gap"></span> <span class="hint">(read)</span> a whole book in English.</td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>HAS</b><span>who?</span></th><td>My <span class="gap s"></span> has <span class="gap"></span> <span class="hint">(work)</span> the night shift.</td><td>My <span class="gap s"></span> has <span class="gap"></span> <span class="hint">(teach)</span> me to cook.</td><td>My <span class="gap s"></span> has <span class="gap"></span> <span class="hint">(give)</span> me good advice.</td><td>My <span class="gap s"></span> has never <span class="gap"></span> <span class="hint">(be)</span> to Boston.</td><td>My <span class="gap s"></span> has <span class="gap"></span> <span class="hint">(make)</span> me laugh a lot.</td><td>My <span class="gap s"></span> has <span class="gap"></span> <span class="hint">(buy)</span> a new car.</td></tr>
+<tr style="--c:#cdb8f0"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>EVER</b><span>or DID?</span></th><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(go)</span> to the beach last summer?</td><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(be)</span> to a wedding in the U.S.?</td><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(ride)</span> a bike in Boston?</td><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(watch)</span> TV last night?</td><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(miss)</span> the last bus?</td><td><span class="gap s"></span> you <span class="gap"></span> <span class="hint">(eat)</span> breakfast this morning?</td></tr>
+<tr style="--c:#f5a48f"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span><b>ASK</b><span>a partner</span></th><td>Have you ever cooked food from another country?</td><td>Have you ever taught someone a new skill?</td><td>Have you ever made a new friend on the bus?</td><td>Have you ever stayed up all night?</td><td>Have you ever found money on the street?</td><td>Have you ever helped a stranger?</td></tr>
+    </tbody>
+  </table>
+  <div class="challenge">
+    <b>Challenge:</b> roll a 3rd die
+    <span class="opt"><span class="die" style="--s:20px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span> Say it</span>
+    <span class="opt"><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span> Say it with <b>he / she</b>: <i>has</i></span>
+    <span class="opt"><span class="die" style="--s:20px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span> Add a <b>V2</b> detail: <i>I went in 2019.</i></span>
+    <span class="pass">You can say <b>“Pass.”</b></span>
+  </div>
+</div>
+<div class="sheet help">
+  <div class="top">
+    <h1>Have You Ever<span>?</span> Dice: Help card</h1>
+    <div class="rules">Stuck? Find your square and read the example. Then <b>change it</b> to make it true for you. <b>Answer with</b> <i>Yes, I have.</i> / <i>No, I haven’t.</i> (not <i>Yes, I did.</i>)</div>
+  </div>
+  <table>
+    <thead><tr><th></th><th><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span></th><th><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span></th></tr></thead>
+    <tbody>
+<tr style="--c:#a8dcb0"><th class="rowh"><span class="die" style="--s:26px"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><b>ASK</b><span>Boston</span></th><td>Have you ever <b>been</b> to Revere Beach? Yes, I have. I <b>went</b> last July.</td><td>Have you ever <b>eaten</b> a lobster roll? No, I haven’t. But I would like to try.</td><td>Have you ever <b>taken</b> the T to the airport? Yes, I have. I <b>took</b> the Blue Line.</td><td>Have you ever <b>gotten</b> lost on the T? Yes, I have! I <b>got</b> off at the wrong stop.</td><td>Have you ever <b>seen</b> the swan boats? No, I haven’t. Where are they?</td><td>Have you ever <b>gone</b> to a free museum day? Yes, I have. I <b>went</b> with my kids.</td></tr>
+<tr style="--c:#a8dcb0"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></span><b>ASK</b><span>helping</span></th><td>Have you ever <b>volunteered</b> at a school? Yes, I have. I <b>helped</b> at my son’s school.</td><td>Have you ever <b>donated</b> clothes? Yes, I have. I <b>gave</b> them to a church.</td><td>Have you ever <b>helped</b> a neighbor move? No, I haven’t.</td><td>Have you ever <b>signed</b> up for a class at the library? Yes, I have. I <b>took</b> a computer class.</td><td>Have you ever <b>called</b> 311? Yes, I have. I <b>called</b> about the trash.</td><td>Have you ever <b>gone</b> to a community meeting? No, I haven’t. But I want to go.</td></tr>
+<tr style="--c:#f6d266"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span><b>NEVER</b><span>true? say it</span></th><td>I have never <b>driven</b> in the snow. <i>Not true?</i> I have <b>driven</b> in the snow.</td><td>I have never <b>broken</b> a bone. <i>Not true?</i> I have <b>broken</b> my arm.</td><td>I have never <b>written</b> a letter in English.</td><td>I have never <b>slept</b> in a tent. <i>Not true?</i> I have <b>slept</b> in a tent at the beach.</td><td>I have never <b>fallen</b> asleep on the bus. <i>Not true?</i> I have! Many times.</td><td>I have never <b>read</b> a whole book in English. (Say it like <i>red</i>.)</td></tr>
+<tr style="--c:#9ed2f5"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>HAS</b><span>who?</span></th><td>My husband has <b>worked</b> the night shift.</td><td>My grandmother has <b>taught</b> me to cook.</td><td>My sister has <b>given</b> me good advice.</td><td>My father has never <b>been</b> to Boston.</td><td>My best friend has <b>made</b> me laugh a lot.</td><td>My cousin has <b>bought</b> a new car.</td></tr>
+<tr style="--c:#cdb8f0"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span><b>EVER</b><span>or DID?</span></th><td><b>Did</b> you <b>go</b> to the beach last summer? (<i>last summer</i> = one time)</td><td><b>Have</b> you ever <b>been</b> to a wedding in the U.S.? (any time in your life)</td><td><b>Have</b> you ever <b>ridden</b> a bike in Boston? (any time)</td><td><b>Did</b> you <b>watch</b> TV last night? (<i>last night</i> = one time)</td><td><b>Have</b> you ever <b>missed</b> the last bus? (any time)</td><td><b>Did</b> you <b>eat</b> breakfast this morning? (<i>this morning</i> = one time)</td></tr>
+<tr style="--c:#f5a48f"><th class="rowh"><span class="die" style="--s:26px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span><b>ASK</b><span>a partner</span></th><td>Yes, I have. I <b>cooked</b> Thai food for my friends.</td><td>Yes, I have. I <b>taught</b> my son to ride a bike.</td><td>No, I haven’t. People on the bus look at their phones!</td><td>Yes, I have. I <b>stayed</b> up with my baby.</td><td>Yes, I have! I <b>found</b> $5 last winter.</td><td>Yes, I have. I <b>helped</b> an old man with his bags.</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Page 1 = game board for the table. Page 2 = help card (print one per group, or keep it with the teacher).</div>
+</div>
+</body>
+</html>
