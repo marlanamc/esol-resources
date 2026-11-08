@@ -203,25 +203,6 @@ export const haveYouEverContent: InteractiveGuideContent = {
       stepNumber: 2,
       title: "Did you go? vs. Have you been?",
       icon: "⚖️",
-      tenseDiagram: {
-        title: "Two questions, two meanings",
-        elements: [
-          {
-            id: "past-simple-dot",
-            type: "single-dot",
-            zone: "past",
-            position: 70,
-            verbLabel: "Did you go? (specific time)",
-          },
-          {
-            id: "pp-arc",
-            type: "arc",
-            zone: "past",
-            position: 35,
-            verbLabel: "Have you been? (any time)",
-          },
-        ],
-      },
       explanation: `
         <p style="margin: 0 0 1rem 0">Three weeks later, after class. Amara shows Claudette her list of things she did in East Boston. Look at the list. Some things she <strong>did</strong> at a specific time. Some things she has <strong>never</strong> done.</p>
 
