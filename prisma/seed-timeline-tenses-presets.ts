@@ -128,6 +128,16 @@ const PRESETS: Array<{
         tenseCategories: [],
         practiceMode: "spot-the-difference",
     },
+    {
+        // Week 9 extra: Spot the Difference with only simple and continuous
+        // pairs (present/past/future), no perfect tenses mixed in.
+        id: "timeline-tenses-simple-continuous-spot-diff",
+        title: "Timeline Tenses: Spot the Difference (Simple + Continuous)",
+        description: "Compare two timelines and choose the one that matches — simple and continuous tenses only.",
+        tenseCategories: ["simple", "continuous"],
+        practiceMode: "spot-the-difference",
+        contentKind: "map",
+    },
 ];
 
 async function main() {

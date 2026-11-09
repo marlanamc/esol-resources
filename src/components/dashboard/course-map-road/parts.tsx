@@ -734,7 +734,7 @@ function WeekChecklist({
         groups.push({
             key: "practice",
             label: "Extra practice",
-            meta: "All week · optional",
+            meta: "All week",
             color: "var(--text-muted)",
             node: "plain",
             body: <PracticePills practice={steps.practice} extras={week.extras} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} />,

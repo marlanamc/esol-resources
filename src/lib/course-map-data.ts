@@ -926,6 +926,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 9 Quiz"
+          },
+          {
+            "id": "timeline-spot-diff-simple-continuous",
+            "activityId": "timeline-tenses-simple-continuous-spot-diff",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Timeline Tenses: Spot the Difference"
           }
         ],
         "goal": "I can ask about an experience and follow up with a past-simple question.",

@@ -760,7 +760,7 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     keyDifference:
       '"Will call tomorrow afternoon" schedules the event. "Will have called by tomorrow afternoon" means the call is complete before that future point.',
     difficulty: 2,
-    tenseCategory: "simple",
+    tenseCategory: "perfect",
   }),
   createComparisonQuestion({
     id: "comp-work-prsc-prs-01",

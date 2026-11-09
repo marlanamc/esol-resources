@@ -458,7 +458,7 @@ export function DesktopWeekPanel({
                             {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
                         </span>
                         <span className="min-w-0 flex-1">
-                            <span className="block text-base font-semibold text-text">Optional practice</span>
+                            <span className="block text-base font-semibold text-text">Extra practice</span>
                             <span className="block text-sm text-text-muted">
                                 {optionalOpen ? "Hide extra games and activities" : "More games and activities"}
                             </span>
