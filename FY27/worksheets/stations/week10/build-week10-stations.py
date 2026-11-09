@@ -170,14 +170,26 @@ def speak(p, key):
     </ol>
   </div>
   <div class="task">
-    <h2>F. My hard words</h2>
-    <p class="how">Write 3 words with <b>i</b> or <b>ee</b> that are hard for you. Practice them at home.</p>
-    {p.ln("<i>answers vary</i>")}
+    <h2>F. Sort the sounds</h2>
+    <p class="how">Write each word in the right column. Then read your columns to the teacher.</p>
+    <p class="sortbank">{" &middot; ".join(w for w, _ in SORT)}</p>
+    <table class="sort"><tr><th><b>i</b> = quick</th><th><b>ee</b> = long, with a smile</th></tr>
+      <tr><td>{", ".join(w for w, c in SORT if c == "i") if key else ""}</td><td>{", ".join(w for w, c in SORT if c == "ee") if key else ""}</td></tr></table>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "short <i>i</i> and long <i>ee</i> &middot; with a teacher"
     return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
+
+# Station 2 F: words not used in A-E, so learners read the vowel, not a remembered word.
+SORT = [("big", "i"), ("green", "ee"), ("kid", "i"), ("need", "ee"), ("tree", "ee"),
+        ("fix", "i"), ("team", "ee"), ("ticket", "i"), ("sleep", "ee"), ("win", "i")]
+SORT_CSS = """
+  .sortbank { font-size: 17px; font-weight: bold; text-align: center; border: 2px dashed #888; padding: 5px; margin: 4px 0 6px; }
+  table.sort { width: 100%; border-collapse: collapse; }
+  table.sort th { border: 2px solid #000; padding: 3px; font-size: 14px; font-weight: normal; width: 50%; }
+  table.sort td { border: 2px solid #000; height: 0.95in; vertical-align: top; padding: 6px; font-size: 16px; color: #c00; font-weight: bold; }
+"""
 
 PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week09-have-you-ever")
 # Questions printed on page 6 (emoji, V3 phrase). Safe, everyday experiences only. No cards to cut.
@@ -291,7 +303,7 @@ def packet(key):
     p = L.P(key)
     body = (warmup(p, key) + speak(p, key) + talk(p, key) + real_world(p, key)
             + L.verb_charts(9, MEET, "she", SPEAK_V, "they", key) + L.write_about_you_page(PB_BACK, key))
-    return L.doc("Week 10 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
+    return L.doc("Week 10 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS + SORT_CSS, body)
 
 
 FLYER_CSS = """
@@ -440,6 +452,7 @@ def leader_guide():
     <tr><td>3 min</td><td><b>C. Which sentence?</b> Read the sentences below.</td></tr>
     <tr><td>5 min</td><td><b>D. Read aloud.</b> One sentence each. Fix only i / ee.</td></tr>
     <tr><td>5 min</td><td><b>E. Talk.</b> Push for a full sentence and one follow-up.</td></tr>
+    <tr><td>2 min</td><td><b>F. Sort the sounds.</b> They read each column aloud to you. Check the vowel, not spelling.</td></tr>
   </table>
   <div class="cols">
     <div>
@@ -479,7 +492,7 @@ def leader_guide():
   </div>
   <div class="box">
     <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
-    <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(PAIRS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {c}" for i, (_, _, c) in enumerate(WHICH, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
+    <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(PAIRS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {c}" for i, (_, _, c) in enumerate(WHICH, 1))} &middot; <b>D&ndash;E:</b> answers vary. &middot; <b>F:</b> i = {", ".join(w for w, c in SORT if c == "i")} &middot; ee = {", ".join(w for w, c in SORT if c == "ee")}</p>
   </div>
   <div class="box">
     <h2>Station 3: GAME, Have you ever&hellip;? (pages 5&ndash;6, no cards)</h2>
