@@ -6,6 +6,7 @@ The packet and key come from the same source: write each answer once with
 P.b() / P.ln() / P.circ() / P.cb(); students see a blank, the key shows it in red.
 Layout and type scale copy the Week 8 packet (hand-built, in week08/).
 """
+import re
 import subprocess
 from pathlib import Path
 
@@ -558,3 +559,114 @@ def self_check_doc(title, card_body, stop="Finish Parts A, B, and C first.", pag
     {card_body}
   </div>"""
     return doc(title, SELFCHECK_CSS, f'<div class="sheet">\n  {card}\n  {card}\n</div>')
+
+
+# ---------------------------------------------------------------------------
+# No-cover packets (from Week 9, Nov 2026): page 1 = Warm-Up with a name strip,
+# Station 3 = phrase bank (page 5) + paper game (page 6), page 10 = Write About You.
+
+PHRASE_BANKS = Path(__file__).resolve().parent.parent / "group-handouts" / "phrase-banks"
+
+NAME_STRIP = ('  <div class="strip"><div class="name-row">Name: <span class="blank"></span> '
+              'My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>\n')
+
+NO_COVER_CSS = """
+  /* Page 1 top: name + group (replaces the old cover page) */
+  .strip { border: 1.5px solid #000; padding: 3px 10px 4px; margin-bottom: 8px; }
+  .strip .name-row { margin-bottom: 1px; }
+  /* Phrase bank pages: the handout's own margins */
+  .page.pbp { padding: 0.4in 0.45in; }
+  .pbk { flex: 1; min-height: 0; display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; }
+  /* Station 3 page 6: problems / questions printed on the page instead of cards */
+  .qboard { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #000; margin-bottom: 10px; }
+  .qboard > div { padding: 5px 8px; display: flex; gap: 7px; border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; }
+  .qboard > div:nth-child(3n) { border-right: none; }
+  .qboard > div:nth-last-child(-n+3) { border-bottom: none; }
+  .qboard .n { font-size: 18px; font-weight: bold; flex: none; width: 1.5em; text-align: center; line-height: 1.1; }
+  .qboard .e { font-size: 20px; line-height: 1; display: block; margin-top: 2px; }
+  .qboard .t { font-size: 15px; line-height: 1.25; font-weight: bold; }
+  .qboard .tag { display: block; font-size: 12px; font-weight: normal; font-style: italic; margin-top: 2px; }
+  .qscore { display: grid; grid-template-columns: repeat(5, 1fr); border: 1.5px solid #000; margin-bottom: 12px; }
+  .qscore > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
+  .qscore > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
+  .play li { margin-bottom: 3px !important; }
+"""
+
+
+def board(items, key=False):
+    """items: (emoji, text, tag-or-None, key answer-or-None). Numbered 3-column grid."""
+    cells = []
+    for i, (e, t, tag, ans) in enumerate(items, 1):
+        extra = f'<span class="tag">{tag}</span>' if tag else ""
+        if key and ans:
+            extra += f'<span class="tag ans" style="font-style:normal;font-weight:bold;">{ans}</span>'
+        cells.append(f'<div><span class="n">{i}<span class="e">{e}</span></span><span class="t">{t}{extra}</span></div>')
+    return f'<div class="qboard">{"".join(cells)}</div>'
+
+
+SCORE = '<div class="qscore"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>'
+
+
+def _children(inner):
+    """Split HTML into its top-level elements (enough for the phrase bank sections: divs + text)."""
+    out, depth, start = [], 0, None
+    for m in re.finditer(r"<(/?)div\b[^>]*>", inner):
+        if not m.group(1):
+            if depth == 0:
+                start = m.start()
+            depth += 1
+        else:
+            depth -= 1
+            if depth == 0:
+                out.append(inner[start:m.end()])
+    return out
+
+
+def _pb_classes(html_text):
+    return re.sub(r'class="([^"]*)"', lambda m: 'class="' + " ".join("pb-" + c for c in m.group(1).split()) + '"', html_text)
+
+
+def phrase_bank(slug, drop_sections=("6.",), replace=()):
+    """Read group-handouts/phrase-banks/<slug>.html. Returns (css, front, back): the CSS scoped
+    under .pbk with every class renamed pb-*, the front page without the name/title rows, and the
+    back page without its title row and without the numbered boxes in drop_sections."""
+    src = (PHRASE_BANKS / f"{slug}.html").read_text()
+    for a, b in replace:
+        assert a in src, a
+        src = src.replace(a, b)
+    style = src[src.index("<style>") + 7: src.index("</style>")]
+    style = re.sub(r"/\*.*?\*/", "", style, flags=re.S)
+    style = re.sub(r"@media[^{]*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}", "", style)
+    rules = []
+    for sel, body in re.findall(r"([^{}]+)\{([^{}]*)\}", style):
+        keep = []
+        for s in sel.split(","):
+            s = s.strip()
+            if s in ("*", "body", ".page", "h1") or s.startswith((".name-row", ".title-row")):
+                continue
+            keep.append(".pbk " + re.sub(r"\.(?=[A-Za-z_])", ".pb-", s))
+        if keep:
+            rules.append(f"  {', '.join(keep)} {{{body}}}")
+    css = "\n".join(rules)
+    pages = re.findall(r'<section class="page">(.*?)</section>', src, re.S)
+    assert len(pages) == 2, slug
+
+    def clean(inner, drops):
+        kids = [k for k in _children(inner)
+                if 'class="name-row"' not in k and 'class="title-row"' not in k
+                and not any(re.search(r"<h2>\s*" + re.escape(d), k) for d in drops)]
+        return '<div class="pbk">\n' + _pb_classes("\n".join(kids)) + "\n</div>"
+    back = clean(pages[1], drop_sections)
+    nums = re.findall(r"<h2>\s*(\d)\. ", back)
+    letter = dict(zip(nums, "ABCDE"))
+    back = re.sub(r"<h2>\s*(\d)\. ", lambda m: f"<h2>{letter[m.group(1)]}. ", back)
+    back = re.sub(r"\bPart (\d)\b", lambda m: f"Part {letter.get(m.group(1), m.group(1))}", back)
+    return css, clean(pages[0], ()), back
+
+
+def phrase_bank_page(front, sub, key, label="STATION 3: GAME", pg=5):
+    return page("pbp", label, sub, pg, front, key)
+
+
+def write_about_you_page(back, key, pg=10):
+    return page("pbp", "FINISHED EARLY?", "write about you &middot; look at page 5 for help", pg, back, key)

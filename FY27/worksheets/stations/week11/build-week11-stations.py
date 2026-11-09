@@ -4,7 +4,7 @@
 
 Quiz verbs: cost, spend. Vocab: spending and budgeting (purchase price, comparison
 shop, budget, set aside, keep track of, total cost). Stations: 1 WARM-UP,
-2 SPEAK (thirteen / thirty), 3 GAME (What are you good at? board), 4 REAL WORLD
+2 SPEAK (thirteen / thirty), 3 GAME (good at: phrase bank + questions on the page), 4 REAL WORLD
 (Thanksgiving sale flyer + a $60 shopping budget).
 
     python3 build-week11-stations.py
@@ -23,10 +23,10 @@ STEM = "week11-day1-2026-11-24"
 COST = ("cost", "costs", "costing", "cost", "cost")
 SPEND = ("spend", "spends", "spending", "spent", "spent")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 2&ndash;3"),
-    ("SPEAK", "Numbers: <i>13</i> or <i>30</i>? With a teacher.", "Pages 4&ndash;5"),
-    ("GAME", "With your group. A teacher will visit.", "Pages 6&ndash;7 + game board on the table"),
-    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 8&ndash;9 + 2 color pages on the table"),
+    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("SPEAK", "Numbers: <i>13</i> or <i>30</i>? With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "<i>Good at</i>. With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
@@ -42,7 +42,7 @@ def warmup(p, key):
            "cook a big holiday meal <b>or</b> eat at a friend&rsquo;s house?"]
     li2 = "".join(f'<li><b class="n">{i}.</b> Would you rather {q}<div class="gline"><b style="width:auto;">Because</b>{p.ln("<i>answers vary</i>")}</div></li>'
                   for i, q in enumerate(wyr, 1))
-    page2 = f"""  <div class="task">
+    page2 = L.NAME_STRIP + f"""  <div class="task">
     <h2>1. Circle the correct form</h2>
     <p class="how">After <b>good at</b>, use the <b>-ing</b> form.</p>
     <p class="example">Example: I am good at (fix / <b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">fixing</b>) things.</p>
@@ -97,8 +97,8 @@ def warmup(p, key):
     <p class="ideas">Ideas: more than $100 on shoes &middot; a whole day shopping &middot; a holiday away from home</p>
     {p.ln("<i>answers vary: Have you ever spent a whole day shopping?</i>")}
   </div>"""
-    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page2, key)
-            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 3, page3, key))
+    return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
+            + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
 NUMS = [("13", "30", "30"), ("14", "40", "14"), ("15", "50", "50"), ("16", "60", "16"),
@@ -168,77 +168,48 @@ def speak(p, key):
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     sub = "numbers &middot; with a teacher"
-    return L.page("", "STATION 2: SPEAK", sub, 4, page4, key) + L.page("", "STATION 2: SPEAK", sub, 5, page5, key)
+    return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-ING = [("cook", "cooking", "add -ing"), ("dance", "dancing", "drop the e"), ("swim", "swimming", "double + -ing"),
-       ("write", "writing", "drop the e"), ("run", "running", "double + -ing"), ("fix", "fixing", "add -ing"),
-       ("make", "making", "drop the e"), ("shop", "shopping", "double + -ing")]
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week10-good-at")
+# Questions printed on page 6 (emoji, question). No board or dice.
+QUESTIONS = [
+    ("&#127859;", "Are you good at <b>cooking</b>?"), ("&#127912;", "Are you good at <b>drawing</b>?"),
+    ("&#128131;", "Are you good at <b>dancing</b>?"), ("&#128295;", "Are you good at <b>fixing</b> things?"),
+    ("&#127908;", "Are you good at <b>singing</b>?"), ("&#129504;", "Are you good at <b>remembering</b> names?"),
+    ("&#128176;", "Are you good at <b>saving</b> money?"), ("&#129518;", "Are you good at <b>math</b>?"),
+    ("&#128663;", "Are you good at <b>driving</b>?"), ("&#129697;", "Are you good at <b>sewing</b>?"),
+    ("&#128514;", "Are you good at <b>telling jokes</b>?"), ("&#128187;", "Are you good at <b>using computers</b>?"),
+    ("&#128106;", "What is <b>your mom</b> good at?"), ("&#128118;", "What were you good at <b>as a child</b>?"),
+    ("&#127891;", "What do you <b>want</b> to be good at?"),
+]
 
 
 def game(p, key):
+    items = [(e, q, None, None) for e, q in QUESTIONS]
     page6 = f"""  <div class="task">
     <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Put a small thing (a coin, an eraser) on <b>START</b>. That is you.</li>
-      <li><b class="n">2.</b> Roll the die. <b>No die?</b> Flip a coin: heads = move 1, tails = move 2.</li>
-      <li><b class="n">3.</b> Read your square. Ask the person on your <b>left</b>, or answer it yourself.</li>
-      <li><b class="n">4.</b> Answer with a <b>full sentence</b>. Then the group asks <b>one more question</b>.</li>
-      <li><b class="n">5.</b> First person to <b>FINISH</b> wins. Keep playing until the timer rings!</li>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
+      <li><b class="n">3.</b> The group asks <b>one more question</b>: <i>Who taught you? How often do you practice? Do you want to be good at it?</i></li>
+      <li><b class="n">4.</b> Then that person picks the next question. Keep playing until the timer rings!</li>
     </ol>
   </div>
-  <div class="key" style="margin-bottom:10px;">
-    <div><b>good at + V-ing</b><br>I&rsquo;m good at <b>cooking</b>.</div>
-    <div><b>not good at + V-ing</b><br>I&rsquo;m not good at <b>singing</b>.</div>
+  <div class="bank starters" style="font-size:16px;">
+    <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
+    <span><b>I&rsquo;m OK at it.</b></span>
+    <span><b>Not really.</b> I&rsquo;m not very good at it.</span>
   </div>
+  {L.board(items, key)}
   <div class="task">
-    <h2>Ways to answer</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
-      <span><b>I&rsquo;m OK at it.</b> I&rsquo;m getting better.</span>
-      <span><b>Not really.</b> I&rsquo;m not good at it.</span>
-      <span><b>No, I&rsquo;m terrible at it!</b> &#128514;</span>
-    </div>
-  </div>
-  <div class="task">
-    <h2>One more question</h2>
-    <div class="bank starters" style="font-size:17px;">
-      <span>What do you cook?</span><span>Who taught you?</span>
-      <span>How often do you practice?</span><span>Do you want to be good at it?</span>
-    </div>
-  </div>
-  <div class="tip" style="font-size:17px;"><b>Example:</b><br>
-    <b>A:</b> Are you good at <b>dancing</b>? &emsp; <b>B:</b> Yes, I am! I&rsquo;m good at <b>dancing</b> salsa.<br>
-    <b>C:</b> Who taught you? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> My mother taught me.</div>"""
-    ing = "".join(f"<td><b>{a}</b> &rarr; {p.b(b, 'short')}</td>" + ("</tr><tr>" if i == 3 else "") for i, (a, b, _) in enumerate(ING))
-    page7 = f"""  <div class="task">
-    <h2>A. Write about your group</h2>
-    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
-    <div class="gram3">
-      <div><b>is good at</b><br>Ana <b>is good at</b> sewing.</div>
-      <div><b>isn&rsquo;t good at</b><br>Juan <b>isn&rsquo;t good at</b> singing.</div>
-      <div><b>are both good at</b><br>Mei and I <b>are both good at</b> cooking.</div>
-    </div>
-    {p.ln("<i>answers vary: check is / are good at + V-ing</i>", 4)}
-  </div>
-  <div class="task">
-    <h2>B. Spell the -ing</h2>
-    <div class="gram3">
-      <div><b>Most verbs:</b> add <b>-ing</b><br>cook &rarr; cooking</div>
-      <div><b>Ends in e:</b> drop the <b>e</b><br>dance &rarr; dancing</div>
-      <div><b>Short, one vowel:</b> double<br>swim &rarr; swimming</div>
-    </div>
-    <table class="pick" style="font-size:17px;"><tr>{ing}</tr></table>
-  </div>
-  <div class="task">
-    <h2>C. &#9733; Get better!</h2>
-    <p class="how">What do you want to be good at? How can you practice? Use <b>should</b> or <b>can</b>.</p>
-    <div class="gline"><b style="width:auto;">I want to be good at</b>{p.ln("<i>answers vary: + V-ing</i>")}</div>
-    <div class="gline"><b style="width:auto;">I should / I can</b>{p.ln("<i>answers vary: + V1</i>")}</div>
+    <h2>Write about your group</h2>
+    <p class="how">Write <b>2 sentences</b> about the people at your table. Use their names: Ana <b>is good at</b> sewing. Mei and I <b>are both good at</b> cooking.</p>
+    {p.ln("<i>answers vary: check is / are good at + V-ing</i>", 2)}
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    sub = "What are you good at? &middot; with your group"
-    return L.page("rd", "STATION 3: GAME", sub, 6, page6, key) + L.page("rd", "STATION 3: GAME", sub, 7, page7, key)
+    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "What are you good at? &middot; with your group", 6, page6, key))
 
 
 TF = [("The store is closed on Thanksgiving.", "F"),
@@ -305,77 +276,14 @@ def real_world(p, key):
     <div class="gline"><b style="width:auto;">I will spend</b>{p.ln("<i>answers vary</i>")}<b style="width:auto;">and set aside</b>{p.ln("<i>answers vary</i>")}</div>
   </div>"""
     sub = "with your group"
-    return L.page("rw", "STATION 4: REAL WORLD", sub, 8, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 9, page9, key)
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
 def packet(key):
     p = L.P(key)
-    body = (L.cover(11, "Tuesday, November 24, 2026", STATIONS, key)
-            + warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
-            + L.verb_charts(10, COST, "it", SPEND, "I", key))
-    return L.doc("Week 11 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key), body)
-
-
-# Board: 24 squares, snake path on a 6 x 4 grid. (emoji, text, colour class)
-SQUARES = [
-    ("&#127859;", "Are you good at <b>cooking</b>?", "a"), ("&#127912;", "Are you good at <b>drawing</b>?", "b"),
-    ("&#128131;", "Are you good at <b>dancing</b>?", "c"), ("&#11014;&#65039;", "Free square! Say <b>2 things</b> you are good at.", "s"),
-    ("&#128295;", "Are you good at <b>fixing</b> things?", "a"), ("&#127908;", "Are you good at <b>singing</b>?", "b"),
-    ("&#127946;", "Are you good at <b>swimming</b>?", "c"), ("&#129504;", "Are you good at <b>remembering</b> names?", "a"),
-    ("&#11013;&#65039;", "Oops! Go back 2.", "s"), ("&#128176;", "Are you good at <b>saving</b> money?", "b"),
-    ("&#129518;", "Are you good at <b>math</b>?", "c"), ("&#128663;", "Are you good at <b>driving</b>?", "a"),
-    ("&#128106;", "What is <b>your mom</b> good at?", "s"), ("&#129697;", "Are you good at <b>sewing</b>?", "b"),
-    ("&#128066;", "Are you good at <b>listening</b>?", "c"), ("&#128514;", "Are you good at <b>telling jokes</b>?", "a"),
-    ("&#128247;", "Are you good at <b>taking photos</b>?", "b"), ("&#11014;&#65039;", "Move ahead 1!", "s"),
-    ("&#128187;", "Are you good at <b>using computers</b>?", "c"), ("&#127793;", "Are you good at <b>growing plants</b>?", "a"),
-    ("&#128118;", "What were you good at <b>as a child</b>?", "s"), ("&#128722;", "Are you good at <b>comparison shopping</b>?", "b"),
-    ("&#127891;", "What do you <b>want</b> to be good at?", "s"), ("&#9917;", "Are you good at <b>playing soccer</b>?", "c"),
-]
-BOARD_CSS = """
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1a1a1a; background: #fff;
-         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  /* Station 3 board: print in color, 1 per table. Landscape. */
-  .page { width: 11in; height: 8.5in; padding: 0.4in 0.45in; display: flex; flex-direction: column; }
-  @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
-  @media print { @page { size: letter landscape; margin: 0; } }
-  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .top h1 { font-size: 34px; }
-  .top span { font-size: 15px; }
-  .grid { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; }
-  .sq { border: 2.5px solid #333; border-radius: 12px; padding: 6px 8px; font-size: 17px; display: flex; flex-direction: column; align-items: center;
-        justify-content: center; text-align: center; position: relative; font-size: 16px; line-height: 1.2; }
-  .sq .e { font-size: 30px; line-height: 1; margin-bottom: 4px; }
-  .sq .no { position: absolute; top: 4px; left: 8px; font-size: 12px; color: #666; font-weight: bold; }
-  .sq .arrow { position: absolute; font-size: 18px; color: #333; }
-  .a { background: #ffe9c7; } .b { background: #dff2e1; } .c { background: #dde9fb; } .s { background: #ffd9e3; border-style: dashed; }
-  .start { background: #2f6b2f; color: #fff; font-size: 22px; font-weight: bold; }
-  .finish { background: #b3261e; color: #fff; font-size: 22px; font-weight: bold; }
-  .foot { font-size: 14px; margin-top: 8px; display: flex; justify-content: space-between; }
-"""
-
-
-def board_doc():
-    # Snake path: row 0 left->right, row 1 right->left, ... 6 x 4 = 24 cells. START sits in cell 0, FINISH in cell 23.
-    cells = [None] * 24
-    order = []
-    for r in range(4):
-        cols = range(6) if r % 2 == 0 else range(5, -1, -1)
-        order += [r * 6 + c for c in cols]
-    path = [("START", "start")] + SQUARES[:22] + [("FINISH", "finish")]
-    for step, idx in enumerate(order):
-        item = path[step]
-        if len(item) == 2:
-            cells[idx] = f'<div class="sq {item[1]}">{item[0]}{" &#127881;" if item[1] == "finish" else ""}</div>'
-        else:
-            e, t, c = item
-            cells[idx] = f'<div class="sq {c}"><span class="no">{step}</span><div class="e">{e}</div><div>{t}</div></div>'
-    body = f"""<section class="page">
-  <div class="top"><h1>What are you good at?</h1><span>Station 3: GAME &middot; Roll the die or flip a coin (heads = 1, tails = 2)</span></div>
-  <div class="grid">{"".join(cells)}</div>
-  <div class="foot"><span>Follow the numbers: 1, 2, 3 &hellip; The path snakes back and forth.</span><span>Answer with a full sentence. Then the group asks one more question.</span></div>
-</section>"""
-    return L.doc("Week 11 Station 3 Game Board", BOARD_CSS, body)
+    body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
+            + L.verb_charts(9, COST, "it", SPEND, "I", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 11 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
 
 
 FLYER_CSS = """
@@ -479,20 +387,20 @@ def self_check():
       <tr><td class="n">4&#9733;</td><td class="a">24-pack</td><td class="why">$5.99 &divide; 24 &asymp; 25&cent;. $3.49 &divide; 12 &asymp; 29&cent;.</td></tr>
     </table>
     <div class="tip"><b>Different answer?</b> Check the price on the flyer together. <b>Part D hint:</b> the turkey and green beans are <b>per pound</b>. Multiply!</div>"""
-    return L.self_check_doc("Week 11 Station 4 Self-Check", body)
+    return L.self_check_doc("Week 11 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
     words = "".join(f'<tr><td class="n">{i + 1}</td><td>{NUMS[i][2]}</td><td class="n">{i + 5}</td><td>{NUMS[i + 4][2]}</td></tr>' for i in range(4))
     top = L.leader_top(11, "11/24/26", STATIONS, [
         "<b>This week:</b> practice <b>good at + V-ing</b> (started Thursday). Quiz verbs: <b>cost, spend</b>. Only class this week: no class Thursday (Thanksgiving). <b>Week 11 Quiz opens Tue 12/1</b>, due Tue 12/8.",
-        "<b>Before class:</b> print the game board in color (1 per table), and bring dice or coins. Print the flyer in color (2 copies) and the self-check card.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). No board or dice needed. Print the flyer in color (2 copies) and the self-check card.",
         "<b>Floating:</b> start each block at <b>Station 4</b> (show the flyer, do Part B #1 together; point out <b>/lb</b> = per pound). Then Station 3, then Station 1.",
-        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, Happy Thanksgiving! <b>Finished early</b> anywhere &rarr; verb charts (page 10).",
+        "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, Happy Thanksgiving! <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (13 / 30)</h1><span class="tag">Packet pages 4&ndash;5</span></div>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (13 / 30)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
   <p><b>-teen</b> numbers have stress at the end with a clear <b>t</b>: thir<b>TEEN</b>. <b>-ty</b> numbers have stress at the start and a soft <b>t</b> (like <i>d</i>): <b>THIR</b>dy. Mistakes with money and times cause real problems at stores and appointments.</p>
   <table class="timeline">
     <tr><td>3 min</td><td><b>The loud part.</b> Hand up on the stressed syllable: thir<b>TEEN</b> / <b>THIR</b>ty.</td></tr>
@@ -525,7 +433,7 @@ def leader_guide():
     page2 = f"""<section class="page">
   <div class="header-row"><h1>Answer Keys</h1><span class="tag">Week 11 &middot; Tue 11/24/26 &middot; full key: packet-key PDF</span></div>
   <div class="box">
-    <h2>Station 1: WARM-UP (pages 2&ndash;3)</h2>
+    <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
         <p><b>1. Form:</b> 1 listening &middot; 2 cooking &middot; 3 speaking &middot; 4 solving &middot; 5 saving</p>
@@ -540,16 +448,15 @@ def leader_guide():
     </div>
   </div>
   <div class="box">
-    <h2>Station 2: SPEAK (pages 4&ndash;5)</h2>
+    <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
     <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(NUMS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {a}" for i, (_, a) in enumerate(PRICES, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: GAME (pages 6&ndash;7 + board)</h2>
-    <p><b>Game and A:</b> answers vary. Listen for <i>good at + V-ing</i> and <i>is good at</i> (one person) vs <i>are both good at</i>.</p>
-    <p><b>B, -ing:</b> {" &middot; ".join(f"{a} &rarr; {b}" for a, b, _ in ING)} &middot; <b>C:</b> answers vary: <i>I want to be good at + V-ing. I should / can + V1.</i></p>
+    <h2>Station 3: GAME, Good at (pages 5&ndash;6, no board)</h2>
+    <p>Page 5 is the <i>good at</i> phrase bank: spend 2&ndash;3 minutes on the great &rarr; bad scale and Rules A&ndash;D, then play. Page 6 has 15 questions printed on it: pick one, ask the person on your left, everyone crosses it off. Answers vary. Listen for <i>good at + V-ing</i> (not <i>good at <s>cook</s></i>) and <i>is good at</i> (one person) vs <i>are both good at</i>.</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Thanksgiving sale (pages 8&ndash;9 + 2 color pages)</h2>
+    <h2>Station 4: REAL WORLD, Thanksgiving sale (pages 7&ndash;8 + 2 color pages)</h2>
     <p><b>A:</b> 1 Thursday, Nov. 26 &middot; 2 2:00 p.m. &middot; 3 $3.00 &middot; 4 spend $50 or more</p>
     <p><b>B:</b> 1 False (open 7&ndash;2) &middot; 2 True &middot; 3 False (one per family) &middot; 4 Not on the flyer &middot; 5 True (4 for $2) &middot; 6 False (spend $25+)</p>
     <p><b>C:</b> 1 $12.90 &middot; 2 $24.90 &middot; 3 $12.00 &middot; &#9733;4 the 24-pack (&asymp;25&cent; vs &asymp;29&cent; a roll)</p>
@@ -558,7 +465,7 @@ def leader_guide():
     <p style="font-size:12px;">Store and prices are made up. No sales tax: Massachusetts doesn&rsquo;t tax most groceries. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>VERB CHARTS (page 10)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
     <p><b>Chart 1 (it + cost, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (I + spend):</b> spend, spends, spending, spent, spent &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("I", SPEND))}</p>
   </div>
@@ -571,7 +478,6 @@ if __name__ == "__main__":
         f"{STEM}-packet.html": (packet(False), 10),
         f"{STEM}-packet-key.html": (packet(True), 10),
         f"{STEM}-leader-guide.html": (leader_guide(), 2),
-        f"{STEM}-game-board.html": (board_doc(), 1),
         f"{STEM}-real-world-document.html": (flyer(), 2),
         f"{STEM}-real-world-self-check.html": (self_check(), 1),
     }

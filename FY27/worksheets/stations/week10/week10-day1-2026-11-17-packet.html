@@ -200,30 +200,96 @@
   .gline { display: flex; gap: 8px; align-items: flex-end; font-size: 17px; margin-bottom: 4px; }
   .gline b { white-space: nowrap; width: 3.2em; }
   .gline .line { flex: 1; }
-</style>
+
+  /* Page 1 top: name + group (replaces the old cover page) */
+  .strip { border: 1.5px solid #000; padding: 3px 10px 4px; margin-bottom: 8px; }
+  .strip .name-row { margin-bottom: 1px; }
+  /* Phrase bank pages: the handout's own margins */
+  .page.pbp { padding: 0.4in 0.45in; }
+  .pbk { flex: 1; min-height: 0; display: flex; flex-direction: column; font-size: 14px; line-height: 1.35; }
+  /* Station 3 page 6: problems / questions printed on the page instead of cards */
+  .qboard { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #000; margin-bottom: 10px; }
+  .qboard > div { padding: 5px 8px; display: flex; gap: 7px; border-right: 1.5px solid #000; border-bottom: 1.5px solid #000; }
+  .qboard > div:nth-child(3n) { border-right: none; }
+  .qboard > div:nth-last-child(-n+3) { border-bottom: none; }
+  .qboard .n { font-size: 18px; font-weight: bold; flex: none; width: 1.5em; text-align: center; line-height: 1.1; }
+  .qboard .e { font-size: 20px; line-height: 1; display: block; margin-top: 2px; }
+  .qboard .t { font-size: 15px; line-height: 1.25; font-weight: bold; }
+  .qboard .tag { display: block; font-size: 12px; font-weight: normal; font-style: italic; margin-top: 2px; }
+  .qscore { display: grid; grid-template-columns: repeat(5, 1fr); border: 1.5px solid #000; margin-bottom: 12px; }
+  .qscore > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
+  .qscore > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
+  .play li { margin-bottom: 3px !important; }
+  .pbk h2 { font-size: 18px; margin-bottom: 5px; }
+  .pbk h2 .pb-small { font-weight: normal; }
+  .pbk .pb-small { font-size: 11px; }
+  .pbk .pb-box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
+  .pbk .pb-box:last-child { margin-bottom: 0; }
+  .pbk .pb-scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-scale > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-scale > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-scale .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-scale .pb-pct { font-size: 14px; }
+  .pbk .pb-scale .pb-ex { font-size: 11px; }
+  .pbk .pb-bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
+  .pbk .pb-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pbk .pb-rule { border: 1.5px solid #000; padding: 6px 9px; }
+  .pbk .pb-rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
+  .pbk .pb-formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+  .pbk .pb-chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+  .pbk .pb-chip.pb-adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pbk .pb-rule .pb-ex { font-size: 14px; }
+  .pbk .pb-rule .pb-ex b { text-decoration: underline; }
+  .pbk .pb-rule.pb-wide { grid-column: 1 / -1; }
+  .pbk .pb-no { font-size: 14px; margin-top: 3px; }
+  .pbk .pb-no s { text-decoration-thickness: 2px; }
+  .pbk .pb-bank { column-count: 4; column-gap: 14px; }
+  .pbk .pb-cat { break-inside: avoid; margin-bottom: 6px; }
+  .pbk .pb-cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
+  .pbk .pb-cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
+  .pbk .pb-cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
+  .pbk .pb-write-row { display: flex; align-items: flex-end; gap: 8px; height: 44px; }
+  .pbk .pb-write-row .pb-adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
+  .pbk .pb-write-row .pb-fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
+  .pbk .pb-write-row .pb-fill.pb-example { font-style: italic; color: #000; }
+  .pbk .pb-hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
+  .pbk table.pb-interview { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .pbk table.pb-interview th, .pbk table.pb-interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
+  .pbk table.pb-interview th { font-size: 14px; }
+  .pbk table.pb-interview td { height: 34px; }
+  .pbk table.pb-interview td.pb-q { width: 52%; }
+  .pbk .pb-line { border-bottom: 1.5px solid #000; height: 32px; }
+  .pbk .pb-check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
+  .pbk .pb-cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
+  .pbk .pb-check span { margin-right: 14px; white-space: nowrap; }
+  .pbk .pb-forms { display: grid; border: 1.5px solid #000; margin-top: 4px; }
+  .pbk .pb-forms > div { padding: 4px 6px; text-align: center; }
+  .pbk .pb-forms > div + div { border-left: 1.5px solid #000; }
+  .pbk .pb-forms .pb-word { font-size: 18px; font-weight: bold; }
+  .pbk .pb-forms .pb-sm { font-size: 11px; }
+  .pbk .pb-forms .pb-md { font-size: 14px; }
+  .pbk .pb-write-row .pb-adv.pb-wide { width: 1.6in; }
+  .pbk .pb-write-row .pb-adv.pb-xwide { width: 2.3in; font-size: 14px; }
+  .pbk table.pb-interview td.pb-c { width: 14%; text-align: center; }
+  .pbk .pb-frame { border: 1.5px dashed #000; padding: 4px 9px; font-size: 14px; margin: 4px 0 6px; }
+  .pbk .pb-rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .pbk .pb-rank > div { border: 1.5px solid #000; padding: 5px 8px; font-size: 14px; }
+  .pbk .pb-rank b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .pbk .pb-rank .pb-opt { line-height: 1.9; }
+  .pbk .pb-rank .pb-opt .pb-cb { margin-right: 6px; }
+  .pbk .pb-dice { line-height: 1; margin-bottom: 2px; }
+  .pbk .pb-die { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 2px solid #000; border-radius: 5px; font-size: 14px; font-weight: bold; }
+  .pbk .pb-rules.pb-three { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .pbk .pb-rules.pb-three .pb-rule { padding: 4px 7px; }
+  .pbk .pb-rules.pb-three .pb-chip { font-size: 13px; padding: 1px 5px; }
+  .pbk .pb-bank-split .pb-cat-name.pb-yes::before { content: "\2713  "; }
+  .pbk .pb-bank-split .pb-cat-name.pb-no::before { content: "\2717  "; }</style>
 </head>
 <body>
-<section class="page">
-  
-  <div class="cover-title">Tuesday Stations</div>
-  <div class="cover-sub">Week 10 &middot; Tuesday, November 17, 2026 &middot; Practice day</div>
-  <div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div>
-  <table class="rotation">
-    <tr><th>Group</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr>
-    <tr><td class="g">A</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td></tr><tr><td class="g">B</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td></tr><tr><td class="g">C</td><td>4 &middot; REAL WORLD</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td></tr><tr><td class="g">D</td><td>1 &middot; WARM-UP</td><td>2 &middot; SPEAK</td><td>3 &middot; TALK CARDS</td><td>4 &middot; REAL WORLD</td></tr>
-  </table>
-  <div class="stations"><div><div class="nm">Station 1: WARM-UP</div><div class="who">On your own. Check with a partner. A teacher will visit.</div><div class="pp">Pages 2&ndash;3</div></div><div><div class="nm">Station 2: SPEAK</div><div class="who">Short <i>i</i> and long <i>ee</i>. With a teacher.</div><div class="pp">Pages 4&ndash;5</div></div><div><div class="nm">Station 3: TALK CARDS</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 6&ndash;7 + cards on the table</div></div><div><div class="nm">Station 4: REAL WORLD</div><div class="who">With your group. A teacher will visit.</div><div class="pp">Pages 8&ndash;9 + 2 color pages on the table</div></div></div>
-  <h2>How it works</h2>
-  <ul class="rules">
-    <li>Each station is <b>25 minutes</b>. Move when the timer rings.</li>
-    <li><b>Late?</b> Go to <b>Station 1: WARM-UP</b>.</li>
-    <li><b>Not finished?</b> That&rsquo;s OK. Move anyway. Finish at home.</li>
-    <li><b>Finished early?</b> Go to the <b>verb charts</b> on page 10.</li>
-    <li>Keep this packet. Bring it on Thursday.</li>
-  </ul>
-</section>
 <section class="page wu3">
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 1</div></div>
+  <div class="strip"><div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>
   <div class="task">
     <h2>1. Odd one out</h2>
     <p class="how">Three are meeting words. Circle the one that does not belong.</p>
@@ -252,7 +318,7 @@
   </div>
 </section>
 <section class="page wu3">
-  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 3</div></div>
+  <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
   <div class="task">
     <h2>4. Verb forms of the week</h2>
     <p class="how">Write the other forms of <b>meet</b> and <b>speak</b>. <i>Meet</i> and <i>speak</i> are on this week&rsquo;s quiz!</p>
@@ -278,7 +344,7 @@
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
   <h2>Quick or long?</h2>
   <div class="rhythm">
     <div><div class="big">i &nbsp;<span style="font-size:20px;font-weight:normal;">ship &middot; sit &middot; live</span></div>
@@ -303,7 +369,7 @@
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 5</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short <i>i</i> and long <i>ee</i> &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
   <div class="task">
     <h2>D. Read aloud</h2>
     <p class="how">Take turns. Read one sentence each. Go slowly. <b>i</b> = quick. <b>ee</b> = long, with a smile.</p>
@@ -336,67 +402,42 @@
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
-<section class="page rd">
-  <div class="station-bar"><div class="label">STATION 3: TALK CARDS<span>Have you ever&hellip;? &middot; with your group</span></div><div class="pg">Page 6</div></div>
+<section class="page pbp">
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>Phrase bank &middot; use it in the game</span></div><div class="pg">Page 5</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>1. The verbs: V1 &rarr; V3 <span class="pb-small">Have you ever + <b>V3</b>? &nbsp;*go &rarr; <b>been</b> = you went and came back.</span></h2><div class="pb-forms" style="grid-template-columns: repeat(6, 1fr);"><div><div class="pb-sm">V1: eat</div><div class="pb-word">eaten</div></div><div><div class="pb-sm">V1: see</div><div class="pb-word">seen</div></div><div><div class="pb-sm">V1: go</div><div class="pb-word">been*</div></div><div><div class="pb-sm">V1: ride</div><div class="pb-word">ridden</div></div><div><div class="pb-sm">V1: fly</div><div class="pb-word">flown</div></div><div><div class="pb-sm">V1: meet</div><div class="pb-word">met</div></div></div></div>
+<div class="pb-box"><h2>2. How does it work? <span class="pb-small">The important words are in <b>black</b>.</span></h2><div class="pb-rules"><div class="pb-rule"><div class="pb-rule-name">A. Ask: Have you ever + V3?</div><div class="pb-formula"><span class="pb-chip">Have</span><span class="pb-chip">you</span><span class="pb-chip pb-adv">ever</span><span class="pb-chip pb-adv">eaten</span><span class="pb-chip">sushi?</span></div><div class="pb-ex"><b>Has</b> she <b>ever</b> ridden a horse?</div><div class="pb-no">&#10007; <s>Have you ever ate sushi?</s></div></div><div class="pb-rule"><div class="pb-rule-name">B. Yes: I have + V3</div><div class="pb-formula"><span class="pb-chip">I</span><span class="pb-chip pb-adv">have</span><span class="pb-chip pb-adv">been</span><span class="pb-chip">to New York.</span></div><div class="pb-ex">Yes, I <b>have</b>. I&rsquo;ve <b>tried</b> it twice.</div><div class="pb-no">&#10007; <s>I have went there.</s></div></div><div class="pb-rule"><div class="pb-rule-name">C. No: I have never + V3</div><div class="pb-formula"><span class="pb-chip">I</span><span class="pb-chip">have</span><span class="pb-chip pb-adv">never</span><span class="pb-chip">seen</span><span class="pb-chip">snow.</span></div><div class="pb-ex">No, I <b>haven&rsquo;t</b>. / I&rsquo;ve <b>never</b> flown.</div><div class="pb-no">&#10007; <s>I haven&rsquo;t never seen snow.</s></div></div><div class="pb-rule"><div class="pb-rule-name">D. Tell more: When did you + V1?</div><div class="pb-formula"><span class="pb-chip pb-adv">When did</span><span class="pb-chip">you</span><span class="pb-chip">go?</span></div><div class="pb-ex">&rarr; I <b>went</b> last year. (one time, finished: <b>V2</b>)</div><div class="pb-no">&#10007; <s>I have been there last year.</s></div></div><div class="pb-rule pb-wide"><div class="pb-rule-name" style="margin:0">Remember: <span style="font-weight:normal">he / she / it &rarr; <b>has</b>: She <b>has</b> never driven a truck. &nbsp;|&nbsp; <i>once &middot; twice &middot; many times</i> go at the end.</span></div></div></div></div>
+<div class="pb-box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="pb-small">These are <b>V3</b>. Put <i>have / has</i> before them.</span></h2><div class="pb-bank"><div class="pb-cat"><div class="pb-cat-name">Food</div><ul><li>eaten sushi</li><li>tried Thai food</li><li>cooked for 20 people</li><li>made bread</li><li>eaten a whole pizza</li><li>drunk coconut water</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Travel</div><ul><li>been to New York</li><li>flown in a plane</li><li>taken a long train ride</li><li>been on a boat</li><li>seen the ocean</li><li>driven in snow</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Nature</div><ul><li>seen snow</li><li>climbed a mountain</li><li>swum in a lake</li><li>slept in a tent</li><li>seen a whale</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Work</div><ul><li>worked at night</li><li>had two jobs</li><li>worked in a restaurant</li><li>spoken at a meeting</li><li>started a business</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Fun</div><ul><li>been to a concert</li><li>sung karaoke</li><li>danced salsa</li><li>watched a baseball game</li><li>ridden a roller coaster</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Life in Boston</div><ul><li>taken the T</li><li>eaten clam chowder</li><li>walked in Boston Common</li><li>been to the beach in winter</li></ul></div><div class="pb-cat"><div class="pb-cat-name">People</div><ul><li>met a famous person</li><li>forgotten someone&rsquo;s name</li><li>helped a stranger</li><li>given a speech</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Phone &amp; tech</div><ul><li>broken my phone screen</li><li>lost my phone</li><li>bought something online</li><li>sent a voice message</li></ul></div></div><div class="pb-cat-be"><b>Short answers:</b> &nbsp;Yes, I have. &middot; No, I haven&rsquo;t. &middot; No, never. &middot; Once. &middot; Twice. &middot; Many times! &middot; Not yet, but I want to.</div></div>
+</div>
+</section>
+<section class="page ">
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>Have you ever&hellip;? &middot; with your group</span></div><div class="pg">Page 6</div></div>
   <div class="task">
     <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Put the cards face down on the table.</li>
-      <li><b class="n">2.</b> Take a card. Ask the person on your <b>left</b>: <i>&ldquo;Have you ever &hellip;?&rdquo;</i></li>
-      <li><b class="n">3.</b> They answer: <b>Yes, I have.</b> / <b>No, I haven&rsquo;t.</b> / <b>No, never.</b></li>
-      <li><b class="n">4.</b> <b>Yes?</b> Ask one more question with <b>did</b>: <i>When did you&hellip;? Where did you&hellip;? Did you like it?</i></li>
-      <li><b class="n">5.</b> <b>No?</b> Ask: <i>&ldquo;Do you want to?&rdquo;</i> Then the next person takes a card.</li>
+    <ol class="items play" style="list-style:none;">
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer: <b>Yes, I have.</b> / <b>No, I haven&rsquo;t.</b> / <b>No, never.</b></li>
+      <li><b class="n">3.</b> <b>Yes?</b> Ask one more question with <b>did</b>: <i>When did you&hellip;? Where did you&hellip;? Did you like it?</i></li>
+      <li><b class="n">4.</b> <b>No?</b> Ask: <i>&ldquo;Do you want to?&rdquo;</i> Then that person picks the next question. <b>Stuck?</b> Look at page 5.</li>
     </ol>
   </div>
   <div class="key" style="margin-bottom:10px;">
     <div><b>Have you ever + V3?</b><br>any time in your life</div>
     <div><b>When / Where did you + V1?</b><br>one finished time</div>
   </div>
-  <div class="tip" style="margin-bottom:14px; font-size:17px; line-height:1.6;">
-    <b>A:</b> Have you ever <b>eaten</b> sushi? &emsp; <b>B:</b> Yes, I have.<br>
-    <b>A:</b> When <b>did</b> you <b>eat</b> it? &emsp;&emsp;&ensp; <b>B:</b> I <b>ate</b> it last year at my friend&rsquo;s house.<br>
-    <b>A:</b> Did you like it? &emsp;&emsp;&emsp;&emsp;&ensp; <b>B:</b> Yes, I did!
+  <div class="tip" style="margin-bottom:10px; font-size:16px;">
+    <b>A:</b> Have you ever <b>eaten</b> sushi? &emsp; <b>B:</b> Yes, I have. &emsp; <b>A:</b> When <b>did</b> you <b>eat</b> it? &emsp; <b>B:</b> I <b>ate</b> it last year.
   </div>
+  <div class="qboard"><div><span class="n">1<span class="e">&#127843;</span></span><span class="t">Have you ever eaten sushi?</span></div><div><span class="n">2<span class="e">&#10052;&#65039;</span></span><span class="t">Have you ever seen snow?</span></div><div><span class="n">3<span class="e">&#128014;</span></span><span class="t">Have you ever ridden a horse?</span></div><div><span class="n">4<span class="e">&#9992;&#65039;</span></span><span class="t">Have you ever flown in a plane?</span></div><div><span class="n">5<span class="e">&#127858;</span></span><span class="t">Have you ever cooked for 10 people?</span></div><div><span class="n">6<span class="e">&#127908;</span></span><span class="t">Have you ever sung karaoke?</span></div><div><span class="n">7<span class="e">&#11088;</span></span><span class="t">Have you ever met a famous person?</span></div><div><span class="n">8<span class="e">&#128483;&#65039;</span></span><span class="t">Have you ever spoken at a meeting?</span></div><div><span class="n">9<span class="e">&#127957;&#65039;</span></span><span class="t">Have you ever swum in the ocean?</span></div><div><span class="n">10<span class="e">&#128241;</span></span><span class="t">Have you ever lost your phone?</span></div><div><span class="n">11<span class="e">&#128666;</span></span><span class="t">Have you ever driven a truck?</span></div><div><span class="n">12<span class="e">&#9917;</span></span><span class="t">Have you ever watched a game in a stadium?</span></div><div><span class="n">13<span class="e">&#128131;</span></span><span class="t">Have you ever taken a dance class?</span></div><div><span class="n">14<span class="e">&#127881;</span></span><span class="t">Have you ever forgotten a birthday?</span></div><div><span class="n">15<span class="e">&#128508;</span></span><span class="t">Have you ever been to New York City?</span></div></div>
   <div class="task">
     <h2>Write it down</h2>
-    <p class="how">After each turn, write who answered and one detail.</p>
-    <table class="pick"><tr><th style="width:22%;">Who?</th><th style="width:30%;">Have you ever&hellip;?</th><th style="width:14%;">Yes / No</th><th>One detail (when? where?)</th></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr><tr><td style="height:36px;"></td><td></td><td></td><td></td></tr></table>
-  </div>
-</section>
-<section class="page rd">
-  <div class="station-bar"><div class="label">STATION 3: TALK CARDS<span>Have you ever&hellip;? &middot; with your group</span></div><div class="pg">Page 7</div></div>
-  <div class="task">
-    <h2>A. Write about your group</h2>
-    <p class="how">Write <b>4 sentences</b> about the people at your table. Use their names.</p>
-    <div class="gram3">
-      <div><b>has + V3</b><br>Ana <b>has been</b> to Mexico City.</div>
-      <div><b>has never + V3</b><br>Juan <b>has never seen</b> snow.</div>
-      <div><b>have both + V3</b><br>Mei and I <b>have both flown</b> in a plane.</div>
-    </div>
-    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
-  </div>
-  <div class="task">
-    <h2>B. V3 check</h2>
-    <p class="how">These verbs are on the cards. Write the <b>V3</b>.</p>
-    <table class="pick" style="font-size:17px;"><tr><td><b>eat</b> &rarr; <span class="blank short"></span></td><td><b>see</b> &rarr; <span class="blank short"></span></td><td><b>ride</b> &rarr; <span class="blank short"></span></td><td><b>fly</b> &rarr; <span class="blank short"></span></td><td><b>sing</b> &rarr; <span class="blank short"></span></td></tr><tr><td><b>swim</b> &rarr; <span class="blank short"></span></td><td><b>drive</b> &rarr; <span class="blank short"></span></td><td><b>take</b> &rarr; <span class="blank short"></span></td><td><b>forget</b> &rarr; <span class="blank short"></span></td><td><b>be</b> &rarr; <span class="blank short"></span></td></tr></table>
-  </div>
-  <div class="task">
-    <h2>C. &#9733; Make 2 new cards</h2>
-    <p class="how">Write 2 new <i>Have you ever&hellip;?</i> questions. Ask your group.</p>
-    <div class="gline"><b>1.</b><div class="line"></div></div>
-    <div class="gline"><b>2.</b><div class="line"></div></div>
-  </div>
-  <div class="task">
-    <h2>D. Talk together</h2>
-    <ol class="items">
-      <li><b class="n">1.</b> Which answer in your group was a surprise?</li>
-      <li><b class="n">2.</b> What is something you have never done, but you want to do?</li>
-    </ol>
+    <p class="how">Write who answered and one detail.</p>
+    <table class="pick"><tr><th style="width:22%;">Who?</th><th style="width:30%;">Have you ever&hellip;?</th><th style="width:14%;">Yes / No</th><th>One detail (when? where?)</th></tr><tr><td style="height:34px;"></td><td></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td><td></td></tr></table>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
 <section class="page rw">
-  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 7</div></div>
   <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the meeting flyer). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
   <div class="task">
     <h2>A. Find it</h2>
@@ -425,7 +466,7 @@
   <p class="how bottom"><b>Talk:</b> Have you ever been to a meeting like this? A school meeting? A tenant meeting?</p>
 </section>
 <section class="page rw">
-  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 9</div></div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
   <p class="how">Now look at <b>page 2</b> on the table: <b>Mr. Haddad&rsquo;s comment card</b>.</p>
   <div class="task">
     <h2>D. Read the comment card</h2>
@@ -452,7 +493,7 @@
   </div>
 </section>
 <section class="page vc">
-  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 10</div></div>
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>verb charts</span></div><div class="pg">Page 9</div></div>
   <div class="task">
     <h2>Chart 1: Add the helping verbs</h2>
     <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
@@ -467,6 +508,14 @@
     <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">speak</td><td></td><td></td><td></td><td></td></tr></table>
     <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Perfect</td><td></td><td></td><td></td></tr></table>
   </div>
+</section>
+<section class="page pbp">
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you &middot; look at page 5 for help</span></div><div class="pg">Page 10</div></div>
+<div class="pbk">
+<div class="pb-box"><h2>A. Yes, I have! / Never! <span class="pb-small">3 things you <b>have</b> done, 2 you have <b>never</b> done. Add: <b>but I want to</b> or <b>and I don&rsquo;t want to!</b></span></h2><div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">I have flown in a plane three times.</span></div><div class="pb-write-row"><span class="pb-adv">I have</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I have</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I have</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I&rsquo;ve never</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I&rsquo;ve never</span><span class="pb-fill"></span></div></div>
+<div class="pb-box"><h2>B. Two truths and a lie <span class="pb-small">Write 3 sentences. <b>2 are true. 1 is a lie.</b> Your partner guesses the lie, then asks: <i>When did you&hellip;? Where?</i></span></h2><div class="pb-write-row"><span class="pb-adv">1. I have</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">2. I have</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">3. I have</span><span class="pb-fill"></span></div><div class="pb-hint" style="margin-top:4px">My partner guessed: &nbsp;1 &nbsp; 2 &nbsp; 3 &emsp;&emsp; Right? &nbsp;Yes / No &#128578;</div></div>
+<div class="pb-check"><b>Check:</b> <span><span class="pb-cb"></span>have / has + V3</span><span><span class="pb-cb"></span>never (no <i>not</i>)</span><span><span class="pb-cb"></span>When did you + V1?</span><span><span class="pb-cb"></span>he / she + has</span></div>
+</div>
 </section>
 
 </body>
