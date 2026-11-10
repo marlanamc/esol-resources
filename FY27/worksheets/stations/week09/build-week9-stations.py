@@ -340,12 +340,12 @@ def game(p, key):
     <ol class="items play" style="list-style:none;">
       <li><b class="n">1.</b> Pick a problem. Read it out loud: <i>&ldquo;I have a problem. &hellip; What should I do?&rdquo;</i> Everyone puts an <b>&#10007;</b> on it.</li>
       <li><b class="n">2.</b> <b>Everyone</b> gives advice: <b>You should &hellip;</b> &middot; <b>You shouldn&rsquo;t &hellip;</b> &middot; <b>You can &hellip;</b> + <b>V1</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
-      <li><b class="n">3.</b> The reader picks the <b>best advice</b>: <i>&ldquo;Good idea! Thank you.&rdquo;</i> That person gets a <span style="white-space:nowrap">point (<b>|</b>).</span></li>
-      <li><b class="n">4.</b> The next person picks a problem. Most points when the timer rings wins!</li>
+      <li><b class="n">3.</b> The reader says <b>one</b>: <i>&ldquo;I tried that, but it didn&rsquo;t work.&rdquo;</i> or <i>&ldquo;I can&rsquo;t. I &hellip;&rdquo;</i> Everyone gives <b>new</b> advice.</li>
+      <li><b class="n">4.</b> The reader picks the <b>best advice</b>: <i>&ldquo;Good idea! Thank you.&rdquo;</i></li>
+      <li><b class="n">5.</b> The next person picks a problem. Keep going until the timer rings.</li>
     </ol>
   </div>
   <div class="board">{board}</div>
-  <div class="score"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>
   <div class="task">
     <h2>A. The best advice</h2>
     <p class="how">Write <b>one</b> problem from the game and the <b>best advice</b> your group gave.</p>
@@ -700,7 +700,7 @@ def leader_guide():
   </div>
   <div class="box">
     <h2>Station 3: GAME, Give advice (pages 5&ndash;6, no cards)</h2>
-    <p>Page 5 is the can / should / must phrase bank (not covered Thursday). Spend 2&ndash;3 minutes on the meaning line and Rules A&ndash;D, then play. Page 6 has the 15 problems printed on it: the reader picks one, everyone crosses it off, the reader gives the point. No fixed answers. Listen for <b>should / shouldn&rsquo;t / can + V1</b>. The most common error: <i>You should <s>to</s> go.</i> Recast it: &ldquo;Yes, you should <b>go</b>. Good idea!&rdquo; Let the reader choose the best advice; don&rsquo;t judge it yourself. Stuck learners use the page 5 phrase bank.</p>
+    <p>Page 5 is the can / should / must phrase bank (not covered Thursday). Spend 2&ndash;3 minutes on the meaning line and Rules A&ndash;D, then play. Page 6 has the 15 problems printed on it: the reader picks one, everyone crosses it off and gives advice, the reader pushes back once (&ldquo;I tried that, but it didn&rsquo;t work.&rdquo; / &ldquo;I can&rsquo;t. I work at night.&rdquo;) so the group has to think of new advice, then the reader says which advice is best. No points, no winner. No fixed answers. Listen for <b>should / shouldn&rsquo;t / can + V1</b>. The most common error: <i>You should <s>to</s> go.</i> Recast it: &ldquo;Yes, you should <b>go</b>. Good idea!&rdquo; Let the reader choose the best advice; don&rsquo;t judge it yourself. Stuck learners use the page 5 phrase bank.</p>
     <p><b>Page 6 A and B:</b> answers vary (check modal + V1). <b>Short on time?</b> Skip A and B. The game is the main activity.</p>
   </div>
   <div class="box">
