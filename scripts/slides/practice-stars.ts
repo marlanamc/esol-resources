@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // ---------------------------------------------------------------------------
-// Weekly "Practice Stars" slide image (1920x1080 PNG): students who logged
-// practice from home on several days of one Mon–Sun week.
+// Weekly "Practice Stars" slide image (1920x1080 PNG): the top students by
+// days of practice logged from home in one Mon–Sun week.
 //
 // Days come from StudyLog the same way the app counts them (distinct dayKeys),
 // the dots copy StudyWeekDots, and the icons are the StudyLogKindIcon ones, so
@@ -12,9 +12,10 @@
 // READ-ONLY: this only queries the database. It still connects to whatever
 // DATABASE_URL points at (locally that is production), so never add writes.
 //
-// Usage: npm run slide:practice-stars -- [--week 7] [--min 3] [--class FY27] [--out file.png]
+// Usage: npm run slide:practice-stars -- [--week 7] [--top 5] [--min 1] [--class FY27] [--out file.png]
 //   --week   teaching week number (default: last week)
-//   --min    fewest days practiced to make the slide (default 3)
+//   --top    how many students (default 5; most days first, then most logs)
+//   --min    fewest days practiced to make the slide (default 1)
 //   --class  class name (default: newest class that isn't a test class)
 //   --out    output path (default: ~/Downloads/week<N>-practice-stars.png)
 // ---------------------------------------------------------------------------
@@ -66,7 +67,8 @@ async function main() {
   const { StudyLogKindIcon } = await import("@/components/study-log/StudyLogKindIcon");
 
   try {
-    const minDays = Math.max(1, Number(arg("min") ?? 3));
+    const minDays = Math.max(1, Number(arg("min") ?? 1));
+    const top = Math.max(1, Number(arg("top") ?? 5));
 
     // Same week selection as top-learners.ts: "last week" relative to a reference instant.
     let referenceDate = new Date();
@@ -116,7 +118,8 @@ async function main() {
     const nameOf = (s: Star) => s.user.name?.trim() || s.user.username;
     const stars = [...byUser.values()]
       .filter((s) => s.days.size >= minDays)
-      .sort((a, b) => b.days.size - a.days.size || b.logs - a.logs || nameOf(a).localeCompare(nameOf(b)));
+      .sort((a, b) => b.days.size - a.days.size || b.logs - a.logs || nameOf(a).localeCompare(nameOf(b)))
+      .slice(0, top);
     if (stars.length === 0) throw new Error(`Nobody in ${cls.name} logged practice on ${minDays}+ days that week.`);
 
     const title = weekNumber ? `Week ${weekNumber}` : "Last Week";
@@ -124,7 +127,7 @@ async function main() {
     const svg = (el: Parameters<typeof renderToStaticMarkup>[0]) => renderToStaticMarkup(el);
     const check = svg(createElement(Check, { size: 26, strokeWidth: 3 }));
 
-    console.log(`${cls.name} · ${title} (${dates}) · ${minDays}+ days`);
+    console.log(`${cls.name} · ${title} (${dates}) · top ${top}, ${minDays}+ days`);
     const rows = stars.map((s) => {
       const goal = normalizePracticeGoalDays(s.user.practiceGoalDays);
       const goalDone = s.days.size >= goal;
@@ -182,7 +185,7 @@ async function main() {
 </style></head><body>
   <header>
     <div><div class="kicker">📝 Practice Stars</div><h1>${title}</h1>
-      <div class="sub">They practiced English at home on ${minDays} or more days.</div></div>
+      <div class="sub">They practiced English at home on the most days.</div></div>
     <div class="dates"><b>${escapeHtml(cls.name)}</b>${dates}</div>
   </header>
   <ol>${rows}</ol>
