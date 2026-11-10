@@ -31,7 +31,7 @@ STEM = "week9-day1-2026-11-10"
 TAKE = ("take", "takes", "taking", "took", "taken")
 BRING = ("bring", "brings", "bringing", "brought", "brought")
 STATIONS = [
-    ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
+    ("WARM-UP", "On your own. Check with your group. A teacher will visit.", "Pages 1&ndash;2"),
     ("SPEAK", "<i>Can</i> or <i>can&rsquo;t</i>? With a teacher.", "Pages 3&ndash;4"),
     ("GAME", "Give advice. With your group. A teacher will visit.", "Pages 5&ndash;6"),
     ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
@@ -156,7 +156,7 @@ def speak(p, key):
   </div>
   <div class="task">
     <h2>B. Your turn: thumbs up or down</h2>
-    <p class="how"><b>Partner A</b> reads a sentence from Part A with <i>can</i> or <i>can&rsquo;t</i>. Don&rsquo;t show it! <b>Partner B</b>: thumbs up &#128077; = <i>can</i>, thumbs down &#128078; = <i>can&rsquo;t</i>. Switch.</p>
+    <p class="how"><b>One person</b> reads a sentence from Part A with <i>can</i> or <i>can&rsquo;t</i>. Don&rsquo;t show it! <b>Everyone else</b>: thumbs up &#128077; = <i>can</i>, thumbs down &#128078; = <i>can&rsquo;t</i>. Then the <b>next person</b> reads.</p>
   </div>
   <div class="task">
     <h2>C. Who can do it?</h2>
@@ -424,21 +424,21 @@ def real_world(p, key):
   </div>
   <div class="task">
     <h2>B. Call for home delivery</h2>
-    <p class="how">Someone in your family (or a neighbor) can&rsquo;t come to the pantry. You call to sign them up. <b>A</b> = Grace at the pantry. <b>B</b> = you. Use the flyer and <b>your own ideas</b>. Circle <b>She</b> or <b>He</b>. Use a <b>made-up</b> address. Then <b>switch</b>.</p>
+    <p class="how">Someone in your family (or a neighbor) can&rsquo;t come to the pantry. You call to sign them up. <b>One person</b> is Grace at the pantry. <b>One person</b> calls. <b>Everyone else</b> listens: is Grace right? Check the flyer. Then the <b>caller</b> is Grace, and the <b>next person</b> calls. <b>Everyone calls one time.</b> Use the flyer and <b>your own ideas</b>. Circle <b>She</b> or <b>He</b>. Use a <b>made-up</b> address.</p>
     <div class="call">
-      <p><b>A:</b> Eastside Food Pantry, this is Grace. How can I help you?</p>
-      <p><b>B:</b> Hi. I want to sign up my {h("<i>grandmother</i>", "older family member")} for home delivery.</p>
-      <p><b>A:</b> OK. Home delivery is for people {h("60 or older", "age: look at the flyer")}, or people who can&rsquo;t {h("leave home", "look at the flyer")}. Tell me about this person.</p>
-      <p><b>B:</b> She / He is {h("<i>78</i>", "age", "short")} years old. She / He can&rsquo;t {h("<i>walk far</i>", "why? walk far &middot; drive &middot; carry bags", "long")}.</p>
-      <p><b>A:</b> What&rsquo;s the address? Can you spell the street, please?</p>
-      <p><b>B:</b> It&rsquo;s {h("<i>22 Oak Street</i>", "number + street (make it up)", "long")}. That&rsquo;s {h("<i>O-A-K</i>", "spell the street")}.</p>
-      <p><b>A:</b> OK. We deliver on {h("Saturday", "day")} from {h("12:30", "time", "short")} to {h("3:00", "time", "short")}. Someone must be home.</p>
-      <p><b>B:</b> Can I / Should I {h("<i>call before Saturday</i>", "your question: see ideas below", "long")}?</p>
-      <p><b>A:</b> {h("<i>Yes, you should.</i>", "answer: Yes, you can. &middot; No, but &hellip;", "long")}</p>
-      <p><b>B:</b> Thank you so much!</p>
+      <p><b>Grace:</b> Eastside Food Pantry, this is Grace. How can I help you?</p>
+      <p><b>You:</b> Hi. I want to sign up my {h("<i>grandmother</i>", "older family member")} for home delivery.</p>
+      <p><b>Grace:</b> OK. Home delivery is for people {h("60 or older", "age: look at the flyer")}, or people who can&rsquo;t {h("leave home", "look at the flyer")}. Tell me about this person.</p>
+      <p><b>You:</b> She / He is {h("<i>78</i>", "age", "short")} years old. She / He can&rsquo;t {h("<i>walk far</i>", "why? walk far &middot; drive &middot; carry bags", "long")}.</p>
+      <p><b>Grace:</b> What&rsquo;s the address? Can you spell the street, please?</p>
+      <p><b>You:</b> It&rsquo;s {h("<i>22 Oak Street</i>", "number + street (make it up)", "long")}. That&rsquo;s {h("<i>O-A-K</i>", "spell the street")}.</p>
+      <p><b>Grace:</b> OK. We deliver on {h("Saturday", "day")} from {h("12:30", "time", "short")} to {h("3:00", "time", "short")}. Someone must be home.</p>
+      <p><b>You:</b> Can I / Should I {h("<i>call before Saturday</i>", "your question: see ideas below", "long")}?</p>
+      <p><b>Grace:</b> {h("<i>Yes, you should.</i>", "answer: Yes, you can. &middot; No, but &hellip;", "long")}</p>
+      <p><b>You:</b> Thank you so much!</p>
     </div>
-    <p class="ideas" style="font-size:15px;">Ideas for B&rsquo;s question: Should I call before Saturday? &middot; Can I get milk and eggs? &middot; Can I get delivery every week?</p>
-    <p class="how" style="margin-top:6px;"><b>&#9733; Make it harder:</b> A, add a problem! <i>&ldquo;Sorry, the list is full this week.&rdquo;</i> &middot; <i>&ldquo;We can&rsquo;t deliver to that street.&rdquo;</i> &middot; <i>&ldquo;Nobody can be home on Saturday? Hmm&hellip;&rdquo;</i> B, find a solution: <i>Can I &hellip;? Should I &hellip;?</i></p>
+    <p class="ideas" style="font-size:15px;">Ideas for the caller&rsquo;s question: Should I call before Saturday? &middot; Can I get milk and eggs? &middot; Can I get delivery every week?</p>
+    <p class="how" style="margin-top:6px;"><b>&#9733; Make it harder:</b> Grace, add a problem! <i>&ldquo;Sorry, the list is full this week.&rdquo;</i> &middot; <i>&ldquo;We can&rsquo;t deliver to that street.&rdquo;</i> &middot; <i>&ldquo;Nobody can be home on Saturday? Hmm&hellip;&rdquo;</i> Caller, find a solution: <i>Can I &hellip;? Should I &hellip;?</i> The group can help.</p>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     pick = "".join(f'<tr><td class="t">{n}</td><td>{p.b(s) if key else ""}</td><td>{p.b(w) if key else ""}</td></tr>'
@@ -650,7 +650,7 @@ def leader_guide():
   <table class="timeline">
     <tr><td>3 min</td><td><b>The beat.</b> Clap it: <i>I can SWIM</i> (da da DUM) vs. <i>I CAN&rsquo;T swim</i> (da DUM da). Have everyone clap and say both.</td></tr>
     <tr><td>5 min</td><td><b>A. Listen and circle.</b> Read each sentence below once, at normal speed. Don&rsquo;t say the <b>t</b> hard. That&rsquo;s the point. Then check.</td></tr>
-    <tr><td>4 min</td><td><b>B. Thumbs.</b> Partners read Part A sentences. Listen in. If thumbs are wrong, ask the reader to say it again with the beat.</td></tr>
+    <tr><td>4 min</td><td><b>B. Thumbs.</b> One person reads a Part A sentence; the whole group shows thumbs. Take turns around the table. Listen in. If thumbs are wrong, ask the reader to say it again with the beat.</td></tr>
     <tr><td>5 min</td><td><b>C. Who can do it?</b> At the table only. Push for loud short answers: <i>Yes, I CAN.</i></td></tr>
     <tr><td>4 min</td><td><b>D. Read aloud.</b> One sentence each. Fix only <i>can / can&rsquo;t</i>.</td></tr>
     <tr><td>4 min</td><td><b>E + F.</b> Talk, then each person reads you their two sentences (F).</td></tr>
