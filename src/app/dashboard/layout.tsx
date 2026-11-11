@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
-import { getTimeframedLeaderboard } from "@/lib/gamification/gamification";
+import { getWeeklyRankForUser } from "@/lib/gamification/gamification";
 import { getLearnerState, type LearnerMode } from "@/lib/learner-mode";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
@@ -31,11 +31,10 @@ async function getStudentDashboardContext(userId: string): Promise<{
     const learnerMode = learnerState.mode;
 
     if (learnerMode === "independent") {
-        const leaderboard = await getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true });
-        const entry = leaderboard.find((e) => e.id === userId);
+        const rank = await getWeeklyRankForUser(userId, { independentOnly: true });
         return {
             learnerMode,
-            leaderboardRank: entry && entry.rank <= 3 ? entry.rank : null,
+            leaderboardRank: rank !== null && rank <= 3 ? rank : null,
         };
     }
 
@@ -46,11 +45,10 @@ async function getStudentDashboardContext(userId: string): Promise<{
         };
     }
 
-    const leaderboard = await getTimeframedLeaderboard("week", 20, latestEnrollment.classId);
-    const entry = leaderboard.find((e) => e.id === userId);
+    const rank = await getWeeklyRankForUser(userId, { classId: latestEnrollment.classId });
     return {
         learnerMode,
-        leaderboardRank: entry && entry.rank <= 3 ? entry.rank : null,
+        leaderboardRank: rank !== null && rank <= 3 ? rank : null,
     };
 }
 

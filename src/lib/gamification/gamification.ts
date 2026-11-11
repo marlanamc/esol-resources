@@ -268,6 +268,42 @@ export type { LeaderboardRange } from './leaderboard-period';
  * Get leaderboard for a given timeframe using the points ledger.
  * Shows all students, merging ledger data with students who have no points yet.
  */
+/**
+ * One learner's rank on this week's leaderboard, from a single ledger groupBy.
+ *
+ * Use this when only the viewer's own place is needed (header medal badges).
+ * getTimeframedLeaderboard also builds a course-map completion snapshot for
+ * every ranked student, which costs dozens of queries per call; running that
+ * on every dashboard page view was the bulk of the app's database load.
+ *
+ * Ranking matches getTimeframedLeaderboard: only positive weekly totals count,
+ * and ties share a rank (1 + number of students with strictly more points).
+ * Returns null when the learner has no points this week.
+ */
+export async function getWeeklyRankForUser(
+  userId: string,
+  scope: { classId: string } | { independentOnly: true },
+  referenceDate?: Date
+): Promise<number | null> {
+  const period = getLeaderboardPeriod('week', referenceDate);
+  const studentWhere = 'independentOnly' in scope
+    ? buildIndependentLeaderboardUserWhere()
+    : buildLeaderboardEligibleUserWhere({ classes: { some: { classId: scope.classId, status: 'active' } } });
+
+  const grouped = await prisma.pointsLedger.groupBy({
+    by: ['userId'],
+    where: {
+      ...(period.start ? { createdAt: { gte: period.start, ...(period.end ? { lt: period.end } : {}) } } : {}),
+      user: { ...studentWhere },
+    },
+    _sum: { points: true },
+  });
+
+  const viewerPoints = grouped.find((entry) => entry.userId === userId)?._sum.points ?? 0;
+  if (viewerPoints <= 0) return null;
+  return 1 + grouped.filter((entry) => (entry._sum.points ?? 0) > viewerPoints).length;
+}
+
 export async function getTimeframedLeaderboard(
   range: LeaderboardRange = 'week',
   limit: number = 10,
