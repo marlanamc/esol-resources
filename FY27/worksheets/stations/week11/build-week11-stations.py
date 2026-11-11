@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Week 11 Tuesday stations, Tue 11/24/26 (only class before Thanksgiving): practice good at + V-ing
+"""Week 11 Tuesday stations, Tue 11/24/26 (only class before Thanksgiving): practice just, already, yet
 (started Thu 11/19).
 
 Quiz verbs: cost, spend. Vocab: spending and budgeting (purchase price, comparison
 shop, budget, set aside, keep track of, total cost). Stations: 1 WARM-UP,
-2 SPEAK (thirteen / thirty), 3 GAME (good at: phrase bank + questions on the page), 4 REAL WORLD
+2 SPEAK (thirteen / thirty), 3 GAME (checklist detective: just, already, yet), 4 REAL WORLD
 (Thanksgiving sale flyer + a $60 shopping budget).
 
     python3 build-week11-stations.py
@@ -25,27 +25,30 @@ SPEND = ("spend", "spends", "spending", "spent", "spent")
 STATIONS = [
     ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
     ("SPEAK", "Numbers: <i>13</i> or <i>30</i>? With a teacher.", "Pages 3&ndash;4"),
-    ("GAME", "<i>Good at</i>. With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("GAME", "Checklist detective. With your group. A teacher will visit.", "Pages 5&ndash;6"),
     ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
 def warmup(p, key):
-    forms = [("listen", "listening", "to other people&rsquo;s ideas."), ("cook", "cooking", "?"),
-             ("speak", "speaking", "in front of a group."), ("solve", "solving", "problems?"),
-             ("save", "saving", "money.")]
-    starts = ["She is good at", "Are you good at", "I&rsquo;m <b>not</b> good at", "Is he good at", "They <b>aren&rsquo;t</b> good at"]
-    li1 = "".join(f'<li><b class="n">{i}.</b> {st} ({p.circ(a, False)} / {p.circ(b, True)}) {end}</li>'.replace(" )", ")").replace(") ?", ")?")
-                  for i, (st, (a, b, end)) in enumerate(zip(starts, forms), 1))
+    choices = [
+        ("She finished a moment ago. She has", "just", "yet", "finished.", "just"),
+        ("We finished before lunch. We have", "yet", "already", "finished.", "already"),
+        ("He has not bought the food", "already", "yet", ".", "yet"),
+        ("Have you made a shopping list", "yet", "just", "?", "yet"),
+        ("I have", "already", "yet", "set aside $20. I did it this morning.", "already"),
+    ]
+    li1 = "".join(f'<li><b class="n">{i}.</b> {st} ({p.circ(a, a == answer)} / {p.circ(b, b == answer)}) {end}</li>'
+                  for i, (st, a, b, end, answer) in enumerate(choices, 1))
     wyr = ["comparison shop at three stores <b>or</b> buy at the first store and save time?",
            "keep track of your spending in a notebook <b>or</b> on your phone?",
            "cook a big holiday meal <b>or</b> eat at a friend&rsquo;s house?"]
     li2 = "".join(f'<li><b class="n">{i}.</b> Would you rather {q}<div class="gline"><b style="width:auto;">Because</b>{p.ln("<i>answers vary</i>")}</div></li>'
                   for i, q in enumerate(wyr, 1))
     page2 = L.NAME_STRIP + f"""  <div class="task">
-    <h2>1. Circle the correct form</h2>
-    <p class="how">After <b>good at</b>, use the <b>-ing</b> form.</p>
-    <p class="example">Example: I am good at (fix / <b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">fixing</b>) things.</p>
+    <h2>1. Circle the word that fits</h2>
+    <p class="how"><b>Just</b> = a moment ago. <b>Already</b> = before now. <b>Yet</b> = up to now, in questions and negatives.</p>
+    <p class="example">Example: I haven&rsquo;t paid (just / <b>yet</b>). Circle <b>yet</b>.</p>
     <ol class="items">{li1}</ol>
   </div>
   <div class="task">
@@ -54,13 +57,12 @@ def warmup(p, key):
     <ol class="items">{li2}</ol>
   </div>
   <div class="task">
-    <h2>3. Finish the sentence about you</h2>
-    <p class="how"><b>You make up the ending.</b> Use your own ideas. Pattern: <b>good at + V-ing</b></p>
-    <div class="own"><b>Example:</b> I am good at <span class="u">cooking rice</span>. &middot; Other good answers: <span class="u">fixing cars</span> &middot; <span class="u">listening to my friends</span></div>
+    <h2>3. Put the words in order</h2>
+    <p class="how">Write a complete sentence. Use <b>have/has + V3</b>.</p>
     <ol class="items">
-      <li><b class="n">1.</b> I am good at {p.b("<i>answers vary</i>", "long")}.</li>
-      <li><b class="n">2.</b> I am not good at {p.b("<i>answers vary</i>", "long")}.</li>
-      <li><b class="n">3.</b> Are you good at {p.b("<i>answers vary</i>", "long")}?</li>
+      <li><b class="n">1.</b> has / just / arrived / She{p.ln("She has just arrived.")}</li>
+      <li><b class="n">2.</b> already / have / We / eaten{p.ln("We have already eaten.")}</li>
+      <li><b class="n">3.</b> yet / haven&rsquo;t / I / paid{p.ln("I haven&rsquo;t paid yet.")}</li>
     </ol>
   </div>"""
     items = [
@@ -171,45 +173,85 @@ def speak(p, key):
     return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week10-good-at")
-# Questions printed on page 6 (emoji, question). No board or dice.
-QUESTIONS = [
-    ("&#127859;", "Are you good at <b>cooking</b>?"), ("&#127912;", "Are you good at <b>drawing</b>?"),
-    ("&#128131;", "Are you good at <b>dancing</b>?"), ("&#128295;", "Are you good at <b>fixing</b> things?"),
-    ("&#127908;", "Are you good at <b>singing</b>?"), ("&#129504;", "Are you good at <b>remembering</b> names?"),
-    ("&#128176;", "Are you good at <b>saving</b> money?"), ("&#129518;", "Are you good at <b>math</b>?"),
-    ("&#128663;", "Are you good at <b>driving</b>?"), ("&#129697;", "Are you good at <b>sewing</b>?"),
-    ("&#128514;", "Are you good at <b>telling jokes</b>?"), ("&#128187;", "Are you good at <b>using computers</b>?"),
-    ("&#128106;", "What is <b>your mom</b> good at?"), ("&#128118;", "What were you good at <b>as a child</b>?"),
-    ("&#127891;", "What do you <b>want</b> to be good at?"),
+# Standalone checklist practice. Marlana's three-person schedules activity
+# will be added separately after she brings it into the project.
+GAME_CSS = """
+  .checklist { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  .checklist th, .checklist td { border: 1.5px solid #000; padding: 10px; text-align: left; font-size: 18px; }
+  .grammar-bank { border: 1.5px solid #000; padding: 12px; margin-bottom: 14px; }
+  .grammar-bank p { margin-bottom: 6px; font-size: 18px; }
+"""
+CHECKLIST = [
+    ("make the shopping list", "Finished this morning", "made the shopping list", "already"),
+    ("buy the food", "Finished a moment ago", "bought the food", "just"),
+    ("call her sister", "Not done", "called her sister", "yet"),
+    ("set the table", "Not done", "set the table", "yet"),
+    ("wash the dishes", "Finished before lunch", "washed the dishes", "already"),
+    ("send the invitations", "Finished a moment ago", "sent the invitations", "just"),
 ]
 
 
 def game(p, key):
-    items = [(e, q, None, None) for e, q in QUESTIONS]
-    page6 = f"""  <div class="task">
-    <h2>How to play</h2>
-    <ol class="items play" style="list-style:none;">
-      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
-      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. <b>Stuck?</b> Look at the phrase bank on page 5.</li>
-      <li><b class="n">3.</b> The group asks <b>one more question</b>: <i>Who taught you? How often do you practice? Do you want to be good at it?</i></li>
-      <li><b class="n">4.</b> Then that person picks the next question. Keep playing until the timer rings!</li>
-    </ol>
-  </div>
-  <div class="bank starters" style="font-size:16px;">
-    <span><b>Yes, I am!</b> I&rsquo;m good at cooking rice.</span>
-    <span><b>I&rsquo;m OK at it.</b></span>
-    <span><b>Not really.</b> I&rsquo;m not very good at it.</span>
-  </div>
-  {L.board(items, key)}
-  <div class="task">
-    <h2>Write about your group</h2>
-    <p class="how">Write <b>2 sentences</b> about the people at your table. Use their names: Ana <b>is good at</b> sewing. Mei and I <b>are both good at</b> cooking.</p>
-    {p.ln("<i>answers vary: check is / are good at + V-ing</i>", 2)}
-  </div>
-  <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
-            + L.page("", "STATION 3: GAME", "What are you good at? &middot; with your group", 6, page6, key))
+    rows = "".join(f"<tr><td>{i}. {task}</td><td>{status}</td></tr>"
+                   for i, (task, status, _, _) in enumerate(CHECKLIST, 1))
+    page5 = f"""<div class="task">
+    <h2>Checklist detective</h2>
+    <p class="how">Nora is getting ready for a family dinner. This is her checklist <b>now</b>. The status tells you what really happened.</p>
+    <table class="checklist"><tr><th>Task</th><th>Status now</th></tr>{rows}</table>
+    </div>
+    <div class="grammar-bank">
+      <h2>Ways to say it</h2>
+      <p><b>Just:</b> She has just bought the food.</p>
+      <p><b>Already:</b> She has already made the list.</p>
+      <p><b>Not yet:</b> She hasn&rsquo;t called her sister yet.</p>
+      <p><b>Question:</b> Has she called her sister yet?</p>
+    </div>
+    <div class="task">
+      <h2>Verb help: V1 &rarr; V3</h2>
+      <p>make &rarr; made &middot; buy &rarr; bought &middot; call &rarr; called</p>
+      <p>set &rarr; set &middot; wash &rarr; washed &middot; send &rarr; sent</p>
+    </div>
+    <p class="tip bottom"><b>Meaning first:</b> use <i>just</i> to show that something happened a moment ago. Use <i>yet</i> at the end of a question or negative sentence.</p>"""
+    prompts = [
+        ("made the shopping list", "Yes, she has. She has already made the shopping list."),
+        ("bought the food", "Yes, she has. She has just bought the food."),
+        ("called her sister", "No, she hasn&rsquo;t. She hasn&rsquo;t called her sister yet."),
+        ("set the table", "No, she hasn&rsquo;t. She hasn&rsquo;t set the table yet."),
+        ("washed the dishes", "Yes, she has. She has already washed the dishes."),
+        ("sent the invitations", "Yes, she has. She has just sent the invitations."),
+    ]
+    questions = "".join(f'<li><b class="n">{i}.</b> Has Nora {task} yet?{p.ln(answer, 2)}</li>'
+                        for i, (task, answer) in enumerate(prompts, 1))
+    page6 = f"""<div class="task">
+    <h2>Ask, answer, check</h2>
+    <p class="how">Take turns. Ask one question below. Your partner checks page 5 and answers with <b>just</b>, <b>already</b>, or <b>not yet</b>. Then write the answer together.</p>
+    <p class="example">A: Has Nora called her sister yet?<br>B: No, she hasn&rsquo;t. She hasn&rsquo;t called her sister yet.</p>
+    <ol class="items">{questions}</ol>
+    </div>
+    <div class="tip bottom"><b>Group challenge:</b> cover the checklist. Say one sentence from memory. Your group checks it. If needed, help each other revise it. Everyone takes a turn.</div>
+{p.note("Model answers shown. Accept already for a recently completed task, too; just makes the recent timing clearer. Recognize meaningful attempts, explanations, and revisions.")}"""
+    return (L.page("", "STATION 3: GAME", "with your group", 5, page5, key)
+            + L.page("", "STATION 3: GAME", "with your group", 6, page6, key))
+
+
+def write_about_you(p, key):
+    body = f"""<div class="task">
+    <h2>What have you done today?</h2>
+    <p class="how">Write about yourself or an imaginary person. Use <b>have/has + V3</b>. Look at page 5 for help.</p>
+    <p class="example">Example: I have already eaten lunch.</p>
+    <p class="prompt"><b>1. Already:</b> something completed before now.</p>
+    {p.ln("<i>Example: I have already made dinner.</i>", 2)}
+    <p class="prompt"><b>2. Not yet:</b> something you plan to do, but have not done.</p>
+    {p.ln("<i>Example: I haven&rsquo;t washed the dishes yet.</i>", 2)}
+    <p class="prompt"><b>3. Just:</b> something completed a moment ago.</p>
+    {p.ln("<i>Example: I have just finished this sentence.</i>", 2)}
+    <p class="prompt"><b>4. Ask a partner:</b> Have you ... yet?</p>
+    {p.ln("<i>Example: Have you eaten dinner yet?</i>", 2)}
+    <p class="prompt"><b>5. Write your partner&rsquo;s answer.</b></p>
+    {p.ln("<i>Example: No, I haven&rsquo;t eaten dinner yet.</i>", 2)}
+    </div>
+    <div class="tip bottom"><b>Check together:</b> underline <i>have</i> or <i>has</i>. Circle the V3 verb. Check where you put <i>just</i>, <i>already</i>, and <i>yet</i>.</div>"""
+    return L.page("", "FINISHED EARLY?", "write about you", 10, body, key)
 
 
 TF = [("The store is closed on Thanksgiving.", "F"),
@@ -218,8 +260,8 @@ TF = [("The store is closed on Thanksgiving.", "F"),
       ("The store has free delivery.", "N"),
       ("One ear of corn costs 50 cents.", "T"),
       ("Frozen turkey is $1.29 a pound if you spend $10.", "F")]
-# Elena's list: (item, how to price it, line total)
-ELENA = [("Frozen turkey, 12 pounds", "12 &times; $1.29", "$15.48"), ("Pumpkin pie", "", "$6.99"),
+# Nora's list: (item, how to price it, line total)
+NORA = [("Frozen turkey, 12 pounds", "12 &times; $1.29", "$15.48"), ("Pumpkin pie", "", "$6.99"),
          ("Cranberry sauce, 2 cans", "2 for $3", "$3.00"), ("Potatoes, 5-lb bag", "", "$3.99"),
          ("Dinner rolls, 12-pack", "", "$3.49"), ("Green beans, 2 pounds", "2 &times; $1.99", "$3.98")]
 
@@ -253,10 +295,10 @@ def real_world(p, key):
     </ol>
   </div>
   <p class="how bottom"><b>Talk:</b> Do you comparison shop? Which store has the best prices near you?</p>"""
-    rows = "".join(f'<tr><td class="t" style="white-space:normal;">{it}</td><td class="c">{how}</td>{p.td(tot)}</tr>' for it, how, tot in ELENA)
-    page9 = f"""  <p class="how">Now look at <b>page 2</b> on the table: <b>Elena&rsquo;s list</b>. Her budget is <b>$60</b>.</p>
+    rows = "".join(f'<tr><td class="t" style="white-space:normal;">{it}</td><td class="c">{how}</td>{p.td(tot)}</tr>' for it, how, tot in NORA)
+    page9 = f"""  <p class="how">Now look at <b>page 2</b> on the table: <b>Nora&rsquo;s list</b>. Her budget is <b>$60</b>.</p>
   <div class="task">
-    <h2>D. Elena&rsquo;s total cost</h2>
+    <h2>D. Nora&rsquo;s total cost</h2>
     <p class="how">Write the price of each thing. Then add. You can use your phone calculator.</p>
     <table class="pick">
       <tr><th>Item</th><th style="width:22%;">How?</th><th style="width:22%;">Price</th></tr>
@@ -264,9 +306,9 @@ def real_world(p, key):
       <tr><td class="t">TOTAL COST</td><td></td>{p.td("$36.93")}</tr>
     </table>
     <ol class="items">
-      <li><b class="n">1.</b> How much money does Elena have left? {p.b("$23.07", "short")}</li>
+      <li><b class="n">1.</b> How much money does Nora have left? {p.b("$23.07", "short")}</li>
       <li><b class="n">2.</b> Can she use the coupon? Why or why not? {p.b("No. She spends less than $50.", "long")}</li>
-      <li><b class="n">3.</b> <b>&#9733;</b> Elena adds an apple pie and a bag of rice. What is the new total <b>with the coupon</b>?{p.ln("$36.93 + $8.99 + $9.99 = $55.91. That&rsquo;s $50 or more, so $5 off: $50.91.")}</li>
+      <li><b class="n">3.</b> <b>&#9733;</b> Nora adds an apple pie and a bag of rice. What is the new total <b>with the coupon</b>?{p.ln("$36.93 + $8.99 + $9.99 = $55.91. That&rsquo;s $50 or more, so $5 off: $50.91.")}</li>
     </ol>
   </div>
   <div class="task">
@@ -282,8 +324,8 @@ def real_world(p, key):
 def packet(key):
     p = L.P(key)
     body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
-            + L.verb_charts(9, COST, "it", SPEND, "I", key) + L.write_about_you_page(PB_BACK, key))
-    return L.doc("Week 11 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
+            + L.verb_charts(9, COST, "it", SPEND, "I", key) + write_about_you(p, key))
+    return L.doc("Week 11 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + GAME_CSS, body)
 
 
 FLYER_CSS = """
@@ -321,34 +363,15 @@ FLYER_CSS = """
 
 
 def flyer():
-    deals = [
-        ("&#129411;", "Frozen turkey", "$1.29<small>/lb</small>", "when you spend $25 or more", "big"),
-        ("&#129411;", "Fresh turkey", "$2.49<small>/lb</small>", "", ""),
-        ("&#129360;", "Pumpkin pie", "$6.99", "", ""), ("&#127822;", "Apple pie", "$8.99", "", ""),
-        ("&#129387;", "Cranberry sauce", "2 for $3", "14-oz can", ""),
-        ("&#129364;", "Potatoes", "$3.99", "5-lb bag", ""), ("&#127805;", "Corn", "4 for $2", "fresh ears", ""),
-        ("&#129366;", "Dinner rolls", "$3.49", "12-pack", ""), ("&#129366;", "Dinner rolls", "$5.99", "24-pack", ""),
-        ("&#129362;", "Green beans", "$1.99<small>/lb</small>", "", ""), ("&#127834;", "Rice", "$9.99", "10-lb bag", ""),
-        ("&#127831;", "Chicken thighs", "$1.99<small>/lb</small>", "", ""),
-    ]
-    cells = "".join(f'<div class="deal {c}"><div class="e">{e}</div><div class="nm">{n}</div><div class="pr">{pr}</div>'
-                    f'<div class="fine">{f}</div></div>' for e, n, pr, f, c in deals)
-    sheet1 = f"""<section class="page">
-  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
-  <div class="hero">
-    <div><div class="store">Eastside Market</div><h1>Thanksgiving Sale!</h1></div>
-    <div class="dates">Sale prices<br>Fri., Nov. 20 &ndash;<br>Thu., Nov. 26</div>
-  </div>
-  <div class="deals">{cells}</div>
-  <div class="row">
-    <div class="coupon"><b class="big">$5 OFF</b><br>when you spend <b>$50 or more</b>.<br><span style="font-size:14px;">One coupon per family. Show it at the register.</span></div>
-    <div class="hours"><b>Store hours</b><br>Mon&ndash;Sat: 7:00 a.m.&ndash;10:00 p.m.<br>Sunday: 8:00 a.m.&ndash;8:00 p.m.<br><b>Thanksgiving (Thu., Nov. 26): 7:00 a.m.&ndash;2:00 p.m.</b></div>
-  </div>
+    sheet1 = """<section class="page" style="padding:0.2in;">
+  <img src="assets/thanksgiving-grocery-flyer.png"
+       alt="Eastside Market Thanksgiving sale, November 20 through 26. See the accompanying worksheet and answer key for the sale offers."
+       style="display:block;width:100%;height:100%;object-fit:contain;" />
 </section>"""
     sheet2 = """<section class="page">
   <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
-  <h1 style="font-size:32px; color:#a4471d;">Elena&rsquo;s list</h1>
-  <p style="margin-bottom:8px;">Elena is cooking Thanksgiving dinner for her family. She shops at Eastside Market on Tuesday.</p>
+  <h1 style="font-size:32px; color:#a4471d;">Nora&rsquo;s list</h1>
+  <p style="margin-bottom:8px;">Nora is cooking Thanksgiving dinner for her family. She shops at Eastside Market on Tuesday.</p>
   <div class="list"><div class="hand">
     Thanksgiving shopping &mdash; budget: $60<br>
     &bull; frozen turkey (12 pounds)<br>
@@ -358,7 +381,7 @@ def flyer():
     &bull; dinner rolls (12-pack)<br>
     &bull; green beans (2 pounds)
   </div></div>
-  <div class="note"><b>Elena&rsquo;s notes</b><br>&bull; I keep track of my spending in a notebook.<br>&bull; I want to set aside $20 for gas this week.<br>&bull; Maybe I can buy an apple pie too. My son loves apple pie!</div>
+  <div class="note"><b>Nora&rsquo;s notes</b><br>&bull; I keep track of my spending in a notebook.<br>&bull; I want to set aside $20 for gas this week.<br>&bull; Maybe I can buy an apple pie too. My son loves apple pie!</div>
 </section>"""
     return L.doc("Week 11 Tuesday Real World: Thanksgiving Sale", FLYER_CSS, sheet1 + sheet2)
 
@@ -393,9 +416,10 @@ def self_check():
 def leader_guide():
     words = "".join(f'<tr><td class="n">{i + 1}</td><td>{NUMS[i][2]}</td><td class="n">{i + 5}</td><td>{NUMS[i + 4][2]}</td></tr>' for i in range(4))
     top = L.leader_top(11, "11/24/26", STATIONS, [
-        "<b>This week:</b> practice <b>good at + V-ing</b> (started Thursday). Quiz verbs: <b>cost, spend</b>. Only class this week: no class Thursday (Thanksgiving). <b>Week 11 Quiz opens Tue 12/1</b>, due Tue 12/8.",
-        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). No board or dice needed. Print the flyer in color (2 copies) and the self-check card.",
+        "<b>This week:</b> practice <b>just, already, yet</b> (started Thu 11/19). Quiz verbs: <b>cost, spend</b>. Only class this week: no class Thursday (Thanksgiving). <b>Week 11 Quiz opens Tue 12/1</b>, due Tue 12/8.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Station 3 uses the printed checklist; no board or dice needed. Print the flyer in color (2 copies) and the self-check card.",
         "<b>Floating:</b> start each block at <b>Station 4</b> (show the flyer, do Part B #1 together; point out <b>/lb</b> = per pound). Then Station 3, then Station 1.",
+        "<b>Effort credit:</b> record meaningful attempts, explanations, and revisions through the teacher points workflow. Check the saved balance/ledger and tell students their points; avoid duplicate credit for the same work.",
         "<b>Moves:</b> 3-minute warning, then move. <b>7:46&ndash;end:</b> wrap-up, Happy Thanksgiving! <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
@@ -436,9 +460,9 @@ def leader_guide():
     <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
-        <p><b>1. Form:</b> 1 listening &middot; 2 cooking &middot; 3 speaking &middot; 4 solving &middot; 5 saving</p>
+        <p><b>1. Word:</b> 1 just &middot; 2 already &middot; 3 yet &middot; 4 yet &middot; 5 already</p>
         <p><b>2. Would you rather:</b> answers vary. Check <i>because + a full sentence</i>.</p>
-        <p><b>3. About you:</b> answers vary. Check <i>good at + V-ing</i>.</p>
+        <p><b>3. Order:</b> She has just arrived. We have already eaten. I haven&rsquo;t paid yet.</p>
       </div>
       <div>
         <p><b>4. Forms:</b> cost, costs, costing, cost, cost &middot; spend, spends, spending, spent, spent</p>
@@ -452,8 +476,8 @@ def leader_guide():
     <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(NUMS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {a}" for i, (_, a) in enumerate(PRICES, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: GAME, Good at (pages 5&ndash;6, no board)</h2>
-    <p>Page 5 is the <i>good at</i> phrase bank: spend 2&ndash;3 minutes on the great &rarr; bad scale and Rules A&ndash;D, then play. Page 6 has 15 questions printed on it: pick one, ask the person on your left, everyone crosses it off. Answers vary. Listen for <i>good at + V-ing</i> (not <i>good at <s>cook</s></i>) and <i>is good at</i> (one person) vs <i>are both good at</i>.</p>
+    <h2>Station 3: GAME, Checklist detective (pages 5&ndash;6)</h2>
+    <p>Read Nora&rsquo;s checklist. Partners ask, answer, and write. <b>1:</b> already made the list. <b>2:</b> just bought the food. <b>3:</b> hasn&rsquo;t called her sister yet. <b>4:</b> hasn&rsquo;t set the table yet. <b>5:</b> already washed the dishes. <b>6:</b> just sent the invitations. Accept <i>already</i> for recent completions; <i>just</i> highlights how recent. Listen for <i>has + V3</i> and final <i>yet</i>. This is separate from Marlana&rsquo;s schedules activity.</p>
   </div>
   <div class="box">
     <h2>Station 4: REAL WORLD, Thanksgiving sale (pages 7&ndash;8 + 2 color pages)</h2>
@@ -465,7 +489,8 @@ def leader_guide():
     <p style="font-size:12px;">Store and prices are made up. No sales tax: Massachusetts doesn&rsquo;t tax most groceries. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
+    <h2>FINISHED EARLY: verb charts (page 9) and progress sentences (page 10)</h2>
+    <p><b>Page 10:</b> answers vary. Check have/has + V3; just/already before V3; yet at the end of questions and negatives.</p>
     <p><b>Chart 1 (it + cost, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
     <p><b>Chart 2 (I + spend):</b> spend, spends, spending, spent, spent &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("I", SPEND))}</p>
   </div>

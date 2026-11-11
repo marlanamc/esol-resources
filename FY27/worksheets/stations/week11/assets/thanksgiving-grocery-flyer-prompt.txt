@@ -1,0 +1,19 @@
+Generated with the built-in image_gen tool. Verified against the Week 11 worksheet on November 11, 2026.
+
+Use case: ads-marketing. Create a finished full-page portrait US letter grocery store weekly circular, straight-on flat printable artwork, not a photo of paper on a table. It should look like a genuine American neighborhood supermarket Thanksgiving advertising insert. Store name "Eastside Market". Headline "Thanksgiving Sale!" Warm burgundy, gold, cream, green, autumn leaves used sparingly, large bold supermarket price typography, appetizing realistic food photographs (not emoji or illustrations), dense but very legible commercial layout with grouped departments and a dominant turkey feature. Every offer below must appear exactly once with its exact label, price, size and condition. Do not invent additional offers or fine print. Dates "Fri., Nov. 20 - Thu., Nov. 26". Main turkey photograph may be beautifully roasted for serving suggestion, with separate clearly labeled fresh/frozen offers.
+Exact offers:
+"Frozen turkey" "$1.29/lb" "when you spend $25 or more"
+"Fresh turkey" "$2.49/lb"
+"Pumpkin pie" "$6.99"
+"Apple pie" "$8.99"
+"Cranberry sauce" "2 for $3" "14-oz can"
+"Potatoes" "$3.99" "5-lb bag"
+"Corn" "4 for $2" "fresh ears"
+"Dinner rolls" "$3.49" "12-pack"
+"Dinner rolls" "$5.99" "24-pack"
+"Green beans" "$1.99/lb"
+"Rice" "$9.99" "10-lb bag"
+"Chicken thighs" "$1.99/lb"
+Bottom coupon with dashed border: "$5 OFF" "when you spend $50 or more" "One coupon per family. Show it at the register."
+Bottom hours panel: "STORE HOURS" "Mon-Sat: 7:00 a.m.-10:00 p.m." "Sunday: 8:00 a.m.-8:00 p.m." "Thanksgiving (Thu., Nov. 26): 7:00 a.m.-2:00 p.m."
+Readable details are essential: this is a reading activity for adult English learners. Keep all text inside safe print margins. No people, no other logos, no watermarks, no delivery claims, no extra numbers or prices. Full page artwork only.
