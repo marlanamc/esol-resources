@@ -116,7 +116,12 @@
           "is"
         ],
         "explanation": "She is going to the Salvadoran festival this Saturday. (be)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "is",
+          "are",
+          "am"
+        ]
       },
       {
         "id": "apply-1",
@@ -126,7 +131,12 @@
           "had"
         ],
         "explanation": "He had a Honda Civic before he crashed it. (have)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "have",
+          "has",
+          "had"
+        ]
       },
       {
         "id": "vocab-0",
@@ -177,12 +187,17 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix one word: “She have a brother in Colombia.” Write the complete sentence.",
+        "prompt": "Fix one word: “She have a brother in Colombia.” Which sentence is correct?",
         "answers": [
           "She has a brother in Colombia."
         ],
         "explanation": "With she, have becomes has.",
-        "source": "verb-forms-overview"
+        "source": "verb-forms-overview",
+        "options": [
+          "She haves a brother in Colombia.",
+          "She has a brother in Colombia.",
+          "She have a brother in Colombia."
+        ]
       }
     ]
   },
@@ -301,7 +316,12 @@
           "do"
         ],
         "explanation": "What do you do after class? (do)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "does",
+          "did",
+          "do"
+        ]
       },
       {
         "id": "apply-1",
@@ -311,7 +331,12 @@
           "made"
         ],
         "explanation": "Last Sunday, she made a study plan for the week. (make)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "makes",
+          "made",
+          "make"
+        ]
       },
       {
         "id": "vocab-0",
@@ -353,7 +378,12 @@
           "why"
         ],
         "explanation": "Why asks for a reason. Because introduces a reason.",
-        "source": "questions-real-answers/qra-reason"
+        "source": "questions-real-answers/qra-reason",
+        "options": [
+          "Where",
+          "Why",
+          "When"
+        ]
       },
       {
         "id": "grammar-1",
@@ -487,7 +517,12 @@
           "went"
         ],
         "explanation": "Yesterday, I went to the library. (go)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "goes",
+          "went",
+          "go"
+        ]
       },
       {
         "id": "apply-1",
@@ -497,7 +532,12 @@
           "come"
         ],
         "explanation": "Please come to the front desk. (come)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "come",
+          "comes",
+          "came"
+        ]
       },
       {
         "id": "vocab-0",
@@ -677,7 +717,12 @@
           "tell"
         ],
         "explanation": "If you tell me your phone number, I will call you. (tell)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "tell",
+          "tells",
+          "told"
+        ]
       },
       {
         "id": "apply-1",
@@ -687,7 +732,12 @@
           "says"
         ],
         "explanation": "If my boss says yes, I will take Friday off. (say)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "say",
+          "said",
+          "says"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1271,7 +1321,12 @@
           "writes"
         ],
         "explanation": "My neighbor usually writes to the newspaper about bus problems. (write)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "writes",
+          "write",
+          "wrote"
+        ]
       },
       {
         "id": "apply-1",
@@ -1281,7 +1336,12 @@
           "sent"
         ],
         "explanation": "Last month, our class sent a petition to the mayor. (send)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "send",
+          "sends",
+          "sent"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1316,22 +1376,33 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Put the words in order to make a question. Words: does / vote / where / your neighbor",
+        "prompt": "Put the words in order to make a question.",
         "answers": [
           "Where does your neighbor vote?"
         ],
         "explanation": "Question word + does + subject + base verb: Where does your neighbor vote?",
-        "source": "review-week-5/do-does-question"
+        "source": "review-week-5/do-does-question",
+        "words": [
+          "does",
+          "vote",
+          "where",
+          "your neighbor"
+        ]
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix the sentence: “My sister vote always in November.” Write the correct sentence.",
+        "prompt": "Fix the sentence: “My sister vote always in November.” Which sentence is correct?",
         "answers": [
           "My sister always votes in November."
         ],
         "explanation": "With she, vote becomes votes. Always goes before the main verb: My sister always votes in November.",
-        "source": "review-week-6/frequency-adverb-s"
+        "source": "review-week-6/frequency-adverb-s",
+        "options": [
+          "My sister always vote in November.",
+          "My sister always votes in November.",
+          "My sister votes always in November."
+        ]
       }
     ]
   },

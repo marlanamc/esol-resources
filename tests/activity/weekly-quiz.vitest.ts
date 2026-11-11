@@ -54,8 +54,8 @@ describe('weekly quiz content and grading', () => {
     expect(normalizeQuizAnswer('  She  HAS a notebook! ')).toBe(normalizeQuizAnswer('She has a notebook.'));
     expect(normalizeQuizAnswer('don’t')).toBe(normalizeQuizAnswer("don't"));
   });
-  it('from Week 9, only the verb-forms table is typed; everything else is tapped', () => {
-    const later = Object.values(bank).filter(q => q.weekNumber >= 9);
+  it('only the verb-forms table is typed; everything else is tapped', () => {
+    const later = Object.values(bank);
     expect(later.length).toBeGreaterThan(0);
     for (const quiz of later) {
       for (const q of quiz.questions.filter(item => item.section !== 'forms')) {
@@ -69,11 +69,6 @@ describe('weekly quiz content and grading', () => {
         }
       }
     }
-  });
-  it('keeps Weeks 1-8 as they were (students are still making those up)', () => {
-    const early = Object.values(bank).filter(q => q.weekNumber < 9);
-    expect(early.flatMap(q => q.questions).some(q => q.words)).toBe(false);
-    expect(early.flatMap(q => q.questions).filter(q => q.section === 'apply').every(q => !q.options)).toBe(true);
   });
   it('accepts a pronoun typed in front of a verb form ("she tells")', () => {
     const quiz = bank['verb-quiz-4'];

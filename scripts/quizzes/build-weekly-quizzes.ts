@@ -22,10 +22,11 @@ const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6], 12: [7, 8] };
 const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 13 && !REVIEW_WEEKS[weekNumber] ? weekNumber - 1 : weekNumber;
 const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
 
-// From week 9, only the verb-forms table is typed. Everything else is tapped:
-// students were slowed down by switching between typing a form, rewriting a
-// sentence, and rebuilding a sentence from a word list.
-const TAP_FROM_WEEK = 9;
+// Only the verb-forms table is typed. Everything else is tapped: students were
+// slowed down by switching between typing a form, rewriting a sentence, and
+// rebuilding a sentence from a word list. Week 4 holds the first quiz, so this
+// covers every quiz (Weeks 4-8 were converted later for students making them up).
+const TAP_FROM_WEEK = 4;
 
 /**
  * "Use the verbs" choices: the right form plus two other forms of the same
@@ -34,6 +35,7 @@ const TAP_FROM_WEEK = 9;
  */
 // Where an automatic wrong choice is also correct (often a past form that fits).
 const VERB_DISTRACTOR_OVERRIDES: Record<string, string[]> = {
+  'She ___ going to the Salvadoran festival this Saturday. (be)': ['are', 'am'],
   'The smaller package ___ less than the large one. (cost)': ['costing', 'to cost'],
   'This shop ___ used furniture. (sell)': ['sell', 'selling'],
   'My knee ___ when I bend it. (hurt)': ['hurting', 'to hurt'],
@@ -58,6 +60,10 @@ const rotate = <T,>(items: T[], seed: number) => { const r = seed % items.length
  * wrong in the sentence (no second answer that also works).
  */
 const GRAMMAR_CHOICES: Record<string, string[]> = {
+  'questions-real-answers/qra-reason': ['Why', 'When', 'Where'],
+  'verb-forms-overview': ['She has a brother in Colombia.', 'She have a brother in Colombia.', 'She haves a brother in Colombia.'],
+  // The wrong choices are the mistakes students actually typed on this question.
+  'review-week-6/frequency-adverb-s': ['My sister always votes in November.', 'My sister votes always in November.', 'My sister always vote in November.'],
   'can-should-must/csm-qfb1': ['must', 'should', 'can'],
   'have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1': ["don't have to", 'have to', "can't"],
   'it-was-happening-when/iwh-qfb1': ['was calling', 'is calling', 'calls'],
@@ -141,7 +147,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
   if (n === 1) {
     questions.push(
       { id: 'grammar-0', section: 'grammar', prompt: 'In “The helpful teacher has a book,” which word describes the teacher?', options: ['teacher', 'helpful', 'has'], answers: ['helpful'], explanation: 'Helpful is an adjective. It describes the noun teacher.', source: 'parts-of-speech-week-4' },
-      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a brother in Colombia.” Write the complete sentence.', answers: ['She has a brother in Colombia.'], explanation: 'With she, have becomes has.', source: 'verb-forms-overview' },
+      { id: 'grammar-1', section: 'grammar', prompt: 'Fix one word: “She have a brother in Colombia.” Which sentence is correct?', answers: ['She has a brother in Colombia.'], explanation: 'With she, have becomes has.', source: 'verb-forms-overview' },
     );
   } else {
     const weekSlug = requiredGuideSlug(grammarWeek(week.number))!;
@@ -203,12 +209,12 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       explanation: 'represent: to speak or act on behalf of others. They speak for us is the clue.',
     });
     Object.assign(questions.find(q => q.id === 'grammar-0')!, {
-      prompt: 'Put the words in order to make a question. Words: does / vote / where / your neighbor',
+      prompt: 'Put the words in order to make a question.', words: ['does', 'vote', 'where', 'your neighbor'],
       options: undefined, answers: ['Where does your neighbor vote?'],
       explanation: 'Question word + does + subject + base verb: Where does your neighbor vote?', source: 'review-week-5/do-does-question',
     });
     Object.assign(questions.find(q => q.id === 'grammar-1')!, {
-      prompt: 'Fix the sentence: “My sister vote always in November.” Write the correct sentence.',
+      prompt: 'Fix the sentence: “My sister vote always in November.” Which sentence is correct?',
       options: undefined, answers: ['My sister always votes in November.'],
       explanation: 'With she, vote becomes votes. Always goes before the main verb: My sister always votes in November.', source: 'review-week-6/frequency-adverb-s',
     });
