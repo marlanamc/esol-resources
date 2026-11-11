@@ -9,7 +9,7 @@ import { after } from "next/server";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { timedQuery } from "@/lib/shared/perf-log";
-import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification/gamification";
+import { trackLogin, getWeeklyRankForUser } from "@/lib/gamification/gamification";
 import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
@@ -464,14 +464,12 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const studentLeaderboard = firstClassId ? await getTimeframedLeaderboard("week", 20, firstClassId).catch(() => []) : [];
+    const studentLeaderboardRank = firstClassId ? await getWeeklyRankForUser(userId, { classId: firstClassId }).catch(() => null) : null;
     // Accounts without an active class enrollment get no bar.
     const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
     const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
     const studyWeek = userRole === "student" ? <Suspense fallback={null}><StudyWeekSection userId={userId} /></Suspense> : null;
     const classAnswers = userRole === "student" ? <Suspense fallback={null}><ClassAnswerSection userId={userId} /></Suspense> : null;
-    const studentEntry = studentLeaderboard.find((e) => e.id === userId);
-    const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
     const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
     const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
