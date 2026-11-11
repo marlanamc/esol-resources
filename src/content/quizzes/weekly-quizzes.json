@@ -116,7 +116,12 @@
           "is"
         ],
         "explanation": "She is going to the Salvadoran festival this Saturday. (be)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "is",
+          "are",
+          "am"
+        ]
       },
       {
         "id": "apply-1",
@@ -126,7 +131,12 @@
           "had"
         ],
         "explanation": "He had a Honda Civic before he crashed it. (have)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "have",
+          "has",
+          "had"
+        ]
       },
       {
         "id": "vocab-0",
@@ -177,12 +187,17 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix one word: “She have a brother in Colombia.” Write the complete sentence.",
+        "prompt": "Fix one word: “She have a brother in Colombia.” Which sentence is correct?",
         "answers": [
           "She has a brother in Colombia."
         ],
         "explanation": "With she, have becomes has.",
-        "source": "verb-forms-overview"
+        "source": "verb-forms-overview",
+        "options": [
+          "She haves a brother in Colombia.",
+          "She has a brother in Colombia.",
+          "She have a brother in Colombia."
+        ]
       }
     ]
   },
@@ -301,7 +316,12 @@
           "do"
         ],
         "explanation": "What do you do after class? (do)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "does",
+          "did",
+          "do"
+        ]
       },
       {
         "id": "apply-1",
@@ -311,7 +331,12 @@
           "made"
         ],
         "explanation": "Last Sunday, she made a study plan for the week. (make)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "makes",
+          "made",
+          "make"
+        ]
       },
       {
         "id": "vocab-0",
@@ -353,7 +378,12 @@
           "why"
         ],
         "explanation": "Why asks for a reason. Because introduces a reason.",
-        "source": "questions-real-answers/qra-reason"
+        "source": "questions-real-answers/qra-reason",
+        "options": [
+          "Where",
+          "Why",
+          "When"
+        ]
       },
       {
         "id": "grammar-1",
@@ -487,7 +517,12 @@
           "went"
         ],
         "explanation": "Yesterday, I went to the library. (go)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "goes",
+          "went",
+          "go"
+        ]
       },
       {
         "id": "apply-1",
@@ -497,7 +532,12 @@
           "come"
         ],
         "explanation": "Please come to the front desk. (come)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "come",
+          "comes",
+          "came"
+        ]
       },
       {
         "id": "vocab-0",
@@ -677,7 +717,12 @@
           "tell"
         ],
         "explanation": "If you tell me your phone number, I will call you. (tell)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "tell",
+          "tells",
+          "told"
+        ]
       },
       {
         "id": "apply-1",
@@ -687,7 +732,12 @@
           "says"
         ],
         "explanation": "If my boss says yes, I will take Friday off. (say)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "say",
+          "said",
+          "says"
+        ]
       },
       {
         "id": "vocab-0",
@@ -867,7 +917,12 @@
           "take"
         ],
         "explanation": "You should take food to a sick neighbor. (take)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "takes",
+          "took",
+          "take"
+        ]
       },
       {
         "id": "apply-1",
@@ -877,7 +932,12 @@
           "bring"
         ],
         "explanation": "You must bring your ID to the appointment. (bring)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "brought",
+          "bring",
+          "brings"
+        ]
       },
       {
         "id": "vocab-0",
@@ -932,7 +992,12 @@
           "must"
         ],
         "explanation": "'Must not' is the strongest prohibition. 'Should not' is advice; 'cannot' is about ability.",
-        "source": "can-should-must/csm-qfb1"
+        "source": "can-should-must/csm-qfb1",
+        "options": [
+          "must",
+          "should",
+          "can"
+        ]
       }
     ]
   },
@@ -1051,7 +1116,12 @@
           "met"
         ],
         "explanation": "I have met many new neighbors this year. (meet)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "meets",
+          "met",
+          "meet"
+        ]
       },
       {
         "id": "apply-1",
@@ -1061,7 +1131,12 @@
           "spoken"
         ],
         "explanation": "Have you ever spoken at a public meeting? (speak)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "spoken",
+          "speak",
+          "speaks"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1097,7 +1172,17 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Build the question by tapping the words in order. Words: Have / you / ever / applied / for / a / library / card",
+        "prompt": "Build the question by tapping the words in order.",
+        "words": [
+          "Have",
+          "you",
+          "ever",
+          "applied",
+          "for",
+          "a",
+          "library",
+          "card"
+        ],
         "answers": [
           "Have you ever applied for a library card"
         ],
@@ -1236,7 +1321,12 @@
           "writes"
         ],
         "explanation": "My neighbor usually writes to the newspaper about bus problems. (write)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "writes",
+          "write",
+          "wrote"
+        ]
       },
       {
         "id": "apply-1",
@@ -1246,7 +1336,12 @@
           "sent"
         ],
         "explanation": "Last month, our class sent a petition to the mayor. (send)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "send",
+          "sends",
+          "sent"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1281,22 +1376,33 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Put the words in order to make a question. Words: does / vote / where / your neighbor",
+        "prompt": "Put the words in order to make a question.",
         "answers": [
           "Where does your neighbor vote?"
         ],
         "explanation": "Question word + does + subject + base verb: Where does your neighbor vote?",
-        "source": "review-week-5/do-does-question"
+        "source": "review-week-5/do-does-question",
+        "words": [
+          "does",
+          "vote",
+          "where",
+          "your neighbor"
+        ]
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Fix the sentence: “My sister vote always in November.” Write the correct sentence.",
+        "prompt": "Fix the sentence: “My sister vote always in November.” Which sentence is correct?",
         "answers": [
           "My sister always votes in November."
         ],
         "explanation": "With she, vote becomes votes. Always goes before the main verb: My sister always votes in November.",
-        "source": "review-week-6/frequency-adverb-s"
+        "source": "review-week-6/frequency-adverb-s",
+        "options": [
+          "My sister always vote in November.",
+          "My sister always votes in November.",
+          "My sister votes always in November."
+        ]
       }
     ]
   },
@@ -1599,7 +1705,12 @@
           "costs"
         ],
         "explanation": "The smaller package costs less than the large one. (cost)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "to cost",
+          "costs",
+          "costing"
+        ]
       },
       {
         "id": "apply-1",
@@ -1609,7 +1720,12 @@
           "spending"
         ],
         "explanation": "I don’t enjoy spending money on things I don’t need. (spend)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "spending",
+          "spend",
+          "spends"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1789,7 +1905,12 @@
           "bought"
         ],
         "explanation": "Yesterday, I bought a new phone. (buy)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "bought",
+          "buy",
+          "buys"
+        ]
       },
       {
         "id": "apply-1",
@@ -1799,7 +1920,12 @@
           "sells"
         ],
         "explanation": "This shop sells used furniture. (sell)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "sell",
+          "selling",
+          "sells"
+        ]
       },
       {
         "id": "vocab-0",
@@ -1979,7 +2105,12 @@
           "eaten"
         ],
         "explanation": "We have eaten at that restaurant since 2020. (eat)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "eat",
+          "eats",
+          "eaten"
+        ]
       },
       {
         "id": "apply-1",
@@ -1989,7 +2120,12 @@
           "drunk"
         ],
         "explanation": "I have drunk three cups of coffee since breakfast. (drink)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "drinks",
+          "drunk",
+          "drink"
+        ]
       },
       {
         "id": "vocab-0",
@@ -2025,7 +2161,15 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Your neighbor asks how long you have lived in East Boston. Put the words in order. Words: How / long / have / you / lived / here",
+        "prompt": "Your neighbor asks how long you have lived in East Boston. Put the words in order.",
+        "words": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "lived",
+          "here"
+        ],
         "answers": [
           "How long have you lived here"
         ],
@@ -2164,7 +2308,12 @@
           "see"
         ],
         "explanation": "Did you see the apartment yesterday? (see)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "saw",
+          "see",
+          "sees"
+        ]
       },
       {
         "id": "apply-1",
@@ -2174,7 +2323,12 @@
           "find"
         ],
         "explanation": "Where did you find the rental listing? (find)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "find",
+          "finds",
+          "found"
+        ]
       },
       {
         "id": "vocab-0",
@@ -2354,7 +2508,12 @@
           "choose"
         ],
         "explanation": "We have to choose an apartment this week. (choose)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "choose",
+          "chooses",
+          "chose"
+        ]
       },
       {
         "id": "apply-1",
@@ -2364,7 +2523,12 @@
           "let"
         ],
         "explanation": "The landlord doesn’t let tenants smoke inside. (let)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "lets",
+          "letting",
+          "let"
+        ]
       },
       {
         "id": "vocab-0",
@@ -2405,12 +2569,25 @@
           "don't have to"
         ],
         "explanation": "'Don't have to' means it is not required. 'Can't' would mean it is forbidden, which is different.",
-        "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1"
+        "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1",
+        "options": [
+          "have to",
+          "can't",
+          "don't have to"
+        ]
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "The sanitary code says who must provide heat. Put the words in order. Words: The / owner / has / to / provide / heat",
+        "prompt": "The sanitary code says who must provide heat. Put the words in order.",
+        "words": [
+          "The",
+          "owner",
+          "has",
+          "to",
+          "provide",
+          "heat"
+        ],
         "answers": [
           "The owner has to provide heat"
         ],
@@ -2534,7 +2711,12 @@
           "broke"
         ],
         "explanation": "I need to report that the window broke yesterday. (break)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "break",
+          "breaks",
+          "broke"
+        ]
       },
       {
         "id": "apply-1",
@@ -2544,7 +2726,12 @@
           "hold"
         ],
         "explanation": "Could you hold the door open, please? (hold)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "held",
+          "hold",
+          "holds"
+        ]
       },
       {
         "id": "vocab-0",
@@ -2580,7 +2767,16 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa calls about an apartment on Lexington Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
+        "prompt": "Rosa calls about an apartment on Lexington Street. Put the words in order.",
+        "words": [
+          "I",
+          "would",
+          "like",
+          "to",
+          "meet",
+          "the",
+          "landlord"
+        ],
         "answers": [
           "I would like to meet the landlord"
         ],
@@ -2719,7 +2915,12 @@
           "heard"
         ],
         "explanation": "I was cooking when I heard a loud noise. (hear)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "hears",
+          "heard",
+          "hear"
+        ]
       },
       {
         "id": "apply-1",
@@ -2729,7 +2930,12 @@
           "left"
         ],
         "explanation": "While I was locking the door, my neighbor left the building. (leave)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "left",
+          "leave",
+          "leaves"
+        ]
       },
       {
         "id": "vocab-0",
@@ -2785,7 +2991,12 @@
           "was calling"
         ],
         "explanation": "'While' introduces the action that was in progress, so past continuous (was calling) is needed. 'Called' would use past simple.",
-        "source": "it-was-happening-when/iwh-qfb1"
+        "source": "it-was-happening-when/iwh-qfb1",
+        "options": [
+          "is calling",
+          "calls",
+          "was calling"
+        ]
       }
     ]
   },
@@ -2953,7 +3164,12 @@
           "become"
         ],
         "explanation": "Before I applied, I had become a team leader. (become)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "becomes",
+          "became",
+          "become"
+        ]
       },
       {
         "id": "apply-1",
@@ -2963,7 +3179,12 @@
           "led"
         ],
         "explanation": "She had led two projects before her promotion. (lead)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "leads",
+          "led",
+          "lead"
+        ]
       },
       {
         "id": "vocab-0",
@@ -3014,7 +3235,16 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Gloria finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
+        "prompt": "Gloria finished her tasks before the manager arrived. Put the words in order.",
+        "words": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "the",
+          "manager",
+          "arrived"
+        ],
         "answers": [
           "She had finished before the manager arrived"
         ],
@@ -3187,7 +3417,12 @@
           "wear"
         ],
         "explanation": "You must wear safety shoes here. (wear)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "wore",
+          "wear",
+          "wears"
+        ]
       },
       {
         "id": "apply-1",
@@ -3197,7 +3432,12 @@
           "keep"
         ],
         "explanation": "Employees have to keep the exit clear. (keep)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "keep",
+          "keeps",
+          "kept"
+        ]
       },
       {
         "id": "vocab-0",
@@ -3377,7 +3617,12 @@
           "won"
         ],
         "explanation": "If I won a free trip, I would visit my family. (win)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "wins",
+          "won",
+          "win"
+        ]
       },
       {
         "id": "apply-1",
@@ -3387,7 +3632,12 @@
           "flew"
         ],
         "explanation": "If she flew to Boston, I would meet her at the airport. (fly)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "flew",
+          "fly",
+          "flies"
+        ]
       },
       {
         "id": "vocab-0",
@@ -3428,7 +3678,12 @@
           "were"
         ],
         "explanation": "In 'If I were you,' use 'were' for all subjects in the second conditional if-clause, not 'was' or 'am'.",
-        "source": "second-conditional-what-would-you-do/sc-qfb1"
+        "source": "second-conditional-what-would-you-do/sc-qfb1",
+        "options": [
+          "were",
+          "am",
+          "will be"
+        ]
       },
       {
         "id": "grammar-1",
@@ -3611,7 +3866,12 @@
           "put"
         ],
         "explanation": "Please put the boxes away after your shift. (put)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "puts",
+          "putting",
+          "put"
+        ]
       },
       {
         "id": "apply-1",
@@ -3621,7 +3881,12 @@
           "got"
         ],
         "explanation": "Yesterday, I got along well with the new team. (get)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "gets",
+          "got",
+          "get"
+        ]
       },
       {
         "id": "vocab-0",
@@ -3657,7 +3922,16 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Marisol talks about her restaurant job and her goals. Put the words in order. (One verb needs a gerund, one needs an infinitive.) Words: She / enjoys / working / and / wants / to / learn",
+        "prompt": "Marisol talks about her restaurant job and her goals. Put the words in order. (One verb needs a gerund, one needs an infinitive.)",
+        "words": [
+          "She",
+          "enjoys",
+          "working",
+          "and",
+          "wants",
+          "to",
+          "learn"
+        ],
         "answers": [
           "She enjoys working and wants to learn"
         ],
@@ -3845,7 +4119,12 @@
           "understood"
         ],
         "explanation": "I have already understood the safety rules. (understand)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "understands",
+          "understood",
+          "understand"
+        ]
       },
       {
         "id": "apply-1",
@@ -3855,7 +4134,12 @@
           "mean"
         ],
         "explanation": "What does this job title mean? (mean)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "mean",
+          "means",
+          "meant"
+        ]
       },
       {
         "id": "vocab-0",
@@ -3911,7 +4195,12 @@
           "yet"
         ],
         "explanation": "Yet goes at the end of a negative or a question. It means up to now, but we expect it.",
-        "source": "present-perfect-how-long/pperf-how-long-qfb1"
+        "source": "present-perfect-how-long/pperf-how-long-qfb1",
+        "options": [
+          "already",
+          "ago",
+          "yet"
+        ]
       }
     ]
   },
@@ -4079,7 +4368,12 @@
           "growing"
         ],
         "explanation": "Our team has been growing steadily this year. (grow)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "growing",
+          "grow",
+          "grows"
+        ]
       },
       {
         "id": "apply-1",
@@ -4089,7 +4383,12 @@
           "building"
         ],
         "explanation": "I have been building my computer skills. (build)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "build",
+          "builds",
+          "building"
+        ]
       },
       {
         "id": "vocab-0",
@@ -4140,7 +4439,17 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Rosa asks Amara about her work at the hospital. Put the words in order. Words: How / long / have / you / been / cleaning / patient / rooms",
+        "prompt": "Rosa asks Amara about her work at the hospital. Put the words in order.",
+        "words": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "been",
+          "cleaning",
+          "patient",
+          "rooms"
+        ],
         "answers": [
           "How long have you been cleaning patient rooms"
         ],
@@ -4313,7 +4622,12 @@
           "teaching"
         ],
         "explanation": "She enjoys teaching new employees. (teach)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "teach",
+          "teaches",
+          "teaching"
+        ]
       },
       {
         "id": "apply-1",
@@ -4323,7 +4637,12 @@
           "show"
         ],
         "explanation": "I want to show you my work. (show)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "showed",
+          "show",
+          "shows"
+        ]
       },
       {
         "id": "vocab-0",
@@ -4364,7 +4683,12 @@
           "had been working"
         ],
         "explanation": "had been working. Count duration up to the stated time.",
-        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q1"
+        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q1",
+        "options": [
+          "is working",
+          "had been working",
+          "has been working"
+        ]
       },
       {
         "id": "grammar-1",
@@ -4374,7 +4698,12 @@
           "had been cleaning"
         ],
         "explanation": "had been cleaning. Count duration up to the stated time.",
-        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q2"
+        "source": "past-perfect-continuous-work/past-perfect-continuous-work-q2",
+        "options": [
+          "had been cleaning",
+          "has been cleaning",
+          "is cleaning"
+        ]
       }
     ]
   },
@@ -4542,7 +4871,12 @@
           "paid"
         ],
         "explanation": "Workers are paid every Friday. (pay)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "pays",
+          "paid",
+          "pay"
+        ]
       },
       {
         "id": "apply-1",
@@ -4552,7 +4886,12 @@
           "given"
         ],
         "explanation": "The instructions were given to every employee. (give)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "given",
+          "give",
+          "gives"
+        ]
       },
       {
         "id": "vocab-0",
@@ -4593,7 +4932,12 @@
           "were"
         ],
         "explanation": "'Two shifts' is plural, so the passive form is 'were moved.'",
-        "source": "passive-voice-what-was-done/pvwwd-qfb1"
+        "source": "passive-voice-what-was-done/pvwwd-qfb1",
+        "options": [
+          "were",
+          "was",
+          "be"
+        ]
       },
       {
         "id": "grammar-1",
@@ -4776,7 +5120,12 @@
           "feel"
         ],
         "explanation": "If you feel dizzy, you should sit down. (feel)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "feel",
+          "feels",
+          "felt"
+        ]
       },
       {
         "id": "apply-1",
@@ -4786,7 +5135,12 @@
           "sleep"
         ],
         "explanation": "You should sleep more when you are tired. (sleep)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "sleeps",
+          "slept",
+          "sleep"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5015,7 +5369,12 @@
           "fell"
         ],
         "explanation": "I stopped walking because I fell yesterday. (fall)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "fall",
+          "falls",
+          "fell"
+        ]
       },
       {
         "id": "apply-1",
@@ -5025,7 +5384,12 @@
           "hurts"
         ],
         "explanation": "My knee hurts when I bend it. (hurt)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "to hurt",
+          "hurts",
+          "hurting"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5081,7 +5445,12 @@
           "taking"
         ],
         "explanation": "'Remember taking' = recalling a past event. Something that already happened.",
-        "source": "stop-taking-or-stop-to-take/sti-fb1"
+        "source": "stop-taking-or-stop-to-take/sti-fb1",
+        "options": [
+          "taking",
+          "to take",
+          "take"
+        ]
       }
     ]
   },
@@ -5200,7 +5569,12 @@
           "sat"
         ],
         "explanation": "The nurse said she sat beside me during the test. (sit: simple past)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "sit",
+          "sits",
+          "sat"
+        ]
       },
       {
         "id": "apply-1",
@@ -5210,7 +5584,12 @@
           "stand"
         ],
         "explanation": "The doctor said I should stand up slowly. (stand)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "stood",
+          "stand",
+          "stands"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5247,6 +5626,11 @@
         "id": "grammar-0",
         "section": "grammar",
         "prompt": "Report this yesterday: The doctor said, “I am busy.” Complete: The doctor said that she ___ busy. Use past-tense backshift.",
+        "options": [
+          "were",
+          "was",
+          "am"
+        ],
         "answers": [
           "was"
         ],
@@ -5256,7 +5640,18 @@
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Marco reports what the pharmacist said about Amina's inhaler. Put the words in order. Words: The / pharmacist / told / me / to / keep / the / inhaler / inside",
+        "prompt": "Marco reports what the pharmacist said about Amina's inhaler. Put the words in order.",
+        "words": [
+          "The",
+          "pharmacist",
+          "told",
+          "me",
+          "to",
+          "keep",
+          "the",
+          "inhaler",
+          "inside"
+        ],
         "answers": [
           "The pharmacist told me to keep the inhaler inside"
         ],
@@ -5429,7 +5824,12 @@
           "forgotten"
         ],
         "explanation": "If I had not forgotten my medicine, I would have felt better. (forget)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "forgotten",
+          "forget",
+          "forgets"
+        ]
       },
       {
         "id": "apply-1",
@@ -5439,7 +5839,12 @@
           "read"
         ],
         "explanation": "If she had read the label, she would have noticed the warning. (read)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "reads",
+          "reading",
+          "read"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5668,7 +6073,12 @@
           "run"
         ],
         "explanation": "I used to run every morning. (run)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "runs",
+          "ran",
+          "run"
+        ]
       },
       {
         "id": "apply-1",
@@ -5678,7 +6088,12 @@
           "rides"
         ],
         "explanation": "Now she rides her bike to work. (ride)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "rode",
+          "rides",
+          "ride"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5719,7 +6134,12 @@
           "will have completed"
         ],
         "explanation": "will have completed. Look at the completed result by a future deadline.",
-        "source": "future-perfect-goals/future-perfect-goals-q3"
+        "source": "future-perfect-goals/future-perfect-goals-q3",
+        "options": [
+          "has completed",
+          "will have completed",
+          "will has completed"
+        ]
       },
       {
         "id": "grammar-1",
@@ -5729,7 +6149,12 @@
           "will have done"
         ],
         "explanation": "will have done. Look at the completed result by a future deadline.",
-        "source": "future-perfect-goals/future-perfect-goals-q4"
+        "source": "future-perfect-goals/future-perfect-goals-q4",
+        "options": [
+          "will have done",
+          "have did",
+          "has done"
+        ]
       }
     ]
   },
@@ -5897,7 +6322,12 @@
           "driving"
         ],
         "explanation": "I am used to driving in city traffic. (drive)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "drives",
+          "driving",
+          "drive"
+        ]
       },
       {
         "id": "apply-1",
@@ -5907,7 +6337,12 @@
           "waking"
         ],
         "explanation": "She is getting used to waking up early. (wake)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "waking",
+          "wake",
+          "wakes"
+        ]
       },
       {
         "id": "vocab-0",
@@ -5943,7 +6378,15 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Mark describes Fabienne's routine. Put the words in order. Words: She / is / used / to / working / nights",
+        "prompt": "Mark describes Fabienne's routine. Put the words in order.",
+        "words": [
+          "She",
+          "is",
+          "used",
+          "to",
+          "working",
+          "nights"
+        ],
         "answers": [
           "She is used to working nights"
         ],
@@ -6131,7 +6574,12 @@
           "had lost"
         ],
         "explanation": "If I had lost my keys yesterday, I would have called you. (lose: use the past perfect)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "had lost",
+          "lose",
+          "loses"
+        ]
       },
       {
         "id": "apply-1",
@@ -6141,7 +6589,12 @@
           "cut"
         ],
         "explanation": "If I cut my finger, I will clean it. (cut)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "cuts",
+          "cutting",
+          "cut"
+        ]
       },
       {
         "id": "vocab-0",
@@ -6198,7 +6651,12 @@
           "gets"
         ],
         "explanation": "Zero conditional: if + present simple, present simple. Used for facts and rules.",
-        "source": "all-four-conditionals-quick-tour/afc-fb1"
+        "source": "all-four-conditionals-quick-tour/afc-fb1",
+        "options": [
+          "getting",
+          "gets",
+          "get"
+        ]
       }
     ]
   },
@@ -6366,7 +6824,12 @@
           "begin"
         ],
         "explanation": "We plan to begin our new routine tomorrow. (begin)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "begins",
+          "began",
+          "begin"
+        ]
       },
       {
         "id": "apply-1",
@@ -6376,7 +6839,12 @@
           "quitting"
         ],
         "explanation": "He is thinking about quitting smoking. (quit)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "quits",
+          "quitting",
+          "quit"
+        ]
       },
       {
         "id": "vocab-0",
@@ -6417,7 +6885,12 @@
           "will have been learning"
         ],
         "explanation": "will have been learning. Count duration up to the stated time.",
-        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q4"
+        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q4",
+        "options": [
+          "have been learning",
+          "will have been learning",
+          "will have learning"
+        ]
       },
       {
         "id": "grammar-1",
@@ -6427,7 +6900,12 @@
           "will have been studying"
         ],
         "explanation": "Keep the helper words together: will have been studying.",
-        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q5"
+        "source": "future-perfect-continuous-progress/future-perfect-continuous-progress-q5",
+        "options": [
+          "will have been studying",
+          "will have studying",
+          "has been studying"
+        ]
       }
     ]
   },
@@ -6546,7 +7024,12 @@
           "stole"
         ],
         "explanation": "Someone stole my bike last year. (steal)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "steal",
+          "steals",
+          "stole"
+        ]
       },
       {
         "id": "apply-1",
@@ -6556,7 +7039,12 @@
           "frozen"
         ],
         "explanation": "The water has frozen overnight. (freeze)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "freezes",
+          "frozen",
+          "freeze"
+        ]
       },
       {
         "id": "vocab-0",
@@ -6592,7 +7080,18 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Rosa already filled out the Level 4 form. Put the words in order. Words: She / is / going / to / take / evening / classes / in / September",
+        "prompt": "Rosa already filled out the Level 4 form. Put the words in order.",
+        "words": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "take",
+          "evening",
+          "classes",
+          "in",
+          "September"
+        ],
         "answers": [
           "She is going to take evening classes in September"
         ],
@@ -6607,7 +7106,12 @@
           "had been working"
         ],
         "explanation": "The complete verb phrase is had been working.",
-        "source": "all-the-tenses-year-in-review/year-review-past-duration"
+        "source": "all-the-tenses-year-in-review/year-review-past-duration",
+        "options": [
+          "had been working",
+          "has been working",
+          "have been working"
+        ]
       }
     ]
   },
@@ -6726,7 +7230,12 @@
           "caught"
         ],
         "explanation": "She has caught the early bus all week. (catch)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "catches",
+          "caught",
+          "catch"
+        ]
       },
       {
         "id": "apply-1",
@@ -6736,7 +7245,12 @@
           "fought"
         ],
         "explanation": "They fought for better working conditions last year. (fight)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "fought",
+          "fight",
+          "fights"
+        ]
       },
       {
         "id": "vocab-0",
@@ -6777,7 +7291,12 @@
           "will have finished"
         ],
         "explanation": "The complete verb phrase is will have finished.",
-        "source": "all-the-tenses-year-in-review/year-review-future-result"
+        "source": "all-the-tenses-year-in-review/year-review-future-result",
+        "options": [
+          "will have finished",
+          "will has finished",
+          "has finished"
+        ]
       },
       {
         "id": "grammar-1",
@@ -6787,7 +7306,12 @@
           "will have been studying"
         ],
         "explanation": "The complete verb phrase is will have been studying.",
-        "source": "all-the-tenses-year-in-review/year-review-future-duration"
+        "source": "all-the-tenses-year-in-review/year-review-future-duration",
+        "options": [
+          "will have studying",
+          "have been studying",
+          "will have been studying"
+        ]
       }
     ]
   },
@@ -6906,7 +7430,12 @@
           "hit"
         ],
         "explanation": "The ball hit the window yesterday. (hit)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "hit",
+          "hits",
+          "hitting"
+        ]
       },
       {
         "id": "apply-1",
@@ -6916,7 +7445,12 @@
           "lend"
         ],
         "explanation": "Could you lend me a pen? (lend)",
-        "source": "weekly-quiz-applications"
+        "source": "weekly-quiz-applications",
+        "options": [
+          "lends",
+          "lent",
+          "lend"
+        ]
       },
       {
         "id": "vocab-0",

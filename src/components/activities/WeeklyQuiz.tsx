@@ -8,12 +8,13 @@ import { generateIdempotencyKey, submitWithOutbox, submissionSavedEventName } fr
 import { displayWeeklyQuizTitle, withVerbFormsTable } from '@/lib/weekly-quiz';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
+import { WordScrambleExercise } from '@/components/grammar-reader/exercises/WordScrambleExercise';
 
 // Full class strings so Tailwind can see them; one existing tone per section.
-const sections: { key: WeeklyQuizSection; title: string; instructions: string; card: string; badge: string }[] = [
+const sections: { key: WeeklyQuizSection; title: string; instructions: string; tapInstructions?: string; card: string; badge: string }[] = [
   { key: 'forms', title: 'Verb forms', instructions: 'The base form (V1) is given. Write the other four forms.',
     card: 'border-[var(--tone-quizzes-border)] bg-[var(--tone-quizzes-surface)]', badge: 'bg-[var(--tone-quizzes-chip-bg)] text-[var(--tone-quizzes-chip-text)]' },
-  { key: 'apply', title: 'Use the verbs', instructions: 'Read the whole sentence, then fill in the blank.',
+  { key: 'apply', title: 'Use the verbs', instructions: 'Read the whole sentence, then fill in the blank.', tapInstructions: 'Read the whole sentence. Tap the verb that fits.',
     card: 'border-[var(--tone-games-border)] bg-[var(--tone-games-surface)]', badge: 'bg-[var(--tone-games-chip-bg)] text-[var(--tone-games-chip-text)]' },
   { key: 'vocabulary', title: 'Vocabulary', instructions: 'Use the meaning or the situation to help you.',
     card: 'border-[var(--tone-vocabulary-border)] bg-[var(--tone-vocabulary-surface)]', badge: 'bg-[var(--tone-vocabulary-chip-bg)] text-[var(--tone-vocabulary-chip-text)]' },
@@ -101,6 +102,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
   const [points, setPoints] = useState(existingSubmission?.pointsAwarded ?? 0);
   const [showToast, setShowToast] = useState(false);
   const complete = content.questions.every(q => answers[q.id]?.trim());
+  const [missingHint, setMissingHint] = useState('');
   // Table cells are not numbered; the sentence questions below it are.
   const numbered = content.questions.filter(q => !(q.section === 'forms' && q.verb));
 
@@ -130,12 +132,27 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
     setPoints(0);
     setShowToast(false);
     setError('');
+    setMissingHint('');
     window.scrollTo({ top: 0 });
+  }
+
+  /** Take the student to the first empty answer instead of a grey button they can't explain. */
+  function showFirstUnanswered() {
+    const left = content.questions.filter(q => !answers[q.id]?.trim());
+    const first = left[0];
+    if (!first) return;
+    setMissingHint(`${left.length} ${left.length === 1 ? 'answer is' : 'answers are'} empty. We moved you to the first one.`);
+    // The forms table renders twice (desktop table, phone cards); use the visible copy.
+    const target = [...document.querySelectorAll<HTMLElement>(`[data-quiz-q="${first.id}"]`)].find(el => el.offsetParent !== null);
+    target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target?.querySelector<HTMLElement>('input, button')?.focus({ preventScroll: true });
   }
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (!complete || submitting.current || busy || queued) return;
+    if (!complete) { showFirstUnanswered(); return; }
+    if (submitting.current || busy || queued) return;
+    setMissingHint('');
     submitting.current = true;
     attemptKey.current ??= generateIdempotencyKey();
     setBusy(true);
@@ -197,25 +214,33 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
       })}
       <CourseMapReturnButton />
     </section> : <form onSubmit={submit} className="space-y-8">
-      {sections.filter(({ key }) => content.questions.some(q => q.section === key)).map(({ key: section, title, instructions, card, badge }, index) => <section key={section} aria-label={title} className={`space-y-5 rounded-2xl border p-4 sm:p-6 ${card}`}>
+      {sections.filter(({ key }) => content.questions.some(q => q.section === key)).map(({ key: section, title, instructions, tapInstructions, card, badge }, index) => <section key={section} aria-label={title} className={`space-y-5 rounded-2xl border p-4 sm:p-6 ${card}`}>
         <div className="flex items-start gap-3">
           <span aria-hidden="true" className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-bold ${badge}`}>{index + 1}</span>
-          <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{instructions}</p></div>
+          <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{tapInstructions && numbered.filter(q => q.section === section).every(q => q.options) ? tapInstructions : instructions}</p></div>
         </div>
-        {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <input aria-label={label} name={q.id} required maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? '___ / ___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />} />}
-        {numbered.filter(q => q.section === section).map(q => <fieldset key={q.id} disabled={busy || queued} className="rounded-xl bg-bg p-4">
+        {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <div data-quiz-q={q.id} className="flex items-center gap-2">
+          {/* The pronoun sits outside the box so students type only the verb. */}
+          {q.form === 'v1_3rd' && <span aria-hidden="true" className="font-mono text-text-muted">she</span>}
+          <input aria-label={label} name={q.id} maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? '___ / ___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />
+        </div>} />}
+        {numbered.filter(q => q.section === section).map(q => q.words ? <div key={q.id} data-quiz-q={q.id} className="rounded-xl bg-bg p-4">
+          {/* Same tap-the-words tiles as the grammar guides. */}
+          <WordScrambleExercise item={{ type: 'word-scramble', label: q.prompt, words: q.words, correctAnswer: q.answers[0] }} userAnswer={answers[q.id] ?? ''} isCorrect={false} isIncorrect={false} submitted={busy || queued} onChange={value => setAnswers(previous => ({ ...previous, [q.id]: value }))} itemNumber={numbered.indexOf(q) + 1} />
+        </div> : <fieldset key={q.id} data-quiz-q={q.id} disabled={busy || queued} className="rounded-xl bg-bg p-4">
           {/* Floated so the prompt sits inside the card instead of straddling the fieldset's top edge. */}
           <legend className="float-left mb-3 w-full font-semibold leading-snug text-text">{numbered.indexOf(q) + 1}. {q.prompt}</legend>
           {q.options ? <div className="clear-left grid gap-2 sm:grid-cols-2">{q.options.map(option => <label key={option} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-border bg-bg px-3 py-2 text-text has-[:checked]:border-primary has-[:checked]:bg-primary/10">
-            <input type="radio" name={q.id} value={option} required checked={answers[q.id] === option} onChange={() => setAnswers(previous => ({ ...previous, [q.id]: option }))} className="accent-primary" />
+            <input type="radio" name={q.id} value={option} checked={answers[q.id] === option} onChange={() => setAnswers(previous => ({ ...previous, [q.id]: option }))} className="accent-primary" />
             <span>{option}</span>
-          </label>)}</div> : <input aria-label={q.prompt} name={q.id} required maxLength={500} autoComplete="off" spellCheck={false} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`clear-left ${inputClass}`} />}
+          </label>)}</div> : <input aria-label={q.prompt} name={q.id} maxLength={500} autoComplete="off" spellCheck={false} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`clear-left ${inputClass}`} />}
         </fieldset>)}
       </section>)}
       {queued && <p role="status" className="rounded-xl bg-bg-light p-4 text-text">Saved on this device. Your quiz will submit when you reconnect; points and the completion icon appear after it syncs.</p>}
+      {missingHint && !complete && <p role="status" className="rounded-xl bg-[var(--tone-quizzes-surface)] p-4 font-semibold text-text">{missingHint}</p>}
       {error && <p role="alert" className="text-red-700 dark:text-red-300">{error}</p>}
       <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border bg-bg-light p-4">
-        <button type="submit" disabled={!complete || busy || queued} className="min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white disabled:opacity-50">{busy ? 'Saving…' : queued ? 'Waiting to sync' : 'Submit weekly quiz'}</button>
+        <button type="submit" disabled={busy || queued} className={`min-h-11 rounded-xl bg-primary px-6 py-3 font-semibold text-white disabled:opacity-50 ${complete ? '' : 'opacity-70'}`}>{busy ? 'Saving…' : queued ? 'Waiting to sync' : 'Submit weekly quiz'}</button>
         <span className="text-sm text-text-muted">{content.questions.filter(q => answers[q.id]?.trim()).length} / {content.questions.length} answered</span>
       </div>
     </form>}
