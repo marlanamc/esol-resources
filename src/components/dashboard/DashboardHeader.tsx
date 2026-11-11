@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BookOpen, Calendar, Home, Map, Trophy } from "lucide-react";
+import { BookOpen, Calendar, Home, Map, Trophy, User } from "lucide-react";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { ModeHeader } from "@/components/layout/ModeHeader";
 
@@ -9,7 +9,8 @@ const STUDENT_NAV_ITEMS = [
     { href: "/dashboard", label: "Home", Icon: Home, exact: true },
     { href: "/dashboard/map", label: "Map", Icon: Map, exact: false },
     { href: "/dashboard/activities", label: "Activities", Icon: BookOpen, exact: false },
-    { href: "/dashboard/leaderboard", label: "Leaderboard", Icon: Trophy, exact: false },
+    { href: "/dashboard/leaderboard", label: "Points", Icon: Trophy, exact: false },
+    { href: "/dashboard/profile", label: "Profile", Icon: User, exact: false },
 ] as const;
 
 interface DashboardHeaderProps {
