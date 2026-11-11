@@ -7,7 +7,7 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { timedQuery } from "@/lib/shared/perf-log";
 import { GradebookClient } from "./GradebookClient";
-import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
+import { loadGradebookRoster } from "@/lib/teach/gradebook-roster";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 const DEFAULT_PAGE = 1;
@@ -59,20 +59,6 @@ export default async function GradebookPage({
                     select: {
                         id: true,
                         name: true,
-                        enrollments: {
-                            where: {
-                                student: {
-                                    isSystemAccount: false,
-                                },
-                            },
-                            select: {
-                                student: {
-                                    select: {
-                                        id: true,
-                                    },
-                                },
-                            },
-                        },
                     },
                 })
             ),
@@ -88,171 +74,9 @@ export default async function GradebookPage({
         name: c.name,
     }));
 
-    const studentIds = Array.from(
-        new Set(filteredClasses.flatMap((c) => c.enrollments.map((e) => e.student.id)))
+    const gradebook = await loadGradebookRoster(
+        filteredClasses.map((c) => c.id), searchQuery, requestedPage, requestedPageSize
     );
-
-    const studentWhere = {
-        id: { in: studentIds },
-        isSystemAccount: false,
-        ...(searchQuery
-            ? {
-                OR: [
-                    { name: { contains: searchQuery, mode: "insensitive" as const } },
-                    { username: { contains: searchQuery, mode: "insensitive" as const } },
-                ],
-            }
-            : {}),
-    };
-
-    const totalStudents = studentIds.length === 0
-        ? 0
-        : await timedQuery(
-            {
-                route: "/dashboard/gradebook",
-                queryLabel: "user.count.gradebookStudents",
-                userRole,
-            },
-            () => withPrismaReadRetry(() => prisma.user.count({ where: studentWhere }))
-        );
-
-    const totalPages = Math.max(1, Math.ceil(totalStudents / requestedPageSize));
-    const currentPage = Math.min(requestedPage, totalPages);
-    const skip = (currentPage - 1) * requestedPageSize;
-
-    const students = studentIds.length === 0
-        ? []
-        : await timedQuery(
-            {
-                route: "/dashboard/gradebook",
-                queryLabel: "user.findMany.gradebookStudentsPage",
-                userRole,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.user.findMany({
-                        where: studentWhere,
-                        select: {
-                            id: true,
-                            name: true,
-                            username: true,
-                        },
-                        orderBy: {
-                            name: "asc",
-                        },
-                        skip,
-                        take: requestedPageSize,
-                    })
-                ),
-            (result) => result.length
-        );
-
-    const pagedStudentIds = students.map((student) => student.id);
-
-    const activities = await timedQuery(
-        {
-            route: "/dashboard/gradebook",
-            queryLabel: "activity.findMany.gradebookGrammarActivities",
-            userRole,
-        },
-        () =>
-            withPrismaReadRetry(() =>
-                prisma.activity.findMany({
-                    where: {
-                        category: "grammar",
-                        type: "guide",
-                        isReleased: true,
-                    },
-                    select: {
-                        id: true,
-                        title: true,
-                        content: true,
-                    },
-                    orderBy: {
-                        title: "asc",
-                    },
-                })
-            ),
-        (result) => result.length
-    );
-
-    const activitiesWithQuizzes = activities
-        .filter((activity) => {
-            try {
-                const content = JSON.parse(activity.content);
-                return !!content.miniQuiz;
-            } catch {
-                return false;
-            }
-        })
-        .map((a) => ({
-            id: a.id,
-            title: a.title.replace(" Guide", "").replace(" Guide", ""),
-        }));
-
-    const rawSubmissions = pagedStudentIds.length === 0
-        ? []
-        : await timedQuery(
-            {
-                route: "/dashboard/gradebook",
-                queryLabel: "submission.findMany.gradebookSubmissions",
-                userRole,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.submission.findMany({
-                        where: {
-                            userId: { in: pagedStudentIds },
-                            score: { not: null },
-                            activity: {
-                                category: "grammar",
-                                type: "guide",
-                            },
-                        },
-                        select: {
-                            userId: true,
-                            activityId: true,
-                            score: true,
-                            updatedAt: true,
-                            activity: {
-                                select: {
-                                    title: true,
-                                },
-                            },
-                        },
-                    })
-                ),
-            (result) => result.length
-        );
-
-    const displayActivityIds = new Set(activitiesWithQuizzes.map((a) => a.id));
-    const displayIdByNormalizedTitle = new Map(
-        activitiesWithQuizzes.map((a) => [normalizeGuideTitle(a.title), a.id] as const)
-    );
-
-    const submissionByKey = new Map<string, { userId: string; activityId: string; score: number; updatedAt: Date }>();
-    for (const submission of rawSubmissions) {
-        if (submission.score === null) continue;
-
-        const canonicalActivityId = displayActivityIds.has(submission.activityId)
-            ? submission.activityId
-            : displayIdByNormalizedTitle.get(normalizeGuideTitle(submission.activity.title));
-
-        if (!canonicalActivityId) continue;
-
-        const key = `${submission.userId}:${canonicalActivityId}`;
-        const existing = submissionByKey.get(key);
-        if (!existing || submission.updatedAt > existing.updatedAt) {
-            submissionByKey.set(key, {
-                userId: submission.userId,
-                activityId: canonicalActivityId,
-                score: submission.score,
-                updatedAt: submission.updatedAt,
-            });
-        }
-    }
-
-    const submissions = Array.from(submissionByKey.values());
 
     return (
         <div className="min-h-dvh bg-bg">
@@ -261,10 +85,10 @@ export default async function GradebookPage({
                     <div>
                         <BackButton href="/dashboard/stats" className="mb-1">Back to Stats</BackButton>
                         <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
-                            Grammar Gradebook
+                            Weekly Quiz Gradebook
                         </h1>
                         <p className="text-sm text-text-muted">
-                            A complete overview of mini-quiz scores across all grammar guides.
+                            Best weekly quiz scores, ordered by week.
                         </p>
                     </div>
                     <div className="flex items-center gap-3">
@@ -275,18 +99,11 @@ export default async function GradebookPage({
 
             <main className="container mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8">
                 <GradebookClient
-                    students={students}
-                    activities={activitiesWithQuizzes}
-                    submissions={submissions}
+                    diagnosticsBasePath={null}
+                    {...gradebook}
                     classes={classOptions}
                     selectedClassId={selectedClassId}
                     searchQuery={searchQuery}
-                    pagination={{
-                        page: currentPage,
-                        pageSize: requestedPageSize,
-                        total: totalStudents,
-                        totalPages,
-                    }}
                 />
             </main>
         </div>

@@ -2,12 +2,14 @@
 
 import React, { useMemo } from "react";
 import Link from "next/link";
+import { gradebookAverages } from "@/lib/teach/gradebook-averages";
 import { BarChart3 } from "lucide-react";
 
 interface Student {
     id: string;
     name: string | null;
     username: string;
+    enrollmentLabel?: string;
 }
 
 interface Activity {
@@ -28,6 +30,9 @@ interface ClassOption {
 }
 
 interface Props {
+    title?: string;
+    showControls?: boolean;
+    classAverage?: number | null;
     diagnosticsBasePath?: string | null;
     students: Student[];
     activities: Activity[];
@@ -48,6 +53,9 @@ interface Props {
 }
 
 export default function GrammarGradebook({
+    title = "Current students",
+    showControls = true,
+    classAverage,
     diagnosticsBasePath = "/dashboard/diagnostics",
     students,
     activities,
@@ -63,12 +71,17 @@ export default function GrammarGradebook({
 }: Props) {
     const filteredStudents = useMemo(() => students, [students]);
 
+    const { studentAverages } = useMemo(() => gradebookAverages(
+        submissions, students.map(s => s.id), activities.map(a => a.id)
+    ), [submissions, students, activities]);
+    const formatAverage = (value: number | null | undefined) => value == null ? "—" : `${value.toFixed(1)}%`;
+
     // Map submissions for easy lookup
     const scoreMap = useMemo(() => {
         const map: Record<string, Record<string, number>> = {};
         submissions.forEach((s) => {
             if (!map[s.userId]) map[s.userId] = {};
-            map[s.userId][s.activityId] = s.score ?? 0;
+            if (s.score !== null) map[s.userId][s.activityId] = s.score;
         });
         return map;
     }, [submissions]);
@@ -84,7 +97,15 @@ export default function GrammarGradebook({
 
     return (
         <div className="space-y-6">
-            <div className="bg-surface-elevated p-4 rounded-xl border border-border/40 shadow-sm">
+            <div>
+                <h2 className="text-xl font-semibold text-text">{title}</h2>
+                {classAverage !== undefined && <p className="mt-2 text-text font-semibold">Class average: {formatAverage(classAverage)}</p>}
+                <p className="text-sm text-text-muted mt-1">
+                    Student averages use completed weekly quizzes only. Unattempted quizzes are excluded.
+                    {classAverage !== undefined && " The class average gives each current student with a score equal weight, across all pages and regardless of search."}
+                </p>
+            </div>
+            {showControls && <div className="bg-surface-elevated p-4 rounded-xl border border-border/40 shadow-sm">
                 <div className="flex flex-col sm:flex-row gap-4">
                     <input
                         type="text"
@@ -124,17 +145,24 @@ export default function GrammarGradebook({
                         </select>
                     )}
                 </div>
-            </div>
+            </div>}
+
+            {activities.length === 0 && (
+                <p role="status" className="text-sm text-text-muted">
+                    No weekly quizzes are available for this class yet.
+                </p>
+            )}
 
             <div className="bg-surface-elevated rounded-2xl border border-border/40 shadow-xl overflow-hidden">
                 <div className="overflow-x-auto" role="region" aria-label="Gradebook scores, scroll horizontally for more activities" tabIndex={0}>
                     <table className="w-full border-collapse">
-                        <caption className="sr-only">Grammar mini-quiz scores by student and activity</caption>
+                        <caption className="sr-only">{title}: weekly quiz best scores by student and week</caption>
                         <thead>
                             <tr className="bg-bg-light border-b border-border/60">
                                 <th scope="col" className="sticky left-0 z-20 bg-bg-light px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-text border-r border-border/40 min-w-[200px] shadow-[2px_0_5px_rgba(0,0,0,0.05)]">
                                     Student
                                 </th>
+                                <th scope="col" className="px-4 py-4 text-center text-xs font-bold uppercase text-text">Average</th>
                                 {activities.map((activity) => (
                                     <th
                                         key={activity.id}
@@ -162,7 +190,7 @@ export default function GrammarGradebook({
                             {filteredStudents.length === 0 ? (
                                 <tr>
                                     <td
-                                        colSpan={activities.length + 1}
+                                        colSpan={activities.length + 2}
                                         className="px-6 py-10 text-center text-text-muted italic"
                                     >
                                         No students found.
@@ -183,7 +211,9 @@ export default function GrammarGradebook({
                                                     @{student.username}
                                                 </div>
                                             </Link>
+                                            {student.enrollmentLabel && <div className="text-xs text-text-muted mt-1">{student.enrollmentLabel}</div>}
                                         </th>
+                                        <td className="px-4 py-4 text-center font-bold text-text">{formatAverage(studentAverages[student.id])}</td>
                                         {activities.map((activity) => {
                                             const score = scoreMap[student.id]?.[activity.id];
                                             return (

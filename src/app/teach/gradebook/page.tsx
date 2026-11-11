@@ -5,7 +5,7 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { timedQuery } from "@/lib/shared/perf-log";
 import { GradebookClient } from "@/app/dashboard/gradebook/GradebookClient";
-import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
+import { loadGradebookRoster } from "@/lib/teach/gradebook-roster";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
@@ -50,10 +50,6 @@ export default async function TeachGradebookPage({
                 select: {
                     id: true,
                     name: true,
-                    enrollments: {
-                        where: { student: { isSystemAccount: false } },
-                        select: { student: { select: { id: true } } },
-                    },
                 },
             })
         ),
@@ -63,96 +59,9 @@ export default async function TeachGradebookPage({
     const filteredClasses = selectedClassId ? classes.filter((c) => c.id === selectedClassId) : classes;
     const classOptions = classes.map((c) => ({ id: c.id, name: c.name }));
     const activeClassName = classes.find((c) => c.id === selectedClassId)?.name ?? null;
-    const studentIds = Array.from(new Set(filteredClasses.flatMap((c) => c.enrollments.map((e) => e.student.id))));
-
-    const studentWhere = {
-        id: { in: studentIds },
-        isSystemAccount: false,
-        ...(searchQuery ? {
-            OR: [
-                { name: { contains: searchQuery, mode: "insensitive" as const } },
-                { username: { contains: searchQuery, mode: "insensitive" as const } },
-            ],
-        } : {}),
-    };
-
-    const totalStudents = studentIds.length === 0 ? 0 : await timedQuery(
-        { route: "/teach/gradebook", queryLabel: "user.count.gradebookStudents", userRole },
-        () => withPrismaReadRetry(() => prisma.user.count({ where: studentWhere })),
+    const gradebook = await loadGradebookRoster(
+        filteredClasses.map((c) => c.id), searchQuery, requestedPage, requestedPageSize
     );
-
-    const totalPages = Math.max(1, Math.ceil(totalStudents / requestedPageSize));
-    const currentPage = Math.min(requestedPage, totalPages);
-    const skip = (currentPage - 1) * requestedPageSize;
-
-    const students = studentIds.length === 0 ? [] : await timedQuery(
-        { route: "/teach/gradebook", queryLabel: "user.findMany.gradebookStudentsPage", userRole },
-        () => withPrismaReadRetry(() =>
-            prisma.user.findMany({
-                where: studentWhere,
-                select: { id: true, name: true, username: true },
-                orderBy: { name: "asc" },
-                skip,
-                take: requestedPageSize,
-            })
-        ),
-        (r) => r.length
-    );
-
-    const pagedStudentIds = students.map((s) => s.id);
-
-    const activities = await timedQuery(
-        { route: "/teach/gradebook", queryLabel: "activity.findMany.grammarActivities", userRole },
-        () => withPrismaReadRetry(() =>
-            prisma.activity.findMany({
-                where: { category: "grammar", type: "guide", isReleased: true },
-                select: { id: true, title: true, content: true },
-                orderBy: { title: "asc" },
-            })
-        ),
-        (r) => r.length
-    );
-
-    const activitiesWithQuizzes = activities
-        .filter((a) => { try { return !!(JSON.parse(a.content) as { miniQuiz?: unknown }).miniQuiz; } catch { return false; } })
-        .map((a) => ({ id: a.id, title: a.title.replace(" Guide", "") }));
-
-    const rawSubmissions = pagedStudentIds.length === 0 ? [] : await timedQuery(
-        { route: "/teach/gradebook", queryLabel: "submission.findMany.gradebookSubmissions", userRole },
-        () => withPrismaReadRetry(() =>
-            prisma.submission.findMany({
-                where: {
-                    userId: { in: pagedStudentIds },
-                    score: { not: null },
-                    activity: { category: "grammar", type: "guide" },
-                },
-                select: {
-                    userId: true, activityId: true, score: true, updatedAt: true,
-                    activity: { select: { title: true } },
-                },
-            })
-        ),
-        (r) => r.length
-    );
-
-    const displayActivityIds = new Set(activitiesWithQuizzes.map((a) => a.id));
-    const displayIdByNormalizedTitle = new Map(activitiesWithQuizzes.map((a) => [normalizeGuideTitle(a.title), a.id] as const));
-    const submissionByKey = new Map<string, { userId: string; activityId: string; score: number; updatedAt: Date }>();
-
-    for (const s of rawSubmissions) {
-        if (s.score === null) continue;
-        const canonicalId = displayActivityIds.has(s.activityId)
-            ? s.activityId
-            : displayIdByNormalizedTitle.get(normalizeGuideTitle(s.activity.title));
-        if (!canonicalId) continue;
-        const key = `${s.userId}:${canonicalId}`;
-        const existing = submissionByKey.get(key);
-        if (!existing || s.updatedAt > existing.updatedAt) {
-            submissionByKey.set(key, { userId: s.userId, activityId: canonicalId, score: s.score, updatedAt: s.updatedAt });
-        }
-    }
-
-    const submissions = Array.from(submissionByKey.values());
 
     return (
         <div>
@@ -161,29 +70,21 @@ export default async function TeachGradebookPage({
                     Assessment
                 </p>
                 <h1 className="font-display font-bold text-2xl sm:text-3xl text-text mt-0.5">
-                    Grammar Gradebook
+                    Weekly Quiz Gradebook
                 </h1>
                 <p className="text-sm text-text-muted mt-1">
-                    Mini-quiz scores across all grammar guides
+                    Best weekly quiz scores, ordered by week
                     {activeClassName ? ` · ${activeClassName}` : ""}.
                 </p>
             </div>
 
             <GradebookClient
-                diagnosticsBasePath={admin ? "/admin/diagnostics" : null}
-                students={students}
-                activities={activitiesWithQuizzes}
-                submissions={submissions}
+                diagnosticsBasePath={null}
+                {...gradebook}
                 classes={classOptions}
                 selectedClassId={selectedClassId}
                 showClassFilter={false}
                 searchQuery={searchQuery}
-                pagination={{
-                    page: currentPage,
-                    pageSize: requestedPageSize,
-                    total: totalStudents,
-                    totalPages,
-                }}
             />
         </div>
     );

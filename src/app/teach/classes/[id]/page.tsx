@@ -306,7 +306,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                             className="flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm font-semibold transition-colors hover:bg-[var(--surface-subtle)]"
                             style={{ borderColor: "var(--border-subtle)", color: "var(--text-color)" }}
                         >
-                            <BookOpen className="h-4 w-4" style={{ color: "#8a7abc" }} /> Grammar gradebook
+                            <BookOpen className="h-4 w-4" style={{ color: "#8a7abc" }} /> Weekly quiz gradebook
                         </Link>
                         <Link
                             href={`/teach/reports?classId=${cls.id}`}
