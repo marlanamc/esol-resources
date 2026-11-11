@@ -912,16 +912,16 @@
       {
         "id": "apply-0",
         "section": "apply",
-        "prompt": "You should ___ food to a sick neighbor. (take)",
+        "prompt": "My neighbor usually ___ food to sick people on our street. (take)",
         "answers": [
-          "take"
+          "takes"
         ],
-        "explanation": "You should take food to a sick neighbor. (take)",
+        "explanation": "My neighbor usually takes food to sick people on our street. (take)",
         "source": "weekly-quiz-applications",
         "options": [
-          "takes",
-          "took",
-          "take"
+          "take",
+          "taking",
+          "takes"
         ]
       },
       {

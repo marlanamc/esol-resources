@@ -36,6 +36,8 @@ const TAP_FROM_WEEK = 4;
 // Where an automatic wrong choice is also correct (often a past form that fits).
 const VERB_DISTRACTOR_OVERRIDES: Record<string, string[]> = {
   'She ___ going to the Salvadoran festival this Saturday. (be)': ['are', 'am'],
+  // "usually took" also works as a past habit, so no V2 choice here.
+  'My neighbor usually ___ food to sick people on our street. (take)': ['take', 'taking'],
   'The smaller package ___ less than the large one. (cost)': ['costing', 'to cost'],
   'This shop ___ used furniture. (sell)': ['sell', 'selling'],
   'My knee ___ when I bend it. (hurt)': ['hurting', 'to hurt'],
