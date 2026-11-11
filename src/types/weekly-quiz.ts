@@ -8,6 +8,8 @@ export interface WeeklyQuizQuestion {
   form?: WeeklyQuizVerbForm;
   prompt: string;
   options?: string[];
+  /** Word-order questions: tap these tiles in order (same as the grammar guides). */
+  words?: string[];
   answers: string[];
   explanation: string;
   source?: string;

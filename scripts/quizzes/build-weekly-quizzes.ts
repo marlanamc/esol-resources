@@ -5,7 +5,7 @@ import { GUIDED_VERB_QUIZ_PLAN } from '../../src/data/verb-quiz-plan';
 import { getGrammarContent } from '../../src/lib/grammar-content-loader';
 import { WEEKLY_VERB_APPLICATIONS } from '../../src/content/quizzes/weekly-quiz-applications';
 import type { WeeklyQuizContent, WeeklyQuizQuestion } from '../../src/types/weekly-quiz';
-import { buildVerbFormsTable, weekQuizTitle } from '../../src/lib/weekly-quiz';
+import { buildVerbFormsTable, getVerbForms, normalizeQuizAnswer, weekQuizTitle } from '../../src/lib/weekly-quiz';
 const { weeklyVocabData } = require('../vocab/weekly-vocab-data');
 const weeks = COURSE_MAP_UNITS.flatMap(unit => unit.weeks);
 const plain = (s: string) => s.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&[lr]dquo;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
@@ -21,6 +21,74 @@ const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6], 12: [7, 8] };
 // shifted yet.
 const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 13 && !REVIEW_WEEKS[weekNumber] ? weekNumber - 1 : weekNumber;
 const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
+
+// From week 9, only the verb-forms table is typed. Everything else is tapped:
+// students were slowed down by switching between typing a form, rewriting a
+// sentence, and rebuilding a sentence from a word list.
+const TAP_FROM_WEEK = 9;
+
+/**
+ * "Use the verbs" choices: the right form plus two other forms of the same
+ * verb, so the question still tests which form fits. V-ing is offered last
+ * because "are ___ing" often makes a wrong-looking form grammatical.
+ */
+// Where an automatic wrong choice is also correct (often a past form that fits).
+const VERB_DISTRACTOR_OVERRIDES: Record<string, string[]> = {
+  'The smaller package ___ less than the large one. (cost)': ['costing', 'to cost'],
+  'This shop ___ used furniture. (sell)': ['sell', 'selling'],
+  'My knee ___ when I bend it. (hurt)': ['hurting', 'to hurt'],
+};
+function verbChoices(prompt: string, answer: string, seed: number): string[] {
+  const override = VERB_DISTRACTOR_OVERRIDES[prompt];
+  const verb = /\(([a-z]+)(?::[^)]*)?\)\s*$/i.exec(prompt)?.[1]?.toLowerCase();
+  const forms = verb ? getVerbForms(verb) : undefined;
+  if (!forms && !override) throw new Error(`No verb forms for apply question: ${prompt}`);
+  const taken = new Set([normalizeQuizAnswer(answer)]);
+  const distractors = override ?? [forms!.v1, forms!.v1_3rd, forms!.v2, forms!.v3, forms!.v1_ing]
+    .flatMap(form => form.split('/'))
+    .filter(form => { const key = normalizeQuizAnswer(form); if (taken.has(key)) return false; taken.add(key); return true; })
+    .slice(0, 2);
+  if (distractors.length < 2) throw new Error(`Not enough distinct forms for: ${prompt}`);
+  return rotate([answer, ...distractors], seed);
+}
+const rotate = <T,>(items: T[], seed: number) => { const r = seed % items.length; return [...items.slice(r), ...items.slice(0, r)]; };
+
+/**
+ * Typed grammar blanks become three choices. Each wrong choice must be clearly
+ * wrong in the sentence (no second answer that also works).
+ */
+const GRAMMAR_CHOICES: Record<string, string[]> = {
+  'can-should-must/csm-qfb1': ['must', 'should', 'can'],
+  'have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1': ["don't have to", 'have to', "can't"],
+  'it-was-happening-when/iwh-qfb1': ['was calling', 'is calling', 'calls'],
+  'second-conditional-what-would-you-do/sc-qfb1': ['were', 'am', 'will be'],
+  'present-perfect-how-long/pperf-how-long-qfb1': ['yet', 'already', 'ago'],
+  'past-perfect-continuous-work/past-perfect-continuous-work-q1': ['had been working', 'has been working', 'is working'],
+  'past-perfect-continuous-work/past-perfect-continuous-work-q2': ['had been cleaning', 'has been cleaning', 'is cleaning'],
+  'passive-voice-what-was-done/pvwwd-qfb1': ['were', 'was', 'be'],
+  'stop-taking-or-stop-to-take/sti-fb1': ['taking', 'to take', 'take'],
+  'doctor-said-reported-speech/doctor-said-q7': ['was', 'am', 'were'],
+  'future-perfect-goals/future-perfect-goals-q3': ['will have completed', 'will has completed', 'has completed'],
+  'future-perfect-goals/future-perfect-goals-q4': ['will have done', 'have did', 'has done'],
+  'all-four-conditionals-quick-tour/afc-fb1': ['gets', 'get', 'getting'],
+  'future-perfect-continuous-progress/future-perfect-continuous-progress-q4': ['will have been learning', 'will have learning', 'have been learning'],
+  'future-perfect-continuous-progress/future-perfect-continuous-progress-q5': ['will have been studying', 'will have studying', 'has been studying'],
+  'all-the-tenses-year-in-review/year-review-past-duration': ['had been working', 'has been working', 'have been working'],
+  'all-the-tenses-year-in-review/year-review-future-result': ['will have finished', 'will has finished', 'has finished'],
+  'all-the-tenses-year-in-review/year-review-future-duration': ['will have been studying', 'will have studying', 'have been studying'],
+};
+
+/** Turn every non-table question into a tap question (choices or word tiles). */
+function makeTapFriendly(questions: WeeklyQuizQuestion[], seed: number) {
+  questions.forEach((q, i) => {
+    if (q.section === 'forms' || q.options || q.words) return;
+    if (q.section === 'apply') { q.options = verbChoices(q.prompt, q.answers[0], seed + i); return; }
+    const choices = q.source ? GRAMMAR_CHOICES[q.source] : undefined;
+    if (!choices) throw new Error(`Week ${TAP_FROM_WEEK}+ quizzes need tap choices for ${q.source ?? q.id}. Add them to GRAMMAR_CHOICES.`);
+    if (normalizeQuizAnswer(choices[0]) !== normalizeQuizAnswer(q.answers[0])) throw new Error(`GRAMMAR_CHOICES[${q.source}] must start with the answer "${q.answers[0]}"`);
+    q.options = rotate(choices, seed + i);
+  });
+}
 
 // Weeks with more than one quiz (the optional final-review extras) number them.
 const bonusNumber = (quizNumber: number, weekNumber: number) => {
@@ -116,7 +184,8 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
       } else if (q.type === 'fill-blank') answers = [q.correctAnswer, ...(q.acceptedAnswers ?? [])];
       else if (q.type === 'word-scramble') answers = [q.correctAnswer, ...(q.correctAnswers ?? [])];
       else throw new Error('Unsupported question');
-      questions.push({ id: `grammar-${i}`, section: 'grammar', prompt: plain(q.question).replace('Two words: not required.', 'Three words: not required.') + (q.type === 'word-scramble' ? ` Words: ${q.words.join(' / ')}` : ''), ...(options ? {options} : {}), answers: answers.map(plain), explanation: plain(q.explanation ?? `Answer: ${answers[0]}`), source: `${slug}/${q.id}` });
+      const tiles = q.type === 'word-scramble' && week.number >= TAP_FROM_WEEK ? q.words.map(plain) : undefined;
+      questions.push({ id: `grammar-${i}`, section: 'grammar', prompt: plain(q.question).replace('Two words: not required.', 'Three words: not required.') + (q.type === 'word-scramble' && !tiles ? ` Words: ${q.words.join(' / ')}` : ''), ...(options ? {options} : {}), ...(tiles ? {words: tiles} : {}), answers: answers.map(plain), explanation: plain(q.explanation ?? `Answer: ${answers[0]}`), source: `${slug}/${q.id}` });
     }
   }
   // Week 7 reviews weeks 5-6. The mini-quiz items gave the answer away in the
@@ -154,6 +223,7 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     prompt: 'Report this yesterday: The doctor said, “I am busy.” Complete: The doctor said that she ___ busy. Use past-tense backshift.',
     options: undefined, answers: ['was'], explanation: 'With past-tense backshift, am becomes was.',
   });
+  if (week.number >= TAP_FROM_WEEK) makeTapFriendly(questions, n);
   quizzes[plan.activityId] = { type: 'weekly-quiz', version: 1, weekNumber: week.number, title, focusVerbs: plan.verbs, ...(n === 1 ? {guided: true} : {}), estimatedMinutes: '5–10', questions };
 }
 const output = JSON.stringify(quizzes, null, 2) + '\n';

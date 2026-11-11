@@ -21,6 +21,11 @@ export function displayWeeklyQuizTitle(quiz: WeeklyQuizContent): string {
   return legacy ? `${weekQuizTitle(quiz.weekNumber)}${legacy[1]}` : quiz.title;
 }
 
+/** All five forms of a bank verb (V1, V1-s, V-ing, V2, V3); undefined if the verb is not in the bank. */
+export function getVerbForms(verb: string): VerbData | undefined {
+  return verbBank[verb];
+}
+
 /** The full verb-forms table: V1-s, V-ing, V2 and V3 for every focus verb. */
 export function buildVerbFormsTable(verbs: string[]): WeeklyQuizQuestion[] {
   return verbs.flatMap((verb, v) => tableForms.map(form => {
@@ -46,6 +51,16 @@ export function normalizeQuizAnswer(value: string): string {
   return value.normalize('NFKC').trim().toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' ').replace(/[.!?]+$/, '');
 }
 
+// Students sometimes type the column's pronoun too ("she tells"). The table
+// tests the verb form, so a leading subject pronoun does not make it wrong.
+const leadingPronoun = /^(i|you|he|she|it|we|they) (?=\S)/;
+
+function isCorrectAnswer(question: WeeklyQuizQuestion, value: string): boolean {
+  const typed = normalizeQuizAnswer(value);
+  const candidates = question.section === 'forms' ? [typed, typed.replace(leadingPronoun, '')] : [typed];
+  return question.answers.some(answer => candidates.includes(normalizeQuizAnswer(answer)));
+}
+
 /** Grade saved question content, never a client-supplied score or answer key. */
 export function gradeWeeklyQuiz(saved: WeeklyQuizContent, input: unknown): WeeklyQuizSubmission {
   const quiz = withVerbFormsTable(saved);
@@ -59,7 +74,7 @@ export function gradeWeeklyQuiz(saved: WeeklyQuizContent, input: unknown): Weekl
     answers[question.id] = value.trim();
     return {
       id: question.id,
-      correct: question.answers.some(answer => normalizeQuizAnswer(answer) === normalizeQuizAnswer(value)),
+      correct: isCorrectAnswer(question, value),
       expected: question.answers[0],
       explanation: question.explanation,
     };

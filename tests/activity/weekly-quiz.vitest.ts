@@ -54,6 +54,34 @@ describe('weekly quiz content and grading', () => {
     expect(normalizeQuizAnswer('  She  HAS a notebook! ')).toBe(normalizeQuizAnswer('She has a notebook.'));
     expect(normalizeQuizAnswer('don’t')).toBe(normalizeQuizAnswer("don't"));
   });
+  it('from Week 9, only the verb-forms table is typed; everything else is tapped', () => {
+    const later = Object.values(bank).filter(q => q.weekNumber >= 9);
+    expect(later.length).toBeGreaterThan(0);
+    for (const quiz of later) {
+      for (const q of quiz.questions.filter(item => item.section !== 'forms')) {
+        expect(Boolean(q.options) || Boolean(q.words), `${quiz.title} ${q.id}`).toBe(true);
+        if (q.options) expect(q.options.filter(o => normalizeQuizAnswer(o) === normalizeQuizAnswer(q.answers[0]))).toHaveLength(1);
+        if (q.words) {
+          // The tiles must build the answer exactly, and the prompt must not list them as text.
+          const sorted = (text: string) => normalizeQuizAnswer(text).split(' ').sort().join(' ');
+          expect(sorted(q.words.join(' '))).toBe(sorted(q.answers[0]));
+          expect(q.prompt).not.toContain('Words:');
+        }
+      }
+    }
+  });
+  it('keeps Weeks 1-8 as they were (students are still making those up)', () => {
+    const early = Object.values(bank).filter(q => q.weekNumber < 9);
+    expect(early.flatMap(q => q.questions).some(q => q.words)).toBe(false);
+    expect(early.flatMap(q => q.questions).filter(q => q.section === 'apply').every(q => !q.options)).toBe(true);
+  });
+  it('accepts a pronoun typed in front of a verb form ("she tells")', () => {
+    const quiz = bank['verb-quiz-4'];
+    const answers = Object.fromEntries(quiz.questions.map(q => [q.id, q.section === 'forms' ? `She ${q.answers[0]}` : q.answers[0]]));
+    expect(gradeWeeklyQuiz(quiz, { answers }).score).toBe(100);
+    const apply = quiz.questions.find(q => q.section === 'apply')!;
+    expect(gradeWeeklyQuiz(quiz, { answers: { ...answers, [apply.id]: `she ${apply.answers[0]}` } }).score).toBeLessThan(100);
+  });
   it('aligns the guided first quiz with Week 4 learning vocabulary', () => {
     expect(first.guided).toBe(true);
     expect(first.questions.filter(q => q.section === 'vocabulary').map(q => q.answers[0])).toEqual(['focus', 'apply']);
