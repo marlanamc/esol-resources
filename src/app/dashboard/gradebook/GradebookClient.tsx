@@ -2,12 +2,13 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
-import { GrammarGradebook } from "@/components/dashboard";
+import GrammarGradebook from "@/components/dashboard/GrammarGradebook";
 
 interface Student {
     id: string;
     name: string | null;
     username: string;
+    enrollmentLabel?: string;
 }
 
 interface Activity {
@@ -30,6 +31,8 @@ interface ClassOption {
 interface Props {
     diagnosticsBasePath?: string | null;
     students: Student[];
+    formerStudents: Student[];
+    classAverage: number | null;
     activities: Activity[];
     submissions: Submission[];
     classes: ClassOption[];
@@ -48,6 +51,8 @@ interface Props {
 export function GradebookClient({
     diagnosticsBasePath = "/dashboard/diagnostics",
     students,
+    formerStudents,
+    classAverage,
     activities,
     submissions,
     classes,
@@ -118,19 +123,31 @@ export function GradebookClient({
     );
 
     return (
-        <GrammarGradebook
-            diagnosticsBasePath={diagnosticsBasePath}
-            students={students}
-            activities={activities}
-            submissions={submissions}
-            classes={classes}
-            selectedClassId={selectedClassId}
-            onClassChange={showClassFilter ? handleClassChange : undefined}
-            searchQuery={searchQuery}
-            onSearchChange={handleSearchChange}
-            pagination={pagination}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
-        />
+        <div className="space-y-8">
+            <GrammarGradebook
+                diagnosticsBasePath={diagnosticsBasePath}
+                title="Current students"
+                classAverage={classAverage}
+                students={students}
+                activities={activities}
+                submissions={submissions}
+                classes={classes}
+                selectedClassId={selectedClassId}
+                onClassChange={showClassFilter ? handleClassChange : undefined}
+                searchQuery={searchQuery}
+                onSearchChange={handleSearchChange}
+                pagination={pagination}
+                onPageChange={handlePageChange}
+                onPageSizeChange={handlePageSizeChange}
+            />
+            <GrammarGradebook
+                title="Graduated, removed, and excluded students"
+                showControls={false}
+                diagnosticsBasePath={null}
+                students={formerStudents}
+                activities={activities}
+                submissions={submissions}
+            />
+        </div>
     );
 }

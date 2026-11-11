@@ -335,7 +335,7 @@ export default async function StatsPage({
                                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition shadow-sm"
                             >
                                 <ClipboardIcon className="w-4 h-4" />
-                                Grammar Gradebook
+                                Weekly Quiz Gradebook
                             </Link>
                         </div>
                     </div>
