@@ -881,16 +881,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Have You Ever...?"
           },
           {
-            "id": "just-already-yet",
-            "href": "/grammar-reader/just-already-yet",
-            "slot": "extra",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Just, Already, Yet",
-            "badge": "Challenge"
-          },
-          {
             "id": "volunteering-scenario-practice",
             "slot": "required",
             "order": 3,
