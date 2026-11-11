@@ -943,7 +943,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-10",
         "number": 10,
-        "title": "Public Meetings + Suggestions",
+        "title": "Just, Already, Yet + Community Plans",
         "items": [
           {
             "id": "vocab-nov-w2-flashcards",
@@ -956,13 +956,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Meetings and Suggestions: Flash Cards"
           },
           {
-            "id": "what-are-you-good-at",
-            "href": "/grammar-reader/what-are-you-good-at",
+            "id": "just-already-yet",
+            "href": "/grammar-reader/just-already-yet",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "What Are You Good At?"
+            "title": "Just, Already, Yet"
           },
           {
             "id": "public-meeting-language",
@@ -1009,10 +1009,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 10 Quiz"
+          },
+          {
+            "id": "what-are-you-good-at",
+            "href": "/grammar-reader/what-are-you-good-at",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "What Are You Good At?",
+            "badge": "Supporting practice"
           }
         ],
-        "goal": "I can describe what I am good at and interested in.",
-        "reviewPractice": "Recall W8 can and W9 have you ever."
+        "goal": "I can describe what has just happened, what has already happened, and what has not happened yet.",
+        "reviewPractice": "Recall W9 have/has + V3. Main classroom practice: use Marlana's three-person schedules activity to write sentences with just, already, and yet at a stated time. Recognize meaningful attempts and revisions through the existing teacher points workflow. Use good at + V-ing as supporting speaking practice."
       }
     ]
   },
@@ -1085,7 +1095,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           }
         ],
         "goal": "I can talk about spending, saving, and big numbers.",
-        "reviewPractice": "Recall W10 good at + V-ing and W9 have/has + V3."
+        "reviewPractice": "Recall W9 have/has + V3 and W10 just/already/yet."
       },
       {
         "id": "week-14",
