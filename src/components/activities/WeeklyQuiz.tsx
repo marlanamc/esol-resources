@@ -33,6 +33,9 @@ const formColumns: [WeeklyQuizVerbForm, string, string][] = [
   ['v3', 'V3', 'Past participle'],
 ];
 
+/** V1-s rows alternate she / he (ids are form-<verbIndex>-<form>); grading accepts any pronoun. */
+const pronounFor = (q: WeeklyQuizQuestion) => Number(/^form-(\d+)-/.exec(q.id)?.[1] ?? 0) % 2 ? 'he' : 'she';
+
 /** Group the forms-table cells by verb, in quiz order. */
 function verbRows(questions: WeeklyQuizQuestion[]) {
   const rows = new Map<string, Partial<Record<WeeklyQuizVerbForm, WeeklyQuizQuestion>>>();
@@ -220,8 +223,8 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
           <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{tapInstructions && numbered.filter(q => q.section === section).every(q => q.options) ? tapInstructions : instructions}</p></div>
         </div>
         {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <div data-quiz-q={q.id} className="flex items-center gap-2">
-          {/* The pronoun sits outside the box so students type only the verb. */}
-          {q.form === 'v1_3rd' && <span aria-hidden="true" className="font-mono text-text-muted">she</span>}
+          {/* The pronoun sits outside the box so students type only the verb. Rows alternate she / he. */}
+          {q.form === 'v1_3rd' && <span aria-hidden="true" className="w-[3ch] font-mono text-text-muted">{pronounFor(q)}</span>}
           <input aria-label={label} name={q.id} maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? '___ / ___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />
         </div>} />}
         {numbered.filter(q => q.section === section).map(q => q.words ? <div key={q.id} data-quiz-q={q.id} className="rounded-xl bg-bg p-4">
