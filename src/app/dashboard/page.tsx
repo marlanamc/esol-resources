@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { ClassAnswerSection, PracticeLaterSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
+import { ClassAnswerSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -467,7 +467,6 @@ export default async function DashboardPage() {
     const studentLeaderboardRank = firstClassId ? await getWeeklyRankForUser(userId, { classId: firstClassId }).catch(() => null) : null;
     // Accounts without an active class enrollment get no bar.
     const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
-    const practiceLater = <Suspense fallback={<p role="status">Loading saved words…</p>}><PracticeLaterSection user={{ id: userId, role: userRole }} /></Suspense>;
     const studyWeek = userRole === "student" ? <Suspense fallback={null}><StudyWeekSection userId={userId} /></Suspense> : null;
     const classAnswers = userRole === "student" ? <Suspense fallback={null}><ClassAnswerSection userId={userId} /></Suspense> : null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -493,7 +492,6 @@ export default async function DashboardPage() {
                             variant="road"
                         /></Suspense>
                         {studyWeek}
-                        {practiceLater}
                         <Suspense fallback={<KeepPracticingList items={newThisWeekItems} />}>
                             <KeepPracticingSection userId={userId} items={newThisWeekItems} />
                         </Suspense>
@@ -528,7 +526,6 @@ export default async function DashboardPage() {
                             {studyWeek}
 
                             <Suspense fallback={null}><ResumePracticeSection userId={userId} /></Suspense>
-                            {practiceLater}
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
                             ) : null}

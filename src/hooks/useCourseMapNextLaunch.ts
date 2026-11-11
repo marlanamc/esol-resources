@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
+import { getMapReturnWeek } from "@/lib/course-map-navigation";
 
 export interface CourseMapNextLaunch {
     href: string;
@@ -20,30 +21,30 @@ export function useCourseMapNextLaunch(enabled = true): UseCourseMapNextLaunchRe
     const mapReturnHref = useResolvedLearnerReturnHref({ fallbackHref: "/dashboard/map" });
     const isMapReturn = mapReturnHref.startsWith("/dashboard/map");
     const [nextLaunch, setNextLaunch] = useState<CourseMapNextLaunch | null>(null);
-    const [resolvedMapReturnHref, setResolvedMapReturnHref] = useState(mapReturnHref);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!enabled || !isMapReturn) {
             setNextLaunch(null);
-            setResolvedMapReturnHref(mapReturnHref);
+            setIsLoading(false);
             return;
         }
 
         let cancelled = false;
+        setNextLaunch(null);
         setIsLoading(true);
 
-        fetch("/api/course-map/next-launch")
+        const week = getMapReturnWeek(mapReturnHref);
+        fetch(week == null ? "/api/course-map/next-launch" : `/api/course-map/next-launch?week=${week}`)
             .then((response) => (response.ok ? response.json() : null))
             .then((data) => {
                 if (cancelled) return;
-                setNextLaunch(data?.launch ?? null);
-                setResolvedMapReturnHref(data?.mapReturnHref ?? mapReturnHref);
+                const launch = data?.launch ?? null;
+                setNextLaunch(week == null || launch?.weekNumber === week ? launch : null);
             })
             .catch(() => {
                 if (cancelled) return;
                 setNextLaunch(null);
-                setResolvedMapReturnHref(mapReturnHref);
             })
             .finally(() => {
                 if (!cancelled) setIsLoading(false);
@@ -56,7 +57,8 @@ export function useCourseMapNextLaunch(enabled = true): UseCourseMapNextLaunchRe
 
     return {
         nextLaunch,
-        mapReturnHref: resolvedMapReturnHref,
+        // Back means the place this activity was opened, not the earliest unfinished week.
+        mapReturnHref,
         isMapReturn,
         isLoading,
     };

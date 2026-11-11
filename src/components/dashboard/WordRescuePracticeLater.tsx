@@ -17,7 +17,7 @@ export async function WordRescuePracticeLater({ user }: { user: { id: string; ro
         .filter(([id, word]) => allowed.has(id) && word.confidence === 'again').length;
     if (!count) return null;
     return (
-        <Link href="/activity/word-rescue?collection=again&returnTo=%2Fdashboard" className="flex min-h-16 items-center gap-3 rounded-2xl border border-secondary/30 bg-secondary/10 p-4 text-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary">
+        <Link href="/activity/word-rescue?collection=again&returnTo=%2Fdashboard%2Fprofile" className="flex min-h-16 items-center gap-3 rounded-2xl border border-secondary/30 bg-secondary/10 p-4 text-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary">
             <Volume2 aria-hidden="true" className="h-6 w-6 shrink-0 text-secondary" />
             <span className="min-w-0 flex-1">
                 <span className="block font-semibold">Words to practice later · {count}</span>

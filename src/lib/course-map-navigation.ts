@@ -60,6 +60,13 @@ export function buildMapReturnHref(weekNumber: number, focusActivity = false): s
     return `/dashboard/map?${params.toString()}#week-${weekNumber}`;
 }
 
+/** Recover the launch week without letting a global next-step suggestion replace it. */
+export function getMapReturnWeek(href: string): number | null {
+    const url = new URL(href, "https://class-companion.local");
+    if (url.pathname !== "/dashboard/map") return null;
+    return parseMapWeekParam(url.searchParams.get("week")) ?? parseMapWeekFromHash(url.hash);
+}
+
 export function syncMapUrl(weekNumber: number | null, focusActivity = false): void {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);

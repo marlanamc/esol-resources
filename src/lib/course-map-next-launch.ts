@@ -40,7 +40,7 @@ export interface CourseMapNextLaunchResult {
 export async function getCourseMapNextLaunchForUser(user: {
     id: string;
     role?: string | null;
-}): Promise<CourseMapNextLaunchResult | null> {
+}, weekNumber?: number | null): Promise<CourseMapNextLaunchResult | null> {
     const { units: rawUnits } = await getVisibleMap(user);
     if (rawUnits.length === 0) return null;
 
@@ -91,7 +91,12 @@ export async function getCourseMapNextLaunchForUser(user: {
         }
     }
 
-    const launch = resolveNextMapActivityLaunch(units, guidedProgress, assignmentByActivityId);
+    // Completion screens stay in the week the learner chose, even with older unfinished work.
+    const navigationUnits = weekNumber == null ? units : units.map((unit) => ({
+        ...unit,
+        levels: unit.levels.filter((level) => level.levelNumber === weekNumber),
+    }));
+    const launch = resolveNextMapActivityLaunch(navigationUnits, guidedProgress, assignmentByActivityId);
     const mapReturnHref =
         launch != null
             ? `/dashboard/map?week=${launch.weekNumber}&focus=next#week-${launch.weekNumber}`
@@ -106,7 +111,7 @@ export async function getCourseMapNextLaunchForUser(user: {
     ).length;
     const currentLabel = completedRequired > 0 ? "Next up" : "Start here";
 
-    const nextMatch = findFirstIncompleteRequired(units, guidedProgress);
+    const nextMatch = findFirstIncompleteRequired(navigationUnits, guidedProgress);
     const hero: CourseMapNextLaunchHero | null =
         launch && nextMatch
             ? {

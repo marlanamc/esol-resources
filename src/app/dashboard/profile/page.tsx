@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -14,6 +15,7 @@ import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { getProfileCourseMapProgress } from "@/lib/course-map-week";
 import { getStudentWeeklyQuizCatchUp } from "@/lib/learner/weekly-quiz-status";
 import { WeeklyQuizCatchUpCard } from "@/components/dashboard/WeeklyQuizCatchUpCard";
+import { PracticeLaterSection } from "@/components/dashboard/ResilientDashboardSections";
 import { ProfileCourseMapCard } from "@/components/profile/ProfileCourseMapCard";
 import { ProfileQuizGrades } from "@/components/profile/ProfileQuizGrades";
 import { ProfileStreakWeek } from "@/components/profile/ProfileStreakWeek";
@@ -520,6 +522,10 @@ export default async function ProfilePage() {
                             ))}
                         </dl>
                     </section>
+
+                    <Suspense fallback={<p role="status">Loading saved words…</p>}>
+                        <PracticeLaterSection user={{ id: userId, role: userRole }} />
+                    </Suspense>
 
                     {/* Weekly quiz homework: missing quizzes and retakes for 100% */}
                     <WeeklyQuizCatchUpCard catchUp={weeklyQuizCatchUp} />
