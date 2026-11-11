@@ -36,7 +36,6 @@ export function buildQuizCompletion(input: {
     }[];
     classCreatedAt: Date;
     now: Date;
-    limit?: number;
 }): QuizCompletion[] {
     const studentsById = new Map(input.students.map((s) => [s.id, s]));
     const doneKeys = new Set(
@@ -73,8 +72,7 @@ export function buildQuizCompletion(input: {
                 },
             ];
         })
-        .sort((a, b) => b.opensAt.getTime() - a.opensAt.getTime())
-        .slice(0, input.limit ?? 3);
+        .sort((a, b) => b.opensAt.getTime() - a.opensAt.getTime());
 }
 
 function since(student: QuizCompletionStudent, classCreatedAt: Date) {
