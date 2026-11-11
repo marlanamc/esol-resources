@@ -1761,32 +1761,32 @@
       {
         "id": "grammar-0",
         "section": "grammar",
-        "prompt": "Which sentence is correct?",
+        "prompt": "Which sentence has ALREADY in the correct position?",
         "options": [
-          "Don't sign without read the letter.",
-          "Don't sign without reading the letter.",
-          "Don't sign without to read the letter."
+          "Already has she paid the bill.",
+          "She has paid already the bill.",
+          "She has already paid the bill."
         ],
         "answers": [
-          "Don't sign without reading the letter."
+          "She has already paid the bill."
         ],
-        "explanation": "'Without' is a preposition. The verb after it must be -ing: without reading.",
-        "source": "what-are-you-good-at/good-at-q7"
+        "explanation": "ALREADY goes between have/has and the past participle: has + ALREADY + paid. Do not put it between the verb and the object.",
+        "source": "just-already-yet/jay-q4"
       },
       {
         "id": "grammar-1",
         "section": "grammar",
-        "prompt": "Diego says, 'I am good ___ cooking fast.' Which word fits?",
+        "prompt": "Rosa signed up to volunteer at the food pantry last week. Kevin asks if she wants to sign up today. What does Rosa say?",
         "options": [
-          "at",
-          "in",
-          "of"
+          "I have just signed up to volunteer.",
+          "I have already signed up to volunteer.",
+          "I haven't signed up to volunteer yet."
         ],
         "answers": [
-          "at"
+          "I have already signed up to volunteer."
         ],
-        "explanation": "Good at + -ing is the fixed pattern. 'Good in' and 'good of' are not used this way.",
-        "source": "what-are-you-good-at/good-at-q1"
+        "explanation": "ALREADY means done before now. She signed up last week, not moments ago.",
+        "source": "just-already-yet/jay-q1"
       }
     ]
   },
