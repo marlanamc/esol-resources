@@ -46,24 +46,27 @@ function verbRows(questions: WeeklyQuizQuestion[]) {
   return [...rows.entries()];
 }
 
-function FormsTable({ questions, renderCell }: {
+function FormsTable({ questions, weekNumber, renderCell }: {
+  weekNumber: number;
   questions: WeeklyQuizQuestion[];
   renderCell: (q: WeeklyQuizQuestion, label: string) => React.ReactNode;
 }) {
   const rows = verbRows(questions);
+  const columns = formColumns.map(([form, label, hint]) =>
+    [form, label, weekNumber === 9 && form === 'v1_3rd' ? 'It' : hint] as const);
   return <>
     <div className="hidden overflow-x-auto rounded-xl border border-[var(--tone-quizzes-border)] bg-bg md:block">
       <table className="w-full text-left">
         <thead className="bg-[var(--tone-quizzes-surface-muted)] text-sm text-text">
           <tr>
             <th scope="col" className="px-4 py-3 font-semibold">V1<span className="block text-xs font-normal text-text-muted">Base form</span></th>
-            {formColumns.map(([form, label, hint]) => <th key={form} scope="col" className="px-4 py-3 font-semibold">{label}<span className="block text-xs font-normal text-text-muted">{hint}</span></th>)}
+            {columns.map(([form, label, hint]) => <th key={form} scope="col" className="px-4 py-3 font-semibold">{label}<span className="block text-xs font-normal text-text-muted">{hint}</span></th>)}
           </tr>
         </thead>
         <tbody>
           {rows.map(([verb, cells]) => <tr key={verb} className="border-t border-border">
             <th scope="row" className="bg-[var(--tone-quizzes-surface-muted)]/50 px-4 py-3 font-mono text-lg font-semibold text-text">{verb}{verb === 'be' && <span className="block text-sm font-normal text-text-muted">(am/are)</span>}</th>
-            {formColumns.map(([form, label]) => <td key={form} className="px-4 py-3 align-top">{cells[form] && renderCell(cells[form], `${verb}: ${label}`)}</td>)}
+            {columns.map(([form, label]) => <td key={form} className="px-4 py-3 align-top">{cells[form] && renderCell(cells[form], `${verb}: ${label}`)}</td>)}
           </tr>)}
         </tbody>
       </table>
@@ -71,7 +74,7 @@ function FormsTable({ questions, renderCell }: {
     <div className="space-y-4 md:hidden">
       {rows.map(([verb, cells]) => <div key={verb} className="space-y-3 rounded-xl border border-[var(--tone-quizzes-border)] bg-bg p-4">
         <p className="text-sm font-semibold text-text-muted">V1 (base form) <span className="ml-1 font-mono text-lg text-text">{verb}</span>{verb === 'be' && <span className="ml-1 font-mono text-text-muted">(am/are)</span>}</p>
-        {formColumns.map(([form, label, hint]) => cells[form] && <div key={form}>
+        {columns.map(([form, label, hint]) => cells[form] && <div key={form}>
           <p className="mb-1 text-sm font-semibold text-text-muted">{label} ({hint})</p>
           {renderCell(cells[form], `${verb}: ${label}`)}
         </div>)}
@@ -197,7 +200,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
         <button type="button" onClick={tryAgain} className="mt-4 min-h-12 w-full rounded-xl bg-primary px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto">Try Again</button>
         <p className="mt-2 mb-0 text-sm text-text-muted">Practice as many times as you want. Every completed attempt is saved and earns effort points. Use the explanations below to choose one thing to practice next.</p>
       </div>
-      <FormsTable questions={content.questions} renderCell={q => {
+      <FormsTable weekNumber={content.weekNumber} questions={content.questions} renderCell={q => {
         const item = result.results.find(r => r.id === q.id);
         if (!item) return null;
         return <div className="font-mono text-text">
@@ -222,7 +225,7 @@ export default function WeeklyQuiz({ content: savedContent, activityId, assignme
           <span aria-hidden="true" className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-bold ${badge}`}>{index + 1}</span>
           <div><h3 className="font-display text-xl font-bold text-text">{title}</h3><p className="text-sm text-text-muted">{tapInstructions && numbered.filter(q => q.section === section).every(q => q.options) ? tapInstructions : instructions}</p></div>
         </div>
-        {section === 'forms' && <FormsTable questions={content.questions} renderCell={(q, label) => <div data-quiz-q={q.id} className="flex items-center gap-2">
+        {section === 'forms' && <FormsTable weekNumber={content.weekNumber} questions={content.questions} renderCell={(q, label) => <div data-quiz-q={q.id} className="flex items-center gap-2">
           {/* The pronoun sits outside the box so students type only the verb. Rows alternate she / he. */}
           {q.form === 'v1_3rd' && <span aria-hidden="true" className="w-[3ch] font-mono text-text-muted">{pronounFor(q)}</span>}
           <input aria-label={label} name={q.id} maxLength={500} autoComplete="off" autoCapitalize="none" autoCorrect="off" spellCheck={false} disabled={busy || queued} placeholder={q.answers[0].includes('/') ? '___ / ___' : undefined} value={answers[q.id] ?? ''} onChange={event => setAnswers(previous => ({ ...previous, [q.id]: event.target.value }))} className={`${inputClass} font-mono`} />

@@ -818,11 +818,11 @@
         "section": "forms",
         "verb": "take",
         "form": "v1_3rd",
-        "prompt": "take → V1-s (he/she/it)",
+        "prompt": "take → V1-s (it)",
         "answers": [
           "takes"
         ],
-        "explanation": "V1-s (he/she/it) of take: takes.",
+        "explanation": "V1-s (it) of take: takes.",
         "source": "verb-conjugations"
       },
       {
@@ -866,11 +866,11 @@
         "section": "forms",
         "verb": "bring",
         "form": "v1_3rd",
-        "prompt": "bring → V1-s (he/she/it)",
+        "prompt": "bring → V1-s (it)",
         "answers": [
           "brings"
         ],
-        "explanation": "V1-s (he/she/it) of bring: brings.",
+        "explanation": "V1-s (it) of bring: brings.",
         "source": "verb-conjugations"
       },
       {
@@ -944,9 +944,9 @@
         "section": "vocabulary",
         "prompt": "Which word or phrase means “to help or encourage someone or a cause”?",
         "options": [
-          "help out",
+          "borrow",
           "support",
-          "volunteer"
+          "arrive"
         ],
         "answers": [
           "support"
@@ -960,8 +960,8 @@
         "prompt": "Each person can _____ time or effort to the community project. Some neighbors will paint, and others will bring supplies.",
         "options": [
           "contribute",
-          "volunteer",
-          "sign up for"
+          "forget",
+          "borrow"
         ],
         "answers": [
           "contribute"

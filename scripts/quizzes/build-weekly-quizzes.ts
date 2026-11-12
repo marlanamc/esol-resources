@@ -146,6 +146,15 @@ for (const plan of GUIDED_VERB_QUIZ_PLAN) {
     const rotate = (n + i) % options.length;
     questions.push({ id: `vocab-${i}`, section: 'vocabulary', prompt: useContext ? plain(word.fillBlank!.text) : `Which ${week.number >= 6 ? "word or phrase" : "word"} means “${plain(word.def)}”?`, options: [...options.slice(rotate), ...options.slice(0, rotate)], answers: [word.term], explanation: `${word.term}: ${plain(word.def)}. ${plain(word.ex)}`, source: vocabId });
   }
+  // Week 9: keep one clear vocabulary answer and use only "it" in V1-s hints.
+  if (week.number === 9) {
+    for (const question of questions.filter(q => q.section === 'forms')) {
+      question.prompt = question.prompt.replace('he/she/it', 'it');
+      question.explanation = question.explanation.replace('he/she/it', 'it');
+    }
+    questions.find(q => q.id === 'vocab-0')!.options = ['borrow', 'support', 'arrive'];
+    questions.find(q => q.id === 'vocab-1')!.options = ['contribute', 'forget', 'borrow'];
+  }
   if (n === 1) {
     questions.push(
       { id: 'grammar-0', section: 'grammar', prompt: 'In “The helpful teacher has a book,” which word describes the teacher?', options: ['teacher', 'helpful', 'has'], answers: ['helpful'], explanation: 'Helpful is an adjective. It describes the noun teacher.', source: 'parts-of-speech-week-4' },
