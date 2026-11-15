@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Pocket Verb Book: Catch Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+@page { size: letter; margin: 0.4in 0.5in; }
+body { font-family: "Atkinson Hyperlegible", Arial, sans-serif; color: #111; font-size: 14.5px; line-height: 1.34;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { height: 10.15in; display: flex; flex-direction: column; gap: 9px; overflow: hidden; break-after: page; }
+.page:last-child { break-after: auto; }
+header { border-bottom: 2.5px solid #111; padding-bottom: 5px; display: flex; justify-content: space-between; align-items: end; }
+header h1 { font-size: 28px; line-height: 1.1; }
+header .name { font-size: 13px; }
+header .name span { display: inline-block; width: 2.1in; border-bottom: 1px solid #111; }
+.hello { font-size: 16px; }
+.box { border: 1.5px solid #111; border-radius: 8px; padding: 7px 10px; }
+.box h3 { font-size: 16px; margin-bottom: 3px; }
+.todo { display: flex; gap: 18px; font-size: 16px; font-weight: bold; margin-top: 2px; }
+.todo .stop { font-weight: normal; }
+.cb { display: inline-block; width: 14px; height: 14px; border: 2px solid #111; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+ol.parts { padding-left: 18px; columns: 2; column-gap: 18px; }
+ol.parts li { margin-bottom: 2px; }
+.stamps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 3px; }
+.st { display: flex; flex-direction: column; align-items: center; text-align: center; font-size: 13px; }
+.st svg { width: 96px; height: 46px; }
+.st span { color: #444; }
+.verbs { font-size: 14px; margin-top: 4px; }
+.card { border: 2px solid var(--c); border-radius: 10px; overflow: hidden; }
+.card h2 { background: var(--c); color: #fff; font-size: 20px; padding: 5px 12px; display: flex; align-items: center; gap: 8px; }
+.card .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--c); font-size: 15px; }
+.card > *:not(h2) { margin: 6px 12px; }
+.top { display: grid; grid-template-columns: 1fr 2.9in; gap: 10px; align-items: center; }
+.tl svg { width: 100%; height: auto; display: block; }
+.row { margin-bottom: 3px; }
+table { border-collapse: collapse; width: calc(100% - 24px); font-size: 14px; }
+th, td { border: 1px solid #999; padding: 4px 7px; text-align: left; vertical-align: top; }
+tr:first-child th { background: var(--bg); }
+th span { font-weight: normal; color: #444; font-size: 12px; display: block; }
+.models { font-style: italic; }
+.watch { background: #fff6d6; border-radius: 6px; padding: 3px 8px; }
+.end { margin-top: auto; border: 2px dashed #111; border-radius: 8px; padding: 10px 14px; font-size: 16px; }
+</style></head><body><div class="page">
+  <header><h1>Catch up: My Pocket Verb Book</h1><div class="name">Name: <span></span></div></header>
+  <p class="hello">You missed the class. No problem! Use this paper to fill in <b>cards 1, 2, and 3</b>. Bring your book on <b>Thursday, November 12</b>. In class, we start <b>card 4</b> together.</p>
+  <div class="box">
+    <h3>Every card has 5 parts. You write everything.</h3>
+    <ol class="parts">
+      <li><b>Meaning</b>: what is it for?</li>
+      <li><b>Helpful time clues</b>: words like <i>yesterday</i></li>
+      <li><b>Timeline</b>: draw the stamp (look at the cover)</li>
+      <li><b>Chart</b>: + &minus; ? &nbsp;Pick <b>your own verbs</b>: 1 regular, 1 irregular. Our example: <i>work</i>, <i>eat</i>.</li>
+      <li><b>My sentence</b>: a true sentence about <b>you</b></li>
+    </ol>
+    <p class="verbs"><b>The back of each card is for you:</b> more sentences, new verbs, notes in your language.</p>
+    <div class="stamps"><div class="st"><svg viewBox="34 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="34" y1="50" x2="124" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="79.2" cy="50" r="8" fill="#d97706"/></svg><b>An event</b><span>at a point in time</span></div><div class="st"><svg viewBox="155 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="180.0" cy="50" r="5" fill="#059669" opacity="0.7"/><circle cx="200.0" cy="50" r="6" fill="#059669"/><circle cx="220.0" cy="50" r="5" fill="#059669" opacity="0.7"/></svg><b>A routine</b><span>again and again</span></div><div class="st"><svg viewBox="155 18 90 48" xmlns="http://www.w3.org/2000/svg"><line x1="155" y1="50" x2="245" y2="50" stroke="#cbd5e1" stroke-width="4"/><line x1="170.0" y1="50" x2="230.0" y2="50" stroke="#047857" stroke-width="8" stroke-linecap="round" stroke-dasharray="8 6"/></svg><b>In progress</b><span>in the middle of it</span></div><div class="st"><svg viewBox="88 18 130 48" xmlns="http://www.w3.org/2000/svg"><line x1="88" y1="50" x2="218" y2="50" stroke="#cbd5e1" stroke-width="4"/><circle cx="94.0" cy="50" r="6" fill="#d97706"/><path d="M 94.0 50 Q 147.0 23.5 200 50" fill="none" stroke="#b45309" stroke-width="4"/><circle cx="200" cy="50" r="7" fill="#059669"/></svg><b>Connected to now</b><span>before now + now</span></div></div>
+    <p class="verbs"><b>Verb ideas.</b> Regular (V2 = -ed): work, cook, clean, call, watch, visit. Irregular: eat &middot; ate &middot; eaten, go &middot; went &middot; gone, drink &middot; drank &middot; drunk, buy &middot; bought &middot; bought.</p>
+  </div>
+  
+<section class="card" style="--c:#047857;--bg:#d1fae5">
+  <h2><span class="num">1</span>Present simple</h2>
+  <div class="top">
+    <div>
+      <p class="row"><b>Meaning:</b> Habits, routines, and facts.</p>
+      <p class="row"><b>Helpful time clues:</b> every day · usually · always · on Mondays</p>
+      <p class="row"><b>Draw when:</b> <i>I eat breakfast every day.</i><br><b>Stamp:</b> many dots. A routine. It happens again and again.</p>
+    </div>
+    <div class="tl"><svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
+        <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
+        <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
+        <rect x="186" y="12" width="32" height="56" rx="10" fill="#d1fae5"/>
+        <line x1="10" y1="50" x2="390" y2="50" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+        <line x1="200" y1="30" x2="200" y2="70" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+        <text x="107.0" y="76" text-anchor="middle" fill="#92400e" font-size="12" font-weight="700">PAST</text>
+        <text x="200" y="10" text-anchor="middle" fill="#047857" font-size="10" font-weight="800">NOW</text>
+        <text x="293.0" y="76" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="700">FUTURE</text>
+        <circle cx="180.0" cy="50" r="5" fill="#059669" opacity="0.7"/><circle cx="200.0" cy="50" r="6" fill="#059669"/><circle cx="220.0" cy="50" r="5" fill="#059669" opacity="0.7"/>
+      </svg></div>
+  </div>
+  <table>
+    <tr><th></th><th>+ Affirmative</th><th>&minus; Negative</th><th>? Question</th></tr>
+    <tr><th>Formula</th><td>subject + <b>V1</b></td><td>subject + <b>don't</b> + <b>V1</b></td><td><b>Do</b> + subject + <b>V1</b>?</td></tr><tr><th>Regular <span>e.g. work</span></th><td>I <b>work</b> at a hotel.</td><td>I <b>don't</b> <b>work</b> on Sunday.</td><td><b>Do</b> you <b>work</b> on Sunday?</td></tr><tr><th>Irregular <span>e.g. eat</span></th><td>I <b>eat</b> breakfast at 7.</td><td>I <b>don't</b> <b>eat</b> meat.</td><td><b>Do</b> you <b>eat</b> meat?</td></tr>
+  </table>
+  <p class="row"><b>he / she / it:</b> She <b>works</b>. · She <b>doesn't</b> <b>work</b>. · <b>Does</b> she <b>work</b>?</p>
+  <p class="row"><b>My sentence:</b> <b>your own idea</b>, true about <b>your</b> life. Different people, different sentences: <span class="models">I <b>drink</b> coffee every morning. &middot; My son <b>plays</b> soccer on Saturdays. &middot; I <b>don't watch</b> TV at night.</span></p>
+  <p class="watch"><b>Watch out!</b> For this action: <s>I am work.</s> → I work.</p>
+</section>
+  <div class="todo"><span><span class="cb"></span>Card 1</span><span><span class="cb"></span>Card 2</span><span><span class="cb"></span>Card 3</span><span class="stop">Cards 2 and 3 are on the back. &rarr;</span></div>
+</div><div class="page">
+  
+<section class="card" style="--c:#b45309;--bg:#fef3c7">
+  <h2><span class="num">2</span>Past simple</h2>
+  <div class="top">
+    <div>
+      <p class="row"><b>Meaning:</b> Finished actions in the past.</p>
+      <p class="row"><b>Helpful time clues:</b> yesterday · last week · 2 days ago · in 2020</p>
+      <p class="row"><b>Draw when:</b> <i>I ate breakfast yesterday.</i><br><b>Stamp:</b> one dot. An event at a point in time.</p>
+    </div>
+    <div class="tl"><svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
+        <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
+        <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
+        <rect x="186" y="12" width="32" height="56" rx="10" fill="#d1fae5"/>
+        <line x1="10" y1="50" x2="390" y2="50" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+        <line x1="200" y1="30" x2="200" y2="70" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+        <text x="107.0" y="76" text-anchor="middle" fill="#92400e" font-size="12" font-weight="700">PAST</text>
+        <text x="200" y="10" text-anchor="middle" fill="#047857" font-size="10" font-weight="800">NOW</text>
+        <text x="293.0" y="76" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="700">FUTURE</text>
+        <circle cx="79.2" cy="50" r="8" fill="#d97706"/>
+      </svg></div>
+  </div>
+  <table>
+    <tr><th></th><th>+ Affirmative</th><th>&minus; Negative</th><th>? Question</th></tr>
+    <tr><th>Formula</th><td>subject + <b>V2</b></td><td>subject + <b>didn't</b> + <b>V1</b></td><td><b>Did</b> + subject + <b>V1</b>?</td></tr><tr><th>Regular <span>e.g. work</span></th><td>I <b>worked</b> yesterday.</td><td>I <b>didn't</b> <b>work</b> yesterday.</td><td><b>Did</b> you <b>work</b> yesterday?</td></tr><tr><th>Irregular <span>e.g. eat</span></th><td>I <b>ate</b> breakfast.</td><td>I <b>didn't</b> <b>eat</b> breakfast.</td><td><b>Did</b> you <b>eat</b> breakfast?</td></tr>
+  </table>
+  
+  <p class="row"><b>My sentence:</b> <b>your own idea</b>, true about <b>your</b> life. Different people, different sentences: <span class="models">I <b>visited</b> my sister last weekend. &middot; I <b>moved</b> here in 2019. &middot; I <b>didn't sleep</b> well last night.</span></p>
+  <p class="watch"><b>Watch out!</b> After did, use V1: <s>Did you went?</s> → Did you go?</p>
+</section>
+  
+<section class="card" style="--c:#1d4ed8;--bg:#dbeafe">
+  <h2><span class="num">3</span>Future simple</h2>
+  <div class="top">
+    <div>
+      <p class="row"><b>Meaning:</b> Predictions, promises, and decisions made now.</p>
+      <p class="row"><b>Helpful time clues:</b> tomorrow · next week · later · soon</p>
+      <p class="row"><b>Draw when:</b> <i>I will eat breakfast tomorrow.</i><br><b>Stamp:</b> one dot. An event at a point in time.</p>
+    </div>
+    <div class="tl"><svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif">
+        <rect x="16" y="12" width="174" height="56" rx="12" fill="#fef3c7"/>
+        <rect x="202" y="12" width="182" height="56" rx="12" fill="#dbeafe"/>
+        <rect x="186" y="12" width="32" height="56" rx="10" fill="#d1fae5"/>
+        <line x1="10" y1="50" x2="390" y2="50" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+        <line x1="200" y1="30" x2="200" y2="70" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+        <text x="107.0" y="76" text-anchor="middle" fill="#92400e" font-size="12" font-weight="700">PAST</text>
+        <text x="200" y="10" text-anchor="middle" fill="#047857" font-size="10" font-weight="800">NOW</text>
+        <text x="293.0" y="76" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="700">FUTURE</text>
+        <circle cx="293.0" cy="50" r="8" fill="#2563eb"/>
+      </svg></div>
+  </div>
+  <table>
+    <tr><th></th><th>+ Affirmative</th><th>&minus; Negative</th><th>? Question</th></tr>
+    <tr><th>Formula</th><td>subject + <b>will</b> + <b>V1</b></td><td>subject + <b>won't</b> + <b>V1</b></td><td><b>Will</b> + subject + <b>V1</b>?</td></tr><tr><th>Regular <span>e.g. work</span></th><td>I <b>will</b> <b>work</b> tomorrow.</td><td>I <b>won't</b> <b>work</b> tomorrow.</td><td><b>Will</b> you <b>work</b> tomorrow?</td></tr><tr><th>Irregular <span>e.g. eat</span></th><td>I <b>will</b> <b>eat</b> later.</td><td>I <b>won't</b> <b>eat</b> later.</td><td><b>Will</b> you <b>eat</b> later?</td></tr>
+  </table>
+  
+  <p class="row"><b>My sentence:</b> <b>your own idea</b>, true about <b>your</b> life. Different people, different sentences: <span class="models">I <b>will call</b> my mom tonight. &middot; It <b>will be</b> cold tomorrow. &middot; I <b>won't be</b> late.</span></p>
+  <p class="watch"><b>Watch out!</b> No -s after will: <s>She will works.</s> → She will work.</p>
+</section>
+  <div class="end"><b>Stop after card 3.</b> Don&rsquo;t do card 4 yet. We do <b>Present continuous</b> together in class. Bring your book on <b>Thursday, November 12</b>!<br>Questions? Ask me before class.</div>
+</div></body></html>

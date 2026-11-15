@@ -1,0 +1,16 @@
+{
+  "verifiedAt": "2026-11-12T23:29:40.504926+00:00",
+  "domain": "https://myesolclass.com",
+  "deploymentId": "dpl_EYqTji6WNfHqA1G5SZSLPSev1n4J",
+  "sourceCommit": "514d57c8177e77cf14b4bad56d4b0088094b8a26",
+  "includedGithubMain": "76d7fa65",
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "quizTests": "57 passed",
+    "generatedQuizzes": "passed",
+    "productionBuild": "ready",
+    "domainAlias": "verified"
+  },
+  "contentUpdate": "Week 9 vocabulary options and verb hints verified; answers and student records preserved"
+}
