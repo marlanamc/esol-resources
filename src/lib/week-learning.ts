@@ -78,8 +78,15 @@ export const WEEK_LEARNING: Record<number, WeekLearning> = {
         ],
     },
     10: {
-        canDo: ["I can say what I am good at (good at cooking).", "I can make a suggestion at a meeting."],
-        pages: [{ section: "gerunds", page: 27, label: "Good at + V1-ing" }],
+        canDo: [
+            "I can say what has just, already, or not yet happened.",
+            "I can look at the time word and choose V2 or have/has + V3 (yesterday / ever).",
+            "I can make a suggestion at a meeting.",
+        ],
+        pages: [
+            { section: "perfect", page: 15, label: "Present perfect: just, already, yet" },
+            { section: "gerunds", page: 27, label: "Good at + V1-ing" },
+        ],
     },
     11: {
         canDo: ["I can ask and answer How long...?", "I can use for and since (for 3 years, since 2020)."],

@@ -125,11 +125,15 @@
     "week": 10,
     "pages": [
       {
+        "section": "perfect",
+        "focus": "Present perfect: just, already, yet"
+      },
+      {
         "section": "gerunds",
         "focus": "Preposition + gerund"
       }
     ],
-    "recommendation": "Focus on good at + -ing and interested in + -ing. The rest of the page is a lookup."
+    "recommendation": "Focus on just, already, and yet, and on time words: specified time takes V2, unspecified time takes have/has + V3. Good at + -ing is supporting practice; the rest of the gerund page is a lookup."
   },
   {
     "week": 11,
