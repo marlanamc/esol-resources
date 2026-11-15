@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-11-11T20:23:32.601010+00:00",
+  "domain": "https://myesolclass.com",
+  "deploymentId": "dpl_Aau9CEDHrCbribtqVKXWEu9SFJvD",
+  "deploymentUrl": "esol-resources-3vgs4ap11-marlies-projects-abe96d86.vercel.app",
+  "sourceCommit": "f17f1043f9d1a8cc8e7d4e33b5f8597bbf8980b8",
+  "health": {
+    "ok": true,
+    "db": "ok",
+    "latencyMs": 647
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "vitest": "1128 passed",
+    "nodeTests": "30 passed",
+    "productionBuild": "passed",
+    "chromeSmoke": "passed; menu test retried",
+    "safariSmoke": "4 passed, 2 pre-existing skips; signed-in map check blocked at test login"
+  }
+}

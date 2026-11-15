@@ -82,7 +82,7 @@
     font-style: italic;
   }
   /* Back side: verb-forms chart from memory + fix-the-mistakes + bonus (prints as page 2). */
-  .copy.back { break-before: page; padding-top: 0.25in; padding-bottom: 0.2in; }
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.2in; }
   .copy.back .item-list li { margin-bottom: 5px; }
   .copy.back .task { margin-bottom: 10px; }
   @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
@@ -125,6 +125,15 @@
   .xw td.c span { position: absolute; top: 1px; left: 3px; font-size: 15px; line-height: 1; }
   .xw-clues { display: flex; gap: 20px; }
   .xw-clues > div { flex: 1; }
+  .story { font-size: 19px; line-height: 2.1; }
+  .story .blank { width: 6em; }
+  .story b.n { font-size: 15px; margin-right: 1px; }
+  .ex-fill { font-style: italic; text-decoration: underline; text-underline-offset: 3px; }
+  .tip { font-size: 15px; border-left: 4px solid #000; padding: 2px 0 2px 9px; margin-bottom: 4px; }
+  .copy:not(.back) { padding-top: 0.4in; padding-bottom: 0.3in; }
+  .xw-wrap { display: flex; gap: 16px; align-items: flex-start; }
+  .xw-wrap .xw { margin: 2px 0 8px; flex: none; }
+  .xw-down p, .xw-across p { font-size: 19px; margin-bottom: 3px; line-height: 1.3; }
   .xw-clues p { font-size: 19px; margin-bottom: 4px; line-height: 1.35; }
   /* Thursday page-2 footer */
   .copy.back .footer-note { margin-top: 2px; padding-top: 0; }
@@ -146,35 +155,38 @@
       <p class="subtitle">Week 9 Quiz opens today at 6 p.m. Volunteering in your community.</p>
       <section class="task">
         <div class="task-title">1&ensp;Mini crossword: Helping words</div>
-        <p class="task-instructions">Use the word bank. One word is extra!</p>
-        <div class="word-bank"><span class="opt">support</span> &middot; <span class="opt">volunteer</span> &middot; <span class="opt">donate</span> &middot; <span class="opt">sign up</span> &middot; <span class="opt">contribute</span></div>
+        <p class="task-instructions">Use <b>every</b> word one time. (6) = 6 letters. Two-word answers: no space.</p>
+        <div class="word-bank"><span class="opt">volunteer</span> &middot; <span class="opt">help out</span> &middot; <span class="opt">support</span> &middot; <span class="opt">contribute</span> &middot; <span class="opt">donate</span> &middot; <span class="opt">sign up</span></div>
+        <p class="tip"><b>donate</b> = give <b>things</b> to people in need &ensp;|&ensp; <b>contribute</b> = give <b>your part</b> to a group</p>
+        <div class="xw-wrap">
         <table class="xw">
-          <tr><td></td><td class="c"><span>1</span></td><td></td><td></td><td></td><td></td><td></td><td class="c"><span>2</span></td><td></td><td></td><td></td></tr>
-          <tr><td class="c"><span>3</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td></td></tr>
-          <tr><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td class="c"><span>4</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td class="c"><span>1</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td></td><td class="c"><span>2</span></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td></tr>
+          <tr><td></td><td></td><td class="c"><span>3</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td></td><td></td><td></td><td class="c"></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td class="c"><span>4</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="c"></td><td></td></tr>
+          <tr><td class="c"><span>5</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td></td><td></td><td></td><td></td><td></td></tr>
         </table>
-        <div class="xw-clues">
-          <div><p><b>Across</b></p>
-          <p><b class="n">3.</b> Can you ___ $5 to the class party?</p>
-          <p><b class="n">4.</b> I don&rsquo;t get paid for this job. I&rsquo;m a ___.</p></div>
-          <div><p><b>Down</b></p>
-          <p><b class="n">1.</b> We don&rsquo;t wear these coats. Let&rsquo;s ___ them.</p>
-          <p><b class="n">2.</b> Does your family ___ your English classes?</p></div>
+          <div class="xw-down"><p><b>Down</b></p>
+          <p><b class="n">1.</b> Does your family ___ your classes? (7)</p>
+          <p><b class="n">2.</b> These coats are too small. Let&rsquo;s ___ them to the shelter. (6)</p></div>
         </div>
+        <div class="xw-across"><p><b>Across</b></p>
+          <p><b class="n">1.</b> I want to ___ for the Saturday shift. Add my name! (6)</p>
+          <p><b class="n">3.</b> Can you ___ at the food bank on Saturday? (7)</p>
+          <p><b class="n">4.</b> Everyone can ___ one idea at the meeting. (10)</p>
+          <p><b class="n">5.</b> I don&rsquo;t get paid for this job. I&rsquo;m a ___. (9)</p></div>
       </section>
       <section class="task">
         <div class="task-title">2&ensp;Give advice</div>
         <p class="task-instructions">Write one sentence with the word in ( ). After <b>can / should / must</b>: V1. No <i>to</i>, no <i>-s</i>.</p>
         <p class="task-example"><b>Example:</b> Your friend is tired. (should) &rarr; You should go to bed early.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> Your friend wants to help at the food bank. (should)<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> Your neighbor is sick. You have a car. Ask her. (Can I...?)<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> Your friend wants to donate dirty clothes. (shouldn&rsquo;t)<span class="answer-line"></span></li>
-          <li><b class="n">4.</b> You want to volunteer. Ask your teacher. (Where should I...?)<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> Your friend feels lonely on weekends. (should)<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> Your coworker&rsquo;s car is broken. You have a car. (Can I...?)<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> A stranger online asks your friend to donate $500. (shouldn&rsquo;t)<span class="answer-line"></span></li>
+          <li><b class="n">4.</b> Your child&rsquo;s school needs volunteers. (How can I...?)<span class="answer-line"></span></li>
         </ol>
       </section>
     </div>
@@ -194,17 +206,10 @@
         </table>
       </section>
       <section class="task">
-        <div class="task-title">4&ensp;Fix the mistakes</div>
-        <p class="task-instructions">Each sentence has <b>one</b> wrong verb. Cross it out. Write the correct form on the line.</p>
-        <p class="task-example"><b>Example:</b> She <s>bring</s> lunch <b>every day</b>. &rarr; <i>brings</i></p>
-        <ol class="item-list">
-          <li><b class="n">1.</b> <b>Every Sunday</b>, he take his mother to church. &rarr; <span class="blank"></span></li>
-          <li><b class="n">2.</b> <b>Yesterday</b>, we didn&rsquo;t brought any toys. &rarr; <span class="blank"></span></li>
-          <li><b class="n">3.</b> <b>Right now</b>, are they take photos of the cleanup? &rarr; <span class="blank"></span></li>
-          <li><b class="n">4.</b> <b>Last week</b>, I taked my son to soccer. &rarr; <span class="blank"></span></li>
-          <li><b class="n">5.</b> She <b>hasn&rsquo;t</b> took a class this year. <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
-          <li><b class="n">6.</b> <b>Have</b> you brung the extra chairs? <span style="white-space: nowrap;">(Present Perfect Tense) &rarr; <span class="blank"></span></span></li>
-        </ol>
+        <div class="task-title">4&ensp;Mini story: Rosa&rsquo;s volunteer day</div>
+        <p class="task-instructions">Write the correct form of the verb. Look at the <b>bold</b> words first. They tell you the time!</p>
+        <p class="task-example"><b>Example:</b> <b>Yesterday</b>, I <span class="ex-fill">brought</span> (bring) cookies to class.</p>
+        <p class="story">Rosa volunteers at the food bank. <b>Every Saturday</b>, she <span class="opt"><b class="n">1</b><span class="blank"></span> (bring)</span> bags of rice. <b>Last Saturday</b>, she <span class="opt"><b class="n">2</b><span class="blank"></span> (take)</span> her son with her. He <b>didn&rsquo;t</b> <span class="opt"><b class="n">3</b><span class="blank"></span> (bring)</span> his jacket, and he was cold! <b>Right now</b>, Rosa is <span class="opt"><b class="n">4</b><span class="blank"></span> (take)</span> photos of the volunteers. Her son asks, &ldquo;Mom, <b>have</b> you <b>ever</b> <span class="opt"><b class="n">5</b><span class="blank"></span> (take)</span> Dad here?&rdquo; Rosa says, &ldquo;No, I <b>haven&rsquo;t</b> <span class="opt"><b class="n">6</b><span class="blank"></span> (bring)</span> him yet. Maybe next week!&rdquo;</p>
       </section>
       <section class="task">
         <div class="task-title">5&ensp;Sneak peek: tonight&rsquo;s lesson</div>
