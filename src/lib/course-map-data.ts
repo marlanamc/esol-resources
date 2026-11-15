@@ -973,29 +973,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Meetings and Suggestions: Matching"
           },
           {
-            "id": "short-i-long-e-lab",
-            "activityId": "pron-short-i-long-e-listening",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": true,
-            "activityType": "pronunciation",
-            "title": "Short i vs Long e Minimal Pair Lab"
-          },
-          {
             "id": "vocab-nov-w2-fill-blank",
             "activityId": "vocab-nov-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Meetings and Suggestions: Fill in the Blank"
           },
           {
             "id": "verb-quiz-6",
             "activityId": "verb-quiz-6",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 10 Quiz"
@@ -1004,7 +995,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "what-are-you-good-at",
             "href": "/grammar-reader/what-are-you-good-at",
             "slot": "extra",
-            "order": 7,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "What Are You Good At?",
@@ -1014,7 +1005,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "time-word-verb-week10",
             "activityId": "time-word-verb-week10",
             "slot": "extra",
-            "order": 8,
+            "order": 7,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Time Words: Which Verb?"
@@ -1066,9 +1057,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Spending and Budgeting: Matching"
           },
           {
-            "id": "compare-prices-practice",
+            "id": "short-i-long-e-lab",
+            "activityId": "pron-short-i-long-e-listening",
             "slot": "required",
             "order": 3,
+            "wrappedGame": true,
+            "activityType": "pronunciation",
+            "title": "Short i vs Long e Minimal Pair Lab"
+          },
+          {
+            "id": "compare-prices-practice",
+            "slot": "required",
+            "order": 4,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Compare Prices Practice"
@@ -1080,14 +1080,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 5,
             "title": "Spending and Budgeting: Fill in the Blank"
           },
           {
             "id": "verb-quiz-9",
             "activityId": "verb-quiz-9",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 11 Quiz"
