@@ -38,6 +38,13 @@ describe("weekly quiz home bar status", () => {
         expect(pickWeeklyQuizStatus({ quizzes: [quiz(4)], completedAtById: new Map(), joinedAt: after(week4.dueAt, 1), now: after(week4.dueAt, 2) })).toBeNull();
     });
 
+    it("shows nothing for a quiz that was already open when the student joined (mid-week start)", () => {
+        const midWeek = after(week4.opensAt, 24); // e.g. a new student starting Tuesday, before Week 4's quiz is due
+        expect(pickWeeklyQuizStatus({ quizzes: [quiz(4)], completedAtById: new Map(), joinedAt: midWeek, now: after(midWeek, 1) })).toBeNull();
+        expect(pickWeeklyQuizStatus({ quizzes: [quiz(4), quiz(5)], completedAtById: new Map(), joinedAt: midWeek, now: after(week5.opensAt, 1) }))
+            .toMatchObject({ state: "open", activityId: "q5" });
+    });
+
     it("links through the class assignment when there is one", () => {
         const status = pick(after(week4.opensAt, 1), [], [{ ...quiz(4), assignmentId: "a1" }]);
         expect(status?.href).toBe("/activity/q4?assignment=a1");
@@ -74,6 +81,11 @@ describe("weekly quiz catch-up on the profile", () => {
     it("does not count quizzes due before the student joined as missing", () => {
         const result = catchUp(after(week5.opensAt, 1), [], after(week3.dueAt, 1));
         expect(result.missing.map((q) => q.activityId)).toEqual(["q4"]);
+    });
+
+    it("does not count a quiz that was already open when the student joined as missing", () => {
+        const result = catchUp(after(week5.dueAt, 1), [], after(week4.opensAt, 24));
+        expect(result.missing.map((q) => q.activityId)).toEqual(["q5"]);
     });
 });
 

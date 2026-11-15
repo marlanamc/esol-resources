@@ -2,7 +2,7 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { buildActivityHref } from "@/lib/learner/navigation";
-import { getWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
+import { getWeeklyQuizSchedule, quizCountsSince } from "@/lib/weekly-quiz-schedule";
 import { CLASS_TIME_ZONE } from "@/data/school-calendar-2026-27";
 
 const DONE_STATUSES = ["submitted", "graded", "completed"];
@@ -51,7 +51,7 @@ export function pickWeeklyQuizStatus(input: {
             return schedule && weekNumber !== null && schedule.opensAt <= input.now ? [{ quiz, weekNumber, ...schedule }] : [];
         })
         .sort((a, b) => b.opensAt.getTime() - a.opensAt.getTime())[0];
-    if (!current || input.joinedAt > current.dueAt) return null;
+    if (!current || !quizCountsSince(current, input.joinedAt)) return null;
 
     const completedAt = input.completedAtById.get(current.quiz.id);
     if (completedAt && input.now.getTime() - completedAt.getTime() > DONE_BAR_MS) return null;
@@ -170,6 +170,7 @@ export function buildWeeklyQuizCatchUp(input: {
         const done = input.doneById.get(quiz.id);
         return [{
             done: Boolean(done),
+            counts: quizCountsSince(schedule, input.joinedAt),
             item: {
                 activityId: quiz.id,
                 title: quiz.title ?? `Week ${weekNumber} Quiz`,
@@ -182,7 +183,7 @@ export function buildWeeklyQuizCatchUp(input: {
     });
     return {
         missing: items
-            .filter(({ done, item }) => !done && item.dueAt <= input.now && item.dueAt >= input.joinedAt)
+            .filter(({ done, counts, item }) => !done && counts && item.dueAt <= input.now)
             .map(({ item }) => item)
             .sort((a, b) => a.dueAt.getTime() - b.dueAt.getTime()),
         notPerfect: items

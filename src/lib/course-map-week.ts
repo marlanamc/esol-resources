@@ -14,6 +14,7 @@ import {
 import {
     buildCourseMapCatchUp,
     buildMapActivityHref,
+    limitCatchUpToStartWeek,
     type CatchUpWeek,
     findFirstIncompleteRequired,
     resolveWeekActivityLaunch,
@@ -21,6 +22,7 @@ import {
 import {
     resolveCurrentWeek,
     resolveEarlyAccessWeek,
+    resolveScheduledTeachingWeek,
     visibleWeekNumbers,
 } from "@/lib/course-map-current-week";
 import {
@@ -282,17 +284,41 @@ export async function getProfileCourseMapProgress(
     const snapshot = await buildCurrentWeekSnapshot(user, options);
     if (!snapshot) return null;
 
-    const assignmentByActivityId = await loadAssignmentByActivityId(user.id);
+    const [assignmentByActivityId, startWeek] = await Promise.all([
+        loadAssignmentByActivityId(user.id),
+        snapshot.mode === "classroom" ? loadClassroomStartWeek(user.id) : Promise.resolve(null),
+    ]);
     return {
         currentWeekNumber: snapshot.weekNumber,
-        weeks: buildCourseMapCatchUp(
-            snapshot.units,
-            snapshot.guidedProgress,
-            snapshot.weekNumber,
-            assignmentByActivityId
+        weeks: limitCatchUpToStartWeek(
+            buildCourseMapCatchUp(
+                snapshot.units,
+                snapshot.guidedProgress,
+                snapshot.weekNumber,
+                assignmentByActivityId
+            ),
+            startWeek
         ),
         completedWeeksCount: countCompletedWeeks(snapshot.units, snapshot.guidedProgress),
     };
+}
+
+/**
+ * The course week a classroom student started in: their current class
+ * enrollment (or the class start, if later) mapped onto the school calendar.
+ * Null when there is no active enrollment, so nothing is hidden.
+ */
+async function loadClassroomStartWeek(userId: string): Promise<number | null> {
+    const enrollment = await withPrismaReadRetry(() =>
+        prisma.classEnrollment.findFirst({
+            where: { studentId: userId, status: "active" },
+            orderBy: { joinedAt: "desc" },
+            select: { joinedAt: true, class: { select: { createdAt: true } } },
+        })
+    ).catch(() => null);
+    if (!enrollment) return null;
+    const startedAt = new Date(Math.max(enrollment.joinedAt.getTime(), enrollment.class.createdAt.getTime()));
+    return resolveScheduledTeachingWeek(startedAt)?.weekNumber ?? null;
 }
 
 export interface ThisWeekPanelData {

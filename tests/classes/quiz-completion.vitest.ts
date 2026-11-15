@@ -62,4 +62,17 @@ describe("teacher quiz completion", () => {
         expect(w4.expected).toBe(3);
         expect(w4.missing.map((s) => s.id)).not.toContain("d");
     });
+
+    it("does not expect a quiz that was already open when the student joined", () => {
+        const midWeek = student("m", "Marcos", new Date(week4.opensAt.getTime() + 24 * 3_600_000));
+        const [w5, w4] = buildQuizCompletion({
+            quizzes: [quiz(4), quiz(5)],
+            students: [...students, midWeek],
+            submissions: [],
+            classCreatedAt,
+            now: new Date(week5.dueAt),
+        });
+        expect(w4.missing.map((s) => s.id)).not.toContain("m");
+        expect(w5.missing.map((s) => s.id)).toContain("m");
+    });
 });

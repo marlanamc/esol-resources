@@ -354,6 +354,16 @@ export function buildCourseMapCatchUp(
         }));
 }
 
+/**
+ * A student who joined mid-year should not see every week before they
+ * arrived as "unfinished". Weeks before `startWeek` stay only if they are
+ * already finished (a bonus check), so old weeks never pile up as debt.
+ */
+export function limitCatchUpToStartWeek(weeks: CatchUpWeek[], startWeek: number | null): CatchUpWeek[] {
+    if (startWeek === null) return weeks;
+    return weeks.filter((week) => week.weekNumber >= startWeek || week.isDone || week.isCurrent);
+}
+
 export function focusMapWeekHeading(weekNumber: number): void {
     if (typeof document === "undefined") return;
     window.requestAnimationFrame(() => {
