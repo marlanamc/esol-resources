@@ -89,26 +89,23 @@ export const WEEK_LEARNING: Record<number, WeekLearning> = {
         ],
     },
     11: {
+        canDo: ["I can say big numbers and prices.", "I can talk about spending, saving, and a budget."],
+        pages: [{ section: "perfect", page: 15, label: "Review: just, already, yet" }],
+    },
+    12: {
         canDo: ["I can ask and answer How long...?", "I can use for and since (for 3 years, since 2020)."],
         pages: [
             { section: "prepositions-time", page: 6, label: "For and since" },
             { section: "perfect", page: 15, label: "Present perfect: still true now" },
         ],
     },
-    12: {
+    13: {
         canDo: ["I can compare two things (bigger, more expensive).", "I can say which is the best or the most."],
         pages: [{ section: "comparisons", page: 29, label: "Comparing: -er, more, the most" }],
     },
-    13: {
+    14: {
         canDo: ["I can ask How much...? and How many...?", "I can talk about things I can and can't count."],
         pages: [{ section: "pronouns", page: 4, label: "A/an, plurals, and uncountable nouns" }],
-    },
-    14: {
-        canDo: ["I can read a simple news headline.", "I can make a prediction about a chart."],
-        pages: [
-            { section: "comparisons", page: 29, label: "Comparing amounts and changes" },
-            { section: "connectors", page: 21, label: "But, so, because" },
-        ],
     },
     15: {
         canDo: ["I can use the tenses I know in a short story.", "I can choose present, past, or future."],
