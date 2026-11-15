@@ -136,8 +136,8 @@ def speak(p, key):
       <b>B:</b> I&rsquo;ve lived here since 2021.<br>
       <b>A:</b> Have you ever worked in a big kitchen?<br>
       <b>B:</b> Yes, I have. I worked in a hotel kitchen for three years.<br>
-      <b>A:</b> What are you good at?<br>
-      <b>B:</b> I&rsquo;m good at cooking fast, and I&rsquo;m good at working with a team.
+      <b>A:</b> Have you finished your food safety certificate yet?<br>
+      <b>B:</b> Yes, I have. I&rsquo;ve already finished it.
     </div>
   </div>
   <div class="task">

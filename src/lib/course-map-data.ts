@@ -992,20 +992,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Week 10 Quiz"
           },
           {
-            "id": "what-are-you-good-at",
-            "href": "/grammar-reader/what-are-you-good-at",
-            "slot": "extra",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "What Are You Good At?",
-            "badge": "Supporting practice"
-          },
-          {
             "id": "time-word-verb-week10",
             "activityId": "time-word-verb-week10",
             "slot": "extra",
-            "order": 7,
+            "order": 6,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Time Words: Which Verb?"
@@ -2018,10 +2008,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "guide",
             "title": "Phrasal Verbs at Work",
             "badge": "Optional reference"
+          },
+          {
+            "id": "what-are-you-good-at",
+            "href": "/grammar-reader/what-are-you-good-at",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "What Are You Good At?",
+            "badge": "Supporting practice"
           }
         ],
         "goal": "I can describe what I enjoy doing and what I want to do at work.",
-        "reviewPractice": "Recall W10 preposition + -ing and W18 to + verb. Keep phrasal verbs in vocabulary and speaking."
+        "reviewPractice": "Recall W18 to + verb. Optional guide: good at + -ing (I'm good at cooking) pairs with enjoy + -ing. Keep phrasal verbs in vocabulary and speaking."
       }
     ]
   },

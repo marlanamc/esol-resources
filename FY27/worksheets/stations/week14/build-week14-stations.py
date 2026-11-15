@@ -212,9 +212,9 @@ GAME = [
     ("Have you ever", [(100, "Make a question: <i>ever / you / eaten / have / sushi</i>", "Have you ever eaten sushi?"),
                        (200, "Answer short: Have you ever seen snow?", "Yes, I have. / No, I haven&rsquo;t."),
                        (300, "Fix it: <i>Have you ever went to New York?</i>", "Have you ever <b>been</b> to New York?")]),
-    ("Good at", [(100, "I&rsquo;m good at (cook / cooking).", "cooking"),
-                 (200, "Fix it: <i>He is good in fixing cars.</i>", "He is good <b>at</b> fixing cars."),
-                 (300, "Say 2 things you are good at.", "good at + V-ing, 2 times")]),
+    ("Just / already / yet", [(100, "I have (yet / already) eaten.", "already"),
+                 (200, "Fix it: <i>I haven&rsquo;t finished already.</i>", "I haven&rsquo;t finished <b>yet</b>."),
+                 (300, "Say 2 things you have already done today.", "have already + V3, 2 times")]),
     ("For / since", [(100, "___ 2019", "since"), (200, "___ six months", "for"),
                      (300, "Today is Dec. 15, 2026. <i>since 2020</i> = for how long?", "for six years")]),
     ("Bigger / better", [(100, "Comparative of <b>cheap</b>?", "cheaper"), (200, "Superlative of <b>good</b>?", "the best"),
@@ -250,7 +250,7 @@ def game(p, key):
     <div class="textbox" style="line-height:2.3;">
       This fall, I have learned {p.b("<i>answers vary: have + V3</i>", "long")}.<br>
       Now I can {p.b("<i>answers vary: can + V1</i>", "long")} in English.<br>
-      I&rsquo;m good at {p.b("<i>answers vary: + V-ing</i>", "long")}, but I&rsquo;m not good at {p.b("<i>+ V-ing</i>")} yet.<br>
+      I can already {p.b("<i>answers vary: + V1</i>", "long")}, but I can&rsquo;t {p.b("<i>+ V1</i>")} yet.<br>
       The hardest thing for me was {p.b("<i>answers vary</i>", "long")}.<br>
       English is easier than {p.b("<i>answers vary</i>")} now. &#128522;<br>
       Over the break, I should {p.b("<i>answers vary: should + V1</i>", "long")}.<br>
@@ -399,7 +399,7 @@ def leader_guide():
   </div>
   <div class="box">
     <h2>Station 4: REVIEW GAME (pages 7&ndash;8 + game sheet)</h2>
-    <p>The judge&rsquo;s answers are on page 2 of the game sheet. <b>Fall review:</b> answers vary. Look for <i>have + V3, can + V1, good at + V-ing, easier than, should + V1, If &hellip; will</i>. The &ldquo;practice more&rdquo; checks are useful for planning January review.</p>
+    <p>The judge&rsquo;s answers are on page 2 of the game sheet. <b>Fall review:</b> answers vary. Look for <i>have + V3, can + V1, already / yet, easier than, should + V1, If &hellip; will</i>. The &ldquo;practice more&rdquo; checks are useful for planning January review.</p>
   </div>
   <div class="box">
     <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
