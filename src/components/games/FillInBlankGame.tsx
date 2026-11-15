@@ -12,6 +12,20 @@ interface FillInBlankQuestion {
     explanation?: string;
 }
 
+/** Optional yes/no rule card shown under a wrong answer (JSON content only). */
+interface FillInBlankRuleCard {
+    title: string;
+    prompt: string;
+    columns: Array<{ label: string; result: string; examples?: string }>;
+}
+
+/** Opt-in display settings, read from top-level JSON content fields. */
+interface FillInBlankSettings {
+    /** Show each question's explanation right away instead of behind "Why?". */
+    revealExplanation: boolean;
+    ruleCard: FillInBlankRuleCard | null;
+}
+
 interface Props {
     contentStr: string;
     activityId?: string;
@@ -24,6 +38,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
         () => shuffleArray(parseQuestions(contentStr)),
         [contentStr]
     );
+    const settings = useMemo(() => parseSettings(contentStr), [contentStr]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -196,7 +211,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                     <h3 className="text-2xl md:text-3xl font-bold leading-relaxed text-[var(--color-text)]">
                         {currentQuestion.sentence.split("_____").map((part, idx, arr) => (
                             <span key={idx}>
-                                {part}
+                                {renderHighlights(part)}
                                 {idx < arr.length - 1 && (
                                     <span className="inline-block min-w-[88px] sm:min-w-[140px] border-b-4 border-dashed border-[var(--color-primary)] mx-2 pb-1"></span>
                                 )}
@@ -267,7 +282,26 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                                 The correct answer is: <strong>{currentQuestion.correctAnswer}</strong>
                             </p>
                         )}
-                        {currentQuestion.explanation && (
+                        {currentQuestion.explanation && settings.revealExplanation && (
+                            <p className="mt-1">{renderBold(currentQuestion.explanation)}</p>
+                        )}
+                        {!isCorrect && settings.ruleCard && (
+                            <div className="mt-3 rounded-lg border-2 border-[var(--color-text)] bg-[var(--color-surface-elevated)] p-3 text-[var(--color-text)]">
+                                <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-text-muted)]">
+                                    {settings.ruleCard.title}
+                                </p>
+                                <p className="mt-1">{renderBold(settings.ruleCard.prompt)}</p>
+                                <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+                                    {settings.ruleCard.columns.map((column) => (
+                                        <div key={column.label} className="rounded-md bg-[var(--color-bg-light)] p-2">
+                                            <p><strong>{column.label}</strong> → {column.result}</p>
+                                            {column.examples && <p className="mt-1 italic">{column.examples}</p>}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        {currentQuestion.explanation && !settings.revealExplanation && (
                             <div className="mt-3">
                                 <button
                                     onClick={() => setShowExplanation(!showExplanation)}
@@ -337,6 +371,49 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
             )}
         </div>
     );
+}
+
+/** `**time word**` in a sentence → highlighted, so learners look there first. */
+function renderHighlights(text: string) {
+    return text.split(/\*\*(.+?)\*\*/g).map((piece, idx) =>
+        idx % 2 === 1
+            ? <mark key={idx} className="rounded-md bg-amber-200 px-1 text-inherit dark:bg-amber-400/40">{piece}</mark>
+            : piece
+    );
+}
+
+function renderBold(text: string) {
+    return text.split(/\*\*(.+?)\*\*/g).map((piece, idx) =>
+        idx % 2 === 1 ? <strong key={idx}>{piece}</strong> : piece
+    );
+}
+
+function parseSettings(content: string): FillInBlankSettings {
+    const defaults: FillInBlankSettings = { revealExplanation: false, ruleCard: null };
+    let parsed: unknown;
+    try {
+        parsed = JSON.parse(content);
+    } catch {
+        return defaults;
+    }
+    if (!parsed || typeof parsed !== "object") return defaults;
+    const obj = parsed as { revealExplanation?: unknown; ruleCard?: unknown };
+    const card = obj.ruleCard as Partial<FillInBlankRuleCard> | undefined;
+    const ruleCard =
+        card &&
+        typeof card.title === "string" &&
+        typeof card.prompt === "string" &&
+        Array.isArray(card.columns)
+            ? {
+                title: card.title,
+                prompt: card.prompt,
+                columns: card.columns
+                    .filter((c): c is FillInBlankRuleCard["columns"][number] =>
+                        !!c && typeof c.label === "string" && typeof c.result === "string")
+                    .map((c) => ({ label: c.label, result: c.result, examples: typeof c.examples === "string" ? c.examples : undefined })),
+            }
+            : null;
+    return { revealExplanation: obj.revealExplanation === true, ruleCard };
 }
 
 // Parse the content string into questions

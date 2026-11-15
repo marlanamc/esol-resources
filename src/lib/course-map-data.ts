@@ -1009,6 +1009,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "guide",
             "title": "What Are You Good At?",
             "badge": "Supporting practice"
+          },
+          {
+            "id": "time-word-verb-week10",
+            "activityId": "time-word-verb-week10",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Time Words: Which Verb?"
           }
         ],
         "goal": "I can describe what has just happened, what has already happened, and what has not happened yet.",
