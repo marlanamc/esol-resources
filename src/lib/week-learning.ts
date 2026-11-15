@@ -83,10 +83,7 @@ export const WEEK_LEARNING: Record<number, WeekLearning> = {
             "I can look at the time word and choose V2 or have/has + V3 (yesterday / ever).",
             "I can make a suggestion at a meeting.",
         ],
-        pages: [
-            { section: "perfect", page: 15, label: "Present perfect: just, already, yet" },
-            { section: "gerunds", page: 27, label: "Good at + V1-ing" },
-        ],
+        pages: [{ section: "perfect", page: 15, label: "Present perfect: just, already, yet" }],
     },
     11: {
         canDo: ["I can say big numbers and prices.", "I can talk about spending, saving, and a budget."],
@@ -161,7 +158,7 @@ export const WEEK_LEARNING: Record<number, WeekLearning> = {
     23: {
         canDo: ["I can say what I enjoy doing and want to do at work.", "I can use work phrases like clock in and pick up."],
         pages: [
-            { section: "gerunds", page: 27, label: "Enjoy doing vs. want to do" },
+            { section: "gerunds", page: 27, label: "Enjoy doing vs. want to do; good at + V-ing" },
             { section: "verb-lists", page: 28, label: "Enjoy, avoid, finish; want, need, plan" },
         ],
     },

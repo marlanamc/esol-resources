@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Week 12 Tuesday stations, Tue 12/1/26: review (zero/first conditionals, can/should/must,
-have you ever, good at) with money and banking.
+have you ever, just / already / yet) with money and banking.
 
 Quiz verbs: buy, sell. Vocab: returns and financial problems (exchange, refund,
 withdraw, deposit, charge, dispute). Stations: 1 WARM-UP, 2 SPEAK (B/V + i/ee review),
@@ -33,7 +33,7 @@ def warmup(p, key):
     mix = [("If the ATM (", "isn&rsquo;t", "won&rsquo;t be", 0, ") working, I will go inside the bank."),
            ("You (", "must show", "must to show", 0, ") your ID to open an account."),
            ("Have you ever (", "send", "sent", 1, ") money to another country?"),
-           ("Is she good at (", "save", "saving", 1, ") money?"),
+           ("I haven&rsquo;t paid my phone bill (", "already", "yet", 1, ")."),
            ("If I don&rsquo;t get paid tomorrow, I (", "didn&rsquo;t pay", "won&rsquo;t pay", 1, ") my rent."),
            ("You (", "shouldn&rsquo;t share", "shouldn&rsquo;t shares", 0, ") your PIN.")]
     li1 = "".join(f'<li><b class="n">{i}.</b> {a}{p.circ(x, r == 0)} / {p.circ(y, r == 1)}{b}</li>'
@@ -182,7 +182,7 @@ QUESTIONS = [
     ("&#128181;", "What will you do if you get paid extra this week?", "If + V1, will + V1", "If I get paid extra, I will save it."),
     ("&#128200;", "What should you do if a store charges you two times?", "should + V1", "You should call the store."),
     ("&#128091;", "Have you ever lost your wallet?", "Yes, I have. / No, never.", "No, I have never lost my wallet."),
-    ("&#128176;", "Are you good at saving money?", "good at + V-ing", "Yes, I&rsquo;m good at saving money."),
+    ("&#128176;", "Have you paid all your bills yet this month?", "already / not yet", "Yes, I&rsquo;ve already paid them. / No, not yet."),
     ("&#128273;", "What should you do if a stranger asks for your PIN?", "shouldn&rsquo;t / must not + V1", "You must not share your PIN."),
     ("&#128717;&#65039;", "Have you ever returned something to a store?", "Yes, I have. + When did you&hellip;?", "Yes, I have. I returned shoes last month."),
     ("&#128176;", "What can you buy for $5?", "can + V1", "I can buy a coffee and a muffin."),
@@ -190,7 +190,7 @@ QUESTIONS = [
     ("&#127759;", "Have you ever sent money to another country?", "Have you ever + V3?", "Yes, I have. I sent money to my mother."),
     ("&#127974;", "What must you bring to open a bank account?", "must + V1", "You must bring your ID."),
     ("&#9200;", "What happens if you pay a bill late?", "If + V1, V1", "If you pay late, you pay a fee."),
-    ("&#129518;", "Are you good at math or at comparison shopping?", "good at + V-ing / noun", "I&rsquo;m good at comparison shopping."),
+    ("&#129518;", "Have you already done your grocery shopping this week?", "already / yet + V3", "Yes, I&rsquo;ve already done it. / No, I haven&rsquo;t done it yet."),
     ("&#127873;", "What will you buy if you have $100 tomorrow?", "If + V1, will + V1", "If I have $100, I will buy winter boots."),
     ("&#127970;", "Which bank or store do you recommend? Why should we go there?", "should + V1", "You should go to Market Basket. It&rsquo;s cheap."),
 ]
@@ -210,7 +210,7 @@ def game(p, key):
   <div class="gram3" style="font-size:15px;">
     <div><b>If</b> it rains, I <b>take</b> the bus.<br><b>If</b> it rains tomorrow, I <b>will take</b> the bus.</div>
     <div>You <b>should / must / can</b> + V1.<br>No <i>to</i>, no <i>-s</i>.</div>
-    <div><b>Have you ever</b> + V3?<br>I&rsquo;m <b>good at</b> + V-ing.</div>
+    <div><b>Have you ever</b> + V3?<br>I&rsquo;ve <b>already</b> paid. / Not <b>yet</b>.</div>
   </div>
   {L.board(items, key)}
   {L.SCORE}
@@ -434,7 +434,7 @@ def leader_guide():
     words = "".join(f'<tr><td class="n">{i + 1}</td><td>{PAIRS[i][2]}</td><td class="n">{i + 5}</td><td>{PAIRS[i + 4][2]}</td></tr>' for i in range(4))
     which = "".join(f'<li><b>{c}.</b> {(a if c == "a" else b)}</li>' for a, b, c in WHICH)
     top = L.leader_top(12, "12/1/26", STATIONS, [
-        "<b>This week:</b> <b>review</b> (if, can / should / must, have you ever, good at) with money words. Quiz verbs: <b>buy, sell</b>. Week 12 Quiz opens Thu 12/3. Week 11 Quiz opens today, due 12/8.",
+        "<b>This week:</b> <b>review</b> (if, can / should / must, have you ever, just / already / yet) with money words. Quiz verbs: <b>buy, sell</b>. Week 12 Quiz opens Thu 12/3. Week 11 Quiz opens today, due 12/8.",
         "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Print the 2 color pages (2 copies) and the self-check card.",
         "<b>Floating:</b> start each block at <b>Station 4</b> (show the receipt: <b>T</b> and <b>FS</b>; do Part B #1 together). Then Station 3, then Station 1.",
         "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
