@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
-import { readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
+import { quizCountsSince, readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 
 const DONE_STATUSES = ["submitted", "graded", "completed"];
 
@@ -22,7 +22,7 @@ export type QuizCompletion = {
 
 /**
  * Same rules as the student evaluation's required quizzes: a scheduled quiz is
- * released once it opens, and only counts for students enrolled before it was due.
+ * released once it opens, and only counts for students enrolled before it opened.
  */
 export function buildQuizCompletion(input: {
     quizzes: { id: string; title: string; content: string }[];
@@ -55,7 +55,7 @@ export function buildQuizCompletion(input: {
             const schedule = readWeeklyQuizSchedule(quiz.content);
             if (!schedule || input.now < schedule.opensAt) return [];
             const expected = input.students.filter(
-                (s) => schedule.dueAt >= since(s, input.classCreatedAt),
+                (s) => quizCountsSince(schedule, since(s, input.classCreatedAt)),
             );
             return [
                 {

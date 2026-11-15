@@ -15,6 +15,16 @@ export function getWeeklyQuizSchedule(weekNumber: number): { opensAt: Date; dueA
   return { opensAt: at(3), dueAt: at(8) };
 }
 
+/**
+ * A weekly quiz counts for a student only if it opened after they started
+ * (`since` = their enrollment, or the class start if later). Someone who joins
+ * mid-week is not handed the quiz that was already running when they arrived;
+ * their first quiz is the next one to open.
+ */
+export function quizCountsSince(schedule: { opensAt: Date }, since: Date): boolean {
+  return schedule.opensAt >= since;
+}
+
 export function readWeeklyQuizSchedule(content?: string | null) {
   if (!content) return null;
   try {

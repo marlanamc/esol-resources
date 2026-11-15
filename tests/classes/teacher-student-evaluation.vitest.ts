@@ -1,3 +1,4 @@
+import { getWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
 import { describe, expect, it } from 'vitest';
 import {
     buildRequiredQuizzes,
@@ -103,6 +104,12 @@ describe('current-class required weekly quizzes', () => {
             }),
         ).toEqual([]);
         expect(quizzes({ since: new Date('2026-10-14T00:00:00Z') })).toEqual([]);
+    });
+
+    it('does not require a quiz that was already open when the student enrolled', () => {
+        const week4 = getWeeklyQuizSchedule(4)!;
+        expect(quizzes({ since: new Date(week4.opensAt.getTime() + 1000) })).toEqual([]);
+        expect(quizzes({ since: new Date(week4.opensAt.getTime() - 1000) })).toHaveLength(1);
     });
     it('uses the same before-class deadline and opening schedule as students', () => {
         expect(quizzes()[0]).toMatchObject({ status: 'due', dueAt: '2026-10-13T22:00:00.000Z' });

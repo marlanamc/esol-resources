@@ -1,5 +1,5 @@
 import { CLASS_TIME_ZONE } from '@/data/school-calendar-2026-27';
-import { readWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
+import { quizCountsSince, readWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
 export type EvaluationActivity = {
     id: string;
     title: string;
@@ -129,8 +129,8 @@ export function buildRequiredQuizzes(input: {
         .flatMap((activity) => {
             const schedule = readWeeklyQuizSchedule(activity.content);
             // Only current-class map/assignment activities enter this function. Legacy
-            // verb-only quizzes and quizzes due before enrollment are not requirements.
-            if (!schedule || activity.deletedAt || schedule.dueAt < input.since) return [];
+            // verb-only quizzes and quizzes that opened before enrollment are not requirements.
+            if (!schedule || activity.deletedAt || !quizCountsSince(schedule, input.since)) return [];
             const submission = input.submissions
                 .filter(
                     (row) =>
