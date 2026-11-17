@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Week 10 Tuesday stations, MODIFIED: Tue 11/17/26. 3 longer stations instead of 4.
+"""Week 10 Tuesday Packet: Tue 11/17/26. Whole class, no stations.
 
-Week 9's "Have you ever...?" was hard, so this night slows down:
-  Page 1      WRITING WARM-UP, everyone together (prompt + writing lines)
-  Station 1   WARM-UP + GAME, on your own then with your group (reuses the
-              original Week 10 warm-up pages and the Have you ever game)
-  Station 2   CARD GAME with a teacher (Matt), no page
-  Station 3   TIME WORDS with a teacher (Marlana): Past Simple vs Present
-              Perfect, then finish on the app's Time Indicators game
+Was a 3-station night; the volunteer can't come (Nov 16), so the class does the
+same pages in the same order together, then a class game at the end:
+  Page 1      WRITING WARM-UP, everyone
+  Part 1      TIME WORDS (pages 2-4, together): Past Simple vs Present Perfect,
+              then the app's Time Indicators game
+  Part 2      WARM-UP (pages 5-6, on your own) + Have you ever game (page 7, small groups)
+  End         class game
   Finished early: verb charts + write about you
 
 The original 4-station set stays in ../week10/ for another day; this script
@@ -30,14 +30,7 @@ W10 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(W10)
 
 STEM = "week10-modified-day1-2026-11-17"
-STRIP = ('  <div class="strip"><div class="name-row">Name: <span class="blank"></span> '
-         'My group: &nbsp;A &nbsp; B &nbsp; C</div></div>\n')
-ROTATION = [("A", [1, 2, 3]), ("B", [2, 3, 1]), ("C", [3, 1, 2])]
-STATIONS = [
-    ("WARM-UP + GAME", "On your own, then with your group.", "Pages 2&ndash;4"),
-    ("CARD GAME", "With a teacher. No paper.", "&mdash;"),
-    ("TIME WORDS", "With a teacher. Then the app.", "Pages 5&ndash;7"),
-]
+STRIP = '  <div class="strip"><div class="name-row">Name: <span class="blank"></span></div></div>\n'
 
 EXTRA_CSS = """
   .wkey { margin-bottom: 8px; }
@@ -83,6 +76,8 @@ EXTRA_CSS = """
   .app { border: 2.5px solid #000; border-radius: 14px; padding: 8px 14px; display: flex; gap: 14px; align-items: center; }
   .app .ic { font-size: 40px; line-height: 1; }
   .app .zones { display: flex; gap: 8px; margin-top: 4px; font-size: 15px; }
+  .starters { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+  .starters span { white-space: normal; margin: 0; }
   .app .zones div { border: 1.5px solid #000; border-radius: 8px; padding: 2px 8px; }
 """
 
@@ -160,17 +155,43 @@ def vocab_task(p):
   </div>"""
 
 
+# Nov 16: the 3 one-line bonus prompts became a Week 8-style paragraph (starters box + lines + check).
+STARTERS = ["Last week, I met ___.", "We talked about ___.",
+            "At home, I don&rsquo;t speak ___.", "At work, I speak ___.",
+            "I have never spoken ___.", "Next week, I will meet ___."]
+SAMPLE = ["<i>Sample (answers vary):</i> Last week, I met my new neighbor.",
+          "We talked about our kids and the park. At home, I don&rsquo;t speak",
+          "English. At work, I speak English and Spanish. I have never spoken",
+          "at a meeting. Next week, I will meet my neighbor for coffee.",
+          "Check for: <b>met</b> (V2), <b>don&rsquo;t speak</b>, <b>have</b> + <b>spoken</b> (V3)."]
+
+
+def bonus_paragraph(p):
+    spans = "".join(f"\n      <span>{t}</span>" for t in STARTERS)
+    lines = ("".join(f'<div class="line ans">{t}</div>' for t in SAMPLE) + '<div class="line"></div>'
+             if p.key else '<div class="line"></div>' * 6)
+    return f"""<div class="task">
+    <h2>6. Write a paragraph: meeting people</h2>
+    <p class="how">Write <b>5 sentences</b> about <b>your</b> life. Start with these. <b>You</b> finish them with your own ideas.</p>
+    <div class="bank starters">{spans}
+    </div>
+    {lines}
+    <p class="how" style="margin-top:6px;"><b>Check:</b> &#9744; I used <b>met</b> (V2). &nbsp; &#9744; I used <b>have</b> + V3. &nbsp; &#9744; I read my paragraph to a partner.</p>
+  </div>"""
+
 def station1(key):
     p = L.P(key)
-    lab, sub = "STATION 1: WARM-UP + GAME", "on your own, then with your group"
+    lab = "PART 2: WARM-UP + GAME"
     wu = W10.warmup(p, key).replace(L.NAME_STRIP, "")
     wu, n = re.subn(r'<div class="task">\s*<h2>1\. Odd one out</h2>.*?</div>', vocab_task(p), wu, count=1, flags=re.S)
     assert n == 1
-    wu = renumber(wu, {1: 2, 2: 3}, lab, "on your own")
+    wu, n = re.subn(r'<div class="task">\s*<h2>6\. Bonus: Your turn</h2>.*?Ideas: at a meeting.*?</p>\s*<div class="line[^"]*">.*?</div>\s*</div>', bonus_paragraph(p), wu, count=1, flags=re.S)
+    assert n == 1
+    wu = renumber(wu, {1: 5, 2: 6}, lab, "on your own")
     # Phrase bank page dropped (Nov 13): hand out the week09-have-you-ever phrase bank sheet separately.
     game = re.sub(r'<section class="page pbp">.*?</section>\n', "", W10.talk(p, key), count=1, flags=re.S)
     game = game.replace("Look at page 5.", "Look at your phrase bank sheet.")
-    game = renumber(game, {6: 4}, lab, "with your group")
+    game = renumber(game, {6: 7}, lab, "in small groups")
     return wu + game
 
 
@@ -286,7 +307,7 @@ def have_page(key):
       <div>{PHOTO}<p><i>I <b>ate</b> sushi <b>yesterday</b>.</i><br>An old photo with a date. It is finished. &rarr; <b>V2</b></p></div>
     </div>
   </div>"""
-    return L.page("", "STATION 3: TIME WORDS", "start here: why <i>have</i>? &middot; with a teacher", 5, body, key)
+    return L.page("", "PART 1: TIME WORDS", "why <i>have</i>? &middot; together", 2, body, key)
 
 
 def station3(key):
@@ -363,57 +384,49 @@ def station3(key):
       <div class="zones"><div><b>Specified Time</b> &rarr; Use Past Simple</div><div><b>Unspecified Time</b> &rarr; Use Present Perfect</div></div>
     </div>
   </div>"""
-    lab = "STATION 3: TIME WORDS"
+    lab = "PART 1: TIME WORDS"
     return (have_page(key)
-            + L.page("", lab, "V2 or have + V3? &middot; with a teacher", 6, page6, key)
-            + L.page("", lab, "with a teacher", 7, page7, key))
+            + L.page("", lab, "V2 or have + V3? &middot; together", 3, page6, key)
+            + L.page("", lab, "together", 4, page7, key))
 
 
 def packet(key):
     p = L.P(key)
     early = (renumber(L.verb_charts(8, W10.MEET, "she", W10.SPEAK_V, "they", key), {})
              + L.write_about_you_page(W10.PB_BACK, key, pg=9).replace("look at page 5 for help", "use your phrase bank sheet"))
-    body = writing_warmup(p, key) + station1(key) + station3(key) + early
+    body = writing_warmup(p, key) + station3(key) + station1(key) + early
     css = L.packet_css(key) + L.NO_COVER_CSS + W10.PB_CSS + EXTRA_CSS
-    return L.doc("Week 10 (Modified) Tuesday Stations Packet" + (" (Answer Key)" if key else ""), css, body)
+    return L.doc("Week 10 Tuesday Packet" + (" (Answer Key)" if key else ""), css, body)
 
 
 def leader_guide():
-    rows = "".join(
-        f'<tr><td class="g">{g}</td><td>Page 1: writing</td>' + "".join(f"<td>{n} &middot; {STATIONS[n - 1][0]}</td>" for n in order) + "</tr>"
-        for g, order in ROTATION)
     s_words = ", ".join(w for w, c in SORT_WORDS if c == "S")
     u_words = ", ".join(w for w, c in SORT_WORDS if c == "U")
     choose = " &middot; ".join(f"{i} {c[3]}" for i, c in enumerate(CHOOSE + QUESTIONS2, 1))
     fix = " &middot; ".join(f"{i} {'&#10003;' if ok else f}" for i, (_, ok, f) in enumerate(FIX, 1))
     page1 = f"""<section class="page">
-  <div class="header-row"><h1>Tuesday Stations &middot; Leader Guide (Modified)</h1><span class="tag">Week 10 &middot; Tue 11/17/26 &middot; not for students</span></div>
-  <table class="rotation">
-    <tr><th>Group</th><th>Warm-up<span class="time">6:00&ndash;6:10</span></th><th>Block 1<span class="time">6:12&ndash;6:42</span></th><th>Block 2<span class="time">6:44&ndash;7:14</span></th><th>Block 3<span class="time">7:16&ndash;7:46</span></th></tr>
-    {rows}
-    <tr class="who"><td class="g">Adults</td><td colspan="4">Matt stays at <b>Station 2 (CARD GAME)</b>. Marlana stays at <b>Station 3 (TIME WORDS)</b>. Station 1 runs on its own.</td></tr>
-  </table>
+  <div class="header-row"><h1>Tuesday Packet &middot; Teacher Plan</h1><span class="tag">Week 10 &middot; Tue 11/17/26 &middot; not for students</span></div>
   <ul class="dots">
-    <li><b>Why modified:</b> <i>Have you ever</i> was hard last week. Tonight = 3 longer stations (30 min), with one whole station on <b>time words</b>. The original 4-station set is in <b>week10/</b> for another day.</li>
-    <li><b>6:00 Writing warm-up (page 1):</b> everyone, at their seats. Walk around and read starred sentences. <b>Late?</b> Do page 1, then join your group&rsquo;s station.</li>
-    <li><b>Station 1 (pages 2&ndash;4):</b> about 12 min on pages 2&ndash;3 alone, then the <i>Have you ever</i> game together (page 4). Put the <b>Have you ever phrase bank sheet</b> on the table (group-handouts/phrase-banks/week09-have-you-ever.pdf, front side), or hand it out at the start. Not finished? Finish at home.</li>
-    <li><b>Print:</b> packet double-sided (9 pages) + phrase bank sheets for Station 1. Groups A, B, C (about 6 each). Tell groups their order out loud or on the board. Nothing to cut, no flyer.</li>
-    <li><b>7:46&ndash;end:</b> wrap-up, quiz reminder (Week 10 Quiz opens Thu 11/19, 6 p.m.). <b>Finished early</b> &rarr; verb charts (page 8) or write about you (page 9).</li>
+    <li><b>Tonight:</b> no stations (no volunteer). Same pages as a whole class, with Time Words first. Then a class game at the end.</li>
+    <li><b>Print:</b> packet double-sided (9 pages) + the <b>Have you ever phrase bank sheet</b> (group-handouts/phrase-banks/week09-have-you-ever.pdf, front side). Nothing to cut.</li>
+    <li><b>Late?</b> Do page 1, then join where the class is.</li>
+    <li><b>Wrap-up:</b> quiz reminder (Week 10 Quiz opens Thu 11/19, 6 p.m.). <b>Finished early</b> &rarr; verb charts (page 8) or write about you (page 9).</li>
   </ul>
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 3: TIME WORDS</h1><span class="tag">Packet pages 5&ndash;7 + app</span></div>
   <table class="timeline">
-    <tr><td>7 min</td><td><b>Page 5: why <i>have</i>?</b> Start with <i>do</i> (they know its two jobs). Then the two <i>have</i> boxes and the test: the word <b>after</b> have. Sort together. The backpack: <i>I have eaten sushi</i> = &ldquo;I carry this experience with me <b>now</b>,&rdquo; so <i>have</i> really does mean something. For Spanish speakers: <i>tengo</i> un carro = own it, <i>he</i> comido = helper. English uses one word for both.</td></tr>
-    <tr><td>3 min</td><td><b>The two boxes (page 6).</b> Link to the backpack: no date = backpack = have + V3. A date = the photo = V2.</td></tr>
-    <tr><td>4 min</td><td><b>A. Sort.</b> Do <i>yesterday</i> and <i>ever</i> together, then let them try. Check out loud.</td></tr>
-    <tr><td>5 min</td><td><b>B. Circle.</b> Rule: <b>find the time word first</b>, then pick the verb. Read each answer aloud as a group.</td></tr>
-    <tr><td>4 min</td><td><b>C. Right or wrong?</b> The big error is <i>have + V3 + yesterday</i>. Ask: &ldquo;Is there a time word? Which box?&rdquo;</td></tr>
-    <tr><td>4 min</td><td><b>D. The switch.</b> Read the model with one learner. Pairs talk first, then write. Listen for <i>When <b>did</b> you&hellip;?</i> (not <i>When have you&hellip;?</i>).</td></tr>
-    <tr><td>3 min</td><td><b>E. App game, Round 1.</b> They write their score on the page. Out of time? They finish it at home.</td></tr>
+    <tr><td>6:00</td><td><b>Page 1: Writing warm-up.</b> Everyone at their seats, 10 min. Walk around and read starred sentences.</td></tr>
+    <tr><td>6:10</td><td><b>Page 2: why <i>have</i>?</b> (7 min) Start with <i>do</i> (they know its two jobs). Then the two <i>have</i> boxes and the test: the word <b>after</b> have. Sort together. The backpack: <i>I have eaten sushi</i> = &ldquo;I carry this experience with me <b>now</b>.&rdquo; For Spanish speakers: <i>tengo</i> un carro = own it, <i>he</i> comido = helper.</td></tr>
+    <tr><td>6:17</td><td><b>Page 3: the two boxes</b> (3 min). No date = backpack = have + V3. A date = the photo = V2. <b>A. Sort</b> (5 min): do <i>yesterday</i> and <i>ever</i> together, then they try. <b>B. Circle</b> (6 min): find the time word first, then pick the verb.</td></tr>
+    <tr><td>6:31</td><td><b>Page 4: C. Right or wrong?</b> (5 min). The big error is <i>have + V3 + yesterday</i>. <b>D. The switch</b> (7 min): read the model with one learner; pairs talk, then write. Listen for <i>When <b>did</b> you&hellip;?</i></td></tr>
+    <tr><td>6:43</td><td><b>E. App game, Round 1</b> (7 min). Show it on the board first. They write their score on the page.</td></tr>
+    <tr><td>6:50</td><td><b>Pages 5&ndash;6: Warm-up, on your own</b> (about 15 min). Then check answers together (5 min). They just learned time words, so point at <i>Yesterday</i> in #5 (V2).</td></tr>
+    <tr><td>7:10</td><td><b>Page 7: <i>Have you ever</i> game</b> in small groups of 3&ndash;4 (15 min). Hand out the phrase bank sheet. Walk around; listen for <i>Have you ever + V3?</i> &rarr; <i>When did you + V1?</i></td></tr>
+    <tr><td>7:25</td><td><b>Class game</b> (about 20 min).</td></tr>
+    <tr><td>7:45</td><td><b>Wrap-up.</b></td></tr>
   </table>
   <div class="recast">Learner: &ldquo;I have went to New York last year.&rdquo;<br>You: &ldquo;Last year? That&rsquo;s a finished time. So: I <b>went</b> to New York last year. Nice!&rdquo;</div>
 </section>"""
     page2 = f"""<section class="page">
-  <div class="header-row"><h1>Answer Keys + App Notes</h1><span class="tag">Week 10 modified &middot; full key: packet-key PDF</span></div>
+  <div class="header-row"><h1>Answer Keys + App Notes</h1><span class="tag">Week 10 Tuesday Packet &middot; full key: packet-key PDF</span></div>
   <div class="box">
     <h2>The app game: Time Indicators (check it before class)</h2>
     <p>Title in the app: <b>Time Indicators: Past Simple vs Present Perfect</b> (activity id <code>time-indicators-sorting</code>, link: <b>/activity/time-indicators-sorting</b>). Open it on a phone before class to check it shows up for students. The page uses the app&rsquo;s labels: <b>Specified Time &rarr; Use Past Simple</b> and <b>Unspecified Time &rarr; Use Present Perfect</b>.</p>
@@ -424,18 +437,18 @@ def leader_guide():
     <p>Answers vary. 6 questions: <i>How long have you&hellip;?</i> (for / since) and <i>Have you ever&hellip;?</i> Each has a model. Common errors: <i>I <s>live</s> in Boston for 4 years</i> &rarr; <i>I <b>have lived</b>&hellip;</i>; <i>since 4 years</i> &rarr; <i>for 4 years</i>. A time word in the extra sentence (<i>last month</i>) &rarr; V2.</p>
   </div>
   <div class="box">
-    <h2>Station 1: WARM-UP + GAME (pages 2&ndash;4)</h2>
-    <p><b>1. Meeting words:</b> {" &middot; ".join(f"{i} {a}" for i, (_, a) in enumerate(VOCAB, 1))} &middot; <b>2. Have you ever / Did you:</b> 1 Have you ever &middot; 2 Did you &middot; 3 Have you ever &middot; 4 Did you &middot; 5 Have you ever &middot; <b>3:</b> answers vary</p>
-    <p><b>4. Forms:</b> meet, meets, meeting, met, met &middot; speak, speaks, speaking, spoke, spoken &middot; <b>5:</b> 1 meets &middot; 2 speaking &middot; 3 meet &middot; 4 speak &middot; 5 speak &middot; 6 meeting &middot; 7 spoken &middot; 8 met &middot; <b>6:</b> answers vary</p>
-    <p><b>Game (page 4):</b> answers vary. Listen for <i>Have you ever + V3?</i> &rarr; <i>When did you + V1?</i> &rarr; <i>I + V2</i>.</p>
-  </div>
-  <div class="box">
-    <h2>Station 3: TIME WORDS (pages 5&ndash;7)</h2>
-    <p><b>Page 5, 2. Own it or helper:</b> {" &middot; ".join(f"{i} {'own it' if k == 'own' else 'helper'}" for i, (_, k) in enumerate(HAVE_SORT, 1))} &middot; <b>&#9733;</b> <i>has</i> = helper, <i>had</i> = V3 of <i>have</i> (own it)</p>
+    <h2>Part 1: TIME WORDS (pages 2&ndash;4)</h2>
+    <p><b>Page 2, 2. Own it or helper:</b> {" &middot; ".join(f"{i} {'own it' if k == 'own' else 'helper'}" for i, (_, k) in enumerate(HAVE_SORT, 1))} &middot; <b>&#9733;</b> <i>has</i> = helper, <i>had</i> = V3 of <i>have</i> (own it)</p>
     <p><b>A. Specified (V2):</b> {s_words} &middot; <b>Unspecified (have + V3):</b> {u_words}</p>
     <p><b>B:</b> {choose}</p>
     <p><b>C:</b> {fix}</p>
     <p><b>D:</b> answers vary. Check <i>Have you ever + V3</i>, then <i>When did you + V1</i>, then <i>I + V2 + time word</i>.</p>
+  </div>
+  <div class="box">
+    <h2>Part 2: WARM-UP + GAME (pages 5&ndash;7)</h2>
+    <p><b>1. Meeting words:</b> {" &middot; ".join(f"{i} {a}" for i, (_, a) in enumerate(VOCAB, 1))} &middot; <b>2. Have you ever / Did you:</b> 1 Have you ever &middot; 2 Did you &middot; 3 Have you ever &middot; 4 Did you &middot; 5 Have you ever &middot; <b>3:</b> answers vary</p>
+    <p><b>4. Forms:</b> meet, meets, meeting, met, met &middot; speak, speaks, speaking, spoke, spoken &middot; <b>5:</b> 1 meets &middot; 2 speaking &middot; 3 meet &middot; 4 speak &middot; 5 speak &middot; 6 meeting &middot; 7 spoken &middot; 8 met &middot; <b>6:</b> answers vary</p>
+    <p><b>Game (page 7):</b> answers vary. Listen for <i>Have you ever + V3?</i> &rarr; <i>When did you + V1?</i> &rarr; <i>I + V2</i>.</p>
   </div>
   <div class="box">
     <h2>FINISHED EARLY: verb charts (page 8) and write about you (page 9)</h2>
@@ -443,7 +456,7 @@ def leader_guide():
     <p><b>Chart 2 (they + speak):</b> speak, speaks, speaking, spoke, spoken &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("they", W10.SPEAK_V))}</p>
   </div>
 </section>"""
-    return L.doc("Week 10 (Modified) Tuesday Stations Leader Guide", L.LEADER_CSS, page1 + page2)
+    return L.doc("Week 10 Tuesday Packet Teacher Plan", L.LEADER_CSS, page1 + page2)
 
 
 if __name__ == "__main__":
