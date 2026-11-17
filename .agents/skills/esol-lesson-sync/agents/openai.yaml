@@ -1,0 +1,6 @@
+interface:
+  display_name: "ESOL Lesson Sync"
+  short_description: "Sync lesson changes to Drive, plans, and Classroom"
+  default_prompt: "Use $esol-lesson-sync to synchronize this lesson’s finalized changes with Drive, lesson plans, slides, and Classroom."
+policy:
+  allow_implicit_invocation: true

@@ -42,6 +42,18 @@ Marlana's explicit preference: immediately before each completed “Verbs of the
 
 Saved at Marlana's request on October 28, 2026.
 
+## Sync lesson changes to teaching resources
+
+Marlana's explicit preference: after finalized lesson-content changes, have an agent update the affected Google Drive files, lesson plans, slides, and Google Classroom materials.
+
+- Apply `.agents/skills/esol-lesson-sync/SKILL.md` after changes to lesson sources or generated teaching resources, or when asked to sync a lesson. Inspect the task diff to identify affected lessons; unrelated app changes do not require a teaching-resource sync.
+- Delegate this workflow to one dedicated sync agent when available, after local source edits are complete, and wait for its verified result. Perform it directly if delegation is unavailable.
+- Routine updates to matched existing EBHCS resources are authorized. Respect draft-only/local-review instructions; resolve ambiguous destinations or conflicting teacher edits before overwriting them.
+- Preserve existing file links, Classroom schedules, student work, and rewards. Report blocked or unverified surfaces explicitly. Follow the skill's verification and receipt workflow.
+- This rule runs during active Codex work; it does not install a background watcher or authorize a website deployment.
+
+Saved at Marlana's request on November 14, 2026.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

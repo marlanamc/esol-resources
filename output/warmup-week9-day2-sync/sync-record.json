@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-11",
+  "account": "mcreed@ebhcs.org",
+  "classroomPdf": "1Xz7lOeeM9wx4S9yViRY696x4eBg8hJW5",
+  "printPdf": "1PN3-FEQIiwujWEpgm3Z5uJxAFBwe-PL3",
+  "slides": "1qu3djfoU9C698qbscTV4FgRchfFif6Vrk-IfjASYmzg",
+  "updatedSlideIds": [
+    "nov12_03_check1",
+    "nov12_04_check2",
+    "nov12_06_verb_answers"
+  ],
+  "verification": "Both PDFs read back with revised crossword and Rosa story. Updated slides visually inspected. Classroom warmup and lesson posts attach these same file IDs; schedule remains November 12, 2026 at 8:15 PM America/New_York. Lesson plan already references revised warmup. V1-only practice table and effort-points notes preserved.",
+  "localFix": "Regenerated Classroom PDF with back-page heading padding corrected.",
+  "deployment": "No website deployment."
+}
