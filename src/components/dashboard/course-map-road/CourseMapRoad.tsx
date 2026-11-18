@@ -1,22 +1,15 @@
 "use client";
 
 import { Fragment, type CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     COURSE_MAP_OPEN_WEEK_EVENT,
     syncMapUrl,
     type CourseMapOpenWeekDetail,
 } from "@/lib/course-map-navigation";
-import type { CourseMapRoadModel, RoadUnit, RoadWeek } from "@/lib/course-map-road";
-import {
-    CompactWeekRow,
-    CurrentWeekCard,
-    CycleBanner,
-    LockedWeekRow,
-    RoadRow,
-    UnitSign,
-} from "./parts";
+import type { CourseMapRoadModel, RoadWeek } from "@/lib/course-map-road";
+import { CurrentWeekCard, LockedWeekRow } from "./parts";
 import styles from "./road.module.css";
 
 interface Props {
@@ -29,107 +22,32 @@ interface Props {
     showMonths?: boolean;
 }
 
-/** Scroll-spy line, below the sticky bar. */
-const SPY_OFFSET_PX = 70;
-
-/** How much of the current week's card must be on screen to hide "Back to this week". */
-const CURRENT_VISIBLE_PX = 80;
-
 /** Desktop strip pills show their week number while the road is this short. */
 const STRIP_NUMBERS_MAX_WEEKS = 24;
+
+/** Remembers whether the learner left the week strip open. */
+const STRIP_OPEN_KEY = "course-map-strip-open";
 
 function prefersReducedMotion(): boolean {
     return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function isDesktop(): boolean {
-    return typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
-}
-
-/** Desktop: breathing room between the strip and the week it lands on. */
-const DESKTOP_LAND_GAP_PX = 16;
-
-function isRendered(el: Element | null): el is HTMLElement {
-    return el != null && el.getClientRects().length > 0;
-}
-
-function addTo(set: Set<number>, value: number): Set<number> {
-    if (set.has(value)) return set;
-    const next = new Set(set);
-    next.add(value);
-    return next;
-}
-
-function toggleIn(set: Set<number>, value: number): Set<number> {
-    const next = new Set(set);
-    if (next.has(value)) next.delete(value);
-    else next.add(value);
-    return next;
-}
-
+/**
+ * The course map, one week at a time: the sticky header names the week, an
+ * optional strip of every week picks another, and the page below shows only
+ * the selected week.
+ */
 export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", showMonths = true }: Props) {
     const { cycles, weeks, currentWeek } = model;
     const weekByNumber = useMemo(() => new Map(weeks.map((week) => [week.weekNumber, week])), [weeks]);
-    const unitByNumber = useMemo(
-        () => new Map(cycles.flatMap((cycle) => cycle.units).map((unit) => [unit.unitNumber, unit])),
-        [cycles]
-    );
 
     const landingWeek = initialWeek != null && weekByNumber.has(initialWeek) ? initialWeek : currentWeek;
-    const landing = weekByNumber.get(landingWeek);
-
-    // Past cycles and units start folded, except the one an explicit link lands in.
-    const [openCycles, setOpenCycles] = useState<Set<number>>(() => new Set(landing ? [landing.cycle] : []));
-    const [openUnits, setOpenUnits] = useState<Set<number>>(() => new Set(landing ? [landing.unitNumber] : []));
-    const [openWeeks, setOpenWeeks] = useState<Set<number>>(() =>
-        landing && landingWeek !== currentWeek && !landing.isLocked ? new Set([landingWeek]) : new Set()
-    );
-    const [openOptional, setOpenOptional] = useState<Set<number>>(() => new Set());
-    const [viewedWeek, setViewedWeek] = useState(landingWeek);
-    const [currentOnScreen, setCurrentOnScreen] = useState(landingWeek === currentWeek);
+    const [selectedWeek, setSelectedWeek] = useState(landingWeek);
+    const [stripOpen, setStripOpen] = useState(false);
     const [headerHeight, setHeaderHeight] = useState(0);
 
-    const rootRef = useRef<HTMLDivElement>(null);
-    const barRef = useRef<HTMLDivElement>(null);
     const stripRef = useRef<HTMLDivElement>(null);
-    const pendingScroll = useRef<{ id: string; behavior: ScrollBehavior } | null>(null);
-    const [scrollRequest, setScrollRequest] = useState(0);
-    const didLand = useRef(false);
-
-    const isCycleOpen = (cycle: { number: number; isPast: boolean }) => !cycle.isPast || openCycles.has(cycle.number);
-    const isUnitOpen = (unit: RoadUnit) => (!unit.isPast && !unit.isLocked) || openUnits.has(unit.unitNumber);
-
-    const stickyOffset = useCallback(() => {
-        const header = document.querySelector(".mode-header");
-        const headerBottom = isRendered(header) ? header.getBoundingClientRect().height : 0;
-        const bar = barRef.current?.getBoundingClientRect().height ?? 0;
-        return headerBottom + bar;
-    }, []);
-
-    const scrollToId = useCallback(
-        (id: string, behavior: ScrollBehavior) => {
-            const el = document.getElementById(id);
-            if (!isRendered(el)) return;
-            const top = el.getBoundingClientRect().top + window.scrollY - stickyOffset() - 4;
-            window.scrollTo({ top: Math.max(0, top), behavior });
-        },
-        [stickyOffset]
-    );
-
-    // Land with the week just under the strip; desktop leaves a little room above it.
-    const landOn = useCallback(
-        (id: string) => {
-            if (!isDesktop()) {
-                scrollToId(id, "auto");
-                return;
-            }
-            const el = document.getElementById(id);
-            if (!isRendered(el)) return;
-            const top = el.getBoundingClientRect().top + window.scrollY - stickyOffset() - DESKTOP_LAND_GAP_PX;
-            window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
-        },
-        [scrollToId, stickyOffset]
-    );
+    const didSelect = useRef(false);
 
     // The sticky bar sits under the app header, whose height varies with safe areas.
     useLayoutEffect(() => {
@@ -142,148 +60,96 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
         return () => observer.disconnect();
     }, []);
 
-    // Land on "You are here" (or the linked week) without animating.
-    useLayoutEffect(() => {
-        if (didLand.current || !isRendered(rootRef.current)) return;
-        didLand.current = true;
-        const unitLocked = landing && unitByNumber.get(landing.unitNumber)?.isLocked;
-        const target = unitLocked ? `road-unit-${landing.unitNumber}` : `road-week-${landingWeek}`;
-        landOn(target);
-        // The router resets scroll after navigation; land again once it has.
-        // Not cancelled on cleanup: Strict Mode's re-run returns early above.
-        window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => landOn(target));
-        });
-    }, [landing, landingWeek, landOn, unitByNumber]);
-
-    // Run a jump once the folds it opened have rendered.
+    // Restore the strip's open/closed choice after hydration.
     useEffect(() => {
-        const request = pendingScroll.current;
-        if (!request) return;
-        pendingScroll.current = null;
-        scrollToId(request.id, request.behavior);
-    }, [scrollRequest, scrollToId]);
+        try {
+            if (window.localStorage.getItem(STRIP_OPEN_KEY) === "1") setStripOpen(true);
+        } catch {
+            // Storage blocked: the strip starts closed.
+        }
+    }, []);
 
-    const jumpToWeek = useCallback(
+    const toggleStrip = useCallback(() => {
+        setStripOpen((open) => {
+            const next = !open;
+            try {
+                window.localStorage.setItem(STRIP_OPEN_KEY, next ? "1" : "0");
+            } catch {
+                // Storage blocked: the choice lasts for this visit only.
+            }
+            return next;
+        });
+    }, []);
+
+    const selectWeek = useCallback(
         (weekNumber: number) => {
-            const week = weekByNumber.get(weekNumber);
-            if (!week) return;
-            const unit = unitByNumber.get(week.unitNumber);
-            setOpenCycles((prev) => addTo(prev, week.cycle));
-            if (unit && !unit.isLocked) setOpenUnits((prev) => addTo(prev, unit.unitNumber));
-            const id = unit?.isLocked ? `road-unit-${week.unitNumber}` : `road-week-${weekNumber}`;
-            pendingScroll.current = { id, behavior: prefersReducedMotion() ? "auto" : "smooth" };
-            setScrollRequest((n) => n + 1);
+            if (!weekByNumber.has(weekNumber)) return;
+            didSelect.current = true;
+            setSelectedWeek(weekNumber);
         },
-        [unitByNumber, weekByNumber]
+        [weekByNumber]
     );
 
     // The desktop sidebar asks for a week through the shared open-week event.
     useEffect(() => {
         const onOpenWeek = (event: Event) => {
             const { week } = (event as CustomEvent<CourseMapOpenWeekDetail>).detail;
-            jumpToWeek(week);
+            selectWeek(week);
         };
         window.addEventListener(COURSE_MAP_OPEN_WEEK_EVENT, onOpenWeek);
         return () => window.removeEventListener(COURSE_MAP_OPEN_WEEK_EVENT, onOpenWeek);
-    }, [jumpToWeek]);
+    }, [selectWeek]);
 
-    // Scroll-spy: the viewed week is the last spy row whose top has passed the line.
+    // Keep the URL on the selected week so returning from an activity lands there.
+    // After a pick, start the new week at the top and move focus to its heading.
     useEffect(() => {
-        let frame = 0;
-        const update = () => {
-            frame = 0;
-            const root = rootRef.current;
-            if (!isRendered(root)) return;
-            const line = stickyOffset() + SPY_OFFSET_PX;
-            let found = weeks[0]?.weekNumber ?? currentWeek;
-            for (const el of root.querySelectorAll<HTMLElement>("[data-road-spy]")) {
-                if (el.getBoundingClientRect().top > line) break;
-                found = Number(el.dataset.roadSpy);
-            }
-            setViewedWeek(found);
+        syncMapUrl(selectedWeek);
+        if (!didSelect.current) return;
+        window.scrollTo({ top: 0, behavior: "auto" });
+        document.getElementById(`road-week-${selectedWeek}-heading`)?.focus({ preventScroll: true });
+    }, [selectedWeek]);
 
-            // Between the sticky bars and the bottom nav.
-            const current = document.getElementById(`road-week-${currentWeek}`);
-            if (isRendered(current)) {
-                const rect = current.getBoundingClientRect();
-                const nav = document.querySelector(".bottom-nav");
-                const bottom = isRendered(nav) ? nav.getBoundingClientRect().top : window.innerHeight;
-                const visible = Math.min(rect.bottom, bottom) - Math.max(rect.top, stickyOffset());
-                setCurrentOnScreen(visible >= CURRENT_VISIBLE_PX);
-            } else {
-                setCurrentOnScreen(false);
-            }
-        };
-        const onScroll = () => {
-            if (!frame) frame = window.requestAnimationFrame(update);
-        };
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onScroll);
-            if (frame) window.cancelAnimationFrame(frame);
-        };
-    }, [currentWeek, stickyOffset, weeks]);
-
-    // Keep the URL on the viewed week so returning from an activity lands in place,
-    // and keep the strip centered on it.
+    // Keep the strip centered on the selected week whenever it is showing.
     useEffect(() => {
-        if (!isRendered(rootRef.current)) return;
-        syncMapUrl(viewedWeek);
+        if (!stripOpen) return;
         const strip = stripRef.current;
-        const segment = strip?.querySelector<HTMLElement>(`[data-strip-week="${viewedWeek}"]`);
+        const segment = strip?.querySelector<HTMLElement>(`[data-strip-week="${selectedWeek}"]`);
         if (!strip || !segment) return;
         const left = segment.offsetLeft - strip.clientWidth / 2 + segment.offsetWidth / 2;
-        strip.scrollTo({ left: Math.max(0, left), behavior: didLand.current && !prefersReducedMotion() ? "smooth" : "auto" });
-    }, [viewedWeek]);
+        strip.scrollTo({ left: Math.max(0, left), behavior: prefersReducedMotion() ? "auto" : "smooth" });
+    }, [selectedWeek, stripOpen]);
 
-    const viewed = weekByNumber.get(viewedWeek) ?? weekByNumber.get(currentWeek);
-    const viewedTone = getCourseMapUnitTone(viewed?.unitNumber ?? 1);
-    const relation = viewedWeek === currentWeek ? "this" : viewedWeek < currentWeek ? "earlier" : "later";
-    const nextWeekOpen = weekByNumber.get(currentWeek + 1)?.isLocked === false;
+    const selected = weekByNumber.get(selectedWeek) ?? weekByNumber.get(currentWeek);
+    const selectedTone = getCourseMapUnitTone(selected?.unitNumber ?? 1);
+    const relation = selectedWeek === currentWeek ? "this" : selectedWeek < currentWeek ? "earlier" : "later";
     const stripNumbers = weeks.length <= STRIP_NUMBERS_MAX_WEEKS;
+    const selectedIndex = weeks.findIndex((week) => week.weekNumber === selectedWeek);
+    const prevWeek = selectedIndex > 0 ? weeks[selectedIndex - 1] : null;
+    const nextWeek = selectedIndex >= 0 && selectedIndex < weeks.length - 1 ? weeks[selectedIndex + 1] : null;
 
     // Cycles only mean something once there is more than one on the road.
     const showCycles = cycles.length > 1;
-    const eyebrow = viewed
-        ? [showCycles ? `Cycle ${viewed.cycle}` : null, showMonths && viewed.unitMonth ? viewed.unitMonth : null, `Unit ${viewed.unitNumber}`]
+    const eyebrow = selected
+        ? [showCycles ? `Cycle ${selected.cycle}` : null, showMonths && selected.unitMonth ? selected.unitMonth : null, `Unit ${selected.unitNumber}`]
               .filter(Boolean)
               .join(" · ")
         : "";
 
     const renderWeek = (week: RoadWeek) => {
-        if (week.isLocked) return <LockedWeekRow key={week.weekNumber} week={week} weekNoun={weekNoun} />;
-        if (week.isCurrent) {
-            return (
-                <CurrentWeekCard
-                    key={week.weekNumber}
-                    week={week}
-                    weekNoun={weekNoun}
-                    nextWeekOpen={nextWeekOpen}
-                    optionalOpen={openOptional.has(week.weekNumber)}
-                    onToggleOptional={() => setOpenOptional((prev) => toggleIn(prev, week.weekNumber))}
-                />
-            );
-        }
+        if (week.isLocked) return <LockedWeekRow week={week} weekNoun={weekNoun} />;
         return (
-            <CompactWeekRow
-                key={week.weekNumber}
+            <CurrentWeekCard
                 week={week}
                 weekNoun={weekNoun}
-                open={openWeeks.has(week.weekNumber)}
-                optionalOpen={openOptional.has(week.weekNumber)}
-                onToggle={() => setOpenWeeks((prev) => toggleIn(prev, week.weekNumber))}
-                onToggleOptional={() => setOpenOptional((prev) => toggleIn(prev, week.weekNumber))}
+                nextWeekOpen={weekByNumber.get(week.weekNumber + 1)?.isLocked === false}
             />
         );
     };
 
+    const pillBase = "shrink-0 rounded-full px-2.5 py-[5px] text-[0.75rem] font-extrabold whitespace-nowrap";
+
     return (
         <div
-            ref={rootRef}
             className={`-mx-4 font-legible md:-mx-6 lg:mx-0 ${styles.road}`}
             style={{ "--road-scroll-top": `calc(${headerHeight}px + 5.5rem)` } as CSSProperties}
         >
@@ -292,44 +158,62 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
 
             {/* Sticky top bar */}
             <div
-                ref={barRef}
-                className="sticky z-30 px-4 pt-3 pb-2.5 lg:px-1 lg:pt-1 lg:pb-4"
+                className="sticky z-30 px-4 pt-2 pb-2 lg:px-1 lg:pt-1 lg:pb-3"
                 style={{
                     top: headerHeight,
                     background: "var(--bg-color)",
                     borderBottom: "1px solid var(--border-subtle)",
                 }}
             >
-                <div className="flex items-end justify-between gap-3" aria-live="polite">
+                <div className="flex items-center justify-between gap-3" aria-live="polite">
                     <div className="min-w-0">
-                        <p className="m-0 truncate text-[0.75rem] leading-snug font-extrabold uppercase tracking-[.07em]" style={{ color: viewedTone.accent }}>
+                        <p className="m-0 truncate text-[0.75rem] leading-snug font-extrabold uppercase tracking-[.07em]" style={{ color: selectedTone.accent }}>
                             {eyebrow}
                         </p>
-                        <p className="m-0 flex items-baseline gap-1.5 leading-tight whitespace-nowrap">
+                        {/* The week name doubles as the strip toggle. */}
+                        <button
+                            type="button"
+                            onClick={toggleStrip}
+                            aria-expanded={stripOpen}
+                            aria-controls="course-map-week-strip"
+                            aria-label={`${weekNoun} ${selectedWeek}${selected?.dates ? `, ${selected.dates}` : ""}. ${stripOpen ? "Hide" : "Show"} all ${weekNoun.toLowerCase()}s`}
+                            className="-ml-1 flex min-h-[40px] items-baseline gap-1.5 rounded-lg px-1 leading-tight whitespace-nowrap"
+                        >
                             <span className="font-display text-[1.3125rem] font-bold text-text lg:text-[1.75rem]">
-                                {weekNoun} {viewedWeek}
+                                {weekNoun} {selectedWeek}
                             </span>
-                            {viewed?.dates ? <span className="text-[0.875rem] font-semibold text-text-muted lg:text-[1.0625rem]">{viewed.dates}</span> : null}
-                        </p>
+                            {selected?.dates ? <span className="text-[0.875rem] font-semibold text-text-muted lg:text-[1.0625rem]">{selected.dates}</span> : null}
+                            <ChevronDown
+                                size={18}
+                                aria-hidden
+                                className="shrink-0 self-center text-text-muted transition-transform motion-reduce:transition-none"
+                                style={{ transform: stripOpen ? "rotate(180deg)" : undefined }}
+                            />
+                        </button>
                     </div>
                     {relation === "this" ? (
-                        <span className="shrink-0 rounded-full px-2.5 py-[5px] text-[0.75rem] font-extrabold whitespace-nowrap" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
+                        <span className={pillBase} style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
                             This {weekNoun.toLowerCase()}
                         </span>
                     ) : (
-                        <span
-                            className="shrink-0 rounded-full px-2.5 py-[5px] text-[0.75rem] font-extrabold whitespace-nowrap text-text-muted"
-                            style={{ background: "var(--surface-base)", boxShadow: "inset 0 0 0 1px var(--border-subtle)" }}
+                        <button
+                            type="button"
+                            onClick={() => selectWeek(currentWeek)}
+                            className={`${pillBase} flex min-h-[36px] items-center gap-1`}
+                            style={{ background: "var(--road-ink)", color: "var(--road-ink-text)" }}
                         >
-                            {relation === "earlier" ? `Earlier ${weekNoun.toLowerCase()}` : "Coming up"}
-                        </span>
+                            {relation === "earlier" ? <ChevronRight size={14} aria-hidden /> : <ChevronLeft size={14} aria-hidden />}
+                            Back to this {weekNoun.toLowerCase()}
+                        </button>
                     )}
                 </div>
 
-                {/* Week strip */}
+                {/* Week strip, folded away until asked for */}
+                {stripOpen ? (
                 <div
+                    id="course-map-week-strip"
                     ref={stripRef}
-                    className="relative -mx-4 mt-2.5 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-4 lg:gap-2.5 lg:overflow-visible lg:px-0.5 lg:py-1"
+                    className="relative -mx-4 mt-1.5 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-2 lg:gap-2.5 lg:overflow-visible lg:px-0.5 lg:py-1"
                 >
                     {cycles.map((cycle, cycleIndex) => (
                         <Fragment key={cycle.number}>
@@ -363,9 +247,9 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                                         key={week.weekNumber}
                                                         type="button"
                                                         data-strip-week={week.weekNumber}
-                                                        aria-label={`Go to ${weekNoun.toLowerCase()} ${week.weekNumber}`}
-                                                        aria-current={week.weekNumber === viewedWeek ? "true" : undefined}
-                                                        onClick={() => jumpToWeek(week.weekNumber)}
+                                                        aria-label={`Go to ${weekNoun.toLowerCase()} ${week.weekNumber}: ${week.title}`}
+                                                        aria-current={week.weekNumber === selectedWeek ? "true" : undefined}
+                                                        onClick={() => selectWeek(week.weekNumber)}
                                                         className="icon-button flex h-[22px] w-4 items-center justify-center lg:h-8 lg:w-auto lg:min-w-0 lg:flex-1"
                                                     >
                                                         <span
@@ -374,7 +258,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                                                 background: bg,
                                                                 color: fg,
                                                                 boxShadow:
-                                                                    week.weekNumber === viewedWeek
+                                                                    week.weekNumber === selectedWeek
                                                                         ? "0 0 0 1.5px var(--bg-color), 0 0 0 3.5px var(--text)"
                                                                         : undefined,
                                                             }}
@@ -401,75 +285,60 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                         </Fragment>
                     ))}
                 </div>
+                ) : null}
             </div>
 
-            {/* The road */}
-            <div>
-                {cycles.map((cycle) => {
-                    const cycleOpen = isCycleOpen(cycle);
-                    const firstWeek = cycle.units[0]?.weeks[0]?.weekNumber;
-                    return (
-                        <section key={cycle.number} aria-label={`Cycle ${cycle.number}`}>
-                            {showCycles ? (
-                                <RoadRow
-                                    id={`road-cycle-${cycle.number}`}
-                                    spyWeek={cycleOpen ? undefined : firstWeek}
-                                    future={firstWeek != null && firstWeek > currentWeek}
-                                    fullWidth
-                                >
-                                    <CycleBanner
-                                        cycle={cycle}
-                                        open={cycleOpen}
-                                        onToggle={cycle.isPast ? () => setOpenCycles((prev) => toggleIn(prev, cycle.number)) : undefined}
-                                    />
-                                </RoadRow>
-                            ) : null}
-                            {cycleOpen
-                                ? cycle.units.map((unit) => {
-                                      const unitOpen = isUnitOpen(unit);
-                                      return (
-                                          <Fragment key={unit.unitNumber}>
-                                              <RoadRow
-                                                  id={`road-unit-${unit.unitNumber}`}
-                                                  spyWeek={unitOpen ? undefined : unit.weeks[0].weekNumber}
-                                                  future={unit.isFuture}
-                                                  fullWidth
-                                              >
-                                                  <UnitSign
-                                                      unit={unit}
-                                                      open={unitOpen}
-                                                      showMonth={showMonths}
-                                                      onToggle={unit.isPast ? () => setOpenUnits((prev) => toggleIn(prev, unit.unitNumber)) : undefined}
-                                                  />
-                                              </RoadRow>
-                                              {unitOpen ? unit.weeks.map(renderWeek) : null}
-                                          </Fragment>
-                                      );
-                                  })
-                                : null}
-                        </section>
-                    );
-                })}
-            </div>
+            {/* The selected week only */}
+            <section key={selectedWeek} aria-label={`${weekNoun} ${selectedWeek}`} className="pt-2">
+                {selected ? renderWeek(selected) : null}
+            </section>
 
-            {/* Back to this week */}
-            {relation !== "this" && !currentOnScreen ? (
-                <button
-                    type="button"
-                    onClick={() => jumpToWeek(currentWeek)}
-                    className="fixed left-1/2 flex min-h-[50px] w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-full px-5 py-2 text-center text-[0.9688rem] font-bold leading-tight"
-                    style={{
-                        bottom: "calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + 16px)",
-                        zIndex: "var(--z-fixed)",
-                        background: "var(--road-ink)",
-                        color: "var(--road-ink-text)",
-                        boxShadow: "0 10px 24px rgba(0,0,0,.28)",
-                    }}
-                >
-                    {relation === "earlier" ? <ArrowDown size={18} aria-hidden /> : <ArrowUp size={18} aria-hidden />}
-                    Back to this {weekNoun.toLowerCase()}
-                </button>
-            ) : null}
+            {/* Previous / next week */}
+            <nav aria-label={`Other ${weekNoun.toLowerCase()}s`} className="grid grid-cols-2 gap-2.5 px-4 pt-4 pb-6 lg:px-1">
+                {prevWeek ? (
+                    <WeekStepButton week={prevWeek} weekNoun={weekNoun} direction="prev" onSelect={selectWeek} />
+                ) : (
+                    <span />
+                )}
+                {nextWeek ? <WeekStepButton week={nextWeek} weekNoun={weekNoun} direction="next" onSelect={selectWeek} /> : null}
+            </nav>
         </div>
+    );
+}
+
+function WeekStepButton({
+    week,
+    weekNoun,
+    direction,
+    onSelect,
+}: {
+    week: RoadWeek;
+    weekNoun: string;
+    direction: "prev" | "next";
+    onSelect: (weekNumber: number) => void;
+}) {
+    const isNext = direction === "next";
+    const tone = getCourseMapUnitTone(week.unitNumber);
+    const status = week.isDone ? "All done ✓" : week.isLocked ? (week.note ?? "Coming up") : week.title;
+    return (
+        <button
+            type="button"
+            onClick={() => onSelect(week.weekNumber)}
+            className={`flex min-h-[64px] flex-col justify-center gap-0.5 rounded-2xl px-3.5 py-2 ${isNext ? "text-right" : "text-left"}`}
+            style={{
+                background: tone.surface,
+                border: `1px solid color-mix(in srgb, ${tone.accent} 35%, transparent)`,
+            }}
+        >
+            <span
+                className={`flex items-center gap-0.5 text-[0.8125rem] font-extrabold ${isNext ? "justify-end" : ""}`}
+                style={{ color: tone.accent }}
+            >
+                {isNext ? null : <ChevronLeft size={15} aria-hidden />}
+                {weekNoun} {week.weekNumber}
+                {isNext ? <ChevronRight size={15} aria-hidden /> : null}
+            </span>
+            <span className="line-clamp-2 text-[0.875rem] leading-tight font-bold text-text">{status}</span>
+        </button>
     );
 }
