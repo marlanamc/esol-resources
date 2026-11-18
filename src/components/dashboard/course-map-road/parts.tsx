@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type CSSProperties, type ReactNode } from "react";
-import { Check, ChevronDown, ChevronRight, Lock, Play, Plus } from "lucide-react";
+import { Check, ChevronDown, ChevronRight, Lock, Play } from "lucide-react";
 import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
 import { ClassQuestionBox, useClassQuestionsEnabled } from "@/components/dashboard/course-map-road/ClassQuestionBox";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
@@ -547,37 +547,13 @@ function StepRows({ activities, showNext, emphasizeNext }: { activities: RoadAct
 }
 
 /** The practice pills plus the "N more games" toggle. */
-function PracticePills({
-    practice,
-    extras,
-    extrasOpen,
-    onToggleExtras,
-    className = "",
-}: {
-    practice: RoadActivity[];
-    extras: RoadActivity[];
-    extrasOpen: boolean;
-    onToggleExtras: () => void;
-    className?: string;
-}) {
+/** The week's practice and extra games, all shown, nothing folded away. */
+function PracticePills({ practice, extras, className = "" }: { practice: RoadActivity[]; extras: RoadActivity[]; className?: string }) {
     return (
         <div className={`flex flex-wrap gap-1.5 ${className}`}>
-            {practice.map((activity) => (
+            {[...practice, ...extras].map((activity) => (
                 <PracticePill key={activity.id} activity={activity} />
             ))}
-            {extrasOpen ? extras.map((activity) => <PracticePill key={activity.id} activity={activity} />) : null}
-            {extras.length > 0 ? (
-                <button
-                    type="button"
-                    onClick={onToggleExtras}
-                    aria-expanded={extrasOpen}
-                    className="inline-flex min-h-[40px] items-center gap-1 rounded-full px-3 py-1.5 text-[0.875rem] font-semibold text-text-muted"
-                    style={{ border: "1.5px dashed color-mix(in srgb, var(--road-rail) 85%, transparent)" }}
-                >
-                    {extrasOpen ? null : <Plus size={15} aria-hidden />}
-                    {extrasOpen ? "Fewer games" : `${extras.length} more games`}
-                </button>
-            ) : null}
         </div>
     );
 }
@@ -591,13 +567,9 @@ function PracticePills({
 function WeekChecklist({
     week,
     showNext,
-    extrasOpen,
-    onToggleExtras,
 }: {
     week: RoadWeek;
     showNext: boolean;
-    extrasOpen: boolean;
-    onToggleExtras: () => void;
 }) {
     const tone = getCourseMapUnitTone(week.unitNumber);
     const questionsEnabled = useClassQuestionsEnabled();
@@ -653,7 +625,7 @@ function WeekChecklist({
             meta: "All week",
             color: "var(--text-muted)",
             node: "plain",
-            body: <PracticePills practice={steps.practice} extras={week.extras} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} />,
+            body: <PracticePills practice={steps.practice} extras={week.extras} />,
         });
     }
 
@@ -694,20 +666,16 @@ function WeekSteps({
     week,
     showNext,
     emphasizeNext = true,
-    extrasOpen,
-    onToggleExtras,
 }: {
     week: RoadWeek;
     showNext: boolean;
     /** When Continue already names the next activity, rows stay one list. */
     emphasizeNext?: boolean;
-    extrasOpen: boolean;
-    onToggleExtras: () => void;
 }) {
     const tone = getCourseMapUnitTone(week.unitNumber);
     const steps = groupRoadWeekSteps(week.activities);
     if (week.isCurrent || week.state === "upcoming") {
-        return <WeekChecklist week={week} showNext={showNext} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} />;
+        return <WeekChecklist week={week} showNext={showNext} />;
     }
 
     type Step = { key: string; numbered: boolean; title: string; tag: string | null; required?: boolean; filled: boolean; body?: ReactNode };
@@ -725,7 +693,7 @@ function WeekSteps({
             title: "More practice",
             tag: null,
             filled: false,
-            body: <PracticePills practice={steps.practice} extras={week.extras} extrasOpen={extrasOpen} onToggleExtras={onToggleExtras} className="pt-1" />,
+            body: <PracticePills practice={steps.practice} extras={week.extras} className="pt-1" />,
         });
     }
     if (steps.quiz.length > 0) {
@@ -810,15 +778,11 @@ export function CurrentWeekCard({
     week,
     weekNoun,
     nextWeekOpen,
-    optionalOpen,
-    onToggleOptional,
 }: {
     week: RoadWeek;
     weekNoun: string;
     /** Whether the following week is already open, for the all-done copy. */
     nextWeekOpen: boolean;
-    optionalOpen: boolean;
-    onToggleOptional: () => void;
 }) {
     const tone = getCourseMapUnitTone(week.unitNumber);
     const next = week.next;
@@ -917,7 +881,7 @@ export function CurrentWeekCard({
             </RoadRow>
             {hasSteps && stepsOpen ? (
                 <div id={`road-week-${week.weekNumber}-steps`} className="mt-3">
-                    <WeekSteps week={week} showNext emphasizeNext={false} extrasOpen={optionalOpen} onToggleExtras={onToggleOptional} />
+                    <WeekSteps week={week} showNext emphasizeNext={false} />
                 </div>
             ) : null}
         </div>

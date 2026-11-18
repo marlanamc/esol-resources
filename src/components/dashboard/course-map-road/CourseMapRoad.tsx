@@ -44,7 +44,6 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     const landingWeek = initialWeek != null && weekByNumber.has(initialWeek) ? initialWeek : currentWeek;
     const [selectedWeek, setSelectedWeek] = useState(landingWeek);
     const [stripOpen, setStripOpen] = useState(false);
-    const [openOptional, setOpenOptional] = useState<Set<number>>(() => new Set());
     const [headerHeight, setHeaderHeight] = useState(0);
 
     const stripRef = useRef<HTMLDivElement>(null);
@@ -143,15 +142,6 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                 week={week}
                 weekNoun={weekNoun}
                 nextWeekOpen={weekByNumber.get(week.weekNumber + 1)?.isLocked === false}
-                optionalOpen={openOptional.has(week.weekNumber)}
-                onToggleOptional={() =>
-                    setOpenOptional((prev) => {
-                        const next = new Set(prev);
-                        if (next.has(week.weekNumber)) next.delete(week.weekNumber);
-                        else next.add(week.weekNumber);
-                        return next;
-                    })
-                }
             />
         );
     };
