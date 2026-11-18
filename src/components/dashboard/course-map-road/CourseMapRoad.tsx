@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, type CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     COURSE_MAP_OPEN_WEEK_EVENT,
@@ -168,24 +168,38 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
 
             {/* Sticky top bar */}
             <div
-                className="sticky z-30 px-4 pt-3 pb-2 lg:px-1 lg:pt-1 lg:pb-3"
+                className="sticky z-30 px-4 pt-2 pb-2 lg:px-1 lg:pt-1 lg:pb-3"
                 style={{
                     top: headerHeight,
                     background: "var(--bg-color)",
                     borderBottom: "1px solid var(--border-subtle)",
                 }}
             >
-                <div className="flex items-end justify-between gap-3" aria-live="polite">
+                <div className="flex items-center justify-between gap-3" aria-live="polite">
                     <div className="min-w-0">
                         <p className="m-0 truncate text-[0.75rem] leading-snug font-extrabold uppercase tracking-[.07em]" style={{ color: selectedTone.accent }}>
                             {eyebrow}
                         </p>
-                        <p className="m-0 flex items-baseline gap-1.5 leading-tight whitespace-nowrap">
+                        {/* The week name doubles as the strip toggle. */}
+                        <button
+                            type="button"
+                            onClick={toggleStrip}
+                            aria-expanded={stripOpen}
+                            aria-controls="course-map-week-strip"
+                            aria-label={`${weekNoun} ${selectedWeek}${selected?.dates ? `, ${selected.dates}` : ""}. ${stripOpen ? "Hide" : "Show"} all ${weekNoun.toLowerCase()}s`}
+                            className="-ml-1 flex min-h-[40px] items-baseline gap-1.5 rounded-lg px-1 leading-tight whitespace-nowrap"
+                        >
                             <span className="font-display text-[1.3125rem] font-bold text-text lg:text-[1.75rem]">
                                 {weekNoun} {selectedWeek}
                             </span>
                             {selected?.dates ? <span className="text-[0.875rem] font-semibold text-text-muted lg:text-[1.0625rem]">{selected.dates}</span> : null}
-                        </p>
+                            <ChevronDown
+                                size={18}
+                                aria-hidden
+                                className="shrink-0 self-center text-text-muted transition-transform motion-reduce:transition-none"
+                                style={{ transform: stripOpen ? "rotate(180deg)" : undefined }}
+                            />
+                        </button>
                     </div>
                     {relation === "this" ? (
                         <span className={pillBase} style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
@@ -204,23 +218,12 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                     )}
                 </div>
 
-                <button
-                    type="button"
-                    onClick={toggleStrip}
-                    aria-expanded={stripOpen}
-                    aria-controls="course-map-week-strip"
-                    className="mt-1.5 flex min-h-[36px] items-center gap-1 text-[0.8125rem] font-bold text-text-muted"
-                >
-                    {stripOpen ? `Hide all ${weekNoun.toLowerCase()}s` : `Show all ${weekNoun.toLowerCase()}s`}
-                    {stripOpen ? <ChevronUp size={16} aria-hidden /> : <ChevronDown size={16} aria-hidden />}
-                </button>
-
                 {/* Week strip, folded away until asked for */}
                 {stripOpen ? (
                 <div
                     id="course-map-week-strip"
                     ref={stripRef}
-                    className="relative -mx-4 mt-1 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-2 lg:gap-2.5 lg:overflow-visible lg:px-0.5 lg:py-1"
+                    className="relative -mx-4 mt-1.5 flex gap-[7px] overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-2 lg:gap-2.5 lg:overflow-visible lg:px-0.5 lg:py-1"
                 >
                     {cycles.map((cycle, cycleIndex) => (
                         <Fragment key={cycle.number}>
