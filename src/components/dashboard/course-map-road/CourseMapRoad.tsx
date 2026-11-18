@@ -328,15 +328,22 @@ function WeekStepButton({
     onSelect: (weekNumber: number) => void;
 }) {
     const isNext = direction === "next";
+    const tone = getCourseMapUnitTone(week.unitNumber);
     const status = week.isDone ? "All done ✓" : week.isLocked ? (week.note ?? "Coming up") : week.title;
     return (
         <button
             type="button"
             onClick={() => onSelect(week.weekNumber)}
             className={`flex min-h-[64px] flex-col justify-center gap-0.5 rounded-2xl px-3.5 py-2 ${isNext ? "text-right" : "text-left"}`}
-            style={{ background: "var(--surface-base)", border: "1px solid var(--border-subtle)" }}
+            style={{
+                background: tone.surface,
+                border: `1px solid color-mix(in srgb, ${tone.accent} 35%, transparent)`,
+            }}
         >
-            <span className={`flex items-center gap-0.5 text-[0.8125rem] font-bold text-text-muted ${isNext ? "justify-end" : ""}`}>
+            <span
+                className={`flex items-center gap-0.5 text-[0.8125rem] font-extrabold ${isNext ? "justify-end" : ""}`}
+                style={{ color: tone.accent }}
+            >
                 {isNext ? null : <ChevronLeft size={15} aria-hidden />}
                 {weekNoun} {week.weekNumber}
                 {isNext ? <ChevronRight size={15} aria-hidden /> : null}
