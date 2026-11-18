@@ -16,8 +16,6 @@ import {
     formatRoadRowLabels,
     groupRoadWeekSteps,
     type RoadActivity,
-    type RoadCycle,
-    type RoadUnit,
     type RoadWeek,
 } from "@/lib/course-map-road";
 
@@ -148,88 +146,6 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 // ── Cycle banner + unit sign ──────────────────────────────────────────────────
-
-export function CycleBanner({
-    cycle,
-    open,
-    onToggle,
-}: {
-    cycle: RoadCycle;
-    open: boolean;
-    onToggle?: () => void;
-}) {
-    const label = `Cycle ${cycle.number}${cycle.isCurrent ? " · now" : ""}`;
-    const body = (
-        <>
-            <span className="min-w-0 flex-1">
-                <span className="block text-[0.7188rem] font-extrabold uppercase tracking-[.1em] opacity-75">{label}</span>
-                <span className="block font-display text-[1.125rem] font-bold leading-tight">{cycle.range}</span>
-                {cycle.summary ? <span className="mt-0.5 block text-[0.8125rem] opacity-85">{cycle.summary}</span> : null}
-            </span>
-            {onToggle ? <ChevronDown size={20} aria-hidden className="shrink-0 transition-transform motion-reduce:transition-none" style={{ transform: open ? "rotate(180deg)" : "none" }} /> : null}
-        </>
-    );
-    const className = "mt-[18px] mb-1 flex w-full items-center gap-3 rounded-2xl px-[14px] py-3 text-left";
-    const style: CSSProperties = { background: "var(--road-ink)", color: "var(--road-ink-text)" };
-    return onToggle ? (
-        <button type="button" onClick={onToggle} aria-expanded={open} className={className} style={style}>
-            {body}
-        </button>
-    ) : (
-        <div className={className} style={style}>
-            {body}
-        </div>
-    );
-}
-
-export function UnitSign({
-    unit,
-    open,
-    showMonth,
-    onToggle,
-}: {
-    unit: RoadUnit;
-    open: boolean;
-    showMonth: boolean;
-    onToggle?: () => void;
-}) {
-    const tone = getCourseMapUnitTone(unit.unitNumber);
-    const neutral = unit.isLocked;
-    const accent = neutral ? "var(--road-future-title)" : tone.accent;
-    const chip = neutral ? "var(--road-neutral-chip)" : tone.chipBg;
-    const eyebrow = showMonth && unit.month ? `Unit ${unit.unitNumber} · ${unit.month}` : `Unit ${unit.unitNumber}`;
-    // Chip colors are translucent in dark mode; lay them on the page color so the rail doesn't show through.
-    const style: CSSProperties = { background: `linear-gradient(${chip}, ${chip}), var(--bg-color)` };
-
-    const body = (
-        <>
-            <span className="min-w-0 flex-1">
-                <span className="block text-[0.7188rem] font-extrabold uppercase tracking-[.08em]" style={{ color: accent }}>
-                    {eyebrow}
-                </span>
-                <span className="block font-display text-[1.0625rem] font-bold leading-tight text-text">{unit.title}</span>
-                {unit.summary ? (
-                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: "var(--road-summary)" }}>
-                        {unit.summary}
-                    </span>
-                ) : null}
-            </span>
-            {onToggle ? <Chevron open={open} /> : null}
-        </>
-    );
-    const className = "mt-5 mb-2 flex w-full items-center gap-3 rounded-[14px] px-4 py-3 text-left";
-    return onToggle ? (
-        <button type="button" onClick={onToggle} aria-expanded={open} className={className} style={style}>
-            {body}
-        </button>
-    ) : (
-        <div className={className} style={style}>
-            {body}
-        </div>
-    );
-}
-
-// ── Activity rows ─────────────────────────────────────────────────────────────
 
 export function ActivityRow({
     activity,
@@ -850,59 +766,6 @@ function WeekHeading({ week, weekNoun }: { week: RoadWeek; weekNoun: string }) {
     );
 }
 
-export function CompactWeekRow({
-    week,
-    weekNoun,
-    open,
-    optionalOpen,
-    onToggle,
-    onToggleOptional,
-}: {
-    week: RoadWeek;
-    weekNoun: string;
-    open: boolean;
-    optionalOpen: boolean;
-    onToggle: () => void;
-    onToggleOptional: () => void;
-}) {
-    const tone = getCourseMapUnitTone(week.unitNumber);
-    const status = week.isDone
-        ? "All done ✓"
-        : week.state === "upcoming"
-          ? (week.note ?? `${week.total} activities`)
-          : `${week.done} of ${week.total} done`;
-    const isPast = week.state === "done" || week.state === "past";
-    const verbs = isPast ? getWeekVerbs([...week.activities, ...week.extras].map((activity) => activity.id)) : [];
-    return (
-        <>
-        <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={week.isFuture} node={<WeekNode week={week} accent={tone.button} />}>
-            <WeekHeading week={week} weekNoun={weekNoun} />
-            <button
-                type="button"
-                onClick={onToggle}
-                aria-expanded={open}
-                className="flex min-h-[60px] w-full items-center gap-2 py-2.5 text-left"
-            >
-                <span className="min-w-0 flex-1">
-                    <span className="block text-[0.8125rem] font-bold text-text-muted">{weekLine(week, weekNoun)}</span>
-                    <span className="block text-[1.0313rem] font-bold leading-snug text-text">{week.title}</span>
-                    <span
-                        className="block text-[0.8438rem]"
-                        style={{ color: week.isDone ? "var(--success-color)" : "var(--text-muted)" }}
-                    >
-                        {status}
-                    </span>
-                </span>
-                <Chevron open={open} />
-            </button>
-            <WeekVerbsChip verbs={verbs} accent={tone.accent} className="-mt-1 mb-2.5" />
-            {open ? <WeekLearningDisclosure weekNumber={week.weekNumber} accent={tone.accent} className="-mt-1 pb-2" verbs={verbs} /> : null}
-        </RoadRow>
-        {open ? <WeekSteps week={week} showNext={week.state === "upcoming"} extrasOpen={optionalOpen} onToggleExtras={onToggleOptional} /> : null}
-        </>
-    );
-}
-
 export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: string }) {
     return (
         <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={week.isFuture} node={<WeekNode week={week} accent="" />}>
@@ -976,12 +839,14 @@ export function CurrentWeekCard({
                         <span className="text-[0.8438rem] font-bold leading-tight whitespace-nowrap text-text-muted">
                             {weekNoun} {week.weekNumber}
                         </span>
+                        {week.isCurrent ? (
                         <span
                             className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
                             style={{ background: tone.button, color: "var(--road-on-accent)" }}
                         >
                             You are here
                         </span>
+                        ) : null}
                     </div>
                     <div className="relative mt-1">
                         <p className="m-0 min-w-0 pr-11 font-display text-[1.5rem] font-bold leading-[1.12] text-text">{week.title}</p>
