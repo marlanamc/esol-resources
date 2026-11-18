@@ -1,14 +1,14 @@
 "use client";
 
 import { Fragment, type CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronDown, ChevronLeft, ChevronRight, List, Lock } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     COURSE_MAP_OPEN_WEEK_EVENT,
     syncMapUrl,
     type CourseMapOpenWeekDetail,
 } from "@/lib/course-map-navigation";
-import type { CourseMapRoadModel, RoadWeek } from "@/lib/course-map-road";
+import type { CourseMapRoadModel, RoadCycle, RoadWeek } from "@/lib/course-map-road";
 import { CurrentWeekCard, LockedWeekRow } from "./parts";
 import styles from "./road.module.css";
 
@@ -44,6 +44,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
     const landingWeek = initialWeek != null && weekByNumber.has(initialWeek) ? initialWeek : currentWeek;
     const [selectedWeek, setSelectedWeek] = useState(landingWeek);
     const [stripOpen, setStripOpen] = useState(false);
+    const [showList, setShowList] = useState(false);
     const [headerHeight, setHeaderHeight] = useState(0);
 
     const stripRef = useRef<HTMLDivElement>(null);
@@ -85,6 +86,7 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
         (weekNumber: number) => {
             if (!weekByNumber.has(weekNumber)) return;
             didSelect.current = true;
+            setShowList(false);
             setSelectedWeek(weekNumber);
         },
         [weekByNumber]
@@ -286,8 +288,34 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                     ))}
                 </div>
                 ) : null}
+                {stripOpen && !showList ? (
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setShowList(true);
+                            window.scrollTo({ top: 0, behavior: "auto" });
+                        }}
+                        className="mt-1 flex min-h-[40px] items-center gap-1.5 text-[0.875rem] font-bold"
+                        style={{ color: selectedTone.accent }}
+                    >
+                        <List size={16} aria-hidden />
+                        See all {weekNoun.toLowerCase()}s as a list
+                    </button>
+                ) : null}
             </div>
 
+            {showList ? (
+                <AllWeeksList
+                    cycles={cycles}
+                    weekNoun={weekNoun}
+                    showMonths={showMonths}
+                    showCycles={showCycles}
+                    selectedWeek={selectedWeek}
+                    onSelect={selectWeek}
+                    onClose={() => setShowList(false)}
+                />
+            ) : (
+            <>
             {/* The selected week only */}
             <section key={selectedWeek} aria-label={`${weekNoun} ${selectedWeek}`} className="pt-2">
                 {selected ? renderWeek(selected) : null}
@@ -302,6 +330,8 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                 )}
                 {nextWeek ? <WeekStepButton week={nextWeek} weekNoun={weekNoun} direction="next" onSelect={selectWeek} /> : null}
             </nav>
+            </>
+            )}
         </div>
     );
 }
@@ -340,5 +370,144 @@ function WeekStepButton({
             </span>
             <span className="line-clamp-2 text-[0.875rem] leading-tight font-bold text-text">{status}</span>
         </button>
+    );
+}
+
+/** Every week by title, grouped by unit; tapping one opens that week. */
+function AllWeeksList({
+    cycles,
+    weekNoun,
+    showMonths,
+    showCycles,
+    selectedWeek,
+    onSelect,
+    onClose,
+}: {
+    cycles: RoadCycle[];
+    weekNoun: string;
+    showMonths: boolean;
+    showCycles: boolean;
+    selectedWeek: number;
+    onSelect: (weekNumber: number) => void;
+    onClose: () => void;
+}) {
+    const noun = weekNoun.toLowerCase();
+    return (
+        <section aria-labelledby="all-weeks-heading" className="flex flex-col gap-4 px-4 pt-4 pb-8 lg:px-1">
+            <div className="flex items-center justify-between gap-3">
+                <h2 id="all-weeks-heading" className="m-0 font-display text-[1.25rem] font-bold text-text">
+                    All {noun}s
+                </h2>
+                <button
+                    type="button"
+                    onClick={onClose}
+                    className="flex min-h-[40px] items-center gap-1 rounded-full px-3 text-[0.875rem] font-bold text-text"
+                    style={{ background: "var(--surface-base)", border: "1px solid var(--border-subtle)" }}
+                >
+                    <ChevronLeft size={16} aria-hidden />
+                    Back to {weekNoun} {selectedWeek}
+                </button>
+            </div>
+            {cycles.map((cycle) => (
+                <Fragment key={cycle.number}>
+                    {showCycles ? (
+                        <p className="m-0 text-[0.75rem] font-extrabold uppercase tracking-[.08em] text-text-muted">
+                            Cycle {cycle.number}
+                            {cycle.range ? ` · ${cycle.range}` : ""}
+                        </p>
+                    ) : null}
+                    {cycle.units.map((unit) => {
+                        const tone = getCourseMapUnitTone(unit.unitNumber);
+                        const heading = showMonths && unit.month ? `${unit.month} · ${unit.title}` : `Unit ${unit.unitNumber} · ${unit.title}`;
+                        return (
+                            <div
+                                key={unit.unitNumber}
+                                className="overflow-hidden rounded-2xl"
+                                style={{ background: "var(--surface-base)", border: "1px solid var(--border-subtle)" }}
+                            >
+                                <div className="flex items-center gap-2.5 px-3.5 py-2.5" style={{ background: tone.surface }}>
+                                    <span aria-hidden className="h-5 w-1.5 shrink-0 rounded" style={{ background: tone.accent }} />
+                                    <h3 className="m-0 min-w-0 flex-1 text-[0.9375rem] leading-snug font-extrabold" style={{ color: tone.accent }}>
+                                        {heading}
+                                    </h3>
+                                    <span className="shrink-0 text-[0.8125rem] font-bold text-text-muted">
+                                        {unit.doneWeeks}/{unit.weeks.length} done
+                                    </span>
+                                </div>
+                                <ul className="m-0 list-none p-0">
+                                    {unit.weeks.map((week) => {
+                                        const status = week.isDone
+                                            ? "All done"
+                                            : week.isLocked
+                                              ? (week.note ?? "Coming up")
+                                              : week.isCurrent
+                                                ? `This ${noun} · ${week.done} of ${week.total} done`
+                                                : `${week.done} of ${week.total} done`;
+                                        return (
+                                            <li key={week.weekNumber} style={{ borderTop: "1px solid color-mix(in srgb, var(--border-subtle) 70%, transparent)" }}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => onSelect(week.weekNumber)}
+                                                    aria-current={week.isCurrent ? "step" : undefined}
+                                                    className="flex min-h-[56px] w-full items-center gap-3 px-3.5 py-2 text-left"
+                                                    style={week.isCurrent ? { background: tone.surface, boxShadow: `inset 4px 0 0 ${tone.accent}` } : undefined}
+                                                >
+                                                    <WeekBadge week={week} accent={tone.accent} />
+                                                    <span className="min-w-0 flex-1">
+                                                        <span
+                                                            className="block text-[0.9375rem] leading-snug font-bold"
+                                                            style={{ color: week.isLocked ? "var(--road-future-title)" : "var(--text-color)" }}
+                                                        >
+                                                            {week.title}
+                                                        </span>
+                                                        <span
+                                                            className="block text-[0.8125rem] font-semibold"
+                                                            style={{ color: week.isDone ? "var(--success-color)" : "var(--text-color-muted)" }}
+                                                        >
+                                                            {weekNoun} {week.weekNumber} · {status}
+                                                        </span>
+                                                    </span>
+                                                    <ChevronRight size={16} aria-hidden className="shrink-0 text-text-muted" />
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </Fragment>
+            ))}
+        </section>
+    );
+}
+
+function WeekBadge({ week, accent }: { week: RoadWeek; accent: string }) {
+    const base = "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[0.8125rem] font-extrabold";
+    if (week.isDone) {
+        return (
+            <span aria-hidden className={base} style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
+                <Check size={16} strokeWidth={3} />
+            </span>
+        );
+    }
+    if (week.isLocked) {
+        return (
+            <span aria-hidden className={base} style={{ background: "var(--road-locked-bg)", color: "var(--road-locked-icon)" }}>
+                <Lock size={14} />
+            </span>
+        );
+    }
+    if (week.isCurrent) {
+        return (
+            <span aria-hidden className={base} style={{ background: accent, color: "var(--road-on-tone)" }}>
+                {week.weekNumber}
+            </span>
+        );
+    }
+    return (
+        <span aria-hidden className={base} style={{ border: `2px solid ${accent}`, color: accent }}>
+            {week.weekNumber}
+        </span>
     );
 }
