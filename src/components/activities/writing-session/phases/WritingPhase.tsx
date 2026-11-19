@@ -51,7 +51,8 @@ export function WritingPhase({
 }: WritingPhaseProps) {
     const draftKey = `writing-draft-${sessionId}-${roundIndex}`;
 
-    const initialSecondsRef = useRef(
+    // Full length of the timer when this round opened, for the countdown ring.
+    const [initialSeconds] = useState(() =>
         timerEndsAt
             ? Math.max(1, Math.round((new Date(timerEndsAt).getTime() - Date.now()) / 1000))
             : 300
@@ -80,7 +81,7 @@ export function WritingPhase({
     const wordCount = countWords(text);
     const hasStarters = (suggestions?.starters?.length ?? 0) > 0;
     const hasVocab = (suggestions?.vocab?.length ?? 0) > 0;
-    const progress = Math.max(0, Math.min(1, secondsLeft / initialSecondsRef.current));
+    const progress = Math.max(0, Math.min(1, secondsLeft / initialSeconds));
     const dashoffset = CIRC * (1 - progress);
     const timerColor = secondsLeft <= 30 ? "#b91c1c" : secondsLeft <= 60 ? "#c2410c" : groupColor;
 
@@ -94,21 +95,6 @@ export function WritingPhase({
         const interval = setInterval(tick, 1000);
         return () => clearInterval(interval);
     }, [timerEndsAt, submitted]);
-
-    useEffect(() => {
-        // Only auto-submit when the timer has genuinely expired (guards against interval drift
-        // that might set secondsLeft to 0 a tick early on throttled devices).
-        if (
-            secondsLeft === 0 &&
-            !submitRef.current &&
-            !submitted &&
-            timerEndsAt &&
-            Date.now() >= new Date(timerEndsAt).getTime()
-        ) {
-            handleSubmit();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [secondsLeft]);
 
     const handleSubmit = async () => {
         if (submitRef.current) return;
@@ -131,6 +117,21 @@ export function WritingPhase({
             setSubmitting(false);
         }
     };
+
+    useEffect(() => {
+        // Only auto-submit when the timer has genuinely expired (guards against interval drift
+        // that might set secondsLeft to 0 a tick early on throttled devices).
+        if (
+            secondsLeft === 0 &&
+            !submitRef.current &&
+            !submitted &&
+            timerEndsAt &&
+            Date.now() >= new Date(timerEndsAt).getTime()
+        ) {
+            handleSubmit();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [secondsLeft]);
 
     const insertStarter = (starter: string) => {
         setText((prev) => (prev ? `${prev} ${starter}` : starter));
