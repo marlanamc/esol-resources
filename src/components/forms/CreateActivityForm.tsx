@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useRef, useId } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -32,7 +32,7 @@ export default function CreateActivityForm() {
     const {
         register,
         handleSubmit,
-        watch,
+        control,
         setError,
         formState: { errors, isSubmitting },
     } = useForm<FormValues>({
@@ -40,7 +40,7 @@ export default function CreateActivityForm() {
         defaultValues: { type: "worksheet" },
     });
 
-    const type = watch("type");
+    const type = useWatch({ control, name: "type" });
 
     const [contentType, setContentType] = useState("simple");
     const [content, setContent] = useState("");
