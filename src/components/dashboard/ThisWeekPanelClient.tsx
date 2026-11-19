@@ -75,7 +75,7 @@ export function ThisWeekPanelClient({
                 </div>
 
                 {/* Same steps as the phone home and the Map, so the routine reads the same everywhere. */}
-                <WeekStepLines items={items} weekNumber={weekNumber} mapHref={mapHref} showUnitMonths={showUnitMonths} accent={tone.button} inset={20} />
+                <WeekStepLines items={items} weekNumber={weekNumber} accent={tone.button} inset={20} />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3" style={{ borderTop: divider }}>
                     <Link

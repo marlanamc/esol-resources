@@ -10,7 +10,8 @@ import { DashboardCalendarCard } from "./CalendarMonthPanel";
 import type { CalendarEvent } from "./MiniCalendar";
 import { StudyWeekCard } from "@/components/study-log/StudyWeekCard";
 import { loadUnseenClassAnswers } from "@/lib/learner/class-questions-data";
-import { ClassAnswerNotice } from "./ClassAnswerNotice";
+import { ClassAnswerBanner, ClassQuestionsRow } from "./ClassQuestionsSheet";
+import { loadDashboardResume } from "./ThisWeekPanel";
 
 const weeklyQuizStatus = cache((userId: string) => getStudentWeeklyQuizStatus(userId));
 const unseenClassAnswers = cache((userId: string) => loadUnseenClassAnswers(userId));
@@ -55,7 +56,17 @@ export async function ClassAnswerSection({ userId }: { userId: string }) {
         console.error("[Dashboard] Question answers unavailable", error);
         return null;
     });
-    return answers ? <ClassAnswerNotice {...answers} /> : null;
+    return answers ? <ClassAnswerBanner {...answers} /> : null;
+}
+
+/** "Questions for class" beside Class links: classroom learners only, for the current week. */
+export async function ClassQuestionsSection({ userId }: { userId: string }) {
+    const [week, answers] = await Promise.all([
+        loadDashboardResume(userId, "student").catch(() => null),
+        unseenClassAnswers(userId).catch(() => null),
+    ]);
+    if (!week?.showUnitMonths) return null;
+    return <ClassQuestionsRow weekNumber={week.weekNumber} unseenAnswers={answers?.count ?? 0} />;
 }
 
 /** The Home sidebar calendar with the learner's practice days ticked; without the log it still shows the dates. */

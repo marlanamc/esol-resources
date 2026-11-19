@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import type { InteractiveGuideContent, InteractiveGuideSection, QuestionResponse } from "@/types/activity";
+import { GuideQuestionPrompt } from "./GuideQuestionPrompt";
 import { useRouter } from "next/navigation";
 import { SectionHeader } from "./SectionHeader";
 import { ExplanationPanel } from "./ExplanationPanel";
@@ -25,6 +26,8 @@ interface GrammarReaderProps {
     onComplete?: () => void;
     completionKey?: string;
     activityId?: string;
+    /** Course week for "Something not clear?" at the end; null hides it (not a classroom learner). */
+    questionsWeek?: number | null;
 }
 
 function getSlugFromPath(pathname: string | null): string | null {
@@ -44,7 +47,7 @@ function formatGuideTitle(raw: string | null | undefined): string {
         .join(" ");
 }
 
-export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
+export function GrammarReader({ content, onComplete, completionKey, activityId, questionsWeek = null }: GrammarReaderProps) {
     const router = useRouter();
     const storageKey = `grammarReader:${completionKey || "guide"}:unlocked`;
     const readerContainerRef = useRef<HTMLDivElement | null>(null);
@@ -787,6 +790,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             )}
                         </>
                     )}
+
+                    {/* After the mini quiz (or the last page of a guide without one) */}
+                    {questionsWeek != null && (showQuiz || (isLastSection && !content.miniQuiz)) ? (
+                        <GuideQuestionPrompt weekNumber={questionsWeek} />
+                    ) : null}
 
                     {/* Section Counter Footer - Hidden on mobile (shown in bottom bar instead) */}
                     {!showTOC && (
