@@ -104,8 +104,53 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Browsers are cached per Playwright version. The system packages they
+      # need (WebKit's media libraries are the bulk) come from apt, whose mirror
+      # can crawl, so the downloaded .deb files are cached too and copied back
+      # into apt's archive before installing. The timeouts turn a stall into a
+      # quick failure instead of a job that hangs.
+      - name: Read Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}-chromium-webkit
+
+      - name: Cache Playwright apt packages
+        id: apt-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/apt-playwright
+          key: apt-playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}-chromium-webkit
+
+      - name: Reuse cached apt packages
+        run: |
+          echo 'APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/99-keep-downloaded-packages
+          if compgen -G "$HOME/.cache/apt-playwright/*.deb" > /dev/null; then
+            sudo cp "$HOME"/.cache/apt-playwright/*.deb /var/cache/apt/archives/
+          fi
+
       - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        timeout-minutes: 10
         run: npx playwright install --with-deps chromium webkit
+
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        timeout-minutes: 10
+        run: npx playwright install-deps chromium webkit
+
+      - name: Keep apt packages for the cache
+        if: steps.apt-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "$HOME/.cache/apt-playwright"
+          if compgen -G "/var/cache/apt/archives/*.deb" > /dev/null; then
+            cp /var/cache/apt/archives/*.deb "$HOME/.cache/apt-playwright/"
+          fi
 
       - name: Prepare database schema
         run: npm run ci:db:prepare
