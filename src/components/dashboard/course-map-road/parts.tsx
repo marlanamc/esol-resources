@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import { Check, ChevronDown, ChevronRight, Lock } from "lucide-react";
 import { getCourseMapActivityFormat } from "@/components/dashboard/CourseMapActivityFormatChip";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
@@ -17,120 +17,7 @@ import {
     type RoadWeek,
 } from "@/lib/course-map-road";
 
-const HALO = "0 0 0 4px var(--bg-color)";
 const ROW_BORDER = "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)";
-
-// ── Rail + row shell ──────────────────────────────────────────────────────────
-
-/** Two-column road row: the rail (and node) on the left, content on the right. */
-export function RoadRow({
-    future,
-    node,
-    children,
-    id,
-    spyWeek,
-    fullWidth = false,
-}: {
-    /** Dashed rail for stretches after the class week. */
-    future: boolean;
-    node?: ReactNode;
-    children: ReactNode;
-    id?: string;
-    spyWeek?: number;
-    /** Signs span the road; the rail shows in the gaps above and below them. */
-    fullWidth?: boolean;
-}) {
-    const rail = (
-        <span
-            aria-hidden
-            className="absolute top-0 bottom-0 left-[33px] w-[3px]"
-            style={{
-                background: future
-                    ? "repeating-linear-gradient(to bottom, var(--road-rail-future) 0 6px, transparent 6px 12px)"
-                    : "var(--road-rail)",
-            }}
-        />
-    );
-    if (fullWidth) {
-        return (
-            <div id={id} data-road-spy={spyWeek} className="relative px-4">
-                {rail}
-                <div className="relative">{children}</div>
-            </div>
-        );
-    }
-    return (
-        <div
-            id={id}
-            data-road-spy={spyWeek}
-            className="relative grid grid-cols-[44px_minmax(0,1fr)] gap-2 pr-4 pl-3"
-        >
-            {rail}
-            <div className="relative flex justify-center" aria-hidden>
-                {node}
-            </div>
-            <div className="min-w-0">{children}</div>
-        </div>
-    );
-}
-
-export function WeekNode({ week, accent }: { week: RoadWeek; accent: string }) {
-    const base: CSSProperties = { boxShadow: HALO, marginTop: 16 };
-    if (week.isCurrent) {
-        return (
-            <span
-                className="flex h-[42px] w-[42px] items-center justify-center rounded-full text-[1.125rem] font-extrabold"
-                style={{
-                    ...base,
-                    marginTop: 14,
-                    background: accent,
-                    color: "var(--road-on-accent)",
-                    boxShadow: `${HALO}, 0 0 0 9px color-mix(in srgb, ${accent} 22%, transparent)`,
-                }}
-            >
-                {week.weekNumber}
-            </span>
-        );
-    }
-    if (week.isLocked) {
-        return (
-            <span
-                className="flex h-[30px] w-[30px] items-center justify-center rounded-full"
-                style={{
-                    ...base,
-                    background: "var(--road-locked-bg)",
-                    border: "2px dashed var(--road-rail-future)",
-                    color: "var(--road-locked-icon)",
-                }}
-            >
-                <Lock size={14} />
-            </span>
-        );
-    }
-    if (week.isDone) {
-        return (
-            <span
-                className="flex h-[30px] w-[30px] items-center justify-center rounded-full"
-                style={{ ...base, background: "var(--success-color)", color: "var(--road-on-success)" }}
-            >
-                <Check size={16} strokeWidth={3} />
-            </span>
-        );
-    }
-    return (
-        <span
-            className="flex h-[30px] w-[30px] items-center justify-center rounded-full text-[0.8125rem] font-extrabold"
-            style={{
-                ...base,
-                background: "var(--bg-color)",
-                border: `2px solid ${week.isFuture ? "var(--road-rail-future)" : "var(--road-node-past-border)"}`,
-                color: week.isFuture ? "var(--road-future-meta)" : "var(--text)",
-            }}
-        >
-            {week.weekNumber}
-        </span>
-    );
-}
 
 // ── Cycle banner + unit sign ──────────────────────────────────────────────────
 
@@ -359,14 +246,15 @@ export function WeekLearningDisclosure({
 const isQuizActivity = (activity: RoadActivity) => activity.activityType === "quiz" || activity.activityType === "assessment";
 
 /** The line under a tile's title: what state it is in, or what kind of activity it is. */
-function tileStatus(activity: RoadActivity, isNext: boolean, locked: boolean, formatLabel: string): string {
+function tileStatus(activity: RoadActivity, title: string, isNext: boolean, locked: boolean, formatLabel: string): string {
     const score = activity.quizScore;
     if (activity.done && score) return `${Math.round((score.correct / score.total) * 100)}%`;
     if (activity.done) return "Done";
     if (locked) return "Opens later";
     if (isNext) return "Start here";
     if (isQuizActivity(activity)) return "Required";
-    return formatLabel;
+    // "Flash Cards" over "Flash cards" says nothing new.
+    return formatLabel.toLowerCase() === title.toLowerCase() ? "" : formatLabel;
 }
 
 /** One required activity as a square tile: done, next, not open yet, or waiting. */
@@ -378,7 +266,7 @@ function WeekTile({ activity, showNext, accent }: { activity: RoadActivity; show
     const locked = !activity.done && activity.href == null;
     const isNext = showNext && activity.isNext && !activity.done && !locked;
     const quiz = isQuizActivity(activity);
-    const status = tileStatus(activity, isNext, locked, format.label);
+    const status = tileStatus(activity, title, isNext, locked, format.label);
 
     const border = isNext
         ? `2px solid ${accent}`
@@ -413,11 +301,13 @@ function WeekTile({ activity, showNext, accent }: { activity: RoadActivity; show
     const content = (
         <>
             {badge}
-            <span className={`line-clamp-2 text-[0.875rem] leading-tight font-bold ${locked ? "text-text-muted" : "text-text"}`}>{title}</span>
-            <span className={`text-[0.75rem] leading-tight ${activity.done || isNext || quiz ? "font-bold" : "font-semibold"}`} style={{ color: statusColor }}>
-                {activity.quizScore && activity.done ? <span className="sr-only">Best score: </span> : null}
-                {status}
-            </span>
+            <span className={`line-clamp-3 text-[0.875rem] leading-tight font-bold ${locked ? "text-text-muted" : "text-text"}`}>{title}</span>
+            {status ? (
+                <span className={`text-[0.75rem] leading-tight ${activity.done || isNext || quiz ? "font-bold" : "font-semibold"}`} style={{ color: statusColor }}>
+                    {activity.quizScore && activity.done ? <span className="sr-only">Best score: </span> : null}
+                    {status}
+                </span>
+            ) : null}
         </>
     );
     const className = "flex min-h-[112px] flex-col items-center justify-center gap-1.5 rounded-[18px] px-1.5 py-2.5 text-center";
@@ -436,13 +326,13 @@ function WeekTile({ activity, showNext, accent }: { activity: RoadActivity; show
     );
 }
 
-/** Optional games as a plain list under the tiles. */
+/** Extra games as a plain list under the tiles. */
 function ExtrasList({ extras }: { extras: RoadActivity[] }) {
     const done = extras.filter((activity) => activity.done).length;
     return (
         <div className="mt-3">
             <div className="flex items-baseline justify-between gap-2 px-1 pb-1">
-                <h4 className="m-0 text-[0.75rem] font-extrabold uppercase tracking-[.08em] text-text-muted">Extra · optional</h4>
+                <h4 className="m-0 [font-family:inherit] text-[0.75rem] font-extrabold uppercase tracking-[.08em] text-text-muted">Extra</h4>
                 {done > 0 ? <span className="text-[0.75rem] font-bold text-text-muted">{done} of {extras.length} done</span> : null}
             </div>
             <ul className="m-0 list-none p-0">
@@ -524,9 +414,12 @@ function WeekHeading({ week, weekNoun }: { week: RoadWeek; weekNoun: string }) {
 
 export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: string }) {
     return (
-        <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={week.isFuture} node={<WeekNode week={week} accent="" />}>
+        <div id={`road-week-${week.weekNumber}`} className="mx-4 my-2 flex items-center gap-3 rounded-[18px] px-3.5 py-3 lg:mx-1" style={{ border: "1.5px dashed var(--road-rail-future)", background: "var(--road-locked-bg)" }}>
             <WeekHeading week={week} weekNoun={weekNoun} />
-            <div className="flex min-h-[58px] flex-col justify-center py-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ color: "var(--road-locked-icon)", border: "1.5px dashed var(--road-rail-future)" }}>
+                <Lock size={15} aria-hidden />
+            </span>
+            <div className="flex min-w-0 flex-col justify-center">
                 <span className="block text-[0.8125rem] font-bold" style={{ color: "var(--road-future-meta)" }}>
                     {weekLine(week, weekNoun)}
                 </span>
@@ -535,7 +428,7 @@ export function LockedWeekRow({ week, weekNoun }: { week: RoadWeek; weekNoun: st
                 </span>
                 {week.note ? <span className="block text-[0.8438rem] text-text-muted">{week.note}</span> : null}
             </div>
-        </RoadRow>
+        </div>
     );
 }
 
@@ -582,7 +475,7 @@ export function CurrentWeekCard({
     // The week number stays on the rail. The tray holds the title, progress, and Continue.
     return (
         <div className="my-2">
-            <RoadRow id={`road-week-${week.weekNumber}`} spyWeek={week.weekNumber} future={false} node={<WeekNode week={week} accent={tone.button} />}>
+            <div id={`road-week-${week.weekNumber}`} className="px-4 lg:px-1">
                 <WeekHeading week={week} weekNoun={weekNoun} />
                 <div className="rounded-[18px] border px-3.5 pt-2.5 pb-3" style={tray}>
                     <div className="flex items-center justify-between gap-2">
@@ -636,7 +529,7 @@ export function CurrentWeekCard({
                     ) : null}
                     {hasSteps ? <WeekTiles week={week} accent={tone.button} /> : null}
                 </div>
-            </RoadRow>
+            </div>
         </div>
     );
 }
