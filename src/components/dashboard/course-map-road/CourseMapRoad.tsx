@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     COURSE_MAP_OPEN_WEEK_EVENT,
@@ -138,7 +138,6 @@ export function CourseMapRoad({ model, initialWeek = null, weekNoun = "Week", sh
                                 {weekNoun} {selectedWeek}
                             </span>
                             {selected?.dates ? <span className="text-[0.875rem] font-semibold text-text-muted lg:text-[1.0625rem]">{selected.dates}</span> : null}
-                            <ChevronDown size={18} aria-hidden className="shrink-0 self-center text-text-muted" />
                         </button>
                     </div>
                     {/* On another week this becomes the way back; otherwise it opens the list. */}

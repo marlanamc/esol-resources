@@ -99,85 +99,85 @@ export function AllWeeksDialog({
                     </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto overscroll-contain pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-                    {/* Month strip: one block per week */}
-                    <div className="px-4 pt-3 pb-3" style={{ borderBottom: "1px solid var(--border-subtle)" }}>
-                        <div
-                            ref={stripRef}
-                            className="relative -mx-4 flex gap-[7px] overflow-x-auto px-4 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:gap-2.5 lg:overflow-visible lg:px-0.5"
-                        >
-                            {cycles.map((cycle, cycleIndex) => (
-                                <Fragment key={cycle.number}>
-                                    {cycleIndex > 0 ? (
-                                        <span aria-hidden className="mx-[3px] mt-1 mb-0.5 w-[2px] shrink-0 rounded-[1px]" style={{ background: "var(--road-rail)" }} />
-                                    ) : null}
-                                    {cycle.units.map((unit) => {
-                                        const tone = getCourseMapUnitTone(unit.unitNumber);
-                                        return (
-                                            <div
-                                                key={unit.unitNumber}
-                                                className="flex shrink-0 flex-col gap-1.5 lg:min-w-0 lg:shrink lg:[flex-basis:0] lg:[flex-grow:var(--strip-weeks)]"
-                                                style={{ "--strip-weeks": unit.weeks.length } as CSSProperties}
-                                            >
-                                                <div className="flex gap-[3px] lg:gap-1">
-                                                    {unit.weeks.map((week) => {
-                                                        const behind = isWeekBehind(week);
-                                                        const bg = week.isCurrent
-                                                            ? tone.button
-                                                            : week.isDone
-                                                              ? "var(--success-color)"
-                                                              : behind
-                                                                ? "var(--road-behind)"
-                                                                : week.isFuture || week.isLocked
-                                                                  ? "var(--road-segment-future)"
-                                                                  : "var(--road-rail)";
-                                                        return (
-                                                            <button
-                                                                key={week.weekNumber}
-                                                                type="button"
-                                                                data-strip-week={week.weekNumber}
-                                                                aria-label={`Go to ${noun} ${week.weekNumber}: ${week.title}${behind ? `, ${week.total - week.done} left` : ""}`}
-                                                                aria-current={week.weekNumber === selectedWeek ? "true" : undefined}
-                                                                onClick={() => pick(week.weekNumber)}
-                                                                className="icon-button flex h-[30px] w-[22px] items-center justify-center lg:h-8 lg:w-auto lg:min-w-0 lg:flex-1"
-                                                            >
-                                                                <span
-                                                                    className="block h-[18px] w-[22px] rounded-[5px] lg:h-full lg:w-full lg:rounded-[7px]"
-                                                                    style={{
-                                                                        background: bg,
-                                                                        boxShadow:
-                                                                            week.weekNumber === selectedWeek
-                                                                                ? "0 0 0 1.5px var(--bg-color), 0 0 0 3.5px var(--text)"
-                                                                                : undefined,
-                                                                    }}
-                                                                />
-                                                            </button>
-                                                        );
-                                                    })}
-                                                </div>
-                                                <span
-                                                    className="pl-1 text-[0.6875rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap lg:pl-1.5 lg:text-[0.75rem] lg:tracking-[.1em]"
-                                                    style={{ color: tone.accent, borderLeft: `2px solid ${tone.accent}` }}
-                                                >
-                                                    {showMonths && unit.month ? unit.month.slice(0, 3) : `Unit ${unit.unitNumber}`}
-                                                </span>
+                {/* Month strip: one block per week. It stays pinned while the unit list scrolls. */}
+                <div className="shrink-0 px-4 pt-3 pb-3" style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                    <div
+                        ref={stripRef}
+                        className="relative -mx-4 flex gap-[7px] overflow-x-auto px-4 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:gap-2.5 lg:overflow-visible lg:px-0.5"
+                    >
+                        {cycles.map((cycle, cycleIndex) => (
+                            <Fragment key={cycle.number}>
+                                {cycleIndex > 0 ? (
+                                    <span aria-hidden className="mx-[3px] mt-1 mb-0.5 w-[2px] shrink-0 rounded-[1px]" style={{ background: "var(--road-rail)" }} />
+                                ) : null}
+                                {cycle.units.map((unit) => {
+                                    const tone = getCourseMapUnitTone(unit.unitNumber);
+                                    return (
+                                        <div
+                                            key={unit.unitNumber}
+                                            className="flex shrink-0 flex-col gap-1.5 lg:min-w-0 lg:shrink lg:[flex-basis:0] lg:[flex-grow:var(--strip-weeks)]"
+                                            style={{ "--strip-weeks": unit.weeks.length } as CSSProperties}
+                                        >
+                                            <div className="flex gap-[3px] lg:gap-1">
+                                                {unit.weeks.map((week) => {
+                                                    const behind = isWeekBehind(week);
+                                                    const bg = week.isCurrent
+                                                        ? tone.button
+                                                        : week.isDone
+                                                          ? "var(--success-color)"
+                                                          : behind
+                                                            ? "var(--road-behind)"
+                                                            : week.isFuture || week.isLocked
+                                                              ? "var(--road-segment-future)"
+                                                              : "var(--road-rail)";
+                                                    return (
+                                                        <button
+                                                            key={week.weekNumber}
+                                                            type="button"
+                                                            data-strip-week={week.weekNumber}
+                                                            aria-label={`Go to ${noun} ${week.weekNumber}: ${week.title}${behind ? `, ${week.total - week.done} left` : ""}`}
+                                                            aria-current={week.weekNumber === selectedWeek ? "true" : undefined}
+                                                            onClick={() => pick(week.weekNumber)}
+                                                            className="icon-button flex h-[30px] w-[22px] items-center justify-center lg:h-8 lg:w-auto lg:min-w-0 lg:flex-1"
+                                                        >
+                                                            <span
+                                                                className="block h-[18px] w-[22px] rounded-[5px] lg:h-full lg:w-full lg:rounded-[7px]"
+                                                                style={{
+                                                                    background: bg,
+                                                                    boxShadow:
+                                                                        week.weekNumber === selectedWeek
+                                                                            ? "0 0 0 1.5px var(--bg-color), 0 0 0 3.5px var(--text)"
+                                                                            : undefined,
+                                                                }}
+                                                            />
+                                                        </button>
+                                                    );
+                                                })}
                                             </div>
-                                        );
-                                    })}
-                                </Fragment>
-                            ))}
-                        </div>
-                        <p className="m-0 mt-2 flex items-center gap-1.5 text-[0.8125rem] text-text-muted">
-                            {anyBehind ? (
-                                <>
-                                    <span aria-hidden className="inline-block h-3 w-3 rounded-[3px]" style={{ background: "var(--road-behind)" }} />
-                                    Not finished ·{" "}
-                                </>
-                            ) : null}
-                            Tap a {noun} to go to it
-                        </p>
+                                            <span
+                                                className="pl-1 text-[0.6875rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap lg:pl-1.5 lg:text-[0.75rem] lg:tracking-[.1em]"
+                                                style={{ color: tone.accent, borderLeft: `2px solid ${tone.accent}` }}
+                                            >
+                                                {showMonths && unit.month ? unit.month.slice(0, 3) : `Unit ${unit.unitNumber}`}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </Fragment>
+                        ))}
                     </div>
+                    <p className="m-0 mt-2 flex items-center gap-1.5 text-[0.8125rem] text-text-muted">
+                        {anyBehind ? (
+                            <>
+                                <span aria-hidden className="inline-block h-3 w-3 rounded-[3px]" style={{ background: "var(--road-behind)" }} />
+                                Not finished ·{" "}
+                            </>
+                        ) : null}
+                        Tap a {noun} to go to it
+                    </p>
+                </div>
 
+                <div className="flex-1 overflow-y-auto overscroll-contain pb-[max(1.5rem,env(safe-area-inset-bottom))]">
                     {/* Units and their weeks */}
                     <div className="flex flex-col gap-2.5 px-4 pt-3">
                         {cycles.map((cycle) => (
