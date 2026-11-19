@@ -484,8 +484,8 @@ export function CurrentWeekCard({
                         </span>
                         {week.isCurrent ? (
                         <span
-                            className="shrink-0 rounded-full px-2 py-[3px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
-                            style={{ background: tone.button, color: "var(--road-on-accent)" }}
+                            className="shrink-0 rounded-full px-2 py-[1.5px] text-[0.6563rem] font-extrabold uppercase tracking-[.06em] whitespace-nowrap"
+                            style={{ border: `1.5px solid ${tone.accent}`, color: tone.accent }}
                         >
                             You are here
                         </span>
