@@ -118,7 +118,7 @@ export function ThisWeekRoadCard({
                     )}
                 </div>
 
-                <WeekStepLines items={items} weekNumber={weekNumber} mapHref={mapHref} showUnitMonths={showUnitMonths} accent={tone.button} />
+                <WeekStepLines items={items} weekNumber={weekNumber} accent={tone.button} />
 
                 <Link
                     href={mapHref}

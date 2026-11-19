@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { KeepPracticingSection, ResumePracticeSection } from "@/components/dashboard/ResumePracticeSection";
 import { SectionUnavailable } from "@/components/dashboard/SectionUnavailable";
-import { ClassAnswerSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
+import { ClassAnswerSection, ClassQuestionsSection, MomentumSection, SidebarCalendarSection, StudyWeekSection, WeeklyQuizSection } from "@/components/dashboard/ResilientDashboardSections";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
@@ -469,6 +469,7 @@ export default async function DashboardPage() {
     const weeklyQuiz = <Suspense fallback={null}><WeeklyQuizSection userId={userId} /></Suspense>;
     const studyWeek = userRole === "student" ? <Suspense fallback={null}><StudyWeekSection userId={userId} /></Suspense> : null;
     const classAnswers = userRole === "student" ? <Suspense fallback={null}><ClassAnswerSection userId={userId} /></Suspense> : null;
+    const classQuestions = userRole === "student" ? <Suspense fallback={null}><ClassQuestionsSection userId={userId} /></Suspense> : null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
     const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
     const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
@@ -495,7 +496,7 @@ export default async function DashboardPage() {
                         <Suspense fallback={<KeepPracticingList items={newThisWeekItems} />}>
                             <KeepPracticingSection userId={userId} items={newThisWeekItems} />
                         </Suspense>
-                        <HelpfulLinksCard variant="plain" />
+                        <HelpfulLinksCard variant="plain" leading={classQuestions} />
                     </div>
                 </div>
 
@@ -547,7 +548,7 @@ export default async function DashboardPage() {
                                 <DashboardCalendarCard events={calendarEvents} />
                             )}
 
-                            <HelpfulLinksCard />
+                            <HelpfulLinksCard leading={classQuestions} />
 
                         </aside>
                     </div>

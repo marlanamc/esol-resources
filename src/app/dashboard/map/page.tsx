@@ -33,7 +33,6 @@ import {
 } from "@/lib/course-map-current-week";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import { buildCourseMapRoad, type RoadScheduleWeek } from "@/lib/course-map-road";
-import { ClassQuestionsProvider } from "@/components/dashboard/course-map-road/ClassQuestionBox";
 import { buildTeachingWeeks } from "@/lib/course-map-schedule";
 import { readWeeklyQuizScore, type WeeklyQuizScore } from "@/lib/weekly-quiz";
 
@@ -302,15 +301,12 @@ export default async function MapPage({
                             </Link>
                         </aside>
                         <div className="min-w-0">
-                            {/* Questions for class reach the teacher only for enrolled classroom learners. */}
-                            <ClassQuestionsProvider enabled={session.user.role === "student" && showUnitMonths && enrollments.length > 0}>
-                                <CourseMapRoad
-                                    model={roadModel}
-                                    initialWeek={initialWeek}
-                                    weekNoun={showUnitMonths ? "Week" : "Level"}
-                                    showMonths={showUnitMonths}
-                                />
-                            </ClassQuestionsProvider>
+                            <CourseMapRoad
+                                model={roadModel}
+                                initialWeek={initialWeek}
+                                weekNoun={showUnitMonths ? "Week" : "Level"}
+                                showMonths={showUnitMonths}
+                            />
                             <div className="mt-6 lg:hidden">
                                 <Link
                                     href="/dashboard/activities"
