@@ -67,7 +67,9 @@ export function ImageWordMatchingGame({
   const [roundKey, setRoundKey] = useState(0);
   const completionFired = useRef(false);
   const onCompleteRef = useRef(onComplete);
-  const startTimeRef = useRef(Date.now());
+  // Set when rounds are built (on mount and on replay).
+  const startTimeRef = useRef(0);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const wordAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -181,6 +183,7 @@ export function ImageWordMatchingGame({
         setRoundKey((k) => k + 1);
       }, 800);
     } else {
+      setElapsedSeconds(Math.round((Date.now() - startTimeRef.current) / 1000));
       setGameComplete(true);
       if (!completionFired.current) {
         completionFired.current = true;
@@ -231,7 +234,6 @@ export function ImageWordMatchingGame({
   }, [roundMatched.size, roundPairs.length, advanceRound]);
 
   const progressPercent = pairs.length > 0 ? (totalMatched / pairs.length) * 100 : 0;
-  const elapsedSeconds = Math.round((Date.now() - startTimeRef.current) / 1000);
   const minutes = Math.floor(elapsedSeconds / 60);
   const seconds = elapsedSeconds % 60;
 

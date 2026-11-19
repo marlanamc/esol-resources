@@ -38,6 +38,10 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     const [score, setScore] = useState(0);
     const scoreCardRef = useRef<HTMLDivElement | null>(null);
     const reduceMotion = useReducedMotion();
+    // Random spots for the high-score sparkles, picked once so re-renders don't move them.
+    const [sparkles] = useState(() =>
+        Array.from({ length: 20 }, () => ({ left: Math.random() * 100, rotate: Math.random() * 360, x: (Math.random() - 0.5) * 200 }))
+    );
 
     const getUserAnswer = (q: MiniQuizQuestion): string => {
         if (q.type === "word-scramble") return (scramble[q.id]?.selected ?? []).join(" ");
@@ -227,13 +231,13 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
 
                                     {percentage >= 80 && !reduceMotion && (
                                         <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
-                                            {[...Array(20)].map((_, i) => (
+                                            {sparkles.map((sparkle, i) => (
                                                 <motion.div
                                                     key={i}
                                                     className="absolute"
-                                                    style={{ left: `${Math.random() * 100}%`, top: "50%" }}
+                                                    style={{ left: `${sparkle.left}%`, top: "50%" }}
                                                     initial={{ opacity: 1, y: 0, rotate: 0 }}
-                                                    animate={{ opacity: 0, y: [-50, -200], rotate: Math.random() * 360, x: (Math.random() - 0.5) * 200 }}
+                                                    animate={{ opacity: 0, y: [-50, -200], rotate: sparkle.rotate, x: sparkle.x }}
                                                     transition={{ duration: 1.5, delay: i * 0.05 }}
                                                 >
                                                     <Sparkles className="w-4 h-4 text-success" />

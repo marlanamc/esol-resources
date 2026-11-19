@@ -51,15 +51,6 @@ export function JoinForm() {
         formState: { errors, isSubmitting },
     } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-    useEffect(() => {
-        const codeFromUrl = searchParams.get("code");
-        if (codeFromUrl) {
-            const uppercased = codeFromUrl.toUpperCase();
-            setValue("inviteCode", uppercased);
-            validateInviteCode(uppercased);
-        }
-    }, [searchParams, setValue]);
-
     const validateInviteCode = async (code: string) => {
         if (!code || code.length < 6) {
             setInviteValidation(null);
@@ -82,6 +73,15 @@ export function JoinForm() {
             setIsValidatingCode(false);
         }
     };
+
+    useEffect(() => {
+        const codeFromUrl = searchParams.get("code");
+        if (codeFromUrl) {
+            const uppercased = codeFromUrl.toUpperCase();
+            setValue("inviteCode", uppercased);
+            validateInviteCode(uppercased);
+        }
+    }, [searchParams, setValue]);
 
     const onSubmit = async (values: FormValues) => {
         try {
