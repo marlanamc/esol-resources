@@ -164,11 +164,11 @@ export function WordScrambleExercise({
                     Your Sentence:
                 </label>
                 <motion.div
-                    className={`w-full px-4 py-3 border-2 rounded-lg min-h-[50px] flex items-center ${submitted
-                            ? isCorrect
-                                ? "border-success bg-success/5"
-                                : "border-error bg-error/5"
-                            : "border-border bg-white"
+                    className={`w-full px-4 py-3 border-2 rounded-lg min-h-[50px] flex items-center ${submitted && isCorrect
+                            ? "border-success bg-success/5"
+                            : submitted && isIncorrect
+                                ? "border-error bg-error/5"
+                                : "border-border bg-white"
                         }`}
                     animate={submitted && isIncorrect ? { x: [-10, 10, -10, 10, 0] } : {}}
                     transition={{ duration: 0.4 }}

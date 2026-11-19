@@ -219,14 +219,23 @@
       { name: "Nuvia", flag: "🇸🇻" },
       { name: "Roman", flag: "🇨🇴" },
       { name: "Susan", flag: "🇭🇳" },
-      { name: "Josue", flag: "🇸🇻" },
       { name: "Alexandre", flag: "🇧🇷" },
       { name: "Mariana", flag: "🇨🇴" },
+      { name: "Marcos", flag: "🇸🇻" },
       { name: "", flag: "" }, // blank for a new student
     ];
 
-    // Pad to a full page with blank labels
-    while (students.length % 4 !== 0) students.push({ name: "", flag: "" });
+    // Print only some students: binder-labels-fy27.html?names=Marcos (comma-separated)
+    const onlyNames = new URLSearchParams(location.search).get("names");
+    if (onlyNames) {
+      const wanted = onlyNames.split(",").map((n) => n.trim().toLowerCase());
+      const picked = students.filter((s) => wanted.includes(s.name.toLowerCase()));
+      students.length = 0;
+      students.push(...picked);
+    }
+
+    // Pad to a full page with blank labels (not when printing chosen names)
+    while (!onlyNames && students.length % 4 !== 0) students.push({ name: "", flag: "" });
 
     function escapeHtml(text) {
       return text.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
