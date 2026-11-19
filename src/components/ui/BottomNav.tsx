@@ -134,6 +134,22 @@ function flushQueue(force = false) {
   });
 }
 
+const NON_TEXT_INPUT_TYPES = new Set([
+  'button', 'checkbox', 'color', 'file', 'hidden', 'image', 'radio', 'range', 'reset', 'submit',
+]);
+
+/** True when the focused element would bring up the on-screen keyboard. */
+function isEditableElementFocused(): boolean {
+  const el = document.activeElement;
+  if (!(el instanceof HTMLElement)) return false;
+  if (el.isContentEditable) return true;
+  if (el instanceof HTMLTextAreaElement) return !el.readOnly && !el.disabled;
+  if (el instanceof HTMLInputElement) {
+    return !NON_TEXT_INPUT_TYPES.has(el.type) && !el.readOnly && !el.disabled;
+  }
+  return false;
+}
+
 // ─── Component ───
 interface BottomNavProps {
   variant?: 'classroom' | 'independent';
@@ -155,16 +171,25 @@ export const BottomNav = React.memo(function BottomNav({ variant, showTeacherTab
     ? (showTeacherTab ? INDEPENDENT_TEACHER_NAV_ITEMS : INDEPENDENT_NAV_ITEMS)
     : (showTeacherTab ? CLASSROOM_TEACHER_NAV_ITEMS : CLASSROOM_NAV_ITEMS);
 
-  // Keyboard visibility detection (mobile only)
+  // Keyboard visibility detection (mobile only).
+  // The nav hides only while a text field is focused AND the visual viewport
+  // has shrunk. Without the focus check, rotating landscape -> portrait on iOS
+  // briefly reports the old (short) viewport height, the nav slid away as if a
+  // keyboard were open, and no later event ever brought it back.
   useEffect(() => {
     const DEBOUNCE_MS = 150;
+    const ORIENTATION_SETTLE_MS = [250, 600];
     const MIN_VALID_HEIGHT = 100;
     let debounceId: ReturnType<typeof setTimeout> | null = null;
+    let settleIds: ReturnType<typeof setTimeout>[] = [];
 
     const runCheck = () => {
       if (document.visibilityState === 'hidden') return;
       const isMobile = window.innerWidth <= 768;
-      if (!isMobile) return;
+      if (!isMobile || !isEditableElementFocused()) {
+        setKeyboardVisible(false);
+        return;
+      }
       const innerH = window.innerHeight;
       const viewportH = window.visualViewport?.height ?? innerH;
       if (innerH < MIN_VALID_HEIGHT || viewportH < MIN_VALID_HEIGHT) {
@@ -174,29 +199,49 @@ export const BottomNav = React.memo(function BottomNav({ variant, showTeacherTab
       setKeyboardVisible(viewportH < innerH * 0.8);
     };
 
-    const handleResize = () => {
+    const scheduleCheck = (delayMs = DEBOUNCE_MS) => {
       if (debounceId) clearTimeout(debounceId);
-      debounceId = setTimeout(runCheck, DEBOUNCE_MS);
+      debounceId = setTimeout(runCheck, delayMs);
+    };
+
+    const handleResize = () => scheduleCheck();
+
+    const handleOrientationChange = () => {
+      // Show the nav right away, then re-check once iOS finishes resizing.
+      setKeyboardVisible(false);
+      settleIds.forEach(clearTimeout);
+      settleIds = ORIENTATION_SETTLE_MS.map((ms) => setTimeout(runCheck, ms));
     };
 
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        if (debounceId) clearTimeout(debounceId);
-        debounceId = setTimeout(runCheck, 100);
-      }
+      if (document.visibilityState === 'visible') scheduleCheck(100);
     };
 
+    // Keyboard closes when the field loses focus; focusin catches it opening.
+    const handleFocusChange = () => scheduleCheck();
+
+    const orientation = typeof screen !== 'undefined' ? screen.orientation : undefined;
+
     window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleOrientationChange);
+    orientation?.addEventListener?.('change', handleOrientationChange);
     window.visualViewport?.addEventListener('resize', handleResize);
     window.visualViewport?.addEventListener('scroll', handleResize);
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('focusin', handleFocusChange);
+    document.addEventListener('focusout', handleFocusChange);
 
     return () => {
       if (debounceId) clearTimeout(debounceId);
+      settleIds.forEach(clearTimeout);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+      orientation?.removeEventListener?.('change', handleOrientationChange);
       window.visualViewport?.removeEventListener('resize', handleResize);
       window.visualViewport?.removeEventListener('scroll', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('focusin', handleFocusChange);
+      document.removeEventListener('focusout', handleFocusChange);
     };
   }, []);
 
