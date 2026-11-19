@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { BookOpen, Clock, X } from 'lucide-react';
 import { getLearnerCategoryTone } from '@/lib/learner/theme';
 
@@ -38,6 +39,7 @@ interface VocabReviewNotificationProps {
 }
 
 export function VocabReviewNotification({ dueCount, newCount }: VocabReviewNotificationProps) {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [notificationState, setNotificationState] = useState<NotificationState>(() => readNotificationState());
 
@@ -91,7 +93,7 @@ export function VocabReviewNotification({ dueCount, newCount }: VocabReviewNotif
     setNotificationState(newState);
     writeNotificationState(newState);
     setIsVisible(false);
-    window.location.href = '/dashboard/vocab-review';
+    router.push('/dashboard/vocab-review');
   };
 
   if (!isVisible || !hasCards) return null;

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from
 import { ArrowLeft, CheckCircle2, ChevronDown, HelpCircle, RotateCcw, Volume2, X, Sparkles, BrainCircuit, CalendarSync } from "lucide-react";
 import { VocabReminderOptIn } from "@/components/vocab/VocabReminderOptIn";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { useRouter } from "next/navigation";
 import type {
   VocabReviewCard,
   VocabReviewQueue,
@@ -166,9 +167,12 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
   const remainingActionableCount = queue.dueCount + queue.newCount;
   const canStartAnotherSession = queue.cards.length > 0;
 
+  const router = useRouter();
+  // Refresh as well so the header picks up points earned in this session.
   const navigateToDashboard = useCallback(() => {
-    window.location.assign("/dashboard");
-  }, []);
+    router.push("/dashboard");
+    router.refresh();
+  }, [router]);
 
   // Call complete API when session finishes (once per session)
   useEffect(() => {
