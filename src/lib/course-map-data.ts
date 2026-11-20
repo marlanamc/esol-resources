@@ -999,6 +999,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "title": "Time Words: Which Verb?"
+          },
+          {
+            "id": "time-indicators-sorting",
+            "activityId": "time-indicators-sorting",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Time Indicators: Past Simple vs Present Perfect"
           }
         ],
         "goal": "I can describe what has just happened, what has already happened, and what has not happened yet.",

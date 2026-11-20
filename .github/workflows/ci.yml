@@ -71,11 +71,17 @@ jobs:
         run: npm run build
 
   e2e:
-    # Playwright 1.58 cannot install browsers on ubuntu-latest (26.04) yet.
     runs-on: ubuntu-24.04
+    # Playwright's own image already has Chromium, WebKit and every system
+    # library they need, so the job never downloads browsers or touches apt
+    # (whose mirror kept stalling this job). Keep the tag equal to the
+    # @playwright/test version in package.json; the first step checks it.
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
-      POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+      # Inside a container job the database service is reached by its name.
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/test
+      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/test
       DEV_SEED_ACCOUNT_PASSWORD: ci-seed-password-1234
     services:
       postgres:
@@ -104,8 +110,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium webkit
+      - name: Check the Playwright image matches package.json
+        run: |
+          installed="$(node -p "require('@playwright/test/package.json').version")"
+          if [ "$installed" != "1.58.2" ]; then
+            echo "::error::@playwright/test is $installed; update the e2e container image tag to v$installed-noble."
+            exit 1
+          fi
 
       - name: Prepare database schema
         run: npm run ci:db:prepare

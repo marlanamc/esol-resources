@@ -110,20 +110,17 @@ function StepLine({
 
 /**
  * The week's steps for the home cards (phone and desktop), matching the Map:
- * 1. Words, 2. Grammar, 3. Class, 4. Quiz. The full activity list lives on the Map.
+ * 1. Words, 2. Grammar, 3. Quiz. The full activity list lives on the Map;
+ * questions for class live next to Class links.
  */
 export function WeekStepLines({
     items,
     weekNumber,
-    mapHref,
-    showUnitMonths,
     accent,
     inset = 16,
 }: {
     items: TimelineItem[];
     weekNumber: number;
-    mapHref: string;
-    showUnitMonths: boolean;
     accent: string;
     inset?: number;
 }) {
@@ -148,9 +145,6 @@ export function WeekStepLines({
     }
     if (steps.grammar.length > 0) {
         lines.push({ key: "grammar", numbered: true, title: "Grammar", status: steps.grammar.map(rowTitle).join(" · "), tag: "Start before Thurs", href: stepHref(steps.grammar), done: allDone(steps.grammar) });
-    }
-    if (showUnitMonths) {
-        lines.push({ key: "class", numbered: true, title: "Class", status: "Send a question before class", tag: "Tues & Thurs", href: mapHref, done: false });
     }
     if (quiz) {
         lines.push({

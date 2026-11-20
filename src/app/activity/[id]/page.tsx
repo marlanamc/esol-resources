@@ -15,6 +15,7 @@ import { ContextualBackButton } from "@/components/navigation/ContextualBackButt
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { getVocabActivityDisplayTitle } from "@/lib/vocab/display";
 import { loadActivityPageData } from "./activity-page-data";
+import { loadGuideQuestionsWeek } from "@/lib/learner/class-questions-data";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -92,6 +93,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
+        // Classroom learners can ask about the guide at the end; a failed lookup just hides the box.
+        const questionsWeek = viewer.userRole === "student" ? await loadGuideQuestionsWeek(viewer.userId, id).catch(() => null) : null;
         return (
             <div className="min-h-dvh bg-bg">
                 {studentReliabilityOverlays}
@@ -99,6 +102,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     content={parsedContent}
                     completionKey={completionKeyFromActivityTitle(activity.title)}
                     activityId={id}
+                    questionsWeek={questionsWeek}
                 />
             </div>
         );

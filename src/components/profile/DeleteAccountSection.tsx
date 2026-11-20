@@ -69,8 +69,8 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
         return;
       }
 
-      await signOut({ redirect: false });
-      window.location.href = "/";
+      // Full page load to "/" so nothing from the deleted account stays in memory.
+      await signOut({ callbackUrl: "/" });
     } catch {
       setError("Something went wrong. Please try again.");
       setLoading(false);

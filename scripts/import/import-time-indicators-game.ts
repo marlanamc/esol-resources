@@ -36,7 +36,7 @@ lately :: Unspecified - In the recent period (no specific time). Use Present Per
 so far :: Unspecified - Up to this point in time. Use Present Perfect: "So far, we have completed three projects."
 
 [ROUND 3]
-this morning :: Specified - If the morning is over, use Past Simple: "I ate breakfast this morning."
+yesterday morning :: Specified - A specific past morning (finished). Use Past Simple: "I ate breakfast yesterday morning."
 last night :: Specified - The previous night (finished). Use Past Simple: "I slept well last night."
 the day before yesterday :: Specified - Two days ago. Use Past Simple: "I called her the day before yesterday."
 in January :: Specified - A specific month. Use Past Simple: "It snowed in January."
@@ -50,7 +50,7 @@ still :: Unspecified - Continuing situation up to now. Use Present Perfect: "I s
 [ROUND 4]
 at that moment :: Specified - A specific moment in the past. Use Past Simple: "At that moment, I understood."
 during the meeting :: Specified - A specific event time. Use Past Simple: "I took notes during the meeting."
-while I was working :: Specified - During a specific past action. Use Past Simple: "While I was working, she called."
+on my first day :: Specified - A specific day in the past. Use Past Simple: "On my first day, I met my manager."
 before the interview :: Specified - Before a specific past event. Use Past Simple: "I practiced before the interview."
 after lunch :: Specified - After a specific past meal. Use Past Simple: "We left after lunch."
 up to now :: Unspecified - From past until the present. Use Present Perfect: "Up to now, I have saved $500."
@@ -78,7 +78,7 @@ back then :: Specified - At that past time. Use Past Simple: "Back then, we didn
 in those days :: Specified - During that past period. Use Past Simple: "In those days, life was simpler."
 at first :: Specified - At the beginning of a past situation. Use Past Simple: "At first, I didn't understand."
 all week :: Unspecified - Throughout a period including now. Use Present Perfect: "I have been busy all week."
-all day :: Unspecified - Throughout the day (if not finished). Use Present Perfect: "I have been working all day."
+all day :: Unspecified - Throughout the day (if not finished). Use Present Perfect: "I have stayed home all day."
 throughout my career :: Unspecified - Spanning past to present. Use Present Perfect: "I have seen many changes throughout my career."
 in recent years :: Unspecified - In the past few years up to now. Use Present Perfect: "In recent years, technology has improved."
 from the beginning :: Unspecified - From start until now. Use Present Perfect: "I have supported you from the beginning."`;

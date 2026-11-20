@@ -8,6 +8,11 @@
  * A whole week can also disappear for independent/admin viewers, since a week
  * only counts as "published" if at least one item is contentKind=map.
  *
+ * Items with their own href (e.g. the weekly Word Lab tiles, which link to
+ * /activity/word-rescue?collection=...) are skipped: the href is surfaced
+ * regardless of contentKind, so those tiles already work, and promoting the
+ * shared activity would change it everywhere else it appears.
+ *
  * This script only ever promotes practice -> map on activities that are already
  * referenced by a CourseMapItem. It never deletes and never demotes, so it is
  * safe to run against production.
@@ -26,6 +31,7 @@ async function main() {
   const stale = await prisma.courseMapItem.findMany({
     where: {
       activityId: { not: null },
+      href: null,
       activity: { contentKind: { not: MAP } },
     },
     select: {

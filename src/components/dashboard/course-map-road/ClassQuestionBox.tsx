@@ -1,20 +1,9 @@
 "use client";
 
-import { createContext, useContext, useEffect, useId, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useState, type FormEvent } from "react";
 import { Check, MessageCircle, Pencil, Trash2 } from "lucide-react";
 import { MAX_QUESTION_LENGTH, type StudentClassQuestion } from "@/lib/learner/class-questions";
 import { refreshQuestionAnswerViews } from "@/app/dashboard/map/actions";
-
-/** True when the viewer is a classroom learner whose questions reach a teacher. */
-const ClassQuestionsContext = createContext(false);
-
-export function ClassQuestionsProvider({ enabled, children }: { enabled: boolean; children: ReactNode }) {
-    return <ClassQuestionsContext.Provider value={enabled}>{children}</ClassQuestionsContext.Provider>;
-}
-
-export function useClassQuestionsEnabled(): boolean {
-    return useContext(ClassQuestionsContext);
-}
 
 const BORDER = "1px solid color-mix(in srgb, var(--road-rail) 45%, transparent)";
 
