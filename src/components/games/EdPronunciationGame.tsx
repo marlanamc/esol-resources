@@ -51,9 +51,11 @@ type AnswerChoice = EdSound | 'base' | 'past' | ClapAnswer;
 type GamePhase = 'menu' | 'playing' | 'feedback' | 'results';
 type Difficulty = 'easy' | 'medium' | 'hard' | 'mixed';
 
+// Default is Clap Count, the easiest mode: learners new to -ed endings
+// only answer "extra clap or not?". Content can still ask for another mode.
 function normalizeGameMode(mode: unknown): GameMode {
-  if (mode === 'minimal-pairs' || mode === 'clap-count') return mode;
-  return 'sorting';
+  if (mode === 'minimal-pairs' || mode === 'sorting') return mode;
+  return 'clap-count';
 }
 
 const MODE_LABELS: Record<GameMode, string> = {
@@ -125,7 +127,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       resolveLearnerReturnHrefSync({ pathname, search: searchParams.toString() })
     );
   const [state, setState] = useState<GameState>({
-    mode: 'sorting',
+    mode: 'clap-count',
     phase: 'menu',
     difficulty: 'mixed',
     verbs: [],
@@ -187,7 +189,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     try {
       const content = JSON.parse(contentStr);
       if (content.mode) {
-        // "mixed" means learners pick a mode in the menu; course-map auto-start uses sorting.
+        // "mixed" means learners pick a mode in the menu; course-map auto-start uses Clap Count.
         setState(prev => ({ ...prev, mode: normalizeGameMode(content.mode) }));
       }
       if (content.difficulty) {
