@@ -21,6 +21,7 @@ import {
   ArrowLeft,
   ArrowLeftRight,
   Info,
+  Hand,
   X
 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -39,15 +40,27 @@ import {
   SOUND_RULES,
   getGameRound,
   getMinimalPairs,
+  getClapRound,
+  getEndingTD,
+  hasExtraClap,
 } from '@/lib/ed-pronunciation-data';
 
-type GameMode = 'sorting' | 'minimal-pairs';
+type GameMode = 'clap-count' | 'sorting' | 'minimal-pairs';
+type ClapAnswer = 'clap' | 'no-clap';
+type AnswerChoice = EdSound | 'base' | 'past' | ClapAnswer;
 type GamePhase = 'menu' | 'playing' | 'feedback' | 'results';
 type Difficulty = 'easy' | 'medium' | 'hard' | 'mixed';
 
 function normalizeGameMode(mode: unknown): GameMode {
-  return mode === 'minimal-pairs' ? 'minimal-pairs' : 'sorting';
+  if (mode === 'minimal-pairs' || mode === 'clap-count') return mode;
+  return 'sorting';
 }
+
+const MODE_LABELS: Record<GameMode, string> = {
+  'clap-count': 'Clap Count',
+  sorting: 'Sound Sorting',
+  'minimal-pairs': 'Minimal Pairs',
+};
 
 function pickMinimalPairTarget(): 'base' | 'past' {
   return Math.random() > 0.5 ? 'base' : 'past';
@@ -62,8 +75,8 @@ interface GameState {
   score: number;
   streak: number;
   maxStreak: number;
-  answers: Array<{ verb: EdVerb; userAnswer: EdSound | 'base' | 'past'; correct: boolean }>;
-  selectedAnswer: EdSound | 'base' | 'past' | null;
+  answers: Array<{ verb: EdVerb; userAnswer: AnswerChoice; correct: boolean }>;
+  selectedAnswer: AnswerChoice | null;
   showFeedback: boolean;
   discoveryPhase: number; // 0-5: no hints, 5-10: pattern hints, 10+: full rules
   pointsToast: { points: number; key: number } | null;
@@ -79,12 +92,28 @@ interface Props {
   assignmentId?: string | null;
 }
 
-// Sound button colors
+// Sound button colors. These match the class slides and handout:
+// blue /t/, orange /d/, purple /id/.
 const SOUND_COLORS: Record<EdSound, { bg: string; hover: string; active: string; text: string }> = {
-  d: { bg: 'bg-emerald-100', hover: 'hover:bg-emerald-200', active: 'bg-emerald-500', text: 'text-emerald-700' },
   t: { bg: 'bg-sky-100', hover: 'hover:bg-sky-200', active: 'bg-sky-500', text: 'text-sky-700' },
-  id: { bg: 'bg-amber-100', hover: 'hover:bg-amber-200', active: 'bg-amber-500', text: 'text-amber-700' },
+  d: { bg: 'bg-amber-100', hover: 'hover:bg-amber-200', active: 'bg-amber-500', text: 'text-amber-800' },
+  id: { bg: 'bg-violet-100', hover: 'hover:bg-violet-200', active: 'bg-violet-500', text: 'text-violet-700' },
 };
+
+const SOUND_ORDER: EdSound[] = ['t', 'd', 'id'];
+
+/** Teaching feedback for Clap Count mode, in the slides' words. */
+function getClapExplanation(verb: EdVerb): string {
+  if (hasExtraClap(verb)) {
+    const ending = getEndingTD(verb.base);
+    return ending
+      ? `"${verb.base}" ends in a ${ending} sound, so we add a clap: ${verb.base} · id.`
+      : `"${verb.past}" gets an extra clap: /id/.`;
+  }
+  return verb.sound === 't'
+    ? `No extra clap. "${verb.past}" is ${verb.base} + a tiny /t/.`
+    : `No extra clap. "${verb.past}" is ${verb.base} + a tiny /d/.`;
+}
 
 export default function EdPronunciationGame({ contentStr, activityId, assignmentId }: Props) {
   const { resolvedTheme } = useTheme();
@@ -122,21 +151,29 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     initialFocusRef: infoCloseRef,
   });
   const autoStartedRef = useRef(false);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+
+  // On small phones the feedback card can push "Next" below the screen.
+  useEffect(() => {
+    if (state.showFeedback) {
+      nextButtonRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [state.showFeedback]);
   const countdown = useMapReturnCountdown({ active: state.phase === 'results' });
   const isDark = resolvedTheme === 'dark';
 
   const quickViewColors = {
-    d: {
-      label: isDark ? '#86efac' : '#065f46',
-      example: isDark ? '#6ee7b7' : '#047857',
-    },
     t: {
       label: isDark ? '#7dd3fc' : '#075985',
       example: isDark ? '#38bdf8' : '#0369a1',
     },
-    id: {
+    d: {
       label: isDark ? '#fcd34d' : '#92400e',
       example: isDark ? '#fbbf24' : '#b45309',
+    },
+    id: {
+      label: isDark ? '#c4b5fd' : '#5b21b6',
+      example: isDark ? '#a78bfa' : '#6d28d9',
     },
   } satisfies Record<EdSound, { label: string; example: string }>;
 
@@ -212,7 +249,10 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     const roundSize = 15;
     let verbs: EdVerb[];
 
-    if (gameMode === 'sorting') {
+    if (gameMode === 'clap-count') {
+      // Shorter round: this is the "start here" mode for overwhelmed beginners.
+      verbs = getClapRound(12, state.difficulty);
+    } else if (gameMode === 'sorting') {
       verbs = getGameRound(roundSize, state.difficulty);
     } else {
       // For minimal pairs, we need base/past pairs
@@ -263,6 +303,23 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       streak: isCorrect ? prev.streak + 1 : 0,
       maxStreak: Math.max(prev.maxStreak, isCorrect ? prev.streak + 1 : 0),
       discoveryPhase: prev.discoveryPhase + 1,
+      answers: [...prev.answers, { verb: currentVerb, userAnswer: answer, correct: isCorrect }],
+    }));
+  }, [state.currentIndex, state.verbs, state.showFeedback]);
+
+  const handleClapAnswer = useCallback((answer: ClapAnswer) => {
+    if (state.showFeedback) return;
+
+    const currentVerb = state.verbs[state.currentIndex];
+    const isCorrect = (answer === 'clap') === hasExtraClap(currentVerb);
+
+    setState(prev => ({
+      ...prev,
+      selectedAnswer: answer,
+      showFeedback: true,
+      score: isCorrect ? prev.score + 1 : prev.score,
+      streak: isCorrect ? prev.streak + 1 : 0,
+      maxStreak: Math.max(prev.maxStreak, isCorrect ? prev.streak + 1 : 0),
       answers: [...prev.answers, { verb: currentVerb, userAnswer: answer, correct: isCorrect }],
     }));
   }, [state.currentIndex, state.verbs, state.showFeedback]);
@@ -394,6 +451,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </button>
             <button 
               onClick={() => setState(prev => ({ ...prev, showInfo: true }))}
+              aria-label="Rules"
               className="absolute top-4 right-4 p-2 bg-white/20 rounded-full hover:bg-white/30 text-white transition-colors flex items-center gap-2 px-3"
               style={{ color: '#ffffff' }}
             >
@@ -402,23 +460,23 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </button>
             <Volume2 className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 opacity-90" style={{ color: '#ffffff' }} />
             <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2" style={{ color: '#ffffff' }}>-ed Sounds</h1>
-            <p className="font-medium" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>Master the three pronunciations of -ed endings</p>
+            <p className="font-medium" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>Hear it. Clap it. Say it.</p>
           </div>
 
           <div className="px-4 pb-8 -mt-6 md:mt-0 md:p-8 space-y-6 md:space-y-8 max-w-lg mx-auto md:max-w-none">
             {/* The three sounds explanation (Quick View) */}
             <div className="relative z-10 grid grid-cols-3 gap-3 rounded-2xl border border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] p-4 text-center shadow-lg md:border-0 md:shadow-none">
-              <div className="p-3 md:p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-700/60">
-                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.d.label }}>/d/</div>
-                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.d.example }}>played</div>
-              </div>
               <div className="p-3 md:p-4 rounded-2xl bg-sky-50 dark:bg-sky-900/30 border border-sky-100 dark:border-sky-700/60">
                 <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.t.label }}>/t/</div>
-                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.t.example }}>walked</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.t.example }}>walked · 1 clap</div>
               </div>
               <div className="p-3 md:p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-700/60">
-                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.id.label }}>/ɪd/</div>
-                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.id.example }}>decided</div>
+                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.d.label }}>/d/</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.d.example }}>played · 1 clap</div>
+              </div>
+              <div className="p-3 md:p-4 rounded-2xl bg-violet-50 dark:bg-violet-900/30 border border-violet-100 dark:border-violet-700/60">
+                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.id.label }}>/id/</div>
+                <div className="text-[0.625rem] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.id.example }}>wanted · 2 claps</div>
               </div>
             </div>
 
@@ -455,33 +513,37 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     </div>
                     
                     <div className="p-6 space-y-6 overflow-y-auto">
-                      {/* Rule 1: /ɪd/ */}
+                      <p className="text-sm md:text-base" style={{ color: '#1f2937' }}>
+                        We write <strong>-ed</strong>, but we say 3 sounds. Ask 2 questions.
+                      </p>
+
+                      {/* Question 1: extra clap → /id/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-black text-amber-700 dark:text-amber-300">/ɪd/</span>
+                          <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-base font-black text-violet-700 dark:text-violet-300">/id/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>The "Extra Syllable" Rule</h3>
+                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>1. Extra clap?</h3>
                         </div>
-                        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-2xl border border-amber-100 dark:border-amber-800/60 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this when the verb ends in <strong className="font-bold" style={{ color: '#111827' }}>T</strong> or <strong className="font-bold" style={{ color: '#111827' }}>D</strong>.</p>
+                        <div className="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-2xl border border-violet-100 dark:border-violet-800/60 text-sm md:text-base">
+                          <p className="mb-2" style={{ color: '#1f2937' }}>Only when the verb ends in a <strong className="font-bold" style={{ color: '#111827' }}>T</strong> or <strong className="font-bold" style={{ color: '#111827' }}>D</strong> sound. Then add a clap: /id/.</p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#b45309' }}>want ➝ wanted</span>
-                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#b45309' }}>need ➝ needed</span>
+                            <span className="px-2 py-1 rounded border border-violet-200 dark:border-violet-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#6d28d9' }}>want ➝ want · id</span>
+                            <span className="px-2 py-1 rounded border border-violet-200 dark:border-violet-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#6d28d9' }}>need ➝ need · id</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Rule 2: /t/ */}
+                      {/* Question 2a: whisper sound → /t/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center shrink-0">
                             <span className="text-lg font-black text-sky-700 dark:text-sky-300">/t/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>The "Soft" Rule</h3>
+                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>2. No clap + whisper sound</h3>
                         </div>
                         <div className="bg-sky-50 dark:bg-sky-900/20 p-4 rounded-2xl border border-sky-100 dark:border-sky-800/60 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this after "voiceless" sounds like <strong className="font-bold" style={{ color: '#111827' }}>P, K, F, S, SH, CH</strong>.</p>
+                          <p className="mb-2" style={{ color: '#1f2937' }}>The verb ends in a sound that is only air: <strong className="font-bold" style={{ color: '#111827' }}>s, sh, ch, k, p, f, x</strong>. Add a tiny /t/.</p>
                           <div className="flex flex-wrap gap-2">
                             <span className="px-2 py-1 rounded border border-sky-200 dark:border-sky-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#0369a1' }}>help ➝ helped</span>
                             <span className="px-2 py-1 rounded border border-sky-200 dark:border-sky-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#0369a1' }}>wash ➝ washed</span>
@@ -489,22 +551,26 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                         </div>
                       </div>
 
-                      {/* Rule 3: /d/ */}
+                      {/* Question 2b: everything else → /d/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-black text-emerald-700 dark:text-emerald-300">/d/</span>
+                          <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-lg font-black text-amber-800 dark:text-amber-300">/d/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>The "Vibration" Rule</h3>
+                          <h3 className="text-lg font-bold" style={{ color: '#1f2937' }}>2. No clap + everything else</h3>
                         </div>
-                        <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/60 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this for all other sounds (vowels, n, m, v, z, etc.).</p>
+                        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-2xl border border-amber-100 dark:border-amber-800/60 text-sm md:text-base">
+                          <p className="mb-2" style={{ color: '#1f2937' }}>All other endings (vowels, l, m, n, r, v, z…). Add a tiny /d/.</p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-2 py-1 rounded border border-emerald-200 dark:border-emerald-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#047857' }}>play ➝ played</span>
-                            <span className="px-2 py-1 rounded border border-emerald-200 dark:border-emerald-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#047857' }}>love ➝ loved</span>
+                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#92400e' }}>play ➝ played</span>
+                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 font-medium" style={{ backgroundColor: 'rgba(255, 255, 255, 0.55)', color: '#92400e' }}>love ➝ loved</span>
                           </div>
                         </div>
                       </div>
+
+                      <p className="text-sm font-semibold" style={{ color: '#4c1d95' }}>
+                        Not sure about /t/ or /d/? Don&apos;t worry. Just don&apos;t add a clap!
+                      </p>
                     </div>
                     
                     <div className="shrink-0 border-t border-border/60 bg-[var(--surface-overlay)] p-4">
@@ -523,6 +589,25 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
             {/* Game mode buttons */}
             <div className="space-y-4">
+              <button
+                onClick={() => startGame('clap-count')}
+                className="relative w-full border-b-4 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95 active:border-b-0 active:translate-y-1"
+                style={{
+                  background: 'linear-gradient(90deg, #f59e0b 0%, #ea580c 100%)',
+                  borderBottomColor: '#9a3412',
+                  boxShadow: '0 18px 36px rgba(154, 52, 18, 0.25)',
+                  color: '#ffffff',
+                }}
+              >
+                <Hand className="w-7 h-7" />
+                Clap Count
+                <span
+                  className="absolute -top-2.5 right-3 rounded-full px-2.5 py-0.5 text-[0.65rem] font-black uppercase tracking-wider shadow"
+                  style={{ backgroundColor: '#ffffff', color: '#9a3412' }}
+                >
+                  Start here
+                </span>
+              </button>
               <button
                 onClick={() => startGame('sorting')}
                 className="w-full bg-gradient-to-r from-fuchsia-600 to-violet-600 border-b-4 border-fuchsia-800 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95 active:border-b-0 active:translate-y-1"
@@ -552,10 +637,14 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </div>
 
             {/* Mode descriptions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800/60">
+                <div className="mb-1 font-bold" style={{ color: '#9a3412' }}>Clap Count</div>
+                <p style={{ color: '#374151' }}>One question: extra clap or no extra clap?</p>
+              </div>
               <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl border border-violet-100 dark:border-violet-800/60">
                 <div className="mb-1 font-bold" style={{ color: '#6d28d9' }}>Sound Sorting</div>
-                <p style={{ color: '#374151' }}>See a verb, categorize into /t/, /d/, or /ɪd/.</p>
+                <p style={{ color: '#374151' }}>See a verb. Choose /t/, /d/, or /id/.</p>
               </div>
               <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800/60">
                 <div className="mb-1 font-bold" style={{ color: '#4338ca' }}>Minimal Pairs</div>
@@ -611,7 +700,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             <Trophy className="w-20 h-20 mx-auto mb-4" />
             <h2 className="text-4xl font-display font-bold mb-1">Great Practice!</h2>
             <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-bold tracking-wider uppercase">
-              {state.mode === 'sorting' ? 'Sound Sorting' : 'Minimal Pairs'}
+              {MODE_LABELS[state.mode]}
             </span>
           </div>
 
@@ -640,12 +729,37 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               </div>
             </div>
 
+            {/* Clap breakdown (for clap count mode) */}
+            {state.mode === 'clap-count' && (() => {
+              const clapAnswers = state.answers.filter(a => hasExtraClap(a.verb));
+              const noClapAnswers = state.answers.filter(a => !hasExtraClap(a.verb));
+              return (
+                <div className="mb-8">
+                  <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-muted">By Clap</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 rounded-xl bg-sky-100 text-center">
+                      <div className="text-base font-black text-sky-700">No extra clap</div>
+                      <div className="text-sm font-bold text-sky-700">
+                        {noClapAnswers.filter(a => a.correct).length}/{noClapAnswers.length}
+                      </div>
+                    </div>
+                    <div className="p-3 rounded-xl bg-violet-100 text-center">
+                      <div className="text-base font-black text-violet-700">Extra clap</div>
+                      <div className="text-sm font-bold text-violet-700">
+                        {clapAnswers.filter(a => a.correct).length}/{clapAnswers.length}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Sound breakdown (for sorting mode) */}
             {state.mode === 'sorting' && (
               <div className="mb-8">
                 <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-muted">By Sound</h3>
                 <div className="grid grid-cols-3 gap-3">
-                  {(['d', 't', 'id'] as EdSound[]).map(sound => (
+                  {SOUND_ORDER.map(sound => (
                     <div key={sound} className={`p-3 rounded-xl ${SOUND_COLORS[sound].bg} text-center`}>
                       <div className={`text-xl font-black ${SOUND_COLORS[sound].text}`}>
                         {SOUND_RULES[sound].symbol}
@@ -666,9 +780,9 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                 <h3 className="font-bold text-text">Remember the Rules</h3>
               </div>
               <div className="space-y-2 text-sm">
-                <p className="text-emerald-700"><strong>/d/</strong> — After voiced sounds (b, g, v, z, m, n, l, r, vowels)</p>
-                <p className="text-sky-700"><strong>/t/</strong> — After voiceless sounds (p, k, f, s, sh, ch)</p>
-                <p className="text-amber-700"><strong>/ɪd/</strong> — After /t/ or /d/ sounds (adds a syllable)</p>
+                <p className="text-violet-700"><strong>/id/</strong> — Ends in a T or D sound → extra clap (want · id)</p>
+                <p className="text-sky-700"><strong>/t/</strong> — No clap. Whisper sound (s, sh, ch, k, p, f, x) → tiny /t/</p>
+                <p className="text-amber-800"><strong>/d/</strong> — No clap. Everything else → tiny /d/</p>
               </div>
             </div>
 
@@ -723,7 +837,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   const minimalPairOtherWord = state.minimalPairTarget === 'base' ? currentVerb.past : currentVerb.base;
 
   return (
-    <div className="fixed inset-0 z-50 mx-auto flex min-h-[100dvh] max-w-2xl flex-col bg-bg md:relative md:inset-auto md:z-auto md:min-h-[calc(100dvh-14rem)] md:bg-transparent md:p-6">
+    <div className="fixed inset-0 z-50 mx-auto flex min-h-[100dvh] max-w-2xl flex-col overflow-y-auto bg-bg md:overflow-visible md:relative md:inset-auto md:z-auto md:min-h-[calc(100dvh-14rem)] md:bg-transparent md:p-6">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border/40 bg-[var(--surface-elevated)] px-4 py-3 text-text md:hidden">
         <button
@@ -799,7 +913,84 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
       {/* Main game area */}
       <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6 pb-2 sm:pb-4">
-        {state.mode === 'sorting' ? (
+        {state.mode === 'clap-count' ? (
+          // Clap Count Mode
+          <>
+            <motion.div
+              key={state.currentIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center mb-2"
+            >
+              <div className="mb-1 text-lg font-semibold text-muted sm:text-xl">
+                {currentVerb.base} →
+              </div>
+              <div className="mb-3 text-4xl font-black text-text sm:text-5xl md:text-6xl">
+                {currentVerb.past}
+              </div>
+              <button
+                onClick={() => playAudio(currentVerb.past)}
+                disabled={!isAudioSupported}
+                className={`flex items-center gap-2 mx-auto px-5 py-2.5 rounded-full font-bold transition-all ${
+                  isAudioSupported
+                    ? 'bg-violet-100 text-violet-800 hover:bg-violet-200 dark:bg-violet-500/20 dark:text-violet-100 dark:hover:bg-violet-500/30 active:scale-95'
+                    : 'bg-white/10 text-muted cursor-not-allowed'
+                }`}
+              >
+                <Volume2 className="w-5 h-5" />
+                Listen
+              </button>
+              {!state.showFeedback && (
+                <div className="mt-4 text-xl font-bold text-text sm:text-2xl">Extra clap?</div>
+              )}
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md mb-2">
+              {(['no-clap', 'clap'] as const).map((choice) => {
+                const rightChoice: ClapAnswer = hasExtraClap(currentVerb) ? 'clap' : 'no-clap';
+                const isSelected = state.selectedAnswer === choice;
+                const isCorrect = state.showFeedback && choice === rightChoice;
+                const isWrong = state.showFeedback && isSelected && choice !== rightChoice;
+                const idle = choice === 'clap'
+                  ? 'bg-violet-100 text-violet-800 hover:bg-violet-200'
+                  : 'bg-sky-100 text-sky-800 hover:bg-sky-200';
+
+                return (
+                  <button
+                    key={choice}
+                    onClick={() => handleClapAnswer(choice)}
+                    disabled={state.showFeedback}
+                    aria-label={choice === 'clap' ? 'Extra clap' : 'No extra clap'}
+                    className={`
+                      p-4 sm:p-5 rounded-2xl font-black transition-all border-2
+                      ${state.showFeedback
+                        ? isCorrect
+                          ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
+                          : isWrong
+                            ? 'bg-rose-500 text-white border-rose-600'
+                            : 'bg-white/10 text-white/40 border-white/10'
+                        : `${idle} border-transparent active:scale-95`
+                      }
+                    `}
+                  >
+                    <div className="flex justify-center gap-1.5 mb-2" aria-hidden="true">
+                      <Hand className="w-6 h-6" />
+                      {choice === 'clap' && <Hand className="w-6 h-6" />}
+                    </div>
+                    <div className="text-lg sm:text-xl leading-tight">
+                      {choice === 'clap' ? 'Extra clap' : 'No extra clap'}
+                    </div>
+                    <div className={`mt-1 text-xs font-bold ${
+                      state.showFeedback && (isCorrect || isWrong) ? 'text-white/80' : 'opacity-70'
+                    }`}>
+                      {choice === 'clap' ? 'like wanted' : 'like walked'}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        ) : state.mode === 'sorting' ? (
           // Sound Sorting Mode
           <>
             {/* Word display */}
@@ -817,7 +1008,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                 disabled={!isAudioSupported}
                 className={`flex items-center gap-2 mx-auto px-5 py-2.5 rounded-full font-bold transition-all ${
                   isAudioSupported
-                    ? 'bg-violet-500/20 text-violet-100 hover:bg-violet-500/30 active:scale-95'
+                    ? 'bg-violet-100 text-violet-800 hover:bg-violet-200 dark:bg-violet-500/20 dark:text-violet-100 dark:hover:bg-violet-500/30 active:scale-95'
                     : 'bg-white/10 text-muted cursor-not-allowed'
                 }`}
               >
@@ -828,7 +1019,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
             {/* Sound buttons */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-md mb-2">
-              {(['d', 't', 'id'] as EdSound[]).map((sound) => {
+              {SOUND_ORDER.map((sound) => {
                 const isSelected = state.selectedAnswer === sound;
                 const isCorrect = state.showFeedback && sound === currentVerb.sound;
                 const isWrong = state.showFeedback && isSelected && sound !== currentVerb.sound;
@@ -923,7 +1114,9 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         <GameLiveRegion
           message={
             state.showFeedback
-              ? state.mode === 'sorting'
+              ? state.mode === 'clap-count'
+                ? `${state.answers[state.answers.length - 1]?.correct ? 'Correct!' : 'Not quite.'} ${getClapExplanation(currentVerb)}`
+                : state.mode === 'sorting'
                 ? getFeedbackMessage(currentVerb, state.answers[state.answers.length - 1]?.correct)
                 : state.answers[state.answers.length - 1]?.correct
                   ? 'Correct!'
@@ -955,13 +1148,37 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                       ? 'text-emerald-900 dark:text-emerald-100'
                       : 'text-rose-900 dark:text-rose-100'
                   }`}>
-                    {state.mode === 'sorting'
+                    {state.mode === 'clap-count'
+                      ? state.answers[state.answers.length - 1]?.correct ? 'Correct!' : 'Not quite.'
+                      : state.mode === 'sorting'
                       ? getFeedbackMessage(currentVerb, state.answers[state.answers.length - 1]?.correct)
                       : state.answers[state.answers.length - 1]?.correct
                         ? "Correct!"
                         : `It was "${minimalPairTargetWord}"`
                     }
                   </p>
+                  {state.mode === 'clap-count' && (
+                    <>
+                      <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                        {getClapExplanation(currentVerb)}
+                      </p>
+                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                        <span className={`rounded-full px-3 py-1 text-sm font-black ${SOUND_COLORS[currentVerb.sound].bg} ${SOUND_COLORS[currentVerb.sound].text}`}>
+                          {SOUND_RULES[currentVerb.sound].symbol} team
+                        </span>
+                        <button
+                          onClick={() => playAudio(currentVerb.past)}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 px-3 py-1 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors hover:bg-slate-50 dark:hover:bg-white/20"
+                        >
+                          <Volume2 className="w-4 h-4" />
+                          Hear it again
+                        </button>
+                      </div>
+                      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+                        &quot;{currentVerb.example}&quot;
+                      </p>
+                    </>
+                  )}
                   {state.mode === 'sorting' && (
                     <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
                       &quot;{currentVerb.example}&quot;
@@ -994,6 +1211,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         {/* Next button */}
         {state.showFeedback && (
           <motion.button
+            ref={nextButtonRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={nextQuestion}

@@ -17,22 +17,23 @@ export interface EdVerb {
   difficulty: "easy" | "medium" | "hard";
 }
 
-// Human-readable rule explanations
+// Human-readable rule explanations, in the same "claps + whisper sounds"
+// language as the class slides (no "voiced / voiceless" terminology).
 export const SOUND_RULES: Record<EdSound, { symbol: string; rule: string; shortRule: string }> = {
   d: {
     symbol: "/d/",
-    rule: "When the verb ends in a voiced sound (like b, g, v, z, m, n, l, r, or a vowel), the -ed sounds like /d/.",
-    shortRule: "Voiced ending → /d/",
+    rule: "No extra clap. The verb does not end in a whisper sound, so the -ed is a tiny /d/.",
+    shortRule: "Not a whisper sound → tiny /d/",
   },
   t: {
     symbol: "/t/",
-    rule: "When the verb ends in a voiceless sound (like p, k, f, s, sh, ch), the -ed sounds like /t/.",
-    shortRule: "Voiceless ending → /t/",
+    rule: "No extra clap. The verb ends in a whisper sound (s, sh, ch, k, p, f, x), so the -ed is a tiny /t/.",
+    shortRule: "Whisper sound (s, sh, ch, k, p, f, x) → tiny /t/",
   },
   id: {
-    symbol: "/ɪd/",
-    rule: "When the verb already ends in a /t/ or /d/ sound, we add a whole syllable: /ɪd/.",
-    shortRule: "Ends in t/d → /ɪd/ (extra syllable)",
+    symbol: "/id/",
+    rule: "The verb already ends in a T or D sound, so we add an extra clap: /id/.",
+    shortRule: "Ends in a T or D sound → extra clap /id/",
   },
 };
 
@@ -224,4 +225,48 @@ export function getMinimalPairs(count: number = 10): Array<{ base: string; past:
     past: verb.past,
     verb,
   }));
+}
+
+/**
+ * Does the -ed add an extra clap (syllable)? Only for the /id/ team.
+ */
+export function hasExtraClap(verb: EdVerb): boolean {
+  return verb.sound === "id";
+}
+
+/**
+ * The T or D sound an /id/ verb ends in, read from the base form
+ * (a silent final "e" is skipped: decide → d, hate → t).
+ */
+export function getEndingTD(base: string): "T" | "D" | null {
+  const last = base.toLowerCase().replace(/e$/, "").slice(-1);
+  if (last === "t") return "T";
+  if (last === "d") return "D";
+  return null;
+}
+
+/**
+ * Round for "Clap Count" mode: one question only, "extra clap or not?"
+ * Half the verbs are /id/ (extra clap); the other half mixes /t/ and /d/.
+ * Defaults to easy + medium verbs so beginners are not overwhelmed.
+ */
+export function getClapRound(
+  count: number = 12,
+  difficulty: "easy" | "medium" | "hard" | "mixed" = "mixed"
+): EdVerb[] {
+  const pool =
+    difficulty === "mixed"
+      ? ED_VERBS.filter((v) => v.difficulty !== "hard")
+      : ED_VERBS.filter((v) => v.difficulty === difficulty);
+
+  const clapCount = Math.ceil(count / 2);
+  const noClapCount = count - clapCount;
+  const tCount = Math.ceil(noClapCount / 2);
+  const dCount = noClapCount - tCount;
+
+  const clap = shuffleArray(pool.filter((v) => v.sound === "id")).slice(0, clapCount);
+  const t = shuffleArray(pool.filter((v) => v.sound === "t")).slice(0, tCount);
+  const d = shuffleArray(pool.filter((v) => v.sound === "d")).slice(0, dCount);
+
+  return shuffleArray([...clap, ...t, ...d]);
 }
