@@ -264,3 +264,22 @@ describe("server rules", () => {
     expect(calculateTensePathRoundPoints(0, true)).toBe(0);
   });
 });
+
+describe("course map goal", () => {
+  it("counts Tense Path as done on the map after passing Level 1, Round 1", async () => {
+    const { isMapGoalMet } = await import("@/lib/tense-path/progress");
+    let p = emptyProgress();
+    expect(isMapGoalMet(p)).toBe(false);
+    p = pass(p, "right-now", "round1");
+    expect(isMapGoalMet(p)).toBe(false);
+    p = pass(p, "always-true", "round1");
+    expect(isMapGoalMet(p)).toBe(true);
+  });
+
+  it("keeps Time Indicators as an extra in week 11", async () => {
+    const { COURSE_MAP_UNITS } = await import("@/lib/course-map-data");
+    const w11 = COURSE_MAP_UNITS.flatMap((u) => u.weeks).find((w) => w.number === 11)!;
+    expect(w11.items.filter((i) => i.slot === "required").map((i) => i.activityId)).toEqual(["tense-path", "sound-path", "time-word-verb-week10"]);
+    expect(w11.items.find((i) => i.activityId === "time-indicators-sorting")?.slot).toBe("extra");
+  });
+});

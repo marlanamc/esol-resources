@@ -220,79 +220,36 @@
   .qscore > div { border-left: 1.5px solid #000; height: 46px; padding: 3px 7px; font-size: 13px; }
   .qscore > div:first-child { border-left: none; font-size: 15px; font-weight: bold; display: flex; align-items: center; }
   .play li { margin-bottom: 3px !important; }
-  .pbk h2 { font-size: 18px; margin-bottom: 5px; }
-  .pbk h2 .pb-small { font-weight: normal; }
-  .pbk .pb-small { font-size: 11px; }
-  .pbk .pb-box { border: 2px solid #000; padding: 6px 11px 8px; margin-bottom: 8px; }
-  .pbk .pb-box:last-child { margin-bottom: 0; }
-  .pbk .pb-scale { display: grid; grid-template-columns: repeat(6, 1fr); border: 1.5px solid #000; margin-top: 4px; }
-  .pbk .pb-scale > div { padding: 4px 6px; text-align: center; }
-  .pbk .pb-scale > div + div { border-left: 1.5px solid #000; }
-  .pbk .pb-scale .pb-word { font-size: 18px; font-weight: bold; }
-  .pbk .pb-scale .pb-pct { font-size: 14px; }
-  .pbk .pb-scale .pb-ex { font-size: 11px; }
-  .pbk .pb-bar { height: 10px; border: 1.5px solid #000; margin: 3px auto 2px; width: 100%; position: relative; }
-  .pbk .pb-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .pbk .pb-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .pbk .pb-rule { border: 1.5px solid #000; padding: 6px 9px; }
-  .pbk .pb-rule-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; }
-  .pbk .pb-formula { display: flex; gap: 4px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
-  .pbk .pb-chip { border: 1.5px solid #000; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
-  .pbk .pb-chip.pb-adv { background: #000; color: #fff; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .pbk .pb-rule .pb-ex { font-size: 14px; }
-  .pbk .pb-rule .pb-ex b { text-decoration: underline; }
-  .pbk .pb-rule.pb-wide { grid-column: 1 / -1; }
-  .pbk .pb-no { font-size: 14px; margin-top: 3px; }
-  .pbk .pb-no s { text-decoration-thickness: 2px; }
-  .pbk .pb-bank { column-count: 4; column-gap: 14px; }
-  .pbk .pb-cat { break-inside: avoid; margin-bottom: 6px; }
-  .pbk .pb-cat-name { font-size: 14px; font-weight: bold; border-bottom: 1.5px solid #000; margin-bottom: 2px; }
-  .pbk .pb-cat ul { list-style: none; font-size: 14px; line-height: 1.3; }
-  .pbk .pb-cat-be { font-size: 14px; margin-top: auto; border: 1.5px dashed #000; padding: 4px 9px; }
-  .pbk .pb-write-row { display: flex; align-items: flex-end; gap: 8px; height: 40px; }
-  .pbk .pb-write-row .pb-adv { width: 1.05in; font-size: 18px; font-weight: bold; flex: none; }
-  .pbk .pb-write-row .pb-fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; font-size: 14px; color: #555; display: flex; align-items: flex-end; padding-bottom: 2px; }
-  .pbk .pb-write-row .pb-fill.pb-example { font-style: italic; color: #000; }
-  .pbk .pb-hint { font-size: 11px; font-style: italic; margin-bottom: 2px; }
-  .pbk table.pb-interview { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .pbk table.pb-interview th, .pbk table.pb-interview td { border: 1.5px solid #000; padding: 4px 7px; text-align: left; vertical-align: bottom; }
-  .pbk table.pb-interview th { font-size: 14px; }
-  .pbk table.pb-interview td { height: 34px; }
-  .pbk table.pb-interview td.pb-q { width: 52%; }
-  .pbk .pb-line { border-bottom: 1.5px solid #000; height: 32px; }
-  .pbk .pb-check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: auto; }
-  .pbk .pb-cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 4px; }
-  .pbk .pb-check span { margin-right: 14px; white-space: nowrap; }
-  .pbk .pb-scale.pb-forms { grid-template-columns: 1fr 1fr; }
-  .pbk .pb-scale.pb-forms .pb-pct { font-weight: bold; margin-top: 2px; }
-  .pbk .pb-scale.pb-forms .pb-ex { font-size: 14px; margin-top: 2px; }
-  .pbk .pb-bank-half { font-size: 14px; font-weight: bold; margin: 2px 0 4px; }
-  .pbk .pb-bank-half .pb-small { font-weight: normal; }</style>
+
+  .match { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+  .match ol { list-style: none; padding: 0; margin: 0; }
+  .match li { margin-bottom: 7px; font-size: 17px; }
+  .bank { border: 1.5px solid #000; padding: 6px 10px; margin: 6px 0 8px; font-size: 17px; text-align: center; }
+  .caret { font-size: 17px; }
+</style>
 </head>
 <body>
 <section class="page wu3">
   <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 1</div></div>
   <div class="strip"><div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>
   <div class="task">
-    <h2>1. Review mix</h2>
-    <p class="how">Circle the correct form. Each one is from a different week!</p>
-    <p class="example">Example: If it (<b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">rains</b> / will rain), I take the bus.</p>
-    <ol class="items"><li><b class="n">1.</b> If the ATM (isn&rsquo;t / won&rsquo;t be) working, I will go inside the bank.</li><li><b class="n">2.</b> You (must show / must to show) your ID to open an account.</li><li><b class="n">3.</b> Have you ever (send / sent) money to another country?</li><li><b class="n">4.</b> I haven&rsquo;t paid my phone bill (already / yet).</li><li><b class="n">5.</b> If I don&rsquo;t get paid tomorrow, I (didn&rsquo;t pay / won&rsquo;t pay) my rent.</li><li><b class="n">6.</b> You (shouldn&rsquo;t share / shouldn&rsquo;t shares) your PIN.</li></ol>
+    <h2>1. Match the question and the answer</h2>
+    <p class="how">Write the letter. <b>Just</b> = a moment ago. <b>Already</b> = before now. <b>Yet</b> = up to now (questions and negatives).</p>
+    <div class="match"><ol><li><b class="n">1.</b> Have you paid the rent yet? <span class="blank short"></span></li><li><b class="n">2.</b> Has your son eaten? <span class="blank short"></span></li><li><b class="n">3.</b> Did you buy the coat? <span class="blank short"></span></li><li><b class="n">4.</b> Have you made a budget yet? <span class="blank short"></span></li><li><b class="n">5.</b> Is the bus pass expensive? <span class="blank short"></span></li></ol><ol><li><b class="n">A.</b> No, not yet. I want to comparison shop first.</li><li><b class="n">B.</b> Yes. It costs $90 a month.</li><li><b class="n">C.</b> Yes, he has just finished. His plate is empty.</li><li><b class="n">D.</b> Yes, I have already paid it. I paid on Monday.</li><li><b class="n">E.</b> No, I haven&rsquo;t made it yet. I will do it tonight.</li></ol></div>
   </div>
   <div class="task">
-    <h2>2. Fill in the blank</h2>
-    <p class="how">Use every word once. Change the verb form if needed.</p>
-    <div class="bank"><span>refund</span> <span>withdraw</span> <span>exchange</span> <span>charge</span> <span>dispute</span> <span>deposit</span></div>
-    <ol class="items"><li><b class="n">1.</b> This shirt is too small. I want to <span class="blank"></span> it.</li><li><b class="n">2.</b> Did the store agree to <span class="blank"></span> your money?</li><li><b class="n">3.</b> Don&rsquo;t <span class="blank"></span> cash from that ATM. It has a fee.</li><li><b class="n">4.</b> <span class="blank"></span> your paycheck into your bank account.</li><li><b class="n">5.</b> The store will <span class="blank"></span> your card when it ships.</li><li><b class="n">6.</b> If your bill is wrong, call the bank to <span class="blank"></span> the charge.</li></ol>
+    <h2>2. Money words</h2>
+    <p class="how">Write the word or phrase that fits. Use each one one time.</p>
+    <div class="bank">set aside &middot; total cost &middot; budget &middot; keep track of &middot; comparison shop &middot; purchase price</div>
+    <ol class="items"><li><b class="n">1.</b> I use an app to <span class="blank"></span> my spending. It shows every purchase.</li><li><b class="n">2.</b> Before I buy a TV, I <span class="blank"></span> at three stores.</li><li><b class="n">3.</b> The <span class="blank"></span> is $412 with tax and delivery.</li><li><b class="n">4.</b> Every payday, I <span class="blank"></span> $20 for winter boots.</li><li><b class="n">5.</b> The <span class="blank"></span> of the sofa is $300. Delivery is extra.</li><li><b class="n">6.</b> We <span class="blank"></span> our money so we can pay every bill.</li></ol>
   </div>
   <div class="task">
-    <h2>3. Money advice</h2>
-    <p class="how"><b>You make up the advice.</b> Use your own ideas. Many answers are OK.</p>
-    <div class="own"><b>Example:</b> If you lose your bank card, you should <span class="u">call the bank right away</span>. &middot; Other good answers: <span class="u">check your bank app</span> &middot; <span class="u">lock your card</span></div>
+    <h2>3. Put the words in order</h2>
+    <p class="how">Write a complete sentence. Use <b>have/has + V3</b>.</p>
     <ol class="items">
-      <li><b class="n">1.</b> You should never <span class="blank long"></span>.</li>
-      <li><b class="n">2.</b> If a store charges you two times, you should <span class="blank long"></span>.</li>
-      <li><b class="n">3.</b> If you want to save money, you can <span class="blank long"></span>.</li>
+      <li><b class="n">1.</b> set aside / already / have / $50 / I<div class="line"></div></li>
+      <li><b class="n">2.</b> yet / the bill / she / hasn&rsquo;t / paid<div class="line"></div></li>
+      <li><b class="n">3.</b> just / spent / We / $40 / have / on groceries<div class="line"></div></li>
     </ol>
   </div>
 </section>
@@ -300,251 +257,113 @@
   <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
   <div class="task">
     <h2>4. Verb forms of the week</h2>
-    <p class="how">Write the other forms of <b>buy</b> and <b>sell</b>. <i>Buy</i> and <i>sell</i> are on this week&rsquo;s quiz!</p>
-    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">buy</td><td></td><td></td><td></td><td></td></tr><tr><td class="base">sell</td><td></td><td></td><td></td><td></td></tr></table>
+    <p class="how">Write the other forms of <b>cost</b> and <b>spend</b>. <i>Cost</i> and <i>spend</i> are on the Week 12 Quiz (Thursday)!</p>
+    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">cost</td><td></td><td></td><td></td><td></td></tr><tr><td class="base">spend</td><td></td><td></td><td></td><td></td></tr></table>
   </div>
   <div class="task">
     <h2>5. Use the right form</h2>
-    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>buy</b> or <b>sell</b>. Use your chart.</p>
-    <ol class="items"><li><b class="n">1.</b> <b>Every Saturday</b>, my brother <span class="blank"></span> fruit at the market. (sell)</li><li><b class="n">2.</b> <b>Right now</b>, I am <span class="blank"></span> a new phone plan. (buy)</li><li><b class="n">3.</b> <b>Yesterday</b>, she didn&rsquo;t <span class="blank"></span> her old couch. (sell)</li><li><b class="n">4.</b> <b>Last week</b>, did you <span class="blank"></span> a jacket? (buy)</li><li><b class="n">5.</b> My mother <span class="blank"></span> rice in big bags <b>every month</b>. (buy)</li><li><b class="n">6.</b> <b>Right now</b>, is the store <span class="blank"></span> winter coats? (sell)</li><li><b class="n">7.</b> We <b>haven&rsquo;t</b> <span class="blank"></span> a new TV yet. (buy)</li><li><b class="n">8.</b> <b>Have</b> they <span class="blank"></span> all the tickets? (sell)</li></ol>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>cost</b> or <b>spend</b>. Use your chart.</p>
+    <ol class="items"><li><b class="n">1.</b> <b>Every week</b>, a bus pass <span class="blank"></span> $22.50 in Boston. (cost)</li><li><b class="n">2.</b> <b>Right now</b>, my brother is <span class="blank"></span> his paycheck at the mall. (spend)</li><li><b class="n">3.</b> <b>Last Saturday</b>, we <span class="blank"></span> $70 at the market. (spend)</li><li><b class="n">4.</b> <b>Yesterday</b>, the tickets didn&rsquo;t <span class="blank"></span> a lot. (cost)</li><li><b class="n">5.</b> Does a winter coat <span class="blank"></span> more than $100 <b>here</b>? (cost)</li><li><b class="n">6.</b> She doesn&rsquo;t <span class="blank"></span> money on taxis <b>every week</b>. (spend)</li><li><b class="n">7.</b> I <b>have</b> already <span class="blank"></span> my gift money. (spend)</li><li><b class="n">8.</b> <b>Has</b> the new phone <span class="blank"></span> you a lot? (cost)</li></ol>
   </div>
   <div class="task">
-    <h2>6. Bonus: Your turn</h2>
-    <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
-    <p class="prompt"><b>Last month</b> + buy</p>
-    <p class="ideas">Ideas: a winter coat &middot; a gift &middot; a bus pass &middot; groceries</p>
+    <h2>6. Write about you</h2>
+    <p class="how">Write true sentences about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner. Then <b>&#9733; star your best sentence</b> and read it to a teacher.</p>
+    <p class="prompt"><b>already</b> + pay</p>
+    <p class="ideas">Ideas: my rent &middot; my phone bill &middot; for my bus pass</p>
     <div class="line"></div>
-    <p class="prompt"><b>Online</b> + buy <b>+ not</b></p>
-    <p class="ideas">Ideas: shoes &middot; food &middot; clothes &middot; medicine</p>
+    <p class="prompt"><b>yet</b> + buy <b>+ not</b></p>
+    <p class="ideas">Ideas: winter boots &middot; a coat for my son &middot; my groceries for the week</p>
     <div class="line"></div>
-    <p class="prompt"><b>Have you ever</b> + sell<b>?</b></p>
-    <p class="ideas">Ideas: food &middot; old clothes &middot; a car &middot; something online</p>
+    <p class="prompt"><b>Last month</b> + spend <b>?</b></p>
+    <p class="ideas">Ideas: on food &middot; on gas &middot; on your phone</p>
     <div class="line"></div>
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>B/V and i/ee review &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
-  <h2>Two sounds you know</h2>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short i / long ee &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
+  <h2>Short <i>i</i> or long <i>ee</i>? Your mouth knows.</h2>
   <div class="rhythm">
-    <div><div class="big">B / V</div><p><b>B</b> = lips together, pop! &nbsp; <b>V</b> = top teeth on bottom lip, buzz.</p><p class="small">boat / vote &middot; best / vest</p></div>
-    <div><div class="big">i / ee</div><p><b>i</b> = quick, relaxed. &nbsp; <b>ee</b> = long, with a smile.</p><p class="small">live / leave &middot; sit / seat</p></div>
+    <div><div class="big">ship &nbsp;<span style="font-size:22px;font-weight:normal;">short <i>i</i></span></div>
+      <p>Short and relaxed. Your mouth is a little open. Quick sound.</p></div>
+    <div><div class="big">sheep &nbsp;<span style="font-size:22px;font-weight:normal;">long <i>ee</i></span></div>
+      <p>Smile! Your lips go wide. Hold the sound longer: <i>sheeeep</i>.</p></div>
   </div>
-  <p class="how"><b>Try it:</b> Say <i>very cheap</i>. Teeth on your lip for <b>v</b>. Smile for <b>ee</b>. Now say <i>berry chip</i>.</p>
+  <p class="how"><b>Try it:</b> Say <i>ship</i>, then <i>sheep</i>. Touch the corners of your mouth. Do they move out on <i>sheep</i>?</p>
   <div class="task">
     <h2>A. Listen and circle</h2>
     <p class="how">Your teacher says <b>one</b> word. Circle the word you hear.</p>
-    <table class="pairs"><tr><td class="n">1</td><td>boat</td><td>vote</td><td class="n">5</td><td>best</td><td>vest</td></tr><tr><td class="n">2</td><td>live</td><td>leave</td><td class="n">6</td><td>fill</td><td>feel</td></tr><tr><td class="n">3</td><td>berry</td><td>very</td><td class="n">7</td><td>ban</td><td>van</td></tr><tr><td class="n">4</td><td>sit</td><td>seat</td><td class="n">8</td><td>chip</td><td>cheap</td></tr></table>
+    <table class="pairs"><tr><td class="n">1</td><td>ship</td><td>sheep</td><td class="n">5</td><td>chip</td><td>cheap</td></tr><tr><td class="n">2</td><td>live</td><td>leave</td><td class="n">6</td><td>bin</td><td>bean</td></tr><tr><td class="n">3</td><td>fill</td><td>feel</td><td class="n">7</td><td>rich</td><td>reach</td></tr><tr><td class="n">4</td><td>sit</td><td>seat</td><td class="n">8</td><td>it</td><td>eat</td></tr></table>
   </div>
   <div class="task">
     <h2>B. Your turn: partner game</h2>
-    <p class="how">Use the same words. <b>Partner A</b> says one word. <b>Partner B</b> points to it. Right? Switch. Wrong? Try again slowly.</p>
+    <p class="how"><b>Partner A</b> says a word from Part A. <b>Partner B</b> points to it. Right? Switch. Wrong? Smile or relax, and try again.</p>
   </div>
   <div class="task">
-    <h2>C. Listen again: which sentence?</h2>
-    <p class="how">Your teacher says <b>a</b> or <b>b</b>. Circle the letter.</p>
-    <ol class="items"><li><b class="n">1.</b> &nbsp;a. I need to <b>leave</b> the bank. &emsp; b. I need to <b>live</b> near the bank.</li><li><b class="n">2.</b> &nbsp;a. Is this your <b>vest</b>? &emsp; b. Is this your <b>best</b>?</li><li><b class="n">3.</b> &nbsp;a. The <b>chips</b> are on sale. &emsp; b. The <b>cheap</b> ones are on sale.</li><li><b class="n">4.</b> &nbsp;a. They counted the <b>boats</b>. &emsp; b. They counted the <b>votes</b>.</li></ol>
+    <h2>C. Listen to the sentence</h2>
+    <p class="how">Both words are real. Your teacher reads the sentence <b>one</b> way. Circle the word you hear.</p>
+    <ol class="items"><li><b class="n">1.</b> I want to (live / leave) here.</li><li><b class="n">2.</b> There is a (ship / sheep) in the picture.</li><li><b class="n">3.</b> Can you (fill / feel) it?</li><li><b class="n">4.</b> Did you (hit / heat) it?</li></ol>
   </div>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>B/V and i/ee review &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>short i / long ee &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
   <div class="task">
     <h2>D. Read aloud</h2>
-    <p class="how">Take turns. Read one sentence each. Watch your lips and your smile!</p>
+    <p class="how">Take turns. Read one sentence each. Smile on the long <i>ee</i>!</p>
     <ol class="read-aloud">
-      <li>Vivian bought a very big bag of beans.</li>
-      <li>Please keep the receipt. You will need it.</li>
-      <li>Victor deposited his check at the bank.</li>
-      <li>Is this vest cheap? It&rsquo;s the best one.</li>
-      <li>If you leave the store, you can&rsquo;t get a refund.</li>
-      <li>We live near a very busy street.</li>
-      <li>Have you ever bought a used van?</li>
-      <li>Steve sells cheap vegetables every week.</li>
+      <li>These jeans are cheap, but they don&rsquo;t fit.</li>
+      <li>I need to fill out this form for the bank.</li>
+      <li>Please keep the receipt. We need it for the return.</li>
+      <li>Is this seat free? Can I sit here?</li>
+      <li>I spend a lot on meat and cheese every week.</li>
+      <li>My sister lives in Lynn. She will leave on Friday.</li>
+      <li>It is easy to keep track of things in a list.</li>
+      <li>The bill is big. We need to read it again.</li>
     </ol>
   </div>
   <div class="task">
     <h2>E. Talk together</h2>
-    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Then ask one more question: <i>&ldquo;Why?&rdquo;</i> or <i>&ldquo;Really?&rdquo;</i></p>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Then ask: <i>&ldquo;Why?&rdquo;</i> or <i>&ldquo;Really?&rdquo;</i></p>
     <ol class="read-aloud">
-      <li>What is the best thing you have bought this year?</li>
-      <li>Have you ever returned something to a store? Why?</li>
-      <li>Do you usually pay with cash or a card?</li>
-      <li>Where can you buy cheap vegetables near you?</li>
+      <li>Where can you buy cheap meat or fish near here?</li>
+      <li>Have you already bought winter clothes this year?</li>
+      <li>What is something easy to fix? Something difficult?</li>
+      <li>Do you keep your receipts? Where?</li>
     </ol>
   </div>
   <div class="task">
     <h2>F. My hard words</h2>
-    <p class="how">Write 3 words with <b>b, v, i,</b> or <b>ee</b> that are hard for you. Practice them at home.</p>
+    <p class="how">Write 3 words with short <b>i</b> or long <b>ee</b> that are hard for you. Say them to your teacher.</p>
     <div class="line"></div>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
-<section class="page pbp">
-  <div class="station-bar"><div class="label">STATION 3: GAME<span>Review: if &middot; use it in the game</span></div><div class="pg">Page 5</div></div>
-<div class="pbk">
-<div class="pb-box">
-    <h2>1. Two kinds of "if" <span class="pb-small">After <i>if</i>: always V1 or V1-s. Never <i>will</i>.</span></h2>
-    <div class="pb-scale pb-forms">
-      <div><div class="pb-word">Zero</div><div class="pb-ex">always true</div><div class="pb-pct">If + V1, V1</div><div class="pb-ex pb-small">habits, facts, rules</div></div>
-      <div><div class="pb-word">First</div><div class="pb-ex">one real future</div><div class="pb-pct">If + V1, will + V1</div><div class="pb-ex pb-small">plans, promises, warnings</div></div>
-    </div>
+<section class="page ">
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>where does it go? &middot; with your group</span></div><div class="pg">Page 5</div></div>
+  <div class="gram3" style="font-size:16px;">
+    <div><b>just</b> and <b>already</b> go<br><b>before V3</b>.<br>I have <b>just</b> paid.</div>
+    <div><b>yet</b> goes at<br>the <b>end</b>.<br>I haven&rsquo;t paid <b>yet</b>.</div>
+    <div><b>Questions:</b><br>Have you paid <b>yet</b>?<br>Has she <b>already</b> paid?</div>
   </div>
-<div class="pb-box">
-    <h2>2. How does it work? <span class="pb-small">The important verbs are in <b>black</b>.</span></h2>
-    <div class="pb-rules">
-      <div class="pb-rule">
-        <div class="pb-rule-name">A. Zero: V1 + V1</div>
-        <div class="pb-formula"><span class="pb-chip">If</span><span class="pb-chip">it</span><span class="pb-chip pb-adv">rains,</span><span class="pb-chip">I</span><span class="pb-chip pb-adv">take</span><span class="pb-chip">the bus.</span></div>
-        <div class="pb-ex">If I <b>drink</b> coffee at night, I <b>don't sleep</b> well.</div>
-        <div class="pb-no">&#10007; <s>If I am tired, I went to bed early.</s></div>
-      </div>
-      <div class="pb-rule">
-        <div class="pb-rule-name">B. First: NO will after if</div>
-        <div class="pb-formula"><span class="pb-chip">If</span><span class="pb-chip">it</span><span class="pb-chip pb-adv">rains</span><span class="pb-chip">tomorrow,</span><span class="pb-chip">I</span><span class="pb-chip pb-adv">will take</span><span class="pb-chip">the bus.</span></div>
-        <div class="pb-ex">If you <b>need</b> help, I <b>will come</b>.</div>
-        <div class="pb-no">&#10007; <s>If it will rain, I will take the bus.</s></div>
-      </div>
-      <div class="pb-rule">
-        <div class="pb-rule-name">C. If first? Use a comma.</div>
-        <div class="pb-formula"><span class="pb-chip">If it rains</span><span class="pb-chip pb-adv">,</span><span class="pb-chip">I take the bus.</span></div>
-        <div class="pb-ex">I take the bus <b>if</b> it rains. (no comma)</div>
-        <div class="pb-no">&#10007; <s>I take the bus, if it rains.</s></div>
-      </div>
-      <div class="pb-rule">
-        <div class="pb-rule-name">D. Remember</div>
-        <div class="pb-ex" style="margin-bottom:4px">he / she / it + <b>V1-s</b></div>
-        <div class="pb-ex" style="margin-bottom:4px">If my son <b>gets</b> sick, I stay home.</div>
-        <div class="pb-ex">I will = <b>I'll</b> &nbsp;&middot;&nbsp; will not = <b>won't</b></div>
-      </div>
-    </div>
+  <div class="task">
+    <h2>Warm up together: where does the word go?</h2>
+    <p class="how">Read the sentence. Add the word in ( ). Write the new sentence. Check with your group before the game.</p>
+    <p class="example">Example: I have eaten. (just) &rarr; I have <b>just</b> eaten.</p>
+    <ol class="items"><li><b class="n">1.</b> <span class="caret">I have paid the rent.</span> (already)<div class="line"></div></li><li><b class="n">2.</b> <span class="caret">She has bought the tickets.</span> (just)<div class="line"></div></li><li><b class="n">3.</b> <span class="caret">We haven&rsquo;t made a budget.</span> (yet)<div class="line"></div></li><li><b class="n">4.</b> <span class="caret">Have you saved any money?</span> (yet)<div class="line"></div></li><li><b class="n">5.</b> <span class="caret">They have spent $100 this week.</span> (already)<div class="line"></div></li><li><b class="n">6.</b> <span class="caret">He has gotten his paycheck.</span> (just)<div class="line"></div></li></ol>
   </div>
-<div class="pb-box" style="flex:1; display:flex; flex-direction:column;">
-    <h2>3. Phrase bank <span class="pb-small">Pick one from "If..." and one from "...then". Change them if you want.</span></h2>
-    <div class="pb-bank-half">If... <span class="pb-small">(the condition)</span></div>
-    <div class="pb-bank">
-      <div class="pb-cat">
-        <div class="pb-cat-name">Weather</div>
-        <ul>
-          <li>it rains</li>
-          <li>it snows</li>
-          <li>it's cold / hot</li>
-          <li>it's sunny</li>
-        </ul>
-      </div>
-      <div class="pb-cat" style="break-after: column;">
-        <div class="pb-cat-name">Work &amp; money</div>
-        <ul>
-          <li>I get paid</li>
-          <li>I work late</li>
-          <li>I have a day off</li>
-          <li>I have free time</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Body &amp; health</div>
-        <ul>
-          <li>I feel sick</li>
-          <li>I'm tired / hungry</li>
-          <li>I don't sleep well</li>
-          <li>my kid is sick</li>
-          <li>I drink coffee at night</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Getting around</div>
-        <ul>
-          <li>the bus is late</li>
-          <li>I miss the train</li>
-          <li>there's traffic</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Negatives</div>
-        <ul>
-          <li class="pb-small"><i>don't / doesn't + V1</i></li>
-          <li>I don't get paid</li>
-          <li>I don't sleep 7 hours</li>
-          <li>the bus doesn't come</li>
-          <li>my alarm doesn't go off</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Problems</div>
-        <ul>
-          <li>my phone dies</li>
-          <li>I forget my keys</li>
-          <li>the heat doesn't work</li>
-          <li>I have a question</li>
-          <li>you need help</li>
-        </ul>
-      </div>
-    </div>
-    <div class="pb-bank-half" style="border-top:1.5px solid #000; padding-top:4px; margin-top:2px">...then <span class="pb-small">(the result: add <b>will</b> for First)</span></div>
-    <div class="pb-bank">
-      <div class="pb-cat">
-        <div class="pb-cat-name">At home</div>
-        <ul>
-          <li>stay home</li>
-          <li>cook dinner</li>
-          <li>order takeout</li>
-          <li>go to bed early</li>
-          <li>call the landlord</li>
-          <li>watch TV</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Out &amp; about</div>
-        <ul>
-          <li>take the bus / the T</li>
-          <li>walk to work</li>
-          <li>take an Uber</li>
-          <li>wear boots / a jacket</li>
-          <li>bring an umbrella</li>
-          <li>go to the park</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">People</div>
-        <ul>
-          <li>call my family</li>
-          <li>text my boss</li>
-          <li>ask my teacher</li>
-          <li>help you</li>
-          <li>pick you up</li>
-          <li>come with you</li>
-        </ul>
-      </div>
-      <div class="pb-cat">
-        <div class="pb-cat-name">Money &amp; plans</div>
-        <ul>
-          <li>save money</li>
-          <li>pay my bills</li>
-          <li>go shopping</li>
-          <li>buy a new phone</li>
-          <li>be late</li>
-        </ul>
-      </div>
-    </div>
-    <div class="pb-cat-be"><b>Time words for First:</b> &nbsp;tonight &middot; tomorrow &middot; this weekend &middot; next week &middot; next month &middot; after class</div>
-  </div>
-</div>
+  <p class="tip bottom"><b>Remember:</b> <i>yet</i> is for questions and negatives. In a <b>yes</b> sentence, use <i>already</i>: I have <b>already</b> paid.</p>
 </section>
 <section class="page ">
-  <div class="station-bar"><div class="label">STATION 3: GAME<span>Money review &middot; with your group</span></div><div class="pg">Page 6</div></div>
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>money questions &middot; with your group</span></div><div class="pg">Page 6</div></div>
   <div class="task">
     <h2>How to play</h2>
     <ol class="items play" style="list-style:none;">
       <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
-      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. Look at the small words in the box for help. <b>If</b> questions: look at page 5.</li>
+      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. The small words in the box help. Page 5 helps with <i>just / already / yet</i>.</li>
       <li><b class="n">3.</b> The group checks: is the grammar right? <b>Yes</b> = 1 point ( <b>|</b> ). <b>Not sure?</b> Ask a teacher.</li>
       <li><b class="n">4.</b> Then that person picks the next question. Most points when the timer rings wins!</li>
     </ol>
   </div>
-  <div class="gram3" style="font-size:15px;">
-    <div><b>If</b> it rains, I <b>take</b> the bus.<br><b>If</b> it rains tomorrow, I <b>will take</b> the bus.</div>
-    <div>You <b>should / must / can</b> + V1.<br>No <i>to</i>, no <i>-s</i>.</div>
-    <div><b>Have you ever</b> + V3?<br>I&rsquo;ve <b>already</b> paid. / Not <b>yet</b>.</div>
-  </div>
-  <div class="qboard"><div><span class="n">1<span class="e">&#128179;</span></span><span class="t">What do you do if you lose your bank card?<span class="tag">If + V1, V1</span></span></div><div><span class="n">2<span class="e">&#128181;</span></span><span class="t">What will you do if you get paid extra this week?<span class="tag">If + V1, will + V1</span></span></div><div><span class="n">3<span class="e">&#128200;</span></span><span class="t">What should you do if a store charges you two times?<span class="tag">should + V1</span></span></div><div><span class="n">4<span class="e">&#128091;</span></span><span class="t">Have you ever lost your wallet?<span class="tag">Yes, I have. / No, never.</span></span></div><div><span class="n">5<span class="e">&#128176;</span></span><span class="t">Have you paid all your bills yet this month?<span class="tag">already / not yet</span></span></div><div><span class="n">6<span class="e">&#128273;</span></span><span class="t">What should you do if a stranger asks for your PIN?<span class="tag">shouldn&rsquo;t / must not + V1</span></span></div><div><span class="n">7<span class="e">&#128717;&#65039;</span></span><span class="t">Have you ever returned something to a store?<span class="tag">Yes, I have. + When did you&hellip;?</span></span></div><div><span class="n">8<span class="e">&#128176;</span></span><span class="t">What can you buy for $5?<span class="tag">can + V1</span></span></div><div><span class="n">9<span class="e">&#128241;</span></span><span class="t">What do you do if your phone bill is too high?<span class="tag">If + V1, V1</span></span></div><div><span class="n">10<span class="e">&#127759;</span></span><span class="t">Have you ever sent money to another country?<span class="tag">Have you ever + V3?</span></span></div><div><span class="n">11<span class="e">&#127974;</span></span><span class="t">What must you bring to open a bank account?<span class="tag">must + V1</span></span></div><div><span class="n">12<span class="e">&#9200;</span></span><span class="t">What happens if you pay a bill late?<span class="tag">If + V1, V1</span></span></div><div><span class="n">13<span class="e">&#129518;</span></span><span class="t">Have you already done your grocery shopping this week?<span class="tag">already / yet + V3</span></span></div><div><span class="n">14<span class="e">&#127873;</span></span><span class="t">What will you buy if you have $100 tomorrow?<span class="tag">If + V1, will + V1</span></span></div><div><span class="n">15<span class="e">&#127970;</span></span><span class="t">Which bank or store do you recommend? Why should we go there?<span class="tag">should + V1</span></span></div></div>
+  <div class="qboard"><div><span class="n">1<span class="e">&#127968;</span></span><span class="t">Have you paid your rent yet this month?<span class="tag">already / not yet</span></span></div><div><span class="n">2<span class="e">&#129509;</span></span><span class="t">Have you bought winter boots yet?<span class="tag">Yes, I have. / No, not yet.</span></span></div><div><span class="n">3<span class="e">&#128176;</span></span><span class="t">What does a bus pass cost here?<span class="tag">It costs&hellip;</span></span></div><div><span class="n">4<span class="e">&#127873;</span></span><span class="t">What have you already bought for the holidays?<span class="tag">I&rsquo;ve already bought&hellip;</span></span></div><div><span class="n">5<span class="e">&#128241;</span></span><span class="t">How do you keep track of your money?<span class="tag">I keep track of&hellip;</span></span></div><div><span class="n">6<span class="e">&#128722;</span></span><span class="t">Where do you comparison shop?<span class="tag">I comparison shop at&hellip;</span></span></div><div><span class="n">7<span class="e">&#127828;</span></span><span class="t">Have you eaten yet today?<span class="tag">Yes, I have just&hellip; / No, not yet.</span></span></div><div><span class="n">8<span class="e">&#128184;</span></span><span class="t">What did you spend money on last weekend?<span class="tag">I spent&hellip; on&hellip;</span></span></div><div><span class="n">9<span class="e">&#128092;</span></span><span class="t">Have you ever spent too much at a store?<span class="tag">Have you ever + V3?</span></span></div><div><span class="n">10<span class="e">&#127974;</span></span><span class="t">Do you set aside money every month? For what?<span class="tag">I set aside&hellip; for&hellip;</span></span></div><div><span class="n">11<span class="e">&#9749;</span></span><span class="t">How much does a coffee cost near here?<span class="tag">It costs about&hellip;</span></span></div><div><span class="n">12<span class="e">&#128221;</span></span><span class="t">Have you made a shopping list yet this week?<span class="tag">already / yet + V3</span></span></div><div><span class="n">13<span class="e">&#128717;&#65039;</span></span><span class="t">What is something that costs more in the U.S.?<span class="tag">&hellip; costs more here.</span></span></div><div><span class="n">14<span class="e">&#127775;</span></span><span class="t">What is the best thing you have bought this year?<span class="tag">The best thing I&rsquo;ve bought&hellip;</span></span></div><div><span class="n">15<span class="e">&#128198;</span></span><span class="t">Have you already planned your budget for December?<span class="tag">already / not yet</span></span></div></div>
   <div class="qscore"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>
   <div class="task">
     <h2>Write your best answer</h2>
@@ -554,54 +373,55 @@
 </section>
 <section class="page rw">
   <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 7</div></div>
-  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the receipt and the return policy). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
+  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (Maribel&rsquo;s December checklist). Today is <b>Tuesday, December 1</b>. Read it <b>together</b>. <b>&#9733;</b> = challenge.</p>
   <div class="task">
     <h2>A. Find it</h2>
     <ol class="items">
-      <li><b class="n">1.</b> When did the Silva family shop? <span class="blank"></span></li>
-      <li><b class="n">2.</b> How did they pay? <span class="blank"></span></li>
-      <li><b class="n">3.</b> How many days do you have for most returns? <span class="blank short"></span></li>
-      <li><b class="n">4.</b> What does <b>FS</b> mean? <span class="blank"></span></li>
+      <li><b class="n">1.</b> How much is the rent? <span class="blank short"></span></li>
+      <li><b class="n">2.</b> When is the electric bill due? <span class="blank long"></span></li>
+      <li><b class="n">3.</b> How much does Maribel earn in December? <span class="blank short"></span></li>
+      <li><b class="n">4.</b> How much has she spent on groceries so far? <span class="blank short"></span></li>
     </ol>
   </div>
   <div class="task">
     <h2>B. True, false, or not on the page?</h2>
     <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the page, you <b>can&rsquo;t know</b>.</p>
-    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the page</th></tr><tr><td>1. You can return the lamp marked FS.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. With no receipt, you get your money back in cash.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. The store is open on Sundays.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. A refund to a card can take 5&ndash;7 business days.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>5. The store charged tax on the jacket.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. You can exchange clothes for a new size for 60 days.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr></table>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the page</th></tr><tr><td>1. Maribel has already paid the rent.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. She has paid the internet bill.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. Her phone bill costs $54.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. She buys groceries at Market Basket.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>5. She has already set aside $100.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. The bus pass costs more than the phone bill.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr></table>
   </div>
   <div class="task">
-    <h2>C. What will happen?</h2>
-    <p class="how">Find the rule in the return policy. Finish the sentence.</p>
+    <h2>C. Comparison shop: a winter coat</h2>
+    <p class="how">Look at <b>page 2</b>. Maribel found the same coat at two stores. You can use your phone calculator.</p>
     <ol class="items">
-      <li><b class="n">1.</b> If you return the blender on Dec. 10 with the receipt, you will get <span class="blank long"></span>.</li>
-      <li><b class="n">2.</b> If you don&rsquo;t have a receipt, you will get <span class="blank long"></span>.</li>
-      <li><b class="n">3.</b> If you paid with cash, you will get <span class="blank long"></span>.</li>
-      <li><b class="n">4.</b> <b>&#9733;</b> You return <b>opened</b> headphones on Nov. 20. How much is the fee?<div class="line"></div></li>
+      <li><b class="n">1.</b> The total cost at <b>Store A</b> is <span class="blank short"></span>.</li>
+      <li><b class="n">2.</b> The total cost at <b>Store B</b> is <span class="blank short"></span>.</li>
+      <li><b class="n">3.</b> Which store is cheaper? How much does she save? <span class="blank long"></span></li>
     </ol>
   </div>
-  <p class="how bottom"><b>Talk:</b> Have you ever returned something? Was it easy or hard?</p>
+  <p class="how bottom"><b>Talk:</b> Do you keep a list of your bills? On paper or on your phone?</p>
 </section>
 <section class="page rw">
   <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
-  <p class="how">Now look at <b>page 2</b> on the table: <b>the Silva family</b>. Today is <b>Tuesday, December 1</b>.</p>
   <div class="task">
-    <h2>D. Can they return it?</h2>
-    <p class="how">Read about each person. Circle <b>Refund</b>, <b>Exchange</b>, or <b>No</b>. Then write why. Check the <b>days</b> and the <b>rules</b>.</p>
-    <table class="pick tall">
-      <tr><th style="width:24%;">Person &middot; item</th><th style="width:34%;">Circle one</th><th>Why?</th></tr>
-      <tr><td class="t">Ana &middot; towels</td><td class="c">Refund / Exchange / No</td><td></td></tr><tr><td class="t">Marco &middot; lamp</td><td class="c">Refund / Exchange / No</td><td></td></tr><tr><td class="t">Bia &middot; headphones</td><td class="c">Refund / Exchange / No</td><td></td></tr><tr><td class="t">Leo &middot; jacket</td><td class="c">Refund / Exchange / No</td><td></td></tr>
-    </table>
+    <h2>D. Ask and answer</h2>
+    <p class="how">Look at the <b>Paid on</b> column on page 1. Take turns. Answer with <b>already</b>, <b>just</b>, or <b>not yet</b>.</p>
+    <ol class="items"><li><b class="n">1.</b> Has Maribel paid the electric bill yet?<div class="line"></div></li><li><b class="n">2.</b> Has she paid the phone bill?<div class="line"></div></li><li><b class="n">3.</b> Has she bought her bus pass yet?<div class="line"></div></li><li><b class="n">4.</b> Which bills has she not paid yet?<div class="line"></div></li></ol>
+    <ol class="items">
+      <li><b class="n">5.</b> How much money does she need for the bills she hasn&rsquo;t paid yet? <span class="blank short"></span></li>
+      <li><b class="n">6.</b> <b>&#9733;</b> Add <b>every</b> line on page 1 (bills + savings + groceries $400). How much is left from $2,400?<div class="line"></div></li>
+    </ol>
   </div>
   <div class="task">
-    <h2>E. At the returns desk</h2>
-    <p class="how">Choose one person. <b>A</b> = the cashier. <b>B</b> = the customer. Fill in, then act it out. <b>Switch</b>.</p>
-    <div class="textbox">
-      <b>B:</b> Hi. I want to <span class="blank"></span> this <span class="blank short"></span>.<br>
-      <b>A:</b> OK. When did you buy it? &emsp; <b>B:</b> I bought it on <span class="blank"></span>.<br>
-      <b>A:</b> What&rsquo;s the problem? &emsp; <b>B:</b> <span class="blank long"></span><br>
-      <b>A:</b> Do you have the receipt? &emsp; <b>B:</b> <span class="blank long"></span><br>
-      <b>A:</b> <span class="blank long"></span>
-    </div>
+    <h2>E. Phone call: Northway Electric</h2>
+    <p class="how">Maribel calls about her electric bill. <b>Write your own lines</b> for B. Then read it with a partner. Switch.</p>
+    <p><b>A:</b> Northway Electric. How can I help you?</p>
+    <p><b>B:</b> Hi. I want to ask about my December bill.</p>
+    <div class="line"></div>
+    <p><b>A:</b> OK. The total is $85. Have you paid it yet?</p>
+    <p><b>B:</b></p>
+    <div class="line"></div>
+    <p><b>A:</b> It&rsquo;s due on December 10. Do you want to pay now?</p>
+    <p><b>B:</b></p>
+    <div class="line"></div>
   </div>
 </section>
 <section class="page vc">
@@ -609,57 +429,36 @@
   <div class="task">
     <h2>Chart 1: Add the helping verbs</h2>
     <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
-    <div class="vc-meta"><span><b>Infinitive:</b> to buy</span><span><b>Subject:</b> he</span></div>
-    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>buy</td><td>buys</td><td>buying</td><td>bought</td><td>bought</td></tr></table>
-    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>he buys</td><td>he <span class="hb"></span> buy</td><td><span class="hb"></span> he buy?</td></tr><tr><td class="tn">Past Simple</td><td>he bought</td><td>he <span class="hb"></span> buy</td><td><span class="hb"></span> he buy?</td></tr><tr><td class="tn">Future Simple</td><td>he <span class="hb"></span> buy</td><td>he <span class="hb"></span> buy</td><td><span class="hb"></span> he buy?</td></tr><tr><td class="tn">Present Continuous</td><td>he <span class="hb"></span> buying</td><td>he <span class="hb"></span> buying</td><td><span class="hb"></span> he buying?</td></tr><tr><td class="tn">Past Continuous</td><td>he <span class="hb"></span> buying</td><td>he <span class="hb"></span> buying</td><td><span class="hb"></span> he buying?</td></tr><tr><td class="tn">Future Continuous</td><td>he <span class="hb sm"></span> <span class="hb sm"></span> buying</td><td>he <span class="hb sm"></span> <span class="hb sm"></span> buying</td><td><span class="hb sm"></span> he <span class="hb sm"></span> buying?</td></tr><tr><td class="tn">Present Perfect</td><td>he <span class="hb"></span> bought</td><td>he <span class="hb"></span> bought</td><td><span class="hb"></span> he bought?</td></tr></table>
+    <div class="vc-meta"><span><b>Infinitive:</b> to cost</span><span><b>Subject:</b> they</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>cost</td><td>costs</td><td>costing</td><td>cost</td><td>cost</td></tr></table>
+    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>they cost</td><td>they <span class="hb"></span> cost</td><td><span class="hb"></span> they cost?</td></tr><tr><td class="tn">Past Simple</td><td>they cost</td><td>they <span class="hb"></span> cost</td><td><span class="hb"></span> they cost?</td></tr><tr><td class="tn">Future Simple</td><td>they <span class="hb"></span> cost</td><td>they <span class="hb"></span> cost</td><td><span class="hb"></span> they cost?</td></tr><tr><td class="tn">Present Continuous</td><td>they <span class="hb"></span> costing</td><td>they <span class="hb"></span> costing</td><td><span class="hb"></span> they costing?</td></tr><tr><td class="tn">Past Continuous</td><td>they <span class="hb"></span> costing</td><td>they <span class="hb"></span> costing</td><td><span class="hb"></span> they costing?</td></tr><tr><td class="tn">Future Continuous</td><td>they <span class="hb sm"></span> <span class="hb sm"></span> costing</td><td>they <span class="hb sm"></span> <span class="hb sm"></span> costing</td><td><span class="hb sm"></span> they <span class="hb sm"></span> costing?</td></tr><tr><td class="tn">Present Perfect</td><td>they <span class="hb"></span> cost</td><td>they <span class="hb"></span> cost</td><td><span class="hb"></span> they cost?</td></tr></table>
   </div>
   <div class="task">
     <h2>Chart 2: Now you write it all</h2>
-    <p class="how">Write the 5 forms of <b>sell</b>. Then fill in the chart with <b>they</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
-    <div class="vc-meta"><span><b>Infinitive:</b> to sell</span><span><b>Subject:</b> they</span></div>
-    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">sell</td><td></td><td></td><td></td><td></td></tr></table>
+    <p class="how">Write the 5 forms of <b>spend</b>. Then fill in the chart with <b>she</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to spend</span><span><b>Subject:</b> she</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">spend</td><td></td><td></td><td></td><td></td></tr></table>
     <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Simple</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Past Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Future Continuous</td><td></td><td></td><td></td></tr><tr><td class="tn">Present Perfect</td><td></td><td></td><td></td></tr></table>
   </div>
 </section>
-<section class="page pbp">
-  <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you &middot; look at page 5 for help</span></div><div class="pg">Page 10</div></div>
-<div class="pbk">
-<div class="pb-box">
-    <h2>A. My sentences <span class="pb-small"><b>Zero</b> = it always happens. <b>First</b> = one real plan: tonight, tomorrow, next week.</span></h2>
-    <div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">If I drink coffee at night, I don't sleep well.</span></div>
-    <div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">If it's cold tomorrow, I will wear a jacket.</span></div>
-    <div class="pb-write-row"><span class="pb-adv">Zero</span><span class="pb-fill"></span></div>
-    <div class="pb-write-row"><span class="pb-adv">Zero</span><span class="pb-fill"></span></div>
-    <div class="pb-write-row"><span class="pb-adv">First</span><span class="pb-fill"></span></div>
-    <div class="pb-write-row"><span class="pb-adv">First</span><span class="pb-fill"></span></div>
-    <div class="pb-write-row"><span class="pb-adv">First</span><span class="pb-fill"></span></div>
-    <div class="pb-hint" style="margin-top:6px">Start ideas: If I have free time... &middot; If my phone dies... &middot; If I get paid this week... &middot; If you need help...</div>
-  </div>
-<div class="pb-box">
-    <h2>B. Level up <span class="pb-small">These work like First. After them: V1, not <i>will</i>.</span></h2>
-    <div class="pb-rules" style="margin-bottom:2px">
-      <div class="pb-rule">
-        <div class="pb-rule-name">unless = if not</div>
-        <div class="pb-ex">I'll walk <b>unless</b> it <b>rains</b>.</div>
-        <div class="pb-ex pb-small">= If it doesn't rain, I'll walk.</div>
-      </div>
-      <div class="pb-rule">
-        <div class="pb-rule-name">when / as soon as + V1</div>
-        <div class="pb-ex">I'll call you <b>as soon as</b> I <b>get</b> home.</div>
-        <div class="pb-no pb-small">&#10007; <s>as soon as I will get home</s></div>
-      </div>
+<section class="page ">
+  <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you</span></div><div class="pg">Page 10</div></div>
+<div class="task">
+    <h2>My money this week</h2>
+    <p class="how">Write about yourself or an imaginary person. Use <b>have/has + V3</b>, and <b>cost</b> or <b>spend</b>.</p>
+    <p class="example">Example: I have already paid my phone bill this month.</p>
+    <p class="prompt"><b>1. Already:</b> a bill or payment you finished before today.</p>
+    <div class="line"></div><div class="line"></div>
+    <p class="prompt"><b>2. Not yet:</b> something you want to buy, but haven&rsquo;t bought.</p>
+    <div class="line"></div><div class="line"></div>
+    <p class="prompt"><b>3. Just:</b> something you did a moment ago.</p>
+    <div class="line"></div><div class="line"></div>
+    <p class="prompt"><b>4. Cost:</b> something that costs a lot here.</p>
+    <div class="line"></div><div class="line"></div>
+    <p class="prompt"><b>5. Ask a partner:</b> Have you &hellip; yet? Write their answer.</p>
+    <div class="line"></div><div class="line"></div>
     </div>
-    <div class="pb-write-row"><span class="pb-adv">unless</span><span class="pb-fill"></span></div>
-    <div class="pb-write-row"><span class="pb-adv">as soon as</span><span class="pb-fill"></span></div>
-  </div>
-<div class="pb-check">
-    <b>Check:</b>
-    <span><span class="pb-cb"></span>no will after if</span>
-    <span><span class="pb-cb"></span>comma when if is first</span>
-    <span><span class="pb-cb"></span>he / she + V1-s</span>
-    <span><span class="pb-cb"></span>period at the end.</span>
-  </div>
-</div>
+    <div class="tip bottom"><b>Check together:</b> underline <i>have</i> or <i>has</i>. Circle the V3. Is <i>yet</i> at the end?</div>
 </section>
 
 </body>

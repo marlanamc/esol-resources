@@ -44,5 +44,6 @@ export const {
   isFinalUnlocked,
   getUpNext,
   getSummary,
+  isMapGoalMet,
   processRound,
 } = engine;

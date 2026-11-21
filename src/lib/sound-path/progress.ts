@@ -12,6 +12,7 @@ export const {
   isFinalUnlocked,
   getUpNext,
   getSummary,
+  isMapGoalMet,
   processRound,
 } = createPathEngine<SoundPathWorldId>({
   worlds: SOUND_PATH_WORLDS,

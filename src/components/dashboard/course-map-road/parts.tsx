@@ -45,6 +45,8 @@ export function ActivityRow({
     const locked = !activity.done && activity.href == null;
     const score = activity.quizScore;
     const perfect = score != null && score.correct >= score.total;
+    // Done for the week, but the game has levels left: keep the check, invite them back.
+    const keepGoing = activity.done ? activity.keepGoing : undefined;
 
     // The circle wears the activity's color: soft when done, outlined when waiting, filled when next.
     const ring = locked ? (
@@ -78,10 +80,15 @@ export function ActivityRow({
         <>
             {ring}
             <span className="min-w-0 flex-1">
-                <span className={`block text-[0.9375rem] leading-[1.3] ${activity.done ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{labels.title}</span>
+                <span className={`block text-[0.9375rem] leading-[1.3] ${activity.done && !keepGoing ? "font-medium text-text-muted" : "font-semibold text-text"}`}>{labels.title}</span>
                 {labels.detail ? (
                     <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: activity.done ? "var(--text-muted)" : tone.chipText }}>
                         {labels.detail}
+                    </span>
+                ) : null}
+                {keepGoing ? (
+                    <span className="mt-0.5 block text-[0.8125rem] font-semibold" style={{ color: tone.chipText }}>
+                        Done for this week · {keepGoing}
                     </span>
                 ) : null}
                 {score && !perfect ? (
@@ -97,6 +104,11 @@ export function ActivityRow({
             {showStart ? (
                 <span className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold" style={{ background: tone.accent, color: "var(--road-on-tone)" }}>
                     Start
+                </span>
+            ) : null}
+            {keepGoing && activity.href ? (
+                <span className="shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] font-bold" style={{ background: tone.chipBg, color: tone.chipText }}>
+                    Keep going
                 </span>
             ) : null}
             {score ? (
@@ -249,6 +261,7 @@ const isQuizActivity = (activity: RoadActivity) => activity.activityType === "qu
 function tileStatus(activity: RoadActivity, title: string, isNext: boolean, locked: boolean, formatLabel: string): string {
     const score = activity.quizScore;
     if (activity.done && score) return `${Math.round((score.correct / score.total) * 100)}%`;
+    if (activity.done && activity.keepGoing) return `Keep going · ${activity.keepGoing}`;
     if (activity.done) return "Done";
     if (locked) return "Opens later";
     if (isNext) return "Start here";

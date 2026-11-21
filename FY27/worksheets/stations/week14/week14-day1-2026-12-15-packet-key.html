@@ -301,19 +301,17 @@
   .pbk .pb-rules.pb-three .pb-chip { font-size: 13px; padding: 1px 5px; }
   .pbk .pb-bank-split .pb-cat-name.pb-yes::before { content: "\2713  "; }
   .pbk .pb-bank-split .pb-cat-name.pb-no::before { content: "\2717  "; }
-  .debates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .debates div { border: 2px solid #000; border-radius: 8px; padding: 8px; text-align: center; font-size: 17px; font-weight: bold; }
-  .paper { border-top: 4px double #000; border-bottom: 1.5px solid #000; margin-bottom: 8px; }
-  .mast { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid #000; }
-  .mast span:first-child { font-weight: bold; letter-spacing: 2px; font-size: 14px; }
-  .hl { font-size: 25px; line-height: 1.15; padding: 6px 0; }
-  .chartbox { border: 1.5px solid #000; padding: 4px 8px; margin-bottom: 8px; }
-  .chartbox svg { width: 100%; height: 2.2in; display: block; }
-  .story .paras p { font-size: 16.5px; margin-bottom: 7px; }
-  table.board { width: 100%; border-collapse: collapse; font-size: 17px; }
-  table.board th, table.board td { border: 1.5px solid #000; padding: 4px 8px; text-align: center; }
-  table.board td.cat { text-align: left; font-weight: bold; width: 40%; }
-  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; font-size: 17px; }
+  .tl { border: 1.5px solid #000; border-radius: 6px; padding: 4px 8px; margin-bottom: 8px; }
+  .tl svg { display: block; width: 100%; height: 0.95in; }
+  .model { border-left: 5px solid #000; background: #f4f4f4; padding: 8px 12px; font-size: 16.5px; line-height: 1.5; }
+  .mytl { display: grid; grid-template-columns: repeat(4, 1fr) 0.5fr; gap: 6px; border-top: 3px solid #000; padding-top: 10px; margin-top: 10px; font-size: 16px; line-height: 2; }
+  .mytl > div { position: relative; }
+  .mytl .dot { position: absolute; top: -18px; left: 10px; width: 14px; height: 14px; border-radius: 50%; background: #000; }
+  .mytl .now .dot { left: 0; }
+  .mytl .blank { min-width: 1.4in; }
+  .mytl .blank.short { min-width: 0.7in; }
+  .wr .line { height: 27px; }
+  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; font-size: 16px; }
 </style>
 </head>
 <body>
@@ -321,174 +319,190 @@
   <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 1</div></div>
   <div class="strip"><div class="name-row">Name: <span class="blank"></span> My group: &nbsp;A &nbsp; B &nbsp; C &nbsp; D</div></div>
   <div class="task">
-    <h2>1. Fill in the blank</h2>
-    <p class="how">Use every word once. Change the word form if needed.</p>
-    <div class="bank"><span>inflation</span> <span>economy</span> <span>cost of living</span> <span>wages</span> <span>interest rate</span> <span>unemployed</span></div>
-    <ol class="items"><li><b class="n">1.</b> The <span class="blank ans">cost of living</span> is very high here. Rent, food, and bus fares all cost a lot.</li><li><b class="n">2.</b> Why are many workers asking for higher <span class="blank ans">wages</span>?</li><li><b class="n">3.</b> The news said fewer people are <span class="blank ans">unemployed</span> this month.</li><li><b class="n">4.</b> When the <span class="blank ans">interest rate</span> goes up, loans cost more money.</li><li><b class="n">5.</b> <span class="blank ans">Inflation</span> means your paycheck doesn&rsquo;t go as far as it used to.</li><li><b class="n">6.</b> The news talks about the <span class="blank ans">economy</span> almost every day.</li></ol>
+    <h2>1. For or since?</h2>
+    <p class="how">Write <b>for</b> (a length of time) or <b>since</b> (a starting point).</p>
+    <p class="example">Example: I have lived here <u>since</u> 2021. &middot; I have lived here <u>for</u> five years.</p>
+    <ol class="items"><li><b class="n">1.</b> I have studied English <span class="blank short ans">for</span> two years.</li><li><b class="n">2.</b> She hasn&rsquo;t worked at the clinic <span class="blank short ans">since</span> last spring.</li><li><b class="n">3.</b> We have known our neighbors <span class="blank short ans">since</span> we moved here.</li><li><b class="n">4.</b> Has he had his job <span class="blank short ans">for</span> six months?</li><li><b class="n">5.</b> I haven&rsquo;t seen my family <span class="blank short ans">since</span> 2019.</li></ol>
   </div>
   <div class="task">
-    <h2>2. Write the form</h2>
-    <p class="how">Write the comparative or superlative. Use the words in the box.</p>
-    <div class="bank"><span>smaller</span> <span>the most expensive</span> <span>better</span> <span>the biggest</span> <span>cheaper</span></div>
-    <ol class="items"><li><b class="n">1.</b> cheap &rarr; <span class="small">(comparative)</span> <span class="blank ans">cheaper</span></li><li><b class="n">2.</b> expensive &rarr; <span class="small">(superlative)</span> <span class="blank ans">the most expensive</span></li><li><b class="n">3.</b> good &rarr; <span class="small">(comparative)</span> <span class="blank ans">better</span></li><li><b class="n">4.</b> big &rarr; <span class="small">(superlative)</span> <span class="blank ans">the biggest</span></li><li><b class="n">5.</b> small &rarr; <span class="small">(comparative)</span> <span class="blank ans">smaller</span></li></ol>
+    <h2>2. Since &rarr; for</h2>
+    <p class="how">Today is <b>December 15, 2026</b>. Change <b>since</b> to <b>for</b>. Write how long.</p>
+    <p class="example">Example: I have lived here since 2024. &rarr; for <u>two years</u></p>
+    <ol class="items"><li><b class="n">1.</b> She has worked at the store since 2016. &rarr; for <span class="blank ans">ten years</span></li><li><b class="n">2.</b> I haven&rsquo;t called my sister since August. &rarr; for <span class="blank ans">four months</span></li><li><b class="n">3.</b> We have known our landlord since 2021. &rarr; for <span class="blank ans">five years</span></li><li><b class="n">4.</b> He has studied English since last December. &rarr; for <span class="blank ans">one year</span></li></ol>
   </div>
   <div class="task">
-    <h2>3. Compare things in your life</h2>
-    <p class="how"><b>You make up the sentence.</b> Use your own ideas. Many answers are OK.</p>
-    <div class="own"><b>Example:</b> <span class="u">The bus</span> is cheaper than <span class="u">a taxi</span>. &middot; Other good answers: <span class="u">Rice</span> is cheaper than <span class="u">meat</span>. &middot; <span class="u">Summer</span> is better than <span class="u">winter</span>.</div>
+    <h2>3. Finish the sentence about you</h2>
+    <p class="how"><b>You make up the ending.</b> Use your own ideas. Use <b>for</b> or <b>since</b>.</p>
+    <div class="own"><b>Example:</b> I have lived in my apartment <span class="u">since 2022</span>. &middot; Other good answers: <span class="u">for four years</span> &middot; <span class="u">since my son was born</span></div>
     <ol class="items">
-      <li><b class="n">1.</b> <span class="blank ans"><i>answers vary</i></span> is cheaper than <span class="blank ans"><i>answers vary</i></span>.</li>
-      <li><b class="n">2.</b> <span class="blank ans"><i>answers vary</i></span> is the best <span class="blank ans"><i>answers vary</i></span> in my city.</li>
-      <li><b class="n">3.</b> Is <span class="blank ans"><i>answers vary</i></span> more expensive than <span class="blank ans"><i>answers vary</i></span>?</li>
+      <li><b class="n">1.</b> I have lived in my home <span class="blank long ans"><i>answers vary: for / since &hellip;</i></span>.</li>
+      <li><b class="n">2.</b> I have known my best friend <span class="blank long ans"><i>answers vary</i></span>.</li>
+      <li><b class="n">3.</b> How long have you <span class="blank long ans"><i>answers vary: + V3</i></span>?</li>
     </ol>
   </div>
 </section>
 <section class="page wu3"><div class="keytag">ANSWER KEY</div>
   <div class="station-bar"><div class="label">STATION 1: WARM-UP<span>on your own</span></div><div class="pg">Page 2</div></div>
   <div class="task">
-    <h2>4. Verb forms: money verbs review</h2>
-    <p class="how">Write the other forms of <b>buy</b>, <b>sell</b>, and <b>spend</b>. No quiz this week. Keep this chart in your binder!</p>
-    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">buy</td><td class="ansc">buys</td><td class="ansc">buying</td><td class="ansc">bought</td><td class="ansc">bought</td></tr><tr><td class="base">sell</td><td class="ansc">sells</td><td class="ansc">selling</td><td class="ansc">sold</td><td class="ansc">sold</td></tr><tr><td class="base">spend</td><td class="ansc">spends</td><td class="ansc">spending</td><td class="ansc">spent</td><td class="ansc">spent</td></tr></table>
+    <h2>4. Verb forms of the week</h2>
+    <p class="how">Write the other forms of <b>eat</b> and <b>drink</b>. <i>Eat</i> and <i>drink</i> are on this week&rsquo;s quiz!</p>
+    <table class="forms"><tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr><tr><td class="base">eat</td><td class="ansc">eats</td><td class="ansc">eating</td><td class="ansc">ate</td><td class="ansc">eaten</td></tr><tr><td class="base">drink</td><td class="ansc">drinks</td><td class="ansc">drinking</td><td class="ansc">drank</td><td class="ansc">drunk</td></tr></table>
   </div>
   <div class="task">
     <h2>5. Use the right form</h2>
-    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>buy</b>, <b>sell</b>, or <b>spend</b>.</p>
-    <ol class="items"><li><b class="n">1.</b> <b>Every week</b>, my family <span class="blank ans">spends</span> about $150 on food. (spend)</li><li><b class="n">2.</b> <b>Right now</b>, more people are <span class="blank ans">buying</span> used cars. (buy)</li><li><b class="n">3.</b> <b>Last year</b>, the factory didn&rsquo;t <span class="blank ans">sell</span> many cars. (sell)</li><li><b class="n">4.</b> <b>Yesterday</b>, did you <span class="blank ans">buy</span> eggs? They cost more now! (buy)</li><li><b class="n">5.</b> <b>Right now</b>, are families <span class="blank ans">spending</span> more on rent? (spend)</li><li><b class="n">6.</b> That store doesn&rsquo;t <span class="blank ans">sell</span> bread <b>every day</b>. (sell)</li><li><b class="n">7.</b> We <b>have</b> <span class="blank ans">spent</span> more on groceries this year. (spend)</li><li><b class="n">8.</b> <b>Have</b> they <span class="blank ans">sold</span> their house? (sell)</li></ol>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>eat</b> or <b>drink</b>. Use your chart.</p>
+    <ol class="items"><li><b class="n">1.</b> <b>Every morning</b>, my husband <span class="blank ans">drinks</span> two cups of coffee. (drink)</li><li><b class="n">2.</b> <b>Right now</b>, the kids are <span class="blank ans">eating</span> rice and beans. (eat)</li><li><b class="n">3.</b> <b>Yesterday</b>, we didn&rsquo;t <span class="blank ans">drink</span> any milk. (drink)</li><li><b class="n">4.</b> <b>Last night</b>, what did you <span class="blank ans">eat</span> for dinner? (eat)</li><li><b class="n">5.</b> She doesn&rsquo;t <span class="blank ans">eat</span> meat <b>every day</b>. (eat)</li><li><b class="n">6.</b> <b>Right now</b>, is he <span class="blank ans">drinking</span> a glass of water? (drink)</li><li><b class="n">7.</b> We <b>have</b> <span class="blank ans">eaten</span> all the bread. It&rsquo;s gone! (eat)</li><li><b class="n">8.</b> <b>Have</b> you <span class="blank ans">drunk</span> any water today? (drink)</li></ol>
   </div>
   <div class="task">
     <h2>6. Bonus: Your turn</h2>
     <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
-    <p class="prompt"><b>Last weekend</b> + buy</p>
-    <p class="ideas">Ideas: groceries &middot; a gift &middot; warm clothes &middot; nothing!</p>
-    <div class="line ans"><i>answers vary: Last weekend, I bought a gift for my son.</i></div>
-    <p class="prompt"><b>A taxi</b> + cheap <b>+ not</b> + than</p>
-    <p class="ideas">Ideas: the bus &middot; the train &middot; walking &middot; a bike</p>
-    <div class="line ans"><i>answers vary: A taxi isn&rsquo;t cheaper than the bus.</i></div>
-    <p class="prompt"><b>Which</b> + the best<b>?</b></p>
-    <p class="ideas">Ideas: store for vegetables &middot; restaurant &middot; park &middot; time to shop</p>
-    <div class="line ans"><i>answers vary: Which store is the best for vegetables?</i></div>
+    <p class="prompt"><b>Every morning</b> + drink</p>
+    <p class="ideas">Ideas: coffee &middot; tea with milk &middot; a big glass of water &middot; juice</p>
+    <div class="line ans"><i>answers vary: Every morning, I drink tea with milk.</i></div>
+    <p class="prompt"><b>Last night</b> + eat <b>+ not</b></p>
+    <p class="ideas">Ideas: dinner &middot; meat &middot; dessert &middot; a big meal</p>
+    <div class="line ans"><i>answers vary: Last night, I didn&rsquo;t eat dessert.</i></div>
+    <p class="prompt"><b>How long</b> + have you<b>?</b></p>
+    <p class="ideas">Ideas: lived here &middot; had your phone &middot; known your best friend &middot; worked at your job</p>
+    <div class="line ans"><i>answers vary: How long have you had your phone?</i></div>
   </div>
 </section>
 <section class="page "><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
-  <h2>Quiet <i>than</i></h2>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>How long have you&hellip;? &middot; with a teacher</span></div><div class="pg">Page 3</div></div>
+  <h2>Quiet <i>for</i>, loud time</h2>
   <div class="rhythm">
-    <div><div class="big" style="font-size:22px;">The <b>BUS</b> is <b>CHEAP</b>er thn a <b>TAX</b>i.</div><p><b>than</b> is quiet and fast: &ldquo;thn.&rdquo; <b>-er</b> is short.</p></div>
-    <div><div class="big" style="font-size:22px;">It&rsquo;s the <b>CHEAP</b>est store.</div><p><b>the</b> is quiet. The <b>adjective</b> is loud: the <b>BEST</b>, the most ex<b>PEN</b>sive.</p></div>
+    <div><div class="big" style="font-size:22px;">How <b>LONG</b> have you <b>LIVED</b> here?</div><p><b>How long</b> and the <b>verb</b> are loud. <i>have you</i> is fast: &ldquo;h&rsquo;v you.&rdquo;</p></div>
+    <div><div class="big" style="font-size:22px;">I&rsquo;ve lived here for <b>SIX YEARS</b>.</div><p><b>for</b> is quiet and short: &ldquo;fer.&rdquo; The <b>time</b> is loud. <b>since</b> is clear: <i>since TWO-thousand NINETEEN</i>.</p></div>
+  </div>
+  <p class="how"><b>Try it:</b> Tap the table on the loud words. <i>I&rsquo;ve lived here fer SIX YEARS.</i></p>
+  <div class="task">
+    <h2>A. Listen: for or since?</h2>
+    <p class="how">Your teacher reads the end of the sentence. Is it <b>for</b> or <b>since</b>? Circle it. Then write the time you hear.</p>
+    <ol class="items listen2"><li><b class="n">1.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc"><span class="hitc">for</span> / since</span></li><li><b class="n">2.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">for / <span class="hitc">since</span></span></li><li><b class="n">3.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc"><span class="hitc">for</span> / since</span></li><li><b class="n">4.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">for / <span class="hitc">since</span></span></li><li><b class="n">5.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">for / <span class="hitc">since</span></span></li><li><b class="n">6.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc"><span class="hitc">for</span> / since</span></li><li><b class="n">7.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">for / <span class="hitc">since</span></span></li><li><b class="n">8.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc"><span class="hitc">for</span> / since</span></li></ol>
   </div>
   <div class="task">
-    <h2>A. Listen: compare 2, or number 1?</h2>
-    <p class="how">Your teacher reads a sentence. Is it <b>-er / more &hellip; than</b> (2 things) or <b>the -est / the most</b> (number 1)? Circle it.</p>
-    <ol class="items" style="font-size:17px;"><li><b class="n">1.</b> <span>_____________</span> <span class="cc"><span class="hitc">-er / more &hellip; than</span> &middot; the -est / the most</span></li><li><b class="n">2.</b> <span>_____________</span> <span class="cc">-er / more &hellip; than &middot; <span class="hitc">the -est / the most</span></span></li><li><b class="n">3.</b> <span>_____________</span> <span class="cc"><span class="hitc">-er / more &hellip; than</span> &middot; the -est / the most</span></li><li><b class="n">4.</b> <span>_____________</span> <span class="cc">-er / more &hellip; than &middot; <span class="hitc">the -est / the most</span></span></li><li><b class="n">5.</b> <span>_____________</span> <span class="cc"><span class="hitc">-er / more &hellip; than</span> &middot; the -est / the most</span></li><li><b class="n">6.</b> <span>_____________</span> <span class="cc">-er / more &hellip; than &middot; <span class="hitc">the -est / the most</span></span></li><li><b class="n">7.</b> <span>_____________</span> <span class="cc"><span class="hitc">-er / more &hellip; than</span> &middot; the -est / the most</span></li><li><b class="n">8.</b> <span>_____________</span> <span class="cc">-er / more &hellip; than &middot; <span class="hitc">the -est / the most</span></span></li></ol>
+    <h2>B. Around the table</h2>
+    <p class="how">Go around fast. Each person says: <i>&ldquo;I&rsquo;ve lived here for ___.&rdquo;</i> Then again with <i>since</i>. Keep <b>for</b> quiet!</p>
   </div>
   <div class="task">
-    <h2>B. Which is better? Friendly debate</h2>
-    <p class="how">Choose a topic. Each person picks a side and gives <b>2 reasons</b>. Use <b>-er / more &hellip; than</b>.</p>
-    <div class="debates"><div>City or country?</div><div>Cook at home or eat out?</div><div>Bus or car?</div><div>Summer or winter in Boston?</div><div>A big store or a small store?</div><div>Call or text?</div></div>
-    <div class="bank starters" style="margin-top:8px; font-size:17px;">
-      <span><b>I think</b> the city is better <b>because</b> &hellip;</span><span><b>Yes, but</b> the country is quieter.</span>
-      <span>The bus is <b>cheaper than</b> a car.</span><span><b>I agree.</b> / <b>I don&rsquo;t agree.</b></span>
+    <h2>C. Interview your table</h2>
+    <p class="how">Ask the people <b>at your table</b>. Write a name and the answer. Answer with <b>for</b> or <b>since</b>.</p>
+    <table class="who"><tr><th style="text-align:left;padding:4px 10px;">Question</th><th>Name</th><th>Answer</th></tr><tr><td class="q">How long have you lived in this city?</td><td></td><td></td></tr><tr><td class="q">How long have you had your phone?</td><td></td><td></td></tr><tr><td class="q">How long have you known your best friend?</td><td></td><td></td></tr><tr><td class="q">How long have you studied English?</td><td></td><td></td></tr><tr><td class="q">How long have you been in this class?</td><td></td><td></td></tr><tr><td class="q">How long have you had your oldest shoes?</td><td></td><td></td></tr></table>
+  </div>
+</section>
+<section class="page "><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>How long have you&hellip;? &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
+  <div class="task">
+    <h2>D. Read aloud with a partner</h2>
+    <p class="how">A job interview at a restaurant. <b>A</b> = manager. <b>B</b> = you. Then <b>switch</b>.</p>
+    <div class="tip" style="font-size:18px; line-height:1.7;">
+      <b>A:</b> So, how long have you worked as a cook?<br>
+      <b>B:</b> I&rsquo;ve worked as a cook for eight years.<br>
+      <b>A:</b> Great. And how long have you lived in Boston?<br>
+      <b>B:</b> I&rsquo;ve lived here since 2021.<br>
+      <b>A:</b> Have you ever worked in a big kitchen?<br>
+      <b>B:</b> Yes, I have. I worked in a hotel kitchen for three years.<br>
+      <b>A:</b> Have you finished your food safety certificate yet?<br>
+      <b>B:</b> Yes, I have. I&rsquo;ve already finished it.
     </div>
   </div>
-</section>
-<section class="page "><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 2: SPEAK<span>Which is better? &middot; with a teacher</span></div><div class="pg">Page 4</div></div>
   <div class="task">
-    <h2>C. Who is number 1 in our group?</h2>
-    <p class="how">Ask the people <b>at your table</b>. Write a name. Then write 2 sentences: <i>Ana has the oldest phone in our group.</i></p>
-    <table class="who"><tr><td class="q">Who has the oldest phone?</td><td></td></tr><tr><td class="q">Who wakes up the earliest?</td><td></td></tr><tr><td class="q">Who has the longest bus or train ride?</td><td></td></tr><tr><td class="q">Who has the biggest family?</td><td></td></tr><tr><td class="q">Who is the best cook?</td><td></td></tr><tr><td class="q">Who lives the closest to school?</td><td></td></tr></table>
-    <div class="line ans"><i>answers vary: check the + -est / the most</i></div><div class="line"></div>
-  </div>
-  <div class="task">
-    <h2>D. Talk together</h2>
-    <p class="how">Answer with a <b>full sentence</b>. Then ask: <i>&ldquo;Why?&rdquo;</i></p>
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b> with <b>for</b> or <b>since</b>. Then ask: <i>&ldquo;Really? Why?&rdquo;</i></p>
     <ol class="read-aloud">
-      <li>What is the best food from your country?</li>
-      <li>What is the most expensive thing in Boston?</li>
-      <li>Is your city here bigger or smaller than your hometown?</li>
-      <li>What is the best time of year here? Why?</li>
+      <li>How long have you had your phone? Do you like it?</li>
+      <li>How long have you known the oldest friend you have?</li>
+      <li>What food have you eaten since you were a child?</li>
+      <li>How long have you studied English? What helps you most?</li>
     </ol>
   </div>
   <div class="task">
-    <h2>E. Say it to your teacher</h2>
-    <p class="how">Write one sentence with <b>-er / more &hellip; than</b> and one with <b>the -est / the most</b>. Read them to your teacher.</p>
-    <div class="gline"><b>than</b><div class="line ans"><i>answers vary</i></div></div>
-    <div class="gline"><b>the</b><div class="line ans"><i>answers vary</i></div></div>
+    <h2>F. Say it to your teacher</h2>
+    <p class="how">Write one sentence with <b>for</b> and one with <b>since</b>. Read them to your teacher. Quiet <b>for</b>!</p>
+    <div class="gline"><b>for</b><div class="line ans"><i>answers vary</i></div></div>
+    <div class="gline"><b>since</b><div class="line ans"><i>answers vary</i></div></div>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
 <section class="page pbp"><div class="keytag">ANSWER KEY</div>
   <div class="station-bar"><div class="label">STATION 3: GAME<span>Phrase bank &middot; use it in the game</span></div><div class="pg">Page 5</div></div>
 <div class="pbk">
-<div class="pb-box"><h2>1. Three steps <span class="pb-small">adjective &rarr; compare 2 &rarr; number 1</span></h2><div class="pb-forms" style="grid-template-columns: repeat(6, 1fr);"><div><div class="pb-md">cheap</div><div class="pb-word">cheaper</div><div class="pb-md"><b>the cheapest</b></div></div><div><div class="pb-md">big</div><div class="pb-word">bigger</div><div class="pb-md"><b>the biggest</b></div></div><div><div class="pb-md">easy</div><div class="pb-word">easier</div><div class="pb-md"><b>the easiest</b></div></div><div><div class="pb-md">expensive</div><div class="pb-word">more expensive</div><div class="pb-md"><b>the most expensive</b></div></div><div><div class="pb-md">good</div><div class="pb-word">better</div><div class="pb-md"><b>the best</b></div></div><div><div class="pb-md">bad</div><div class="pb-word">worse</div><div class="pb-md"><b>the worst</b></div></div></div></div>
-<div class="pb-box"><h2>2. How does it work? <span class="pb-small">The important words are in <b>black</b>.</span></h2><div class="pb-rules"><div class="pb-rule"><div class="pb-rule-name">A. Short words: + er + than</div><div class="pb-formula"><span class="pb-chip">The bus</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">cheaper</span><span class="pb-chip pb-adv">than</span><span class="pb-chip">a taxi.</span></div><div class="pb-ex">Boston is <b>colder than</b> Miami.</div><div class="pb-no">&#10007; <s>more cheaper</s></div></div><div class="pb-rule"><div class="pb-rule-name">B. Long words: more + than</div><div class="pb-formula"><span class="pb-chip">Rent</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">more expensive</span><span class="pb-chip pb-adv">than</span><span class="pb-chip">last year.</span></div><div class="pb-ex">This chair is <b>more comfortable</b>.</div><div class="pb-no">&#10007; <s>expensiver</s></div></div><div class="pb-rule"><div class="pb-rule-name">C. Number 1: the + -est / the most</div><div class="pb-formula"><span class="pb-chip">This</span><span class="pb-chip">is</span><span class="pb-chip pb-adv">the cheapest</span><span class="pb-chip">store.</span></div><div class="pb-ex">It&rsquo;s <b>the most beautiful</b> park.</div><div class="pb-no">&#10007; <s>the most big</s></div></div><div class="pb-rule"><div class="pb-rule-name">D. Spelling</div><div class="pb-formula"><span class="pb-chip">big &rarr; bigger</span><span class="pb-chip">easy &rarr; easier</span><span class="pb-chip">nice &rarr; nicer</span></div><div class="pb-ex">hot &rarr; ho<b>tt</b>er &middot; busy &rarr; bus<b>i</b>er</div><div class="pb-no">&#10007; <s>bigest</s></div></div><div class="pb-rule pb-wide"><div class="pb-rule-name" style="margin:0">Remember: <span style="font-weight:normal">good &rarr; <b>better</b> &rarr; <b>the best</b> &middot; bad &rarr; <b>worse</b> &rarr; <b>the worst</b> &nbsp;|&nbsp; <b>than</b>, not <i>that</i>: &#10007; <s>bigger that</s></span></div></div></div></div>
-<div class="pb-box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="pb-small">Things to compare. Then pick an adjective.</span></h2><div class="pb-bank"><div class="pb-cat"><div class="pb-cat-name">Getting around</div><ul><li>the bus</li><li>the T</li><li>a car</li><li>a bike</li><li>walking</li><li>an Uber</li><li>the train</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Shopping</div><ul><li>Market Basket</li><li>a corner store</li><li>Target</li><li>shopping online</li><li>a farmers market</li><li>a dollar store</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Food</div><ul><li>home cooking</li><li>takeout</li><li>rice / bread</li><li>coffee / tea</li><li>fruit / candy</li><li>chicken / fish</li><li>water / soda</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Places</div><ul><li>Boston</li><li>my hometown</li><li>the city</li><li>the country</li><li>my old apartment</li><li>a house</li><li>an apartment</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Seasons</div><ul><li>summer</li><li>winter</li><li>fall</li><li>spring</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Life</div><ul><li>my first year here</li><li>this year</li><li>my life now</li><li>life 10 years ago</li><li>English class</li><li>my old job</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Phone &amp; tech</div><ul><li>calling</li><li>texting</li><li>a big phone</li><li>a small phone</li><li>email</li><li>a laptop</li><li>a tablet</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Work &amp; life</div><ul><li>the day shift</li><li>the night shift</li><li>a big company</li><li>a small company</li><li>working at home</li><li>a full-time job</li><li>a part-time job</li></ul></div></div><div class="pb-cat-be"><b>Adjectives:</b> cheap &middot; expensive &middot; fast &middot; slow &middot; easy &middot; hard &middot; big &middot; small &middot; safe &middot; healthy &middot; busy &middot; quiet &middot; friendly &middot; comfortable &middot; convenient &middot; good &middot; bad</div></div>
+<div class="pb-box"><h2>1. for or since? <span class="pb-small">Both answer <b>How long?</b> Both use <b>have / has + V3</b>.</span></h2><svg viewBox="0 0 720 92" xmlns="http://www.w3.org/2000/svg" font-family="Atkinson Hyperlegible, Arial, sans-serif" style="width:100%;height:0.95in;display:block;">
+      <line x1="40" y1="52" x2="690" y2="52" stroke="#000" stroke-width="3"/><polygon points="690,46 704,52 690,58" fill="#000"/>
+      <circle cx="160" cy="52" r="9" fill="#000"/><text x="160" y="84" text-anchor="middle" font-size="15" font-weight="700">2019</text>
+      <text x="160" y="22" text-anchor="middle" font-size="17" font-weight="700">since 2019</text><text x="160" y="38" text-anchor="middle" font-size="12">(the start point)</text>
+      <text x="640" y="84" text-anchor="middle" font-size="15" font-weight="700">NOW</text><line x1="640" y1="40" x2="640" y2="64" stroke="#000" stroke-width="3"/>
+      <path d="M170 44 Q400 4 630 44" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="6 5"/>
+      <text x="400" y="20" text-anchor="middle" font-size="17" font-weight="700">for 7 years</text><text x="400" y="36" text-anchor="middle" font-size="12">(how much time)</text>
+    </svg><div class="pb-forms" style="grid-template-columns: repeat(2, 1fr);"><div><div class="pb-word">for</div><div class="pb-md">+ how much time</div><div class="pb-sm">5 minutes &middot; 2 weeks &middot; 10 years</div></div><div><div class="pb-word">since</div><div class="pb-md">+ the start point</div><div class="pb-sm">Monday &middot; 8:00 &middot; 2019 &middot; I was a kid</div></div></div></div>
+<div class="pb-box"><h2>2. How does it work? <span class="pb-small">The important words are in <b>black</b>.</span></h2><div class="pb-rules"><div class="pb-rule"><div class="pb-rule-name">A. Ask: How long have you + V3?</div><div class="pb-formula"><span class="pb-chip pb-adv">How long</span><span class="pb-chip pb-adv">have</span><span class="pb-chip">you</span><span class="pb-chip">lived</span><span class="pb-chip">here?</span></div><div class="pb-ex">How long <b>has</b> she worked there?</div><div class="pb-no">&#10007; <s>How long do you live here?</s></div></div><div class="pb-rule"><div class="pb-rule-name">B. for + how much time</div><div class="pb-formula"><span class="pb-chip">I</span><span class="pb-chip">have lived</span><span class="pb-chip">here</span><span class="pb-chip pb-adv">for</span><span class="pb-chip">7 years.</span></div><div class="pb-ex">I&rsquo;ve known her <b>for</b> a long time.</div><div class="pb-no">&#10007; <s>since 7 years</s></div></div><div class="pb-rule"><div class="pb-rule-name">C. since + the start point</div><div class="pb-formula"><span class="pb-chip">I</span><span class="pb-chip">have worked</span><span class="pb-chip">there</span><span class="pb-chip pb-adv">since</span><span class="pb-chip">2021.</span></div><div class="pb-ex">&hellip;<b>since</b> Monday / <b>since</b> I was 15.</div><div class="pb-no">&#10007; <s>for 2021</s></div></div><div class="pb-rule"><div class="pb-rule-name">D. Not since then: haven&rsquo;t + V3</div><div class="pb-formula"><span class="pb-chip">I</span><span class="pb-chip pb-adv">haven&rsquo;t</span><span class="pb-chip">had</span><span class="pb-chip">a vacation</span><span class="pb-chip">since 2023.</span></div><div class="pb-ex">She <b>hasn&rsquo;t</b> been to the beach <b>for</b> a year.</div><div class="pb-no">&#10007; <s>I don&rsquo;t have a vacation since 2023.</s></div></div><div class="pb-rule pb-wide"><div class="pb-rule-name" style="margin:0">Remember: <span style="font-weight:normal">V3: live &rarr; <b>lived</b> &middot; know &rarr; <b>known</b> &middot; be &rarr; <b>been</b> &middot; have &rarr; <b>had</b> &nbsp;|&nbsp; he / she / it &rarr; <b>has</b></span></div></div></div></div>
+<div class="pb-box" style="flex:1; display:flex; flex-direction:column;"><h2>3. Phrase bank <span class="pb-small">These are <b>have + V3</b> phrases. Add for or since.</span></h2><div class="pb-bank"><div class="pb-cat"><div class="pb-cat-name">Home</div><ul><li>lived in this city</li><li>lived in my apartment</li><li>had my car</li><li>had my phone</li><li>lived with my roommate</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Work</div><ul><li>worked at my job</li><li>been a cook / a cleaner</li><li>had this schedule</li><li>worked nights</li><li>had my driver&rsquo;s license</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Learning</div><ul><li>studied English</li><li>been in this class</li><li>known how to drive</li><li>used this app</li><li>read this book</li></ul></div><div class="pb-cat"><div class="pb-cat-name">People</div><ul><li>known my best friend</li><li>been married</li><li>had my dog / cat</li><li>known my neighbors</li><li>been a mother / father</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Habits</div><ul><li>played soccer</li><li>been a vegetarian</li><li>gone to the same church</li><li>woken up at 5:00</li><li>drunk coffee every day</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Things I own</div><ul><li>had these shoes</li><li>had this coat</li><li>had my bike</li><li>used this backpack</li></ul></div><div class="pb-cat"><div class="pb-cat-name">Not since (haven&rsquo;t)</div><ul><li>haven&rsquo;t had a vacation</li><li>haven&rsquo;t been to the beach</li><li>haven&rsquo;t seen a movie</li><li>haven&rsquo;t slept 8 hours</li><li>haven&rsquo;t eaten pizza</li></ul></div></div><div class="pb-cat-be"><b>for:</b> a few days &middot; two weeks &middot; a month &middot; six months &middot; a year &middot; a long time &emsp; <b>since:</b> Monday &middot; last week &middot; January &middot; 2020 &middot; I was a kid &middot; I moved here</div></div>
 </div>
 </section>
 <section class="page "><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 3: GAME<span>Compare it! &middot; with your group</span></div><div class="pg">Page 6</div></div>
+  <div class="station-bar"><div class="label">STATION 3: GAME<span>For or since? &middot; with your group</span></div><div class="pg">Page 6</div></div>
   <div class="task">
-    <h2>How to play: Compare it!</h2>
+    <h2>How to play: For or since?</h2>
     <ol class="items play" style="list-style:none;">
       <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
-      <li><b class="n">2.</b> Say your opinion with the word in ( ): <i>&ldquo;I think rice is <b>cheaper than</b> meat.&rdquo;</i> Boxes 11&ndash;15: <i>the -est / the most</i>. <b>Stuck?</b> Look at page 5.</li>
-      <li><b class="n">3.</b> The group checks the form. Right = 1 point ( <b>|</b> ). Then they answer: <i>&ldquo;I agree.&rdquo;</i> or <i>&ldquo;I disagree. I think&hellip;&rdquo;</i></li>
-      <li><b class="n">4.</b> The next person picks a box. Most points when the timer rings wins!</li>
+      <li><b class="n">2.</b> Say a <b>true</b> sentence with <b>have + V3</b> and the time words. Add <b>for</b> or <b>since</b>. <b>Stuck?</b> Use a phrase from page 5.</li>
+      <li><b class="n">3.</b> The group checks: <b>for</b> or <b>since</b>? <b>V3</b>? Right = 1 point ( <b>|</b> ).</li>
+      <li><b class="n">4.</b> The group asks: <i>&ldquo;Really? Where?&rdquo;</i> Then the next person picks. Most points wins!</li>
     </ol>
   </div>
-  <div class="qboard"><div><span class="n">1<span class="e">&#128661;</span></span><span class="t">a taxi / the T<span class="tag">(fast)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">faster than</span></span></div><div><span class="n">2<span class="e">&#9749;</span></span><span class="t">coffee / tea<span class="tag">(good)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">better than</span></span></div><div><span class="n">3<span class="e">&#127822;</span></span><span class="t">fruit / candy<span class="tag">(healthy)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">healthier than</span></span></div><div><span class="n">4<span class="e">&#127968;</span></span><span class="t">a house / an apartment<span class="tag">(expensive)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">more expensive than</span></span></div><div><span class="n">5<span class="e">&#127750;</span></span><span class="t">Boston / my hometown<span class="tag">(big)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">bigger than</span></span></div><div><span class="n">6<span class="e">&#128187;</span></span><span class="t">a laptop / a phone<span class="tag">(easy)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">easier than</span></span></div><div><span class="n">7<span class="e">&#127769;</span></span><span class="t">the day shift / the night shift<span class="tag">(hard)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">harder than</span></span></div><div><span class="n">8<span class="e">&#128722;</span></span><span class="t">Market Basket / a corner store<span class="tag">(cheap)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">cheaper than</span></span></div><div><span class="n">9<span class="e">&#128021;</span></span><span class="t">dogs / cats<span class="tag">(friendly)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">friendlier than</span></span></div><div><span class="n">10<span class="e">&#128218;</span></span><span class="t">English / my language<span class="tag">(difficult)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">more difficult than</span></span></div><div><span class="n">11<span class="e">&#127835;</span></span><span class="t">___ is the ___ food from my country.<span class="tag">(good)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">the best</span></span></div><div><span class="n">12<span class="e">&#127956;&#65039;</span></span><span class="t">___ is the ___ place I have seen.<span class="tag">(beautiful)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">the most beautiful</span></span></div><div><span class="n">13<span class="e">&#128197;</span></span><span class="t">___ is the ___ day of my week.<span class="tag">(busy)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">the busiest</span></span></div><div><span class="n">14<span class="e">&#10052;&#65039;</span></span><span class="t">___ is the ___ month in Boston.<span class="tag">(cold)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">the coldest</span></span></div><div><span class="n">15<span class="e">&#129534;</span></span><span class="t">___ is the ___ bill I pay.<span class="tag">(expensive)</span><span class="tag ans" style="font-style:normal;font-weight:bold;">the most expensive</span></span></div></div>
+  <div class="key" style="margin-bottom:10px;">
+    <div><b>for</b> + how much time<br>I have lived here <b>for</b> 3 years.</div>
+    <div><b>since</b> + the start point<br>I have had my phone <b>since</b> 2019.</div>
+  </div>
+  <div class="qboard"><div><span class="n">1<span class="e">&#128197;</span></span><span class="t">&hellip; 3 years<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">2<span class="e">&#128198;</span></span><span class="t">&hellip; Monday<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">3<span class="e">&#128336;</span></span><span class="t">&hellip; 2019<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">4<span class="e">&#9203;</span></span><span class="t">&hellip; a long time<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">5<span class="e">&#128118;</span></span><span class="t">&hellip; I was a kid<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">6<span class="e">&#128467;&#65039;</span></span><span class="t">&hellip; two weeks<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">7<span class="e">&#9728;&#65039;</span></span><span class="t">&hellip; last summer<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">8<span class="e">&#127793;</span></span><span class="t">&hellip; six months<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">9<span class="e">&#10052;&#65039;</span></span><span class="t">&hellip; January<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">10<span class="e">&#9201;&#65039;</span></span><span class="t">&hellip; 10 minutes<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">11<span class="e">&#128666;</span></span><span class="t">&hellip; I moved here<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">12<span class="e">&#128338;</span></span><span class="t">&hellip; a few days<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div><div><span class="n">13<span class="e">&#9200;</span></span><span class="t">&hellip; 8:00 this morning<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">14<span class="e">&#127874;</span></span><span class="t">&hellip; my last birthday<span class="tag ans" style="font-style:normal;font-weight:bold;">since</span></span></div><div><span class="n">15<span class="e">&#128200;</span></span><span class="t">&hellip; a month<span class="tag ans" style="font-style:normal;font-weight:bold;">for</span></span></div></div>
   <div class="qscore"><div>Points</div><div>Name:</div><div>Name:</div><div>Name:</div><div>Name:</div></div>
   <div class="task">
     <h2>Write your best sentence</h2>
-    <div class="line ans"><i>answers vary: -er than / more &hellip; than / the -est / the most</i></div>
+    <div class="line ans"><i>answers vary: have / has + V3 + for / since</i></div>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>
 </section>
-<section class="page rd"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 7</div></div>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 7</div></div>
+  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the shelf tags). Read them <b>together</b>. You can use your phone calculator. <b>&#9733;</b> = challenge.</p>
   <div class="task">
-    <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Choose a <b>judge</b>. The judge holds the <b>answer sheet</b> (page 2 of the game sheet) and doesn&rsquo;t play.</li>
-      <li><b class="n">2.</b> Take turns. Choose a category and points: <i>&ldquo;For / since, 200, please!&rdquo;</i></li>
-      <li><b class="n">3.</b> The judge reads the question. You answer <b>out loud</b>.</li>
-      <li><b class="n">4.</b> Right? You get the points. Wrong? Anyone can try for the points.</li>
-      <li><b class="n">5.</b> Cross off the square below. <b>New judge</b> every 5 questions.</li>
+    <h2>A. Read a shelf tag</h2>
+    <p class="how">Look at the tag for the <b>small</b> bag of rice.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> What is the price? <span class="blank short ans">$3.49</span> &emsp; How big is the bag? <span class="blank short ans">2 lb</span></li>
+      <li><b class="n">2.</b> What is the <b>unit price</b>? <span class="blank long ans">$1.75 per pound</span></li>
     </ol>
   </div>
   <div class="task">
-    <h2>Cross off the squares</h2>
-    <table class="board"><tr><th>Category</th><th>100</th><th>200</th><th>300</th></tr><tr><td class="cat">V2 / V3</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">If &hellip;</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">Can / should / must</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">Have you ever</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">Just / already / yet</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">For / since</td><td>100</td><td>200</td><td>300</td></tr><tr><td class="cat">Bigger / better</td><td>100</td><td>200</td><td>300</td></tr></table>
+    <h2>B. Which is the better deal?</h2>
+    <p class="how">Look at the <b>unit price</b> on each tag. Circle the better deal. <b>Careful!</b> Bigger is not always cheaper.</p>
+    <table class="pick"><tr><th style="width:16%;">Food</th><th style="width:20%;">Small</th><th style="width:20%;">Big</th><th>Unit prices</th></tr><tr><td class="t">Rice</td><td class="c">2 lb, $3.49</td><td class="c"><span class="hitc">20 lb, $21.99</span></td><td class="ansc">$1.75/lb vs $1.10/lb</td></tr><tr><td class="t">Cereal</td><td class="c">12 oz, $3.99</td><td class="c"><span class="hitc">24 oz, $6.49</span></td><td class="ansc">33&cent;/oz vs 27&cent;/oz</td></tr><tr><td class="t">Olive oil</td><td class="c"><span class="hitc">17 oz, $8.99</span></td><td class="c">34 oz, $19.49</td><td class="ansc">53&cent;/oz vs 57&cent;/oz. Small is cheaper!</td></tr><tr><td class="t">Eggs</td><td class="c"><span class="hitc">12, $3.99</span></td><td class="c">18, $6.29</td><td class="ansc">33&cent; vs 35&cent; an egg. Small is cheaper!</td></tr></table>
   </div>
   <div class="task">
-    <h2>Scoreboard</h2>
-    <table class="pick"><tr><th style="width:34%;">Name</th><th>Points (add them up!)</th><th style="width:18%;">Total</th></tr>
-    <tr><td style="height:34px;"></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td></tr><tr><td style="height:34px;"></td><td></td><td></td></tr></table>
+    <h2>C. True, false, or not on the tags?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the tags, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the tags</th></tr><tr><td>1. The bigger package is always the better deal.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>2. The unit price tells you the price for one pound, ounce, or egg.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>3. The 20-lb bag of rice is cheaper per pound.</td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>4. Bananas are on sale this week.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td></tr><tr><td>5. The 18-pack of eggs costs less per egg.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td><td class="c"><span class="cb"></span></td></tr><tr><td>6. The store sells organic milk.</td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb"></span></td><td class="c"><span class="cb on"></span></td></tr></table>
   </div>
+  <p class="how bottom"><b>Talk:</b> Do you look at the unit price when you shop? What do you buy in bulk?</p>
 </section>
-<section class="page rd"><div class="keytag">ANSWER KEY</div>
-  <div class="station-bar"><div class="label">STATION 4: REVIEW GAME<span>fall review &middot; with your group</span></div><div class="pg">Page 8</div></div>
+<section class="page rw"><div class="keytag">ANSWER KEY</div>
+  <div class="station-bar"><div class="label">STATION 4: REAL WORLD<span>with your group</span></div><div class="pg">Page 8</div></div>
+  <p class="how">Now look at <b>page 2</b> on the table: <b>Should they buy in bulk?</b></p>
   <div class="task">
-    <h2>My fall review</h2>
-    <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> fall in English class.</p>
-    <div class="textbox" style="line-height:2.3;">
-      This fall, I have learned <span class="blank long ans"><i>answers vary: have + V3</i></span>.<br>
-      Now I can <span class="blank long ans"><i>answers vary: can + V1</i></span> in English.<br>
-      I can already <span class="blank long ans"><i>answers vary: + V1</i></span>, but I can&rsquo;t <span class="blank ans"><i>+ V1</i></span> yet.<br>
-      The hardest thing for me was <span class="blank long ans"><i>answers vary</i></span>.<br>
-      English is easier than <span class="blank ans"><i>answers vary</i></span> now. &#128522;<br>
-      Over the break, I should <span class="blank long ans"><i>answers vary: should + V1</i></span>.<br>
-      If I practice every week, I will <span class="blank long ans"><i>answers vary: will + V1</i></span>.
+    <h2>D. Should they buy it?</h2>
+    <p class="how">A good deal is not good if the food <b>goes bad</b>. Circle <b>Yes</b> or <b>No</b>. Write why.</p>
+    <table class="pick tall"><tr><th style="width:28%;">Who &middot; what</th><th style="width:16%;">Buy it?</th><th>Why?</th></tr><tr><td class="t" style="white-space:normal;">Mr. Ortiz<br><span class="small" style="font-weight:normal;">the gallon of milk</span></td><td class="c">Yes / <span class="hitc">No</span></td><td class="ansc">He lives alone. It will go bad before he drinks it.</td></tr><tr><td class="t" style="white-space:normal;">The Diallo family<br><span class="small" style="font-weight:normal;">the 20-lb bag of rice</span></td><td class="c"><span class="hitc">Yes</span> / No</td><td class="ansc">6 people eat rice every day. Rice doesn&rsquo;t go bad fast.</td></tr><tr><td class="t" style="white-space:normal;">Rosa<br><span class="small" style="font-weight:normal;">bananas for 3 weeks</span></td><td class="c">Yes / <span class="hitc">No</span></td><td class="ansc">Bananas go bad in a few days.</td></tr></table>
+    <p class="how"><b>&#9733;</b> Kim&rsquo;s family needs 34 ounces of olive oil. What should they buy? How much will they save?</p>
+    <div class="line ans">Two 17-oz bottles: $17.98. The 34-oz bottle is $19.49. They save $1.51.</div>
+  </div>
+  <div class="task">
+    <h2>E. Your turn</h2>
+    <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> home.</p>
+    <div class="textbox">
+      At my house, we buy <span class="blank ans"><i>answers vary</i></span> in bulk because <span class="blank long ans"><i>answers vary</i></span>.<br>
+      We never stock up on <span class="blank ans"><i>answers vary</i></span>. If we buy a lot, it will <span class="blank ans"><i>go bad</i></span>.<br>
+      We often run out of <span class="blank ans"><i>answers vary</i></span>.
     </div>
-  </div>
-  <div class="task">
-    <h2>What do you want to practice more?</h2>
-    <p class="how">Check <b>2</b>. Tell your teacher!</p>
-    <div class="checks"><span>&#9744; V2 / V3</span><span>&#9744; If &hellip;</span><span>&#9744; Can / should / must</span><span>&#9744; Have you ever</span><span>&#9744; Just / already / yet</span><span>&#9744; For / since</span><span>&#9744; Bigger / better</span></div>
-  </div>
-  <div class="task">
-    <h2>Share</h2>
-    <p class="how">Read your fall review to the person next to you. Then say one thing you liked about theirs.</p>
   </div>
 </section>
 <section class="page vc"><div class="keytag">ANSWER KEY</div>
@@ -496,24 +510,24 @@
   <div class="task">
     <h2>Chart 1: Add the helping verbs</h2>
     <p class="how">Write the <b>helping verb</b> in each blank. For negatives, use the short form (<i>doesn&rsquo;t</i>, <i>isn&rsquo;t</i>&hellip;). <b>Help:</b> Grammar Companion, <b>pages 11&ndash;12</b>.</p>
-    <div class="vc-meta"><span><b>Infinitive:</b> to spend</span><span><b>Subject:</b> she</span></div>
-    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>spend</td><td>spends</td><td>spending</td><td>spent</td><td>spent</td></tr></table>
-    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>she spends</td><td>she <span class="hb ans">doesn&rsquo;t</span> spend</td><td><span class="hb ans">Does</span> she spend?</td></tr><tr><td class="tn">Past Simple</td><td>she spent</td><td>she <span class="hb ans">didn&rsquo;t</span> spend</td><td><span class="hb ans">Did</span> she spend?</td></tr><tr><td class="tn">Future Simple</td><td>she <span class="hb ans">will</span> spend</td><td>she <span class="hb ans">won&rsquo;t</span> spend</td><td><span class="hb ans">Will</span> she spend?</td></tr><tr><td class="tn">Present Continuous</td><td>she <span class="hb ans">is</span> spending</td><td>she <span class="hb ans">isn&rsquo;t</span> spending</td><td><span class="hb ans">Is</span> she spending?</td></tr><tr><td class="tn">Past Continuous</td><td>she <span class="hb ans">was</span> spending</td><td>she <span class="hb ans">wasn&rsquo;t</span> spending</td><td><span class="hb ans">Was</span> she spending?</td></tr><tr><td class="tn">Future Continuous</td><td>she <span class="hb sm ans">will</span> <span class="hb sm ans">be</span> spending</td><td>she <span class="hb sm ans">won&rsquo;t</span> <span class="hb sm ans">be</span> spending</td><td><span class="hb sm ans">Will</span> she <span class="hb sm ans">be</span> spending?</td></tr><tr><td class="tn">Present Perfect</td><td>she <span class="hb ans">has</span> spent</td><td>she <span class="hb ans">hasn&rsquo;t</span> spent</td><td><span class="hb ans">Has</span> she spent?</td></tr></table>
+    <div class="vc-meta"><span><b>Infinitive:</b> to eat</span><span><b>Subject:</b> she</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td>eat</td><td>eats</td><td>eating</td><td>ate</td><td>eaten</td></tr></table>
+    <table class="tense"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td>she eats</td><td>she <span class="hb ans">doesn&rsquo;t</span> eat</td><td><span class="hb ans">Does</span> she eat?</td></tr><tr><td class="tn">Past Simple</td><td>she ate</td><td>she <span class="hb ans">didn&rsquo;t</span> eat</td><td><span class="hb ans">Did</span> she eat?</td></tr><tr><td class="tn">Future Simple</td><td>she <span class="hb ans">will</span> eat</td><td>she <span class="hb ans">won&rsquo;t</span> eat</td><td><span class="hb ans">Will</span> she eat?</td></tr><tr><td class="tn">Present Continuous</td><td>she <span class="hb ans">is</span> eating</td><td>she <span class="hb ans">isn&rsquo;t</span> eating</td><td><span class="hb ans">Is</span> she eating?</td></tr><tr><td class="tn">Past Continuous</td><td>she <span class="hb ans">was</span> eating</td><td>she <span class="hb ans">wasn&rsquo;t</span> eating</td><td><span class="hb ans">Was</span> she eating?</td></tr><tr><td class="tn">Future Continuous</td><td>she <span class="hb sm ans">will</span> <span class="hb sm ans">be</span> eating</td><td>she <span class="hb sm ans">won&rsquo;t</span> <span class="hb sm ans">be</span> eating</td><td><span class="hb sm ans">Will</span> she <span class="hb sm ans">be</span> eating?</td></tr><tr><td class="tn">Present Perfect</td><td>she <span class="hb ans">has</span> eaten</td><td>she <span class="hb ans">hasn&rsquo;t</span> eaten</td><td><span class="hb ans">Has</span> she eaten?</td></tr></table>
   </div>
   <div class="task">
     <h2>Chart 2: Now you write it all</h2>
-    <p class="how">Write the 5 forms of <b>sell</b>. Then fill in the chart with <b>I</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
-    <div class="vc-meta"><span><b>Infinitive:</b> to sell</span><span><b>Subject:</b> I</span></div>
-    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">sell</td><td class="ansc">sells</td><td class="ansc">selling</td><td class="ansc">sold</td><td class="ansc">sold</td></tr></table>
-    <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td class="ansc">I sell</td><td class="ansc">I don&rsquo;t sell</td><td class="ansc">Do I sell?</td></tr><tr><td class="tn">Past Simple</td><td class="ansc">I sold</td><td class="ansc">I didn&rsquo;t sell</td><td class="ansc">Did I sell?</td></tr><tr><td class="tn">Future Simple</td><td class="ansc">I will sell</td><td class="ansc">I won&rsquo;t sell</td><td class="ansc">Will I sell?</td></tr><tr><td class="tn">Present Continuous</td><td class="ansc">I am selling</td><td class="ansc">I am not selling</td><td class="ansc">Am I selling?</td></tr><tr><td class="tn">Past Continuous</td><td class="ansc">I was selling</td><td class="ansc">I wasn&rsquo;t selling</td><td class="ansc">Was I selling?</td></tr><tr><td class="tn">Future Continuous</td><td class="ansc">I will be selling</td><td class="ansc">I won&rsquo;t be selling</td><td class="ansc">Will I be selling?</td></tr><tr><td class="tn">Present Perfect</td><td class="ansc">I have sold</td><td class="ansc">I haven&rsquo;t sold</td><td class="ansc">Have I sold?</td></tr></table>
+    <p class="how">Write the 5 forms of <b>drink</b>. Then fill in the chart with <b>we</b>. <b>Help:</b> Grammar Companion, <b>page 9</b> (verb forms) and <b>pages 11&ndash;12</b> (tenses).</p>
+    <div class="vc-meta"><span><b>Infinitive:</b> to drink</span><span><b>Subject:</b> we</span></div>
+    <table class="forms5"><tr><th>V1</th><th>V1-s</th><th>V-ing</th><th>V2</th><th>V3</th></tr><tr><td class="ex">drink</td><td class="ansc">drinks</td><td class="ansc">drinking</td><td class="ansc">drank</td><td class="ansc">drunk</td></tr></table>
+    <table class="tense write"><tr><th></th><th>Affirmative</th><th>Negative</th><th>Question</th></tr><tr><td class="tn">Present Simple</td><td class="ansc">we drink</td><td class="ansc">we don&rsquo;t drink</td><td class="ansc">Do we drink?</td></tr><tr><td class="tn">Past Simple</td><td class="ansc">we drank</td><td class="ansc">we didn&rsquo;t drink</td><td class="ansc">Did we drink?</td></tr><tr><td class="tn">Future Simple</td><td class="ansc">we will drink</td><td class="ansc">we won&rsquo;t drink</td><td class="ansc">Will we drink?</td></tr><tr><td class="tn">Present Continuous</td><td class="ansc">we are drinking</td><td class="ansc">we aren&rsquo;t drinking</td><td class="ansc">Are we drinking?</td></tr><tr><td class="tn">Past Continuous</td><td class="ansc">we were drinking</td><td class="ansc">we weren&rsquo;t drinking</td><td class="ansc">Were we drinking?</td></tr><tr><td class="tn">Future Continuous</td><td class="ansc">we will be drinking</td><td class="ansc">we won&rsquo;t be drinking</td><td class="ansc">Will we be drinking?</td></tr><tr><td class="tn">Present Perfect</td><td class="ansc">we have drunk</td><td class="ansc">we haven&rsquo;t drunk</td><td class="ansc">Have we drunk?</td></tr></table>
   </div>
 </section>
 <section class="page pbp"><div class="keytag">ANSWER KEY</div>
   <div class="station-bar"><div class="label">FINISHED EARLY?<span>write about you &middot; look at page 5 for help</span></div><div class="pg">Page 10</div></div>
 <div class="pbk">
-<div class="pb-box"><h2>A. Rank it! <span class="pb-small">Write <b>1, 2, 3</b> in the boxes (1 = the best for you). Then write about your number 1 and number 3.</span></h2><div class="pb-rank"><div><b>Getting to work</b><div class="pb-opt"><span class="pb-cb"></span>the bus<br><span class="pb-cb"></span>a car<br><span class="pb-cb"></span>a bike<br></div></div><div><b>Buying food</b><div class="pb-opt"><span class="pb-cb"></span>a big store<br><span class="pb-cb"></span>a corner store<br><span class="pb-cb"></span>online<br></div></div><div><b>Seasons in Boston</b><div class="pb-opt"><span class="pb-cb"></span>summer<br><span class="pb-cb"></span>fall<br><span class="pb-cb"></span>winter<br></div></div></div><div class="pb-write-row"><span class="pb-adv pb-wide">example</span><span class="pb-fill pb-example">The bus is the best because it is cheaper than a car.</span></div><div class="pb-write-row"><span class="pb-adv pb-wide">My #1</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide">My #3</span><span class="pb-fill"></span></div></div>
-<div class="pb-box"><h2>B. My opinion <span class="pb-small"><b>I think</b> ___ is ___ <b>than</b> ___ <b>because</b> &hellip; Use the bank.</span></h2><div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">I think summer is better than winter because I can go to the beach.</span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">I think</span><span class="pb-fill"></span></div></div>
-<div class="pb-check"><b>Check:</b> <span><span class="pb-cb"></span>-er <b>or</b> more (not both)</span><span><span class="pb-cb"></span>than (not that)</span><span><span class="pb-cb"></span>the + -est / the most</span><span><span class="pb-cb"></span>spelling: bigger, easier</span></div>
+<div class="pb-box"><h2>A. Facts about me <span class="pb-small">Use the bank. 2 with <b>for</b>, 2 with <b>since</b>.</span></h2><div class="pb-write-row"><span class="pb-adv">example</span><span class="pb-fill pb-example">I have lived in my apartment since 2022.</span></div><div class="pb-write-row"><span class="pb-adv">for</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">since</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">for</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv">since</span><span class="pb-fill"></span></div></div>
+<div class="pb-box"><h2>B. Switch it! <span class="pb-small">Today is <b>Tuesday, December 15, 2026</b>. Change <b>since</b> to <b>for</b>. Do 3, then one of yours from Part A.</span></h2><div class="pb-write-row"><span class="pb-adv pb-wide">since 2020</span><span class="pb-fill pb-example">for six years</span></div><div class="pb-write-row"><span class="pb-adv pb-wide">since 2016</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide">since Monday</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide">since August</span><span class="pb-fill"></span></div><div class="pb-write-row"><span class="pb-adv pb-wide">my sentence</span><span class="pb-fill"></span></div></div>
+<div class="pb-check"><b>Check:</b> <span><span class="pb-cb"></span>have / has + V3</span><span><span class="pb-cb"></span>for + how much time</span><span><span class="pb-cb"></span>since + start point</span><span><span class="pb-cb"></span>How long have you&hellip;?</span></div>
 </div>
 </section>
 

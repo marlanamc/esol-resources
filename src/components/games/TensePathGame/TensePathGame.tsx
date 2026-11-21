@@ -18,6 +18,7 @@ import {
   getStep,
   getSummary,
   getUpNext,
+  isMapGoalMet,
   normalizeProgress,
   processRound,
   toServerRoundMode,
@@ -178,7 +179,8 @@ export function TensePathGame({ activityId, userRole, extraPracticeActivityId }:
           body: JSON.stringify({
             activityId,
             progress: summary.percent,
-            status: summary.percent >= 100 ? 'completed' : 'in_progress',
+            // The map item counts as done once Level 1 Round 1 is passed.
+            status: isMapGoalMet(result.progress) ? 'completed' : 'in_progress',
             categoryData: result.progress,
             groupId: result.stepId,
             roundMode: toServerRoundMode(result.mode),

@@ -134,8 +134,11 @@ export async function POST(request: NextRequest) {
             if (activityId === "word-rescue" || activityGameUi === "word-rescue") {
                 return apiError("Word Lab practice must be saved through its per-word endpoint.", 400);
             }
+            // Sound Path is a pronunciation game with a real finish line (its map
+            // goal), so it is not held at 0% / in progress like the open-ended labs.
             const isPronunciationPracticeActivity =
                 activity?.type === "game" &&
+                activityGameUi !== "sound-path" &&
                 (activity.category === "pronunciation" ||
                     activityGameUi === "ed-pronunciation" ||
                     activityGameUi === "minimal-pairs" ||

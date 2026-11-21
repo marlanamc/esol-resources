@@ -175,3 +175,18 @@ describe("wiring", () => {
     expect(d.friendlyTitle).toBe("Sound Path: -ed endings");
   });
 });
+
+describe("course map goal", () => {
+  it("counts Sound Path as done on the map after passing Level 1, Round 1", async () => {
+    const { isMapGoalMet } = await import("@/lib/sound-path/progress");
+    const ids = (n: number) => Array.from({ length: n }, (_, i) => ({ questionId: `m${i}`, correct: true }));
+    let p = emptyProgress();
+    expect(isMapGoalMet(p)).toBe(false);
+    p = processRound(p, "now-or-past", "round1", ids(10)).progress;
+    expect(isMapGoalMet(p)).toBe(false); // another level does not count
+    const fail = processRound(p, "extra-clap", "round1", ids(10).map((a, i) => ({ ...a, correct: i < 7 })));
+    expect(isMapGoalMet(fail.progress)).toBe(false); // 7/10 is not a pass
+    p = processRound(p, "extra-clap", "round1", ids(10)).progress;
+    expect(isMapGoalMet(p)).toBe(true);
+  });
+});
