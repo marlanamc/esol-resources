@@ -81,3 +81,26 @@ describe('Tense Path rounds', () => {
     expect(mocks.award.mock.calls.some(([args]) => args.points === 50)).toBe(false);
   });
 });
+
+describe('Sound Path rounds', () => {
+  const soundPath = (extra: Record<string, unknown>) =>
+    award('sound-path', { shouldAwardGroupRoundPoints: true, groupId: 'extra-clap', ...extra });
+
+  it('uses the same round points as Tense Path', async () => {
+    expect(await soundPath({ roundMode: 'round1', roundAccuracy: 80 })).toBe(5);
+    expect(await soundPath({ roundMode: 'round2', roundAccuracy: 85 })).toBe(3);
+  });
+
+  it('gives its own Sound Master bonus, deduped forever', async () => {
+    await soundPath({ groupId: 'final', roundMode: 'final', roundAccuracy: 90 });
+    const bonus = mocks.award.mock.calls.find(([args]) => args.points === 50)?.[0];
+    expect(bonus.reason).toContain('Sound Master bonus');
+    expect(bonus.dedupeWindowMs).toBeGreaterThan(365 * 24 * 60 * 60 * 1000);
+  });
+
+  it('keeps the Tense Master reason text unchanged so past winners stay deduped', async () => {
+    await award('tense-path', { shouldAwardGroupRoundPoints: true, groupId: 'final', roundMode: 'final', roundAccuracy: 90 });
+    const bonus = mocks.award.mock.calls.find(([args]) => args.points === 50)?.[0];
+    expect(bonus.reason).toBe('Practice|Tense Master bonus|final-bonus:game');
+  });
+});

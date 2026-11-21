@@ -268,7 +268,8 @@ export async function POST(request: NextRequest) {
                 activityGameUi === "gerund-infinitive" ||
                 activityGameUi === "irregular-verbs" ||
                 activityGameUi === "parts-of-speech" ||
-                activityGameUi === "tense-path";
+                activityGameUi === "tense-path" ||
+                activityGameUi === "sound-path";
             const validRoundModes = activityGameUi === "parts-of-speech"
                 ? ["round1", "round2", "round3", "round4", "round5", "review", "final"]
                 : ["round1", "round2", "review", "final"];

@@ -21,7 +21,7 @@ describe("SentenceTransformerExercise", () => {
       })
     );
 
-    expect(html).toContain("Rewrite naturally in");
+    expect(html).toContain("Your turn: rewrite it in");
     expect(html).toContain(transformerQuestion.targetTense);
     expect(html).toContain("<span>when</span>");
     expect(html).toContain("<span>I</span>");

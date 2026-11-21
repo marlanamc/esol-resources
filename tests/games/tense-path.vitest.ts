@@ -191,9 +191,9 @@ describe("progress", () => {
   it("awards the Tense Master badge only the first time", () => {
     const ids = Array.from({ length: 20 }, (_, i) => `f${i}`);
     const first = processRound(emptyProgress(), TENSE_PATH_FINAL_ID, "final", answers(ids, 18));
-    expect(first.earnedTenseMaster).toBe(true);
+    expect(first.earnedBadge).toBe(true);
     const again = processRound(first.progress, TENSE_PATH_FINAL_ID, "final", answers(ids, 20));
-    expect(again.earnedTenseMaster).toBe(false);
+    expect(again.earnedBadge).toBe(false);
   });
 
   it("remembers recent question ids, newest first", () => {

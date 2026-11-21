@@ -83,6 +83,19 @@ function buildFallbackDescriptor(activity: PronunciationActivityLike): Pronuncia
     };
   }
 
+  if (haystack.includes("sound-path") || haystack.includes("sound path")) {
+    return {
+      friendlyTitle: "Sound Path: -ed endings",
+      useThisFor: "level up from hearing the extra clap to sorting every -ed word",
+      motif: "ed-sounds",
+      color: "#7c3aed",
+      recommendedOrder: null,
+      pathChip: null,
+      targetLabel: null,
+      practiceMode: "listening",
+    };
+  }
+
   if (haystack.includes("ed-pronunciation") || haystack.includes("ed sounds") || haystack.includes("-ed")) {
     return {
       friendlyTitle: "Past -ed endings",

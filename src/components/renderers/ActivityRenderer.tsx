@@ -57,6 +57,7 @@ const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame
 const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/PartsOfSpeechGame").then(m => ({ default: m.PartsOfSpeechGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const TensePathGame = dynamic(() => import("../games/TensePathGame").then(m => ({ default: m.TensePathGame })), { loading: ActivityLoadingFallback });
+const SoundPathGame = dynamic(() => import("../games/SoundPathGame").then(m => ({ default: m.SoundPathGame })), { loading: ActivityLoadingFallback });
 const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { loading: ActivityLoadingFallback });
 const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
 const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
@@ -230,6 +231,16 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         const hasPreset = presetCategories !== undefined || presetPracticeMode !== undefined;
                         const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode, maxDifficulty: presetMaxDifficulty, singleVerbOnly: presetSingleVerbOnly, roundSize: presetRoundSize } : undefined;
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
+                    }
+                    case "sound-path": {
+                        const extra = (content as Record<string, unknown> | null)?.extraPracticeActivityId;
+                        return (
+                            <SoundPathGame
+                                activityId={activity.id}
+                                userRole={userRole ?? undefined}
+                                extraPracticeActivityId={typeof extra === "string" ? extra : undefined}
+                            />
+                        );
                     }
                     case "tense-path":
                         {

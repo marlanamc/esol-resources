@@ -3,6 +3,7 @@ import { TIMELINE_COMPARISON_QUESTIONS } from "@/data/timeline-comparison-questi
 import { TIMELINE_CONTEXT_QUESTIONS } from "@/data/timeline-context-questions";
 import { TIMELINE_ERROR_QUESTIONS } from "@/data/timeline-error-questions";
 import { TIMELINE_TRANSFORMER_QUESTIONS } from "@/data/timeline-transformer-questions";
+import type { PathRoundMode } from "@/lib/pattern-path/engine";
 import type { TimelineTensesQuestion } from "@/types/activity";
 import {
   TENSE_PATH_LEVELS,
@@ -12,7 +13,7 @@ import {
 } from "./levels";
 
 export type TensePathQuestion = Exclude<TimelineTensesQuestion, { type: "story-builder" }>;
-export type TensePathRoundMode = "round1" | "round2" | "checkpoint" | "final";
+export type TensePathRoundMode = PathRoundMode;
 
 /** Practice = the main Read / Build modes. Challenge = the challenge games. */
 export const PRACTICE_TYPES = ["sentence-to-timeline", "timeline-to-verb"] as const;

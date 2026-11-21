@@ -20,7 +20,7 @@ interface ResultsScreenProps {
 
 export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded, primaryLabel, onPrimary, onMap }: ResultsScreenProps) {
   const needed = Math.ceil((result.total * PASS_ACCURACY[result.mode]) / 100);
-  const heading = result.earnedTenseMaster
+  const heading = result.earnedBadge
     ? 'Tense Master!'
     : result.newlyMastered
       ? 'Mastered!'
@@ -46,14 +46,14 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
       >
         <div
           className={`flex h-24 w-24 items-center justify-center rounded-full ${
-            result.earnedTenseMaster
+            result.earnedBadge
               ? 'bg-accent-light text-[#8a6a12]'
               : result.passed
                 ? 'bg-secondary/20 text-secondary-dark'
                 : 'bg-primary/15 text-primary-dark'
           }`}
         >
-          {result.earnedTenseMaster ? (
+          {result.earnedBadge ? (
             <Trophy size={48} aria-hidden="true" />
           ) : result.newlyMastered ? (
             <Star size={48} className="fill-accent text-accent-dark" aria-hidden="true" />
@@ -68,7 +68,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
         <p className="max-w-md text-lg text-text-muted">{sub}</p>
       </motion.div>
 
-      {result.earnedTenseMaster ? (
+      {result.earnedBadge ? (
         <div className="flex items-center gap-3 rounded-2xl border-2 border-accent-dark bg-accent-light p-4 text-[#3d2f08]">
           <Trophy size={28} aria-hidden="true" />
           <div className="font-bold">Tense Master badge + {TENSE_PATH_FINAL_BONUS_POINTS} bonus points</div>
