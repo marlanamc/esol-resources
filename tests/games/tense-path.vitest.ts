@@ -17,6 +17,7 @@ import {
   getQuestionTenses,
   interleaveByType,
   isChallengeQuestion,
+  isFullSentenceQuestion,
   normalizeTenseName,
   questionFitsLevel,
 } from "@/lib/tense-path/questions";
@@ -50,7 +51,7 @@ function answers(ids: string[], correct: number) {
 }
 
 function pass(progress: TensePathProgress, stepId: string, mode: "round1" | "round2" | "checkpoint" | "final") {
-  const n = mode === "final" ? 20 : mode === "checkpoint" ? 12 : 10;
+  const n = mode === "final" ? 20 : mode === "checkpoint" ? 12 : 8;
   return processRound(progress, stepId, mode, answers(Array.from({ length: n }, (_, i) => `${stepId}-${i}`), n)).progress;
 }
 
@@ -112,6 +113,28 @@ describe("level pools and rounds", () => {
       expect(new Set(round.map((q) => q.id)).size).toBe(round.length);
       round.forEach((q) => expect(questionFitsLevel(q, level)).toBe(true));
       expect(round.some(isChallengeQuestion)).toBe(true);
+      expect(round.filter(isFullSentenceQuestion).length).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("never asks for more than one full corrected sentence in a round", () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      for (const level of TENSE_PATH_LEVELS) {
+        for (const mode of ["round1", "round2"] as const) {
+          const round = buildLevelRound(level, mode, { rng: seeded(seed) });
+          expect(round.filter(isFullSentenceQuestion).length).toBeLessThanOrEqual(1);
+        }
+      }
+      for (const world of TENSE_PATH_WORLDS) {
+        expect(buildCheckpointRound(world.id, { rng: seeded(seed) }).filter(isFullSentenceQuestion).length).toBeLessThanOrEqual(1);
+      }
+      expect(buildFinalRound({ rng: seeded(seed) }).filter(isFullSentenceQuestion).length).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("does not test stative verbs (not taught yet)", () => {
+    for (const q of ALL_TENSE_PATH_QUESTIONS) {
+      expect(JSON.stringify(q)).not.toMatch(/stative/i);
     }
   });
 
@@ -204,15 +227,15 @@ describe("progress", () => {
     expect(getUpNext(p)).toEqual({ kind: "done" });
   });
 
-  it("Round 1 needs 8/10, Round 2 needs 9/10 to master", () => {
-    const ids = Array.from({ length: 10 }, (_, i) => `q${i}`);
-    const r1 = processRound(emptyProgress(), "always-true", "round1", answers(ids, 8));
+  it("Round 1 needs 6/8, Round 2 needs 7/8 to master", () => {
+    const ids = Array.from({ length: 8 }, (_, i) => `q${i}`);
+    const r1 = processRound(emptyProgress(), "always-true", "round1", answers(ids, 6));
     expect(r1.passed).toBe(true);
     expect(r1.newlyPassed).toBe(true);
-    const r2fail = processRound(r1.progress, "always-true", "round2", answers(ids, 8));
+    const r2fail = processRound(r1.progress, "always-true", "round2", answers(ids, 6));
     expect(r2fail.passed).toBe(false);
     expect(r2fail.progress.steps["always-true"].mastered).toBe(false);
-    const r2 = processRound(r1.progress, "always-true", "round2", answers(ids, 9));
+    const r2 = processRound(r1.progress, "always-true", "round2", answers(ids, 7));
     expect(r2.newlyMastered).toBe(true);
   });
 
@@ -252,9 +275,10 @@ describe("server rules", () => {
 
   it("uses the same pass lines as the game", () => {
     expect(toServerRoundMode("checkpoint")).toBe("review");
-    expect(isTensePathServerRoundPassed("round1", 80)).toBe(true);
-    expect(isTensePathServerRoundPassed("round2", 85)).toBe(false);
-    expect(isTensePathServerRoundPassed("round2", 90)).toBe(true);
+    expect(isTensePathServerRoundPassed("round1", 75)).toBe(true);
+    expect(isTensePathServerRoundPassed("round1", 63)).toBe(false);
+    expect(isTensePathServerRoundPassed("round2", 75)).toBe(false);
+    expect(isTensePathServerRoundPassed("round2", 88)).toBe(true);
     expect(isTensePathServerRoundPassed("review", 79)).toBe(false);
   });
 

@@ -895,31 +895,33 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     id: "ctx-25",
     type: "context-tense-picker",
     scenario:
-      "I ___ (not know) the answer yet.",
-    blankVerb: "know",
+      "She usually ___ (not work) on Sundays.",
+    blankVerb: "work",
     options: [
       {
         tenseName: "Present Simple",
-        conjugatedVerb: "do not know",
+        conjugatedVerb: "does not work",
         elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-25-a"),
-        isCorrect: false,
-      },
-      {
-        tenseName: "Present Perfect",
-        conjugatedVerb: "have not known",
-        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-25-b"),
-        isCorrect: false,
-      },
-      {
-        tenseName: "Present Simple (stative)",
-        conjugatedVerb: "do not know",
-        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-25-c"),
         isCorrect: true,
       },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is not working",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-25-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did not work",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-25-c", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
     ],
-    contextClues: ["yet"],
+    contextClues: ["usually", "on Sundays"],
     explanation:
-      'With a stative verb like "know," English usually uses Present Simple, even in a negative sentence.',
+      '"Usually" and "on Sundays" show a habit, so we use Present Simple: she does not work.',
     difficulty: 1,
     tenseCategory: "simple",
   },

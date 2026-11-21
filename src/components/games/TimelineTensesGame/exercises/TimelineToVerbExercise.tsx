@@ -200,11 +200,11 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
             transition={{ delay: 0.1 }}
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-10 mb-8 shadow-xl"
           >
-            <div className="text-xs font-black text-text-muted/40 uppercase tracking-[0.2em] mb-8 text-center sm:text-left underline decoration-primary/20 underline-offset-8">
+            <div className="text-sm font-black text-text-muted uppercase tracking-[0.15em] mb-8 text-center sm:text-left underline decoration-primary/20 underline-offset-8">
               Complete the sentence:
             </div>
 
-            <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-5 sm:gap-y-6">
+            <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-12 sm:gap-y-14">
               {sentenceParts.map((part, idx) => {
                 if (part.type === 'text') {
                   return (
@@ -239,8 +239,8 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                       initial={{ scaleX: 0 }}
                       whileFocus={{ scaleX: 1 }}
                     />
-                    <div className="absolute top-full mt-1.5 left-1/2 -translate-x-1/2 text-[0.625rem] sm:text-xs font-black uppercase tracking-widest text-text-muted/50 whitespace-nowrap pointer-events-none">
-                      {part.content}
+                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 rounded-full bg-primary/10 px-3 py-0.5 font-sans text-sm sm:text-base font-bold text-primary-dark dark:text-primary-light whitespace-nowrap pointer-events-none">
+                      {part.content.replace(/\s*\/\s*/g, ' / ')}
                     </div>
                   </span>
                 );

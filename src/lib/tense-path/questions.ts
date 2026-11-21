@@ -25,8 +25,8 @@ export const CHALLENGE_TYPES = [
 ] as const;
 
 export const ROUND_SIZE: Record<TensePathRoundMode, number> = {
-  round1: 10,
-  round2: 10,
+  round1: 8,
+  round2: 8,
   checkpoint: 12,
   final: 20,
 };
@@ -107,6 +107,27 @@ export function getQuestionTenses(q: TensePathQuestion): string[] {
     }
   }
   return [...out];
+}
+
+/**
+ * "Fix It" questions with a sentence error make the learner type the whole
+ * corrected sentence. That is tiring, so a round has at most one.
+ */
+export function isFullSentenceQuestion(q: TensePathQuestion): boolean {
+  return q.type === "error-correction" && q.errorLocation === "sentence";
+}
+
+export const MAX_FULL_SENTENCE_PER_ROUND = 1;
+
+/** Keep order, but drop full-sentence questions past the per-round limit. */
+function capFullSentence(items: TensePathQuestion[], alreadyUsed = 0): TensePathQuestion[] {
+  let used = alreadyUsed;
+  return items.filter((q) => {
+    if (!isFullSentenceQuestion(q)) return true;
+    if (used >= MAX_FULL_SENTENCE_PER_ROUND) return false;
+    used++;
+    return true;
+  });
 }
 
 export function isChallengeQuestion(q: TensePathQuestion): boolean {
@@ -195,7 +216,15 @@ function pickMix(
     if (picked.length >= size) break;
     picked.push(q);
   }
-  return interleaveByType(shuffle(picked.slice(0, size), rng));
+  // Swap extra full-sentence questions for leftovers so the round stays full.
+  const capped = capFullSentence(picked.slice(0, size));
+  const usedFull = capped.some(isFullSentenceQuestion) ? 1 : 0;
+  const pickedIds = new Set(capped.map((q) => q.id));
+  for (const q of capFullSentence(leftovers.filter((l) => !pickedIds.has(l.id)), usedFull)) {
+    if (capped.length >= size) break;
+    capped.push(q);
+  }
+  return interleaveByType(shuffle(capped, rng));
 }
 
 export interface BuildRoundOptions {
@@ -228,21 +257,25 @@ function spreadAcross(
   count: number,
   recent: Set<string>,
   rng: Rng,
-  taken: Set<string>
+  taken: Set<string>,
+  fullSentence: { used: number } = { used: 0 }
 ): TensePathQuestion[] {
   const queues = shuffle(levels, rng).map((l) =>
     freshFirst(getLevelPool(l).filter((q) => !taken.has(q.id)), recent, rng)
   );
+  const skip = (q: TensePathQuestion) =>
+    taken.has(q.id) || (isFullSentenceQuestion(q) && fullSentence.used >= MAX_FULL_SENTENCE_PER_ROUND);
   const out: TensePathQuestion[] = [];
   let progress = true;
   while (out.length < count && progress) {
     progress = false;
     for (const queue of queues) {
-      while (queue.length > 0 && taken.has(queue[0].id)) queue.shift();
+      while (queue.length > 0 && skip(queue[0])) queue.shift();
       const q = queue.shift();
       if (!q) continue;
       out.push(q);
       taken.add(q.id);
+      if (isFullSentenceQuestion(q)) fullSentence.used++;
       progress = true;
       if (out.length >= count) break;
     }
@@ -262,8 +295,9 @@ export function buildCheckpointRound(
   const earlier = TENSE_PATH_LEVELS.slice(0, firstIdx);
   const reviewCount = earlier.length > 0 ? Math.round(size / 4) : 0;
   const taken = new Set<string>();
-  const current = spreadAcross(worldLevels, size - reviewCount, recent, rng, taken);
-  const review = spreadAcross(earlier, size - current.length, recent, rng, taken);
+  const fullSentence = { used: 0 };
+  const current = spreadAcross(worldLevels, size - reviewCount, recent, rng, taken, fullSentence);
+  const review = spreadAcross(earlier, size - current.length, recent, rng, taken, fullSentence);
   return interleaveByType(shuffle([...current, ...review], rng));
 }
 
