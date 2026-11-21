@@ -53,3 +53,31 @@ it('groups separate practice attempts under one activity in teacher reports', ()
   expect(activityAwardReportKey('Verbs|Irregular Verbs')).toBe('Verbs|Irregular Verbs');
   expect(activityAwardReportKey(null)).toBe('unknown');
 });
+
+describe('Tense Path rounds', () => {
+  const tensePath = (extra: Record<string, unknown>) =>
+    award('tense-path', { shouldAwardGroupRoundPoints: true, groupId: 'always-true', ...extra });
+
+  it('awards 5 for a passed round and 3 for effort', async () => {
+    expect(await tensePath({ roundMode: 'round1', roundAccuracy: 80 })).toBe(5);
+    expect(await tensePath({ roundMode: 'round1', roundAccuracy: 70 })).toBe(3);
+  });
+
+  it('needs 90% to pass Round 2, like the game', async () => {
+    expect(await tensePath({ roundMode: 'round2', roundAccuracy: 85 })).toBe(3);
+    expect(await tensePath({ roundMode: 'round2', roundAccuracy: 90 })).toBe(5);
+  });
+
+  it('gives the Tense Master bonus through the ledger with a permanent dedupe', async () => {
+    await tensePath({ groupId: 'final', roundMode: 'final', roundAccuracy: 85 });
+    const bonus = mocks.award.mock.calls.find(([args]) => args.points === 50)?.[0];
+    expect(bonus).toEqual(expect.objectContaining({ userId: 'learner', source: 'activity', dedupeKey: true }));
+    expect(bonus.reason).toContain('final-bonus:game');
+    expect(bonus.dedupeWindowMs).toBeGreaterThan(365 * 24 * 60 * 60 * 1000);
+  });
+
+  it('gives no bonus for a failed final', async () => {
+    await tensePath({ groupId: 'final', roundMode: 'final', roundAccuracy: 70 });
+    expect(mocks.award.mock.calls.some(([args]) => args.points === 50)).toBe(false);
+  });
+});

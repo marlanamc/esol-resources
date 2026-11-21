@@ -56,6 +56,7 @@ const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/Irr
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/PartsOfSpeechGame").then(m => ({ default: m.PartsOfSpeechGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
+const TensePathGame = dynamic(() => import("../games/TensePathGame").then(m => ({ default: m.TensePathGame })), { loading: ActivityLoadingFallback });
 const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { loading: ActivityLoadingFallback });
 const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
 const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
@@ -230,6 +231,17 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode, maxDifficulty: presetMaxDifficulty, singleVerbOnly: presetSingleVerbOnly, roundSize: presetRoundSize } : undefined;
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
                     }
+                    case "tense-path":
+                        {
+                            const extra = (content as Record<string, unknown> | null)?.extraPracticeActivityId;
+                            return (
+                                <TensePathGame
+                                    activityId={activity.id}
+                                    userRole={userRole ?? undefined}
+                                    extraPracticeActivityId={typeof extra === "string" ? extra : undefined}
+                                />
+                            );
+                        }
                     case "parts-of-speech":
                         return <PartsOfSpeechGame activityId={activity.id} gameContent={isPartsOfSpeechContent(content) ? content : null} />;
                     case "emotion-spin-wheel":
