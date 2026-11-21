@@ -173,23 +173,35 @@ describe("progress", () => {
     expect(isWorldUnlocked(p, "past")).toBe(true);
   });
 
-  it("up next walks levels, then the checkpoint, then the next world", () => {
+  it("up next finishes each level (Round 1, then Round 2) before the next one", () => {
     let p = emptyProgress();
     expect(getUpNext(p)).toEqual({ kind: "level", levelId: "always-true", mode: "round1" });
+    p = pass(p, "always-true", "round1");
+    // Passed Round 1 but not mastered: stay on this level.
+    expect(getUpNext(p)).toEqual({ kind: "level", levelId: "always-true", mode: "round2" });
+    p = pass(p, "always-true", "round2");
+    expect(getUpNext(p)).toEqual({ kind: "level", levelId: "right-now", mode: "round1" });
+  });
+
+  it("goes to the checkpoint only after every level in the world is mastered", () => {
+    let p = emptyProgress();
     for (const l of getWorldLevels("present")) p = pass(p, l.id, "round1");
+    expect(isCheckpointUnlocked(p, "present")).toBe(true);
+    expect(getUpNext(p)).toEqual({ kind: "level", levelId: "always-true", mode: "round2" });
+    for (const l of getWorldLevels("present")) p = pass(p, l.id, "round2");
     expect(getUpNext(p)).toEqual({ kind: "checkpoint", world: "present" });
     p = pass(p, checkpointId("present"), "checkpoint");
     expect(getUpNext(p)).toEqual({ kind: "level", levelId: "finished-past", mode: "round1" });
   });
 
-  it("offers the final after all checkpoints, then Round 2s still to master", () => {
+  it("offers the final after every level is mastered and every checkpoint passed", () => {
     let p = emptyProgress();
-    for (const l of TENSE_PATH_LEVELS) p = pass(p, l.id, "round1");
+    for (const l of TENSE_PATH_LEVELS) p = pass(p, l.id, "round2");
     for (const c of TENSE_PATH_CHECKPOINTS) p = pass(p, c.id, "checkpoint");
     expect(isFinalUnlocked(p)).toBe(true);
     expect(getUpNext(p)).toEqual({ kind: "final" });
     p = pass(p, TENSE_PATH_FINAL_ID, "final");
-    expect(getUpNext(p)).toEqual({ kind: "level", levelId: "always-true", mode: "round2" });
+    expect(getUpNext(p)).toEqual({ kind: "done" });
   });
 
   it("Round 1 needs 8/10, Round 2 needs 9/10 to master", () => {
