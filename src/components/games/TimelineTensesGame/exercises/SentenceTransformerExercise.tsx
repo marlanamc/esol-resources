@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb, ArrowDown, BookMarked } from 'lucide-react';
 import type { SentenceTransformerQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
+import { ExerciseActionBar } from '../ExerciseActionBar';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
@@ -131,7 +132,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
   const transformLabel = 'Your turn: rewrite it in';
 
   return (
-    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
+    <div className="px-2 sm:px-0 max-w-full overflow-x-clip">
       {/* Source card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -271,11 +272,29 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
           </AnimatePresence>
 
           {/* Actions */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-4 sm:p-6 shadow-lg flex flex-col gap-3"
+          <ExerciseActionBar
+            secondary={
+              <>
+                {question.hint && !showHint && (
+                  <button
+                    onClick={() => setShowHint(true)}
+                    className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Lightbulb size={16} />
+                    Need a Hint?
+                  </button>
+                )}
+                {!showFormulaHint && TENSE_FORMULA_LOOKUP[question.targetTense] && (
+                  <button
+                    onClick={() => setShowFormulaHint(true)}
+                    className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                  >
+                    <BookMarked size={16} />
+                    Show Formula
+                  </button>
+                )}
+              </>
+            }
           >
             <button
               onClick={handleSubmit}
@@ -284,25 +303,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
             >
               Check Answer
             </button>
-            {question.hint && !showHint && (
-              <button
-                onClick={() => setShowHint(true)}
-                className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
-              >
-                <Lightbulb size={16} />
-                Need a Hint?
-              </button>
-            )}
-            {!showFormulaHint && TENSE_FORMULA_LOOKUP[question.targetTense] && (
-              <button
-                onClick={() => setShowFormulaHint(true)}
-                className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
-              >
-                <BookMarked size={16} />
-                Show Formula
-              </button>
-            )}
-          </motion.div>
+          </ExerciseActionBar>
         </>
       ) : (
         /* Feedback */

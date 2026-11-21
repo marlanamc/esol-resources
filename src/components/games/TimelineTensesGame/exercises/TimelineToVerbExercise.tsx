@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import type { TimelineToVerbQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
+import { ExerciseActionBar } from '../ExerciseActionBar';
 import { FeedbackPanel } from '../FeedbackPanel';
 import type { VerbFillAnswer } from '../hooks/useTimelineTensesState';
 import {
@@ -163,7 +164,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
   const useSplitPast = elementsUseSplitPast(question.timelineElements);
 
   return (
-    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
+    <div className="px-2 sm:px-0 max-w-full overflow-x-clip">
       {/* Timeline display */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -204,7 +205,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
               Complete the sentence:
             </div>
 
-            <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-12 sm:gap-y-14">
+            <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-12 sm:gap-y-14 pb-9">
               {sentenceParts.map((part, idx) => {
                 if (part.type === 'text') {
                   return (
@@ -273,13 +274,21 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
           </AnimatePresence>
 
           {/* Submit and hint buttons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-4 sm:p-6 shadow-lg"
+          <ExerciseActionBar
+            secondary={
+              <>
+                {!showHint && (
+                    <button
+                      onClick={() => setShowHint(true)}
+                      className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                    >
+                      <Lightbulb size={18} />
+                      Need a Hint?
+                    </button>
+                  )}
+              </>
+            }
           >
-            <div className="flex flex-col items-stretch gap-3">
               <button
                 onClick={handleSubmit}
                 disabled={!allFilled}
@@ -287,17 +296,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
               >
                 Check Answer
               </button>
-              {!showHint && (
-                <button
-                  onClick={() => setShowHint(true)}
-                  className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
-                >
-                  <Lightbulb size={18} />
-                  Need a Hint?
-                </button>
-              )}
-            </div>
-          </motion.div>
+          </ExerciseActionBar>
         </>
       ) : (
         /* Feedback */

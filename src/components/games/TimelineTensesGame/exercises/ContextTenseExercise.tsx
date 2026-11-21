@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import type { ContextTenseQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
+import { ExerciseActionBar } from '../ExerciseActionBar';
 import { MiniTimelinePreview } from '../MiniTimelinePreview';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
@@ -67,7 +68,7 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
   };
 
   return (
-    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
+    <div className="px-2 sm:px-0 max-w-full overflow-x-clip">
       {/* Scenario card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -132,12 +133,7 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
           </div>
 
           {/* Submit */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-4 sm:p-6 shadow-lg"
-          >
+          <ExerciseActionBar>
             <button
               onClick={handleSubmit}
               disabled={selected === null}
@@ -145,7 +141,7 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
             >
               Check Answer
             </button>
-          </motion.div>
+          </ExerciseActionBar>
         </>
       ) : (
         /* Feedback */
