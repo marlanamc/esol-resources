@@ -20,7 +20,9 @@ describe('Compact timeline feedback', () => {
       details: 'Yesterday is finished past time.', onContinue: () => {},
     })));
     const section = root.querySelector('section')!;
-    expect(section.childNodes.filter((node) => node.nodeType === 1).map((node) => (node as unknown as { rawTagName: string }).rawTagName)).toEqual(['div', 'button', 'details']);
+    expect(section.childNodes.filter((node) => node.nodeType === 1).map((node) => (node as unknown as { rawTagName: string }).rawTagName)).toEqual(['div', 'div', 'details']);
+    // The second child is the (phone-pinned) wrapper around Next.
+    expect(section.querySelectorAll(':scope > div')[1].querySelector('button')!.textContent).toBe('Next Question');
     expect(root.querySelector('details')!.hasAttribute('open')).toBe(false);
     expect(root.querySelector('[role=status]')!.textContent).toContain('Not quite');
     expect(root.querySelector('[role=status]')!.textContent).not.toContain('Yesterday is finished');

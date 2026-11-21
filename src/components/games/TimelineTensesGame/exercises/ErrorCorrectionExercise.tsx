@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
 import type { ErrorCorrectionQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
+import { ExerciseActionBar } from '../ExerciseActionBar';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
@@ -68,7 +69,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
   };
 
   return (
-    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
+    <div className="px-2 sm:px-0 max-w-full overflow-x-clip">
       {/* Error card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -154,12 +155,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
             </motion.div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-4 sm:p-6 shadow-lg"
-          >
+          <ExerciseActionBar>
             <button
               onClick={handleSubmit}
               disabled={question.errorLocation === 'sentence' && !userInput.trim()}
@@ -167,7 +163,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
             >
               {question.errorLocation === 'timeline' ? 'Got It — Next' : 'Check Answer'}
             </button>
-          </motion.div>
+          </ExerciseActionBar>
         </>
       ) : (
         /* Feedback */
