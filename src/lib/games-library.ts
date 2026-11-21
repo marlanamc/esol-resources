@@ -84,6 +84,7 @@ const GAME_LIBRARY_SECTION_DEFS: Array<{ name: string; match: GameLibraryMatcher
       activity.ui === "verb-forms" ||
       activity.ui === "verbforms" ||
       activity.ui === "timeline-tenses" ||
+      activity.ui === "tense-path" ||
       activity.id.includes("irregular") ||
       title.includes("verb forms") ||
       title.includes("irregular") ||

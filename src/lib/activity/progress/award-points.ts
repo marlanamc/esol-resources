@@ -3,6 +3,7 @@ import { getActivityPoints, getSentenceBuilderPoints, getVocabularyTypePoints, P
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
+import { calculateTensePathRoundPoints, isTensePathServerRoundPassed } from "@/lib/tense-path/progress";
 import { logger } from "@/lib/shared/logger";
 import { isVocabProgressType } from "@/lib/activity/progress/shared";
 
@@ -30,6 +31,28 @@ export interface AwardProgressPointsInput {
     vocabType?: string;
     category?: string;
     sanitizedAccuracy?: number;
+}
+
+/**
+ * Tense Master bonus: once per learner, ever. The reason string is fixed per
+ * activity, and the dedupe window covers all time, so passing the final
+ * again (or a double-submit) never awards it twice.
+ */
+async function awardTensePathFinalBonus(input: AwardProgressPointsInput, activityTitle: string): Promise<void> {
+    try {
+        await applyAwardChain({
+            userId: input.userId,
+            points: POINTS.TENSE_PATH_FINAL_BONUS,
+            reason: `${activityTitle}|Tense Master bonus|final-bonus:${input.activityId}`,
+            source: "activity",
+            dedupeKey: true,
+            dedupeWindowMs: 100 * 365.25 * 24 * 60 * 60 * 1000,
+            transaction: input.transaction,
+        });
+    } catch (err) {
+        logger.error("[Progress] Tense Path final bonus failed", { userId: input.userId, activityId: input.activityId, err });
+        if (input.transaction) throw err;
+    }
 }
 
 export async function awardProgressActivityPoints(
@@ -118,7 +141,15 @@ export async function awardProgressActivityPoints(
         const passed = sanitizedRoundAccuracy >= (isRound1 ? 80 : 85);
         const giRoundMode = isRound1 ? "round1" : "round2";
 
-        if (activityGameUi === "parts-of-speech") {
+        if (activityGameUi === "tense-path") {
+            const serverMode = roundMode === "round2" || roundMode === "review" || roundMode === "final" ? roundMode : "round1";
+            const tensePathPassed = isTensePathServerRoundPassed(serverMode, sanitizedRoundAccuracy);
+            points = calculateTensePathRoundPoints(sanitizedRoundExercises, tensePathPassed);
+            activityTypeLabel = "Tense Path";
+            if (serverMode === "final" && tensePathPassed && activity) {
+                await awardTensePathFinalBonus(input, activity.title);
+            }
+        } else if (activityGameUi === "parts-of-speech") {
             const groupIdStr = typeof groupId === "string" ? groupId : "";
             const difficulty = groupIdStr.includes("-3-")
                 ? 3

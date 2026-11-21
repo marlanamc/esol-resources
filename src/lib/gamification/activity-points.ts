@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "word-rescue" | "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "verb-speed-round" | "sentence-builder" | "unknown";
+export type GameUi = "word-rescue" | "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "verb-speed-round" | "sentence-builder" | "tense-path" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -43,6 +43,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "verb-speed-round";
     case "sentence-builder":
       return "sentence-builder";
+    case "tense-path":
+      return "tense-path";
     default:
       return null;
   }
@@ -78,6 +80,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "comparison-battle" || ui === "comparatives-superlatives" || ui === "comparative-superlative") return "comparison-battle";
     if (ui === "verb-speed-round" || ui === "speed-round" || ui === "verb-speed") return "verb-speed-round";
     if (ui === "sentence-builder") return "sentence-builder";
+    if (ui === "tense-path") return "tense-path";
   }
 
   if (typeof content === "string") {
@@ -144,6 +147,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.VERB_SPEED_ROUND;
       case "sentence-builder":
         return POINTS.SENTENCE_BUILDER;
+      case "tense-path":
+        return POINTS.TENSE_PATH_ROUND;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }
