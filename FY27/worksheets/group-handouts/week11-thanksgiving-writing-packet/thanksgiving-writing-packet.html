@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Thanksgiving Writing Packet</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #000; background: #fff; font-size: 14px; line-height: 1.35; }
+.page { width: 8.5in; height: 11in; padding: 0.35in 0.5in 0.3in; display: flex; flex-direction: column; overflow: hidden; break-after: page; }
+@media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,.25); } }
+@media print { @page { size: letter portrait; margin: 0; } }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin-right: 5px; flex: none; }
+.chip { border: 1.5px solid #000; padding: 0 7px; font-size: 13px; white-space: nowrap; }
+.chip.v { border-style: dashed; font-weight: bold; }
+.chip.hot { background: #000; color: #fff; font-weight: bold; }
+.plus { font-weight: bold; }
+
+/* day header */
+.top { display: flex; align-items: stretch; gap: 12px; border-bottom: 2px solid #000; padding-bottom: 6px; margin-bottom: 8px; }
+.daybadge { flex: none; background: #000; color: #fff; border-radius: 8px; padding: 4px 12px; text-align: center; line-height: 1.1; display: flex; flex-direction: column; justify-content: center; }
+.daybadge .d { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.daybadge .n { font-size: 26px; font-weight: bold; }
+.toptxt { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.toptxt .when { font-size: 14px; }
+.toptxt h1 { font-size: 26px; line-height: 1.1; }
+.gram { flex: none; text-align: right; display: flex; flex-direction: column; justify-content: center; }
+.gram b { font-size: 16px; }
+.gram span { font-size: 12px; font-style: italic; }
+
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 9px; }
+.rule { border: 1.5px solid #000; padding: 4px 8px 5px; display: flex; flex-direction: column; gap: 4px; }
+.rule .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: bold; }
+.rule .f { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.rule .ex { font-style: italic; font-size: 13px; }
+
+.models { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 9px; }
+.model { border: 2px solid #000; padding: 5px 10px 7px; }
+.model .who { font-size: 16px; font-weight: bold; }
+.model .ctx { font-size: 12px; font-style: italic; border-bottom: 1px solid #000; padding-bottom: 3px; margin-bottom: 4px; }
+.model p { font-size: 14px; line-height: 1.42; }
+.model p b { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+
+.task { border: 2px solid #000; background: #000; color: #fff; padding: 5px 10px; font-size: 16px; }
+.task .cb { border-color: #fff; }
+.taskbody { border: 2px solid #000; border-top: none; padding: 5px 10px 7px; margin-bottom: 4px; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.cue { font-size: 13px; font-style: italic; margin-bottom: 3px; }
+.ideas { font-size: 13px; margin-bottom: 4px; }
+.ideas b { font-style: normal; }
+.starters { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 2px; }
+.starters span { border: 1.5px dashed #000; border-radius: 12px; padding: 0 9px; font-size: 13px; font-weight: bold; }
+.write { flex: 1; min-height: 0; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 0.37in, #000 0.37in, #000 calc(0.37in + 1px)); background-size: 100% calc(0.37in + 1px); }
+.qs { border-top: 1.5px dashed #000; margin-top: 4px; padding-top: 4px; }
+.qs .lbl { font-size: 14px; }
+.qs .ex { font-size: 12px; font-style: italic; }
+.qline { display: flex; gap: 6px; align-items: flex-end; height: 0.38in; font-weight: bold; }
+.qline .ln { flex: 1; border-bottom: 1px solid #000; height: 100%; text-align: right; font-size: 18px; }
+
+.check { border: 1.5px dashed #000; padding: 4px 9px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 3px 14px; align-items: center; }
+.check .h { font-weight: bold; }
+.bottom { display: flex; gap: 8px; align-items: stretch; }
+.bottom .check { flex: 1; }
+.tnote { flex: none; width: 2.3in; height: 0.6in; border: 1.5px solid #000; padding: 2px 7px; font-size: 12px; }
+.foot { font-size: 10px; display: flex; justify-content: space-between; margin-top: 3px; }
+
+/* cover */
+.cover h1 { font-size: 34px; line-height: 1.05; }
+.cover .sub { font-size: 16px; font-style: italic; margin-top: 2px; }
+.name-row { display: flex; gap: 14px; align-items: flex-end; font-size: 18px; font-weight: bold; margin: 12px 0 10px; }
+.name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+.due { border: 2.5px solid #000; padding: 6px 12px; font-size: 17px; text-align: center; margin-bottom: 10px; }
+.how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 10px; }
+.how div { border: 1.5px solid #000; padding: 5px 8px; font-size: 13px; display: flex; gap: 7px; align-items: flex-start; }
+.how b.n { flex: none; width: 22px; height: 22px; border-radius: 50%; background: #000; color: #fff; display: grid; place-items: center; font-size: 13px; }
+.cal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 10px; }
+.cal div { border: 2px solid #000; padding: 5px 9px; display: flex; flex-direction: column; gap: 1px; }
+.cal .d { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; display: flex; justify-content: space-between; }
+.cal .t { font-size: 17px; font-weight: bold; }
+.cal .g { font-size: 13px; font-style: italic; }
+h2 { font-size: 16px; margin-bottom: 4px; }
+.bank { border: 2px solid #000; padding: 5px 10px; margin-bottom: 10px; }
+.bank p { font-size: 13px; margin-bottom: 2px; }
+table.verbs { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.verbs th, table.verbs td { border: 1.5px solid #000; padding: 1px 7px; text-align: left; }
+table.verbs th { background: #000; color: #fff; }
+.vwrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* thank-you page */
+.ty .card { border: 2.5px dashed #000; padding: 10px 16px; display: flex; flex-direction: column; flex: 1; min-height: 0; margin-bottom: 8px; }
+.ty .card .write { margin-top: 6px; }
+</style></head><body>
+<section class="page cover">
+  <h1>My Thanksgiving<br>Writing Packet</h1>
+  <div class="sub">6 days · 6 short writings · Wednesday, November 25 to Monday, November 30</div>
+  <div class="name-row">Name:<span class="fill"></span></div>
+  <div class="due"><b>Bring this packet back on Tuesday, December 1.</b><br>
+    <span style="font-size:14px">Write a little every day. 10 to 15 minutes is perfect. Mistakes are OK!</span></div>
+  <h2>How to do each day</h2>
+  <div class="how"><div><b class="n">1</b><span>Read the grammar box.</span></div><div><b class="n">2</b><span>Read the 2 models. Mandy and Kevin write <b>different</b> answers.</span></div><div><b class="n">3</b><span>Write about <b>YOUR</b> life. 5 sentences or more.</span></div><div><b class="n">4</b><span>Check the boxes at the bottom.</span></div></div>
+  <h2>My 6 days <span style="font-weight:normal;font-size:13px">(check the box when you finish)</span></h2>
+  <div class="cal"><div><span class="d"><span>Day 1 · Wed Nov 25</span><span class="cb"></span></span><span class="t">Getting Ready</span><span class="g">Just · Already · Yet</span></div><div><span class="d"><span>Day 2 · Thu Nov 26</span><span class="cb"></span></span><span class="t">Today Is Thanksgiving</span><span class="g">Right Now + Usually</span></div><div><span class="d"><span>Day 3 · Fri Nov 27</span><span class="cb"></span></span><span class="t">Yesterday</span><span class="g">Past Simple</span></div><div><span class="d"><span>Day 4 · Sat Nov 28</span><span class="cb"></span></span><span class="t">Holidays I Know</span><span class="g">Have You Ever…?</span></div><div><span class="d"><span>Day 5 · Sun Nov 29</span><span class="cb"></span></span><span class="t">Advice for a Friend</span><span class="g">Can · Should · Must</span></div><div><span class="d"><span>Day 6 · Mon Nov 30</span><span class="cb"></span></span><span class="t">Looking Ahead to December</span><span class="g">If… Will…</span></div></div>
+  <h2>Holiday word bank</h2>
+  <div class="bank"><p><b>Food:</b> turkey · stuffing · mashed potatoes · gravy · cranberry sauce · pumpkin pie · leftovers</p><p><b>People:</b> family · relatives · neighbors · coworkers · guests · the cook</p><p><b>Things to do:</b> parade · football · Black Friday sales · a long walk · a nap · a video call</p><p><b>Feelings:</b> thankful · grateful · full · tired · relaxed · busy · homesick · lonely · happy</p></div>
+  <h2>Verbs you will use</h2>
+  <div class="vwrap"><table class="verbs"><tr><th>V1</th><th>V2</th><th>V3</th></tr><tr><td>eat</td><td>ate</td><td>eaten</td></tr><tr><td>make</td><td>made</td><td>made</td></tr><tr><td>buy</td><td>bought</td><td>bought</td></tr><tr><td>go</td><td>went</td><td>gone</td></tr><tr><td>see</td><td>saw</td><td>seen</td></tr><tr><td>take</td><td>took</td><td>taken</td></tr><tr><td>give</td><td>gave</td><td>given</td></tr><tr><td>bring</td><td>brought</td><td>brought</td></tr></table><table class="verbs"><tr><th>V1</th><th>V2</th><th>V3</th></tr><tr><td>feel</td><td>felt</td><td>felt</td></tr><tr><td>have</td><td>had</td><td>had</td></tr><tr><td>drink</td><td>drank</td><td>drunk</td></tr><tr><td>sleep</td><td>slept</td><td>slept</td></tr><tr><td>cook</td><td>cooked</td><td>cooked</td></tr><tr><td>visit</td><td>visited</td><td>visited</td></tr><tr><td>watch</td><td>watched</td><td>watched</td></tr><tr><td>call</td><td>called</td><td>called</td></tr></table></div>
+  <div style="flex:1"></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 1 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">1</span></div>
+    <div class="toptxt"><span class="when">Wednesday, Nov 25</span><h1>Getting Ready</h1></div>
+    <div class="gram"><b>Just · Already · Yet</b><span>from Week 10</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">already</span><span class="f"><span class="chip">have / has</span><span class="plus">+</span><span class="chip hot">already</span><span class="plus">+</span><span class="chip v">V3</span></span><span class="ex">I have already bought the food.</span></div><div class="rule"><span class="lbl">just</span><span class="f"><span class="chip">have / has</span><span class="plus">+</span><span class="chip hot">just</span><span class="plus">+</span><span class="chip v">V3</span></span><span class="ex">She has just made a pie.</span></div><div class="rule"><span class="lbl">yet</span><span class="f"><span class="chip">haven't / hasn't</span><span class="plus">+</span><span class="chip v">V3</span><span class="plus">+</span><span class="chip hot">… yet</span></span><span class="ex">I haven't cleaned yet.</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Family dinner at her house tomorrow</div><p>It is Wednesday night, and I am very busy! My family is coming tomorrow. I <b>have already bought</b> the turkey. I <b>have already cleaned</b> the house. I <b>have just made</b> two pies, and the kitchen smells so good. I <b>haven't set</b> the table <b>yet</b>. I <b>haven't called</b> my sister <b>yet</b>. She is bringing the rice.</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">Works at the food pantry. No big dinner.</div><p>I don't cook on Thanksgiving. I work at the food pantry. Today we <b>have already given</b> out 100 turkeys! I <b>have just gotten</b> home, and I am tired. I <b>have already bought</b> my bus ticket to my mom's house. I <b>haven't packed</b> my bag <b>yet</b>.</p></div></div>
+  <div class="task">Write about <b>YOUR</b> week. What <b>have</b> you <b>already</b> done? What <b>haven't</b> you done <b>yet</b>?</div>
+  <div class="taskbody">
+    <div class="cue">No Thanksgiving for you? No problem. Write about your work, your home, or your weekend.</div>
+    <div class="ideas"><b>Ideas:</b> cleaned · cooked · bought food · finished work · called my family · done the laundry · paid my bills · studied English</div>
+    <div class="starters"><span>I have already ___.</span><span>I have just ___.</span><span>I haven't ___ yet.</span><span>My ___ has already ___.</span></div>
+    <div class="write"></div>
+    
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span>already</span><span><span class="cb"></span>just</span><span><span class="cb"></span>yet</span><span><span class="cb"></span>have / has + <b>V3</b></span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 2 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">2</span></div>
+    <div class="toptxt"><span class="when">Thursday, Nov 26</span><h1>Today Is Thanksgiving</h1></div>
+    <div class="gram"><b>Right Now + Usually</b><span>from Weeks 1 + 6</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">right now</span><span class="f"><span class="chip">am / is / are</span><span class="plus">+</span><span class="chip v">V1-ing</span></span><span class="ex">My kids are watching TV.</span></div><div class="rule"><span class="lbl">every year</span><span class="f"><span class="chip">usually / always</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">We usually eat at 4:00.</span></div><div class="rule"><span class="lbl">he / she</span><span class="f"><span class="chip">always / never</span><span class="plus">+</span><span class="chip v">V1-s</span></span><span class="ex">My mom always cries.</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Family dinner at her house</div><p>Today is Thanksgiving. It is 2:00, and my house is very loud! Right now, my husband <b>is cooking</b> the turkey. My kids <b>are watching</b> the parade on TV. My sister <b>is making</b> rice and beans. Every year, we <b>usually eat</b> at 4:00. My mother <b>always says</b> a prayer before dinner. We <b>never finish</b> all the food!</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">At his mom's apartment</div><p>Today I am at my mom's apartment. Right now, she <b>is sleeping</b> on the couch, and I <b>am washing</b> the dishes. We <b>are not eating</b> turkey. We <b>are eating</b> fish soup, like in our country. On holidays, we <b>usually call</b> our family back home. My mom <b>always cries</b> a little. I <b>sometimes cry</b> too.</p></div></div>
+  <div class="task">Write about <b>YOUR</b> day today. What <b>is happening</b> right now? What do you <b>usually</b> do on a holiday?</div>
+  <div class="taskbody">
+    <div class="cue">Working today? Write about your job right now!</div>
+    <div class="ideas"><b>Ideas:</b> cooking · eating · watching TV · working · resting · talking on the phone · playing · sleeping</div>
+    <div class="starters"><span>Right now, I am ___.</span><span>My ___ is ___.</span><span>On holidays, I usually ___.</span><span>My family always / never ___.</span></div>
+    <div class="write"></div>
+    
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span>am / is / are + <b>V1-ing</b></span><span><span class="cb"></span>usually / always / never</span><span><span class="cb"></span>he / she + <b>V1-s</b></span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 3 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">3</span></div>
+    <div class="toptxt"><span class="when">Friday, Nov 27</span><h1>Yesterday</h1></div>
+    <div class="gram"><b>Past Simple</b><span>from Week 4</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">regular</span><span class="f"><span class="chip v">V1</span><span class="plus">+</span><span class="chip">+ -ed</span></span><span class="ex">cooked /t/ · played /d/ · visited /id/</span></div><div class="rule"><span class="lbl">irregular</span><span class="f"><span class="chip v">V2</span></span><span class="ex">ate · went · came · took · felt</span></div><div class="rule"><span class="lbl">negative</span><span class="f"><span class="chip">didn't</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">I didn't wash the dishes.</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Family dinner at her house</div><p>Yesterday was a great day. My family <b>came</b> at 1:00. We <b>ate</b> turkey, rice and beans, and pie. My son <b>helped</b> me in the kitchen. After dinner, we <b>played</b> cards and <b>watched</b> football. Everyone <b>went</b> home at 9:00. I <b>didn't wash</b> the dishes. I <b>was</b> too tired! Today I am eating leftovers.</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">Visited his mom</div><p>Yesterday I <b>took</b> the bus to my mom's house. The trip <b>was</b> two hours. My mom <b>cooked</b> fish soup, and we <b>talked</b> all day. I <b>didn't watch</b> football. I don't like football! At night, we <b>looked</b> at old photos. I <b>felt</b> happy and a little homesick.</p></div></div>
+  <div class="task">Write about <b>YESTERDAY</b> (Thursday). Where did you go? What did you eat? Who did you see? How did you feel?</div>
+  <div class="taskbody">
+    <div class="cue">Did you work yesterday? Write about your work day. Bonus: Today is Black Friday. Did you go shopping?</div>
+    <div class="ideas"><b>Ideas:</b> ate · drank · cooked · visited · stayed home · watched · worked · slept · called · felt</div>
+    <div class="starters"><span>Yesterday, I ___.</span><span>I ate ___.</span><span>I didn't ___.</span><span>I felt ___ because ___.</span></div>
+    <div class="write"></div>
+    
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span><b>V2</b> verbs</span><span><span class="cb"></span>didn't + <b>V1</b></span><span><span class="cb"></span>I read my -ed words out loud</span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 4 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">4</span></div>
+    <div class="toptxt"><span class="when">Saturday, Nov 28</span><h1>Holidays I Know</h1></div>
+    <div class="gram"><b>Have You Ever…?</b><span>from Week 9</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">in my life</span><span class="f"><span class="chip">have / has</span><span class="plus">+</span><span class="chip v">V3</span></span><span class="ex">I have eaten tamales.</span></div><div class="rule"><span class="lbl">not in my life</span><span class="f"><span class="chip">have never</span><span class="plus">+</span><span class="chip v">V3</span></span><span class="ex">I have never cooked a turkey.</span></div><div class="rule"><span class="lbl">the story</span><span class="f"><span class="chip v">V2</span><span class="plus">+</span><span class="chip">+ when</span></span><span class="ex">I went in 2019.</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Thanksgiving every year</div><p>I <b>have celebrated</b> Thanksgiving many times. I <b>have never cooked</b> a turkey alone. My husband always helps! I <b>have been</b> to the big parade in New York one time. I <b>went</b> in 2019. It <b>was</b> very cold, but I <b>loved</b> the giant balloons. <b>Have</b> you <b>ever seen</b> the parade?</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">A different holiday from home</div><p>In my country, we don't have Thanksgiving. Our big holiday is in December. <b>Have</b> you <b>ever eaten</b> tamales? I <b>have eaten</b> a lot of tamales! My grandmother <b>made</b> them every Christmas. I <b>have</b> also <b>tried</b> turkey here, but I <b>have never eaten</b> pumpkin pie. Maybe next year!</p></div></div>
+  <div class="task">Write about a holiday from <b>YOUR</b> country, or a holiday you love. What <b>have</b> you done? What <b>have</b> you <b>never</b> done?</div>
+  <div class="taskbody">
+    <div class="cue">Then add one story sentence with V2: when did it happen?</div>
+    <div class="ideas"><b>Ideas:</b> eaten · cooked · danced · seen · been to · celebrated · made · tried · given · worn</div>
+    <div class="starters"><span>My favorite holiday is ___.</span><span>I have ___.</span><span>I have never ___.</span><span>The first time, I ___ in (year) ___.</span></div>
+    <div class="write"></div>
+    
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span>have / has + <b>V3</b></span><span><span class="cb"></span>never + <b>V3</b></span><span><span class="cb"></span>1 story sentence with <b>V2</b></span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 5 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">5</span></div>
+    <div class="toptxt"><span class="when">Sunday, Nov 29</span><h1>Advice for a Friend</h1></div>
+    <div class="gram"><b>Can · Should · Must</b><span>from Week 8</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">good idea</span><span class="f"><span class="chip">should / shouldn't</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">You should bring a pie.</span></div><div class="rule"><span class="lbl">it's OK</span><span class="f"><span class="chip">can</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">You can say, “No, thank you.”</span></div><div class="rule"><span class="lbl">very important</span><span class="f"><span class="chip">must / must not</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">You must buy boots.</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Letter to Rosa: her first Thanksgiving dinner</div><p>Dear Rosa, You are going to your coworker's house for Thanksgiving. Here is my advice. You <b>should bring</b> something small, like flowers or a pie. You <b>shouldn't arrive</b> very early. You <b>can try</b> a little of everything. You <b>can say</b>, “No, thank you,” if you don't like something. And you <b>must say</b> thank you to the cook! Love, Mandy</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">Letter to Luis: his first winter here</div><p>Dear Luis, Welcome to Massachusetts! Winter is coming, so here is my advice. You <b>must buy</b> a warm coat and boots. You <b>can find</b> cheap coats at the thrift store. You <b>should wear</b> a hat every day. You <b>shouldn't walk</b> on ice in sneakers. You <b>must not park</b> on the street in a snow emergency. See you soon, Kevin</p></div></div>
+  <div class="task">Write a letter to a friend. Choose: &nbsp;<span class="cb"></span><b>A.</b> their first Thanksgiving dinner &nbsp; <span class="cb"></span><b>B.</b> their first winter here</div>
+  <div class="taskbody">
+    <div class="cue">You make up the friend's name! No “to” after can / should / must: <s>You should to bring</s> → You should bring.</div>
+    <div class="ideas"><b>Ideas:</b> bring · wear · buy · try · say · arrive · drive · walk · call · ask</div>
+    <div class="starters"><span>Dear ___,</span><span>You should ___.</span><span>You shouldn't ___.</span><span>You can ___.</span><span>You must ___.</span></div>
+    <div class="write"></div>
+    
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span>should / shouldn't</span><span><span class="cb"></span>can</span><span><span class="cb"></span>must</span><span><span class="cb"></span><b>V1</b> after (no to, no -s)</span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 6 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page">
+  <div class="top">
+    <div class="daybadge"><span class="d">Day</span><span class="n">6</span></div>
+    <div class="toptxt"><span class="when">Monday, Nov 30</span><h1>Looking Ahead to December</h1></div>
+    <div class="gram"><b>If… Will…</b><span>from Week 7</span></div>
+  </div>
+  <div class="rules"><div class="rule"><span class="lbl">the if part</span><span class="f"><span class="chip hot">If</span><span class="plus">+</span><span class="chip v">V1 / V1-s</span><span class="plus">+</span><span class="chip">,</span></span><span class="ex">If it snows,</span></div><div class="rule"><span class="lbl">the result</span><span class="f"><span class="chip hot">will</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">my kids will build a snowman.</span></div><div class="rule"><span class="lbl">an idea</span><span class="f"><span class="chip hot">Let's</span><span class="plus">+</span><span class="chip v">V1</span></span><span class="ex">Let's have a party!</span></div></div>
+  <h2>Read the models. Two people, two different answers.</h2>
+  <div class="models"><div class="model"><div class="who">Mandy</div><div class="ctx">Plans with her kids</div><p>December is coming! <b>If</b> it <b>snows</b> this month, my kids <b>will build</b> a snowman. <b>If</b> I <b>have</b> a day off, I <b>will take</b> them to see the lights downtown. <b>If</b> the weather <b>is</b> nice, we <b>will walk</b> to the park. <b>If</b> I <b>see</b> my classmates on Tuesday, I <b>will tell</b> them about my pies!</p></div><div class="model"><div class="who">Kevin</div><div class="ctx">Saving money for a trip</div><p>In December, I will work a lot at the food pantry. <b>If</b> I <b>save</b> money, I <b>will buy</b> a plane ticket. <b>If</b> I <b>buy</b> a ticket, I <b>will visit</b> my family in January. <b>If</b> it <b>is</b> very cold, I <b>will stay</b> home and study English. <b>Let's have</b> a party in December, class!</p></div></div>
+  <div class="task">Write about <b>YOUR</b> December. <b>You make up the “if” part.</b> It can be big or small!</div>
+  <div class="taskbody">
+    
+    <div class="ideas"><b>Ideas:</b> snows · have time · get a day off · save money · feel tired · see my family · get paid</div>
+    <div class="starters"><span>If it snows, I will ___.</span><span>If I have time, I will ___.</span><span>If I ___, I will ___.</span><span>Let's ___!</span></div>
+    <div class="write"></div>
+    <div class="qs"><div class="lbl"><b>Tuesday questions.</b> Write 2 questions for a classmate. You will ask them in class on Tuesday!</div><div class="ex">Examples: What did you eat on Thursday? · Have you ever seen snow? · Have you bought a winter coat yet?</div><div class="qline">1.<span class="ln">?</span></div><div class="qline">2.<span class="ln">?</span></div></div>
+  </div>
+  <div class="bottom"><div class="check"><span class="h">Check:</span><span><span class="cb"></span>If + <b>V1 / V1-s</b></span><span><span class="cb"></span>will + <b>V1</b></span><span><span class="cb"></span>comma after the if part</span><span><span class="cb"></span>5+ sentences</span></div>
+  <div class="tnote"><b>Teacher:</b></div></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 7 of 8 · Bring it back Tuesday, December 1</span></div>
+</section>
+<section class="page ty">
+  <div class="top">
+    <div class="daybadge"><span class="d">Bonus</span><span class="n">★</span></div>
+    <div class="toptxt"><span class="when">Any day</span><h1>A Thank-You Note</h1></div>
+    <div class="gram"><b>thankful for + noun</b><span>because + sentence</span></div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="lbl">a thing / a person</span><span class="f"><span class="chip">I am thankful for</span><span class="plus">+</span><span class="chip">noun</span></span><span class="ex">I am thankful for my sister.</span></div>
+    <div class="rule"><span class="lbl">the reason</span><span class="f"><span class="chip">because</span><span class="plus">+</span><span class="chip">subject</span><span class="plus">+</span><span class="chip">verb</span></span><span class="ex">because she always helps me.</span></div>
+    <div class="rule"><span class="lbl">say it to them</span><span class="f"><span class="chip">Thank you for</span><span class="plus">+</span><span class="chip v">V1-ing</span></span><span class="ex">Thank you for helping me.</span></div>
+  </div>
+  <div class="models">
+    <div class="model"><div class="who">Mandy</div><div class="ctx">To her sister</div><p>Dear Ana, <b>I am thankful for</b> you <b>because</b> you always help me. <b>Thank you for bringing</b> the rice on Thursday. It was delicious! Love, Mandy</p></div>
+    <div class="model"><div class="who">Kevin</div><div class="ctx">To the bus driver</div><p>To the driver of the 7:00 bus: <b>Thank you for waiting</b> for me every morning. <b>I am thankful for</b> you <b>because</b> I am never late for work. Kevin</p></div>
+  </div>
+  <div class="task">Write a thank-you note to someone in <b>YOUR</b> life. <b>You choose who!</b></div>
+  <div class="taskbody">
+    <div class="ideas"><b>Ideas:</b> a family member · a friend · a coworker · a neighbor · a teacher · a doctor · a classmate · YOU!</div>
+    <div class="starters"><span>Dear ___,</span><span>I am thankful for ___ because ___.</span><span>Thank you for ___ing.</span></div>
+    <div class="write"></div>
+  </div>
+  <div class="check"><span class="h">Check:</span><span><span class="cb"></span>thankful for</span><span><span class="cb"></span>because</span><span><span class="cb"></span>Thank you for + <b>V1-ing</b></span><span><span class="cb"></span>I signed my name</span></div>
+  <div class="foot"><span>ESOL 3 · Thanksgiving Writing Packet</span><span>Page 8 of 8 · Bring it back Tuesday, December 1</span></div>
+</section></body></html>
