@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Week 13 Tuesday stations, Tue 12/8/26: practice How long...? + for / since (started Thu 12/3).
+"""Week 13 Tuesday stations, Tue 12/8/26 (moved from Tue 12/1 for the Thanksgiving shift): review (zero/first conditionals, can/should/must,
+have you ever, just / already / yet) with money and banking.
 
-Quiz verbs: eat, drink. Vocab: groceries (run out of, stock up on, buy in bulk,
-unit price, serving size, go bad). Stations: 1 WARM-UP, 2 SPEAK (How long have you...?
-interviews; quiet "for"), 3 GAME (for/since phrase bank + For or since? race), 4 REAL WORLD (shelf tags,
-unit price, buy in bulk?).
+Quiz verbs: buy, sell. Vocab: returns and financial problems (exchange, refund,
+withdraw, deposit, charge, dispute). Stations: 1 WARM-UP, 2 SPEAK (B/V + i/ee review),
+3 GAME (zero/first conditional phrase bank + money review questions), 4 REAL WORLD (receipt + return policy).
 
     python3 build-week13-stations.py
-writes the HTML and PDFs next to this file. The store, people, and prices are made up.
+writes the HTML and PDFs next to this file. The stores, people, and numbers are made up.
+Receipt tax follows Massachusetts: 6.25%, clothing under $175 not taxed.
 """
 import sys
 from pathlib import Path
@@ -18,398 +19,453 @@ sys.path.insert(0, str(HERE.parent))
 import stations_lib as L  # noqa: E402
 
 STEM = "week13-day1-2026-12-08"
-EAT = ("eat", "eats", "eating", "ate", "eaten")
-DRINK = ("drink", "drinks", "drinking", "drank", "drunk")
+BUY = ("buy", "buys", "buying", "bought", "bought")
+SELL = ("sell", "sells", "selling", "sold", "sold")
 STATIONS = [
     ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
-    ("SPEAK", "<i>How long have you&hellip;?</i> With a teacher.", "Pages 3&ndash;4"),
-    ("GAME", "<i>For</i> or <i>since</i>? With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("SPEAK", "Sound review: B/V and i/ee. With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "Review. With your group. A teacher will visit.", "Pages 5&ndash;6"),
     ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
 def warmup(p, key):
-    fs = [("I have studied English {} two years.", "for"), ("She hasn&rsquo;t worked at the clinic {} last spring.", "since"),
-          ("We have known our neighbors {} we moved here.", "since"), ("Has he had his job {} six months?", "for"),
-          ("I haven&rsquo;t seen my family {} 2019.", "since")]
-    li1 = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a, "short"))}</li>' for i, (t, a) in enumerate(fs, 1))
-    sf = [("She has worked at the store since 2016.", "ten years"), ("I haven&rsquo;t called my sister since August.", "four months"),
-          ("We have known our landlord since 2021.", "five years"), ("He has studied English since last December.", "one year")]
-    li2 = "".join(f'<li><b class="n">{i}.</b> {t} &rarr; for {p.b(a)}</li>' for i, (t, a) in enumerate(sf, 1))
+    mix = [("If the ATM (", "isn&rsquo;t", "won&rsquo;t be", 0, ") working, I will go inside the bank."),
+           ("You (", "must show", "must to show", 0, ") your ID to open an account."),
+           ("Have you ever (", "send", "sent", 1, ") money to another country?"),
+           ("I haven&rsquo;t paid my phone bill (", "already", "yet", 1, ")."),
+           ("If I don&rsquo;t get paid tomorrow, I (", "didn&rsquo;t pay", "won&rsquo;t pay", 1, ") my rent."),
+           ("You (", "shouldn&rsquo;t share", "shouldn&rsquo;t shares", 0, ") your PIN.")]
+    li1 = "".join(f'<li><b class="n">{i}.</b> {a}{p.circ(x, r == 0)} / {p.circ(y, r == 1)}{b}</li>'
+                  for i, (a, x, y, r, b) in enumerate(mix, 1))
+    fill = [("This shirt is too small. I want to {} it.", "exchange"),
+            ("Did the store agree to {} your money?", "refund"),
+            ("Don&rsquo;t {} cash from that ATM. It has a fee.", "withdraw"),
+            ("{} your paycheck into your bank account.", "Deposit"),
+            ("The store will {} your card when it ships.", "charge"),
+            ("If your bill is wrong, call the bank to {} the charge.", "dispute")]
+    li2 = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a))}</li>' for i, (t, a) in enumerate(fill, 1))
     page2 = L.NAME_STRIP + f"""  <div class="task">
-    <h2>1. For or since?</h2>
-    <p class="how">Write <b>for</b> (a length of time) or <b>since</b> (a starting point).</p>
-    <p class="example">Example: I have lived here <u>since</u> 2021. &middot; I have lived here <u>for</u> five years.</p>
+    <h2>1. Review mix</h2>
+    <p class="how">Circle the correct form. Each one is from a different week!</p>
+    <p class="example">Example: If it (<b class="circ" style="width:auto;padding:0 6px;border-radius:12px;">rains</b> / will rain), I take the bus.</p>
     <ol class="items">{li1}</ol>
   </div>
   <div class="task">
-    <h2>2. Since &rarr; for</h2>
-    <p class="how">Today is <b>December 8, 2026</b>. Change <b>since</b> to <b>for</b>. Write how long.</p>
-    <p class="example">Example: I have lived here since 2024. &rarr; for <u>two years</u></p>
+    <h2>2. Fill in the blank</h2>
+    <p class="how">Use every word once. Change the verb form if needed.</p>
+    <div class="bank"><span>refund</span> <span>withdraw</span> <span>exchange</span> <span>charge</span> <span>dispute</span> <span>deposit</span></div>
     <ol class="items">{li2}</ol>
   </div>
   <div class="task">
-    <h2>3. Finish the sentence about you</h2>
-    <p class="how"><b>You make up the ending.</b> Use your own ideas. Use <b>for</b> or <b>since</b>.</p>
-    <div class="own"><b>Example:</b> I have lived in my apartment <span class="u">since 2022</span>. &middot; Other good answers: <span class="u">for four years</span> &middot; <span class="u">since my son was born</span></div>
+    <h2>3. Money advice</h2>
+    <p class="how"><b>You make up the advice.</b> Use your own ideas. Many answers are OK.</p>
+    <div class="own"><b>Example:</b> If you lose your bank card, you should <span class="u">call the bank right away</span>. &middot; Other good answers: <span class="u">check your bank app</span> &middot; <span class="u">lock your card</span></div>
     <ol class="items">
-      <li><b class="n">1.</b> I have lived in my home {p.b("<i>answers vary: for / since &hellip;</i>", "long")}.</li>
-      <li><b class="n">2.</b> I have known my best friend {p.b("<i>answers vary</i>", "long")}.</li>
-      <li><b class="n">3.</b> How long have you {p.b("<i>answers vary: + V3</i>", "long")}?</li>
+      <li><b class="n">1.</b> You should never {p.b("<i>answers vary: + V1</i>", "long")}.</li>
+      <li><b class="n">2.</b> If a store charges you two times, you should {p.b("<i>answers vary</i>", "long")}.</li>
+      <li><b class="n">3.</b> If you want to save money, you can {p.b("<i>answers vary</i>", "long")}.</li>
     </ol>
   </div>"""
     items = [
-        ("<b>Every morning</b>, my husband {} two cups of coffee. (drink)", "drinks"),
-        ("<b>Right now</b>, the kids are {} rice and beans. (eat)", "eating"),
-        ("<b>Yesterday</b>, we didn&rsquo;t {} any milk. (drink)", "drink"),
-        ("<b>Last night</b>, what did you {} for dinner? (eat)", "eat"),
-        ("She doesn&rsquo;t {} meat <b>every day</b>. (eat)", "eat"),
-        ("<b>Right now</b>, is he {} a glass of water? (drink)", "drinking"),
-        ("We <b>have</b> {} all the bread. It&rsquo;s gone! (eat)", "eaten"),
-        ("<b>Have</b> you {} any water today? (drink)", "drunk"),
+        ("<b>Every Saturday</b>, my brother {} fruit at the market. (sell)", "sells"),
+        ("<b>Right now</b>, I am {} a new phone plan. (buy)", "buying"),
+        ("<b>Yesterday</b>, she didn&rsquo;t {} her old couch. (sell)", "sell"),
+        ("<b>Last week</b>, did you {} a jacket? (buy)", "buy"),
+        ("My mother {} rice in big bags <b>every month</b>. (buy)", "buys"),
+        ("<b>Right now</b>, is the store {} winter coats? (sell)", "selling"),
+        ("We <b>haven&rsquo;t</b> {} a new TV yet. (buy)", "bought"),
+        ("<b>Have</b> they {} all the tickets? (sell)", "sold"),
     ]
     lis = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a))}</li>' for i, (t, a) in enumerate(items, 1))
     page3 = f"""  <div class="task">
     <h2>4. Verb forms of the week</h2>
-    <p class="how">Write the other forms of <b>eat</b> and <b>drink</b>. <i>Eat</i> and <i>drink</i> are on this week&rsquo;s quiz!</p>
-    {L.forms_table([EAT, DRINK], p)}
+    <p class="how">Write the other forms of <b>buy</b> and <b>sell</b>. <i>Buy</i> and <i>sell</i> are on this week&rsquo;s quiz!</p>
+    {L.forms_table([BUY, SELL], p)}
   </div>
   <div class="task">
     <h2>5. Use the right form</h2>
-    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>eat</b> or <b>drink</b>. Use your chart.</p>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>buy</b> or <b>sell</b>. Use your chart.</p>
     <ol class="items">{lis}</ol>
   </div>
   <div class="task">
     <h2>6. Bonus: Your turn</h2>
     <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
-    <p class="prompt"><b>Every morning</b> + drink</p>
-    <p class="ideas">Ideas: coffee &middot; tea with milk &middot; a big glass of water &middot; juice</p>
-    {p.ln("<i>answers vary: Every morning, I drink tea with milk.</i>")}
-    <p class="prompt"><b>Last night</b> + eat <b>+ not</b></p>
-    <p class="ideas">Ideas: dinner &middot; meat &middot; dessert &middot; a big meal</p>
-    {p.ln("<i>answers vary: Last night, I didn&rsquo;t eat dessert.</i>")}
-    <p class="prompt"><b>How long</b> + have you<b>?</b></p>
-    <p class="ideas">Ideas: lived here &middot; had your phone &middot; known your best friend &middot; worked at your job</p>
-    {p.ln("<i>answers vary: How long have you had your phone?</i>")}
+    <p class="prompt"><b>Last month</b> + buy</p>
+    <p class="ideas">Ideas: a winter coat &middot; a gift &middot; a bus pass &middot; groceries</p>
+    {p.ln("<i>answers vary: Last month, I bought a winter coat.</i>")}
+    <p class="prompt"><b>Online</b> + buy <b>+ not</b></p>
+    <p class="ideas">Ideas: shoes &middot; food &middot; clothes &middot; medicine</p>
+    {p.ln("<i>answers vary: I don&rsquo;t buy shoes online.</i>")}
+    <p class="prompt"><b>Have you ever</b> + sell<b>?</b></p>
+    <p class="ideas">Ideas: food &middot; old clothes &middot; a car &middot; something online</p>
+    {p.ln("<i>answers vary: Have you ever sold old clothes?</i>")}
   </div>"""
     return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
             + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
-HEAR = [("for", "3 years"), ("since", "Monday"), ("for", "a long time"), ("since", "2019"),
-        ("since", "I was a kid"), ("for", "two weeks"), ("since", "last summer"), ("for", "six months")]
-INTERVIEW = ["lived in this city", "had your phone", "known your best friend", "studied English",
-             "been in this class", "had your oldest shoes"]
+PAIRS = [("boat", "vote", "vote"), ("live", "leave", "live"), ("berry", "very", "very"), ("sit", "seat", "seat"),
+         ("best", "vest", "best"), ("fill", "feel", "feel"), ("ban", "van", "van"), ("chip", "cheap", "cheap")]
+WHICH = [("I need to <b>leave</b> the bank.", "I need to <b>live</b> near the bank.", "a"),
+         ("Is this your <b>vest</b>?", "Is this your <b>best</b>?", "a"),
+         ("The <b>chips</b> are on sale.", "The <b>cheap</b> ones are on sale.", "b"),
+         ("They counted the <b>boats</b>.", "They counted the <b>votes</b>.", "b")]
 
 
 def speak(p, key):
-    hear = "".join(f'<li><b class="n">{i}.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">{p.circ("for", a == "for")} / {p.circ("since", a == "since")}</span></li>'
-                   for i, (a, _) in enumerate(HEAR, 1))
-    rows = "".join(f'<tr><td class="q">How long have you {q}?</td><td></td><td></td></tr>' for q in INTERVIEW)
-    page4 = f"""  <h2>Quiet <i>for</i>, loud time</h2>
+    rows = "".join(
+        "<tr>" + "".join(
+            f'<td class="n">{j + 1}</td><td>{p.circ(PAIRS[j][0], PAIRS[j][2] == PAIRS[j][0])}</td>'
+            f'<td>{p.circ(PAIRS[j][1], PAIRS[j][2] == PAIRS[j][1])}</td>' for j in (i, i + 4)) + "</tr>"
+        for i in range(4))
+    which = "".join(f'<li><b class="n">{i}.</b> &nbsp;{p.circ("a.", c == "a")} {a} &emsp; {p.circ("b.", c == "b")} {b}</li>'
+                    for i, (a, b, c) in enumerate(WHICH, 1))
+    page4 = f"""  <h2>Two sounds you know</h2>
   <div class="rhythm">
-    <div><div class="big" style="font-size:22px;">How <b>LONG</b> have you <b>LIVED</b> here?</div><p><b>How long</b> and the <b>verb</b> are loud. <i>have you</i> is fast: &ldquo;h&rsquo;v you.&rdquo;</p></div>
-    <div><div class="big" style="font-size:22px;">I&rsquo;ve lived here for <b>SIX YEARS</b>.</div><p><b>for</b> is quiet and short: &ldquo;fer.&rdquo; The <b>time</b> is loud. <b>since</b> is clear: <i>since TWO-thousand NINETEEN</i>.</p></div>
+    <div><div class="big">B / V</div><p><b>B</b> = lips together, pop! &nbsp; <b>V</b> = top teeth on bottom lip, buzz.</p><p class="small">boat / vote &middot; best / vest</p></div>
+    <div><div class="big">i / ee</div><p><b>i</b> = quick, relaxed. &nbsp; <b>ee</b> = long, with a smile.</p><p class="small">live / leave &middot; sit / seat</p></div>
   </div>
-  <p class="how"><b>Try it:</b> Tap the table on the loud words. <i>I&rsquo;ve lived here fer SIX YEARS.</i></p>
+  <p class="how"><b>Try it:</b> Say <i>very cheap</i>. Teeth on your lip for <b>v</b>. Smile for <b>ee</b>. Now say <i>berry chip</i>.</p>
   <div class="task">
-    <h2>A. Listen: for or since?</h2>
-    <p class="how">Your teacher reads the end of the sentence. Is it <b>for</b> or <b>since</b>? Circle it. Then write the time you hear.</p>
-    <ol class="items listen2">{hear}</ol>
-  </div>
-  <div class="task">
-    <h2>B. Around the table</h2>
-    <p class="how">Go around fast. Each person says: <i>&ldquo;I&rsquo;ve lived here for ___.&rdquo;</i> Then again with <i>since</i>. Keep <b>for</b> quiet!</p>
+    <h2>A. Listen and circle</h2>
+    <p class="how">Your teacher says <b>one</b> word. Circle the word you hear.</p>
+    <table class="pairs">{rows}</table>
   </div>
   <div class="task">
-    <h2>C. Interview your table</h2>
-    <p class="how">Ask the people <b>at your table</b>. Write a name and the answer. Answer with <b>for</b> or <b>since</b>.</p>
-    <table class="who"><tr><th style="text-align:left;padding:4px 10px;">Question</th><th>Name</th><th>Answer</th></tr>{rows}</table>
+    <h2>B. Your turn: partner game</h2>
+    <p class="how">Use the same words. <b>Partner A</b> says one word. <b>Partner B</b> points to it. Right? Switch. Wrong? Try again slowly.</p>
+  </div>
+  <div class="task">
+    <h2>C. Listen again: which sentence?</h2>
+    <p class="how">Your teacher says <b>a</b> or <b>b</b>. Circle the letter.</p>
+    <ol class="items">{which}</ol>
   </div>"""
     page5 = f"""  <div class="task">
-    <h2>D. Read aloud with a partner</h2>
-    <p class="how">A job interview at a restaurant. <b>A</b> = manager. <b>B</b> = you. Then <b>switch</b>.</p>
-    <div class="tip" style="font-size:18px; line-height:1.7;">
-      <b>A:</b> So, how long have you worked as a cook?<br>
-      <b>B:</b> I&rsquo;ve worked as a cook for eight years.<br>
-      <b>A:</b> Great. And how long have you lived in Boston?<br>
-      <b>B:</b> I&rsquo;ve lived here since 2021.<br>
-      <b>A:</b> Have you ever worked in a big kitchen?<br>
-      <b>B:</b> Yes, I have. I worked in a hotel kitchen for three years.<br>
-      <b>A:</b> Have you finished your food safety certificate yet?<br>
-      <b>B:</b> Yes, I have. I&rsquo;ve already finished it.
-    </div>
-  </div>
-  <div class="task">
-    <h2>E. Talk together</h2>
-    <p class="how">Ask your group. Answer with a <b>full sentence</b> with <b>for</b> or <b>since</b>. Then ask: <i>&ldquo;Really? Why?&rdquo;</i></p>
+    <h2>D. Read aloud</h2>
+    <p class="how">Take turns. Read one sentence each. Watch your lips and your smile!</p>
     <ol class="read-aloud">
-      <li>How long have you had your phone? Do you like it?</li>
-      <li>How long have you known the oldest friend you have?</li>
-      <li>What food have you eaten since you were a child?</li>
-      <li>How long have you studied English? What helps you most?</li>
+      <li>Vivian bought a very big bag of beans.</li>
+      <li>Please keep the receipt. You will need it.</li>
+      <li>Victor deposited his check at the bank.</li>
+      <li>Is this vest cheap? It&rsquo;s the best one.</li>
+      <li>If you leave the store, you can&rsquo;t get a refund.</li>
+      <li>We live near a very busy street.</li>
+      <li>Have you ever bought a used van?</li>
+      <li>Steve sells cheap vegetables every week.</li>
     </ol>
   </div>
   <div class="task">
-    <h2>F. Say it to your teacher</h2>
-    <p class="how">Write one sentence with <b>for</b> and one with <b>since</b>. Read them to your teacher. Quiet <b>for</b>!</p>
-    <div class="gline"><b>for</b>{p.ln("<i>answers vary</i>")}</div>
-    <div class="gline"><b>since</b>{p.ln("<i>answers vary</i>")}</div>
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b>. Then ask one more question: <i>&ldquo;Why?&rdquo;</i> or <i>&ldquo;Really?&rdquo;</i></p>
+    <ol class="read-aloud">
+      <li>What is the best thing you have bought this year?</li>
+      <li>Have you ever returned something to a store? Why?</li>
+      <li>Do you usually pay with cash or a card?</li>
+      <li>Where can you buy cheap vegetables near you?</li>
+    </ol>
+  </div>
+  <div class="task">
+    <h2>F. My hard words</h2>
+    <p class="how">Write 3 words with <b>b, v, i,</b> or <b>ee</b> that are hard for you. Practice them at home.</p>
+    {p.ln("<i>answers vary</i>")}
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    sub = "How long have you&hellip;? &middot; with a teacher"
+    sub = "B/V and i/ee review &middot; with a teacher"
     return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank(
-    "week12-for-since", replace=[("Today is <b>Thursday, December 3, 2026</b>", "Today is <b>Tuesday, December 8, 2026</b>")])
-# For or since? game (page 6): (emoji, time words, answer)
-TIMES = [
-    ("&#128197;", "3 years", "for"), ("&#128198;", "Monday", "since"), ("&#128336;", "2019", "since"),
-    ("&#9203;", "a long time", "for"), ("&#128118;", "I was a kid", "since"), ("&#128467;&#65039;", "two weeks", "for"),
-    ("&#9728;&#65039;", "last summer", "since"), ("&#127793;", "six months", "for"), ("&#10052;&#65039;", "January", "since"),
-    ("&#9201;&#65039;", "10 minutes", "for"), ("&#128666;", "I moved here", "since"), ("&#128338;", "a few days", "for"),
-    ("&#9200;", "8:00 this morning", "since"), ("&#127874;", "my last birthday", "since"), ("&#128200;", "a month", "for"),
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("zero-first-conditional")
+# Review game (page 6): money questions from 4 grammar points. (emoji, question, pattern tag, sample answer for the key)
+QUESTIONS = [
+    ("&#128179;", "What do you do if you lose your bank card?", "If + V1, V1", "If I lose my card, I call the bank."),
+    ("&#128181;", "What will you do if you get paid extra this week?", "If + V1, will + V1", "If I get paid extra, I will save it."),
+    ("&#128200;", "What should you do if a store charges you two times?", "should + V1", "You should call the store."),
+    ("&#128091;", "Have you ever lost your wallet?", "Yes, I have. / No, never.", "No, I have never lost my wallet."),
+    ("&#128176;", "Have you paid all your bills yet this month?", "already / not yet", "Yes, I&rsquo;ve already paid them. / No, not yet."),
+    ("&#128273;", "What should you do if a stranger asks for your PIN?", "shouldn&rsquo;t / must not + V1", "You must not share your PIN."),
+    ("&#128717;&#65039;", "Have you ever returned something to a store?", "Yes, I have. + When did you&hellip;?", "Yes, I have. I returned shoes last month."),
+    ("&#128176;", "What can you buy for $5?", "can + V1", "I can buy a coffee and a muffin."),
+    ("&#128241;", "What do you do if your phone bill is too high?", "If + V1, V1", "If my bill is too high, I call the company."),
+    ("&#127759;", "Have you ever sent money to another country?", "Have you ever + V3?", "Yes, I have. I sent money to my mother."),
+    ("&#127974;", "What must you bring to open a bank account?", "must + V1", "You must bring your ID."),
+    ("&#9200;", "What happens if you pay a bill late?", "If + V1, V1", "If you pay late, you pay a fee."),
+    ("&#129518;", "Have you already done your grocery shopping this week?", "already / yet + V3", "Yes, I&rsquo;ve already done it. / No, I haven&rsquo;t done it yet."),
+    ("&#127873;", "What will you buy if you have $100 tomorrow?", "If + V1, will + V1", "If I have $100, I will buy winter boots."),
+    ("&#127970;", "Which bank or store do you recommend? Why should we go there?", "should + V1", "You should go to Market Basket. It&rsquo;s cheap."),
 ]
 
 
 def game(p, key):
-    items = [(e, f"&hellip; {t}", None, a) for e, t, a in TIMES]
+    items = [(e, q, tag, None) for e, q, tag, _ in QUESTIONS]  # samples are in the leader guide
     page6 = f"""  <div class="task">
-    <h2>How to play: For or since?</h2>
+    <h2>How to play</h2>
     <ol class="items play" style="list-style:none;">
-      <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
-      <li><b class="n">2.</b> Say a <b>true</b> sentence with <b>have + V3</b> and the time words. Add <b>for</b> or <b>since</b>. <b>Stuck?</b> Use a phrase from page 5.</li>
-      <li><b class="n">3.</b> The group checks: <b>for</b> or <b>since</b>? <b>V3</b>? Right = 1 point ( <b>|</b> ).</li>
-      <li><b class="n">4.</b> The group asks: <i>&ldquo;Really? Where?&rdquo;</i> Then the next person picks. Most points wins!</li>
+      <li><b class="n">1.</b> Pick a question. Ask the person on your <b>left</b>. Everyone puts an <b>&#10007;</b> on it.</li>
+      <li><b class="n">2.</b> They answer with a <b>full sentence</b>. Look at the small words in the box for help. <b>If</b> questions: look at page 5.</li>
+      <li><b class="n">3.</b> The group checks: is the grammar right? <b>Yes</b> = 1 point ( <b>|</b> ). <b>Not sure?</b> Ask a teacher.</li>
+      <li><b class="n">4.</b> Then that person picks the next question. Most points when the timer rings wins!</li>
     </ol>
   </div>
-  <div class="key" style="margin-bottom:10px;">
-    <div><b>for</b> + how much time<br>I have lived here <b>for</b> 3 years.</div>
-    <div><b>since</b> + the start point<br>I have had my phone <b>since</b> 2019.</div>
+  <div class="gram3" style="font-size:15px;">
+    <div><b>If</b> it rains, I <b>take</b> the bus.<br><b>If</b> it rains tomorrow, I <b>will take</b> the bus.</div>
+    <div>You <b>should / must / can</b> + V1.<br>No <i>to</i>, no <i>-s</i>.</div>
+    <div><b>Have you ever</b> + V3?<br>I&rsquo;ve <b>already</b> paid. / Not <b>yet</b>.</div>
   </div>
   {L.board(items, key)}
   {L.SCORE}
   <div class="task">
-    <h2>Write your best sentence</h2>
-    {p.ln("<i>answers vary: have / has + V3 + for / since</i>")}
+    <h2>Write your best answer</h2>
+    {p.ln("<i>answers vary: check the pattern in the box</i>")}
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
-            + L.page("", "STATION 3: GAME", "For or since? &middot; with your group", 6, page6, key))
+    return (L.phrase_bank_page(PB_FRONT, "Review: if &middot; use it in the game", key)
+            + L.page("", "STATION 3: GAME", "Money review &middot; with your group", 6, page6, key))
 
 
-TF = [("The bigger package is always the better deal.", "F"),
-      ("The unit price tells you the price for one pound, ounce, or egg.", "T"),
-      ("The 20-lb bag of rice is cheaper per pound.", "T"),
-      ("Bananas are on sale this week.", "N"),
-      ("The 18-pack of eggs costs less per egg.", "F"),
-      ("The store sells organic milk.", "N")]
-DEALS = [("Rice", "2 lb, $3.49", "20 lb, $21.99", "20 lb", "$1.75/lb vs $1.10/lb"),
-         ("Cereal", "12 oz, $3.99", "24 oz, $6.49", "24 oz", "33&cent;/oz vs 27&cent;/oz"),
-         ("Olive oil", "17 oz, $8.99", "34 oz, $19.49", "17 oz", "53&cent;/oz vs 57&cent;/oz. Small is cheaper!"),
-         ("Eggs", "12, $3.99", "18, $6.29", "12", "33&cent; vs 35&cent; an egg. Small is cheaper!")]
-FAMILIES = [("Mr. Ortiz", "the gallon of milk", "No", "He lives alone. It will go bad before he drinks it."),
-            ("The Diallo family", "the 20-lb bag of rice", "Yes", "6 people eat rice every day. Rice doesn&rsquo;t go bad fast."),
-            ("Rosa", "bananas for 3 weeks", "No", "Bananas go bad in a few days.")]
+TF = [("You can return the lamp marked FS.", "F"),
+      ("With no receipt, you get your money back in cash.", "F"),
+      ("The store is open on Sundays.", "N"),
+      ("A refund to a card can take 5&ndash;7 business days.", "T"),
+      ("The store charged tax on the jacket.", "F"),
+      ("You can exchange clothes for a new size for 60 days.", "T")]
+FAMILY = [("Ana", "towels", "Refund", "Wrong color, has the receipt. 24 days is less than 30."),
+          ("Marco", "lamp", "No", "FS = final sale. No returns or exchanges."),
+          ("Bia", "headphones", "No", "Electronics: 14 days. Nov. 14 to Dec. 8 is 24 days."),
+          ("Leo", "jacket", "Exchange", "Too big. Clothes: new size for 60 days.")]
 
 
 def real_world(p, key):
     tf = "".join(f'<tr><td>{i}. {s}</td>' + "".join(f'<td class="c">{p.cb(a == x)}</td>' for x in "TFN") + "</tr>"
                  for i, (s, a) in enumerate(TF, 1))
-    deals = "".join(f'<tr><td class="t">{n}</td><td class="c">{p.circ(a, w == a.split(",")[0])}</td><td class="c">{p.circ(b, w == b.split(",")[0])}</td>{p.td(why)}</tr>'
-                    for n, a, b, w, why in DEALS)
-    page8 = f"""  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the shelf tags). Read them <b>together</b>. You can use your phone calculator. <b>&#9733;</b> = challenge.</p>
+    page8 = f"""  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the receipt and the return policy). Read it <b>together</b>. Check answers with your group. <b>&#9733;</b> = challenge.</p>
   <div class="task">
-    <h2>A. Read a shelf tag</h2>
-    <p class="how">Look at the tag for the <b>small</b> bag of rice.</p>
+    <h2>A. Find it</h2>
     <ol class="items">
-      <li><b class="n">1.</b> What is the price? {p.b("$3.49", "short")} &emsp; How big is the bag? {p.b("2 lb", "short")}</li>
-      <li><b class="n">2.</b> What is the <b>unit price</b>? {p.b("$1.75 per pound", "long")}</li>
+      <li><b class="n">1.</b> When did the Silva family shop? {p.b("November 14, 2026")}</li>
+      <li><b class="n">2.</b> How did they pay? {p.b("debit card")}</li>
+      <li><b class="n">3.</b> How many days do you have for most returns? {p.b("30 days", "short")}</li>
+      <li><b class="n">4.</b> What does <b>FS</b> mean? {p.b("final sale")}</li>
     </ol>
   </div>
   <div class="task">
-    <h2>B. Which is the better deal?</h2>
-    <p class="how">Look at the <b>unit price</b> on each tag. Circle the better deal. <b>Careful!</b> Bigger is not always cheaper.</p>
-    <table class="pick"><tr><th style="width:16%;">Food</th><th style="width:20%;">Small</th><th style="width:20%;">Big</th><th>Unit prices</th></tr>{deals}</table>
+    <h2>B. True, false, or not on the page?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the page, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the page</th></tr>{tf}</table>
   </div>
   <div class="task">
-    <h2>C. True, false, or not on the tags?</h2>
-    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the tags, you <b>can&rsquo;t know</b>.</p>
-    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the tags</th></tr>{tf}</table>
+    <h2>C. What will happen?</h2>
+    <p class="how">Find the rule in the return policy. Finish the sentence.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> If you return the blender on Dec. 10 with the receipt, you will get {p.b("a full refund", "long")}.</li>
+      <li><b class="n">2.</b> If you don&rsquo;t have a receipt, you will get {p.b("store credit (a gift card)", "long")}.</li>
+      <li><b class="n">3.</b> If you paid with cash, you will get {p.b("cash back", "long")}.</li>
+      <li><b class="n">4.</b> <b>&#9733;</b> You return <b>opened</b> headphones on Nov. 20. How much is the fee?{p.ln("15% of $49.99 = $7.50 (restocking fee)")}</li>
+    </ol>
   </div>
-  <p class="how bottom"><b>Talk:</b> Do you look at the unit price when you shop? What do you buy in bulk?</p>"""
-    fam = "".join(f'<tr><td class="t" style="white-space:normal;">{n}<br><span class="small" style="font-weight:normal;">{it}</span></td>'
-                  f'<td class="c">{p.circ("Yes", a == "Yes")} / {p.circ("No", a == "No")}</td>{p.td(w) if key else "<td></td>"}</tr>'
-                  for n, it, a, w in FAMILIES)
-    page9 = f"""  <p class="how">Now look at <b>page 2</b> on the table: <b>Should they buy in bulk?</b></p>
+  <p class="how bottom"><b>Talk:</b> Have you ever returned something? Was it easy or hard?</p>"""
+    rows = "".join(f'<tr><td class="t">{n} &middot; {it}</td><td class="c">Refund / Exchange / No</td>{p.td(w) if key else "<td></td>"}</tr>'
+                   .replace("Refund / Exchange / No", (" / ".join(p.circ(x, x == a) for x in ("Refund", "Exchange", "No")))) for n, it, a, w in FAMILY)
+    page9 = f"""  <p class="how">Now look at <b>page 2</b> on the table: <b>the Silva family</b>. Today is <b>Tuesday, December 8</b>.</p>
   <div class="task">
-    <h2>D. Should they buy it?</h2>
-    <p class="how">A good deal is not good if the food <b>goes bad</b>. Circle <b>Yes</b> or <b>No</b>. Write why.</p>
-    <table class="pick tall"><tr><th style="width:28%;">Who &middot; what</th><th style="width:16%;">Buy it?</th><th>Why?</th></tr>{fam}</table>
-    <p class="how"><b>&#9733;</b> Kim&rsquo;s family needs 34 ounces of olive oil. What should they buy? How much will they save?</p>
-    {p.ln("Two 17-oz bottles: $17.98. The 34-oz bottle is $19.49. They save $1.51.")}
+    <h2>D. Can they return it?</h2>
+    <p class="how">Read about each person. Circle <b>Refund</b>, <b>Exchange</b>, or <b>No</b>. Then write why. Check the <b>days</b> and the <b>rules</b>.</p>
+    <table class="pick tall">
+      <tr><th style="width:24%;">Person &middot; item</th><th style="width:34%;">Circle one</th><th>Why?</th></tr>
+      {rows}
+    </table>
   </div>
   <div class="task">
-    <h2>E. Your turn</h2>
-    <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> home.</p>
+    <h2>E. At the returns desk</h2>
+    <p class="how">Choose one person. <b>A</b> = the cashier. <b>B</b> = the customer. Fill in, then act it out. <b>Switch</b>.</p>
     <div class="textbox">
-      At my house, we buy {p.b("<i>answers vary</i>")} in bulk because {p.b("<i>answers vary</i>", "long")}.<br>
-      We never stock up on {p.b("<i>answers vary</i>")}. If we buy a lot, it will {p.b("<i>go bad</i>")}.<br>
-      We often run out of {p.b("<i>answers vary</i>")}.
+      <b>B:</b> Hi. I want to {p.b("<i>return / exchange</i>")} this {p.b("<i>item</i>", "short")}.<br>
+      <b>A:</b> OK. When did you buy it? &emsp; <b>B:</b> I bought it on {p.b("<i>November 14</i>")}.<br>
+      <b>A:</b> What&rsquo;s the problem? &emsp; <b>B:</b> {p.b("<i>answers vary</i>", "long")}<br>
+      <b>A:</b> Do you have the receipt? &emsp; <b>B:</b> {p.b("<i>answers vary</i>", "long")}<br>
+      <b>A:</b> {p.b("<i>answers vary: use the policy</i>", "long")}
     </div>
   </div>"""
     sub = "with your group"
     return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
-EXTRA_CSS = """
-  .tl { border: 1.5px solid #000; border-radius: 6px; padding: 4px 8px; margin-bottom: 8px; }
-  .tl svg { display: block; width: 100%; height: 0.95in; }
-  .model { border-left: 5px solid #000; background: #f4f4f4; padding: 8px 12px; font-size: 16.5px; line-height: 1.5; }
-  .mytl { display: grid; grid-template-columns: repeat(4, 1fr) 0.5fr; gap: 6px; border-top: 3px solid #000; padding-top: 10px; margin-top: 10px; font-size: 16px; line-height: 2; }
-  .mytl > div { position: relative; }
-  .mytl .dot { position: absolute; top: -18px; left: 10px; width: 14px; height: 14px; border-radius: 50%; background: #000; }
-  .mytl .now .dot { left: 0; }
-  .mytl .blank { min-width: 1.4in; }
-  .mytl .blank.short { min-width: 0.7in; }
-  .wr .line { height: 27px; }
-  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; font-size: 16px; }
-"""
-
-
 def packet(key):
     p = L.P(key)
     body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
-            + L.verb_charts(9, EAT, "she", DRINK, "we", key) + L.write_about_you_page(PB_BACK, key))
-    return L.doc("Week 13 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS + EXTRA_CSS, body)
+            + L.verb_charts(9, BUY, "he", SELL, "they", key) + L.write_about_you_page(PB_BACK, key))
+    return L.doc("Week 13 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS, body)
 
 
 DOC_CSS = """
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1b1b1b; background: #fff;
          font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store, prices, and people. */
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store, family, and card number. */
   .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
           page-break-after: always; break-after: page; }
   @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
   @media print { @page { size: letter portrait; margin: 0; } }
   .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
-  .h { font-size: 30px; font-weight: bold; color: #b0531c; margin-bottom: 2px; }
-  .sub { margin-bottom: 12px; }
-  .tags { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 16px; }
-  .pair-label { grid-column: 1 / -1; font-size: 19px; font-weight: bold; color: #b0531c; border-bottom: 2px solid #f0d2bd; margin-top: 2px; }
-  .tag { display: flex; border: 2px solid #333; border-radius: 4px; overflow: hidden; background: #fff; height: 0.92in; }
-  .tag .left { flex: 1; padding: 6px 10px; display: flex; flex-direction: column; justify-content: space-between; }
-  .tag .name { font-size: 16px; font-weight: bold; text-transform: uppercase; }
-  .tag .size { font-size: 14px; color: #444; }
-  .tag .unit { background: #fff3a8; border: 1px solid #c9b200; border-radius: 3px; font-size: 14px; padding: 1px 6px; width: fit-content; }
-  .tag .right { width: 1.25in; background: #b0531c; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; }
-  .help { margin-top: auto; display: flex; gap: 14px; align-items: center; border: 2px dashed #b0531c; border-radius: 8px; padding: 10px 14px; }
-  .help .demo { flex: none; }
-  .person { display: flex; gap: 14px; border: 2px solid #f0d2bd; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
-  .avatar { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: bold; }
-  .person h2 { font-size: 21px; margin-bottom: 4px; }
-  .person ul { padding-left: 1.1em; }
-  .dates { border: 2px solid #b0531c; border-radius: 8px; padding: 10px 16px; margin-top: auto; }
-  .dates h2 { color: #b0531c; font-size: 20px; margin-bottom: 4px; }
+  .row { display: flex; gap: 18px; align-items: flex-start; }
+  .receipt { width: 3.3in; flex: none; background: #fbfbf7; border: 1px solid #ccc; box-shadow: 2px 3px 0 #ddd;
+             font-family: "Courier New", Courier, monospace; font-size: 14.5px; line-height: 1.45; padding: 14px 16px; }
+  .receipt .c { text-align: center; }
+  .receipt .store { font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 22px; font-weight: bold; color: #0f5e75; }
+  .receipt hr { border: none; border-top: 1.5px dashed #888; margin: 6px 0; }
+  .receipt table { width: 100%; border-collapse: collapse; }
+  .receipt td { padding: 1px 0; vertical-align: top; }
+  .receipt td.r { text-align: right; white-space: nowrap; }
+  .receipt .tot td { font-weight: bold; font-size: 16px; }
+  .policy { flex: 1; border: 2px solid #0f5e75; border-radius: 8px; overflow: hidden; }
+  .policy h1 { background: #0f5e75; color: #fff; font-size: 22px; padding: 8px 14px; }
+  .policy ul { padding: 8px 14px 8px 30px; font-size: 16px; }
+  .policy li { margin-bottom: 7px; }
+  .policy .warn { background: #fdecea; border-left: 5px solid #c0392b; padding: 4px 8px; margin-left: -16px; list-style: none; }
+  .h { font-size: 30px; font-weight: bold; color: #0f5e75; margin-bottom: 4px; }
+  .person { display: flex; gap: 14px; border: 2px solid #cfe2e8; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+  .avatar { width: 58px; height: 58px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: bold; }
+  .person h2 { font-size: 21px; margin-bottom: 2px; }
+  .bubble { background: #eef6f8; border-radius: 14px; padding: 8px 12px; font-size: 17px; }
+  .words-box { margin-top: 22px; border: 2px dashed #0f5e75; border-radius: 10px; padding: 12px 18px; }
+  .words-box h2 { font-size: 21px; color: #0f5e75; margin-bottom: 6px; }
+  .wg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; font-size: 17px; }
+  .cal { margin-top: auto; border: 2px dashed #0f5e75; border-radius: 8px; padding: 8px 14px; font-size: 16px; }
 """
-
-TAGS = [("Rice", [("Long grain rice", "2 lb bag", "$3.49", "$1.75 per lb"), ("Long grain rice", "20 lb bag", "$21.99", "$1.10 per lb")]),
-        ("Cereal", [("Oat cereal", "12 oz box", "$3.99", "33.3&cent; per oz"), ("Oat cereal", "24 oz box", "$6.49", "27.0&cent; per oz")]),
-        ("Olive oil", [("Olive oil", "17 oz bottle", "$8.99", "52.9&cent; per oz"), ("Olive oil", "34 oz bottle", "$19.49", "57.3&cent; per oz")]),
-        ("Eggs", [("Large eggs", "12 eggs", "$3.99", "33.3&cent; per egg"), ("Large eggs", "18 eggs", "$6.29", "34.9&cent; per egg")]),
-        ("Milk", [("Whole milk", "half gallon", "$2.89", "$5.78 per gallon"), ("Whole milk", "1 gallon", "$4.29", "$4.29 per gallon")])]
 
 
 def documents():
-    tags = "".join(f'<div class="pair-label">{food}</div>' + "".join(
-        f'<div class="tag"><div class="left"><div><div class="name">{n}</div><div class="size">{sz}</div></div>'
-        f'<div class="unit">Unit price: <b>{u}</b></div></div><div class="right">{pr}</div></div>' for n, sz, pr, u in items)
-        for food, items in TAGS)
-    sheet1 = f"""<section class="page">
+    sheet1 = """<section class="page">
   <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
-  <div class="h">Eastside Market: shelf tags</div>
-  <p class="sub">Two sizes of the same food. Which one is the better deal? Look at the <b>unit price</b> (the yellow box).</p>
-  <div class="tags">{tags}</div>
-  <div class="help" style="margin-top:14px;"><b style="font-size:19px;color:#b0531c;">Unit price</b><span>= the price for <b>one</b> pound, ounce, egg, or gallon. The <b>lower</b> unit price is the better deal.<br>Big package: $21.99 for 20 lb &rarr; $21.99 &divide; 20 = <b>$1.10 per lb</b>.</span></div>
-</section>"""
-    people = [("O", "#1f6fb2", "Mr. Ortiz", ["He lives alone.", "He drinks milk only in his coffee, about 1 cup a week.",
-                                              "Milk goes bad about one week after you open it."]),
-              ("D", "#2e7d32", "The Diallo family", ["6 people live in their apartment.", "They eat rice every day, lunch and dinner.",
-                                                      "They have a big closet. Rice stays good for a long time."]),
-              ("R", "#c0392b", "Rosa", ["Bananas are cheap this week. She wants to stock up for 3 weeks.",
-                                         "Bananas get brown and soft in 4 or 5 days."]),
-              ("K", "#7d3c98", "Kim&rsquo;s family", ["They cook with olive oil every day.", "They need 34 ounces of olive oil for the month."])]
-    cards = "".join(f'<div class="person"><div class="avatar" style="background:{c};">{i}</div><div><h2>{n}</h2><ul>'
-                    + "".join(f"<li>{x}</li>" for x in facts) + "</ul></div></div>" for i, c, n, facts in people)
-    sheet2 = f"""<section class="page">
-  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
-  <div class="h">Should they buy in bulk?</div>
-  <p class="sub">A big package can save money. But if the food <b>goes bad</b>, you throw it away. That costs money too!</p>
-  {cards}
-  <div class="dates">
-    <h2>Dates on food</h2>
-    <b>Best by / Use by:</b> the food is best before this date. &middot; <b>Sell by:</b> a date for the store.<br>
-    Many foods are still OK after the date. If it smells bad or looks bad, throw it out.
+  <div class="row">
+    <div class="receipt">
+      <div class="c"><div class="store">Bright Home</div>Home &middot; Kitchen &middot; Clothing<br>200 River Road</div>
+      <hr>
+      <div>Date: 11/14/2026 &nbsp; 3:42 PM<br>Customer: SILVA</div>
+      <hr>
+      <table>
+        <tr><td>BLENDER</td><td class="r">39.99 T</td></tr>
+        <tr><td>BATH TOWELS 2 @ 12.99</td><td class="r">25.98 T</td></tr>
+        <tr><td>WINTER JACKET (M)</td><td class="r">59.99</td></tr>
+        <tr><td>TABLE LAMP &nbsp;**FS**</td><td class="r">19.99 T</td></tr>
+        <tr><td>HEADPHONES</td><td class="r">49.99 T</td></tr>
+      </table>
+      <hr>
+      <table>
+        <tr><td>SUBTOTAL</td><td class="r">195.94</td></tr>
+        <tr><td>MA SALES TAX 6.25%</td><td class="r">8.50</td></tr>
+        <tr class="tot"><td>TOTAL</td><td class="r">$204.44</td></tr>
+      </table>
+      <hr>
+      <div>DEBIT CARD **** 4417<br>APPROVED</div>
+      <hr>
+      <div class="c">T = taxed &nbsp; FS = FINAL SALE<br>KEEP THIS RECEIPT<br>Thank you!</div>
+    </div>
+    <div class="policy">
+      <h1>Return Policy</h1>
+      <ul>
+        <li><b>Most items:</b> return in <b>30 days</b> with your receipt for a <b>full refund</b>.</li>
+        <li><b>No receipt?</b> You get <b>store credit</b> (a gift card). You must show a photo ID.</li>
+        <li><b>Clothing:</b> exchange for a new size or color for <b>60 days</b> with your receipt.</li>
+        <li><b>Electronics:</b> return in <b>14 days</b> in the box. <b>Opened</b> electronics: <b>15% restocking fee</b>.</li>
+        <li class="warn"><b>Final sale (FS):</b> no returns. No exchanges.</li>
+        <li><b>How you get your money:</b> card payments go back to your card in <b>5&ndash;7 business days</b>. Cash payments get cash.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="words-box">
+    <h2>Useful words at the returns desk</h2>
+    <div class="wg">
+      <div><b>refund</b> = you get your money back</div>
+      <div><b>exchange</b> = you trade it for a different one</div>
+      <div><b>store credit</b> = a gift card for this store</div>
+      <div><b>restocking fee</b> = money you pay to return an opened item</div>
+      <div><b>final sale</b> = you can&rsquo;t return it</div>
+      <div><b>receipt</b> = the paper that shows what you paid</div>
+    </div>
   </div>
 </section>"""
-    return L.doc("Week 13 Tuesday Real World: Shelf Tags and Unit Price", DOC_CSS, sheet1 + sheet2)
+    people = [
+        ("A", "#c0392b", "Ana Silva", "These towels are the wrong color. I have the receipt. I just want my money back."),
+        ("M", "#1f6fb2", "Marco Silva", "The lamp is too small for my desk. Can I return it?"),
+        ("B", "#7d3c98", "Bia Silva", "I opened the headphones and used them. They work, but I don&rsquo;t like them."),
+        ("L", "#2e7d32", "Leo Silva", "The jacket is too big. I want the same jacket in a small. I have the receipt."),
+    ]
+    cards = "".join(f'<div class="person"><div class="avatar" style="background:{c};">{i}</div><div><h2>{n}</h2>'
+                    f'<div class="bubble">&ldquo;{q}&rdquo;</div></div></div>' for i, c, n, q in people)
+    sheet2 = f"""<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="h">The Silva family</div>
+  <p style="margin-bottom:12px;">Today is <b>Tuesday, December 8</b>. The Silva family goes back to Bright Home with their receipt from November 14. Everybody wants something different.</p>
+  {cards}
+  <div class="cal"><b>Count the days:</b> November 14 &rarr; November 30 = 16 days. November 30 &rarr; December 8 = 8 more days. <b>Total: 24 days.</b></div>
+</section>"""
+    return L.doc("Week 13 Tuesday Real World: Receipt and Return Policy", DOC_CSS, sheet1 + sheet2)
 
 
 def self_check():
-    why = {1: "Olive oil and eggs: the small one is cheaper per unit.", 2: "Unit price = price for one.", 3: "$1.10 is less than $1.75.",
-           4: "The tags don&rsquo;t say &ldquo;sale.&rdquo;", 5: "34.9&cent; is more than 33.3&cent;.", 6: "The tags only show whole milk."}
-    word = {"T": "True", "F": "False", "N": "Not on the tags"}
+    why = {1: "FS = final sale. No returns.", 2: "No receipt = store credit (a gift card).",
+           3: "The page doesn&rsquo;t say the store hours.", 4: "Card payments: 5&ndash;7 business days.",
+           5: "No <b>T</b> next to the jacket. (MA doesn&rsquo;t tax clothes under $175.)", 6: "Clothing: 60 days with a receipt."}
+    word = {"T": "True", "F": "False", "N": "Not on the page"}
     tf = "".join(f'<tr><td class="n">{i}</td><td class="a">{word[a]}</td><td class="why">{why[i]}</td></tr>'
                  for i, (_, a) in enumerate(TF, 1))
-    deals = "".join(f'<tr><td class="n">{n}</td><td class="a">{w}</td><td class="why">{why}</td></tr>' for n, _, _, w, why in DEALS)
-    body = f"""<h2>A. Read a shelf tag</h2>
+    body = f"""<h2>A. Find it</h2>
     <table>
-      <tr><td class="n">1</td><td class="a">$3.49 &middot; 2 lb</td><td class="why"></td></tr>
-      <tr><td class="n">2</td><td class="a">$1.75 per pound</td><td class="why">the yellow box</td></tr>
+      <tr><td class="n">1</td><td class="a">November 14, 2026</td><td class="why">11/14/2026</td></tr>
+      <tr><td class="n">2</td><td class="a">debit card</td><td class="why"></td></tr>
+      <tr><td class="n">3</td><td class="a">30 days</td><td class="why"></td></tr>
+      <tr><td class="n">4</td><td class="a">final sale</td><td class="why"></td></tr>
     </table>
-    <h2>B. Which is the better deal?</h2>
-    <table>{deals}</table>
-    <h2>C. True, false, or not on the tags?</h2>
+    <h2>B. True, false, or not on the page?</h2>
     <table>{tf}</table>
-    <div class="tip"><b>Different answer?</b> Compare the yellow unit price boxes together. The <b>lower</b> number wins. <b>Part D hint:</b> will they eat it before it goes bad?</div>"""
+    <h2>C. What will happen?</h2>
+    <table>
+      <tr><td class="n">1</td><td class="a">a full refund</td><td class="why">Dec. 10 is 26 days. Less than 30.</td></tr>
+      <tr><td class="n">2</td><td class="a">store credit</td><td class="why">a gift card</td></tr>
+      <tr><td class="n">3</td><td class="a">cash</td><td class="why"></td></tr>
+      <tr><td class="n">4&#9733;</td><td class="a">$7.50</td><td class="why">15% of $49.99 = $7.4985 &asymp; $7.50</td></tr>
+    </table>
+    <div class="tip"><b>Different answer?</b> Find the rule in the policy together. <b>Part D hint:</b> count the days, and look for <b>FS</b> on the receipt.</div>"""
     return L.self_check_doc("Week 13 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
-    hear = "".join(f'<tr><td class="n">{i}</td><td>I&rsquo;ve lived here <b>{a}</b> {t}.</td></tr>' for i, (a, t) in enumerate(HEAR, 1))
+    words = "".join(f'<tr><td class="n">{i + 1}</td><td>{PAIRS[i][2]}</td><td class="n">{i + 5}</td><td>{PAIRS[i + 4][2]}</td></tr>' for i in range(4))
+    which = "".join(f'<li><b>{c}.</b> {(a if c == "a" else b)}</li>' for a, b, c in WHICH)
     top = L.leader_top(13, "12/8/26", STATIONS, [
-        "<b>This week:</b> practice <b>How long&hellip;? + for / since</b> (started Thursday). Quiz verbs: <b>eat, drink</b>. Week 13 Quiz opens Thu 12/10.",
-        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board).",
-        "<b>Floating:</b> start at <b>Station 4</b> (show one shelf tag and the yellow unit price), then <b>Station 3</b> (listen for <i>since 3 years</i>), then Station 1.",
+        "<b>This week:</b> <b>review</b> (if, can / should / must, have you ever, just / already / yet) with money words. Quiz verbs: <b>buy, sell</b>. Week 13 Quiz (review of weeks 7&ndash;8) opens Thu 12/10, due Tue 12/15. Week 12 Quiz is due today.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Print the 2 color pages (2 copies) and the self-check card.",
+        "<b>Floating:</b> start each block at <b>Station 4</b> (show the receipt: <b>T</b> and <b>FS</b>; do Part B #1 together). Then Station 3, then Station 1.",
         "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (How long&hellip;?)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
-  <p>Two goals: (1) answer <i>How long have you&hellip;?</i> with <b>for / since</b>, and (2) sound natural: <b>for</b> is weak (&ldquo;fer&rdquo;), the time is stressed. Learners often stress <b>FOR</b>, or say <i>since 3 years</i>.</p>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (B/V + i/ee)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
+  <p>A review of Weeks 8 and 10. Mixing both sounds in one sentence is the hard part (<i>very cheap, best vest</i>). Use the same cues: <b>lips / teeth</b> for B/V, <b>relaxed / smile</b> for i/ee.</p>
   <table class="timeline">
-    <tr><td>3 min</td><td><b>The beat.</b> Tap on stressed words: <i>I&rsquo;ve lived here fer SIX YEARS.</i></td></tr>
-    <tr><td>5 min</td><td><b>A. For or since?</b> Read the sentences below at normal speed (weak <i>for</i>!).</td></tr>
-    <tr><td>3 min</td><td><b>B. Around the table.</b> Fast chain. Fix <i>since + length</i> right away.</td></tr>
-    <tr><td>6 min</td><td><b>C. Interview.</b> At the table only. Push for full answers.</td></tr>
-    <tr><td>4 min</td><td><b>D. Read aloud.</b> Pairs read the interview, then switch.</td></tr>
-    <tr><td>4 min</td><td><b>E + F.</b> Talk, then each person reads you their two sentences.</td></tr>
+    <tr><td>3 min</td><td><b>Warm up.</b> <i>very cheap / berry chip</i>. Exaggerate both.</td></tr>
+    <tr><td>5 min</td><td><b>A. Listen and circle.</b> Say each word twice, naturally. Then check.</td></tr>
+    <tr><td>4 min</td><td><b>B. Partner game.</b> Walk around.</td></tr>
+    <tr><td>3 min</td><td><b>C. Which sentence?</b> Read the sentences below.</td></tr>
+    <tr><td>5 min</td><td><b>D. Read aloud.</b> One sentence each. Fix one sound per person.</td></tr>
+    <tr><td>5 min</td><td><b>E. Talk.</b> Full sentence + one follow-up.</td></tr>
   </table>
   <div class="cols">
     <div>
-      <h2>A. Read these sentences</h2>
-      <table class="script">{hear}</table>
+      <h2>A. Say these words</h2>
+      <table class="script">{words}</table>
+      <h2>C. Say these sentences</h2>
+      <ol class="key">{which}</ol>
     </div>
     <div>
       <h2>When they say it wrong</h2>
       <ul class="dots">
-        <li><i>since 3 years</i> &rarr; hold up 3 fingers: <i>for</i> 3 years. Point back to a date: <i>since</i> 2023.</li>
-        <li><i>I live here for 6 years</i> &rarr; recast: <i>You&rsquo;ve lived here for 6 years.</i></li>
-        <li>Fix <b>one</b> thing, then move on.</li>
+        <li>Point: lips or teeth? Smile or relax?</li>
+        <li>Fix <b>one word</b>, then move on.</li>
+        <li>In Part E, repeat it back correctly. Don&rsquo;t stop them.</li>
       </ul>
-      <div class="recast">Learner: &ldquo;I live here since 2020.&rdquo;<br>You: &ldquo;Oh, you&rsquo;ve <b>lived</b> here since 2020? Six years!&rdquo;</div>
+      <div class="recast">Learner: &ldquo;I bought a <u>bery</u> <u>chip</u> coat.&rdquo;<br>You: &ldquo;A <b>v</b>ery ch<b>ee</b>p coat? Nice! Where?&rdquo;</div>
     </div>
   </div>
 </section>"""
@@ -419,39 +475,39 @@ def leader_guide():
     <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
-        <p><b>1. For / since:</b> 1 for &middot; 2 since &middot; 3 since &middot; 4 for &middot; 5 since</p>
-        <p><b>2. Since &rarr; for:</b> 1 ten years &middot; 2 four months &middot; 3 five years &middot; 4 one year</p>
-        <p><b>3. About you:</b> answers vary. Check <i>for + length</i>, <i>since + start</i>, <i>have + V3</i>.</p>
+        <p><b>1. Review:</b> 1 isn&rsquo;t &middot; 2 must show &middot; 3 sent &middot; 4 saving &middot; 5 won&rsquo;t pay &middot; 6 shouldn&rsquo;t share</p>
+        <p><b>2. Words:</b> 1 exchange &middot; 2 refund &middot; 3 withdraw &middot; 4 Deposit &middot; 5 charge &middot; 6 dispute</p>
+        <p><b>3. Advice:</b> answers vary. Check <i>should / can + V1</i>.</p>
       </div>
       <div>
-        <p><b>4. Forms:</b> eat, eats, eating, ate, eaten &middot; drink, drinks, drinking, drank, drunk</p>
-        <p><b>5. Right form:</b> 1 drinks &middot; 2 eating &middot; 3 drink &middot; 4 eat &middot; 5 eat &middot; 6 drinking &middot; 7 eaten &middot; 8 drunk</p>
-        <p><b>6. Your turn:</b> answers vary: <i>I drink &hellip; / I didn&rsquo;t eat &hellip; / How long have you + V3?</i></p>
+        <p><b>4. Forms:</b> buy, buys, buying, bought, bought &middot; sell, sells, selling, sold, sold</p>
+        <p><b>5. Right form:</b> 1 sells &middot; 2 buying &middot; 3 sell &middot; 4 buy &middot; 5 buys &middot; 6 selling &middot; 7 bought &middot; 8 sold</p>
+        <p><b>6. Your turn:</b> answers vary: <i>I bought &hellip; / I don&rsquo;t buy &hellip; online / Have you ever sold &hellip;?</i></p>
       </div>
     </div>
   </div>
   <div class="box">
     <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
-    <p><b>A:</b> {" &middot; ".join(f"{i} {a} ({t})" for i, (a, t) in enumerate(HEAR, 1))} &middot; <b>B&ndash;F:</b> answers vary.</p>
+    <p><b>A:</b> {" &middot; ".join(f"{i + 1} {c}" for i, (_, _, c) in enumerate(PAIRS))} &middot; <b>C:</b> {" &middot; ".join(f"{i} {c}" for i, (_, _, c) in enumerate(WHICH, 1))} &middot; <b>D&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: GAME, For or since? (pages 5&ndash;6)</h2>
-    <p>Page 5 is the for / since phrase bank: 2&ndash;3 minutes on the timeline and Rules A&ndash;D, then play. Page 6: pick a box of time words, say a true <i>have + V3</i> sentence with <b>for</b> or <b>since</b>; the group gives the point. <b>for:</b> {", ".join(t for _, t, a in TIMES if a == "for")} &middot; <b>since:</b> {", ".join(t for _, t, a in TIMES if a == "since")}. Common errors: <i>since 3 years</i>; <i>I have went</i>; <i>I live here for 6 years</i>.</p>
-    <p><b>Page 10, B (today = Tue Dec 8):</b> since 2016 &rarr; for ten years &middot; since Monday &rarr; for one day &middot; since August &rarr; for four months.</p>
+    <h2>Station 3: GAME, Money review (pages 5&ndash;6)</h2>
+    <p>Page 5 is the zero / first conditional phrase bank: 2 minutes on the two kinds of <i>if</i> (no <i>will</i> after <i>if</i>), then play. Page 6: 15 money questions from 4 weeks. Each box shows the pattern. The group gives the point; check with them if they aren&rsquo;t sure. Answers vary. Most common errors: <i>If I <s>will get</s> paid&hellip;</i> &middot; <i>You should <s>to</s> call&hellip;</i> &middot; <i>Have you ever <s>send</s>&hellip;?</i></p>
+    <p><b>Samples:</b> {" &middot; ".join(f"{i}. {a}" for i, (_, _, _, a) in enumerate(QUESTIONS, 1))}</p>
   </div>
   <div class="box">
-    <h2>Station 4: REAL WORLD, Shelf tags (pages 7&ndash;8 + 2 color pages)</h2>
-    <p><b>A:</b> 1 $3.49, 2 lb &middot; 2 $1.75 per pound</p>
-    <p><b>B:</b> {" &middot; ".join(f"{n}: <b>{w}</b> ({why})" for n, _, _, w, why in DEALS)}</p>
-    <p><b>C:</b> 1 False &middot; 2 True &middot; 3 True &middot; 4 Not on the tags &middot; 5 False &middot; 6 Not on the tags</p>
-    <p><b>D:</b> {" &middot; ".join(f"<b>{n}</b>: {a}. {w}" for n, _, a, w in FAMILIES)} &middot; &#9733; Kim: two 17-oz bottles = $17.98 vs $19.49, save $1.51.</p>
-    <p><b>E:</b> answers vary. Check <i>If we buy a lot, it will go bad.</i></p>
-    <p style="font-size:12px;">Store, prices, and people are made up. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
+    <h2>Station 4: REAL WORLD, Receipt + return policy (pages 7&ndash;8 + 2 color pages)</h2>
+    <p><b>A:</b> 1 Nov. 14, 2026 &middot; 2 debit card &middot; 3 30 days &middot; 4 final sale</p>
+    <p><b>B:</b> 1 False &middot; 2 False (store credit) &middot; 3 Not on the page &middot; 4 True &middot; 5 False (no T) &middot; 6 True</p>
+    <p><b>C:</b> 1 a full refund (26 days) &middot; 2 store credit &middot; 3 cash &middot; &#9733;4 $7.50 (15% of $49.99)</p>
+    <p><b>D:</b> {" &middot; ".join(f"<b>{n}</b> ({it}) &rarr; {a}: {w}" for n, it, a, w in FAMILY)}</p>
+    <p><b>E:</b> answers vary. The cashier&rsquo;s answer must match the policy.</p>
+    <p style="font-size:12px;">Store, family, and card number are made up. Tax: 6.25% on $135.95 of taxable items = $8.50; the jacket is clothing under $175, so no tax in MA. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10)</h2>
-    <p><b>Chart 1 (she + eat, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
-    <p><b>Chart 2 (we + drink):</b> drink, drinks, drinking, drank, drunk &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("we", DRINK))}</p>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
+    <p><b>Chart 1 (he + buy, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
+    <p><b>Chart 2 (they + sell):</b> sell, sells, selling, sold, sold &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("they", SELL))}</p>
   </div>
 </section>"""
     return L.doc("Week 13 Tuesday Stations Leader Guide", L.LEADER_CSS, page1 + page2)

@@ -17,7 +17,7 @@ import {
   type PathRoundResult,
 } from '@/lib/pattern-path/engine';
 import { SOUND_PATH_FINAL_ID, getSoundLevel, getSoundWorld, type SoundPathWorldId } from '@/lib/sound-path/levels';
-import { getSummary, getUpNext, processRound } from '@/lib/sound-path/progress';
+import { getSummary, getUpNext, isMapGoalMet, processRound } from '@/lib/sound-path/progress';
 import {
   buildCheckpointRound,
   buildFinalRound,
@@ -151,7 +151,8 @@ export function SoundPathGame({ activityId, userRole, extraPracticeActivityId }:
           body: JSON.stringify({
             activityId,
             progress: summary.percent,
-            status: summary.percent >= 100 ? 'completed' : 'in_progress',
+            // The map item counts as done once Level 1 Round 1 is passed.
+            status: isMapGoalMet(result.progress) ? 'completed' : 'in_progress',
             categoryData: result.progress,
             groupId: result.stepId,
             roundMode: toServerRoundMode(result.mode),

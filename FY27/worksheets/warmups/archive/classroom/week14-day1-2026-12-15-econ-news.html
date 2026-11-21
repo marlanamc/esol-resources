@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 14 Day 1 Arrival Warm-Up</title>
+<style>
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/AtkinsonHyperlegible-Regular.ttf"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/AtkinsonHyperlegible-Bold.ttf"); font-weight: 700; font-style: normal; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/AtkinsonHyperlegible-Italic.ttf"); font-weight: 400; font-style: italic; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/AtkinsonHyperlegible-BoldItalic.ttf"); font-weight: 700; font-style: italic; }
+</style>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .copy {
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.5in;
+  }
+  /* Type scale: 30 / 24 / 19 / 15 — each step >=1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 9px;
+  }
+  h1 { font-size: 30px; }
+  .date { font-size: 15px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 15px; font-style: italic; margin-top: -6px; margin-bottom: 10px; }
+
+  /* Section gap (.task) is much larger than the item gaps inside it. */
+  .task { margin-bottom: 14px; }
+  .task-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
+  .task-instructions { font-size: 15px; margin-bottom: 10px; }
+  .task-example { font-size: 15px; margin-bottom: 10px; }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 8px 12px;
+    margin-bottom: 9px;
+    letter-spacing: 0.3px;
+  }
+
+  .item-list { list-style: none; }
+  .item-list li { margin-bottom: 8px; }
+  .item-list li b.n { margin-right: 6px; }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 7em;
+    margin: 0 2px;
+  }
+  .blank.short { width: 3.4em; }
+  .blank.long { width: 11.9em; }
+  .answer-line {
+    display: block;
+    border-bottom: 1.5px solid #000;
+    height: 26px;
+    margin-left: 1.3em;
+  }
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 30px;
+    margin-bottom: 6px;
+  }
+  u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: bold; }
+
+  .footer-note {
+    margin-top: 14px;
+    font-size: 15px;
+    font-style: italic;
+  }
+  .blank.verb { width: 10.5em; }
+
+  /* Back side: verb-forms chart + practice (prints as page 2). */
+  .copy.back { break-before: page; padding-top: 0.4in; padding-bottom: 0.3in; }
+  @media screen { .copy.back { border-top: 2px dashed #000; margin-top: 0.3in; } }
+  .forms-chart { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  .forms-chart th, .forms-chart td { border: 1.5px solid #000; text-align: center; font-size: 19px; }
+  .forms-chart th { padding: 4px 2px; border-bottom: 3px solid #000; line-height: 1.15; }
+  .forms-chart th small { display: block; font-size: 15px; font-weight: normal; font-style: italic; }
+  .forms-chart td { height: 0.62in; }
+  .forms-chart td.base { font-weight: bold; }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: #fff; }
+  }
+
+  .sort-boxes { display: flex; gap: 14px; }
+  .sort-box { flex: 1; border: 1px solid #000; min-height: 125px; padding: 8px 10px; }
+  .sort-box-title { font-weight: bold; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 8px; }
+  .opt { white-space: nowrap; }
+  .dialogue p { margin-top: 17px; font-size: 19px; }
+  .dialogue p:first-child { margin-top: 0; }
+  .dialogue .speaker { font-weight: bold; margin-right: 6px; }
+  .verb-chart { border-collapse: collapse; width: 100%; }
+  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 4px 9px; text-align: left; width: 33%; }
+  .verb-chart th { font-size: 15px; }
+  .verb-chart tr.example td { font-style: italic; }
+  .seq-blank { width: 1.8em !important; }
+
+  /* Shifted-grammar pass: room for the page-2 footer. */
+  .copy.back { padding-top: 0.25in; }
+  .copy.back .footer-note { margin-top: 6px; }
+  .forms-chart td { height: 0.54in; }
+</style>
+</head>
+<body>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 14, Tuesday</h1>
+        <span class="date">12/15/26</span>
+      </div>
+      <p class="subtitle">Understanding the News for Econ &mdash; reading about prices and jobs.</p>
+      <section class="task">
+        <div class="task-title">1&ensp;Fill in the blank</div>
+        <p class="task-instructions">Use every word once. Change the word form if needed.</p>
+        <div class="word-bank"><span class="opt">inflation</span> &middot; <span class="opt">economy</span> &middot; <span class="opt">cost of living</span> &middot; <span class="opt">wages</span> &middot; <span class="opt">interest rate</span> &middot; <span class="opt">unemployed</span></div>
+        <ol class="item-list">
+          <li><b class="n">1.</b> The <span class="blank long"></span> is very high here. Rent, food, and bus fares all cost a lot.</li>
+          <li><b class="n">2.</b> Why are many workers asking for higher <span class="blank"></span>?</li>
+          <li><b class="n">3.</b> The news said fewer people are <span class="blank"></span> this month.</li>
+          <li><b class="n">4.</b> When the <span class="blank long"></span> goes up, loans cost more money.</li>
+          <li><b class="n">5.</b> <span class="blank"></span> means your paycheck doesn't go as far as it used to.</li>
+          <li><b class="n">6.</b> The news talks about the <span class="blank"></span> almost every day.</li>
+        </ol>
+      </section>
+      <section class="task">
+        <div class="task-title">2&ensp;Match the form</div>
+        <p class="task-instructions">Draw a line (or write the letter) to match each base adjective with its comparative or superlative form.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> cheap &rarr; <span class="blank"></span> (comparative)</li>
+          <li><b class="n">2.</b> expensive &rarr; <span class="blank"></span> (superlative)</li>
+          <li><b class="n">3.</b> good &rarr; <span class="blank"></span> (comparative)</li>
+          <li><b class="n">4.</b> big &rarr; <span class="blank"></span> (superlative)</li>
+          <li><b class="n">5.</b> small &rarr; <span class="blank"></span> (comparative)</li>
+        </ol>
+        <div class="word-bank"><span class="opt">smaller</span> &middot; <span class="opt">the most expensive</span> &middot; <span class="opt">better</span> &middot; <span class="opt">the biggest</span> &middot; <span class="opt">cheaper</span></div>
+      </section>
+
+      <p class="footer-note">Turn over for page 2 &rarr;</p>
+    </div>
+    <div class="copy back">
+      <div class="header-row">
+        <h1>Warm-Up: Week 14, Tuesday</h1>
+        <span class="date">12/15/26</span>
+      </div>
+      <p class="subtitle">Back side &mdash; money verbs review: <i>buy</i>, <i>sell</i>, and <i>spend</i>. Keep this chart in your binder!</p>
+      <section class="task">
+        <div class="task-title">3&ensp;Verb forms of the week</div>
+        <p class="task-instructions">Write the other forms of <b>buy</b>, <b>sell</b>, and <b>spend</b>. Use your reference sheet if you need help.</p>
+        <table class="forms-chart">
+          <tr><th>V1<small>base</small></th><th>V1-s<small>he / she / it</small></th><th>V-ing<small>-ing</small></th><th>V2<small>past</small></th><th>V3<small>past participle</small></th></tr>
+          <tr><td class="base">buy</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">sell</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="base">spend</td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+      <section class="task">
+        <div class="task-title">4&ensp;Use the right form</div>
+        <p class="task-instructions">Look at the <b>bold</b> clue words. Write the correct form of <b>buy</b>, <b>sell</b>, or <b>spend</b>. Use your chart.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> <b>Every week</b>, my family <span class="blank verb"></span> about $150 on food.&nbsp;(spend)</li>
+          <li><b class="n">2.</b> <b>Right now</b>, more people are <span class="blank verb"></span> used cars.&nbsp;(buy)</li>
+          <li><b class="n">3.</b> <b>Last year</b>, the factory didn&rsquo;t <span class="blank verb"></span> many cars.&nbsp;(sell)</li>
+          <li><b class="n">4.</b> <b>Yesterday</b>, did you <span class="blank verb"></span> eggs? They cost more now!&nbsp;(buy)</li>
+          <li><b class="n">5.</b> <b>Right now</b>, are families <span class="blank verb"></span> more on rent?&nbsp;(spend)</li>
+          <li><b class="n">6.</b> That store doesn&rsquo;t <span class="blank verb"></span> bread <b>every day</b>.&nbsp;(sell)</li>
+          <li><b class="n">7.</b> We <b>have</b> <span class="blank verb"></span> more on groceries this year.&nbsp;(spend) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+          <li><b class="n">8.</b> <b>Have</b> they <span class="blank verb"></span> their house?&nbsp;(sell) <span style="white-space: nowrap;">(Present Perfect Tense)</span></li>
+        </ol>
+      </section>
+
+      <p class="footer-note">Finished early? Review <b>Word Lab</b> and <b>Vocab</b> in My ESOL App.</p>
+    </div>
+</body>
+</html>

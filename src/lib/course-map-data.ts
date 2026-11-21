@@ -1032,7 +1032,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "time-indicators-sorting",
             "activityId": "time-indicators-sorting",
-            "slot": "required",
+            "slot": "extra",
             "order": 3,
             "wrappedGame": true,
             "activityType": "game",

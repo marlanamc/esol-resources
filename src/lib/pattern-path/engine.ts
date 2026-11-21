@@ -202,6 +202,15 @@ export function createPathEngine<W extends string>(config: PathConfig<W>) {
     };
   }
 
+  /**
+   * "Done" on the course map: passing Round 1 of the first level. The path
+   * itself keeps going (that is what the level map is for); this is only the
+   * bar for the map item, set for the one-class Thanksgiving week.
+   */
+  function isMapGoalMet(progress: PathProgress): boolean {
+    return levels.length > 0 && getStep(progress, levels[0].id).passed;
+  }
+
   function processRound(
     progress: PathProgress,
     stepId: string,
@@ -250,6 +259,7 @@ export function createPathEngine<W extends string>(config: PathConfig<W>) {
     isFinalUnlocked,
     getUpNext,
     getSummary,
+    isMapGoalMet,
     processRound,
   };
 }

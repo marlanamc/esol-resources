@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Week 14 Tuesday stations, Tue 12/15/26: practice comparatives + superlatives (started Thu 12/10).
+"""Week 14 Tuesday stations, Tue 12/15/26 (moved from Tue 12/8 for the Thanksgiving shift): practice How long...? + for / since (started Thu 12/10).
 
-No quiz this week: verb review is buy, sell, spend. Vocab: economic news (cost of
-living, inflation, wages, unemployed, interest rate, economy). Stations: 1 WARM-UP,
-2 SPEAK (Which is better? debates), 3 GAME (comparatives phrase bank + Compare it!),
-4 REVIEW GAME (fall grammar quiz board with a student judge).
+Quiz verbs: eat, drink. Vocab: groceries (run out of, stock up on, buy in bulk,
+unit price, serving size, go bad). Stations: 1 WARM-UP, 2 SPEAK (How long have you...?
+interviews; quiet "for"), 3 GAME (for/since phrase bank + For or since? race), 4 REAL WORLD (shelf tags,
+unit price, buy in bulk?).
 
     python3 build-week14-stations.py
-writes the HTML and PDFs next to this file. The newspaper, people, and prices are
-made up.
+writes the HTML and PDFs next to this file. The store, people, and prices are made up.
 """
 import sys
 from pathlib import Path
@@ -19,342 +18,384 @@ sys.path.insert(0, str(HERE.parent))
 import stations_lib as L  # noqa: E402
 
 STEM = "week14-day1-2026-12-15"
-BUY = ("buy", "buys", "buying", "bought", "bought")
-SELL = ("sell", "sells", "selling", "sold", "sold")
-SPEND = ("spend", "spends", "spending", "spent", "spent")
+EAT = ("eat", "eats", "eating", "ate", "eaten")
+DRINK = ("drink", "drinks", "drinking", "drank", "drunk")
 STATIONS = [
     ("WARM-UP", "On your own. Check with a partner. A teacher will visit.", "Pages 1&ndash;2"),
-    ("SPEAK", "<i>Which is better?</i> With a teacher.", "Pages 3&ndash;4"),
-    ("GAME", "Compare it! With your group. A teacher will visit.", "Pages 5&ndash;6"),
-    ("REVIEW GAME", "With your group. Take turns being the judge.", "Pages 7&ndash;8 + game sheet on the table"),
+    ("SPEAK", "<i>How long have you&hellip;?</i> With a teacher.", "Pages 3&ndash;4"),
+    ("GAME", "<i>For</i> or <i>since</i>? With your group. A teacher will visit.", "Pages 5&ndash;6"),
+    ("REAL WORLD", "With your group. A teacher will visit.", "Pages 7&ndash;8 + 2 color pages on the table"),
 ]
 
 
 def warmup(p, key):
-    fill = [("The {} is very high here. Rent, food, and bus fares all cost a lot.", "cost of living"),
-            ("Why are many workers asking for higher {}?", "wages"),
-            ("The news said fewer people are {} this month.", "unemployed"),
-            ("When the {} goes up, loans cost more money.", "interest rate"),
-            ("{} means your paycheck doesn&rsquo;t go as far as it used to.", "Inflation"),
-            ("The news talks about the {} almost every day.", "economy")]
-    li1 = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a))}</li>' for i, (t, a) in enumerate(fill, 1))
-    match = [("cheap", "comparative", "cheaper"), ("expensive", "superlative", "the most expensive"),
-             ("good", "comparative", "better"), ("big", "superlative", "the biggest"), ("small", "comparative", "smaller")]
-    li2 = "".join(f'<li><b class="n">{i}.</b> {a} &rarr; <span class="small">({k})</span> {p.b(f)}</li>' for i, (a, k, f) in enumerate(match, 1))
+    fs = [("I have studied English {} two years.", "for"), ("She hasn&rsquo;t worked at the clinic {} last spring.", "since"),
+          ("We have known our neighbors {} we moved here.", "since"), ("Has he had his job {} six months?", "for"),
+          ("I haven&rsquo;t seen my family {} 2019.", "since")]
+    li1 = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a, "short"))}</li>' for i, (t, a) in enumerate(fs, 1))
+    sf = [("She has worked at the store since 2016.", "ten years"), ("I haven&rsquo;t called my sister since August.", "four months"),
+          ("We have known our landlord since 2021.", "five years"), ("He has studied English since last December.", "one year")]
+    li2 = "".join(f'<li><b class="n">{i}.</b> {t} &rarr; for {p.b(a)}</li>' for i, (t, a) in enumerate(sf, 1))
     page2 = L.NAME_STRIP + f"""  <div class="task">
-    <h2>1. Fill in the blank</h2>
-    <p class="how">Use every word once. Change the word form if needed.</p>
-    <div class="bank"><span>inflation</span> <span>economy</span> <span>cost of living</span> <span>wages</span> <span>interest rate</span> <span>unemployed</span></div>
+    <h2>1. For or since?</h2>
+    <p class="how">Write <b>for</b> (a length of time) or <b>since</b> (a starting point).</p>
+    <p class="example">Example: I have lived here <u>since</u> 2021. &middot; I have lived here <u>for</u> five years.</p>
     <ol class="items">{li1}</ol>
   </div>
   <div class="task">
-    <h2>2. Write the form</h2>
-    <p class="how">Write the comparative or superlative. Use the words in the box.</p>
-    <div class="bank"><span>smaller</span> <span>the most expensive</span> <span>better</span> <span>the biggest</span> <span>cheaper</span></div>
+    <h2>2. Since &rarr; for</h2>
+    <p class="how">Today is <b>December 15, 2026</b>. Change <b>since</b> to <b>for</b>. Write how long.</p>
+    <p class="example">Example: I have lived here since 2024. &rarr; for <u>two years</u></p>
     <ol class="items">{li2}</ol>
   </div>
   <div class="task">
-    <h2>3. Compare things in your life</h2>
-    <p class="how"><b>You make up the sentence.</b> Use your own ideas. Many answers are OK.</p>
-    <div class="own"><b>Example:</b> <span class="u">The bus</span> is cheaper than <span class="u">a taxi</span>. &middot; Other good answers: <span class="u">Rice</span> is cheaper than <span class="u">meat</span>. &middot; <span class="u">Summer</span> is better than <span class="u">winter</span>.</div>
+    <h2>3. Finish the sentence about you</h2>
+    <p class="how"><b>You make up the ending.</b> Use your own ideas. Use <b>for</b> or <b>since</b>.</p>
+    <div class="own"><b>Example:</b> I have lived in my apartment <span class="u">since 2022</span>. &middot; Other good answers: <span class="u">for four years</span> &middot; <span class="u">since my son was born</span></div>
     <ol class="items">
-      <li><b class="n">1.</b> {p.b("<i>answers vary</i>")} is cheaper than {p.b("<i>answers vary</i>")}.</li>
-      <li><b class="n">2.</b> {p.b("<i>answers vary</i>")} is the best {p.b("<i>answers vary</i>")} in my city.</li>
-      <li><b class="n">3.</b> Is {p.b("<i>answers vary</i>")} more expensive than {p.b("<i>answers vary</i>")}?</li>
+      <li><b class="n">1.</b> I have lived in my home {p.b("<i>answers vary: for / since &hellip;</i>", "long")}.</li>
+      <li><b class="n">2.</b> I have known my best friend {p.b("<i>answers vary</i>", "long")}.</li>
+      <li><b class="n">3.</b> How long have you {p.b("<i>answers vary: + V3</i>", "long")}?</li>
     </ol>
   </div>"""
     items = [
-        ("<b>Every week</b>, my family {} about $150 on food. (spend)", "spends"),
-        ("<b>Right now</b>, more people are {} used cars. (buy)", "buying"),
-        ("<b>Last year</b>, the factory didn&rsquo;t {} many cars. (sell)", "sell"),
-        ("<b>Yesterday</b>, did you {} eggs? They cost more now! (buy)", "buy"),
-        ("<b>Right now</b>, are families {} more on rent? (spend)", "spending"),
-        ("That store doesn&rsquo;t {} bread <b>every day</b>. (sell)", "sell"),
-        ("We <b>have</b> {} more on groceries this year. (spend)", "spent"),
-        ("<b>Have</b> they {} their house? (sell)", "sold"),
+        ("<b>Every morning</b>, my husband {} two cups of coffee. (drink)", "drinks"),
+        ("<b>Right now</b>, the kids are {} rice and beans. (eat)", "eating"),
+        ("<b>Yesterday</b>, we didn&rsquo;t {} any milk. (drink)", "drink"),
+        ("<b>Last night</b>, what did you {} for dinner? (eat)", "eat"),
+        ("She doesn&rsquo;t {} meat <b>every day</b>. (eat)", "eat"),
+        ("<b>Right now</b>, is he {} a glass of water? (drink)", "drinking"),
+        ("We <b>have</b> {} all the bread. It&rsquo;s gone! (eat)", "eaten"),
+        ("<b>Have</b> you {} any water today? (drink)", "drunk"),
     ]
     lis = "".join(f'<li><b class="n">{i}.</b> {t.format(p.b(a))}</li>' for i, (t, a) in enumerate(items, 1))
     page3 = f"""  <div class="task">
-    <h2>4. Verb forms: money verbs review</h2>
-    <p class="how">Write the other forms of <b>buy</b>, <b>sell</b>, and <b>spend</b>. No quiz this week. Keep this chart in your binder!</p>
-    {L.forms_table([BUY, SELL, SPEND], p)}
+    <h2>4. Verb forms of the week</h2>
+    <p class="how">Write the other forms of <b>eat</b> and <b>drink</b>. <i>Eat</i> and <i>drink</i> are on this week&rsquo;s quiz!</p>
+    {L.forms_table([EAT, DRINK], p)}
   </div>
   <div class="task">
     <h2>5. Use the right form</h2>
-    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>buy</b>, <b>sell</b>, or <b>spend</b>.</p>
+    <p class="how">Look at the <b>bold</b> clue words. Write the correct form of <b>eat</b> or <b>drink</b>. Use your chart.</p>
     <ol class="items">{lis}</ol>
   </div>
   <div class="task">
     <h2>6. Bonus: Your turn</h2>
     <p class="how">Write a true sentence about <b>you</b>. <b>+ not</b> = negative. <b>?</b> = ask a partner.</p>
-    <p class="prompt"><b>Last weekend</b> + buy</p>
-    <p class="ideas">Ideas: groceries &middot; a gift &middot; warm clothes &middot; nothing!</p>
-    {p.ln("<i>answers vary: Last weekend, I bought a gift for my son.</i>")}
-    <p class="prompt"><b>A taxi</b> + cheap <b>+ not</b> + than</p>
-    <p class="ideas">Ideas: the bus &middot; the train &middot; walking &middot; a bike</p>
-    {p.ln("<i>answers vary: A taxi isn&rsquo;t cheaper than the bus.</i>")}
-    <p class="prompt"><b>Which</b> + the best<b>?</b></p>
-    <p class="ideas">Ideas: store for vegetables &middot; restaurant &middot; park &middot; time to shop</p>
-    {p.ln("<i>answers vary: Which store is the best for vegetables?</i>")}
+    <p class="prompt"><b>Every morning</b> + drink</p>
+    <p class="ideas">Ideas: coffee &middot; tea with milk &middot; a big glass of water &middot; juice</p>
+    {p.ln("<i>answers vary: Every morning, I drink tea with milk.</i>")}
+    <p class="prompt"><b>Last night</b> + eat <b>+ not</b></p>
+    <p class="ideas">Ideas: dinner &middot; meat &middot; dessert &middot; a big meal</p>
+    {p.ln("<i>answers vary: Last night, I didn&rsquo;t eat dessert.</i>")}
+    <p class="prompt"><b>How long</b> + have you<b>?</b></p>
+    <p class="ideas">Ideas: lived here &middot; had your phone &middot; known your best friend &middot; worked at your job</p>
+    {p.ln("<i>answers vary: How long have you had your phone?</i>")}
   </div>"""
     return (L.page("wu3", "STATION 1: WARM-UP", "on your own", 1, page2, key)
             + L.page("wu3", "STATION 1: WARM-UP", "on your own", 2, page3, key))
 
 
-HEAR = [("The bus is cheaper than a taxi.", "C"), ("This is the cheapest store.", "S"),
-        ("Winter is colder than fall.", "C"), ("July is the hottest month.", "S"),
-        ("Rent is more expensive than last year.", "C"), ("Coffee had the biggest change.", "S"),
-        ("My new job is better than my old job.", "C"), ("That was the best day of my life!", "S")]
-DEBATES = ["City or country?", "Cook at home or eat out?", "Bus or car?", "Summer or winter in Boston?",
-           "A big store or a small store?", "Call or text?"]
-WHO = ["has the oldest phone?", "wakes up the earliest?", "has the longest bus or train ride?",
-       "has the biggest family?", "is the best cook?", "lives the closest to school?"]
+HEAR = [("for", "3 years"), ("since", "Monday"), ("for", "a long time"), ("since", "2019"),
+        ("since", "I was a kid"), ("for", "two weeks"), ("since", "last summer"), ("for", "six months")]
+INTERVIEW = ["lived in this city", "had your phone", "known your best friend", "studied English",
+             "been in this class", "had your oldest shoes"]
 
 
 def speak(p, key):
-    hear = "".join(
-        f'<li><b class="n">{i}.</b> <span>_____________</span> <span class="cc">{p.circ("-er / more &hellip; than", a == "C")} &middot; {p.circ("the -est / the most", a == "S")}</span></li>'
-        for i, (_, a) in enumerate(HEAR, 1))
-    debates = "".join(f"<div>{d}</div>" for d in DEBATES)
-    page4 = f"""  <h2>Quiet <i>than</i></h2>
+    hear = "".join(f'<li><b class="n">{i}.</b> I&rsquo;ve lived here _____ &hellip; <span class="cc">{p.circ("for", a == "for")} / {p.circ("since", a == "since")}</span></li>'
+                   for i, (a, _) in enumerate(HEAR, 1))
+    rows = "".join(f'<tr><td class="q">How long have you {q}?</td><td></td><td></td></tr>' for q in INTERVIEW)
+    page4 = f"""  <h2>Quiet <i>for</i>, loud time</h2>
   <div class="rhythm">
-    <div><div class="big" style="font-size:22px;">The <b>BUS</b> is <b>CHEAP</b>er thn a <b>TAX</b>i.</div><p><b>than</b> is quiet and fast: &ldquo;thn.&rdquo; <b>-er</b> is short.</p></div>
-    <div><div class="big" style="font-size:22px;">It&rsquo;s the <b>CHEAP</b>est store.</div><p><b>the</b> is quiet. The <b>adjective</b> is loud: the <b>BEST</b>, the most ex<b>PEN</b>sive.</p></div>
+    <div><div class="big" style="font-size:22px;">How <b>LONG</b> have you <b>LIVED</b> here?</div><p><b>How long</b> and the <b>verb</b> are loud. <i>have you</i> is fast: &ldquo;h&rsquo;v you.&rdquo;</p></div>
+    <div><div class="big" style="font-size:22px;">I&rsquo;ve lived here for <b>SIX YEARS</b>.</div><p><b>for</b> is quiet and short: &ldquo;fer.&rdquo; The <b>time</b> is loud. <b>since</b> is clear: <i>since TWO-thousand NINETEEN</i>.</p></div>
+  </div>
+  <p class="how"><b>Try it:</b> Tap the table on the loud words. <i>I&rsquo;ve lived here fer SIX YEARS.</i></p>
+  <div class="task">
+    <h2>A. Listen: for or since?</h2>
+    <p class="how">Your teacher reads the end of the sentence. Is it <b>for</b> or <b>since</b>? Circle it. Then write the time you hear.</p>
+    <ol class="items listen2">{hear}</ol>
   </div>
   <div class="task">
-    <h2>A. Listen: compare 2, or number 1?</h2>
-    <p class="how">Your teacher reads a sentence. Is it <b>-er / more &hellip; than</b> (2 things) or <b>the -est / the most</b> (number 1)? Circle it.</p>
-    <ol class="items" style="font-size:17px;">{hear}</ol>
+    <h2>B. Around the table</h2>
+    <p class="how">Go around fast. Each person says: <i>&ldquo;I&rsquo;ve lived here for ___.&rdquo;</i> Then again with <i>since</i>. Keep <b>for</b> quiet!</p>
   </div>
   <div class="task">
-    <h2>B. Which is better? Friendly debate</h2>
-    <p class="how">Choose a topic. Each person picks a side and gives <b>2 reasons</b>. Use <b>-er / more &hellip; than</b>.</p>
-    <div class="debates">{debates}</div>
-    <div class="bank starters" style="margin-top:8px; font-size:17px;">
-      <span><b>I think</b> the city is better <b>because</b> &hellip;</span><span><b>Yes, but</b> the country is quieter.</span>
-      <span>The bus is <b>cheaper than</b> a car.</span><span><b>I agree.</b> / <b>I don&rsquo;t agree.</b></span>
-    </div>
+    <h2>C. Interview your table</h2>
+    <p class="how">Ask the people <b>at your table</b>. Write a name and the answer. Answer with <b>for</b> or <b>since</b>.</p>
+    <table class="who"><tr><th style="text-align:left;padding:4px 10px;">Question</th><th>Name</th><th>Answer</th></tr>{rows}</table>
   </div>"""
-    who = "".join(f'<tr><td class="q">Who {w}</td><td></td></tr>' for w in WHO)
     page5 = f"""  <div class="task">
-    <h2>C. Who is number 1 in our group?</h2>
-    <p class="how">Ask the people <b>at your table</b>. Write a name. Then write 2 sentences: <i>Ana has the oldest phone in our group.</i></p>
-    <table class="who">{who}</table>
-    {p.ln("<i>answers vary: check the + -est / the most</i>", 2)}
+    <h2>D. Read aloud with a partner</h2>
+    <p class="how">A job interview at a restaurant. <b>A</b> = manager. <b>B</b> = you. Then <b>switch</b>.</p>
+    <div class="tip" style="font-size:18px; line-height:1.7;">
+      <b>A:</b> So, how long have you worked as a cook?<br>
+      <b>B:</b> I&rsquo;ve worked as a cook for eight years.<br>
+      <b>A:</b> Great. And how long have you lived in Boston?<br>
+      <b>B:</b> I&rsquo;ve lived here since 2021.<br>
+      <b>A:</b> Have you ever worked in a big kitchen?<br>
+      <b>B:</b> Yes, I have. I worked in a hotel kitchen for three years.<br>
+      <b>A:</b> Have you finished your food safety certificate yet?<br>
+      <b>B:</b> Yes, I have. I&rsquo;ve already finished it.
+    </div>
   </div>
   <div class="task">
-    <h2>D. Talk together</h2>
-    <p class="how">Answer with a <b>full sentence</b>. Then ask: <i>&ldquo;Why?&rdquo;</i></p>
+    <h2>E. Talk together</h2>
+    <p class="how">Ask your group. Answer with a <b>full sentence</b> with <b>for</b> or <b>since</b>. Then ask: <i>&ldquo;Really? Why?&rdquo;</i></p>
     <ol class="read-aloud">
-      <li>What is the best food from your country?</li>
-      <li>What is the most expensive thing in Boston?</li>
-      <li>Is your city here bigger or smaller than your hometown?</li>
-      <li>What is the best time of year here? Why?</li>
+      <li>How long have you had your phone? Do you like it?</li>
+      <li>How long have you known the oldest friend you have?</li>
+      <li>What food have you eaten since you were a child?</li>
+      <li>How long have you studied English? What helps you most?</li>
     </ol>
   </div>
   <div class="task">
-    <h2>E. Say it to your teacher</h2>
-    <p class="how">Write one sentence with <b>-er / more &hellip; than</b> and one with <b>the -est / the most</b>. Read them to your teacher.</p>
-    <div class="gline"><b>than</b>{p.ln("<i>answers vary</i>")}</div>
-    <div class="gline"><b>the</b>{p.ln("<i>answers vary</i>")}</div>
+    <h2>F. Say it to your teacher</h2>
+    <p class="how">Write one sentence with <b>for</b> and one with <b>since</b>. Read them to your teacher. Quiet <b>for</b>!</p>
+    <div class="gline"><b>for</b>{p.ln("<i>answers vary</i>")}</div>
+    <div class="gline"><b>since</b>{p.ln("<i>answers vary</i>")}</div>
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
-    sub = "Which is better? &middot; with a teacher"
+    sub = "How long have you&hellip;? &middot; with a teacher"
     return L.page("", "STATION 2: SPEAK", sub, 3, page4, key) + L.page("", "STATION 2: SPEAK", sub, 4, page5, key)
 
 
-# (food, last year, this year)
-PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank("week13-comparatives")
-# Compare it! (page 6): (emoji, prompt, adjective, key form). Not the same pairs as the Station 2 debates.
-COMPARE = [
-    ("&#128661;", "a taxi / the T", "fast", "faster than"), ("&#9749;", "coffee / tea", "good", "better than"),
-    ("&#127822;", "fruit / candy", "healthy", "healthier than"), ("&#127968;", "a house / an apartment", "expensive", "more expensive than"),
-    ("&#127750;", "Boston / my hometown", "big", "bigger than"), ("&#128187;", "a laptop / a phone", "easy", "easier than"),
-    ("&#127769;", "the day shift / the night shift", "hard", "harder than"), ("&#128722;", "Market Basket / a corner store", "cheap", "cheaper than"),
-    ("&#128021;", "dogs / cats", "friendly", "friendlier than"), ("&#128218;", "English / my language", "difficult", "more difficult than"),
-    ("&#127835;", "___ is the ___ food from my country.", "good", "the best"), ("&#127956;&#65039;", "___ is the ___ place I have seen.", "beautiful", "the most beautiful"),
-    ("&#128197;", "___ is the ___ day of my week.", "busy", "the busiest"), ("&#10052;&#65039;", "___ is the ___ month in Boston.", "cold", "the coldest"),
-    ("&#129534;", "___ is the ___ bill I pay.", "expensive", "the most expensive"),
+PB_CSS, PB_FRONT, PB_BACK = L.phrase_bank(
+    "week12-for-since", replace=[("Today is <b>Thursday, December 3, 2026</b>", "Today is <b>Tuesday, December 15, 2026</b>")])
+# For or since? game (page 6): (emoji, time words, answer)
+TIMES = [
+    ("&#128197;", "3 years", "for"), ("&#128198;", "Monday", "since"), ("&#128336;", "2019", "since"),
+    ("&#9203;", "a long time", "for"), ("&#128118;", "I was a kid", "since"), ("&#128467;&#65039;", "two weeks", "for"),
+    ("&#9728;&#65039;", "last summer", "since"), ("&#127793;", "six months", "for"), ("&#10052;&#65039;", "January", "since"),
+    ("&#9201;&#65039;", "10 minutes", "for"), ("&#128666;", "I moved here", "since"), ("&#128338;", "a few days", "for"),
+    ("&#9200;", "8:00 this morning", "since"), ("&#127874;", "my last birthday", "since"), ("&#128200;", "a month", "for"),
 ]
 
 
-def compare(p, key):
-    items = [(e, t, f"({adj})", ans) for e, t, adj, ans in COMPARE]
+def game(p, key):
+    items = [(e, f"&hellip; {t}", None, a) for e, t, a in TIMES]
     page6 = f"""  <div class="task">
-    <h2>How to play: Compare it!</h2>
+    <h2>How to play: For or since?</h2>
     <ol class="items play" style="list-style:none;">
       <li><b class="n">1.</b> Pick a box. Everyone puts an <b>&#10007;</b> on it.</li>
-      <li><b class="n">2.</b> Say your opinion with the word in ( ): <i>&ldquo;I think rice is <b>cheaper than</b> meat.&rdquo;</i> Boxes 11&ndash;15: <i>the -est / the most</i>. <b>Stuck?</b> Look at page 5.</li>
-      <li><b class="n">3.</b> The group checks the form. Right = 1 point ( <b>|</b> ). Then they answer: <i>&ldquo;I agree.&rdquo;</i> or <i>&ldquo;I disagree. I think&hellip;&rdquo;</i></li>
-      <li><b class="n">4.</b> The next person picks a box. Most points when the timer rings wins!</li>
+      <li><b class="n">2.</b> Say a <b>true</b> sentence with <b>have + V3</b> and the time words. Add <b>for</b> or <b>since</b>. <b>Stuck?</b> Use a phrase from page 5.</li>
+      <li><b class="n">3.</b> The group checks: <b>for</b> or <b>since</b>? <b>V3</b>? Right = 1 point ( <b>|</b> ).</li>
+      <li><b class="n">4.</b> The group asks: <i>&ldquo;Really? Where?&rdquo;</i> Then the next person picks. Most points wins!</li>
     </ol>
+  </div>
+  <div class="key" style="margin-bottom:10px;">
+    <div><b>for</b> + how much time<br>I have lived here <b>for</b> 3 years.</div>
+    <div><b>since</b> + the start point<br>I have had my phone <b>since</b> 2019.</div>
   </div>
   {L.board(items, key)}
   {L.SCORE}
   <div class="task">
     <h2>Write your best sentence</h2>
-    {p.ln("<i>answers vary: -er than / more &hellip; than / the -est / the most</i>")}
+    {p.ln("<i>answers vary: have / has + V3 + for / since</i>")}
   </div>
   <p class="pass bottom"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</p>"""
     return (L.phrase_bank_page(PB_FRONT, "Phrase bank &middot; use it in the game", key)
-            + L.page("", "STATION 3: GAME", "Compare it! &middot; with your group", 6, page6, key))
+            + L.page("", "STATION 3: GAME", "For or since? &middot; with your group", 6, page6, key))
 
 
-GAME = [
-    ("V2 / V3", [(100, "V2 of <b>buy</b>?", "bought"), (200, "V3 of <b>speak</b>?", "spoken"),
-                 (300, "V2 <b>and</b> V3 of <b>drink</b>?", "drank, drunk")]),
-    ("If &hellip;", [(100, "Finish: If it rains, I ___ (take) the bus.", "will take / take"),
-                     (200, "Fix it: <i>If I will see her, I will tell her.</i>", "If I <b>see</b> her, I will tell her."),
-                     (300, "Zero or first? <i>If you heat ice, it melts.</i>", "zero (always true)")]),
-    ("Can / should / must", [(100, "Fix it: <i>She can to swim.</i>", "She can swim."),
-                             (200, "A rule or a good idea? You ___ wear a seatbelt.", "must (a rule)"),
-                             (300, "Give advice with <b>should</b>: &ldquo;I&rsquo;m always tired.&rdquo;", "You should + V1 (any good idea)")]),
-    ("Have you ever", [(100, "Make a question: <i>ever / you / eaten / have / sushi</i>", "Have you ever eaten sushi?"),
-                       (200, "Answer short: Have you ever seen snow?", "Yes, I have. / No, I haven&rsquo;t."),
-                       (300, "Fix it: <i>Have you ever went to New York?</i>", "Have you ever <b>been</b> to New York?")]),
-    ("Just / already / yet", [(100, "I have (yet / already) eaten.", "already"),
-                 (200, "Fix it: <i>I haven&rsquo;t finished already.</i>", "I haven&rsquo;t finished <b>yet</b>."),
-                 (300, "Say 2 things you have already done today.", "have already + V3, 2 times")]),
-    ("For / since", [(100, "___ 2019", "since"), (200, "___ six months", "for"),
-                     (300, "Today is Dec. 15, 2026. <i>since 2020</i> = for how long?", "for six years")]),
-    ("Bigger / better", [(100, "Comparative of <b>cheap</b>?", "cheaper"), (200, "Superlative of <b>good</b>?", "the best"),
-                         (300, "Fix it: <i>Boston is more bigger than my town.</i>", "Boston is <b>bigger than</b> my town.")]),
-]
+TF = [("The bigger package is always the better deal.", "F"),
+      ("The unit price tells you the price for one pound, ounce, or egg.", "T"),
+      ("The 20-lb bag of rice is cheaper per pound.", "T"),
+      ("Bananas are on sale this week.", "N"),
+      ("The 18-pack of eggs costs less per egg.", "F"),
+      ("The store sells organic milk.", "N")]
+DEALS = [("Rice", "2 lb, $3.49", "20 lb, $21.99", "20 lb", "$1.75/lb vs $1.10/lb"),
+         ("Cereal", "12 oz, $3.99", "24 oz, $6.49", "24 oz", "33&cent;/oz vs 27&cent;/oz"),
+         ("Olive oil", "17 oz, $8.99", "34 oz, $19.49", "17 oz", "53&cent;/oz vs 57&cent;/oz. Small is cheaper!"),
+         ("Eggs", "12, $3.99", "18, $6.29", "12", "33&cent; vs 35&cent; an egg. Small is cheaper!")]
+FAMILIES = [("Mr. Ortiz", "the gallon of milk", "No", "He lives alone. It will go bad before he drinks it."),
+            ("The Diallo family", "the 20-lb bag of rice", "Yes", "6 people eat rice every day. Rice doesn&rsquo;t go bad fast."),
+            ("Rosa", "bananas for 3 weeks", "No", "Bananas go bad in a few days.")]
 
 
-def game(p, key):
-    grid = "".join(f"<tr><td class=\"cat\">{c}</td>" + "".join(f"<td>{pts}</td>" for pts, _, _ in qs) + "</tr>" for c, qs in GAME)
-    page8 = f"""  <div class="task">
-    <h2>How to play</h2>
-    <ol class="items" style="list-style:none;">
-      <li><b class="n">1.</b> Choose a <b>judge</b>. The judge holds the <b>answer sheet</b> (page 2 of the game sheet) and doesn&rsquo;t play.</li>
-      <li><b class="n">2.</b> Take turns. Choose a category and points: <i>&ldquo;For / since, 200, please!&rdquo;</i></li>
-      <li><b class="n">3.</b> The judge reads the question. You answer <b>out loud</b>.</li>
-      <li><b class="n">4.</b> Right? You get the points. Wrong? Anyone can try for the points.</li>
-      <li><b class="n">5.</b> Cross off the square below. <b>New judge</b> every 5 questions.</li>
+def real_world(p, key):
+    tf = "".join(f'<tr><td>{i}. {s}</td>' + "".join(f'<td class="c">{p.cb(a == x)}</td>' for x in "TFN") + "</tr>"
+                 for i, (s, a) in enumerate(TF, 1))
+    deals = "".join(f'<tr><td class="t">{n}</td><td class="c">{p.circ(a, w == a.split(",")[0])}</td><td class="c">{p.circ(b, w == b.split(",")[0])}</td>{p.td(why)}</tr>'
+                    for n, a, b, w, why in DEALS)
+    page8 = f"""  <p class="how"><b>On the table:</b> 2 color pages. Start with <b>page 1</b> (the shelf tags). Read them <b>together</b>. You can use your phone calculator. <b>&#9733;</b> = challenge.</p>
+  <div class="task">
+    <h2>A. Read a shelf tag</h2>
+    <p class="how">Look at the tag for the <b>small</b> bag of rice.</p>
+    <ol class="items">
+      <li><b class="n">1.</b> What is the price? {p.b("$3.49", "short")} &emsp; How big is the bag? {p.b("2 lb", "short")}</li>
+      <li><b class="n">2.</b> What is the <b>unit price</b>? {p.b("$1.75 per pound", "long")}</li>
     </ol>
   </div>
   <div class="task">
-    <h2>Cross off the squares</h2>
-    <table class="board"><tr><th>Category</th><th>100</th><th>200</th><th>300</th></tr>{grid}</table>
+    <h2>B. Which is the better deal?</h2>
+    <p class="how">Look at the <b>unit price</b> on each tag. Circle the better deal. <b>Careful!</b> Bigger is not always cheaper.</p>
+    <table class="pick"><tr><th style="width:16%;">Food</th><th style="width:20%;">Small</th><th style="width:20%;">Big</th><th>Unit prices</th></tr>{deals}</table>
   </div>
   <div class="task">
-    <h2>Scoreboard</h2>
-    <table class="pick"><tr><th style="width:34%;">Name</th><th>Points (add them up!)</th><th style="width:18%;">Total</th></tr>
-    {'<tr><td style="height:34px;"></td><td></td><td></td></tr>' * 5}</table>
-  </div>"""
-    checks = "".join(f'<span>&#9744; {c}</span>' for c, _ in GAME)
-    page9 = f"""  <div class="task">
-    <h2>My fall review</h2>
-    <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> fall in English class.</p>
-    <div class="textbox" style="line-height:2.3;">
-      This fall, I have learned {p.b("<i>answers vary: have + V3</i>", "long")}.<br>
-      Now I can {p.b("<i>answers vary: can + V1</i>", "long")} in English.<br>
-      I can already {p.b("<i>answers vary: + V1</i>", "long")}, but I can&rsquo;t {p.b("<i>+ V1</i>")} yet.<br>
-      The hardest thing for me was {p.b("<i>answers vary</i>", "long")}.<br>
-      English is easier than {p.b("<i>answers vary</i>")} now. &#128522;<br>
-      Over the break, I should {p.b("<i>answers vary: should + V1</i>", "long")}.<br>
-      If I practice every week, I will {p.b("<i>answers vary: will + V1</i>", "long")}.
+    <h2>C. True, false, or not on the tags?</h2>
+    <p class="how">Check <b>&#10003;</b> one box. If it&rsquo;s not on the tags, you <b>can&rsquo;t know</b>.</p>
+    <table class="tf"><tr><th></th><th>True</th><th>False</th><th>Not on the tags</th></tr>{tf}</table>
+  </div>
+  <p class="how bottom"><b>Talk:</b> Do you look at the unit price when you shop? What do you buy in bulk?</p>"""
+    fam = "".join(f'<tr><td class="t" style="white-space:normal;">{n}<br><span class="small" style="font-weight:normal;">{it}</span></td>'
+                  f'<td class="c">{p.circ("Yes", a == "Yes")} / {p.circ("No", a == "No")}</td>{p.td(w) if key else "<td></td>"}</tr>'
+                  for n, it, a, w in FAMILIES)
+    page9 = f"""  <p class="how">Now look at <b>page 2</b> on the table: <b>Should they buy in bulk?</b></p>
+  <div class="task">
+    <h2>D. Should they buy it?</h2>
+    <p class="how">A good deal is not good if the food <b>goes bad</b>. Circle <b>Yes</b> or <b>No</b>. Write why.</p>
+    <table class="pick tall"><tr><th style="width:28%;">Who &middot; what</th><th style="width:16%;">Buy it?</th><th>Why?</th></tr>{fam}</table>
+    <p class="how"><b>&#9733;</b> Kim&rsquo;s family needs 34 ounces of olive oil. What should they buy? How much will they save?</p>
+    {p.ln("Two 17-oz bottles: $17.98. The 34-oz bottle is $19.49. They save $1.51.")}
+  </div>
+  <div class="task">
+    <h2>E. Your turn</h2>
+    <p class="how"><b>Use your own ideas.</b> Finish the sentences about <b>your</b> home.</p>
+    <div class="textbox">
+      At my house, we buy {p.b("<i>answers vary</i>")} in bulk because {p.b("<i>answers vary</i>", "long")}.<br>
+      We never stock up on {p.b("<i>answers vary</i>")}. If we buy a lot, it will {p.b("<i>go bad</i>")}.<br>
+      We often run out of {p.b("<i>answers vary</i>")}.
     </div>
-  </div>
-  <div class="task">
-    <h2>What do you want to practice more?</h2>
-    <p class="how">Check <b>2</b>. Tell your teacher!</p>
-    <div class="checks">{checks}</div>
-  </div>
-  <div class="task">
-    <h2>Share</h2>
-    <p class="how">Read your fall review to the person next to you. Then say one thing you liked about theirs.</p>
   </div>"""
-    sub = "fall review &middot; with your group"
-    return L.page("rd", "STATION 4: REVIEW GAME", sub, 7, page8, key) + L.page("rd", "STATION 4: REVIEW GAME", sub, 8, page9, key)
+    sub = "with your group"
+    return L.page("rw", "STATION 4: REAL WORLD", sub, 7, page8, key) + L.page("rw", "STATION 4: REAL WORLD", sub, 8, page9, key)
 
 
 EXTRA_CSS = """
-  .debates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .debates div { border: 2px solid #000; border-radius: 8px; padding: 8px; text-align: center; font-size: 17px; font-weight: bold; }
-  .paper { border-top: 4px double #000; border-bottom: 1.5px solid #000; margin-bottom: 8px; }
-  .mast { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid #000; }
-  .mast span:first-child { font-weight: bold; letter-spacing: 2px; font-size: 14px; }
-  .hl { font-size: 25px; line-height: 1.15; padding: 6px 0; }
-  .chartbox { border: 1.5px solid #000; padding: 4px 8px; margin-bottom: 8px; }
-  .chartbox svg { width: 100%; height: 2.2in; display: block; }
-  .story .paras p { font-size: 16.5px; margin-bottom: 7px; }
-  table.board { width: 100%; border-collapse: collapse; font-size: 17px; }
-  table.board th, table.board td { border: 1.5px solid #000; padding: 4px 8px; text-align: center; }
-  table.board td.cat { text-align: left; font-weight: bold; width: 40%; }
-  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; font-size: 17px; }
+  .tl { border: 1.5px solid #000; border-radius: 6px; padding: 4px 8px; margin-bottom: 8px; }
+  .tl svg { display: block; width: 100%; height: 0.95in; }
+  .model { border-left: 5px solid #000; background: #f4f4f4; padding: 8px 12px; font-size: 16.5px; line-height: 1.5; }
+  .mytl { display: grid; grid-template-columns: repeat(4, 1fr) 0.5fr; gap: 6px; border-top: 3px solid #000; padding-top: 10px; margin-top: 10px; font-size: 16px; line-height: 2; }
+  .mytl > div { position: relative; }
+  .mytl .dot { position: absolute; top: -18px; left: 10px; width: 14px; height: 14px; border-radius: 50%; background: #000; }
+  .mytl .now .dot { left: 0; }
+  .mytl .blank { min-width: 1.4in; }
+  .mytl .blank.short { min-width: 0.7in; }
+  .wr .line { height: 27px; }
+  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; font-size: 16px; }
 """
 
 
 def packet(key):
     p = L.P(key)
-    body = (warmup(p, key) + speak(p, key) + compare(p, key) + game(p, key)
-            + L.verb_charts(9, SPEND, "she", SELL, "I", key) + L.write_about_you_page(PB_BACK, key))
+    body = (warmup(p, key) + speak(p, key) + game(p, key) + real_world(p, key)
+            + L.verb_charts(9, EAT, "she", DRINK, "we", key) + L.write_about_you_page(PB_BACK, key))
     return L.doc("Week 14 Tuesday Stations Packet" + (" (Answer Key)" if key else ""), L.packet_css(key) + L.NO_COVER_CSS + PB_CSS + EXTRA_CSS, body)
 
 
-GAME_CSS = """
+DOC_CSS = """
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #111; background: #fff;
-         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  /* Station 4 game sheet: print 1 per table (color). Page 1 = questions face up. Page 2 = judge's answers. */
-  .page { width: 11in; height: 8.5in; padding: 0.4in 0.45in; display: flex; flex-direction: column; page-break-after: always; break-after: page; }
+  body { font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif; color: #1b1b1b; background: #fff;
+         font-size: 17px; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Table copy for the REAL WORLD station: print in color, 2 copies. Made-up store, prices, and people. */
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in; display: flex; flex-direction: column; overflow: hidden;
+          page-break-after: always; break-after: page; }
   @media screen { body { background: #e6e6e6; padding: 24px 0; } .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); } }
-  @media print { @page { size: letter landscape; margin: 0; } }
-  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .top h1 { font-size: 30px; }
-  .top span { font-size: 14px; }
-  .grid { flex: 1; display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 6px; }
-  .cat { background: #1f4e8c; color: #fff; font-weight: bold; text-align: center; border-radius: 8px; padding: 8px 4px; font-size: 16px; display: grid; place-items: center; }
-  .q { border: 2px solid #1f4e8c; border-radius: 8px; padding: 7px; font-size: 18px; line-height: 1.25; display: flex; flex-direction: column; gap: 4px; }
-  .q .pts { font-size: 22px; font-weight: bold; color: #c98f00; }
-  .judge h1 { color: #b3261e; }
-  .judge .q { border-color: #b3261e; }
-  .judge .cat { background: #b3261e; }
-  .judge .a { font-weight: bold; color: #b3261e; font-size: 17px; }
-  .judge .q { font-size: 15px; }
+  @media print { @page { size: letter portrait; margin: 0; } }
+  .station { font-size: 13px; color: #555; text-align: right; margin-bottom: 8px; }
+  .h { font-size: 30px; font-weight: bold; color: #b0531c; margin-bottom: 2px; }
+  .sub { margin-bottom: 12px; }
+  .tags { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 16px; }
+  .pair-label { grid-column: 1 / -1; font-size: 19px; font-weight: bold; color: #b0531c; border-bottom: 2px solid #f0d2bd; margin-top: 2px; }
+  .tag { display: flex; border: 2px solid #333; border-radius: 4px; overflow: hidden; background: #fff; height: 0.92in; }
+  .tag .left { flex: 1; padding: 6px 10px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tag .name { font-size: 16px; font-weight: bold; text-transform: uppercase; }
+  .tag .size { font-size: 14px; color: #444; }
+  .tag .unit { background: #fff3a8; border: 1px solid #c9b200; border-radius: 3px; font-size: 14px; padding: 1px 6px; width: fit-content; }
+  .tag .right { width: 1.25in; background: #b0531c; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; }
+  .help { margin-top: auto; display: flex; gap: 14px; align-items: center; border: 2px dashed #b0531c; border-radius: 8px; padding: 10px 14px; }
+  .help .demo { flex: none; }
+  .person { display: flex; gap: 14px; border: 2px solid #f0d2bd; border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: bold; }
+  .person h2 { font-size: 21px; margin-bottom: 4px; }
+  .person ul { padding-left: 1.1em; }
+  .dates { border: 2px solid #b0531c; border-radius: 8px; padding: 10px 16px; margin-top: auto; }
+  .dates h2 { color: #b0531c; font-size: 20px; margin-bottom: 4px; }
 """
 
+TAGS = [("Rice", [("Long grain rice", "2 lb bag", "$3.49", "$1.75 per lb"), ("Long grain rice", "20 lb bag", "$21.99", "$1.10 per lb")]),
+        ("Cereal", [("Oat cereal", "12 oz box", "$3.99", "33.3&cent; per oz"), ("Oat cereal", "24 oz box", "$6.49", "27.0&cent; per oz")]),
+        ("Olive oil", [("Olive oil", "17 oz bottle", "$8.99", "52.9&cent; per oz"), ("Olive oil", "34 oz bottle", "$19.49", "57.3&cent; per oz")]),
+        ("Eggs", [("Large eggs", "12 eggs", "$3.99", "33.3&cent; per egg"), ("Large eggs", "18 eggs", "$6.29", "34.9&cent; per egg")]),
+        ("Milk", [("Whole milk", "half gallon", "$2.89", "$5.78 per gallon"), ("Whole milk", "1 gallon", "$4.29", "$4.29 per gallon")])]
 
-def game_doc():
-    def board(judge):
-        cells = "".join(f'<div class="cat">{c}</div>' for c, _ in GAME)
-        for r in range(3):
-            for _, qs in GAME:
-                pts, q, a = qs[r]
-                extra = f'<div class="a">&rarr; {a}</div>' if judge else ""
-                cells += f'<div class="q"><span class="pts">{pts}</span><span>{q}</span>{extra}</div>'
-        return cells
-    p1 = f"""<section class="page">
-  <div class="top"><h1>Fall Review Game</h1><span>Station 4 &middot; The judge reads the question. You answer out loud.</span></div>
-  <div class="grid">{board(False)}</div>
+
+def documents():
+    tags = "".join(f'<div class="pair-label">{food}</div>' + "".join(
+        f'<div class="tag"><div class="left"><div><div class="name">{n}</div><div class="size">{sz}</div></div>'
+        f'<div class="unit">Unit price: <b>{u}</b></div></div><div class="right">{pr}</div></div>' for n, sz, pr, u in items)
+        for food, items in TAGS)
+    sheet1 = f"""<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 1 of 2 &middot; Leave this on the table</div>
+  <div class="h">Eastside Market: shelf tags</div>
+  <p class="sub">Two sizes of the same food. Which one is the better deal? Look at the <b>unit price</b> (the yellow box).</p>
+  <div class="tags">{tags}</div>
+  <div class="help" style="margin-top:14px;"><b style="font-size:19px;color:#b0531c;">Unit price</b><span>= the price for <b>one</b> pound, ounce, egg, or gallon. The <b>lower</b> unit price is the better deal.<br>Big package: $21.99 for 20 lb &rarr; $21.99 &divide; 20 = <b>$1.10 per lb</b>.</span></div>
 </section>"""
-    p2 = f"""<section class="page judge">
-  <div class="top"><h1>Judge&rsquo;s Answers (don&rsquo;t show!)</h1><span>Fold this page back. Other good answers can be OK too. Ask your teacher.</span></div>
-  <div class="grid">{board(True)}</div>
+    people = [("O", "#1f6fb2", "Mr. Ortiz", ["He lives alone.", "He drinks milk only in his coffee, about 1 cup a week.",
+                                              "Milk goes bad about one week after you open it."]),
+              ("D", "#2e7d32", "The Diallo family", ["6 people live in their apartment.", "They eat rice every day, lunch and dinner.",
+                                                      "They have a big closet. Rice stays good for a long time."]),
+              ("R", "#c0392b", "Rosa", ["Bananas are cheap this week. She wants to stock up for 3 weeks.",
+                                         "Bananas get brown and soft in 4 or 5 days."]),
+              ("K", "#7d3c98", "Kim&rsquo;s family", ["They cook with olive oil every day.", "They need 34 ounces of olive oil for the month."])]
+    cards = "".join(f'<div class="person"><div class="avatar" style="background:{c};">{i}</div><div><h2>{n}</h2><ul>'
+                    + "".join(f"<li>{x}</li>" for x in facts) + "</ul></div></div>" for i, c, n, facts in people)
+    sheet2 = f"""<section class="page">
+  <div class="station">Station 4: REAL WORLD &middot; Page 2 of 2 &middot; Leave this on the table</div>
+  <div class="h">Should they buy in bulk?</div>
+  <p class="sub">A big package can save money. But if the food <b>goes bad</b>, you throw it away. That costs money too!</p>
+  {cards}
+  <div class="dates">
+    <h2>Dates on food</h2>
+    <b>Best by / Use by:</b> the food is best before this date. &middot; <b>Sell by:</b> a date for the store.<br>
+    Many foods are still OK after the date. If it smells bad or looks bad, throw it out.
+  </div>
 </section>"""
-    return L.doc("Week 14 Station 4 Fall Review Game", GAME_CSS, p1 + p2)
+    return L.doc("Week 14 Tuesday Real World: Shelf Tags and Unit Price", DOC_CSS, sheet1 + sheet2)
+
+
+def self_check():
+    why = {1: "Olive oil and eggs: the small one is cheaper per unit.", 2: "Unit price = price for one.", 3: "$1.10 is less than $1.75.",
+           4: "The tags don&rsquo;t say &ldquo;sale.&rdquo;", 5: "34.9&cent; is more than 33.3&cent;.", 6: "The tags only show whole milk."}
+    word = {"T": "True", "F": "False", "N": "Not on the tags"}
+    tf = "".join(f'<tr><td class="n">{i}</td><td class="a">{word[a]}</td><td class="why">{why[i]}</td></tr>'
+                 for i, (_, a) in enumerate(TF, 1))
+    deals = "".join(f'<tr><td class="n">{n}</td><td class="a">{w}</td><td class="why">{why}</td></tr>' for n, _, _, w, why in DEALS)
+    body = f"""<h2>A. Read a shelf tag</h2>
+    <table>
+      <tr><td class="n">1</td><td class="a">$3.49 &middot; 2 lb</td><td class="why"></td></tr>
+      <tr><td class="n">2</td><td class="a">$1.75 per pound</td><td class="why">the yellow box</td></tr>
+    </table>
+    <h2>B. Which is the better deal?</h2>
+    <table>{deals}</table>
+    <h2>C. True, false, or not on the tags?</h2>
+    <table>{tf}</table>
+    <div class="tip"><b>Different answer?</b> Compare the yellow unit price boxes together. The <b>lower</b> number wins. <b>Part D hint:</b> will they eat it before it goes bad?</div>"""
+    return L.self_check_doc("Week 14 Station 4 Self-Check", body, page_ref="packet page 7")
 
 
 def leader_guide():
-    hear = "".join(f'<tr><td class="n">{i}</td><td>{s}</td><td>{"compare 2" if a == "C" else "number 1"}</td></tr>' for i, (s, a) in enumerate(HEAR, 1))
+    hear = "".join(f'<tr><td class="n">{i}</td><td>I&rsquo;ve lived here <b>{a}</b> {t}.</td></tr>' for i, (a, t) in enumerate(HEAR, 1))
     top = L.leader_top(14, "12/15/26", STATIONS, [
-        "<b>This week:</b> practice <b>comparatives + superlatives</b> (started Thursday). <b>No quiz</b>: verb review <b>buy, sell, spend</b>. Last Tuesday before break (12/22 is review + party).",
-        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board). Print the game sheet in color (1 per table). Page 2 is the judge&rsquo;s answers: fold it back.",
-        "<b>Floating:</b> no Real World table this week. Start each block at <b>Station 3</b> (listen for <i>more bigger</i> and <i>than</i>, not <i>that</i>). Then Station 4 (check the judge is reading answers), then Station 1.",
+        "<b>This week:</b> practice <b>How long&hellip;? + for / since</b> (started Thursday). Quiz verbs: <b>eat, drink</b>. Week 14 Quiz opens Thu 12/17, due Tue 12/22. Week 13 Quiz is due today.",
+        "<b>Before class:</b> print the packet double-sided (no cover page now; tell groups their station order out loud or on the board).",
+        "<b>Floating:</b> start at <b>Station 4</b> (show one shelf tag and the yellow unit price), then <b>Station 3</b> (listen for <i>since 3 years</i>), then Station 1.",
         "<b>Moves:</b> 3-minute warning, then move. <b>Finished early</b> anywhere &rarr; verb charts (page 9) or write about you (page 10).",
     ])
     page1 = f"""<section class="page">
   {top}
-  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (Which is better?)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
-  <p>Goal: use <b>-er / more &hellip; than</b> to give reasons, and <b>the -est / the most</b> for number 1. Pronunciation: <b>than</b> is weak (&ldquo;thn&rdquo;). Common errors: <i>more cheaper</i>, <i>more better</i>, <i>the most big</i>, <i>bigger that</i>.</p>
+  <div class="header-row" style="margin-top:6px;"><h1>Leading Station 2: SPEAK (How long&hellip;?)</h1><span class="tag">Packet pages 3&ndash;4</span></div>
+  <p>Two goals: (1) answer <i>How long have you&hellip;?</i> with <b>for / since</b>, and (2) sound natural: <b>for</b> is weak (&ldquo;fer&rdquo;), the time is stressed. Learners often stress <b>FOR</b>, or say <i>since 3 years</i>.</p>
   <table class="timeline">
-    <tr><td>3 min</td><td><b>Quiet than.</b> Model: <i>The BUS is CHEAPer thn a TAXi.</i> Everyone repeats.</td></tr>
-    <tr><td>4 min</td><td><b>A. Listen.</b> Read the sentences below. They circle compare 2 or number 1.</td></tr>
-    <tr><td>9 min</td><td><b>B. Debate.</b> 2&ndash;3 topics. Each person: a side + 2 reasons. Keep it friendly and fast.</td></tr>
-    <tr><td>5 min</td><td><b>C. Who is number 1?</b> At the table. Then 2 sentences each.</td></tr>
-    <tr><td>4 min</td><td><b>D + E.</b> Talk, then each person reads you their two sentences.</td></tr>
+    <tr><td>3 min</td><td><b>The beat.</b> Tap on stressed words: <i>I&rsquo;ve lived here fer SIX YEARS.</i></td></tr>
+    <tr><td>5 min</td><td><b>A. For or since?</b> Read the sentences below at normal speed (weak <i>for</i>!).</td></tr>
+    <tr><td>3 min</td><td><b>B. Around the table.</b> Fast chain. Fix <i>since + length</i> right away.</td></tr>
+    <tr><td>6 min</td><td><b>C. Interview.</b> At the table only. Push for full answers.</td></tr>
+    <tr><td>4 min</td><td><b>D. Read aloud.</b> Pairs read the interview, then switch.</td></tr>
+    <tr><td>4 min</td><td><b>E + F.</b> Talk, then each person reads you their two sentences.</td></tr>
   </table>
   <div class="cols">
     <div>
@@ -364,11 +405,11 @@ def leader_guide():
     <div>
       <h2>When they say it wrong</h2>
       <ul class="dots">
-        <li><i>more cheaper</i> &rarr; short word: <b>-er</b> only. Long word: <b>more</b> only. Never both.</li>
-        <li><i>good &rarr; better &rarr; the best</i>, <i>bad &rarr; worse &rarr; the worst</i>.</li>
+        <li><i>since 3 years</i> &rarr; hold up 3 fingers: <i>for</i> 3 years. Point back to a date: <i>since</i> 2023.</li>
+        <li><i>I live here for 6 years</i> &rarr; recast: <i>You&rsquo;ve lived here for 6 years.</i></li>
         <li>Fix <b>one</b> thing, then move on.</li>
       </ul>
-      <div class="recast">Learner: &ldquo;The city is more better.&rdquo;<br>You: &ldquo;The city is <b>better</b>? Why is it better?&rdquo;</div>
+      <div class="recast">Learner: &ldquo;I live here since 2020.&rdquo;<br>You: &ldquo;Oh, you&rsquo;ve <b>lived</b> here since 2020? Six years!&rdquo;</div>
     </div>
   </div>
 </section>"""
@@ -378,33 +419,39 @@ def leader_guide():
     <h2>Station 1: WARM-UP (pages 1&ndash;2)</h2>
     <div class="cols">
       <div>
-        <p><b>1. Words:</b> 1 cost of living &middot; 2 wages &middot; 3 unemployed &middot; 4 interest rate &middot; 5 Inflation &middot; 6 economy</p>
-        <p><b>2. Forms:</b> 1 cheaper &middot; 2 the most expensive &middot; 3 better &middot; 4 the biggest &middot; 5 smaller</p>
-        <p><b>3. Compare:</b> answers vary. Check <i>-er than / the best / more &hellip; than</i>.</p>
+        <p><b>1. For / since:</b> 1 for &middot; 2 since &middot; 3 since &middot; 4 for &middot; 5 since</p>
+        <p><b>2. Since &rarr; for:</b> 1 ten years &middot; 2 four months &middot; 3 five years &middot; 4 one year</p>
+        <p><b>3. About you:</b> answers vary. Check <i>for + length</i>, <i>since + start</i>, <i>have + V3</i>.</p>
       </div>
       <div>
-        <p><b>4. Forms:</b> buy, buys, buying, bought, bought &middot; sell, sells, selling, sold, sold &middot; spend, spends, spending, spent, spent</p>
-        <p><b>5. Right form:</b> 1 spends &middot; 2 buying &middot; 3 sell &middot; 4 buy &middot; 5 spending &middot; 6 sell &middot; 7 spent &middot; 8 sold</p>
-        <p><b>6. Your turn:</b> answers vary: <i>I bought &hellip; / A taxi isn&rsquo;t cheaper than &hellip; / Which &hellip; is the best?</i></p>
+        <p><b>4. Forms:</b> eat, eats, eating, ate, eaten &middot; drink, drinks, drinking, drank, drunk</p>
+        <p><b>5. Right form:</b> 1 drinks &middot; 2 eating &middot; 3 drink &middot; 4 eat &middot; 5 eat &middot; 6 drinking &middot; 7 eaten &middot; 8 drunk</p>
+        <p><b>6. Your turn:</b> answers vary: <i>I drink &hellip; / I didn&rsquo;t eat &hellip; / How long have you + V3?</i></p>
       </div>
     </div>
   </div>
   <div class="box">
     <h2>Station 2: SPEAK (pages 3&ndash;4)</h2>
-    <p><b>A:</b> {" &middot; ".join(f"{i} {'compare 2' if a == 'C' else 'number 1'}" for i, (_, a) in enumerate(HEAR, 1))} &middot; <b>B&ndash;E:</b> answers vary.</p>
+    <p><b>A:</b> {" &middot; ".join(f"{i} {a} ({t})" for i, (a, t) in enumerate(HEAR, 1))} &middot; <b>B&ndash;F:</b> answers vary.</p>
   </div>
   <div class="box">
-    <h2>Station 3: GAME, Compare it! (pages 5&ndash;6)</h2>
-    <p>Page 5 is the comparatives phrase bank: 2&ndash;3 minutes on the three steps and Rules A&ndash;D, then play. Page 6: pick a box, give an opinion with the word in ( ), the group gives the point for the form and agrees or disagrees. Opinions vary; the forms are: {" &middot; ".join(f"{i}. {a}" for i, (_, _, _, a) in enumerate(COMPARE, 1))}. Common errors: <i>more bigger</i>, <i>bigger <s>that</s></i>, <i>the most big</i>.</p>
+    <h2>Station 3: GAME, For or since? (pages 5&ndash;6)</h2>
+    <p>Page 5 is the for / since phrase bank: 2&ndash;3 minutes on the timeline and Rules A&ndash;D, then play. Page 6: pick a box of time words, say a true <i>have + V3</i> sentence with <b>for</b> or <b>since</b>; the group gives the point. <b>for:</b> {", ".join(t for _, t, a in TIMES if a == "for")} &middot; <b>since:</b> {", ".join(t for _, t, a in TIMES if a == "since")}. Common errors: <i>since 3 years</i>; <i>I have went</i>; <i>I live here for 6 years</i>.</p>
+    <p><b>Page 10, B (today = Tue Dec 15):</b> since 2016 &rarr; for ten years &middot; since Monday &rarr; for one day &middot; since August &rarr; for four months.</p>
   </div>
   <div class="box">
-    <h2>Station 4: REVIEW GAME (pages 7&ndash;8 + game sheet)</h2>
-    <p>The judge&rsquo;s answers are on page 2 of the game sheet. <b>Fall review:</b> answers vary. Look for <i>have + V3, can + V1, already / yet, easier than, should + V1, If &hellip; will</i>. The &ldquo;practice more&rdquo; checks are useful for planning January review.</p>
+    <h2>Station 4: REAL WORLD, Shelf tags (pages 7&ndash;8 + 2 color pages)</h2>
+    <p><b>A:</b> 1 $3.49, 2 lb &middot; 2 $1.75 per pound</p>
+    <p><b>B:</b> {" &middot; ".join(f"{n}: <b>{w}</b> ({why})" for n, _, _, w, why in DEALS)}</p>
+    <p><b>C:</b> 1 False &middot; 2 True &middot; 3 True &middot; 4 Not on the tags &middot; 5 False &middot; 6 Not on the tags</p>
+    <p><b>D:</b> {" &middot; ".join(f"<b>{n}</b>: {a}. {w}" for n, _, a, w in FAMILIES)} &middot; &#9733; Kim: two 17-oz bottles = $17.98 vs $19.49, save $1.51.</p>
+    <p><b>E:</b> answers vary. Check <i>If we buy a lot, it will go bad.</i></p>
+    <p style="font-size:12px;">Store, prices, and people are made up. A self-check card for Parts A&ndash;C goes face-down on the table.</p>
   </div>
   <div class="box">
-    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10, answers vary)</h2>
-    <p><b>Chart 1 (she + spend, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
-    <p><b>Chart 2 (I + sell):</b> sell, sells, selling, sold, sold &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("I", SELL))}</p>
+    <h2>FINISHED EARLY: verb charts (page 9) and write about you (page 10)</h2>
+    <p><b>Chart 1 (she + eat, helpers only):</b> Present: &mdash; / doesn&rsquo;t / Does &middot; Past: &mdash; / didn&rsquo;t / Did &middot; Future: will / won&rsquo;t / Will &middot; Pres. cont.: is / isn&rsquo;t / Is &middot; Past cont.: was / wasn&rsquo;t / Was &middot; Fut. cont.: will be / won&rsquo;t be / Will &hellip; be &middot; Pres. perfect: has / hasn&rsquo;t / Has</p>
+    <p><b>Chart 2 (we + drink):</b> drink, drinks, drinking, drank, drunk &middot; {" &middot; ".join(" / ".join(r) for r in L.conjugate("we", DRINK))}</p>
   </div>
 </section>"""
     return L.doc("Week 14 Tuesday Stations Leader Guide", L.LEADER_CSS, page1 + page2)
@@ -415,7 +462,8 @@ if __name__ == "__main__":
         f"{STEM}-packet.html": (packet(False), 10),
         f"{STEM}-packet-key.html": (packet(True), 10),
         f"{STEM}-leader-guide.html": (leader_guide(), 2),
-        f"{STEM}-review-game.html": (game_doc(), 2),
+        f"{STEM}-real-world-document.html": (documents(), 2),
+        f"{STEM}-real-world-self-check.html": (self_check(), 1),
     }
     for name, (html, pages) in outputs.items():
         (HERE / name).write_text(html)
