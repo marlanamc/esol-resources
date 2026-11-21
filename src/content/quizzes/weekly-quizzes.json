@@ -1593,8 +1593,8 @@
   "verb-quiz-9": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 11,
-    "title": "Week 11 Quiz",
+    "weekNumber": 12,
+    "title": "Week 12 Quiz",
     "focusVerbs": [
       "cost",
       "spend"
@@ -1793,8 +1793,8 @@
   "verb-quiz-10": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 12,
-    "title": "Week 12 Quiz",
+    "weekNumber": 13,
+    "title": "Week 13 Quiz",
     "focusVerbs": [
       "buy",
       "sell"
@@ -1993,8 +1993,8 @@
   "verb-quiz-11": {
     "type": "weekly-quiz",
     "version": 1,
-    "weekNumber": 13,
-    "title": "Week 13 Quiz",
+    "weekNumber": 14,
+    "title": "Week 14 Quiz",
     "focusVerbs": [
       "eat",
       "drink"

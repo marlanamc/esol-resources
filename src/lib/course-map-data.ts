@@ -990,12 +990,41 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Week 10 Quiz"
+          }
+        ],
+        "goal": "I can describe what has just happened, what has already happened, and what has not happened yet.",
+        "reviewPractice": "Recall W9 have/has + V3. Main classroom practice: use Marlana's three-person schedules activity to write sentences with just, already, and yet at a stated time. Recognize meaningful attempts and revisions through the existing teacher points workflow. Use good at + V-ing as supporting speaking practice."
+      },
+      {
+        "id": "week-11-thanksgiving",
+        "number": 11,
+        "title": "Thanksgiving Week: Pattern Games",
+        "goal": "Short week: play the two pattern games and review time words. No quiz and no new vocabulary this week.",
+        "reviewPractice": "One class (Tue Nov 24). Recall W9 have/has + V3 and W10 just/already/yet through the time-word games. Just/Already/Yet is quizzed on Thu Dec 3.",
+        "items": [
+          {
+            "id": "tense-path-week-11",
+            "activityId": "tense-path",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Tense Path: Timeline Tenses"
+          },
+          {
+            "id": "sound-path-week-11",
+            "activityId": "sound-path",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Sound Path: -ed Endings"
           },
           {
             "id": "time-word-verb-week10",
             "activityId": "time-word-verb-week10",
-            "slot": "extra",
-            "order": 6,
+            "slot": "required",
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Time Words: Which Verb?"
@@ -1003,15 +1032,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "time-indicators-sorting",
             "activityId": "time-indicators-sorting",
-            "slot": "extra",
-            "order": 7,
+            "slot": "required",
+            "order": 3,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Time Indicators: Past Simple vs Present Perfect"
           }
-        ],
-        "goal": "I can describe what has just happened, what has already happened, and what has not happened yet.",
-        "reviewPractice": "Recall W9 have/has + V3. Main classroom practice: use Marlana's three-person schedules activity to write sentences with just, already, and yet at a stated time. Recognize meaningful attempts and revisions through the existing teacher points workflow. Use good at + V-ing as supporting speaking practice."
+        ]
       }
     ]
   },
@@ -1023,7 +1050,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-13",
-        "number": 11,
+        "number": 12,
         "title": "Spending + Budgeting",
         "items": [
           {
@@ -1089,16 +1116,16 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Week 11 Quiz"
+            "title": "Week 12 Quiz"
           }
         ],
         "goal": "I can talk about spending, saving, and big numbers.",
-        "reviewPractice": "Recall W9 have/has + V3 and W10 just/already/yet."
+        "reviewPractice": "Recall W9 have/has + V3 and W10 just/already/yet (quizzed this Thursday, since Thanksgiving week had no Thursday class)."
       },
       {
         "id": "week-14",
-        "number": 12,
-        "title": "How Long + For and Since",
+        "number": 13,
+        "title": "How Long + How Much: For, Since, Countable + Uncountable",
         "items": [
           {
             "id": "vocab-dec-w2-flashcards",
@@ -1149,21 +1176,72 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Returns and Financial Problems: Fill in the Blank"
           },
           {
-            "id": "verb-quiz-10",
-            "activityId": "verb-quiz-10",
+            "id": "how-much-how-many",
+            "href": "/grammar-reader/how-much-how-many",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
+            "activityType": "guide",
+            "title": "How Much / How Many: Countable + Uncountable"
+          },
+          {
+            "id": "countable-uncountable-game",
+            "activityId": "countable-uncountable-nouns",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Countable vs Uncountable Practice"
+          },
+          {
+            "id": "grocery-budget-practice",
+            "slot": "required",
+            "order": 7,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Grocery Budget Practice"
+          },
+          {
+            "id": "verb-quiz-10",
+            "activityId": "verb-quiz-10",
+            "slot": "required",
+            "order": 8,
+            "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Week 12 Quiz"
+            "title": "Week 13 Quiz"
+          },
+          {
+            "id": "econ-news-headlines-practice",
+            "slot": "extra",
+            "order": 9,
+            "wrappedGame": false,
+            "activityType": "speaking",
+            "title": "Bring Your Own Headline: Discussion"
+          },
+          {
+            "id": "econ-news-short-writing",
+            "slot": "extra",
+            "order": 10,
+            "wrappedGame": false,
+            "activityType": "writing",
+            "title": "Short Writing: \"Prices are higher than...\""
+          },
+          {
+            "id": "reading-econ-news",
+            "href": "/grammar-reader/reading-econ-news",
+            "slot": "extra",
+            "order": 11,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Understanding the News for Econ: Headlines + Charts"
           }
         ],
-        "goal": "I can say how long something has continued using for and since.",
-        "reviewPractice": "Recall W9 have/has + V3 and W4 verb forms."
+        "goal": "I can say how long something has continued using for and since, and ask about quantities with how much and how many.",
+        "reviewPractice": "Recall W9 have/has + V3 and W4 verb forms. Two short grammar points this week (merged so Fall Review stays on Dec 22)."
       },
       {
         "id": "week-15",
-        "number": 13,
+        "number": 14,
         "title": "More, Less, the Most: Comparatives + Superlatives",
         "goal": "I can compare two prices and identify the best option.",
         "items": [
@@ -1213,100 +1291,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Week 13 Quiz"
+            "title": "Week 14 Quiz"
           }
         ],
         "reviewPractice": "Reuse W12 spending vocabulary. Complete the six core vocabulary items for this week; familiar words are deliberate new practice."
-      },
-      {
-        "id": "week-16-econ",
-        "number": 14,
-        "title": "How Much / How Many: Countable + Uncountable",
-        "goal": "I can ask about quantities using how much and how many.",
-        "items": [
-          {
-            "id": "vocab-dec-w3-flashcards",
-            "activityId": "vocab-dec-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 0,
-            "title": "Understanding Economic News: Flash Cards"
-          },
-          {
-            "id": "how-much-how-many",
-            "href": "/grammar-reader/how-much-how-many",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "How Much / How Many: Countable + Uncountable"
-          },
-          {
-            "id": "countable-uncountable-game",
-            "activityId": "countable-uncountable-nouns",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Countable vs Uncountable Practice"
-          },
-          {
-            "id": "grocery-budget-practice",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": false,
-            "activityType": "game",
-            "title": "Grocery Budget Practice"
-          },
-          {
-            "id": "vocab-dec-w3-matching",
-            "activityId": "vocab-dec-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 4,
-            "title": "Understanding Economic News: Matching"
-          },
-          {
-            "id": "vocab-dec-w3-fill-blank",
-            "activityId": "vocab-dec-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 5,
-            "title": "Understanding Economic News: Fill in the Blank"
-          },
-          {
-            "id": "econ-news-headlines-practice",
-            "slot": "extra",
-            "order": 6,
-            "wrappedGame": false,
-            "activityType": "speaking",
-            "title": "Bring Your Own Headline: Discussion"
-          },
-          {
-            "id": "econ-news-short-writing",
-            "slot": "extra",
-            "order": 7,
-            "wrappedGame": false,
-            "activityType": "writing",
-            "title": "Short Writing: \"Prices are higher than...\""
-          },
-          {
-            "id": "reading-econ-news",
-            "href": "/grammar-reader/reading-econ-news",
-            "slot": "extra",
-            "order": 8,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Understanding the News for Econ: Headlines + Charts"
-          }
-        ],
-        "reviewPractice": "Recall W12 for and since and W13 comparisons."
       },
       {
         "id": "week-15b",

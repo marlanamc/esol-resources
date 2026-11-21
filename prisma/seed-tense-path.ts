@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { PRACTICE } from "../src/lib/content-kind";
+import { MAP } from "../src/lib/content-kind";
 import { requireSafeDbTarget } from "../scripts/lib/require-safe-db-target.js";
 
 const prisma = new PrismaClient();
@@ -37,7 +37,9 @@ async function main() {
     category: "games",
     level: "intermediate",
     isReleased: true,
-    contentKind: PRACTICE,
+    // "map" so the Course Map shows it (week 11). Only the map reads
+    // contentKind; the Practice Library / Pronunciation lists still show it.
+    contentKind: MAP,
     createdBy: teacher.id,
   };
 

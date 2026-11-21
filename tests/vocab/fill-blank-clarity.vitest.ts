@@ -10,8 +10,9 @@ describe('clear vocabulary blanks',()=>{
    expect(q.correctAnswers).toEqual([term]);
   }
  });
- it('uses reviewed prompts and complete phrase answers in all 31 later weeks',()=>{
-  for(const w of COURSE_MAP_UNITS.flatMap(u=>u.weeks).filter(w=>w.number>=6)){
+ it('uses reviewed prompts and complete phrase answers in all 30 later vocabulary weeks',()=>{
+  // Week 11 is Thanksgiving week: no vocabulary.
+  for(const w of COURSE_MAP_UNITS.flatMap(u=>u.weeks).filter(w=>w.number>=6&&w.number!==11)){
    const slug=w.items.find(i=>i.vocabUi==='flashcards'&&i.slot==='required')!.activityId!.slice(6);
    const data=weeklyVocabData[slug as keyof typeof weeklyVocabData];const questions=generateFillBlankContent(slug,data).sentences;
    expect(questions).toHaveLength(6);

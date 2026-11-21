@@ -137,12 +137,26 @@
       {
         "section": "perfect",
         "focus": "Present perfect: just, already, yet (review)"
+      },
+      {
+        "section": "simple",
+        "focus": "Present, past, and future simple"
+      }
+    ],
+    "recommendation": "Thanksgiving week, one class: no new grammar. Use page 15 to catch up on Week 10 (just, already, yet and time words); the simple-tense page supports the Tense Path timelines."
+  },
+  {
+    "week": 12,
+    "pages": [
+      {
+        "section": "perfect",
+        "focus": "Present perfect: just, already, yet (review)"
       }
     ],
     "recommendation": "No new grammar guide this week (big numbers and money). Use page 15 only to catch up on Week 10: just, already, yet and time words."
   },
   {
-    "week": 12,
+    "week": 13,
     "pages": [
       {
         "section": "prepositions-time",
@@ -151,12 +165,16 @@
       {
         "section": "perfect",
         "focus": "Present perfect: continuing situations"
+      },
+      {
+        "section": "pronouns",
+        "focus": "A/an, plural nouns, and uncountable nouns"
       }
     ],
-    "recommendation": "Match for/since to a timeline and answer How long…? Leave the other perfect tenses for later."
+    "recommendation": "Two short guides this week. For/since: match for or since to a timeline and answer How long…? Quantity: Partial match: page 4 supports noun and article choices, but the sheet has no dedicated how much/how many or quantifier page. Use the weekly lesson for those rules."
   },
   {
-    "week": 13,
+    "week": 14,
     "pages": [
       {
         "section": "comparisons",
@@ -164,16 +182,6 @@
       }
     ],
     "recommendation": "Compare two prices or choices, then choose the best option in a group."
-  },
-  {
-    "week": 14,
-    "pages": [
-      {
-        "section": "pronouns",
-        "focus": "A/an, plural nouns, and uncountable nouns"
-      }
-    ],
-    "recommendation": "Partial match: page 4 supports noun and article choices, but the sheet has no dedicated how much/how many or quantifier page. Use the weekly lesson for those rules."
   },
   {
     "week": 15,
