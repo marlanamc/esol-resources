@@ -24,7 +24,8 @@ interface TimelineElementComponentProps {
 }
 
 // Render different element types as SVG
-const PRESENT_VERB_LABEL_Y = 61;
+/** Below the NOW marker and the dots, so the label never sits on top of them. */
+const PRESENT_VERB_LABEL_Y = 76;
 const ABOVE_ELEMENT_LABEL_OFFSET = 18;
 
 export function TimelineElementComponent({
@@ -211,12 +212,14 @@ export function TimelineElementComponent({
           x={x}
           y={
             element.zone === 'present'
-              ? PRESENT_VERB_LABEL_Y + labelSlotIndex * 9
+              ? PRESENT_VERB_LABEL_Y - labelSlotIndex * 10
               : y - ABOVE_ELEMENT_LABEL_OFFSET - labelSlotIndex * 11
           }
           textAnchor="middle"
-          className={`${colors.fillClass} text-xs font-semibold`}
-          style={{ fontSize: '11px', fontWeight: 600 }}
+          // The halo (stroke painted under the fill) keeps the label readable
+          // where it crosses the axis, the NOW line, or a zone background.
+          className={`${colors.fillClass} stroke-[#fffdf7] dark:stroke-[#0f2233]`}
+          style={{ fontSize: '12px', fontWeight: 800, paintOrder: 'stroke', strokeWidth: 4, strokeLinejoin: 'round' }}
         >
           {element.verbLabel}
         </text>

@@ -10,10 +10,14 @@ import { POINTS } from "@/lib/gamification/constants";
 export type PathRoundMode = "round1" | "round2" | "checkpoint" | "final";
 export type ServerRoundMode = "round1" | "round2" | "review" | "final";
 
-/** Accuracy (0-100) needed to pass each kind of round. */
+/**
+ * Accuracy (0-100) needed to pass each kind of round.
+ * 10-question rounds (Sound Path): 8/10 to pass, 9/10 to master.
+ * 8-question rounds (Tense Path): 6/8 to pass, 7/8 to master.
+ */
 export const PASS_ACCURACY: Record<PathRoundMode, number> = {
-  round1: 80,
-  round2: 90,
+  round1: 75,
+  round2: 85,
   checkpoint: 80,
   final: 80,
 };
