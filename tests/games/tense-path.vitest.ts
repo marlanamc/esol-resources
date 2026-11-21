@@ -79,6 +79,22 @@ describe("tense names", () => {
       }
     }
   });
+
+  it("keeps present tenses drawn in the FUTURE zone out of the present levels", () => {
+    const meet = ALL_TENSE_PATH_QUESTIONS.find((q) => q.id === "pc-verb-meet-future-1")!;
+    expect(getQuestionTenses(meet)).toEqual(["Present Continuous (Future Arrangement)"]);
+    for (const level of getWorldLevels("present")) {
+      for (const q of getLevelPool(level)) {
+        const els =
+          q.type === "sentence-to-timeline" ? q.correctElements
+          : q.type === "timeline-to-verb" ? q.timelineElements
+          : q.type === "sentence-transformer" ? q.targetElements
+          : q.type === "error-correction" ? q.correctElements
+          : [];
+        expect(els.length === 0 || els.some((e) => e.zone !== "future"), q.id).toBe(true);
+      }
+    }
+  });
 });
 
 describe("level pools and rounds", () => {
