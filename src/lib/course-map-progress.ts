@@ -1,6 +1,9 @@
 import { RESCUE_COLLECTIONS } from '@/lib/word-rescue/content';
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";
 import { parseCategoryData } from "@/lib/categoryData";
+import { normalizeProgress } from "@/lib/pattern-path/engine";
+import { getSummary as getTensePathSummary } from "@/lib/tense-path/progress";
+import { getSummary as getSoundPathSummary } from "@/lib/sound-path/progress";
 import {
     isVocabCategoryData,
     mergeVocabProgressRecords,
@@ -177,6 +180,31 @@ export function isMapActivityCompleted(
     }
 
     return entry.status === "completed";
+}
+
+/** Level games that can be "done" on the map before the whole game is finished. */
+const PATH_GAME_SUMMARY: Record<string, typeof getTensePathSummary> = {
+    "tense-path": getTensePathSummary,
+    "sound-path": getSoundPathSummary,
+};
+
+/**
+ * "Done, keep going": a level game that met its map goal (counts as done) but
+ * still has levels left. Returns a short label like "1 of 13 levels", or null
+ * when the item is not done, is not a level game, or the final is passed.
+ */
+export function getMapActivityKeepGoing(
+    activity: CourseMapActivity,
+    progress: CourseMapProgressState | Record<string, string | null>
+): string | null {
+    const progressId = getMapActivityProgressId(activity);
+    const summarize = progressId ? PATH_GAME_SUMMARY[progressId] : undefined;
+    if (!progressId || !summarize) return null;
+    if (!isMapActivityCompleted(activity, progress)) return null;
+    const entry = resolveProgressEntry(progress, progressId);
+    const summary = summarize(normalizeProgress(entry?.categoryData ?? null));
+    if (summary.finalPassed) return null;
+    return `${summary.passed} of ${summary.totalLevels} levels`;
 }
 
 export function getActionableRequiredActivities(units: CourseMapUnit[]): CourseMapActivity[] {
