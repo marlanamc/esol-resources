@@ -429,9 +429,9 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
           verbPhrase2={question.verbPhrase2}
           realLifeDialogue={question.realLifeDialogue}
           onContinue={onNext}
-          answerVisual={!lastAnswerCorrect ? (
+          answerVisual={(
             <div className="min-w-0 pt-2">
-              <p className="mb-2 text-sm font-semibold">Correct timeline</p>
+              <p className="mb-2 text-sm font-semibold">{lastAnswerCorrect ? 'Your timeline' : 'Correct timeline'}</p>
               <TimelineCanvas
                 elements={question.correctElements}
                 interactive={false}
@@ -439,7 +439,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
                 pastTimelineLayout={question.correctElements.some(el => el.zone.startsWith('past-')) ? 'split' : 'single'}
               />
             </div>
-          ) : undefined}
+          )}
         />
       )}
     </div>

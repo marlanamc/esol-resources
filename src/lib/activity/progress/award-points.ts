@@ -3,7 +3,7 @@ import { getActivityPoints, getSentenceBuilderPoints, getVocabularyTypePoints, P
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
-import { calculateTensePathRoundPoints, isTensePathServerRoundPassed } from "@/lib/tense-path/progress";
+import { calculatePathRoundPoints, isServerRoundPassed } from "@/lib/pattern-path/engine";
 import { logger } from "@/lib/shared/logger";
 import { isVocabProgressType } from "@/lib/activity/progress/shared";
 
@@ -33,24 +33,35 @@ export interface AwardProgressPointsInput {
     sanitizedAccuracy?: number;
 }
 
+/** The path games share round rules; each has its own label and final bonus. */
+const PATH_GAMES: Record<string, { label: string; bonusLabel: string; bonus: number }> = {
+    "tense-path": { label: "Tense Path", bonusLabel: "Tense Master bonus", bonus: POINTS.TENSE_PATH_FINAL_BONUS },
+    "sound-path": { label: "Sound Path", bonusLabel: "Sound Master bonus", bonus: POINTS.SOUND_PATH_FINAL_BONUS },
+};
+
 /**
- * Tense Master bonus: once per learner, ever. The reason string is fixed per
+ * Master bonus: once per learner, ever. The reason string is fixed per
  * activity, and the dedupe window covers all time, so passing the final
- * again (or a double-submit) never awards it twice.
+ * again (or a double-submit) never awards it twice. Keep the reason text
+ * stable: changing it would let past winners earn the bonus again.
  */
-async function awardTensePathFinalBonus(input: AwardProgressPointsInput, activityTitle: string): Promise<void> {
+async function awardPathFinalBonus(
+    input: AwardProgressPointsInput,
+    activityTitle: string,
+    game: { label: string; bonusLabel: string; bonus: number }
+): Promise<void> {
     try {
         await applyAwardChain({
             userId: input.userId,
-            points: POINTS.TENSE_PATH_FINAL_BONUS,
-            reason: `${activityTitle}|Tense Master bonus|final-bonus:${input.activityId}`,
+            points: game.bonus,
+            reason: `${activityTitle}|${game.bonusLabel}|final-bonus:${input.activityId}`,
             source: "activity",
             dedupeKey: true,
             dedupeWindowMs: 100 * 365.25 * 24 * 60 * 60 * 1000,
             transaction: input.transaction,
         });
     } catch (err) {
-        logger.error("[Progress] Tense Path final bonus failed", { userId: input.userId, activityId: input.activityId, err });
+        logger.error(`[Progress] ${game.label} final bonus failed`, { userId: input.userId, activityId: input.activityId, err });
         if (input.transaction) throw err;
     }
 }
@@ -141,13 +152,14 @@ export async function awardProgressActivityPoints(
         const passed = sanitizedRoundAccuracy >= (isRound1 ? 80 : 85);
         const giRoundMode = isRound1 ? "round1" : "round2";
 
-        if (activityGameUi === "tense-path") {
+        const pathGame = PATH_GAMES[activityGameUi];
+        if (pathGame) {
             const serverMode = roundMode === "round2" || roundMode === "review" || roundMode === "final" ? roundMode : "round1";
-            const tensePathPassed = isTensePathServerRoundPassed(serverMode, sanitizedRoundAccuracy);
-            points = calculateTensePathRoundPoints(sanitizedRoundExercises, tensePathPassed);
-            activityTypeLabel = "Tense Path";
-            if (serverMode === "final" && tensePathPassed && activity) {
-                await awardTensePathFinalBonus(input, activity.title);
+            const pathPassed = isServerRoundPassed(serverMode, sanitizedRoundAccuracy);
+            points = calculatePathRoundPoints(sanitizedRoundExercises, pathPassed);
+            activityTypeLabel = pathGame.label;
+            if (serverMode === "final" && pathPassed && activity) {
+                await awardPathFinalBonus(input, activity.title, pathGame);
             }
         } else if (activityGameUi === "parts-of-speech") {
             const groupIdStr = typeof groupId === "string" ? groupId : "";

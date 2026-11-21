@@ -70,6 +70,7 @@
     "db:seed:grammar-hospital": "npx tsx prisma/seed-grammar-hospital.ts",
     "db:seed:sentence-builder": "npx tsx prisma/seed-sentence-builder.ts",
     "db:seed:tense-path": "npx tsx prisma/seed-tense-path.ts",
+    "db:seed:sound-path": "npx tsx prisma/seed-sound-path.ts",
     "db:seed:time-word-verb": "npx tsx prisma/seed-time-word-verb.ts",
     "db:seed:comparison-battle": "npx tsx prisma/seed-comparison-battle.ts",
     "db:seed:timeline-presets": "npx tsx prisma/seed-timeline-tenses-presets.ts",

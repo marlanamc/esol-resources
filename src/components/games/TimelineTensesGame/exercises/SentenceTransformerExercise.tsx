@@ -128,7 +128,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
     (b) => (userInputs[b.index]?.trim() ?? '') !== ''
   );
 
-  const transformLabel = `Rewrite naturally in ${question.targetTense}`;
+  const transformLabel = 'Your turn: rewrite it in';
 
   return (
     <div className="px-2 sm:px-0 max-w-full overflow-hidden">
@@ -157,10 +157,20 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
       </motion.div>
 
       {/* Arrow */}
-      <div className="flex justify-center my-2">
-        <div className="flex flex-col items-center gap-1 text-primary/60">
-          <ArrowDown size={22} strokeWidth={2.5} />
-          <span className="text-xs font-black uppercase tracking-widest">{transformLabel}</span>
+      {/* The task: big and solid so learners know they must change the tense. */}
+      <div className="my-4 flex items-center gap-4 rounded-3xl bg-primary px-5 py-4 text-white shadow-lg sm:px-6">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
+          <ArrowDown size={24} strokeWidth={3} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-lg font-bold leading-snug sm:text-xl">
+            {transformLabel} <span className="whitespace-nowrap rounded-lg bg-white px-2 py-0.5 text-primary-dark">{question.targetTense}</span>
+          </p>
+          {TENSE_FORMULA_LOOKUP[question.targetTense] ? (
+            <p className="mt-1 text-sm font-semibold text-white/90 sm:text-base">
+              Use: {TENSE_FORMULA_LOOKUP[question.targetTense].formula}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -197,11 +207,11 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                         setUserInputs((prev) => ({ ...prev, [idx]: e.target.value }))
                       }
                       onKeyDown={(e) => handleKeyDown(e, idx)}
-                      placeholder={`___ (${blank.validAnswers[0].split(' ').length} words)`}
+                      placeholder={`___ (${blank.validAnswers[0].split(' ').length} ${blank.validAnswers[0].split(' ').length === 1 ? 'word' : 'words'})`}
                       autoCorrect="off"
                       autoCapitalize="off"
                       spellCheck={false}
-                      className="inline-block min-w-[120px] max-w-[200px] border-b-2 border-primary bg-transparent text-primary placeholder-primary/30 focus:outline-none focus:border-primary-dark text-2xl font-display font-black text-center transition-colors"
+                      className="inline-block min-w-[140px] max-w-[240px] rounded-t-lg border-b-4 border-primary bg-primary/10 px-1 text-primary placeholder-primary-dark/70 focus:outline-none focus:border-primary-dark focus:bg-primary/15 text-2xl font-display font-black text-center transition-colors dark:placeholder-primary-light/70"
                       style={{ width: `${Math.max(10, (userInputs[idx]?.length ?? 4) + 2)}ch` }}
                     />
                   );
