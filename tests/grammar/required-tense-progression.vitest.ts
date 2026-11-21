@@ -9,7 +9,10 @@ const expected = new Map([[21,'i-used-to-but-now-i'],[23,'enjoy-doing-want-to-do
 describe('required tense progression', () => {
   it('keeps one required guide per week and preserves moved guide identities', () => {
     // Week 11 has no Thursday class (Thanksgiving), so no new grammar is taught.
-    for (const w of weeks) expect(w.items.filter(i => i.slot === 'required' && i.activityType === 'guide')).toHaveLength(w.number === 11 ? 0 : 1);
+    // Week 13 merges two short guides (how long + how much/how many) so Fall Review stays on Dec 22.
+    // Week 12 (Spending: numbers + money) has no grammar guide.
+    const guideCount = (n: number) => (n === 11 || n === 12 ? 0 : n === 13 ? 2 : 1);
+    for (const w of weeks) expect(w.items.filter(i => i.slot === 'required' && i.activityType === 'guide')).toHaveLength(guideCount(w.number));
     for (const [n, slug] of expected) {
       const guide = weeks.find(w=>w.number===n)!.items.find(i=>i.slot==='required'&&i.activityType==='guide')!;
       expect(guide.href).toBe(`/grammar-reader/${slug}`);

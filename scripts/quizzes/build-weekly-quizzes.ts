@@ -14,12 +14,17 @@ const quizzes: Record<string, WeeklyQuizContent> = {};
 const usedInWeek = new Map<number, Set<string>>();
 const requiredGuideSlug = (weekNumber: number) => weeks.find(w => w.number === weekNumber)?.items.find(i => i.slot === 'required' && i.href?.startsWith('/grammar-reader/'))?.href?.split('/').pop();
 // Week 7's quiz opened before conditionals were practiced, so it reviews weeks 5-6.
-// Week 12's Thursday before is Thanksgiving, so it reviews weeks 7-8.
-const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6], 12: [7, 8] };
+// Week 12 (Spending) has no grammar guide, so week 13's quiz reviews weeks 7-8.
+const REVIEW_WEEKS: Record<number, number[]> = { 7: [5, 6], 13: [7, 8] };
+// Week 11 is Thanksgiving week: pattern games only, no Thursday class and no
+// quiz. Just/Already/Yet (taught Thu of week 10) is quizzed in week 12.
+const GRAMMAR_WEEK_OVERRIDES: Record<number, number> = { 12: 10 };
 // From week 8, Thursday teaches the new grammar and the next Tuesday practices
 // it, so each quiz tests the guide from the week before. Spring weeks are not
 // shifted yet.
-const grammarWeek = (weekNumber: number) => weekNumber >= 8 && weekNumber <= 13 && !REVIEW_WEEKS[weekNumber] ? weekNumber - 1 : weekNumber;
+const grammarWeek = (weekNumber: number) =>
+  GRAMMAR_WEEK_OVERRIDES[weekNumber] ??
+  (weekNumber >= 8 && weekNumber <= 14 && !REVIEW_WEEKS[weekNumber] ? weekNumber - 1 : weekNumber);
 const questionPool = async (slug: string) => (await getGrammarContent(slug))?.miniQuiz?.filter(q => q.type !== 'word-scramble' || q.words.length <= 12) ?? [];
 
 // Only the verb-forms table is typed. Everything else is tapped: students were

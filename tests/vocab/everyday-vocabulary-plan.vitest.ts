@@ -9,8 +9,16 @@ import { RESCUE_WORDS } from '@/lib/word-rescue/content';
 const sets: Record<string,{words:{term:string;def:string;ex:string}[]}> = weeklyVocabData;
 const weeks=COURSE_MAP_UNITS.flatMap(u=>u.weeks);
 describe('everyday vocabulary and optional classroom plan',()=>{
- it('assigns exactly one core six-word set and Word Lab in every week from 6 to 36',()=>{
-  for(const w of weeks.filter(w=>w.number>=6)){
+ // Week 11 is Thanksgiving week: pattern games only, no new vocabulary.
+ const NO_VOCAB_WEEKS=new Set([11]);
+
+ it('gives Thanksgiving week no vocabulary and no Word Lab',()=>{
+  const w11=weeks.find(w=>w.number===11)!;
+  expect(w11.items.some(i=>i.vocabUi)).toBe(false);
+  expect(w11.items.some(i=>i.id===`${w11.id}-word-rescue`)).toBe(false);
+ });
+ it('assigns exactly one core six-word set and Word Lab in every week from 6 to 36 (except Thanksgiving)',()=>{
+  for(const w of weeks.filter(w=>w.number>=6&&!NO_VOCAB_WEEKS.has(w.number))){
    const required=w.items.filter(i=>i.vocabUi==='flashcards'&&i.slot==='required');
    expect(required).toHaveLength(1);
    const slug=required[0].activityId!.replace('vocab-','');
@@ -21,7 +29,7 @@ describe('everyday vocabulary and optional classroom plan',()=>{
   }
  });
  it('assesses current core vocabulary and keeps review weeks familiar',()=>{
-  for(const w of weeks.filter(w=>w.number>=6)){
+  for(const w of weeks.filter(w=>w.number>=6&&!NO_VOCAB_WEEKS.has(w.number))){
    const id=w.items.find(i=>i.vocabUi==='flashcards'&&i.slot==='required')!.activityId!;
    const terms=sets[id.replace('vocab-','')].words.map(w=>w.term);
    for(const quiz of Object.values(quizzes).filter(q=>q.weekNumber===w.number)){
