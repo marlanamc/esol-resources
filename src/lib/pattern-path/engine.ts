@@ -166,22 +166,21 @@ export function createPathEngine<W extends string>(config: PathConfig<W>) {
   }
 
   /**
-   * The one thing to play next, so learners never have to choose:
-   * the first level not yet passed, then that world's checkpoint, then the
-   * final, then the first level not yet mastered.
+   * The one thing to play next, so learners never have to choose. Each level
+   * is finished before the next is suggested: Round 1, then Round 2. After a
+   * world's levels are mastered comes its checkpoint, then the next world,
+   * then the final. Learners can still open any unlocked level from the map.
    */
   function getUpNext(progress: PathProgress): PathUpNext<W> {
     for (const world of worlds) {
       if (!isWorldUnlocked(progress, world.id)) break;
-      const notPassed = worldLevels(world.id).find((l) => !getStep(progress, l.id).passed);
-      if (notPassed) return { kind: "level", levelId: notPassed.id, mode: "round1" };
+      const unfinished = worldLevels(world.id).find((l) => !getStep(progress, l.id).mastered);
+      if (unfinished) {
+        return { kind: "level", levelId: unfinished.id, mode: getLevelRoundMode(progress, unfinished.id) };
+      }
       if (!getStep(progress, checkpointId(world.id)).passed) return { kind: "checkpoint", world: world.id };
     }
     if (isFinalUnlocked(progress) && !getStep(progress, finalId).passed) return { kind: "final" };
-    const notMastered = levels.find(
-      (l) => isWorldUnlocked(progress, l.world) && getStep(progress, l.id).passed && !getStep(progress, l.id).mastered
-    );
-    if (notMastered) return { kind: "level", levelId: notMastered.id, mode: "round2" };
     return { kind: "done" };
   }
 

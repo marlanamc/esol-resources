@@ -146,7 +146,12 @@ describe("progress", () => {
     let p = emptyProgress();
     expect(getUpNext(p)).toEqual({ kind: "level", levelId: "extra-clap", mode: "round1" });
     const ids = Array.from({ length: 10 }, (_, i) => ({ questionId: `q${i}`, correct: true }));
-    for (const l of getSoundWorldLevels("hear-it")) p = processRound(p, l.id, "round1", ids).progress;
+    p = processRound(p, "extra-clap", "round1", ids).progress;
+    expect(getUpNext(p)).toEqual({ kind: "level", levelId: "extra-clap", mode: "round2" });
+    for (const l of getSoundWorldLevels("hear-it")) {
+      p = processRound(p, l.id, "round1", ids).progress;
+      p = processRound(p, l.id, "round2", ids).progress;
+    }
     expect(getUpNext(p)).toEqual({ kind: "checkpoint", world: "hear-it" });
     expect(isWorldUnlocked(p, "sort-it")).toBe(false);
     p = processRound(p, checkpointId("hear-it"), "checkpoint", ids).progress;
