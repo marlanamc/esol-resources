@@ -64,20 +64,36 @@ export function normalizeTenseName(raw: string): string | null {
   return base;
 }
 
+type Element = { zone: string; verbLabel?: string };
+
+/**
+ * A present tense drawn entirely in the FUTURE zone is a future use ("We are
+ * meeting the teacher tomorrow"). Tag it so the present levels, whose rule
+ * cards say "happening at NOW", never pick it up.
+ */
+function markFutureUse(label: string, elements: Element[]): string {
+  if (!/^Present (Simple|Continuous)\b/i.test(label) || /\(/.test(label)) return label;
+  if (elements.length === 0 || !elements.every((e) => e.zone === "future")) return label;
+  return `${label} (Future Arrangement)`;
+}
+
 function rawTenseLabels(q: TensePathQuestion): string[] {
   switch (q.type) {
     case "sentence-to-timeline":
-      return [q.tenseName];
+      return [markFutureUse(q.tenseName, q.correctElements)];
     case "timeline-to-verb":
-      return q.blanks.map((b) => b.validAnswers[0]?.tenseName ?? "");
+      return q.blanks.map((b) => {
+        const own = q.timelineElements.filter((e) => e.verbLabel === b.baseVerb);
+        return markFutureUse(b.validAnswers[0]?.tenseName ?? "", own.length > 0 ? own : q.timelineElements);
+      });
     case "tense-comparison":
-      return [q.tenseA, q.tenseB];
+      return [markFutureUse(q.tenseA, q.elementsA), markFutureUse(q.tenseB, q.elementsB)];
     case "sentence-transformer":
-      return [q.targetTense];
+      return [markFutureUse(q.targetTense, q.targetElements)];
     case "context-tense-picker":
-      return q.options.filter((o) => o.isCorrect).map((o) => o.tenseName);
+      return q.options.filter((o) => o.isCorrect).map((o) => markFutureUse(o.tenseName, o.elements));
     case "error-correction":
-      return [q.correctTense];
+      return [markFutureUse(q.correctTense, q.correctElements)];
   }
 }
 

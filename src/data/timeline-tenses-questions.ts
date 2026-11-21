@@ -1818,6 +1818,16 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
             tenseName: 'Present Continuous',
             nuance: 'Contracted form of the arranged meeting.',
           },
+          {
+            answer: 'will be meeting',
+            tenseName: 'Future Continuous',
+            nuance: 'Also correct: the meeting will be in progress tomorrow morning.',
+          },
+          {
+            answer: "'ll be meeting",
+            tenseName: 'Future Continuous',
+            nuance: 'Contracted form of will be meeting.',
+          },
         ],
       },
     ],
