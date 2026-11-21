@@ -244,6 +244,12 @@ export function StudentEvaluationContent({ data }: { data: StudentEvaluation }) 
                                     <p className="mt-1 text-xs text-text-muted">
                                         {p.category} · Last saved {date(p.lastPracticedAt)}
                                     </p>
+                                    {p.path ? (
+                                        <p className="mt-1 text-sm text-text-muted">
+                                            {p.path.passed} of {p.path.totalLevels} levels passed &middot; {p.path.mastered} mastered &middot;{' '}
+                                            {p.path.checkpoints} {p.path.checkpoints === 1 ? 'checkpoint' : 'checkpoints'}
+                                        </p>
+                                    ) : null}
                                     {p.modes.length ? (
                                         <p className="mt-1 text-sm text-text-muted">
                                             Completed: {p.modes.join(', ')}
@@ -251,7 +257,13 @@ export function StudentEvaluationContent({ data }: { data: StudentEvaluation }) 
                                     ) : null}
                                 </div>
                                 <span className="text-sm text-text-muted">
-                                    {p.completed
+                                    {p.path
+                                        ? p.path.badge
+                                            ? `${p.path.badge} badge earned`
+                                            : p.completed
+                                              ? 'Done for this week · keep going'
+                                              : 'Working on Level 1'
+                                        : p.completed
                                         ? 'Completion recorded'
                                         : p.progress > 0
                                           ? `${p.progress}% saved progress`

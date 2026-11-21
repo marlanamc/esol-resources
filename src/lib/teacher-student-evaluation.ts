@@ -1,5 +1,36 @@
 import { CLASS_TIME_ZONE } from '@/data/school-calendar-2026-27';
 import { quizCountsSince, readWeeklyQuizSchedule } from '@/lib/weekly-quiz-schedule';
+import { normalizeProgress } from '@/lib/pattern-path/engine';
+import { getSummary as getTensePathSummary } from '@/lib/tense-path/progress';
+import { getSummary as getSoundPathSummary } from '@/lib/sound-path/progress';
+
+/** Level games: show how far a student is, not just "Completion recorded". */
+const PATH_GAMES: Record<string, { summarize: typeof getTensePathSummary; badge: string }> = {
+    'tense-path': { summarize: getTensePathSummary, badge: 'Tense Master' },
+    'sound-path': { summarize: getSoundPathSummary, badge: 'Sound Master' },
+};
+
+export type PracticePathProgress = {
+    passed: number;
+    mastered: number;
+    totalLevels: number;
+    checkpoints: number;
+    /** Badge name once the final is passed, e.g. "Tense Master". */
+    badge: string | null;
+};
+
+function pathProgress(activityId: string, categoryData: string | null): PracticePathProgress | undefined {
+    const game = PATH_GAMES[activityId];
+    if (!game) return undefined;
+    const s = game.summarize(normalizeProgress(categoryData));
+    return {
+        passed: s.passed,
+        mastered: s.mastered,
+        totalLevels: s.totalLevels,
+        checkpoints: s.checkpoints,
+        badge: s.finalPassed ? game.badge : null,
+    };
+}
 export type EvaluationActivity = {
     id: string;
     title: string;
@@ -270,6 +301,7 @@ export function buildStudentEvaluation(input: {
         progress: Math.max(0, Math.min(100, r.progress)),
         completed: r.status === 'completed' || r.progress >= 100,
         modes: completedModes(r.categoryData),
+        path: pathProgress(r.activityId, r.categoryData),
     }));
     const categories = [...new Set(practice.map((r) => r.category))].sort().map((category) => {
         const rows = practice.filter((r) => r.category === category);

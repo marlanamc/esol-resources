@@ -243,3 +243,37 @@ describe('optional practice and learning evidence', () => {
         expect(result.learning[0]).toMatchObject({ comparable: false, attempts: 2, questions: 1 });
     });
 });
+
+describe('level games on the student page', () => {
+    const pathRow = (activityId: string, title: string, status: string, categoryData: object) => ({
+        activityId,
+        assignmentId: null,
+        progress: status === 'completed' ? 100 : 0,
+        status,
+        createdAt: new Date(now.getTime() - 3600_000),
+        updatedAt: new Date(now.getTime() - 3600_000),
+        categoryData: JSON.stringify(categoryData),
+        activity: { id: activityId, title, type: 'game', category: 'games' },
+    });
+
+    it('shows levels passed and mastered for Tense Path instead of only completion', () => {
+        const steps = {
+            'always-true': { passed: true, mastered: true, attempts: 2, bestAccuracy: 100, recentIds: [] },
+            'right-now': { passed: true, mastered: false, attempts: 1, bestAccuracy: 80, recentIds: [] },
+        };
+        const result = build({ progress: [pathRow('tense-path', 'Tense Path', 'completed', { steps, badges: {} })] });
+        const row = result.practice.find((p) => p.id === 'tense-path')!;
+        expect(row.completed).toBe(true);
+        expect(row.path).toEqual({ passed: 2, mastered: 1, totalLevels: 13, checkpoints: 0, badge: null });
+    });
+
+    it('names the badge once the Sound Path final is passed', () => {
+        const result = build({ progress: [pathRow('sound-path', 'Sound Path', 'completed', { steps: { final: { passed: true } }, badges: { soundMaster: true } })] });
+        expect(result.practice[0].path?.badge).toBe('Sound Master');
+    });
+
+    it('leaves ordinary practice rows alone', () => {
+        const result = build({ progress: [pathRow('vocab-dec-w1', 'Spending vocab', 'in_progress', {})] });
+        expect(result.practice[0].path).toBeUndefined();
+    });
+});
