@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, memo } from 'react';
+import { useState, useRef, useLayoutEffect, memo } from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Copy } from 'lucide-react';
 import type { ErrorCorrectionQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { ExerciseActionBar } from '../ExerciseActionBar';
@@ -46,7 +46,36 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
   lastAnswerCorrect,
 }: ErrorCorrectionExerciseProps) {
   const [userInput, setUserInput] = useState('');
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const writeCardRef = useRef<HTMLDivElement | null>(null);
+
+  // Grow the box with the text so the whole sentence is always visible.
+  useLayoutEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${el.scrollHeight}px`;
+  }, [userInput]);
+
+  // When the phone keyboard opens, bring the whole write card (with the
+  // sentence to fix) into view instead of just the text box.
+  const [typing, setTyping] = useState(false);
+  const revealWriteCard = () => {
+    setTyping(true);
+    const reveal = () => writeCardRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    window.setTimeout(reveal, 300);
+    // iOS shrinks the visual viewport once the keyboard finishes opening.
+    window.visualViewport?.addEventListener('resize', reveal, { once: true });
+  };
+
+  const copyOriginal = () => {
+    setUserInput(question.incorrectSentence);
+    const el = inputRef.current;
+    if (el) {
+      el.focus();
+      requestAnimationFrame(() => el.setSelectionRange(el.value.length, el.value.length));
+    }
+  };
   const { playPing, playThump } = useTimelineAudio();
 
   const incorrectSplit = elementsUseSplitPast(question.incorrectElements);
@@ -117,26 +146,60 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
           {question.errorLocation === 'sentence' ? (
             /* Sentence fix — type the corrected sentence */
             <motion.div
+              ref={writeCardRef}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-8 mb-6 shadow-xl"
+              className="scroll-mt-4 bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-5 sm:p-8 mb-6 shadow-xl"
             >
-              <div className="text-xs font-black text-primary uppercase tracking-[0.3em] mb-4">Write the corrected sentence</div>
-              <input
+              <label htmlFor={`fix-${question.id}`} className="block text-xs font-black text-primary uppercase tracking-[0.2em] mb-3">
+                Write the corrected sentence
+              </label>
+
+              {/* The sentence to fix, repeated here so learners can see it while
+                  the phone keyboard is open. */}
+              <div className="mb-3 rounded-2xl bg-amber-500/10 px-4 py-3">
+                <div className="text-xs font-bold text-amber-800 dark:text-amber-300 mb-1">Fix this sentence:</div>
+                <p className="text-lg font-semibold leading-snug text-text">{question.incorrectSentence}</p>
+              </div>
+
+              <textarea
+                id={`fix-${question.id}`}
                 ref={inputRef}
-                type="text"
+                rows={2}
                 value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter' && userInput.trim()) handleSubmit(); }}
+                onChange={(e) => setUserInput(e.target.value.replace(/\n/g, ' '))}
+                onFocus={revealWriteCard}
+                // Wait before re-pinning so a tap on Check Answer still lands.
+                onBlur={() => window.setTimeout(() => setTyping(false), 250)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (userInput.trim()) handleSubmit();
+                  }
+                }}
+                enterKeyHint="done"
                 placeholder="Type the corrected sentence..."
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                className="w-full border-b-2 border-primary bg-transparent text-text text-xl font-display font-black placeholder-text-muted/30 focus:outline-none focus:border-primary-dark pb-2 transition-colors"
+                className="block w-full resize-none overflow-hidden rounded-2xl border-2 border-primary/40 bg-white dark:bg-[#0f2233] px-4 py-3 text-xl leading-snug font-bold text-text placeholder:text-text-muted/40 focus:border-primary focus:outline-none transition-colors"
               />
-              <p className="text-xs text-text-muted/50 font-medium mt-2">
-                Hint: incorrect tense is <span className="font-black text-amber-600/70">{question.incorrectTense}</span>
-              </p>
+
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                <p className="text-sm text-text-muted">
+                  Wrong tense: <span className="font-bold text-amber-700 dark:text-amber-300">{question.incorrectTense}</span>
+                </p>
+                {userInput.trim() === '' ? (
+                  <button
+                    type="button"
+                    onClick={copyOriginal}
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border px-3 py-2 text-sm font-bold text-text-muted hover:text-primary hover:border-primary/40"
+                  >
+                    <Copy size={16} aria-hidden="true" />
+                    Copy the sentence
+                  </button>
+                ) : null}
+              </div>
             </motion.div>
           ) : (
             /* Timeline error — show correct timeline immediately */
@@ -155,7 +218,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
             </motion.div>
           )}
 
-          <ExerciseActionBar>
+          <ExerciseActionBar pinned={!typing}>
             <button
               onClick={handleSubmit}
               disabled={question.errorLocation === 'sentence' && !userInput.trim()}
