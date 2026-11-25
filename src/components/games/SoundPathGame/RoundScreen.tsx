@@ -169,7 +169,7 @@ export function RoundScreen({
             type="button"
             onClick={replay}
             aria-label="Play again"
-            className="flex h-24 w-24 items-center justify-center rounded-full bg-violet-600! text-white! shadow-[0_8px_18px_-10px_rgba(26,32,44,0.4)] transition-transform hover:scale-105 active:scale-95"
+            className="flex h-24 w-24 items-center justify-center rounded-full bg-violet-600! text-[#ffffff]! shadow-[0_8px_18px_-10px_rgba(26,32,44,0.4)] transition-transform hover:scale-105 active:scale-95"
           >
             <Volume2 size={40} aria-hidden="true" />
           </button>

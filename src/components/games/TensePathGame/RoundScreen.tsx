@@ -93,7 +93,7 @@ export function RoundScreen({
       <div className="flex flex-wrap items-center gap-2">
         <span
           className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest ${
-            challenge ? 'bg-primary/15 text-primary-dark dark:text-primary-light' : 'bg-secondary/20 text-secondary-dark dark:text-secondary-light'
+            challenge ? 'bg-primary/15 text-primary-text' : 'bg-secondary/20 text-secondary-dark dark:text-secondary-light'
           }`}
         >
           {QUESTION_TYPE_LABEL[question.type]}

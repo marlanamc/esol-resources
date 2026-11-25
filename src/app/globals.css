@@ -12,6 +12,8 @@
   --color-primary: var(--primary-color);
   --color-primary-dark: var(--primary-color-dark);
   --color-primary-light: var(--primary-color-light);
+  /* Primary as text on light/dark surfaces: meets 4.5:1 in every accent (fills use --color-primary). */
+  --color-primary-text: var(--primary-text);
 
   /* Colors - Secondary (Library Sage - lighter and more vibrant) */
   --color-secondary: var(--secondary-color);

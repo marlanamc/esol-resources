@@ -36,7 +36,7 @@ function highlightClues(scenario: string, clues: string[], highlight: boolean): 
       {parts.map((part, i) => {
         const isClue = clues.some((c) => c.toLowerCase() === part.toLowerCase());
         return isClue ? (
-          <mark key={i} className="bg-accent/40 text-text rounded px-0.5 not-italic">
+          <mark key={i} className="bg-accent/40 dark:bg-accent/25 text-text rounded px-0.5 not-italic">
             {part}
           </mark>
         ) : (
@@ -78,7 +78,7 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="flex items-center gap-3 mb-4">
           <div className="w-1.5 h-6 rounded-full bg-primary" />
-          <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+          <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
             In Context
           </div>
         </div>
@@ -110,16 +110,16 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className={`text-sm font-black uppercase tracking-wider ${isSelected ? 'text-primary' : 'text-text-muted/70'}`}>
+                    <span className={`text-sm font-black uppercase tracking-wider ${isSelected ? 'text-primary-text' : 'text-text-muted'}`}>
                       {option.tenseName}
                     </span>
                     {isSelected && (
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                        className="w-5 h-5 rounded-full bg-primary-dark dark:bg-primary flex items-center justify-center"
                       >
-                        <Check size={11} strokeWidth={3} className="text-white" />
+                        <Check size={11} strokeWidth={3} className="text-text-on-accent" />
                       </motion.div>
                     )}
                   </div>
@@ -137,7 +137,7 @@ export const ContextTenseExercise = memo(function ContextTenseExercise({
             <button
               onClick={handleSubmit}
               disabled={selected === null}
-              className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
             >
               Check Answer
             </button>

@@ -108,7 +108,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
         <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl -z-10" />
         <div className="flex items-center gap-3 mb-4">
           <div className="w-1.5 h-6 rounded-full bg-amber-500" />
-          <div className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-[0.3em]">
+          <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-[0.3em]">
             Fix It
           </div>
           <span className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-xs font-black border border-amber-500/20">
@@ -119,8 +119,8 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
 
         <p className="text-base text-text-muted font-medium mb-3">
           {question.errorLocation === 'sentence'
-            ? 'This sentence uses the wrong tense. Fix it!'
-            : 'This timeline doesn\'t match the sentence. Study the correct one.'}
+            ? 'The tense is wrong.'
+            : 'The timeline is wrong. Study the correct one.'}
         </p>
 
         <p className="text-2xl sm:text-3xl font-display font-black text-text leading-tight mb-6">
@@ -128,16 +128,18 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
         </p>
 
         {/* Incorrect timeline */}
-        <div className="opacity-70">
-          <div className="text-xs font-black text-amber-600/60 uppercase tracking-widest mb-2">
+        <div>
+          <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-2">
             {question.errorLocation === 'timeline' ? '⚠ Wrong Timeline' : 'Current Timeline'}
           </div>
-          <TimelineCanvas
-            elements={question.incorrectElements}
-            interactive={false}
-            showLabels={false}
-            pastTimelineLayout={incorrectSplit ? 'split' : 'single'}
-          />
+          <div className="opacity-70">
+            <TimelineCanvas
+              elements={question.incorrectElements}
+              interactive={false}
+              showLabels={false}
+              pastTimelineLayout={incorrectSplit ? 'split' : 'single'}
+            />
+          </div>
         </div>
       </motion.div>
 
@@ -151,14 +153,13 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
               animate={{ opacity: 1, y: 0 }}
               className="scroll-mt-4 bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-5 sm:p-8 mb-6 shadow-xl"
             >
-              <label htmlFor={`fix-${question.id}`} className="block text-xs font-black text-primary uppercase tracking-[0.2em] mb-3">
+              <label htmlFor={`fix-${question.id}`} className="block text-xs font-black text-primary-text uppercase tracking-[0.2em] mb-3">
                 Write the corrected sentence
               </label>
 
               {/* The sentence to fix, repeated here so learners can see it while
                   the phone keyboard is open. */}
               <div className="mb-3 rounded-2xl bg-amber-500/10 px-4 py-3">
-                <div className="text-xs font-bold text-amber-800 dark:text-amber-300 mb-1">Fix this sentence:</div>
                 <p className="text-lg font-semibold leading-snug text-text">{question.incorrectSentence}</p>
               </div>
 
@@ -182,7 +183,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                className="block w-full resize-none overflow-hidden rounded-2xl border-2 border-primary/40 bg-white dark:bg-[#0f2233] px-4 py-3 text-xl leading-snug font-bold text-text placeholder:text-text-muted/40 focus:border-primary focus:outline-none transition-colors"
+                className="block w-full resize-none overflow-hidden rounded-2xl border-2 border-primary/40 bg-white dark:bg-[#0f2233] px-4 py-3 text-xl leading-snug font-bold text-text placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors"
               />
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
@@ -193,7 +194,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
                   <button
                     type="button"
                     onClick={copyOriginal}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border px-3 py-2 text-sm font-bold text-text-muted hover:text-primary hover:border-primary/40"
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border px-3 py-2 text-sm font-bold text-text-muted hover:text-primary-text hover:border-primary/40"
                   >
                     <Copy size={16} aria-hidden="true" />
                     Copy the sentence
@@ -222,7 +223,7 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
             <button
               onClick={handleSubmit}
               disabled={question.errorLocation === 'sentence' && !userInput.trim()}
-              className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {question.errorLocation === 'timeline' ? 'Got It — Next' : 'Check Answer'}
             </button>

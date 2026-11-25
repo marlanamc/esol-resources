@@ -168,8 +168,8 @@ function renderHighlightedText(
         }
 
         const className = [
-          segment.isTimeClue ? 'bg-accent/40 text-text rounded px-0.5 not-italic font-bold' : '',
-          segment.isVerbPhrase ? 'underline decoration-primary decoration-2 underline-offset-4 text-primary' : '',
+          segment.isTimeClue ? 'bg-accent/40 dark:bg-accent/25 text-text rounded px-0.5 not-italic font-bold' : '',
+          segment.isVerbPhrase ? 'underline decoration-primary decoration-2 underline-offset-4 text-primary-text' : '',
         ]
           .filter(Boolean)
           .join(' ');
