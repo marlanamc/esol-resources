@@ -13,6 +13,7 @@ import { trackLogin, getWeeklyRankForUser } from "@/lib/gamification/gamificatio
 import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
+import { getScheduledAnnouncement } from "@/lib/scheduled-announcements";
 import {
     CalendarEvent,
     DashboardCalendarCard,
@@ -221,6 +222,17 @@ export default async function DashboardPage() {
             ),
         }))
         .filter((announcement) => announcement.message.length > 0);
+    const scheduledAnnouncement = getScheduledAnnouncement();
+    if (scheduledAnnouncement) {
+        classAnnouncements.unshift({
+            id: scheduledAnnouncement.id,
+            className: "This week",
+            message: scheduledAnnouncement.message,
+            messageHtml: renderAnnouncementMarkdown(scheduledAnnouncement.message),
+            dismissed: false,
+            localOnly: true,
+        });
+    }
 
     const classIds = enrollments.map(e => e.classId);
     const featuredClassIds = await withPrismaReadRetry(() =>

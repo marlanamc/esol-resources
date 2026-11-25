@@ -9,6 +9,8 @@ export interface AnnouncementItem {
     message: string;
     messageHtml: string;
     dismissed: boolean;
+    /** Not a class row (e.g. a dated announcement): dismissal is saved in this browser only. */
+    localOnly?: boolean;
 }
 
 interface ClassAnnouncementProps {
@@ -18,6 +20,7 @@ interface ClassAnnouncementProps {
 }
 
 const storageKey = (id: string) => `announcement-dismissed:anonymous:${id}`;
+const savesLocally = (item: Pick<AnnouncementItem, 'localOnly'>, studentId?: string) => !studentId || item.localOnly === true;
 const dismissButtonClass = 'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-text-muted transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40';
 
 export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncementProps) {
@@ -26,10 +29,10 @@ export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncemen
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (studentId) return;
+        if (studentId && !announcements.some((item) => item.localOnly)) return;
         const readDismissals = () => {
             try {
-                setDismissed(new Set(announcements.filter((item) => localStorage.getItem(storageKey(item.id)) === '1').map((item) => item.id)));
+                setDismissed(new Set(announcements.filter((item) => savesLocally(item, studentId) && localStorage.getItem(storageKey(item.id)) === '1').map((item) => item.id)));
             } catch {
                 // Storage may be blocked. Announcements remain available for this visit.
             }
@@ -42,10 +45,11 @@ export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncemen
 
     const visible = ready ? announcements.filter((item) => !item.dismissed && !dismissed.has(item.id)) : [];
 
-    const dismiss = async (id: string) => {
+    const dismiss = async (item: AnnouncementItem) => {
+        const { id } = item;
         setDismissed((previous) => new Set(previous).add(id));
         setError(null);
-        if (!studentId) {
+        if (savesLocally(item, studentId)) {
             try {
                 localStorage.setItem(storageKey(id), '1');
             } catch {
@@ -87,7 +91,7 @@ export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncemen
                                 <div className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[0.9375rem] leading-snug text-text lg:text-base"
                                     dangerouslySetInnerHTML={{ __html: announcement.messageHtml }} />
                             </div>
-                            <button type="button" onClick={() => void dismiss(announcement.id)} aria-label="Dismiss announcement" className={dismissButtonClass}>
+                            <button type="button" onClick={() => void dismiss(announcement)} aria-label="Dismiss announcement" className={dismissButtonClass}>
                                 <X size={16} aria-hidden />
                             </button>
                         </article>
