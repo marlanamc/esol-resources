@@ -50,7 +50,7 @@ function StepLine({
     marker: string | null;
     title: string;
     status: ReactNode;
-    tag: string;
+    tag?: string;
     href: string | null;
     done: boolean;
     required?: boolean;
@@ -79,16 +79,18 @@ function StepLine({
                         {marker ? <span className="mr-1 text-text-muted">{marker}.</span> : null}
                         {title}
                     </span>
-                    <span
-                        className="shrink-0 rounded-full px-2 py-[2px] text-[0.6875rem] font-bold whitespace-nowrap"
-                        style={
-                            required
-                                ? { background: "var(--road-required-bg)", color: "var(--road-required-text)" }
-                                : { background: "var(--road-neutral-chip)", color: "var(--text-muted)" }
-                        }
-                    >
-                        {tag}
-                    </span>
+                    {tag ? (
+                        <span
+                            className="shrink-0 rounded-full px-2 py-[2px] text-[0.6875rem] font-bold whitespace-nowrap"
+                            style={
+                                required
+                                    ? { background: "var(--road-required-bg)", color: "var(--road-required-text)" }
+                                    : { background: "var(--road-neutral-chip)", color: "var(--text-muted)" }
+                            }
+                        >
+                            {tag}
+                        </span>
+                    ) : null}
                 </span>
                 <span className="mt-0.5 block text-[0.8438rem] leading-snug text-text-muted">{status}</span>
             </span>
@@ -110,7 +112,8 @@ function StepLine({
 
 /**
  * The week's steps for the home cards (phone and desktop), matching the Map:
- * 1. Words, 2. Grammar, 3. Quiz. The full activity list lives on the Map;
+ * 1. Words, 2. Grammar, 3. Quiz. Weeks with none of those list each activity
+ * instead. The full activity list lives on the Map;
  * questions for class live next to Class links.
  */
 export function WeekStepLines({
@@ -129,7 +132,7 @@ export function WeekStepLines({
     const allDone = (list: RoadActivity[]) => list.length > 0 && list.every((a) => a.done);
     const quiz = steps.quiz[0];
 
-    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag: string; href: string | null; done: boolean; required?: boolean };
+    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag?: string; href: string | null; done: boolean; required?: boolean };
     const lines: Line[] = [];
     if (steps.words.length > 0) {
         const doneCount = steps.words.filter((a) => a.done).length;
@@ -157,6 +160,21 @@ export function WeekStepLines({
             done: quiz.done,
             required: true,
         });
+    }
+
+    // Short weeks with no words, guide, or quiz (e.g. Thanksgiving's games): list each activity.
+    if (lines.length === 0) {
+        for (const activity of steps.practice) {
+            const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
+            lines.push({
+                key: activity.id,
+                numbered: true,
+                title: rowTitle(activity),
+                status: activity.done ? "Done. You can play again." : activity.isNext ? `Next up · ${format.label}` : format.label,
+                href: activity.href,
+                done: activity.done,
+            });
+        }
     }
 
     if (lines.length === 0) return null;
