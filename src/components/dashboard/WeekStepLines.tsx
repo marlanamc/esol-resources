@@ -83,6 +83,7 @@ function StepLine({
     href,
     done,
     required = false,
+    current = false,
     levels,
     accent,
     last,
@@ -95,6 +96,7 @@ function StepLine({
     href: string | null;
     done: boolean;
     required?: boolean;
+    current?: boolean;
     levels?: LevelProgress;
     accent: string;
     last: boolean;
@@ -108,15 +110,19 @@ function StepLine({
             {levels ? (
                 <LevelRing levels={levels} />
             ) : (
+                // Done: green check. Required (quiz): red. Not started: an open circle,
+                // with a dot in the middle on the one that is next.
                 <span
                     aria-hidden
-                    className="relative z-[1] mt-[5px] flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full"
+                    className="relative z-[1] mt-[5px] box-border flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full"
                     style={{
-                        background: done ? "var(--success-color)" : required ? "var(--road-required-bg)" : accent,
+                        background: done ? "var(--success-color)" : required ? "var(--road-required-bg)" : "var(--surface-base)",
+                        border: done || required ? undefined : `2px solid ${accent}`,
                         boxShadow: "0 0 0 3px var(--surface-base)",
                     }}
                 >
                     {done ? <Check size={9} strokeWidth={4} style={{ color: "var(--road-on-success)" }} /> : null}
+                    {!done && !required && current ? <span className="h-[6px] w-[6px] rounded-full" style={{ background: accent }} /> : null}
                 </span>
             )}
             <span className="min-w-0 flex-1">
@@ -178,7 +184,7 @@ export function WeekStepLines({
     const allDone = (list: RoadActivity[]) => list.length > 0 && list.every((a) => a.done);
     const quiz = steps.quiz[0];
 
-    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag?: string; href: string | null; done: boolean; required?: boolean; levels?: LevelProgress };
+    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag?: string; href: string | null; done: boolean; required?: boolean; current?: boolean; levels?: LevelProgress };
     const lines: Line[] = [];
     if (steps.words.length > 0) {
         const doneCount = steps.words.filter((a) => a.done).length;
@@ -190,10 +196,11 @@ export function WeekStepLines({
             tag: "Start before Tues",
             href: stepHref(steps.words),
             done: allDone(steps.words),
+            current: steps.words.some((a) => a.isNext),
         });
     }
     if (steps.grammar.length > 0) {
-        lines.push({ key: "grammar", numbered: true, title: "Grammar", status: steps.grammar.map(rowTitle).join(" · "), tag: "Start before Thurs", href: stepHref(steps.grammar), done: allDone(steps.grammar) });
+        lines.push({ key: "grammar", numbered: true, title: "Grammar", status: steps.grammar.map(rowTitle).join(" · "), tag: "Start before Thurs", href: stepHref(steps.grammar), done: allDone(steps.grammar), current: steps.grammar.some((a) => a.isNext) });
     }
     if (quiz) {
         lines.push({
@@ -228,6 +235,7 @@ export function WeekStepLines({
                 ),
                 href: activity.href,
                 done: activity.done,
+                current: activity.isNext,
                 ...(levels ? { levels } : {}),
             });
         }
@@ -247,6 +255,7 @@ export function WeekStepLines({
                     href={line.href}
                     done={line.done}
                     required={line.required}
+                    current={line.current}
                     levels={line.levels}
                     accent={accent}
                     last={index === lines.length - 1}
