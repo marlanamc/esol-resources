@@ -191,7 +191,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-6 rounded-full bg-primary" />
-            <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+            <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
               Timeline Sketching
             </div>
           </div>
@@ -200,7 +200,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
             <motion.div 
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              className="text-xs font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-full uppercase tracking-wider"
+              className="text-xs font-black text-amber-800 dark:text-amber-300 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-full uppercase tracking-wider"
             >
               {stampGuidance.badgeText}
             </motion.div>
@@ -224,7 +224,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-4 sm:p-10 mb-8 shadow-xl overflow-visible relative"
           >
             {/* Instruction with animated indicator */}
-            <div className="text-xs font-black text-text-muted/40 uppercase tracking-[0.2em] mb-8 text-center flex items-center justify-center gap-3">
+            <div className="text-xs font-black text-text-muted uppercase tracking-[0.2em] mb-8 text-center flex items-center justify-center gap-3">
               {selectedStamp ? (
                 <>
                   <motion.div
@@ -232,7 +232,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="w-2 h-2 rounded-full bg-primary"
                   />
-                  <span className="text-primary-dark">Tap the timeline to place your stamp</span>
+                  <span className="text-primary-text">Tap the timeline to place your stamp</span>
                 </>
               ) : (
                 <>
@@ -381,7 +381,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
                     <Lightbulb className="text-amber-500" size={24} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-600/60 uppercase tracking-widest mb-1">Teaching Tip</div>
+                    <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-1">Teaching Tip</div>
                     <p className="text-text font-medium leading-relaxed">
                       {getHint()}
                     </p>
@@ -398,7 +398,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
                 {!showHint && (
                   <button
                     onClick={() => setShowHint(true)}
-                    className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                    className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted hover:text-primary-text uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
                   >
                     <Lightbulb size={18} />
                     Need a Hint?
@@ -410,7 +410,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
             <button
               onClick={handleSubmit}
               disabled={placedStamps.length === 0}
-              className="w-full py-4 sm:py-5 px-6 sm:px-10 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 relative overflow-hidden"
+              className="w-full py-4 sm:py-5 px-6 sm:px-10 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:brightness-110 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 relative overflow-hidden"
             >
               Check Answer
             </button>

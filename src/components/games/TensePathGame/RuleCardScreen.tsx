@@ -22,7 +22,7 @@ export function ExampleSentence({ text, verb }: { text: string; verb: string }) 
   return (
     <>
       {text.slice(0, idx)}
-      <b className="text-primary-dark dark:text-primary-light">{text.slice(idx, idx + verb.length)}</b>
+      <b className="text-primary-text">{text.slice(idx, idx + verb.length)}</b>
       {text.slice(idx + verb.length)}
     </>
   );
@@ -33,7 +33,7 @@ export function RulePanel({ panel, compact = false }: { panel: RuleCardPanel; co
     <div className={`flex flex-col gap-3 rounded-3xl p-4 sm:p-5 ${SURFACE}`}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="text-lg font-bold text-text">{panel.label}</div>
-        <div className="rounded-lg bg-bg-gray px-3 py-1 text-base font-bold text-primary-dark dark:bg-white/10 dark:text-primary-light">
+        <div className="rounded-lg bg-bg-gray px-3 py-1 text-base font-bold text-primary-text dark:bg-white/10">
           {panel.form}
         </div>
       </div>

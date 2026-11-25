@@ -25,7 +25,7 @@ import {
   type SoundUpNext,
 } from '@/lib/sound-path/progress';
 import { QUESTION_TYPE_LABEL } from '@/lib/sound-path/questions';
-import { HEADER_GRADIENT, SURFACE, TONE, VIOLET_BUTTON, WORLD_BADGE } from './theme';
+import { HEADER_GRADIENT, SURFACE, TONE, WORLD_BADGE } from './theme';
 
 interface MapScreenProps {
   progress: PathProgress;
@@ -50,14 +50,14 @@ export function MapScreen({ progress, unlockAll, extraPracticeHref, onBack, onPl
   return (
     <div className="pb-16">
       {/* Header, like the -ed Sounds game */}
-      <header className={`${HEADER_GRADIENT} rounded-b-[40px] px-4 pb-24 pt-5 text-white sm:px-8`}>
+      <header className={`${HEADER_GRADIENT} rounded-b-[40px] px-4 pb-24 pt-5 text-[#ffffff] sm:px-8`}>
         <div className="mx-auto flex max-w-6xl flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <button
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20! text-white! hover:bg-white/30!"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20! text-[#ffffff]! hover:bg-white/30!"
             >
               <ArrowLeft size={22} />
             </button>
@@ -67,7 +67,7 @@ export function MapScreen({ progress, unlockAll, extraPracticeHref, onBack, onPl
                 {summary.passed} / {summary.totalLevels} passed
               </span>
               <span className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2">
-                <Star size={16} className="fill-white" aria-hidden="true" />
+                <Star size={16} className="fill-[#ffffff]" aria-hidden="true" />
                 {summary.mastered} mastered
               </span>
             </div>
@@ -75,8 +75,8 @@ export function MapScreen({ progress, unlockAll, extraPracticeHref, onBack, onPl
           <div className="flex flex-col items-center gap-2 text-center">
             <Volume2 size={56} aria-hidden="true" />
             <div className="text-sm font-bold uppercase tracking-[0.2em]">Sound Path</div>
-            <h1 className="font-display text-5xl font-bold leading-none text-white! sm:text-6xl">-ed Sounds</h1>
-            <p className="text-lg font-medium text-white">Hear it. Clap it. Say it.</p>
+            <h1 className="font-display text-5xl font-bold leading-none text-[#ffffff]! sm:text-6xl">-ed Sounds</h1>
+            <p className="text-lg font-medium text-[#ffffff]">Hear it. Clap it. Say it.</p>
           </div>
         </div>
       </header>
@@ -154,7 +154,7 @@ function UpNextCard({ upNext, onPlay }: { upNext: SoundUpNext; onPlay: () => voi
       <div className="flex flex-col justify-center gap-2 rounded-3xl bg-violet-100 p-6 text-violet-900 dark:bg-violet-900/40 dark:text-violet-100">
         <Trophy size={36} aria-hidden="true" />
         <div className="font-display text-3xl">Every level mastered!</div>
-        <p>Play any level again to keep your ears sharp.</p>
+        <p className="text-current">Play any level again to keep your ears sharp.</p>
       </div>
     );
   }
@@ -169,7 +169,7 @@ function UpNextCard({ upNext, onPlay }: { upNext: SoundUpNext; onPlay: () => voi
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-violet-600 to-purple-700 p-6 text-white shadow-[0_14px_30px_-20px_rgba(26,32,44,0.55)]"
+      className="flex flex-col gap-4 rounded-3xl bg-gradient-to-br from-violet-600 to-purple-700 p-6 text-[#ffffff] shadow-[0_14px_30px_-20px_rgba(26,32,44,0.55)]"
     >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs font-bold uppercase tracking-widest">{kicker}</span>
@@ -187,7 +187,7 @@ function UpNextCard({ upNext, onPlay }: { upNext: SoundUpNext; onPlay: () => voi
       <button
         type="button"
         onClick={onPlay}
-        className="flex h-16 items-center justify-center gap-3 rounded-2xl bg-white! text-xl font-black text-violet-700! transition-transform hover:scale-[1.01] active:scale-[0.99]"
+        className="flex h-16 items-center justify-center gap-3 rounded-2xl bg-[#ffffff]! text-xl font-black text-violet-700! transition-transform hover:scale-[1.01] active:scale-[0.99]"
       >
         <Play size={22} className="fill-current" aria-hidden="true" />
         Play
@@ -252,7 +252,7 @@ function WorldSection({
           }`}
         >
           <div className="flex items-center gap-2.5">
-            <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${checkpointOpen || cpPassed ? 'bg-violet-600 text-white' : 'bg-bg-gray text-text-muted dark:bg-white/10'}`}>
+            <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${checkpointOpen || cpPassed ? 'bg-violet-600 text-[#ffffff]' : 'bg-bg-gray text-text-muted dark:bg-white/10'}`}>
               <Flag size={18} aria-hidden="true" />
             </span>
             <span className="text-xl font-black text-text">Checkpoint {world.number}</span>
@@ -317,11 +317,11 @@ function LevelTile({ level, progress, open, isUpNext, onPlay }: { level: SoundPa
     stage === 'mastered'
       ? { text: 'Mastered', cls: 'bg-accent-light text-[#5c4510]' }
       : stage === 'passed'
-        ? { text: 'Play Round 2', cls: 'bg-violet-600 text-white' }
+        ? { text: 'Play Round 2', cls: 'bg-violet-600 text-[#ffffff]' }
         : !open
           ? { text: 'Locked', cls: 'bg-bg-gray text-text-muted dark:bg-white/10' }
           : isUpNext
-            ? { text: 'Play', cls: 'bg-violet-600 text-white' }
+            ? { text: 'Play', cls: 'bg-violet-600 text-[#ffffff]' }
             : { text: 'New', cls: 'bg-bg-gray text-text-muted dark:bg-white/10' };
 
   return (
@@ -359,17 +359,17 @@ function LevelTile({ level, progress, open, isUpNext, onPlay }: { level: SoundPa
 
 function FinalCard({ open, done, onPlay }: { open: boolean; done: boolean; onPlay: () => void }) {
   return (
-    <div className="mt-12 flex flex-wrap items-center gap-6 rounded-[28px] bg-gradient-to-br from-violet-900 to-fuchsia-900 p-6 text-white sm:p-8">
+    <div className="mt-12 flex flex-wrap items-center gap-6 rounded-[28px] bg-gradient-to-br from-violet-900 to-fuchsia-900 p-6 text-[#ffffff] sm:p-8">
       <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-accent-light text-[#5c4510]">
         <Trophy size={44} aria-hidden="true" />
       </div>
       <div className="min-w-[240px] flex-1">
         <div className="text-xs font-bold uppercase tracking-widest">Final Challenge</div>
         <div className="font-display text-3xl font-bold">Sound Master</div>
-        <p className="text-base">20 words · every team · no rule cards. Win the Sound Master badge + {SOUND_PATH_FINAL_BONUS_POINTS} bonus points.</p>
+        <p className="text-base text-current">20 words · every team · no rule cards. Win the Sound Master badge + {SOUND_PATH_FINAL_BONUS_POINTS} bonus points.</p>
       </div>
       {open ? (
-        <button type="button" onClick={onPlay} className={`${VIOLET_BUTTON} bg-white! text-violet-800! hover:bg-violet-50! h-14 px-8 text-lg`}>
+        <button type="button" onClick={onPlay} className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-[#ffffff]! px-8 text-lg font-bold text-violet-800! transition-colors hover:bg-violet-50!">
           {done ? 'Play again' : 'Start the final'}
         </button>
       ) : (

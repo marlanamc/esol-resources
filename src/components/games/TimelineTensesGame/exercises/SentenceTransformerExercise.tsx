@@ -142,7 +142,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
         <div className="absolute top-0 right-0 w-28 h-28 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="flex items-center gap-3 mb-4">
           <div className="w-1.5 h-6 rounded-full bg-amber-500" />
-          <div className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-[0.3em]">
+          <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-[0.3em]">
             {question.sourceTense}
           </div>
         </div>
@@ -159,16 +159,16 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
 
       {/* Arrow */}
       {/* The task: big and solid so learners know they must change the tense. */}
-      <div className="my-4 flex items-center gap-4 rounded-3xl bg-primary px-5 py-4 text-white shadow-lg sm:px-6">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
+      <div className="my-4 flex items-center gap-4 rounded-3xl bg-primary-dark px-5 py-4 text-text-on-accent shadow-lg dark:bg-primary sm:px-6">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-black/15 dark:bg-[#ffffff]/30" aria-hidden="true">
           <ArrowDown size={24} strokeWidth={3} />
         </span>
         <div className="min-w-0">
-          <p className="text-lg font-bold leading-snug sm:text-xl">
-            {transformLabel} <span className="whitespace-nowrap rounded-lg bg-white px-2 py-0.5 text-primary-dark">{question.targetTense}</span>
+          <p className="text-lg font-bold leading-snug text-current sm:text-xl">
+            {transformLabel} <span className="whitespace-nowrap rounded-lg bg-text-on-accent px-2 py-0.5 text-primary-text dark:text-primary">{question.targetTense}</span>
           </p>
           {TENSE_FORMULA_LOOKUP[question.targetTense] ? (
-            <p className="mt-1 text-sm font-semibold text-white/90 sm:text-base">
+            <p className="mt-1 text-sm font-semibold text-current sm:text-base">
               Use: {TENSE_FORMULA_LOOKUP[question.targetTense].formula}
             </p>
           ) : null}
@@ -185,7 +185,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1.5 h-6 rounded-full bg-primary" />
-              <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+              <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
                 {question.targetTense}
               </div>
             </div>
@@ -212,7 +212,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                       autoCorrect="off"
                       autoCapitalize="off"
                       spellCheck={false}
-                      className="inline-block min-w-[140px] max-w-[240px] rounded-t-lg border-b-4 border-primary bg-primary/10 px-1 text-primary placeholder-primary-dark/70 focus:outline-none focus:border-primary-dark focus:bg-primary/15 text-2xl font-display font-black text-center transition-colors dark:placeholder-primary-light/70"
+                      className="inline-block min-w-[140px] max-w-[240px] rounded-t-lg border-b-4 border-primary bg-primary/10 px-1 text-primary-text placeholder-primary-dark/70 focus:outline-none focus:border-primary-dark focus:bg-primary/15 text-2xl font-display font-black text-center transition-colors dark:placeholder-primary-light/70"
                       style={{ width: `${Math.max(10, (userInputs[idx]?.length ?? 4) + 2)}ch` }}
                     />
                   );
@@ -236,7 +236,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                     <Lightbulb className="text-amber-500" size={20} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-600/60 uppercase tracking-widest mb-1">Hint</div>
+                    <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-1">Hint</div>
                     <p className="text-text font-medium">{question.hint}</p>
                   </div>
                 </motion.div>
@@ -254,16 +254,16 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                 className="mb-4 p-5 bg-primary/5 border border-primary/20 rounded-3xl flex items-start gap-4"
               >
                 <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <BookMarked className="text-primary" size={18} />
+                  <BookMarked className="text-primary-text" size={18} />
                 </div>
                 <div>
-                  <div className="text-xs font-black text-primary/60 uppercase tracking-widest mb-1">
+                  <div className="text-xs font-black text-primary-text uppercase tracking-widest mb-1">
                     {question.targetTense} Formula
                   </div>
                   <p className="text-text font-black font-mono text-sm leading-relaxed">
                     {TENSE_FORMULA_LOOKUP[question.targetTense].formula}
                   </p>
-                  <p className="text-text-muted/70 text-xs mt-1.5 italic">
+                  <p className="text-text-muted text-xs mt-1.5 italic">
                     e.g. &ldquo;{TENSE_FORMULA_LOOKUP[question.targetTense].example}&rdquo;
                   </p>
                 </div>
@@ -278,7 +278,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                 {question.hint && !showHint && (
                   <button
                     onClick={() => setShowHint(true)}
-                    className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                    className="w-full py-3 text-sm font-black text-text-muted hover:text-primary-text uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
                   >
                     <Lightbulb size={16} />
                     Need a Hint?
@@ -287,7 +287,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                 {!showFormulaHint && TENSE_FORMULA_LOOKUP[question.targetTense] && (
                   <button
                     onClick={() => setShowFormulaHint(true)}
-                    className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                    className="w-full py-3 text-sm font-black text-text-muted hover:text-primary-text uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
                   >
                     <BookMarked size={16} />
                     Show Formula
@@ -299,7 +299,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
             <button
               onClick={handleSubmit}
               disabled={!allFilled}
-              className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
             >
               Check Answer
             </button>

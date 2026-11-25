@@ -239,8 +239,8 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
         <div className="absolute top-0 right-0 w-28 h-28 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <BookOpen size={20} className="text-primary" />
-            <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+            <BookOpen size={20} className="text-primary-text" />
+            <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
               Story Builder
             </div>
           </div>
@@ -273,7 +273,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
             animate={{ opacity: 1, y: 0 }}
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2rem] border border-white/30 p-4 sm:p-6 mb-6 shadow-md"
           >
-            <div className="text-xs font-black text-text-muted/40 uppercase tracking-[0.2em] mb-3">Your Story Timeline</div>
+            <div className="text-xs font-black text-text-muted uppercase tracking-[0.2em] mb-3">Your Story Timeline</div>
             <TimelineCanvas
               elements={revealedElements}
               interactive={false}
@@ -294,7 +294,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-8 mb-6 shadow-xl"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+              <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
                 Sentence {currentSentenceIdx + 1} — {currentSentence.targetTense}
               </div>
             </div>
@@ -309,7 +309,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
 
             <div className="space-y-5">
               <div className="rounded-[2rem] border border-white/20 bg-white/30 dark:bg-white/5 p-4 sm:p-5">
-                <div className="mb-3 text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                <div className="mb-3 text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary-text">
                   Read The Sentence
                 </div>
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-3 text-2xl sm:text-3xl font-display font-black text-text leading-relaxed">
@@ -319,7 +319,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                     ) : (
                       <span
                         key={token.key}
-                        className="inline-flex items-center rounded-2xl border border-primary/30 bg-primary/10 px-3 py-1.5 text-base sm:text-lg font-black text-primary shadow-sm"
+                        className="inline-flex items-center rounded-2xl border border-primary/30 bg-primary/10 px-3 py-1.5 text-base sm:text-lg font-black text-primary-text shadow-sm"
                       >
                         Blank {token.blankNumber}
                       </span>
@@ -330,7 +330,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
 
               <div className="rounded-[2rem] border border-primary/15 bg-[#0f2231]/30 dark:bg-[#0f2231]/40 p-4 sm:p-5">
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <div className="text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                  <div className="text-[0.6875rem] sm:text-xs font-black uppercase tracking-[0.24em] text-primary-text">
                     Fill In The Blanks
                   </div>
                   <div className="text-[0.6875rem] sm:text-xs font-bold text-text-muted">
@@ -349,7 +349,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                         className="rounded-2xl border border-white/15 bg-white/40 dark:bg-white/5 p-3 sm:p-4"
                       >
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[0.6875rem] font-black uppercase tracking-[0.18em] text-primary">
+                          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[0.6875rem] font-black uppercase tracking-[0.18em] text-primary-text">
                             Blank {blankOrder + 1}
                           </span>
                           <span className="text-xs font-bold text-text-muted">
@@ -358,7 +358,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                           <span className="inline-flex items-center rounded-full bg-white/50 dark:bg-white/10 px-2 py-1 text-[0.6875rem] font-bold text-text-muted">
                             {blankHint || 'verb'}
                           </span>
-                          <span className="text-[0.6875rem] font-bold text-text-muted/80">
+                          <span className="text-[0.6875rem] font-bold text-text-muted">
                             {wordCount} word{wordCount === 1 ? '' : 's'}
                           </span>
                         </div>
@@ -423,7 +423,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
             {sentenceCorrect ? (
               <button
                 onClick={handleNextSentence}
-                className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-3"
+                className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-3"
               >
                 {isLastSentence ? 'Finish Story' : 'Next Sentence'}
                 <ArrowRight size={22} />
@@ -432,7 +432,7 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
               <button
                 onClick={handleCheckSentence}
                 disabled={!allFilled}
-                className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Check Sentence
               </button>

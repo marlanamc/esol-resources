@@ -96,7 +96,7 @@ export function MapScreen({
       {/* Hero + up next */}
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.05fr] lg:items-stretch">
         <div className="flex flex-col justify-center gap-4">
-          <span className="self-start rounded-full bg-bg-gray px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary-dark dark:bg-white/10 dark:text-primary-light">
+          <span className="self-start rounded-full bg-bg-gray px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary-text dark:bg-white/10">
             Tense Path
           </span>
           <h1 className="font-display text-5xl leading-none text-text sm:text-6xl">Timeline Tenses</h1>
@@ -104,7 +104,7 @@ export function MapScreen({
             {TENSE_PATH_WORLDS.length} worlds. {summary.totalLevels} levels. Read it, stamp it, fix it.
           </p>
           <div className="mt-2 flex flex-wrap gap-6">
-            <RoundBadge icon={<Target size={24} />} tone="bg-primary/15 text-primary-dark dark:text-primary-light" title="Round 1 · Learn" note="8 of 10 to pass" />
+            <RoundBadge icon={<Target size={24} />} tone="bg-primary/15 text-primary-text" title="Round 1 · Learn" note="8 of 10 to pass" />
             <RoundBadge icon={<Trophy size={24} />} tone="bg-accent/30 text-[#5c4510] dark:text-accent-light" title="Round 2 · Master" note="9 of 10 to master" />
           </div>
         </div>
@@ -136,7 +136,7 @@ export function MapScreen({
       {extraPracticeHref ? (
         <p className="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-1 text-base text-text-muted">
           <span>Extra practice:</span>
-          <Link href={extraPracticeHref} className="font-bold text-primary-dark underline-offset-4 hover:underline dark:text-primary-light">
+          <Link href={extraPracticeHref} className="font-bold text-primary-text underline-offset-4 hover:underline">
             Timeline Tenses (free practice)
           </Link>
         </p>
@@ -151,7 +151,7 @@ function UpNextCard({ upNext: next, onPlay }: { upNext: ReturnType<typeof getUpN
       <div className="flex flex-col justify-center gap-3 rounded-[28px] bg-accent/30 p-7 text-[#3d2f08] dark:text-accent-light">
         <Trophy size={40} aria-hidden="true" />
         <div className="font-display text-3xl">Every level mastered!</div>
-        <p>Play any level again to keep the tenses fresh.</p>
+        <p className="text-current">Play any level again to keep the tenses fresh.</p>
       </div>
     );
   }
@@ -170,7 +170,7 @@ function UpNextCard({ upNext: next, onPlay }: { upNext: ReturnType<typeof getUpN
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col gap-4 rounded-[28px] bg-primary p-6 text-white shadow-[0_18px_36px_-22px_rgba(26,32,44,0.55)]"
+      className="flex flex-col gap-4 rounded-[28px] bg-primary-dark p-6 text-text-on-accent dark:bg-primary shadow-[0_18px_36px_-22px_rgba(26,32,44,0.55)]"
     >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs font-bold uppercase tracking-widest">{kicker}</span>
@@ -185,13 +185,13 @@ function UpNextCard({ upNext: next, onPlay }: { upNext: ReturnType<typeof getUpN
           <div className="text-lg">{level.example}</div>
         </>
       ) : (
-        <p className="text-lg text-white/95">
+        <p className="text-lg text-current">
           {next.kind === 'checkpoint' ? 'All the levels in this world, mixed together. No rule cards.' : '20 questions from every world. No rule cards.'}
         </p>
       )}
       <div className="flex flex-wrap gap-1.5 text-xs font-bold">
         {MIX_CHIPS.slice(0, 5).map((chip) => (
-          <span key={chip} className="rounded-full bg-white/20 px-3 py-1">
+          <span key={chip} className="rounded-full bg-black/20 px-3 py-1 dark:bg-[#ffffff]/35">
             {chip}
           </span>
         ))}
@@ -199,7 +199,7 @@ function UpNextCard({ upNext: next, onPlay }: { upNext: ReturnType<typeof getUpN
       <button
         type="button"
         onClick={onPlay}
-        className="flex h-16 items-center justify-center gap-3 rounded-2xl bg-white! text-xl font-bold text-primary-dark! transition-transform hover:scale-[1.01] active:scale-[0.99]"
+        className="flex h-16 items-center justify-center gap-3 rounded-2xl bg-text-on-accent! text-xl font-bold text-primary-dark! dark:text-primary! transition-transform hover:scale-[1.01] active:scale-[0.99]"
       >
         <Play size={22} className="fill-current" aria-hidden="true" />
         Play
@@ -246,15 +246,15 @@ function WorldTrail({ progress, unlockAll }: { progress: TensePathProgress; unlo
               <span
                 className={`flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold ${
                   done
-                    ? 'bg-secondary-dark text-white'
+                    ? 'bg-secondary-dark text-[#ffffff]'
                     : current && open
-                      ? 'border-4 border-primary bg-white text-primary-dark dark:bg-[#162b3d] dark:text-primary-light'
+                      ? 'border-4 border-primary bg-white text-primary-text dark:bg-[#162b3d]'
                       : 'bg-bg-gray text-text-muted dark:bg-white/10'
                 }`}
               >
                 {done ? <Check size={22} strokeWidth={3} aria-label="Done" /> : w.number}
               </span>
-              <span className={`text-xs font-bold sm:text-sm ${current ? 'text-primary-dark dark:text-primary-light' : 'text-text-muted'}`}>
+              <span className={`text-xs font-bold sm:text-sm ${current ? 'text-primary-text' : 'text-text-muted'}`}>
                 {w.title.replace(/^The /, '')}
               </span>
             </li>
@@ -327,9 +327,9 @@ function LevelTile({ level, progress, open, onPlay }: { level: TensePathLevel; p
     stage === 'mastered'
       ? { text: 'Mastered', cls: 'bg-accent-light text-[#5c4510]' }
       : stage === 'passed'
-        ? { text: 'Play Round 2', cls: 'bg-primary text-white' }
+        ? { text: 'Play Round 2', cls: 'bg-primary-dark text-text-on-accent dark:bg-primary' }
         : open
-          ? { text: isUpNext ? 'Play' : 'New', cls: isUpNext ? 'bg-primary text-white' : 'bg-bg-gray text-text-muted dark:bg-white/10' }
+          ? { text: isUpNext ? 'Play' : 'New', cls: isUpNext ? 'bg-primary-dark text-text-on-accent dark:bg-primary' : 'bg-bg-gray text-text-muted dark:bg-white/10' }
           : { text: 'Locked', cls: 'bg-bg-gray text-text-muted dark:bg-white/10' };
   const stripe = stage === 'mastered' ? 'bg-accent' : stage === 'passed' ? 'bg-[linear-gradient(90deg,var(--color-secondary-dark)_50%,var(--color-bg-gray)_50%)]' : 'bg-bg-gray dark:bg-white/10';
 
@@ -402,7 +402,7 @@ function CheckpointTile({
       </div>
       <div
         className={`flex flex-1 items-center justify-center gap-2 rounded-2xl p-4 text-sm font-bold ${
-          passed ? theme.badge : open ? 'bg-primary/10 text-primary-dark dark:text-primary-light' : 'border-2 border-dashed border-border text-text-muted dark:border-white/15'
+          passed ? theme.badge : open ? 'bg-primary/10 text-primary-text' : 'border-2 border-dashed border-border text-text-muted dark:border-white/15'
         }`}
       >
         {passed ? (
@@ -435,7 +435,7 @@ function FinalCard({ open, passed, badge, onPlay }: { open: boolean; passed: boo
       <div className="min-w-[240px] flex-1">
         <div className="text-xs font-bold uppercase tracking-widest">Final Challenge</div>
         <div className="font-display text-3xl font-bold">Tense Master</div>
-        <p className="text-base">
+        <p className="text-base text-current">
           20 questions · all 5 worlds · no rule cards. Win the Tense Master badge + {TENSE_PATH_FINAL_BONUS_POINTS} bonus points.
         </p>
       </div>

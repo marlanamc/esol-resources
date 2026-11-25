@@ -50,7 +50,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
               ? 'bg-accent-light text-[#8a6a12]'
               : result.passed
                 ? 'bg-secondary/20 text-secondary-dark'
-                : 'bg-primary/15 text-primary-dark'
+                : 'bg-primary/15 text-primary-text'
           }`}
         >
           {result.earnedBadge ? (
@@ -102,7 +102,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
         <button
           type="button"
           onClick={onMap}
-          className="h-12 rounded-2xl text-base font-bold text-primary-dark underline-offset-4 hover:underline dark:text-primary-light"
+          className="h-12 rounded-2xl text-base font-bold text-primary-text underline-offset-4 hover:underline"
         >
           Back to the map
         </button>
@@ -114,7 +114,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
 function Stat({ value, label, accent = false }: { value: string; label: string; accent?: boolean }) {
   return (
     <div className={`rounded-2xl p-4 text-center ${SURFACE}`}>
-      <div className={`text-2xl font-bold ${accent ? 'text-primary-dark dark:text-primary-light' : 'text-text'}`}>{value}</div>
+      <div className={`text-2xl font-bold ${accent ? 'text-primary-text' : 'text-text'}`}>{value}</div>
       <div className="text-xs font-bold text-text-muted">{label}</div>
     </div>
   );
