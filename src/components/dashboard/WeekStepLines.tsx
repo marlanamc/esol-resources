@@ -217,16 +217,10 @@ export function WeekStepLines({
                 key: activity.id,
                 numbered: true,
                 title: rowTitle(activity),
-                // Same words as the Map. The big button already says what is next, so the
-                // row shows what kind of activity it is and how long it takes.
+                // The big button already says what is next, so a not-started row shows
+                // what kind of activity it is and how long it takes.
                 status: activity.done ? (
-                    activity.keepGoing ? (
-                        <>
-                            <span className="font-bold" style={{ color: "var(--success-color)" }}>Done for this week</span> · {activity.keepGoing}
-                        </>
-                    ) : (
-                        "Done. You can play again."
-                    )
+                    activity.keepGoing ? `Keep going · ${activity.keepGoing}` : "Done. You can play again."
                 ) : activity.estMinutes ? (
                     `${format.label} · about ${activity.estMinutes} min`
                 ) : (
