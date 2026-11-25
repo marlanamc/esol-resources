@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { Check, RotateCcw, Star, Trophy } from 'lucide-react';
 import { TENSE_PATH_FINAL_BONUS_POINTS } from '@/lib/tense-path/levels';
 import { PASS_ACCURACY, type TensePathRoundResult } from '@/lib/tense-path/progress';
-import { QUESTION_TYPE_LABEL, getQuestionLabel, type TensePathQuestion } from '@/lib/tense-path/questions';
+import { QUESTION_TYPE_LABEL, ROUND_SIZE, getQuestionLabel, type TensePathQuestion } from '@/lib/tense-path/questions';
+
+const MASTER_NEEDED = Math.ceil((ROUND_SIZE.round2 * PASS_ACCURACY.round2) / 100);
 import { PRIMARY_BUTTON, SURFACE } from './theme';
 
 interface ResultsScreenProps {
@@ -29,9 +31,9 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
         : 'Almost there';
   const sub = result.passed
     ? result.mode === 'round1'
-      ? 'Round 2 is open. Get 9 of 10 to master this level.'
+      ? `Round 2 is open. Get ${MASTER_NEEDED} of ${ROUND_SIZE.round2} to master this level.`
       : result.mode === 'round2'
-        ? 'This level is mastered. Nice work.'
+        ? ''
         : result.mode === 'checkpoint'
           ? 'The next world is open.'
           : 'You finished every world.'
@@ -65,7 +67,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
         </div>
         <div className="text-xs font-bold uppercase tracking-widest text-text-muted">{title}</div>
         <h1 className="font-display text-4xl text-text sm:text-5xl">{heading}</h1>
-        <p className="max-w-md text-lg text-text-muted">{sub}</p>
+        {sub ? <p className="max-w-md text-lg text-text-muted">{sub}</p> : null}
       </motion.div>
 
       {result.earnedBadge ? (

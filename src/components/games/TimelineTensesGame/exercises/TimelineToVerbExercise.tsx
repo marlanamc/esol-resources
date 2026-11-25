@@ -201,10 +201,6 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
             transition={{ delay: 0.1 }}
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-10 mb-8 shadow-xl"
           >
-            <div className="text-sm font-black text-text-muted uppercase tracking-[0.15em] mb-8 text-center sm:text-left underline decoration-primary/20 underline-offset-8">
-              Complete the sentence:
-            </div>
-
             <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-12 sm:gap-y-14 pb-9">
               {sentenceParts.map((part, idx) => {
                 if (part.type === 'text') {
@@ -263,7 +259,6 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                     <Lightbulb className="text-amber-500" size={24} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-1">Teaching Tip</div>
                     <p className="text-text font-medium leading-relaxed">
                       {getHint()}
                     </p>

@@ -119,8 +119,8 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
 
         <p className="text-base text-text-muted font-medium mb-3">
           {question.errorLocation === 'sentence'
-            ? 'This sentence uses the wrong tense. Fix it!'
-            : 'This timeline doesn\'t match the sentence. Study the correct one.'}
+            ? 'The tense is wrong.'
+            : 'The timeline is wrong. Study the correct one.'}
         </p>
 
         <p className="text-2xl sm:text-3xl font-display font-black text-text leading-tight mb-6">
@@ -160,7 +160,6 @@ export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
               {/* The sentence to fix, repeated here so learners can see it while
                   the phone keyboard is open. */}
               <div className="mb-3 rounded-2xl bg-amber-500/10 px-4 py-3">
-                <div className="text-xs font-bold text-amber-800 dark:text-amber-300 mb-1">Fix this sentence:</div>
                 <p className="text-lg font-semibold leading-snug text-text">{question.incorrectSentence}</p>
               </div>
 

@@ -24,7 +24,7 @@ import {
   SOUND_MASTER_BADGE,
   type SoundUpNext,
 } from '@/lib/sound-path/progress';
-import { QUESTION_TYPE_LABEL } from '@/lib/sound-path/questions';
+import { QUESTION_TYPE_LABEL, ROUND_SIZE } from '@/lib/sound-path/questions';
 import { HEADER_GRADIENT, SURFACE, TONE, WORLD_BADGE } from './theme';
 
 interface MapScreenProps {
@@ -263,7 +263,7 @@ function WorldSection({
               cpPassed ? 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-200' : checkpointOpen ? 'bg-violet-50 text-violet-800 dark:bg-violet-900/30 dark:text-violet-200' : 'border-2 border-dashed border-border text-text-muted dark:border-white/15'
             }`}
           >
-            {cpPassed ? (world.number < SOUND_PATH_WORLDS.length ? `World ${world.number + 1} unlocked` : 'Final unlocked') : checkpointOpen ? 'Ready! 12 words' : (<><Lock size={16} aria-hidden="true" /> Pass all {levels.length} levels</>)}
+            {cpPassed ? (world.number < SOUND_PATH_WORLDS.length ? `World ${world.number + 1} unlocked` : 'Final unlocked') : checkpointOpen ? `${ROUND_SIZE.checkpoint} words` : (<><Lock size={16} aria-hidden="true" /> Pass all {levels.length} levels</>)}
           </div>
           <div className="flex items-center justify-between pb-3 text-xs text-text-muted">
             <span>1 round · 80% to pass</span>

@@ -24,11 +24,14 @@ import {
   isCheckpointUnlocked,
   isFinalUnlocked,
   isWorldUnlocked,
+  PASS_ACCURACY,
   type TensePathProgress,
 } from '@/lib/tense-path/progress';
-import { QUESTION_TYPE_LABEL } from '@/lib/tense-path/questions';
+import { QUESTION_TYPE_LABEL, ROUND_SIZE } from '@/lib/tense-path/questions';
 import { StampTimeline } from './StampTimeline';
 import { PRIMARY_BUTTON, SURFACE, WORLD_THEME } from './theme';
+
+const neededFor = (mode: 'round1' | 'round2') => Math.ceil((ROUND_SIZE[mode] * PASS_ACCURACY[mode]) / 100);
 
 interface MapScreenProps {
   progress: TensePathProgress;
@@ -104,8 +107,8 @@ export function MapScreen({
             {TENSE_PATH_WORLDS.length} worlds. {summary.totalLevels} levels. Read it, stamp it, fix it.
           </p>
           <div className="mt-2 flex flex-wrap gap-6">
-            <RoundBadge icon={<Target size={24} />} tone="bg-primary/15 text-primary-text" title="Round 1 · Learn" note="8 of 10 to pass" />
-            <RoundBadge icon={<Trophy size={24} />} tone="bg-accent/30 text-[#5c4510] dark:text-accent-light" title="Round 2 · Master" note="9 of 10 to master" />
+            <RoundBadge icon={<Target size={24} />} tone="bg-primary/15 text-primary-text" title="Round 1 · Learn" note={`${neededFor('round1')} of ${ROUND_SIZE.round1} to pass`} />
+            <RoundBadge icon={<Trophy size={24} />} tone="bg-accent/30 text-[#5c4510] dark:text-accent-light" title="Round 2 · Master" note={`${neededFor('round2')} of ${ROUND_SIZE.round2} to master`} />
           </div>
         </div>
 
@@ -408,7 +411,7 @@ function CheckpointTile({
         {passed ? (
           world.number < TENSE_PATH_WORLDS.length ? `World ${world.number + 1} unlocked` : 'Final unlocked'
         ) : open ? (
-          'Ready! 12 questions'
+          `${ROUND_SIZE.checkpoint} questions`
         ) : (
           <>
             <Lock size={16} aria-hidden="true" /> Pass all {levelCount} levels

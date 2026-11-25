@@ -26,7 +26,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
     ? result.mode === 'round1'
       ? 'Round 2 is open. Get 9 of 10 to master this level.'
       : result.mode === 'round2'
-        ? 'This level is mastered. Great ears!'
+        ? ''
         : result.mode === 'checkpoint'
           ? 'The next world is open.'
           : 'You finished every world.'
@@ -56,7 +56,7 @@ export function ResultsScreen({ title, result, missed, bestStreak, pointsAwarded
         </div>
         <div className="text-xs font-bold uppercase tracking-widest text-text-muted">{title}</div>
         <h1 className="text-4xl font-black text-text sm:text-5xl">{heading}</h1>
-        <p className="max-w-md text-lg text-text-muted">{sub}</p>
+        {sub ? <p className="max-w-md text-lg text-text-muted">{sub}</p> : null}
       </motion.div>
 
       {result.earnedBadge ? (

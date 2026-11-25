@@ -129,7 +129,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
     (b) => (userInputs[b.index]?.trim() ?? '') !== ''
   );
 
-  const transformLabel = 'Your turn: rewrite it in';
+  const transformLabel = 'Rewrite in';
 
   return (
     <div className="px-2 sm:px-0 max-w-full overflow-x-clip">
@@ -236,7 +236,6 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
                     <Lightbulb className="text-amber-500" size={20} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-1">Hint</div>
                     <p className="text-text font-medium">{question.hint}</p>
                   </div>
                 </motion.div>

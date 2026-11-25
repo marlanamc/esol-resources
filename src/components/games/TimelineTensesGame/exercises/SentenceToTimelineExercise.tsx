@@ -381,7 +381,6 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
                     <Lightbulb className="text-amber-500" size={24} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-800 dark:text-amber-300 uppercase tracking-widest mb-1">Teaching Tip</div>
                     <p className="text-text font-medium leading-relaxed">
                       {getHint()}
                     </p>
