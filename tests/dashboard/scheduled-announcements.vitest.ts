@@ -27,3 +27,16 @@ describe("scheduled homepage announcements", () => {
     expect(html).toContain("<em>just, already, yet</em>");
   });
 });
+
+describe("Google Classroom link for students who missed class", () => {
+  it("is a footnote on every day, not part of the main message", () => {
+    for (const { message, footnote } of Object.values(SCHEDULED_ANNOUNCEMENTS)) {
+      expect(message).not.toContain("classroom.google.com");
+      const html = renderAnnouncementMarkdown(footnote ?? "");
+      expect(html).toContain("Missed class on Tuesday?");
+      expect(html).toContain(
+        '<a href="https://classroom.google.com/c/ODc4MTA5Mzc4NTU5/m/ODkyODk3NzcyNTQ3/details" target="_blank"'
+      );
+    }
+  });
+});

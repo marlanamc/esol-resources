@@ -8,6 +8,8 @@ export interface AnnouncementItem {
     className: string;
     message: string;
     messageHtml: string;
+    /** Optional small, muted line under the message. */
+    footnoteHtml?: string;
     dismissed: boolean;
     /** Not a class row (e.g. a dated announcement): dismissal is saved in this browser only. */
     localOnly?: boolean;
@@ -90,6 +92,10 @@ export function ClassAnnouncement({ announcements, studentId }: ClassAnnouncemen
                                 </p>
                                 <div className="announcement-markdown prose prose-sm mt-0.5 min-w-0 text-[0.9375rem] leading-snug text-text lg:text-base"
                                     dangerouslySetInnerHTML={{ __html: announcement.messageHtml }} />
+                                {announcement.footnoteHtml && (
+                                    <div className="announcement-markdown announcement-footnote mt-1 min-w-0 text-xs leading-snug text-text-muted"
+                                        dangerouslySetInnerHTML={{ __html: announcement.footnoteHtml }} />
+                                )}
                             </div>
                             <button type="button" onClick={() => void dismiss(announcement)} aria-label="Dismiss announcement" className={dismissButtonClass}>
                                 <X size={16} aria-hidden />
