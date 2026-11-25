@@ -229,6 +229,9 @@ export default async function DashboardPage() {
             className: "This week",
             message: scheduledAnnouncement.message,
             messageHtml: renderAnnouncementMarkdown(scheduledAnnouncement.message),
+            footnoteHtml: scheduledAnnouncement.footnote
+                ? renderAnnouncementMarkdown(scheduledAnnouncement.footnote)
+                : undefined,
             dismissed: false,
             localOnly: true,
         });

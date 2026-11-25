@@ -29,9 +29,10 @@ describe("scheduled homepage announcements", () => {
 });
 
 describe("Google Classroom link for students who missed class", () => {
-  it("appears in every day's announcement as a safe new-tab link", () => {
-    for (const { message } of Object.values(SCHEDULED_ANNOUNCEMENTS)) {
-      const html = renderAnnouncementMarkdown(message);
+  it("is a footnote on every day, not part of the main message", () => {
+    for (const { message, footnote } of Object.values(SCHEDULED_ANNOUNCEMENTS)) {
+      expect(message).not.toContain("classroom.google.com");
+      const html = renderAnnouncementMarkdown(footnote ?? "");
       expect(html).toContain("Missed class on Tuesday?");
       expect(html).toContain(
         '<a href="https://classroom.google.com/c/ODc4MTA5Mzc4NTU5/m/ODkyODk3NzcyNTQ3/details" target="_blank"'

@@ -4368,6 +4368,16 @@ kbd {
   font-weight: 600;
 }
 
+/* Small muted line under a dated announcement (e.g. "Missed class? Get the packet"). */
+.announcement-footnote p {
+  margin: 0;
+}
+
+.announcement-footnote a {
+  color: inherit;
+  font-weight: 500;
+}
+
 /* ============================================
    Activity Carousel - Horizontal Scroll
    ============================================ */
