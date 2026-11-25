@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/database/prisma";
-import { sendVocabReminderToUser, isPushConfigured } from "@/lib/push";
+import { sendVocabReminderToUser, sendPushToUser, isPushConfigured } from "@/lib/push";
+import { getScheduledPushMessage } from "@/lib/push-schedule";
 import { getLearnerDayKey, DAILY_HABIT_KEYS } from "@/lib/daily-habits";
 import { ApiErrors, apiSuccess } from "@/lib/api/response";
 import { logger } from "@/lib/shared/logger";
@@ -15,6 +16,9 @@ const NOTIFICATION_BATCH_SIZE = 20;
  * Runs once per day (e.g. 9am ET) and sends a push to students who:
  * - Have opted in (PushSubscription exists)
  * - Have NOT completed vocab review today
+ *
+ * On a day listed in SCHEDULED_PUSH_MESSAGES (e.g. a holiday writing packet),
+ * every subscribed student gets that message instead of the vocab reminder.
  *
  * Secured by CRON_SECRET (Vercel Cron or external scheduler).
  */
@@ -38,6 +42,30 @@ export async function GET(request: NextRequest) {
 
   const today = new Date();
   const dayKey = getLearnerDayKey(today);
+
+  const scheduled = getScheduledPushMessage(dayKey);
+  if (scheduled) {
+    const recipients = await prisma.pushSubscription.groupBy({
+      by: ["userId"],
+      where: { user: { role: "student", isSystemAccount: false } },
+      orderBy: { userId: "asc" },
+    });
+    let scheduledSent = 0;
+    for (let index = 0; index < recipients.length; index += NOTIFICATION_BATCH_SIZE) {
+      const batch = recipients.slice(index, index + NOTIFICATION_BATCH_SIZE);
+      const results = await Promise.allSettled(
+        batch.map(({ userId }) => sendPushToUser(userId, scheduled))
+      );
+      scheduledSent += results.filter((r) => r.status === "fulfilled" && r.value).length;
+    }
+    logger.info(`[Cron] Scheduled push "${scheduled.tag}": ${scheduledSent}/${recipients.length} sent`);
+    return apiSuccess({
+      success: true,
+      scheduled: scheduled.tag,
+      sent: scheduledSent,
+      total: recipients.length,
+    });
+  }
 
   // Distinct subscribed students who haven't completed today's vocab review.
   // groupBy dedupes multi-device users (one reminder per student, not per

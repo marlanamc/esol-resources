@@ -64,19 +64,19 @@ export async function getPushSubscriptionForUser(
   return sub;
 }
 
-export async function sendVocabReminderToUser(userId: string): Promise<boolean> {
+export interface PushMessage {
+  title: string;
+  body: string;
+  url: string;
+  tag: string;
+}
+
+export async function sendPushToUser(userId: string, message: PushMessage): Promise<boolean> {
   if (!isPushConfigured()) return false;
   initWebPush();
 
   const sub = await getPushSubscriptionForUser(userId);
   if (!sub) return false;
-
-  const payload = JSON.stringify({
-    title: "📚 Time for vocab review!",
-    body: "Practice your vocabulary to keep your streak going.",
-    url: "/dashboard/vocab-review",
-    tag: "vocab-daily",
-  });
 
   try {
     await webpush.sendNotification(
@@ -84,11 +84,20 @@ export async function sendVocabReminderToUser(userId: string): Promise<boolean> 
         endpoint: sub.endpoint,
         keys: { p256dh: sub.p256dh, auth: sub.auth },
       },
-      payload,
+      JSON.stringify(message),
       { TTL: 86400 }
     );
     return true;
   } catch {
     return false;
   }
+}
+
+export async function sendVocabReminderToUser(userId: string): Promise<boolean> {
+  return sendPushToUser(userId, {
+    title: "📚 Time for vocab review!",
+    body: "Practice your vocabulary to keep your streak going.",
+    url: "/dashboard/vocab-review",
+    tag: "vocab-daily",
+  });
 }
