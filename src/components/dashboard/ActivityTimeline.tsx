@@ -18,6 +18,8 @@ export interface TimelineItem {
   href: string;
   /** Short chip shown beside the type label, e.g. "Challenge". */
   badge?: string;
+  /** Done for the week but more levels to play, e.g. "3 of 5 levels" (same as the Map). */
+  keepGoing?: string;
 }
 
 interface ActivityTimelineProps {

@@ -18,6 +18,7 @@ function toRoadActivity(item: TimelineItem, isNext: boolean, weekNumber: number)
         href: item.href,
         done: item.status === "done",
         isNext,
+        ...(item.keepGoing ? { keepGoing: item.keepGoing } : {}),
     };
 }
 
@@ -170,7 +171,11 @@ export function WeekStepLines({
                 key: activity.id,
                 numbered: true,
                 title: rowTitle(activity),
-                status: activity.done ? "Done. You can play again." : activity.isNext ? `Next up · ${format.label}` : format.label,
+                status: activity.done
+                    ? activity.keepGoing
+                        ? `Keep going · ${activity.keepGoing}`
+                        : "Done. You can play again."
+                    : activity.isNext ? `Next up · ${format.label}` : format.label,
                 href: activity.href,
                 done: activity.done,
             });
