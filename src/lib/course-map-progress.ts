@@ -197,6 +197,15 @@ export function getMapActivityKeepGoing(
     activity: CourseMapActivity,
     progress: CourseMapProgressState | Record<string, string | null>
 ): string | null {
+    const levels = getMapActivityKeepGoingLevels(activity, progress);
+    return levels ? `${levels.passed} of ${levels.total} levels` : null;
+}
+
+/** The same "done, keep going" state as numbers, for drawing a progress ring. */
+export function getMapActivityKeepGoingLevels(
+    activity: CourseMapActivity,
+    progress: CourseMapProgressState | Record<string, string | null>
+): { passed: number; total: number } | null {
     const progressId = getMapActivityProgressId(activity);
     const summarize = progressId ? PATH_GAME_SUMMARY[progressId] : undefined;
     if (!progressId || !summarize) return null;
@@ -204,7 +213,7 @@ export function getMapActivityKeepGoing(
     const entry = resolveProgressEntry(progress, progressId);
     const summary = summarize(normalizeProgress(entry?.categoryData ?? null));
     if (summary.finalPassed) return null;
-    return `${summary.passed} of ${summary.totalLevels} levels`;
+    return { passed: summary.passed, total: summary.totalLevels };
 }
 
 export function getActionableRequiredActivities(units: CourseMapUnit[]): CourseMapActivity[] {

@@ -45,6 +45,9 @@ export function ThisWeekRoadCard({
     const weekLabel = formatLevelLabel(weekNumber, showUnitMonths);
     const unitLabel = showUnitMonths && unitMonth ? `Unit ${unitNumber} · ${unitMonth}` : `Unit ${unitNumber}`;
     const weekDone = progress.total > 0 && progress.done >= progress.total;
+    // Everything else is done for the week: say so on the button.
+    const notDone = items.filter((item) => item.status !== "done");
+    const lastOne = notDone.length === 1 && notDone[0].status === "current";
     const showMomentum = momentum != null && (momentum.streak > 0 || momentum.weeklyPoints > 0);
 
     return (
@@ -110,7 +113,7 @@ export function ThisWeekRoadCard({
                                 <Play size={16} fill="currentColor" aria-hidden />
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.06em] opacity-90">Next up</span>
+                                <span className="block text-[0.6875rem] font-extrabold uppercase tracking-[.06em] opacity-90">{lastOne ? "Last one this week" : "Next up"}</span>
                                 <span className="block text-[1.0625rem] font-bold leading-snug">{currentTitle}</span>
                             </span>
                             <ChevronRight size={20} strokeWidth={2.5} aria-hidden className="shrink-0" />

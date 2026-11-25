@@ -104,6 +104,9 @@ export interface RoadActivity {
      * levels left, e.g. "1 of 13 levels". Only set when done.
      */
     keepGoing?: string;
+    /** keepGoing as numbers, for the progress ring on the home card. */
+    keepGoingLevels?: { passed: number; total: number };
+    estMinutes?: number;
 }
 
 /**

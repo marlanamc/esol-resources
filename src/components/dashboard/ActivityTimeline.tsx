@@ -20,6 +20,8 @@ export interface TimelineItem {
   badge?: string;
   /** Done for the week but more levels to play, e.g. "3 of 5 levels" (same as the Map). */
   keepGoing?: string;
+  /** keepGoing as numbers, for the progress ring on the home card. */
+  keepGoingLevels?: { passed: number; total: number };
 }
 
 interface ActivityTimelineProps {
