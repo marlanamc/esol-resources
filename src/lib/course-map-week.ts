@@ -3,7 +3,7 @@ import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getVisibleMap, type VisibleMapMode } from "@/lib/course-map";
 import {
     getActionableRequiredActivities,
-    getMapActivityKeepGoing,
+    getMapActivityKeepGoingLevels,
     isMapActivityActionable,
     isMapActivityCompleted,
     type CourseMapProgressState,
@@ -132,8 +132,13 @@ async function buildCurrentWeekSnapshot(
             return toTimelineItem(activity, "locked");
         }
         if (isMapActivityCompleted(activity, guidedProgress)) {
-            const keepGoing = getMapActivityKeepGoing(activity, guidedProgress);
-            return { ...toTimelineItem(activity, "done"), ...(keepGoing ? { keepGoing } : {}) };
+            const keepGoingLevels = getMapActivityKeepGoingLevels(activity, guidedProgress);
+            return {
+                ...toTimelineItem(activity, "done"),
+                ...(keepGoingLevels
+                    ? { keepGoing: `${keepGoingLevels.passed} of ${keepGoingLevels.total} levels`, keepGoingLevels }
+                    : {}),
+            };
         }
         if (!foundCurrent) {
             foundCurrent = true;

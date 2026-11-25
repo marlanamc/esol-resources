@@ -19,6 +19,8 @@ function toRoadActivity(item: TimelineItem, isNext: boolean, weekNumber: number)
         done: item.status === "done",
         isNext,
         ...(item.keepGoing ? { keepGoing: item.keepGoing } : {}),
+        ...(item.keepGoingLevels ? { keepGoingLevels: item.keepGoingLevels } : {}),
+        ...(item.estMinutes ? { estMinutes: item.estMinutes } : {}),
     };
 }
 
@@ -30,6 +32,43 @@ function rowTitle(activity: RoadActivity): string {
 /** Where a step line goes: the first unfinished activity in it, else the first one. */
 function stepHref(activities: RoadActivity[]): string | null {
     return (activities.find((a) => !a.done && a.href) ?? activities.find((a) => a.href))?.href ?? null;
+}
+
+type LevelProgress = { passed: number; total: number };
+
+/**
+ * A level game that met this week's goal but has levels left: a gold ring that
+ * fills with levels passed. The green check is saved for every level done.
+ */
+function LevelRing({ levels }: { levels: LevelProgress }) {
+    const size = 22;
+    const stroke = 4;
+    const r = (size - stroke) / 2;
+    const pct = levels.total > 0 ? Math.min(100, (levels.passed / levels.total) * 100) : 0;
+    return (
+        <svg
+            aria-hidden
+            width={size}
+            height={size}
+            viewBox={`0 0 ${size} ${size}`}
+            className="relative z-[1] mt-px -ml-1 -mr-1 shrink-0 rounded-full"
+            style={{ background: "var(--surface-base)", boxShadow: "0 0 0 3px var(--surface-base)" }}
+        >
+            <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} stroke="var(--road-progress-todo)" />
+            <circle
+                cx={size / 2}
+                cy={size / 2}
+                r={r}
+                fill="none"
+                strokeWidth={stroke}
+                strokeLinecap="round"
+                stroke="var(--accent-color-dark)"
+                pathLength={100}
+                strokeDasharray={`${pct} 100`}
+                transform={`rotate(-90 ${size / 2} ${size / 2})`}
+            />
+        </svg>
+    );
 }
 
 /**
@@ -44,6 +83,7 @@ function StepLine({
     href,
     done,
     required = false,
+    levels,
     accent,
     last,
     inset,
@@ -55,6 +95,7 @@ function StepLine({
     href: string | null;
     done: boolean;
     required?: boolean;
+    levels?: LevelProgress;
     accent: string;
     last: boolean;
     inset: number;
@@ -64,16 +105,20 @@ function StepLine({
             {last ? null : (
                 <span aria-hidden className="absolute top-[26px] -bottom-[14px] w-[2px]" style={{ left: inset + 5, background: "var(--road-rail)" }} />
             )}
-            <span
-                aria-hidden
-                className="relative z-[1] mt-[5px] flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full"
-                style={{
-                    background: done ? "var(--success-color)" : required ? "var(--road-required-bg)" : accent,
-                    boxShadow: "0 0 0 3px var(--surface-base)",
-                }}
-            >
-                {done ? <Check size={9} strokeWidth={4} style={{ color: "var(--road-on-success)" }} /> : null}
-            </span>
+            {levels ? (
+                <LevelRing levels={levels} />
+            ) : (
+                <span
+                    aria-hidden
+                    className="relative z-[1] mt-[5px] flex h-[14px] w-[14px] shrink-0 items-center justify-center rounded-full"
+                    style={{
+                        background: done ? "var(--success-color)" : required ? "var(--road-required-bg)" : accent,
+                        boxShadow: "0 0 0 3px var(--surface-base)",
+                    }}
+                >
+                    {done ? <Check size={9} strokeWidth={4} style={{ color: "var(--road-on-success)" }} /> : null}
+                </span>
+            )}
             <span className="min-w-0 flex-1">
                 <span className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
                     <span className="text-[0.9688rem] font-bold leading-snug text-text">
@@ -133,7 +178,7 @@ export function WeekStepLines({
     const allDone = (list: RoadActivity[]) => list.length > 0 && list.every((a) => a.done);
     const quiz = steps.quiz[0];
 
-    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag?: string; href: string | null; done: boolean; required?: boolean };
+    type Line = { key: string; numbered: boolean; title: string; status: ReactNode; tag?: string; href: string | null; done: boolean; required?: boolean; levels?: LevelProgress };
     const lines: Line[] = [];
     if (steps.words.length > 0) {
         const doneCount = steps.words.filter((a) => a.done).length;
@@ -167,17 +212,29 @@ export function WeekStepLines({
     if (lines.length === 0) {
         for (const activity of steps.practice) {
             const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
+            const levels = activity.done ? activity.keepGoingLevels : undefined;
             lines.push({
                 key: activity.id,
                 numbered: true,
                 title: rowTitle(activity),
-                status: activity.done
-                    ? activity.keepGoing
-                        ? `Keep going · ${activity.keepGoing}`
-                        : "Done. You can play again."
-                    : activity.isNext ? `Next up · ${format.label}` : format.label,
+                // Same words as the Map. The big button already says what is next, so the
+                // row shows what kind of activity it is and how long it takes.
+                status: activity.done ? (
+                    activity.keepGoing ? (
+                        <>
+                            <span className="font-bold" style={{ color: "var(--success-color)" }}>Done for this week</span> · {activity.keepGoing}
+                        </>
+                    ) : (
+                        "Done. You can play again."
+                    )
+                ) : activity.estMinutes ? (
+                    `${format.label} · about ${activity.estMinutes} min`
+                ) : (
+                    format.label
+                ),
                 href: activity.href,
                 done: activity.done,
+                ...(levels ? { levels } : {}),
             });
         }
     }
@@ -196,6 +253,7 @@ export function WeekStepLines({
                     href={line.href}
                     done={line.done}
                     required={line.required}
+                    levels={line.levels}
                     accent={accent}
                     last={index === lines.length - 1}
                     inset={inset}
