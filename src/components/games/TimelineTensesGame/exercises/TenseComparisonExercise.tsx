@@ -107,7 +107,7 @@ export const TenseComparisonExercise = memo(function TenseComparisonExercise({
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="flex items-center gap-3 mb-4">
           <div className="w-1.5 h-6 rounded-full bg-primary" />
-          <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+          <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
             Spot the Difference
           </div>
         </div>
@@ -140,21 +140,21 @@ export const TenseComparisonExercise = memo(function TenseComparisonExercise({
                   <div className="flex items-center gap-3 mb-3">
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black transition-all ${
                       isSelected
-                        ? 'bg-primary text-white shadow-md'
+                        ? 'bg-primary-dark text-text-on-accent dark:bg-primary shadow-md'
                         : 'bg-white/60 dark:bg-white/10 text-text-muted'
                     }`}>
                       {label}
                     </div>
-                    <span className={`text-xs font-black uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-text-muted/50'}`}>
+                    <span className={`text-xs font-black uppercase tracking-widest ${isSelected ? 'text-primary-text' : 'text-text-muted'}`}>
                       Timeline {label}
                     </span>
                     {isSelected && (
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="ml-auto w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                        className="ml-auto w-5 h-5 rounded-full bg-primary-dark dark:bg-primary flex items-center justify-center"
                       >
-                        <Check size={12} strokeWidth={3} className="text-white" />
+                        <Check size={12} strokeWidth={3} className="text-text-on-accent" />
                       </motion.div>
                     )}
                   </div>
@@ -174,7 +174,7 @@ export const TenseComparisonExercise = memo(function TenseComparisonExercise({
             <button
               onClick={handleSubmit}
               disabled={selected === null}
-              className="w-full py-4 sm:py-5 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full py-4 sm:py-5 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:brightness-110 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
             >
               Check Answer
             </button>

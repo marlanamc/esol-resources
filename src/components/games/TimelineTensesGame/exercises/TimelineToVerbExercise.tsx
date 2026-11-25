@@ -175,7 +175,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
         
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="w-1.5 h-6 rounded-full bg-primary" />
-          <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+          <div className="text-xs font-black text-primary-text uppercase tracking-[0.3em]">
             Reading the Timeline
           </div>
           <div className="w-1.5 h-6 rounded-full bg-primary" />
@@ -201,10 +201,6 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
             transition={{ delay: 0.1 }}
             className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-10 mb-8 shadow-xl"
           >
-            <div className="text-sm font-black text-text-muted uppercase tracking-[0.15em] mb-8 text-center sm:text-left underline decoration-primary/20 underline-offset-8">
-              Complete the sentence:
-            </div>
-
             <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold leading-relaxed flex flex-wrap items-baseline gap-x-1 sm:gap-x-1.5 gap-y-12 sm:gap-y-14 pb-9">
               {sentenceParts.map((part, idx) => {
                 if (part.type === 'text') {
@@ -240,7 +236,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                       initial={{ scaleX: 0 }}
                       whileFocus={{ scaleX: 1 }}
                     />
-                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 rounded-full bg-primary/10 px-3 py-0.5 font-sans text-sm sm:text-base font-bold text-primary-dark dark:text-primary-light whitespace-nowrap pointer-events-none">
+                    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 rounded-full bg-primary/10 px-3 py-0.5 font-sans text-sm sm:text-base font-bold text-primary-text whitespace-nowrap pointer-events-none">
                       {part.content.replace(/\s*\/\s*/g, ' / ')}
                     </div>
                   </span>
@@ -263,7 +259,6 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                     <Lightbulb className="text-amber-500" size={24} />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-amber-600/60 uppercase tracking-widest mb-1">Teaching Tip</div>
                     <p className="text-text font-medium leading-relaxed">
                       {getHint()}
                     </p>
@@ -280,7 +275,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
                 {!showHint && (
                     <button
                       onClick={() => setShowHint(true)}
-                      className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+                      className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted hover:text-primary-text uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
                     >
                       <Lightbulb size={18} />
                       Need a Hint?
@@ -292,7 +287,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
               <button
                 onClick={handleSubmit}
                 disabled={!allFilled}
-                className="w-full py-4 sm:py-5 px-6 sm:px-10 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 relative overflow-hidden"
+                className="w-full py-4 sm:py-5 px-6 sm:px-10 bg-primary-dark text-text-on-accent dark:bg-primary rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:brightness-110 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 relative overflow-hidden"
               >
                 Check Answer
               </button>

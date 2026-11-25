@@ -41,7 +41,7 @@ export function AnswerFeedback({
         <button
           type="button"
           onClick={onContinue}
-          className="min-h-11 w-full rounded-xl bg-primary! px-4 py-3 text-base font-bold text-text-on-accent! hover:bg-primary-dark! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="min-h-11 w-full rounded-xl bg-primary-dark! px-4 py-3 text-base font-bold text-text-on-accent! hover:brightness-110 dark:bg-primary! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {continueLabel}
         </button>

@@ -47,7 +47,7 @@ export const TONE: Record<PanelTone, { card: string; text: string; chip: string;
 export const HEADER_GRADIENT = 'bg-gradient-to-br from-violet-600 to-fuchsia-600';
 export const SURFACE = 'bg-white dark:bg-[#162b3d] border border-border dark:border-white/10';
 export const VIOLET_BUTTON =
-  'inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600! text-white! font-bold hover:bg-violet-700! transition-colors disabled:opacity-60';
+  'inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600! text-[#ffffff]! font-bold hover:bg-violet-700! transition-colors disabled:opacity-60';
 
 export const WORLD_BADGE: Record<string, string> = {
   'hear-it': 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-200',
