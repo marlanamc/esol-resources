@@ -1,4 +1,4 @@
-import { BookOpen, Copy, Gamepad2, Link2, Pencil, Puzzle, Mic, Volume2, ClipboardCheck, RotateCcw } from "lucide-react";
+import { AudioLines, Blocks, BookOpen, Clock, Copy, Gamepad2, GitCommitHorizontal, Link2, Pencil, Puzzle, Mic, Volume2, ClipboardCheck, RotateCcw } from "lucide-react";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 
 /** Prefer explicit activity format; title matching covers existing named games. */
@@ -7,6 +7,11 @@ export function getCourseMapActivityFormat(type: string, vocabUi?: string, title
     if (vocabUi === "matching") return { label: "Match pairs", icon: Link2, tone: "vocabulary" } as const;
     if (vocabUi === "fill-blank") return { label: "Complete sentences", icon: Pencil, tone: "vocabulary" } as const;
     if (type === "game" && /^word sort\b/i.test(title)) return { label: "Sort words", icon: Puzzle, tone: "games" } as const;
+    // Named games get their own icon and color so they don't all look like the same gamepad.
+    if (type === "game" && /^(tense path|timeline (tenses|check))\b/i.test(title)) return { label: "Game", icon: GitCommitHorizontal, tone: "vocabulary" } as const;
+    if (type === "game" && /^(sound path|say it & spell it)\b/i.test(title)) return { label: "Game", icon: AudioLines, tone: "pronunciation" } as const;
+    if (type === "game" && /^time (words|indicators)\b/i.test(title)) return { label: "Game", icon: Clock, tone: "games" } as const;
+    if (type === "game" && /^sentence builder\b/i.test(title)) return { label: "Game", icon: Blocks, tone: "games" } as const;
     switch (type) {
         case "guide": return { label: "Read & practice", icon: BookOpen, tone: "grammar" } as const;
         case "game": return { label: "Game", icon: Gamepad2, tone: "games" } as const;

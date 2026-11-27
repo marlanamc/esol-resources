@@ -4,7 +4,7 @@ import type {
     CourseMapOutlineUnit,
     CourseMapUnit,
 } from "@/lib/course-map";
-import { getMapActivityKeepGoing, type CourseMapProgressState } from "@/lib/course-map-progress";
+import { getMapActivityKeepGoingLevels, type CourseMapProgressState } from "@/lib/course-map-progress";
 import type { WeeklyQuizScore } from "@/lib/weekly-quiz";
 import { WORD_LAB_COUNT, formatNextUpActivityTitle } from "@/lib/course-map-hero";
 import {
@@ -266,7 +266,7 @@ function toRoadActivity(
     }
     const done = isMapActivityCompleted(activity, progress);
     const quizScore = done && activity.activityId ? quizScores[activity.activityId] : undefined;
-    const keepGoing = done ? getMapActivityKeepGoing(activity, progress) : null;
+    const keepGoingLevels = done ? getMapActivityKeepGoingLevels(activity, progress) : null;
     return {
         id: activity.id,
         title: formatNextUpActivityTitle(activity.title),
@@ -277,7 +277,7 @@ function toRoadActivity(
         done,
         isNext: false,
         ...(quizScore ? { quizScore } : {}),
-        ...(keepGoing ? { keepGoing } : {}),
+        ...(keepGoingLevels ? { keepGoing: `${keepGoingLevels.passed} of ${keepGoingLevels.total} levels`, keepGoingLevels } : {}),
     };
 }
 

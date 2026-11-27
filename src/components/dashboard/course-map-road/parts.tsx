@@ -270,6 +270,23 @@ function tileStatus(activity: RoadActivity, title: string, isNext: boolean, lock
     return formatLabel.toLowerCase() === title.toLowerCase() ? "" : formatLabel;
 }
 
+/** "Sound Path: -ed Endings" → ["Sound Path", "-ed Endings"], so the short name stays on one line. */
+function splitTileTitle(title: string): [string, string | null] {
+    const match = /^([^:]{2,24}):\s+(.+)$/.exec(title);
+    return match ? [match[1], match[2]] : [title, null];
+}
+
+/** Levels passed as a row of dots in the game's color: progress at a glance, no reading. */
+function LevelTrail({ levels, color }: { levels: { passed: number; total: number }; color: string }) {
+    return (
+        <span className="flex max-w-[96px] flex-wrap justify-center gap-1" role="img" aria-label={`Done. Keep going: ${levels.passed} of ${levels.total} levels`}>
+            {Array.from({ length: levels.total }, (_, index) => (
+                <span key={index} className="h-2 w-2 rounded-full" style={{ background: index < levels.passed ? color : "var(--road-progress-todo)" }} />
+            ))}
+        </span>
+    );
+}
+
 /** One required activity as a square tile: done, next, not open yet, or waiting. */
 function WeekTile({ activity, showNext, accent }: { activity: RoadActivity; showNext: boolean; accent: string }) {
     const format = getCourseMapActivityFormat(activity.activityType, activity.vocabUi, activity.title);
@@ -281,41 +298,56 @@ function WeekTile({ activity, showNext, accent }: { activity: RoadActivity; show
     const quiz = isQuizActivity(activity);
     const status = tileStatus(activity, title, isNext, locked, format.label);
 
+    // Done keeps the activity's own icon and color, so finished games don't all turn into the same green check.
+    const doneTint = (pct: number) => `color-mix(in srgb, ${tone.accent} ${pct}%, var(--surface-base))`;
     const border = isNext
         ? `2px solid ${accent}`
         : quiz && !activity.done && !locked
           ? "2px solid color-mix(in srgb, var(--road-required-bg) 55%, transparent)"
           : activity.done
-            ? "1px solid color-mix(in srgb, var(--success-color) 30%, transparent)"
+            ? `1px solid color-mix(in srgb, ${tone.accent} 30%, transparent)`
             : "1px solid var(--border-subtle)";
-    const background = activity.done ? "var(--road-done-bg)" : locked ? "var(--road-locked-bg)" : "var(--surface-base)";
+    const background = activity.done ? doneTint(9) : locked ? "var(--road-locked-bg)" : "var(--surface-base)";
     const statusColor = activity.done
-        ? "var(--road-done-text)"
+        ? activity.keepGoing
+            ? tone.chipText
+            : "var(--road-done-text)"
         : isNext
           ? accent
           : quiz && !locked
             ? "var(--road-required-bg)"
             : "var(--text-muted)";
+    const levels = activity.done ? activity.keepGoingLevels : undefined;
+    const [name, topic] = splitTileTitle(title);
 
-    const badge = activity.done ? (
-        <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
-            <Check size={20} strokeWidth={3} aria-hidden />
-        </span>
-    ) : locked ? (
+    const badge = locked ? (
         <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: "var(--road-progress-todo)", color: "var(--road-locked-icon)" }}>
             <Lock size={17} aria-hidden />
         </span>
     ) : (
-        <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: tone.surface, color: tone.accent }}>
+        <span className="relative flex h-10 w-10 items-center justify-center rounded-full" style={{ background: tone.surface, color: tone.accent }}>
             <Icon size={20} aria-hidden />
+            {activity.done ? (
+                <span
+                    className="absolute -right-1.5 -bottom-1 flex h-5 w-5 items-center justify-center rounded-full"
+                    style={{ background: "var(--success-color)", color: "var(--road-on-success)", boxShadow: `0 0 0 2px ${doneTint(9)}` }}
+                >
+                    <Check size={11} strokeWidth={3.5} aria-hidden />
+                </span>
+            ) : null}
         </span>
     );
 
     const content = (
         <>
             {badge}
-            <span className={`line-clamp-3 text-[0.875rem] leading-tight font-bold ${locked ? "text-text-muted" : "text-text"}`}>{title}</span>
-            {status ? (
+            <span className={`line-clamp-3 text-[0.875rem] leading-tight font-bold ${locked ? "text-text-muted" : "text-text"}`}>
+                {name}
+                {topic ? <span className="block text-[0.75rem] font-semibold text-text-muted">{topic}</span> : null}
+            </span>
+            {levels ? (
+                <LevelTrail levels={levels} color={tone.accent} />
+            ) : status ? (
                 <span className={`text-[0.75rem] leading-tight ${activity.done || isNext || quiz ? "font-bold" : "font-semibold"}`} style={{ color: statusColor }}>
                     {activity.quizScore && activity.done ? <span className="sr-only">Best score: </span> : null}
                     {status}
