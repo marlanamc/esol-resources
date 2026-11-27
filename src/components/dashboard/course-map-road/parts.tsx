@@ -389,13 +389,17 @@ function ExtrasList({ extras }: { extras: RoadActivity[] }) {
                     const className = "flex min-h-[48px] items-center gap-3 px-1 py-1.5 text-left";
                     const content = (
                         <>
-                            {activity.done ? (
-                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--success-color)", color: "var(--road-on-success)" }}>
-                                    <Check size={13} strokeWidth={3} aria-hidden />
-                                </span>
-                            ) : (
-                                <Icon size={19} aria-hidden className="mx-[2.5px] shrink-0" style={{ color: tone.accent }} />
-                            )}
+                            <span className="relative flex h-6 w-6 shrink-0 items-center justify-center">
+                                <Icon size={19} aria-hidden style={{ color: tone.accent }} />
+                                {activity.done ? (
+                                    <span
+                                        className="absolute -right-1.5 -bottom-1 flex h-3.5 w-3.5 items-center justify-center rounded-full"
+                                        style={{ background: "var(--success-color)", color: "var(--road-on-success)", boxShadow: "0 0 0 2px var(--surface-base)" }}
+                                    >
+                                        <Check size={9} strokeWidth={4} aria-hidden />
+                                    </span>
+                                ) : null}
+                            </span>
                             <span className={`min-w-0 flex-1 text-[0.9375rem] leading-snug font-semibold ${activity.done ? "text-text-muted" : "text-text"}`}>{title}</span>
                             {activity.done ? (
                                 <span className="shrink-0 text-[0.8125rem] font-bold" style={{ color: "var(--road-done-text)" }}>
